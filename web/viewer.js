@@ -68,10 +68,10 @@ function driveCandidates(link){
   if(!id||!/^[-\w]+$/.test(id))throw Error('The link does not contain a valid Drive file ID.');
   const params=new URLSearchParams({export:'download',id});
   if(url.searchParams.has('resourcekey'))params.set('resourcekey',url.searchParams.get('resourcekey'));
-  return [`https://drive.google.com/uc?${params}`,`https://drive.usercontent.google.com/download?${params}`];
+  return [`https://drive.usercontent.google.com/download?${params}`,`https://drive.google.com/uc?${params}`];
 }
 async function fetchGLB(url){
-  const response=await fetch(url,{mode:'cors',credentials:'omit',signal:AbortSignal.timeout(30000)});
+  const response=await fetch(url,{mode:'cors',credentials:'omit',referrerPolicy:'no-referrer',signal:AbortSignal.timeout(30000)});
   log(`HTTP ${response.status}; type ${response.headers.get('content-type')}; URL ${response.url}`);
   if(!response.ok)throw Error(`HTTP ${response.status}`);
   const bytes=await response.arrayBuffer();
