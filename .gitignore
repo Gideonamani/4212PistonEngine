@@ -1,0 +1,11 @@
+.local/
+sources/manuals/
+build/
+renders/
+.runtime/
+**/__pycache__/
+*.blend1
+*.FCStd1
+node_modules/
+dist/
+web/control.glb
