@@ -26,5 +26,5 @@
     "interaction": "web"
   },
   "roadmap": "docs/ROADMAP.md",
-  "active_work_package": "M1: Explorer usability, evidence inventory and device baseline (planned)"
+  "active_work_package": "M1 in progress: explorer controls delivered; loading diagnostics added; optional audio, evidence audit and physical-device baseline remain"
 }

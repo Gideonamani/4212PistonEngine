@@ -196,6 +196,8 @@ function driveCandidates(link){
   return [{url:`https://www.googleapis.com/drive/v3/files/${id}?alt=media`,headers}];
 }
 async function fetchGLB(url,headers={}){
+  const started=performance.now();
+  $('load-progress').hidden=false;$('load-progress').removeAttribute('value');
   const response=await fetch(url,{headers,mode:'cors',credentials:'omit',referrerPolicy:'strict-origin-when-cross-origin',signal:AbortSignal.timeout(120000)});
   log(`HTTP ${response.status}; type ${response.headers.get('content-type')}; URL ${response.url}`);
   if(!response.ok){
@@ -205,13 +207,25 @@ async function fetchGLB(url,headers={}){
   let bytes;
   if(response.body){
     const reader=response.body.getReader(), chunks=[];
-    const total=Number(response.headers.get('content-length'))||0;
+    let total=Number(response.headers.get('content-length'))||0;
+    // Drive media responses do not always expose Content-Length cross-origin.
+    // Ask for the current file size rather than assume the previous export's size.
+    if(!total&&url.startsWith('https://www.googleapis.com/drive/v3/files/')){
+      try{
+        const metadataURL=new URL(url);metadataURL.searchParams.delete('alt');metadataURL.searchParams.set('fields','size');
+        const metadata=await fetch(metadataURL,{headers,mode:'cors',credentials:'omit',referrerPolicy:'strict-origin-when-cross-origin',signal:AbortSignal.timeout(10000)});
+        if(metadata.ok){const info=await metadata.json();total=Number(info.size)||0;}
+      }catch{log('File size unavailable; showing received bytes until download completes.');}
+    }
     let received=0,lastUpdate=0;
     for(;;){
       const {done,value}=await reader.read();if(done)break;
       chunks.push(value);received+=value.byteLength;
+      if(total&&received>total){total=0;log('File size changed during loading; percentage unavailable.');}
       if(performance.now()-lastUpdate>350){
-        say(`Loading model: ${(received/1048576).toFixed(1)}${total?' / '+(total/1048576).toFixed(1):''} MB…`);
+        const percent=total?Math.min(99,Math.floor(received/total*100)):null;
+        if(percent===null)$('load-progress').removeAttribute('value');else $('load-progress').value=percent;
+        say(`Downloading model: ${percent===null?'':percent+'% · '}${(received/1048576).toFixed(1)}${total?' / '+(total/1048576).toFixed(1):''} MB${total?'':' · total size unavailable'}…`);
         lastUpdate=performance.now();
       }
     }
@@ -220,10 +234,14 @@ async function fetchGLB(url,headers={}){
     bytes=joined.buffer;
   }else bytes=await response.arrayBuffer();
   if(bytes.byteLength<20||new DataView(bytes).getUint32(0,true)!==0x46546c67)throw Error('Response is not a GLB model (possibly a preview, login or confirmation page).');
+  $('load-progress').value=100;
+  log(`Download: ${((performance.now()-started)/1000).toFixed(2)} s; ${bytes.byteLength} bytes (includes size lookup when needed).`);
   return bytes;
 }
 async function display(bytes){
-  say('Preparing the 60-component assembly…');
+  const started=performance.now();
+  say('Download 100% complete · Preparing the 60-component assembly…');
+  await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
   const gltf=await new GLTFLoader().parseAsync(bytes,'');
   const next=gltf.scene, nextMeshes=[];
   next.traverse(o=>{if(o.isMesh){let n=o,id;while(n&&!id){id=n.userData.cad_part_id;n=n.parent;}o.userData.partId=id;nextMeshes.push(o);}});
@@ -238,6 +256,8 @@ async function display(bytes){
   $('appearance').disabled=false;
   $('search').value='';$('group').value='';$('group').disabled=false;selected='';populateParts();
   $('search').disabled=false;$('parts').disabled=false;$('reset').disabled=false;choose('');
+  log(`Preparation and first render: ${((performance.now()-started)/1000).toFixed(2)} s; viewport ${renderer.domElement.clientWidth} × ${renderer.domElement.clientHeight}; pixel ratio ${renderer.getPixelRatio()}.`);
+  $('load-progress').hidden=true;
   return ids.size;
 }
 async function load(){
@@ -251,7 +271,7 @@ async function load(){
       catch(e){log(e.name+': '+e.message);}
     }
     say('Could not load the model. Open Loading details for the error, then use Reload model to retry.');
-  }catch(e){say(e.message);}finally{busy=false;$('load').disabled=false;}
+  }catch(e){say(e.message);}finally{busy=false;$('load').disabled=false;$('load-progress').hidden=true;}
 }
 $('load').onclick=load;
 try{
@@ -264,4 +284,4 @@ try{
   if(localControl){const bytes=await fetchGLB('./control.glb');await display(bytes);say('LOCAL CONTROL passed · 60 components. This does not verify Google Drive delivery.');}
   else if(config.drive_share_url)await load();
   else say('Viewer ready. Awaiting the shared Drive model link; Drive delivery has not been tested.');
-}catch(e){say('Viewer setup failed: '+e.message);log(e.stack);}
+}catch(e){$('load-progress').hidden=true;say('Viewer setup failed: '+e.message);log(e.stack);}

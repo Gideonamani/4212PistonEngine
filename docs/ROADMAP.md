@@ -53,6 +53,8 @@ Full-screen inspection now includes a normal-view toggle and optional hidden con
 
 ## Repeatable procedure for every subsystem
 
+M1 loading feedback now includes a download percentage and progress bar. If Content-Length is absent, the viewer queries the current Drive file's `size`; if neither is available it explicitly reports an unknown total. Completion is followed by a separate preparation stage. Loading details record elapsed download (including any metadata lookup), preparation/first render submission, viewport and pixel ratio. These are per-session diagnostics, not uploaded telemetry or a completed device benchmark; network/cache conditions and physical-device interaction still need recording. The size source is the [Drive files metadata](https://developers.google.com/workspace/drive/api/reference/rest/v3/files).
+
 1. Define the student learning outcome and engine/configuration applicability.
 2. Study the manual descriptions, figures, parts lists and limits; build an evidence-backed inventory.
 3. Record documented values, derived values, measurements, reconstructions, illustrative choices and unresolved questions separately.

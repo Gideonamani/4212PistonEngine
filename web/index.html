@@ -22,7 +22,7 @@ button,select{min-height:44px}input[type=range]{min-height:24px}fieldset{min-wid
 </head><body>
 <header><small>4212 PISTON ENGINE / CYLINDER EXPLORER</small><h1>Explore the cylinder assembly</h1>
 <p>Drag to rotate · Scroll or pinch to zoom · Select a component to read its function.</p>
-<p id="status" role="status">Starting viewer…</p></header>
+<p id="status" role="status">Starting viewer…</p><progress id="load-progress" max="100" aria-label="Model download progress" style="width:100%;height:12px;accent-color:#75d2d0"></progress></header>
 <main id="explorer"><div id="view" aria-label="Interactive cylinder assembly"><div class="viewer-toolbar"><button id="toggle-controls" aria-controls="inspection-panel" aria-expanded="true">Hide controls</button><button id="fullscreen" aria-pressed="false" title="Expand viewer">⛶ Full screen</button></div></div><aside id="inspection-panel">
 <h2 id="part-name">Cylinder study</h2><p id="part-function">Load the shared model to explore its 60 components.</p>
 <label for="appearance">Appearance</label><select id="appearance" disabled><option value="inspection">Inspection colours</option><option value="cad">Original CAD colours</option></select>
@@ -45,4 +45,4 @@ button,select{min-height:44px}input[type=range]{min-height:24px}fieldset{min-wid
 </aside></main>
 <footer><button id="load" disabled>Reload model</button>
 <details><summary>Loading details</summary><label for="drive">Google Drive model sharing link</label><input id="drive" type="url" placeholder="https://drive.google.com/file/d/…/view"><p>The public model loads through Google Drive API without Google sign-in. No manual file saving is needed.</p><pre id="log"></pre></details>
-</footer><script type="module" src="./viewer.js?v=20260909-fullscreen1"></script></body></html>
+</footer><script type="module" src="./viewer.js?v=20260909-progress1"></script></body></html>
