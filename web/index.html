@@ -9,17 +9,26 @@ fieldset{margin:20px 0;padding:12px;border:1px solid #63788b;border-radius:8px}l
 @media(min-width:801px){#view{position:sticky;top:0;height:75vh;align-self:start}}
 @media(max-width:800px){#view{position:sticky;top:0;z-index:2;height:38svh;min-height:220px;box-shadow:0 5px 18px #0008}aside{padding:16px}header,footer{padding:16px}h1{font-size:21px}}
 button,select{min-height:44px}input[type=range]{min-height:24px}fieldset{min-width:0}#search{box-sizing:border-box;width:100%}
+.viewer-toolbar{position:absolute;top:10px;right:10px;z-index:3;display:flex;gap:8px}.viewer-toolbar button{background:#13212de8}.viewer-toolbar button[aria-pressed=true]{border-color:#75d2d0}
+#view,aside{min-width:0}#view canvas{max-width:100%}
+#explorer:fullscreen,#explorer.expanded{width:100%;height:100dvh;min-height:0;background:#101923;overflow:hidden;grid-template-rows:minmax(0,1fr)}
+#explorer.expanded{position:fixed;inset:0;z-index:1000}body.viewer-expanded{overflow:hidden}
+#explorer:fullscreen #view,#explorer.expanded #view{position:relative;height:100%;min-height:0;align-self:stretch}
+#explorer:fullscreen aside,#explorer.expanded aside{overflow:auto;min-height:0}
+#explorer.controls-hidden{grid-template-columns:minmax(0,1fr)}#explorer.controls-hidden aside{display:none}
+@media(max-width:800px){#explorer:fullscreen,#explorer.expanded{grid-template-rows:48% minmax(0,1fr)}#explorer.controls-hidden:fullscreen,#explorer.controls-hidden.expanded{grid-template-rows:minmax(0,1fr)}}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
 </head><body>
 <header><small>4212 PISTON ENGINE / CYLINDER EXPLORER</small><h1>Explore the cylinder assembly</h1>
 <p>Drag to rotate · Scroll or pinch to zoom · Select a component to read its function.</p>
 <p id="status" role="status">Starting viewer…</p></header>
-<main><div id="view" aria-label="Interactive cylinder assembly"></div><aside>
+<main id="explorer"><div id="view" aria-label="Interactive cylinder assembly"><div class="viewer-toolbar"><button id="toggle-controls" aria-controls="inspection-panel" aria-expanded="true">Hide controls</button><button id="fullscreen" aria-pressed="false" title="Expand viewer">⛶ Full screen</button></div></div><aside id="inspection-panel">
 <h2 id="part-name">Cylinder study</h2><p id="part-function">Load the shared model to explore its 60 components.</p>
 <label for="appearance">Appearance</label><select id="appearance" disabled><option value="inspection">Inspection colours</option><option value="cad">Original CAD colours</option></select>
 <p><small>Inspection colours identify intake (teal), exhaust (copper), and other parts (steel tones). Gold marks your selection. These are teaching colours, not verified material specifications.</small></p>
 <label for="search">Find a component</label><input id="search" type="search" placeholder="Try piston, valve or oil…" disabled>
+<label for="group">Component group</label><select id="group" disabled><option value="">All groups</option><option value="structure">Cylinder structure</option><option value="piston">Piston, rings and pin</option><option value="crank">Crank and connecting rod</option><option value="intake">Intake valve train</option><option value="exhaust">Exhaust valve train</option><option value="ignition">Spark plugs</option></select>
 <p id="matches" role="status"></p>
 <label for="parts">Component</label><select id="parts" disabled><option value="">Whole assembly</option></select>
 <p><button id="isolate" disabled>Isolate component</button></p><p><button id="reset" disabled>Show assembly</button></p>
@@ -36,4 +45,4 @@ button,select{min-height:44px}input[type=range]{min-height:24px}fieldset{min-wid
 </aside></main>
 <footer><button id="load" disabled>Reload model</button>
 <details><summary>Loading details</summary><label for="drive">Google Drive model sharing link</label><input id="drive" type="url" placeholder="https://drive.google.com/file/d/…/view"><p>The public model loads through Google Drive API without Google sign-in. No manual file saving is needed.</p><pre id="log"></pre></details>
-</footer><script type="module" src="./viewer.js?v=20260909-solid-section1"></script></body></html>
+</footer><script type="module" src="./viewer.js?v=20260909-fullscreen1"></script></body></html>

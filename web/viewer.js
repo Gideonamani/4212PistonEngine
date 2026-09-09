@@ -5,6 +5,35 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 const $ = id => document.getElementById(id);
 const say = text => $('status').textContent = text;
 const log = text => $('log').textContent += text + '\n';
+const explorer=$('explorer');
+function syncFullscreen(){
+  const active=document.fullscreenElement===explorer||explorer.classList.contains('expanded');
+  $('fullscreen').textContent=active?'↙ Normal view':'⛶ Full screen';
+  $('fullscreen').setAttribute('aria-pressed',String(active));
+  $('fullscreen').title=active?'Return to normal view (Esc)':'Expand viewer';
+  document.body.classList.toggle('viewer-expanded',active);
+}
+$('fullscreen').onclick=async()=>{
+  try{
+    if(document.fullscreenElement===explorer)await document.exitFullscreen();
+    else if(explorer.classList.contains('expanded'))explorer.classList.remove('expanded');
+    else if(document.fullscreenEnabled&&explorer.requestFullscreen){
+      try{await explorer.requestFullscreen();}catch{explorer.classList.add('expanded');}
+    }else explorer.classList.add('expanded');
+  }finally{syncFullscreen();}
+};
+document.addEventListener('fullscreenchange',syncFullscreen);
+document.addEventListener('keydown',async e=>{
+  if(e.key!=='Escape')return;
+  if(document.fullscreenElement===explorer)await document.exitFullscreen().catch(()=>{});
+  if(explorer.classList.contains('expanded'))explorer.classList.remove('expanded');
+  syncFullscreen();
+});
+$('toggle-controls').onclick=()=>{
+  const hidden=explorer.classList.toggle('controls-hidden');
+  $('toggle-controls').textContent=hidden?'Show controls':'Hide controls';
+  $('toggle-controls').setAttribute('aria-expanded',String(!hidden));
+};
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#101923');
 const camera = new THREE.PerspectiveCamera(40, 1, .001, 100);
@@ -22,7 +51,7 @@ for (const [x,y,z] of [[2,3,4],[-3,1,-2]]) {
 }
 const resize = new ResizeObserver(() => {
   const {width,height} = $('view').getBoundingClientRect();
-  renderer.setSize(width,height); camera.aspect=width/height;camera.updateProjectionMatrix();renderer.render(scene,camera);
+  renderer.setSize(width,height,false); camera.aspect=width/height;camera.updateProjectionMatrix();renderer.render(scene,camera);
 });resize.observe($('view'));
 controls.addEventListener('change',()=>renderer.render(scene,camera));
 let root, meshes=[], selected='', catalogue=new Map(), busy=false, apiKey='';
@@ -103,14 +132,23 @@ function populateParts(){
   const ids=[...new Set(meshes.map(m=>m.userData.partId))];
   const matches=ids.filter(id=>{
     const p=catalogue.get(id);
-    return `${p?.display_name||id} ${p?.function||''}`.toLowerCase().includes(query);
+    return (!$('group').value||partGroup(id)===$('group').value)&&`${p?.display_name||id} ${p?.function||''}`.toLowerCase().includes(query);
   }).sort((a,b)=>(catalogue.get(a)?.display_name||a).localeCompare(catalogue.get(b)?.display_name||b));
   $('parts').replaceChildren(new Option('Whole assembly',''));
   for(const id of matches)$('parts').add(new Option(catalogue.get(id)?.display_name||id,id));
   $('parts').value=selected;
-  $('matches').textContent=query?`${matches.length} of ${ids.length} components match`:`${ids.length} components available`;
+  $('matches').textContent=query||$('group').value?`${matches.length} of ${ids.length} components match`:`${ids.length} components available`;
+}
+function partGroup(id){
+  if(id.startsWith('Intake'))return 'intake';
+  if(id.startsWith('Exhaust'))return 'exhaust';
+  if(/Spark/.test(id))return 'ignition';
+  if(/^(Piston|FloatingPin|PinPlug)/.test(id))return 'piston';
+  if(/^Cylinder/.test(id))return 'structure';
+  return 'crank';
 }
 $('search').oninput=()=>{choose('');populateParts();};
+$('group').onchange=()=>{choose('');populateParts();};
 function fit(object) {
   const box=new THREE.Box3().setFromObject(object), center=box.getCenter(new THREE.Vector3());
   const size=box.getSize(new THREE.Vector3()).length();
@@ -121,7 +159,7 @@ function fit(object) {
 const highlight = new THREE.MeshStandardMaterial({color:0xf1b852,metalness:.5,roughness:.35});
 const ghost = new THREE.MeshStandardMaterial({color:0x9cbdcf,transparent:true,opacity:.12,depthWrite:false});
 function choose(id){
-  if(id&&![...$('parts').options].some(o=>o.value===id)){$('search').value='';populateParts();}
+  if(id&&![...$('parts').options].some(o=>o.value===id)){$('search').value='';$('group').value='';populateParts();}
   isolated=false;selected=id;$('parts').value=id;
   const part=catalogue.get(id);
   $('part-name').textContent=part?.display_name || 'Cylinder study';
@@ -136,7 +174,7 @@ $('isolate').onclick=()=>{
   isolated=true;applyAppearance();
   const picked=meshes.find(m=>m.userData.partId===selected);if(picked)fit(picked);
 };
-$('reset').onclick=()=>{resetSection();$('search').value='';choose('');populateParts();if(root)fit(root);};
+$('reset').onclick=()=>{resetSection();$('search').value='';$('group').value='';choose('');populateParts();if(root)fit(root);};
 let down;
 renderer.domElement.addEventListener('pointerdown',e=>{down=[e.clientX,e.clientY];});
 renderer.domElement.addEventListener('pointerup',e=>{
@@ -198,7 +236,7 @@ async function display(bytes){
   scene.add(root);modelBounds.setFromObject(root);buildSections();resetSection();fit(root);
   $('section-controls').disabled=false;
   $('appearance').disabled=false;
-  $('search').value='';selected='';populateParts();
+  $('search').value='';$('group').value='';$('group').disabled=false;selected='';populateParts();
   $('search').disabled=false;$('parts').disabled=false;$('reset').disabled=false;choose('');
   return ids.size;
 }

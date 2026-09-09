@@ -49,6 +49,8 @@ The section now fills the cut faces of opaque parts using per-mesh stencil passe
 
 Inspection colours distinguish intake, exhaust and other parts without claiming verified material specifications; original CAD colours remain selectable. Narrow-screen layouts keep the model above the scrolling controls. Browser preview checks cover filled piston sections, appearance switching and selection; representative physical-phone performance is still pending. Section filling adds rendering work and needs that device baseline before M1 sign-off.
 
+Full-screen inspection now includes a normal-view toggle and optional hidden controls, preserving camera and selection. Browsers without the Fullscreen API use an expanded in-page view. Six teaching groups combine with name/function search: cylinder structure, piston/rings/pin, crank/connecting rod, intake valve train, exhaust valve train and spark plugs. These organize the current study and are not manufacturer parts-list classifications. Desktop checks cover full-screen entry/return, hidden controls, retained piston isolation and combined search; broad phone coverage remains open. Next work: optional audio, device/performance baseline and the shared operation profile needed for M2.
+
 ## Repeatable procedure for every subsystem
 
 1. Define the student learning outcome and engine/configuration applicability.
