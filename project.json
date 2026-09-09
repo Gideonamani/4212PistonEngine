@@ -1,0 +1,30 @@
+{
+  "name": "4212PistonEngine",
+  "status": "Drive API delivery verified on GitHub Pages: 60 components, selection, isolation and orbit",
+  "repository_created": true,
+  "website_implemented": true,
+  "preferred_architecture": {
+    "cad": "FreeCAD",
+    "presentation": "Blender",
+    "web_exchange": "GLB plus catalogue and operation manifest",
+    "viewer": "Three.js",
+    "hosting": "GitHub Pages",
+    "model_delivery": "Official Google Drive API from existing synced Drive files"
+  },
+  "presentation_preferences": {
+    "background_music": "Soft Quiet Workshop score by default for presentation videos",
+    "retain_silent_versions": true,
+    "music_fades": true,
+    "web_music": "User-controlled; start only after user interaction",
+    "captions": "Component name and function below the model"
+  },
+  "first_milestone": "Interactive cylinder plus a verified CAD-edit propagation exercise",
+  "source_ownership": {
+    "dimensions_and_datums": "CAD",
+    "functions_and_evidence": "shared catalogue",
+    "materials_and_cameras": "Blender",
+    "interaction": "web"
+  },
+  "roadmap": "docs/ROADMAP.md",
+  "active_work_package": "M1: Explorer usability, evidence inventory and device baseline (planned)"
+}
