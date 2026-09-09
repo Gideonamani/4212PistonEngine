@@ -16,6 +16,20 @@ The existing CAD annotations separately mark installed spring dimensions and lev
 
 ## Before enabling valve-train motion
 
+### Legacy motion audit results
+
+`scripts/audit_valve_contacts.py` evaluates the actual CAD solids at 0, 3.5 and 7 mm lift using the old video's `-asin(lift/22)` rocker rotation. Results are recorded in `data/valve-contact-audit.json` against the master hash.
+
+| Lift | Intake rocker/valve gap | Exhaust rocker/valve gap |
+|---|---|---|
+| 0 mm | 0.2244 mm | 0.1736 mm |
+| 3.5 mm | 0.3581 mm | 0.3073 mm |
+| 7 mm | 0.7701 mm | 0.7193 mm |
+
+The sampled valve/guide and rocker/housing pairs have zero intersection volume. Minimum guide gaps are approximately 0.024765 mm intake and 0.047625 mm exhaust; those are geometric minimum distances, not diametral clearances. Housing gaps remain above 2.6 mm in the sampled poses. These sparse checks do not establish clearance throughout motion or for every neighbouring part.
+
+**The legacy valve-train motion fails the maintained-contact requirement.** Even the closed pose has a gap in this reconstructed rocker envelope. Correct/reconstruct the contact face on an isolated CAD copy, then solve rocker angle from contact instead of relying on the illustrative 22 mm lever. Validate pushrod/socket closure, spring envelope and intermediate clearances before promoting new CAD/GLB assets. The live model is preserved while this correction is developed.
+
 1. Establish the rocker-to-valve contact point and effective lever from the CAD contact surfaces; resolve gaps/interference rather than simply rotating around the correct pivot.
 2. Check springs at minimum length for coil interference; an axial scaling effect is only illustrative deformation.
 3. Preserve pushrod length and ball/socket alignment throughout the proposed motion, and check housing clearances.
