@@ -5,6 +5,20 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 const $ = id => document.getElementById(id);
 const say = text => $('status').textContent = text;
 const log = text => $('log').textContent += text + '\n';
+const music=$('music');
+music.volume=.3;
+$('music-toggle').onclick=async()=>{
+  if(!music.paused){music.pause();return;}
+  $('music-toggle').disabled=true;
+  try{if(!music.getAttribute('src'))music.src='./audio/quiet-workshop.mp3';await music.play();}
+  catch{$('music-status').textContent='Music could not start. Press Play music to retry.';music.removeAttribute('src');music.load();}
+  finally{$('music-toggle').disabled=false;}
+};
+$('music-volume').oninput=()=>{music.volume=Number($('music-volume').value)/100;};
+music.addEventListener('playing',()=>{$('music-status').textContent='Playing Quiet Workshop.';$('music-toggle').textContent='Pause music';$('music-toggle').setAttribute('aria-pressed','true');});
+music.addEventListener('pause',()=>{$('music-status').textContent='Music paused.';$('music-toggle').textContent='Play music';$('music-toggle').setAttribute('aria-pressed','false');});
+music.addEventListener('waiting',()=>{$('music-status').textContent='Loading music…';});
+music.addEventListener('error',()=>{$('music-status').textContent='Music could not load. The model viewer is still available; reload the page to retry music.';});
 const explorer=$('explorer');
 function syncFullscreen(){
   const active=document.fullscreenElement===explorer||explorer.classList.contains('expanded');

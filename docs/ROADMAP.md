@@ -53,6 +53,8 @@ Full-screen inspection now includes a normal-view toggle and optional hidden con
 
 ## Repeatable procedure for every subsystem
 
+Optional Quiet Workshop background music is now implemented with explicit play/pause and volume controls. The 120-second, 1.44 MB excerpt is generated from the original score by `scripts/build_web_music.py`; this small web presentation asset is served with Pages, while large models and source media remain in Drive. The audio URL is assigned only on Play; it does not compete with the initial model download unless requested. Physical-device audio/performance checks and the evidence audit remain open. Next engineering package: extract CAD dimensions and joint frames into the shared operation profile before adding M2 mechanism animation.
+
 M1 loading feedback now includes a download percentage and progress bar. If Content-Length is absent, the viewer queries the current Drive file's `size`; if neither is available it explicitly reports an unknown total. Completion is followed by a separate preparation stage. Loading details record elapsed download (including any metadata lookup), preparation/first render submission, viewport and pixel ratio. These are per-session diagnostics, not uploaded telemetry or a completed device benchmark; network/cache conditions and physical-device interaction still need recording. The size source is the [Drive files metadata](https://developers.google.com/workspace/drive/api/reference/rest/v3/files).
 
 1. Define the student learning outcome and engine/configuration applicability.
