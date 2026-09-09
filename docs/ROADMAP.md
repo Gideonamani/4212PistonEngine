@@ -78,6 +78,8 @@ Every module must have an inventory, source references, assumption register, sta
 
 ## Decisions already established
 
+Credential decision: [ADR 001 — restricted public Drive browser key](decisions/001-public-drive-browser-key.md). The project owner accepts the quota-abuse trade-off and defers a server proxy. Monitoring is a documented manual procedure, not an installed automated monitor.
+
 | Decision | Basis |
 |---|---|
 | FreeCAD owns dimensions; Blender owns presentation | User direction |

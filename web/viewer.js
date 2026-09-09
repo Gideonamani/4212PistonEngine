@@ -26,6 +26,19 @@ let root, meshes=[], selected='', catalogue=new Map(), busy=false, apiKey='';
 const ray = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 const originals = new Map();
+function populateParts(){
+  const query=$('search').value.trim().toLowerCase();
+  const ids=[...new Set(meshes.map(m=>m.userData.partId))];
+  const matches=ids.filter(id=>{
+    const p=catalogue.get(id);
+    return `${p?.display_name||id} ${p?.function||''}`.toLowerCase().includes(query);
+  }).sort((a,b)=>(catalogue.get(a)?.display_name||a).localeCompare(catalogue.get(b)?.display_name||b));
+  $('parts').replaceChildren(new Option('Whole assembly',''));
+  for(const id of matches)$('parts').add(new Option(catalogue.get(id)?.display_name||id,id));
+  $('parts').value=selected;
+  $('matches').textContent=query?`${matches.length} of ${ids.length} components match`:`${ids.length} components available`;
+}
+$('search').oninput=()=>{choose('');populateParts();};
 function fit(object) {
   const box=new THREE.Box3().setFromObject(object), center=box.getCenter(new THREE.Vector3());
   const size=box.getSize(new THREE.Vector3()).length();
@@ -37,10 +50,13 @@ function restore(){for(const m of meshes){m.visible=true;m.material=originals.ge
 const highlight = new THREE.MeshStandardMaterial({color:0xf1b852,metalness:.5,roughness:.35});
 const ghost = new THREE.MeshStandardMaterial({color:0x9cbdcf,transparent:true,opacity:.12,depthWrite:false});
 function choose(id){
+  if(id&&![...$('parts').options].some(o=>o.value===id)){$('search').value='';populateParts();}
   restore();selected=id;$('parts').value=id;
   const part=catalogue.get(id);
   $('part-name').textContent=part?.display_name || 'Cylinder study';
   $('part-function').textContent=part?.function || 'Drag to rotate the assembly. Choose a component to inspect it.';
+  $('part-source').textContent=part?`Catalogue reference: ${part.function_source_summary||'Not yet recorded'}. Source attribution is awaiting detailed review.`:'Choose a component to see its catalogue reference.';
+  $('part-evidence').textContent=part?`Geometry: ${part.geometry_evidence_status||'Not yet reviewed'}. Claim review: ${part.structured_claim_review||'pending'}.`:'This study combines documented dimensions and reconstructed geometry. The detailed evidence audit is pending.';
   for(const m of meshes) if(m.userData.partId===id)m.material=highlight;
   $('isolate').disabled=!id;
   renderer.render(scene,camera);
@@ -50,7 +66,7 @@ $('isolate').onclick=()=>{
   for(const m of meshes)m.material=m.userData.partId===selected?highlight:ghost;
   const picked=meshes.find(m=>m.userData.partId===selected);if(picked)fit(picked);
 };
-$('reset').onclick=()=>{choose('');if(root)fit(root);};
+$('reset').onclick=()=>{$('search').value='';choose('');populateParts();if(root)fit(root);};
 let down;
 renderer.domElement.addEventListener('pointerdown',e=>{down=[e.clientX,e.clientY];});
 renderer.domElement.addEventListener('pointerup',e=>{
@@ -78,11 +94,28 @@ async function fetchGLB(url,headers={}){
     const error=await response.json().catch(()=>null);
     throw Error(`HTTP ${response.status}: ${error?.error?.message||response.statusText}`);
   }
-  const bytes=await response.arrayBuffer();
+  let bytes;
+  if(response.body){
+    const reader=response.body.getReader(), chunks=[];
+    const total=Number(response.headers.get('content-length'))||0;
+    let received=0,lastUpdate=0;
+    for(;;){
+      const {done,value}=await reader.read();if(done)break;
+      chunks.push(value);received+=value.byteLength;
+      if(performance.now()-lastUpdate>350){
+        say(`Loading model: ${(received/1048576).toFixed(1)}${total?' / '+(total/1048576).toFixed(1):''} MB…`);
+        lastUpdate=performance.now();
+      }
+    }
+    const joined=new Uint8Array(received);let offset=0;
+    for(const chunk of chunks){joined.set(chunk,offset);offset+=chunk.byteLength;}
+    bytes=joined.buffer;
+  }else bytes=await response.arrayBuffer();
   if(bytes.byteLength<20||new DataView(bytes).getUint32(0,true)!==0x46546c67)throw Error('Response is not a GLB model (possibly a preview, login or confirmation page).');
   return bytes;
 }
 async function display(bytes){
+  say('Preparing the 60-component assembly…');
   const gltf=await new GLTFLoader().parseAsync(bytes,'');
   const next=gltf.scene, nextMeshes=[];
   next.traverse(o=>{if(o.isMesh){let n=o,id;while(n&&!id){id=n.userData.cad_part_id;n=n.parent;}o.userData.partId=id;nextMeshes.push(o);}});
@@ -91,9 +124,8 @@ async function display(bytes){
   if(root){scene.remove(root);root.traverse(o=>{if(o.geometry)o.geometry.dispose();});}
   root=next;meshes=nextMeshes;originals.clear();for(const m of meshes)originals.set(m,m.material);
   scene.add(root);fit(root);
-  $('parts').replaceChildren(new Option('Whole assembly',''));
-  for(const id of ids)$('parts').add(new Option(catalogue.get(id)?.display_name||id,id));
-  $('parts').disabled=false;$('reset').disabled=false;choose('');
+  $('search').value='';selected='';populateParts();
+  $('search').disabled=false;$('parts').disabled=false;$('reset').disabled=false;choose('');
   return ids.size;
 }
 async function load(){
@@ -106,7 +138,7 @@ async function load(){
       try{const bytes=await fetchGLB(url,headers);const count=await display(bytes);say(`Drive API loaded · ${count} components · ${(bytes.byteLength/1048576).toFixed(1)} MB. Rotate, zoom or select a component.`);return;}
       catch(e){log(e.name+': '+e.message);}
     }
-    say('Drive loading did not pass. The shared file could not be read as an interactive model. Open delivery test details for the results.');
+    say('Could not load the model. Open Loading details for the error, then use Reload model to retry.');
   }catch(e){say(e.message);}finally{busy=false;$('load').disabled=false;}
 }
 $('load').onclick=load;

@@ -1,21 +1,23 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>4212 Piston Engine · Drive delivery test</title>
+<title>4212 Piston Engine · Cylinder explorer</title>
 <style>
 :root{color-scheme:dark;font-family:system-ui,sans-serif;background:#101923;color:#eaf1f8}body{margin:0}header,footer{padding:20px 4vw;background:#162431}h1{font-size:24px;margin:0 0 8px}p{line-height:1.5;margin:8px 0}main{display:grid;grid-template-columns:minmax(0,1fr) 320px;min-height:65vh}#view{position:relative;min-height:480px;touch-action:none}canvas{display:block;width:100%;height:100%}aside{padding:22px;background:#1c2d3c}button,input,select{font:inherit;padding:10px;border:1px solid #63788b;border-radius:6px;background:#13212d;color:inherit}button{cursor:pointer}button:hover{background:#2c465b}button:disabled{opacity:.45;cursor:default}input{width:min(640px,90%)}label{display:block;margin:12px 0 6px}select{width:100%}#status{padding:12px;border-left:4px solid #75d2d0;background:#0b141d}#log{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.5 monospace}small{color:#bdd0df}a{color:#8adddf}@media(max-width:800px){main{grid-template-columns:1fr}#view{min-height:400px;height:55vh}}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
 </head><body>
-<header><small>4212 PISTON ENGINE / DELIVERY EXPERIMENT</small><h1>Explore the cylinder assembly</h1>
+<header><small>4212 PISTON ENGINE / CYLINDER EXPLORER</small><h1>Explore the cylinder assembly</h1>
 <p>Drag to rotate · Scroll or pinch to zoom · Select a component to read its function.</p>
 <p id="status" role="status">Starting viewer…</p></header>
 <main><div id="view" aria-label="Interactive cylinder assembly"></div><aside>
 <h2 id="part-name">Cylinder study</h2><p id="part-function">Load the shared model to explore its 60 components.</p>
+<label for="search">Find a component</label><input id="search" type="search" placeholder="Try piston, valve or oil…" disabled>
+<p id="matches" role="status"></p>
 <label for="parts">Component</label><select id="parts" disabled><option value="">Whole assembly</option></select>
 <p><button id="isolate" disabled>Isolate component</button></p><p><button id="reset" disabled>Show assembly</button></p>
-<small>This pilot uses a static CAD-derived pose. Operating animations are a later step. Reconstructed geometry remains subject to the manual evidence review.</small>
+<details><summary>Sources and modelling status</summary><p id="part-source">Choose a component to see its catalogue reference.</p><p id="part-evidence">This study combines documented dimensions and reconstructed geometry. The detailed evidence audit is pending.</p></details>
+<p><small>This pilot uses a static CAD-derived pose. Operating animations are a later step.</small></p>
 </aside></main>
-<footer><label for="drive">Google Drive model sharing link</label><input id="drive" type="url" placeholder="https://drive.google.com/file/d/…/view">
-<button id="load" disabled>Test Drive loading</button>
-<details><summary>Delivery test details</summary><p>Requests omit credentials and require readable GLB bytes. No proxy or bundled engine model is used as a fallback. A sharing preview page alone does not count as a successful model load.</p><pre id="log"></pre></details>
+<footer><button id="load" disabled>Reload model</button>
+<details><summary>Loading details</summary><label for="drive">Google Drive model sharing link</label><input id="drive" type="url" placeholder="https://drive.google.com/file/d/…/view"><p>The public model loads through Google Drive API without Google sign-in. No manual file saving is needed.</p><pre id="log"></pre></details>
 </footer><script type="module" src="./viewer.js"></script></body></html>
