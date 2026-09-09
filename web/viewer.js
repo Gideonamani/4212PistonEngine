@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {createTransfer} from './transfer.mjs';
 
 const $ = id => document.getElementById(id);
 const say = text => $('status').textContent = text;
@@ -211,8 +212,13 @@ function driveCandidates(link){
 }
 async function fetchGLB(url,headers={}){
   const started=performance.now();
+  const transfer=createTransfer();activeTransfer=transfer;
+  let reader,received=0;
+  $('cancel-load').hidden=false;
+  try{
   $('load-progress').hidden=false;$('load-progress').removeAttribute('value');
-  const response=await fetch(url,{headers,mode:'cors',credentials:'omit',referrerPolicy:'strict-origin-when-cross-origin',signal:AbortSignal.timeout(120000)});
+  const response=await fetch(url,{headers,mode:'cors',credentials:'omit',referrerPolicy:'strict-origin-when-cross-origin',signal:transfer.signal});
+  transfer.touch();
   log(`HTTP ${response.status}; type ${response.headers.get('content-type')}; URL ${response.url}`);
   if(!response.ok){
     const error=await response.json().catch(()=>null);
@@ -220,21 +226,22 @@ async function fetchGLB(url,headers={}){
   }
   let bytes;
   if(response.body){
-    const reader=response.body.getReader(), chunks=[];
+    reader=response.body.getReader();const chunks=[];
     let total=Number(response.headers.get('content-length'))||0;
     // Drive media responses do not always expose Content-Length cross-origin.
     // Ask for the current file size rather than assume the previous export's size.
     if(!total&&url.startsWith('https://www.googleapis.com/drive/v3/files/')){
       try{
         const metadataURL=new URL(url);metadataURL.searchParams.delete('alt');metadataURL.searchParams.set('fields','size');
-        const metadata=await fetch(metadataURL,{headers,mode:'cors',credentials:'omit',referrerPolicy:'strict-origin-when-cross-origin',signal:AbortSignal.timeout(10000)});
+        const metadata=await fetch(metadataURL,{headers,mode:'cors',credentials:'omit',referrerPolicy:'strict-origin-when-cross-origin',signal:AbortSignal.any([transfer.signal,AbortSignal.timeout(10000)])});
         if(metadata.ok){const info=await metadata.json();total=Number(info.size)||0;}
       }catch{log('File size unavailable; showing received bytes until download completes.');}
     }
-    let received=0,lastUpdate=0;
+    let lastUpdate=0;
     for(;;){
       const {done,value}=await reader.read();if(done)break;
       chunks.push(value);received+=value.byteLength;
+      transfer.touch();
       if(total&&received>total){total=0;log('File size changed during loading; percentage unavailable.');}
       if(performance.now()-lastUpdate>350){
         const percent=total?Math.min(99,Math.floor(received/total*100)):null;
@@ -248,10 +255,21 @@ async function fetchGLB(url,headers={}){
     bytes=joined.buffer;
   }else bytes=await response.arrayBuffer();
   if(bytes.byteLength<20||new DataView(bytes).getUint32(0,true)!==0x46546c67)throw Error('Response is not a GLB model (possibly a preview, login or confirmation page).');
+  if(new DataView(bytes).getUint32(8,true)!==bytes.byteLength){const error=Error('Download ended before the complete GLB arrived.');error.retryable=true;throw error;}
   $('load-progress').value=100;
   log(`Download: ${((performance.now()-started)/1000).toFixed(2)} s; ${bytes.byteLength} bytes (includes size lookup when needed).`);
   return bytes;
+  }catch(error){
+    log(`Transfer stopped after ${(received/1048576).toFixed(1)} MB and ${((performance.now()-started)/1000).toFixed(1)} s.`);
+    if(reader)await reader.cancel().catch(()=>{});
+    if(transfer.reason==='cancelled'){const cancelled=Error('Download cancelled. Use Reload model to start again.');cancelled.cancelled=true;throw cancelled;}
+    if(transfer.reason==='stalled'){const stalled=Error('No download progress for two minutes.');stalled.retryable=true;throw stalled;}
+    error.retryable=error.retryable||error.name==='AbortError'||error.name==='TimeoutError'||error instanceof TypeError;
+    throw error;
+  }finally{transfer.finish();if(activeTransfer===transfer)activeTransfer=null;$('cancel-load').hidden=true;}
 }
+let activeTransfer=null;
+$('cancel-load').onclick=()=>activeTransfer?.cancel();
 async function display(bytes){
   const started=performance.now();
   say('Download 100% complete · Preparing the 60-component assembly…');
@@ -281,7 +299,12 @@ async function load(){
     const candidates=driveCandidates($('drive').value.trim());
     for(const {url,headers} of candidates){
       log('Trying '+url);
-      try{const bytes=await fetchGLB(url,headers);const count=await display(bytes);say(`Drive API loaded · ${count} components · ${(bytes.byteLength/1048576).toFixed(1)} MB. Rotate, zoom or select a component.`);return;}
+      try{let bytes;
+        for(let attempt=0;attempt<2;attempt++){
+          try{bytes=await fetchGLB(url,headers);break;}
+          catch(e){if(e.cancelled){say(e.message);return;}if(!e.retryable||attempt===1)throw e;log('Transient interruption: retrying once from the beginning.');say('Download interrupted · retrying once from the beginning…');}
+        }
+        const count=await display(bytes);say(`Drive API loaded · ${count} components · ${(bytes.byteLength/1048576).toFixed(1)} MB. Rotate, zoom or select a component.`);return;}
       catch(e){log(e.name+': '+e.message);}
     }
     say('Could not load the model. Open Loading details for the error, then use Reload model to retry.');
