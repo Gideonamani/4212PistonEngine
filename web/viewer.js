@@ -8,8 +8,11 @@ const log = text => $('log').textContent += text + '\n';
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#101923');
 const camera = new THREE.PerspectiveCamera(40, 1, .001, 100);
-const renderer = new THREE.WebGLRenderer({antialias:true});
+const renderer = new THREE.WebGLRenderer({antialias:true,stencil:true});
+renderer.localClippingEnabled=true;
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1;
 $('view').appendChild(renderer.domElement);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = false;
@@ -26,7 +29,43 @@ let root, meshes=[], selected='', catalogue=new Map(), busy=false, apiKey='';
 const ray = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 const originals = new Map();
+const inspection = new Map();
+const sections=[];
+let isolated=false;
+function inspectionMaterial(id){
+  let color=0x9cabb8;
+  if(/Intake/i.test(id))color=0x379e9b;
+  else if(/Exhaust/i.test(id))color=0xbc7353;
+  else if(/Seal|Gasket/i.test(id))color=0x364451;
+  else if(/Ring|Bolt|Nut|Crank/i.test(id))color=0x596d80;
+  else if(/Insulator/i.test(id))color=0xe2dbca;
+  else if(/Piston|Pin/i.test(id))color=0xc2ced6;
+  return new THREE.MeshStandardMaterial({color,metalness:.25,roughness:.48});
+}
+function applyAppearance(){
+  for(const m of meshes)m.material=m.userData.partId===selected?highlight:isolated?ghost:$('appearance').value==='cad'?originals.get(m):inspection.get(m);
+  updateSection();
+}
+$('appearance').onchange=applyAppearance;
 const sectionPlane = new THREE.Plane(), modelBounds = new THREE.Box3();
+// Each mesh gets its own stencil pass, so adjoining parts keep separate cut faces.
+function buildSections(){
+  for(const entry of sections){scene.remove(entry.group);for(const child of entry.group.children){child.material.dispose();if(child===entry.cap)child.geometry.dispose();}}
+  sections.length=0;
+  root.updateMatrixWorld(true);
+  const span=modelBounds.getSize(new THREE.Vector3()).length()*2;
+  meshes.forEach((source,index)=>{
+    const group=new THREE.Group();
+    for(const [side,op] of [[THREE.BackSide,THREE.IncrementWrapStencilOp],[THREE.FrontSide,THREE.DecrementWrapStencilOp]]){
+      const material=new THREE.MeshBasicMaterial({side,depthWrite:false,depthTest:false,colorWrite:false,stencilWrite:true,stencilFunc:THREE.AlwaysStencilFunc,stencilFail:op,stencilZFail:op,stencilZPass:op,clippingPlanes:[sectionPlane]});
+      const mask=new THREE.Mesh(source.geometry,material);mask.matrixAutoUpdate=false;mask.matrix.copy(source.matrixWorld);mask.renderOrder=index*3;group.add(mask);
+    }
+    const material=new THREE.MeshStandardMaterial({color:0x9cabb8,roughness:.65,metalness:.1,side:THREE.DoubleSide,stencilWrite:true,stencilRef:0,stencilFunc:THREE.NotEqualStencilFunc,stencilFail:THREE.ReplaceStencilOp,stencilZFail:THREE.ReplaceStencilOp,stencilZPass:THREE.ReplaceStencilOp});
+    const cap=new THREE.Mesh(new THREE.PlaneGeometry(span,span),material);cap.renderOrder=index*3+1;cap.onAfterRender=()=>renderer.clearStencil();group.add(cap);scene.add(group);
+    source.renderOrder=meshes.length*3+1;
+    sections.push({group,cap,source});
+  });
+}
 let sectionFlipped=true;
 function updateSection(){
   const axis=$('section-axis').value, fraction=Number($('section-position').value)/100;
@@ -38,7 +77,18 @@ function updateSection(){
     const point=new THREE.Vector3();point[axis]=position;
     sectionPlane.setFromNormalAndCoplanarPoint(normal,point);
   }
-  renderer.clippingPlanes=$('section-enabled').checked&&root?[sectionPlane]:[];
+  const enabled=$('section-enabled').checked&&!!root;
+  for(const material of new Set([...originals.values()].flat().concat([...inspection.values()],highlight,ghost))){
+    const planes=enabled?[sectionPlane]:[];
+    if((material.clippingPlanes?.length||0)!==planes.length){material.clippingPlanes=planes;material.needsUpdate=true;}
+  }
+  for(const {group,cap,source} of sections){
+    group.visible=enabled&&source.material!==ghost;
+    sectionPlane.coplanarPoint(cap.position);
+    cap.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),sectionPlane.normal.clone().negate());
+    const material=Array.isArray(source.material)?source.material[0]:source.material;
+    cap.material.color.copy(material.color||new THREE.Color(0x9cabb8));
+  }
   renderer.render(scene,camera);
 }
 function resetSection(){
@@ -68,24 +118,22 @@ function fit(object) {
   camera.position.copy(center).add(new THREE.Vector3(1,.65,1).normalize().multiplyScalar(distance*1.3));
   controls.target.copy(center);controls.update();
 }
-function restore(){for(const m of meshes){m.visible=true;m.material=originals.get(m);} }
 const highlight = new THREE.MeshStandardMaterial({color:0xf1b852,metalness:.5,roughness:.35});
 const ghost = new THREE.MeshStandardMaterial({color:0x9cbdcf,transparent:true,opacity:.12,depthWrite:false});
 function choose(id){
   if(id&&![...$('parts').options].some(o=>o.value===id)){$('search').value='';populateParts();}
-  restore();selected=id;$('parts').value=id;
+  isolated=false;selected=id;$('parts').value=id;
   const part=catalogue.get(id);
   $('part-name').textContent=part?.display_name || 'Cylinder study';
   $('part-function').textContent=part?.function || 'Drag to rotate the assembly. Choose a component to inspect it.';
   $('part-source').textContent=part?`Catalogue reference: ${part.function_source_summary||'Not yet recorded'}. Source attribution is awaiting detailed review.`:'Choose a component to see its catalogue reference.';
   $('part-evidence').textContent=part?`Geometry: ${part.geometry_evidence_status||'Not yet reviewed'}. Claim review: ${part.structured_claim_review||'pending'}.`:'This study combines documented dimensions and reconstructed geometry. The detailed evidence audit is pending.';
-  for(const m of meshes) if(m.userData.partId===id)m.material=highlight;
   $('isolate').disabled=!id;
-  renderer.render(scene,camera);
+  applyAppearance();
 }
 $('parts').onchange=()=>choose($('parts').value);
 $('isolate').onclick=()=>{
-  for(const m of meshes)m.material=m.userData.partId===selected?highlight:ghost;
+  isolated=true;applyAppearance();
   const picked=meshes.find(m=>m.userData.partId===selected);if(picked)fit(picked);
 };
 $('reset').onclick=()=>{resetSection();$('search').value='';choose('');populateParts();if(root)fit(root);};
@@ -96,7 +144,7 @@ renderer.domElement.addEventListener('pointerup',e=>{
   const r=renderer.domElement.getBoundingClientRect();
   pointer.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);
   ray.setFromCamera(pointer,camera);
-  const hit=ray.intersectObjects(meshes).find(h=>h.object.material!==ghost&&(!renderer.clippingPlanes.length||sectionPlane.distanceToPoint(h.point)>=0));
+  const hit=ray.intersectObjects(meshes).find(h=>h.object.material!==ghost&&(!$('section-enabled').checked||sectionPlane.distanceToPoint(h.point)>=0));
   if(hit)choose(hit.object.userData.partId);
 });
 function driveCandidates(link){
@@ -144,9 +192,12 @@ async function display(bytes){
   const ids=new Set(nextMeshes.map(m=>m.userData.partId));
   if(ids.size!==60||ids.has(undefined))throw Error(`Expected 60 CAD component IDs; received ${ids.size}.`);
   if(root){scene.remove(root);root.traverse(o=>{if(o.geometry)o.geometry.dispose();});}
-  root=next;meshes=nextMeshes;originals.clear();for(const m of meshes)originals.set(m,m.material);
-  scene.add(root);modelBounds.setFromObject(root);resetSection();fit(root);
+  for(const material of inspection.values())material.dispose();inspection.clear();
+  for(const material of new Set([...originals.values()].flat()))material.dispose();
+  root=next;meshes=nextMeshes;originals.clear();for(const m of meshes){originals.set(m,m.material);inspection.set(m,inspectionMaterial(m.userData.partId));}
+  scene.add(root);modelBounds.setFromObject(root);buildSections();resetSection();fit(root);
   $('section-controls').disabled=false;
+  $('appearance').disabled=false;
   $('search').value='';selected='';populateParts();
   $('search').disabled=false;$('parts').disabled=false;$('reset').disabled=false;choose('');
   return ids.size;

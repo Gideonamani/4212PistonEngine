@@ -45,7 +45,9 @@ M1 and the data-contract work in M3 can develop together. M2 depends on the shar
 
 The active package is 1. Delivered so far: component name/function search, download progress, source/review status, and a movable section view with three axes and reversible cut side. Section view works with selection/ghost isolation; Show assembly restores the complete model. The desktop model remains visible while scrolling the inspection controls. Browser checks covered section rendering, piston isolation, keyboard slider adjustment and reset. Physical-phone testing, material polish, optional music and the performance baseline remain open; M1 is not complete.
 
-The section is an uncapped visual clipping plane, not a CAD section or dimensional measurement. Rendering and picking use the same retained half-space; see the [Three.js clipping-plane reference](https://threejs.org/docs/pages/WebGLRenderer.html).
+The section now fills the cut faces of opaque parts using per-mesh stencil passes, following the [Three.js solid clipping example](https://github.com/mrdoob/three.js/blob/r180/examples/webgl_clipping_stencil.html). This corrects the hollow-shell appearance of the initial uncapped cut. Actual cavities remain open; ghosted surrounding parts omit caps. It is a display section, not a dimensional measurement, and depends on closed, consistently oriented source meshes. Choose cut faces through the component list; surface picking excludes the removed half-space.
+
+Inspection colours distinguish intake, exhaust and other parts without claiming verified material specifications; original CAD colours remain selectable. Narrow-screen layouts keep the model above the scrolling controls. Browser preview checks cover filled piston sections, appearance switching and selection; representative physical-phone performance is still pending. Section filling adds rendering work and needs that device baseline before M1 sign-off.
 
 ## Repeatable procedure for every subsystem
 

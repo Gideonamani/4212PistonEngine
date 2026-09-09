@@ -7,6 +7,8 @@
 <style>
 fieldset{margin:20px 0;padding:12px;border:1px solid #63788b;border-radius:8px}legend{padding:0 6px}summary{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #75d2d0;outline-offset:3px}
 @media(min-width:801px){#view{position:sticky;top:0;height:75vh;align-self:start}}
+@media(max-width:800px){#view{position:sticky;top:0;z-index:2;height:38svh;min-height:220px;box-shadow:0 5px 18px #0008}aside{padding:16px}header,footer{padding:16px}h1{font-size:21px}}
+button,select{min-height:44px}input[type=range]{min-height:24px}fieldset{min-width:0}#search{box-sizing:border-box;width:100%}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
 </head><body>
@@ -15,6 +17,8 @@ fieldset{margin:20px 0;padding:12px;border:1px solid #63788b;border-radius:8px}l
 <p id="status" role="status">Starting viewer…</p></header>
 <main><div id="view" aria-label="Interactive cylinder assembly"></div><aside>
 <h2 id="part-name">Cylinder study</h2><p id="part-function">Load the shared model to explore its 60 components.</p>
+<label for="appearance">Appearance</label><select id="appearance" disabled><option value="inspection">Inspection colours</option><option value="cad">Original CAD colours</option></select>
+<p><small>Inspection colours identify intake (teal), exhaust (copper), and other parts (steel tones). Gold marks your selection. These are teaching colours, not verified material specifications.</small></p>
 <label for="search">Find a component</label><input id="search" type="search" placeholder="Try piston, valve or oil…" disabled>
 <p id="matches" role="status"></p>
 <label for="parts">Component</label><select id="parts" disabled><option value="">Whole assembly</option></select>
@@ -25,11 +29,11 @@ fieldset{margin:20px 0;padding:12px;border:1px solid #63788b;border-radius:8px}l
 <label for="section-position">Cut position <output id="section-value" for="section-position">50%</output></label>
 <input id="section-position" type="range" min="0" max="100" value="50" aria-describedby="section-note" style="width:100%;box-sizing:border-box">
 <button id="section-flip" type="button" aria-pressed="false">Reverse cut side</button>
-<p id="section-note"><small>A visual slice through the whole assembly. Cut surfaces are open, not CAD section faces. Turn off Section view to inspect a complete part.</small></p>
+<p id="section-note"><small>Filled cut faces show the material crossed by the section; real cavities stay open. Transparent surrounding parts omit the fill for clarity. This is a display section, not a CAD measurement. Use the component list to select a cut face.</small></p>
 </fieldset>
 <details><summary>Sources and modelling status</summary><p id="part-source">Choose a component to see its catalogue reference.</p><p id="part-evidence">This study combines documented dimensions and reconstructed geometry. The detailed evidence audit is pending.</p></details>
 <p><small>This pilot uses a static CAD-derived pose. Operating animations are a later step.</small></p>
 </aside></main>
 <footer><button id="load" disabled>Reload model</button>
 <details><summary>Loading details</summary><label for="drive">Google Drive model sharing link</label><input id="drive" type="url" placeholder="https://drive.google.com/file/d/…/view"><p>The public model loads through Google Drive API without Google sign-in. No manual file saving is needed.</p><pre id="log"></pre></details>
-</footer><script type="module" src="./viewer.js?v=20260909-section1"></script></body></html>
+</footer><script type="module" src="./viewer.js?v=20260909-solid-section1"></script></body></html>
