@@ -32,6 +32,11 @@ button,select{min-height:44px}input[type=range]{min-height:24px}fieldset{min-wid
 <p id="matches" role="status"></p>
 <label for="parts">Component</label><select id="parts" disabled><option value="">Whole assembly</option></select>
 <p><button id="isolate" disabled>Isolate component</button></p><p><button id="reset" disabled>Show assembly</button></p>
+<fieldset id="motion-controls" disabled><legend>Mechanism motion</legend>
+<button id="motion-play" aria-pressed="false">Play mechanism</button><button id="motion-reset">Reset angle</button>
+<label for="motion-angle">Crank angle <output id="motion-value">36°</output></label><input id="motion-angle" type="range" min="0" max="720" step="1" value="36" style="width:100%;box-sizing:border-box">
+<label for="motion-speed">Teaching speed</label><select id="motion-speed"><option value="15">Slow · 15°/s</option><option value="30" selected>Normal · 30°/s</option><option value="60">Fast · 60°/s</option></select>
+<p id="motion-note">Checking motion profile…</p><p><small>Only the piston, rod and crank move. Valves remain closed. This demonstrates the mechanism, not the complete operating cycle. Use Section view to see inside.</small></p></fieldset>
 <fieldset id="section-controls" disabled><legend>Look inside</legend>
 <label><input id="section-enabled" type="checkbox" style="width:auto"> Section view</label>
 <label for="section-axis">Cut direction</label><select id="section-axis"><option value="x">Across X</option><option value="y">Across Y</option><option value="z">Across Z</option></select>
@@ -41,7 +46,7 @@ button,select{min-height:44px}input[type=range]{min-height:24px}fieldset{min-wid
 <p id="section-note"><small>Filled cut faces show the material crossed by the section; real cavities stay open. Transparent surrounding parts omit the fill for clarity. This is a display section, not a CAD measurement. Use the component list to select a cut face.</small></p>
 </fieldset>
 <details><summary>Sources and modelling status</summary><p id="part-source">Choose a component to see its catalogue reference.</p><p id="part-evidence">This study combines documented dimensions and reconstructed geometry. The detailed evidence audit is pending.</p></details>
-<p><small>This pilot uses a static CAD-derived pose. Operating animations are a later step.</small></p>
+<p><small>CAD-derived cylinder study. Valve timing and flow visualisation are still under development.</small></p>
 <details><summary>Background music</summary><p><small>Quiet Workshop · our original score. Optional, softly played, and repeated with a gentle fade between plays.</small></p>
 <audio id="music" loop preload="none"></audio><button id="music-toggle" type="button" aria-pressed="false">Play music</button>
 <label for="music-volume">Music volume</label><input id="music-volume" type="range" min="0" max="100" value="30" style="width:100%;box-sizing:border-box">
@@ -49,4 +54,4 @@ button,select{min-height:44px}input[type=range]{min-height:24px}fieldset{min-wid
 </aside></main>
 <footer><button id="load" disabled>Reload model</button><button id="cancel-load" hidden>Cancel download</button>
 <details><summary>Loading details</summary><label for="drive">Google Drive model sharing link</label><input id="drive" type="url" placeholder="https://drive.google.com/file/d/…/view"><p>The public model loads through Google Drive API without Google sign-in. No manual file saving is needed.</p><pre id="log"></pre></details>
-</footer><script type="module" src="./viewer.js?v=20260909-transfer1"></script></body></html>
+</footer><script type="module" src="./viewer.js?v=20260909-motion1"></script></body></html>

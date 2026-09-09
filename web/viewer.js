@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {createTransfer} from './transfer.mjs';
+import {mechanismPose} from './kinematics.mjs';
 
 const $ = id => document.getElementById(id);
 const say = text => $('status').textContent = text;
@@ -75,6 +76,58 @@ const pointer = new THREE.Vector2();
 const originals = new Map();
 const inspection = new Map();
 const sections=[];
+let motionProfile=null,motionEntries=[],motionAngle=36,playing=false,animationFrame=0,lastFrame=0;
+function stopMotion(){playing=false;cancelAnimationFrame(animationFrame);$('motion-play').textContent='Play mechanism';$('motion-play').setAttribute('aria-pressed','false');}
+function groupMatrices(degrees){
+  const p=mechanismPose(degrees,motionProfile.radius_m,motionProfile.rod_length_m);
+  return {Piston:new THREE.Matrix4().makeTranslation(...p.piston),
+    ConnectingRod:new THREE.Matrix4().makeRotationZ(p.rodAngle).setPosition(...p.rod),
+    Crank:new THREE.Matrix4().makeRotationZ(p.crankAngle),Cylinder:new THREE.Matrix4()};
+}
+function setMotion(degrees){
+  if(!motionProfile)return;
+  motionAngle=degrees;
+  const transforms=groupMatrices(degrees);
+  for(const {mesh,group,localBind} of motionEntries){
+    const world=transforms[group].clone().multiply(localBind);
+    mesh.matrix.copy(mesh.parent.matrixWorld).invert().multiply(world);
+  }
+  root.updateMatrixWorld(true);
+  for(const {group,source,cap} of sections)for(const child of group.children)if(child!==cap)child.matrix.copy(source.matrixWorld);
+  $('motion-angle').value=String(degrees);$('motion-value').textContent=`${degrees.toFixed(0)}°`;
+  $('motion-note').textContent=`Piston pin: ${(mechanismPose(degrees,motionProfile.radius_m,motionProfile.rod_length_m).piston[0]*1000).toFixed(1)} mm from crank axis. CAD kinematics; teaching speed.`;
+  updateSection();
+}
+async function setupMotion(bytes){
+  stopMotion();motionProfile=null;motionEntries=[];$('motion-controls').disabled=true;
+  try{
+    const response=await fetch('./motion.json');if(!response.ok)throw Error('Motion profile unavailable');
+    const profile=await response.json();
+    const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');
+    if(digest!==profile.asset_sha256)throw Error('This model version needs a verified motion profile');
+    if(meshes.some(m=>!['Piston','ConnectingRod','Crank','Cylinder'].includes(profile.groups[m.userData.partId])))throw Error('Motion group is missing');
+    motionProfile=profile;root.updateMatrixWorld(true);
+    const bind=groupMatrices(profile.bind_angle_deg);
+    motionEntries=meshes.map(mesh=>{
+      const group=profile.groups[mesh.userData.partId];mesh.matrixAutoUpdate=false;
+      return {mesh,group,localBind:bind[group].clone().invert().multiply(mesh.matrixWorld)};
+    });
+    $('motion-controls').disabled=false;setMotion(profile.bind_angle_deg);
+  }catch(e){motionProfile=null;$('motion-note').textContent=e.message+'. Static inspection remains available.';log(e.message);}
+}
+function animateMechanism(time){
+  if(!playing)return;
+  const elapsed=Math.min((time-lastFrame)/1000,.1);lastFrame=time;
+  setMotion((motionAngle+elapsed*Number($('motion-speed').value))%720);
+  animationFrame=requestAnimationFrame(animateMechanism);
+}
+$('motion-play').onclick=()=>{
+  if(playing){stopMotion();return;}if(!motionProfile)return;
+  playing=true;lastFrame=performance.now();$('motion-play').textContent='Pause mechanism';$('motion-play').setAttribute('aria-pressed','true');animationFrame=requestAnimationFrame(animateMechanism);
+};
+$('motion-angle').oninput=()=>{stopMotion();setMotion(Number($('motion-angle').value));};
+$('motion-reset').onclick=()=>{stopMotion();setMotion(motionProfile.bind_angle_deg);};
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stopMotion();});
 let isolated=false;
 function inspectionMaterial(id){
   let color=0x9cabb8;
@@ -186,10 +239,11 @@ function choose(id){
 }
 $('parts').onchange=()=>choose($('parts').value);
 $('isolate').onclick=()=>{
+  stopMotion();
   isolated=true;applyAppearance();
   const picked=meshes.find(m=>m.userData.partId===selected);if(picked)fit(picked);
 };
-$('reset').onclick=()=>{resetSection();$('search').value='';$('group').value='';choose('');populateParts();if(root)fit(root);};
+$('reset').onclick=()=>{stopMotion();if(motionProfile)setMotion(motionProfile.bind_angle_deg);resetSection();$('search').value='';$('group').value='';choose('');populateParts();if(root)fit(root);};
 let down;
 renderer.domElement.addEventListener('pointerdown',e=>{down=[e.clientX,e.clientY];});
 renderer.domElement.addEventListener('pointerup',e=>{
@@ -288,11 +342,13 @@ async function display(bytes){
   $('appearance').disabled=false;
   $('search').value='';$('group').value='';$('group').disabled=false;selected='';populateParts();
   $('search').disabled=false;$('parts').disabled=false;$('reset').disabled=false;choose('');
+  await setupMotion(bytes);
   log(`Preparation and first render: ${((performance.now()-started)/1000).toFixed(2)} s; viewport ${renderer.domElement.clientWidth} × ${renderer.domElement.clientHeight}; pixel ratio ${renderer.getPixelRatio()}.`);
   $('load-progress').hidden=true;
   return ids.size;
 }
 async function load(){
+  stopMotion();
   if(busy)return;busy=true;$('load').disabled=true;$('log').textContent='';
   try{
     say('Loading the cylinder assembly through Google Drive API…');
