@@ -26,5 +26,16 @@
     "interaction": "web"
   },
   "roadmap": "docs/ROADMAP.md",
-  "active_work_package": "M1 in progress: explorer controls delivered; loading diagnostics added; optional audio, evidence audit and physical-device baseline remain"
+  "active_work_package": "M2 rocker-contact correction and M3 reproducible CAD-to-web pipeline; physical-device and evidence release gates remain open",
+  "release_test_target": {
+    "device": "Samsung Galaxy A16",
+    "browser": "Google Chrome",
+    "physical_device_test_status": "Pending; target confirmed by instructor"
+  },
+  "reference_baseline": {
+    "engine_family": "Continental GTSIO-520",
+    "current_configuration": "GTSIO-520-H",
+    "manual": "Notes/gtsio520_series.pdf",
+    "instruction": "Instructor confirmed GTSIO-520 reference; check variant applicability before extending the complete engine"
+  }
 }

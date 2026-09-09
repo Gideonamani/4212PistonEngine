@@ -99,8 +99,8 @@ Choose these by learning value, available source evidence, dependency readiness 
 ## Open decisions for the first review
 
 - Which learning outcomes should students master first: component identification, cycle explanation or maintenance inspection? Working default: identification, then cycle explanation.
-- Which representative student phone and classroom connection should define the performance baseline?
-- Which manual revision/configuration governs the full-engine assembly beyond the existing cylinder study?
+- Confirmed target: Google Chrome on Samsung Galaxy A16. Physical-device testing remains pending; record Android/Chrome version and connection conditions during the test.
+- Confirmed reference family: GTSIO-520, using the current `gtsio520_series.pdf`. Retain the current GTSIO-520-H study configuration and check variant/revision applicability for each full-engine subsystem.
 
 These questions do not prevent the initial explorer and evidence-inventory work. Performance targets and calendar estimates should be set from the measured baseline rather than invented now.
 
