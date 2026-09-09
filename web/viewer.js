@@ -26,6 +26,28 @@ let root, meshes=[], selected='', catalogue=new Map(), busy=false, apiKey='';
 const ray = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 const originals = new Map();
+const sectionPlane = new THREE.Plane(), modelBounds = new THREE.Box3();
+let sectionFlipped=true;
+function updateSection(){
+  const axis=$('section-axis').value, fraction=Number($('section-position').value)/100;
+  $('section-value').textContent=`${Math.round(fraction*100)}%`;
+  $('section-flip').setAttribute('aria-pressed',String(sectionFlipped));
+  if(root){
+    const position=THREE.MathUtils.lerp(modelBounds.min[axis],modelBounds.max[axis],fraction);
+    const normal=new THREE.Vector3();normal[axis]=sectionFlipped?-1:1;
+    const point=new THREE.Vector3();point[axis]=position;
+    sectionPlane.setFromNormalAndCoplanarPoint(normal,point);
+  }
+  renderer.clippingPlanes=$('section-enabled').checked&&root?[sectionPlane]:[];
+  renderer.render(scene,camera);
+}
+function resetSection(){
+  $('section-enabled').checked=false;$('section-axis').value='z';$('section-position').value='50';sectionFlipped=true;updateSection();
+}
+$('section-enabled').onchange=updateSection;
+$('section-axis').onchange=updateSection;
+$('section-position').oninput=updateSection;
+$('section-flip').onclick=()=>{sectionFlipped=!sectionFlipped;updateSection();};
 function populateParts(){
   const query=$('search').value.trim().toLowerCase();
   const ids=[...new Set(meshes.map(m=>m.userData.partId))];
@@ -66,7 +88,7 @@ $('isolate').onclick=()=>{
   for(const m of meshes)m.material=m.userData.partId===selected?highlight:ghost;
   const picked=meshes.find(m=>m.userData.partId===selected);if(picked)fit(picked);
 };
-$('reset').onclick=()=>{$('search').value='';choose('');populateParts();if(root)fit(root);};
+$('reset').onclick=()=>{resetSection();$('search').value='';choose('');populateParts();if(root)fit(root);};
 let down;
 renderer.domElement.addEventListener('pointerdown',e=>{down=[e.clientX,e.clientY];});
 renderer.domElement.addEventListener('pointerup',e=>{
@@ -74,7 +96,7 @@ renderer.domElement.addEventListener('pointerup',e=>{
   const r=renderer.domElement.getBoundingClientRect();
   pointer.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);
   ray.setFromCamera(pointer,camera);
-  const hit=ray.intersectObjects(meshes).find(h=>h.object.material!==ghost);
+  const hit=ray.intersectObjects(meshes).find(h=>h.object.material!==ghost&&(!renderer.clippingPlanes.length||sectionPlane.distanceToPoint(h.point)>=0));
   if(hit)choose(hit.object.userData.partId);
 });
 function driveCandidates(link){
@@ -123,7 +145,8 @@ async function display(bytes){
   if(ids.size!==60||ids.has(undefined))throw Error(`Expected 60 CAD component IDs; received ${ids.size}.`);
   if(root){scene.remove(root);root.traverse(o=>{if(o.geometry)o.geometry.dispose();});}
   root=next;meshes=nextMeshes;originals.clear();for(const m of meshes)originals.set(m,m.material);
-  scene.add(root);fit(root);
+  scene.add(root);modelBounds.setFromObject(root);resetSection();fit(root);
+  $('section-controls').disabled=false;
   $('search').value='';selected='';populateParts();
   $('search').disabled=false;$('parts').disabled=false;$('reset').disabled=false;choose('');
   return ids.size;

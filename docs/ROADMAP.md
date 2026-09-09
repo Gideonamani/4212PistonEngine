@@ -43,7 +43,9 @@ M1 and the data-contract work in M3 can develop together. M2 depends on the shar
 2. **Motion contract and four-stroke lesson.** Extract the required CAD dimensions and joint frames; define a versioned operation profile; connect web controls and phase cues. Begin with the clearly labelled illustrative profile already used in the videos. Manufacturer timing is a separate evidence task.
 3. **Change propagation and first teaching review.** Exercise the two controlled CAD changes, check exported poses and catalogue identity, package a versioned release, and review the single-cylinder lesson before authoring the next subsystem.
 
-The next active package is 1. This roadmap does not claim these packages have already been implemented.
+The active package is 1. Delivered so far: component name/function search, download progress, source/review status, and a movable section view with three axes and reversible cut side. Section view works with selection/ghost isolation; Show assembly restores the complete model. The desktop model remains visible while scrolling the inspection controls. Browser checks covered section rendering, piston isolation, keyboard slider adjustment and reset. Physical-phone testing, material polish, optional music and the performance baseline remain open; M1 is not complete.
+
+The section is an uncapped visual clipping plane, not a CAD section or dimensional measurement. Rendering and picking use the same retained half-space; see the [Three.js clipping-plane reference](https://threejs.org/docs/pages/WebGLRenderer.html).
 
 ## Repeatable procedure for every subsystem
 
