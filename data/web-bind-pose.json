@@ -1,0 +1,14 @@
+{
+  "asset": "GTSIO520_Cylinder_Drive_Test.glb",
+  "sha256": "5f14a83aa045ef1b195c0ea0114600637eb69096a811ab0965c9bf123013c61f",
+  "passed": true,
+  "bind_angle_deg": 36.00000119194909,
+  "cad_inspection_angle_deg": 35.0,
+  "coordinates": "glTF metres; piston along X, crankpin in XY; positive crank rotation about Z",
+  "position_errors_m": {
+    "PistonBody": 2.1677263289943127e-08,
+    "ConnectingRodBody": 1.2295157164638367e-09
+  },
+  "rod_rotation_error_rad": 2.762595571748072e-08,
+  "scope": "60 IDs and three mechanism node transforms; not valve motion, vertex topology or clearance verification"
+}

@@ -1,0 +1,1300 @@
+{
+  "schema_version": "0.1-draft",
+  "status": "CAD slider-crank verified; valve motion and web asset bind pose pending",
+  "source": {
+    "file": "GTSIO520_Detailed_Cylinder.FCStd",
+    "sha256": "5e6f3561d6c384257208ac96eea1bb62c04f69bfd4a7222dc567e08b9ea84506"
+  },
+  "coordinate_system": {
+    "units": "mm",
+    "piston_axis": [
+      1,
+      0,
+      0
+    ],
+    "main_shaft_axis": [
+      0,
+      1,
+      0
+    ],
+    "main_shaft_origin_mm": [
+      0,
+      0,
+      0
+    ],
+    "positive_crank_rotation_axis": [
+      0,
+      -1,
+      0
+    ],
+    "zero_angle": "Outer dead centre; piston pin farthest from main shaft",
+    "web_mapping": "Blender metres (x,y,z) to glTF metres (x,z,-y); confirm asset bind pose before applying motion"
+  },
+  "dimensions": {
+    "Bore": {
+      "value_mm": 133.4008,
+      "cad_cell": "Parameters.B2",
+      "existing_evidence_category": "Manual checked \u2014 selected value",
+      "existing_reference": "A-4-23 / PDF40 and B-1 / PDF92: 5.251\u20135.253 in; midpoint 5.252",
+      "review_status": "Imported CAD annotation; not a new manual verification"
+    },
+    "NominalBore": {
+      "value_mm": 133.35,
+      "cad_cell": "Parameters.B62",
+      "existing_evidence_category": "Manual checked \u2014 selected value",
+      "existing_reference": "C-3-2 / PDF152: 5.250 in nominal",
+      "review_status": "Imported CAD annotation; not a new manual verification"
+    },
+    "Stroke": {
+      "value_mm": 101.6,
+      "cad_cell": "Parameters.B3",
+      "existing_evidence_category": "Manual checked \u2014 selected value",
+      "existing_reference": "C-3-2 / PDF152: 4.000 in",
+      "review_status": "Imported CAD annotation; not a new manual verification"
+    },
+    "RodLength": {
+      "value_mm": 168.275,
+      "cad_cell": "Parameters.B4",
+      "existing_evidence_category": "Manual checked \u2014 selected value",
+      "existing_reference": "A-4-29 / PDF42: 6.623\u20136.627 in; midpoint",
+      "review_status": "Imported CAD annotation; not a new manual verification"
+    },
+    "PinDiameter": {
+      "value_mm": 28.55976,
+      "cad_cell": "Parameters.B7",
+      "existing_evidence_category": "Manual checked \u2014 selected value",
+      "existing_reference": "B-12 / PDF103: 1.1243\u20131.1245 in; midpoint",
+      "review_status": "Imported CAD annotation; not a new manual verification"
+    },
+    "CrownHeight": {
+      "value_mm": 36.0,
+      "cad_cell": "Parameters.B26",
+      "existing_evidence_category": "Provisional",
+      "existing_reference": "v2 piston: pin centre to crown",
+      "review_status": "Imported CAD annotation; not a new manual verification"
+    }
+  },
+  "reference_angle_deg": 35.0,
+  "group_reference_frames": {
+    "Cylinder": {
+      "translation_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "Piston": {
+      "translation_mm": [
+        207.34605589153375,
+        0.0,
+        0.0
+      ],
+      "quaternion_xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "ConnectingRod": {
+      "translation_mm": [
+        41.61292384988078,
+        0.0,
+        29.137682966633136
+      ],
+      "quaternion_xyzw": [
+        0.0,
+        0.08690638714057138,
+        0.0,
+        0.9962164824345023
+      ]
+    },
+    "Crank": {
+      "translation_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_xyzw": [
+        0.0,
+        0.30070579950427334,
+        0.0,
+        -0.9537169507482268
+      ]
+    }
+  },
+  "parts": [
+    {
+      "id": "CylinderBarrel",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "PistonBody",
+      "motion_group": "Piston",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "FloatingPin",
+      "motion_group": "Piston",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "ConnectingRodBody",
+      "motion_group": "ConnectingRod",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "BigEndBearing",
+      "motion_group": "ConnectingRod",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "SmallEndBush",
+      "motion_group": "ConnectingRod",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "CrankThrow",
+      "motion_group": "Crank",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "PistonRing1",
+      "motion_group": "Piston",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "PistonRing2",
+      "motion_group": "Piston",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.8660254037844386,
+          0.0,
+          0.0,
+          0.5000000000000001
+        ]
+      }
+    },
+    {
+      "id": "PistonRing3",
+      "motion_group": "Piston",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.8660254037844387,
+          0.0,
+          0.0,
+          -0.4999999999999998
+        ]
+      }
+    },
+    {
+      "id": "PistonRing4",
+      "motion_group": "Piston",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.49999999999999994,
+          0.0,
+          0.0,
+          0.8660254037844387
+        ]
+      }
+    },
+    {
+      "id": "PinPlugLeft",
+      "motion_group": "Piston",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "PinPlugRight",
+      "motion_group": "Piston",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "ConnectingRodCap",
+      "motion_group": "ConnectingRod",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "CapBearingHalf",
+      "motion_group": "ConnectingRod",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "RodBoltMinus1",
+      "motion_group": "ConnectingRod",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          -35.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "RodNutMinus1",
+      "motion_group": "ConnectingRod",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          -35.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "RodBolt1",
+      "motion_group": "ConnectingRod",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          35.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "RodNut1",
+      "motion_group": "ConnectingRod",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          35.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "CylinderHead",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "IntakeSeatInsert",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          -33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.10018806161207638,
+          -0.9949685182509117
+        ]
+      }
+    },
+    {
+      "id": "IntakeValve",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          -33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.10018806161207638,
+          -0.9949685182509117
+        ]
+      }
+    },
+    {
+      "id": "IntakeValveGuide",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          -33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.10018806161207638,
+          -0.9949685182509117
+        ]
+      }
+    },
+    {
+      "id": "IntakeOuterSpring",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          -33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.10018806161207638,
+          -0.9949685182509117
+        ]
+      }
+    },
+    {
+      "id": "IntakeInnerSpring",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          -33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.10018806161207638,
+          -0.9949685182509117
+        ]
+      }
+    },
+    {
+      "id": "IntakeSpringRetainer",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          -33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.10018806161207638,
+          -0.9949685182509117
+        ]
+      }
+    },
+    {
+      "id": "IntakeValveKeeper",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          -33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.10018806161207638,
+          -0.9949685182509117
+        ]
+      }
+    },
+    {
+      "id": "IntakeRockerHousing",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          -33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.10018806161207638,
+          -0.9949685182509117
+        ]
+      }
+    },
+    {
+      "id": "IntakeRockerGasket",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          -33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.10018806161207638,
+          -0.9949685182509117
+        ]
+      }
+    },
+    {
+      "id": "IntakeRockerCover",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          -33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.10018806161207638,
+          -0.9949685182509117
+        ]
+      }
+    },
+    {
+      "id": "IntakeRockerShaft",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          -33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.10018806161207638,
+          -0.9949685182509117
+        ]
+      }
+    },
+    {
+      "id": "IntakeRockerArm",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          -33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.10018806161207638,
+          -0.9949685182509117
+        ]
+      }
+    },
+    {
+      "id": "ExhaustSeatInsert",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.13052619222005157,
+          0.9914448613738104
+        ]
+      }
+    },
+    {
+      "id": "ExhaustValve",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.13052619222005157,
+          0.9914448613738104
+        ]
+      }
+    },
+    {
+      "id": "ExhaustValveGuide",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.13052619222005157,
+          0.9914448613738104
+        ]
+      }
+    },
+    {
+      "id": "ExhaustOuterSpring",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.13052619222005157,
+          0.9914448613738104
+        ]
+      }
+    },
+    {
+      "id": "ExhaustInnerSpring",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.13052619222005157,
+          0.9914448613738104
+        ]
+      }
+    },
+    {
+      "id": "ExhaustSpringRetainer",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.13052619222005157,
+          0.9914448613738104
+        ]
+      }
+    },
+    {
+      "id": "ExhaustValveKeeper",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.13052619222005157,
+          0.9914448613738104
+        ]
+      }
+    },
+    {
+      "id": "ExhaustRockerHousing",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.13052619222005157,
+          0.9914448613738104
+        ]
+      }
+    },
+    {
+      "id": "ExhaustRockerGasket",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.13052619222005157,
+          0.9914448613738104
+        ]
+      }
+    },
+    {
+      "id": "ExhaustRockerCover",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.13052619222005157,
+          0.9914448613738104
+        ]
+      }
+    },
+    {
+      "id": "ExhaustRockerShaft",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.13052619222005157,
+          0.9914448613738104
+        ]
+      }
+    },
+    {
+      "id": "ExhaustRockerArm",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          274.05,
+          33.0,
+          0.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.13052619222005157,
+          0.9914448613738104
+        ]
+      }
+    },
+    {
+      "id": "LowerSparkPlug",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          286.05,
+          0.0,
+          -67.0
+        ],
+        "quaternion_xyzw": [
+          -0.0,
+          0.7071067811865476,
+          0.0,
+          0.7071067811865476
+        ]
+      }
+    },
+    {
+      "id": "LowerSparkInsulator",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          286.05,
+          0.0,
+          -67.0
+        ],
+        "quaternion_xyzw": [
+          -0.0,
+          0.7071067811865476,
+          0.0,
+          0.7071067811865476
+        ]
+      }
+    },
+    {
+      "id": "LowerSparkTerminal",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          286.05,
+          0.0,
+          -67.0
+        ],
+        "quaternion_xyzw": [
+          -0.0,
+          0.7071067811865476,
+          0.0,
+          0.7071067811865476
+        ]
+      }
+    },
+    {
+      "id": "UpperSparkPlug",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          286.05,
+          0.0,
+          67.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          -0.7071067811865476,
+          0.0,
+          0.7071067811865476
+        ]
+      }
+    },
+    {
+      "id": "UpperSparkInsulator",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          286.05,
+          0.0,
+          67.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          -0.7071067811865476,
+          0.0,
+          0.7071067811865476
+        ]
+      }
+    },
+    {
+      "id": "UpperSparkTerminal",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          286.05,
+          0.0,
+          67.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          -0.7071067811865476,
+          0.0,
+          0.7071067811865476
+        ]
+      }
+    },
+    {
+      "id": "IntakePushrod",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          52.0,
+          -35.0,
+          -116.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          -0.1067843550682098,
+          -0.03520069993959715,
+          0.9936589013521838
+        ]
+      }
+    },
+    {
+      "id": "IntakePushrodHousing",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          52.0,
+          -35.0,
+          -116.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          -0.1067843550682098,
+          -0.03520069993959715,
+          0.9936589013521838
+        ]
+      }
+    },
+    {
+      "id": "IntakeLowerPushrodSeal",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          52.0,
+          -35.0,
+          -116.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          -0.1067843550682098,
+          -0.03520069993959715,
+          0.9936589013521838
+        ]
+      }
+    },
+    {
+      "id": "IntakeUpperPushrodSeal",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          52.0,
+          -35.0,
+          -116.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          -0.1067843550682098,
+          -0.03520069993959715,
+          0.9936589013521838
+        ]
+      }
+    },
+    {
+      "id": "IntakeHydraulicLifterBody",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          52.0,
+          -35.0,
+          -116.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "ExhaustPushrod",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          52.0,
+          35.0,
+          -116.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          -0.10719661954550185,
+          0.046693538121255235,
+          0.9931407746416093
+        ]
+      }
+    },
+    {
+      "id": "ExhaustPushrodHousing",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          52.0,
+          35.0,
+          -116.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          -0.10719661954550185,
+          0.046693538121255235,
+          0.9931407746416093
+        ]
+      }
+    },
+    {
+      "id": "ExhaustLowerPushrodSeal",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          52.0,
+          35.0,
+          -116.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          -0.10719661954550185,
+          0.046693538121255235,
+          0.9931407746416093
+        ]
+      }
+    },
+    {
+      "id": "ExhaustUpperPushrodSeal",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          52.0,
+          35.0,
+          -116.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          -0.10719661954550185,
+          0.046693538121255235,
+          0.9931407746416093
+        ]
+      }
+    },
+    {
+      "id": "ExhaustHydraulicLifterBody",
+      "motion_group": "Cylinder",
+      "body_frame_in_group": {
+        "translation_mm": [
+          52.0,
+          35.0,
+          -116.0
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    }
+  ],
+  "cycle": {
+    "degrees": 720,
+    "timing_status": "Illustrative teaching profile from existing video; not manufacturer timing",
+    "strokes": [
+      {
+        "name": "Intake",
+        "start_deg": 0,
+        "end_deg": 180
+      },
+      {
+        "name": "Compression",
+        "start_deg": 180,
+        "end_deg": 360
+      },
+      {
+        "name": "Power",
+        "start_deg": 360,
+        "end_deg": 540
+      },
+      {
+        "name": "Exhaust",
+        "start_deg": 540,
+        "end_deg": 720
+      }
+    ],
+    "illustrative_max_valve_lift_mm": 7,
+    "valve_axes_status": "Pending extraction and reference review"
+  },
+  "validation": {
+    "passed": true,
+    "tolerance_mm": 1e-06,
+    "poses": [
+      {
+        "angle_deg": 0,
+        "piston_pin_mm": [
+          219.075,
+          0.0,
+          0.0
+        ],
+        "crankpin_mm": [
+          50.8,
+          0.0,
+          0.0
+        ],
+        "max_joint_error_mm": 0.0
+      },
+      {
+        "angle_deg": 35,
+        "piston_pin_mm": [
+          207.34605589153375,
+          0.0,
+          0.0
+        ],
+        "crankpin_mm": [
+          41.61292384988078,
+          0.0,
+          29.137682966633136
+        ],
+        "max_joint_error_mm": 2.864289338439558e-14
+      },
+      {
+        "angle_deg": 90,
+        "piston_pin_mm": [
+          160.42392472757922,
+          0.0,
+          0.0
+        ],
+        "crankpin_mm": [
+          3.110602869834277e-15,
+          0.0,
+          50.8
+        ],
+        "max_joint_error_mm": 1.4390468800025868e-14
+      },
+      {
+        "angle_deg": 180,
+        "piston_pin_mm": [
+          117.47500000000001,
+          0.0,
+          0.0
+        ],
+        "crankpin_mm": [
+          -50.8,
+          0.0,
+          6.221205739668554e-15
+        ],
+        "max_joint_error_mm": 1.2442411479337107e-14
+      },
+      {
+        "angle_deg": 270,
+        "piston_pin_mm": [
+          160.42392472757922,
+          0.0,
+          0.0
+        ],
+        "crankpin_mm": [
+          -9.33180860950283e-15,
+          0.0,
+          -50.8
+        ],
+        "max_joint_error_mm": 1.7000913024334024e-14
+      },
+      {
+        "angle_deg": 360,
+        "piston_pin_mm": [
+          219.075,
+          0.0,
+          0.0
+        ],
+        "crankpin_mm": [
+          50.8,
+          0.0,
+          -1.2442411479337107e-14
+        ],
+        "max_joint_error_mm": 2.877307654596707e-14
+      },
+      {
+        "angle_deg": 540,
+        "piston_pin_mm": [
+          117.47500000000001,
+          0.0,
+          0.0
+        ],
+        "crankpin_mm": [
+          -50.8,
+          0.0,
+          1.866361721900566e-14
+        ],
+        "max_joint_error_mm": 2.4884822958674215e-14
+      },
+      {
+        "angle_deg": 720,
+        "piston_pin_mm": [
+          219.075,
+          0.0,
+          0.0
+        ],
+        "crankpin_mm": [
+          50.8,
+          0.0,
+          -2.4884822958674215e-14
+        ],
+        "max_joint_error_mm": 2.4884822958674215e-14
+      }
+    ]
+  }
+}
