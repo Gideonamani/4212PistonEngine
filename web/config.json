@@ -1,1 +1,5 @@
-{"drive_share_url":"https://drive.google.com/file/d/1D7NCgWBjdUKRpjPwh50nxB4KImdwj7Oq/view","status":"Synced Drive model; delivery experiment"}
+{
+  "drive_share_url": "https://drive.google.com/file/d/1D7NCgWBjdUKRpjPwh50nxB4KImdwj7Oq/view",
+  "status": "Official Drive API with restricted browser key",
+  "drive_api_key": "AIzaSyDvsWV7UJ9DeC-kPi7gjmvkzzqe3lwVdYk"
+}

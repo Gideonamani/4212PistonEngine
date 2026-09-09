@@ -22,7 +22,7 @@ const resize = new ResizeObserver(() => {
   renderer.setSize(width,height); camera.aspect=width/height;camera.updateProjectionMatrix();renderer.render(scene,camera);
 });resize.observe($('view'));
 controls.addEventListener('change',()=>renderer.render(scene,camera));
-let root, meshes=[], selected='', catalogue=new Map(), busy=false;
+let root, meshes=[], selected='', catalogue=new Map(), busy=false, apiKey='';
 const ray = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 const originals = new Map();
@@ -66,14 +66,18 @@ function driveCandidates(link){
   if(url.protocol!=='https:'||url.hostname!=='drive.google.com')throw Error('Use a Google Drive HTTPS sharing link.');
   const id=url.pathname.match(/\/file\/d\/([\w-]+)/)?.[1] || url.searchParams.get('id');
   if(!id||!/^[-\w]+$/.test(id))throw Error('The link does not contain a valid Drive file ID.');
-  const params=new URLSearchParams({export:'download',id});
-  if(url.searchParams.has('resourcekey'))params.set('resourcekey',url.searchParams.get('resourcekey'));
-  return [`https://drive.usercontent.google.com/download?${params}`,`https://drive.google.com/uc?${params}`];
+  if(!apiKey)throw Error('The Drive API browser key has not been configured.');
+  const headers={'X-Goog-Api-Key':apiKey};
+  if(url.searchParams.has('resourcekey'))headers['X-Goog-Drive-Resource-Keys']=`${id}/${url.searchParams.get('resourcekey')}`;
+  return [{url:`https://www.googleapis.com/drive/v3/files/${id}?alt=media`,headers}];
 }
-async function fetchGLB(url){
-  const response=await fetch(url,{mode:'cors',credentials:'omit',referrerPolicy:'no-referrer',signal:AbortSignal.timeout(30000)});
+async function fetchGLB(url,headers={}){
+  const response=await fetch(url,{headers,mode:'cors',credentials:'omit',referrerPolicy:'strict-origin-when-cross-origin',signal:AbortSignal.timeout(120000)});
   log(`HTTP ${response.status}; type ${response.headers.get('content-type')}; URL ${response.url}`);
-  if(!response.ok)throw Error(`HTTP ${response.status}`);
+  if(!response.ok){
+    const error=await response.json().catch(()=>null);
+    throw Error(`HTTP ${response.status}: ${error?.error?.message||response.statusText}`);
+  }
   const bytes=await response.arrayBuffer();
   if(bytes.byteLength<20||new DataView(bytes).getUint32(0,true)!==0x46546c67)throw Error('Response is not a GLB model (possibly a preview, login or confirmation page).');
   return bytes;
@@ -95,11 +99,11 @@ async function display(bytes){
 async function load(){
   if(busy)return;busy=true;$('load').disabled=true;$('log').textContent='';
   try{
-    say('Testing anonymous model loading from Google Drive…');
+    say('Loading the cylinder assembly through Google Drive API…');
     const candidates=driveCandidates($('drive').value.trim());
-    for(const url of candidates){
+    for(const {url,headers} of candidates){
       log('Trying '+url);
-      try{const bytes=await fetchGLB(url);const count=await display(bytes);say(`Drive loading passed · ${count} components · ${(bytes.byteLength/1048576).toFixed(1)} MB. Rotate, zoom or select a component.`);return;}
+      try{const bytes=await fetchGLB(url,headers);const count=await display(bytes);say(`Drive API loaded · ${count} components · ${(bytes.byteLength/1048576).toFixed(1)} MB. Rotate, zoom or select a component.`);return;}
       catch(e){log(e.name+': '+e.message);}
     }
     say('Drive loading did not pass. The shared file could not be read as an interactive model. Open delivery test details for the results.');
@@ -109,6 +113,7 @@ $('load').onclick=load;
 try{
   const [registry,config]=await Promise.all([fetch('./components.json').then(r=>r.json()),fetch('./config.json').then(r=>r.json())]);
   catalogue=new Map(registry.parts.map(p=>[p.cad_stable_id,p]));
+  apiKey=config.drive_api_key||'';
   $('drive').value=config.drive_share_url||'';$('load').disabled=false;
   // Local-only control verifies the exported GLB and viewer before Drive delivery is available.
   const localControl=['localhost','127.0.0.1'].includes(location.hostname)&&new URLSearchParams(location.search).get('control')==='local';
