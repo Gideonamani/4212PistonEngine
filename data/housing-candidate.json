@@ -1,0 +1,38 @@
+{
+  "status": "Experimental; sampled solid audit pending",
+  "parent_sha256": "f67fac9c3ca2ac3944bf2514a0698978e4c3d021dc85a76651e0858b66ea6dbd",
+  "joint_frame_source_sha256": "f67fac9c3ca2ac3944bf2514a0698978e4c3d021dc85a76651e0858b66ea6dbd",
+  "candidate_file": "build/housing-clearance/GTSIO520_Housing_Candidate.FCStd",
+  "method": "Tessellated rocker sweep in housing frame; derive oval half-spacing, add 1 mm and round up to 0.5 mm",
+  "tessellation_tolerance_mm": 0.05,
+  "reconstructed_clearance_allowance_mm": 1,
+  "trains": {
+    "intake": {
+      "minimum_sampled_half_spacing_mm": 20.880373377488617,
+      "selected_half_spacing_mm": 22.0,
+      "worst_sample": {
+        "lift_mm": 0.5,
+        "point_housing_local_mm": [
+          129.8536341272047,
+          -6.000000000000149,
+          -42.0463838660053
+        ]
+      }
+    },
+    "exhaust": {
+      "minimum_sampled_half_spacing_mm": 20.880611999559296,
+      "selected_half_spacing_mm": 22.0,
+      "worst_sample": {
+        "lift_mm": 0.75,
+        "point_housing_local_mm": [
+          130.09973422660067,
+          6.000000000000028,
+          -42.04662248807601
+        ]
+      }
+    }
+  },
+  "valid_single_solid_bodies": 60,
+  "unconstrained_sketches": [],
+  "candidate_sha256": "b875c2a1882c5127ff5b58374f8e889d9202ea182cecc7d673b30253836e459a"
+}

@@ -16,8 +16,9 @@ assert hashlib.sha256(source.read_bytes()).hexdigest() == frames['source_sha256'
 parser = argparse.ArgumentParser()
 parser.add_argument('--candidate', action='store_true')
 parser.add_argument('--layout', action='store_true')
+parser.add_argument('--housing', action='store_true')
 args = parser.parse_args()
-if args.candidate and args.layout:
+if sum([args.candidate,args.layout,args.housing]) > 1:
     parser.error('Choose one candidate type')
 if args.candidate:
     candidate = json.loads((repo / 'data/rocker-candidate.json').read_text())
@@ -29,6 +30,12 @@ if args.layout:
     frames = json.loads((repo / 'data/pushrod-frames.json').read_text())
     source = repo / candidate['candidate_file']
     assert hashlib.sha256(source.read_bytes()).hexdigest() == candidate['candidate_sha256'] == frames['source_sha256']
+if args.housing:
+    candidate = json.loads((repo / 'data/housing-candidate.json').read_text())
+    frames = json.loads((repo / 'data/pushrod-frames.json').read_text())
+    source = repo / candidate['candidate_file']
+    assert hashlib.sha256(source.read_bytes()).hexdigest() == candidate['candidate_sha256']
+    assert frames['source_sha256'] == candidate['parent_sha256'] == candidate['joint_frame_source_sha256']
 doc = App.openDocument(str(source))
 
 def world(name):
@@ -58,6 +65,16 @@ try:
         raise RuntimeError('Duplicate stable component IDs')
     for label in ['Intake', 'Exhaust']:
         f = frames['trains'][label.lower()]
+        rocker_body = doc.getObject(label+'RockerArm')
+        rod_body = doc.getObject(label+'Pushrod')
+        frame_checks = {
+            'socket': (rocker_body.getGlobalPlacement().multVec(doc.getObject(label+'PushrodSocket').Placement.Base), f['pushrod_socket_mm']),
+            'lower_ball': (rod_body.getGlobalPlacement().multVec(doc.getObject(label+'LowerBall').Placement.Base), f['pushrod_lower_mm']),
+            'upper_ball': (rod_body.getGlobalPlacement().multVec(doc.getObject(label+'UpperBall').Placement.Base), f['pushrod_upper_mm'])}
+        errors = {name: (actual-App.Vector(*expected)).Length for name,(actual,expected) in frame_checks.items()}
+        report.setdefault('joint_frame_errors_mm',{})[label] = errors
+        if max(errors.values()) > 1e-6:
+            raise RuntimeError(f'{label}: joint frames do not match candidate geometry')
         axis = App.Vector(*f['valve_axis'])
         pivot = App.Vector(*f['rocker_pivot_mm'])
         rockaxis = App.Vector(*f['rocker_axis'])
@@ -119,6 +136,16 @@ try:
                    'pushrod_length_error_mm': abs((socket - follower).Length - length)}
             report['poses'].append(row)
             print(f'{label} lift={lift:.2f} angle={-lo:.6f} gap={gap:.8f}', flush=True)
+        if args.housing and label == 'Intake':
+            review = {'source_sha256': report['source_sha256'], 'lift_mm': lift,
+                      'scope': 'Reconstructed valve-train clearance candidate, not released', 'parts': []}
+            for name, shape in [('Rocker',r),('Valve',v),('Pushrod',rod),('Housing',housing),
+                                ('Tube',tube),('Shaft',world(label+'RockerShaft'))]:
+                vertices,triangles=shape.tessellate(.08)
+                review['parts'].append({'name':name,'vertices_mm':[list(p) for p in vertices],'triangles':triangles})
+            review_path=repo/'.local/housing-review.json'
+            review_path.parent.mkdir(parents=True,exist_ok=True)
+            review_path.write_text(json.dumps(review,separators=(',',':')))
     report['limitations'] = ['First contact of reconstructed solid envelopes, not a validated contact pad',
                              'Follower travel direction is inherited from the illustrative model',
                              'Spring and unlisted neighbouring-part collision checks remain outstanding',
@@ -133,7 +160,8 @@ try:
         'scope': 'Only listed pairs and sampled poses; passing does not approve the complete assembly'}
     if not report['sampled_clearance_gate']['passed']:
         report['status'] = 'Rejected for promotion: sampled pushrod/rocker or housing interference; see clearance gate'
-    output = repo / ('data/pushrod-candidate-contact.json' if args.layout else
+    output = repo / ('data/housing-candidate-contact.json' if args.housing else
+                     'data/pushrod-candidate-contact.json' if args.layout else
                      'data/rocker-candidate-contact.json' if args.candidate else 'data/valve-contact-solution.json')
     output.write_text(json.dumps(report, indent=2) + '\n')
 finally:
