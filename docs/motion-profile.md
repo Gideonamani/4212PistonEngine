@@ -10,6 +10,10 @@
 
 Completed result: `data/spring-seat-contact.json` records all 58 poses with the listed clearance gate passed and zero joint-frame disagreement. `data/valve-motion.json` is generated against that candidate hash. Runtime socket/follower positions agree with all 58 new CAD poses within 1e-6 mm. This does not extend the sampled collision scope or approve manufacturer timing.
 
+The revised candidate now passes CAD-to-Blender/GLB full vertex-set verification (`data/spring-seat-export.json`). Run `prepare_package_preview.py --package build/pipeline-spring-seat --valves` for an isolated, hash-matched preview. The production profile does not enable valves. `valve-transforms.mjs` applies world-space rigid deltas to valves, retainers, keepers, rockers and pushrods before converting back into each mesh parent's frame. Existing section masks follow the updated world matrices.
+
+Desktop browser evidence: the preview loaded all 60 components; play/pause/reset and intake-rocker isolation worked. At about 71 degrees the intake lift read 6.2 mm and the rocker visibly rotated about its shaft. The browser's `valve-transform-check.html` passed 290 joint/pivot/translation checks against 58 CAD poses, maximum error 1.735e-16 m. Spring compression is intentionally still absent and stated in the preview. No complete-cycle teaching release or new Drive asset has been published. Section interaction was exercised, but a cut-face-through-moving-rocker test remains pending.
+
 `data/motion-profile.json` is the first CAD-derived motion contract. Rebuild it with FreeCAD 1.1's Python and `scripts/export_motion_profile.py`. The exporter opens the master, reads its parameter annotations and placements, evaluates eight inspection poses in memory, and closes without saving. The profile records the source CAD SHA-256, 60 stable component IDs and their four motion groups.
 
 Coordinates are millimetres in FreeCAD: the piston travels on X, the main shaft lies on Y, and increasing crank angle rotates around negative Y. Zero places the piston pin farthest from the main shaft. For crank radius r = stroke/2, rod length L and angle a:

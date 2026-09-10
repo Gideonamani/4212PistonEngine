@@ -3,6 +3,7 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {createTransfer} from './transfer.mjs';
 import {mechanismPose} from './kinematics.mjs';
+import {valveMatrices} from './valve-transforms.mjs';
 
 const $ = id => document.getElementById(id);
 const say = text => $('status').textContent = text;
@@ -88,14 +89,18 @@ function setMotion(degrees){
   if(!motionProfile)return;
   motionAngle=degrees;
   const transforms=groupMatrices(degrees);
+  const valves=motionProfile.valves?valveMatrices(degrees,motionProfile.valves):null;
   for(const {mesh,group,localBind} of motionEntries){
     const world=transforms[group].clone().multiply(localBind);
+    const delta=valves?.matrices[mesh.userData.partId];
+    if(delta)world.premultiply(delta);
     mesh.matrix.copy(mesh.parent.matrixWorld).invert().multiply(world);
   }
   root.updateMatrixWorld(true);
   for(const {group,source,cap} of sections)for(const child of group.children)if(child!==cap)child.matrix.copy(source.matrixWorld);
   $('motion-angle').value=String(degrees);$('motion-value').textContent=`${degrees.toFixed(0)}°`;
   $('motion-note').textContent=`Piston pin: ${(mechanismPose(degrees,motionProfile.radius_m,motionProfile.rod_length_m).piston[0]*1000).toFixed(1)} mm from crank axis. CAD kinematics; teaching speed.`;
+  if(valves)$('motion-note').textContent+=` ${valves.cycle.stroke} · intake lift ${valves.cycle.intakeLift.toFixed(1)} mm · exhaust lift ${valves.cycle.exhaustLift.toFixed(1)} mm.`;
   updateSection();
 }
 async function setupMotion(bytes){
@@ -106,6 +111,7 @@ async function setupMotion(bytes){
     const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');
     if(digest!==profile.asset_sha256)throw Error('This model version needs a verified motion profile');
     if(meshes.some(m=>!['Piston','ConnectingRod','Crank','Cylinder'].includes(profile.groups[m.userData.partId])))throw Error('Motion group is missing');
+    if(profile.valves&&profile.bind_angle_deg!==0)throw Error('Valve preview requires the closed zero-degree CAD bind pose');
     motionProfile=profile;root.updateMatrixWorld(true);
     const bind=groupMatrices(profile.bind_angle_deg);
     motionEntries=meshes.map(mesh=>{
@@ -113,6 +119,7 @@ async function setupMotion(bytes){
       return {mesh,group,localBind:bind[group].clone().invert().multiply(mesh.matrixWorld)};
     });
     $('motion-controls').disabled=false;setMotion(profile.bind_angle_deg);
+    if(profile.valves)$('motion-scope').textContent='Engineering preview: piston, rod, crank, valves, rockers and pushrods move together. Spring compression and gas cues are not connected yet. Lift and timing are illustrative, not manufacturer specifications.';
   }catch(e){motionProfile=null;$('motion-note').textContent=e.message+'. Static inspection remains available.';log(e.message);}
 }
 function animateMechanism(time){

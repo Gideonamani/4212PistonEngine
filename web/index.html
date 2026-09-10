@@ -36,7 +36,7 @@ button,select{min-height:44px}input[type=range]{min-height:24px}fieldset{min-wid
 <button id="motion-play" aria-pressed="false">Play mechanism</button><button id="motion-reset">Reset angle</button>
 <label for="motion-angle">Crank angle <output id="motion-value">36°</output></label><input id="motion-angle" type="range" min="0" max="720" step="1" value="36" style="width:100%;box-sizing:border-box">
 <label for="motion-speed">Teaching speed</label><select id="motion-speed"><option value="15">Slow · 15°/s</option><option value="30" selected>Normal · 30°/s</option><option value="60">Fast · 60°/s</option></select>
-<p id="motion-note">Checking motion profile…</p><p><small>Only the piston, rod and crank move. Valves remain closed. This demonstrates the mechanism, not the complete operating cycle. Use Section view to see inside.</small></p></fieldset>
+<p id="motion-note">Checking motion profile…</p><p><small id="motion-scope">Only the piston, rod and crank move. Valves remain closed. This demonstrates the mechanism, not the complete operating cycle. Use Section view to see inside.</small></p></fieldset>
 <fieldset id="section-controls" disabled><legend>Look inside</legend>
 <label><input id="section-enabled" type="checkbox" style="width:auto"> Section view</label>
 <label for="section-axis">Cut direction</label><select id="section-axis"><option value="x">Across X</option><option value="y">Across Y</option><option value="z">Across Z</option></select>

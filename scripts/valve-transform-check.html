@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Valve transform verification</title>
+<h1>Valve transform verification</h1><pre id="result">Checking browser transforms…</pre>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {valveMatrices} from './valve-transforms.mjs';
+const result=document.getElementById('result');
+try{
+  const profile=(await (await fetch('./motion.json')).json()).valves;
+  const audit=await (await fetch('./valve-audit.json')).json();
+  if(!audit.audit_complete||!audit.sampled_clearance_gate.passed||audit.source_sha256!==profile.source_sha256)throw Error('Audit binding mismatch');
+  const point=a=>new THREE.Vector3(a[0],a[2],-a[1]).multiplyScalar(.001);
+  let maximum=0,checks=0;
+  function check(actual,expected){const error=actual.distanceTo(expected);maximum=Math.max(maximum,error);checks++;if(error>1e-9)throw Error('Transform mismatch '+error+' metres');}
+  for(const sample of audit.poses){
+    const name=sample.train.toLowerCase(),train=profile.trains[name];
+    const angle=(name==='intake'?0:540)+Math.asin(Math.sqrt(sample.lift_mm/7))*180/Math.PI;
+    const {matrices}=valveMatrices(angle,profile),label=sample.train;
+    check(point(train.pushrod_socket_mm).applyMatrix4(matrices[label+'RockerArm']),point(sample.pushrod_socket_mm));
+    check(point(train.rocker_pivot_mm).applyMatrix4(matrices[label+'RockerArm']),point(train.rocker_pivot_mm));
+    check(point(train.pushrod_lower_mm).applyMatrix4(matrices[label+'Pushrod']),point(sample.follower_ball_mm));
+    check(point(train.pushrod_socket_mm).applyMatrix4(matrices[label+'Pushrod']),point(sample.pushrod_socket_mm));
+    check(new THREE.Vector3().applyMatrix4(matrices[label+'Valve']),point(train.valve_axis.map(v=>-v*sample.lift_mm)));
+  }
+  result.textContent=`PASS: ${checks} world-transform checks at ${audit.poses.length} CAD poses. Maximum error ${maximum} metres.\nScope: axes, units, pivots and rigid joint transforms; not spring deformation or complete mesh clearance.`;
+}catch(error){result.textContent='FAIL: '+error.message;throw error;}
+</script></html>
