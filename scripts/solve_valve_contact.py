@@ -17,8 +17,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--candidate', action='store_true')
 parser.add_argument('--layout', action='store_true')
 parser.add_argument('--housing', action='store_true')
+parser.add_argument('--spring-seat', action='store_true')
 args = parser.parse_args()
-if sum([args.candidate,args.layout,args.housing]) > 1:
+if sum([args.candidate,args.layout,args.housing,args.spring_seat]) > 1:
     parser.error('Choose one candidate type')
 if args.candidate:
     candidate = json.loads((repo / 'data/rocker-candidate.json').read_text())
@@ -36,6 +37,18 @@ if args.housing:
     source = repo / candidate['candidate_file']
     assert hashlib.sha256(source.read_bytes()).hexdigest() == candidate['candidate_sha256']
     assert frames['source_sha256'] == candidate['parent_sha256'] == candidate['joint_frame_source_sha256']
+if args.spring_seat:
+    candidate = json.loads((repo / 'data/spring-seat-candidate.json').read_text())
+    spring = json.loads((repo / 'data/spring-candidate.json').read_text())
+    housing = json.loads((repo / 'data/housing-candidate.json').read_text())
+    spring_audit = json.loads((repo / 'data/spring-seat-audit.json').read_text())
+    frames = json.loads((repo / 'data/pushrod-frames.json').read_text())
+    source = repo / candidate['candidate_file']
+    assert hashlib.sha256(source.read_bytes()).hexdigest() == candidate['candidate_sha256'] == spring_audit['source_sha256']
+    assert spring_audit['passed'] and spring_audit['audit_complete']
+    assert candidate['parent_sha256'] == spring['candidate_sha256']
+    assert spring['parent_sha256'] == housing['candidate_sha256']
+    assert housing['joint_frame_source_sha256'] == frames['source_sha256']
 doc = App.openDocument(str(source))
 
 def world(name):
@@ -49,7 +62,12 @@ def moved(shape, delta):
     result.Placement = delta.multiply(result.Placement)
     return result
 
+output = repo / ('data/spring-seat-contact.json' if args.spring_seat else
+                 'data/housing-candidate-contact.json' if args.housing else
+                 'data/pushrod-candidate-contact.json' if args.layout else
+                 'data/rocker-candidate-contact.json' if args.candidate else 'data/valve-contact-solution.json')
 report = {'source_sha256': hashlib.sha256(source.read_bytes()).hexdigest(),
+          'audit_complete': False,
           'joint_frame_source_sha256': frames['source_sha256'],
           'status': 'Diagnostic contact solution for reconstructed envelopes; not approved valve motion',
           'contact_tolerance_mm': 1e-6, 'poses': []}
@@ -135,6 +153,7 @@ try:
                    'pushrod_rocker_intersection_mm3': rod.common(r).Volume,
                    'pushrod_length_error_mm': abs((socket - follower).Length - length)}
             report['poses'].append(row)
+            output.write_text(json.dumps(report, indent=2) + '\n')
             print(f'{label} lift={lift:.2f} angle={-lo:.6f} gap={gap:.8f}', flush=True)
         if args.housing and label == 'Intake':
             review = {'source_sha256': report['source_sha256'], 'lift_mm': lift,
@@ -160,9 +179,7 @@ try:
         'scope': 'Only listed pairs and sampled poses; passing does not approve the complete assembly'}
     if not report['sampled_clearance_gate']['passed']:
         report['status'] = 'Rejected for promotion: sampled pushrod/rocker or housing interference; see clearance gate'
-    output = repo / ('data/housing-candidate-contact.json' if args.housing else
-                     'data/pushrod-candidate-contact.json' if args.layout else
-                     'data/rocker-candidate-contact.json' if args.candidate else 'data/valve-contact-solution.json')
+    report['audit_complete'] = True
     output.write_text(json.dumps(report, indent=2) + '\n')
 finally:
     App.closeDocument(doc.Name)

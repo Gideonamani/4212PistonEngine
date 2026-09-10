@@ -1,5 +1,15 @@
 # Shared cylinder motion profile
 
+## Valve motion integration in progress
+
+`web/valve-kinematics.mjs` computes valve translation, rocker angle, rocker socket and the fixed-length pushrod follower endpoint in CAD world coordinates. It interpolates the solved rocker-angle table by lift and derives joint positions geometrically rather than interpolating both rod ends independently. It is not wired into the published viewer yet.
+
+`scripts/test_valve_kinematics.mjs` compares socket and follower positions against all 58 recorded housing-candidate CAD poses, and checks rod closure at 701 lift positions per train. Those interpolated checks prove joint closure, not continuous solid clearance. The illustrative cycle uses sin-squared lift during ideal 180-degree intake/exhaust strokes, zero lift on the other strokes, and a closed 720-degree loop. This is not manufacturer cam timing or a gas/thermodynamic simulation.
+
+`solve_valve_contact.py --spring-seat` repeats the native contact/interface audit against the latest spring-seat candidate, checks its source lineage and actual joint frames, and checkpoints an explicitly incomplete report during the run. `build_valve_motion.py` refuses to produce `data/valve-motion.json` until this contact audit and the source-matched spring audit are complete and pass. It deliberately excludes obsolete spring dimensions from the earlier joint-frame file. Asset binding, spring presentation, interpolated contact review and browser integration remain required before release.
+
+Completed result: `data/spring-seat-contact.json` records all 58 poses with the listed clearance gate passed and zero joint-frame disagreement. `data/valve-motion.json` is generated against that candidate hash. Runtime socket/follower positions agree with all 58 new CAD poses within 1e-6 mm. This does not extend the sampled collision scope or approve manufacturer timing.
+
 `data/motion-profile.json` is the first CAD-derived motion contract. Rebuild it with FreeCAD 1.1's Python and `scripts/export_motion_profile.py`. The exporter opens the master, reads its parameter annotations and placements, evaluates eight inspection poses in memory, and closes without saving. The profile records the source CAD SHA-256, 60 stable component IDs and their four motion groups.
 
 Coordinates are millimetres in FreeCAD: the piston travels on X, the main shaft lies on Y, and increasing crank angle rotates around negative Y. Zero places the piston pin farthest from the main shaft. For crank radius r = stroke/2, rod length L and angle a:
