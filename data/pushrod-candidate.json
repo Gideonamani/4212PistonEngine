@@ -1,0 +1,33 @@
+{
+  "status": "Experimental, solid motion audit pending",
+  "parent_sha256": "eccd69ff1d87b70b3fe34175287dbb12251ddf5f083c488c8e2f2a526c82862d",
+  "candidate_file": "build/pushrod-layout/GTSIO520_Pushrod_Candidate.FCStd",
+  "changes": [
+    {
+      "train": "Intake",
+      "closed_rocker_rotation_deg": -1.7679717168211937,
+      "pushrod_length_mm": 362.8463416105314,
+      "socket_offset_mm": 3.5,
+      "entry_half_angle_deg": 18,
+      "entry_axis_local": [
+        -0.9917989783370775,
+        -0.12757886188612866,
+        0.007643334963830549
+      ]
+    },
+    {
+      "train": "Exhaust",
+      "closed_rocker_rotation_deg": -1.6206089332699776,
+      "pushrod_length_mm": 361.5999756389319,
+      "socket_offset_mm": 3.5,
+      "entry_half_angle_deg": 18,
+      "entry_axis_local": [
+        -0.9863839825227617,
+        0.16443505425090735,
+        0.002784233473928173
+      ]
+    }
+  ],
+  "valid_single_solid_bodies": 60,
+  "candidate_sha256": "f67fac9c3ca2ac3944bf2514a0698978e4c3d021dc85a76651e0858b66ea6dbd"
+}

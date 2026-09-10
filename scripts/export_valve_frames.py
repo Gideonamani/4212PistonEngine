@@ -1,10 +1,17 @@
 """Extract valve-train joints from native CAD features; do not modify/save the master."""
 from pathlib import Path
-import hashlib,json
+import hashlib,json,argparse
 import FreeCAD as App
 
 repo=Path(__file__).resolve().parents[1]
 source=repo.parent/'EngineSimulation/FreeCAD/v2/GTSIO520_Detailed_Cylinder.FCStd'
+parser=argparse.ArgumentParser()
+parser.add_argument('--source',type=Path)
+parser.add_argument('--output',type=Path)
+args=parser.parse_args()
+if args.source and not args.output: parser.error('--source requires a separate --output')
+if args.source: source=args.source.resolve()
+output=args.output or repo/'data/valve-frames.json'
 doc=App.openDocument(str(source))
 def vec(v): return [v.x,v.y,v.z]
 def point(body,feature): return body.getGlobalPlacement().multVec(feature.Placement.Base)
@@ -43,6 +50,6 @@ try:
                            'Verify minimum spring length and coil clearance over proposed lift',
                            'Verify rocker, pushrod and housing clearances over motion',
                            'Resolve provisional exhaust inclination and manufacturer valve timing from manual']}
-    (repo/'data/valve-frames.json').write_text(json.dumps(report,indent=2)+'\n')
+    output.write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps({k:{'pivot_mm':v['rocker_pivot_mm'],'pushrod_length_mm':v['pushrod_length_mm'],'socket_error_mm':v['socket_alignment_error_mm']} for k,v in trains.items()},indent=2))
 finally: App.closeDocument(doc.Name)

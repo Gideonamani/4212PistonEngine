@@ -15,12 +15,20 @@ frames = json.loads((repo / 'data/valve-frames.json').read_text())
 assert hashlib.sha256(source.read_bytes()).hexdigest() == frames['source_sha256']
 parser = argparse.ArgumentParser()
 parser.add_argument('--candidate', action='store_true')
+parser.add_argument('--layout', action='store_true')
 args = parser.parse_args()
+if args.candidate and args.layout:
+    parser.error('Choose one candidate type')
 if args.candidate:
     candidate = json.loads((repo / 'data/rocker-candidate.json').read_text())
     assert candidate['source_sha256'] == frames['source_sha256']
     source = repo / candidate['candidate_file']
     assert hashlib.sha256(source.read_bytes()).hexdigest() == candidate['candidate_sha256']
+if args.layout:
+    candidate = json.loads((repo / 'data/pushrod-candidate.json').read_text())
+    frames = json.loads((repo / 'data/pushrod-frames.json').read_text())
+    source = repo / candidate['candidate_file']
+    assert hashlib.sha256(source.read_bytes()).hexdigest() == candidate['candidate_sha256'] == frames['source_sha256']
 doc = App.openDocument(str(source))
 
 def world(name):
@@ -40,6 +48,14 @@ report = {'source_sha256': hashlib.sha256(source.read_bytes()).hexdigest(),
           'contact_tolerance_mm': 1e-6, 'poses': []}
 try:
     doc.recompute()
+    bodies = [o for o in doc.Objects if o.TypeId == 'PartDesign::Body']
+    sketches = [o for o in doc.Objects if o.TypeId == 'Sketcher::SketchObject']
+    ids = [b.StablePartID for b in bodies]
+    report['cad_structure'] = {'body_count': len(bodies), 'unique_stable_ids': len(set(ids)),
+                               'sketch_count': len(sketches),
+                               'unconstrained_sketches': [s.Name for s in sketches if not s.FullyConstrained]}
+    if len(set(ids)) != len(ids):
+        raise RuntimeError('Duplicate stable component IDs')
     for label in ['Intake', 'Exhaust']:
         f = frames['trains'][label.lower()]
         axis = App.Vector(*f['valve_axis'])
@@ -117,7 +133,8 @@ try:
         'scope': 'Only listed pairs and sampled poses; passing does not approve the complete assembly'}
     if not report['sampled_clearance_gate']['passed']:
         report['status'] = 'Rejected for promotion: sampled pushrod/rocker or housing interference; see clearance gate'
-    output = repo / ('data/rocker-candidate-contact.json' if args.candidate else 'data/valve-contact-solution.json')
+    output = repo / ('data/pushrod-candidate-contact.json' if args.layout else
+                     'data/rocker-candidate-contact.json' if args.candidate else 'data/valve-contact-solution.json')
     output.write_text(json.dumps(report, indent=2) + '\n')
 finally:
     App.closeDocument(doc.Name)

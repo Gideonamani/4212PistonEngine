@@ -30,7 +30,8 @@
   "release_test_target": {
     "device": "Samsung Galaxy A16",
     "browser": "Google Chrome",
-    "physical_device_test_status": "Pending; target confirmed by instructor"
+    "physical_device_test_status": "Pending; target confirmed by instructor",
+    "emulated_layout_review": "Instructor reported emulated view looks good on 2026-09-10; not a physical-phone test"
   },
   "reference_baseline": {
     "engine_family": "Continental GTSIO-520",

@@ -1,0 +1,128 @@
+{
+  "source_sha256": "f67fac9c3ca2ac3944bf2514a0698978e4c3d021dc85a76651e0858b66ea6dbd",
+  "scope": "Closed assembly; only listed pairs",
+  "intersection_tolerance_mm3": 1e-05,
+  "interfaces": [
+    {
+      "a": "IntakePushrodHousing",
+      "b": "CylinderHead",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 2.1999999498369807
+    },
+    {
+      "a": "IntakePushrodHousing",
+      "b": "IntakeRockerHousing",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 1.1999999628109836
+    },
+    {
+      "a": "IntakePushrodHousing",
+      "b": "IntakeRockerCover",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 21.675044983069604
+    },
+    {
+      "a": "IntakePushrodHousing",
+      "b": "IntakeRockerGasket",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 21.2807792771871
+    },
+    {
+      "a": "IntakeRockerArm",
+      "b": "IntakeRockerShaft",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 0.022224999999912332
+    },
+    {
+      "a": "IntakePushrodHousing",
+      "b": "IntakeLowerPushrodSeal",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 1.4210854715202004e-14
+    },
+    {
+      "a": "IntakePushrodHousing",
+      "b": "IntakeUpperPushrodSeal",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 1.2730419646209808e-13
+    },
+    {
+      "a": "IntakePushrod",
+      "b": "CylinderHead",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 6.699999949836913
+    },
+    {
+      "a": "IntakePushrod",
+      "b": "IntakeRockerCover",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 4.472217838064349
+    },
+    {
+      "a": "IntakePushrod",
+      "b": "IntakeRockerGasket",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 3.3855010205964797
+    },
+    {
+      "a": "ExhaustPushrodHousing",
+      "b": "CylinderHead",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 2.199999948668903
+    },
+    {
+      "a": "ExhaustPushrodHousing",
+      "b": "ExhaustRockerHousing",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 1.1999999715093752
+    },
+    {
+      "a": "ExhaustPushrodHousing",
+      "b": "ExhaustRockerCover",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 21.404382241477606
+    },
+    {
+      "a": "ExhaustPushrodHousing",
+      "b": "ExhaustRockerGasket",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 21.00305657256789
+    },
+    {
+      "a": "ExhaustRockerArm",
+      "b": "ExhaustRockerShaft",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 0.0222249999999196
+    },
+    {
+      "a": "ExhaustPushrodHousing",
+      "b": "ExhaustLowerPushrodSeal",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 1.4210854715202004e-14
+    },
+    {
+      "a": "ExhaustPushrodHousing",
+      "b": "ExhaustUpperPushrodSeal",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 7.944109290391274e-14
+    },
+    {
+      "a": "ExhaustPushrod",
+      "b": "CylinderHead",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 6.699999948668904
+    },
+    {
+      "a": "ExhaustPushrod",
+      "b": "ExhaustRockerCover",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 4.5172074881092845
+    },
+    {
+      "a": "ExhaustPushrod",
+      "b": "ExhaustRockerGasket",
+      "intersection_mm3": 0.0,
+      "minimum_distance_mm": 3.4364972721458917
+    }
+  ],
+  "passed": true
+}

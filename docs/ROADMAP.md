@@ -45,7 +45,7 @@ M1 and the data-contract work in M3 can develop together. M2 depends on the shar
 
 The active engineering package is M2 valve-train contact and clearance validation, alongside M3 reproducible exports. M1 has working inspection, fullscreen, groups, music and loading diagnostics; physical-phone checks remain open. M2 has verified slider-crank playback; synchronized valves and gas cues remain open. UI polishing follows roadmap completion, as requested by the project owner.
 
-Latest engineering result: the isolated rounded-rocker candidate maintains valve contact at 58 sampled poses but fails pushrod/socket and pushrod/tube clearances. It is not promoted. The next correction is the combined follower/socket/tube geometry; see [valve-train review](valve-train-review.md). Initial M3 publication checks now run mechanism/transfer tests and reject a stale generated motion profile; the controlled CAD-edit propagation exercises remain open.
+Latest engineering result: the revised pushrod-layout candidate maintains valve contact and clears pushrod/socket and tube pairs at 58 sampled poses, but still clashes with the rocker housing. It is not promoted. The next correction is the rocker/housing swept envelope, followed by spring review; see [pushrod layout study](pushrod-layout-study.md). Initial M3 publication checks now run mechanism/transfer tests and reject a stale generated motion profile; the controlled CAD-edit propagation exercises remain open. The instructor reports that the emulated mobile view looks good; physical A16 testing remains pending.
 
 ## Repeatable procedure for every subsystem
 

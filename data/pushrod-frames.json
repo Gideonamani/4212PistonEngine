@@ -1,0 +1,167 @@
+{
+  "schema_version": "0.1-draft",
+  "source_file": "GTSIO520_Pushrod_Candidate.FCStd",
+  "source_sha256": "f67fac9c3ca2ac3944bf2514a0698978e4c3d021dc85a76651e0858b66ea6dbd",
+  "coordinates": "FreeCAD world millimetres; rotate (x,y,z) to glTF (x,z,-y), divide positions by 1000",
+  "status": "Static feature frames extracted; not a validated dynamic contact model",
+  "trains": {
+    "intake": {
+      "valve_id": "IntakeValve",
+      "closed_valve_origin_mm": [
+        274.05,
+        -33.0,
+        0.0
+      ],
+      "valve_axis": [
+        0.9799247046208296,
+        -0.19936793441719738,
+        0.0
+      ],
+      "opening_direction": "negative valve_axis",
+      "valve_evidence": "A-4-23/B-1/B-12: inclination, stem diameter, total length and face angle. Head outer diameter and underhead blend reconstructed; closed pose only.",
+      "rocker_pivot_mm": [
+        401.4402116007079,
+        -58.91783147423567,
+        -18.000000000000004
+      ],
+      "rocker_axis": [
+        0.1993679344171974,
+        0.9799247046208298,
+        -1.6653345369377348e-16
+      ],
+      "pivot_source": "IntakeShaftSketch circle centre + half pad length",
+      "rocker_evidence": "A-3-1 forged rocker; A-4-36 construction. Lever geometry/contact approximate, not a cam/contact solution. Reconstructed socket has a 3.6 mm radius entry relief aligned with the closed-valve pushrod, allowing the 3.5 mm radius tube to approach its ball seat. Experimental native 2 mm contact-edge fillet; reconstructed radius, pending dynamic contact/clearance review. Experimental layout: socket offset 3.5 mm from shaft along valve axis; closed pose and dependent tube/openings regenerated; dimensions reconstructed, not manufacturer specifications.",
+      "pushrod_lower_mm": [
+        52.0,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_upper_mm": [
+        405.47296873269505,
+        -59.73830518575572,
+        -37.8824971470667
+      ],
+      "pushrod_length_mm": 362.8463416105314,
+      "pushrod_socket_mm": [
+        405.47296873269505,
+        -59.73830518575553,
+        -37.88249714706663
+      ],
+      "socket_alignment_error_mm": 2.045820231286366e-13,
+      "pushrod_evidence": "A-3-1: hollow steel tube with hardened ball ends, drilled for oil. Anchor positions, tube dimensions and end geometry reconstructed; static closed-valve study. Experimental layout: socket offset 3.5 mm from shaft along valve axis; closed pose and dependent tube/openings regenerated; dimensions reconstructed, not manufacturer specifications.",
+      "springs": {
+        "inner": {
+          "seat_point_mm": [
+            347.5443528465622,
+            -47.9525950812898,
+            0.0
+          ],
+          "axial_envelope_mm": 35.0,
+          "source_features": [
+            "IntakeInnerWireSketch",
+            "IntakeInnerCoil"
+          ],
+          "evidence": "A-4-34: concentric springs. Mean radius, wire, turns and installed length are reconstructed; not inferred from test lengths."
+        },
+        "outer": {
+          "seat_point_mm": [
+            347.5443528465622,
+            -47.9525950812898,
+            0.0
+          ],
+          "axial_envelope_mm": 35.0,
+          "source_features": [
+            "IntakeOuterWireSketch",
+            "IntakeOuterCoil"
+          ],
+          "evidence": "A-4-34: concentric springs. Mean radius, wire, turns and installed length are reconstructed; not inferred from test lengths."
+        }
+      },
+      "existing_video_max_lift_mm": 7,
+      "existing_video_effective_rocker_lever_mm": 22,
+      "motion_status": "Video lift/lever are illustrative; actual rocker/valve contact and cam profile unresolved"
+    },
+    "exhaust": {
+      "valve_id": "ExhaustValve",
+      "closed_valve_origin_mm": [
+        274.05,
+        33.0,
+        0.0
+      ],
+      "valve_axis": [
+        0.9659258262890682,
+        0.25881904510252074,
+        0.0
+      ],
+      "opening_direction": "negative valve_axis",
+      "valve_evidence": "A-4-23/B-1/B-12: inclination, stem diameter, total length and face angle. Head outer diameter and underhead blend reconstructed; closed pose only. Exhaust inclination is PROVISIONAL 15 deg: A-4-23 scan reads 15 deg 60 min above 14 deg 54 min; upper marking unresolved.",
+      "rocker_pivot_mm": [
+        399.6203574175789,
+        66.64647586332771,
+        -18.000000000000007
+      ],
+      "rocker_axis": [
+        -0.2588190451025208,
+        0.9659258262890684,
+        -1.1275702593849246e-16
+      ],
+      "pivot_source": "ExhaustShaftSketch circle centre + half pad length",
+      "rocker_evidence": "A-3-1 forged rocker; A-4-36 construction. Lever geometry/contact approximate, not a cam/contact solution. Reconstructed socket has a 3.6 mm radius entry relief aligned with the closed-valve pushrod, allowing the 3.5 mm radius tube to approach its ball seat. Experimental native 2 mm contact-edge fillet; reconstructed radius, pending dynamic contact/clearance review. Experimental layout: socket offset 3.5 mm from shaft along valve axis; closed pose and dependent tube/openings regenerated; dimensions reconstructed, not manufacturer specifications.",
+      "pushrod_lower_mm": [
+        52.0,
+        35.0,
+        -116.0
+      ],
+      "pushrod_upper_mm": [
+        403.54609618189227,
+        67.69837439492102,
+        -37.89301597630683
+      ],
+      "pushrod_length_mm": 361.5999756389319,
+      "pushrod_socket_mm": [
+        403.54609618189227,
+        67.69837439492088,
+        -37.893015976306856
+      ],
+      "socket_alignment_error_mm": 1.449228509952941e-13,
+      "pushrod_evidence": "A-3-1: hollow steel tube with hardened ball ends, drilled for oil. Anchor positions, tube dimensions and end geometry reconstructed; static closed-valve study. Experimental layout: socket offset 3.5 mm from shaft along valve axis; closed pose and dependent tube/openings regenerated; dimensions reconstructed, not manufacturer specifications.",
+      "springs": {
+        "inner": {
+          "seat_point_mm": [
+            346.4944369716801,
+            52.41142838268905,
+            0.0
+          ],
+          "axial_envelope_mm": 35.0,
+          "source_features": [
+            "ExhaustInnerWireSketch",
+            "ExhaustInnerCoil"
+          ],
+          "evidence": "A-4-34: concentric springs. Mean radius, wire, turns and installed length are reconstructed; not inferred from test lengths."
+        },
+        "outer": {
+          "seat_point_mm": [
+            346.4944369716801,
+            52.41142838268905,
+            0.0
+          ],
+          "axial_envelope_mm": 35.0,
+          "source_features": [
+            "ExhaustOuterWireSketch",
+            "ExhaustOuterCoil"
+          ],
+          "evidence": "A-4-34: concentric springs. Mean radius, wire, turns and installed length are reconstructed; not inferred from test lengths."
+        }
+      },
+      "existing_video_max_lift_mm": 7,
+      "existing_video_effective_rocker_lever_mm": 22,
+      "motion_status": "Video lift/lever are illustrative; actual rocker/valve contact and cam profile unresolved"
+    }
+  },
+  "next_checks": [
+    "Review valve-stem/rocker contact and lever arm before choosing motion law",
+    "Verify minimum spring length and coil clearance over proposed lift",
+    "Verify rocker, pushrod and housing clearances over motion",
+    "Resolve provisional exhaust inclination and manufacturer valve timing from manual"
+  ]
+}

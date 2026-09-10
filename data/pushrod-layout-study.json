@@ -1,0 +1,2297 @@
+{
+  "status": "Design-space screening; requires native CAD rebuild and solid audit",
+  "input_hashes": {
+    "valve-frames.json": "78b464e8de9de8c5169952e6cb572c5eac66bafac50fc3a15dd2606eaf1621f4",
+    "rocker-candidate-contact.json": "be8ddab33fd277f0d587f535527f73ba78917cde9a7dea876df0bf9657085ed2"
+  },
+  "assumptions": [
+    "7 mm lift and contact rounding remain illustrative/reconstructed",
+    "Lower follower line remains world X; actual cam/lifter layout not yet resolved",
+    "Tube is aligned to the corrected closed pose and remains fixed",
+    "Rod length follows closed joint spacing; never scaled during motion",
+    "Tube bore radius 5.6 mm, rod radius 3.5 mm and 15 mm end offsets are existing reconstructed CAD values",
+    "Ball ends, seals, socket entries and head openings require separate solid checks"
+  ],
+  "trains": {
+    "intake": {
+      "original_offset_rebound_to_closed_pose": {
+        "socket_offset_from_pivot_mm": 9,
+        "closed_socket_mm": [
+          410.8599889646581,
+          -60.83430683899064,
+          -37.712810976365084
+        ],
+        "pushrod_length_mm": 368.2075325883326,
+        "fixed_tube_axis": [
+          0.9746133829529084,
+          -0.07016235289209631,
+          0.21261702190965878
+        ],
+        "minimum_screening_margin_mm": -1.3771945263522039,
+        "poses": [
+          {
+            "lift_mm": 0.0,
+            "follower_ball_mm": [
+              52.0,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              410.8599889646581,
+              -60.83430683899064,
+              -37.712810976365084
+            ],
+            "tube_end_offsets_mm": [
+              5.0292000132872715e-15,
+              0.0
+            ],
+            "conservative_tube_radial_margin_mm": 2.0999999999999948,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 0.25,
+            "follower_ball_mm": [
+              52.2751578158655,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              411.10455867629986,
+              -60.88406510919356,
+              -37.58913782929861
+            ],
+            "tube_end_offsets_mm": [
+              0.056145735199414286,
+              0.06971830403137554
+            ],
+            "conservative_tube_radial_margin_mm": 2.03028145450774,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 0.5,
+            "follower_ball_mm": [
+              52.5510774875483,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              411.3489844055912,
+              -60.93379408585619,
+              -37.461554826111765
+            ],
+            "tube_end_offsets_mm": [
+              0.11251132372943326,
+              0.14256307570314183
+            ],
+            "conservative_tube_radial_margin_mm": 1.957435931923854,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 0.75,
+            "follower_ball_mm": [
+              52.827776202086625,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              411.59326356191934,
+              -60.983493241912434,
+              -37.32999165376177
+            ],
+            "tube_end_offsets_mm": [
+              0.16910722106851175,
+              0.2186110241662674
+            ],
+            "conservative_tube_radial_margin_mm": 1.8813866816260885,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 1.0,
+            "follower_ball_mm": [
+              53.105272149906,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              411.8373933998647,
+              -61.033162018800354,
+              -37.194373845544305
+            ],
+            "tube_end_offsets_mm": [
+              0.22594422646401396,
+              0.2979409965013657
+            ],
+            "conservative_tube_radial_margin_mm": 1.8020548127058627,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 1.25,
+            "follower_ball_mm": [
+              53.383584603143674,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              412.08137101693154,
+              -61.08279982600052,
+              -37.05462249204565
+            ],
+            "tube_end_offsets_mm": [
+              0.2830335104049011,
+              0.38063434788843753
+            ],
+            "conservative_tube_radial_margin_mm": 1.7193589236356095,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 1.5,
+            "follower_ball_mm": [
+              53.66273397796692,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              412.32519333019553,
+              -61.13240603628488,
+              -36.91065393522514
+            ],
+            "tube_end_offsets_mm": [
+              0.3403866397354245,
+              0.46677531865954824
+            ],
+            "conservative_tube_radial_margin_mm": 1.633214725037345,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 1.75,
+            "follower_ball_mm": [
+              53.94274192600108,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              412.5688570707332,
+              -61.18197998458345,
+              -36.76237942068053
+            ],
+            "tube_end_offsets_mm": [
+              0.3980156097566483,
+              0.5564514348058986
+            ],
+            "conservative_tube_radial_margin_mm": 1.5435346389788043,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 2.0,
+            "follower_ball_mm": [
+              54.22363142974126,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              412.81235877265993,
+              -61.23152096575403,
+              -36.609704716526295
+            ],
+            "tube_end_offsets_mm": [
+              0.45593287830305346,
+              0.649753929170839
+            ],
+            "conservative_tube_radial_margin_mm": 1.4502273775634906,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 2.25,
+            "follower_ball_mm": [
+              54.50542688815193,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              413.0556947438958,
+              -61.28102822863446,
+              -36.45252970327693
+            ],
+            "tube_end_offsets_mm": [
+              0.5141513990699297,
+              0.7467781824861003
+            ],
+            "conservative_tube_radial_margin_mm": 1.353197501655214,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 2.5,
+            "follower_ball_mm": [
+              54.78815424939171,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              413.2988610667485,
+              -61.33050097616125,
+              -36.29074789930839
+            ],
+            "tube_end_offsets_mm": [
+              0.5726846660909006,
+              0.847624208022106
+            ],
+            "conservative_tube_radial_margin_mm": 1.252344935962399,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 2.75,
+            "follower_ball_mm": [
+              55.07184111799313,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              413.5418535638742,
+              -61.37993835844419,
+              -36.12424595634437
+            ],
+            "tube_end_offsets_mm": [
+              0.6315467545609881,
+              0.9523971610332923
+            ],
+            "conservative_tube_radial_margin_mm": 1.147564459299132,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 3.0,
+            "follower_ball_mm": [
+              55.356516908477545,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              413.7846677901432,
+              -61.4293394711114,
+              -35.95290307913298
+            ],
+            "tube_end_offsets_mm": [
+              0.6907523730797488,
+              1.0612079036292958
+            ],
+            "conservative_tube_radial_margin_mm": 1.038745139386796,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 3.25,
+            "follower_ball_mm": [
+              55.642212985527806,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              414.02729899691474,
+              -61.478703348041016,
+              -35.77659039653567
+            ],
+            "tube_end_offsets_mm": [
+              0.7503169151630045,
+              1.1741736107146845
+            ],
+            "conservative_tube_radial_margin_mm": 0.9257697265504845,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 3.5,
+            "follower_ball_mm": [
+              55.9289628494771,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              414.2697421167869,
+              -61.52802895825846,
+              -35.59517024161459
+            ],
+            "tube_end_offsets_mm": [
+              0.8102565224925428,
+              1.2914184464749467
+            ],
+            "conservative_tube_radial_margin_mm": 0.8085139768256306,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 3.75,
+            "follower_ball_mm": [
+              56.21680231929713,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              414.51199172531403,
+              -61.5773151981478,
+              -35.40849535991548
+            ],
+            "tube_end_offsets_mm": [
+              0.870588150289851,
+              1.4130743023593564
+            ],
+            "conservative_tube_radial_margin_mm": 0.6868459135194378,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 4.0,
+            "follower_ball_mm": [
+              56.50576975556186,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              414.75404201271596,
+              -61.62656088569589,
+              -35.216408009099354
+            ],
+            "tube_end_offsets_mm": [
+              0.9313296440363373,
+              1.53928162353572
+            ],
+            "conservative_tube_radial_margin_mm": 0.560625000243494,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 4.25,
+            "follower_ball_mm": [
+              56.79590630769678,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              414.9958867484357,
+              -61.67576475328158,
+              -35.0187389461619
+            ],
+            "tube_end_offsets_mm": [
+              0.9924998247288018,
+              1.6701903302908574
+            ],
+            "conservative_tube_radial_margin_mm": 0.42970121893549607,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 4.5,
+            "follower_ball_mm": [
+              57.08725618702124,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              415.23751923555074,
+              -61.724925438400604,
+              -34.81530628641231
+            ],
+            "tube_end_offsets_mm": [
+              1.0541185834898776,
+              1.8059608489971668
+            ],
+            "conservative_tube_radial_margin_mm": 0.29391403823956264,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 4.75,
+            "follower_ball_mm": [
+              57.37986697531949,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              415.47893225808565,
+              -61.77404147294615,
+              -34.60591420992482
+            ],
+            "tube_end_offsets_mm": [
+              1.116206988177476,
+              1.9467652735684091
+            ],
+            "conservative_tube_radial_margin_mm": 0.15309125130955348,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 5.0,
+            "follower_ball_mm": [
+              57.67379000124805,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              415.72011804157046,
+              -61.82311127518445,
+              -34.3903514702526
+            ],
+            "tube_end_offsets_mm": [
+              1.1787874095886801,
+              2.0927886934937616
+            ],
+            "conservative_tube_radial_margin_mm": 0.0070476469295748245,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 5.25,
+            "follower_ball_mm": [
+              57.96908072833571,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              415.9610681729112,
+              -61.872133133452174,
+              -34.168389719321176
+            ],
+            "tube_end_offsets_mm": [
+              1.241883656199275,
+              2.244230685812745
+            ],
+            "conservative_tube_radial_margin_mm": -0.144416483425017,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 5.5,
+            "follower_ball_mm": [
+              58.26579924374721,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              416.2017735440328,
+              -61.92110519469048,
+              -33.939781552876106
+            ],
+            "tube_end_offsets_mm": [
+              1.30552113740943,
+              2.4013070433935333
+            ],
+            "conservative_tube_radial_margin_mm": -0.3015170749755711,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 5.75,
+            "follower_ball_mm": [
+              58.56401078983555,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              416.4422242604851,
+              -61.97002544585079,
+              -33.70425827969986
+            ],
+            "tube_end_offsets_mm": [
+              1.3697270442424583,
+              2.5642517470143007
+            ],
+            "conservative_tube_radial_margin_mm": -0.4644882629990157,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 6.0,
+            "follower_ball_mm": [
+              58.863786392013594,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              416.68240954545206,
+              -62.01889169436505,
+              -33.461527328319434
+            ],
+            "tube_end_offsets_mm": [
+              1.4345305604164968,
+              2.733319251274764
+            ],
+            "conservative_tube_radial_margin_mm": -0.6335846702202854,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 6.25,
+            "follower_ball_mm": [
+              59.16520359881167,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              416.9223176350159,
+              -62.06770154683716,
+              -33.211269219502185
+            ],
+            "tube_end_offsets_mm": [
+              1.4999631091177175,
+              2.9087871475785385
+            ],
+            "conservative_tube_radial_margin_mm": -0.8090840715201075,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 6.5,
+            "follower_ball_mm": [
+              59.468347332333906,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              417.1619356426036,
+              -62.116452381464214,
+              -32.95313403411869
+            ],
+            "tube_end_offsets_mm": [
+              1.5660586373750862,
+              3.090959269501072
+            ],
+            "conservative_tube_radial_margin_mm": -0.9912905013216351,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 6.75,
+            "follower_ball_mm": [
+              59.77331090049228,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              417.40124940794334,
+              -62.165141317306315,
+              -32.68673724484438
+            ],
+            "tube_end_offsets_mm": [
+              1.6328539519786267,
+              3.2801693524952444
+            ],
+            "conservative_tube_radial_margin_mm": -1.1805379156742832,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 7.0,
+            "follower_ball_mm": [
+              60.08019719153225,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              417.64024331406193,
+              -62.2137651770544,
+              -32.41165478052216
+            ],
+            "tube_end_offsets_mm": [
+              1.7003891149678925,
+              3.47678536517214
+            ],
+            "conservative_tube_radial_margin_mm": -1.3771945263522039,
+            "joint_length_error_mm": 0.0
+          }
+        ]
+      },
+      "best_sampled_offset_mm": 4.0,
+      "best_sampled_margin_mm": 0.3473162377177843,
+      "shared_candidate": {
+        "socket_offset_from_pivot_mm": 3.5,
+        "closed_socket_mm": [
+          405.47296873269505,
+          -59.73830518575577,
+          -37.8824971470666
+        ],
+        "pushrod_length_mm": 362.8463416105314,
+        "fixed_tube_axis": [
+          0.9741671010482519,
+          -0.06817846109720224,
+          0.21529086529080244
+        ],
+        "minimum_screening_margin_mm": 0.34201493348111445,
+        "poses": [
+          {
+            "lift_mm": 0.0,
+            "follower_ball_mm": [
+              52.0,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              405.47296873269505,
+              -59.73830518575577,
+              -37.8824971470666
+            ],
+            "tube_end_offsets_mm": [
+              2.710399819191012e-15,
+              5.870046366090628e-14
+            ],
+            "conservative_tube_radial_margin_mm": 2.099999999999942,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 0.25,
+            "follower_ball_mm": [
+              52.26254774480344,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              405.7200846817707,
+              -59.788581493819486,
+              -37.82862780964405
+            ],
+            "tube_end_offsets_mm": [
+              0.05652999528222915,
+              0.03095030351297097
+            ],
+            "conservative_tube_radial_margin_mm": 2.043469929381611,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 0.5,
+            "follower_ball_mm": [
+              52.52665298479252,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              405.9679476614538,
+              -59.83900978697802,
+              -37.77121737982653
+            ],
+            "tube_end_offsets_mm": [
+              0.11336627456356022,
+              0.06164329154897034
+            ],
+            "conservative_tube_radial_margin_mm": 1.9866334127026435,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 0.75,
+            "follower_ball_mm": [
+              52.792345354594545,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              406.21657110483017,
+              -59.88959279822358,
+              -37.71020217594387
+            ],
+            "tube_end_offsets_mm": [
+              0.1705215542362783,
+              0.09230595964697427
+            ],
+            "conservative_tube_radial_margin_mm": 1.9294777153727178,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 1.0,
+            "follower_ball_mm": [
+              53.0596562899388,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              406.4659692369422,
+              -59.940333421673756,
+              -37.64551475399202
+            ],
+            "tube_end_offsets_mm": [
+              0.22800910679799244,
+              0.12317667210425848
+            ],
+            "conservative_tube_radial_margin_mm": 1.8719895451325024,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 1.25,
+            "follower_ball_mm": [
+              53.32861915993425,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              406.7161571375287,
+              -59.99123472533606,
+              -37.5770836478018
+            ],
+            "tube_end_offsets_mm": [
+              0.285842802184678,
+              0.15450311606723846
+            ],
+            "conservative_tube_radial_margin_mm": 1.814155010615195,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 1.5,
+            "follower_ball_mm": [
+              53.59926938957352,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              406.9671507886311,
+              -60.04229996079359,
+              -37.50483308915351
+            ],
+            "tube_end_offsets_mm": [
+              0.3440371481329767,
+              0.18653998186545837
+            ],
+            "conservative_tube_radial_margin_mm": 1.7559595808680015,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 1.75,
+            "follower_ball_mm": [
+              53.871644616584206,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              407.218967147524,
+              -60.093532578042854,
+              -37.428682694527936
+            ],
+            "tube_end_offsets_mm": [
+              0.4026073391940646,
+              0.21954650250267446
+            ],
+            "conservative_tube_radial_margin_mm": 1.6973880362099267,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 2.0,
+            "follower_ball_mm": [
+              54.14578485930713,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              407.4716242222896,
+              -60.14493624086958,
+              -37.34854712064784
+            ],
+            "tube_end_offsets_mm": [
+              0.4615693095369783,
+              0.2537839954681838
+            ],
+            "conservative_tube_radial_margin_mm": 1.6384244152864889,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 2.25,
+            "follower_ball_mm": [
+              54.42173268284512,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              407.7251411374992,
+              -60.196514840211776,
+              -37.264335689744016
+            ],
+            "tube_end_offsets_mm": [
+              0.5209397869727781,
+              0.2895135534331342
+            ],
+            "conservative_tube_radial_margin_mm": 1.5790519608884264,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 2.5,
+            "follower_ball_mm": [
+              54.699533420079945,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              407.9795382410798,
+              -60.24827251590199,
+              -37.17595196398793
+            ],
+            "tube_end_offsets_mm": [
+              0.5807363605735172,
+              0.3269940257804053
+            ],
+            "conservative_tube_radial_margin_mm": 1.5192530521580974,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 2.75,
+            "follower_ball_mm": [
+              54.97923537778769,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              408.23483718683934,
+              -60.30021367345721,
+              -37.08329328495384
+            ],
+            "tube_end_offsets_mm": [
+              0.6409775471112394,
+              0.36648039035512336
+            ],
+            "conservative_tube_radial_margin_mm": 1.4590091379564765,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 3.0,
+            "follower_ball_mm": [
+              55.26089009964193,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              408.4910610572187,
+              -60.35234300905313,
+              -36.986250251118506
+            ],
+            "tube_end_offsets_mm": [
+              0.7016828720310931,
+              0.40822259746707606
+            ],
+            "conservative_tube_radial_margin_mm": 1.3983006556735464,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 3.25,
+            "follower_ball_mm": [
+              55.54455262888695,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              408.7482344721825,
+              -60.404665531678155,
+              -36.884706145334476
+            ],
+            "tube_end_offsets_mm": [
+              0.7628729529533449,
+              0.4524649130502439
+            ],
+            "conservative_tube_radial_margin_mm": 1.3371069474846333,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 3.5,
+            "follower_ball_mm": [
+              55.830281830426316,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              409.0063837368694,
+              -60.45718659317325,
+              -36.778536285445
+            ],
+            "tube_end_offsets_mm": [
+              0.8245695989344807,
+              0.49944576858659107
+            ],
+            "conservative_tube_radial_margin_mm": 1.2754061608183394,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 3.75,
+            "follower_ball_mm": [
+              56.118140727218474,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              409.26553698467285,
+              -60.50991191734198,
+              -36.66760730510883
+            ],
+            "tube_end_offsets_mm": [
+              0.8867959161899365,
+              0.5493980818608359
+            ],
+            "conservative_tube_radial_margin_mm": 1.2131751423297654,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 4.0,
+            "follower_ball_mm": [
+              56.408196895589356,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              409.5257243536334,
+              -60.562847635838004,
+              -36.55177633948692
+            ],
+            "tube_end_offsets_mm": [
+              0.949576430393037,
+              0.6025500067176038
+            ],
+            "conservative_tube_radial_margin_mm": 1.1503893152588986,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 4.25,
+            "follower_ball_mm": [
+              56.700522906967535,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              409.786978181607,
+              -60.616000327872484,
+              -36.43089010841645
+            ],
+            "tube_end_offsets_mm": [
+              1.0129372234469007,
+              0.6591260519475104
+            ],
+            "conservative_tube_radial_margin_mm": 1.0870225422716215,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 4.5,
+            "follower_ball_mm": [
+              56.995196820957005,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              410.04933322107036,
+              -60.66937706391669,
+              -36.30478388217347
+            ],
+            "tube_end_offsets_mm": [
+              1.0769060864745066,
+              0.7193485107138031
+            ],
+            "conservative_tube_radial_margin_mm": 1.0230469720310733,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 4.75,
+            "follower_ball_mm": [
+              57.292302743608616,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              410.31282688173775,
+              -60.72298545506304,
+              -36.17328030874832
+            ],
+            "tube_end_offsets_mm": [
+              1.1415126928374735,
+              0.7834391494979953
+            ],
+            "conservative_tube_radial_margin_mm": 0.9584328656802414,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 5.0,
+            "follower_ball_mm": [
+              57.59193148876534,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              410.57749952937553,
+              -60.77683371381951,
+              -36.036188066824096
+            ],
+            "tube_end_offsets_mm": [
+              1.2067888003972675,
+              0.851621122158586
+            ],
+            "conservative_tube_radial_margin_mm": 0.8931483940110496,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 5.25,
+            "follower_ball_mm": [
+              57.894181291417794,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              410.84339478930815,
+              -60.830930715858656,
+              -35.893300344355936
+            ],
+            "tube_end_offsets_mm": [
+              1.272768473087877,
+              0.9241210689593404
+            ],
+            "conservative_tube_radial_margin_mm": 0.8271594152400503,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 5.5,
+            "follower_ball_mm": [
+              58.19915867091913,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              411.11055993387464,
+              -60.88528607884657,
+              -35.744393072010546
+            ],
+            "tube_end_offsets_mm": [
+              1.3394883444929415,
+              1.0011714074936007
+            ],
+            "conservative_tube_radial_margin_mm": 0.7604292106805444,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 5.75,
+            "follower_ball_mm": [
+              58.50697939398617,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              411.379046300357,
+              -60.93991024747133,
+              -35.589222900625295
+            ],
+            "tube_end_offsets_mm": [
+              1.4069879142480668,
+              1.0830128056865795
+            ],
+            "conservative_tube_radial_margin_mm": 0.6929181874737198,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 6.0,
+            "follower_ball_mm": [
+              58.81776960286089,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              411.6489097860222,
+              -60.9948145941604,
+              -35.42752485239109
+            ],
+            "tube_end_offsets_mm": [
+              1.4753098935987388,
+              1.1698968682610897
+            ],
+            "conservative_tube_radial_margin_mm": 0.6245835320245803,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 6.25,
+            "follower_ball_mm": [
+              59.131667138612215,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              411.92021143262633,
+              -61.050011537999445,
+              -35.259009580467804
+            ],
+            "tube_end_offsets_mm": [
+              1.5445006092709264,
+              1.262089077255731
+            ],
+            "conservative_tube_radial_margin_mm": 0.5553788049570798,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 6.5,
+            "follower_ball_mm": [
+              59.44882307424842,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              412.19301809636005,
+              -61.10551468103419,
+              -35.083360168706676
+            ],
+            "tube_end_offsets_mm": [
+              1.6146104720306726,
+              1.359872038606381
+            ],
+            "conservative_tube_radial_margin_mm": 0.4852534711778542,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 6.75,
+            "follower_ball_mm": [
+              59.769403531595174,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              412.4674032464612,
+              -61.16133897074997,
+              -34.90022835706412
+            ],
+            "tube_end_offsets_mm": [
+              1.685694530126269,
+              1.463549121338275
+            ],
+            "conservative_tube_radial_margin_mm": 0.4141523448095237,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 7.0,
+            "follower_ball_mm": [
+              60.09359182956251,
+              -35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              412.7434479071179,
+              -61.217500891704226,
+              -34.70923007118566
+            ],
+            "tube_end_offsets_mm": [
+              1.7578131230695908,
+              1.5734485901960695
+            ],
+            "conservative_tube_radial_margin_mm": 0.34201493348111445,
+            "joint_length_error_mm": 5.684341886080802e-14
+          }
+        ]
+      }
+    },
+    "exhaust": {
+      "original_offset_rebound_to_closed_pose": {
+        "socket_offset_from_pivot_mm": 9,
+        "closed_socket_mm": [
+          408.8565632275819,
+          69.12130975124566,
+          -37.737469429044836
+        ],
+        "pushrod_length_mm": 366.9276416258542,
+        "fixed_tube_axis": [
+          0.9725529579792696,
+          0.09299193050720937,
+          0.2132914550241414
+        ],
+        "minimum_screening_margin_mm": -1.410918119323493,
+        "poses": [
+          {
+            "lift_mm": 0.0,
+            "follower_ball_mm": [
+              52.0,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              408.8565632275819,
+              69.12130975124566,
+              -37.737469429044836
+            ],
+            "tube_end_offsets_mm": [
+              3.8968670012594065e-15,
+              5.859285502108464e-14
+            ],
+            "conservative_tube_radial_margin_mm": 2.09999999999994,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 0.25,
+            "follower_ball_mm": [
+              52.27426056550365,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              409.09766763872454,
+              69.18591348350292,
+              -37.61458252284271
+            ],
+            "tube_end_offsets_mm": [
+              0.05809983195457111,
+              0.07328349101133078
+            ],
+            "conservative_tube_radial_margin_mm": 2.026716244164857,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 0.5,
+            "follower_ball_mm": [
+              52.54929048291183,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              409.33863062390134,
+              69.25047932078684,
+              -37.48779956487689
+            ],
+            "tube_end_offsets_mm": [
+              0.1164410296092145,
+              0.14947726562438066
+            ],
+            "conservative_tube_radial_margin_mm": 1.9505216485368084,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 0.75,
+            "follower_ball_mm": [
+              52.82510688155662,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              409.579449662132,
+              69.31500658760277,
+              -37.35705105221564
+            ],
+            "tube_end_offsets_mm": [
+              0.17503404550463883,
+              0.22866535710169336
+            ],
+            "conservative_tube_radial_margin_mm": 1.8713321383649628,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 1.0,
+            "follower_ball_mm": [
+              53.10172788126681,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              409.82012207547245,
+              69.3794945663978,
+              -37.22226338629909
+            ],
+            "tube_end_offsets_mm": [
+              0.23388967651824907,
+              0.31093353521589306
+            ],
+            "conservative_tube_radial_margin_mm": 1.78906190003811,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 1.25,
+            "follower_ball_mm": [
+              53.37917268315607,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              410.06064503856146,
+              69.44394250011864,
+              -37.0833585829958
+            ],
+            "tube_end_offsets_mm": [
+              0.29301909440160634,
+              0.3963696774901384
+            ],
+            "conservative_tube_radial_margin_mm": 1.7036230096825982,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 1.5,
+            "follower_ball_mm": [
+              53.65746162533242,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              410.3010155507378,
+              69.50834958474054,
+              -36.94025397520512
+            ],
+            "tube_end_offsets_mm": [
+              0.3524338697631655,
+              0.48506414357828775
+            ],
+            "conservative_tube_radial_margin_mm": 1.6149250586049355,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 1.75,
+            "follower_ball_mm": [
+              53.93661626559407,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              410.54123042415927,
+              69.57271496608377,
+              -36.79286187592635
+            ],
+            "tube_end_offsets_mm": [
+              0.4121460027787214,
+              0.57711017350536
+            ],
+            "conservative_tube_radial_margin_mm": 1.522874754856395,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 2.0,
+            "follower_ball_mm": [
+              54.21665948809641,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              410.7812862839928,
+              69.63703773986454,
+              -36.6410891983664
+            ],
+            "tube_end_offsets_mm": [
+              0.47216796015073764,
+              0.6726043135962394
+            ],
+            "conservative_tube_radial_margin_mm": 1.4273754970892316,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 2.25,
+            "follower_ball_mm": [
+              54.49761558701954,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              411.02117953923096,
+              69.70131694387527,
+              -36.484837054273626
+            ],
+            "tube_end_offsets_mm": [
+              0.5325127084016571,
+              0.771646858369214
+            ],
+            "conservative_tube_radial_margin_mm": 1.3283269324261902,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 2.5,
+            "follower_ball_mm": [
+              54.77951038727804,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              411.260906374645,
+              69.76555155582852,
+              -36.32400029476636
+            ],
+            "tube_end_offsets_mm": [
+              0.5931937564903526,
+              0.8743423323341207
+            ],
+            "conservative_tube_radial_margin_mm": 1.2256244743998481,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 2.75,
+            "follower_ball_mm": [
+              55.062371357165034,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              411.5004627237312,
+              69.82974048610792,
+              -36.158467012831444
+            ],
+            "tube_end_offsets_mm": [
+              0.654225198268257,
+              0.980800001502134
+            ],
+            "conservative_tube_radial_margin_mm": 1.1191587911522074,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 3.0,
+            "follower_ball_mm": [
+              55.346227762905016,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              411.73984426358925,
+              69.89388257639581,
+              -35.98811797352079
+            ],
+            "tube_end_offsets_mm": [
+              0.7156217657272603,
+              1.0911344382221415
+            ],
+            "conservative_tube_radial_margin_mm": 1.0088152402746404,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 3.25,
+            "follower_ball_mm": [
+              55.63111079760779,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              411.9790463725927,
+              69.95797658833109,
+              -35.8128260043577
+            ],
+            "tube_end_offsets_mm": [
+              0.7773988787185198,
+              1.205466120663822
+            ],
+            "conservative_tube_radial_margin_mm": 0.8944732689654682,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 3.5,
+            "follower_ball_mm": [
+              55.91705377583895,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              412.218064125812,
+              70.02202120228291,
+              -35.63245528444624
+            ],
+            "tube_end_offsets_mm": [
+              0.8395727111072573,
+              1.3239221090177355
+            ],
+            "conservative_tube_radial_margin_mm": 0.7760057374270186,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 3.75,
+            "follower_ball_mm": [
+              56.20409230062455,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              412.45689224704057,
+              70.08601500449595,
+              -35.446860579152606
+            ],
+            "tube_end_offsets_mm": [
+              0.902160253521227,
+              1.4466367707823935
+            ],
+            "conservative_tube_radial_margin_mm": 0.65327819312916,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 4.0,
+            "follower_ball_mm": [
+              56.49226449384162,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              412.69552509086856,
+              70.1499564822872,
+              -35.25588635416728
+            ],
+            "tube_end_offsets_mm": [
+              0.9651793927671407,
+              1.5737526013201153
+            ],
+            "conservative_tube_radial_margin_mm": 0.5261480497471984,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 4.25,
+            "follower_ball_mm": [
+              56.78161123459438,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              412.9339566046579,
+              70.21384401385718,
+              -35.059365790216134
+            ],
+            "tube_end_offsets_mm": [
+              1.028648996340775,
+              1.7054211294190111
+            ],
+            "conservative_tube_radial_margin_mm": 0.39446368103033347,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 4.5,
+            "follower_ball_mm": [
+              57.072176421134145,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              413.1721802795124,
+              70.27767585515244,
+              -34.85711967502594
+            ],
+            "tube_end_offsets_mm": [
+              1.0925890058679872,
+              1.8418039270649298
+            ],
+            "conservative_tube_radial_margin_mm": 0.2580634103865922,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 4.75,
+            "follower_ball_mm": [
+              57.36400729497768,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              413.4101891169894,
+              70.34145013094586,
+              -34.64895512828275
+            ],
+            "tube_end_offsets_mm": [
+              1.1570205485639522,
+              1.9830737576806736
+            ],
+            "conservative_tube_radial_margin_mm": 0.11677436191285473,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 5.0,
+            "follower_ball_mm": [
+              57.65715477969292,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              413.64797556642657,
+              70.40516481804362,
+              -34.43466417094718
+            ],
+            "tube_end_offsets_mm": [
+              1.2219660569828554,
+              2.1294158605534017
+            ],
+            "conservative_tube_radial_margin_mm": -0.029588824862534224,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 5.25,
+            "follower_ball_mm": [
+              57.95167388540261,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              413.88553146772506,
+              70.4688177299538,
+              -34.214022078857326
+            ],
+            "tube_end_offsets_mm": [
+              1.2874494090990707,
+              2.2810294180949358
+            ],
+            "conservative_tube_radial_margin_mm": -0.18122546318920563,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 5.5,
+            "follower_ball_mm": [
+              58.24762417835683,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              414.12284799003385,
+              70.53240650045699,
+              -33.986785489249385
+            ],
+            "tube_end_offsets_mm": [
+              1.3534960896371093,
+              2.4381292348421426
+            ],
+            "conservative_tube_radial_margin_mm": -0.33835049918454363,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 5.75,
+            "follower_ball_mm": [
+              58.54507030050678,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              414.3599155437697,
+              70.59592856003214,
+              -33.75269023504035
+            ],
+            "tube_end_offsets_mm": [
+              1.4201333704834773,
+              2.600947653993359
+            ],
+            "conservative_tube_radial_margin_mm": -0.5011964296235867,
+            "joint_length_error_mm": 5.684341886080802e-14
+          },
+          {
+            "lift_mm": 6.0,
+            "follower_ball_mm": [
+              58.84408258626064,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              414.5967236912258,
+              70.65938111190411,
+              -33.511448826706
+            ],
+            "tube_end_offsets_mm": [
+              1.487390522115458,
+              2.7697367769753423
+            ],
+            "conservative_tube_radial_margin_mm": -0.6700155229579394,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 6.25,
+            "follower_ball_mm": [
+              59.144737784262816,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              414.83326104585973,
+              70.72276110505805,
+              -33.26274751886736
+            ],
+            "tube_end_offsets_mm": [
+              1.5552990596354421,
+              2.9447710423571642
+            ],
+            "conservative_tube_radial_margin_mm": -0.8450823999192849,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 6.5,
+            "follower_ball_mm": [
+              59.44711988271456,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              415.06951513960956,
+              70.78606519868687,
+              -33.006242894688896
+            ],
+            "tube_end_offsets_mm": [
+              1.6238930252301327,
+              3.126350225836478
+            ],
+            "conservative_tube_radial_margin_mm": -1.0266970354797147,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 6.75,
+            "follower_ball_mm": [
+              59.75132110262757,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              415.3054722845832,
+              70.8492897251309,
+              -32.74155782988747
+            ],
+            "tube_end_offsets_mm": [
+              1.6932093242560147,
+              3.3148029768199723
+            ],
+            "conservative_tube_radial_margin_mm": -1.2151882977563577,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 7.0,
+            "follower_ball_mm": [
+              60.05744305204968,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              415.54111739266796,
+              70.91243064154256,
+              -32.46827673380034
+            ],
+            "tube_end_offsets_mm": [
+              1.763288116754744,
+              3.510490986987357
+            ],
+            "conservative_tube_radial_margin_mm": -1.410918119323493,
+            "joint_length_error_mm": 0.0
+          }
+        ]
+      },
+      "best_sampled_offset_mm": 3.75,
+      "best_sampled_margin_mm": 0.28943931088985586,
+      "shared_candidate": {
+        "socket_offset_from_pivot_mm": 3.5,
+        "closed_socket_mm": [
+          403.5460961818922,
+          67.69837439492102,
+          -37.893015976306856
+        ],
+        "pushrod_length_mm": 361.5999756389318,
+        "fixed_tube_axis": [
+          0.9721961279469811,
+          0.09042692643201752,
+          0.21600384205137574
+        ],
+        "minimum_screening_margin_mm": 0.2871462461756371,
+        "poses": [
+          {
+            "lift_mm": 0.0,
+            "follower_ball_mm": [
+              52.0,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              403.5460961818922,
+              67.69837439492102,
+              -37.893015976306856
+            ],
+            "tube_end_offsets_mm": [
+              3.552713678800501e-15,
+              3.552713678800501e-15
+            ],
+            "conservative_tube_radial_margin_mm": 2.099999999999996,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 0.25,
+            "follower_ball_mm": [
+              52.26132587420028,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              403.7895338397166,
+              67.76360331874238,
+              -37.83985872453354
+            ],
+            "tube_end_offsets_mm": [
+              0.05810322128718375,
+              0.039800569606378546
+            ],
+            "conservative_tube_radial_margin_mm": 2.0418966796656624,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 0.5,
+            "follower_ball_mm": [
+              52.52421007414779,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              404.03370525506244,
+              67.82902885229907,
+              -37.783172882367836
+            ],
+            "tube_end_offsets_mm": [
+              0.11653882316500817,
+              0.07937015454593763
+            ],
+            "conservative_tube_radial_margin_mm": 1.9834607689522108,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 0.75,
+            "follower_ball_mm": [
+              52.78868198670409,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              404.2786235194297,
+              67.89465450344791,
+              -37.72289550260548
+            ],
+            "tube_end_offsets_mm": [
+              0.1753197485112048,
+              0.1188835512365437
+            ],
+            "conservative_tube_radial_margin_mm": 1.924679306317918,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 1.0,
+            "follower_ball_mm": [
+              53.05477277361541,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              404.52430248822293,
+              67.96048398473337,
+              -37.658959926735335
+            ],
+            "tube_end_offsets_mm": [
+              0.23445950188264755,
+              0.1585240525996874
+            ],
+            "conservative_tube_radial_margin_mm": 1.8655387669669485,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 1.25,
+            "follower_ball_mm": [
+              53.3225155144529,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              404.7707568533635,
+              68.0265212328439,
+              -37.59129552709434
+            ],
+            "tube_end_offsets_mm": [
+              0.29397219412350195,
+              0.19848280467960505
+            ],
+            "conservative_tube_radial_margin_mm": 1.8060250181355064,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 1.5,
+            "follower_ball_mm": [
+              53.59194532141254,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              405.01800218397045,
+              68.0927704195124,
+              -37.51982743347381
+            ],
+            "tube_end_offsets_mm": [
+              0.35387258184206044,
+              0.23895804335818535
+            ],
+            "conservative_tube_radial_margin_mm": 1.7461232794986308,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 1.75,
+            "follower_ball_mm": [
+              53.863099486097155,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              405.26605499012976,
+              68.15923596860307,
+              -37.44447622804946
+            ],
+            "tube_end_offsets_mm": [
+              0.414176115249341,
+              0.2801542474402313
+            ],
+            "conservative_tube_radial_margin_mm": 1.6858180752031764,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 2.0,
+            "follower_ball_mm": [
+              54.136017656500655,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              405.5149328069822,
+              68.2259225786427,
+              -37.36515760462904
+            ],
+            "tube_end_offsets_mm": [
+              0.47489899411904457,
+              0.3222812421477548
+            ],
+            "conservative_tube_radial_margin_mm": 1.6250931777657889,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 2.25,
+            "follower_ball_mm": [
+              54.41074199939692,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              405.7646542572699,
+              68.29283523958003,
+              -37.28178200141234
+            ],
+            "tube_end_offsets_mm": [
+              0.5360582220797635,
+              0.3655532856354433
+            ],
+            "conservative_tube_radial_margin_mm": 1.5639315536235818,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 2.5,
+            "follower_ball_mm": [
+              54.687317407375986,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              406.01523914554826,
+              68.35997925802964,
+              -37.194254187168326
+            ],
+            "tube_end_offsets_mm": [
+              0.597671672611813,
+              0.4101881897672583
+            ],
+            "conservative_tube_radial_margin_mm": 1.5023152969628306,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 2.75,
+            "follower_ball_mm": [
+              54.965791707770904,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              406.26670854381257,
+              68.42736028021571,
+              -37.1024728085266
+            ],
+            "tube_end_offsets_mm": [
+              0.6597581574645203,
+              0.4564065111950084
+            ],
+            "conservative_tube_radial_margin_mm": 1.4402255611079156,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 3.0,
+            "follower_ball_mm": [
+              55.24621592375797,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              406.51908491277237,
+              68.49498432446718,
+              -37.00632987760018
+            ],
+            "tube_end_offsets_mm": [
+              0.722337508957724,
+              0.5044308613186067
+            ],
+            "conservative_tube_radial_margin_mm": 1.3776424760036257,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 3.25,
+            "follower_ball_mm": [
+              55.528644522768786,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              406.77239219853556,
+              68.56285780712436,
+              -36.905710215103696
+            ],
+            "tube_end_offsets_mm": [
+              0.7854306620151263,
+              0.554485360652213
+            ],
+            "conservative_tube_radial_margin_mm": 1.3145450659408757,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 3.5,
+            "follower_ball_mm": [
+              55.813135743875364,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              407.02665598553705,
+              68.63098758351587,
+              -36.80049081153726
+            ],
+            "tube_end_offsets_mm": [
+              0.8490597567268774,
+              0.6067952832760866
+            ],
+            "conservative_tube_radial_margin_mm": 1.2509111467237934,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 3.75,
+            "follower_ball_mm": [
+              56.09975191416447,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              407.28190362255856,
+              68.69938098172574,
+              -36.69054012926906
+            ],
+            "tube_end_offsets_mm": [
+              0.9132482417732638,
+              0.6615868994559361
+            ],
+            "conservative_tube_radial_margin_mm": 1.186717221943307,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 4.0,
+            "follower_ball_mm": [
+              56.38855984661279,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              407.5381644023493,
+              68.76804585072244,
+              -36.57571730352578
+            ],
+            "tube_end_offsets_mm": [
+              0.978020999855433,
+              0.7190875493421969
+            ],
+            "conservative_tube_radial_margin_mm": 1.1219383572050639,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 4.25,
+            "follower_ball_mm": [
+              56.67963126747452,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              407.7954697451622,
+              68.83699060953738,
+              -36.45587124949763
+            ],
+            "tube_end_offsets_mm": [
+              1.043404484096581,
+              0.7795259490983832
+            ],
+            "conservative_tube_radial_margin_mm": 1.0565480433431782,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 4.5,
+            "follower_ball_mm": [
+              56.97304329177433,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              408.0538533995321,
+              68.90622430106319,
+              -36.330839656724166
+            ],
+            "tube_end_offsets_mm": [
+              1.1094268702219916,
+              0.8431327377016473
+            ],
+            "conservative_tube_radial_margin_mm": 0.990518043804359,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 4.75,
+            "follower_ball_mm": [
+              57.26887898991566,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              408.31335169406674,
+              68.97575665952101,
+              -36.200447837386704
+            ],
+            "tube_end_offsets_mm": [
+              1.1761182349839652,
+              0.910141275553497
+            ],
+            "conservative_tube_radial_margin_mm": 0.923818215727132,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 5.0,
+            "follower_ball_mm": [
+              57.56722800238725,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              408.5740037972591,
+              69.04559818007687,
+              -36.06450742801795
+            ],
+            "tube_end_offsets_mm": [
+              1.24351075211655,
+              0.9807886865983259
+            ],
+            "conservative_tube_radial_margin_mm": 0.8564163134223977,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 5.25,
+            "follower_ball_mm": [
+              57.86818725974291,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              408.8358520298434,
+              69.11576020253736,
+              -35.922814898989984
+            ],
+            "tube_end_offsets_mm": [
+              1.3116389198066705,
+              1.0553171573742932
+            ],
+            "conservative_tube_radial_margin_mm": 0.7882777602555322,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 5.5,
+            "follower_ball_mm": [
+              58.17186181449762,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              409.0989422280556,
+              69.18625500868485,
+              -35.77514984137713
+            ],
+            "tube_end_offsets_mm": [
+              1.3805398225829582,
+              1.1339754995775293
+            ],
+            "conservative_tube_radial_margin_mm": 0.7193653860139326,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 5.75,
+            "follower_ball_mm": [
+              58.478365777902184,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              409.3633241431092,
+              69.25709592931685,
+              -35.621273003283974
+            ],
+            "tube_end_offsets_mm": [
+              1.4502534276679668,
+              1.2170209832587406
+            ],
+            "conservative_tube_radial_margin_mm": 0.6496391296972224,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 6.0,
+            "follower_ball_mm": [
+              58.78782342009691,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              409.6290519172509,
+              69.32829747180463,
+              -35.4609240097007
+            ],
+            "tube_end_offsets_mm": [
+              1.5208229310417973,
+              1.304721471278236
+            ],
+            "conservative_tube_radial_margin_mm": 0.5790556924587165,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 6.25,
+            "follower_ball_mm": [
+              59.100370454740414,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              409.8961846413976,
+              69.39987546951168,
+              -35.29381870712458
+            ],
+            "tube_end_offsets_mm": [
+              1.5922951605103544,
+              1.3973578870189471
+            ],
+            "conservative_tube_radial_margin_mm": 0.5075681333774646,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 6.5,
+            "follower_ball_mm": [
+              59.41615552221663,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              410.1647869906061,
+              69.47184725206719,
+              -35.11964606804597
+            ],
+            "tube_end_offsets_mm": [
+              1.664721042007583,
+              1.4952270562236842
+            ],
+            "conservative_tube_radial_margin_mm": 0.4351254017983015,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 6.75,
+            "follower_ball_mm": [
+              59.73534195787158,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              410.4349299915371,
+              69.54423185100758,
+              -34.938064537557295
+            ],
+            "tube_end_offsets_mm": [
+              1.7381561526390392,
+              1.5986449999832786
+            ],
+            "conservative_tube_radial_margin_mm": 0.3616717826875142,
+            "joint_length_error_mm": 0.0
+          },
+          {
+            "lift_mm": 7.0,
+            "follower_ball_mm": [
+              60.05810986293005,
+              35.0,
+              -116.0
+            ],
+            "socket_mm": [
+              410.7066919118672,
+              69.61705023809357,
+              -34.74869772145696
+            ],
+            "tube_end_offsets_mm": [
+              1.8126613692426032,
+              1.7079507550068622
+            ],
+            "conservative_tube_radial_margin_mm": 0.2871462461756371,
+            "joint_length_error_mm": 0.0
+          }
+        ]
+      }
+    }
+  }
+}

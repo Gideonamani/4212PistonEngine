@@ -2,6 +2,8 @@
 
 Target confirmed by the instructor: Samsung Galaxy A16, Google Chrome. This is a physical-device acceptance check; desktop viewport emulation does not complete it. Status: **pending**.
 
+Instructor feedback, 10 September 2026: “Yes, I emulated and it looks good.” Recorded as a positive emulated-layout review. No physical A16 timing, touch, memory or graphics-performance results have been supplied, so the device acceptance rows below remain pending.
+
 Reference family: Continental GTSIO-520. The current cylinder configuration remains GTSIO-520-H; check manual applicability before adding variant-specific geometry or operation.
 
 ## Record with each run

@@ -1,0 +1,56 @@
+{
+  "source_file": "Notes/gtsio520_series.pdf",
+  "source_sha256": "c8e7828e978772a55a9271d7bf678cc464ac772987ce7c44cfa3af89c9c21a07",
+  "pdf_page": 95,
+  "printed_page": "B-4",
+  "page_revision": "March 1981",
+  "review_method": "Visually checked rendered page; load columns distinguished from service limits",
+  "scope": "Spring test data; not installed spring dimensions or valve lift",
+  "springs": {
+    "inner": {
+      "part_number": "637836",
+      "test_points": [
+        {
+          "compressed_length_in": 1.329,
+          "compressed_length_mm": 33.7566,
+          "serviceable_limit_lbf": 73,
+          "new_min_lbf": 78,
+          "new_max_lbf": 88
+        },
+        {
+          "compressed_length_in": 1.809,
+          "compressed_length_mm": 45.9486,
+          "serviceable_limit_lbf": 40,
+          "new_min_lbf": 43,
+          "new_max_lbf": 49
+        }
+      ]
+    },
+    "outer": {
+      "part_number": "637837",
+      "test_points": [
+        {
+          "compressed_length_in": 1.275,
+          "compressed_length_mm": 32.385,
+          "serviceable_limit_lbf": 118,
+          "new_min_lbf": 126,
+          "new_max_lbf": 140
+        },
+        {
+          "compressed_length_in": 1.791,
+          "compressed_length_mm": 45.4914,
+          "serviceable_limit_lbf": 46,
+          "new_min_lbf": 49,
+          "new_max_lbf": 55
+        }
+      ]
+    }
+  },
+  "unresolved": [
+    "Installed length",
+    "Free length",
+    "Wire diameter and active/end turns",
+    "Solid height and coil clearance",
+    "Applicable actual valve lift profile"
+  ]
+}
