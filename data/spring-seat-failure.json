@@ -1,0 +1,31 @@
+{
+  "status": "Experimental; spring interface audit pending",
+  "parent_sha256": "13d736f4ffee8dc41a9c78e9481e0b66b03cb8d1c7024c1ca4968efc53a683c5",
+  "candidate_file": "build/spring-seat/GTSIO520_Spring_Seat_Candidate.FCStd",
+  "features": [
+    {
+      "name": "IntakeSpringSeatRecess",
+      "outer_radius_mm": 18.5,
+      "inner_radius_mm": 8.3,
+      "seat_station_mm": 65.0,
+      "depth_mm": 53.0
+    },
+    {
+      "name": "ExhaustSpringSeatRecess",
+      "outer_radius_mm": 18.5,
+      "inner_radius_mm": 8.3,
+      "seat_station_mm": 65.0,
+      "depth_mm": 53.0
+    }
+  ],
+  "invalid_bodies": [
+    {
+      "name": "CylinderHead",
+      "valid": false,
+      "solids": 1,
+      "solid_volumes_mm3": [
+        1289480.0456330653
+      ]
+    }
+  ]
+}

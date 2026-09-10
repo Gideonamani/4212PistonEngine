@@ -1,0 +1,47 @@
+{
+  "source_sha256": "13d736f4ffee8dc41a9c78e9481e0b66b03cb8d1c7024c1ca4968efc53a683c5",
+  "steps": [
+    {
+      "train": "Intake",
+      "valid": true,
+      "solids": 1,
+      "faces": 285,
+      "volume_mm3": 1292015.107869101
+    },
+    {
+      "train": "Exhaust",
+      "valid": true,
+      "solids": 1,
+      "faces": 290,
+      "volume_mm3": 1290420.7398894026
+    }
+  ],
+  "native_steps": [
+    {
+      "train": "Intake",
+      "head_volume_mm3": 1291598.4742983421,
+      "head_valid": false,
+      "base_feature": "BarrelThreadSocket",
+      "tool_volume_mm3": 56986.13454162867,
+      "tool_bounds": "BoundBox (-18.5, -18.5, 0, 18.5, 18.5, 53)",
+      "expected_tool_bounds": "BoundBox (334.057, -74.654, -18.5, 393.369, -27.8303, 18.5)"
+    },
+    {
+      "train": "Exhaust",
+      "head_volume_mm3": 1289280.1378832501,
+      "head_valid": false,
+      "base_feature": "IntakeDiagnosticRecess",
+      "tool_volume_mm3": 56986.13454162867,
+      "tool_bounds": "BoundBox (-18.5, -18.5, 0, 18.5, 18.5, 53)",
+      "expected_tool_bounds": "BoundBox (332.047, 31.9536, -18.5, 392.817, 81.4103, 18.5)"
+    }
+  ],
+  "restored_head": {
+    "volume_mm3": 1293391.6725459474,
+    "valid": true
+  },
+  "recomputed_head": {
+    "volume_mm3": 1293391.6725459474,
+    "valid": true
+  }
+}

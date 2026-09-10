@@ -55,7 +55,7 @@ report = {'source_sha256': hashlib.sha256(source.read_bytes()).hexdigest(),
           'contact_tolerance_mm': 1e-6, 'poses': []}
 try:
     doc.recompute()
-    bodies = [o for o in doc.Objects if o.TypeId == 'PartDesign::Body']
+    bodies = [o for o in doc.Objects if o.TypeId == 'PartDesign::Body' and not getattr(o,'ConstructionOnly',False)]
     sketches = [o for o in doc.Objects if o.TypeId == 'Sketcher::SketchObject']
     ids = [b.StablePartID for b in bodies]
     report['cad_structure'] = {'body_count': len(bodies), 'unique_stable_ids': len(set(ids)),

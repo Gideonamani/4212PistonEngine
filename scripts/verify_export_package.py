@@ -3,7 +3,10 @@ from pathlib import Path
 import argparse,hashlib,json,math,struct
 
 parser=argparse.ArgumentParser();parser.add_argument('--package',type=Path,required=True)
-folder=parser.parse_args().package.resolve()
+parser.add_argument('--full-vertices',action='store_true',help='Compare both world-space vertex sets using SciPy')
+args=parser.parse_args();folder=args.package.resolve()
+if args.full_vertices:
+    from scipy.spatial import cKDTree
 cad=json.loads((folder/'cad-manifest.json').read_text());blend=json.loads((folder/'blender-manifest.json').read_text())
 geometry=folder/cad['geometry_file'];assert hashlib.sha256(geometry.read_bytes()).hexdigest()==cad['geometry_sha256']==blend['cad_geometry_sha256']
 data=json.loads(geometry.read_text());raw=(folder/'engine.glb').read_bytes()
@@ -56,9 +59,17 @@ for part in data['parts']:
     if not actual or not all(math.isfinite(v) for p in actual for v in p):raise ValueError(part['id'])
     error=max(abs(a-b) for a,b in zip(bounds(expected),bounds(actual)))
     if error>1e-6:raise ValueError(f'{part["id"]}: world bounds error {error} m')
-    results.append({'id':part['id'],'world_bounds_error_m':error})
+    item={'id':part['id'],'world_bounds_error_m':error}
+    if args.full_vertices:
+        vertex_error=max(cKDTree(expected).query(actual)[0].max(),cKDTree(actual).query(expected)[0].max())
+        if vertex_error>1e-6:raise ValueError(f'{part["id"]}: world vertex-set error {vertex_error} m')
+        item['world_vertex_set_error_m']=float(vertex_error)
+    results.append(item)
 report={'passed':True,'parts':len(results),'source_sha256':cad['source_sha256'],
         'asset_sha256':blend['files']['engine.glb']['sha256'],'bind_angle_deg':data['bind_angle_deg'],
         'scope':'All part IDs and per-part world bounds, not vertex-by-vertex topology or browser behaviour',
         'maximum_bounds_error_m':max(r['world_bounds_error_m'] for r in results),'results':results}
+if args.full_vertices:
+    report['scope']='All IDs, world bounds and bidirectional world-space vertex-set distances; not triangle connectivity, normals or browser behaviour'
+    report['maximum_vertex_set_error_m']=max(r['world_vertex_set_error_m'] for r in results)
 (folder/'verification.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({k:v for k,v in report.items() if k!='results'},indent=2))

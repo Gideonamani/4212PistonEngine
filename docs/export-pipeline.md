@@ -7,7 +7,7 @@ Run from the repository directory, using FreeCAD's Python for the first stage:
 ```powershell
 & 'C:/Program Files/FreeCAD 1.1/bin/python.exe' scripts/export_cad_package.py --source '../EngineSimulation/FreeCAD/v2/GTSIO520_Detailed_Cylinder.FCStd' --output build/pipeline-baseline --angle 0
 & 'C:/Program Files/Blender Foundation/Blender 5.0/blender.exe' --background --python scripts/build_blender_package.py -- --package build/pipeline-baseline
-python scripts/verify_export_package.py --package build/pipeline-baseline
+python scripts/verify_export_package.py --package build/pipeline-baseline --full-vertices
 ```
 
 Use a fresh output directory for each CAD export. The exporter rejects a directory containing an earlier CAD package so that a failed run cannot silently reuse its manifest. It recomputes the requested bind angle in memory, validates native single solids and unique stable IDs, exports tessellated geometry with group frames and evidence annotations, and checks that the source file hash has not changed. It does not save the source CAD.
@@ -25,6 +25,14 @@ The regular Python verification stage checks hashes, GLB structure, exact part-I
 - Publish a versioned asset/configuration pair and retain a working rollback target.
 
 These remaining steps are M3 release gates. The package scripts do not mark M3 complete, and the large generated files remain outside Git under `build/`.
+
+## Controlled refinement results — 10 September 2026
+
+`build_propagation_variants.py` creates disposable fin-thickness (1.5 to 1.75 mm) and rod-length (168.275 to 170.275 mm) variants. Both were exported through Blender and GLB. `data/propagation-package-check.json` records preserved IDs, labels, groups and materials, increased head mesh volume, and the expected 2 mm rod extent and piston bind-position changes.
+
+The optional `--full-vertices` check uses SciPy to compare each part's world-space vertex sets in both directions. All three packages pass with maximum error 1.56e-8 metres. This adds point-set agreement to bounds checks; it does not certify triangle connectivity or manufacturing accuracy.
+
+`prepare_package_preview.py` builds isolated localhost viewers with asset-bound slider-crank profiles. Browser observations: both variants loaded all 60 components; the fin variant retained cylinder-head selection and gold/transparent isolation; the rod variant showed 221.1 mm piston position at zero degrees, advanced during playback, paused at 591 degrees, reset to zero, and retained connecting-rod function text and isolation. These were desktop browser checks, not physical-phone results. Exact 180/720-degree browser scrubbing, full valve motion and versioned publication/rollback remain release gates. Optional audio is not included in these isolated previews.
 
 ## Baseline result
 

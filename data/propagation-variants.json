@@ -1,0 +1,28 @@
+{
+  "source_sha256": "5e6f3561d6c384257208ac96eea1bb62c04f69bfd4a7222dc567e08b9ea84506",
+  "purpose": "Disposable propagation exercises, not design changes for release",
+  "variants": [
+    {
+      "name": "fin-change",
+      "file": "build/propagation-variants/fin-change.FCStd",
+      "sha256": "e1dcbe0c09d96ca7c2b73c5eceb2ea54cea00f942f79efa921903511ed420ed3",
+      "head_fin_thickness_mm": 1.75,
+      "rod_length_mm": 168.275,
+      "body_count": 60,
+      "head_volume_mm3": 1360565.134175123,
+      "rod_volume_mm3": 100531.44869368328,
+      "piston_group_x_mm": 219.075
+    },
+    {
+      "name": "rod-change",
+      "file": "build/propagation-variants/rod-change.FCStd",
+      "sha256": "992e164f0663da38acc8436a62d770e083a1e1efb84dcf7f29311599c2afef41",
+      "head_fin_thickness_mm": 1.5,
+      "rod_length_mm": 170.275,
+      "body_count": 60,
+      "head_volume_mm3": 1323472.3584880645,
+      "rod_volume_mm3": 101729.44859170352,
+      "piston_group_x_mm": 221.075
+    }
+  ]
+}

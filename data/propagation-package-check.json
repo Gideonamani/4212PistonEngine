@@ -1,0 +1,26 @@
+{
+  "scope": "Controlled CAD edits through Blender/GLB geometry; browser interaction and motion-profile propagation remain open",
+  "baseline_asset_sha256": "e653657daa2e434939006ac2dce55bfdde7055372c2b77d6e559c2ba7e144b48",
+  "checks": [
+    {
+      "variant": "fin-change",
+      "source_sha256": "e1dcbe0c09d96ca7c2b73c5eceb2ea54cea00f942f79efa921903511ed420ed3",
+      "asset_sha256": "b441ac90b4f11af5ae7a08457bd98eb47c8ffdca2d1f576ed9001981a3a7b7f3",
+      "stable_ids_labels_materials_preserved": true,
+      "maximum_vertex_set_error_m": 1.5562492375252426e-08,
+      "head_fin_thickness_mm": 1.75,
+      "head_mesh_volume_before_mm3": 1322731.0051326654,
+      "head_mesh_volume_after_mm3": 1359862.9217031978
+    },
+    {
+      "variant": "rod-change",
+      "source_sha256": "992e164f0663da38acc8436a62d770e083a1e1efb84dcf7f29311599c2afef41",
+      "asset_sha256": "09885b2827e953637b704adddbce9cef94a6dba7f95bece8643f738e49b7f9b4",
+      "stable_ids_labels_materials_preserved": true,
+      "maximum_vertex_set_error_m": 1.5562492375252426e-08,
+      "piston_bind_translation_change_mm": 2.0,
+      "rod_mesh_extent_change_mm": 2.0
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,25 @@
+{
+  "status": "Experimental; spring interface audit pending",
+  "parent_sha256": "13d736f4ffee8dc41a9c78e9481e0b66b03cb8d1c7024c1ca4968efc53a683c5",
+  "candidate_file": "build/spring-seat/GTSIO520_Spring_Seat_Candidate.FCStd",
+  "recess_type": "Circular pocket above spring-seat floor; guide support below floor retained",
+  "features": [
+    {
+      "name": "IntakeSpringSeatRecess",
+      "outer_radius_mm": 18.5,
+      "seat_station_mm": 65.0,
+      "depth_mm": 53.0,
+      "native_type": "PartDesign::Boolean"
+    },
+    {
+      "name": "ExhaustSpringSeatRecess",
+      "outer_radius_mm": 18.5,
+      "seat_station_mm": 65.0,
+      "depth_mm": 53.0,
+      "native_type": "PartDesign::Boolean"
+    }
+  ],
+  "valid_single_solid_bodies": 60,
+  "unconstrained_sketches": [],
+  "candidate_sha256": "050ff5444c8115abfeaf2bcb34e9a7b6b1bab07ab604f7aa3e16aa6c91bbb2de"
+}

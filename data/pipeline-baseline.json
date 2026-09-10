@@ -1,5 +1,5 @@
 {
-  "status": "CAD-to-Blender baseline checked; controlled edits and browser validation still pending",
+  "status": "Baseline full vertex-set verification passed; controlled edit and browser observations recorded in export-pipeline.md",
   "cad": {
     "schema_version": 1,
     "stage": "CAD geometry export; Blender/browser validation pending",
@@ -100,249 +100,310 @@
     "source_sha256": "5e6f3561d6c384257208ac96eea1bb62c04f69bfd4a7222dc567e08b9ea84506",
     "asset_sha256": "e653657daa2e434939006ac2dce55bfdde7055372c2b77d6e559c2ba7e144b48",
     "bind_angle_deg": 0.0,
-    "scope": "All part IDs and per-part world bounds, not vertex-by-vertex topology or browser behaviour",
+    "scope": "All IDs, world bounds and bidirectional world-space vertex-set distances; not triangle connectivity, normals or browser behaviour",
     "maximum_bounds_error_m": 1.4877920784250875e-08,
     "results": [
       {
         "id": "CylinderBarrel",
-        "world_bounds_error_m": 1.3399124199064971e-08
+        "world_bounds_error_m": 1.3399124199064971e-08,
+        "world_vertex_set_error_m": 1.3899648149624584e-08
       },
       {
         "id": "PistonBody",
-        "world_bounds_error_m": 7.462501505628438e-09
+        "world_bounds_error_m": 7.462501505628438e-09,
+        "world_vertex_set_error_m": 8.227797073054304e-09
       },
       {
         "id": "FloatingPin",
-        "world_bounds_error_m": 6.044750200384641e-09
+        "world_bounds_error_m": 6.044750200384641e-09,
+        "world_vertex_set_error_m": 6.699147703677693e-09
       },
       {
         "id": "ConnectingRodBody",
-        "world_bounds_error_m": 2.3424625572587843e-09
+        "world_bounds_error_m": 2.3424625572587843e-09,
+        "world_vertex_set_error_m": 7.792476601303777e-09
       },
       {
         "id": "BigEndBearing",
-        "world_bounds_error_m": 7.854938505191811e-10
+        "world_bounds_error_m": 7.854938505191811e-10,
+        "world_vertex_set_error_m": 1.4829588984449487e-09
       },
       {
         "id": "SmallEndBush",
-        "world_bounds_error_m": 6.404981600649506e-09
+        "world_bounds_error_m": 6.404981600649506e-09,
+        "world_vertex_set_error_m": 8.009685427056612e-09
       },
       {
         "id": "CrankThrow",
-        "world_bounds_error_m": 1.9756317415353664e-09
+        "world_bounds_error_m": 1.9756317415353664e-09,
+        "world_vertex_set_error_m": 3.691692235099134e-09
       },
       {
         "id": "PistonRing1",
-        "world_bounds_error_m": 5.793571372647577e-09
+        "world_bounds_error_m": 5.793571372647577e-09,
+        "world_vertex_set_error_m": 6.797698260180678e-09
       },
       {
         "id": "PistonRing2",
-        "world_bounds_error_m": 6.449222544890887e-09
+        "world_bounds_error_m": 6.449222544890887e-09,
+        "world_vertex_set_error_m": 7.44804763961428e-09
       },
       {
         "id": "PistonRing3",
-        "world_bounds_error_m": 6.076693537249156e-09
+        "world_bounds_error_m": 6.076693537249156e-09,
+        "world_vertex_set_error_m": 7.127913082594743e-09
       },
       {
         "id": "PistonRing4",
-        "world_bounds_error_m": 6.985664269265612e-09
+        "world_bounds_error_m": 6.985664269265612e-09,
+        "world_vertex_set_error_m": 7.92934387627145e-09
       },
       {
         "id": "PinPlugLeft",
-        "world_bounds_error_m": 6.044750200384641e-09
+        "world_bounds_error_m": 6.044750200384641e-09,
+        "world_vertex_set_error_m": 6.97382308507268e-09
       },
       {
         "id": "PinPlugRight",
-        "world_bounds_error_m": 6.044750200384641e-09
+        "world_bounds_error_m": 6.044750200384641e-09,
+        "world_vertex_set_error_m": 7.026335153961031e-09
       },
       {
         "id": "ConnectingRodCap",
-        "world_bounds_error_m": 1.0907649956870547e-09
+        "world_bounds_error_m": 1.0907649956870547e-09,
+        "world_vertex_set_error_m": 2.369952073864417e-09
       },
       {
         "id": "CapBearingHalf",
-        "world_bounds_error_m": 6.198270854906873e-10
+        "world_bounds_error_m": 6.198270854906873e-10,
+        "world_vertex_set_error_m": 1.5297934720567762e-09
       },
       {
         "id": "RodBoltMinus1",
-        "world_bounds_error_m": 1.2248754649446525e-09
+        "world_bounds_error_m": 1.2248754649446525e-09,
+        "world_vertex_set_error_m": 1.8651826580860333e-09
       },
       {
         "id": "RodNutMinus1",
-        "world_bounds_error_m": 1.0460615290641684e-09
+        "world_bounds_error_m": 1.0460615290641684e-09,
+        "world_vertex_set_error_m": 2.130751510461043e-09
       },
       {
         "id": "RodBolt1",
-        "world_bounds_error_m": 1.2248754649446525e-09
+        "world_bounds_error_m": 1.2248754649446525e-09,
+        "world_vertex_set_error_m": 1.8651826099548e-09
       },
       {
         "id": "RodNut1",
-        "world_bounds_error_m": 1.0460615290641684e-09
+        "world_bounds_error_m": 1.0460615290641684e-09,
+        "world_vertex_set_error_m": 2.130751444149477e-09
       },
       {
         "id": "CylinderHead",
-        "world_bounds_error_m": 4.90824381138566e-09
+        "world_bounds_error_m": 4.90824381138566e-09,
+        "world_vertex_set_error_m": 1.5562492375252426e-08
       },
       {
         "id": "IntakeSeatInsert",
-        "world_bounds_error_m": 1.1922471732095374e-08
+        "world_bounds_error_m": 1.1922471732095374e-08,
+        "world_vertex_set_error_m": 1.4866275712378054e-08
       },
       {
         "id": "IntakeValve",
-        "world_bounds_error_m": 1.389236392590476e-08
+        "world_bounds_error_m": 1.389236392590476e-08,
+        "world_vertex_set_error_m": 1.4863464875889065e-08
       },
       {
         "id": "IntakeValveGuide",
-        "world_bounds_error_m": 5.740503017381826e-09
+        "world_bounds_error_m": 5.740503017381826e-09,
+        "world_vertex_set_error_m": 1.4851424187800978e-08
       },
       {
         "id": "IntakeOuterSpring",
-        "world_bounds_error_m": 5.338417041755861e-09
+        "world_bounds_error_m": 5.338417041755861e-09,
+        "world_vertex_set_error_m": 1.5342787833275596e-08
       },
       {
         "id": "IntakeInnerSpring",
-        "world_bounds_error_m": 2.2231949337037094e-09
+        "world_bounds_error_m": 2.2231949337037094e-09,
+        "world_vertex_set_error_m": 1.534090753808875e-08
       },
       {
         "id": "IntakeSpringRetainer",
-        "world_bounds_error_m": 1.1590943538308807e-08
+        "world_bounds_error_m": 1.1590943538308807e-08,
+        "world_vertex_set_error_m": 1.4891931005786596e-08
       },
       {
         "id": "IntakeValveKeeper",
-        "world_bounds_error_m": 1.4564743466838337e-08
+        "world_bounds_error_m": 1.4564743466838337e-08,
+        "world_vertex_set_error_m": 1.4929875845863825e-08
       },
       {
         "id": "IntakeRockerHousing",
-        "world_bounds_error_m": 9.69418356699947e-09
+        "world_bounds_error_m": 9.69418356699947e-09,
+        "world_vertex_set_error_m": 1.5140724345450878e-08
       },
       {
         "id": "IntakeRockerGasket",
-        "world_bounds_error_m": 1.4314152307903782e-08
+        "world_bounds_error_m": 1.4314152307903782e-08,
+        "world_vertex_set_error_m": 1.495023051192906e-08
       },
       {
         "id": "IntakeRockerCover",
-        "world_bounds_error_m": 8.399091144806192e-09
+        "world_bounds_error_m": 8.399091144806192e-09,
+        "world_vertex_set_error_m": 1.5211349654754402e-08
       },
       {
         "id": "IntakeRockerShaft",
-        "world_bounds_error_m": 1.2641827640269554e-08
+        "world_bounds_error_m": 1.2641827640269554e-08,
+        "world_vertex_set_error_m": 1.4786884147523893e-08
       },
       {
         "id": "IntakeRockerArm",
-        "world_bounds_error_m": 1.3030351075915547e-08
+        "world_bounds_error_m": 1.3030351075915547e-08,
+        "world_vertex_set_error_m": 1.528118950322771e-08
       },
       {
         "id": "ExhaustSeatInsert",
-        "world_bounds_error_m": 9.675459100577655e-09
+        "world_bounds_error_m": 9.675459100577655e-09,
+        "world_vertex_set_error_m": 1.4915135615090486e-08
       },
       {
         "id": "ExhaustValve",
-        "world_bounds_error_m": 5.574628092475109e-09
+        "world_bounds_error_m": 5.574628092475109e-09,
+        "world_vertex_set_error_m": 1.517901910082572e-08
       },
       {
         "id": "ExhaustValveGuide",
-        "world_bounds_error_m": 1.0797917171512239e-08
+        "world_bounds_error_m": 1.0797917171512239e-08,
+        "world_vertex_set_error_m": 1.486204464882752e-08
       },
       {
         "id": "ExhaustOuterSpring",
-        "world_bounds_error_m": 1.4390830693766787e-08
+        "world_bounds_error_m": 1.4390830693766787e-08,
+        "world_vertex_set_error_m": 1.535287904650283e-08
       },
       {
         "id": "ExhaustInnerSpring",
-        "world_bounds_error_m": 5.46204526052918e-09
+        "world_bounds_error_m": 5.46204526052918e-09,
+        "world_vertex_set_error_m": 1.5314505360881454e-08
       },
       {
         "id": "ExhaustSpringRetainer",
-        "world_bounds_error_m": 7.787505140743889e-09
+        "world_bounds_error_m": 7.787505140743889e-09,
+        "world_vertex_set_error_m": 1.528054741792196e-08
       },
       {
         "id": "ExhaustValveKeeper",
-        "world_bounds_error_m": 1.4877920784250875e-08
+        "world_bounds_error_m": 1.4877920784250875e-08,
+        "world_vertex_set_error_m": 1.528054741792196e-08
       },
       {
         "id": "ExhaustRockerHousing",
-        "world_bounds_error_m": 1.2226053669461834e-08
+        "world_bounds_error_m": 1.2226053669461834e-08,
+        "world_vertex_set_error_m": 1.512674630252001e-08
       },
       {
         "id": "ExhaustRockerGasket",
-        "world_bounds_error_m": 1.997263188169285e-09
+        "world_bounds_error_m": 1.997263188169285e-09,
+        "world_vertex_set_error_m": 1.5267939724846693e-08
       },
       {
         "id": "ExhaustRockerCover",
-        "world_bounds_error_m": 5.854397744364803e-09
+        "world_bounds_error_m": 5.854397744364803e-09,
+        "world_vertex_set_error_m": 1.5205164952509542e-08
       },
       {
         "id": "ExhaustRockerShaft",
-        "world_bounds_error_m": 1.3601112736072452e-08
+        "world_bounds_error_m": 1.3601112736072452e-08,
+        "world_vertex_set_error_m": 1.4730093899386992e-08
       },
       {
         "id": "ExhaustRockerArm",
-        "world_bounds_error_m": 5.138596381737415e-09
+        "world_bounds_error_m": 5.138596381737415e-09,
+        "world_vertex_set_error_m": 1.5312847731584306e-08
       },
       {
         "id": "LowerSparkPlug",
-        "world_bounds_error_m": 1.3637542761735233e-08
+        "world_bounds_error_m": 1.3637542761735233e-08,
+        "world_vertex_set_error_m": 1.4933406217996938e-08
       },
       {
         "id": "LowerSparkInsulator",
-        "world_bounds_error_m": 8.821487429422348e-09
+        "world_bounds_error_m": 8.821487429422348e-09,
+        "world_vertex_set_error_m": 1.533721606381017e-08
       },
       {
         "id": "LowerSparkTerminal",
-        "world_bounds_error_m": 1.282691952653181e-08
+        "world_bounds_error_m": 1.282691952653181e-08,
+        "world_vertex_set_error_m": 1.4127253097496787e-08
       },
       {
         "id": "UpperSparkPlug",
-        "world_bounds_error_m": 1.3637542761735233e-08
+        "world_bounds_error_m": 1.3637542761735233e-08,
+        "world_vertex_set_error_m": 1.493340621796813e-08
       },
       {
         "id": "UpperSparkInsulator",
-        "world_bounds_error_m": 8.821487484933499e-09
+        "world_bounds_error_m": 8.821487484933499e-09,
+        "world_vertex_set_error_m": 1.5337216164959686e-08
       },
       {
         "id": "UpperSparkTerminal",
-        "world_bounds_error_m": 1.282691952653181e-08
+        "world_bounds_error_m": 1.282691952653181e-08,
+        "world_vertex_set_error_m": 1.4127253044345465e-08
       },
       {
         "id": "IntakePushrod",
-        "world_bounds_error_m": 2.1788373327780164e-09
+        "world_bounds_error_m": 2.1788373327780164e-09,
+        "world_vertex_set_error_m": 1.5160690771401454e-08
       },
       {
         "id": "IntakePushrodHousing",
-        "world_bounds_error_m": 3.1583017312541983e-09
+        "world_bounds_error_m": 3.1583017312541983e-09,
+        "world_vertex_set_error_m": 1.5301482305083785e-08
       },
       {
         "id": "IntakeLowerPushrodSeal",
-        "world_bounds_error_m": 3.0677062418105194e-09
+        "world_bounds_error_m": 3.0677062418105194e-09,
+        "world_vertex_set_error_m": 5.23214318050575e-09
       },
       {
         "id": "IntakeUpperPushrodSeal",
-        "world_bounds_error_m": 1.2135459803719328e-08
+        "world_bounds_error_m": 1.2135459803719328e-08,
+        "world_vertex_set_error_m": 1.5041264539489985e-08
       },
       {
         "id": "IntakeHydraulicLifterBody",
-        "world_bounds_error_m": 1.13248825595047e-09
+        "world_bounds_error_m": 1.13248825595047e-09,
+        "world_vertex_set_error_m": 7.534625832152189e-09
       },
       {
         "id": "ExhaustPushrod",
-        "world_bounds_error_m": 1.0066448175027887e-08
+        "world_bounds_error_m": 1.0066448175027887e-08,
+        "world_vertex_set_error_m": 1.5362865203366933e-08
       },
       {
         "id": "ExhaustPushrodHousing",
-        "world_bounds_error_m": 3.3896783990794432e-09
+        "world_bounds_error_m": 3.3896783990794432e-09,
+        "world_vertex_set_error_m": 1.536041907698458e-08
       },
       {
         "id": "ExhaustLowerPushrodSeal",
-        "world_bounds_error_m": 3.3681965966314564e-09
+        "world_bounds_error_m": 3.3681965966314564e-09,
+        "world_vertex_set_error_m": 5.166395173343469e-09
       },
       {
         "id": "ExhaustUpperPushrodSeal",
-        "world_bounds_error_m": 1.3531984810466469e-08
+        "world_bounds_error_m": 1.3531984810466469e-08,
+        "world_vertex_set_error_m": 1.5211807589780437e-08
       },
       {
         "id": "ExhaustHydraulicLifterBody",
-        "world_bounds_error_m": 1.13248825595047e-09
+        "world_bounds_error_m": 1.13248825595047e-09,
+        "world_vertex_set_error_m": 7.534625789140878e-09
       }
-    ]
+    ],
+    "maximum_vertex_set_error_m": 1.5562492375252426e-08
   }
 }

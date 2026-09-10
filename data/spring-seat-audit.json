@@ -1,0 +1,310 @@
+{
+  "source_sha256": "050ff5444c8115abfeaf2bcb34e9a7b6b1bab07ab604f7aa3e16aa6c91bbb2de",
+  "audit_complete": true,
+  "passed": true,
+  "poses": [
+    {
+      "train": "Intake",
+      "spring": "Inner",
+      "lift_mm": 0,
+      "pitch_gap_mm": 4.233333333333335,
+      "valid_single_solid": true
+    },
+    {
+      "train": "Intake",
+      "spring": "Outer",
+      "lift_mm": 0,
+      "pitch_gap_mm": 2.833333333333333,
+      "valid_single_solid": true
+    },
+    {
+      "train": "Exhaust",
+      "spring": "Inner",
+      "lift_mm": 0,
+      "pitch_gap_mm": 4.233333333333335,
+      "valid_single_solid": true
+    },
+    {
+      "train": "Exhaust",
+      "spring": "Outer",
+      "lift_mm": 0,
+      "pitch_gap_mm": 2.833333333333333,
+      "valid_single_solid": true
+    },
+    {
+      "train": "Intake",
+      "spring": "Inner",
+      "lift_mm": 3.5,
+      "pitch_gap_mm": 3.6500000000000012,
+      "valid_single_solid": true
+    },
+    {
+      "train": "Intake",
+      "spring": "Outer",
+      "lift_mm": 3.5,
+      "pitch_gap_mm": 2.25,
+      "valid_single_solid": true
+    },
+    {
+      "train": "Exhaust",
+      "spring": "Inner",
+      "lift_mm": 3.5,
+      "pitch_gap_mm": 3.6500000000000012,
+      "valid_single_solid": true
+    },
+    {
+      "train": "Exhaust",
+      "spring": "Outer",
+      "lift_mm": 3.5,
+      "pitch_gap_mm": 2.25,
+      "valid_single_solid": true
+    },
+    {
+      "train": "Intake",
+      "spring": "Inner",
+      "lift_mm": 7,
+      "pitch_gap_mm": 3.066666666666668,
+      "valid_single_solid": true
+    },
+    {
+      "train": "Intake",
+      "spring": "Outer",
+      "lift_mm": 7,
+      "pitch_gap_mm": 1.666666666666667,
+      "valid_single_solid": true
+    },
+    {
+      "train": "Exhaust",
+      "spring": "Inner",
+      "lift_mm": 7,
+      "pitch_gap_mm": 3.066666666666668,
+      "valid_single_solid": true
+    },
+    {
+      "train": "Exhaust",
+      "spring": "Outer",
+      "lift_mm": 7,
+      "pitch_gap_mm": 1.666666666666667,
+      "valid_single_solid": true
+    }
+  ],
+  "interfaces": [
+    {
+      "train": "Intake",
+      "lift_mm": 0,
+      "pair": "inner/head",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 0,
+      "pair": "outer/head",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 0,
+      "pair": "inner/guide",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 0,
+      "pair": "inner/outer",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 0,
+      "pair": "inner/retainer",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 0,
+      "pair": "outer/retainer",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 0,
+      "pair": "inner/head",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 0,
+      "pair": "outer/head",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 0,
+      "pair": "inner/guide",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 0,
+      "pair": "inner/outer",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 0,
+      "pair": "inner/retainer",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 0,
+      "pair": "outer/retainer",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 3.5,
+      "pair": "inner/head",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 3.5,
+      "pair": "outer/head",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 3.5,
+      "pair": "inner/guide",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 3.5,
+      "pair": "inner/outer",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 3.5,
+      "pair": "inner/retainer",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 3.5,
+      "pair": "outer/retainer",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 3.5,
+      "pair": "inner/head",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 3.5,
+      "pair": "outer/head",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 3.5,
+      "pair": "inner/guide",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 3.5,
+      "pair": "inner/outer",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 3.5,
+      "pair": "inner/retainer",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 3.5,
+      "pair": "outer/retainer",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 7,
+      "pair": "inner/head",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 7,
+      "pair": "outer/head",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 7,
+      "pair": "inner/guide",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 7,
+      "pair": "inner/outer",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 7,
+      "pair": "inner/retainer",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 7,
+      "pair": "outer/retainer",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 7,
+      "pair": "inner/head",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 7,
+      "pair": "outer/head",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 7,
+      "pair": "inner/guide",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 7,
+      "pair": "inner/outer",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 7,
+      "pair": "inner/retainer",
+      "intersection_mm3": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 7,
+      "pair": "outer/retainer",
+      "intersection_mm3": 0.0
+    }
+  ],
+  "scope": "Three native coil poses and listed interfaces; not load, fatigue or full valve-train certification"
+}

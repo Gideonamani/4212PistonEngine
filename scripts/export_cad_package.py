@@ -21,7 +21,7 @@ def frame(placement):
     return {'translation_mm':list(placement.Base),'quaternion_xyzw':list(placement.Rotation.Q)}
 try:
     doc.Motion.set('B2',f'{args.angle} deg');doc.recompute()
-    bodies=[b for b in doc.Objects if b.TypeId=='PartDesign::Body']
+    bodies=[b for b in doc.Objects if b.TypeId=='PartDesign::Body' and not getattr(b,'ConstructionOnly',False)]
     ids=[b.StablePartID for b in bodies]
     if not ids or len(ids)!=len(set(ids)):raise ValueError('Missing or duplicate stable IDs')
     payload={'schema_version':1,'source_sha256':source_hash,'units':'mm','bind_angle_deg':args.angle,
