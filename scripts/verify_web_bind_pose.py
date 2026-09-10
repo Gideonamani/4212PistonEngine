@@ -19,6 +19,7 @@ rod_q=nodes['ConnectingRodBody']['rotation'];rod_angle=2*math.atan2(rod_q[2],rod
 angle_error=abs(rod_angle+math.atan2(cy,reach))
 assert max(errors.values())<1e-7 and angle_error<1e-6
 report={'asset':asset.name,'sha256':hashlib.sha256(raw).hexdigest(),'passed':True,
+        'cad_source_sha256':profile['source']['sha256'],
         'bind_angle_deg':math.degrees(angle),'cad_inspection_angle_deg':profile['reference_angle_deg'],
         'coordinates':'glTF metres; piston along X, crankpin in XY; positive crank rotation about Z',
         'position_errors_m':errors,'rod_rotation_error_rad':angle_error,

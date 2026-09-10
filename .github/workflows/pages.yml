@@ -1,4 +1,4 @@
-name: Publish Drive delivery test
+name: Validate and publish engine explorer
 on:
   push:
     branches: [main]
@@ -18,6 +18,15 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check kinematics and transfer recovery
+        run: node --test scripts/test_kinematics.mjs scripts/test_transfer.mjs
+      - name: Verify generated motion profile is current
+        run: |
+          python3 scripts/build_web_motion.py
+          git diff --exit-code -- web/motion.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

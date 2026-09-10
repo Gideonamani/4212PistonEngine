@@ -1,0 +1,22 @@
+{
+  "source_sha256": "5e6f3561d6c384257208ac96eea1bb62c04f69bfd4a7222dc567e08b9ea84506",
+  "status": "Experimental, not promoted",
+  "contact_radius_mm": 2.0,
+  "evidence": "Reconstructed smoothing radius; not a manufacturer dimension",
+  "parts": [
+    {
+      "id": "IntakeRockerArm",
+      "feature": "IntakeContactRounding",
+      "volume_mm3": 6083.684183641391,
+      "valid_single_solid": true
+    },
+    {
+      "id": "ExhaustRockerArm",
+      "feature": "ExhaustContactRounding",
+      "volume_mm3": 6082.658739066983,
+      "valid_single_solid": true
+    }
+  ],
+  "candidate_sha256": "eccd69ff1d87b70b3fe34175287dbb12251ddf5f083c488c8e2f2a526c82862d",
+  "candidate_file": "build/rocker-contact/GTSIO520_Rocker_Candidate.FCStd"
+}

@@ -2,6 +2,7 @@
   "asset": "GTSIO520_Cylinder_Drive_Test.glb",
   "sha256": "5f14a83aa045ef1b195c0ea0114600637eb69096a811ab0965c9bf123013c61f",
   "passed": true,
+  "cad_source_sha256": "5e6f3561d6c384257208ac96eea1bb62c04f69bfd4a7222dc567e08b9ea84506",
   "bind_angle_deg": 36.00000119194909,
   "cad_inspection_angle_deg": 35.0,
   "coordinates": "glTF metres; piston along X, crankpin in XY; positive crank rotation about Z",

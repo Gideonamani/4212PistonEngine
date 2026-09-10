@@ -16,8 +16,8 @@ The initial engineering reference is the current GTSIO-520-H study. Engine varia
 |---|---|---|
 | CAD | Detailed single-cylinder study: 60 bodies and 284 constrained sketches; selected geometry/motion checks completed | Audit reconstructed features and interfaces; not a validated complete engine |
 | Blender | Editable presentation scenes; assembly orbit, illustrative cycle and 60-component tour videos | Web-compatible operation data and animation; polish and refinement |
-| Audio | Soft original Quiet Workshop score in video versions; silent versions retained | Optional website playback and controls |
-| Website | GitHub Pages loads the 24.1 MiB GLB through restricted Drive API; all 60 IDs present; orbit, zoom, selection, functions and ghost isolation verified in browser | Operating animation, evidence display, lessons, mobile validation and optimization |
+| Audio | Soft original Quiet Workshop score in video versions; silent versions retained; optional website playback and volume controls | Physical-phone playback check |
+| Website | GitHub Pages loads the 24.1 MiB GLB through restricted Drive API; 60 IDs, selection/isolation, solid sections, fullscreen, progress/retry, evidence status and slider-crank playback implemented | Synchronized valves/gas cues, lessons, physical-phone validation and optimization |
 | Evidence | Manual procedure, seed component catalogue and example claims | Complete claim review for the first release; resolve critical unknowns |
 | Pipeline | Individual export/update scripts and working Drive synchronization | One reproducible build, versioned release manifest, rollback and CAD-edit propagation proof |
 
@@ -44,6 +44,8 @@ M1 and the data-contract work in M3 can develop together. M2 depends on the shar
 3. **Change propagation and first teaching review.** Exercise the two controlled CAD changes, check exported poses and catalogue identity, package a versioned release, and review the single-cylinder lesson before authoring the next subsystem.
 
 The active engineering package is M2 valve-train contact and clearance validation, alongside M3 reproducible exports. M1 has working inspection, fullscreen, groups, music and loading diagnostics; physical-phone checks remain open. M2 has verified slider-crank playback; synchronized valves and gas cues remain open. UI polishing follows roadmap completion, as requested by the project owner.
+
+Latest engineering result: the isolated rounded-rocker candidate maintains valve contact at 58 sampled poses but fails pushrod/socket and pushrod/tube clearances. It is not promoted. The next correction is the combined follower/socket/tube geometry; see [valve-train review](valve-train-review.md). Initial M3 publication checks now run mechanism/transfer tests and reject a stale generated motion profile; the controlled CAD-edit propagation exercises remain open.
 
 ## Repeatable procedure for every subsystem
 
@@ -99,7 +101,7 @@ Choose these by learning value, available source evidence, dependency readiness 
 ## Open decisions for the first review
 
 - Which learning outcomes should students master first: component identification, cycle explanation or maintenance inspection? Working default: identification, then cycle explanation.
-- Confirmed target: Google Chrome on Samsung Galaxy A16. Physical-device testing remains pending; record Android/Chrome version and connection conditions during the test.
+- Confirmed target: Google Chrome on Samsung Galaxy A16. Physical-device testing remains pending; use the [release checklist](galaxy-a16-release-check.md) to record Android/Chrome version, connection conditions and results.
 - Confirmed reference family: GTSIO-520, using the current `gtsio520_series.pdf`. Retain the current GTSIO-520-H study configuration and check variant/revision applicability for each full-engine subsystem.
 
 These questions do not prevent the initial explorer and evidence-inventory work. Performance targets and calendar estimates should be set from the measured baseline rather than invented now.

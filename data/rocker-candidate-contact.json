@@ -1,0 +1,2172 @@
+{
+  "source_sha256": "eccd69ff1d87b70b3fe34175287dbb12251ddf5f083c488c8e2f2a526c82862d",
+  "joint_frame_source_sha256": "5e6f3561d6c384257208ac96eea1bb62c04f69bfd4a7222dc567e08b9ea84506",
+  "status": "Rejected for promotion: sampled pushrod/rocker or housing interference; see clearance gate",
+  "contact_tolerance_mm": 1e-06,
+  "poses": [
+    {
+      "train": "Intake",
+      "lift_mm": 0.0,
+      "rocker_angle_deg": -1.7679717168211937,
+      "contact_gap_mm": 1.0007147148489276e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            391.97310820277585,
+            -51.65813094417008,
+            1.740231656204182
+          ],
+          [
+            391.97310918340094,
+            -51.658131143680514,
+            1.740231656204182
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 2.9164676933982108,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        410.859988964658,
+        -60.834306838990635,
+        -37.712810976365084
+      ],
+      "follower_ball_mm": [
+        52.67189232105949,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.9426258276270385,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 0.716635592499987,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 0.25,
+      "rocker_angle_deg": -2.4956554546952248,
+      "contact_gap_mm": 1.002375691309997e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            391.73532211937487,
+            -51.57292394982558,
+            1.6278385557548376
+          ],
+          [
+            391.7353231016276,
+            -51.57292414966716,
+            1.6278385557548376
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 2.956437353187193,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        411.1045586762998,
+        -60.88406510919356,
+        -37.5891378292986
+      ],
+      "follower_ball_mm": [
+        52.94710751925959,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.8733103026170177,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 1.9764377990017983,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 0.5,
+      "rocker_angle_deg": -3.227589912712574,
+      "contact_gap_mm": 1.0018275431685015e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            391.4972309516986,
+            -51.48921649260159,
+            1.5115951900876055
+          ],
+          [
+            391.4972319334143,
+            -51.489216692333905,
+            1.5115951900876055
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 2.996694384582616,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        411.3489844055911,
+        -60.933794085856185,
+        -37.461554826111765
+      ],
+      "follower_ball_mm": [
+        53.223086282852876,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.8008961263309011,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 3.43957163058095,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 0.75,
+      "rocker_angle_deg": -3.9639720767736435,
+      "contact_gap_mm": 1.0003356120999998e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            391.2587940151357,
+            -51.40720854375208,
+            1.3914323177658643
+          ],
+          [
+            391.2587949953894,
+            -51.40720874318694,
+            1.3914323177658643
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.037264410740093,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        411.59326356191923,
+        -60.98349324191243,
+        -37.329991653761766
+      ],
+      "follower_ball_mm": [
+        53.4998458368965,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.7253044843876797,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 5.003418524445884,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 1.0,
+      "rocker_angle_deg": -4.705007955431938,
+      "contact_gap_mm": 1.0010161388114124e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            391.0199685718365,
+            -51.32711016651959,
+            1.2672766069285892
+          ],
+          [
+            391.01996955275695,
+            -51.32711036609011,
+            1.2672766069285892
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.078174299654318,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        411.8373933998646,
+        -61.03316201880035,
+        -37.1943738455443
+      ],
+      "follower_ball_mm": [
+        53.77740441206328,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.6464546665473367,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 6.639175896035954,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 1.25,
+      "rocker_angle_deg": -5.450913317501545,
+      "contact_gap_mm": 1.0004308195171285e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            390.7807095605017,
+            -51.24914284426543,
+            1.1390503509638485
+          ],
+          [
+            390.7807105408486,
+            -51.24914304371926,
+            1.1390503509638485
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.119452289734063,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        412.0813710169315,
+        -61.0827998260005,
+        -37.05462249204566
+      ],
+      "follower_ball_mm": [
+        54.055781323121096,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.5642636744941516,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 8.335679947291503,
+      "pushrod_length_error_mm": 5.684341886080802e-14
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 1.5,
+      "rocker_angle_deg": -6.201914437115192,
+      "contact_gap_mm": 1.0007163841777439e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            390.5409692864087,
+            -51.173541004040544,
+            1.0066711667978967
+          ],
+          [
+            390.54097026703545,
+            -51.17354120355131,
+            1.0066711667978967
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.1611281249422922,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        412.3251933301954,
+        -61.13240603628487,
+        -36.91065393522515
+      ],
+      "follower_ball_mm": [
+        54.33499703141638,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.4786458253950938,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 10.088378830303217,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 1.75,
+      "rocker_angle_deg": -6.958248972892761,
+      "contact_gap_mm": 1.002324124928583e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            390.3006970659324,
+            -51.10055376382209,
+            0.8700516527332836
+          ],
+          [
+            390.3006980481346,
+            -51.10055396365339,
+            0.8700516527332836
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.2032332078060124,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        412.56885707073315,
+        -61.18197998458345,
+        -36.762379420680524
+      ],
+      "follower_ball_mm": [
+        54.615073236490105,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.3895123340995843,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 11.895775819270533,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 2.0,
+      "rocker_angle_deg": -7.720166921615601,
+      "contact_gap_mm": 1.0009351415630024e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            390.0598388166175,
+            -51.03044694737024,
+            0.7290990132519212
+          ],
+          [
+            390.0598397974586,
+            -51.030447146924615,
+            0.7290990132519212
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.245800768547604,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        412.8123587726599,
+        -61.23152096575402,
+        -36.609704716526295
+      ],
+      "follower_ball_mm": [
+        54.89603297169367,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.2967708767179866,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 13.757994398486757,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 2.25,
+      "rocker_angle_deg": -8.487931616604328,
+      "contact_gap_mm": 1.0016425671111051e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            389.81833658239987,
+            -50.96350541784094,
+            0.5837146546159522
+          ],
+          [
+            389.81833756393416,
+            -50.96350561753635,
+            0.5837146546159522
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.288866050423075,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        413.0556947438958,
+        -61.28102822863446,
+        -36.45252970327692
+      ],
+      "follower_ball_mm": [
+        55.17790069001069,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.2003251363201368,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 15.676105595717297,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 2.5,
+      "rocker_angle_deg": -9.261820934712887,
+      "contact_gap_mm": 1.000828328557722e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            389.5761279819829,
+            -50.90003578910244,
+            0.4337937182428736
+          ],
+          [
+            389.57612896271934,
+            -50.90003598863552,
+            0.4337937182428736
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.3324665225023287,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        413.29886106674843,
+        -61.33050097616124,
+        -36.2907478993084
+      ],
+      "follower_ball_mm": [
+        55.4607023970363,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.100074306768624,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 17.651946375653303,
+      "pushrod_length_error_mm": 5.684341886080802e-14
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 2.75,
+      "rocker_angle_deg": -10.042128525674343,
+      "contact_gap_mm": 1.001678172032453e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            389.33314556324723,
+            -50.840369598913924,
+            0.2792245832980657
+          ],
+          [
+            389.3331465448165,
+            -50.84036979861644,
+            0.2792245832980657
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.3766421119196437,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        413.54185356387416,
+        -61.379938358444186,
+        -36.124245956344375
+      ],
+      "follower_ball_mm": [
+        55.74446575842995,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.9959125733478222,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 19.687683053884726,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 3.0,
+      "rocker_angle_deg": -10.829165272414684,
+      "contact_gap_mm": 1.000898707063775e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            389.0893160443314,
+            -50.78486703913227,
+            0.11988829571556414
+          ],
+          [
+            389.08931702513684,
+            -50.7848672386794,
+            0.11988829571556414
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.4214354701616307,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        413.7846677901431,
+        -61.42933947111139,
+        -35.95290307913298
+      ],
+      "follower_ball_mm": [
+        56.02922025384157,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.8877285395965107,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 21.786105716937954,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 3.25,
+      "rocker_angle_deg": -11.623260833323002,
+      "contact_gap_mm": 1.0013255810256037e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            388.84455941497407,
+            -50.733921372755795,
+            -0.044342051601572265
+          ],
+          [
+            388.8445603961978,
+            -50.73392157238801,
+            -0.044342051601572265
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.466892268396542,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        414.0272989969146,
+        -61.47870334804101,
+        -35.77659039653567
+      ],
+      "follower_ball_mm": [
+        56.31499731742451,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.7754046144177265,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 23.95018400246218,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 3.5,
+      "rocker_angle_deg": -12.424765445291996,
+      "contact_gap_mm": 1.0006233967770659e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            388.59878786541,
+            -50.68796419856896,
+            -0.2136020272969391
+          ],
+          [
+            388.59878884594565,
+            -50.6879643980612,
+            -0.2136020272969391
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.5130615359963207,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        414.26974211678686,
+        -61.528028958258446,
+        -35.595170241614596
+      ],
+      "follower_ball_mm": [
+        56.601830523711214,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.6588163300913585,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 26.183412513945974,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 3.75,
+      "rocker_angle_deg": -13.234051875770092,
+      "contact_gap_mm": 1.000443619857829e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            388.3519044996247,
+            -50.64747177569936,
+            -0.388036641555226
+          ],
+          [
+            388.3519054799842,
+            -50.64747197515575,
+            -0.388036641555226
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.559996040702067,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        414.5119917253141,
+        -61.577315198147794,
+        -35.40849535991549
+      ],
+      "follower_ball_mm": [
+        56.88975577102832,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.5378316000905112,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 28.48965976785568,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 4.0,
+      "rocker_angle_deg": -14.0515176653862,
+      "contact_gap_mm": 1.0015420779935029e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            388.1038017767368,
+            -50.61297268446607,
+            -0.5678012325644659
+          ],
+          [
+            388.1038027581727,
+            -50.61297288414146,
+            -0.5678012325644659
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.6077527242618648,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        414.75404201271596,
+        -61.62656088569589,
+        -35.21640800909937
+      ],
+      "follower_ball_mm": [
+        57.17881150494526,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.41230988972365923,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 30.86389710375084,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 4.25,
+      "rocker_angle_deg": -14.877587646245956,
+      "contact_gap_mm": 1.0019178067976434e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            387.85435960559596,
+            -50.58505719173111,
+            -0.7530624637908547
+          ],
+          [
+            387.85436058740004,
+            -50.585057391481406,
+            -0.7530624637908547
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.6563931996398065,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        414.9958867484356,
+        -61.67576475328157,
+        -35.01873894616192
+      ],
+      "follower_ball_mm": [
+        57.46903896606972,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.2821012931352942,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 33.25803236842448,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 4.5,
+      "rocker_angle_deg": -15.712716773152351,
+      "contact_gap_mm": 1.0003945232737421e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            387.6034429920827,
+            -50.56438881478973,
+            -0.9439994477436567
+          ],
+          [
+            387.603443972394,
+            -50.56438901423632,
+            -0.9439994477436567
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.705984320269709,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        415.2375192355507,
+        -61.72492543840061,
+        -34.815306286412294
+      ],
+      "follower_ball_mm": [
+        57.76048246370402,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.14704550198962574,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 35.64890924407933,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 4.75,
+      "rocker_angle_deg": -16.557393334805965,
+      "contact_gap_mm": 1.0016901326181937e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            387.35089910172775,
+            -50.551718759058225,
+            -1.1408050199993074
+          ],
+          [
+            387.3509000833087,
+            -50.55171895876313,
+            -1.1408050199993074
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.725744021290931,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        415.47893225808554,
+        -61.77404147294616,
+        -34.60591420992485
+      ],
+      "follower_ball_mm": [
+        58.05318968511392,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.006970645135668363,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 38.029712444410094,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 5.0,
+      "rocker_angle_deg": -17.41214268654585,
+      "contact_gap_mm": 1.0008853896792402e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            387.09655354594963,
+            -50.5479041717993,
+            -1.343687207174704
+          ],
+          [
+            387.09655452674195,
+            -50.547904371343755,
+            -1.343687207174704
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.725744021290931,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        415.7201180415705,
+        -61.823111275184445,
+        -34.39035147025261
+      ],
+      "follower_ball_mm": [
+        58.34721207273873,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 1.5203543403183999,
+      "pushrod_rocker_intersection_mm3": 40.40083962873417,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 5.25,
+      "rocker_angle_deg": -18.277531400322914,
+      "contact_gap_mm": 1.0019307114257008e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            386.8402056234464,
+            -50.553931531427644,
+            -1.5528708771988262
+          ],
+          [
+            386.8402066052632,
+            -50.55393173118052,
+            -1.5528708771988262
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.725744021290917,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        415.9610681729112,
+        -61.872133133452174,
+        -34.168389719321226
+      ],
+      "follower_ball_mm": [
+        58.6426052130937,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 8.903001145740536,
+      "pushrod_rocker_intersection_mm3": 42.76522136399308,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 5.5,
+      "rocker_angle_deg": -19.154172159731388,
+      "contact_gap_mm": 1.0019702547658937e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            386.5816221246358,
+            -50.57094709966182,
+            -1.7685996634860057
+          ],
+          [
+            386.58162310649124,
+            -50.57094729942256,
+            -1.7685996634860057
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.7257440212909034,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        416.2017735440327,
+        -61.921105194690476,
+        -33.93978155287613
+      ],
+      "follower_ball_mm": [
+        58.939429326587856,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 23.891632218772585,
+      "pushrod_rocker_intersection_mm3": 45.12847592287356,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 5.75,
+      "rocker_angle_deg": -20.042729318141937,
+      "contact_gap_mm": 1.0006166948193464e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            386.3205291245028,
+            -50.600297260965505,
+            -1.9911381620681718
+          ],
+          [
+            386.3205301050319,
+            -50.6002974604564,
+            -1.9911381620681718
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.7257440212908755,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        416.442224260485,
+        -61.97002544585079,
+        -33.7042582796999
+      ],
+      "follower_ball_mm": [
+        59.2377498002773,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 48.29444991065163,
+      "pushrod_rocker_intersection_mm3": 47.49685406807059,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 6.0,
+      "rocker_angle_deg": -20.943925380706787,
+      "contact_gap_mm": 1.0004441430417917e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            386.0566008872067,
+            -50.643583058146156,
+            -2.220774485380678
+          ],
+          [
+            386.0566018675667,
+            -50.64358325760266,
+            -2.220774485380678
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.725744021290931,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        416.68240954545206,
+        -62.01889169436504,
+        -33.46152732831945
+      ],
+      "follower_ball_mm": [
+        59.537637817134964,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 82.39170901173378,
+      "pushrod_rocker_intersection_mm3": 49.879038675988475,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 6.25,
+      "rocker_angle_deg": -21.85854858905077,
+      "contact_gap_mm": 1.0002078224405393e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            385.78944451107316,
+            -50.702735664630815,
+            -2.457823243369029
+          ],
+          [
+            385.78944549120155,
+            -50.702735864040186,
+            -2.457823243369029
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.7257440212909034,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        416.92231763501576,
+        -62.06770154683715,
+        -33.2112692195022
+      ],
+      "follower_ball_mm": [
+        59.839171097738074,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 127.66767196742282,
+      "pushrod_rocker_intersection_mm3": 52.283413530382006,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 6.5,
+      "rocker_angle_deg": -22.787461765110493,
+      "contact_gap_mm": 1.0003435382266446e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            385.51857809108134,
+            -50.78012371927086,
+            -2.702629021998704
+          ],
+          [
+            385.5185790713427,
+            -50.78012391870729,
+            -2.702629021998704
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.725744021290889,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        417.16193564260357,
+        -62.11645238146421,
+        -32.95313403411873
+      ],
+      "follower_ball_mm": [
+        60.1424347526297,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 182.61844051526558,
+      "pushrod_rocker_intersection_mm3": 54.719041409582566,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 6.75,
+      "rocker_angle_deg": -23.731612771749496,
+      "contact_gap_mm": 1.0005001200717261e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            385.24339863446585,
+            -50.87871102619704,
+            -2.9555704879310345
+          ],
+          [
+            385.24339961488073,
+            -50.8787112256647,
+            -2.9555704879310345
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.725744021290917,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        417.4012494079433,
+        -62.16514131730631,
+        -32.68673724484438
+      ],
+      "follower_ball_mm": [
+        60.447522296797274,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 251.6332935212002,
+      "pushrod_rocker_intersection_mm3": 57.195107514533774,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 7.0,
+      "rocker_angle_deg": -24.69204691052437,
+      "contact_gap_mm": 1.0007855804822527e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            384.96313303846057,
+            -51.002297506906245,
+            -3.2170652489825
+          ],
+          [
+            384.9631340191552,
+            -51.00229770643082,
+            -3.2170652489825
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.725744021290917,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        417.6402433140619,
+        -62.21376517705439,
+        -32.411654780522184
+      ],
+      "follower_ball_mm": [
+        60.75453684685846,
+        -35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 330.6731865033683,
+      "pushrod_rocker_intersection_mm3": 59.72528388814081,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 0.0,
+      "rocker_angle_deg": -1.6206089332699776,
+      "contact_gap_mm": 1.0007773289199552e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            387.95966968203453,
+            68.92513134565847,
+            1.7626051961784517
+          ],
+          [
+            387.95967064871127,
+            68.92513160467873,
+            1.7626051961784517
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 2.7392893737179826,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        408.85656322758194,
+        69.12130975124566,
+        -37.73746942904483
+      ],
+      "follower_ball_mm": [
+        52.61434744644458,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.946107829596941,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 0.5139356197476737,
+      "pushrod_length_error_mm": 5.684341886080802e-14
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 0.25,
+      "rocker_angle_deg": -2.3474522456526756,
+      "contact_gap_mm": 1.0019053115269972e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            387.70877333118364,
+            68.89556344817856,
+            1.6509863533752438
+          ],
+          [
+            387.70877429894995,
+            68.89556370749077,
+            1.6509863533752438
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 2.786466921966479,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        409.0976676387246,
+        69.1859134835029,
+        -37.6145825228427
+      ],
+      "follower_ball_mm": [
+        52.888665195784085,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.8732181775147474,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 1.7018854978849078,
+      "pushrod_length_error_mm": 5.684341886080802e-14
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 0.5,
+      "rocker_angle_deg": -3.078507289290428,
+      "contact_gap_mm": 1.0024499568969582e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            387.4582626053816,
+            68.86455637842349,
+            1.5355308392550502
+          ],
+          [
+            387.458263573674,
+            68.86455663787665,
+            1.5355308392550502
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 2.8339840982904967,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        409.33863062390134,
+        69.25047932078681,
+        -37.48779956487688
+      ],
+      "follower_ball_mm": [
+        53.16375387892941,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.7974516984203692,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 3.143486697538939,
+      "pushrod_length_error_mm": 5.684341886080802e-14
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 0.75,
+      "rocker_angle_deg": -3.8139693066477776,
+      "contact_gap_mm": 1.000401896670381e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            387.2081898184349,
+            68.83191489860994,
+            1.4161702102682905
+          ],
+          [
+            387.208190784749,
+            68.83191515753302,
+            1.4161702102682905
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 2.881870550437884,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        409.579449662132,
+        69.31500658760275,
+        -37.35705105221563
+      ],
+      "follower_ball_mm": [
+        53.43963066002499,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.7187219733022427,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 4.697392763149235,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 1.0,
+      "rocker_angle_deg": -4.5540424063801765,
+      "contact_gap_mm": 1.002194239860374e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            386.95860988412466,
+            68.79743406771628,
+            1.2928319893422389
+          ],
+          [
+            386.95861085217007,
+            68.79743432710326,
+            1.2928319893422389
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 2.9301573529740184,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        409.82012207547245,
+        69.37949456639778,
+        -37.22226338629908
+      ],
+      "follower_ball_mm": [
+        53.71631369574459,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.6369410688924662,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 6.3273587604960095,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 1.25,
+      "rocker_angle_deg": -5.298940323293209,
+      "contact_gap_mm": 1.0022683839231256e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            386.70958065713364,
+            68.7608979691277,
+            1.1654393811244745
+          ],
+          [
+            386.70958162525056,
+            68.76089822853385,
+            1.1654393811244745
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 2.978877151866367,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        410.0606450385615,
+        69.44394250011862,
+        -37.08335858299579
+      ],
+      "follower_ball_mm": [
+        53.9938222262233,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.5520191521968165,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 8.019821274191568,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 1.5,
+      "rocker_angle_deg": -6.048887133598328,
+      "contact_gap_mm": 1.0004702225633927e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            386.4611633246539,
+            68.72207824913374,
+            1.033910978464287
+          ],
+          [
+            386.461164291034,
+            68.7220785080745,
+            1.033910978464287
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.02806431628803,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        410.30101555073776,
+        69.50834958474053,
+        -36.9402539752051
+      ],
+      "follower_ball_mm": [
+        54.272176630915396,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.4638641027474586,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 9.769223043445258,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 1.75,
+      "rocker_angle_deg": -6.804118096828461,
+      "contact_gap_mm": 1.0016937029289011e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            386.21342285510605,
+            68.68073244228836,
+            0.8981604306303969
+          ],
+          [
+            386.2134238226679,
+            68.68073270154578,
+            0.8981604306303969
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.0777551102245284,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        410.54123042415927,
+        69.57271496608375,
+        -36.792861875926334
+      ],
+      "follower_ball_mm": [
+        54.55139851145924,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.3723811020762406,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 11.573548000935693,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 2.0,
+      "rocker_angle_deg": -7.56488062441349,
+      "contact_gap_mm": 1.0016484362655828e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            385.96642851466487,
+            68.63660204370758,
+            0.7580960697434724
+          ],
+          [
+            385.966429482183,
+            68.63660230295328,
+            0.7580960697434724
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.127987885601852,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        410.78128628399287,
+        69.63703773986454,
+        -36.64108919836639
+      ],
+      "follower_ball_mm": [
+        54.83151079853184,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.277472196602031,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 13.43264243428629,
+      "pushrod_length_error_mm": 5.684341886080802e-14
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 2.25,
+      "rocker_angle_deg": -8.33143525570631,
+      "contact_gap_mm": 1.0017267752143551e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            385.7202544654367,
+            68.58941027664301,
+            0.6136205146731466
+          ],
+          [
+            385.7202554330305,
+            68.58941053590898,
+            0.6136205146731466
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.1788032910251807,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        411.02117953923096,
+        69.70131694387527,
+        -36.48483705427361
+      ],
+      "follower_ball_mm": [
+        55.1125378357176,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.1790358453208603,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 15.34739984133812,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 2.5,
+      "rocker_angle_deg": -9.104056812822819,
+      "contact_gap_mm": 1.0002265095193084e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            385.47498045980905,
+            68.53885950113222,
+            0.4646302191947016
+          ],
+          [
+            385.4749814259537,
+            68.5388597600099,
+            0.4646302191947016
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.23024450964819,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        411.260906374645,
+        69.76555155582852,
+        -36.32400029476636
+      ],
+      "follower_ball_mm": [
+        55.39450550044728,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 1.0769664289116383,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 17.319462430866995,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 2.75,
+      "rocker_angle_deg": -9.883035622537136,
+      "contact_gap_mm": 1.00150830993558e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            385.23069265182556,
+            68.48462818590716,
+            0.31101498172604525
+          ],
+          [
+            385.23069361920835,
+            68.4846284451166,
+            0.31101498172604525
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.2823575214474228,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        411.5004627237312,
+        69.8297404861079,
+        -36.15846701283143
+      ],
+      "follower_ball_mm": [
+        55.67744131688937,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.9711537298471109,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 19.351010766940085,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 3.0,
+      "rocker_angle_deg": -10.66867895424366,
+      "contact_gap_mm": 1.0001517110040313e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            384.98748454995916,
+            68.4263673525958,
+            0.15265738480399327
+          ],
+          [
+            384.98748551603154,
+            68.42636761145411,
+            0.15265738480399327
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.335191402913707,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        411.73984426358925,
+        69.89388257639577,
+        -35.988117973520765
+      ],
+      "follower_ball_mm": [
+        55.961374610786834,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.8614823605504673,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 21.444629076389123,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 3.25,
+      "rocker_angle_deg": -11.461312502622604,
+      "contact_gap_mm": 1.001522418636685e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            384.7454581439051,
+            68.36369637047363,
+            -0.010567805991203794
+          ],
+          [
+            384.74545911130156,
+            68.36369662968673,
+            -0.010567805991203794
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.3887986563747323,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        411.97904637259273,
+        69.95797658833109,
+        -35.81282600435768
+      ],
+      "follower_ball_mm": [
+        56.24633663871566,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.7478311575611469,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 23.603316263683887,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 3.5,
+      "rocker_angle_deg": -12.261282183229923,
+      "contact_gap_mm": 1.0001591334871103e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            384.5047252454429,
+            68.29619795229895,
+            -0.17879434127957058
+          ],
+          [
+            384.5047262115225,
+            68.2961982111592,
+            -0.17879434127957058
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.443235591258301,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        412.2180641258121,
+        70.02202120228289,
+        -35.63245528444622
+      ],
+      "follower_ball_mm": [
+        56.53236078300853,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.6300725004925871,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 25.830430355072526,
+      "pushrod_length_error_mm": 5.684341886080802e-14
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 3.75,
+      "rocker_angle_deg": -13.06895600259304,
+      "contact_gap_mm": 1.0003322846482743e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            384.26540909677664,
+            68.22341215190399,
+            -0.3521652423082658
+          ],
+          [
+            384.2654100630236,
+            68.22341241080908,
+            -0.3521652423082658
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.4985627464140348,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        412.4568922470405,
+        70.08601500449593,
+        -35.446860579152585
+      ],
+      "follower_ball_mm": [
+        56.819482719141774,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.5080715824726534,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 28.129693723429288,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 4.0,
+      "rocker_angle_deg": -13.884726278483868,
+      "contact_gap_mm": 1.0015532535561318e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            384.0276463152353,
+            68.14482910647621,
+            -0.5308336728420788
+          ],
+          [
+            384.0276472826615,
+            68.14482936569728,
+            -0.5308336728420788
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.5548453782693454,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        412.69552509086856,
+        70.14995648228718,
+        -35.25588635416726
+      ],
+      "follower_ball_mm": [
+        57.10774064656749,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.3816855867549296,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 30.50145416167745,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 4.25,
+      "rocker_angle_deg": -14.70901208370924,
+      "contact_gap_mm": 1.0008741763309503e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            383.7915892660978,
+            68.05988018105307,
+            -0.7149639095218505
+          ],
+          [
+            383.7915902328681,
+            68.0598804400984,
+            -0.7149639095218505
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.6121540136736128,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        412.9339566046579,
+        70.21384401385717,
+        -35.059365790216106
+      ],
+      "follower_ball_mm": [
+        57.39717552757969,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.2507627792728737,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 32.90384621074077,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 4.5,
+      "rocker_angle_deg": -15.542261987924576,
+      "contact_gap_mm": 1.0018554381833884e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            383.5574089860326,
+            67.9679270580979,
+            -0.9047324333481112
+          ],
+          [
+            383.5574099537507,
+            67.96792731739718,
+            -0.9047324333481112
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.6587083290524243,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        413.17218027951253,
+        70.27767585515241,
+        -34.85711967502593
+      ],
+      "follower_ball_mm": [
+        57.687831349787814,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.11514149817971653,
+      "pushrod_housing_intersection_mm3": 0.0,
+      "pushrod_rocker_intersection_mm3": 35.30557312772747,
+      "pushrod_length_error_mm": 5.684341886080802e-14
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 4.75,
+      "rocker_angle_deg": -16.384957246482372,
+      "contact_gap_mm": 1.0013349087806485e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            383.3252988252378,
+            67.86824814484802,
+            -1.1003291847925554
+          ],
+          [
+            383.3252997924531,
+            67.86824840401259,
+            -1.1003291847925554
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.6587083290524243,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        413.41018911698944,
+        70.34145013094584,
+        -34.64895512828272
+      ],
+      "follower_ball_mm": [
+        57.97975545086922,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 0.02311813478888772,
+      "pushrod_rocker_intersection_mm3": 37.69812747755351,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 5.0,
+      "rocker_angle_deg": -17.23761534690857,
+      "contact_gap_mm": 1.0003619625188645e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            383.0954790387413,
+            67.7600214383485,
+            -1.3019589730880503
+          ],
+          [
+            383.09548000501684,
+            67.76002169726125,
+            -1.3019589730880503
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.6587083290524105,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        413.64797556642657,
+        70.40516481804359,
+        -34.43466417094717
+      ],
+      "follower_ball_mm": [
+        58.27299885806917,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 2.504139591284413,
+      "pushrod_rocker_intersection_mm3": 40.08022111384736,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 5.25,
+      "rocker_angle_deg": -18.10079411417246,
+      "contact_gap_mm": 1.0016038638651512e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            382.8682026538763,
+            67.64230262773602,
+            -1.5098430974354133
+          ],
+          [
+            382.8682036213514,
+            67.64230288697019,
+            -1.5098430974354133
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.6587083290524105,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        413.8855314677251,
+        70.4688177299538,
+        -34.21402207885731
+      ],
+      "follower_ball_mm": [
+        58.567616693524315,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 11.184633474314142,
+      "pushrod_rocker_intersection_mm3": 42.45455240493526,
+      "pushrod_length_error_mm": 5.684341886080802e-14
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 5.5,
+      "rocker_angle_deg": -18.975096441805363,
+      "contact_gap_mm": 1.0017940105485446e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            382.6437630832166,
+            67.51399668237848,
+            -1.7242212113400586
+          ],
+          [
+            382.64376405087535,
+            67.51399694166186,
+            -1.7242212113400586
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.658708329052452,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        414.12284799003385,
+        70.53240650045697,
+        -33.98678548924936
+      ],
+      "follower_ball_mm": [
+        58.86366864477833,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 27.63579477540909,
+      "pushrod_rocker_intersection_mm3": 44.82630741698654,
+      "pushrod_length_error_mm": 5.684341886080802e-14
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 5.75,
+      "rocker_angle_deg": -19.861175686120987,
+      "contact_gap_mm": 1.0012659568126026e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            382.4225041715488,
+            67.37382035606115,
+            -1.9453534556796803
+          ],
+          [
+            382.42250513869743,
+            67.37382061520785,
+            -1.9453534556796803
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.6587083290524243,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        414.3599155437697,
+        70.59592856003212,
+        -33.75269023504035
+      ],
+      "follower_ball_mm": [
+        59.16121948543616,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 53.41229215377551,
+      "pushrod_rocker_intersection_mm3": 47.20220720721498,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 6.0,
+      "rocker_angle_deg": -20.759741961956024,
+      "contact_gap_mm": 1.0019005566515346e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            382.20483372002656,
+            67.22025171415943,
+            -2.173522938369565
+          ],
+          [
+            382.2048346877882,
+            67.22025197347038,
+            -2.173522938369565
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.6587083290524243,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        414.5967236912257,
+        70.65938111190408,
+        -33.511448826706
+      ],
+      "follower_ball_mm": [
+        59.46033969317432,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 89.08801038075187,
+      "pushrod_rocker_intersection_mm3": 49.58940054884357,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 6.25,
+      "rocker_angle_deg": -21.671569488942623,
+      "contact_gap_mm": 1.0012509616462598e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            381.99124210800755,
+            67.05146063599568,
+            -2.40903862284712
+          ],
+          [
+            381.99124307514177,
+            67.0514608951385,
+            -2.40903862284712
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.658708329052452,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        414.8332610458598,
+        70.72276110505804,
+        -33.262747518867315
+      ],
+      "follower_ball_mm": [
+        59.761106172982124,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 134.13886277876458,
+      "pushrod_rocker_intersection_mm3": 51.99615216334078,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 6.5,
+      "rocker_angle_deg": -22.597505137324333,
+      "contact_gap_mm": 1.0013968786566184e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            381.78232861945884,
+            66.8652105633568,
+            -2.6522386919483885
+          ],
+          [
+            381.782329586734,
+            66.8652108225374,
+            -2.6522386919483885
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.658708329052438,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        415.06951513960956,
+        70.78606519868686,
+        -33.006242894688896
+      ],
+      "follower_ball_mm": [
+        60.06360308418408,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 187.02780444741802,
+      "pushrod_rocker_intersection_mm3": 54.43226022636344,
+      "pushrod_length_error_mm": 5.684341886080802e-14
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 6.75,
+      "rocker_angle_deg": -23.538478560745716,
+      "contact_gap_mm": 1.0006019093289353e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            381.5788398508515,
+            66.65871516027983,
+            -2.903494522072242
+          ],
+          [
+            381.5788408173588,
+            66.65871541925468,
+            -2.903494522072242
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.6587083290524243,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        415.30547228458323,
+        70.84928972513089,
+        -32.74155782988743
+      ],
+      "follower_ball_mm": [
+        60.36792283570594,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 258.35377506793463,
+      "pushrod_rocker_intersection_mm3": 56.907267061776615,
+      "pushrod_length_error_mm": 0.0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 7.0,
+      "rocker_angle_deg": -24.495514139533043,
+      "contact_gap_mm": 1.0010920012959446e-06,
+      "intersection_volume_mm3": 0.0,
+      "contact_points_mm": [
+        [
+          [
+            381.3817278903404,
+            66.42842118539785,
+            -3.163215369873176
+          ],
+          [
+            381.38172885732104,
+            66.42842144449953,
+            -3.163215369873176
+          ]
+        ]
+      ],
+      "rocker_housing_gap_mm": 3.6587083290524105,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_socket_mm": [
+        415.54111739266796,
+        70.91243064154256,
+        -32.46827673380034
+      ],
+      "follower_ball_mm": [
+        60.674167242671615,
+        35.0,
+        -116.0
+      ],
+      "pushrod_housing_gap_mm": 0.0,
+      "pushrod_housing_intersection_mm3": 338.52026498295606,
+      "pushrod_rocker_intersection_mm3": 59.432886096918665,
+      "pushrod_length_error_mm": 0.0
+    }
+  ],
+  "limitations": [
+    "First contact of reconstructed solid envelopes, not a validated contact pad",
+    "Follower travel direction is inherited from the illustrative model",
+    "Spring and unlisted neighbouring-part collision checks remain outstanding",
+    "0.25 mm lift samples do not prove continuous clearance",
+    "7 mm maximum lift remains illustrative, not a manufacturer specification"
+  ],
+  "sampled_clearance_gate": {
+    "intersection_tolerance_mm3": 1e-05,
+    "passed": false,
+    "maximum_intersections_mm3": {
+      "intersection_volume_mm3": 0.0,
+      "rocker_housing_intersection_mm3": 0.0,
+      "pushrod_housing_intersection_mm3": 338.52026498295606,
+      "pushrod_rocker_intersection_mm3": 59.72528388814081
+    },
+    "scope": "Only listed pairs and sampled poses; passing does not approve the complete assembly"
+  }
+}

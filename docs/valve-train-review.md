@@ -14,6 +14,8 @@ Source: workspace `Notes/gtsio520_series.pdf`, printed A-3-1, PDF page 16 (one-b
 
 The existing CAD annotations separately mark installed spring dimensions and lever/contact geometry as reconstructed. Exhaust inclination remains provisional in the existing reference register. This review does not resolve that ambiguous marking.
 
+Additional visual review: PDF page 46 (printed A-4-26), Figure A-4-36, and PDF page 80 (printed A-12-4), assembly instruction 12-7j. The 0.005–0.035 inch figure annotation is **side clearance between retainers and rocker arms**. It must not be used as valve-tip lash, pad radius or a permitted operating contact gap. The instruction says to centre the rocker arm on the valve stem. Figure A-4-34 on page 46 also shows the concentric spring installation; the reconstructed coil dimensions remain unverified.
+
 ## Before enabling valve-train motion
 
 ### Legacy motion audit results
@@ -35,4 +37,37 @@ The sampled valve/guide and rocker/housing pairs have zero intersection volume. 
 3. Preserve pushrod length and ball/socket alignment throughout the proposed motion, and check housing clearances.
 4. Separate a clearly labelled illustrative teaching profile from manufacturer timing/lift. Review applicable manual timing before claiming realistic operating events.
 
-The current website continues to animate the verified slider-crank only. These joint frames are preparation for synchronized valve motion, not a claim that it has been implemented or validated.
+### Existing-envelope contact solution
+
+`scripts/solve_valve_contact.py` solves first contact by bracketing and bisection against actual CAD solids at 29 lift samples per valve (0–7 mm, 0.25 mm increments). `data/valve-contact-solution.json` records all 58 poses, contact points, rocker/housing checks and a constant-length pushrod endpoint construction. The master is never saved.
+
+| Quantity | Intake | Exhaust |
+|---|---|---|
+| Closed-valve contact angle relative to current CAD rocker | -0.585854° | -0.452972° |
+| Contact angle at illustrative 7 mm lift | -21.128945° | -20.955310° |
+| Minimum sampled rocker/housing gap | 2.8516 mm | 2.6636 mm |
+
+All sampled valve/rocker and rocker/housing intersection volumes are zero. The solver approaches contact from the separated side with approximately 0.000001 mm residual gap; this is numerical tolerance, not manufacturing precision. Constructed pushrod centre distances agree within 5.7e-14 mm, assuming the lower ball travels along the model's world-X follower line. That assumption still needs a lifter/interface review, and does not establish pushrod-to-housing clearance.
+
+These results show that a contact-derived angle can remove the old animation's growing gap. They do **not** validate the existing sharp contact edge as a realistic rocker pad. A rounded contact-face candidate, its contact migration, pushrod clearances and spring envelope remain under review. The closed-position angle changes also require corresponding pushrod placement changes before publishing an assembly.
+
+The current website continues to animate the verified slider-crank only. These joint frames and contact solutions are preparation for synchronized valve motion, not a claim that it has been implemented or validated.
+
+### Rounded-contact candidate: rejected for promotion
+
+`scripts/build_rocker_candidate.py` creates `build/rocker-contact/GTSIO520_Rocker_Candidate.FCStd` with native PartDesign fillets on the two contact edges. It matches each edge geometrically, preserves body IDs, checks each rocker is one valid solid, and verifies that the master hash has not changed. The 2 mm fillet radius is explicitly reconstructed. `data/rocker-candidate.json` records the candidate hash and feature names; the generated CAD stays outside Git.
+
+Run `scripts/solve_valve_contact.py --candidate` with FreeCAD Python to reproduce `data/rocker-candidate-contact.json`. The same 58-pose sweep now checks the constant-length pushrods against their housing tubes and moving rockers as well as valve contact and rocker/housing clearance.
+
+| Candidate result | Intake | Exhaust |
+|---|---|---|
+| Closed-valve contact angle | -1.767972° | -1.620609° |
+| Contact angle at illustrative 7 mm lift | -24.692047° | -24.495514° |
+| Minimum sampled rocker/housing gap | 2.9165 mm | 2.7393 mm |
+| First sampled lift with pushrod/tube interference | 5.00 mm | 4.75 mm |
+| Maximum pushrod/tube intersection | 330.6732 mm³ | 338.5203 mm³ |
+| Maximum pushrod/rocker intersection | 59.7253 mm³ | 59.4329 mm³ |
+
+Valve/rocker contact remains within the numerical tolerance, with zero sampled intersection volume; rocker/housing checks also have zero intersection. However, pushrod/socket-entry interference already exists at the corrected closed pose and tube interference appears at higher lift. The candidate therefore **fails the sampled clearance gate** and is not a release asset.
+
+Next: review the reconstructed follower line, rocker socket trajectory and fixed tube datums as one mechanism, then revise the native CAD interfaces on the isolated candidate. Do not enlarge tubes or shorten pushrods merely to hide the collision. Recheck the closed assembly, contact migration, full lift samples, socket entries and spring envelope before exporting to Blender. The live master and GLB retain their previously verified configuration.
