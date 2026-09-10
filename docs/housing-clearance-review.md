@@ -27,3 +27,11 @@ Reproduce the motion audit with `scripts/solve_valve_contact.py --housing`. It v
 All 58 sampled poses pass the listed solid-pair clearance gate: valve/rocker, rocker/housing, pushrod/tube and pushrod/rocker have zero intersection volume. Minimum rocker/housing distances are 2.7423 mm intake and 2.6499 mm exhaust; minimum pushrod/tube distances remain 0.3420 and 0.2871 mm. Inherited joint frames match the candidate exactly within recorded numerical precision. This does not establish continuous clearance or validate unlisted part pairs.
 
 The native spring audit in `data/spring-envelope-audit.json` fails its separate envelope gate. At the illustrative 7 mm lift, the existing 35 mm reconstructed spring envelope reduces to 28 mm, and the outer spring pitch is 4 mm, equal to its wire diameter. A valid kernel solid does not establish useful inter-coil clearance. The next isolated candidate revises the spring seat/envelope and must check head, guide, retainer and concentric-spring interfaces. No candidate has been promoted to the dimensional master or released GLB.
+
+## Spring seat revision result
+
+`scripts/build_spring_candidate.py` builds a 45 mm reconstructed installed envelope with its fixed seat at local station 65 mm. A 45–38 mm illustrative operating range lies inside both springs' tabulated test-length intervals; this does not establish the factory-installed length. Valve and retainer dimensions remain unchanged.
+
+The candidate saved after all 60 bodies passed single-solid checks, but its closed springs intersect the head casting. Recorded volumes in `data/spring-candidate.json` are 2.0065/48.8508 mm³ for intake inner/outer and 87.0826/148.3158 mm³ for exhaust inner/outer. The checked guide, concentric-spring and retainer pairs have zero intersection. The remaining compression audit was deliberately terminated after this observed failure; no unperformed poses are reported as checked. The script now checkpoints results and fails immediately on an intersecting interface.
+
+Next: reconstruct the spring-seat recess from the fixed guide/spring datums, retaining the supporting seat and checking casting continuity. Merely shortening the platform does not clear existing casting material. The failed candidate remains isolated and unpromoted.

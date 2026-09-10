@@ -1,0 +1,91 @@
+{
+  "status": "Rejected: closed spring/head intersections; remaining audit deliberately stopped after observed failure",
+  "candidate_file": "build/spring-envelope/GTSIO520_Spring_Candidate.FCStd",
+  "candidate_sha256": "13d736f4ffee8dc41a9c78e9481e0b66b03cb8d1c7024c1ca4968efc53a683c5",
+  "parent_sha256": "b875c2a1882c5127ff5b58374f8e889d9202ea182cecc7d673b30253836e459a",
+  "selected_installed_length_mm": 45,
+  "spring_seat_station_mm": 65,
+  "test_interval_screen_for_7mm_lift_mm": [
+    40.7566,
+    45.4914
+  ],
+  "valid_single_solid_bodies": 60,
+  "verification_basis": "Builder saved only after all 60 bodies passed native single-solid checks; terminal output recorded these 12 closed interfaces before termination",
+  "interfaces": [
+    {
+      "train": "Intake",
+      "lift_mm": 0,
+      "pair": "inner/head",
+      "intersection_mm3": 2.0064699542314246
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 0,
+      "pair": "outer/head",
+      "intersection_mm3": 48.85078148990527
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 0,
+      "pair": "inner/guide",
+      "intersection_mm3": 0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 0,
+      "pair": "inner/outer",
+      "intersection_mm3": 0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 0,
+      "pair": "inner/retainer",
+      "intersection_mm3": 0
+    },
+    {
+      "train": "Intake",
+      "lift_mm": 0,
+      "pair": "outer/retainer",
+      "intersection_mm3": 0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 0,
+      "pair": "inner/head",
+      "intersection_mm3": 87.08258789502375
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 0,
+      "pair": "outer/head",
+      "intersection_mm3": 148.31584074745854
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 0,
+      "pair": "inner/guide",
+      "intersection_mm3": 0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 0,
+      "pair": "inner/outer",
+      "intersection_mm3": 0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 0,
+      "pair": "inner/retainer",
+      "intersection_mm3": 0
+    },
+    {
+      "train": "Exhaust",
+      "lift_mm": 0,
+      "pair": "outer/retainer",
+      "intersection_mm3": 0
+    }
+  ],
+  "sampled_gate_passed": false,
+  "audit_complete": false,
+  "next_action": "Reconstruct spring-seat recess from fixed spring/guide datums; audit revised solids before promotion"
+}
