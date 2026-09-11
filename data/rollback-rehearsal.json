@@ -1,0 +1,16 @@
+{
+  "snapshot_id": "explorer-baseline-20260911",
+  "snapshot_manifest_sha256": "f0a332fb22c616d74bfccfc705c8d15a0867dc1d94ac85c04312fe0c4def0625",
+  "files_restored": 14,
+  "model_sha256": "5f14a83aa045ef1b195c0ea0114600637eb69096a811ab0965c9bf123013c61f",
+  "round_trip_hash_check_passed": true,
+  "corrupted_manifest_rejected": true,
+  "scope": "Fresh-directory local restore verified; production republish and Drive delivery rollback not yet exercised",
+  "browser_check": {
+    "loaded_components": 60,
+    "render_observed": true,
+    "play_pause_observed_at_approx_degrees": 79,
+    "reset_bind_degrees": 36,
+    "delivery": "localhost control copy, not a Drive rollback test"
+  }
+}
