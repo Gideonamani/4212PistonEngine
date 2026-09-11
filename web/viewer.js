@@ -4,6 +4,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {createTransfer} from './transfer.mjs';
 import {mechanismPose} from './kinematics.mjs';
 import {valveMatrices} from './valve-transforms.mjs';
+import {createCycleVisuals} from './cycle-visuals.mjs';
 
 const $ = id => document.getElementById(id);
 const say = text => $('status').textContent = text;
@@ -78,6 +79,8 @@ const originals = new Map();
 const inspection = new Map();
 const sections=[];
 let motionProfile=null,motionEntries=[],motionAngle=36,playing=false,animationFrame=0,lastFrame=0;
+let cycleVisuals=null;
+$('cycle-enabled').onchange=()=>{cycleVisuals?.setVisible($('cycle-enabled').checked);renderer.render(scene,camera);};
 function stopMotion(){playing=false;cancelAnimationFrame(animationFrame);$('motion-play').textContent='Play mechanism';$('motion-play').setAttribute('aria-pressed','false');}
 function groupMatrices(degrees){
   const p=mechanismPose(degrees,motionProfile.radius_m,motionProfile.rod_length_m);
@@ -103,10 +106,15 @@ function setMotion(degrees){
   $('motion-angle').value=String(degrees);$('motion-value').textContent=`${degrees.toFixed(0)}°`;
   $('motion-note').textContent=`Piston pin: ${(mechanismPose(degrees,motionProfile.radius_m,motionProfile.rod_length_m).piston[0]*1000).toFixed(1)} mm from crank axis. CAD kinematics; teaching speed.`;
   if(valves)$('motion-note').textContent+=` ${valves.cycle.stroke} · intake lift ${valves.cycle.intakeLift.toFixed(1)} mm · exhaust lift ${valves.cycle.exhaustLift.toFixed(1)} mm.`;
+  if(cycleVisuals){
+    const cue=cycleVisuals.update(degrees,mechanismPose(degrees,motionProfile.radius_m,motionProfile.rod_length_m).piston[0]*1000);
+    $('cycle-description').textContent=cue.description;
+  }
   updateSection();
 }
 async function setupMotion(bytes){
   stopMotion();motionProfile=null;motionEntries=[];$('motion-controls').disabled=true;
+  cycleVisuals?.dispose();cycleVisuals=null;$('cycle-controls').hidden=true;$('cycle-enabled').checked=false;
   try{
     const response=await fetch('./motion.json');if(!response.ok)throw Error('Motion profile unavailable');
     const profile=await response.json();
@@ -124,9 +132,11 @@ async function setupMotion(bytes){
       const group=profile.groups[mesh.userData.partId];mesh.matrixAutoUpdate=false;
       return {mesh,group,localBind:bind[group].clone().invert().multiply(mesh.matrixWorld)};
     });
+    if(profile.cycle_landmarks){cycleVisuals=createCycleVisuals(scene,profile.cycle_landmarks);$('cycle-controls').hidden=false;}
     $('motion-controls').disabled=false;setMotion(profile.bind_angle_deg);
     if(profile.valves)$('motion-scope').textContent='Engineering preview: piston, rod, crank, valves, rockers and pushrods move together. Spring compression and gas cues are not connected yet. Lift and timing are illustrative, not manufacturer specifications.';
     if(profile.valves?.spring_targets)$('motion-scope').textContent='Engineering preview: valve gear and spring compression follow the same crank angle as the piston. Lift and timing are illustrative, not manufacturer specifications. Gas cues are not connected yet.';
+    if(profile.cycle_landmarks)$('motion-scope').textContent='Engineering preview: valve gear, spring compression and cycle cues share one crank angle. Lift and timing are illustrative, not manufacturer specifications.';
   }catch(e){motionProfile=null;$('motion-note').textContent=e.message+'. Static inspection remains available.';log(e.message);}
 }
 function animateMechanism(time){

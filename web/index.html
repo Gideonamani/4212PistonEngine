@@ -37,6 +37,12 @@ button,select{min-height:44px}input[type=range]{min-height:24px}fieldset{min-wid
 <label for="motion-angle">Crank angle <output id="motion-value">36°</output></label><input id="motion-angle" type="range" min="0" max="720" step="1" value="36" style="width:100%;box-sizing:border-box">
 <label for="motion-speed">Teaching speed</label><select id="motion-speed"><option value="15">Slow · 15°/s</option><option value="30" selected>Normal · 30°/s</option><option value="60">Fast · 60°/s</option></select>
 <p id="motion-note">Checking motion profile…</p><p><small id="motion-scope">Only the piston, rod and crank move. Valves remain closed. This demonstrates the mechanism, not the complete operating cycle. Use Section view to see inside.</small></p></fieldset>
+<fieldset id="cycle-controls" hidden><legend>Operating cycle</legend>
+<label><input id="cycle-enabled" type="checkbox" style="width:auto"> Show cycle cues</label>
+<p id="cycle-description"></p>
+<p><small>Cyan: incoming fuel–air charge · blue: compression · orange: combustion/power · grey: exhaust. Arrows show port flow direction. Use Section view to see the charge inside the cylinder.</small></p>
+<p><small>Illustrative particles and ideal stroke timing; not measured temperature, pressure or CFD. The particle region is not the complete chamber volume. Reference: GTSIO-520 manual A-3-3 / A-3-4, induction and continuous port injection.</small></p>
+</fieldset>
 <fieldset id="section-controls" disabled><legend>Look inside</legend>
 <label><input id="section-enabled" type="checkbox" style="width:auto"> Section view</label>
 <label for="section-axis">Cut direction</label><select id="section-axis"><option value="x">Across X</option><option value="y">Across Y</option><option value="z">Across Z</option></select>
@@ -54,4 +60,4 @@ button,select{min-height:44px}input[type=range]{min-height:24px}fieldset{min-wid
 </aside></main>
 <footer><button id="load" disabled>Reload model</button><button id="cancel-load" hidden>Cancel download</button>
 <details><summary>Loading details</summary><label for="drive">Google Drive model sharing link</label><input id="drive" type="url" placeholder="https://drive.google.com/file/d/…/view"><p>The public model loads through Google Drive API without Google sign-in. No manual file saving is needed.</p><pre id="log"></pre></details>
-</footer><script type="module" src="./viewer.js?v=20260909-motion1"></script></body></html>
+</footer><script type="module" src="./viewer.js?v=20260911-cycle-preview"></script></body></html>

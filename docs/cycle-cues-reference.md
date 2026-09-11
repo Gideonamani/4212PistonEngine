@@ -14,3 +14,7 @@ Consequences for the first cylinder lesson:
 - Keep chamber cues synchronized to the current crank angle, including paused scrubbing and loop closure. A visible arrow indicates direction; it is not CFD.
 
 Pending: extract current port and chamber landmarks, implement and inspect the cue geometry, verify closed-valve flow gating, and obtain instructor review of the cycle explanation. This source note does not mark M2 complete.
+
+Implementation in progress: `export_cycle_landmarks.py` extracts current cross-port frames and screens a conservative central chamber display region against head, barrel and translated valve solids at 25 crank angles. Its sampled point clearance is not a continuous flow/volume validation. The running extraction must complete before its output is enabled in the local preview.
+
+`cycle-cues.mjs` supplies deterministic stroke explanations and valve-gated flow visibility. Automated checks cover loop closure and absence of port-flow cues while the corresponding valve is closed. `cycle-visuals.mjs` adds port-axis arrows/tracers and a central charge point cloud, with colours for intake, compression, power and exhaust. The particle region intentionally does not represent total chamber volume or measured quantities. Browser appearance and spatial checks remain pending. No cue profile is published.

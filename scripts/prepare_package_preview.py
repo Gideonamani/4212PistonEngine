@@ -10,7 +10,7 @@ asset=folder/'engine.glb';assert hashlib.sha256(asset.read_bytes()).hexdigest()=
 data=json.loads((folder/'geometry.json').read_text())
 assert data['source_sha256']==check['source_sha256']
 preview=folder/'preview';preview.mkdir(exist_ok=True)
-for name in ['index.html','viewer.js','kinematics.mjs','valve-kinematics.mjs','valve-transforms.mjs','transfer.mjs','components.json']:
+for name in ['index.html','viewer.js','kinematics.mjs','valve-kinematics.mjs','valve-transforms.mjs','cycle-cues.mjs','cycle-visuals.mjs','transfer.mjs','components.json']:
     shutil.copy2(repo/'web'/name,preview/name)
 (preview/'config.json').write_text('{}\n')
 shutil.copy2(asset,preview/'control.glb')
@@ -36,6 +36,11 @@ if args.valves:
             'maximum_lift_mm':spring['springs'][pid]['maximum_lift_mm'],'target':blender['spring_motion']['target_name']}
             for pid in blender['spring_motion']['ids']}
         profile['scope']='Unreleased valve and spring motion preview; gas integration pending.'
+    landmarks_file=repo/'data/cycle-landmarks.json'
+    if landmarks_file.exists():
+        landmarks=json.loads(landmarks_file.read_text())
+        assert landmarks['passed'] and landmarks['audit_complete'] and landmarks['source_sha256']==check['source_sha256']
+        profile['cycle_landmarks']=landmarks
     shutil.copy2(repo/'scripts/valve-transform-check.html',preview/'valve-transform-check.html')
     shutil.copy2(repo/'data/spring-seat-contact.json',preview/'valve-audit.json')
 (preview/'motion.json').write_text(json.dumps(profile,indent=2)+'\n')
