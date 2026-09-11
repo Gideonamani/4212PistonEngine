@@ -1,64 +1,281 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>4212 Piston Engine · Cylinder explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@600;700;800&display=swap">
 <style>
-:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#101923;color:#eaf1f8}body{margin:0}header,footer{padding:20px 4vw;background:#162431}h1{font-size:24px;margin:0 0 8px}p{line-height:1.5;margin:8px 0}main{display:grid;grid-template-columns:minmax(0,1fr) 320px;min-height:65vh}#view{position:relative;min-height:480px;touch-action:none}canvas{display:block;width:100%;height:100%}aside{padding:22px;background:#1c2d3c}button,input,select{font:inherit;padding:10px;border:1px solid #63788b;border-radius:6px;background:#13212d;color:inherit}button{cursor:pointer}button:hover{background:#2c465b}button:disabled{opacity:.45;cursor:default}input{width:min(640px,90%)}label{display:block;margin:12px 0 6px}select{width:100%}#status{padding:12px;border-left:4px solid #75d2d0;background:#0b141d}#log{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.5 monospace}small{color:#bdd0df}a{color:#8adddf}@media(max-width:800px){main{grid-template-columns:1fr}#view{min-height:400px;height:55vh}}
-</style>
-<style>
-fieldset{margin:20px 0;padding:12px;border:1px solid #63788b;border-radius:8px}legend{padding:0 6px}summary{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #75d2d0;outline-offset:3px}
+:root{
+ color-scheme:dark;
+ --bg:#0a0f16;--bg-header:#0d141d;--surface:#121b26;--surface-2:#1a2632;--surface-hover:#223243;
+ --border:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.16);
+ --text:#eef4f9;--text-dim:#93a7ba;--text-faint:#647b8e;
+ --accent:#4be8cf;--accent-strong:#22c7ac;--accent-ink:#032420;--accent-soft:rgba(75,232,207,.14);
+ --radius-lg:18px;--radius-md:12px;--radius-sm:8px;
+ --shadow-card:0 1px 2px rgba(0,0,0,.35),0 10px 30px -12px rgba(0,0,0,.55);
+ font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);
+ accent-color:var(--accent);
+}
+*{box-sizing:border-box}
+body{margin:0}
+h1,h2,.panel-title,.identity-name{font-family:Lexend,Inter,system-ui,sans-serif}
+p{line-height:1.6;margin:8px 0;color:var(--text)}
+small{color:var(--text-dim);font-size:13px}
+a{color:var(--accent)}
+.kicker{display:block;font:600 11px/1.4 Inter;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:26px;font-weight:700;margin:6px 0 6px;letter-spacing:-.01em}
+.lede{color:var(--text-dim);font-size:14.5px;margin:0 0 14px;max-width:60ch}
+label{display:block;margin:14px 0 6px;font:500 13px Inter;color:var(--text-dim)}
+.eyebrow{font:600 11px Inter;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);margin:20px 0 10px}
+aside>.eyebrow:first-child{margin-top:0}
+
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;font-weight:600;font-size:14px;padding:11px 16px;border-radius:var(--radius-md);border:1px solid var(--border-strong);background:var(--surface-2);transition:background .15s,border-color .15s,transform .1s;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px}
+button:hover{background:var(--surface-hover)}
+button:active{transform:scale(.98)}
+button:disabled{opacity:.4;cursor:default;transform:none}
+button .icon{width:16px;height:16px;flex:none}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{background:var(--accent-strong);border-color:var(--accent-strong)}
+.btn-primary:disabled{background:var(--surface-2);border-color:var(--border-strong);color:var(--text-faint)}
+
+input[type=search],input[type=url]{width:100%;padding:11px 14px 11px 38px;border-radius:var(--radius-md);border:1px solid var(--border-strong);background:var(--surface-2);min-height:44px}
+input[type=url]{padding-left:14px}
+input::placeholder{color:var(--text-faint)}
+.field-icon{position:relative}
+.field-icon svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--text-faint);pointer-events:none}
+
+select{width:100%;padding:11px 38px 11px 14px;border-radius:var(--radius-md);border:1px solid var(--border-strong);background:var(--surface-2);min-height:44px;
+ appearance:none;-webkit-appearance:none;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2393a7ba' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+ background-repeat:no-repeat;background-position:right 12px center;background-size:16px}
+select:disabled,input:disabled{color:var(--text-faint)}
+
+input[type=range]{width:100%;height:22px;padding:0;background:transparent;accent-color:var(--accent)}
+output{font-variant-numeric:tabular-nums;font-weight:600;color:var(--accent)}
+
+fieldset{margin:0;padding:0;border:0;min-width:0}
+legend{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+summary{cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--radius-sm)}
+
+.field-row{display:flex;gap:10px;align-items:flex-end}
+.field-row>*{flex:1;min-width:0}
+.button-row{display:flex;gap:10px}
+.button-row>button{flex:1;min-width:0;white-space:nowrap}
+.button-row>button.btn-primary{flex:1.6}
+.stack>*+*{margin-top:14px}
+
+/* switch toggle */
+.switch-row{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;padding:2px 0}
+.switch-row span{font:500 14px Inter;color:var(--text)}
+.switch-row input{appearance:none;-webkit-appearance:none;width:40px;height:23px;min-height:0;flex:none;border-radius:999px;background:var(--surface-2);border:1px solid var(--border-strong);position:relative;cursor:pointer;transition:background .15s,border-color .15s}
+.switch-row input::after{content:'';position:absolute;top:2px;left:2px;width:17px;height:17px;border-radius:50%;background:var(--text-dim);transition:transform .15s,background .15s}
+.switch-row input:checked{background:var(--accent-strong);border-color:var(--accent-strong)}
+.switch-row input:checked::after{transform:translateX(17px);background:var(--accent-ink)}
+fieldset:disabled .switch-row input{opacity:.4}
+
+/* identity card */
+.identity{background:linear-gradient(160deg,var(--surface-2),var(--surface));border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;margin-bottom:20px;box-shadow:var(--shadow-card)}
+.identity-name{font-size:20px;font-weight:600;margin:0 0 6px;letter-spacing:-.01em}
+.identity p{margin:0;font-size:14px;color:var(--text-dim)}
+
+/* collapsible panels */
+.panel{margin:14px 0;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--surface);box-shadow:var(--shadow-card);overflow:clip}
+aside>.panel:first-of-type{margin-top:0}
+.panel>summary{display:flex;align-items:center;gap:14px;padding:16px 18px}
+.panel-icon{flex:none;width:38px;height:38px;border-radius:11px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center}
+.panel-icon svg{width:20px;height:20px}
+.panel-heading{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.panel-title{font-weight:600;font-size:15px}
+.panel-subtitle{font-size:12.5px;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chevron{flex:none;width:18px;height:18px;color:var(--text-faint);transition:transform .2s}
+.panel[open]>summary .chevron{transform:rotate(180deg)}
+.panel-body{padding:0 18px 18px}
+.panel[open]>summary{padding-bottom:12px}
+
+.hint{margin:12px 0 0;padding-top:10px;border-top:1px solid var(--border)}
+.hint summary{display:flex;align-items:center;gap:6px;color:var(--text-dim);font-size:12.5px;font-weight:500}
+.hint summary::before{content:'';width:14px;height:14px;flex:none;background:var(--text-faint);mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 11v5'/%3E%3Cpath d='M12 8h.01'/%3E%3C/svg%3E") no-repeat center/contain}
+.hint[open] summary{color:var(--text)}
+.hint p{margin:8px 0 0;font-size:13px}
+.hint p:first-of-type{margin-top:10px}
+
+.readout{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;font-size:13px;color:var(--text-dim);margin-top:12px}
+
+details:not(.panel):not(.hint){border-top:1px solid var(--border);padding:14px 0}
+details:not(.panel):not(.hint) summary{font-weight:600;font-size:14px;display:flex;align-items:center;gap:8px}
+details:not(.panel):not(.hint) summary::after{content:'';width:16px;height:16px;margin-left:auto;background:var(--text-faint);mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat center/contain;transition:transform .2s}
+details:not(.panel):not(.hint)[open] summary::after{transform:rotate(180deg)}
+details:not(.panel):not(.hint) p{font-size:13.5px}
+
+/* layout */
+header{padding:20px 28px;background:var(--bg-header);border-bottom:1px solid var(--border);position:relative}
+header::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent 70%)}
+#status-row{display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--border);max-width:fit-content}
+#status-row .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none;box-shadow:0 0 0 3px var(--accent-soft)}
+#status{font-size:13px;color:var(--text-dim);margin:0}
+#load-progress{-webkit-appearance:none;appearance:none;width:140px;height:5px;border:0;border-radius:999px;overflow:hidden;vertical-align:middle}
+#load-progress::-webkit-progress-bar{background:var(--surface-2);border-radius:999px}
+#load-progress::-webkit-progress-value{background:var(--accent);border-radius:999px}
+#load-progress::-moz-progress-bar{background:var(--accent);border-radius:999px}
+
+main{display:grid;grid-template-columns:minmax(0,1fr) 380px;min-height:65vh}
+#view{position:relative;min-height:480px;touch-action:none;background:radial-gradient(circle at 50% 35%,#101b26,var(--bg) 70%)}
+canvas{display:block;width:100%;height:100%}
+aside{padding:24px;background:var(--bg)}
+#log{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.5 ui-monospace,monospace;color:var(--text-dim)}
+@media(max-width:800px){main{grid-template-columns:1fr}#view{min-height:400px;height:55vh}}
 @media(min-width:801px){#view{position:sticky;top:0;height:75vh;align-self:start}}
-@media(max-width:800px){#view{position:sticky;top:0;z-index:2;height:38svh;min-height:220px;box-shadow:0 5px 18px #0008}aside{padding:16px}header,footer{padding:16px}h1{font-size:21px}}
-button,select{min-height:44px}input[type=range]{min-height:24px}fieldset{min-width:0}#search{box-sizing:border-box;width:100%}
-.viewer-toolbar{position:absolute;top:10px;right:10px;z-index:3;display:flex;gap:8px}.viewer-toolbar button{background:#13212de8}.viewer-toolbar button[aria-pressed=true]{border-color:#75d2d0}
+@media(max-width:800px){#view{position:sticky;top:0;z-index:2;height:38svh;min-height:220px;box-shadow:0 5px 18px #0008}aside{padding:16px}header{padding:16px}h1{font-size:21px}}
+
+.viewer-toolbar{position:absolute;top:14px;right:14px;z-index:3;display:flex;gap:8px}
+.viewer-toolbar button{background:rgba(10,16,22,.72);backdrop-filter:blur(6px);border-color:var(--border-strong);border-radius:999px;padding:10px 16px}
+.viewer-toolbar button[aria-pressed=true],.viewer-toolbar button[aria-expanded=false]{border-color:var(--accent);color:var(--accent)}
+#toggle-controls svg{transition:transform .2s}
+#toggle-controls[aria-expanded=false] svg{transform:rotate(180deg)}
+#motion-play[aria-pressed=true] .icon-play{display:none!important}
+#motion-play[aria-pressed=true] .icon-pause{display:inline!important}
+
 #view,aside{min-width:0}#view canvas{max-width:100%}
-#explorer:fullscreen,#explorer.expanded{width:100%;height:100dvh;min-height:0;background:#101923;overflow:hidden;grid-template-rows:minmax(0,1fr)}
-#explorer.expanded{position:fixed;inset:0;z-index:1000}body.viewer-expanded{overflow:hidden}
+#explorer:fullscreen,#explorer.expanded{width:100%;height:100dvh;min-height:0;background:var(--bg);overflow:hidden;grid-template-rows:minmax(0,1fr)}
+#explorer.expanded{position:fixed;inset:0;z-index:1000}
+body.viewer-expanded{overflow:hidden}
 #explorer:fullscreen #view,#explorer.expanded #view{position:relative;height:100%;min-height:0;align-self:stretch}
 #explorer:fullscreen aside,#explorer.expanded aside{overflow:auto;min-height:0}
-#explorer.controls-hidden{grid-template-columns:minmax(0,1fr)}#explorer.controls-hidden aside{display:none}
+#explorer.controls-hidden{grid-template-columns:minmax(0,1fr)}
+#explorer.controls-hidden aside{display:none}
 @media(max-width:800px){#explorer:fullscreen,#explorer.expanded{grid-template-rows:48% minmax(0,1fr)}#explorer.controls-hidden:fullscreen,#explorer.controls-hidden.expanded{grid-template-rows:minmax(0,1fr)}}
+
+footer{padding:18px 28px;background:var(--bg-header);border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:10px;align-items:flex-start}
+footer>details{flex:1 1 260px;border-top:0;padding:0}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
 </head><body>
-<header><small>4212 PISTON ENGINE / CYLINDER EXPLORER</small><h1>Explore the cylinder assembly</h1>
-<p>Drag to rotate · Scroll or pinch to zoom · Select a component to read its function.</p>
-<p id="status" role="status">Starting viewer…</p><progress id="load-progress" max="100" aria-label="Model download progress" style="width:100%;height:12px;accent-color:#75d2d0"></progress></header>
-<main id="explorer"><div id="view" aria-label="Interactive cylinder assembly"><div class="viewer-toolbar"><button id="toggle-controls" aria-controls="inspection-panel" aria-expanded="true">Hide controls</button><button id="fullscreen" aria-pressed="false" title="Expand viewer">⛶ Full screen</button></div></div><aside id="inspection-panel">
-<h2 id="part-name">Cylinder study</h2><p id="part-function">Load the shared model to explore its 60 components.</p>
-<label for="appearance">Appearance</label><select id="appearance" disabled><option value="inspection">Inspection colours</option><option value="cad">Original CAD colours</option></select>
-<p><small>Inspection colours identify intake (teal), exhaust (copper), and other parts (steel tones). Gold marks your selection. These are teaching colours, not verified material specifications.</small></p>
-<label for="search">Find a component</label><input id="search" type="search" placeholder="Try piston, valve or oil…" disabled>
-<label for="group">Component group</label><select id="group" disabled><option value="">All groups</option><option value="structure">Cylinder structure</option><option value="piston">Piston, rings and pin</option><option value="crank">Crank and connecting rod</option><option value="intake">Intake valve train</option><option value="exhaust">Exhaust valve train</option><option value="ignition">Spark plugs</option></select>
+<header>
+<small class="kicker">GTSIO-520-H · Cylinder study</small>
+<h1>Explore the cylinder assembly</h1>
+<p class="lede">Drag to rotate · Scroll or pinch to zoom · Select a component to read its function.</p>
+<div id="status-row"><span class="dot" aria-hidden="true"></span><p id="status" role="status">Starting viewer…</p><progress id="load-progress" max="100" aria-label="Model download progress"></progress></div>
+</header>
+<main id="explorer">
+<div id="view" aria-label="Interactive cylinder assembly">
+<div class="viewer-toolbar">
+<button id="toggle-controls" aria-controls="inspection-panel" aria-expanded="true">
+<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+<span id="toggle-controls-label">Hide controls</span>
+</button>
+<button id="fullscreen" aria-pressed="false" title="Expand viewer">
+<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+<span id="fullscreen-label">Full screen</span>
+</button>
+</div>
+</div>
+<aside id="inspection-panel">
+
+<div class="identity">
+<h2 id="part-name" class="identity-name">Cylinder study</h2>
+<p id="part-function">Load the shared model to explore its 60 components.</p>
+</div>
+
+<div class="eyebrow">Find a component</div>
+<div class="field-row">
+<div><label for="group">Component group</label><select id="group" disabled><option value="">All groups</option><option value="structure">Cylinder structure</option><option value="piston">Piston, rings and pin</option><option value="crank">Crank and connecting rod</option><option value="intake">Intake valve train</option><option value="exhaust">Exhaust valve train</option><option value="ignition">Spark plugs</option></select></div>
+<div><label for="search">Search</label><div class="field-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input id="search" type="search" placeholder="Search parts…" disabled></div></div>
+</div>
 <p id="matches" role="status"></p>
 <label for="parts">Component</label><select id="parts" disabled><option value="">Whole assembly</option></select>
-<p><button id="isolate" disabled>Isolate component</button></p><p><button id="reset" disabled>Show assembly</button></p>
-<fieldset id="motion-controls" disabled><legend>Mechanism motion</legend>
-<button id="motion-play" aria-pressed="false">Play mechanism</button><button id="motion-reset">Reset angle</button>
-<label for="motion-angle">Crank angle <output id="motion-value">36°</output></label><input id="motion-angle" type="range" min="0" max="720" step="1" value="36" style="width:100%;box-sizing:border-box">
-<label for="motion-preset">Jump to angle</label><select id="motion-preset"><option value="">Choose a position…</option><option value="0">0°</option><option value="90">90°</option><option value="180">180°</option><option value="270">270°</option><option value="360">360°</option><option value="450">450°</option><option value="540">540°</option><option value="630">630°</option><option value="720">720° · cycle end</option></select>
-<label for="motion-speed">Teaching speed</label><select id="motion-speed"><option value="15">Slow · 15°/s</option><option value="30" selected>Normal · 30°/s</option><option value="60">Fast · 60°/s</option></select>
-<p id="motion-note">Checking motion profile…</p><p><small id="motion-scope">Only the piston, rod and crank move. Valves remain closed. This demonstrates the mechanism, not the complete operating cycle. Use Section view to see inside.</small></p></fieldset>
-<fieldset id="cycle-controls" hidden><legend>Operating cycle</legend>
-<label><input id="cycle-enabled" type="checkbox" style="width:auto"> Show cycle cues</label>
-<p id="cycle-description"></p>
-<p><small>Cyan: incoming fuel–air charge · blue: compression · orange: combustion/power · grey: exhaust. Arrows show port flow direction. Use Section view to see the charge inside the cylinder.</small></p>
-<p><small>Illustrative particles and ideal stroke timing; not measured temperature, pressure or CFD. The particle region is not the complete chamber volume. Reference: GTSIO-520 manual A-3-3 / A-3-4, induction and continuous port injection.</small></p>
+<div class="button-row"><button id="isolate" disabled>Isolate</button><button id="reset" disabled>Show all</button></div>
+
+<div class="eyebrow">Appearance</div>
+<select id="appearance" disabled><option value="inspection">Inspection colours</option><option value="cad">Original CAD colours</option></select>
+<details class="hint"><summary>What the colours mean</summary><p>Inspection colours identify intake (teal), exhaust (copper), and other parts (steel tones). Gold marks your selection. These are teaching colours, not verified material specifications.</p></details>
+
+<details class="panel" open>
+<summary>
+<span class="panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 1 3 6.7"/><path d="M3 21v-6h6"/></svg></span>
+<span class="panel-heading"><span class="panel-title">Mechanism motion</span><span class="panel-subtitle">Piston, rod and crank in motion</span></span>
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+</summary>
+<div class="panel-body">
+<fieldset id="motion-controls" disabled>
+<div class="button-row">
+<button id="motion-play" class="btn-primary" aria-pressed="false" aria-label="Play or pause the mechanism">
+<svg class="icon icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+<svg class="icon icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+<span id="motion-play-label">Play</span>
+</button>
+<button id="motion-reset">
+<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 3v6h6"/></svg>
+Reset
+</button>
+</div>
+<label for="motion-angle">Crank angle <output id="motion-value">36°</output></label><input id="motion-angle" type="range" min="0" max="720" step="1" value="36">
+<div class="stack">
+<div><label for="motion-preset">Jump to angle</label><select id="motion-preset"><option value="">Select angle…</option><option value="0">0°</option><option value="90">90°</option><option value="180">180°</option><option value="270">270°</option><option value="360">360°</option><option value="450">450°</option><option value="540">540°</option><option value="630">630°</option><option value="720">720° · cycle end</option></select></div>
+<div><label for="motion-speed">Teaching speed</label><select id="motion-speed"><option value="15">Slow · 15°/s</option><option value="30" selected>Normal · 30°/s</option><option value="60">Fast · 60°/s</option></select></div>
+</div>
+<p id="motion-note" class="readout">Checking motion profile…</p>
 </fieldset>
-<fieldset id="section-controls" disabled><legend>Look inside</legend>
-<label><input id="section-enabled" type="checkbox" style="width:auto"> Section view</label>
-<label for="section-axis">Cut direction</label><select id="section-axis"><option value="x">Across X</option><option value="y">Across Y</option><option value="z">Across Z</option></select>
-<label for="section-position">Cut position <output id="section-value" for="section-position">50%</output></label>
-<input id="section-position" type="range" min="0" max="100" value="50" aria-describedby="section-note" style="width:100%;box-sizing:border-box">
-<button id="section-flip" type="button" aria-pressed="false">Reverse cut side</button>
-<p id="section-note"><small>Filled cut faces show the material crossed by the section; real cavities stay open. Transparent surrounding parts omit the fill for clarity. This is a display section, not a CAD measurement. Use the component list to select a cut face.</small></p>
+<details class="hint"><summary>What this shows</summary><p><span id="motion-scope">Only the piston, rod and crank move. Valves remain closed. This demonstrates the mechanism, not the complete operating cycle. Use Section view to see inside.</span></p></details>
+</div>
+</details>
+
+<details class="panel" id="cycle-controls" hidden open>
+<summary>
+<span class="panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c1 3-3 4-3 8a3 3 0 0 0 6 0c0-1-.5-2-1-2.5.5 2 3 3 3 6a5 5 0 0 1-10 0c0-4 3-6 5-11.5Z"/></svg></span>
+<span class="panel-heading"><span class="panel-title">Operating cycle</span><span class="panel-subtitle">The four-stroke cycle, in colour</span></span>
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+</summary>
+<div class="panel-body">
+<label class="switch-row"><span>Show cycle cues</span><input id="cycle-enabled" type="checkbox"></label>
+<p id="cycle-description" class="readout"></p>
+<details class="hint"><summary>What this shows</summary>
+<p>Cyan: incoming fuel–air charge · blue: compression · orange: combustion/power · grey: exhaust. Arrows show port flow direction. Use Section view to see the charge inside the cylinder.</p>
+<p>Illustrative particles and ideal stroke timing; not measured temperature, pressure or CFD. The particle region is not the complete chamber volume. Reference: GTSIO-520 manual A-3-3 / A-3-4, induction and continuous port injection.</p>
+</details>
+</div>
+</details>
+
+<details class="panel">
+<summary>
+<span class="panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span>
+<span class="panel-heading"><span class="panel-title">Look inside</span><span class="panel-subtitle">Cut away the exterior to see inside</span></span>
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+</summary>
+<div class="panel-body">
+<fieldset id="section-controls" disabled>
+<label class="switch-row"><span>Section view</span><input id="section-enabled" type="checkbox"></label>
+<div class="field-row">
+<div><label for="section-axis">Cut direction</label><select id="section-axis"><option value="x">Across X</option><option value="y">Across Y</option><option value="z">Across Z</option></select></div>
+<div><label for="section-position">Cut position <output id="section-value" for="section-position">50%</output></label>
+<input id="section-position" type="range" min="0" max="100" value="50" aria-describedby="section-note"></div>
+</div>
+<button id="section-flip" type="button" aria-pressed="false">
+<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3 21 7l-4 4"/><path d="M3 7h18"/><path d="M7 21 3 17l4-4"/><path d="M21 17H3"/></svg>
+Reverse cut
+</button>
 </fieldset>
-<details><summary>Sources and modelling status</summary><p id="part-source">Choose a component to see its catalogue reference.</p><p id="part-evidence">This study combines documented dimensions and reconstructed geometry. The detailed evidence audit is pending.</p></details>
-<p><small>CAD-derived cylinder study. Valve timing and flow visualisation are still under development.</small></p>
+<details class="hint" id="section-note"><summary>What this shows</summary><p>Filled cut faces show the material crossed by the section; real cavities stay open. Transparent surrounding parts omit the fill for clarity. This is a display section, not a CAD measurement. Use the component list to select a cut face.</p></details>
+</div>
+</details>
+
+<details><summary>Sources and modelling status</summary><p id="part-source">Choose a component to see its catalogue reference.</p><p id="part-evidence">This study combines documented dimensions and reconstructed geometry. The detailed evidence audit is pending.</p>
+<p><small>CAD-derived cylinder study. Valve timing and flow visualisation are still under development.</small></p></details>
 <details><summary>Background music</summary><p><small>Quiet Workshop · our original score. Optional, softly played, and repeated with a gentle fade between plays.</small></p>
-<audio id="music" loop preload="none"></audio><button id="music-toggle" type="button" aria-pressed="false">Play music</button>
-<label for="music-volume">Music volume</label><input id="music-volume" type="range" min="0" max="100" value="30" style="width:100%;box-sizing:border-box">
+<audio id="music" loop preload="none"></audio>
+<div class="button-row" style="margin-top:10px">
+<button id="music-toggle" type="button" aria-pressed="false">
+<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
+<span id="music-toggle-label">Play music</span>
+</button>
+</div>
+<label for="music-volume">Music volume</label><input id="music-volume" type="range" min="0" max="100" value="30">
 <p id="music-status" role="status"><small>Press play to load the music. Pause or adjust volume whenever you wish.</small></p></details>
-</aside></main>
-<footer><button id="load" disabled>Reload model</button><button id="cancel-load" hidden>Cancel download</button>
-<details><summary>Loading details</summary><label for="drive">Google Drive model sharing link</label><input id="drive" type="url" placeholder="https://drive.google.com/file/d/…/view"><p>The public model loads through Google Drive API without Google sign-in. No manual file saving is needed.</p><pre id="log"></pre></details>
-</footer><script type="module" src="./viewer.js?v=20260911-cycle-preview"></script></body></html>
+</aside>
+</main>
+<footer>
+<button id="load" disabled>Reload model</button><button id="cancel-load" hidden>Cancel download</button>
+<details><summary>Loading details</summary><label for="drive">Google Drive model sharing link</label><input id="drive" type="url" placeholder="https://drive.google.com/file/d/…/view"><p><small>The public model loads through Google Drive API without Google sign-in. No manual file saving is needed.</small></p><pre id="log"></pre></details>
+</footer>
+<script type="module" src="./viewer.js?v=20260911-design-pass"></script></body></html>

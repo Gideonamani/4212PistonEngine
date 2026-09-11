@@ -19,14 +19,14 @@ $('music-toggle').onclick=async()=>{
   finally{$('music-toggle').disabled=false;}
 };
 $('music-volume').oninput=()=>{music.volume=Number($('music-volume').value)/100;};
-music.addEventListener('playing',()=>{$('music-status').textContent='Playing Quiet Workshop.';$('music-toggle').textContent='Pause music';$('music-toggle').setAttribute('aria-pressed','true');});
-music.addEventListener('pause',()=>{$('music-status').textContent='Music paused.';$('music-toggle').textContent='Play music';$('music-toggle').setAttribute('aria-pressed','false');});
+music.addEventListener('playing',()=>{$('music-status').textContent='Playing Quiet Workshop.';$('music-toggle-label').textContent='Pause music';$('music-toggle').setAttribute('aria-pressed','true');});
+music.addEventListener('pause',()=>{$('music-status').textContent='Music paused.';$('music-toggle-label').textContent='Play music';$('music-toggle').setAttribute('aria-pressed','false');});
 music.addEventListener('waiting',()=>{$('music-status').textContent='Loading music…';});
 music.addEventListener('error',()=>{$('music-status').textContent='Music could not load. The model viewer is still available; reload the page to retry music.';});
 const explorer=$('explorer');
 function syncFullscreen(){
   const active=document.fullscreenElement===explorer||explorer.classList.contains('expanded');
-  $('fullscreen').textContent=active?'↙ Normal view':'⛶ Full screen';
+  $('fullscreen-label').textContent=active?'Normal view':'Full screen';
   $('fullscreen').setAttribute('aria-pressed',String(active));
   $('fullscreen').title=active?'Return to normal view (Esc)':'Expand viewer';
   document.body.classList.toggle('viewer-expanded',active);
@@ -49,7 +49,7 @@ document.addEventListener('keydown',async e=>{
 });
 $('toggle-controls').onclick=()=>{
   const hidden=explorer.classList.toggle('controls-hidden');
-  $('toggle-controls').textContent=hidden?'Show controls':'Hide controls';
+  $('toggle-controls-label').textContent=hidden?'Show controls':'Hide controls';
   $('toggle-controls').setAttribute('aria-expanded',String(!hidden));
 };
 const scene = new THREE.Scene();
@@ -81,7 +81,7 @@ const sections=[];
 let motionProfile=null,motionEntries=[],motionAngle=36,playing=false,animationFrame=0,lastFrame=0;
 let cycleVisuals=null;
 $('cycle-enabled').onchange=()=>{cycleVisuals?.setVisible($('cycle-enabled').checked);renderer.render(scene,camera);};
-function stopMotion(){playing=false;cancelAnimationFrame(animationFrame);$('motion-play').textContent='Play mechanism';$('motion-play').setAttribute('aria-pressed','false');}
+function stopMotion(){playing=false;cancelAnimationFrame(animationFrame);$('motion-play-label').textContent='Play';$('motion-play').setAttribute('aria-pressed','false');}
 function groupMatrices(degrees){
   const p=mechanismPose(degrees,motionProfile.radius_m,motionProfile.rod_length_m);
   return {Piston:new THREE.Matrix4().makeTranslation(...p.piston),
@@ -148,7 +148,7 @@ function animateMechanism(time){
 }
 $('motion-play').onclick=()=>{
   if(playing){stopMotion();return;}if(!motionProfile)return;
-  playing=true;lastFrame=performance.now();$('motion-play').textContent='Pause mechanism';$('motion-play').setAttribute('aria-pressed','true');animationFrame=requestAnimationFrame(animateMechanism);
+  playing=true;lastFrame=performance.now();$('motion-play-label').textContent='Pause';$('motion-play').setAttribute('aria-pressed','true');animationFrame=requestAnimationFrame(animateMechanism);
 };
 $('motion-angle').oninput=()=>{stopMotion();setMotion(Number($('motion-angle').value));};
 $('motion-preset').onchange=()=>{if($('motion-preset').value!==''){stopMotion();setMotion(Number($('motion-preset').value));}};
