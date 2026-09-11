@@ -35,6 +35,7 @@ button,select{min-height:44px}input[type=range]{min-height:24px}fieldset{min-wid
 <fieldset id="motion-controls" disabled><legend>Mechanism motion</legend>
 <button id="motion-play" aria-pressed="false">Play mechanism</button><button id="motion-reset">Reset angle</button>
 <label for="motion-angle">Crank angle <output id="motion-value">36°</output></label><input id="motion-angle" type="range" min="0" max="720" step="1" value="36" style="width:100%;box-sizing:border-box">
+<label for="motion-preset">Jump to angle</label><select id="motion-preset"><option value="">Choose a position…</option><option value="0">0°</option><option value="90">90°</option><option value="180">180°</option><option value="270">270°</option><option value="360">360°</option><option value="450">450°</option><option value="540">540°</option><option value="630">630°</option><option value="720">720° · cycle end</option></select>
 <label for="motion-speed">Teaching speed</label><select id="motion-speed"><option value="15">Slow · 15°/s</option><option value="30" selected>Normal · 30°/s</option><option value="60">Fast · 60°/s</option></select>
 <p id="motion-note">Checking motion profile…</p><p><small id="motion-scope">Only the piston, rod and crank move. Valves remain closed. This demonstrates the mechanism, not the complete operating cycle. Use Section view to see inside.</small></p></fieldset>
 <fieldset id="cycle-controls" hidden><legend>Operating cycle</legend>

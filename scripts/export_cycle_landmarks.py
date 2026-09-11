@@ -6,12 +6,19 @@ repo=Path(__file__).resolve().parents[1]
 candidate=json.loads((repo/'data/spring-seat-candidate.json').read_text())
 source=repo/candidate['candidate_file'];sha=hashlib.sha256(source.read_bytes()).hexdigest()
 assert sha==candidate['candidate_sha256']
+print('Opening CAD candidate',flush=True)
 doc=App.openDocument(str(source));target=repo/'data/cycle-landmarks.json'
 report={'source_sha256':sha,'audit_complete':False,'passed':False,'ports':{},'chamber':{},'checks':[],
         'scope':'CAD-derived port axes and sampled chamber cue region; illustrative flow, not CFD'}
 def world(name):
  b=doc.getObject(name);s=b.Shape.copy();s.Placement=b.getParentGeoFeatureGroup().getGlobalPlacement().multiply(s.Placement);return s
+def checkpoint():
+ temporary=target.with_suffix('.tmp');temporary.write_text(json.dumps(report,indent=2)+'\n');temporary.replace(target)
+def contains(shape,p):
+ # Outside the solid's axis-aligned bounds is necessarily outside the solid.
+ return shape.BoundBox.isInside(p) and shape.isInside(p,1e-6,True)
 try:
+ checkpoint();print('Recomputing zero-degree pose',flush=True)
  doc.Motion.set('B2','0 deg');doc.recompute()
  head=world('CylinderHead');barrel=world('CylinderBarrel')
  piston_offset=world('PistonBody').BoundBox.XMax-doc.Piston.getGlobalPlacement().Base.x
@@ -21,7 +28,7 @@ try:
   start=frame.Base;mouth=start+axis*feature.Length.Value
   # The external cue stays outside the full pocket's end; the arrow points along the real axis.
   points=[mouth+axis*d for d in [0,8,16,24]]
-  if any(head.isInside(p,1e-6,True) for p in points):raise RuntimeError(label+' cue enters head material')
+  if any(contains(head,p) for p in points):raise RuntimeError(label+' cue enters head material')
   report['ports'][label.lower()]={'inner_origin_mm':list(start),'outward_axis':list(axis),'outer_endpoint_mm':list(mouth),
     'radius_mm':sk.Geometry[0].Radius,'feature':feature.Name,'geometry_status':'Reconstructed CAD passage'}
  report['chamber']={'radius_mm':doc.Parameters.Bore.Value*.22,
@@ -32,6 +39,7 @@ try:
  axes={label:doc.getObject(label+'Valve').getGlobalPlacement().Rotation.multVec(App.Vector(1,0,0)) for label in closed}
  radius=doc.Parameters.Stroke.Value/2;rod=doc.Parameters.RodLength.Value
  for angle in range(0,721,30):
+  report['active_angle_deg']=angle;checkpoint();print('Checking chamber region at',angle,'degrees',flush=True)
   theta=math.radians(angle);px=radius*math.cos(theta)+math.sqrt(rod*rod-(radius*math.sin(theta))**2)
   phase=angle%720
   lifts={'Intake':7*math.sin(math.pi*phase/180)**2 if 0<phase<180 else 0,
@@ -47,10 +55,13 @@ try:
    for radial in [0,.5,1]:
     for j in range(12):
      p=App.Vector(x,r*radial*math.cos(j*math.pi/6),r*radial*math.sin(j*math.pi/6))
-     if any(s.isInside(p,1e-6,True) for s in shapes):raise RuntimeError(f'Cue point in solid at {angle}: {list(p)}')
+     if any(contains(s,p) for s in shapes):raise RuntimeError(f'Cue point in solid at {angle}: {list(p)}')
      count+=1
   report['checks'].append({'angle_deg':angle,'samples_outside_head_barrel_valves':count,'piston_front_clearance_mm':1})
- report['audit_complete']=True;report['passed']=True;target.write_text(json.dumps(report,indent=2)+'\n')
+  checkpoint()
+ report.pop('active_angle_deg',None);report['audit_complete']=True;report['passed']=True;checkpoint()
  print(json.dumps(report,indent=2),flush=True)
+except Exception as error:
+ report['error']=str(error);checkpoint();raise
 finally:App.closeDocument(doc.Name)
 assert hashlib.sha256(source.read_bytes()).hexdigest()==sha

@@ -36,7 +36,7 @@ if args.valves:
             'maximum_lift_mm':spring['springs'][pid]['maximum_lift_mm'],'target':blender['spring_motion']['target_name']}
             for pid in blender['spring_motion']['ids']}
         profile['scope']='Unreleased valve and spring motion preview; gas integration pending.'
-    landmarks_file=repo/'data/cycle-landmarks.json'
+    landmarks_file=repo/'data/cycle-cues-profile.json'
     if landmarks_file.exists():
         landmarks=json.loads(landmarks_file.read_text())
         assert landmarks['passed'] and landmarks['audit_complete'] and landmarks['source_sha256']==check['source_sha256']

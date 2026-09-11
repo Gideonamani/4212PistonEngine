@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "source_sha256": "050ff5444c8115abfeaf2bcb34e9a7b6b1bab07ab604f7aa3e16aa6c91bbb2de",
+  "passed": true,
+  "audit_complete": true,
+  "ports": {
+    "intake": {
+      "inner_origin_mm": [
+        296.05,
+        -33.0,
+        0.0
+      ],
+      "outward_axis": [
+        0.0,
+        -1.0000000000000002,
+        0.0
+      ],
+      "outer_endpoint_mm": [
+        296.05,
+        -123.00000000000001,
+        0.0
+      ],
+      "radius_mm": 19.0,
+      "feature": "IntakeCrossPort",
+      "geometry_status": "Reconstructed CAD passage"
+    },
+    "exhaust": {
+      "inner_origin_mm": [
+        296.05,
+        33.0,
+        0.0
+      ],
+      "outward_axis": [
+        0.0,
+        1.0000000000000002,
+        0.0
+      ],
+      "outer_endpoint_mm": [
+        296.05,
+        123.00000000000001,
+        0.0
+      ],
+      "radius_mm": 16.0,
+      "feature": "ExhaustCrossPort",
+      "geometry_status": "Reconstructed CAD passage"
+    }
+  },
+  "chamber": {
+    "radius_mm": 29.348176000000002,
+    "front_x_mm": 262.05,
+    "piston_front_offset_mm": 36.0,
+    "piston_margin_mm": 1,
+    "display_status": "Conservative central cue region; does not represent total chamber volume"
+  },
+  "audit_sha256": "780d93e4366af0bf423626ba034349ff0b14695b5de9af258a4c03959351a8d4",
+  "scope": "Whole maximum display region clears head/barrel and sampled valve lifts; piston clearance uses its moving axial bound. Reconstructed geometry, illustrative cues, not CFD."
+}

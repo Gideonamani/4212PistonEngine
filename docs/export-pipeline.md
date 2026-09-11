@@ -36,4 +36,6 @@ The optional `--full-vertices` check uses SciPy to compare each part's world-spa
 
 ## Baseline result
 
+Exact-angle browser follow-up: the Jump to angle control pauses motion at the chosen 0–720 degree position. The rod variant displayed 221.1 mm at 0/720 degrees and 119.5 mm at 180 degrees; the fin variant displayed 219.1 mm at 0/720 and 117.5 mm at 180. These rounded browser readings agree with the CAD-derived values and preserve the intended 2 mm rod-change displacement. The earlier exact-angle browser gate is therefore satisfied for slider-crank propagation. Complete valve-profile propagation and versioned production release/rollback remain open.
+
 `data/pipeline-baseline.json` records the completed baseline: all 60 IDs survived, the explicit bind pose is 0°, and maximum per-part world-bounds disagreement is 1.49e-8 metres. The generated GLB is 25,223,044 bytes. The established smooth-surface/35° sharp-edge shading rule is retained without altering vertex positions. This verifies the initial export path, not the two required CAD-edit propagation exercises or browser integration.

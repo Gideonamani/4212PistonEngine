@@ -1,0 +1,314 @@
+{
+  "source_sha256": "050ff5444c8115abfeaf2bcb34e9a7b6b1bab07ab604f7aa3e16aa6c91bbb2de",
+  "passed": true,
+  "audit_complete": true,
+  "checks": [
+    {
+      "part": "CylinderHead",
+      "lift_mm": null,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "CylinderBarrel",
+      "lift_mm": null,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 0.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 0.25,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 0.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 0.75,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 1.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 1.25,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 1.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 1.75,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 2.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 2.25,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 2.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 2.75,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 3.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 3.25,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 3.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 3.75,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 4.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 4.25,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 4.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 4.75,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 5.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 5.25,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 5.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 5.75,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 6.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 6.25,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 6.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 6.75,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "IntakeValve",
+      "lift_mm": 7.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 0.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 0.25,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 0.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 0.75,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 1.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 1.25,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 1.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 1.75,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 2.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 2.25,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 2.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 2.75,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 3.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 3.25,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 3.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 3.75,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 4.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 4.25,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 4.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 4.75,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 5.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 5.25,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 5.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 5.75,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 6.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 6.25,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 6.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 6.75,
+      "intersection_mm3": 0.0
+    },
+    {
+      "part": "ExhaustValve",
+      "lift_mm": 7.0,
+      "intersection_mm3": 0.0
+    }
+  ],
+  "scope": "Complete maximum cue cylinder against head/barrel and 29 valve lifts per train; sampled valve positions, not CFD",
+  "maximum_region": {
+    "start_x_mm": 154.47500000000002,
+    "end_x_mm": 262.05,
+    "radius_mm": 29.348176000000002,
+    "piston_clearance_basis": "Every dynamic cue starts 1 mm beyond the translated piston maximum X; maximum envelope used only for stationary solids and valve sweep screening"
+  }
+}

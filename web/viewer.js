@@ -104,6 +104,7 @@ function setMotion(degrees){
   root.updateMatrixWorld(true);
   for(const {group,source,cap} of sections)for(const child of group.children)if(child!==cap)child.matrix.copy(source.matrixWorld);
   $('motion-angle').value=String(degrees);$('motion-value').textContent=`${degrees.toFixed(0)}°`;
+  $('motion-preset').value=degrees%90===0?String(degrees):'';
   $('motion-note').textContent=`Piston pin: ${(mechanismPose(degrees,motionProfile.radius_m,motionProfile.rod_length_m).piston[0]*1000).toFixed(1)} mm from crank axis. CAD kinematics; teaching speed.`;
   if(valves)$('motion-note').textContent+=` ${valves.cycle.stroke} · intake lift ${valves.cycle.intakeLift.toFixed(1)} mm · exhaust lift ${valves.cycle.exhaustLift.toFixed(1)} mm.`;
   if(cycleVisuals){
@@ -150,6 +151,7 @@ $('motion-play').onclick=()=>{
   playing=true;lastFrame=performance.now();$('motion-play').textContent='Pause mechanism';$('motion-play').setAttribute('aria-pressed','true');animationFrame=requestAnimationFrame(animateMechanism);
 };
 $('motion-angle').oninput=()=>{stopMotion();setMotion(Number($('motion-angle').value));};
+$('motion-preset').onchange=()=>{if($('motion-preset').value!==''){stopMotion();setMotion(Number($('motion-preset').value));}};
 $('motion-reset').onclick=()=>{stopMotion();setMotion(motionProfile.bind_angle_deg);};
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stopMotion();});
 let isolated=false;
