@@ -2,6 +2,8 @@
 
 ## Valve motion integration in progress
 
+Latest result: native-derived spring compression is now connected in the isolated preview; see [spring animation](spring-animation.md) for extraction, validation, browser evidence and remaining gates. Earlier statements below about absent compression describe the prior rigid-motion preview.
+
 `web/valve-kinematics.mjs` computes valve translation, rocker angle, rocker socket and the fixed-length pushrod follower endpoint in CAD world coordinates. It interpolates the solved rocker-angle table by lift and derives joint positions geometrically rather than interpolating both rod ends independently. It is not wired into the published viewer yet.
 
 `scripts/test_valve_kinematics.mjs` compares socket and follower positions against all 58 recorded housing-candidate CAD poses, and checks rod closure at 701 lift positions per train. Those interpolated checks prove joint closure, not continuous solid clearance. The illustrative cycle uses sin-squared lift during ideal 180-degree intake/exhaust strokes, zero lift on the other strokes, and a closed 720-degree loop. This is not manufacturer cam timing or a gas/thermodynamic simulation.

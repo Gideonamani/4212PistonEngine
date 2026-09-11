@@ -2,7 +2,7 @@
   "passed": true,
   "parts": 60,
   "source_sha256": "050ff5444c8115abfeaf2bcb34e9a7b6b1bab07ab604f7aa3e16aa6c91bbb2de",
-  "asset_sha256": "e839e4cb3f674c75c02eab2380d5c8bfaf432251dcb3cdac1fd4cca7776a77c5",
+  "asset_sha256": "f1f54fa57ae1ccc1aa23a635674eeece7ee1c518db1e6fbd5b508ab09bb2da3c",
   "bind_angle_deg": 0.0,
   "scope": "All IDs, world bounds and bidirectional world-space vertex-set distances; not triangle connectivity, normals or browser behaviour",
   "maximum_bounds_error_m": 1.4877920784250875e-08,

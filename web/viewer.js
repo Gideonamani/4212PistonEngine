@@ -94,6 +94,8 @@ function setMotion(degrees){
     const world=transforms[group].clone().multiply(localBind);
     const delta=valves?.matrices[mesh.userData.partId];
     if(delta)world.premultiply(delta);
+    const spring=motionProfile.valves?.spring_targets?.[mesh.userData.partId];
+    if(spring)mesh.morphTargetInfluences[mesh.morphTargetDictionary[spring.target]]=valves.cycle[spring.train+'Lift']/spring.maximum_lift_mm;
     mesh.matrix.copy(mesh.parent.matrixWorld).invert().multiply(world);
   }
   root.updateMatrixWorld(true);
@@ -112,6 +114,10 @@ async function setupMotion(bytes){
     if(digest!==profile.asset_sha256)throw Error('This model version needs a verified motion profile');
     if(meshes.some(m=>!['Piston','ConnectingRod','Crank','Cylinder'].includes(profile.groups[m.userData.partId])))throw Error('Motion group is missing');
     if(profile.valves&&profile.bind_angle_deg!==0)throw Error('Valve preview requires the closed zero-degree CAD bind pose');
+    for(const [id,spring] of Object.entries(profile.valves?.spring_targets||{})){
+      const mesh=meshes.find(m=>m.userData.partId===id);
+      if(!mesh||mesh.morphTargetDictionary?.[spring.target]===undefined)throw Error('Spring shape key is missing: '+id);
+    }
     motionProfile=profile;root.updateMatrixWorld(true);
     const bind=groupMatrices(profile.bind_angle_deg);
     motionEntries=meshes.map(mesh=>{
@@ -120,6 +126,7 @@ async function setupMotion(bytes){
     });
     $('motion-controls').disabled=false;setMotion(profile.bind_angle_deg);
     if(profile.valves)$('motion-scope').textContent='Engineering preview: piston, rod, crank, valves, rockers and pushrods move together. Spring compression and gas cues are not connected yet. Lift and timing are illustrative, not manufacturer specifications.';
+    if(profile.valves?.spring_targets)$('motion-scope').textContent='Engineering preview: valve gear and spring compression follow the same crank angle as the piston. Lift and timing are illustrative, not manufacturer specifications. Gas cues are not connected yet.';
   }catch(e){motionProfile=null;$('motion-note').textContent=e.message+'. Static inspection remains available.';log(e.message);}
 }
 function animateMechanism(time){
@@ -163,6 +170,7 @@ function buildSections(){
     for(const [side,op] of [[THREE.BackSide,THREE.IncrementWrapStencilOp],[THREE.FrontSide,THREE.DecrementWrapStencilOp]]){
       const material=new THREE.MeshBasicMaterial({side,depthWrite:false,depthTest:false,colorWrite:false,stencilWrite:true,stencilFunc:THREE.AlwaysStencilFunc,stencilFail:op,stencilZFail:op,stencilZPass:op,clippingPlanes:[sectionPlane]});
       const mask=new THREE.Mesh(source.geometry,material);mask.matrixAutoUpdate=false;mask.matrix.copy(source.matrixWorld);mask.renderOrder=index*3;group.add(mask);
+      if(source.morphTargetInfluences)mask.morphTargetInfluences=source.morphTargetInfluences;
     }
     const material=new THREE.MeshStandardMaterial({color:0x9cabb8,roughness:.65,metalness:.1,side:THREE.DoubleSide,stencilWrite:true,stencilRef:0,stencilFunc:THREE.NotEqualStencilFunc,stencilFail:THREE.ReplaceStencilOp,stencilZFail:THREE.ReplaceStencilOp,stencilZPass:THREE.ReplaceStencilOp});
     const cap=new THREE.Mesh(new THREE.PlaneGeometry(span,span),material);cap.renderOrder=index*3+1;cap.onAfterRender=()=>renderer.clearStencil();group.add(cap);scene.add(group);

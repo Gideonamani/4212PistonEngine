@@ -24,6 +24,18 @@ if args.valves:
     assert data['bind_angle_deg']==0
     profile['valves']=valves
     profile['scope']='Unreleased rigid valve motion preview; spring compression and gas integration pending.'
+    blender=json.loads((folder/'blender-manifest.json').read_text())
+    if 'spring_motion' in blender:
+        morph=json.loads((folder/'spring-morph-verification.json').read_text())
+        assert morph['passed'] and morph['asset_sha256']==check['asset_sha256'] and morph['source_sha256']==check['source_sha256']
+        spring_file=repo/'data/spring-motion.json'
+        assert hashlib.sha256(spring_file.read_bytes()).hexdigest()==blender['spring_motion']['audit_sha256']
+        spring=json.loads(spring_file.read_text())
+        assert spring['passed'] and spring['audit_complete'] and spring['source_sha256']==check['source_sha256']
+        profile['valves']['spring_targets']={pid:{'train':'intake' if pid.startswith('Intake') else 'exhaust',
+            'maximum_lift_mm':spring['springs'][pid]['maximum_lift_mm'],'target':blender['spring_motion']['target_name']}
+            for pid in blender['spring_motion']['ids']}
+        profile['scope']='Unreleased valve and spring motion preview; gas integration pending.'
     shutil.copy2(repo/'scripts/valve-transform-check.html',preview/'valve-transform-check.html')
     shutil.copy2(repo/'data/spring-seat-contact.json',preview/'valve-audit.json')
 (preview/'motion.json').write_text(json.dumps(profile,indent=2)+'\n')

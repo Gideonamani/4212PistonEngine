@@ -1,0 +1,171 @@
+{
+  "source_sha256": "050ff5444c8115abfeaf2bcb34e9a7b6b1bab07ab604f7aa3e16aa6c91bbb2de",
+  "geometry_sha256": "da7f6fe7a8319679ba858c973b31acdcda5ac22e92ada6c4310f29be313bd0af",
+  "audit_complete": true,
+  "passed": true,
+  "scope": "Screw-sweep presentation deformation against sampled native coil surface points; not load or fatigue validation",
+  "springs": {
+    "IntakeInnerSpring": {
+      "start_x_mm": 66.4,
+      "mean_radius_mm": 10.5,
+      "wire_radius_mm": 1.3999999999999995,
+      "pitch_mm": 7.033333333333334,
+      "turns": 6.0,
+      "body_world_translation_mm": [
+        274.05,
+        -33.0,
+        0.0
+      ],
+      "body_world_quaternion_xyzw": [
+        0.0,
+        0.0,
+        0.10018806161207638,
+        -0.9949685182509117
+      ],
+      "maximum_lift_mm": 7,
+      "left_handed": true,
+      "angular_direction": -1,
+      "median_profile_residual_mm": 2.5969356732824522e-06
+    },
+    "IntakeOuterSpring": {
+      "start_x_mm": 67.0,
+      "mean_radius_mm": 15.5,
+      "wire_radius_mm": 2.0,
+      "pitch_mm": 6.833333333333333,
+      "turns": 6.0,
+      "body_world_translation_mm": [
+        274.05,
+        -33.0,
+        0.0
+      ],
+      "body_world_quaternion_xyzw": [
+        0.0,
+        0.0,
+        0.10018806161207638,
+        -0.9949685182509117
+      ],
+      "maximum_lift_mm": 7,
+      "left_handed": false,
+      "angular_direction": 1,
+      "median_profile_residual_mm": 3.2161952954190554e-06
+    },
+    "ExhaustInnerSpring": {
+      "start_x_mm": 66.4,
+      "mean_radius_mm": 10.5,
+      "wire_radius_mm": 1.3999999999999995,
+      "pitch_mm": 7.033333333333334,
+      "turns": 6.0,
+      "body_world_translation_mm": [
+        274.05,
+        33.0,
+        0.0
+      ],
+      "body_world_quaternion_xyzw": [
+        0.0,
+        0.0,
+        0.13052619222005157,
+        0.9914448613738104
+      ],
+      "maximum_lift_mm": 7,
+      "left_handed": true,
+      "angular_direction": -1,
+      "median_profile_residual_mm": 2.5064985426093145e-06
+    },
+    "ExhaustOuterSpring": {
+      "start_x_mm": 67.0,
+      "mean_radius_mm": 15.5,
+      "wire_radius_mm": 2.0,
+      "pitch_mm": 6.833333333333333,
+      "turns": 6.0,
+      "body_world_translation_mm": [
+        274.05,
+        33.0,
+        0.0
+      ],
+      "body_world_quaternion_xyzw": [
+        0.0,
+        0.0,
+        0.13052619222005157,
+        0.9914448613738104
+      ],
+      "maximum_lift_mm": 7,
+      "left_handed": false,
+      "angular_direction": 1,
+      "median_profile_residual_mm": 3.5743523307818492e-06
+    }
+  },
+  "checks": [
+    {
+      "id": "IntakeInnerSpring",
+      "lift_mm": 0,
+      "sample_count": 96,
+      "maximum_surface_distance_mm": 1.2638688408937167e-13
+    },
+    {
+      "id": "IntakeOuterSpring",
+      "lift_mm": 0,
+      "sample_count": 96,
+      "maximum_surface_distance_mm": 1.4930910615748054e-13
+    },
+    {
+      "id": "ExhaustInnerSpring",
+      "lift_mm": 0,
+      "sample_count": 96,
+      "maximum_surface_distance_mm": 1.1594045810227784e-13
+    },
+    {
+      "id": "ExhaustOuterSpring",
+      "lift_mm": 0,
+      "sample_count": 96,
+      "maximum_surface_distance_mm": 1.2105321216467374e-13
+    },
+    {
+      "id": "IntakeInnerSpring",
+      "lift_mm": 3.5,
+      "sample_count": 96,
+      "maximum_surface_distance_mm": 4.093514260302434e-06
+    },
+    {
+      "id": "IntakeOuterSpring",
+      "lift_mm": 3.5,
+      "sample_count": 96,
+      "maximum_surface_distance_mm": 9.269732012451331e-06
+    },
+    {
+      "id": "ExhaustInnerSpring",
+      "lift_mm": 3.5,
+      "sample_count": 96,
+      "maximum_surface_distance_mm": 4.056891529807038e-06
+    },
+    {
+      "id": "ExhaustOuterSpring",
+      "lift_mm": 3.5,
+      "sample_count": 96,
+      "maximum_surface_distance_mm": 9.086584449527254e-06
+    },
+    {
+      "id": "IntakeInnerSpring",
+      "lift_mm": 7,
+      "sample_count": 96,
+      "maximum_surface_distance_mm": 4.096841002419277e-06
+    },
+    {
+      "id": "IntakeOuterSpring",
+      "lift_mm": 7,
+      "sample_count": 96,
+      "maximum_surface_distance_mm": 9.800544649949388e-07
+    },
+    {
+      "id": "ExhaustInnerSpring",
+      "lift_mm": 7,
+      "sample_count": 96,
+      "maximum_surface_distance_mm": 4.127763973541193e-06
+    },
+    {
+      "id": "ExhaustOuterSpring",
+      "lift_mm": 7,
+      "sample_count": 96,
+      "maximum_surface_distance_mm": 9.93221003877363e-07
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "source_sha256": "050ff5444c8115abfeaf2bcb34e9a7b6b1bab07ab604f7aa3e16aa6c91bbb2de",
+  "asset_sha256": "f1f54fa57ae1ccc1aa23a635674eeece7ee1c518db1e6fbd5b508ab09bb2da3c",
+  "springs": [
+    {
+      "id": "ExhaustInnerSpring",
+      "vertices_checked": 100065,
+      "maximum_displacement_error_m": 1.5911137211537707e-08
+    },
+    {
+      "id": "ExhaustOuterSpring",
+      "vertices_checked": 109752,
+      "maximum_displacement_error_m": 1.622399771648886e-08
+    },
+    {
+      "id": "IntakeInnerSpring",
+      "vertices_checked": 100288,
+      "maximum_displacement_error_m": 1.5853745854820392e-08
+    },
+    {
+      "id": "IntakeOuterSpring",
+      "vertices_checked": 109263,
+      "maximum_displacement_error_m": 1.600548378145952e-08
+    }
+  ],
+  "scope": "All exported morph displacements compared to CAD-derived screw-sweep deformation; native surface agreement is separately sampled in spring-motion.json"
+}
