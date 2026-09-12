@@ -12,7 +12,7 @@ The initial engineering reference is the current GTSIO-520-H study. Engine varia
 
 ## Current baseline
 
-12 September update: the local operating-cylinder preview now uses a lossless 20.2 MB download instead of 35.0 MB (42.25% reduction), with identical decoded geometry and motion. Thirteen numerical/transfer tests and 14,497 browser checks pass. This reduces network transfer, not triangle count or GPU memory. Physical A16 validation and production publication remain open. See [download optimization](model-download-optimization.md).
+12 September update: the local operating-cylinder preview now uses a lossless 20.2 MB download instead of 35.0 MB (42.25% reduction), with identical decoded geometry and motion. Thirteen numerical/transfer tests and 14,497 browser checks pass. This reduces network transfer, not triangle count or GPU memory. M2 physical-motion validation and production publication remain open. See [download optimization](model-download-optimization.md).
 
 M3 continuation, 12 September: `releases/operating-cylinder-20260912.json` records the proposed release's exact model and transport hashes. The release-assembly command creates a self-contained, hash-verified candidate with the matching operating motion profile while deliberately removing the old Drive binding. This lets versioned Drive/Pages promotion be a final atomic review step rather than mixing the new operating model with the existing static asset. See [release rollback](release-rollback.md).
 
@@ -26,7 +26,7 @@ M3 continuation, 12 September: `releases/operating-cylinder-20260912.json` recor
 | CAD | Detailed single-cylinder study: 60 bodies and 284 constrained sketches; selected geometry/motion checks completed | Audit reconstructed features and interfaces; not a validated complete engine |
 | Blender | Editable presentation scenes; assembly orbit, illustrative cycle and 60-component tour videos | Web-compatible operation data and animation; polish and refinement |
 | Audio | Soft original Quiet Workshop score in video versions; silent versions retained; optional website playback and volume controls | Physical-phone playback check |
-| Website | GitHub Pages loads the 24.1 MiB GLB through restricted Drive API; 60 IDs, selection/isolation, solid sections, fullscreen, progress/retry, evidence status and slider-crank playback implemented | Synchronized valves/gas cues, lessons, physical-phone validation and optimization |
+| Website | GitHub Pages loads the 24.1 MiB GLB through restricted Drive API; 60 IDs, selection/isolation, solid sections, fullscreen, progress/retry, evidence status and slider-crank playback implemented | Lesson review, M2 physical-motion validation and optimization |
 | Evidence | Manual procedure, seed component catalogue and example claims | Complete claim review for the first release; resolve critical unknowns |
 | Pipeline | Individual export/update scripts and working Drive synchronization | One reproducible build, versioned release manifest, rollback and CAD-edit propagation proof |
 
