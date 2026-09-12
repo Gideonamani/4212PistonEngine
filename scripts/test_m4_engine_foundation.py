@@ -34,6 +34,10 @@ for number in range(1, 7):
     assert groups[f"cylinder-{number}"]["stable_binding"]["instance_id"] == f"cylinder-{number}"
 interfaces = {item["id"]: item for item in m4["interfaces"]}
 assert set(interfaces) == {"crankcase-to-cylinder-station", "crankshaft-to-cylinder-rods", "crankshaft-to-primary-drive"}
+ratios = m4["primary_drivetrain"]["documented_ratios_to_crankshaft"]
+assert ratios == {"propeller_drive": .667, "magneto_drive": 1.5, "tachometer_drive": .5,
+                  "starter_drive": 32, "alternator_drive": 3, "vacuum_pump_drive": 1.14,
+                  "propeller_governor_drive": .809}
 assert "journal-to-bearing mapping" in " ".join(m4["evidence_register"]["unknowns"])
 assert m4["export_binding"]["current_mode"] == "legacy-hierarchy-selector"
 assert m4["export_binding"]["required_future_glb_extras"] == ["engine_id", "module_id", "instance_id", "teaching_ids"]

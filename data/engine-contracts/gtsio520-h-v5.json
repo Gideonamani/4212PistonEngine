@@ -76,6 +76,7 @@
       "relationships":["six connecting-rod interfaces","crankcase bearing support","primary drivetrain input"],
       "status":"reconstructed geometry with inherited teaching motion; not a manufacturing assembly claim"
     },
+    "primary_drivetrain":{"source":"gtsio520_series.pdf, C-3-2/C-3-3 (June 1980), GTSIO-520-H detail engine specifications","documented_ratios_to_crankshaft":{"propeller_drive":0.667,"magneto_drive":1.5,"tachometer_drive":0.5,"starter_drive":32,"alternator_drive":3,"vacuum_pump_drive":1.14,"propeller_governor_drive":0.809},"documented_rotation_reference":"Manual rotation notes are stated facing the engine drive pad; the browser must not infer a spatial axis from them.","status":"documented ratios; GLB gear geometry and visual angular speeds still require export-to-contract verification"},
     "interfaces": [
       {"id":"crankcase-to-cylinder-station","from":"crankcase-v5","to":"cylinder-module","kind":"mounting datum","status":"reconstructed; numerical datums pending manual/CAD evidence"},
       {"id":"crankshaft-to-cylinder-rods","from":"gtsio520h:crankshaft:v1","to":"cylinder-module","kind":"rotary-to-reciprocating","status":"illustrated by inherited action; six-pair continuity previously checked"},
@@ -91,7 +92,7 @@
       "derived_values":["firing events at 0,120,240,360,480,600 degrees from declared order"],
       "reconstructed_geometry":["crankcase contours","station placement/orientation","bearing relationship representation","gear details"],
       "illustrative_behaviour":["inherited V4 operating action","whole-engine drivetrain motion"],
-      "unknowns":["applicable manual mounting datums and bank angles","journal-to-bearing mapping","crank throw indexing","primary-drive ratios","whole-engine valve timing and gas paths"]
+      "unknowns":["applicable manual mounting datums and bank angles","journal-to-bearing mapping","crank throw indexing","GLB primary-drive angular-speed verification","whole-engine valve timing and gas paths"]
     }
   },
   "modules": [
