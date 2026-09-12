@@ -14,6 +14,8 @@ The initial engineering reference is the current GTSIO-520-H study. Engine varia
 
 12 September update: the local operating-cylinder preview now uses a lossless 20.2 MB download instead of 35.0 MB (42.25% reduction), with identical decoded geometry and motion. Thirteen numerical/transfer tests and 14,497 browser checks pass. This reduces network transfer, not triangle count or GPU memory. Physical A16 validation and production publication remain open. See [download optimization](model-download-optimization.md).
 
+M3 continuation, 12 September: `releases/operating-cylinder-20260912.json` records the proposed release's exact model and transport hashes. The release-assembly command creates a self-contained, hash-verified candidate with the matching operating motion profile while deliberately removing the old Drive binding. This lets versioned Drive/Pages promotion be a final atomic review step rather than mixing the new operating model with the existing static asset. See [release rollback](release-rollback.md).
+
 | Area | Verified now | Remaining work |
 |---|---|---|
 | CAD | Detailed single-cylinder study: 60 bodies and 284 constrained sketches; selected geometry/motion checks completed | Audit reconstructed features and interfaces; not a validated complete engine |

@@ -1,0 +1,16 @@
+{
+  "release_id": "operating-cylinder-20260912",
+  "state": "planned-unpromoted-candidate",
+  "asset_sha256": "f1f54fa57ae1ccc1aa23a635674eeece7ee1c518db1e6fbd5b508ab09bb2da3c",
+  "transport_sha256": "05d58e64b7035bfda2b466dfbebf17efabb31ee758bd5a5c677984fe45af1978",
+  "catalogue_source": "web/components.json",
+  "motion_source": "build/pipeline-spring-seat/preview/motion.json",
+  "required_before_promotion": [
+    "Create and verify the local candidate with scripts/assemble_operating_release.py.",
+    "Upload the compressed asset as a new versioned Drive file; preserve the current working file.",
+    "Record the Drive file ID, anonymous API-delivery result and asset hash in the promoted manifest.",
+    "Publish matching web configuration and retain this candidate's predecessor for rollback.",
+    "Record physical Samsung Galaxy A16 results before treating M1/M2 as complete."
+  ],
+  "scope": "Release planning record only; no Drive file or Pages configuration is changed by this file."
+}
