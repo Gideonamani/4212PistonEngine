@@ -2,9 +2,10 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {createTransfer} from './transfer.mjs';
+import {decodeModel} from './model-transport.mjs';
 import {mechanismPose} from './kinematics.mjs';
 import {valveMatrices} from './valve-transforms.mjs';
-import {createCycleVisuals} from './cycle-visuals.mjs';
+import {createCycleVisuals} from './cycle-visuals.mjs?v=20260911-moving-particles-3';
 
 const $ = id => document.getElementById(id);
 const say = text => $('status').textContent = text;
@@ -72,7 +73,7 @@ const resize = new ResizeObserver(() => {
   renderer.setSize(width,height,false); camera.aspect=width/height;camera.updateProjectionMatrix();renderer.render(scene,camera);
 });resize.observe($('view'));
 controls.addEventListener('change',()=>renderer.render(scene,camera));
-let root, meshes=[], selected='', catalogue=new Map(), busy=false, apiKey='';
+let root, meshes=[], selected='', catalogue=new Map(), busy=false, apiKey='',localModelURL='';
 const ray = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 const originals = new Map();
@@ -81,6 +82,20 @@ const sections=[];
 let motionProfile=null,motionEntries=[],motionAngle=36,playing=false,animationFrame=0,lastFrame=0;
 let cycleVisuals=null;
 $('cycle-enabled').onchange=()=>{cycleVisuals?.setVisible($('cycle-enabled').checked);renderer.render(scene,camera);};
+$('cycle-section').onclick=()=>{
+  $('cycle-enabled').checked=true;cycleVisuals?.setVisible(true);
+  $('section-enabled').checked=true;$('section-axis').value='y';$('section-position').value='50';sectionFlipped=true;
+  if(motionProfile?.cycle_landmarks){
+    const landmarks=motionProfile.cycle_landmarks;
+    const crown=mechanismPose(motionAngle,motionProfile.radius_m,motionProfile.rod_length_m).piston[0]+landmarks.chamber.piston_front_offset_mm/1000;
+    const points=Object.values(landmarks.ports).map(p=>new THREE.Vector3(p.outer_endpoint_mm[0]/1000,0,-p.outer_endpoint_mm[1]/1000));
+    points.push(new THREE.Vector3(crown-.015,0,0));
+    const box=new THREE.Box3().setFromPoints(points).expandByScalar(.035),size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());
+    const distance=Math.max(size.z,size.x/camera.aspect)/(2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2)))*1.15;
+    camera.up.set(0,0,-1);camera.position.copy(center).add(new THREE.Vector3(0,distance,0));controls.target.copy(center);controls.update();
+  }
+  updateSection();
+};
 function stopMotion(){playing=false;cancelAnimationFrame(animationFrame);$('motion-play-label').textContent='Play';$('motion-play').setAttribute('aria-pressed','false');}
 function groupMatrices(degrees){
   const p=mechanismPose(degrees,motionProfile.radius_m,motionProfile.rod_length_m);
@@ -133,7 +148,7 @@ async function setupMotion(bytes){
       const group=profile.groups[mesh.userData.partId];mesh.matrixAutoUpdate=false;
       return {mesh,group,localBind:bind[group].clone().invert().multiply(mesh.matrixWorld)};
     });
-    if(profile.cycle_landmarks){cycleVisuals=createCycleVisuals(scene,profile.cycle_landmarks);$('cycle-controls').hidden=false;}
+    if(profile.cycle_landmarks){cycleVisuals=createCycleVisuals(scene,profile.cycle_landmarks,camera);$('cycle-controls').hidden=false;}
     $('motion-controls').disabled=false;setMotion(profile.bind_angle_deg);
     if(profile.valves)$('motion-scope').textContent='Engineering preview: piston, rod, crank, valves, rockers and pushrods move together. Spring compression and gas cues are not connected yet. Lift and timing are illustrative, not manufacturer specifications.';
     if(profile.valves?.spring_targets)$('motion-scope').textContent='Engineering preview: valve gear and spring compression follow the same crank angle as the piston. Lift and timing are illustrative, not manufacturer specifications. Gas cues are not connected yet.';
@@ -142,7 +157,7 @@ async function setupMotion(bytes){
 }
 function animateMechanism(time){
   if(!playing)return;
-  const elapsed=Math.min((time-lastFrame)/1000,.1);lastFrame=time;
+  const elapsed=Math.max(0,Math.min((time-lastFrame)/1000,.1));lastFrame=time;
   setMotion((motionAngle+elapsed*Number($('motion-speed').value))%720);
   animationFrame=requestAnimationFrame(animateMechanism);
 }
@@ -335,10 +350,14 @@ async function fetchGLB(url,headers={}){
     for(const chunk of chunks){joined.set(chunk,offset);offset+=chunk.byteLength;}
     bytes=joined.buffer;
   }else bytes=await response.arrayBuffer();
-  if(bytes.byteLength<20||new DataView(bytes).getUint32(0,true)!==0x46546c67)throw Error('Response is not a GLB model (possibly a preview, login or confirmation page).');
-  if(new DataView(bytes).getUint32(8,true)!==bytes.byteLength){const error=Error('Download ended before the complete GLB arrived.');error.retryable=true;throw error;}
+  const transferredBytes=bytes.byteLength,downloadSeconds=(performance.now()-started)/1000;
+  const isCompressed=new Uint8Array(bytes,0,Math.min(bytes.byteLength,2))[0]===0x1f;
+  if(isCompressed){$('load-progress').value=100;say('Download complete · Unpacking model…');}
+  const decodeStarted=performance.now();
+  bytes=await decodeModel(bytes,{signal:transfer.signal,onProgress:()=>transfer.touch()});
   $('load-progress').value=100;
-  log(`Download: ${((performance.now()-started)/1000).toFixed(2)} s; ${bytes.byteLength} bytes (includes size lookup when needed).`);
+  log(`Download: ${downloadSeconds.toFixed(2)} s; ${transferredBytes} received bytes (includes size lookup when needed).`);
+  if(isCompressed)log(`Lossless unpack: ${((performance.now()-decodeStarted)/1000).toFixed(2)} s; ${bytes.byteLength} decoded bytes. Geometry is unchanged.`);
   return bytes;
   }catch(error){
     log(`Transfer stopped after ${(received/1048576).toFixed(1)} MB and ${((performance.now()-started)/1000).toFixed(1)} s.`);
@@ -378,6 +397,10 @@ async function load(){
   stopMotion();
   if(busy)return;busy=true;$('load').disabled=true;$('log').textContent='';
   try{
+    if(localModelURL){
+      const bytes=await fetchGLB(localModelURL);const count=await display(bytes);
+      say(`LOCAL CONTROL passed · ${count} components. This does not verify Google Drive delivery.`);return;
+    }
     say('Loading the cylinder assembly through Google Drive API…');
     const candidates=driveCandidates($('drive').value.trim());
     for(const {url,headers} of candidates){
@@ -401,7 +424,15 @@ try{
   $('drive').value=config.drive_share_url||'';$('load').disabled=false;
   // Local-only control verifies the exported GLB and viewer before Drive delivery is available.
   const localControl=['localhost','127.0.0.1'].includes(location.hostname)&&new URLSearchParams(location.search).get('control')==='local';
-  if(localControl){const bytes=await fetchGLB('./control.glb');await display(bytes);say('LOCAL CONTROL passed · 60 components. This does not verify Google Drive delivery.');}
+  if(localControl){
+    localModelURL=typeof DecompressionStream==='function'?(config.local_model_url||'./control.glb'):(config.local_model_fallback_url||'./control.glb');
+    await load();
+  }
   else if(config.drive_share_url)await load();
   else say('Viewer ready. Awaiting the shared Drive model link; Drive delivery has not been tested.');
+  if(localControl&&new URLSearchParams(location.search).get('verify')==='cycle'){
+    const {verifyCyclePreview}=await import('./cycle-preview-check.mjs?v=20260911-particles');
+    const result=await verifyCyclePreview({THREE,meshes,sections,profile:motionProfile,setMotion,stopMotion,renderer,scene,camera});
+    say(result);log(result);
+  }
 }catch(e){$('load-progress').hidden=true;say('Viewer setup failed: '+e.message);log(e.stack);}

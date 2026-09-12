@@ -1,0 +1,68 @@
+{
+  "schema_version": "0.1-draft",
+  "purpose": "Examples based on the existing CAD-stage review; extend into a complete ledger before release automation.",
+  "source": {
+    "document_id": "Continental X-30045A",
+    "local_reference": "Notes/gtsio520_series.pdf",
+    "sha256": "c8e7828e978772a55a9271d7bf678cc464ac772987ce7c44cfa3af89c9c21a07",
+    "revision_applicability_review": "To be recorded explicitly for each future module."
+  },
+  "claims": [
+    {
+      "claim_id": "finished-bore-range",
+      "component": "gtsio520h:cad:CylinderBarrel",
+      "property": "finished_lower_bore",
+      "source_range": [
+        5.251,
+        5.253
+      ],
+      "source_units": "in",
+      "adopted_value": 133.4008,
+      "adopted_units": "mm",
+      "selection_rule": "Midpoint of source range, multiplied by 25.4",
+      "evidence_category": "documented range; derived modelling selection",
+      "locations": [
+        "A-4-23 / PDF40",
+        "B-1 / PDF92"
+      ]
+    },
+    {
+      "claim_id": "four-ring-production",
+      "component": "gtsio520h:cad:PistonBody",
+      "property": "production_ring_count",
+      "source_value": 4,
+      "evidence_category": "documented",
+      "applicability": "A-3-2 states engines built since 1975; specific piston configuration still requires checking",
+      "locations": [
+        "A-3-2 / PDF17",
+        "A-4-17 / PDF34"
+      ],
+      "limitation": "The four ring cross-sections and axial allocation in the current model remain reconstructed."
+    },
+    {
+      "claim_id": "exhaust-inclination-uncertainty",
+      "component": "gtsio520h:cad:ExhaustValve",
+      "property": "inclination",
+      "adopted_value": 15,
+      "adopted_units": "deg",
+      "evidence_category": "unresolved source annotation; provisional model value",
+      "locations": [
+        "A-4-23 / PDF40"
+      ],
+      "limitation": "Scan upper annotation reads 15 deg 60 min above 14 deg 54 min; do not silently treat the adopted 15 deg as verified."
+    },
+    {
+      "claim_id": "teaching-valve-lift",
+      "components": [
+        "gtsio520h:cad:IntakeValve",
+        "gtsio520h:cad:ExhaustValve"
+      ],
+      "property": "animation_maximum_lift",
+      "adopted_value": 7,
+      "adopted_units": "mm",
+      "evidence_category": "illustrative",
+      "source_location": null,
+      "limitation": "Chosen for the current teaching animation, not extracted as manufacturer lift data."
+    }
+  ]
+}

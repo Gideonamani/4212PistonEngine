@@ -12,6 +12,8 @@ The initial engineering reference is the current GTSIO-520-H study. Engine varia
 
 ## Current baseline
 
+12 September update: the local operating-cylinder preview now uses a lossless 20.2 MB download instead of 35.0 MB (42.25% reduction), with identical decoded geometry and motion. Thirteen numerical/transfer tests and 14,497 browser checks pass. This reduces network transfer, not triangle count or GPU memory. Physical A16 validation and production publication remain open. See [download optimization](model-download-optimization.md).
+
 | Area | Verified now | Remaining work |
 |---|---|---|
 | CAD | Detailed single-cylinder study: 60 bodies and 284 constrained sketches; selected geometry/motion checks completed | Audit reconstructed features and interfaces; not a validated complete engine |
@@ -46,6 +48,16 @@ M1 and the data-contract work in M3 can develop together. M2 depends on the shar
 The active engineering package is M2 valve-train contact and clearance validation, alongside M3 reproducible exports. M1 has working inspection, fullscreen, groups, music and loading diagnostics; physical-phone checks remain open. M2 has verified slider-crank playback; synchronized valves and gas cues remain open. UI polishing follows roadmap completion, as requested by the project owner.
 
 Latest engineering result: the housing-clearance candidate passes four moving-pair checks at 58 sampled poses. The revised spring-seat candidate now passes 12 native spring solids and 36 listed interfaces at three lift positions; see [spring-seat review](spring-seat-review.md). Controlled fin and rod changes have reached Blender and isolated browser previews with stable IDs and expected geometry changes; see [export pipeline](export-pipeline.md). No candidate is promoted yet. Initial M3 publication checks run mechanism/transfer tests and reject a stale generated motion profile; controlled geometry changes have passed export checks and local browser observations, while full motion propagation and versioned rollback remain open. The isolated preview now includes synchronized valve gear and CAD-derived spring compression; see [spring animation](spring-animation.md). Gas cues and lesson review remain open. The instructor reports that the emulated mobile view looks good; physical A16 testing remains pending.
+
+## Update — 11 September 2026: cycle cues and spring-section checks
+
+Follow-up visual correction: square/static particles and exterior-only flow cues have been replaced by round moving sprites and schematic port/valve/chamber streams. Full particle-radius bounds and depth testing address apparent piston intrusion. The gas-view button opens and frames a section. Updated verification passes ten numerical tests and 14,497 browser checks; details and flow-path limitations are in [cycle verification](cycle-preview-verification.md). This supersedes the overlay behaviour described below.
+
+The isolated spring-seat preview now includes intake/exhaust port arrows and tracers, a central charge overlay, and compression/combustion/exhaust colours and explanations driven by the same 720-degree state. These are illustrative overlays, not measured gas properties. The preview builder verifies the completed region-audit hash before enabling the profile. Earlier statements above that gas cues are pending are superseded by this update.
+
+Desktop browser verification passed 2,825 checks covering all four spring morphs, matching deformed stencil vertices/transforms, three section axes, both cut sides, ten crank poses, loop closure, scrubbing and play/pause. Visual comparison of the isolated intake outer spring at 0 and 90 degrees confirmed capped section faces follow its changing pitch. A nonnegative frame-time guard prevents an initial animation callback from moving the mechanism backwards. Eight numerical/transfer tests pass. See [cycle verification](cycle-preview-verification.md) for reproduction and limits.
+
+Steps 1 and 2 of the current continuation package are complete in the local preview. Instructor lesson review, physical A16 checks, asset optimization and versioned production promotion remain open; M2/M3 are not signed off. Local release capture/restore has already been rehearsed, as documented in [release rollback](release-rollback.md).
 
 ## Repeatable procedure for every subsystem
 

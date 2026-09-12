@@ -1,5 +1,7 @@
 # Operating-cycle cue reference
 
+Current status (11 September 2026): the completed whole-region audit is bound into `cycle-cues-profile.json`; the cues are enabled and browser-checked in the spring-seat preview. See [verification results](cycle-preview-verification.md). The pending implementation notes below are historical; instructor review and explicit spark-plug location markers remain open.
+
 Reference: local `Notes/gtsio520_series.pdf`, SHA-256 `c8e7828e978772a55a9271d7bf678cc464ac772987ce7c44cfa3af89c9c21a07`. The selected study remains GTSIO-520-H; check variant differences before extending system details.
 
 PDF page 18, printed A-3-3, section 3-2(c), describes induction air travelling from the turbocharger through the air throttle/manifold/intake tubes to the cylinder intake ports. Section 3-2(d) describes the magnetos supplying the upper and lower spark plugs. PDF page 19, printed A-3-4, section 3-2(e)(1) and (3), describes continuous-flow injection into the intake valve port, with a discharge nozzle outside each intake valve. Page 19 was visually inspected for this review.

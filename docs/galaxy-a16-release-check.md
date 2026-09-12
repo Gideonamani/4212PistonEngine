@@ -12,6 +12,7 @@ Reference family: Continental GTSIO-520. The current cylinder configuration rema
 - Phone model (including 4G/5G variant if known), Android version and Chrome version.
 - Connection: Wi-Fi or mobile data; first uncached load or repeat load.
 - Model transfer size, download time and preparation time from the viewer diagnostics.
+- For the compressed operating-cylinder candidate, record unpacking time separately: expected transfer 20,224,725 bytes and decoded GLB 35,023,520 bytes. Confirm the tested release actually uses this asset; the current public baseline may still differ. See [download optimization](model-download-optimization.md).
 - Observed responsiveness, any browser error, and whether the phone became unusually warm during the exercise.
 
 ## Student exercise
@@ -21,7 +22,7 @@ Reference family: Continental GTSIO-520. The current cylinder configuration rema
 3. Find the piston using search, select it, read its function, isolate it, then restore the assembly. Repeat with a small internal component selected from the catalogue.
 4. Enter fullscreen/expanded view, operate the viewer, and return to normal. Confirm controls and explanatory text remain reachable.
 5. Enable a section, move its plane, and reverse the direction. Check cut solids and isolated parts remain legible.
-6. Play the slider-crank, change speed, pause, scrub through 0/180/360/540/720 degrees, and resume. Watch for jumps or controls that fail to respond.
+6. Play the mechanism, change speed, pause, scrub through 0/90/180/360/540/630/720 degrees, and resume. In the operating-cylinder candidate, check valve gear and spring compression too. Watch for jumps or controls that fail to respond. Compare responsiveness with sections off and on, then enable cycle particles using View gas inside.
 7. Start and pause the optional music. Confirm it does not play before the student chooses it.
 8. Reload once to check repeat loading. During a separate transfer, cancel and retry; confirm cancellation is understandable and retry reaches the model.
 

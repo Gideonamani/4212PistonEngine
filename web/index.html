@@ -229,10 +229,12 @@ Reset
 </summary>
 <div class="panel-body">
 <label class="switch-row"><span>Show cycle cues</span><input id="cycle-enabled" type="checkbox"></label>
+<button id="cycle-section" type="button">View gas inside</button>
+<p class="hint">Round particles move with the cycle and pause when you pause. Use View gas inside to reveal the chamber and port paths.</p>
 <p id="cycle-description" class="readout"></p>
 <details class="hint"><summary>What this shows</summary>
-<p>Cyan: incoming fuel–air charge · blue: compression · orange: combustion/power · grey: exhaust. Arrows show port flow direction. Use Section view to see the charge inside the cylinder.</p>
-<p>Illustrative particles and ideal stroke timing; not measured temperature, pressure or CFD. The particle region is not the complete chamber volume. Reference: GTSIO-520 manual A-3-3 / A-3-4, induction and continuous port injection.</p>
+<p>Cyan: incoming fuel–air charge · blue: compression · orange: combustion/power · grey: exhaust. Moving streams connect the port mouths, valve openings and chamber. Solid parts hide particles behind them; Section view reveals the internal cues.</p>
+<p>Illustrative motion and ideal stroke timing; not measured temperature, pressure or CFD. The port-to-chamber paths are schematic connections through CAD landmarks, not validated fluid trajectories. The particle region is not the complete chamber volume. Reference: GTSIO-520 manual A-3-3 / A-3-4, induction and continuous port injection.</p>
 </details>
 </div>
 </details>
@@ -278,4 +280,4 @@ Reverse cut
 <button id="load" disabled>Reload model</button><button id="cancel-load" hidden>Cancel download</button>
 <details><summary>Loading details</summary><label for="drive">Google Drive model sharing link</label><input id="drive" type="url" placeholder="https://drive.google.com/file/d/…/view"><p><small>The public model loads through Google Drive API without Google sign-in. No manual file saving is needed.</small></p><pre id="log"></pre></details>
 </footer>
-<script type="module" src="./viewer.js?v=20260911-design-pass"></script></body></html>
+<script type="module" src="./viewer.js?v=20260912-lossless-transfer"></script></body></html>
