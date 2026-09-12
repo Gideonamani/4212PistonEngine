@@ -41,13 +41,16 @@
       "camshaft",
       "reduction propeller shaft",
       "magneto branch"
-    ]
+    ],
+    "phase_reference": {"id":"cylinder-1-firing-tdc","meaning":"Teaching-cycle zero. It is an event reference, not a measured manufacturer timing datum.","phase_kind":"derived from declared firing order at 120 degree intervals"}
   },
+  "m4_foundation": {"coordinate_system":{"id":"gtsio520h-engine-datum/v1","export_basis":"Blender metres (x,y,z); glTF metres (x,z,-y)","longitudinal_axis":"Blender X / glTF X","crank_axis":"Blender Z / glTF Y","front_reference":"propeller-output end; reconstructed scene orientation","status":"reconstructed export datum; manual datum drawing not yet linked"},"cylinder_template":{"id":"gtsio520h:cylinder-module:v1","source":"shared cylinder module definition; no browser-owned copies","scope":"Whole-engine instances use the common mounting, phase and teaching-interface definition. Detailed valve/gas behaviour remains scoped to the single-cylinder lesson."},"cylinder_instances":[{"id":"cylinder-1","station":"left-forward","bank":"left","orientation":"outboard from crankcase","firing_phase_deg":0,"phase_basis":"derived firing event"},{"id":"cylinder-2","station":"right-forward","bank":"right","orientation":"outboard from crankcase","firing_phase_deg":360,"phase_basis":"derived firing event"},{"id":"cylinder-3","station":"left-middle","bank":"left","orientation":"outboard from crankcase","firing_phase_deg":480,"phase_basis":"derived firing event"},{"id":"cylinder-4","station":"right-middle","bank":"right","orientation":"outboard from crankcase","firing_phase_deg":120,"phase_basis":"derived firing event"},{"id":"cylinder-5","station":"left-aft","bank":"left","orientation":"outboard from crankcase","firing_phase_deg":240,"phase_basis":"derived firing event"},{"id":"cylinder-6","station":"right-aft","bank":"right","orientation":"outboard from crankcase","firing_phase_deg":600,"phase_basis":"derived firing event"}],"crankshaft":{"id":"gtsio520h:crankshaft:v1","bearing_support":"crankcase bearing webs; exact journal-to-web mapping is an open evidence item","relationships":["six connecting-rod interfaces","crankcase bearing support","primary drivetrain input"],"status":"reconstructed geometry with inherited teaching motion; not a manufacturing assembly claim"},"interfaces":[{"id":"crankcase-to-cylinder-station","from":"crankcase-v5","to":"cylinder-module","kind":"mounting datum","status":"reconstructed; numerical datums pending manual/CAD evidence"},{"id":"crankshaft-to-cylinder-rods","from":"gtsio520h:crankshaft:v1","to":"cylinder-module","kind":"rotary-to-reciprocating","status":"illustrated by inherited action; six-pair continuity previously checked"},{"id":"crankshaft-to-primary-drive","from":"gtsio520h:crankshaft:v1","to":"primary-drive","kind":"rotary power interface","status":"teaching action; ratio and gear geometry not asserted"}],"export_binding":{"required_future_glb_extras":["engine_id","module_id","instance_id","teaching_ids"],"current_mode":"legacy-hierarchy-selector","rule":"The web adapter must prefer stable extras when present and use selectors only while this V5 asset lacks them."},"evidence_register":{"verified_source_facts":["GTSIO-520-H study configuration","six-cylinder engine teaching scene","firing order 1-4-5-2-3-6","720-degree exported action","V5 case check: two shells, 36 studs, eight half-webs, six through-bolts"],"derived_values":["firing events at 0,120,240,360,480,600 degrees from declared order"],"reconstructed_geometry":["crankcase contours","station placement/orientation","bearing relationship representation","gear details"],"illustrative_behaviour":["inherited V4 operating action","whole-engine drivetrain motion"],"unknowns":["applicable manual mounting datums and bank angles","journal-to-bearing mapping","crank throw indexing","primary-drive ratios","whole-engine valve timing and gas paths"]}},
   "modules": [
     {
       "id": "crankcase-v5",
       "kind": "structure",
-      "source_status": "reconstructed geometry; V5 shell/interface checks"
+      "source_status": "reconstructed geometry; V5 shell/interface checks",
+      "stable_binding": {"engine_id":"gtsio520-h-v5-teaching-engine","module_id":"crankcase-v5"}
     },
     {
       "id": "cylinder-module",
@@ -59,12 +62,14 @@
         "cylinder-4",
         "cylinder-5",
         "cylinder-6"
-      ]
+      ],
+      "stable_binding": {"engine_id":"gtsio520-h-v5-teaching-engine","module_id":"cylinder-module"}
     },
     {
       "id": "primary-drive",
       "kind": "operating drivetrain",
-      "source_status": "inherited V4 verified teaching action"
+      "source_status": "inherited V4 verified teaching action",
+      "stable_binding": {"engine_id":"gtsio520-h-v5-teaching-engine","module_id":"primary-drive"}
     }
   ],
   "inspection_groups": [
@@ -78,6 +83,7 @@
     {
       "id": "drivetrain",
       "label": "Primary drivetrain",
+      "stable_binding": {"engine_id":"gtsio520-h-v5-teaching-engine","module_id":"primary-drive"},
       "selector": {
         "any_regex": [
           "RUN \\|",
@@ -88,6 +94,7 @@
     {
       "id": "crankcase",
       "label": "Crankcase and mounts",
+      "stable_binding": {"engine_id":"gtsio520-h-v5-teaching-engine","module_id":"crankcase-v5"},
       "selector": {
         "any_regex": [
           "V5 "
@@ -97,6 +104,7 @@
     {
       "id": "cylinders",
       "label": "All cylinder assemblies",
+      "stable_binding": {"engine_id":"gtsio520-h-v5-teaching-engine","module_id":"cylinder-module"},
       "selector": {
         "any_regex": [
           "C[1-6] \\|"
@@ -106,6 +114,7 @@
     {
       "id": "cylinder-1",
       "label": "Cylinder 1",
+      "stable_binding": {"engine_id":"gtsio520-h-v5-teaching-engine","module_id":"cylinder-module","instance_id":"cylinder-1"},
       "selector": {
         "any_regex": [
           "C1 \\|"
@@ -115,6 +124,7 @@
     {
       "id": "cylinder-2",
       "label": "Cylinder 2",
+      "stable_binding": {"engine_id":"gtsio520-h-v5-teaching-engine","module_id":"cylinder-module","instance_id":"cylinder-2"},
       "selector": {
         "any_regex": [
           "C2 \\|"
@@ -124,6 +134,7 @@
     {
       "id": "cylinder-3",
       "label": "Cylinder 3",
+      "stable_binding": {"engine_id":"gtsio520-h-v5-teaching-engine","module_id":"cylinder-module","instance_id":"cylinder-3"},
       "selector": {
         "any_regex": [
           "C3 \\|"
@@ -133,6 +144,7 @@
     {
       "id": "cylinder-4",
       "label": "Cylinder 4",
+      "stable_binding": {"engine_id":"gtsio520-h-v5-teaching-engine","module_id":"cylinder-module","instance_id":"cylinder-4"},
       "selector": {
         "any_regex": [
           "C4 \\|"
@@ -142,6 +154,7 @@
     {
       "id": "cylinder-5",
       "label": "Cylinder 5",
+      "stable_binding": {"engine_id":"gtsio520-h-v5-teaching-engine","module_id":"cylinder-module","instance_id":"cylinder-5"},
       "selector": {
         "any_regex": [
           "C5 \\|"
@@ -151,6 +164,7 @@
     {
       "id": "cylinder-6",
       "label": "Cylinder 6",
+      "stable_binding": {"engine_id":"gtsio520-h-v5-teaching-engine","module_id":"cylinder-module","instance_id":"cylinder-6"},
       "selector": {
         "any_regex": [
           "C6 \\|"

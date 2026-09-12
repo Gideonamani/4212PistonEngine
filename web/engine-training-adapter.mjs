@@ -77,8 +77,20 @@ function completeLoading(message) {
   say(message);
 }
 
-function selectorMatches(label, selector) {
+function selectorMatches(item, selector) {
+  const label = typeof item === 'string' ? item : item.label;
   return Boolean(selector?.all || selector?.any_regex?.some(pattern => new RegExp(pattern, 'i').test(label)));
+}
+
+// Stable glTF extras are the primary binding when an export provides them.
+// This V5 release predates those extras, so selectors remain a deliberately
+// bounded compatibility adapter rather than a second engine definition.
+function bindingMatches(item, target) {
+  const binding = target?.stable_binding || target?.binding;
+  if (binding && Object.keys(item.binding).length) {
+    return Object.entries(binding).every(([key, value]) => item.binding[key] === value);
+  }
+  return selectorMatches(item, target?.selector);
 }
 
 function groupById(id) {
@@ -112,8 +124,8 @@ function visibleByControl() {
   const group = groupById($('group').value);
   const isolated = isolatedComponent();
   for (const item of meshes) {
-    item.mesh.visible = selectorMatches(item.label, group.selector)
-      && (!isolated || selectorMatches(item.label, isolated.selector));
+    item.mesh.visible = bindingMatches(item, group)
+      && (!isolated || bindingMatches(item, isolated));
   }
   render();
 }
@@ -122,7 +134,7 @@ function applyAppearance() {
   const inspection = $('appearance').value === 'inspection';
   const selected = selectedComponent();
   for (const item of meshes) {
-    const highlighted = Boolean(selected && selectorMatches(item.label, selected.selector));
+    const highlighted = Boolean(selected && bindingMatches(item, selected));
     for (const material of item.materials) {
       if (inspection) {
         material.color.set(
@@ -274,7 +286,7 @@ function resetSection() {
 
 function findComponentForMesh(item) {
   return contract.teaching_components
-    .filter(component => selectorMatches(item.label, component.selector))
+    .filter(component => bindingMatches(item, component))
     .sort((left, right) => JSON.stringify(right.selector).length - JSON.stringify(left.selector).length)[0];
 }
 
@@ -303,7 +315,7 @@ function wireShell() {
     $('part-name').textContent = $('group').selectedOptions[0].textContent;
     $('part-function').textContent = 'Inspection group defined by the shared engine contract.';
     const group = groupById($('group').value);
-    frameItems(meshes.filter(item => selectorMatches(item.label, group.selector)));
+    frameItems(meshes.filter(item => bindingMatches(item, group)));
   };
   $('search').oninput = updateComponentOptions;
   $('parts').onchange = () => selectComponent($('parts').value);
@@ -315,7 +327,7 @@ function wireShell() {
     }
     isolatedComponentId = component.id;
     visibleByControl();
-    frameItems(meshes.filter(item => selectorMatches(item.label, component.selector)));
+    frameItems(meshes.filter(item => bindingMatches(item, component)));
     say(`Isolated ${component.label}. Use Show all to return to the complete engine.`);
   };
   $('reset').onclick = resetInspection;
@@ -517,7 +529,13 @@ async function load() {
       mesh.material = Array.isArray(mesh.material) ? itemMaterials : itemMaterials[0];
       const lineage = [];
       for (let node = mesh; node; node = node.parent) lineage.push(node.name || '');
-      meshes.push({mesh, label: lineage.join(' / '), materials: itemMaterials});
+      const binding = {};
+      for (let node = mesh; node; node = node.parent) {
+        for (const key of ['engine_id', 'module_id', 'instance_id']) {
+          if (node.userData?.[key] !== undefined && binding[key] === undefined) binding[key] = node.userData[key];
+        }
+      }
+      meshes.push({mesh, label: lineage.join(' / '), binding, materials: itemMaterials});
     });
     if (!meshes.length) throw Error('Published engine asset has no selectable geometry');
 
