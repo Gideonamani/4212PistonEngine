@@ -350,34 +350,65 @@ function wireShell() {
     sectionFlipped = !sectionFlipped;
     updateSection();
   };
-  $('fullscreen').onclick = async () => {
-    if (document.fullscreenElement) await document.exitFullscreen();
-    else await $('explorer').requestFullscreen().catch(() => {});
+  const explorer = $('explorer');
+  const syncFullscreen = () => {
+    const active = document.fullscreenElement === explorer || explorer.classList.contains('expanded');
+    $('fullscreen-label').textContent = active ? 'Exit full screen' : 'Full screen';
+    $('fullscreen').setAttribute('aria-pressed', String(active));
+    $('fullscreen').title = active ? 'Exit full screen (Esc)' : 'Expand viewer';
+    document.body.classList.toggle('viewer-expanded', active);
   };
-  $('toggle-controls').onclick = () => $('explorer').classList.toggle('controls-hidden');
+  $('fullscreen').onclick = async () => {
+    try {
+      if (document.fullscreenElement === explorer) await document.exitFullscreen();
+      else if (explorer.classList.contains('expanded')) explorer.classList.remove('expanded');
+      else if (document.fullscreenEnabled && explorer.requestFullscreen) {
+        try { await explorer.requestFullscreen(); }
+        catch { explorer.classList.add('expanded'); }
+      } else explorer.classList.add('expanded');
+    } finally {
+      syncFullscreen();
+    }
+  };
+  document.addEventListener('fullscreenchange', syncFullscreen);
+  $('toggle-controls').onclick = () => {
+    const hidden = explorer.classList.toggle('controls-hidden');
+    $('toggle-controls-label').textContent = hidden ? 'Show controls' : 'Hide controls';
+    $('toggle-controls').setAttribute('aria-expanded', String(!hidden));
+  };
 }
 
-async function fetchAsset(url, signal) {
+const isGlb = bytes => bytes.byteLength >= 4 && bytes[0] === 0x67 && bytes[1] === 0x6c && bytes[2] === 0x54 && bytes[3] === 0x46;
+const formatMegabytes = bytes => `${(bytes / 1048576).toFixed(1)} MB`;
+
+async function fetchAsset(url, signal, {compressed = false, transferBytes = 0, decodedBytes = 0} = {}) {
   const response = await fetch(url, {signal});
   if (!response.ok) throw Error(`Could not download the engine model (${response.status}).`);
-  const total = Number(response.headers.get('content-length')) || 0;
-  if (!response.body) return response.arrayBuffer();
+  if (!response.body) return {bytes: await response.arrayBuffer(), decodedByBrowser: false};
 
+  const headerBytes = Number(response.headers.get('content-length')) || 0;
+  const transferTotal = headerBytes || transferBytes;
   const reader = response.body.getReader();
   const chunks = [];
   let received = 0;
   let lastUpdate = 0;
+  let decodedByBrowser = false;
   try {
     while (true) {
       const {done, value} = await reader.read();
       if (done) break;
       chunks.push(value);
       received += value.byteLength;
+      // Some browsers transparently decode a .gz response but keep the compressed
+      // Content-Length header. Identify that stream from the GLB magic before
+      // presenting progress, so received bytes never appear to exceed the download.
+      if (compressed && received === value.byteLength) decodedByBrowser = isGlb(value);
       if (performance.now() - lastUpdate > 120) {
-        const megabytes = (received / 1048576).toFixed(1);
-        const percent = total ? Math.floor(received / total * 96) : null;
-        const totalText = total ? ` / ${(total / 1048576).toFixed(1)} MB` : ' received';
-        setLoading(`Downloading full engine${percent === null ? '' : `: ${Math.min(99, Math.floor(received / total * 100))}%`} · ${megabytes} MB${totalText}`, percent);
+        const total = decodedByBrowser ? decodedBytes : transferTotal;
+        const completePercent = total ? Math.min(96, Math.floor(received / total * 96)) : null;
+        const stage = decodedByBrowser ? 'Unpacking full engine' : 'Downloading full engine';
+        const totalText = total ? ` / ${formatMegabytes(total)}` : ' received';
+        setLoading(`${stage}${completePercent === null ? '' : `: ${completePercent}%`} - ${formatMegabytes(received)}${totalText}`, completePercent);
         lastUpdate = performance.now();
       }
     }
@@ -390,30 +421,33 @@ async function fetchAsset(url, signal) {
     bytes.set(chunk, offset);
     offset += chunk.byteLength;
   }
-  return bytes.buffer;
+  return {bytes: bytes.buffer, decodedByBrowser};
 }
 
 async function loadAsset() {
   const transport = contract.asset.transport;
   const candidates = transport
-    ? [{url: transport.web_url, compressed: transport.encoding === 'gzip'}, {url: transport.fallback_web_url, compressed: false}]
-    : [{url: contract.asset.web_url, compressed: false}];
+    ? [
+      {url: transport.web_url, compressed: transport.encoding === 'gzip', transferBytes: transport.bytes, decodedBytes: contract.asset.bytes},
+      {url: transport.fallback_web_url, compressed: false, transferBytes: contract.asset.bytes, decodedBytes: contract.asset.bytes},
+    ]
+    : [{url: contract.asset.web_url, compressed: false, transferBytes: contract.asset.bytes, decodedBytes: contract.asset.bytes}];
   let lastError;
   for (const candidate of candidates) {
     try {
-      setLoading(candidate.compressed ? 'Preparing compressed six-cylinder model…' : 'Preparing six-cylinder model…');
-      const bytes = await fetchAsset(candidate.url, loadController.signal);
-      setLoading(candidate.compressed ? 'Download complete · unpacking engine geometry…' : 'Download complete · validating engine geometry…', 97);
+      setLoading(candidate.compressed ? 'Preparing compressed six-cylinder model...' : 'Preparing six-cylinder model...');
+      const {bytes, decodedByBrowser} = await fetchAsset(candidate.url, loadController.signal, candidate);
+      setLoading(decodedByBrowser ? 'Engine data received - validating geometry...' : candidate.compressed ? 'Download complete - unpacking engine geometry...' : 'Download complete - validating engine geometry...', 97);
       const decoded = await decodeModel(bytes, {
         signal: loadController.signal,
-        onProgress: () => setLoading('Download complete · unpacking engine geometry…', 98),
+        onProgress: () => setLoading('Download complete - unpacking engine geometry...', 98),
       });
       return decoded;
     } catch (error) {
       lastError = error;
       if (loadController.signal.aborted) throw error;
       if (!candidate.compressed) break;
-      setLoading('Compressed delivery is unavailable here · loading the compatible model…');
+      setLoading('Compressed delivery is unavailable here - loading the compatible model...');
     }
   }
   throw lastError;

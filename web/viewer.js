@@ -28,9 +28,9 @@ music.addEventListener('error',()=>{$('music-status').textContent='Music could n
 const explorer=$('explorer');
 function syncFullscreen(){
   const active=document.fullscreenElement===explorer||explorer.classList.contains('expanded');
-  $('fullscreen-label').textContent=active?'Normal view':'Full screen';
+  $('fullscreen-label').textContent=active?'Exit full screen':'Full screen';
   $('fullscreen').setAttribute('aria-pressed',String(active));
-  $('fullscreen').title=active?'Return to normal view (Esc)':'Expand viewer';
+  $('fullscreen').title=active?'Exit full screen (Esc)':'Expand viewer';
   document.body.classList.toggle('viewer-expanded',active);
 }
 $('fullscreen').onclick=async()=>{
