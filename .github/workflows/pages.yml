@@ -24,7 +24,9 @@ jobs:
       - name: Check kinematics and transfer recovery
         run: node --test scripts/test_kinematics.mjs scripts/test_valve_kinematics.mjs scripts/test_cycle_cues.mjs scripts/test_transfer.mjs scripts/test_model_registry.mjs
       - name: Verify the published engine contract and asset binding
-        run: python3 scripts/test_engine_contract.py
+        run: |
+          python3 scripts/package_full_engine_transport.py --check
+          python3 scripts/test_engine_contract.py
       - name: Verify the published operating-cylinder profile and asset binding
         run: python3 scripts/test_cylinder_motion_profile.py
       - uses: actions/configure-pages@v5

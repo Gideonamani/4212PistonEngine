@@ -1,40 +1,517 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {decodeModel} from './model-transport.mjs';
 
-const $=id=>document.getElementById(id), say=text=>$('status').textContent=text;
-const scene=new THREE.Scene();scene.background=new THREE.Color('#101923');
-const camera=new THREE.PerspectiveCamera(40,1,.01,100);const renderer=new THREE.WebGLRenderer({antialias:true,stencil:true});renderer.localClippingEnabled=true;renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.toneMapping=THREE.ACESFilmicToneMapping;$('view').append(renderer.domElement);
-const orbit=new OrbitControls(camera,renderer.domElement);orbit.enableDamping=true;scene.add(new THREE.HemisphereLight(0xe5f5ff,0x506070,3));for(const p of [[2,3,4],[-3,1,-2]]){const l=new THREE.DirectionalLight(0xffffff,2);l.position.set(...p);scene.add(l)}
-let contract,box,clip,mixer,action,angle=0,playing=false,last=0,selected='',sectionFlipped=true;const meshes=[],plane=new THREE.Plane(new THREE.Vector3(0,1,0),0);
-const labelOf=o=>{const out=[];for(let n=o;n;n=n.parent)out.push(n.name||'');return out.join(' / ')};
-const render=()=>{orbit.update();renderer.render(scene,camera)};
-new ResizeObserver(()=>{const r=$('view').getBoundingClientRect();renderer.setSize(r.width,r.height,false);camera.aspect=r.width/r.height;camera.updateProjectionMatrix();render()}).observe($('view'));
-function match(label,id){const group=contract.inspection_groups.find(item=>item.id===id);return !!group&&(group.selector.all||group.selector.any_regex.some(pattern=>new RegExp(pattern,'i').test(label)))}
-function visibleByControl(){const group=$('group').value,term=$('search').value.trim().toLowerCase(),part=$('parts').value;for(const item of meshes)item.mesh.visible=match(item.label,group)&&(!term||item.label.toLowerCase().includes(term))&&(!part||item.label===part);render()}
-function resetInspection(){$('group').value='all';$('search').value='';$('parts').value='';resetSection();visibleByControl();$('part-name').textContent='Whole engine';$('part-function').textContent='Six-cylinder V5 teaching engine. Choose a group or search a named object to inspect it.'}
-function setMotion(value){angle=(value%720+720)%720;if(mixer)mixer.setTime(clip.duration*angle/720);$('motion-angle').value=String(angle);$('motion-value').textContent=`${angle.toFixed(0)}°`;const stroke=angle<180?'Power':angle<360?'Exhaust':angle<540?'Intake':'Compression';$('motion-note').textContent=`${stroke} stroke · all engine motion is sampled from the shared 720° action.`;render()}
-function tick(now){if(playing){setMotion(angle+Math.max(0,Math.min(.1,(now-last)/1000))*Number($('motion-speed').value));last=now}requestAnimationFrame(tick)}
-function applyAppearance(){const inspection=$('appearance').value==='inspection';for(const item of meshes)for(const material of item.materials){if(inspection){material.color.set(/Intake/i.test(item.label)?0x379e9b:/Exhaust/i.test(item.label)?0xbc7353:/V5 /i.test(item.label)?0x748694:/crank|gear|shaft/i.test(item.label)?0x596d80:0x9cabb8)}else material.color.copy(material.userData.originalColor)}render()}
-function updateSection(){
-  const active=$('section-enabled').checked,axis=$('section-axis').value,size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3()),extent=size[axis]/2;
-  const normal=new THREE.Vector3(axis==='x'?1:0,axis==='y'?1:0,axis==='z'?1:0);if(sectionFlipped)normal.negate();
-  const coordinate=center[axis]+extent*(Number($('section-position').value)-50)/50;
-  const point=new THREE.Vector3();point[axis]=coordinate;
-  $('section-value').textContent=`${Math.round(Number($('section-position').value))}%`;$('section-flip').setAttribute('aria-pressed',String(sectionFlipped));
-  plane.normal.copy(normal);plane.constant=-normal.dot(point);
-  for(const item of meshes)for(const material of item.materials){material.clippingPlanes=active?[plane]:null;material.needsUpdate=true}
+const $ = id => document.getElementById(id);
+const say = text => { $('status').textContent = text; };
+const progress = $('load-progress');
+const view = $('view');
+const lowMemoryDevice = Number(navigator.deviceMemory || 8) <= 4;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color('#101923');
+const camera = new THREE.PerspectiveCamera(40, 1, .01, 250);
+const renderer = new THREE.WebGLRenderer({antialias: !lowMemoryDevice, stencil: true, powerPreference: 'high-performance'});
+renderer.localClippingEnabled = true;
+renderer.setPixelRatio(Math.min(devicePixelRatio, lowMemoryDevice ? 1.25 : 1.75));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+view.append(renderer.domElement);
+
+const orbit = new OrbitControls(camera, renderer.domElement);
+orbit.enableDamping = true;
+orbit.dampingFactor = .08;
+scene.add(new THREE.HemisphereLight(0xe5f5ff, 0x506070, 3));
+for (const position of [[2, 3, 4], [-3, 1, -2]]) {
+  const light = new THREE.DirectionalLight(0xffffff, 2);
+  light.position.set(...position);
+  scene.add(light);
+}
+
+let contract;
+let root;
+let modelBox;
+let clip;
+let mixer;
+let action;
+let angle = 0;
+let playing = false;
+let lastFrame = 0;
+let animationFrame = 0;
+let selectedComponentId = '';
+let isolatedComponentId = '';
+let sectionFlipped = true;
+let clippingActive = false;
+let loadController;
+let pointerDown;
+const meshes = [];
+const materials = new Set();
+const componentIndex = new Map();
+const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+
+function render() {
+  renderer.render(scene, camera);
+}
+
+orbit.addEventListener('change', render);
+orbit.addEventListener('start', requestAnimation);
+new ResizeObserver(() => {
+  const {width, height} = view.getBoundingClientRect();
+  renderer.setSize(width, height, false);
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  render();
+}).observe(view);
+
+function setLoading(message, value = null) {
+  say(message);
+  progress.hidden = false;
+  if (value === null) progress.removeAttribute('value');
+  else progress.value = Math.max(0, Math.min(99, value));
+}
+
+function completeLoading(message) {
+  progress.value = 100;
+  progress.hidden = true;
+  say(message);
+}
+
+function selectorMatches(label, selector) {
+  return Boolean(selector?.all || selector?.any_regex?.some(pattern => new RegExp(pattern, 'i').test(label)));
+}
+
+function groupById(id) {
+  return contract.inspection_groups.find(group => group.id === id);
+}
+
+function componentById(id) {
+  return componentIndex.get(id);
+}
+
+function componentMatchesGroup(component, groupId) {
+  return groupId === 'all'
+    || (groupId === 'cylinders' && component.group.startsWith('cylinder-'))
+    || component.group === groupId;
+}
+
+function componentMatchesTerm(component, term) {
+  const searchable = [component.label, component.description, ...(component.keywords || [])].join(' ').toLowerCase();
+  return !term || searchable.includes(term);
+}
+
+function selectedComponent() {
+  return componentById(selectedComponentId);
+}
+
+function isolatedComponent() {
+  return componentById(isolatedComponentId);
+}
+
+function visibleByControl() {
+  const group = groupById($('group').value);
+  const isolated = isolatedComponent();
+  for (const item of meshes) {
+    item.mesh.visible = selectorMatches(item.label, group.selector)
+      && (!isolated || selectorMatches(item.label, isolated.selector));
+  }
   render();
 }
-function resetSection(){sectionFlipped=true;$('section-enabled').checked=false;$('section-axis').value='z';$('section-position').value='50';if(box)updateSection()}
-function wireShell(){
-  $('cycle-controls').hidden=false;$('cycle-enabled').checked=false;$('cycle-enabled').disabled=true;$('cycle-section').disabled=true;$('cycle-description').textContent='Gas-path cues are verified for the detailed cylinder model. This whole-engine model keeps the shared motion controls focused on its published drivetrain action.';$('load').hidden=true;$('cancel-load').hidden=true;$('drive').closest('details').hidden=true;
-  $('group').replaceChildren(...contract.inspection_groups.map(group=>new Option(group.label,group.id)));$('group').value='all';
-  for(const id of ['group','search','parts','isolate','reset','appearance','motion-controls','section-controls','section-enabled','section-axis','section-position','section-flip'])$(id).disabled=false;
-  $('group').onchange=()=>{visibleByControl();$('part-name').textContent=$('group').selectedOptions[0].textContent;$('part-function').textContent='Inspection group defined by the shared engine contract.'};$('search').oninput=visibleByControl;$('parts').onchange=visibleByControl;$('isolate').onclick=visibleByControl;$('reset').onclick=resetInspection;$('appearance').onchange=applyAppearance;
-  $('motion-play').onclick=()=>{playing=!playing;$('motion-play-label').textContent=playing?'Pause':'Play';$('motion-play').setAttribute('aria-pressed',String(playing));last=performance.now()};$('motion-reset').onclick=()=>{playing=false;$('motion-play-label').textContent='Play';setMotion(0)};$('motion-angle').oninput=()=>{playing=false;setMotion(Number($('motion-angle').value))};$('motion-preset').onchange=()=>{if($('motion-preset').value!==''){playing=false;setMotion(Number($('motion-preset').value))}};
-  $('section-enabled').onchange=updateSection;$('section-axis').onchange=updateSection;$('section-position').oninput=updateSection;$('section-flip').onclick=()=>{sectionFlipped=!sectionFlipped;updateSection()};
-  $('fullscreen').onclick=async()=>{if(document.fullscreenElement)await document.exitFullscreen();else await $('explorer').requestFullscreen().catch(()=>{})};$('toggle-controls').onclick=()=>{$('explorer').classList.toggle('controls-hidden')};
+
+function applyAppearance() {
+  const inspection = $('appearance').value === 'inspection';
+  const selected = selectedComponent();
+  for (const item of meshes) {
+    const highlighted = Boolean(selected && selectorMatches(item.label, selected.selector));
+    for (const material of item.materials) {
+      if (inspection) {
+        material.color.set(
+          /Intake/i.test(item.label) ? 0x379e9b
+            : /Exhaust/i.test(item.label) ? 0xbc7353
+              : /V5 /i.test(item.label) ? 0x748694
+                : /crank|gear|shaft/i.test(item.label) ? 0x596d80
+                  : 0x9cabb8
+        );
+      } else {
+        material.color.copy(material.userData.originalColor);
+      }
+      if (material.emissive) {
+        material.emissive.set(highlighted ? 0x6c5100 : 0x000000);
+        material.emissiveIntensity = highlighted ? .55 : 0;
+      }
+    }
+  }
+  render();
 }
-async function load(){try{contract=await fetch('./engine-contract.json').then(r=>{if(!r.ok)throw Error('Engine contract unavailable');return r.json()});const gltf=await new Promise((resolve,reject)=>new GLTFLoader().load(contract.asset.web_url,resolve,undefined,reject));scene.add(gltf.scene);box=new THREE.Box3().setFromObject(gltf.scene);const sphere=box.getBoundingSphere(new THREE.Sphere());orbit.target.copy(sphere.center);camera.position.copy(sphere.center).add(new THREE.Vector3(sphere.radius*1.3,sphere.radius*.8,sphere.radius*1.55));gltf.scene.traverse(mesh=>{if(!mesh.isMesh)return;const materials=(Array.isArray(mesh.material)?mesh.material:[mesh.material]).map(source=>{const material=source.clone();material.userData.originalColor=material.color.clone();return material});mesh.material=Array.isArray(mesh.material)?materials:materials[0];meshes.push({mesh,label:labelOf(mesh),materials})});clip=new THREE.AnimationClip('shared-engine-action',-1,gltf.animations.flatMap(animation=>animation.tracks));if(!clip.tracks.length)throw Error('Published engine asset has no operation action');mixer=new THREE.AnimationMixer(gltf.scene);action=mixer.clipAction(clip);action.paused=true;action.play();wireShell();$('part-source').textContent=`Source scene: ${contract.source.scene}. Published asset: ${contract.asset.web_url}.`;$('part-evidence').textContent='V5 teaching reconstruction with contract-defined cylinder and drivetrain modules; inspect the model contract for validation scope.';const labels=[...new Set(meshes.map(item=>item.label))].sort();$('parts').replaceChildren(new Option('Whole assembly',''),...labels.map(label=>new Option(label,label)));setMotion(0);resetInspection();say(`Loaded ${contract.id}: ${meshes.length} selectable meshes on the shared training shell.`);requestAnimationFrame(tick)}catch(error){say(error.message);console.error(error)}}
+
+function frameBox(box, padding = 1.3) {
+  if (box.isEmpty()) return;
+  const center = box.getCenter(new THREE.Vector3());
+  const size = box.getSize(new THREE.Vector3());
+  const halfFov = THREE.MathUtils.degToRad(camera.fov / 2);
+  const verticalDistance = size.y / (2 * Math.tan(halfFov));
+  const horizontalDistance = size.x / (2 * Math.tan(halfFov) * Math.max(camera.aspect, .1));
+  const distance = Math.max(verticalDistance, horizontalDistance, size.z) * padding;
+  const direction = new THREE.Vector3(1.3, .8, 1.55).normalize();
+  camera.near = Math.max(.01, distance / 100);
+  camera.far = Math.max(250, distance * 20);
+  camera.updateProjectionMatrix();
+  orbit.minDistance = Math.max(.08, distance * .08);
+  orbit.maxDistance = distance * 12;
+  orbit.target.copy(center);
+  camera.position.copy(center).addScaledVector(direction, distance);
+  orbit.update();
+  render();
+}
+
+function frameItems(items) {
+  root?.updateMatrixWorld(true);
+  const box = new THREE.Box3();
+  for (const item of items) box.expandByObject(item.mesh);
+  frameBox(box);
+}
+
+function updateComponentOptions() {
+  const groupId = $('group').value;
+  const term = $('search').value.trim().toLowerCase();
+  const options = contract.teaching_components.filter(component => componentMatchesGroup(component, groupId) && componentMatchesTerm(component, term));
+  const previous = selectedComponentId;
+  $('parts').replaceChildren(
+    new Option('Choose a teaching component…', ''),
+    ...options.map(component => new Option(component.label, component.id))
+  );
+  if (options.some(component => component.id === previous)) $('parts').value = previous;
+  else {
+    selectedComponentId = '';
+    isolatedComponentId = '';
+  }
+  $('matches').textContent = options.length
+    ? `${options.length} teaching component${options.length === 1 ? '' : 's'} available.`
+    : 'No teaching component matches that search.';
+}
+
+function selectComponent(id, {fromCanvas = false} = {}) {
+  selectedComponentId = id;
+  isolatedComponentId = '';
+  $('parts').value = id;
+  const component = selectedComponent();
+  if (!component) {
+    $('part-name').textContent = groupById($('group').value).label;
+    $('part-function').textContent = 'Choose a teaching component to identify it before isolating it.';
+  } else {
+    $('part-name').textContent = component.label;
+    $('part-function').textContent = component.description;
+    if (fromCanvas) $('parts').focus({preventScroll: true});
+  }
+  visibleByControl();
+  applyAppearance();
+}
+
+function resetInspection() {
+  selectedComponentId = '';
+  isolatedComponentId = '';
+  $('group').value = 'all';
+  $('search').value = '';
+  resetSection();
+  updateComponentOptions();
+  visibleByControl();
+  applyAppearance();
+  $('part-name').textContent = 'Whole engine';
+  $('part-function').textContent = 'Choose a teaching group, search the lesson components, or select a visible part.';
+  frameBox(modelBox.clone());
+}
+
+function setMotion(value) {
+  angle = (value % 720 + 720) % 720;
+  if (mixer) mixer.setTime(clip.duration * angle / 720);
+  $('motion-angle').value = String(angle);
+  $('motion-value').textContent = `${angle.toFixed(0)}°`;
+  const stroke = angle < 180 ? 'Power' : angle < 360 ? 'Exhaust' : angle < 540 ? 'Intake' : 'Compression';
+  $('motion-note').textContent = `${stroke} stroke · all engine motion is sampled from the shared 720° action.`;
+  render();
+}
+
+function pauseMotion() {
+  playing = false;
+  $('motion-play-label').textContent = 'Play';
+  $('motion-play').setAttribute('aria-pressed', 'false');
+}
+
+function updateClipping(active) {
+  if (active === clippingActive) return;
+  clippingActive = active;
+  for (const material of materials) {
+    material.clippingPlanes = active ? [plane] : null;
+    material.needsUpdate = true;
+  }
+}
+
+function updateSection() {
+  const active = $('section-enabled').checked;
+  const axis = $('section-axis').value;
+  const size = modelBox.getSize(new THREE.Vector3());
+  const center = modelBox.getCenter(new THREE.Vector3());
+  const normal = new THREE.Vector3(axis === 'x' ? 1 : 0, axis === 'y' ? 1 : 0, axis === 'z' ? 1 : 0);
+  if (sectionFlipped) normal.negate();
+  const position = Number($('section-position').value);
+  const point = center.clone();
+  point[axis] += size[axis] * .5 * (position - 50) / 50;
+  plane.normal.copy(normal);
+  plane.constant = -normal.dot(point);
+  updateClipping(active);
+  $('section-value').textContent = `${Math.round(position)}%`;
+  $('section-flip').setAttribute('aria-pressed', String(sectionFlipped));
+  render();
+}
+
+function resetSection() {
+  sectionFlipped = true;
+  $('section-enabled').checked = false;
+  $('section-axis').value = 'z';
+  $('section-position').value = '50';
+  if (modelBox) updateSection();
+}
+
+function findComponentForMesh(item) {
+  return contract.teaching_components
+    .filter(component => selectorMatches(item.label, component.selector))
+    .sort((left, right) => JSON.stringify(right.selector).length - JSON.stringify(left.selector).length)[0];
+}
+
+function wireShell() {
+  $('cycle-controls').hidden = false;
+  $('cycle-enabled').checked = false;
+  $('cycle-enabled').disabled = true;
+  $('cycle-section').disabled = true;
+  $('cycle-description').textContent = 'Gas-path cues are verified for the detailed cylinder model. This whole-engine model keeps the shared motion controls focused on its published drivetrain action.';
+  $('load').hidden = true;
+  $('cancel-load').hidden = true;
+  $('drive').closest('details').hidden = true;
+
+  $('group').replaceChildren(...contract.inspection_groups.map(group => new Option(group.label, group.id)));
+  $('group').value = 'all';
+  for (const id of ['group', 'search', 'parts', 'isolate', 'reset', 'appearance', 'motion-controls', 'section-controls', 'section-enabled', 'section-axis', 'section-position', 'section-flip']) {
+    $(id).disabled = false;
+  }
+
+  $('group').onchange = () => {
+    selectedComponentId = '';
+    isolatedComponentId = '';
+    updateComponentOptions();
+    visibleByControl();
+    applyAppearance();
+    $('part-name').textContent = $('group').selectedOptions[0].textContent;
+    $('part-function').textContent = 'Inspection group defined by the shared engine contract.';
+    const group = groupById($('group').value);
+    frameItems(meshes.filter(item => selectorMatches(item.label, group.selector)));
+  };
+  $('search').oninput = updateComponentOptions;
+  $('parts').onchange = () => selectComponent($('parts').value);
+  $('isolate').onclick = () => {
+    const component = selectedComponent();
+    if (!component) {
+      say('Choose a teaching component before isolating it.');
+      return;
+    }
+    isolatedComponentId = component.id;
+    visibleByControl();
+    frameItems(meshes.filter(item => selectorMatches(item.label, component.selector)));
+    say(`Isolated ${component.label}. Use Show all to return to the complete engine.`);
+  };
+  $('reset').onclick = resetInspection;
+  $('appearance').onchange = applyAppearance;
+
+  $('motion-play').onclick = () => {
+    playing = !playing;
+    $('motion-play-label').textContent = playing ? 'Pause' : 'Play';
+    $('motion-play').setAttribute('aria-pressed', String(playing));
+    lastFrame = performance.now();
+    if (playing) requestAnimation();
+  };
+  $('motion-reset').onclick = () => {
+    pauseMotion();
+    setMotion(0);
+  };
+  $('motion-angle').oninput = () => {
+    pauseMotion();
+    setMotion(Number($('motion-angle').value));
+  };
+  $('motion-preset').onchange = () => {
+    if ($('motion-preset').value !== '') {
+      pauseMotion();
+      setMotion(Number($('motion-preset').value));
+    }
+  };
+
+  $('section-enabled').onchange = updateSection;
+  $('section-axis').onchange = updateSection;
+  $('section-position').oninput = updateSection;
+  $('section-flip').onclick = () => {
+    sectionFlipped = !sectionFlipped;
+    updateSection();
+  };
+  $('fullscreen').onclick = async () => {
+    if (document.fullscreenElement) await document.exitFullscreen();
+    else await $('explorer').requestFullscreen().catch(() => {});
+  };
+  $('toggle-controls').onclick = () => $('explorer').classList.toggle('controls-hidden');
+}
+
+async function fetchAsset(url, signal) {
+  const response = await fetch(url, {signal});
+  if (!response.ok) throw Error(`Could not download the engine model (${response.status}).`);
+  const total = Number(response.headers.get('content-length')) || 0;
+  if (!response.body) return response.arrayBuffer();
+
+  const reader = response.body.getReader();
+  const chunks = [];
+  let received = 0;
+  let lastUpdate = 0;
+  try {
+    while (true) {
+      const {done, value} = await reader.read();
+      if (done) break;
+      chunks.push(value);
+      received += value.byteLength;
+      if (performance.now() - lastUpdate > 120) {
+        const megabytes = (received / 1048576).toFixed(1);
+        const percent = total ? Math.floor(received / total * 96) : null;
+        const totalText = total ? ` / ${(total / 1048576).toFixed(1)} MB` : ' received';
+        setLoading(`Downloading full engine${percent === null ? '' : `: ${Math.min(99, Math.floor(received / total * 100))}%`} · ${megabytes} MB${totalText}`, percent);
+        lastUpdate = performance.now();
+      }
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  const bytes = new Uint8Array(received);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return bytes.buffer;
+}
+
+async function loadAsset() {
+  const transport = contract.asset.transport;
+  const candidates = transport
+    ? [{url: transport.web_url, compressed: transport.encoding === 'gzip'}, {url: transport.fallback_web_url, compressed: false}]
+    : [{url: contract.asset.web_url, compressed: false}];
+  let lastError;
+  for (const candidate of candidates) {
+    try {
+      setLoading(candidate.compressed ? 'Preparing compressed six-cylinder model…' : 'Preparing six-cylinder model…');
+      const bytes = await fetchAsset(candidate.url, loadController.signal);
+      setLoading(candidate.compressed ? 'Download complete · unpacking engine geometry…' : 'Download complete · validating engine geometry…', 97);
+      const decoded = await decodeModel(bytes, {
+        signal: loadController.signal,
+        onProgress: () => setLoading('Download complete · unpacking engine geometry…', 98),
+      });
+      return decoded;
+    } catch (error) {
+      lastError = error;
+      if (loadController.signal.aborted) throw error;
+      if (!candidate.compressed) break;
+      setLoading('Compressed delivery is unavailable here · loading the compatible model…');
+    }
+  }
+  throw lastError;
+}
+
+function requestAnimation() {
+  if (!animationFrame) animationFrame = requestAnimationFrame(animate);
+}
+
+function animate(now) {
+  animationFrame = 0;
+  const settling = orbit.update();
+  if (playing) {
+    const elapsed = Math.max(0, Math.min(.1, (now - lastFrame) / 1000));
+    lastFrame = now;
+    setMotion(angle + elapsed * Number($('motion-speed').value));
+  } else if (settling) {
+    render();
+  }
+  if (playing || settling) requestAnimation();
+}
+
+renderer.domElement.addEventListener('pointerdown', event => {
+  pointerDown = [event.clientX, event.clientY];
+});
+renderer.domElement.addEventListener('pointerup', event => {
+  if (!pointerDown || Math.hypot(event.clientX - pointerDown[0], event.clientY - pointerDown[1]) > 5) return;
+  const rect = renderer.domElement.getBoundingClientRect();
+  const pointer = new THREE.Vector2((event.clientX - rect.left) / rect.width * 2 - 1, -(event.clientY - rect.top) / rect.height * 2 + 1);
+  const ray = new THREE.Raycaster();
+  ray.setFromCamera(pointer, camera);
+  const hit = ray.intersectObjects(meshes.filter(item => item.mesh.visible).map(item => item.mesh), false)[0];
+  if (!hit) return;
+  const item = meshes.find(candidate => candidate.mesh === hit.object);
+  const component = item && findComponentForMesh(item);
+  if (component) selectComponent(component.id, {fromCanvas: true});
+});
+
+async function load() {
+  try {
+    loadController = new AbortController();
+    $('cancel-load').hidden = false;
+    $('cancel-load').onclick = () => loadController?.abort();
+    setLoading('Loading the six-cylinder engine lesson…');
+    const model = globalThis.trainingModel || {};
+    contract = await fetch(model.contract_url || './engine-contract.json').then(response => {
+      if (!response.ok) throw Error('Engine contract unavailable');
+      return response.json();
+    });
+    const bytes = await loadAsset();
+    setLoading('Download complete · preparing six-cylinder engine controls…', 98);
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    const gltf = await new GLTFLoader().parseAsync(bytes, '');
+    root = gltf.scene;
+    scene.add(root);
+    root.updateMatrixWorld(true);
+    modelBox = new THREE.Box3().setFromObject(root);
+
+    root.traverse(mesh => {
+      if (!mesh.isMesh) return;
+      const itemMaterials = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]).map(source => {
+        const material = source.clone();
+        material.userData.originalColor = material.color.clone();
+        materials.add(material);
+        return material;
+      });
+      mesh.material = Array.isArray(mesh.material) ? itemMaterials : itemMaterials[0];
+      const lineage = [];
+      for (let node = mesh; node; node = node.parent) lineage.push(node.name || '');
+      meshes.push({mesh, label: lineage.join(' / '), materials: itemMaterials});
+    });
+    if (!meshes.length) throw Error('Published engine asset has no selectable geometry');
+
+    clip = new THREE.AnimationClip('shared-engine-action', -1, gltf.animations.flatMap(animation => animation.tracks));
+    if (!clip.tracks.length) throw Error('Published engine asset has no operation action');
+    mixer = new THREE.AnimationMixer(root);
+    action = mixer.clipAction(clip);
+    action.paused = true;
+    action.play();
+
+    for (const component of contract.teaching_components) componentIndex.set(component.id, component);
+    wireShell();
+    updateComponentOptions();
+    $('part-source').textContent = `Source scene: ${contract.source.scene}. Published asset: ${contract.asset.web_url}.`;
+    $('part-evidence').textContent = 'V5 teaching reconstruction with contract-defined cylinder and drivetrain modules; inspect the model contract for validation scope.';
+    setMotion(0);
+    resetInspection();
+    completeLoading(`Loaded six-cylinder engine · ${contract.teaching_components.length} teaching components. Drag to rotate, scroll or pinch to zoom.`);
+    requestAnimation();
+  } catch (error) {
+    progress.hidden = true;
+    if (error.name === 'AbortError') say('Engine download cancelled. Reload the page to try again.');
+    else say(`Could not load the six-cylinder engine: ${error.message}`);
+    console.error(error);
+  } finally {
+    $('cancel-load').hidden = true;
+    loadController = undefined;
+  }
+}
+
 load();

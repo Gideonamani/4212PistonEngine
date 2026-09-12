@@ -1,7 +1,7 @@
 {
   "schema": "4212.training-model-registry/v1",
   "models": [
-    {"id":"cylinder","label":"Detailed operating cylinder","adapter":"cylinder","asset_url":"./control.glb?v=20260912-operating-cylinder","component_catalogue_url":"./components.json","motion_profile_url":"./motion.json?v=20260912-operating-cylinder","title":"Explore the cylinder assembly","kicker":"GTSIO-520-H · Cylinder study","description":"Drag to rotate · Scroll or pinch to zoom · Select a component to read its function."},
+    {"id":"cylinder","label":"Detailed operating cylinder","adapter":"cylinder","asset_url":"./control.glb.gz?v=20260912-lesson-ready","asset_fallback_url":"./control.glb?v=20260912-lesson-ready","component_catalogue_url":"./components.json","motion_profile_url":"./motion.json?v=20260912-operating-cylinder","title":"Explore the cylinder assembly","kicker":"GTSIO-520-H · Cylinder study","description":"Drag to rotate · Scroll or pinch to zoom · Select a component to read its function."},
     {"id":"gtsio520-h-v5-teaching-engine","label":"Full six-cylinder engine","adapter":"engine","contract_url":"./engine-contract.json","title":"Explore the full six-cylinder engine","kicker":"GTSIO-520-H · Whole-engine study","description":"Use the same inspection and operating controls to explore the V5 crankcase, six cylinders and primary drivetrain."}
   ]
 }

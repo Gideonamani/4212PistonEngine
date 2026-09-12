@@ -74,7 +74,7 @@ const resize = new ResizeObserver(() => {
   renderer.setSize(width,height,false); camera.aspect=width/height;camera.updateProjectionMatrix();renderer.render(scene,camera);
 });resize.observe($('view'));
 controls.addEventListener('change',()=>renderer.render(scene,camera));
-let root, meshes=[], selected='', catalogue=new Map(), busy=false, apiKey='',localModelURL='';
+let root, meshes=[], selected='', catalogue=new Map(), busy=false, apiKey='',localModelURL='',localFallbackURL='';
 const ray = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 const originals = new Map();
@@ -313,7 +313,7 @@ async function fetchGLB(url,headers={}){
   let reader,received=0;
   $('cancel-load').hidden=false;
   try{
-  $('load-progress').hidden=false;$('load-progress').removeAttribute('value');
+  $('load-progress').hidden=false;$('load-progress').removeAttribute('value');say('Connecting to the operating-cylinder model…');
   const response=await fetch(url,{headers,mode:'cors',credentials:'omit',referrerPolicy:'strict-origin-when-cross-origin',signal:transfer.signal});
   transfer.touch();
   log(`HTTP ${response.status}; type ${response.headers.get('content-type')}; URL ${response.url}`);
@@ -342,7 +342,7 @@ async function fetchGLB(url,headers={}){
       if(total&&received>total){total=0;log('File size changed during loading; percentage unavailable.');}
       if(performance.now()-lastUpdate>350){
         const percent=total?Math.min(99,Math.floor(received/total*100)):null;
-        if(percent===null)$('load-progress').removeAttribute('value');else $('load-progress').value=percent;
+        if(percent===null)$('load-progress').removeAttribute('value');else $('load-progress').value=Math.min(96,percent);
         say(`Downloading model: ${percent===null?'':percent+'% · '}${(received/1048576).toFixed(1)}${total?' / '+(total/1048576).toFixed(1):''} MB${total?'':' · total size unavailable'}…`);
         lastUpdate=performance.now();
       }
@@ -353,10 +353,11 @@ async function fetchGLB(url,headers={}){
   }else bytes=await response.arrayBuffer();
   const transferredBytes=bytes.byteLength,downloadSeconds=(performance.now()-started)/1000;
   const isCompressed=new Uint8Array(bytes,0,Math.min(bytes.byteLength,2))[0]===0x1f;
-  if(isCompressed){$('load-progress').value=100;say('Download complete · Unpacking model…');}
+  $('load-progress').value=97;say(isCompressed?'Download complete · Unpacking cylinder geometry…':'Download complete · Validating cylinder geometry…');
   const decodeStarted=performance.now();
-  bytes=await decodeModel(bytes,{signal:transfer.signal,onProgress:()=>transfer.touch()});
-  $('load-progress').value=100;
+  let unpacking=false;
+  bytes=await decodeModel(bytes,{signal:transfer.signal,onProgress:()=>{transfer.touch();if(!unpacking){unpacking=true;$('load-progress').value=98;say('Download complete · Unpacking cylinder geometry…');}}});
+  $('load-progress').value=98;
   log(`Download: ${downloadSeconds.toFixed(2)} s; ${transferredBytes} received bytes (includes size lookup when needed).`);
   if(isCompressed)log(`Lossless unpack: ${((performance.now()-decodeStarted)/1000).toFixed(2)} s; ${bytes.byteLength} decoded bytes. Geometry is unchanged.`);
   return bytes;
@@ -373,7 +374,8 @@ let activeTransfer=null;
 $('cancel-load').onclick=()=>activeTransfer?.cancel();
 async function display(bytes){
   const started=performance.now();
-  say('Download 100% complete · Preparing the 60-component assembly…');
+  $('load-progress').hidden=false;$('load-progress').value=99;
+  say('Cylinder download complete · Preparing the 60-component assembly…');
   await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
   const gltf=await new GLTFLoader().parseAsync(bytes,'');
   const next=gltf.scene, nextMeshes=[];
@@ -399,7 +401,15 @@ async function load(){
   if(busy)return;busy=true;$('load').disabled=true;$('log').textContent='';
   try{
     if(localModelURL){
-      const bytes=await fetchGLB(localModelURL);const count=await display(bytes);
+      let bytes;
+      try{bytes=await fetchGLB(localModelURL);}
+      catch(e){
+        if(!localFallbackURL||e.cancelled)throw e;
+        log(`Compressed local delivery failed (${e.message}); using the compatible model fallback.`);
+        say('Compressed delivery is unavailable here · loading the compatible cylinder model…');
+        bytes=await fetchGLB(localFallbackURL);
+      }
+      const count=await display(bytes);
       say(`Operating-cylinder model loaded · ${count} components. Rotate, zoom or select a component.`);return;
     }
     say('Loading the cylinder assembly through Google Drive API…');
@@ -427,10 +437,12 @@ try{
   const localControl=['localhost','127.0.0.1'].includes(location.hostname)&&new URLSearchParams(location.search).get('control')==='local';
   if(model.asset_url||config.packaged_model_url){
     localModelURL=model.asset_url||config.packaged_model_url;
+    localFallbackURL=model.asset_fallback_url||config.packaged_model_fallback_url||'';
     await load();
   }
   else if(localControl){
     localModelURL=typeof DecompressionStream==='function'?(config.local_model_url||'./control.glb'):(config.local_model_fallback_url||'./control.glb');
+    localFallbackURL=config.local_model_fallback_url||'';
     await load();
   }
   else if(config.drive_share_url)await load();

@@ -24,7 +24,7 @@ node --test scripts/test_model_transport.mjs scripts/test_cycle_cues.mjs scripts
 
 The package gains `engine.glb.gz` and `transport.json`. Preview preparation checks the compressed hash and its decoded/source bindings, then sets the local model URL to `control.glb.gz`. Browsers without native gzip decompression select the retained `control.glb` fallback. The decoder also accepts ordinary GLBs and HTTP responses already decompressed by the browser. The local Reload model button now reloads the configured local asset.
 
-Cancellation remains active during both download and decompression. Corrupt gzip data, invalid GLB headers, truncated models and oversized decoded output are rejected. The existing motion profile still checks the decoded GLB hash before enabling motion. Diagnostics distinguish received bytes, unpacking time and model preparation. Download progress reaches 100% before unpacking starts.
+Cancellation remains active during both download and decompression. Corrupt gzip data, invalid GLB headers, truncated models and oversized decoded output are rejected. The existing motion profile still checks the decoded GLB hash before enabling motion. Diagnostics distinguish received bytes, unpacking time and model preparation. The visible progress bar reserves its final segment for validation and preparation, so it does not claim completion while browser work remains.
 
 ## Verification
 

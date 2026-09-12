@@ -7,5 +7,5 @@ assert.deepEqual(registry.models.map(model=>model.id),['cylinder','gtsio520-h-v5
 assert.equal(new Set(registry.models.map(model=>model.adapter)).size,2);
 assert.ok(registry.models.every(model=>model.title&&model.kicker&&model.description));
 const cylinder=registry.models.find(model=>model.id==='cylinder');
-assert.deepEqual([cylinder.asset_url,cylinder.component_catalogue_url,cylinder.motion_profile_url],['./control.glb?v=20260912-operating-cylinder','./components.json','./motion.json?v=20260912-operating-cylinder']);
+assert.deepEqual([cylinder.asset_url,cylinder.asset_fallback_url,cylinder.component_catalogue_url,cylinder.motion_profile_url],['./control.glb.gz?v=20260912-lesson-ready','./control.glb?v=20260912-lesson-ready','./components.json','./motion.json?v=20260912-operating-cylinder']);
 console.log('training model registry is valid');
