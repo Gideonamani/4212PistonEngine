@@ -28,6 +28,19 @@ for obj in bpy.context.view_layer.objects:
     obj.select_set(obj.type in {"MESH", "EMPTY", "CURVE"} and not obj.name.startswith("V4 camera") and not obj.name.startswith("Caption"))
 
 bpy.context.view_layer.objects.active = next((o for o in bpy.context.selected_objects if o.type == "MESH"), None)
+# Write portable identity metadata into the export without modifying the source
+# blend. The current published GLB predates this; its browser adapter retains
+# the contract's legacy-selector fallback until a reviewed re-export is promoted.
+for obj in bpy.context.selected_objects:
+    name = obj.name
+    obj["engine_id"] = CONTRACT["id"]
+    if name.startswith("C") and len(name) > 3 and name[1].isdigit() and name[2:5] == " | ":
+        obj["module_id"] = "cylinder-module"
+        obj["instance_id"] = f"cylinder-{name[1]}"
+    elif name.startswith("V5 "):
+        obj["module_id"] = "crankcase-v5"
+    elif name.startswith("RUN | V3 "):
+        obj["module_id"] = "primary-drive"
 # glTF does not evaluate Blender drivers in a browser. Bake their evaluated
 # transforms in memory (without saving the source .blend) before export.
 bpy.ops.nla.bake(
@@ -53,5 +66,6 @@ bpy.ops.export_scene.gltf(
     export_yup=True,
     export_apply=False,
     export_materials="EXPORT",
+    export_extras=True,
 )
 print(output, flush=True)

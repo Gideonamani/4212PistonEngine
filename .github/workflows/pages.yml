@@ -27,6 +27,7 @@ jobs:
         run: |
           python3 scripts/package_full_engine_transport.py --check
           python3 scripts/test_engine_contract.py
+          python3 scripts/test_m4_engine_foundation.py
       - name: Verify the published operating-cylinder profile and asset binding
         run: python3 scripts/test_cylinder_motion_profile.py
       - uses: actions/configure-pages@v5
