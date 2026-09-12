@@ -5,6 +5,8 @@ const router = fs.readFileSync(new URL('../web/model-router.mjs', import.meta.ur
 const modes = fs.readFileSync(new URL('../web/training-modes.mjs', import.meta.url), 'utf8');
 for (const mode of ['explore', 'learn', 'check']) assert.match(html, new RegExp(`data-training-mode="${mode}"`));
 for (const id of ['settings-dialog', 'about-dialog', 'reduced-motion', 'settings-inspection']) assert.match(html, new RegExp(`id="${id}"`));
+assert.match(html, /M12 2v2m0 16v2/); // restrained eight-spoke settings icon
+assert.match(html, /dialog-close::before/);
 assert.match(router, /training-modes\.mjs/);
 assert.match(router, /training-shell\.mjs/);
 assert.match(modes, /setMode\(next\)/);
