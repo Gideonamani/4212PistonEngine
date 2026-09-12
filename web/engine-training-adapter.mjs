@@ -525,7 +525,8 @@ async function load() {
     if (!clip.tracks.length) throw Error('Published engine asset has no operation action');
     mixer = new THREE.AnimationMixer(root);
     action = mixer.clipAction(clip);
-    action.paused = true;
+    // Motion is sampled with mixer.setTime(). A paused Three.js action ignores
+    // those seeks, so keep it active while the UI controls the current angle.
     action.play();
 
     for (const component of contract.teaching_components) componentIndex.set(component.id, component);
