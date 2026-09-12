@@ -157,6 +157,7 @@ footer>details{flex:1 1 260px;border-top:0;padding:0}
 <h1>Explore the cylinder assembly</h1>
 <p class="lede">Drag to rotate · Scroll or pinch to zoom · Select a component to read its function.</p>
 <p class="lede"><a href="./engine.html">Open the full six-cylinder engine and primary drivetrain preview →</a></p>
+<div class="field-row" aria-label="Training mode"><div><label for="training-mode">Training mode</label><select id="training-mode"><option value="explore">Explore</option><option value="learn" disabled>Learn</option><option value="check" disabled>Check yourself</option></select></div><p id="training-mode-note" class="readout">Explore freely: rotate, inspect, section and operate the model.</p></div>
 <div id="status-row"><span class="dot" aria-hidden="true"></span><p id="status" role="status">Starting viewer…</p><progress id="load-progress" max="100" aria-label="Model download progress"></progress></div>
 </header>
 <main id="explorer">
@@ -173,6 +174,14 @@ footer>details{flex:1 1 260px;border-top:0;padding:0}
 </div>
 </div>
 <aside id="inspection-panel">
+
+<section id="guided-mode" class="identity" hidden aria-live="polite">
+<h2 id="guided-title" class="identity-name">Guided lesson</h2>
+<p id="guided-prompt"></p>
+<div id="guided-answers" class="stack"></div>
+<div class="button-row"><button id="guided-back" type="button">Back</button><button id="guided-next" type="button" class="btn-primary">Start lesson</button></div>
+<p id="guided-feedback" class="readout"></p>
+</section>
 
 <div class="identity">
 <h2 id="part-name" class="identity-name">Cylinder study</h2>

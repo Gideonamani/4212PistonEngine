@@ -13,3 +13,4 @@ document.body.dataset.model=model.id;
 globalThis.trainingModel=model;
 if(model.adapter==='cylinder')await import('./viewer.js?v=20260912-lesson-ready-5');
 else await import('./engine-training-adapter.mjs?v=20260912-lesson-ready-5');
+await import('./training-modes.mjs?v=20260912-m2-guided-1');
