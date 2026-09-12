@@ -110,8 +110,9 @@ details:not(.panel):not(.hint)[open] summary::after{transform:rotate(180deg)}
 details:not(.panel):not(.hint) p{font-size:13.5px}
 
 /* layout */
-header{padding:20px 28px;background:var(--bg-header);border-bottom:1px solid var(--border);position:relative}
+header{padding:0 28px 18px;background:var(--bg-header);border-bottom:1px solid var(--border);position:relative}
 header::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent 70%)}
+.app-bar{min-height:64px;display:flex;align-items:center;gap:18px;border-bottom:1px solid var(--border);margin-bottom:18px}.app-brand{font:700 15px Lexend,Inter,sans-serif;letter-spacing:-.02em;white-space:nowrap}.mode-tabs{display:flex;align-self:stretch;gap:4px;margin-left:18px}.mode-tab{min-height:auto;padding:0 17px;border:0;border-radius:0;background:transparent;color:var(--text-dim);position:relative}.mode-tab:hover{background:transparent;color:var(--text)}.mode-tab[aria-selected=true]{color:var(--accent)}.mode-tab[aria-selected=true]::after{content:'';position:absolute;bottom:0;left:14px;right:14px;height:3px;border-radius:3px 3px 0 0;background:var(--accent)}.app-actions{margin-left:auto;display:flex;gap:6px}.icon-button{min-height:38px;width:38px;padding:0;border-radius:50%;background:transparent;border-color:transparent;color:var(--text-dim)}.icon-button:hover{background:var(--surface-2);color:var(--text)}.icon-button svg{width:19px;height:19px}
 #status-row{display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--border);max-width:fit-content}
 #status-row .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none;box-shadow:0 0 0 3px var(--accent-soft)}
 #status{font-size:13px;color:var(--text-dim);margin:0}
@@ -125,9 +126,11 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 380px;min-height:65vh}
 canvas{display:block;width:100%;height:100%}
 aside{padding:24px;background:var(--bg)}
 #log{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.5 ui-monospace,monospace;color:var(--text-dim)}
-@media(max-width:800px){main{grid-template-columns:1fr}#view{min-height:400px;height:55vh}}
+@media(max-width:800px){main{grid-template-columns:1fr}#view{min-height:400px;height:55vh}.app-bar{margin:0 -16px 14px;padding:0 16px;gap:8px;overflow:auto}.app-brand{font-size:13px}.mode-tabs{margin-left:0}.mode-tab{padding:0 12px;font-size:13px;white-space:nowrap}.app-actions{position:sticky;right:0;background:var(--bg-header)} }
 @media(min-width:801px){#view{position:sticky;top:0;height:75vh;align-self:start}}
-@media(max-width:800px){#view{position:sticky;top:0;z-index:2;height:38svh;min-height:220px;box-shadow:0 5px 18px #0008}aside{padding:16px}header{padding:16px}h1{font-size:21px}}
+@media(max-width:800px){#view{position:sticky;top:0;z-index:2;height:38svh;min-height:220px;box-shadow:0 5px 18px #0008}aside{padding:16px}header{padding:0 16px 16px}h1{font-size:21px}}
+
+dialog{max-width:min(560px,calc(100vw - 32px));border:1px solid var(--border-strong);border-radius:var(--radius-lg);background:var(--surface);color:var(--text);box-shadow:0 24px 80px #000b;padding:0}dialog::backdrop{background:#02070bb8;backdrop-filter:blur(3px)}.dialog-body{padding:22px}.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--border);padding:16px 20px}.dialog-head h2{font-size:18px;margin:0}.dialog-body p{color:var(--text-dim);font-size:14px}.dialog-body .readout{margin-bottom:0}.reduced-motion *{transition:none!important;scroll-behavior:auto!important}
 
 .viewer-toolbar{position:absolute;top:14px;right:14px;z-index:3;display:flex;gap:8px}
 .viewer-toolbar button{background:rgba(10,16,22,.72);backdrop-filter:blur(6px);border-color:var(--border-strong);border-radius:999px;padding:10px 16px}
@@ -153,11 +156,12 @@ footer>details{flex:1 1 260px;border-top:0;padding:0}
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
 </head><body>
 <header>
+<div class="app-bar"><div class="app-brand">Piston Engine Fundamentals</div><nav class="mode-tabs" aria-label="Training mode"><button class="mode-tab" type="button" data-training-mode="explore" aria-selected="true">Explore</button><button class="mode-tab" type="button" data-training-mode="learn" aria-selected="false" disabled>Learn</button><button class="mode-tab" type="button" data-training-mode="check" aria-selected="false" disabled>Check yourself</button></nav><div class="app-actions"><button class="icon-button dialog-open" type="button" data-dialog="settings-dialog" aria-label="Open settings" title="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.1 2.1-.06-.06A1.7 1.7 0 0 0 15.76 18a1.7 1.7 0 0 0-1.02 1.56V20h-3v-.09A1.7 1.7 0 0 0 10.72 18a1.7 1.7 0 0 0-1.88.34l-.06.06-2.1-2.1.06-.06A1.7 1.7 0 0 0 7.08 14.4 1.7 1.7 0 0 0 5.5 13.38H5v-3h.09A1.7 1.7 0 0 0 7.08 9.36a1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.1-2.1.06.06A1.7 1.7 0 0 0 10.72 5a1.7 1.7 0 0 0 1.02-1.56V3h3v.09A1.7 1.7 0 0 0 15.76 5a1.7 1.7 0 0 0 1.88-.34l.06-.06 2.1 2.1-.06.06a1.7 1.7 0 0 0-.34 1.88 1.7 1.7 0 0 0 1.56 1.02H21v3h-.09A1.7 1.7 0 0 0 19.4 15Z"/></svg></button><button class="icon-button dialog-open" type="button" data-dialog="about-dialog" aria-label="About this model" title="About"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg></button></div></div>
 <small class="kicker">GTSIO-520-H · Cylinder study</small>
 <h1>Explore the cylinder assembly</h1>
 <p class="lede">Drag to rotate · Scroll or pinch to zoom · Select a component to read its function.</p>
 <p class="lede"><a href="./engine.html">Open the full six-cylinder engine and primary drivetrain preview →</a></p>
-<div class="field-row" aria-label="Training mode"><div><label for="training-mode">Training mode</label><select id="training-mode"><option value="explore">Explore</option><option value="learn" disabled>Learn</option><option value="check" disabled>Check yourself</option></select></div><p id="training-mode-note" class="readout">Explore freely: rotate, inspect, section and operate the model.</p></div>
+<p id="training-mode-note" class="readout">Explore freely: rotate, inspect, section and operate the model.</p>
 <div id="status-row"><span class="dot" aria-hidden="true"></span><p id="status" role="status">Starting viewer…</p><progress id="load-progress" max="100" aria-label="Model download progress"></progress></div>
 </header>
 <main id="explorer">
@@ -290,4 +294,6 @@ Reverse cut
 <button id="load" disabled>Reload model</button><button id="cancel-load" hidden>Cancel download</button>
 <details><summary>Loading details</summary><label for="drive">Google Drive model sharing link</label><input id="drive" type="url" placeholder="https://drive.google.com/file/d/…/view"><p><small>The public model loads through Google Drive API without Google sign-in. No manual file saving is needed.</small></p><pre id="log"></pre></details>
 </footer>
+<dialog id="settings-dialog"><div class="dialog-head"><h2>Settings</h2><button class="icon-button dialog-close" type="button" aria-label="Close settings">×</button></div><div class="dialog-body"><label class="switch-row"><span>Reduce interface motion</span><input id="reduced-motion" type="checkbox"></label><p>Model motion remains under your control with Play and Pause. This setting reduces non-essential interface transitions on this device.</p><label class="switch-row"><span>Use inspection colours</span><input id="settings-inspection" type="checkbox" checked></label><p>Colours support identification only; they do not assert material specifications.</p></div></dialog>
+<dialog id="about-dialog"><div class="dialog-head"><h2>About this study</h2><button class="icon-button dialog-close" type="button" aria-label="Close about">×</button></div><div class="dialog-body"><p>This is a GTSIO-520-H detailed-cylinder teaching study. Explore supports free inspection; Learn and Check yourself add guided prompts and local self-checks over the same model and 720-degree operation state.</p><p>Mechanism positions are profile-checked. Valve timing, gas paths and coloured cycle cues are labelled where illustrative rather than treated as measured engineering data.</p><p class="readout">No learner identity, answers or progress are transmitted or persist by default.</p></div></dialog>
 <script type="module" src="./model-router.mjs?v=20260912-lesson-ready-5"></script></body></html>
