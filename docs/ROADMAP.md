@@ -62,6 +62,8 @@ The proposed operating-cylinder lesson now maps measurable objectives to the exi
 
 The shared training shell has three learner modes, not three competing applications: **Explore** preserves self-directed inspection; **Learn** sequences data-defined objectives and prompts through the existing model controls; and **Check yourself** uses the same lesson definitions for local, low-stakes retrieval practice. M2 introduces the first cylinder lesson and check. Additional guided lessons, broader question banks, instructor-facing completion summaries and any class-record/identity decision belong to M6 after the M2 lesson is reviewed. The default is no learner-account requirement and no transmitted or persistent answer data.
 
+The shell now exposes these as three persistent header tabs, with shared Settings and About overlays. Desktop retains a model-first left pane and a contextual right pane; narrow screens place the 3D model above the contextual controls. Settings remain local-device preferences, not learner tracking. This is a reusable shell for both registered models and future lessons, rather than a redesign unique to the current cylinder.
+
 ## M4 foundation update — 12 September 2026
 
 The whole-engine contract now owns one reusable cylinder template and six explicit instances, reconstructed left/right forward/middle/aft stations, outward orientation, a 720-degree firing-event phase map, and the declared firing order 1–4–5–2–3–6. It also records crankcase-to-cylinder, crankshaft-to-rod, and crankshaft-to-primary-drive interfaces. Firing-event phases are derived at 120-degree intervals from the firing-order fact; they are not asserted as measured crank-throw or valve-timing data.

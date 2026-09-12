@@ -1,8 +1,8 @@
 const $ = id => document.getElementById(id);
 const model = globalThis.trainingModel || {};
-const mode = $('training-mode');
+const tabs = [...document.querySelectorAll('[data-training-mode]')];
 const panel = $('guided-mode');
-let pack, lesson, step = -1, check = 0;
+let pack, lesson, step = -1, check = 0, mode = 'explore';
 
 function setAngle(value, cycle = false) {
   const slider = $('motion-angle');
@@ -52,29 +52,35 @@ function renderCheck() {
 }
 
 function render() {
-  if (mode.value === 'explore') return showExplore();
+  if (mode === 'explore') return showExplore();
   panel.hidden = false;
-  $('training-mode-note').textContent = mode.value === 'learn' ? 'Guided prompts use the same model controls; make a prediction before revealing each pose.' : pack.privacy;
-  if (mode.value === 'learn') renderLearn(); else renderCheck();
+  $('training-mode-note').textContent = mode === 'learn' ? 'Guided prompts use the same model controls; make a prediction before revealing each pose.' : pack.privacy;
+  if (mode === 'learn') renderLearn(); else renderCheck();
 }
 
-mode.onchange = () => { step = -1; check = 0; if (mode.value === 'learn') step = 0; render(); };
-$('guided-next').onclick = () => {
-  if (mode.value === 'learn') { if (step < lesson.steps.length - 1) step++; else { mode.value = 'explore'; } }
-  else if (check < pack.checks.length - 1) check++; else { mode.value = 'explore'; }
+function setMode(next) {
+  if (tabs.find(tab => tab.dataset.trainingMode === next)?.disabled) return;
+  mode = next; step = next === 'learn' ? 0 : -1; check = 0;
+  tabs.forEach(tab => tab.setAttribute('aria-selected', String(tab.dataset.trainingMode === mode)));
+  document.body.dataset.trainingMode = mode;
   render();
+}
+tabs.forEach(tab => { tab.onclick = () => setMode(tab.dataset.trainingMode); });
+$('guided-next').onclick = () => {
+  if (mode === 'learn') { if (step < lesson.steps.length - 1) { step++; render(); } else setMode('explore'); }
+  else if (check < pack.checks.length - 1) { check++; render(); } else setMode('explore');
 };
-$('guided-back').onclick = () => { if (mode.value === 'learn') step = Math.max(0, step - 1); else check = Math.max(0, check - 1); render(); };
+$('guided-back').onclick = () => { if (mode === 'learn') step = Math.max(0, step - 1); else check = Math.max(0, check - 1); render(); };
 
 if (model.lesson_url) {
   try {
     pack = await fetch(model.lesson_url).then(response => { if (!response.ok) throw Error('Lesson pack unavailable'); return response.json(); });
     lesson = pack.lessons[0];
-    mode.querySelectorAll('option:not([value="explore"])').forEach(option => option.disabled = false);
+    tabs.filter(tab => tab.dataset.trainingMode !== 'explore').forEach(tab => tab.disabled = false);
   } catch (error) {
-    mode.querySelectorAll('option:not([value="explore"])').forEach(option => option.disabled = true);
+    tabs.filter(tab => tab.dataset.trainingMode !== 'explore').forEach(tab => tab.disabled = true);
     $('training-mode-note').textContent = 'Guided lessons are unavailable; free exploration remains available.';
     console.warn(error);
   }
-} else mode.querySelectorAll('option:not([value="explore"])').forEach(option => option.disabled = true);
+} else tabs.filter(tab => tab.dataset.trainingMode !== 'explore').forEach(tab => tab.disabled = true);
 showExplore();
