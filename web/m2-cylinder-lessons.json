@@ -1,0 +1,24 @@
+{
+  "schema": "4212.lesson-pack/v1",
+  "model_id": "cylinder",
+  "privacy": "Progress is held only in this page session; no learner identity or answers are stored or transmitted.",
+  "lessons": [
+    {
+      "id": "m2-four-stroke-guided",
+      "title": "Follow one four-stroke cycle",
+      "objective": "Use the shared 720-degree crank angle to sequence the four ideal teaching strokes and relate mechanism motion to valve/cue observations.",
+      "steps": [
+        {"prompt":"Start with the mechanism. At 90 degrees, predict whether the piston is travelling away from or toward the cylinder head, then reveal the pose.","action":{"type":"angle","value":90},"note":"Use Section view if you need to see the piston, rod and crank relationship."},
+        {"prompt":"At 270 degrees, inspect the changed rod angle and piston direction. What has rotated continuously while the piston reverses direction?","action":{"type":"angle","value":270},"note":"The crankshaft provides the rotary-to-reciprocating relationship."},
+        {"prompt":"Turn on the illustrative cycle cues and go to 90 degrees. Predict the lesson-profile valve/stream state before looking inside.","action":{"type":"cycle-angle","value":90},"note":"Cues are schematic and idealised; they do not measure pressure, temperature or real timing."},
+        {"prompt":"At 450 degrees, identify the compression region. Compare the piston position and cue colour with the earlier intake observation.","action":{"type":"cycle-angle","value":450},"note":"The four stroke labels divide a teaching 720-degree cycle; they are not manufacturer valve-event timing."},
+        {"prompt":"At 630 degrees, inspect the exhaust region. Complete the cycle at 720 degrees and observe that the shared model returns to its starting state.","action":{"type":"cycle-angle","value":630},"note":"A four-stroke cycle requires two crankshaft revolutions."}
+      ]
+    }
+  ],
+  "checks": [
+    {"id":"two-revolutions","question":"How many crankshaft degrees make one four-stroke cycle?","answers":["360 degrees","720 degrees","1440 degrees"],"correct":1,"rationale":"Intake, compression, power and exhaust together span two crankshaft revolutions."},
+    {"id":"mechanism","question":"Which component converts the connecting-rod force into rotary output in this study?","answers":["Crankshaft","Intake valve","Piston ring"],"correct":0,"rationale":"The crankshaft receives the rod force and turns it into rotary output."},
+    {"id":"cue-boundary","question":"What do the coloured charge/flow cues establish?","answers":["Measured pressure and temperature","A schematic teaching explanation of the cycle","Certified manufacturer valve timing"],"correct":1,"rationale":"They are illustrative, valve-gated teaching cues rather than measured fluid or timing data."}
+  ]
+}
