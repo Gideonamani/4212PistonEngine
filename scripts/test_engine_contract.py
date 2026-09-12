@@ -18,6 +18,7 @@ groups=contract['inspection_groups'];assert groups[0]['id']=='all';assert len(gr
 assert all(group['selector'].get('all') or group['selector'].get('any_regex') for group in groups)
 asset=root/'web/engine.glb'
 assert hashlib.sha256(asset.read_bytes()).hexdigest()==contract['asset']['sha256']
+assert len(asset.read_bytes())==contract['asset']['bytes']
 transport=contract['asset']['transport']
 transport_asset=root/'web'/Path(transport['web_url']).name
 packed=transport_asset.read_bytes()

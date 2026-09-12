@@ -9,6 +9,7 @@
   "asset": {
     "web_url": "./engine.glb",
     "sha256": "f363800d58daea8eb9cafedb6acc1db586f87e98d19325ad4c76207e2e26f214",
+    "bytes": 40039232,
     "units": "metres",
     "coordinate_conversion": "Blender metres (x,y,z) to glTF metres (x,z,-y)",
     "transport": {
