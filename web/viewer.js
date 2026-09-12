@@ -8,6 +8,7 @@ import {valveMatrices} from './valve-transforms.mjs';
 import {createCycleVisuals} from './cycle-visuals.mjs?v=20260911-moving-particles-3';
 
 const $ = id => document.getElementById(id);
+const model = globalThis.trainingModel || {};
 const say = text => $('status').textContent = text;
 const log = text => $('log').textContent += text + '\n';
 const music=$('music');
@@ -132,7 +133,7 @@ async function setupMotion(bytes){
   stopMotion();motionProfile=null;motionEntries=[];$('motion-controls').disabled=true;
   cycleVisuals?.dispose();cycleVisuals=null;$('cycle-controls').hidden=true;$('cycle-enabled').checked=false;
   try{
-    const response=await fetch('./motion.json');if(!response.ok)throw Error('Motion profile unavailable');
+    const response=await fetch(model.motion_profile_url||'./motion.json');if(!response.ok)throw Error('Motion profile unavailable');
     const profile=await response.json();
     const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');
     if(digest!==profile.asset_sha256)throw Error('This model version needs a verified motion profile');
@@ -399,7 +400,7 @@ async function load(){
   try{
     if(localModelURL){
       const bytes=await fetchGLB(localModelURL);const count=await display(bytes);
-      say(`LOCAL CONTROL passed · ${count} components. This does not verify Google Drive delivery.`);return;
+      say(`Operating-cylinder model loaded · ${count} components. Rotate, zoom or select a component.`);return;
     }
     say('Loading the cylinder assembly through Google Drive API…');
     const candidates=driveCandidates($('drive').value.trim());
@@ -418,13 +419,17 @@ async function load(){
 }
 $('load').onclick=load;
 try{
-  const [registry,config]=await Promise.all([fetch('./components.json').then(r=>r.json()),fetch('./config.json').then(r=>r.json())]);
+  const [registry,config]=await Promise.all([fetch(model.component_catalogue_url||'./components.json').then(r=>r.json()),fetch('./config.json').then(r=>r.json())]);
   catalogue=new Map(registry.parts.map(p=>[p.cad_stable_id,p]));
   apiKey=config.drive_api_key||'';
   $('drive').value=config.drive_share_url||'';$('load').disabled=false;
   // Local-only control verifies the exported GLB and viewer before Drive delivery is available.
   const localControl=['localhost','127.0.0.1'].includes(location.hostname)&&new URLSearchParams(location.search).get('control')==='local';
-  if(localControl){
+  if(model.asset_url||config.packaged_model_url){
+    localModelURL=model.asset_url||config.packaged_model_url;
+    await load();
+  }
+  else if(localControl){
     localModelURL=typeof DecompressionStream==='function'?(config.local_model_url||'./control.glb'):(config.local_model_fallback_url||'./control.glb');
     await load();
   }
