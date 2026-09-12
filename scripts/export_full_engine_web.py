@@ -5,6 +5,7 @@ single 720-degree action so the web viewer can scrub the verified native motion.
 """
 from pathlib import Path
 import json
+import re
 import bpy
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -41,6 +42,8 @@ for obj in bpy.context.selected_objects:
         obj["module_id"] = "crankcase-v5"
     elif name.startswith("RUN | V3 "):
         obj["module_id"] = "primary-drive"
+    obj["teaching_ids"] = [component["id"] for component in CONTRACT["teaching_components"]
+                           if any(re.search(pattern, name, re.I) for pattern in component.get("selector", {}).get("any_regex", []))]
 # glTF does not evaluate Blender drivers in a browser. Bake their evaluated
 # transforms in memory (without saving the source .blend) before export.
 bpy.ops.nla.bake(
