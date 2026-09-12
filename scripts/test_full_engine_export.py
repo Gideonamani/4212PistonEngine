@@ -15,6 +15,8 @@ for cylinder in range(1, 7):
 assert any('crank' in name.lower() for name in names), 'crankshaft objects missing'
 assert any('cam' in name.lower() for name in names), 'camshaft objects missing'
 assert any('prop' in name.lower() for name in names), 'propeller drive objects missing'
+assert any(name.startswith('V5 ') for name in names), 'V5 crankcase objects missing'
+assert any('crankcase' in name.lower() for name in names), 'crankcase shells missing'
 channels = sum(len(animation.get('channels', [])) for animation in doc.get('animations', []))
 assert channels >= 100, f'expected baked operating transforms, found {channels}'
 assert len(doc.get('meshes', [])) >= 800, 'incomplete engine mesh export'
