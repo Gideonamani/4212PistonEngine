@@ -4,6 +4,8 @@ Status (9 September 2026): the GitHub Pages prototype loads all 60 cylinder comp
 
 Start with [the project roadmap](docs/ROADMAP.md) for milestones, acceptance checks and working priorities. This document supplies technical architecture; the roadmap controls milestone names and status.
 
+The current scalable implementation is described in [the engine-platform architecture](docs/engine-platform-architecture.md). It introduces one versioned engine contract consumed by both Blender export/video work and the interactive web viewer.
+
 The objective is a reusable teaching platform in which students can inspect components, operate mechanisms, follow systems and test their understanding. Start with one complete cylinder workflow and extend it through linked engine subassemblies.
 
 ```mermaid

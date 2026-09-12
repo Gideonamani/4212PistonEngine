@@ -7,7 +7,7 @@ source=root/'build'/'full-engine-web'/'gtsio520-six-cylinder-drive.glb'
 if not source.exists(): raise SystemExit('Run export_full_engine_web.py through Blender first.')
 preview=root/'build'/'full-engine-web'/'web'
 preview.mkdir(parents=True,exist_ok=True)
-for name in ('engine.html','engine-viewer.js'):
+for name in ('engine.html','engine-viewer.js','engine-contract.json'):
     copy2(root/'web'/name,preview/name)
 copy2(source,preview/'engine.glb')
 print(preview/'engine.html')

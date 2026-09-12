@@ -4,20 +4,23 @@ The source file remains untouched. Blender drivers are force-sampled into a
 single 720-degree action so the web viewer can scrub the verified native motion.
 """
 from pathlib import Path
+import json
 import bpy
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "build" / "full-engine-web"
 OUT.mkdir(parents=True, exist_ok=True)
+CONTRACT = json.loads((ROOT / "data" / "engine-contracts" / "gtsio520-h-v5.json").read_text())
 
-scene = bpy.data.scenes["07 | Six cylinders - dissolve to operating internals"]
+scene = bpy.data.scenes[CONTRACT["source"]["scene"]]
 bpy.context.window.scene = scene
-scene.frame_start = 1
+frames = CONTRACT["operation"]["source_frames"]
+scene.frame_start = frames["start"]
 # The native controller advances three crank degrees per frame. Frames 1..241
 # are one 720-degree four-stroke cycle; the longer source scene continues for
 # its classroom dissolve sequence.
-scene.frame_end = 241
-scene.frame_set(1)
+scene.frame_end = frames["end"]
+scene.frame_set(frames["start"])
 
 # Keep physical mechanism/case objects and omit the teaching camera, lights,
 # captions and the animated exterior-dissolve material behavior.

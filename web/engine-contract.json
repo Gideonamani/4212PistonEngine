@@ -1,0 +1,38 @@
+{
+  "schema": "4212.engine-contract/v1",
+  "id": "gtsio520-h-v5-teaching-engine",
+  "status": "teaching reconstruction; V5 crankcase and inherited V4 operating action",
+  "source": {
+    "blender_file": "../EngineSimulation/v5/GTSIO-520-H_V5_Crankcase_and_Function_Tour.blend",
+    "scene": "07 | Six cylinders - dissolve to operating internals"
+  },
+  "asset": {
+    "web_url": "./engine.glb",
+    "sha256": "f363800d58daea8eb9cafedb6acc1db586f87e98d19325ad4c76207e2e26f214",
+    "units": "metres",
+    "coordinate_conversion": "Blender metres (x,y,z) to glTF metres (x,z,-y)"
+  },
+  "operation": {
+    "cycle_degrees": 720,
+    "source_frames": {"start": 1, "end": 241, "degrees_per_frame": 3},
+    "firing_order": [1, 4, 5, 2, 3, 6],
+    "motion_scope": ["six piston/rod pairs", "crankshaft", "camshaft", "reduction propeller shaft", "magneto branch"]
+  },
+  "modules": [
+    {"id": "crankcase-v5", "kind": "structure", "source_status": "reconstructed geometry; V5 shell/interface checks"},
+    {"id": "cylinder-module", "kind": "reusable six-instance module", "instances": ["cylinder-1", "cylinder-2", "cylinder-3", "cylinder-4", "cylinder-5", "cylinder-6"]},
+    {"id": "primary-drive", "kind": "operating drivetrain", "source_status": "inherited V4 verified teaching action"}
+  ],
+  "inspection_groups": [
+    {"id": "all", "label": "Whole engine", "selector": {"all": true}},
+    {"id": "drivetrain", "label": "Primary drivetrain", "selector": {"any_regex": ["RUN \\|", "V3 .*?(crank|cam|gear|prop|magneto|quill|shaft)"]}},
+    {"id": "crankcase", "label": "Crankcase and mounts", "selector": {"any_regex": ["V5 "]}},
+    {"id": "cylinders", "label": "All cylinder assemblies", "selector": {"any_regex": ["C[1-6] \\|"]}},
+    {"id": "cylinder-1", "label": "Cylinder 1", "selector": {"any_regex": ["C1 \\|"]}},
+    {"id": "cylinder-2", "label": "Cylinder 2", "selector": {"any_regex": ["C2 \\|"]}},
+    {"id": "cylinder-3", "label": "Cylinder 3", "selector": {"any_regex": ["C3 \\|"]}},
+    {"id": "cylinder-4", "label": "Cylinder 4", "selector": {"any_regex": ["C4 \\|"]}},
+    {"id": "cylinder-5", "label": "Cylinder 5", "selector": {"any_regex": ["C5 \\|"]}},
+    {"id": "cylinder-6", "label": "Cylinder 6", "selector": {"any_regex": ["C6 \\|"]}}
+  ]
+}
