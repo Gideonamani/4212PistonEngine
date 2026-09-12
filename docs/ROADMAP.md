@@ -54,6 +54,10 @@ M1 is complete. M2 depends on the shared operation profile; M3 remains a require
 
 The active engineering packages are M2/M3 close-out and M4 whole-engine foundation. M1 is complete following physical Samsung Galaxy A16 evidence. UI polish and further device/performance refinement continue without reopening M1. M2/M3 still need their own lesson, release and propagation gates.
 
+## M2 lesson-design start — 12 September 2026
+
+The proposed operating-cylinder lesson now maps measurable objectives to the existing shared model controls: component selection/isolation, section view, one 720-degree angle state, motion controls, valve motion and optional cycle cues. It uses prediction-before-reveal activities and requires students to distinguish profile-checked mechanism motion from illustrative gas/timing explanations. The next implementation is a data-driven guided-mode layer over the current training shell, not a separate animation or cycle implementation. See [M2 operating-cylinder learning design](m2-operating-cylinder-learning-design.md). Instructor review and target-phone interaction evidence remain M2 gates.
+
 ## M4 foundation update — 12 September 2026
 
 The whole-engine contract now owns one reusable cylinder template and six explicit instances, reconstructed left/right forward/middle/aft stations, outward orientation, a 720-degree firing-event phase map, and the declared firing order 1–4–5–2–3–6. It also records crankcase-to-cylinder, crankshaft-to-rod, and crankshaft-to-primary-drive interfaces. Firing-event phases are derived at 120-degree intervals from the firing-order fact; they are not asserted as measured crank-throw or valve-timing data.
