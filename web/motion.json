@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "asset_sha256": "5f14a83aa045ef1b195c0ea0114600637eb69096a811ab0965c9bf123013c61f",
-  "bind_angle_deg": 36.00000119194909,
+  "asset_sha256": "f1f54fa57ae1ccc1aa23a635674eeece7ee1c518db1e6fbd5b508ab09bb2da3c",
+  "bind_angle_deg": 0.0,
   "radius_m": 0.0508,
   "rod_length_m": 0.168275,
   "groups": {
@@ -66,5 +66,416 @@
     "ExhaustUpperPushrodSeal": "Cylinder",
     "ExhaustHydraulicLifterBody": "Cylinder"
   },
-  "scope": "Slider-crank kinematics only. Valves remain closed; no gas or combustion simulation."
+  "scope": "Unreleased operating-cylinder preview with illustrative cycle cues; instructor review pending.",
+  "valves": {
+    "schema_version": 1,
+    "source_sha256": "050ff5444c8115abfeaf2bcb34e9a7b6b1bab07ab604f7aa3e16aa6c91bbb2de",
+    "coordinates": "FreeCAD world millimetres",
+    "status": "Unreleased teaching motion contract; interpolation between sampled contact poses is not continuously audited",
+    "cycle": {
+      "degrees": 720,
+      "maximum_lift_mm": 7,
+      "timing": "Illustrative sin-squared lift over ideal intake/exhaust strokes; not manufacturer cam timing"
+    },
+    "trains": {
+      "intake": {
+        "valve_axis": [
+          0.9799247046208296,
+          -0.19936793441719738,
+          0.0
+        ],
+        "rocker_pivot_mm": [
+          401.4402116007079,
+          -58.91783147423567,
+          -18.000000000000004
+        ],
+        "rocker_axis": [
+          0.1993679344171974,
+          0.9799247046208298,
+          -1.6653345369377348e-16
+        ],
+        "pushrod_socket_mm": [
+          405.47296873269505,
+          -59.73830518575553,
+          -37.88249714706663
+        ],
+        "pushrod_lower_mm": [
+          52.0,
+          -35.0,
+          -116.0
+        ],
+        "pushrod_length_mm": 362.8463416105314,
+        "contact_samples": [
+          {
+            "lift_mm": 0.0,
+            "rocker_angle_deg": -0.0
+          },
+          {
+            "lift_mm": 0.25,
+            "rocker_angle_deg": -0.7276837378740311
+          },
+          {
+            "lift_mm": 0.5,
+            "rocker_angle_deg": -1.4596181958913803
+          },
+          {
+            "lift_mm": 0.75,
+            "rocker_angle_deg": -2.19600035995245
+          },
+          {
+            "lift_mm": 1.0,
+            "rocker_angle_deg": -2.9370362386107445
+          },
+          {
+            "lift_mm": 1.25,
+            "rocker_angle_deg": -3.6829416006803513
+          },
+          {
+            "lift_mm": 1.5,
+            "rocker_angle_deg": -4.433942720293999
+          },
+          {
+            "lift_mm": 1.75,
+            "rocker_angle_deg": -5.1902772560715675
+          },
+          {
+            "lift_mm": 2.0,
+            "rocker_angle_deg": -5.952195204794407
+          },
+          {
+            "lift_mm": 2.25,
+            "rocker_angle_deg": -6.7199598997831345
+          },
+          {
+            "lift_mm": 2.5,
+            "rocker_angle_deg": -7.493849217891693
+          },
+          {
+            "lift_mm": 2.75,
+            "rocker_angle_deg": -8.27415680885315
+          },
+          {
+            "lift_mm": 3.0,
+            "rocker_angle_deg": -9.06119355559349
+          },
+          {
+            "lift_mm": 3.25,
+            "rocker_angle_deg": -9.855289116501808
+          },
+          {
+            "lift_mm": 3.5,
+            "rocker_angle_deg": -10.656793728470802
+          },
+          {
+            "lift_mm": 3.75,
+            "rocker_angle_deg": -11.466080158948898
+          },
+          {
+            "lift_mm": 4.0,
+            "rocker_angle_deg": -12.283545948565006
+          },
+          {
+            "lift_mm": 4.25,
+            "rocker_angle_deg": -13.109615929424763
+          },
+          {
+            "lift_mm": 4.5,
+            "rocker_angle_deg": -13.944745056331158
+          },
+          {
+            "lift_mm": 4.75,
+            "rocker_angle_deg": -14.789421617984772
+          },
+          {
+            "lift_mm": 5.0,
+            "rocker_angle_deg": -15.644170969724655
+          },
+          {
+            "lift_mm": 5.25,
+            "rocker_angle_deg": -16.50955968350172
+          },
+          {
+            "lift_mm": 5.5,
+            "rocker_angle_deg": -17.386200442910194
+          },
+          {
+            "lift_mm": 5.75,
+            "rocker_angle_deg": -18.274757601320744
+          },
+          {
+            "lift_mm": 6.0,
+            "rocker_angle_deg": -19.175953663885593
+          },
+          {
+            "lift_mm": 6.25,
+            "rocker_angle_deg": -20.090576872229576
+          },
+          {
+            "lift_mm": 6.5,
+            "rocker_angle_deg": -21.0194900482893
+          },
+          {
+            "lift_mm": 6.75,
+            "rocker_angle_deg": -21.963641054928303
+          },
+          {
+            "lift_mm": 7.0,
+            "rocker_angle_deg": -22.924075193703175
+          }
+        ]
+      },
+      "exhaust": {
+        "valve_axis": [
+          0.9659258262890682,
+          0.25881904510252074,
+          0.0
+        ],
+        "rocker_pivot_mm": [
+          399.6203574175789,
+          66.64647586332771,
+          -18.000000000000007
+        ],
+        "rocker_axis": [
+          -0.2588190451025208,
+          0.9659258262890684,
+          -1.1275702593849246e-16
+        ],
+        "pushrod_socket_mm": [
+          403.54609618189227,
+          67.69837439492088,
+          -37.893015976306856
+        ],
+        "pushrod_lower_mm": [
+          52.0,
+          35.0,
+          -116.0
+        ],
+        "pushrod_length_mm": 361.5999756389319,
+        "contact_samples": [
+          {
+            "lift_mm": 0.0,
+            "rocker_angle_deg": -0.0
+          },
+          {
+            "lift_mm": 0.25,
+            "rocker_angle_deg": -0.7268433123826981
+          },
+          {
+            "lift_mm": 0.5,
+            "rocker_angle_deg": -1.4578983560204506
+          },
+          {
+            "lift_mm": 0.75,
+            "rocker_angle_deg": -2.1933603733778
+          },
+          {
+            "lift_mm": 1.0,
+            "rocker_angle_deg": -2.933433473110199
+          },
+          {
+            "lift_mm": 1.25,
+            "rocker_angle_deg": -3.6783313900232315
+          },
+          {
+            "lift_mm": 1.5,
+            "rocker_angle_deg": -4.42827820032835
+          },
+          {
+            "lift_mm": 1.75,
+            "rocker_angle_deg": -5.183509163558483
+          },
+          {
+            "lift_mm": 2.0,
+            "rocker_angle_deg": -5.944271691143513
+          },
+          {
+            "lift_mm": 2.25,
+            "rocker_angle_deg": -6.710826322436333
+          },
+          {
+            "lift_mm": 2.5,
+            "rocker_angle_deg": -7.483447879552841
+          },
+          {
+            "lift_mm": 2.75,
+            "rocker_angle_deg": -8.262426689267159
+          },
+          {
+            "lift_mm": 3.0,
+            "rocker_angle_deg": -9.048070020973682
+          },
+          {
+            "lift_mm": 3.25,
+            "rocker_angle_deg": -9.840703569352627
+          },
+          {
+            "lift_mm": 3.5,
+            "rocker_angle_deg": -10.640673249959946
+          },
+          {
+            "lift_mm": 3.75,
+            "rocker_angle_deg": -11.448347069323063
+          },
+          {
+            "lift_mm": 4.0,
+            "rocker_angle_deg": -12.26411734521389
+          },
+          {
+            "lift_mm": 4.25,
+            "rocker_angle_deg": -13.088403150439262
+          },
+          {
+            "lift_mm": 4.5,
+            "rocker_angle_deg": -13.921653054654598
+          },
+          {
+            "lift_mm": 4.75,
+            "rocker_angle_deg": -14.764348313212395
+          },
+          {
+            "lift_mm": 5.0,
+            "rocker_angle_deg": -15.617006413638592
+          },
+          {
+            "lift_mm": 5.25,
+            "rocker_angle_deg": -16.48018518090248
+          },
+          {
+            "lift_mm": 5.5,
+            "rocker_angle_deg": -17.354487508535385
+          },
+          {
+            "lift_mm": 5.75,
+            "rocker_angle_deg": -18.24056675285101
+          },
+          {
+            "lift_mm": 6.0,
+            "rocker_angle_deg": -19.139133028686047
+          },
+          {
+            "lift_mm": 6.25,
+            "rocker_angle_deg": -20.050960555672646
+          },
+          {
+            "lift_mm": 6.5,
+            "rocker_angle_deg": -20.976896204054356
+          },
+          {
+            "lift_mm": 6.75,
+            "rocker_angle_deg": -21.91786962747574
+          },
+          {
+            "lift_mm": 7.0,
+            "rocker_angle_deg": -22.874905206263065
+          }
+        ]
+      }
+    },
+    "spring_targets": {
+      "IntakeInnerSpring": {
+        "train": "intake",
+        "maximum_lift_mm": 7,
+        "target": "ValveLift7mm"
+      },
+      "IntakeOuterSpring": {
+        "train": "intake",
+        "maximum_lift_mm": 7,
+        "target": "ValveLift7mm"
+      },
+      "ExhaustInnerSpring": {
+        "train": "exhaust",
+        "maximum_lift_mm": 7,
+        "target": "ValveLift7mm"
+      },
+      "ExhaustOuterSpring": {
+        "train": "exhaust",
+        "maximum_lift_mm": 7,
+        "target": "ValveLift7mm"
+      }
+    }
+  },
+  "cycle_landmarks": {
+    "schema_version": 1,
+    "source_sha256": "050ff5444c8115abfeaf2bcb34e9a7b6b1bab07ab604f7aa3e16aa6c91bbb2de",
+    "passed": true,
+    "audit_complete": true,
+    "ports": {
+      "intake": {
+        "inner_origin_mm": [
+          296.05,
+          -33.0,
+          0.0
+        ],
+        "outward_axis": [
+          0.0,
+          -1.0000000000000002,
+          0.0
+        ],
+        "outer_endpoint_mm": [
+          296.05,
+          -123.00000000000001,
+          0.0
+        ],
+        "radius_mm": 19.0,
+        "feature": "IntakeCrossPort",
+        "geometry_status": "Reconstructed CAD passage",
+        "valve": {
+          "origin_mm": [
+            274.05,
+            -33.0,
+            0.0
+          ],
+          "axis": [
+            0.9799247046208296,
+            -0.19936793441719738,
+            0.0
+          ],
+          "head_radius_mm": 30.500000000000036
+        }
+      },
+      "exhaust": {
+        "inner_origin_mm": [
+          296.05,
+          33.0,
+          0.0
+        ],
+        "outward_axis": [
+          0.0,
+          1.0000000000000002,
+          0.0
+        ],
+        "outer_endpoint_mm": [
+          296.05,
+          123.00000000000001,
+          0.0
+        ],
+        "radius_mm": 16.0,
+        "feature": "ExhaustCrossPort",
+        "geometry_status": "Reconstructed CAD passage",
+        "valve": {
+          "origin_mm": [
+            274.05,
+            33.0,
+            0.0
+          ],
+          "axis": [
+            0.9659258262890682,
+            0.25881904510252074,
+            0.0
+          ],
+          "head_radius_mm": 24.000000000000018
+        }
+      }
+    },
+    "chamber": {
+      "radius_mm": 29.348176000000002,
+      "front_x_mm": 262.05,
+      "piston_front_offset_mm": 36.0,
+      "piston_margin_mm": 1,
+      "display_status": "Conservative central cue region; does not represent total chamber volume"
+    },
+    "audit_sha256": "780d93e4366af0bf423626ba034349ff0b14695b5de9af258a4c03959351a8d4",
+    "scope": "Whole maximum display region clears head/barrel and sampled valve lifts; piston clearance uses its moving axial bound. Reconstructed geometry, illustrative cues, not CFD.",
+    "flow_path_status": "Schematic connection through CAD port and valve frames; not an audited fluid passage or CFD trajectory."
+  }
 }

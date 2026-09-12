@@ -12,7 +12,7 @@ flowchart LR
   E[Evidence and component registry] --> C
 ```
 
-`data/engine-contracts/gtsio520-h-v5.json` is the first contract. It binds the V5 source scene to the published GLB hash, declares one 720-degree operation state, names the six reusable cylinder instances and the primary-drive and crankcase modules, and defines inspection groups without hard-coding those rules into the page.
+`web/training.html` is the one interactive training shell. `web/models.json` registers the detailed cylinder and full V5 engine as separate models; `web/model-router.mjs` loads their adapters into the same controls, layout and accessibility structure. `data/engine-contracts/gtsio520-h-v5.json` is the first engine contract. It binds the V5 source scene to the published GLB hash, declares one 720-degree operation state, names the six reusable cylinder instances and the primary-drive and crankcase modules, and defines inspection groups without hard-coding those rules into the page.
 
 The immediate compatibility layer uses selector rules over the existing Blender object hierarchy. This is deliberate transitional metadata. Future CAD/Blender exports must write stable module and instance IDs as GLB extras; the web runtime will then select IDs directly instead of matching names.
 
