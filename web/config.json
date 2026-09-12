@@ -1,4 +1,5 @@
 {
-  "packaged_model_url": "./control.glb",
-  "status": "Verified operating-cylinder asset published with the training shell."
+  "packaged_model_url": "./control.glb.gz",
+  "packaged_model_fallback_url": "./control.glb",
+  "status": "Verified operating-cylinder asset published with compressed delivery and the shared training shell."
 }

@@ -17,4 +17,4 @@ python scripts\test_full_engine_export.py
 python -m http.server 8767 --bind 127.0.0.1 --directory build\full-engine-web\web
 ```
 
-For GitHub Pages, `web/engine.glb` is the versioned web asset. `engine.html` selects the full-engine entry in the shared training shell.
+For GitHub Pages, `web/engine.glb.gz` is the 4.0 MB versioned delivery asset and `web/engine.glb` is its compatible raw fallback. The engine contract validates the gzip round trip before release. `engine.html` selects the full-engine entry in the shared training shell.

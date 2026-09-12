@@ -10,29 +10,772 @@
     "web_url": "./engine.glb",
     "sha256": "f363800d58daea8eb9cafedb6acc1db586f87e98d19325ad4c76207e2e26f214",
     "units": "metres",
-    "coordinate_conversion": "Blender metres (x,y,z) to glTF metres (x,z,-y)"
+    "coordinate_conversion": "Blender metres (x,y,z) to glTF metres (x,z,-y)",
+    "transport": {
+      "web_url": "./engine.glb.gz",
+      "fallback_web_url": "./engine.glb",
+      "encoding": "gzip",
+      "bytes": 4228178,
+      "sha256": "cdaa357e0888b5c89ad0a2135b1536b71a6a4099930b67af1993058c430caf0f"
+    }
   },
   "operation": {
     "cycle_degrees": 720,
-    "source_frames": {"start": 1, "end": 241, "degrees_per_frame": 3},
-    "firing_order": [1, 4, 5, 2, 3, 6],
-    "motion_scope": ["six piston/rod pairs", "crankshaft", "camshaft", "reduction propeller shaft", "magneto branch"]
+    "source_frames": {
+      "start": 1,
+      "end": 241,
+      "degrees_per_frame": 3
+    },
+    "firing_order": [
+      1,
+      4,
+      5,
+      2,
+      3,
+      6
+    ],
+    "motion_scope": [
+      "six piston/rod pairs",
+      "crankshaft",
+      "camshaft",
+      "reduction propeller shaft",
+      "magneto branch"
+    ]
   },
   "modules": [
-    {"id": "crankcase-v5", "kind": "structure", "source_status": "reconstructed geometry; V5 shell/interface checks"},
-    {"id": "cylinder-module", "kind": "reusable six-instance module", "instances": ["cylinder-1", "cylinder-2", "cylinder-3", "cylinder-4", "cylinder-5", "cylinder-6"]},
-    {"id": "primary-drive", "kind": "operating drivetrain", "source_status": "inherited V4 verified teaching action"}
+    {
+      "id": "crankcase-v5",
+      "kind": "structure",
+      "source_status": "reconstructed geometry; V5 shell/interface checks"
+    },
+    {
+      "id": "cylinder-module",
+      "kind": "reusable six-instance module",
+      "instances": [
+        "cylinder-1",
+        "cylinder-2",
+        "cylinder-3",
+        "cylinder-4",
+        "cylinder-5",
+        "cylinder-6"
+      ]
+    },
+    {
+      "id": "primary-drive",
+      "kind": "operating drivetrain",
+      "source_status": "inherited V4 verified teaching action"
+    }
   ],
   "inspection_groups": [
-    {"id": "all", "label": "Whole engine", "selector": {"all": true}},
-    {"id": "drivetrain", "label": "Primary drivetrain", "selector": {"any_regex": ["RUN \\|", "V3 .*?(crank|cam|gear|prop|magneto|quill|shaft)"]}},
-    {"id": "crankcase", "label": "Crankcase and mounts", "selector": {"any_regex": ["V5 "]}},
-    {"id": "cylinders", "label": "All cylinder assemblies", "selector": {"any_regex": ["C[1-6] \\|"]}},
-    {"id": "cylinder-1", "label": "Cylinder 1", "selector": {"any_regex": ["C1 \\|"]}},
-    {"id": "cylinder-2", "label": "Cylinder 2", "selector": {"any_regex": ["C2 \\|"]}},
-    {"id": "cylinder-3", "label": "Cylinder 3", "selector": {"any_regex": ["C3 \\|"]}},
-    {"id": "cylinder-4", "label": "Cylinder 4", "selector": {"any_regex": ["C4 \\|"]}},
-    {"id": "cylinder-5", "label": "Cylinder 5", "selector": {"any_regex": ["C5 \\|"]}},
-    {"id": "cylinder-6", "label": "Cylinder 6", "selector": {"any_regex": ["C6 \\|"]}}
+    {
+      "id": "all",
+      "label": "Whole engine",
+      "selector": {
+        "all": true
+      }
+    },
+    {
+      "id": "drivetrain",
+      "label": "Primary drivetrain",
+      "selector": {
+        "any_regex": [
+          "RUN \\|",
+          "V3 .*?(crank|cam|gear|prop|magneto|quill|shaft)"
+        ]
+      }
+    },
+    {
+      "id": "crankcase",
+      "label": "Crankcase and mounts",
+      "selector": {
+        "any_regex": [
+          "V5 "
+        ]
+      }
+    },
+    {
+      "id": "cylinders",
+      "label": "All cylinder assemblies",
+      "selector": {
+        "any_regex": [
+          "C[1-6] \\|"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-1",
+      "label": "Cylinder 1",
+      "selector": {
+        "any_regex": [
+          "C1 \\|"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-2",
+      "label": "Cylinder 2",
+      "selector": {
+        "any_regex": [
+          "C2 \\|"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-3",
+      "label": "Cylinder 3",
+      "selector": {
+        "any_regex": [
+          "C3 \\|"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-4",
+      "label": "Cylinder 4",
+      "selector": {
+        "any_regex": [
+          "C4 \\|"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-5",
+      "label": "Cylinder 5",
+      "selector": {
+        "any_regex": [
+          "C5 \\|"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-6",
+      "label": "Cylinder 6",
+      "selector": {
+        "any_regex": [
+          "C6 \\|"
+        ]
+      }
+    }
+  ],
+  "teaching_components": [
+    {
+      "id": "crankcase-and-mounts",
+      "label": "Crankcase and mounts",
+      "group": "crankcase",
+      "description": "The two V5 case halves, bearing webs, cylinder studs and mounting structure.",
+      "keywords": [
+        "crankcase",
+        "case",
+        "mount",
+        "bearing web"
+      ],
+      "selector": {
+        "any_regex": [
+          "V5 "
+        ]
+      }
+    },
+    {
+      "id": "crankshaft",
+      "label": "Crankshaft and counterweights",
+      "group": "drivetrain",
+      "description": "The six-throw crankshaft, journals, crankpins, cheeks and counterweights.",
+      "keywords": [
+        "crank",
+        "journal",
+        "crankpin",
+        "counterweight"
+      ],
+      "selector": {
+        "any_regex": [
+          "RUN \\| V3 .*?(?:crank|journal|counterweight|cheek|crankpin)"
+        ]
+      }
+    },
+    {
+      "id": "camshaft-and-timing-drive",
+      "label": "Camshaft and timing drive",
+      "group": "drivetrain",
+      "description": "The camshaft and timing gears that coordinate the valve trains.",
+      "keywords": [
+        "camshaft",
+        "cam",
+        "timing",
+        "idler gear"
+      ],
+      "selector": {
+        "any_regex": [
+          "RUN \\| V3 .*?(?:cam|timing gear|idler)"
+        ]
+      }
+    },
+    {
+      "id": "propeller-reduction-drive",
+      "label": "Propeller reduction drive",
+      "group": "drivetrain",
+      "description": "The reduction gear train, quill shaft and propeller output path.",
+      "keywords": [
+        "propeller",
+        "reduction",
+        "quill",
+        "shaft",
+        "gear"
+      ],
+      "selector": {
+        "any_regex": [
+          "RUN \\| V3 .*?(?:prop|reduction|quill|shaft|gear)"
+        ]
+      }
+    },
+    {
+      "id": "accessory-drive",
+      "label": "Accessory and governor drive",
+      "group": "drivetrain",
+      "description": "The magneto, accessory and governor branches driven from the primary action.",
+      "keywords": [
+        "magneto",
+        "governor",
+        "accessory"
+      ],
+      "selector": {
+        "any_regex": [
+          "RUN \\| V3 .*?(?:magneto|governor|accessory)"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-1-assembly",
+      "label": "Cylinder 1 \u00b7 Complete assembly",
+      "group": "cylinder-1",
+      "description": "All visible components belonging to cylinder 1.",
+      "keywords": [
+        "cylinder 1",
+        "complete assembly"
+      ],
+      "selector": {
+        "any_regex": [
+          "C1 \\|"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-1-piston-rod",
+      "label": "Cylinder 1 \u00b7 Piston and connecting rod",
+      "group": "cylinder-1",
+      "description": "The piston, rings, pin and connecting rod for cylinder 1.",
+      "keywords": [
+        "cylinder 1",
+        "piston",
+        "rings",
+        "connecting rod"
+      ],
+      "selector": {
+        "any_regex": [
+          "C1 \\| EXT (?:Piston|Rod)"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-1-intake",
+      "label": "Cylinder 1 \u00b7 Intake valve train",
+      "group": "cylinder-1",
+      "description": "The intake port, valve, springs, rocker, pushrod and tappet for cylinder 1.",
+      "keywords": [
+        "cylinder 1",
+        "intake",
+        "inlet",
+        "valve",
+        "spring",
+        "rocker"
+      ],
+      "selector": {
+        "any_regex": [
+          "C1 \\| EXT .*?Intake"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-1-exhaust",
+      "label": "Cylinder 1 \u00b7 Exhaust valve train",
+      "group": "cylinder-1",
+      "description": "The exhaust port, valve, springs, rocker, pushrod and tappet for cylinder 1.",
+      "keywords": [
+        "cylinder 1",
+        "exhaust",
+        "outlet",
+        "valve",
+        "spring",
+        "rocker"
+      ],
+      "selector": {
+        "any_regex": [
+          "C1 \\| EXT .*?Exhaust"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-1-structure-ignition",
+      "label": "Cylinder 1 \u00b7 Barrel, head and ignition",
+      "group": "cylinder-1",
+      "description": "The cylinder barrel, cooling fins, head, chamber section and ignition parts for cylinder 1.",
+      "keywords": [
+        "cylinder 1",
+        "barrel",
+        "head",
+        "cooling fins",
+        "spark plug",
+        "ignition"
+      ],
+      "selector": {
+        "any_regex": [
+          "C1 \\| EXT (?:\\| )?(?:barrel|base flange|cylinder base|steel barrel|aluminium head|head fin|ceramic|plug)"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-2-assembly",
+      "label": "Cylinder 2 \u00b7 Complete assembly",
+      "group": "cylinder-2",
+      "description": "All visible components belonging to cylinder 2.",
+      "keywords": [
+        "cylinder 2",
+        "complete assembly"
+      ],
+      "selector": {
+        "any_regex": [
+          "C2 \\|"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-2-piston-rod",
+      "label": "Cylinder 2 \u00b7 Piston and connecting rod",
+      "group": "cylinder-2",
+      "description": "The piston, rings, pin and connecting rod for cylinder 2.",
+      "keywords": [
+        "cylinder 2",
+        "piston",
+        "rings",
+        "connecting rod"
+      ],
+      "selector": {
+        "any_regex": [
+          "C2 \\| EXT (?:Piston|Rod)"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-2-intake",
+      "label": "Cylinder 2 \u00b7 Intake valve train",
+      "group": "cylinder-2",
+      "description": "The intake port, valve, springs, rocker, pushrod and tappet for cylinder 2.",
+      "keywords": [
+        "cylinder 2",
+        "intake",
+        "inlet",
+        "valve",
+        "spring",
+        "rocker"
+      ],
+      "selector": {
+        "any_regex": [
+          "C2 \\| EXT .*?Intake"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-2-exhaust",
+      "label": "Cylinder 2 \u00b7 Exhaust valve train",
+      "group": "cylinder-2",
+      "description": "The exhaust port, valve, springs, rocker, pushrod and tappet for cylinder 2.",
+      "keywords": [
+        "cylinder 2",
+        "exhaust",
+        "outlet",
+        "valve",
+        "spring",
+        "rocker"
+      ],
+      "selector": {
+        "any_regex": [
+          "C2 \\| EXT .*?Exhaust"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-2-structure-ignition",
+      "label": "Cylinder 2 \u00b7 Barrel, head and ignition",
+      "group": "cylinder-2",
+      "description": "The cylinder barrel, cooling fins, head, chamber section and ignition parts for cylinder 2.",
+      "keywords": [
+        "cylinder 2",
+        "barrel",
+        "head",
+        "cooling fins",
+        "spark plug",
+        "ignition"
+      ],
+      "selector": {
+        "any_regex": [
+          "C2 \\| EXT (?:\\| )?(?:barrel|base flange|cylinder base|steel barrel|aluminium head|head fin|ceramic|plug)"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-3-assembly",
+      "label": "Cylinder 3 \u00b7 Complete assembly",
+      "group": "cylinder-3",
+      "description": "All visible components belonging to cylinder 3.",
+      "keywords": [
+        "cylinder 3",
+        "complete assembly"
+      ],
+      "selector": {
+        "any_regex": [
+          "C3 \\|"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-3-piston-rod",
+      "label": "Cylinder 3 \u00b7 Piston and connecting rod",
+      "group": "cylinder-3",
+      "description": "The piston, rings, pin and connecting rod for cylinder 3.",
+      "keywords": [
+        "cylinder 3",
+        "piston",
+        "rings",
+        "connecting rod"
+      ],
+      "selector": {
+        "any_regex": [
+          "C3 \\| EXT (?:Piston|Rod)"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-3-intake",
+      "label": "Cylinder 3 \u00b7 Intake valve train",
+      "group": "cylinder-3",
+      "description": "The intake port, valve, springs, rocker, pushrod and tappet for cylinder 3.",
+      "keywords": [
+        "cylinder 3",
+        "intake",
+        "inlet",
+        "valve",
+        "spring",
+        "rocker"
+      ],
+      "selector": {
+        "any_regex": [
+          "C3 \\| EXT .*?Intake"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-3-exhaust",
+      "label": "Cylinder 3 \u00b7 Exhaust valve train",
+      "group": "cylinder-3",
+      "description": "The exhaust port, valve, springs, rocker, pushrod and tappet for cylinder 3.",
+      "keywords": [
+        "cylinder 3",
+        "exhaust",
+        "outlet",
+        "valve",
+        "spring",
+        "rocker"
+      ],
+      "selector": {
+        "any_regex": [
+          "C3 \\| EXT .*?Exhaust"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-3-structure-ignition",
+      "label": "Cylinder 3 \u00b7 Barrel, head and ignition",
+      "group": "cylinder-3",
+      "description": "The cylinder barrel, cooling fins, head, chamber section and ignition parts for cylinder 3.",
+      "keywords": [
+        "cylinder 3",
+        "barrel",
+        "head",
+        "cooling fins",
+        "spark plug",
+        "ignition"
+      ],
+      "selector": {
+        "any_regex": [
+          "C3 \\| EXT (?:\\| )?(?:barrel|base flange|cylinder base|steel barrel|aluminium head|head fin|ceramic|plug)"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-4-assembly",
+      "label": "Cylinder 4 \u00b7 Complete assembly",
+      "group": "cylinder-4",
+      "description": "All visible components belonging to cylinder 4.",
+      "keywords": [
+        "cylinder 4",
+        "complete assembly"
+      ],
+      "selector": {
+        "any_regex": [
+          "C4 \\|"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-4-piston-rod",
+      "label": "Cylinder 4 \u00b7 Piston and connecting rod",
+      "group": "cylinder-4",
+      "description": "The piston, rings, pin and connecting rod for cylinder 4.",
+      "keywords": [
+        "cylinder 4",
+        "piston",
+        "rings",
+        "connecting rod"
+      ],
+      "selector": {
+        "any_regex": [
+          "C4 \\| EXT (?:Piston|Rod)"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-4-intake",
+      "label": "Cylinder 4 \u00b7 Intake valve train",
+      "group": "cylinder-4",
+      "description": "The intake port, valve, springs, rocker, pushrod and tappet for cylinder 4.",
+      "keywords": [
+        "cylinder 4",
+        "intake",
+        "inlet",
+        "valve",
+        "spring",
+        "rocker"
+      ],
+      "selector": {
+        "any_regex": [
+          "C4 \\| EXT .*?Intake"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-4-exhaust",
+      "label": "Cylinder 4 \u00b7 Exhaust valve train",
+      "group": "cylinder-4",
+      "description": "The exhaust port, valve, springs, rocker, pushrod and tappet for cylinder 4.",
+      "keywords": [
+        "cylinder 4",
+        "exhaust",
+        "outlet",
+        "valve",
+        "spring",
+        "rocker"
+      ],
+      "selector": {
+        "any_regex": [
+          "C4 \\| EXT .*?Exhaust"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-4-structure-ignition",
+      "label": "Cylinder 4 \u00b7 Barrel, head and ignition",
+      "group": "cylinder-4",
+      "description": "The cylinder barrel, cooling fins, head, chamber section and ignition parts for cylinder 4.",
+      "keywords": [
+        "cylinder 4",
+        "barrel",
+        "head",
+        "cooling fins",
+        "spark plug",
+        "ignition"
+      ],
+      "selector": {
+        "any_regex": [
+          "C4 \\| EXT (?:\\| )?(?:barrel|base flange|cylinder base|steel barrel|aluminium head|head fin|ceramic|plug)"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-5-assembly",
+      "label": "Cylinder 5 \u00b7 Complete assembly",
+      "group": "cylinder-5",
+      "description": "All visible components belonging to cylinder 5.",
+      "keywords": [
+        "cylinder 5",
+        "complete assembly"
+      ],
+      "selector": {
+        "any_regex": [
+          "C5 \\|"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-5-piston-rod",
+      "label": "Cylinder 5 \u00b7 Piston and connecting rod",
+      "group": "cylinder-5",
+      "description": "The piston, rings, pin and connecting rod for cylinder 5.",
+      "keywords": [
+        "cylinder 5",
+        "piston",
+        "rings",
+        "connecting rod"
+      ],
+      "selector": {
+        "any_regex": [
+          "C5 \\| EXT (?:Piston|Rod)"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-5-intake",
+      "label": "Cylinder 5 \u00b7 Intake valve train",
+      "group": "cylinder-5",
+      "description": "The intake port, valve, springs, rocker, pushrod and tappet for cylinder 5.",
+      "keywords": [
+        "cylinder 5",
+        "intake",
+        "inlet",
+        "valve",
+        "spring",
+        "rocker"
+      ],
+      "selector": {
+        "any_regex": [
+          "C5 \\| EXT .*?Intake"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-5-exhaust",
+      "label": "Cylinder 5 \u00b7 Exhaust valve train",
+      "group": "cylinder-5",
+      "description": "The exhaust port, valve, springs, rocker, pushrod and tappet for cylinder 5.",
+      "keywords": [
+        "cylinder 5",
+        "exhaust",
+        "outlet",
+        "valve",
+        "spring",
+        "rocker"
+      ],
+      "selector": {
+        "any_regex": [
+          "C5 \\| EXT .*?Exhaust"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-5-structure-ignition",
+      "label": "Cylinder 5 \u00b7 Barrel, head and ignition",
+      "group": "cylinder-5",
+      "description": "The cylinder barrel, cooling fins, head, chamber section and ignition parts for cylinder 5.",
+      "keywords": [
+        "cylinder 5",
+        "barrel",
+        "head",
+        "cooling fins",
+        "spark plug",
+        "ignition"
+      ],
+      "selector": {
+        "any_regex": [
+          "C5 \\| EXT (?:\\| )?(?:barrel|base flange|cylinder base|steel barrel|aluminium head|head fin|ceramic|plug)"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-6-assembly",
+      "label": "Cylinder 6 \u00b7 Complete assembly",
+      "group": "cylinder-6",
+      "description": "All visible components belonging to cylinder 6.",
+      "keywords": [
+        "cylinder 6",
+        "complete assembly"
+      ],
+      "selector": {
+        "any_regex": [
+          "C6 \\|"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-6-piston-rod",
+      "label": "Cylinder 6 \u00b7 Piston and connecting rod",
+      "group": "cylinder-6",
+      "description": "The piston, rings, pin and connecting rod for cylinder 6.",
+      "keywords": [
+        "cylinder 6",
+        "piston",
+        "rings",
+        "connecting rod"
+      ],
+      "selector": {
+        "any_regex": [
+          "C6 \\| EXT (?:Piston|Rod)"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-6-intake",
+      "label": "Cylinder 6 \u00b7 Intake valve train",
+      "group": "cylinder-6",
+      "description": "The intake port, valve, springs, rocker, pushrod and tappet for cylinder 6.",
+      "keywords": [
+        "cylinder 6",
+        "intake",
+        "inlet",
+        "valve",
+        "spring",
+        "rocker"
+      ],
+      "selector": {
+        "any_regex": [
+          "C6 \\| EXT .*?Intake"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-6-exhaust",
+      "label": "Cylinder 6 \u00b7 Exhaust valve train",
+      "group": "cylinder-6",
+      "description": "The exhaust port, valve, springs, rocker, pushrod and tappet for cylinder 6.",
+      "keywords": [
+        "cylinder 6",
+        "exhaust",
+        "outlet",
+        "valve",
+        "spring",
+        "rocker"
+      ],
+      "selector": {
+        "any_regex": [
+          "C6 \\| EXT .*?Exhaust"
+        ]
+      }
+    },
+    {
+      "id": "cylinder-6-structure-ignition",
+      "label": "Cylinder 6 \u00b7 Barrel, head and ignition",
+      "group": "cylinder-6",
+      "description": "The cylinder barrel, cooling fins, head, chamber section and ignition parts for cylinder 6.",
+      "keywords": [
+        "cylinder 6",
+        "barrel",
+        "head",
+        "cooling fins",
+        "spark plug",
+        "ignition"
+      ],
+      "selector": {
+        "any_regex": [
+          "C6 \\| EXT (?:\\| )?(?:barrel|base flange|cylinder base|steel barrel|aluminium head|head fin|ceramic|plug)"
+        ]
+      }
+    }
   ]
 }
