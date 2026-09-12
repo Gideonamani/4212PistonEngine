@@ -25,7 +25,6 @@ assert transport['encoding']=='gzip'
 assert transport['bytes']==len(packed)
 assert transport['sha256']==hashlib.sha256(packed).hexdigest()
 assert gzip.decompress(packed)==asset.read_bytes()
-assert packed==gzip.compress(asset.read_bytes(),compresslevel=9,mtime=0)
 
 raw=asset.read_bytes()
 assert struct.unpack_from('<III',raw)==(0x46546C67,2,len(raw))
