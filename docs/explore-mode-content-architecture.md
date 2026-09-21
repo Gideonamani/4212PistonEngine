@@ -1,0 +1,69 @@
+# Explore-mode content architecture
+
+Status: proposed and evolving. Captures instructor discussion, 20 September 2026. Covers Explore's own content model — the model gallery and the group/component tree inside each model — as distinct from lesson/check content ([lesson-and-assessment-architecture.md](lesson-and-assessment-architecture.md)) and from CAD/geometry contracts ([engine-platform-architecture.md](engine-platform-architecture.md)).
+
+## Relationship to the model registry
+
+Explore's "which model am I looking at" concept and the lesson schema's model registry ([lesson-and-assessment-architecture.md](lesson-and-assessment-architecture.md), v3) are the same underlying registry, entered two different ways:
+
+- **Explore** browses the registry directly — a gallery of separate model loads (engines, subsystems, assemblies), confirmed as the permanent shape rather than one continuous zoom from whole-engine down to one cylinder. Switching models in Explore is a full model load, same as it is today (`web/models.json`'s `cylinder` vs `gtsio520-h-v5-teaching-engine` entries).
+- **Learn** references specific registry entries from inside a lesson step (`modelId` on a `model-pose` step).
+
+Both consume the same capability flags (`supportsSection`, `supportsIsolation`, `supportsAnimateMechanism`, `hasTeachingComponents`) once those are implemented — Explore uses them to decide which control panels to show for whatever model is currently loaded, exactly as the lesson doc's "Explore-mode implication" note already describes.
+
+**Implementation status (21 Sep 2026):** `web/models.json` is now schema `4212.training-model-registry/v2` — both entries carry the four capability flags (both currently `true` for both models; no reference/illustrative model exists yet). The Explore control-panel gating this section describes (hiding controls a loaded model's flags mark unsupported) is not yet wired into `web/viewer.js`/`web/engine-training-adapter.mjs` — the flags exist in data but nothing reads them at runtime yet. Schema, types and validators live in `web/schema/content-schema.mjs`.
+
+## Component/group hierarchy: arbitrary-depth tree
+
+Confirmed: not a fixed two-level Group → Component structure. Groups can nest to whatever depth a given model's subassemblies actually need, so a group can itself contain child groups as well as components — e.g. a whole-engine model could have `Cylinder bank (left)` → `Cylinder 1` → `Valve train` → individual valve/rocker/pushrod components, however many levels that takes.
+
+Proposed shape — one node type, not two:
+
+```
+Node {
+  id: string            // stable, same identity discipline as today's component IDs
+  label: string
+  kind: "group" | "component"
+  children?: Node[]     // present on "group" nodes, absent/empty on "component" leaves
+  // component-only fields, present when kind === "component":
+  function?: string
+  material?: string
+  evidenceStatus?: EvidenceStatus
+  reviewStatus?: ReviewStatus
+}
+```
+
+A single node type (rather than separate Group and Component types) is what makes isolate-by-group and isolate-by-component the same operation underneath — see below.
+
+## Isolate: component or group, not multi-select
+
+Confirmed: isolate targets exactly one node, and that node can be either a leaf (single component) or a branch (a group, isolating everything under it). Not arbitrary multi-select across unrelated components. This maps directly onto the unified node shape above — `isolate(nodeId)` behaves the same regardless of whether `nodeId` resolves to a group or a component; the only difference is how many meshes end up visible.
+
+## Evidence status and review status: two separate fields
+
+Confirmed as two distinct pieces of data per component, not one field shown two ways:
+
+- **Evidence status** — how the geometry itself is known. Proposed values, grounded in the project's existing vocabulary (README's "Meaning of realistic" section, `data/evidence-examples.json`): `documented` (directly sourced from a manual/drawing), `cad-checked` (a selected/derived modelling value verified against CAD), `reconstructed` (contour or feature inferred, not directly sourced), `illustrative` (a teaching approximation, not an engineering claim).
+- **Review status** — whether an instructor has actually checked this specific claim. Proposed values: `unreviewed`, `reviewed`, `disputed`.
+
+A component's evidence status doesn't change when its review status changes, and vice versa — a `documented` claim can still be `unreviewed`, and a `reconstructed` claim can be `reviewed` and accepted as the best available approximation. Exact value sets to be cross-checked against `data/evidence-examples.json` when this becomes code, not just this doc.
+
+## Section view: global for now
+
+Confirmed as a deliberate simplification: the section cut applies to the whole assembly regardless of what's isolated, not scoped to the current isolation. The user explicitly flagged this as something to revisit later (e.g. a section that respects isolation bounds, or a group-scoped cut), so treat it as a starting default, not a permanent constraint on the schema — the node tree above doesn't need to prevent a future isolation-aware section, it just doesn't need to support one yet.
+
+## Decisions log
+
+- **20 Sep 2026** — Model gallery confirmed as separate model loads (engines/subsystems/assemblies), not one continuous zoom. Same registry Learn's `model-pose` steps reference.
+- **20 Sep 2026** — Component hierarchy is an arbitrary-depth tree (groups may contain groups), not fixed at two levels. One node type covers both group and component.
+- **20 Sep 2026** — Evidence status and review status are two independent fields per component.
+- **20 Sep 2026** — Isolate targets one node, which may be a component or a group; not multi-select.
+- **20 Sep 2026** — Section view stays global regardless of isolation state, as a simplicity default explicitly open to revision later.
+
+## Open questions
+
+- Exact `EvidenceStatus`/`ReviewStatus` value sets once cross-checked against `data/evidence-examples.json`. Cross-checked 21 Sep 2026 while implementing the schema: `data/evidence-examples.json` is a claims ledger for specific CAD dimensional decisions (per-claim, free-text `evidence_category`), not a per-component tag set, so it doesn't hand back a different enum — the proposed `documented`/`cad-checked`/`reconstructed`/`illustrative` values are what's implemented in `web/schema/content-schema.mjs`, still without a real per-component audit behind them (see below).
+- Whether group nodes need their own evidence/review status (e.g. "this subassembly's mating interfaces are reconstructed") or only leaf components carry that data. Implemented per this doc's own Node sketch: component-only, for now.
+- How deep nesting interacts with the existing six teaching groups (cylinder structure, piston/rings/pin, crank/connecting rod, intake valve train, exhaust valve train, spark plugs) — are those the top level of the tree for the cylinder model, or a separate flat filter that coexists with the deeper tree? Resolved pragmatically for the proof of concept: `web/component-tree.json` (built by `scripts/build_component_tree.mjs` from `web/components.json`) makes these six groups the tree's top level, reusing `web/viewer.js`'s existing `partGroup(id)` classification rather than inventing a new grouping. The old flat picker in `web/viewer.js` is unchanged and still authoritative at runtime; the tree is additive, not yet wired in.
+- Still open: no component in `web/components.json` has a real per-component `evidenceStatus`/`reviewStatus` today (every part carries the same placeholder text), so `web/component-tree.json` leaves those fields unset rather than fabricating values — populating them needs an actual per-component evidence/review pass, not a schema decision.
+- Still open: the minimal shape for a reference/illustrative model registry entry (v3) — no such entry exists yet to design against.

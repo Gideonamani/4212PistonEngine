@@ -37,10 +37,18 @@ After a guided 25–35 minute exploration, a student can use a 720-degree crank-
 
 Before M2 sign-off, review the learner prompts, correct-response rationale, terminology, the ideal-cycle disclaimer, and whether the required UI actions remain usable on the target Samsung Galaxy A16. Record a physical-device pass for play, pause, scrub, presets, section view and cue toggle. A rendering model alone does not satisfy this review.
 
-## Implementation backlog, in lesson order
+## Implementation status and remaining backlog
 
-1. Add a compact guided-mode panel driven by a data lesson definition; it must call the existing motion/selection/section APIs rather than calculate a second cycle.
-2. Add four prediction checkpoints at the named angles, with rationale shown only after a response or an explicit reveal action.
-3. Add an instructor-visible completion/export summary with no personal-data storage by default.
-4. Run desktop and Galaxy A16 interaction checks against the exact published asset and profile.
-5. Obtain instructor review and only then assess M2 completion.
+Completed local implementation:
+
+1. A compact guided-mode panel is driven by `web/m2-cylinder-lessons.json` and calls the existing shared angle/cycle controls; it does not calculate a second cycle.
+2. Five prediction-before-inspection prompts use the named angles 90, 270, 90 with cycle cues, 450, and 630/720 degrees. The learner must choose `Reveal observation` before the lesson applies that step’s model angle; the panel also shows the learner’s current step.
+3. Five local self-check questions each provide an optional hint and explanatory feedback. An incorrect selection gives a retry prompt; the learner must select the correct answer before moving to the next question. No learner identity, answers, or completion state are transmitted or stored beyond the page session.
+4. Local automated checks cover the lesson pack, training shell, profile/kinematics, valve/cue behaviour, transfer handling, and the unpromoted release binding. A local-browser check confirmed the retry/advance interaction and all 60 loaded components.
+
+Remaining before M2 sign-off:
+
+1. Instructor review of the prompts, terminology, correct-response rationale, ideal-cycle disclosure, and the desired balance of guidance versus free exploration.
+2. Decide whether an instructor-visible completion summary is useful. The default remains no learner account, no score persistence, and no transmitted answer data.
+3. Run Samsung Galaxy A16 interaction checks against the exact review asset and profile.
+4. Obtain instructor approval; only then assess M2 completion.

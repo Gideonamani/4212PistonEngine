@@ -60,9 +60,13 @@ The proposed operating-cylinder lesson now maps measurable objectives to the exi
 
 ## Training modes — staged product direction
 
-The shared training shell has three learner modes, not three competing applications: **Explore** preserves self-directed inspection; **Learn** sequences data-defined objectives and prompts through the existing model controls; and **Check yourself** uses the same lesson definitions for local, low-stakes retrieval practice. M2 introduces the first cylinder lesson and check. Additional guided lessons, broader question banks, instructor-facing completion summaries and any class-record/identity decision belong to M6 after the M2 lesson is reviewed. The default is no learner-account requirement and no transmitted or persistent answer data.
+The shared training shell has three learner modes, not three competing applications: **Explore** preserves self-directed inspection; **Learn** sequences data-defined objectives and prompts through the existing model controls; and **Check yourself** uses the same lesson definitions for local, low-stakes retrieval practice. M2 introduces the first cylinder lesson and check. Additional guided lessons, broader question banks, instructor-facing completion summaries and any class-record/identity decision belong to M6 after the M2 lesson is reviewed. The default is no learner-account requirement and no transmitted answer data. Lesson-completion progress may persist locally on the student's device, purely to preserve their place across lessons; it is never transmitted. Check yourself results remain session-only: not persisted anywhere, local or otherwise, and not transmitted. See [lesson-and-assessment-architecture.md](lesson-and-assessment-architecture.md) for the full distinction.
 
 The shell now exposes these as three persistent header tabs, with shared Settings and About overlays. Desktop retains a model-first left pane and a contextual right pane; narrow screens place the 3D model above the contextual controls. Settings remain local-device preferences, not learner tracking. This is a reusable shell for both registered models and future lessons, rather than a redesign unique to the current cylinder.
+
+## Lesson and assessment architecture discussion — 15 September 2026
+
+Instructor-led discussion has started on generalizing the lesson-pack schema beyond the single M2 cylinder file: lessons that are not tied to any one engine, mixed step content (model pose, image, text, external link) instead of model-only steps, and checks explicitly owned by a lesson rather than positionally associated with one. Check yourself is proposed to gain two sub-modes — Training (immediate per-question feedback, no timer) and Exam (timed, results withheld until the end) — both drawing from the same lesson-owned question bank. See [lesson-and-assessment-architecture.md](lesson-and-assessment-architecture.md) for the working design and open questions. This is design discussion, not an implementation; it does not change M2/M6 scope by itself.
 
 ## M4 foundation update — 12 September 2026
 
@@ -129,7 +133,7 @@ Credential decision: [ADR 001 — restricted public Drive browser key](decisions
 
 ## Parking lot and later possibilities
 
-Exploded assembly sequences; synchronized piston position/velocity plots; documented valve-overlap diagrams; gear-ratio views; oil and cooling pathways; dual-ignition demonstrations; clearance/wear studies; narrated tours; multilingual captions; offline lesson packs; quizzes; AR/VR; validated thermodynamic/CFD/FEA studies.
+Exploded assembly sequences; synchronized piston position/velocity plots; documented valve-overlap diagrams; gear-ratio views; oil and cooling pathways; dual-ignition demonstrations; clearance/wear studies; narrated tours; multilingual captions; offline lesson packs; quizzes; AR/VR; validated thermodynamic/CFD/FEA studies; an AI/MCP-assisted tutor with conversational (including audio) navigation and Q&A; expansion beyond this module to other aircraft-systems coursework.
 
 Choose these by learning value, available source evidence, dependency readiness and device cost. Student accounts, grade storage and LMS integration are outside the initial public teaching release unless separately requested.
 

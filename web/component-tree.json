@@ -1,0 +1,413 @@
+{
+  "schema": "4212.explore-content-tree/v1",
+  "modelId": "cylinder",
+  "root": {
+    "id": "cylinder-assembly",
+    "label": "Cylinder assembly",
+    "kind": "group",
+    "children": [
+      {
+        "id": "group-cylinder-structure",
+        "label": "Cylinder structure",
+        "kind": "group",
+        "children": [
+          {
+            "id": "CylinderBarrel",
+            "label": "Cylinder barrel",
+            "kind": "component",
+            "function": "Guides the piston and contains cylinder pressure. Cooling fins transfer heat to the surrounding air."
+          },
+          {
+            "id": "CylinderHead",
+            "label": "Cylinder head",
+            "kind": "component",
+            "function": "Closes the combustion chamber and carries the ports, valve seats, guides and spark plugs."
+          }
+        ]
+      },
+      {
+        "id": "group-piston-assembly",
+        "label": "Piston, rings and pin",
+        "kind": "group",
+        "children": [
+          {
+            "id": "FloatingPin",
+            "label": "Floating piston pin",
+            "kind": "component",
+            "function": "Joins the piston to the rod small end, allowing the rod to articulate as the crankshaft turns."
+          },
+          {
+            "id": "PinPlugLeft",
+            "label": "Piston-pin end plug - left",
+            "kind": "component",
+            "function": "The aluminium end plug protects the cylinder wall from direct contact with the steel end of the floating pin."
+          },
+          {
+            "id": "PinPlugRight",
+            "label": "Piston-pin end plug - right",
+            "kind": "component",
+            "function": "The aluminium end plug protects the cylinder wall from direct contact with the steel end of the floating pin."
+          },
+          {
+            "id": "PistonBody",
+            "label": "Piston",
+            "kind": "component",
+            "function": "Receives combustion pressure. Its skirt guides travel, and its grooves locate the rings that seal gases and control oil."
+          },
+          {
+            "id": "PistonRing1",
+            "label": "Top compression ring",
+            "kind": "component",
+            "function": "Helps seal combustion gases and transfer heat from the piston to the cylinder barrel."
+          },
+          {
+            "id": "PistonRing2",
+            "label": "Second compression ring",
+            "kind": "component",
+            "function": "Assists gas sealing below the top ring and helps control oil along the cylinder wall."
+          },
+          {
+            "id": "PistonRing3",
+            "label": "Slotted oil-control ring",
+            "kind": "component",
+            "function": "Meters oil on the cylinder wall and provides drainage paths for excess oil through its slots."
+          },
+          {
+            "id": "PistonRing4",
+            "label": "Lower oil-scraper ring",
+            "kind": "component",
+            "function": "Helps remove excess oil from the lower cylinder wall. This four-ring allocation remains a reconstruction."
+          }
+        ]
+      },
+      {
+        "id": "group-crank-assembly",
+        "label": "Crankshaft and connecting rod",
+        "kind": "group",
+        "children": [
+          {
+            "id": "CrankThrow",
+            "label": "Crankshaft throw",
+            "kind": "component",
+            "function": "Receives connecting-rod force and turns it into rotary output. This model shows one simplified throw of the complete crankshaft."
+          },
+          {
+            "id": "ConnectingRodBody",
+            "label": "Connecting rod",
+            "kind": "component",
+            "function": "Transfers piston loads to the crankpin while changing angle as the crankshaft rotates."
+          },
+          {
+            "id": "ConnectingRodCap",
+            "label": "Connecting-rod cap",
+            "kind": "component",
+            "function": "Closes the rod big end around the crankpin, allowing assembly and removal of the connecting rod."
+          },
+          {
+            "id": "BigEndBearing",
+            "label": "Rod bearing - upper half",
+            "kind": "component",
+            "function": "Provides a replaceable, lubricated running surface between the connecting rod and the rotating crankpin."
+          },
+          {
+            "id": "CapBearingHalf",
+            "label": "Rod bearing - cap half",
+            "kind": "component",
+            "function": "Completes the crankpin bearing inside the cap and transfers bearing loads into the connecting rod."
+          },
+          {
+            "id": "RodBoltMinus1",
+            "label": "Connecting-rod bolt A",
+            "kind": "component",
+            "function": "Clamps the cap to the rod and maintains the big-end joint under alternating engine loads."
+          },
+          {
+            "id": "RodNutMinus1",
+            "label": "Slotted rod nut A",
+            "kind": "component",
+            "function": "Retains bolt clamping force at the rod-cap joint. The slots accommodate the locking arrangement; cotter pins are not modelled."
+          },
+          {
+            "id": "RodBolt1",
+            "label": "Connecting-rod bolt B",
+            "kind": "component",
+            "function": "Clamps the cap to the rod and maintains the big-end joint under alternating engine loads."
+          },
+          {
+            "id": "RodNut1",
+            "label": "Slotted rod nut B",
+            "kind": "component",
+            "function": "Retains bolt clamping force at the rod-cap joint. The slots accommodate the locking arrangement; cotter pins are not modelled."
+          },
+          {
+            "id": "SmallEndBush",
+            "label": "Small-end bushing",
+            "kind": "component",
+            "function": "Supports the floating piston pin in the rod and provides a replaceable surface for relative movement."
+          }
+        ]
+      },
+      {
+        "id": "group-intake-valve-train",
+        "label": "Intake valve train",
+        "kind": "group",
+        "children": [
+          {
+            "id": "IntakeSeatInsert",
+            "label": "Intake valve seat",
+            "kind": "component",
+            "function": "Provides the closed valve with a durable sealing surface and conducts heat from the valve into the cylinder head."
+          },
+          {
+            "id": "IntakeValve",
+            "label": "Intake valve",
+            "kind": "component",
+            "function": "Opens to admit the incoming air-fuel charge, then closes to seal the cylinder during compression and expansion."
+          },
+          {
+            "id": "IntakeValveGuide",
+            "label": "Intake valve guide",
+            "kind": "component",
+            "function": "Keeps the sliding valve stem aligned with its seat while transferring heat into the surrounding head."
+          },
+          {
+            "id": "IntakeInnerSpring",
+            "label": "Intake inner valve spring",
+            "kind": "component",
+            "function": "Adds valve-closing force and works with the outer spring to help control valve motion."
+          },
+          {
+            "id": "IntakeOuterSpring",
+            "label": "Intake outer valve spring",
+            "kind": "component",
+            "function": "Supplies force to return the valve to its seat and maintain contact through the valve-operating mechanism."
+          },
+          {
+            "id": "IntakeSpringRetainer",
+            "label": "Intake spring retainer",
+            "kind": "component",
+            "function": "Transfers spring force to the valve through the tapered keepers and retains the spring ends."
+          },
+          {
+            "id": "IntakeValveKeeper",
+            "label": "Intake valve keepers",
+            "kind": "component",
+            "function": "Engage the valve-stem groove and lock the spring retainer to the stem. The split keys are represented by a sleeve envelope."
+          },
+          {
+            "id": "IntakeRockerShaft",
+            "label": "Intake rocker shaft",
+            "kind": "component",
+            "function": "Supports the rocker arm and establishes the pivot axis for transmitting pushrod motion to the valve."
+          },
+          {
+            "id": "IntakeRockerArm",
+            "label": "Intake rocker arm",
+            "kind": "component",
+            "function": "Pivots around its shaft to convert pushrod motion into valve opening. Oil passages supply lubrication to the valve gear."
+          },
+          {
+            "id": "IntakeRockerHousing",
+            "label": "Intake rocker housing",
+            "kind": "component",
+            "function": "Supports and encloses the rocker mechanism. It is separately selectable here to help inspect the reconstructed head assembly."
+          },
+          {
+            "id": "IntakeRockerGasket",
+            "label": "Intake rocker-cover gasket",
+            "kind": "component",
+            "function": "Seals the cover joint to help retain lubricating oil inside the rocker enclosure."
+          },
+          {
+            "id": "IntakeRockerCover",
+            "label": "Intake rocker cover",
+            "kind": "component",
+            "function": "The stamped steel cover retains oil and shields the rocker mechanism from external contamination."
+          },
+          {
+            "id": "IntakePushrod",
+            "label": "Intake pushrod",
+            "kind": "component",
+            "function": "Transfers lifter motion to the rocker. Its hollow centre carries lubricating oil to the rocker assembly."
+          },
+          {
+            "id": "IntakePushrodHousing",
+            "label": "Intake pushrod housing",
+            "kind": "component",
+            "function": "Encloses the pushrod and provides a return path for oil draining from the rocker area to the crankcase."
+          },
+          {
+            "id": "IntakeLowerPushrodSeal",
+            "label": "Intake housing seal - crankcase",
+            "kind": "component",
+            "function": "Seals the pushrod-housing joint to retain returning oil and limit leakage."
+          },
+          {
+            "id": "IntakeUpperPushrodSeal",
+            "label": "Intake housing seal - cylinder",
+            "kind": "component",
+            "function": "Seals the pushrod-housing joint to retain returning oil and limit leakage."
+          },
+          {
+            "id": "IntakeHydraulicLifterBody",
+            "label": "Intake hydraulic tappet body",
+            "kind": "component",
+            "function": "Carries cam motion toward the pushrod. The complete hydraulic tappet compensates for operating clearance; only its outer body is modelled."
+          }
+        ]
+      },
+      {
+        "id": "group-exhaust-valve-train",
+        "label": "Exhaust valve train",
+        "kind": "group",
+        "children": [
+          {
+            "id": "ExhaustSeatInsert",
+            "label": "Exhaust valve seat",
+            "kind": "component",
+            "function": "Provides the closed valve with a durable sealing surface and conducts heat from the valve into the cylinder head."
+          },
+          {
+            "id": "ExhaustValve",
+            "label": "Exhaust valve",
+            "kind": "component",
+            "function": "Opens to discharge combustion gases, then closes to seal the chamber for the next cycle."
+          },
+          {
+            "id": "ExhaustValveGuide",
+            "label": "Exhaust valve guide",
+            "kind": "component",
+            "function": "Keeps the sliding valve stem aligned with its seat while transferring heat into the surrounding head."
+          },
+          {
+            "id": "ExhaustInnerSpring",
+            "label": "Exhaust inner valve spring",
+            "kind": "component",
+            "function": "Adds valve-closing force and works with the outer spring to help control valve motion."
+          },
+          {
+            "id": "ExhaustOuterSpring",
+            "label": "Exhaust outer valve spring",
+            "kind": "component",
+            "function": "Supplies force to return the valve to its seat and maintain contact through the valve-operating mechanism."
+          },
+          {
+            "id": "ExhaustSpringRetainer",
+            "label": "Exhaust rotocoil retainer",
+            "kind": "component",
+            "function": "Retains the exhaust springs. The rotocoil promotes small valve rotations to distribute heat and wear; its internals are not modelled."
+          },
+          {
+            "id": "ExhaustValveKeeper",
+            "label": "Exhaust valve keepers",
+            "kind": "component",
+            "function": "Engage the valve-stem groove and lock the spring retainer to the stem. The split keys are represented by a sleeve envelope."
+          },
+          {
+            "id": "ExhaustRockerShaft",
+            "label": "Exhaust rocker shaft",
+            "kind": "component",
+            "function": "Supports the rocker arm and establishes the pivot axis for transmitting pushrod motion to the valve."
+          },
+          {
+            "id": "ExhaustRockerArm",
+            "label": "Exhaust rocker arm",
+            "kind": "component",
+            "function": "Pivots around its shaft to convert pushrod motion into valve opening. Oil passages supply lubrication to the valve gear."
+          },
+          {
+            "id": "ExhaustRockerHousing",
+            "label": "Exhaust rocker housing",
+            "kind": "component",
+            "function": "Supports and encloses the rocker mechanism. It is separately selectable here to help inspect the reconstructed head assembly."
+          },
+          {
+            "id": "ExhaustRockerGasket",
+            "label": "Exhaust rocker-cover gasket",
+            "kind": "component",
+            "function": "Seals the cover joint to help retain lubricating oil inside the rocker enclosure."
+          },
+          {
+            "id": "ExhaustRockerCover",
+            "label": "Exhaust rocker cover",
+            "kind": "component",
+            "function": "The stamped steel cover retains oil and shields the rocker mechanism from external contamination."
+          },
+          {
+            "id": "ExhaustPushrod",
+            "label": "Exhaust pushrod",
+            "kind": "component",
+            "function": "Transfers lifter motion to the rocker. Its hollow centre carries lubricating oil to the rocker assembly."
+          },
+          {
+            "id": "ExhaustPushrodHousing",
+            "label": "Exhaust pushrod housing",
+            "kind": "component",
+            "function": "Encloses the pushrod and provides a return path for oil draining from the rocker area to the crankcase."
+          },
+          {
+            "id": "ExhaustLowerPushrodSeal",
+            "label": "Exhaust housing seal - crankcase",
+            "kind": "component",
+            "function": "Seals the pushrod-housing joint to retain returning oil and limit leakage."
+          },
+          {
+            "id": "ExhaustUpperPushrodSeal",
+            "label": "Exhaust housing seal - cylinder",
+            "kind": "component",
+            "function": "Seals the pushrod-housing joint to retain returning oil and limit leakage."
+          },
+          {
+            "id": "ExhaustHydraulicLifterBody",
+            "label": "Exhaust hydraulic tappet body",
+            "kind": "component",
+            "function": "Carries cam motion toward the pushrod. The complete hydraulic tappet compensates for operating clearance; only its outer body is modelled."
+          }
+        ]
+      },
+      {
+        "id": "group-spark-plugs",
+        "label": "Spark plugs",
+        "kind": "group",
+        "children": [
+          {
+            "id": "UpperSparkPlug",
+            "label": "Upper spark-plug shell",
+            "kind": "component",
+            "function": "Locates the spark plug in the cylinder head and provides a grounded metal body. Electrode detail is simplified."
+          },
+          {
+            "id": "UpperSparkInsulator",
+            "label": "Upper spark-plug insulator",
+            "kind": "component",
+            "function": "Electrically isolates the central high-voltage path from the grounded metal shell. Its external ribs lengthen the surface leakage path."
+          },
+          {
+            "id": "UpperSparkTerminal",
+            "label": "Upper spark-plug terminal",
+            "kind": "component",
+            "function": "Connects the ignition lead to the spark plug so a timed high-voltage pulse can reach the central electrode."
+          },
+          {
+            "id": "LowerSparkPlug",
+            "label": "Lower spark-plug shell",
+            "kind": "component",
+            "function": "Locates the spark plug in the cylinder head and provides a grounded metal body. Electrode detail is simplified."
+          },
+          {
+            "id": "LowerSparkInsulator",
+            "label": "Lower spark-plug insulator",
+            "kind": "component",
+            "function": "Electrically isolates the central high-voltage path from the grounded metal shell. Its external ribs lengthen the surface leakage path."
+          },
+          {
+            "id": "LowerSparkTerminal",
+            "label": "Lower spark-plug terminal",
+            "kind": "component",
+            "function": "Connects the ignition lead to the spark plug so a timed high-voltage pulse can reach the central electrode."
+          }
+        ]
+      }
+    ]
+  }
+}
