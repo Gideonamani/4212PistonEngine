@@ -1,0 +1,283 @@
+{
+  "schema": "4212.lesson-pack/v3",
+  "privacy": "Progress is held only in this page session (or locally on-device per the lesson-progress decision); no learner identity or answers are stored or transmitted.",
+  "draftStatus": "UNREVIEWED CONTENT DRAFT — 2026-09-21. Not wired into any live model registry entry or run through instructor review. See docs/history-lessons-content-draft.md before publishing.",
+  "lessons": [
+    {
+      "id": "history-mechanical-engines",
+      "title": "History of Mechanical Engines",
+      "objective": "Trace the broad arc from manual and animal labour, through mechanical work and the steam engine, to the internal combustion engine and today's electronically managed engines - so the reason aircraft needed a purpose-built engine (lesson 2) has a foundation.",
+      "models": [],
+      "listed": true,
+      "steps": [
+        {
+          "type": "text",
+          "prompt": "Before anything we would call an 'engine' existed, work got done by muscle. Raising a heavy stone, grinding grain, lifting water out of a mine - all by hand or animal power, hour after hour. What do you think was the single biggest limitation of muscle as your only power source?",
+          "note": "General historical orientation, not a documented/assessed claim - a way in to the topic, not a fact to memorise."
+        },
+        {
+          "type": "text",
+          "prompt": "The first way people got past muscle's limits wasn't a machine that made its own power - it was a machine that redirected power already available in nature. Waterwheels turned the flow of a river into continuous rotary motion; windmills did the same with moving air. Treadmills and animal-driven capstans stretched muscle power further by converting it, through gearing, into steady rotary work. None of these created energy - they converted and multiplied what was already moving.",
+          "note": "General historical narrative (illustrative, not EASA/FAA-sourced): the underlying idea - converting an existing motion into useful rotary work - is the same idea a crankshaft uses later, just with a different power source."
+        },
+        {
+          "type": "image",
+          "prompt": "A working waterwheel: a natural flow of water turning a shaft continuously, with no fuel burned and no combustion involved.",
+          "url": "PLACEHOLDER:drive-asset/history-mechanical/waterwheel-watermill.jpg",
+          "note": "Image asset not yet sourced - placeholder only, to be replaced with a Drive-hosted asset per the existing image-asset convention before publication."
+        },
+        {
+          "type": "text",
+          "prompt": "Natural flow is free, but it is also fixed - a mill only turns as fast as the river runs. The next leap was a machine that made its own motion on demand, by burning fuel outside a working cylinder and using the resulting heat to push a piston: the steam engine. Thomas Newcomen's atmospheric engine (from 1712) pumped water out of mines using steam condensed to pull a piston down. James Watt's improvements from the 1760s-70s, most importantly a separate condenser, made steam engines far more fuel-efficient and, once fitted with a crank, able to deliver smooth rotary output - powering the factories, and later the locomotives and ships, of the Industrial Revolution.",
+          "note": "General historical narrative (illustrative, not EASA/FAA-sourced) - Newcomen and Watt dates are well-established general history, included for narrative context rather than as an assessed course claim."
+        },
+        {
+          "type": "image",
+          "prompt": "A simplified steam engine schematic: boiler and furnace supplying steam to a cylinder, separate from the piston they drive.",
+          "url": "PLACEHOLDER:drive-asset/history-mechanical/steam-engine-schematic.jpg",
+          "note": "Image asset not yet sourced - placeholder only."
+        },
+        {
+          "type": "text",
+          "prompt": "A steam engine still needs a separate boiler and furnace nearby - heavy, slow to bring up to pressure, and awkward to fit inside a self-propelled vehicle. What kind of machine would you need instead, if you wanted an engine compact and responsive enough to carry itself around?",
+          "note": "Reflective prompt, no reveal required - an invitation to predict, not a graded question."
+        },
+        {
+          "type": "text",
+          "prompt": "The answer was to move the combustion inside the working cylinder itself, rather than in a separate boiler: the internal combustion engine. Etienne Lenoir built an early gas-fuelled version around 1860. Nicolaus Otto's four-stroke cycle engine (1876) - intake, compression, power, exhaust in one repeating sequence - became the layout nearly every piston engine since has followed in some form, including the engines this course studies. Karl Benz used a version of this idea to build the first practical motor vehicle in the mid-1880s. Rudolf Diesel patented a different way to ignite the fuel-compression alone, no spark-in 1893, giving a second combustion strategy still in use today.",
+          "note": "General historical narrative (illustrative, not EASA/FAA-sourced). The Otto/Diesel cycle THEORY itself (PV diagrams, thermodynamic comparison, Diesel's specific limitations in aero application) is course-assessed content covered in the dedicated Thermodynamic Cycles lesson, sourced there from EASA/FAA material rather than here - this lesson only needs the historical sequencing, not the cycle analysis."
+        },
+        {
+          "type": "image",
+          "prompt": "A four-stroke Otto-cycle diagram: intake, compression, power, exhaust, shown as one continuous repeating sequence.",
+          "url": "PLACEHOLDER:drive-asset/history-mechanical/otto-four-stroke-diagram.jpg",
+          "note": "Image asset not yet sourced - placeholder only. Reuse opportunity: check whether the Thermodynamic Cycles lesson already has (or will produce) an equivalent diagram before commissioning a second one."
+        },
+        {
+          "type": "text",
+          "prompt": "Through the 20th century the internal combustion engine kept getting more precisely controlled, without changing its basic four-stroke idea: carburettors gave way to fuel injection for metering fuel, and fixed mechanical ignition timing gave way to electronic ignition. The end point of that trend is the engine this platform's controls hint at whenever you see 'ECU' or 'FADEC' - a Full Authority Digital Engine Control computer that continuously adjusts fuel and timing itself, rather than relying on a fixed mechanical setting the way early engines did.",
+          "note": "General historical narrative, framed at the level of general knowledge; the specific claim that FADEC entered general-aviation piston engines in the 2000s is documented and covered with its aviation-specific detail in lesson 2, not asserted with that precision here."
+        },
+        {
+          "type": "text",
+          "prompt": "By the turn of the 20th century, the internal combustion engine had become exactly what a handful of inventors needed once they turned their attention to a problem no steam engine could solve: an engine light and self-contained enough to lift itself off the ground. That is where lesson 2 picks up the story.",
+          "note": "Bridges directly into History of Aircraft Engines - deliberately leaves the aviation-specific story untold here."
+        }
+      ],
+      "completionCriteria": "In your own words, explain the sequence manual/animal labour -> mechanical work (waterwheel, windmill, treadmill) -> steam engine -> internal combustion engine -> electronically managed (ECU/FADEC) engines, and give at least one reason each transition happened (for example: needing power on demand rather than a fixed natural flow; needing a compact self-contained engine a steam plant could not provide; needing more precise, repeatable control of fuel and ignition than a fixed mechanical setting allows)."
+    },
+    {
+      "id": "history-aircraft-engines",
+      "title": "History of Aircraft Engines",
+      "objective": "Follow how the internal combustion engine from lesson 1 was adapted and refined specifically to power flight, from the Wright brothers' hand-built 1903 engine through the wartime power race, to today's FADEC-managed general-aviation engines.",
+      "models": ["wright-1903"],
+      "listed": true,
+      "steps": [
+        {
+          "type": "text",
+          "prompt": "Lesson 1 traced engines from muscle to steam to the internal combustion engine. Building a good ground engine and building an engine that could fly are not the same problem. What do you think a flying machine needs from its engine that a factory, a ship, or an early motor car does not?",
+          "note": "Reflective opening prompt - invites prediction (weight, power-to-weight ratio, reliability, vibration) before the lesson reveals the documented history."
+        },
+        {
+          "type": "text",
+          "prompt": "Before a powered aeroplane existed, two separate problems were being worked on: lift, and control. The Montgolfier brothers flew the first free hot-air balloon in 1783 - no steering at all. La France, an 1884 French Army dirigible, was electrically powered and the first fully controlled free flight, but still slow and unwieldy. Meanwhile George Cayley, then Otto Lilienthal (some 2,000 controlled glides between 1891 and 1896), then Octave Chanute developed fixed-wing gliders that proved a wing could lift a person - but none of them had a working answer for pitch, roll and yaw together.",
+          "note": "Documented: sourced from the course slide deck, 'History and Introduction' section (slides 7-10)."
+        },
+        {
+          "type": "text",
+          "prompt": "Powered flight attempts by Hiram Maxim and Samuel Langley in this period had engines strong enough to fly, but still no stable control - proving that thrust alone was never the missing piece. Flight needed pitch, roll and yaw managed together, all at once, in the air.",
+          "note": "Documented: sourced from the course slide deck (slide 11)."
+        },
+        {
+          "type": "text",
+          "prompt": "The Wright brothers spent 1900-1902 almost entirely on unpowered gliders, deliberately mastering three-axis control - wing-warping for roll, an elevator for pitch, a rudder for yaw - before they ever added an engine. On 17 December 1903 at Kitty Hawk, their Flyer I combined all three controls with a custom-built engine of roughly 12 hp for the first sustained, controlled, powered flight: 12 seconds, 120 feet. The lesson worth carrying forward: they treated control, not raw power, as the hard problem to solve first.",
+          "note": "Documented: sourced from the course slide deck (slide 12), including the 12 hp / 12 second / 120 foot figures."
+        },
+        {
+          "type": "model-pose",
+          "modelId": "wright-1903",
+          "prompt": "This is the actual engine from that flight, shown as a reference model. Orbit and zoom to inspect it, and compare what you see with the documented description: a cast-aluminium body, bored on a lathe for four independent cylinders in an inline arrangement; cast-iron pistons, turned and grooved to take piston rings. The complete engine weighed about 180 lb and produced 12 hp at 1,025 rpm - though it reportedly made closer to 16 hp when first started cold, settling to 12 hp as it warmed up.",
+          "action": {"type": "angle", "value": 0},
+          "note": "This is a lightweight reference/illustrative model (registry id 'wright-1903'), not the course's teaching engine - it supports orbit and zoom only, with no section view, no isolation and no operating mechanism/crank-angle animation, so it holds a single fixed pose rather than moving through a cycle. Engine description documented from the course slide deck (slide 16). Registry entry and 3D asset are not yet produced - see docs/history-lessons-content-draft.md."
+        },
+        {
+          "type": "text",
+          "prompt": "The Wright engine did not stay unique for long. Within a decade, aircraft engines diversified fast: the water-cooled Manly-Balzer radial (1903, ~52 hp) was more powerful but crashed with its aircraft; the Gnome Omega (1908) became the first mass-produced rotary engine at ~50 hp; a 3-cylinder Anzani (1909, ~25-30 hp) powered Bleriot's Channel crossing; and by 1913 the water-cooled Renault V8 was reaching 70-100 hp. In ten years, aircraft engines went from one hand-built example to a small industry.",
+          "note": "Documented: sourced from the course slide deck's Pre-WW1 Engines table (slide 17)."
+        },
+        {
+          "type": "image",
+          "prompt": "The Gnome Omega: a rotary engine, where the entire cylinder block spins with the propeller around a fixed crankshaft.",
+          "url": "PLACEHOLDER:drive-asset/history-aircraft/gnome-omega-engine.jpg",
+          "note": "Image asset not yet sourced - placeholder only; the course slide deck (slide 18) has an existing image that may be reusable with permission, rather than needing a new one sourced."
+        },
+        {
+          "type": "text",
+          "prompt": "World War I pushed aircraft from observation duty into combat, and engine power roughly quadrupled - from about 50 hp in 1914 to about 200 hp by 1918 - along two diverging paths. Rotary engines (the whole cylinder block spinning with the propeller, as in the Sopwith Camel) were light with an excellent power-to-weight ratio and cooled naturally as they spun, but suffered heavy oil loss and strong gyroscopic effects from all that spinning mass. Inline and V-type water-cooled engines (Fokker D.VII, SPAD XIII) gave more stable handling and more power for larger aircraft, and made it practical to synchronise a machine gun to fire through the spinning propeller.",
+          "note": "Documented: sourced from the course slide deck (slides 19-21)."
+        },
+        {
+          "type": "text",
+          "prompt": "After the war, surplus engines flooded the civilian market and the priority shifted from raw power to reliability. Air-cooled radial engines - the Pratt & Whitney Wasp, the Wright Cyclone - dominated for their simple cooling and ruggedness, powering mail planes, airliners and record flights like the Spirit of St Louis (1927). Air racing through the 1930s then pushed power back up again: superchargers became essential for high-altitude performance, and by the late 1930s engines such as the Rolls-Royce Kestrel, Bristol Mercury and Allison V-1710 were passing 1,000 hp. In this same stretch, Frank Whittle, and separately Hans von Ohain, began the work that would lead to the first jet-powered flight - a parallel technology, not yet a replacement.",
+          "note": "Documented: sourced from the course slide deck (slides 23, 24, 26, 27)."
+        },
+        {
+          "type": "text",
+          "prompt": "World War II was the peak of piston-engine power: 1,000-2,000+ hp aircraft engines, built with superchargers, turbochargers and intercoolers layered on top of the basic four-stroke design. On the Allied side, the Rolls-Royce Merlin V-12 powered the Spitfire, Mustang and Lancaster, while the Pratt & Whitney R-2800 radial powered the Corsair and Thunderbolt, with turbocharged engines driving high-altitude bombers like the B-17 and B-29. On the Axis side, the fuel-injected Daimler-Benz DB 601/605 V-12 powered the Bf 109 and Me 110, prioritising altitude and fuel efficiency, while the BMW 801 radial powered the Fw 190 with notably clever engine-cooling design. The Me 262 captures the era's turning point in one airframe: it first flew on a piston engine (a Junkers Jumo 210) in April 1941, then on jet engines (Junkers Jumo 004) by July 1942.",
+          "note": "Documented: sourced from the course slide deck (slides 28, 29, 31, 33)."
+        },
+        {
+          "type": "text",
+          "prompt": "After the war, jets took over front-line military and commercial aviation almost entirely, and a flood of surplus WWII piston engines fed a boom in private, sport and training flying. Horizontally-opposed flat-four and flat-six engines became the general-aviation standard - compact, low-drag, easy to maintain - and powered the Cessnas, Pipers, Beechcraft and Mooneys that still define general aviation today.",
+          "note": "Documented: sourced from the course slide deck (slides 34, 35)."
+        },
+        {
+          "type": "text",
+          "prompt": "From the 1970s onward, general-aviation piston engines shifted from reinvention to refinement: legacy Lycoming and Continental designs stayed dominant, while Rotax grew in the light-sport segment and diesel/Jet-A piston experiments began (Thielert, late 1990s). By the 2000s, FADEC - Full Authority Digital Engine Control - brought fully electronic fuel and ignition management to piston aircraft engines (Continental's CD series, the Austro AE300), and fuel injection increasingly replaced carburettors. This is the same steam-to-internal-combustion-to-electronically-managed arc from lesson 1, now completed inside aviation specifically. Piston engines remain the standard for training, bush flying and recreational flight today, even as hybrid-electric and alternative-fuel concepts are being explored for their next step.",
+          "note": "Documented: sourced from the course slide deck (slides 36-38)."
+        },
+        {
+          "type": "text",
+          "prompt": "From a hand-built 12 hp engine at Kitty Hawk to 2,000 hp wartime radials to today's electronically managed flat-fours and flat-sixes, the piston aircraft engine's history is really the history of solving one problem after another under a single constraint no ground vehicle shares as strictly: it has to lift its own weight off the ground. The next lesson, Terminologies, gives you the vocabulary to describe precisely how the engine you'll study in this course - the GTSIO-520-H - does that.",
+          "note": "Documented closing synthesis, drawing on the course slide deck's own historical summary (slide 40); bridges into lesson 3."
+        }
+      ],
+      "completionCriteria": "Identify at least one engine, design feature or configuration associated with each era covered (pre-WW1, WW1, interwar, WW2, post-WW2, and 1970s-present), and explain in your own words why the Wright brothers' 1903 engine - despite producing only about 12 hp - is considered the breakthrough that made powered flight possible, rather than simply the most powerful engine available at the time."
+    },
+    {
+      "id": "terminologies",
+      "title": "Terminologies",
+      "objective": "Build the core vocabulary for describing a reciprocating aircraft engine - engine, powerplant, reciprocating engine - and connect it to the basic oscillating-piston-to-rotating-crankshaft operating principle every later lesson assumes you already know.",
+      "models": [],
+      "listed": true,
+      "steps": [
+        {
+          "type": "text",
+          "prompt": "The last two lessons traced where engines came from, in general and then specifically for aircraft. Before going further, this course needs you fluent in a small set of words it will use constantly. What do you think is the difference between calling something an 'engine' and calling it a 'powerplant'? Take a guess before reading on.",
+          "note": "Reflective opening prompt - invites prediction before the definitions are revealed."
+        },
+        {
+          "type": "text",
+          "prompt": "Three working definitions. An engine (or motor) is a machine designed to convert one or more forms of energy into mechanical energy. A powerplant is an aircraft engine, or the whole system that produces thrust to propel an aircraft - broader than the engine alone. A reciprocating engine, more commonly called a piston engine, is typically a heat engine that uses one or more reciprocating pistons to convert high temperature and high pressure into rotating motion.",
+          "note": "Documented: sourced from the course slide deck (slide 45)."
+        },
+        {
+          "type": "text",
+          "prompt": "So 'powerplant' is the broader term: it covers the engine itself plus everything installed around it to make it work in the airframe - mounts, induction and exhaust ductwork, cooling, the propeller and its governor. And notice that 'reciprocating' describes the piston's back-and-forth motion, not the type of combustion - lesson 1's steam engine was reciprocating too, just fired from an external boiler rather than inside its own cylinder. Every engine this course studies is specifically an internal combustion reciprocating engine.",
+          "note": "General/illustrative synthesis connecting the slide-45 definitions to lesson 1's steam-engine distinction - a logical inference from those definitions, not itself a direct slide quote."
+        },
+        {
+          "type": "text",
+          "prompt": "So how does that heat actually turn into a turning propeller? An aircraft reciprocating engine, a type of internal combustion engine, works as a heat engine: it converts the thermal energy released by burning fuel into mechanical work, producing thrust and powering the aircraft's other systems. Inside the cylinder, a continuous interplay of pressure, volume and temperature keeps the engine running and delivers that mechanical power.",
+          "note": "Documented: sourced from the course slide deck (slide 46)."
+        },
+        {
+          "type": "text",
+          "prompt": "That mechanical power starts as oscillating motion. Burning fuel expands hot gas, which pushes the piston in a straight line, back and forth inside the cylinder - reciprocating motion. A connecting rod transmits that push to a crankshaft, which turns the piston's straight-line motion into the rotating motion the propeller actually needs. The piston is the engine's key energy-converting component: everything else in the engine exists to let the piston do that conversion repeatedly, reliably, and under control.",
+          "note": "Documented: sourced from the course slide deck (slide 46, including 'the piston is the key engine energy converting component')."
+        },
+        {
+          "type": "image",
+          "prompt": "A basic piston-rod-crank diagram: the piston's straight-line (reciprocating) motion becoming the crankshaft's turning (rotating) motion.",
+          "url": "PLACEHOLDER:drive-asset/terminologies/piston-rod-crank-basic-diagram.jpg",
+          "note": "Image asset not yet sourced - placeholder only, to be replaced with a Drive-hosted asset per the existing image-asset convention before publication."
+        },
+        {
+          "type": "text",
+          "prompt": "Every lesson from here on assumes you can use these words precisely: engine vs. powerplant, reciprocating vs. rotating, and the piston as the component that converts one into the other. The next lesson, Thermodynamic Cycles, gives the piston's motion a repeating shape - the four events every reciprocating engine cycles through, no matter its configuration.",
+          "note": "Documented closing synthesis, drawing on the deck's own Terminologies/Working Principle framing (slides 45-46); bridges into lesson 4."
+        }
+      ],
+      "completionCriteria": "In your own words, define 'engine', 'powerplant' and 'reciprocating engine', explain why powerplant is the broader term, and describe the path energy takes from burning fuel to a turning propeller shaft (heat -> expanding gas -> the piston's reciprocating motion -> the crankshaft's rotating motion), naming the piston as the key energy-converting component."
+    }
+  ],
+  "checks": [
+    {
+      "id": "history-mech-sequence",
+      "lessonId": "history-mechanical-engines",
+      "type": "ordering",
+      "question": "Put these developments in the order they historically happened.",
+      "hint": "Think about what each stage needed the previous one to already exist before it could work.",
+      "items": [
+        "Manual and animal labour",
+        "Waterwheels and windmills converting natural flow into rotary motion",
+        "The steam engine (external combustion)",
+        "The internal combustion engine (Otto and Diesel cycles)",
+        "Electronically managed (ECU/FADEC) engines"
+      ],
+      "rationale": "Each stage solves a limitation of the one before it: muscle is limited in scale, natural flow is limited to wherever it already occurs, external combustion is bulky and slow to start, and even a good internal combustion engine benefits from more precise electronic control than a fixed mechanical setting can give."
+    },
+    {
+      "id": "history-mech-ice-advantage",
+      "lessonId": "history-mechanical-engines",
+      "type": "multiple-choice",
+      "question": "What made the internal combustion engine suitable for self-propelled vehicles in a way the steam engine generally was not?",
+      "hint": "Compare where the fuel is actually burned in each type of engine.",
+      "answers": [
+        "It produced more total power than any steam engine ever built",
+        "It burned fuel inside the working cylinder itself, removing the need for a separate boiler and furnace",
+        "It ran on electricity instead of a fuel that had to be burned"
+      ],
+      "correct": 1,
+      "rationale": "Moving combustion inside the cylinder (internal combustion) removed the bulky, slow-to-heat external boiler and furnace a steam engine needs, making a compact, self-contained, quick-starting engine practical."
+    },
+    {
+      "id": "history-aircraft-era-sequence",
+      "lessonId": "history-aircraft-engines",
+      "type": "ordering",
+      "question": "Put these aircraft-engine developments in the order they historically happened.",
+      "hint": "Use the eras from the lesson: pre-WW1, WW1, interwar, WW2, post-WW2, modern.",
+      "items": [
+        "Wright brothers' first controlled, powered flight (1903)",
+        "Rotary and inline/V-type engines diverge during WW1",
+        "Air-cooled radials dominate general/civil aviation between the wars",
+        "Supercharged and turbocharged engines exceed 1,000-2,000 hp in WW2",
+        "Horizontally-opposed flat engines become the post-WW2 general-aviation standard",
+        "FADEC brings full digital engine control to piston aircraft engines"
+      ],
+      "rationale": "Each era's dominant engine design responds to that era's driving pressure: proving control was possible (1903), wartime demand for power and reliability (WW1, WW2), civilian reliability and cost after each war, and finally precision electronic control once the technology existed."
+    },
+    {
+      "id": "history-aircraft-wright-breakthrough",
+      "lessonId": "history-aircraft-engines",
+      "type": "multiple-choice",
+      "question": "Why is the Wright brothers' 1903 engine considered the breakthrough that enabled powered flight, given it produced only about 12 hp?",
+      "hint": "Compare it with the Maxim and Langley attempts, which had engines but still failed to fly under control.",
+      "answers": [
+        "It was the most powerful aircraft engine available at the time",
+        "It was the first engine light enough to be carried by a glider",
+        "It was paired with a design that had already solved three-axis control, so the engine only had to add sustained thrust to a machine that could already be controlled"
+      ],
+      "correct": 2,
+      "rationale": "Maxim and Langley had adequately powerful engines but no stable control; the Wrights spent 1900-1902 mastering pitch, roll and yaw in gliders first, so their comparatively modest 12 hp engine only had to supply sustained thrust to an already-controllable aircraft."
+    },
+    {
+      "id": "terminologies-powerplant-vs-engine",
+      "lessonId": "terminologies",
+      "type": "multiple-choice",
+      "question": "Which best distinguishes 'powerplant' from 'engine' in aviation usage?",
+      "hint": "One of these terms names a single machine; the other names everything needed to turn that machine into usable thrust on an aircraft.",
+      "answers": [
+        "They are two words for exactly the same thing",
+        "Powerplant refers only to the propeller; engine refers only to the cylinders",
+        "Powerplant is the broader term - the engine plus everything installed around it that produces and delivers thrust"
+      ],
+      "correct": 2,
+      "rationale": "A powerplant is the engine plus the surrounding installed systems (mounts, induction/exhaust, cooling, propeller and governor) that together produce and deliver thrust; the engine is one part of that whole."
+    },
+    {
+      "id": "terminologies-energy-flow-sequence",
+      "lessonId": "terminologies",
+      "type": "ordering",
+      "question": "Put these in the order energy actually flows through a running reciprocating engine.",
+      "hint": "Start at the fuel and follow the motion all the way out to the propeller shaft.",
+      "items": [
+        "Fuel burns, releasing thermal energy",
+        "Expanding gas pushes the piston in a straight line (reciprocating motion)",
+        "The connecting rod transmits that push to the crankshaft",
+        "The crankshaft converts the motion into rotating output"
+      ],
+      "rationale": "Heat from combustion becomes pressure, pressure pushes the piston in a straight line, the connecting rod carries that push to the crankshaft, and the crankshaft is what finally turns reciprocating motion into the rotating output the propeller needs."
+    }
+  ]
+}

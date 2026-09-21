@@ -1,0 +1,73 @@
+# History and Terminologies lessons — content draft (UNREVIEWED)
+
+**Status: content-authoring draft only. Not instructor-reviewed. Do not mark these lessons complete or publish them until an instructor has reviewed the content below.** The lesson content itself is no longer un-wired, though: as of 21 Sep 2026 it now drives an actual interactive Learn-mode page (`web/learn.html`) — see "Interactive build" below. It is still not linked from any live model registry entry or presented to students as final.
+
+Drafted 21 Sep 2026, covering lessons 1–3 of the confirmed 18-lesson order (`[[4212pistonengine-syllabus-lesson-mapping]]`): **History of Mechanical Engines**, **History of Aircraft Engines**, and **Terminologies**. Content lives in [`web/history-lessons.json`](../web/history-lessons.json) (filename now slightly stale now that it holds a non-history lesson too — a rename to something like `general-lessons.json` is a reasonable future cleanup, not done here to avoid unnecessary churn mid-review), authored against the `4212.lesson-pack/v3` schema in [`docs/lesson-and-assessment-architecture.md`](lesson-and-assessment-architecture.md) and validated structurally with the project's own `validateLessonPack` (see `web/schema/content-schema.mjs`) — it passes with no structural errors, and a dedicated test (`scripts/test_general_lessons.mjs`) now checks it alongside the project's other content-pack tests. This file is the review companion: what to check, what's sourced from where, and what is still open before this can ship.
+
+## Terminologies (lesson 3)
+
+Documented from the course slide deck (slides 45–46 only — "Terminologies" and "Working Principle"). Deliberately scoped narrow: the deck's formal bore/stroke/displacement/compression-ratio/TDC-BDC treatment lives at slides 206–219 ("Engine Parameters"), which belongs to the later Performance Calculations lesson, not here — confirmed by searching the full 280-slide deck for those terms before writing this lesson, rather than assuming. Terminologies stays at the conceptual level: engine vs. powerplant vs. reciprocating engine, and the heat → pressure → piston → crankshaft energy path, which is what the day-based report's "absorbs basic reciprocating operation" phrase actually needs. Like the two history lessons, it has no EASA sub-outcome of its own — it is scaffolding vocabulary the instructor built into the course, not a directly assessed outcome, same caveat as before.
+
+## Interactive build — Learn mode
+
+A new page, [`web/learn.html`](../web/learn.html) + [`web/learn.mjs`](../web/learn.mjs), renders these three lessons as an actual flat, hideable lesson list plus step-through viewer, matching the "Learn — Lesson List (Desktop)" and "Learn — Desktop" artboards in the Paper file (`01M2GQ4NMAEFWBDDGCXB8EPJEY`) as closely as could be verified. It reads lessons via a small [`web/lessons-manifest.json`](../web/lessons-manifest.json) (currently pointing only at `history-lessons.json`; add future lesson-pack files to its `packs` array as they're authored) and the existing `web/models.json` registry. Linked from `web/training.html`'s header ("Open the Learn syllabus (lessons 1–3 draft) →"); the existing M2 cylinder Explore/Learn/Check flow on `training.html` was left untouched.
+
+**Paper fidelity caveat:** Paper's weekly MCP usage limit was still active when this was built (confirmed by a live `get_screenshot`/`get_jsx` call failing even with Paper Desktop open) — only `get_basic_info` (design tokens, artboard list, font families) was available, not the artboards' actual screenshots or JSX. The build uses the exact recorded tokens (`--color-bg #0B0F0E`, `--color-accent #2EE6A6`, Inter + IBM Plex Mono, the documented text/space/radius scale) and the structural description already in `[[reference-paper-mockups]]` (flat hideable list, step detail, persistent "Explore this fully →" link, deep-dive links), but has **not** been visually diffed against the actual mockup pixel-for-pixel. Once the weekly limit clears, a follow-up pass should open both side by side and reconcile spacing/layout details this build had to guess at.
+
+**What the build adds beyond raw content rendering:**
+- A visible **evidence tag** per text/model-pose step ("Documented" vs. "General / illustrative"), derived by pattern-matching each step's `note` field — this surfaces the sourcing-rigor distinction directly to whoever is reviewing, not just in this markdown file.
+- **Image placeholders**: any step whose `url` starts with `PLACEHOLDER:` renders as a dashed-border placeholder card with the note, instead of a broken `<img>`.
+- **Model-pose steps**: if `step.modelId` resolves in `models.json`, shows an "Open 3D view →" link to `training.html?model=<id>`; if not (true today for `wright-1903`, since no registry entry or asset exists — see below), shows an honest "3D reference model not yet available" placeholder instead of faking a viewer.
+- A persistent **content-draft banner** at the top of the page, so the unreviewed status is visible in the running page itself, not only in this doc and the JSON's `draftStatus` field.
+- Deliberately **does not** render `checks` inline — Check yourself stays a separate, not-yet-rebuilt experience per the architecture doc's existing design (a standalone tab plus a nudge after finishing a lesson); building that is out of scope for this pass.
+
+**A real bug found and fixed during interactive testing:** the first version put the list-hide toggle button *inside* the collapsible list panel itself — clicking it to hide the list also hid the only way to bring it back, permanently trapping the user in the step-only view. Fixed by moving the toggle into the persistent topbar, outside the panel it controls. Caught by actually clicking through the built page in a browser rather than only eyeballing the code, which is exactly the "interact with it and give feedback" step this build exists for. A second, related issue surfaced on a mobile-width pass: an early fixed-overlay approach for the mobile list covered the topbar entirely, reproducing the same trap; the fix stacks the list above the step content in normal document flow instead of a full-screen overlay, and auto-hides the list after a lesson is tapped so mobile users land on content immediately.
+
+## Why this file is separate from the JSON
+
+The lesson JSON is the deliverable; this note is the flag the task asked for. The JSON itself carries a `draftStatus` field at its top level restating "unreviewed, not wired live" so the flag travels with the file even if this note is separated from it later.
+
+## Sourcing split — what's documented vs. general/illustrative
+
+Per the project's evidence-rigor convention (the same documented/reconstructed/illustrative distinction used for Explore-mode component data), each step's `note` field states its own sourcing. Summary:
+
+- **Lesson 1 (History of Mechanical Engines) is entirely general/illustrative narrative**, not sourced from the course's own materials. The reason: the slide deck's "History and Introduction" section (slides 6–43) is aviation-specific from its first slide onward — it does not cover the pre-aviation arc (manual labour, waterwheels, steam, early ICE) this lesson needs to set up lesson 2. That arc was written from general, well-established engineering-history knowledge (Newcomen 1712, Watt's 1760s–70s improvements, Otto 1876, Benz mid-1880s, Diesel 1893). These are uncontroversial, widely-taught dates, but they are **not** EASA/FAA/GTSIO-520-sourced and should be read by the instructor as scene-setting narrative, not as assessed factual claims. One deliberate exception: the lesson explicitly does *not* teach Otto/Diesel cycle theory (PV diagrams, the aero-application limitations of Diesel) — that stays reserved for lesson 4 (Thermodynamic Cycles), which the syllabus mapping already flags as needing EASA/FAA sourcing specifically for the "limitations of Diesel in aero application" claim.
+- **Lesson 2 (History of Aircraft Engines) is documented from the course's own current slide deck**, `Notes/Aircraft Piston Engine Slides - 21May2026.pptx`, slides 6–43 ("History and Introduction" — verified by extracting the deck's actual slide text; this matches the day-based report's slide-range estimate). Nearly every step's `note` cites the specific slide(s) it draws from (e.g. the Wright 1903 engine's cast-aluminium/cast-iron/180 lb/12 hp @ 1,025 rpm description is slide 16 verbatim-in-substance; the pre-WW1 engine table is slide 17; WW1 rotary vs inline is slides 19–21; and so on through the WW2 and post-WW2/modern slides). Nothing in lesson 2 was invented or pulled from general web knowledge — where the deck was silent, the step was cut rather than filled in from outside sources, keeping the "documented" claim honest.
+- Check-yourself questions in both lessons are **original phrasing**, written for this platform rather than copied from the deck's own recap-quiz slides (41–43) — they test the same underlying ideas (era sequencing, why the Wright engine mattered) without reproducing the instructor's existing quiz wording, in case that bank gets reused separately.
+
+## The Wright 1903 reference model — what's proposed vs. what exists
+
+Lesson 2 has exactly one `model-pose` step, per the agreed worked example: `modelId: "wright-1903"`, a thin reference/illustrative registry entry (orbit/zoom only — no section, no isolation, no operating-mechanism animation), distinct from the course's real teaching engine (GTSIO-520-H).
+
+**This registry entry does not exist yet.** It is *not* added to `web/models.json` in this draft, deliberately — the architecture doc's own open-questions list (`docs/lesson-and-assessment-architecture.md`) already flags that a reference-model registry entry's minimal shape isn't finalized, and that no one has yet decided where a Wright 1903 asset would be sourced or modeled from, or at what fidelity. Adding a real registry entry now would either point at a nonexistent asset or require producing one under this task's authority, neither of which seemed right to decide unilaterally. A proposed entry, shaped like the existing `models.json` entries, for whenever an asset exists:
+
+```json
+{
+  "id": "wright-1903",
+  "label": "1903 Wright Flyer engine (reference)",
+  "adapter": "reference",
+  "title": "Inspect the 1903 Wright engine",
+  "kicker": "History of Aircraft Engines · Reference model",
+  "description": "Drag to rotate · Scroll or pinch to zoom. A lightweight reference model, not the course's GTSIO-520-H teaching engine.",
+  "asset_url": "TBD — no 3D asset has been produced yet",
+  "supportsSection": false,
+  "supportsIsolation": false,
+  "supportsAnimateMechanism": false,
+  "hasTeachingComponents": false
+}
+```
+
+**A schema gap surfaced while writing the step, worth flagging to whoever reviews the v3→v4 schema evolution:** `validateStep` (in `web/schema/content-schema.mjs`) currently requires *every* `model-pose` step to carry an `action: {type: 'angle'|'cycle-angle', value: number}`, inherited unchanged from the v1 runtime contract. That makes sense for the operating-cylinder model, which has a real crank-angle motion profile to pose. The Wright reference model has no rig and no motion profile at all — it's a static orbit/zoom viewer. The draft step satisfies the validator with `action: {"type": "angle", "value": 0}` and explains in its `note` that the model holds a single fixed pose and does not animate, but this is a workaround, not a clean fit: a future schema revision could reasonably make `action` optional for reference-model steps (or scope it to models whose registry entry declares `supportsAnimateMechanism: true`). Flagging it here rather than quietly deciding it, since it changes a validated field's cardinality.
+
+## Images — all placeholders
+
+Per the confirmed decision that lesson images follow the Drive-synced asset pattern (not repo-committed files), every `image` step across all three lessons uses a `PLACEHOLDER:drive-asset/...` URL rather than a real Drive link — no images have been sourced or uploaded yet. These need to be replaced with real Drive-hosted asset URLs before publication (the interactive build renders each one as a labelled placeholder card rather than a broken image, so this is visible when reviewing, not silently missing). One is flagged as a possible reuse candidate (the Gnome Omega illustration already present on slide 18 of the deck) rather than a fresh image to source — worth checking permissions/rights on that slide asset before reusing it as-is.
+
+## What an instructor review should check
+
+1. **Factual accuracy** of both the general-knowledge narrative (lesson 1) and the deck-sourced narrative (lessons 2 and 3) — this was written by extracting and paraphrasing the deck's own text, not independently fact-checked against primary sources beyond that.
+2. **Tone and level** — whether the reflective/prediction-style prompts (e.g. "what do you think a flying machine needs from its engine...") land at the right level for this cohort, consistent with the "Learn is not question-dense" design principle.
+3. **Length** — lesson 2 in particular has 13 steps, condensing 38 slides; an instructor may want to cut or merge some (e.g. fold the pre-WW1 engine table and its image into fewer steps) rather than teach it at full slide-deck density.
+4. **The `completionCriteria` wording** on all three lessons — narrative completion evidence, not a formal check, so it's worth confirming it asks for the right thing before a student ever sees it.
+5. **The six checks** (two ordering, four multiple-choice) — confirm the `rationale` text is accurate and the ordering items are unambiguous once shuffled for display.
+6. **The interactive build itself** (`web/learn.html`) — best reviewed by opening it and clicking through, exactly as intended. Compare it side by side with the actual Paper mockup once Paper's weekly limit clears, since this build could not be visually diffed against it (see "Interactive build" above).
