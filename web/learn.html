@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4212 Piston Engine · Learn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --color-bg:#0B0F0E;--color-panel:#121917;--color-panel-raised:#182220;--color-border:#243430;
+  --color-text-primary:#E4F5EC;--color-text-muted:#7C9089;
+  --color-accent:#2EE6A6;--color-accent-dim:#1B4A3D;
+  --font-ui:'Inter',system-ui,sans-serif;--font-mono:'IBM Plex Mono',ui-monospace,monospace;
+  --text-display:28px;--text-heading:18px;--text-body:14px;--text-label:11px;
+  --space-sm:8px;--space-md:16px;--space-lg:24px;
+  --radius-sm:8px;--radius-md:12px;
+  font-family:var(--font-ui);background:var(--color-bg);color:var(--color-text-primary);
+  accent-color:var(--color-accent);
+}
+*{box-sizing:border-box}
+body{margin:0}
+p{margin:0;line-height:1.65}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+a{color:var(--color-accent);text-decoration:none}
+a:hover{text-decoration:underline}
+ol,ul{margin:0;padding:0;list-style:none}
+
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-md);padding:14px var(--space-lg);border-bottom:1px solid var(--color-border);background:var(--color-panel)}
+.topbar .brand{font-weight:600;font-size:var(--text-body);letter-spacing:-.01em}
+.topbar .brand .dim{color:var(--color-text-muted);font-weight:500}
+.topbar-actions{display:flex;align-items:center;gap:var(--space-md)}
+.topbar .back-link{font-size:var(--text-label);color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.08em}
+.topbar .back-link:hover{color:var(--color-accent)}
+
+.draft-banner{display:flex;align-items:center;gap:10px;padding:10px var(--space-lg);background:var(--color-accent-dim);border-bottom:1px solid var(--color-border);color:var(--color-accent);font-size:var(--text-label);letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+.draft-banner .dot{width:6px;height:6px;border-radius:50%;background:var(--color-accent);flex:none;box-shadow:0 0 0 3px rgba(46,230,166,.18)}
+.draft-banner span.detail{text-transform:none;letter-spacing:0;font-weight:400;color:var(--color-text-primary);opacity:.85}
+
+.shell{display:grid;grid-template-columns:320px minmax(0,1fr);min-height:calc(100vh - 96px)}
+.shell.list-hidden{grid-template-columns:minmax(0,1fr)}
+.shell.list-hidden .list-panel{display:none}
+
+.list-panel{border-right:1px solid var(--color-border);background:var(--color-panel);display:flex;flex-direction:column;min-width:0}
+.list-panel-head{display:flex;align-items:center;justify-content:space-between;padding:var(--space-md) var(--space-md) var(--space-sm)}
+.list-title{font-size:var(--text-label);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted)}
+.pill-btn{border:1px solid var(--color-border);border-radius:999px;padding:6px 12px;font-size:var(--text-label);font-weight:600;letter-spacing:.04em;color:var(--color-text-muted);background:var(--color-panel-raised)}
+.pill-btn:hover{color:var(--color-text-primary);border-color:var(--color-accent)}
+
+.lesson-list{overflow-y:auto;padding:var(--space-sm)}
+.lesson-item{display:block;width:100%;text-align:left;padding:12px 12px;border-radius:var(--radius-sm);margin-bottom:2px;border:1px solid transparent}
+.lesson-item:hover{background:var(--color-panel-raised)}
+.lesson-item[aria-current=true]{background:var(--color-panel-raised);border-color:var(--color-accent-dim)}
+.lesson-item .lesson-num{font-family:var(--font-mono);font-size:var(--text-label);color:var(--color-text-muted)}
+.lesson-item[aria-current=true] .lesson-num{color:var(--color-accent)}
+.lesson-item .lesson-title{display:block;font-size:var(--text-body);font-weight:600;margin-top:2px;color:var(--color-text-primary)}
+.lesson-item .lesson-meta{display:block;font-size:var(--text-label);color:var(--color-text-muted);margin-top:3px}
+
+.step-panel{padding:var(--space-lg) 48px 64px;max-width:760px;width:100%}
+.step-panel.wide{max-width:920px}
+.lesson-head{padding-bottom:var(--space-md);margin-bottom:var(--space-lg);border-bottom:1px solid var(--color-border)}
+.lesson-kicker{display:flex;align-items:center;gap:10px;font-size:var(--text-label);letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:8px}
+.lesson-kicker button{color:var(--color-text-muted);text-decoration:underline}
+.lesson-kicker button:hover{color:var(--color-accent)}
+.lesson-head h1{font-size:var(--text-display);margin:0 0 8px;letter-spacing:-.01em;font-weight:700}
+.lesson-head .objective{color:var(--color-text-muted);font-size:var(--text-body);max-width:62ch}
+
+.step-progress{display:flex;align-items:center;gap:12px;margin-bottom:var(--space-md)}
+.step-progress .count{font-family:var(--font-mono);font-size:var(--text-label);color:var(--color-accent);letter-spacing:.04em}
+.progress-track{flex:1;height:3px;border-radius:999px;background:var(--color-border);overflow:hidden}
+.progress-fill{height:100%;background:var(--color-accent);border-radius:999px;transition:width .2s}
+.step-type-tag{font-family:var(--font-mono);font-size:var(--text-label);letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted);border:1px solid var(--color-border);border-radius:999px;padding:3px 10px}
+
+.step-card{background:var(--color-panel);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-lg);margin-bottom:var(--space-md)}
+.step-prompt{font-size:var(--text-heading);line-height:1.55;color:var(--color-text-primary)}
+
+.evidence-tag{display:inline-flex;align-items:center;gap:6px;font-size:var(--text-label);font-weight:600;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:4px 10px;margin-top:var(--space-md)}
+.evidence-tag.documented{color:var(--color-accent);background:var(--color-accent-dim)}
+.evidence-tag.illustrative{color:var(--color-text-muted);background:var(--color-panel-raised);border:1px solid var(--color-border)}
+.step-note{font-size:13px;color:var(--color-text-muted);margin-top:10px;line-height:1.6}
+
+.placeholder-box{border:1px dashed var(--color-border);border-radius:var(--radius-sm);padding:var(--space-lg);display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;color:var(--color-text-muted);margin-top:var(--space-md)}
+.placeholder-box svg{width:28px;height:28px;stroke:var(--color-text-muted)}
+.placeholder-box .placeholder-label{font-size:var(--text-label);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.placeholder-box .placeholder-caption{font-size:13px;max-width:48ch}
+
+.model-card{border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:var(--space-md);margin-top:var(--space-md);display:flex;align-items:center;justify-content:space-between;gap:var(--space-md);flex-wrap:wrap}
+.model-card .model-card-text{display:flex;flex-direction:column;gap:2px}
+.model-card .model-card-label{font-size:var(--text-label);letter-spacing:.06em;text-transform:uppercase;color:var(--color-text-muted)}
+.model-card .model-card-name{font-size:var(--text-body);font-weight:600}
+.model-card a.open-btn{border:1px solid var(--color-accent);color:var(--color-accent);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;white-space:nowrap}
+.model-card a.open-btn:hover{background:var(--color-accent-dim);text-decoration:none}
+
+.deep-dive{margin-top:var(--space-md);font-size:13px;color:var(--color-text-muted)}
+.deep-dive a{margin-left:6px}
+
+.explore-link{display:inline-flex;align-items:center;gap:6px;margin-top:var(--space-lg);font-size:13px;color:var(--color-accent);font-weight:600}
+
+.completion-card{background:linear-gradient(160deg,var(--color-panel-raised),var(--color-panel));border:1px solid var(--color-accent-dim);border-radius:var(--radius-md);padding:var(--space-lg);margin-bottom:var(--space-md)}
+.completion-card .completion-label{display:flex;align-items:center;gap:8px;font-size:var(--text-label);letter-spacing:.08em;text-transform:uppercase;color:var(--color-accent);font-weight:700;margin-bottom:10px}
+.completion-card .completion-label svg{width:16px;height:16px;stroke:var(--color-accent)}
+.completion-card p{color:var(--color-text-primary);font-size:var(--text-body)}
+
+.step-controls{display:flex;align-items:center;justify-content:space-between;gap:var(--space-md);margin-top:var(--space-lg)}
+.step-controls .nav-btn{border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:11px 20px;font-size:var(--text-body);font-weight:600;background:var(--color-panel)}
+.step-controls .nav-btn:hover:not(:disabled){border-color:var(--color-accent);color:var(--color-accent)}
+.step-controls .nav-btn:disabled{opacity:.35;cursor:default}
+.step-controls .nav-btn.primary{background:var(--color-accent);color:#04140F;border-color:var(--color-accent)}
+.step-controls .nav-btn.primary:hover{background:#38f5b4}
+
+.empty-state{padding:var(--space-lg);color:var(--color-text-muted);font-size:var(--text-body)}
+
+@media(max-width:860px){
+  .shell{grid-template-columns:1fr}
+  .list-panel{border-right:0;border-bottom:1px solid var(--color-border);max-height:45vh}
+  .step-panel{padding:var(--space-md) var(--space-md) 48px}
+  .topbar{flex-wrap:wrap;gap:8px;padding:12px var(--space-md)}
+  .topbar .brand{font-size:13px;white-space:nowrap}
+  .topbar-actions{gap:10px}
+  .pill-btn{padding:6px 10px;white-space:nowrap}
+  .back-link{white-space:nowrap}
+  .draft-banner{flex-wrap:wrap;padding:8px var(--space-md);font-size:10px}
+}
+</style>
+</head><body>
+<header class="topbar">
+  <div class="brand">4212 Piston Engine <span class="dim">· Learn</span></div>
+  <div class="topbar-actions">
+    <button id="hide-list" class="pill-btn" type="button" aria-expanded="true">Hide list</button>
+    <a class="back-link" href="./training.html">← Model viewer</a>
+  </div>
+</header>
+<div class="draft-banner" role="status">
+  <span class="dot" aria-hidden="true"></span>
+  Content draft
+  <span class="detail">— lessons 1–3 of 18 only, unreviewed, not final. See docs/history-lessons-content-draft.md.</span>
+</div>
+<div id="shell" class="shell list-visible">
+  <aside class="list-panel" id="list-panel">
+    <div class="list-panel-head">
+      <span class="list-title">Lessons</span>
+    </div>
+    <ol id="lesson-list" class="lesson-list" aria-label="Lesson list"></ol>
+  </aside>
+  <main class="step-panel" id="step-panel">
+    <p class="empty-state" id="loading-note">Loading lessons…</p>
+  </main>
+</div>
+<script type="module" src="./learn.mjs"></script>
+</body></html>
