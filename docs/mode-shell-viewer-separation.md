@@ -1,6 +1,6 @@
 # Explore/Learn/Check shell and viewer separation
 
-Status: proposed, not yet implemented. Captures instructor discussion, 22 September 2026. This is the plan `viewer.js` and `training-modes.mjs` will be split against — written up first so the split isn't re-litigated mid-refactor. Revises one claim in [engine-platform-architecture.md](engine-platform-architecture.md): `web/training.html` is described there as "the one interactive training shell" for all three modes; this document proposes retiring that in favor of three separate shells (see "Physical shape" below).
+Status: **implemented, 22 September 2026.** Captures instructor discussion from the same day; the migration sequence below ran the same session it was written. Superseded the claim in [engine-platform-architecture.md](engine-platform-architecture.md) that `web/training.html` is "the one interactive training shell" — that file is now retired; `explore.html`/`learn.html`/`check.html` are three real pages (see "Physical shape" below, now updated to reflect what shipped rather than what was proposed).
 
 ## Why this document exists
 
@@ -46,28 +46,28 @@ flowchart TB
 
 Three layers, not three viewers:
 
-1. **`engine-core.mjs`** (new, carved out of today's `viewer.js`) — pure scene construction: load a model's geometry, apply materials, drive a pose through `kinematics.mjs`/`valve-kinematics.mjs`, render at a given camera. No orbit controls, no click-to-select, no toolbar, no model-gallery. Exposes `mount(container, {modelId, angle, camera})`, `setPose(angle)`, `dispose()`.
-2. **Explore controls layer** (what's left of `viewer.js` after the extraction) — wraps `engine-core.mjs` and adds everything interactive: orbit, selection/inspection panel, fullscreen, toolbar, model-gallery. Explore-only; this is the only place a student free-roams the model.
-3. **Content renderer registry**, keyed by the lesson-step `type` values already defined in [lesson-and-assessment-architecture.md](lesson-and-assessment-architecture.md) (`model-pose`, `image`, `text`, `external-link`, `web-embed`). Learn's slide-deck player and Check's flashcard player both consume this registry — they differ only in their outer interaction shell (sequential vs. prompt/reveal), not in how a given step type gets drawn. A `model-pose` step mounts a live-lite `engine-core.mjs` instance (fixed camera, single pose, no controls); every other step type is a plain DOM renderer with no WebGL involved.
+1. **`engine-core.mjs`** — pure scene construction: load a model's geometry, apply a kinematics pose via `kinematics.mjs`/`valve-transforms.mjs` (and, since the M2 lesson needs it, `cycle-visuals.mjs`), render at a fitted camera. No orbit controls, no click-to-select, no toolbar, no model-gallery. Exposes `createEngineCore(container, {assetUrl, motionProfileUrl, angle})` → `{setPose(angle, {cycle}), dispose(), hasMotion}`. **Deviation from the plan**: this is a new, independent module, not literally carved out of `viewer.js` — `viewer.js` still has its own duplicate scene/camera/renderer setup. A true extraction would need `engine-core.mjs` to expose `scene`/`camera`/`meshes`/`root` for Explore's orbit/selection/section-cutting to build on, which is a real capability change to the module, not a refactor; deferred as a follow-up since it's pure cleanup, not a functional requirement (Explore and Learn both work correctly and independently either way).
+2. **Explore controls layer** (`viewer.js`, unchanged apart from the pose-handoff addition below) — orbit, selection/inspection panel, section-cutting, fullscreen, toolbar, model-gallery. Explore-only; this is the only place a student free-roams the model. Lives on its own page, `explore.html`.
+3. **Content renderers**, keyed by the lesson-step `type` values from [lesson-and-assessment-architecture.md](lesson-and-assessment-architecture.md) (`model-pose`, `image`, `text`, `external-link`, `web-embed`) — `renderGenericStepBody`/`renderModelPoseBody` in `guided-shared.mjs`. Learn's slide-deck player (`learn-modes.mjs`) and Check's flashcard player (`check-modes.mjs`) both consume them; they differ only in their outer interaction shell (sequential vs. prompt/reveal), not in how a given step type gets drawn. A `model-pose` step mounts a live-lite `engine-core.mjs` instance (fixed camera, single pose, no controls); every other step type is a plain DOM renderer with no WebGL involved. **Simplification found during implementation**: a `model-pose` step's live-lite instance now always loads whatever model its own `modelId` names, resolved independently through the registry — it no longer needs to match "the model this page has loaded" (that concept doesn't exist for Learn/Check anymore, see below), so the old same-model-vs-cross-model branching and its "open in a new tab" fallback link are gone. A step only falls back to a placeholder if its `modelId` genuinely isn't in the registry or has no asset yet.
 
 This is the (b) choice from the discussion — live-lite fidelity for `model-pose` steps, not baked images — because it reuses the kinematics modules directly and keeps visual consistency with Explore.
 
 ## Live-lite lifecycle: one WebGL context at a time
 
-A live-lite `model-pose` instance and Explore's full instance must never both be mounted. Rule: whichever mode-shell is active owns the only `engine-core.mjs` instance in the page; switching away from a `model-pose` slide, or leaving Learn/Check entirely, calls `dispose()` before anything else mounts.
+A live-lite `model-pose` instance and Explore's full instance never coexist — Explore is now on its own page (`explore.html`), so a normal navigation away from it already tears its Three.js scene down; there's nothing left to coordinate there. Within Learn, `guided-shared.mjs` holds the one live-lite instance as module state (`disposeInstance`/`disposeLiveViewer`), keyed by which model it's currently showing, and disposes it before mounting a different one. A generation counter guards the async mount against a student navigating away mid-load. Found and fixed one bug here during implementation: the internal reuse check inside `ensureLiveViewer` was calling the full `disposeLiveViewer` (which also hides/clears the DOM container) on every first mount, immediately undoing the `hidden = false` the caller had just set — split into an internal `disposeInstance` (state only) and the exported `disposeLiveViewer` (state + hide/clear container, used only when leaving Learn's model-pose steps entirely).
 
-The existing "Explore this fully" link (`guided-explore-link` → `setMode('explore')` in `training-modes.mjs:377`) already has the right intent — it needs to carry the current model and pose forward so Explore opens oriented where the slide left off, e.g. `explore.html?model=cylinder&angle=270`, instead of just switching an in-page mode flag.
+The "Explore this fully" button (`guided-explore-link`) now does a real navigation: `location.href = './explore.html?model=<id>&angle=<value>&cycle=1'`. `viewer.js` reads `?angle=`/`?cycle=` once its motion profile loads and jumps straight there instead of the profile's default bind pose — the only functional change made to `viewer.js` this migration; everything else about Explore is untouched.
 
 ## Physical shape: three static entry points, no build step
 
-Confirmed by checking `.github/workflows/pages.yml`: there is no bundler, no `package.json`, no build step at all. CI runs `node --test` against the kinematics/lesson-pack/schema test files and a couple of Python asset-contract checks, then uploads `web/` to GitHub Pages as-is. `web/training.html` loads Three.js straight from the jsdelivr CDN via an `importmap`.
+Confirmed by checking `.github/workflows/pages.yml`: there is no bundler, no `package.json`, no build step at all. CI runs `node --test` against the kinematics/lesson-pack/schema test files and a couple of Python asset-contract checks, then uploads `web/` to GitHub Pages as-is. Three.js still loads straight from the jsdelivr CDN via an `importmap`, now declared independently on each of the three pages that need it (`explore.html`/`learn.html`/`check.html` all declare it, since any of them may end up loading `engine-core.mjs`).
 
-Given that, introducing Vite/esbuild purely to get HTML includes would be a bigger change than the one already being made. Instead:
+Introducing Vite/esbuild purely to get HTML includes would have been a bigger change than the one being made, so instead:
 
-- `explore.html`, `learn.html`, `check.html` — three real entry points, each a thin shell.
-- A shared shell-injection module (extending what `training-shell.mjs` already does for dialogs/reduced-motion) injects the common app-bar, mode-tabs nav, and settings/about dialogs into each page at load time, so the chrome markup isn't hand-duplicated three times over.
-- `web/index.html` and `web/learn.html`'s current redirect-to-`training.html` shims go away; each mode is a direct URL.
-- `web/training.html` itself is retired once `explore.html` takes over its role (Explore keeps the full controls layer; it's the same page under a clearer name, not a fourth page).
+- `explore.html`, `learn.html`, `check.html` — three real entry points. All CSS lives in one shared `shell.css` (extracted verbatim from the old `training.html` stylesheet, rather than hand-partitioned three ways — safer given no automated visual regression coverage exists). App-bar/dialog *markup* is still hand-authored per page (small enough, ~15 lines, that a runtime-injection abstraction wasn't worth the added indirection); `page-shell.mjs` (renamed from `training-shell.mjs`) is the one shared piece of *behavior* — dialog open/close, reduced-motion, and `initPageShell(mode, modelId)`, which marks the current nav tab and forwards `?model=` onto the other two links.
+- `web/index.html` and `web/engine.html` now redirect to `explore.html`; `web/learn.html`'s old redirect-to-`training.html` shim is gone because `learn.html` is now the real page.
+- `web/training.html`, `web/training-modes.mjs`, `web/model-router.mjs` and `web/training-shell.mjs` are deleted. `web/explore-router.mjs` replaces `model-router.mjs`'s role for Explore only; `web/guided-shared.mjs` + `web/learn-modes.mjs` + `web/check-modes.mjs` replace `training-modes.mjs`, split so neither Learn nor Check statically imports Explore's viewer or Three.js — `scripts/test_training_shell.mjs` now asserts that directly.
+- Learn and Check turned out not to need a `?model=` URL parameter at all: since a `model-pose` step resolves its own model independently (see above), there's no page-level "current model" left to track on those two pages — only Explore has one.
 
 ## What does not change
 
@@ -75,15 +75,18 @@ Given that, introducing Vite/esbuild purely to get HTML includes would be a bigg
 - Three.js remains the only 3D engine (`project.json`'s `preferred_architecture.viewer`); `engine-core.mjs` is a narrower entry point into the same library, not a new stack.
 - Check's data model (checks addressable by `lessonId`, per `lesson-and-assessment-architecture.md`) is unchanged; only how a check's illustration renders is affected.
 
-## Migration sequence
+## Migration sequence (all done, 22 Sep 2026)
 
-1. Extract `engine-core.mjs` from `viewer.js`; keep Explore working against it unchanged (controls layer wraps core, behavior identical to today).
-2. Build the content renderer registry and point Learn's existing slide logic at it for non-`model-pose` steps first (lowest risk — no WebGL involved).
-3. Wire `model-pose` steps to a live-lite `engine-core.mjs` mount, with the dispose-before-mount lifecycle rule enforced centrally (one place, not per-caller).
-4. Split `explore.html`/`learn.html`/`check.html` out of `training.html`, move the shared chrome into the shell-injection module, update the "Explore this fully" link to a real URL handoff with model+angle.
-5. Retire `training.html`'s multi-mode branching and the old redirect shims once all three pages are live.
+1. ✅ Add `engine-core.mjs` as a new, independent module (not a literal extraction — see deviation noted above). Explore (`viewer.js`) verified unchanged.
+2. ✅ `guided-shared.mjs`'s `renderGenericStepBody` handles non-`model-pose` steps; `learn-modes.mjs`/`check-modes.mjs` both call into it.
+3. ✅ `model-pose` steps wired to a live-lite `engine-core.mjs` mount via `ensureLiveViewer`/`disposeLiveViewer`, generation-guarded.
+4. ✅ `explore.html`/`learn.html`/`check.html` split out; `shell.css` + `page-shell.mjs` shared; "Explore this fully" does a real `?model=&angle=&cycle=` handoff.
+5. ✅ `training.html`, `training-modes.mjs`, `model-router.mjs`, `training-shell.mjs` deleted; `index.html`/`engine.html` redirects updated; `scripts/test_training_shell.mjs` rewritten against the new files.
+
+Verified against a local static server for both models (`cylinder` and `gtsio520-h-v5-teaching-engine`), all three pages, the M2 lesson's `angle` and `cycle-angle` steps, the text/image-only History & Fundamentals pack (confirmed zero canvases, no Three.js load), both Check question types, and the full `node --test` suite (20/20).
 
 ## Open items
 
-- Exact shape of the shell-injection module's API (what markup it owns vs. what each page still authors itself) — not decided here, decide when step 4 starts.
+- `engine-core.mjs`/`viewer.js` still duplicate scene-setup code (see deviation note under "Proposed architecture") — real cleanup, not urgent, since both work correctly independently.
+- `engine-training-adapter.mjs` (the full six-cylinder engine) doesn't read `?angle=`/`?cycle=` yet — only `viewer.js` does, because no lesson currently targets that model. Add it there if/when a lesson does.
 - Whether `external-link`/`web-embed` steps need any sandboxing beyond what `dialog`/`iframe` defaults give — out of scope for this document.

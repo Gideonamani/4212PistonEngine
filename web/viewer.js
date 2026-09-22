@@ -392,6 +392,12 @@ async function display(bytes){
   $('search').value='';$('group').value='';$('group').disabled=false;selected='';populateParts();
   $('search').disabled=false;$('parts').disabled=false;$('reset').disabled=false;choose('');
   await setupMotion(bytes);
+  // Learn's "Explore this fully" link hands off the pose a student left a lesson slide at.
+  const handoffAngle=Number(new URLSearchParams(location.search).get('angle'));
+  if(motionProfile&&Number.isFinite(handoffAngle)&&new URLSearchParams(location.search).has('angle')){
+    setMotion(handoffAngle);
+    if(new URLSearchParams(location.search).get('cycle')==='1'){$('cycle-enabled').checked=true;cycleVisuals?.setVisible(true);}
+  }
   log(`Preparation and first render: ${((performance.now()-started)/1000).toFixed(2)} s; viewport ${renderer.domElement.clientWidth} × ${renderer.domElement.clientHeight}; pixel ratio ${renderer.getPixelRatio()}.`);
   $('load-progress').hidden=true;
   return ids.size;
