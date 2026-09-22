@@ -7,11 +7,11 @@ document.title=`4212 Piston Engine · ${model.label}`;
 document.querySelector('.kicker').textContent=model.kicker;
 document.querySelector('h1').textContent=model.title;
 document.querySelector('.lede').textContent=model.description;
-const switchLink=document.querySelectorAll('.lede')[1];
-if(switchLink){const other=registry.models.find(item=>item.id!==model.id);switchLink.innerHTML=`<a href="./training.html?model=${other.id}">Switch to ${other.label} →</a>`;}
+const gallery=document.getElementById('model-gallery');
+if(gallery)gallery.innerHTML=registry.models.map(item=>`<a class="model-pick" href="./training.html?model=${item.id}" aria-current="${item.id===model.id}">${item.label}</a>`).join('');
 document.body.dataset.model=model.id;
 globalThis.trainingModel=model;
 if(model.adapter==='cylinder')await import('./viewer.js?v=20260912-lesson-ready-5');
 else await import('./engine-training-adapter.mjs?v=20260912-lesson-ready-5');
-await import('./training-modes.mjs?v=20260912-m2-guided-1');
+await import('./training-modes.mjs?v=20260921-unified-shell-3');
 await import('./training-shell.mjs?v=20260912-shell-1');

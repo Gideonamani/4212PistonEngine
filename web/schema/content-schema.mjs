@@ -120,9 +120,15 @@ export const MODEL_CAPABILITY_FLAGS = Object.freeze([
  */
 
 /**
+ * A pack is also a "track" in the Learn/Check gallery: one browsable unit with
+ * its own name and description, shown before drilling into its lessons.
  * @typedef {Object} LessonPack
  * @property {string} schema
  * @property {string} privacy
+ * @property {string} [id] - stable track id for gallery navigation; required in practice once a pack is added to lessons-manifest.json, optional in the type so ad hoc/test fixtures aren't forced to set it
+ * @property {string} [title] - track name shown in the Learn/Check gallery
+ * @property {string} [description] - one-line track summary shown in the gallery
+ * @property {string} [draftStatus] - free-text draft/review marker shown as a gallery badge when present (e.g. "UNREVIEWED CONTENT DRAFT — ..."); absent means no special status to flag
  * @property {Lesson[]} lessons
  * @property {CheckItem[]} checks
  */
@@ -230,6 +236,9 @@ function validateCheckItem(check, lessonIds, index) {
 export function validateLessonPack(pack) {
   const errors = [];
   if (pack.schema !== LESSON_PACK_SCHEMA) errors.push(`schema must be ${LESSON_PACK_SCHEMA}, got ${pack.schema}`);
+  if (pack.id !== undefined && typeof pack.id !== 'string') errors.push('id must be a string');
+  if (pack.title !== undefined && typeof pack.title !== 'string') errors.push('title must be a string');
+  if (pack.description !== undefined && typeof pack.description !== 'string') errors.push('description must be a string');
   if (!Array.isArray(pack.lessons) || pack.lessons.length === 0) errors.push('lessons must be a non-empty array');
   const lessonIds = (pack.lessons || []).map(lesson => lesson.id);
   (pack.lessons || []).forEach((lesson, index) => errors.push(...validateLesson(lesson, index)));

@@ -2,6 +2,9 @@
   "schema": "4212.lesson-pack/v3",
   "privacy": "Progress is held only in this page session (or locally on-device per the lesson-progress decision); no learner identity or answers are stored or transmitted.",
   "draftStatus": "UNREVIEWED CONTENT DRAFT — 2026-09-21. Not wired into any live model registry entry or run through instructor review. See docs/history-lessons-content-draft.md before publishing.",
+  "id": "history-and-fundamentals",
+  "title": "History & Fundamentals",
+  "description": "General engine history and core terminology. Mostly text and image steps; one lesson references the Wright 1903 reference model.",
   "lessons": [
     {
       "id": "history-mechanical-engines",

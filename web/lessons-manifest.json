@@ -1,7 +1,8 @@
 {
   "schema": "4212.lessons-manifest/v1",
-  "description": "Ordered list of lesson-pack files that make up Learn mode's flat 18-lesson list. Packs are concatenated in array order, and lessons within a pack keep their array order, so this file's order plus each pack's lesson order is the full syllabus order.",
+  "description": "Ordered list of lesson-pack files. Each pack is a browsable track in the Learn/Check gallery (see its own title/description/id); within a track, lessons keep their array order.",
   "packs": [
+    "./m2-cylinder-lessons.json",
     "./history-lessons.json"
   ]
 }

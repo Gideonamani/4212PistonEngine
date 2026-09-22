@@ -9,6 +9,7 @@ import { createTransfer } from './transfer.mjs';
 import { decodeModel } from './model-transport.mjs';
 import { mechanismPose } from './kinematics.mjs';
 import { valveMatrices } from './valve-transforms.mjs';
+import { createCycleVisuals } from './cycle-visuals.mjs';
 
 async function fetchModelBytes(url) {
   const transfer = createTransfer();
@@ -110,7 +111,7 @@ export async function createEngineCore(container, { assetUrl, assetFallbackUrl, 
   scene.add(root);
   fitCamera(camera, root);
 
-  let motionProfile = null, motionEntries = [];
+  let motionProfile = null, motionEntries = [], cycleVisuals = null;
   if (motionProfileUrl) {
     const response = await fetch(motionProfileUrl);
     if (response.ok) {
@@ -124,12 +125,14 @@ export async function createEngineCore(container, { assetUrl, assetFallbackUrl, 
           mesh.matrixAutoUpdate = false;
           return { mesh, group, localBind: bind[group].clone().invert().multiply(mesh.matrixWorld) };
         });
+        if (profile.cycle_landmarks) cycleVisuals = createCycleVisuals(scene, profile.cycle_landmarks, camera);
       }
     }
   }
 
-  function setPose(degrees) {
-    if (!motionProfile) { render(); return; }
+  /** @param {number} degrees @param {{cycle?:boolean}} [opts] cycle: show the illustrative intake/compression/power/exhaust cues */
+  function setPose(degrees, { cycle = false } = {}) {
+    if (!motionProfile) { render(); return null; }
     const transforms = groupMatrices(degrees, motionProfile);
     const valves = motionProfile.valves ? valveMatrices(degrees, motionProfile.valves) : null;
     for (const { mesh, group, localBind } of motionEntries) {
@@ -141,13 +144,20 @@ export async function createEngineCore(container, { assetUrl, assetFallbackUrl, 
       mesh.matrix.copy(mesh.parent.matrixWorld).invert().multiply(world);
     }
     root.updateMatrixWorld(true);
+    let cue = null;
+    if (cycleVisuals) {
+      cycleVisuals.setVisible(cycle);
+      if (cycle) cue = cycleVisuals.update(degrees, mechanismPose(degrees, motionProfile.radius_m, motionProfile.rod_length_m).piston[0] * 1000);
+    }
     render();
+    return { cue };
   }
 
   setPose(angle);
 
   function dispose() {
     resize.disconnect();
+    cycleVisuals?.dispose();
     root.traverse(o => { if (o.geometry) o.geometry.dispose(); });
     for (const mesh of meshes) {
       const material = mesh.material;

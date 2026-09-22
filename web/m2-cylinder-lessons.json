@@ -1,6 +1,9 @@
 {
   "schema": "4212.lesson-pack/v3",
   "privacy": "Progress is held only in this page session; no learner identity or answers are stored or transmitted.",
+  "id": "m2-cylinder-study",
+  "title": "Operating Cylinder Study",
+  "description": "One guided lesson following the GTSIO-520-H detailed cylinder through a full four-stroke cycle.",
   "lessons": [
     {
       "id": "m2-four-stroke-guided",
