@@ -6,7 +6,7 @@
  --accent:#2EE6A6;--accent-strong:#38f5b4;--accent-ink:#04140F;--accent-soft:rgba(46,230,166,.14);--accent-dim:#1B4A3D;
  --intake:#4FD8E0;--exhaust:#E8935A;--compression:#D9A441;--power:#E15252;
  --radius-lg:18px;--radius-md:12px;--radius-sm:8px;
- --rail-width:320px;
+ --rail-width:320px;--mobile-bar:64px;
  --shadow-card:0 1px 2px rgba(0,0,0,.35),0 10px 30px -12px rgba(0,0,0,.55);
  font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);
  accent-color:var(--accent);
@@ -281,7 +281,7 @@ canvas{display:block;width:100%;height:100%}
 aside{padding:24px;background:var(--bg)}
 #log{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.5 ui-monospace,monospace;color:var(--text-dim)}
 #matches{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;color:var(--text-dim)}
-@media(max-width:800px){main.with-rail{grid-template-columns:minmax(0,1fr)}#view{min-height:400px;height:55vh}.app-bar{flex-wrap:wrap;row-gap:10px}.brand-block{flex:1 0 100%}.app-brand{font-size:13px}.mode-tabs{margin-left:0;overflow-x:auto}.mode-tab{padding:0 12px;font-size:13px;white-space:nowrap}}
+@media(max-width:800px){main.with-rail{grid-template-columns:minmax(0,1fr)}#view{min-height:400px;height:55vh}.app-bar{flex-wrap:wrap;row-gap:10px}.brand-block{flex:1 0 100%}.app-brand{font-size:13px}.mode-tabs{display:none}}
 @media(min-width:801px){#view{position:sticky;top:0;height:75vh}}
 @media(max-width:800px){#view{position:sticky;top:0;z-index:2;height:38svh;min-height:220px;box-shadow:0 5px 18px #0008}.view-col,aside{padding:16px}header{padding:12px 16px}h1{font-size:21px}}
 
@@ -304,3 +304,35 @@ body.viewer-expanded{overflow:hidden}
 
 footer{padding:18px 28px;background:var(--bg-header);border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:10px;align-items:flex-start}
 footer>details{flex:1 1 260px;border-top:0;padding:0}
+
+/* Mobile: bottom tab bar replaces the top mode nav (same [data-training-mode] elements -
+   page-shell.mjs's initPageShell already wires every match, desktop or mobile, from one
+   loop) and the rail becomes a bottom sheet instead of a side column. */
+.bottom-tabs{display:none}
+@media(max-width:800px){
+  body{padding-bottom:calc(var(--mobile-bar) + env(safe-area-inset-bottom, 0px))}
+  .bottom-tabs{display:flex;position:fixed;left:0;right:0;bottom:0;height:var(--mobile-bar);background:var(--bg-header);border-top:1px solid var(--border);z-index:50;padding-bottom:env(safe-area-inset-bottom, 0px)}
+  .bottom-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--text-dim);text-decoration:none;font-size:11px;font-weight:600}
+  .bottom-tab svg{width:20px;height:20px;stroke-linecap:round;stroke-linejoin:round}
+  .bottom-tab[aria-selected=true]{color:var(--accent)}
+
+  /* the rail: a bottom sheet, collapsed to a 56px pull-tab strip above the tab bar (or,
+     in a guided step/question, above the sticky action bar - see body.in-guided-view) */
+  main.with-rail aside{position:fixed;left:0;right:0;bottom:var(--mobile-bar);height:70vh;background:var(--surface);border-top:1px solid var(--border-strong);border-radius:var(--radius-lg) var(--radius-lg) 0 0;box-shadow:0 -8px 24px rgba(0,0,0,.4);z-index:40;overflow-y:auto;transition:transform .25s ease;padding-top:28px;box-sizing:border-box}
+  main.with-rail aside::before{content:'';position:absolute;top:10px;left:50%;transform:translateX(-50%);width:36px;height:4px;border-radius:2px;background:var(--border-strong)}
+  main.with-rail.rail-collapsed aside{display:block;transform:translateY(calc(70vh - 56px))}
+  .rail-collapse{position:fixed;left:50%;right:auto;top:auto;bottom:calc(70vh + var(--mobile-bar));transform:translate(-50%,-50%)}
+  main.with-rail.rail-collapsed .rail-collapse{bottom:calc(56px + var(--mobile-bar))}
+  /* the chevron rotates for a left/right divider on desktop; down/up reads correctly for a bottom sheet */
+  .rail-collapse svg{transform:rotate(90deg)}
+  .rail-collapse[aria-expanded=false] svg{transform:rotate(-90deg)}
+
+  /* an active Learn step / Check question: hide the tab bar, pin Back/Next (or
+     Submit) to the bottom instead - see learn-modes.mjs/check-modes.mjs */
+  body.in-guided-view{padding-bottom:calc(var(--mobile-bar) + 8px)}
+  body.in-guided-view .bottom-tabs{display:none}
+  body.in-guided-view .predict-card .button-row{position:fixed;left:0;right:0;bottom:0;z-index:45;background:var(--bg-header);border-top:1px solid var(--border);padding:12px 16px;padding-bottom:calc(12px + env(safe-area-inset-bottom, 0px));margin:0;gap:12px;box-sizing:border-box}
+  body.in-guided-view main.with-rail aside{bottom:0}
+  body.in-guided-view .rail-collapse{bottom:70vh}
+  body.in-guided-view main.with-rail.rail-collapsed .rail-collapse{bottom:56px}
+}

@@ -223,6 +223,7 @@ function submitExam() {
   }).join('');
   checkGalleryEl.hidden = true; modeSelectEl.hidden = true; viewerEl.hidden = true;
   mainEl.classList.remove('with-rail');
+  document.body.classList.remove('in-guided-view');
   $('check-rail').hidden = true; $('toggle-controls').hidden = true;
   resultsEl.hidden = false;
   $('training-mode-note').textContent = 'Exam submitted.';
@@ -291,6 +292,7 @@ function render() {
   if (checkLessonId && checks && mode) {
     checkGalleryEl.hidden = true; modeSelectEl.hidden = true; resultsEl.hidden = true; viewerEl.hidden = false;
     mainEl.classList.add('with-rail');
+    document.body.classList.add('in-guided-view');
     rail.hidden = false; toggle.hidden = false;
     breadcrumb.hidden = false; breadcrumb.textContent = '← Choose a lesson'; breadcrumb.onclick = exitToGallery;
     $('training-mode-note').textContent = checkPrivacy;
@@ -299,13 +301,15 @@ function render() {
   } else if (checkLessonId && checks) {
     stopExamTimer();
     checkGalleryEl.hidden = true; viewerEl.hidden = true; resultsEl.hidden = true; modeSelectEl.hidden = false;
-    mainEl.classList.remove('with-rail'); rail.hidden = true; toggle.hidden = true; breadcrumb.hidden = true;
+    mainEl.classList.remove('with-rail'); document.body.classList.remove('in-guided-view');
+    rail.hidden = true; toggle.hidden = true; breadcrumb.hidden = true;
     $('mode-select-title').textContent = checkLesson.title;
     $('training-mode-note').textContent = 'Choose how you want to practise.';
   } else {
     stopExamTimer();
     checkGalleryEl.hidden = false; viewerEl.hidden = true; resultsEl.hidden = true; modeSelectEl.hidden = true;
-    mainEl.classList.remove('with-rail'); rail.hidden = true; toggle.hidden = true; breadcrumb.hidden = true;
+    mainEl.classList.remove('with-rail'); document.body.classList.remove('in-guided-view');
+    rail.hidden = true; toggle.hidden = true; breadcrumb.hidden = true;
     $('training-mode-note').textContent = 'Choose a lesson to check your understanding of it.';
     renderCheckGallery();
   }

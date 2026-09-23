@@ -111,6 +111,7 @@ function render() {
     h1El.textContent = lesson.title; ledeEl.textContent = lesson.objective;
     learnGalleryEl.hidden = true; viewerEl.hidden = false;
     mainEl.classList.add('with-rail');
+    document.body.classList.add('in-guided-view');
     rail.hidden = false; toggle.hidden = false;
     const pack = lessonIndex.get(lessonId)?.pack;
     breadcrumb.hidden = false;
@@ -123,6 +124,7 @@ function render() {
     h1El.textContent = originalHeading; ledeEl.textContent = originalLede;
     viewerEl.hidden = true; learnGalleryEl.hidden = false;
     mainEl.classList.remove('with-rail');
+    document.body.classList.remove('in-guided-view');
     rail.hidden = true; toggle.hidden = true; breadcrumb.hidden = true;
     $('training-mode-note').textContent = 'Choose a track, then a lesson, to begin.';
     if (trackId) renderTrackLessonList(); else renderTrackGallery();
