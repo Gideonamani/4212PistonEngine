@@ -78,6 +78,7 @@ export const MODEL_CAPABILITY_FLAGS = Object.freeze([
 /**
  * @typedef {Object} Step
  * @property {'model-pose'|'image'|'text'|'external-link'|'web-embed'} type
+ * @property {string} [title] - short (2-4 word) label for Learn's step rail; falls back to "Step N" when absent
  * @property {string} prompt
  * @property {string} [note]
  * @property {string} [modelId] - required when type === 'model-pose'; must be one of the owning lesson's `models`

@@ -23,6 +23,7 @@ for (const lesson of pack.lessons) {
   assert.ok(lesson.steps.length > 0);
   for (const step of lesson.steps) {
     assert.ok(STEP_TYPES.includes(step.type));
+    assert.match(step.title, /\S/, `${lesson.id}: every step should carry a short rail title`);
     assert.match(step.prompt, /\S/);
     assert.match(step.note, /\S/, `${lesson.id}: every step should carry a sourcing note (documented vs general/illustrative)`);
   }

@@ -12,7 +12,7 @@ assert.equal(lesson.listed, true);
 for (const step of lesson.steps) {
   assert.equal(step.type, 'model-pose');
   assert.equal(step.modelId, 'cylinder');
-  assert.match(step.prompt, /\S/); assert.match(step.note, /\S/);
+  assert.match(step.title, /\S/); assert.match(step.prompt, /\S/); assert.match(step.note, /\S/);
   assert.ok(['angle', 'cycle-angle'].includes(step.action.type));
   assert.ok(Number.isInteger(step.action.value) && step.action.value >= 0 && step.action.value <= 720);
 }
