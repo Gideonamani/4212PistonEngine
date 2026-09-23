@@ -1,9 +1,10 @@
-import { loadPacks, loadRegistry, setFeedback, renderProgress, renderGenericStepBody, renderModelPoseBody, disposeLiveViewer } from './guided-shared.mjs';
-import { initPageShell } from './page-shell.mjs';
+import { loadPacks, loadRegistry, setFeedback, renderProgress, renderStepRail, renderGenericStepBody, renderModelPoseBody, disposeLiveViewer } from './guided-shared.mjs';
+import { initPageShell, initRailCollapse } from './page-shell.mjs';
 
 const $ = id => document.getElementById(id);
 const learnGalleryEl = $('learn-gallery');
 const viewerEl = $('guided-viewer');
+const mainEl = $('learn-main');
 const h1El = document.querySelector('h1');
 const ledeEl = document.querySelector('.lede');
 const originalHeading = h1El.textContent;
@@ -34,6 +35,7 @@ function findModel(modelId) {
 function renderLearn() {
   const current = lesson.steps[step];
   renderProgress(step, lesson.steps.length);
+  renderStepRail(lesson, step);
   $('guided-step-label').hidden = false;
   $('guided-step-label').textContent = `Step ${step + 1}/${lesson.steps.length}`;
   $('guided-title').textContent = lesson.title;
@@ -99,16 +101,29 @@ function openLesson(id) {
   return true;
 }
 
+function exitLesson() {
+  lessonId = null; step = -1; revealed = false; syncUrl(); render();
+}
+
 function render() {
+  const rail = $('lesson-rail'), toggle = $('toggle-controls'), breadcrumb = $('guided-breadcrumb');
   if (lessonId && lesson) {
     h1El.textContent = lesson.title; ledeEl.textContent = lesson.objective;
     learnGalleryEl.hidden = true; viewerEl.hidden = false;
+    mainEl.classList.add('with-rail');
+    rail.hidden = false; toggle.hidden = false;
+    const pack = lessonIndex.get(lessonId)?.pack;
+    breadcrumb.hidden = false;
+    breadcrumb.textContent = `← ${pack?.title || 'All tracks'}`;
+    breadcrumb.onclick = exitLesson;
     $('training-mode-note').textContent = 'Guided prompts show one pose at a time; make a prediction before revealing each pose.';
     renderLearn();
   } else {
     disposeLiveViewer();
     h1El.textContent = originalHeading; ledeEl.textContent = originalLede;
     viewerEl.hidden = true; learnGalleryEl.hidden = false;
+    mainEl.classList.remove('with-rail');
+    rail.hidden = true; toggle.hidden = true; breadcrumb.hidden = true;
     $('training-mode-note').textContent = 'Choose a track, then a lesson, to begin.';
     if (trackId) renderTrackLessonList(); else renderTrackGallery();
   }
@@ -118,7 +133,7 @@ $('guided-next').onclick = () => {
   const current = lesson.steps[step];
   if (current.type === 'model-pose' && !revealed) { revealed = true; render(); return; }
   if (step < lesson.steps.length - 1) { step++; revealed = false; render(); return; }
-  lessonId = null; step = -1; revealed = false; syncUrl(); render();
+  exitLesson();
 };
 $('guided-back').onclick = () => { step = Math.max(0, step - 1); revealed = true; render(); };
 
@@ -133,4 +148,5 @@ try {
   console.warn(error);
 }
 initPageShell('learn');
+initRailCollapse(mainEl, $('toggle-controls'));
 render();

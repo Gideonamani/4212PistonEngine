@@ -52,6 +52,25 @@ export function renderProgress(current, total) {
   }
 }
 
+// Learn's right rail: a vertical, titled stepper (Check's question navigator stays numbers-only -
+// see check-modes.mjs - since Learn's steps are safe to describe but a check's questions are not).
+export function renderStepRail(lesson, currentStep) {
+  $('rail-lesson-title').textContent = lesson.title;
+  $('rail-step-count').textContent = `Step ${currentStep + 1} of ${lesson.steps.length}`;
+  $('rail-progress-fill').style.width = `${Math.round(((currentStep + 1) / lesson.steps.length) * 100)}%`;
+  const list = $('rail-steps');
+  list.replaceChildren();
+  lesson.steps.forEach((step, index) => {
+    const li = document.createElement('li');
+    li.className = index < currentStep ? 'done' : index === currentStep ? 'current' : 'upcoming';
+    const title = document.createElement('span');
+    title.className = 'rail-step-title';
+    title.textContent = step.title || `Step ${index + 1}`;
+    li.append(title);
+    list.append(li);
+  });
+}
+
 // text/image/web-embed/external-link rendering has no 3D dependency and is identical
 // regardless of which model (if any) a lesson's other steps reference.
 export function renderGenericStepBody(current) {
