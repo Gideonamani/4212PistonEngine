@@ -50,11 +50,6 @@ document.addEventListener('keydown',async e=>{
   if(explorer.classList.contains('expanded'))explorer.classList.remove('expanded');
   syncFullscreen();
 });
-$('toggle-controls').onclick=()=>{
-  const hidden=explorer.classList.toggle('controls-hidden');
-  $('toggle-controls-label').textContent=hidden?'Show controls':'Hide controls';
-  $('toggle-controls').setAttribute('aria-expanded',String(!hidden));
-};
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#101923');
 const camera = new THREE.PerspectiveCamera(40, 1, .001, 100);

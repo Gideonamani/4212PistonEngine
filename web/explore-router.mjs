@@ -1,4 +1,4 @@
-import { initPageShell } from './page-shell.mjs';
+import { initPageShell, initRailCollapse } from './page-shell.mjs';
 
 const params = new URLSearchParams(location.search);
 const requested = params.get('model') || 'cylinder';
@@ -19,3 +19,4 @@ globalThis.trainingModel = model;
 if (model.adapter === 'cylinder') await import('./viewer.js?v=20260923-drive-models-1');
 else await import('./engine-training-adapter.mjs?v=20260923-drive-models-1');
 initPageShell('explore', model.id);
+initRailCollapse(document.getElementById('explorer'), document.getElementById('toggle-controls'));

@@ -384,11 +384,6 @@ function wireShell() {
     }
   };
   document.addEventListener('fullscreenchange', syncFullscreen);
-  $('toggle-controls').onclick = () => {
-    const hidden = explorer.classList.toggle('controls-hidden');
-    $('toggle-controls-label').textContent = hidden ? 'Show controls' : 'Hide controls';
-    $('toggle-controls').setAttribute('aria-expanded', String(!hidden));
-  };
 }
 
 const isGlb = bytes => bytes.byteLength >= 4 && bytes[0] === 0x67 && bytes[1] === 0x6c && bytes[2] === 0x54 && bytes[3] === 0x46;

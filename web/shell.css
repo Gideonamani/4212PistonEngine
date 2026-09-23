@@ -6,6 +6,7 @@
  --accent:#2EE6A6;--accent-strong:#38f5b4;--accent-ink:#04140F;--accent-soft:rgba(46,230,166,.14);--accent-dim:#1B4A3D;
  --intake:#4FD8E0;--exhaust:#E8935A;--compression:#D9A441;--power:#E15252;
  --radius-lg:18px;--radius-md:12px;--radius-sm:8px;
+ --rail-width:320px;
  --shadow-card:0 1px 2px rgba(0,0,0,.35),0 10px 30px -12px rgba(0,0,0,.55);
  font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);
  accent-color:var(--accent);
@@ -205,16 +206,26 @@ header{padding:16px 24px;background:var(--bg-header);border-bottom:1px solid var
 #load-progress::-webkit-progress-value{background:var(--accent);border-radius:999px}
 #load-progress::-moz-progress-bar{background:var(--accent);border-radius:999px}
 
-main{display:grid;grid-template-columns:minmax(0,1fr) 360px;min-height:65vh}
-main.guided-main{grid-template-columns:minmax(0,1fr);max-width:640px;margin:0 auto}
+main{display:grid;grid-template-columns:minmax(0,1fr);min-height:65vh;position:relative}
+main.with-rail{grid-template-columns:minmax(0,1fr) var(--rail-width)}
+main.with-rail.rail-collapsed{grid-template-columns:minmax(0,1fr)}
+main.with-rail.rail-collapsed aside{display:none}
+main.guided-main{max-width:640px;margin:0 auto}
+main.guided-main.with-rail{max-width:none;margin:0}
 main.guided-main .view-col{padding-top:24px}
+/* one collapse control, shared by every page's right rail - see page-shell.mjs's initRailCollapse */
+.rail-collapse{position:fixed;top:50vh;right:var(--rail-width);transform:translate(50%,-50%);z-index:4;width:28px;height:28px;min-height:0;padding:0;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center}
+.rail-collapse[aria-expanded=false]{border-color:var(--accent);color:var(--accent)}
+main.rail-collapsed .rail-collapse{right:0}
+.rail-collapse svg{width:14px;height:14px;transition:transform .2s}
+.rail-collapse[aria-expanded=false] svg{transform:rotate(180deg)}
 #view{position:relative;min-height:480px;touch-action:none;background:#080B0A;border:1px solid var(--border);border-radius:var(--radius-md);overflow:clip}
 .guided-live-view{position:relative;min-height:280px;background:#080B0A;border:1px solid var(--border);border-radius:var(--radius-md);overflow:clip;margin-bottom:14px}
 canvas{display:block;width:100%;height:100%}
 aside{padding:24px;background:var(--bg)}
 #log{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.5 ui-monospace,monospace;color:var(--text-dim)}
 #matches{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;color:var(--text-dim)}
-@media(max-width:800px){main{grid-template-columns:1fr}#view{min-height:400px;height:55vh}.app-bar{flex-wrap:wrap;row-gap:10px}.brand-block{flex:1 0 100%}.app-brand{font-size:13px}.mode-tabs{margin-left:0;overflow-x:auto}.mode-tab{padding:0 12px;font-size:13px;white-space:nowrap}}
+@media(max-width:800px){main.with-rail{grid-template-columns:minmax(0,1fr)}#view{min-height:400px;height:55vh}.app-bar{flex-wrap:wrap;row-gap:10px}.brand-block{flex:1 0 100%}.app-brand{font-size:13px}.mode-tabs{margin-left:0;overflow-x:auto}.mode-tab{padding:0 12px;font-size:13px;white-space:nowrap}}
 @media(min-width:801px){#view{position:sticky;top:0;height:75vh}}
 @media(max-width:800px){#view{position:sticky;top:0;z-index:2;height:38svh;min-height:220px;box-shadow:0 5px 18px #0008}.view-col,aside{padding:16px}header{padding:12px 16px}h1{font-size:21px}}
 
@@ -222,9 +233,7 @@ dialog{max-width:min(560px,calc(100vw - 32px));border:1px solid var(--border-str
 
 .viewer-toolbar{position:absolute;top:14px;right:14px;z-index:3;display:flex;gap:8px}
 .viewer-toolbar button{background:#121917E6;backdrop-filter:blur(6px);border-color:var(--border);border-radius:999px;padding:8px 14px}
-.viewer-toolbar button[aria-pressed=true],.viewer-toolbar button[aria-expanded=false]{border-color:var(--accent);color:var(--accent)}
-#toggle-controls svg{transition:transform .2s}
-#toggle-controls[aria-expanded=false] svg{transform:rotate(180deg)}
+.viewer-toolbar button[aria-pressed=true]{border-color:var(--accent);color:var(--accent)}
 #motion-play[aria-pressed=true] .icon-play{display:none!important}
 #motion-play[aria-pressed=true] .icon-pause{display:inline!important}
 
@@ -235,9 +244,7 @@ body.viewer-expanded{overflow:hidden}
 #explorer:fullscreen .view-col,#explorer.expanded .view-col{padding:0;height:100%;min-height:0}
 #explorer:fullscreen #view,#explorer.expanded #view{position:relative;height:100%;min-height:0;border:0;border-radius:0}
 #explorer:fullscreen aside,#explorer.expanded aside{overflow:auto;min-height:0}
-#explorer.controls-hidden{grid-template-columns:minmax(0,1fr)}
-#explorer.controls-hidden aside{display:none}
-@media(max-width:800px){#explorer:fullscreen,#explorer.expanded{grid-template-rows:48% minmax(0,1fr)}#explorer.controls-hidden:fullscreen,#explorer.controls-hidden.expanded{grid-template-rows:minmax(0,1fr)}}
+@media(max-width:800px){#explorer:fullscreen,#explorer.expanded{grid-template-rows:48% minmax(0,1fr)}#explorer.rail-collapsed:fullscreen,#explorer.rail-collapsed.expanded{grid-template-rows:minmax(0,1fr)}}
 
 footer{padding:18px 28px;background:var(--bg-header);border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:10px;align-items:flex-start}
 footer>details{flex:1 1 260px;border-top:0;padding:0}
