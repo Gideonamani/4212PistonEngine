@@ -35,13 +35,20 @@ for (const script of [exploreRouter, learnModes, checkModes]) assert.match(scrip
 assert.match(learnModes, /from '\.\/guided-shared\.mjs'/);
 assert.match(checkModes, /from '\.\/guided-shared\.mjs'/);
 
-// guided progress, retry feedback and prediction copy are wired
+// guided progress and prediction copy are wired
 assert.match(learnModes, /Step \$\{step \+ 1\}\/\$\{lesson\.steps\.length\}/);
 assert.match(guidedShared, /Make your prediction first/);
 assert.match(checkModes, /next\.disabled = true/);
-assert.match(checkModes, /Try another answer/);
 assert.match(learnModes, /Reveal observation/);
 assert.match(checkModes, /Need a hint/);
+
+// Check yourself's Training mode locks on first answer, no retry - per
+// docs/lesson-and-assessment-architecture.md ("once an option is selected, it locks
+// immediately"). Regression-guard against the old retry-until-correct behavior.
+assert.match(checkModes, /correct answer is highlighted/);
+assert.match(checkModes, /btn-incorrect/);
+assert.doesNotMatch(checkModes, /Try another answer/);
+assert.doesNotMatch(checkModes, /Try another order/);
 
 // Learn/Check must never import Explore's Three.js-heavy viewer code directly - only a
 // model-pose step's lazy engine-core.mjs import may pull Three.js in, and only then

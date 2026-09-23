@@ -163,6 +163,43 @@ fieldset:disabled .switch-row input{opacity:.4}
 .order-text{flex:1;font-size:13px}
 .order-controls{display:flex;gap:4px;flex:none}
 .order-controls button{min-height:0;padding:4px 8px;font-size:12px}
+.btn-incorrect{border-color:var(--power);color:var(--power)}
+
+/* Check: mode-select cards (Training vs Exam) */
+.mode-grid{display:flex;flex-direction:column;gap:14px}
+.mode-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+.mode-card-training{border-color:var(--accent)}
+.mode-card .panel-icon{width:44px;height:44px;background:none;color:var(--text-dim)}
+.mode-card-training .panel-icon{color:var(--accent)}
+.mode-card .panel-icon svg{width:26px;height:26px}
+.mode-card h3{margin:4px 0 0;font-size:18px}
+.mode-benefits{list-style:none;margin:6px 0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--text)}
+.mode-benefits li::before{content:'✓ ';color:var(--accent)}
+.mode-card button{width:100%;margin-top:4px}
+
+/* Check's right rail: question navigator - numbers only, never question text, so the
+   rail itself can never give an answer away. Training's dots are <span> (informational,
+   linear navigation only); Exam's are real <button>s (free navigation). */
+#check-rail{display:flex;flex-direction:column;gap:10px}
+.check-nav{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.nav-dot{width:30px;height:30px;border-radius:50%;border:2px solid var(--border);background:var(--surface);color:var(--text-dim);font:600 12px 'IBM Plex Mono',ui-monospace,monospace;display:flex;align-items:center;justify-content:center;padding:0}
+button.nav-dot{cursor:pointer}
+.nav-dot.current{border-color:var(--accent);color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.nav-dot.answered{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.check-nav-legend{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--text-dim);margin-top:4px}
+.check-nav-legend span{display:flex;align-items:center;gap:8px}
+.check-nav-legend .nav-dot{width:14px;height:14px;flex:none;font-size:0}
+
+/* Multimedia placement for a Check question - ready for the first image/model-click
+   check (none authored yet); aspect ratio decides layout, not per-question guesswork.
+   Wide/labelled diagram -> .check-media-above (full width, stacked); square/portrait ->
+   .check-media-beside (two columns), which itself collapses to stacked once the
+   viewport can't fit both the rail and a side-by-side question. */
+.check-media-above{display:flex;flex-direction:column;gap:16px}
+.check-media-beside{display:flex;gap:20px;align-items:flex-start}
+.check-media-beside>.check-media-figure{flex:0 0 240px}
+.check-media-beside>.check-media-body{flex:1;min-width:0}
+@media(max-width:800px){.check-media-beside{flex-direction:column}.check-media-beside>.check-media-figure{flex:none;width:100%}}
 
 /* Explore model gallery */
 .model-gallery{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
