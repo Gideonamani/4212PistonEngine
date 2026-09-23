@@ -15,6 +15,8 @@
     "transport": {
       "web_url": "./engine.glb.gz",
       "fallback_web_url": "./engine.glb",
+      "drive_file_id": "1Z8y-Y-GGT50irsGoh6ycQ-iC4NhmuTSY",
+      "fallback_drive_file_id": "1q1gUJLReKy1VydD6kh0EANcfnLcN4E4U",
       "encoding": "gzip",
       "bytes": 4228178,
       "sha256": "cdaa357e0888b5c89ad0a2135b1536b71a6a4099930b67af1993058c430caf0f"

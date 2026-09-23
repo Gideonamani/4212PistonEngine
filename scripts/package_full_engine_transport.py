@@ -27,6 +27,10 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true", help="verify the committed transport without changing it")
     args = parser.parse_args()
+    if args.check and not SOURCE.is_file():
+        # Published GLBs live in Google Drive, not git, so CI has nothing to check here.
+        print({"skipped": "local engine.glb absent; run this check on a machine with the synced model"})
+        return
     assert SOURCE.is_file(), f"Missing source asset: {SOURCE}"
     transport = packed(SOURCE)
     if args.check:

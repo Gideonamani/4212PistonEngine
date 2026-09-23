@@ -1,5 +1,5 @@
 {
-  "packaged_model_url": "./control.glb.gz",
-  "packaged_model_fallback_url": "./control.glb",
-  "status": "Verified operating-cylinder asset published with compressed delivery and the shared training shell."
+  "drive_api_key": "AIzaSyDvsWV7UJ9DeC-kPi7gjmvkzzqe3lwVdYk",
+  "drive_api_key_note": "Restricted browser key for public model delivery (Drive API only, this Pages site only). Not a secret; see docs/decisions/001-public-drive-browser-key.md.",
+  "status": "Published models are served from the synced Google Drive web folder through the Drive API; local web/*.glb copies are used only on localhost."
 }

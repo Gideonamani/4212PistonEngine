@@ -7,15 +7,16 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { createTransfer } from './transfer.mjs';
 import { decodeModel } from './model-transport.mjs';
+import { fetchOptions } from './model-source.mjs';
 import { mechanismPose } from './kinematics.mjs';
 import { valveMatrices } from './valve-transforms.mjs';
 import { createCycleVisuals } from './cycle-visuals.mjs';
 
-async function fetchModelBytes(url) {
+async function fetchModelBytes({ url, headers }) {
   const transfer = createTransfer();
   let bytes;
   try {
-    const response = await fetch(url, { mode: 'cors', credentials: 'omit', referrerPolicy: 'strict-origin-when-cross-origin', signal: transfer.signal });
+    const response = await fetch(url, { ...fetchOptions(headers), signal: transfer.signal });
     transfer.touch();
     if (!response.ok) throw Error(`HTTP ${response.status}: ${response.statusText}`);
     if (response.body) {
@@ -60,11 +61,12 @@ function fitCamera(camera, object) {
 /**
  * Mount a minimal, non-interactive 3D view of one model into `container` at one pose.
  * @param {HTMLElement} container
- * @param {{assetUrl:string, assetFallbackUrl?:string, motionProfileUrl?:string, angle?:number}} options
+ * @param {{sources:Array<{url:string, headers?:object}>, motionProfileUrl?:string, angle?:number}} options
+ *   `sources` comes from model-source.mjs's modelSources(), tried in order.
  * @returns {Promise<{setPose(degrees:number):void, dispose():void, hasMotion:boolean}>}
  */
-export async function createEngineCore(container, { assetUrl, assetFallbackUrl, motionProfileUrl, angle = 0 } = {}) {
-  if (!assetUrl) throw Error('createEngineCore requires assetUrl');
+export async function createEngineCore(container, { sources = [], motionProfileUrl, angle = 0 } = {}) {
+  if (!sources.length) throw Error('createEngineCore requires at least one model source');
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color('#101923');
@@ -90,13 +92,11 @@ export async function createEngineCore(container, { assetUrl, assetFallbackUrl, 
   });
   resize.observe(container);
 
-  let bytes;
-  try {
-    bytes = await fetchModelBytes(assetUrl);
-  } catch (e) {
-    if (!assetFallbackUrl) throw e;
-    bytes = await fetchModelBytes(assetFallbackUrl);
+  let bytes, lastError;
+  for (const source of sources) {
+    try { bytes = await fetchModelBytes(source); break; } catch (e) { lastError = e; }
   }
+  if (!bytes) throw lastError;
   const gltf = await new GLTFLoader().parseAsync(bytes, '');
   const root = gltf.scene;
   const meshes = [];

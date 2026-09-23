@@ -8,4 +8,6 @@ renders/
 *.FCStd1
 node_modules/
 dist/
-web/control.glb
+# Published models live in the synced Google Drive web folder (served via the Drive API), never in git.
+*.glb
+*.glb.gz

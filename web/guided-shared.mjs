@@ -17,7 +17,7 @@ export async function loadPacks() {
 }
 
 export async function loadRegistry() {
-  try { return await fetch('./models.json').then(response => response.json()); }
+  try { return await fetch('./models.json?v=20260923-drive-models-1').then(response => response.json()); }
   catch { return { models: [] }; }
 }
 
@@ -79,7 +79,7 @@ export function renderGenericStepBody(current) {
 // right model regardless of which track/pack it came from.
 let engineCorePromise = null;
 function loadEngineCore() {
-  return engineCorePromise ||= import('./engine-core.mjs');
+  return engineCorePromise ||= import('./engine-core.mjs?v=20260923-drive-models-1');
 }
 let liveViewer = null, liveViewerModelId = null, liveViewerGeneration = 0;
 function disposeInstance() {
@@ -102,8 +102,13 @@ async function ensureLiveViewer(targetModel) {
   liveViewerModelId = targetModel.id;
   const generation = ++liveViewerGeneration;
   const { createEngineCore } = await loadEngineCore();
+  const { modelSources } = await import('./model-source.mjs');
+  const sources = await modelSources([
+    { driveId: targetModel.asset_drive_id, localUrl: targetModel.asset_url },
+    { driveId: targetModel.asset_fallback_drive_id, localUrl: targetModel.asset_fallback_url },
+  ]);
   const instance = await createEngineCore($('guided-live-view'), {
-    assetUrl: targetModel.asset_url, assetFallbackUrl: targetModel.asset_fallback_url,
+    sources,
     motionProfileUrl: targetModel.motion_profile_url, angle: 0,
   });
   if (generation !== liveViewerGeneration) { instance.dispose(); return null; } // stale: step/lesson changed mid-mount
@@ -119,7 +124,7 @@ export function renderModelPoseBody(current, { revealed, findModel }) {
   const body = $('guided-body');
   const liveView = $('guided-live-view');
   const target = findModel(current.modelId);
-  if (!target || !target.asset_url) {
+  if (!target || !(target.asset_url || target.asset_drive_id)) {
     disposeLiveViewer();
     body.innerHTML = `<p id="guided-prompt">${current.prompt}</p><div class="placeholder-box"><span class="placeholder-label">3D reference model not yet available</span><span class="placeholder-caption">Registry id "${current.modelId}" has no asset yet.</span></div>`;
     body.innerHTML += evidenceTag(current.note) + (current.note ? `<p class="step-note">${current.note}</p>` : '');

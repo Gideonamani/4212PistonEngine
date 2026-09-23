@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {decodeModel} from './model-transport.mjs';
+import {modelSources, fetchOptions} from './model-source.mjs';
 
 const $ = id => document.getElementById(id);
 const say = text => { $('status').textContent = text; };
@@ -298,7 +299,7 @@ function wireShell() {
   $('cycle-description').textContent = 'Gas-path cues are verified for the detailed cylinder model. This whole-engine model keeps the shared motion controls focused on its published drivetrain action.';
   $('load').hidden = true;
   $('cancel-load').hidden = true;
-  $('drive').closest('details').hidden = true;
+  $('loading-details').hidden = true;
 
   $('group').replaceChildren(...contract.inspection_groups.map(group => new Option(group.label, group.id)));
   $('group').value = 'all';
@@ -393,8 +394,8 @@ function wireShell() {
 const isGlb = bytes => bytes.byteLength >= 4 && bytes[0] === 0x67 && bytes[1] === 0x6c && bytes[2] === 0x54 && bytes[3] === 0x46;
 const formatMegabytes = bytes => `${(bytes / 1048576).toFixed(1)} MB`;
 
-async function fetchAsset(url, signal, {compressed = false, transferBytes = 0, decodedBytes = 0} = {}) {
-  const response = await fetch(url, {signal});
+async function fetchAsset(url, signal, {headers = {}, compressed = false, transferBytes = 0, decodedBytes = 0} = {}) {
+  const response = await fetch(url, {...fetchOptions(headers), signal});
   if (!response.ok) throw Error(`Could not download the engine model (${response.status}).`);
   if (!response.body) return {bytes: await response.arrayBuffer(), decodedByBrowser: false};
 
@@ -438,12 +439,13 @@ async function fetchAsset(url, signal, {compressed = false, transferBytes = 0, d
 
 async function loadAsset() {
   const transport = contract.asset.transport;
-  const candidates = transport
+  const candidates = await modelSources(transport
     ? [
-      {url: transport.web_url, compressed: transport.encoding === 'gzip', transferBytes: transport.bytes, decodedBytes: contract.asset.bytes},
-      {url: transport.fallback_web_url, compressed: false, transferBytes: contract.asset.bytes, decodedBytes: contract.asset.bytes},
+      {driveId: transport.drive_file_id, localUrl: transport.web_url, compressed: transport.encoding === 'gzip', transferBytes: transport.bytes, decodedBytes: contract.asset.bytes},
+      {driveId: transport.fallback_drive_file_id, localUrl: transport.fallback_web_url, compressed: false, transferBytes: contract.asset.bytes, decodedBytes: contract.asset.bytes},
     ]
-    : [{url: contract.asset.web_url, compressed: false, transferBytes: contract.asset.bytes, decodedBytes: contract.asset.bytes}];
+    : [{localUrl: contract.asset.web_url, compressed: false, transferBytes: contract.asset.bytes, decodedBytes: contract.asset.bytes}]);
+  if (!candidates.length) throw Error('No model source is configured for this page.');
   let lastError;
   for (const candidate of candidates) {
     try {
@@ -458,8 +460,7 @@ async function loadAsset() {
     } catch (error) {
       lastError = error;
       if (loadController.signal.aborted) throw error;
-      if (!candidate.compressed) break;
-      setLoading('Compressed delivery is unavailable here - loading the compatible model...');
+      setLoading('This model source is unavailable - trying the next one...');
     }
   }
   throw lastError;

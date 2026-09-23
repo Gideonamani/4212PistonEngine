@@ -3,6 +3,7 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {createTransfer} from './transfer.mjs';
 import {decodeModel} from './model-transport.mjs';
+import {modelSources,fetchOptions} from './model-source.mjs';
 import {mechanismPose} from './kinematics.mjs';
 import {valveMatrices} from './valve-transforms.mjs';
 import {createCycleVisuals} from './cycle-visuals.mjs?v=20260911-moving-particles-3';
@@ -74,7 +75,7 @@ const resize = new ResizeObserver(() => {
   renderer.setSize(width,height,false); camera.aspect=width/height;camera.updateProjectionMatrix();renderer.render(scene,camera);
 });resize.observe($('view'));
 controls.addEventListener('change',()=>renderer.render(scene,camera));
-let root, meshes=[], selected='', catalogue=new Map(), busy=false, apiKey='',localModelURL='',localFallbackURL='';
+let root, meshes=[], selected='', catalogue=new Map(), busy=false, sources=[];
 const ray = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 const originals = new Map();
@@ -297,16 +298,6 @@ renderer.domElement.addEventListener('pointerup',e=>{
   const hit=ray.intersectObjects(meshes).find(h=>h.object.material!==ghost&&(!$('section-enabled').checked||sectionPlane.distanceToPoint(h.point)>=0));
   if(hit)choose(hit.object.userData.partId);
 });
-function driveCandidates(link){
-  const url=new URL(link);
-  if(url.protocol!=='https:'||url.hostname!=='drive.google.com')throw Error('Use a Google Drive HTTPS sharing link.');
-  const id=url.pathname.match(/\/file\/d\/([\w-]+)/)?.[1] || url.searchParams.get('id');
-  if(!id||!/^[-\w]+$/.test(id))throw Error('The link does not contain a valid Drive file ID.');
-  if(!apiKey)throw Error('The Drive API browser key has not been configured.');
-  const headers={'X-Goog-Api-Key':apiKey};
-  if(url.searchParams.has('resourcekey'))headers['X-Goog-Drive-Resource-Keys']=`${id}/${url.searchParams.get('resourcekey')}`;
-  return [{url:`https://www.googleapis.com/drive/v3/files/${id}?alt=media`,headers}];
-}
 async function fetchGLB(url,headers={}){
   const started=performance.now();
   const transfer=createTransfer();activeTransfer=transfer;
@@ -314,7 +305,7 @@ async function fetchGLB(url,headers={}){
   $('cancel-load').hidden=false;
   try{
   $('load-progress').hidden=false;$('load-progress').removeAttribute('value');say('Connecting to the operating-cylinder model…');
-  const response=await fetch(url,{headers,mode:'cors',credentials:'omit',referrerPolicy:'strict-origin-when-cross-origin',signal:transfer.signal});
+  const response=await fetch(url,{...fetchOptions(headers),signal:transfer.signal});
   transfer.touch();
   log(`HTTP ${response.status}; type ${response.headers.get('content-type')}; URL ${response.url}`);
   if(!response.ok){
@@ -330,7 +321,7 @@ async function fetchGLB(url,headers={}){
     if(!total&&url.startsWith('https://www.googleapis.com/drive/v3/files/')){
       try{
         const metadataURL=new URL(url);metadataURL.searchParams.delete('alt');metadataURL.searchParams.set('fields','size');
-        const metadata=await fetch(metadataURL,{headers,mode:'cors',credentials:'omit',referrerPolicy:'strict-origin-when-cross-origin',signal:AbortSignal.any([transfer.signal,AbortSignal.timeout(10000)])});
+        const metadata=await fetch(metadataURL,{...fetchOptions(headers),signal:AbortSignal.any([transfer.signal,AbortSignal.timeout(10000)])});
         if(metadata.ok){const info=await metadata.json();total=Number(info.size)||0;}
       }catch{log('File size unavailable; showing received bytes until download completes.');}
     }
@@ -406,53 +397,28 @@ async function load(){
   stopMotion();
   if(busy)return;busy=true;$('load').disabled=true;$('log').textContent='';
   try{
-    if(localModelURL){
-      let bytes;
-      try{bytes=await fetchGLB(localModelURL);}
-      catch(e){
-        if(!localFallbackURL||e.cancelled)throw e;
-        log(`Compressed local delivery failed (${e.message}); using the compatible model fallback.`);
-        say('Compressed delivery is unavailable here · loading the compatible cylinder model…');
-        bytes=await fetchGLB(localFallbackURL);
-      }
-      const count=await display(bytes);
-      say(`Operating-cylinder model loaded · ${count} components. Rotate, zoom or select a component.`);return;
-    }
-    say('Loading the cylinder assembly through Google Drive API…');
-    const candidates=driveCandidates($('drive').value.trim());
-    for(const {url,headers} of candidates){
+    if(!sources.length)throw Error('No model source is configured for this page.');
+    for(const {url,headers} of sources){
       log('Trying '+url);
       try{let bytes;
         for(let attempt=0;attempt<2;attempt++){
           try{bytes=await fetchGLB(url,headers);break;}
           catch(e){if(e.cancelled){say(e.message);return;}if(!e.retryable||attempt===1)throw e;log('Transient interruption: retrying once from the beginning.');say('Download interrupted · retrying once from the beginning…');}
         }
-        const count=await display(bytes);say(`Drive API loaded · ${count} components · ${(bytes.byteLength/1048576).toFixed(1)} MB. Rotate, zoom or select a component.`);return;}
-      catch(e){log(e.name+': '+e.message);}
+        const count=await display(bytes);say(`Operating-cylinder model loaded · ${count} components. Rotate, zoom or select a component.`);return;}
+      catch(e){log(e.name+': '+e.message);say('This model source failed · trying the next one…');}
     }
     say('Could not load the model. Open Loading details for the error, then use Reload model to retry.');
   }catch(e){say(e.message);}finally{busy=false;$('load').disabled=false;$('load-progress').hidden=true;}
 }
 $('load').onclick=load;
 try{
-  const [registry,config]=await Promise.all([fetch(model.component_catalogue_url||'./components.json').then(r=>r.json()),fetch('./config.json').then(r=>r.json())]);
+  const registry=await fetch(model.component_catalogue_url||'./components.json').then(r=>r.json());
   catalogue=new Map(registry.parts.map(p=>[p.cad_stable_id,p]));
-  apiKey=config.drive_api_key||'';
-  $('drive').value=config.drive_share_url||'';$('load').disabled=false;
-  // Local-only control verifies the exported GLB and viewer before Drive delivery is available.
+  $('load').disabled=false;
   const localControl=['localhost','127.0.0.1'].includes(location.hostname)&&new URLSearchParams(location.search).get('control')==='local';
-  if(model.asset_url||config.packaged_model_url){
-    localModelURL=model.asset_url||config.packaged_model_url;
-    localFallbackURL=model.asset_fallback_url||config.packaged_model_fallback_url||'';
-    await load();
-  }
-  else if(localControl){
-    localModelURL=typeof DecompressionStream==='function'?(config.local_model_url||'./control.glb'):(config.local_model_fallback_url||'./control.glb');
-    localFallbackURL=config.local_model_fallback_url||'';
-    await load();
-  }
-  else if(config.drive_share_url)await load();
-  else say('Viewer ready. Awaiting the shared Drive model link; Drive delivery has not been tested.');
+  sources=await modelSources([{driveId:model.asset_drive_id,localUrl:model.asset_url},{driveId:model.asset_fallback_drive_id,localUrl:model.asset_fallback_url}]);
+  await load();
   if(localControl&&new URLSearchParams(location.search).get('verify')==='cycle'){
     const {verifyCyclePreview}=await import('./cycle-preview-check.mjs?v=20260911-particles');
     const result=await verifyCyclePreview({THREE,meshes,sections,profile:motionProfile,setMotion,stopMotion,renderer,scene,camera});
