@@ -26,9 +26,22 @@ assert.doesNotMatch(check, /id="settings-inspection"/);
 assert.match(explore, /M12 2v2m0 16v2/); // restrained eight-spoke settings icon
 assert.match(shellCss, /dialog-close::before/);
 
-// every page loads the one shared stylesheet and wires its dialogs/nav via page-shell.mjs
-for (const html of [explore, learn, check]) assert.match(html, /href="\.\/shell\.css"/);
-for (const script of [exploreRouter, learnModes, checkModes]) assert.match(script, /from '\.\/page-shell\.mjs'/);
+// every page loads the one shared stylesheet (optionally cache-busted) and wires its
+// dialogs/nav via page-shell.mjs
+for (const html of [explore, learn, check]) assert.match(html, /href="\.\/shell\.css(?:\?[^\"]*)?"/);
+for (const script of [exploreRouter, learnModes, checkModes]) assert.match(script, /from '\.\/page-shell\.mjs(?:\?[^']*)?'/);
+
+// Explore exposes the model-first mobile workspace while retaining the underlying
+// accessible controls for keyboard and desktop users.
+for (const id of ['toggle-controls', 'viewer-fit', 'quick-isolate', 'quick-section', 'selection-callout']) {
+  assert.match(explore, new RegExp(`id="${id}"`));
+}
+for (const tab of ['components', 'motion', 'inside', 'appearance']) {
+  assert.match(explore, new RegExp(`id="tool-${tab}"`));
+}
+assert.match(pageShell, /mobileDefaultCollapsed/);
+assert.match(pageShell, /rail\.inert = next/);
+assert.match(pageShell, /initExploreTools/);
 
 // Learn and Check share lesson-pack loading and the generic step renderer rather than
 // each re-implementing it

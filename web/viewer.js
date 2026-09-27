@@ -7,10 +7,19 @@ import {modelSources,fetchOptions} from './model-source.mjs';
 import {mechanismPose} from './kinematics.mjs';
 import {valveMatrices} from './valve-transforms.mjs';
 import {createCycleVisuals} from './cycle-visuals.mjs?v=20260911-moving-particles-3';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+import {createViewerHud} from './viewer-hud.mjs';
 
 const $ = id => document.getElementById(id);
 const model = globalThis.trainingModel || {};
-const say = text => $('status').textContent = text;
+let statusTimer=0;
+const say = text => {
+  const row=$('status-row');
+  $('status').textContent = text;
+  row?.classList.remove('status-hidden');
+  clearTimeout(statusTimer);
+  if(/model loaded/i.test(text))statusTimer=setTimeout(()=>row?.classList.add('status-hidden'),4200);
+};
 const log = text => $('log').textContent += text + '\n';
 const music=$('music');
 music.volume=.3;
@@ -51,25 +60,33 @@ document.addEventListener('keydown',async e=>{
   syncFullscreen();
 });
 const scene = new THREE.Scene();
-scene.background = new THREE.Color('#101923');
+scene.background = null;
 const camera = new THREE.PerspectiveCamera(40, 1, .001, 100);
-const renderer = new THREE.WebGLRenderer({antialias:true,stencil:true});
+const renderer = new THREE.WebGLRenderer({antialias:true,stencil:true,alpha:true,powerPreference:'high-performance'});
 renderer.localClippingEnabled=true;
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 renderer.toneMapping=THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure=1;
+renderer.toneMappingExposure=.88;
+renderer.outputColorSpace=THREE.SRGBColorSpace;
 $('view').appendChild(renderer.domElement);
 const controls = new OrbitControls(camera, renderer.domElement);
+// The viewer renders on demand rather than running a permanent animation loop.
+// Keep OrbitControls immediate so the final pointer position is always rendered.
 controls.enableDamping = false;
-scene.add(new THREE.HemisphereLight(0xe5f5ff, 0x506070, 3));
-for (const [x,y,z] of [[2,3,4],[-3,1,-2]]) {
-  const light = new THREE.DirectionalLight(0xffffff, 2);light.position.set(x,y,z);scene.add(light);
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), .04).texture;
+pmrem.dispose();
+scene.add(new THREE.HemisphereLight(0xdff9ff, 0x101c24, .72));
+for (const [color,intensity,x,y,z] of [[0xd9fbff,1.8,3,4,5],[0x42eadb,1.3,-4,1,2],[0xffa875,.9,2,-2,-4]]) {
+  const light = new THREE.DirectionalLight(color, intensity);light.position.set(x,y,z);scene.add(light);
 }
+const hud=createViewerHud({THREE,camera,container:$('view')});
+const renderFrame=()=>{renderer.render(scene,camera);hud.update();};
 const resize = new ResizeObserver(() => {
   const {width,height} = $('view').getBoundingClientRect();
-  renderer.setSize(width,height,false); camera.aspect=width/height;camera.updateProjectionMatrix();renderer.render(scene,camera);
+  renderer.setSize(width,height,false); camera.aspect=width/height;camera.updateProjectionMatrix();renderFrame();
 });resize.observe($('view'));
-controls.addEventListener('change',()=>renderer.render(scene,camera));
+controls.addEventListener('change',renderFrame);
 let root, meshes=[], selected='', catalogue=new Map(), busy=false, sources=[];
 const ray = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
@@ -78,7 +95,7 @@ const inspection = new Map();
 const sections=[];
 let motionProfile=null,motionEntries=[],motionAngle=36,playing=false,animationFrame=0,lastFrame=0;
 let cycleVisuals=null;
-$('cycle-enabled').onchange=()=>{cycleVisuals?.setVisible($('cycle-enabled').checked);renderer.render(scene,camera);};
+$('cycle-enabled').onchange=()=>{cycleVisuals?.setVisible($('cycle-enabled').checked);renderFrame();};
 $('cycle-section').onclick=()=>{
   $('cycle-enabled').checked=true;cycleVisuals?.setVisible(true);
   $('section-enabled').checked=true;$('section-axis').value='y';$('section-position').value='50';sectionFlipped=true;
@@ -225,7 +242,7 @@ function updateSection(){
     const material=Array.isArray(source.material)?source.material[0]:source.material;
     cap.material.color.copy(material.color||new THREE.Color(0x9cabb8));
   }
-  renderer.render(scene,camera);
+  renderFrame();
 }
 function resetSection(){
   $('section-enabled').checked=false;$('section-axis').value='z';$('section-position').value='50';sectionFlipped=true;updateSection();
@@ -257,13 +274,17 @@ function partGroup(id){
 $('search').oninput=()=>{choose('');populateParts();};
 $('group').onchange=()=>{choose('');populateParts();};
 function fit(object) {
-  const box=new THREE.Box3().setFromObject(object), center=box.getCenter(new THREE.Vector3());
-  const size=box.getSize(new THREE.Vector3()).length();
-  const distance=size/(2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2)))*Math.max(1,1/camera.aspect);
-  camera.position.copy(center).add(new THREE.Vector3(1,.65,1).normalize().multiplyScalar(distance*1.3));
+  const box=new THREE.Box3().setFromObject(object), sphere=box.getBoundingSphere(new THREE.Sphere());
+  const center=sphere.center;
+  const verticalFov=THREE.MathUtils.degToRad(camera.fov);
+  const horizontalFov=2*Math.atan(Math.tan(verticalFov/2)*Math.max(camera.aspect,.1));
+  const limitingFov=Math.min(verticalFov,horizontalFov);
+  const padding=camera.aspect<1?1.02:.78;
+  const distance=sphere.radius/Math.sin(limitingFov/2)*padding;
+  camera.position.copy(center).add(new THREE.Vector3(1,.58,1).normalize().multiplyScalar(distance));
   controls.target.copy(center);controls.update();
 }
-const highlight = new THREE.MeshStandardMaterial({color:0xf1b852,metalness:.5,roughness:.35});
+const highlight = new THREE.MeshStandardMaterial({color:0x39e4c4,emissive:0x063e38,emissiveIntensity:.7,metalness:.45,roughness:.3});
 const ghost = new THREE.MeshStandardMaterial({color:0x9cbdcf,transparent:true,opacity:.12,depthWrite:false});
 function choose(id){
   if(id&&![...$('parts').options].some(o=>o.value===id)){$('search').value='';$('group').value='';populateParts();}
@@ -274,6 +295,8 @@ function choose(id){
   $('part-source').textContent=part?`Catalogue reference: ${part.function_source_summary||'Not yet recorded'}. Source attribution is awaiting detailed review.`:'Choose a component to see its catalogue reference.';
   $('part-evidence').textContent=part?`Geometry: ${part.geometry_evidence_status||'Not yet reviewed'}. Claim review: ${part.structured_claim_review||'pending'}.`:'This study combines documented dimensions and reconstructed geometry. The detailed evidence audit is pending.';
   $('isolate').disabled=!id;
+  const picked=id?meshes.find(m=>m.userData.partId===id):null;
+  if(picked)hud.setSelection(picked,part?.display_name||id,part?.function||'');else hud.clearSelection();
   applyAppearance();
 }
 $('parts').onchange=()=>choose($('parts').value);
@@ -283,6 +306,7 @@ $('isolate').onclick=()=>{
   const picked=meshes.find(m=>m.userData.partId===selected);if(picked)fit(picked);
 };
 $('reset').onclick=()=>{stopMotion();if(motionProfile)setMotion(motionProfile.bind_angle_deg);resetSection();$('search').value='';$('group').value='';choose('');populateParts();if(root)fit(root);};
+$('viewer-fit').onclick=()=>{if(root)fit(root);};
 let down;
 renderer.domElement.addEventListener('pointerdown',e=>{down=[e.clientX,e.clientY];});
 renderer.domElement.addEventListener('pointerup',e=>{

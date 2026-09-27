@@ -3,32 +3,46 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {decodeModel} from './model-transport.mjs';
 import {modelSources, fetchOptions} from './model-source.mjs';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+import {createViewerHud} from './viewer-hud.mjs';
 
 const $ = id => document.getElementById(id);
-const say = text => { $('status').textContent = text; };
+let statusTimer = 0;
+const say = text => {
+  const row = $('status-row');
+  $('status').textContent = text;
+  row?.classList.remove('status-hidden');
+  clearTimeout(statusTimer);
+  if (/model loaded|engine ready/i.test(text)) statusTimer = setTimeout(() => row?.classList.add('status-hidden'), 4200);
+};
 const progress = $('load-progress');
 const view = $('view');
 const lowMemoryDevice = Number(navigator.deviceMemory || 8) <= 4;
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color('#101923');
+scene.background = null;
 const camera = new THREE.PerspectiveCamera(40, 1, .01, 250);
-const renderer = new THREE.WebGLRenderer({antialias: !lowMemoryDevice, stencil: true, powerPreference: 'high-performance'});
+const renderer = new THREE.WebGLRenderer({antialias: !lowMemoryDevice, stencil: true, alpha: true, powerPreference: 'high-performance'});
 renderer.localClippingEnabled = true;
 renderer.setPixelRatio(Math.min(devicePixelRatio, lowMemoryDevice ? 1.25 : 1.75));
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = .9;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 view.append(renderer.domElement);
 
 const orbit = new OrbitControls(camera, renderer.domElement);
 orbit.enableDamping = true;
 orbit.dampingFactor = .08;
-scene.add(new THREE.HemisphereLight(0xe5f5ff, 0x506070, 3));
-for (const position of [[2, 3, 4], [-3, 1, -2]]) {
-  const light = new THREE.DirectionalLight(0xffffff, 2);
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), .04).texture;
+pmrem.dispose();
+scene.add(new THREE.HemisphereLight(0xdff9ff, 0x101c24, .72));
+for (const [color, intensity, position] of [[0xd9fbff, 1.8, [3, 4, 5]], [0x42eadb, 1.3, [-4, 1, 2]], [0xffa875, .9, [2, -2, -4]]]) {
+  const light = new THREE.DirectionalLight(color, intensity);
   light.position.set(...position);
   scene.add(light);
 }
+const hud = createViewerHud({THREE, camera, container: view});
 
 let contract;
 let root;
@@ -53,6 +67,7 @@ const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
 
 function render() {
   renderer.render(scene, camera);
+  hud.update();
 }
 
 orbit.addEventListener('change', render);
@@ -149,22 +164,21 @@ function applyAppearance() {
         material.color.copy(material.userData.originalColor);
       }
       if (material.emissive) {
-        material.emissive.set(highlighted ? 0x6c5100 : 0x000000);
-        material.emissiveIntensity = highlighted ? .55 : 0;
+        material.emissive.set(highlighted ? 0x087567 : 0x000000);
+        material.emissiveIntensity = highlighted ? .72 : 0;
       }
     }
   }
   render();
 }
 
-function frameBox(box, padding = 1.3) {
+function frameBox(box, padding = camera.aspect < 1 ? 1.03 : .85) {
   if (box.isEmpty()) return;
-  const center = box.getCenter(new THREE.Vector3());
-  const size = box.getSize(new THREE.Vector3());
-  const halfFov = THREE.MathUtils.degToRad(camera.fov / 2);
-  const verticalDistance = size.y / (2 * Math.tan(halfFov));
-  const horizontalDistance = size.x / (2 * Math.tan(halfFov) * Math.max(camera.aspect, .1));
-  const distance = Math.max(verticalDistance, horizontalDistance, size.z) * padding;
+  const sphere = box.getBoundingSphere(new THREE.Sphere());
+  const center = sphere.center;
+  const verticalFov = THREE.MathUtils.degToRad(camera.fov);
+  const horizontalFov = 2 * Math.atan(Math.tan(verticalFov / 2) * Math.max(camera.aspect, .1));
+  const distance = sphere.radius / Math.sin(Math.min(verticalFov, horizontalFov) / 2) * padding;
   const direction = new THREE.Vector3(1.3, .8, 1.55).normalize();
   camera.near = Math.max(.01, distance / 100);
   camera.far = Math.max(250, distance * 20);
@@ -216,6 +230,9 @@ function selectComponent(id, {fromCanvas = false} = {}) {
     $('part-function').textContent = component.description;
     if (fromCanvas) $('parts').focus({preventScroll: true});
   }
+  const selectedItem = component && meshes.find(item => bindingMatches(item, component));
+  if (selectedItem) hud.setSelection(selectedItem.mesh, component.label, component.description);
+  else hud.clearSelection();
   visibleByControl();
   applyAppearance();
 }
@@ -231,6 +248,7 @@ function resetInspection() {
   applyAppearance();
   $('part-name').textContent = 'Whole engine';
   $('part-function').textContent = 'Choose a teaching group, search the lesson components, or select a visible part.';
+  hud.clearSelection();
   frameBox(modelBox.clone());
 }
 
@@ -332,6 +350,7 @@ function wireShell() {
     say(`Isolated ${component.label}. Use Show all to return to the complete engine.`);
   };
   $('reset').onclick = resetInspection;
+  $('viewer-fit').onclick = () => frameBox(modelBox.clone());
   $('appearance').onchange = applyAppearance;
 
   $('motion-play').onclick = () => {

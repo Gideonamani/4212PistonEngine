@@ -1,4 +1,4 @@
-import { initPageShell, initRailCollapse } from './page-shell.mjs';
+import { initPageShell, initRailCollapse, initExploreTools } from './page-shell.mjs?v=20260927-mobile-workspace-1';
 
 const params = new URLSearchParams(location.search);
 const requested = params.get('model') || 'cylinder';
@@ -16,7 +16,8 @@ const gallery = document.getElementById('model-gallery');
 if (gallery) gallery.innerHTML = registry.models.map(item => `<a class="model-pick" href="./explore.html?model=${item.id}" aria-current="${item.id === model.id}">${item.label}</a>`).join('');
 document.body.dataset.model = model.id;
 globalThis.trainingModel = model;
-if (model.adapter === 'cylinder') await import('./viewer.js?v=20260923-drive-models-1');
-else await import('./engine-training-adapter.mjs?v=20260923-drive-models-1');
 initPageShell('explore', model.id);
 initRailCollapse(document.getElementById('explorer'), document.getElementById('toggle-controls'));
+initExploreTools();
+if (model.adapter === 'cylinder') await import('./viewer.js?v=20260927-mobile-workspace-4');
+else await import('./engine-training-adapter.mjs?v=20260927-mobile-workspace-4');
