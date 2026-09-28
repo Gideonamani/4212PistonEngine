@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Lesson, LessonStep } from '../types/engine';
 import { VisualIllustration } from './VisualIllustrations';
+import { LessonMedia } from './LessonMedia';
 import {
   ChevronLeft,
   ChevronRight,
@@ -9,8 +10,6 @@ import {
   ChevronUp,
   Sparkles,
   RotateCcw,
-  Box,
-  Construction,
   Info,
   X,
   Award,
@@ -72,9 +71,8 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
 
   const currentAnswer = userAnswers[currentStepIndex] || '';
   const percentComplete = Math.round(((currentStepIndex + 1) / totalSteps) * 100);
-  const mediaIsPlanned = currentStep.mediaPlan?.status === 'planned' || currentStep.url?.startsWith('PLACEHOLDER:');
   const shouldShowMedia = currentStep.mediaPlan?.mode !== 'none';
-  const hasEvidence = Boolean(currentStep.note || currentStep.sourceRefs?.length || (currentStep.url && !currentStep.url.startsWith('PLACEHOLDER:')));
+  const hasEvidence = Boolean(currentStep.note || currentStep.sourceRefs?.length || currentStep.credit || currentStep.license || currentStep.sourceUrl || (currentStep.url && /^https?:\/\//i.test(currentStep.url)));
 
   useEffect(() => {
     setIsEvidenceOpen(false);
@@ -262,20 +260,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
           </div>
 
           {/* Published media, a clearly labelled production placeholder, or legacy illustration. */}
-          {shouldShowMedia && <div className={`relative w-full overflow-hidden rounded-xl border border-white/5 shadow-inner ${isImmersive ? 'h-[42dvh] min-h-64' : 'h-44 sm:h-52'}`}>
-            {mediaIsPlanned ? <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-[#0b2429] to-[#071317] px-6 text-center"><Construction className="h-7 w-7 text-teal-400" /><span className="mt-2 font-mono text-[10px] font-bold tracking-widest text-teal-300">PLANNED LEARNING MEDIA</span><p className="mt-2 max-w-sm text-xs leading-relaxed text-slate-300">{currentStep.mediaPlan?.assetBrief || currentStep.mediaPlan?.rationale || 'This activity is specified in the lesson pack and is awaiting its published media asset.'}</p></div> : <VisualIllustration type={currentStep.imageType} className="w-full h-full" />}
-
-            {/* 3D Model Reference Button (if available for step) */}
-            {currentStep.has3DReference && !mediaIsPlanned && (
-              <button
-                onClick={() => onSwitchTo3DModel?.(currentStep.referenceModel || 'Wright 1903 Aero Cylinder')}
-                className="absolute bottom-2.5 right-2.5 px-3 py-1.5 rounded-lg bg-teal-500 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-lg active:scale-95 transition-all"
-              >
-                <Box className="w-3.5 h-3.5" />
-                <span>Inspect 3D Model</span>
-              </button>
-            )}
-          </div>}
+          {shouldShowMedia && <LessonMedia step={currentStep} immersive={isImmersive} onSwitchTo3DModel={onSwitchTo3DModel} />}
 
           {/* Heading */}
           <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white mt-1">
@@ -377,8 +362,10 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
         <section id="lesson-evidence-dialog" role="dialog" aria-modal="true" aria-labelledby="lesson-evidence-title" className="max-h-[75dvh] w-full max-w-lg overflow-y-auto rounded-2xl border border-teal-500/30 bg-[#09191f] p-4 text-slate-200 shadow-2xl sm:p-5">
           <div className="flex items-start justify-between gap-4"><div><span className="font-mono text-[10px] font-bold tracking-widest text-teal-400">STEP {currentStepIndex + 1}</span><h2 id="lesson-evidence-title" className="mt-1 text-base font-bold text-white">Evidence &amp; scope note</h2></div><button ref={evidenceCloseRef} type="button" onClick={closeEvidence} aria-label="Close evidence and scope note" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-700 text-slate-300 hover:border-teal-400 hover:text-teal-300"><X className="h-4 w-4" /></button></div>
           {currentStep.note && <p className="mt-4 text-sm leading-relaxed text-slate-300">{currentStep.note}</p>}
+          {(currentStep.credit || currentStep.license) && <p className="mt-3 text-xs leading-relaxed text-slate-400"><span className="font-semibold text-slate-300">Media:</span> {[currentStep.credit, currentStep.license].filter(Boolean).join(' · ')}</p>}
+          {currentStep.sourceUrl ? <a href={currentStep.sourceUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex text-xs font-semibold text-teal-300 underline decoration-teal-500/50 underline-offset-2 hover:text-teal-200">Open media source</a> : null}
           {currentStep.sourceRefs?.length ? <div className="mt-4 border-t border-slate-700/70 pt-3"><h3 className="font-mono text-[10px] font-bold tracking-wider text-slate-400">SOURCE REFERENCES</h3><ul className="mt-2 space-y-2 text-xs text-slate-300">{currentStep.sourceRefs.map((reference) => <li key={reference} className="break-words">{/^https?:\/\//i.test(reference) ? <a href={reference} target="_blank" rel="noreferrer" className="text-teal-300 underline decoration-teal-500/50 underline-offset-2 hover:text-teal-200">{reference}</a> : reference}</li>)}</ul></div> : null}
-          {currentStep.url && !currentStep.url.startsWith('PLACEHOLDER:') ? <a href={currentStep.url} target="_blank" rel="noreferrer" className="mt-4 inline-flex text-xs font-semibold text-teal-300 underline decoration-teal-500/50 underline-offset-2 hover:text-teal-200">Open supporting source</a> : null}
+          {currentStep.url && /^https?:\/\//i.test(currentStep.url) ? <a href={currentStep.url} target="_blank" rel="noreferrer" className="mt-4 inline-flex text-xs font-semibold text-teal-300 underline decoration-teal-500/50 underline-offset-2 hover:text-teal-200">Open supporting source</a> : null}
         </section>
       </div>}
 

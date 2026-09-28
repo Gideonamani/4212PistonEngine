@@ -14,6 +14,10 @@ type PackStep = {
   modelId?: string;
   action?: { type: string; value?: number | string };
   url?: string;
+  alt?: string;
+  credit?: string;
+  license?: string;
+  sourceUrl?: string;
   sourceRefs?: string[];
   mediaPlan?: LessonStep['mediaPlan'];
 };
@@ -98,6 +102,10 @@ function mapLesson(lesson: PackLesson, index: number): Lesson {
     note: step.note,
     action: step.action,
     url: step.url,
+    alt: step.alt,
+    credit: step.credit,
+    license: step.license,
+    sourceUrl: step.sourceUrl,
     sourceRefs: step.sourceRefs,
     mediaPlan: step.mediaPlan,
   }));

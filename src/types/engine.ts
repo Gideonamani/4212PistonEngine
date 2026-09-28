@@ -49,6 +49,10 @@ export interface LessonStep {
     value?: number | string;
   };
   url?: string;
+  alt?: string;
+  credit?: string;
+  license?: string;
+  sourceUrl?: string;
   sourceRefs?: string[];
   mediaPlan?: {
     mode: 'none' | 'source-image' | 'native-html' | 'existing-3d' | 'web-media' | 'imagegen';
