@@ -1,4 +1,4 @@
-import { initPageShell, initRailCollapse, initExploreTools } from './page-shell.mjs?v=20260927-mobile-workspace-1';
+import { initPageShell, initRailCollapse, initExploreTools } from './page-shell.mjs?v=20260928-player-disclosure-1';
 
 const params = new URLSearchParams(location.search);
 const requested = params.get('model') || 'cylinder';

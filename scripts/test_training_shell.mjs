@@ -42,6 +42,14 @@ for (const tab of ['components', 'motion', 'inside', 'appearance']) {
 assert.match(pageShell, /mobileDefaultCollapsed/);
 assert.match(pageShell, /rail\.inert = next/);
 assert.match(pageShell, /initExploreTools/);
+for (const id of ['close-controls', 'player-on-viewer', 'compact-motion', 'motion-angle-compact']) {
+  assert.match(explore, new RegExp(`id="${id}"`));
+}
+assert.match(pageShell, /4212-explore-show-player/);
+assert.match(pageShell, /showPlayerOnViewer && controlsAreClosed/);
+assert.match(pageShell, /compactAngle\.oninput/);
+assert.match(pageShell, /compactPlay\.onclick = \(\) => sourcePlay\.click\(\)/);
+assert.match(shellCss, /rail-collapsed\.show-floating-player \.compact-motion/);
 
 // Learn and Check share lesson-pack loading and the generic step renderer rather than
 // each re-implementing it

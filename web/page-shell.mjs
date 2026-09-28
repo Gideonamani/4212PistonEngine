@@ -47,6 +47,7 @@ export function initRailCollapse(mainEl, toggle) {
       rail.inert = next;
       rail.setAttribute('aria-hidden', String(next));
     }
+    mainEl.dispatchEvent(new CustomEvent('rail-visibility-change', {detail: {collapsed: next}}));
   }
   sync(collapsed);
   toggle.onclick = () => {
@@ -61,6 +62,11 @@ export function initRailCollapse(mainEl, toggle) {
 // truth. Compact HUD controls proxy those inputs instead of creating a second
 // motion or section state.
 export function initExploreTools() {
+  const explorer = $('explorer');
+  const controlsToggle = $('toggle-controls');
+  const closeControls = $('close-controls');
+  if (controlsToggle && closeControls) closeControls.onclick = () => controlsToggle.click();
+
   const tabs = [...document.querySelectorAll('.tool-tab')];
   const panes = [...document.querySelectorAll('.tool-pane')];
   const activate = tool => {
@@ -90,6 +96,28 @@ export function initExploreTools() {
   const compactValue = $('motion-value-compact');
   const sourcePlay = $('motion-play');
   const compactPlay = $('motion-play-compact');
+  const compactMotion = $('compact-motion');
+  const playerPreference = $('player-on-viewer');
+  const playerStorageKey = '4212-explore-show-player';
+  const savedPlayerPreference = localStorage.getItem(playerStorageKey);
+  let showPlayerOnViewer = savedPlayerPreference === null ? true : savedPlayerPreference === 'true';
+  const syncPlayerVisibility = () => {
+    const controlsAreClosed = explorer?.classList.contains('rail-collapsed');
+    const visible = Boolean(showPlayerOnViewer && controlsAreClosed);
+    explorer?.classList.toggle('show-floating-player', showPlayerOnViewer);
+    if (compactMotion) {
+      compactMotion.hidden = !visible;
+      compactMotion.setAttribute('aria-hidden', String(!visible));
+    }
+    if (playerPreference) playerPreference.checked = showPlayerOnViewer;
+  };
+  if (playerPreference) playerPreference.onchange = () => {
+    showPlayerOnViewer = playerPreference.checked;
+    localStorage.setItem(playerStorageKey, String(showPlayerOnViewer));
+    syncPlayerVisibility();
+  };
+  explorer?.addEventListener('rail-visibility-change', syncPlayerVisibility);
+  syncPlayerVisibility();
   if (sourceAngle && compactAngle) {
     compactAngle.oninput = () => {
       sourceAngle.value = compactAngle.value;
