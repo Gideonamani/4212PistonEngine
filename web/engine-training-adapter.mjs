@@ -5,16 +5,10 @@ import {decodeModel} from './model-transport.mjs';
 import {modelSources, fetchOptions} from './model-source.mjs';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 import {createViewerHud} from './viewer-hud.mjs';
+import {createStatusNotification} from './status-notification.mjs?v=20260928-full-height-viewer-1';
 
 const $ = id => document.getElementById(id);
-let statusTimer = 0;
-const say = text => {
-  const row = $('status-row');
-  $('status').textContent = text;
-  row?.classList.remove('status-hidden');
-  clearTimeout(statusTimer);
-  if (/model loaded|engine ready/i.test(text)) statusTimer = setTimeout(() => row?.classList.add('status-hidden'), 4200);
-};
+const say = createStatusNotification({row: $('status-row'), message: $('status'), dismiss: $('status-dismiss')});
 const progress = $('load-progress');
 const view = $('view');
 const lowMemoryDevice = Number(navigator.deviceMemory || 8) <= 4;
@@ -341,13 +335,12 @@ function wireShell() {
   $('isolate').onclick = () => {
     const component = selectedComponent();
     if (!component) {
-      say('Choose a teaching component before isolating it.');
+      $('part-function').textContent = 'Choose a teaching component before isolating it.';
       return;
     }
     isolatedComponentId = component.id;
     visibleByControl();
     frameItems(meshes.filter(item => bindingMatches(item, component)));
-    say(`Isolated ${component.label}. Use Show all to return to the complete engine.`);
   };
   $('reset').onclick = resetInspection;
   $('viewer-fit').onclick = () => frameBox(modelBox.clone());

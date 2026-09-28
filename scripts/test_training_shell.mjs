@@ -11,6 +11,10 @@ const guidedShared = read('guided-shared.mjs');
 const learnModes = read('learn-modes.mjs');
 const checkModes = read('check-modes.mjs');
 const exploreRouter = read('explore-router.mjs');
+const statusNotification = read('status-notification.mjs');
+const viewer = read('viewer.js');
+const engineAdapter = read('engine-training-adapter.mjs');
+const exploreView = fs.readFileSync(new URL('../src/components/ExploreView.tsx', import.meta.url), 'utf8');
 
 // Explore/Learn/Check are separate pages now; each marks itself current in its own nav
 // and links to the other two (docs/mode-shell-viewer-separation.md).
@@ -50,6 +54,15 @@ assert.match(pageShell, /showPlayerOnViewer && controlsAreClosed/);
 assert.match(pageShell, /compactAngle\.oninput/);
 assert.match(pageShell, /compactPlay\.onclick = \(\) => sourcePlay\.click\(\)/);
 assert.match(shellCss, /rail-collapsed\.show-floating-player \.compact-motion/);
+assert.match(explore, /id="status-dismiss"/);
+assert.match(statusNotification, /successDuration = 3000/);
+assert.match(statusNotification, /row\.dataset\.kind === 'success'/);
+assert.match(viewer, /createStatusNotification/);
+assert.match(engineAdapter, /createStatusNotification/);
+assert.doesNotMatch(engineAdapter, /say\(`Isolated/);
+assert.doesNotMatch(exploreView, />Models<\//);
+assert.match(shellCss, /\.embed-view \.explore-workspace\{height:100dvh/);
+assert.match(shellCss, /\.embed-view \.explore-workspace \.view-col\{position:absolute;inset:0/);
 
 // Learn and Check share lesson-pack loading and the generic step renderer rather than
 // each re-implementing it

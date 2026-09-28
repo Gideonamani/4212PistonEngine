@@ -1,15 +1,13 @@
 import React from 'react';
-import { Box, ChevronLeft, ChevronRight, ExternalLink, Gauge, Layers3, Maximize2, Minimize2, Move3D } from 'lucide-react';
+import { Box, ChevronRight, ExternalLink, Gauge, Layers3, Maximize2, Minimize2, Move3D } from 'lucide-react';
 import { VisualIllustration } from './VisualIllustrations';
 
 interface ExploreViewProps {
   activeModelName: string;
   isViewerOpen: boolean;
   onSelectModel: (model: string) => void;
-  onBackToMenu: () => void;
   isFullscreen3D: boolean;
   onToggleFullscreen: () => void;
-  onExitFullscreen: () => void;
 }
 
 const models = [
@@ -37,7 +35,6 @@ export const ExploreView: React.FC<ExploreViewProps> = ({
   activeModelName,
   isViewerOpen,
   onSelectModel,
-  onBackToMenu,
   isFullscreen3D,
   onToggleFullscreen,
 }) => {
@@ -60,9 +57,8 @@ export const ExploreView: React.FC<ExploreViewProps> = ({
 
   const modelId = modelIds[activeModelName] || 'cylinder';
   const viewerUrl = `./explore.html?model=${encodeURIComponent(modelId)}&embed=1`;
-  return <div className="relative h-full min-h-0 w-full bg-[#061014]">
-    <iframe key={modelId} src={viewerUrl} title={`${activeModelName} interactive 3D explorer`} className="h-full w-full border-0 bg-[#061014]" allow="fullscreen" />
-    <div className="absolute left-3 top-3 z-20"><button onClick={onBackToMenu} className="flex h-10 items-center gap-1.5 rounded-full border border-slate-600/70 bg-[#07161b]/90 px-3 text-xs font-semibold text-slate-200 shadow-lg backdrop-blur hover:border-teal-400 hover:text-teal-300"><ChevronLeft className="h-4 w-4" />Models</button></div>
+  return <div className="absolute inset-0 min-h-0 overflow-hidden bg-[#061014]">
+    <iframe key={modelId} src={viewerUrl} title={`${activeModelName} interactive 3D explorer`} className="absolute inset-0 h-full w-full border-0 bg-[#061014]" allow="fullscreen" />
     <div className="absolute right-3 top-3 z-20 flex gap-2"><a href={`./explore.html?model=${encodeURIComponent(modelId)}`} target="_blank" rel="noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-600/70 bg-[#07161b]/90 text-slate-200 shadow-lg backdrop-blur hover:border-teal-400 hover:text-teal-300" title="Open the standalone explorer" aria-label="Open the standalone explorer"><ExternalLink className="h-4 w-4" /></a><button onClick={onToggleFullscreen} className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-600/70 bg-[#07161b]/90 text-slate-200 shadow-lg backdrop-blur hover:border-teal-400 hover:text-teal-300" title={isFullscreen3D ? 'Exit immersive view' : 'Open immersive view'} aria-label={isFullscreen3D ? 'Exit immersive view' : 'Open immersive view'}>{isFullscreen3D ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}</button></div>
   </div>;
 };

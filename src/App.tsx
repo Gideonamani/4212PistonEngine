@@ -140,13 +140,8 @@ export default function App() {
               setActiveModelName(model);
               setIsExploreViewerOpen(true);
             }}
-            onBackToMenu={() => {
-              setIsFullscreen3D(false);
-              setIsExploreViewerOpen(false);
-            }}
             isFullscreen3D={isFullscreen3D}
             onToggleFullscreen={() => setIsFullscreen3D((prev) => !prev)}
-            onExitFullscreen={() => setIsFullscreen3D(false)}
           />
         )}
         {activeView === 'learn' && (tracks.length ? (

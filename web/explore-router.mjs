@@ -1,4 +1,4 @@
-import { initPageShell, initRailCollapse, initExploreTools } from './page-shell.mjs?v=20260928-player-disclosure-1';
+import { initPageShell, initRailCollapse, initExploreTools } from './page-shell.mjs?v=20260928-full-height-viewer-1';
 
 const params = new URLSearchParams(location.search);
 const requested = params.get('model') || 'cylinder';
@@ -19,5 +19,5 @@ globalThis.trainingModel = model;
 initPageShell('explore', model.id);
 initRailCollapse(document.getElementById('explorer'), document.getElementById('toggle-controls'));
 initExploreTools();
-if (model.adapter === 'cylinder') await import('./viewer.js?v=20260927-mobile-workspace-4');
-else await import('./engine-training-adapter.mjs?v=20260927-mobile-workspace-4');
+if (model.adapter === 'cylinder') await import('./viewer.js?v=20260928-full-height-viewer-1');
+else await import('./engine-training-adapter.mjs?v=20260928-full-height-viewer-1');

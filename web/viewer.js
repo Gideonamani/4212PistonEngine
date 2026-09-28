@@ -9,17 +9,11 @@ import {valveMatrices} from './valve-transforms.mjs';
 import {createCycleVisuals} from './cycle-visuals.mjs?v=20260911-moving-particles-3';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 import {createViewerHud} from './viewer-hud.mjs';
+import {createStatusNotification} from './status-notification.mjs?v=20260928-full-height-viewer-1';
 
 const $ = id => document.getElementById(id);
 const model = globalThis.trainingModel || {};
-let statusTimer=0;
-const say = text => {
-  const row=$('status-row');
-  $('status').textContent = text;
-  row?.classList.remove('status-hidden');
-  clearTimeout(statusTimer);
-  if(/model loaded/i.test(text))statusTimer=setTimeout(()=>row?.classList.add('status-hidden'),4200);
-};
+const say = createStatusNotification({row: $('status-row'), message: $('status'), dismiss: $('status-dismiss')});
 const log = text => $('log').textContent += text + '\n';
 const music=$('music');
 music.volume=.3;

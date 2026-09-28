@@ -210,7 +210,7 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
         )}
 
         {/* Dynamic Screen Viewport Area (100% Height & Width) */}
-        <main className="flex-1 relative overflow-hidden flex flex-col">
+        <main className="relative flex min-h-0 flex-1 flex-col overflow-hidden">
           {children}
         </main>
 
@@ -416,7 +416,7 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
         </header>}
 
         {/* Dynamic Screen Viewport Area */}
-        <main className="flex-1 relative overflow-hidden flex flex-col">
+        <main className="relative flex min-h-0 flex-1 flex-col overflow-hidden">
           {children}
         </main>
 
