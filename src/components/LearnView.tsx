@@ -20,9 +20,24 @@ interface LearnViewProps {
   tracks: CourseTrack[];
   onSwitchToExploreModel?: (modelName: string) => void;
   onTakeLessonQuiz?: (lessonId: string) => void;
+  onLessonStepModeChange?: (isOpen: boolean) => void;
+  onLessonImmersiveChange?: (isImmersive: boolean) => void;
 }
 
-export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreModel, onTakeLessonQuiz }) => {
+type LessonRoute = { trackId?: string; lessonId?: string; stepIndex?: number; isComplete?: boolean };
+
+const getLessonRoute = (): LessonRoute => {
+  const parts = location.hash.replace(/^#\/?/, '').split('/').map(decodeURIComponent);
+  if (parts[0] !== 'learn') return {};
+  return {
+    trackId: parts[1],
+    lessonId: parts[2],
+    stepIndex: parts[3] === 'step' ? Math.max(Number(parts[4] || 1) - 1, 0) : undefined,
+    isComplete: parts[3] === 'complete',
+  };
+};
+
+export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreModel, onTakeLessonQuiz, onLessonStepModeChange, onLessonImmersiveChange }) => {
   const [activeTrack, setActiveTrack] = useState<CourseTrack>(tracks[0]);
   const [isViewingAllTracks, setIsViewingAllTracks] = useState<boolean>(false);
   const [activeLesson, setActiveLesson] = useState<Lesson | null>(null);
@@ -42,6 +57,39 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
   void progressVersion;
 
   useEffect(() => {
+    const syncRoute = () => {
+      const route = getLessonRoute();
+      const routeTrack = tracks.find((track) => track.id === route.trackId);
+      if (routeTrack) setActiveTrack(routeTrack);
+      const routeLesson = routeTrack?.lessons.find((lesson) => lesson.id === route.lessonId);
+      setActiveLesson(routeLesson || null);
+    };
+    syncRoute();
+    window.addEventListener('popstate', syncRoute);
+    window.addEventListener('hashchange', syncRoute);
+    return () => {
+      window.removeEventListener('popstate', syncRoute);
+      window.removeEventListener('hashchange', syncRoute);
+    };
+  }, [tracks]);
+
+  useEffect(() => {
+    onLessonStepModeChange?.(Boolean(activeLesson));
+    return () => onLessonStepModeChange?.(false);
+  }, [activeLesson, onLessonStepModeChange]);
+
+  const openLesson = (lesson: Lesson) => {
+    history.pushState(null, '', `${location.pathname}${location.search}#/learn/${encodeURIComponent(activeTrack.id)}/${encodeURIComponent(lesson.id)}/step/1`);
+    setActiveLesson(lesson);
+  };
+
+  const returnToLessons = () => {
+    history.pushState(null, '', `${location.pathname}${location.search}#/learn/${encodeURIComponent(activeTrack.id)}`);
+    setActiveLesson(null);
+    onLessonImmersiveChange?.(false);
+  };
+
+  useEffect(() => {
     if (!tracks.some((track) => track.id === activeTrack?.id)) {
       setActiveTrack(tracks[0]);
     }
@@ -54,9 +102,14 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
     return (
       <LessonStepViewer
         lesson={activeLesson}
-        onBackToLessons={() => setActiveLesson(null)}
+        initialStepIndex={getLessonRoute().stepIndex}
+        initialComplete={getLessonRoute().isComplete}
+        onBackToLessons={returnToLessons}
         onSwitchTo3DModel={(model) => onSwitchToExploreModel?.(model)}
         onTakeQuiz={onTakeLessonQuiz}
+        onStepChange={(stepIndex) => history.replaceState(null, '', `${location.pathname}${location.search}#/learn/${encodeURIComponent(activeTrack.id)}/${encodeURIComponent(activeLesson.id)}/step/${stepIndex + 1}`)}
+        onComplete={() => history.replaceState(null, '', `${location.pathname}${location.search}#/learn/${encodeURIComponent(activeTrack.id)}/${encodeURIComponent(activeLesson.id)}/complete`)}
+        onImmersiveChange={onLessonImmersiveChange}
       />
     );
   }
@@ -172,7 +225,7 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
       <div className="px-4 pt-4 pb-2 flex flex-col gap-4 max-w-xl mx-auto w-full">
         {/* MODE HERO CARD: LEARN MODE */}
         <div
-          onClick={() => setActiveLesson(activeTrack.lessons[0])}
+          onClick={() => openLesson(activeTrack.lessons[0])}
           className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-[#081a20] via-[#07171d] to-[#040e13] border border-teal-500/35 shadow-xl shadow-black/50 hover:border-teal-400/60 cursor-pointer transition-all flex flex-col gap-2 relative overflow-hidden group hover:scale-[1.005] active:scale-[0.99]"
         >
           {/* Mode Header row inside card */}
@@ -249,7 +302,7 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
           {activeTrack.lessons.map((lesson) => (
             <div
               key={lesson.id}
-              onClick={() => setActiveLesson(lesson)}
+              onClick={() => openLesson(lesson)}
               className="p-3.5 rounded-2xl bg-[#09181e]/90 border border-white/5 hover:border-teal-500/40 shadow-md cursor-pointer transition-all hover:scale-[1.005] active:scale-[0.99] flex items-center justify-between gap-3 group"
             >
               {/* Thumbnail Image on Left */}

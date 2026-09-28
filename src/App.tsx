@@ -9,7 +9,7 @@ import { EngineInfoModal } from './components/EngineInfoModal';
 import { loadProductionData } from './data/loadProductionData';
 
 const viewFromHash = (): ViewMode => {
-  const value = location.hash.replace('#/', '').replace('#', '');
+  const value = location.hash.replace(/^#\/?/, '').split('/')[0];
   return value === 'learn' || value === 'check' ? value : 'explore';
 };
 
@@ -25,6 +25,8 @@ export default function App() {
   const [loadError, setLoadError] = useState<string>('');
   const [loadAttempt, setLoadAttempt] = useState(0);
   const [quizLessonId, setQuizLessonId] = useState<string>();
+  const [isLessonStepOpen, setIsLessonStepOpen] = useState(false);
+  const [isLessonImmersive, setIsLessonImmersive] = useState(false);
 
   const availableModels = [
     'Detailed operating cylinder',
@@ -49,7 +51,11 @@ export default function App() {
   useEffect(() => {
     const sync = () => setActiveView(viewFromHash());
     window.addEventListener('hashchange', sync);
-    return () => window.removeEventListener('hashchange', sync);
+    window.addEventListener('popstate', sync);
+    return () => {
+      window.removeEventListener('hashchange', sync);
+      window.removeEventListener('popstate', sync);
+    };
   }, []);
 
   // Sync dark class on document element
@@ -123,6 +129,8 @@ export default function App() {
         }}
         availableModels={availableModels}
         isFullscreen3D={isFullscreen3D}
+        isLessonStepOpen={isLessonStepOpen}
+        isLessonImmersive={isLessonImmersive}
       >
         {activeView === 'explore' && (
           <ExploreView
@@ -144,6 +152,8 @@ export default function App() {
         {activeView === 'learn' && (tracks.length ? (
           <LearnView
             tracks={tracks}
+            onLessonStepModeChange={setIsLessonStepOpen}
+            onLessonImmersiveChange={setIsLessonImmersive}
             onTakeLessonQuiz={(lessonId) => {
               setQuizLessonId(lessonId);
               setActiveView('check');

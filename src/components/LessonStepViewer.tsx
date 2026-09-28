@@ -17,6 +17,8 @@ import {
   FileQuestion,
   ListRestart,
   PenLine,
+  Maximize2,
+  Minimize2,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { completeLesson, getLessonProgress, saveLessonReflection, saveLessonStep } from '../data/lessonProgress';
@@ -26,6 +28,11 @@ interface LessonStepViewerProps {
   onBackToLessons: () => void;
   onSwitchTo3DModel?: (modelName: string) => void;
   onTakeQuiz?: (lessonId: string) => void;
+  initialStepIndex?: number;
+  initialComplete?: boolean;
+  onStepChange?: (stepIndex: number) => void;
+  onComplete?: () => void;
+  onImmersiveChange?: (isImmersive: boolean) => void;
 }
 
 export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
@@ -33,17 +40,24 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
   onBackToLessons,
   onSwitchTo3DModel,
   onTakeQuiz,
+  initialStepIndex,
+  initialComplete = false,
+  onStepChange,
+  onComplete,
+  onImmersiveChange,
 }) => {
   const initialProgress = getLessonProgress(lesson.id);
-  const [currentStepIndex, setCurrentStepIndex] = useState<number>(() => Math.min(initialProgress.currentStep || 0, Math.max(lesson.steps.length - 1, 0)));
+  const [currentStepIndex, setCurrentStepIndex] = useState<number>(() => Math.min(initialStepIndex ?? initialProgress.currentStep ?? 0, Math.max(lesson.steps.length - 1, 0)));
   const [userAnswers, setUserAnswers] = useState<Record<number, string>>({});
   const [showAnswerFeedback, setShowAnswerFeedback] = useState<Record<number, boolean>>({});
   const [isEvidenceOpen, setIsEvidenceOpen] = useState(false);
-  const [isComplete, setIsComplete] = useState(false);
+  const [isComplete, setIsComplete] = useState(initialComplete);
+  const [isImmersive, setIsImmersive] = useState(false);
   const [isWritingReflection, setIsWritingReflection] = useState(false);
   const [reflection, setReflection] = useState(initialProgress.reflection || '');
   const evidenceButtonRef = useRef<HTMLButtonElement>(null);
   const evidenceCloseRef = useRef<HTMLButtonElement>(null);
+  const viewerRef = useRef<HTMLDivElement>(null);
 
   const totalSteps = lesson.steps.length || 10;
   const currentStep: LessonStep = lesson.steps[currentStepIndex] || {
@@ -68,7 +82,52 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
 
   useEffect(() => {
     saveLessonStep(lesson.id, currentStepIndex);
-  }, [currentStepIndex, lesson.id]);
+    if (!isComplete) onStepChange?.(currentStepIndex);
+  }, [currentStepIndex, isComplete, lesson.id]);
+
+  useEffect(() => {
+    if (!isImmersive || document.fullscreenElement) return;
+    const exitFallback = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsImmersive(false);
+        onImmersiveChange?.(false);
+      }
+    };
+    window.addEventListener('keydown', exitFallback);
+    return () => window.removeEventListener('keydown', exitFallback);
+  }, [isImmersive, onImmersiveChange]);
+
+  useEffect(() => {
+    const syncFullscreen = () => {
+      const active = document.fullscreenElement === viewerRef.current;
+      setIsImmersive(active);
+      onImmersiveChange?.(active);
+    };
+    document.addEventListener('fullscreenchange', syncFullscreen);
+    return () => {
+      document.removeEventListener('fullscreenchange', syncFullscreen);
+      onImmersiveChange?.(false);
+    };
+  }, [onImmersiveChange]);
+
+  const toggleImmersive = async () => {
+    if (isImmersive) {
+      if (document.fullscreenElement) await document.exitFullscreen().catch(() => undefined);
+      setIsImmersive(false);
+      onImmersiveChange?.(false);
+      return;
+    }
+    if (viewerRef.current?.requestFullscreen && document.fullscreenEnabled) {
+      try {
+        await viewerRef.current.requestFullscreen();
+        return;
+      } catch {
+        // Continue with the CSS immersive fallback.
+      }
+    }
+    setIsImmersive(true);
+    onImmersiveChange?.(true);
+  };
 
   useEffect(() => {
     if (!isEvidenceOpen) return;
@@ -102,6 +161,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
         });
       }
       setIsComplete(true);
+      onComplete?.();
     }
   };
 
@@ -129,7 +189,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
   </div>;
 
   return (
-    <div className="relative w-full h-full flex flex-col bg-[#061014] text-slate-100 overflow-y-auto">
+    <div ref={viewerRef} className={`relative flex h-full w-full flex-col overflow-y-auto bg-[#061014] text-slate-100 ${isImmersive && !document.fullscreenElement ? 'fixed inset-0 z-[100] h-[100dvh]' : ''}`}>
       {/* Top Navigation Bar */}
       <div className="px-5 pt-3 pb-1 flex items-center justify-between">
         <button
@@ -142,9 +202,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
         </button>
         <div className="flex items-center gap-2">
           {hasEvidence && <button ref={evidenceButtonRef} type="button" onClick={() => setIsEvidenceOpen(true)} aria-label="Open evidence and scope note" aria-haspopup="dialog" aria-controls="lesson-evidence-dialog" className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-slate-900/70 text-slate-300 transition hover:border-teal-400 hover:text-teal-300"><Info className="h-4 w-4" /></button>}
-          <span className="text-[10px] font-mono tracking-wider text-slate-400 uppercase font-semibold">
-            {lesson.lessonNumber}
-          </span>
+          <button type="button" onClick={toggleImmersive} aria-label={isImmersive ? 'Exit full-screen lesson' : 'Open full-screen lesson'} aria-pressed={isImmersive} className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-slate-900/70 text-slate-300 transition hover:border-teal-400 hover:text-teal-300">{isImmersive ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}</button>
         </div>
       </div>
 
@@ -197,14 +255,14 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
       </div>
 
       {/* Main Step Content Card (Matching Screenshot 5) */}
-      <div className="flex-1 px-4 py-2 flex flex-col gap-4 max-w-xl mx-auto w-full pb-20">
+      <div className={`mx-auto flex w-full flex-1 flex-col gap-4 px-4 py-2 pb-20 ${isImmersive ? 'max-w-5xl' : 'max-w-xl'}`}>
         <div className="p-4 rounded-2xl bg-[#09191f]/90 border border-teal-500/20 shadow-xl flex flex-col gap-3.5">
           <div className="text-[10px] font-mono tracking-widest text-slate-400 uppercase font-semibold">
             STEP {currentStepIndex + 1}
           </div>
 
           {/* Published media, a clearly labelled production placeholder, or legacy illustration. */}
-          {shouldShowMedia && <div className="w-full h-44 sm:h-52 rounded-xl overflow-hidden shadow-inner border border-white/5 relative">
+          {shouldShowMedia && <div className={`relative w-full overflow-hidden rounded-xl border border-white/5 shadow-inner ${isImmersive ? 'h-[42dvh] min-h-64' : 'h-44 sm:h-52'}`}>
             {mediaIsPlanned ? <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-[#0b2429] to-[#071317] px-6 text-center"><Construction className="h-7 w-7 text-teal-400" /><span className="mt-2 font-mono text-[10px] font-bold tracking-widest text-teal-300">PLANNED LEARNING MEDIA</span><p className="mt-2 max-w-sm text-xs leading-relaxed text-slate-300">{currentStep.mediaPlan?.assetBrief || currentStep.mediaPlan?.rationale || 'This activity is specified in the lesson pack and is awaiting its published media asset.'}</p></div> : <VisualIllustration type={currentStep.imageType} className="w-full h-full" />}
 
             {/* 3D Model Reference Button (if available for step) */}

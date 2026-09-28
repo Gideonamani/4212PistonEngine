@@ -24,6 +24,8 @@ interface MobileFrameProps {
   onSelectModel?: (model: string) => void;
   availableModels?: string[];
   isFullscreen3D?: boolean;
+  isLessonStepOpen?: boolean;
+  isLessonImmersive?: boolean;
 }
 
 export const MobileFrame: React.FC<MobileFrameProps> = ({
@@ -43,6 +45,8 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
     'Combustion Chamber Section',
   ],
   isFullscreen3D = false,
+  isLessonStepOpen = false,
+  isLessonImmersive = false,
 }) => {
   // Default to whole actual page (desktop full-page mode) with seamless phone shell toggle
   const [isDeviceFrameEnabled, setIsDeviceFrameEnabled] = useState<boolean>(false);
@@ -55,7 +59,7 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
     return (
       <div className="w-full h-[100dvh] min-h-[100dvh] bg-[#051116] text-slate-100 flex flex-col relative overflow-hidden">
         {/* Full-Width Desktop Aerospace Header (hidden in Fullscreen 3D) */}
-        {!isFullscreen3D && (
+        {!isFullscreen3D && !isLessonImmersive && (
           <header className="w-full px-4 sm:px-6 py-2.5 border-b border-teal-500/20 flex items-center justify-between z-30 bg-[#06141a]/95 backdrop-blur-md shrink-0 shadow-lg">
           {/* Left: Brand & Model Dropdown */}
           <div className="flex items-center gap-3">
@@ -211,7 +215,7 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
         </main>
 
         {/* Mobile Screen Bottom Tab Bar fallback for narrow desktop/tablet screens */}
-        {!isFullscreen3D && (
+        {!isFullscreen3D && !isLessonStepOpen && (
           <nav className="md:hidden relative z-40 bg-[#061014]/95 backdrop-blur-md border-t border-teal-500/20 py-2 px-6 shrink-0">
             <div className="grid grid-cols-3 items-center">
               <button
@@ -251,7 +255,7 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
   }
 
   // If in Phone Shell mode and user clicks 3D fullscreen, expand to fill entire browser window
-  if (isFullscreen3D) {
+  if (isFullscreen3D || isLessonImmersive) {
     return (
       <div className="fixed inset-0 z-50 w-screen h-[100dvh] bg-[#061014] text-slate-100 flex flex-col overflow-hidden">
         {children}
@@ -286,7 +290,7 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
       {/* Main Container / Mobile Device Bezel */}
       <div className="w-full max-w-[430px] h-[915px] sm:rounded-[52px] sm:ring-8 sm:ring-[#1a2327] sm:border-4 sm:border-[#09151a] sm:shadow-[0_25px_70px_rgba(0,0,0,0.85)] relative transition-all duration-300 flex flex-col bg-[#061014] overflow-hidden">
         {/* iPhone Dynamic Island & Status Bar */}
-        <div className="pt-3 px-7 pb-1 flex items-center justify-between text-xs text-white z-40 bg-[#061014] shrink-0">
+        {!isLessonImmersive && <div className="pt-3 px-7 pb-1 flex items-center justify-between text-xs text-white z-40 bg-[#061014] shrink-0">
           <span className="font-semibold text-[13px] tracking-tight">16:56</span>
 
           {/* Centered Dynamic Island Cutout */}
@@ -314,10 +318,10 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
               </div>
             </div>
           </div>
-        </div>
+        </div>}
 
         {/* Global App Header */}
-        <header className="px-5 py-2.5 border-b border-teal-500/10 flex items-center justify-between z-30 bg-[#061014]/90 backdrop-blur-md shrink-0">
+        {!isLessonImmersive && <header className="px-5 py-2.5 border-b border-teal-500/10 flex items-center justify-between z-30 bg-[#061014]/90 backdrop-blur-md shrink-0">
           <div className="flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-xl bg-teal-950/60 border border-teal-400/50 flex items-center justify-center shadow-xs shadow-teal-500/30 shrink-0">
               <svg viewBox="0 0 24 24" className="w-5 h-5 text-teal-300 stroke-current" fill="none" strokeWidth="1.8">
@@ -409,7 +413,7 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
               <Info className="w-4 h-4" />
             </button>
           </div>
-        </header>
+        </header>}
 
         {/* Dynamic Screen Viewport Area */}
         <main className="flex-1 relative overflow-hidden flex flex-col">
@@ -417,7 +421,7 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
         </main>
 
         {/* Fixed Bottom Tab Navigation Bar */}
-        <nav className="relative z-40 bg-[#061014]/95 backdrop-blur-md border-t border-teal-500/20 pt-2 pb-4 px-6 shrink-0">
+        {!isLessonStepOpen && <nav className="relative z-40 bg-[#061014]/95 backdrop-blur-md border-t border-teal-500/20 pt-2 pb-4 px-6 shrink-0">
           <div className="grid grid-cols-3 items-center">
             <button
               onClick={() => onViewChange('explore')}
@@ -467,7 +471,7 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
 
           {/* iPhone Home Indicator Pill */}
           <div className="w-32 h-1 bg-white/60 rounded-full mx-auto mt-3" />
-        </nav>
+        </nav>}
       </div>
     </div>
   );
