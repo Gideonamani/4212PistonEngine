@@ -436,3 +436,20 @@ footer>details{flex:1 1 260px;border-top:0;padding:0}
   .explore-workspace .view-col{padding-inline:12px}.explorer-stage{height:48svh;min-height:330px}.orientation-helper{width:58px;height:58px}.viewer-toolbar{gap:8px}.viewer-toolbar .hud-button{width:40px;height:40px;min-height:40px}
   .tool-tab span{font-size:9px}.selection-callout{width:176px!important;max-width:calc(100% - 92px)}.selection-callout span{font-size:10.5px;line-height:1.3}
 }
+
+/* Embedded production viewer: React owns the global course header and mode nav. */
+.embed-view,.embed-view body{height:100%;min-height:100%;overflow:hidden}
+.embed-view .site-header,.embed-view body>footer,.embed-view .bottom-tabs{display:none!important}
+.embed-view .explore-page{padding-bottom:0!important}
+.embed-view .explore-workspace{height:100dvh;min-height:0}
+.embed-view .model-gallery{display:none!important}
+@media(min-width:801px){
+  .embed-view .explore-workspace .explore-tools{max-height:100dvh}
+}
+@media(max-width:800px){
+  .embed-view .explore-workspace .view-col{padding-bottom:88px}
+  .embed-view .explore-workspace.with-rail .explore-tools{bottom:0}
+  .embed-view .explore-workspace .explore-sheet-toggle{bottom:0}
+  .embed-view .explore-workspace:not(.rail-collapsed) .explore-sheet-toggle{bottom:calc(min(50dvh,620px) - 34px)}
+  .embed-view .explore-workspace.rail-collapsed .compact-motion{bottom:72px}
+}

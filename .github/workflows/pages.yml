@@ -21,6 +21,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: npm
+      - name: Install web application dependencies
+        run: npm ci
+      - name: Type-check the React application
+        run: npm run lint
       - name: Run every JavaScript test
         run: node --test scripts/test_*.mjs
       - name: Verify the published engine contract and asset binding
@@ -30,9 +35,11 @@ jobs:
           python3 scripts/test_m4_engine_foundation.py
       - name: Verify the published operating-cylinder profile and asset binding
         run: python3 scripts/test_cylinder_motion_profile.py
+      - name: Build the GitHub Pages application
+        run: npm run build
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: web
+          path: dist
       - uses: actions/deploy-pages@v4
         id: deployment

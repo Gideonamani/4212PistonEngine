@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-tap-highlight-color: transparent;
+    min-height: 100dvh;
+    margin: 0;
+    background: #061014;
+  }
+
+  button, a, input, select, textarea { touch-action: manipulation; }
+}
+
+/* Custom smooth dark scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(20, 184, 166, 0.2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(20, 184, 166, 0.4);
+}
+
+/* Glow and gradient helpers matching screenshots */
+.glow-teal-sm {
+  box-shadow: 0 0 16px -2px rgba(20, 184, 166, 0.35);
+}
+.glow-teal-md {
+  box-shadow: 0 0 28px -4px rgba(20, 184, 166, 0.45);
+}
+.border-teal-glow {
+  border-color: rgba(20, 184, 166, 0.4);
+}

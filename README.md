@@ -8,6 +8,19 @@ The current scalable implementation is described in [the engine-platform archite
 
 The objective is a reusable teaching platform in which students can inspect components, operate mechanisms, follow systems and test their understanding. Start with one complete cylinder workflow and extend it through linked engine subassemblies.
 
+## Web application
+
+The student-facing site now uses a responsive React/Vite shell for Explore, Learn and Check. Learn and Check load the published `web/lessons-manifest.json` and lesson packs at runtime, so curriculum files remain the source of truth. Explore embeds the existing production Three.js viewer in a chrome-free mode, preserving the Drive-hosted GLBs, component catalogue, isolation, section view and validated mechanism controls.
+
+```powershell
+npm install
+npm run dev
+npm test
+npm run build
+```
+
+The Vite build uses relative URLs (`base: './'`) and copies the static viewer/data files from `web/` into `dist/`, so the result works under a GitHub Pages repository subpath. The Pages workflow validates both the curriculum/model contracts and the React build before publishing `dist/`.
+
 ```mermaid
 flowchart LR
     M[Manuals and measurements] --> E[Evidence and component catalogue]
@@ -39,7 +52,7 @@ A generated mesh is not a second design master. Geometry fixes return to CAD. A 
 
 Deliver one page with orbit/pan/zoom, play/pause, speed and crank-angle controls, touch/click selection, an accessible component list, names/functions, opaque-part isolation, reset and an evidence badge. Include the three videos as a fallback. Music is soft and user-controlled; no automatic audible playback on page load.
 
-Current stack: a static JavaScript website with Three.js and GLB assets. TypeScript remains an optional future implementation choice. Three.js gives direct control over component selection, materials, clipping and animation. A simpler model-viewer page can provide an early orbit/play preview, but the planned inspection and lesson controls justify a custom viewer.
+Current stack: a TypeScript/React/Vite application shell around the production JavaScript/Three.js GLB viewer. Three.js gives direct control over component selection, materials, clipping and animation, while the React shell provides responsive navigation and curriculum experiences.
 
 Acceptance is an actual change-propagation exercise, not just a successful export:
 
