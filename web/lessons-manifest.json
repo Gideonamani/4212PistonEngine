@@ -2,7 +2,8 @@
   "schema": "4212.lessons-manifest/v1",
   "description": "Ordered list of lesson-pack files. Each pack is a browsable track in the Learn/Check gallery (see its own title/description/id); within a track, lessons keep their array order.",
   "packs": [
-    "./m2-cylinder-lessons.json",
-    "./history-lessons.json"
+    "./history-lessons.json",
+    "./fundamentals-lessons.json",
+    "./m2-cylinder-lessons.json"
   ]
 }

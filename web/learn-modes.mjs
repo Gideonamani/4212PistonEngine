@@ -80,7 +80,7 @@ function renderTrackLessonList() {
     <p class="track-desc-lg">${pack.description || ''}</p>
     <ol class="lesson-list">${visible.map((item, index) => `
       <li><button class="lesson-item" type="button" data-lesson="${item.id}">
-        <span class="lesson-num">LESSON ${String(index + 1).padStart(2, '0')}</span>
+        <span class="lesson-num">LESSON ${String(item.sequenceNumber || index + 1).padStart(2, '0')}</span>
         <span class="lesson-title">${item.title}</span>
         <span class="lesson-meta">${item.steps.length} step${item.steps.length === 1 ? '' : 's'}${item.models.length ? ' · has a reference model' : ''}</span>
       </button></li>`).join('')}</ol>`;

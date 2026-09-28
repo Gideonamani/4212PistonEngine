@@ -10,6 +10,7 @@ import {
   Sparkles,
   RotateCcw,
   Box,
+  Construction,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -41,6 +42,8 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
 
   const currentAnswer = userAnswers[currentStepIndex] || '';
   const percentComplete = Math.round(((currentStepIndex + 1) / totalSteps) * 100);
+  const mediaIsPlanned = currentStep.mediaPlan?.status === 'planned' || currentStep.url?.startsWith('PLACEHOLDER:');
+  const shouldShowMedia = currentStep.mediaPlan?.mode !== 'none';
 
   const handleNextStep = () => {
     if (currentStepIndex < totalSteps - 1) {
@@ -134,12 +137,12 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
             STEP {currentStepIndex + 1}
           </div>
 
-          {/* High Detail Historical Illustration */}
-          <div className="w-full h-44 sm:h-52 rounded-xl overflow-hidden shadow-inner border border-white/5 relative">
-            <VisualIllustration type={currentStep.imageType} className="w-full h-full" />
+          {/* Published media, a clearly labelled production placeholder, or legacy illustration. */}
+          {shouldShowMedia && <div className="w-full h-44 sm:h-52 rounded-xl overflow-hidden shadow-inner border border-white/5 relative">
+            {mediaIsPlanned ? <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-[#0b2429] to-[#071317] px-6 text-center"><Construction className="h-7 w-7 text-teal-400" /><span className="mt-2 font-mono text-[10px] font-bold tracking-widest text-teal-300">PLANNED LEARNING MEDIA</span><p className="mt-2 max-w-sm text-xs leading-relaxed text-slate-300">{currentStep.mediaPlan?.assetBrief || currentStep.mediaPlan?.rationale || 'This activity is specified in the lesson pack and is awaiting its published media asset.'}</p></div> : <VisualIllustration type={currentStep.imageType} className="w-full h-full" />}
 
             {/* 3D Model Reference Button (if available for step) */}
-            {currentStep.has3DReference && (
+            {currentStep.has3DReference && !mediaIsPlanned && (
               <button
                 onClick={() => onSwitchTo3DModel?.(currentStep.referenceModel || 'Wright 1903 Aero Cylinder')}
                 className="absolute bottom-2.5 right-2.5 px-3 py-1.5 rounded-lg bg-teal-500 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-lg active:scale-95 transition-all"
@@ -148,7 +151,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
                 <span>Inspect 3D Model</span>
               </button>
             )}
-          </div>
+          </div>}
 
           {/* Heading */}
           <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white mt-1">
@@ -166,6 +169,8 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
               <p className="mt-2 leading-relaxed">{currentStep.note}</p>
             </details>
           )}
+
+          {currentStep.sourceRefs?.length ? <div className="font-mono text-[10px] text-slate-500">SOURCE REFS · {currentStep.sourceRefs.join(' · ')}</div> : null}
 
           {/* GUIDED PROMPT Card (Matching Screenshot 5) */}
           {currentStep.promptQuestion && (

@@ -24,6 +24,8 @@ export const EXPLORE_CONTENT_TREE_SCHEMA = '4212.explore-content-tree/v1';
 export const STEP_TYPES = Object.freeze(['model-pose', 'image', 'text', 'external-link', 'web-embed']);
 export const CHECK_TYPES = Object.freeze(['multiple-choice', 'model-click', 'ordering', 'matching', 'numeric']);
 export const NODE_KINDS = Object.freeze(['group', 'component']);
+export const MEDIA_MODES = Object.freeze(['none', 'source-image', 'native-html', 'existing-3d', 'web-media', 'imagegen']);
+export const MEDIA_STATUSES = Object.freeze(['not-needed', 'available', 'planned', 'needs-review']);
 
 // Proposed in docs/explore-mode-content-architecture.md, grounded in the
 // project's existing evidence vocabulary (README "Meaning of realistic",
@@ -87,6 +89,8 @@ export const MODEL_CAPABILITY_FLAGS = Object.freeze([
  * @property {string[]} [deepDiveLinks] - ids of related deep-dive lessons (lessons with listed: false)
  * @property {string} [url] - image / external-link / web-embed source
  * @property {string} [text] - text step body
+ * @property {string[]} [sourceRefs] - ids from the owning pack's optional `sources` array
+ * @property {{mode:'none'|'source-image'|'native-html'|'existing-3d'|'web-media'|'imagegen', status:'not-needed'|'available'|'planned'|'needs-review', rationale:string, assetBrief?:string}} [mediaPlan]
  */
 
 /**
@@ -96,6 +100,7 @@ export const MODEL_CAPABILITY_FLAGS = Object.freeze([
  * @property {string} objective
  * @property {string[]} models - every model id referenced anywhere in this lesson's steps; [] for a general/theory lesson
  * @property {boolean} [listed] - default true; false marks a deep dive, reachable only via a step's deepDiveLinks
+ * @property {number} [sequenceNumber] - lesson number in the authoritative cross-pack curriculum order
  * @property {number} [scheduledDay] - non-ordering classroom-scheduling hint carried over from the day-based report
  * @property {string} [completionCriteria] - narrative completion evidence, separate from any checks this lesson owns
  * @property {Step[]} steps
@@ -130,6 +135,7 @@ export const MODEL_CAPABILITY_FLAGS = Object.freeze([
  * @property {string} [title] - track name shown in the Learn/Check gallery
  * @property {string} [description] - one-line track summary shown in the gallery
  * @property {string} [draftStatus] - free-text draft/review marker shown as a gallery badge when present (e.g. "UNREVIEWED CONTENT DRAFT — ..."); absent means no special status to flag
+ * @property {{id:string, tier:number, title:string, path?:string, url?:string, applicability?:string}[]} [sources] - pack-local evidence registry; tier follows the instructor's 1-6 source hierarchy
  * @property {Lesson[]} lessons
  * @property {CheckItem[]} checks
  */
@@ -171,8 +177,7 @@ export function validateModelRegistry(registry) {
   }
   return errors;
 }
-
-function validateStep(step, lessonModels, lessonIndex, stepIndex) {
+function validateStep(step, lessonModels, lessonIndex, stepIndex, knownSourceIds) {
   const errors = [];
   const where = `lessons[${lessonIndex}].steps[${stepIndex}]`;
   if (!STEP_TYPES.includes(step.type)) errors.push(`${where}: unknown step type '${step.type}'`);
@@ -185,17 +190,32 @@ function validateStep(step, lessonModels, lessonIndex, stepIndex) {
     }
   }
   if (step.deepDiveLinks && !Array.isArray(step.deepDiveLinks)) errors.push(`${where}: deepDiveLinks must be an array of lesson ids`);
+  if (step.sourceRefs !== undefined) {
+    if (!Array.isArray(step.sourceRefs)) errors.push(`${where}: sourceRefs must be an array`);
+    else for (const sourceId of step.sourceRefs) {
+      if (!knownSourceIds.has(sourceId)) errors.push(`${where}: sourceRefs contains unknown source id '${sourceId}'`);
+    }
+  }
+  if (step.mediaPlan !== undefined) {
+    if (!step.mediaPlan || typeof step.mediaPlan !== 'object') errors.push(`${where}: mediaPlan must be an object`);
+    else {
+      if (!MEDIA_MODES.includes(step.mediaPlan.mode)) errors.push(`${where}: invalid mediaPlan.mode '${step.mediaPlan.mode}'`);
+      if (!MEDIA_STATUSES.includes(step.mediaPlan.status)) errors.push(`${where}: invalid mediaPlan.status '${step.mediaPlan.status}'`);
+      if (!step.mediaPlan.rationale) errors.push(`${where}: mediaPlan needs a rationale`);
+    }
+  }
   return errors;
 }
 
-function validateLesson(lesson, lessonIndex) {
+function validateLesson(lesson, lessonIndex, knownSourceIds) {
   const errors = [];
   const where = `lessons[${lessonIndex}]`;
   if (!lesson.id) errors.push(`${where}: missing id`);
+  if (lesson.sequenceNumber !== undefined && !(Number.isInteger(lesson.sequenceNumber) && lesson.sequenceNumber > 0)) errors.push(`${where}: sequenceNumber must be a positive integer`);
   if (!Array.isArray(lesson.models)) errors.push(`${where}: models must be an array (use [] for a general/theory lesson)`);
   if (!Array.isArray(lesson.steps) || lesson.steps.length === 0) errors.push(`${where}: steps must be a non-empty array`);
   for (const [stepIndex, step] of (lesson.steps || []).entries()) {
-    errors.push(...validateStep(step, lesson.models || [], lessonIndex, stepIndex));
+    errors.push(...validateStep(step, lesson.models || [], lessonIndex, stepIndex, knownSourceIds));
   }
   return errors;
 }
@@ -240,9 +260,22 @@ export function validateLessonPack(pack) {
   if (pack.id !== undefined && typeof pack.id !== 'string') errors.push('id must be a string');
   if (pack.title !== undefined && typeof pack.title !== 'string') errors.push('title must be a string');
   if (pack.description !== undefined && typeof pack.description !== 'string') errors.push('description must be a string');
+  const knownSourceIds = new Set();
+  if (pack.sources !== undefined) {
+    if (!Array.isArray(pack.sources)) errors.push('sources must be an array');
+    else for (const [index, source] of pack.sources.entries()) {
+      const where = `sources[${index}]`;
+      if (!source.id) errors.push(`${where}: missing id`);
+      else if (knownSourceIds.has(source.id)) errors.push(`${where}: duplicate id '${source.id}'`);
+      else knownSourceIds.add(source.id);
+      if (!(Number.isInteger(source.tier) && source.tier >= 1 && source.tier <= 6)) errors.push(`${where}: tier must be an integer from 1 to 6`);
+      if (!source.title) errors.push(`${where}: missing title`);
+      if (!source.path && !source.url) errors.push(`${where}: provide path or url`);
+    }
+  }
   if (!Array.isArray(pack.lessons) || pack.lessons.length === 0) errors.push('lessons must be a non-empty array');
   const lessonIds = (pack.lessons || []).map(lesson => lesson.id);
-  (pack.lessons || []).forEach((lesson, index) => errors.push(...validateLesson(lesson, index)));
+  (pack.lessons || []).forEach((lesson, index) => errors.push(...validateLesson(lesson, index, knownSourceIds)));
   (pack.checks || []).forEach((check, index) => errors.push(...validateCheckItem(check, lessonIds, index)));
   return errors;
 }

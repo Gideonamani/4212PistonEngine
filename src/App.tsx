@@ -18,6 +18,7 @@ export default function App() {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState<boolean>(false);
   const [activeModelName, setActiveModelName] = useState<string>('Detailed operating cylinder');
+  const [isExploreViewerOpen, setIsExploreViewerOpen] = useState<boolean>(false);
   const [isFullscreen3D, setIsFullscreen3D] = useState<boolean>(false);
   const [tracks, setTracks] = useState<CourseTrack[]>([]);
   const [quizModules, setQuizModules] = useState<QuizModule[]>([]);
@@ -74,7 +75,7 @@ export default function App() {
   const getHeaderSubtitle = () => {
     switch (activeView) {
       case 'explore':
-        return `GTSIO-520-H · ${activeModelName}`;
+        return isExploreViewerOpen ? `GTSIO-520-H · ${activeModelName}` : 'GTSIO-520-H · MODEL LIBRARY';
       case 'learn':
         return 'GTSIO-520-H · GUIDED LESSONS';
       case 'check':
@@ -86,6 +87,7 @@ export default function App() {
 
   const handleViewChange = (view: ViewMode) => {
     setIsFullscreen3D(false);
+    setIsExploreViewerOpen(false);
     setActiveView(view);
     history.replaceState(null, '', `${location.pathname}${location.search}#/${view}`);
   };
@@ -112,15 +114,26 @@ export default function App() {
         onToggleTheme={() => setIsDarkMode(!isDarkMode)}
         subtitle={getHeaderSubtitle()}
         onOpenInfoModal={() => setIsInfoModalOpen(true)}
-        activeModelName={activeModelName}
-        onSelectModel={setActiveModelName}
+        activeModelName={activeView === 'explore' && !isExploreViewerOpen ? 'Choose a 3D study' : activeModelName}
+        onSelectModel={(model) => {
+          setActiveModelName(model);
+          setIsExploreViewerOpen(true);
+        }}
         availableModels={availableModels}
         isFullscreen3D={isFullscreen3D}
       >
         {activeView === 'explore' && (
           <ExploreView
             activeModelName={activeModelName}
-            onSelectModel={setActiveModelName}
+            isViewerOpen={isExploreViewerOpen}
+            onSelectModel={(model) => {
+              setActiveModelName(model);
+              setIsExploreViewerOpen(true);
+            }}
+            onBackToMenu={() => {
+              setIsFullscreen3D(false);
+              setIsExploreViewerOpen(false);
+            }}
             isFullscreen3D={isFullscreen3D}
             onToggleFullscreen={() => setIsFullscreen3D((prev) => !prev)}
             onExitFullscreen={() => setIsFullscreen3D(false)}
@@ -131,7 +144,10 @@ export default function App() {
             tracks={tracks}
             onSwitchToExploreModel={(modelName) => {
               if (availableModels.includes(modelName)) setActiveModelName(modelName);
-              handleViewChange('explore');
+              setIsFullscreen3D(false);
+              setIsExploreViewerOpen(true);
+              setActiveView('explore');
+              history.replaceState(null, '', `${location.pathname}${location.search}#/explore`);
             }}
           />
         ) : curriculumState)}

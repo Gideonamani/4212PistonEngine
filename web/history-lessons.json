@@ -8,6 +8,7 @@
   "lessons": [
     {
       "id": "history-mechanical-engines",
+      "sequenceNumber": 1,
       "title": "History of Mechanical Engines",
       "objective": "Trace the broad arc from manual and animal labour, through mechanical work and the steam engine, to the internal combustion engine and today's electronically managed engines - so the reason aircraft needed a purpose-built engine (lesson 2) has a foundation.",
       "models": [],
@@ -81,6 +82,7 @@
     },
     {
       "id": "history-aircraft-engines",
+      "sequenceNumber": 2,
       "title": "History of Aircraft Engines",
       "objective": "Follow how the internal combustion engine from lesson 1 was adapted and refined specifically to power flight, from the Wright brothers' hand-built 1903 engine through the wartime power race, to today's FADEC-managed general-aviation engines.",
       "models": ["wright-1903"],
@@ -172,6 +174,7 @@
     },
     {
       "id": "terminologies",
+      "sequenceNumber": 3,
       "title": "Terminologies",
       "objective": "Build the core vocabulary for describing a reciprocating aircraft engine - engine, powerplant, reciprocating engine - and connect it to the basic oscillating-piston-to-rotating-crankshaft operating principle every later lesson assumes you already know.",
       "models": [],

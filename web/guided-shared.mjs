@@ -15,7 +15,6 @@ export async function loadPacks() {
     return response.json();
   })));
 }
-
 export async function loadRegistry() {
   try { return await fetch('./models.json?v=20260923-drive-models-1').then(response => response.json()); }
   catch { return { models: [] }; }
@@ -86,7 +85,12 @@ export function renderGenericStepBody(current) {
       (current.note ? `<p class="step-note">${current.note}</p>` : '');
   }
   if (current.type === 'web-embed' || current.type === 'external-link') {
-    return `<p id="guided-prompt">${current.prompt}</p>${current.url ? `<p class="step-note"><a href="${current.url}" target="_blank" rel="noopener">${current.url} →</a></p>` : ''}${current.note ? `<p class="step-note">${current.note}</p>` : ''}`;
+    const isPlaceholder = (current.url || '').startsWith('PLACEHOLDER:');
+    return `<p id="guided-prompt">${current.prompt}</p>` +
+      (isPlaceholder
+        ? `<div class="placeholder-box"><span class="placeholder-label">${current.type === 'web-embed' ? 'Interactive not yet built' : 'Link not yet sourced'}</span><span class="placeholder-caption">${current.url.replace('PLACEHOLDER:', '')}</span></div>`
+        : (current.url ? `<p class="step-note"><a href="${current.url}" target="_blank" rel="noopener">${current.url} →</a></p>` : '')) +
+      (current.note ? `<p class="step-note">${current.note}</p>` : '');
   }
   return `<p id="guided-prompt">${current.prompt}</p>`;
 }

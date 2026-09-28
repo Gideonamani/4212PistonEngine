@@ -1,0 +1,516 @@
+{
+  "schema": "4212.lesson-pack/v3",
+  "privacy": "Lesson progress may be held locally on the learner's device and is never transmitted. Check-yourself answers remain session-only.",
+  "draftStatus": "UNREVIEWED CONTENT AND MEDIA PLAN DRAFT - 2026-09-24. Source-backed text is ready for instructor review; planned images and native HTML interactives are placeholders.",
+  "id": "fundamentals-and-classification",
+  "title": "Fundamentals & Classification",
+  "description": "Lessons 4-8: operating cycles, cylinder arrangements, ignition, cooling and aspiration, with the GTSIO-520-H used as the continuing aircraft-engine example.",
+  "sources": [
+    {
+      "id": "faa-powerplant-2023",
+      "tier": 1,
+      "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
+      "path": "Notes/amt_powerplant_handbook 2023.pdf",
+      "applicability": "Primary source for general reciprocating-engine cycles, configurations, cooling, ignition timing principles and supercharging/turbocharging. PDF page locators are used in step notes."
+    },
+    {
+      "id": "easa-module16",
+      "tier": 2,
+      "title": "EASA Module 16 - Piston Engines, Aircraft Technical Book Company",
+      "path": "Notes/EASA Module 16 - Piston Engines by Aircraft Technical Book Co LLC.pdf",
+      "applicability": "Secondary source used to cross-check the module-level classification structure and terminology."
+    },
+    {
+      "id": "gtsio520-overhaul",
+      "tier": 3,
+      "title": "Continental GTSIO-520 Series Overhaul Manual X30045A",
+      "path": "Notes/gtsio520_series.pdf",
+      "applicability": "Configuration-specific source for the course reference engine. Variant applicability must be checked before using a limit, dimension or maintenance instruction."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "thermodynamic-cycles",
+      "sequenceNumber": 4,
+      "title": "Thermodynamic Cycles",
+      "objective": "Distinguish the four-stroke, two-stroke, rotary and diesel operating cycles by how they admit, compress, ignite, expand and discharge the working charge, while keeping an ideal teaching cycle separate from manufacturer-specific timing and measured pressure data.",
+      "models": ["cylinder"],
+      "listed": true,
+      "scheduledDay": 2,
+      "completionCriteria": "Describe the four events of a four-stroke cycle in order, explain why it takes 720 crankshaft degrees, and give one accurate distinction between four-stroke, two-stroke, rotary and diesel operation without treating an illustrative diagram as measured engine data.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "What cycle means",
+          "prompt": "An operating cycle describes how an engine repeats the events needed to turn fuel energy into shaft rotation. Before looking at the four named cycles, predict which features belong to the cycle itself and which belong to another classification, such as cylinder layout or cooling method.",
+          "note": "Documented classification frame from FAA-H-8083-32B (2023), PDF pp. 46-48, cross-checked against EASA Module 16, PDF pp. 20-23.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A short prediction establishes the classification boundary more clearly than a visual."}
+        },
+        {
+          "type": "web-embed",
+          "title": "Four-stroke sequence",
+          "prompt": "Use the crank-angle scrubber to move through intake, compression, power and exhaust. Watch one complete cycle require two crankshaft revolutions while the piston completes four strokes.",
+          "url": "PLACEHOLDER:web-embed/cycle-phase-scrubber",
+          "note": "Documented sequence from FAA-H-8083-32B (2023), PDF pp. 46-48. The planned animation will show phase, piston direction and ideal valve state only; it will not display invented pressure, temperature or flow values.",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "native-html", "status": "planned", "rationale": "Scrubbing a 720-degree state makes the repeated sequence and two-revolution relationship observable.", "assetBrief": "One angle slider from 0-720 degrees, phase label, piston direction, ideal intake/exhaust valve indicators and reset; no quantitative thermodynamic outputs."}
+        },
+        {
+          "type": "model-pose",
+          "title": "Intake pose",
+          "modelId": "cylinder",
+          "prompt": "At 90 degrees, predict the piston's direction and which ideal-cycle valve should be open. Reveal the GTSIO-520-H teaching-cylinder pose, then separate what the model proves geometrically from what its coloured gas cue only illustrates.",
+          "action": {"type": "cycle-angle", "value": 90},
+          "note": "Documented four-stroke sequence from FAA-H-8083-32B (2023), PDF pp. 46-48. The mechanism pose is profile-checked; valve and gas cues remain an ideal teaching profile, not certified GTSIO-520-H timing or CFD.",
+          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
+          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "The existing operating-cylinder model directly shows the crank, rod and piston relationship at a chosen angle."}
+        },
+        {
+          "type": "model-pose",
+          "title": "Compression pose",
+          "modelId": "cylinder",
+          "prompt": "At 450 degrees, compare the piston direction and cylinder volume with the 90-degree intake pose. Which mechanical motion repeats, and which cycle event has changed?",
+          "action": {"type": "cycle-angle", "value": 450},
+          "note": "Documented four-stroke sequence from FAA-H-8083-32B (2023), PDF pp. 46-48. The shared 720-degree profile distinguishes the second crankshaft revolution from the first.",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "A paired pose comparison shows why piston position alone does not identify the stroke."}
+        },
+        {
+          "type": "web-embed",
+          "title": "Two-stroke overlap",
+          "prompt": "Step through one crankshaft revolution of a two-stroke cycle. Observe how intake and exhaust functions share part of the same piston movement, rather than occupying four separate strokes.",
+          "url": "PLACEHOLDER:web-embed/two-stroke-port-timing",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48. The FAA text states that a two-stroke cycle completes in one crankshaft revolution and combines intake and exhaust functions during the same stroke.",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "native-html", "status": "planned", "rationale": "Port opening and closing are time relationships; a learner-controlled phase animation is clearer than a single still.", "assetBrief": "Qualitative piston-ported section with crank-angle scrubber, intake/exhaust port state and one-revolution counter."}
+        },
+        {
+          "type": "image",
+          "title": "Rotary chambers",
+          "prompt": "Trace how the three-sided rotor creates changing chambers for intake, compression, combustion/expansion and exhaust while producing rotary output.",
+          "url": "PLACEHOLDER:drive-asset/easa-figure-1-4-1-5-rotary-cycle",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48, and EASA Module 16, PDF pp. 22-23. Use the source figure first. A short licensed or self-authored motion clip is optional only if the static chamber sequence proves insufficient in review.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "source-image", "status": "planned", "rationale": "The EASA source already supplies the required rotor, housing and phase geometry; a generated technical image would add avoidable fidelity risk.", "assetBrief": "Extract and clean EASA Figures 1-4 and 1-5 with original labels preserved."}
+        },
+        {
+          "type": "text",
+          "title": "Diesel ignition",
+          "prompt": "In a diesel-cycle engine, the cylinder first compresses air. Fuel enters near maximum pressure, and the resulting high temperature initiates combustion without an electric spark. Notice that 'diesel' describes the ignition/heat-addition strategy; diesel engines may still use two-stroke or four-stroke mechanical cycles.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48, and EASA Module 16, PDF p. 23. Both sources also note aircraft examples that operate on Jet A/kerosene. No unsourced claim about a universal efficiency or weight advantage is made here.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The ignition distinction is concise; the comparative ignition visual belongs in lesson 6."}
+        },
+        {
+          "type": "text",
+          "title": "Choose the evidence",
+          "prompt": "A diagram can establish event order and mechanical relationships. It cannot, by appearance alone, establish a real engine's valve timing, cylinder pressure, gas temperature or efficiency. Those claims need an applicable manual or a validated analytical model.",
+          "note": "Documented evidence boundary carried forward from the platform architecture. Manufacturer-specific timing remains controlled by the applicable engine data; FAA-H-8083-32B (2023), PDF p. 48, explicitly directs ignition timing to the engine manufacturer's recommendation.",
+          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "This is an evidence-literacy synthesis step."}
+        }
+      ]
+    },
+    {
+      "id": "cylinder-arrangements",
+      "sequenceNumber": 5,
+      "title": "Cylinder Arrangements & Configurations",
+      "objective": "Identify inline, V-type, radial and horizontally opposed arrangements from their geometry and explain how arrangement influences frontal area, cooling access, crankshaft/rod layout and installation without turning typical traits into universal rules.",
+      "models": ["gtsio520-h-v5-teaching-engine"],
+      "listed": true,
+      "scheduledDay": 2,
+      "completionCriteria": "Correctly identify the four conventional arrangements from a plan/front view and explain at least one source-backed installation consequence for each, then identify the GTSIO-520-H as a six-cylinder horizontally opposed engine.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "One new axis",
+          "prompt": "Operating cycle and cylinder arrangement answer different questions. A four-stroke engine may be inline, V-type, radial or opposed. Predict which arrangement would give the narrowest frontal outline and which would place cylinders around a central crankcase.",
+          "note": "Documented classification from FAA-H-8083-32B (2023), PDF pp. 24-25, cross-checked against EASA Module 16, PDF pp. 23-25.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The prompt activates spatial predictions before the visual comparison."}
+        },
+        {
+          "type": "image",
+          "title": "Inline bank",
+          "prompt": "Identify the single straight bank and the crankshaft above or below it. Compare upright and inverted installations, and notice the small frontal area of the arrangement.",
+          "url": "PLACEHOLDER:drive-asset/faa-inline-arrangement-clean",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 24. Use an FAA source figure or an accuracy-checked redraw; retain the upright/inverted distinction.",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "source-image", "status": "planned", "rationale": "A front/side-view pair communicates bank position and frontal area without unnecessary animation.", "assetBrief": "Clean two-view inline arrangement, one upright and one inverted, with crankshaft axis marked."}
+        },
+        {
+          "type": "image",
+          "title": "V-type banks",
+          "prompt": "Find the two inline banks sharing one crankshaft. Use the bank angle and common crankshaft to distinguish a V engine from two separate inline engines.",
+          "url": "PLACEHOLDER:drive-asset/faa-v-type-arrangement-clean",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 25. The handbook describes two inline banks, generally set 60 degrees apart; the lesson should avoid implying that every V engine uses the same angle or cylinder count.",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "source-image", "status": "planned", "rationale": "The defining relationship is geometric and reads best in a labelled front view."}
+        },
+        {
+          "type": "image",
+          "title": "Radial rows",
+          "prompt": "Trace one row of cylinders around the central crankcase. Then compare a single row with multiple staggered rows and identify why the front view, not a side silhouette alone, is needed to recognise the arrangement.",
+          "url": "PLACEHOLDER:drive-asset/faa-radial-single-double-row",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 25-27. Use FAA Figures 1-2 and 1-3 as the first-choice visual source.",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "source-image", "status": "planned", "rationale": "The handbook figures already show the single-row and double-row geometry accurately.", "assetBrief": "Extract FAA single-row and double-row radial figures with captions preserved."}
+        },
+        {
+          "type": "model-pose",
+          "title": "Opposed engine",
+          "modelId": "gtsio520-h-v5-teaching-engine",
+          "prompt": "Orbit the six-cylinder GTSIO-520-H and identify the two banks directly opposite one another with the crankshaft between them. Predict which view makes the opposed layout most obvious before revealing the model.",
+          "action": {"type": "angle", "value": 0},
+          "note": "Documented general arrangement from FAA-H-8083-32B (2023), PDF pp. 24-25. The GTSIO-520 overhaul manual identifies the basic engine as six-cylinder, horizontally opposed (PDF p. 13). The current whole-engine mesh is a teaching reconstruction and must retain its modelling-status disclosure.",
+          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
+          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "Free orbit makes the two opposed banks and central crankshaft spatially obvious."}
+        },
+        {
+          "type": "web-embed",
+          "title": "Arrangement compare",
+          "prompt": "Switch among inline, V-type, radial and opposed outlines. Rotate the same notional engine axis and compare bank count, cylinder direction and frontal outline without changing the operating cycle.",
+          "url": "PLACEHOLDER:web-embed/arrangement-comparator",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 24-25, and EASA Module 16, PDF pp. 23-25. The comparator will use schematic silhouettes, not claim exact dimensions for a real engine.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "native-html", "status": "planned", "rationale": "A single controlled comparator prevents scale, view and cylinder-count changes from obscuring the geometry difference.", "assetBrief": "Four selectable schematic layouts sharing the same cylinder count where practical; front and side view toggle; no performance ranking."}
+        },
+        {
+          "type": "text",
+          "title": "Configuration, not verdict",
+          "prompt": "Arrangement affects packaging, cooling paths, balance and maintenance access, but it does not decide the whole engine. Cooling, ignition, aspiration, materials and installation still matter. Treat each stated advantage or limitation as typical and source-bounded, not universal.",
+          "note": "Documented synthesis of the FAA and EASA configuration sections. This boundary prevents the lesson from turning a layout label into an unsupported claim about every engine of that type.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The closing distinction is conceptual."}
+        }
+      ]
+    },
+    {
+      "id": "ignition-methods",
+      "sequenceNumber": 6,
+      "title": "Ignition Methods",
+      "objective": "Compare spark ignition and compression ignition, relate ignition timing to piston position, and explain the GTSIO-520's dual-plug magneto arrangement at an introductory level without substituting a general lesson for applicable maintenance data.",
+      "models": ["cylinder"],
+      "listed": true,
+      "scheduledDay": 2,
+      "completionCriteria": "Explain the trigger for combustion in spark-ignition and compression-ignition engines, state why spark occurs before top dead centre in a four-stroke spark-ignition engine, and describe the GTSIO-520's two-plug-per-cylinder arrangement without attempting an unsupervised timing procedure.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "What starts burning",
+          "prompt": "Both engines compress a charge, but they do not start combustion in the same way. Predict what supplies the initiating energy in a spark-ignition engine and in a compression-ignition engine.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 47-48, supported by EASA Module 16, PDF p. 23.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A prediction cleanly frames the one decisive comparison."}
+        },
+        {
+          "type": "model-pose",
+          "title": "Spark before TDC",
+          "modelId": "cylinder",
+          "prompt": "Move to the end of compression and inspect the piston near top dead centre. The general four-stroke source explains that the spark occurs before TDC so combustion can develop as the piston crosses the top. What would be wrong with treating this ideal pose as the exact timing value for every engine?",
+          "action": {"type": "cycle-angle", "value": 355},
+          "note": "Documented general principle from FAA-H-8083-32B (2023), PDF p. 48. The handbook gives a broad 20-35 degrees BTDC range across various engines and explicitly requires the manufacturer's setting. The 355-degree pose is illustrative, not GTSIO-520 timing data.",
+          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
+          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "The cylinder model shows piston position relative to TDC while the note enforces the timing evidence boundary."}
+        },
+        {
+          "type": "image",
+          "title": "Dual ignition",
+          "prompt": "Follow the GTSIO-520 ignition paths from the left and right magnetos to the upper and lower spark plugs. Each cylinder has two plugs, and the two magnetos distribute high voltage to complementary plug positions.",
+          "url": "PLACEHOLDER:drive-asset/gtsio520-ignition-wiring-figure-a4-43",
+          "note": "Documented from the GTSIO-520 overhaul manual, PDF pp. 15, 18-19 and 50. Use the manual wiring diagram as the visual; do not redraw or simplify cable destinations without checking every label and connection.",
+          "sourceRefs": ["gtsio520-overhaul"],
+          "mediaPlan": {"mode": "source-image", "status": "planned", "rationale": "The manufacturer diagram is the safest way to preserve actual plug and magneto routing.", "assetBrief": "Digitise Figure A4-43 with every label, connection and firing-order notation checked against the scan."}
+        },
+        {
+          "type": "text",
+          "title": "Compression ignition",
+          "prompt": "A diesel-cycle engine draws in air and compresses it until pressure and temperature are high. Fuel is then sprayed into the cylinder near maximum pressure, and the hot compressed air initiates combustion. No spark plug provides the trigger.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48, and EASA Module 16, PDF p. 23.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The injection and auto-ignition sequence is stated plainly before the comparison animation."}
+        },
+        {
+          "type": "web-embed",
+          "title": "Ignition compare",
+          "prompt": "Toggle between spark ignition and compression ignition. Scrub through the end of compression and observe what enters the cylinder, when fuel is present, and what initiates combustion in each case.",
+          "url": "PLACEHOLDER:web-embed/ignition-method-comparator",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 47-48, and EASA Module 16, PDF p. 23. The animation will remain qualitative and will not assign unsourced compression ratios, injection pressures or temperatures.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "native-html", "status": "planned", "rationale": "A controlled toggle keeps piston position constant while changing only the ignition mechanism.", "assetBrief": "Shared cylinder section, phase scrubber near compression TDC, spark/injector indicators and short labels for charge state and ignition trigger."}
+        },
+        {
+          "type": "text",
+          "title": "Two classifications",
+          "prompt": "Ignition method and stroke cycle are separate classifications. A diesel engine can use a two-stroke or four-stroke cycle, and a four-stroke engine can use spark ignition or compression ignition. Name both classifications when describing an engine.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48, which notes both two-stroke and four-stroke diesel cycles.",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A verbal classification check prevents a common category error."}
+        },
+        {
+          "type": "text",
+          "title": "Manual controls timing",
+          "prompt": "The correct timing value and adjustment procedure belong to the applicable engine maintenance data. A general animation can explain why timing matters, but it cannot authorize a setting or maintenance action.",
+          "note": "Documented boundary from FAA-H-8083-32B (2023), PDF p. 48, and the configuration-specific GTSIO-520 overhaul manual.",
+          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "This safety and applicability boundary should remain prominent text."}
+        }
+      ]
+    },
+    {
+      "id": "cooling-methods",
+      "sequenceNumber": 7,
+      "title": "Cooling Methods",
+      "objective": "Trace heat from the cylinder to the surrounding air in air-cooled, liquid-cooled and combined systems, identify the roles of fins, baffles, coolant, pump and radiator, and recognise why cooling condition and airflow path matter.",
+      "models": ["gtsio520-h-v5-teaching-engine"],
+      "listed": true,
+      "scheduledDay": 2,
+      "completionCriteria": "Draw or explain the heat path for an air-cooled and liquid-cooled engine, identify two airflow-control features on an air-cooled installation, and state that the GTSIO-520 course engine is air cooled.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "Where heat goes",
+          "prompt": "Combustion releases more heat than the engine can convert to useful work. Predict the path that unwanted heat must take from the cylinder metal to the atmosphere in an air-cooled engine and in a liquid-cooled engine.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 24 and 278-282, cross-checked against EASA Module 16, PDF pp. 23 and 201.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The heat-path prediction prepares learners to interpret the system diagrams."}
+        },
+        {
+          "type": "image",
+          "title": "Air-cooled path",
+          "prompt": "Trace heat from the cylinder wall and head into the fins, then into air directed through the cowling and baffles. Identify how added fin area supports convection.",
+          "url": "PLACEHOLDER:drive-asset/faa-cylinder-fins-and-baffles",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 24 and 278-282. Use the FAA cylinder-head/fin and cowling/baffle figures as the primary image source.",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "source-image", "status": "planned", "rationale": "A labelled source schematic clearly establishes the solid-to-air heat path.", "assetBrief": "Combine or pair the FAA cooling-fin figure with the applicable cowling/baffle airflow figure; preserve labels and direction arrows."}
+        },
+        {
+          "type": "model-pose",
+          "title": "GTSIO cooling fins",
+          "modelId": "gtsio520-h-v5-teaching-engine",
+          "prompt": "Inspect the GTSIO-520-H cylinder banks and locate the finned surfaces exposed to the installation airflow. Use the model to understand location and access, not to infer an exact heat-transfer rate.",
+          "action": {"type": "angle", "value": 0},
+          "note": "The GTSIO-520 overhaul manual identifies the basic engine as air cooled (PDF p. 13). The model is suitable for spatial inspection but is not a thermal simulation.",
+          "sourceRefs": ["gtsio520-overhaul"],
+          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "The whole-engine model shows where the finned cylinders sit relative to the crankcase and installation airflow."}
+        },
+        {
+          "type": "text",
+          "title": "Liquid-cooled path",
+          "prompt": "In a liquid-cooled engine, heat moves from the cylinder into coolant, then through tubing to a radiator in the airstream. A pump circulates the coolant. This adds coolant, radiator, pump and tubing mass, but it can support high power and closer control of component temperature.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 24, and EASA Module 16, PDF p. 23. The sources identify added system weight as the principal disadvantage and note that some light-aircraft engines combine air and liquid cooling.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The system path is short enough to establish in text before a comparison graphic."}
+        },
+        {
+          "type": "image",
+          "title": "Combined cooling",
+          "prompt": "Study an example in which liquid cools the cylinder heads while air cools the cylinder barrels. Follow each heat path separately rather than labelling the whole engine as only air cooled or only liquid cooled.",
+          "url": "PLACEHOLDER:drive-asset/easa-rotax-combined-cooling",
+          "note": "Documented from EASA Module 16, PDF pp. 201 and 338-339. Use the source Rotax cooling schematic as an example, not as a claim about the GTSIO-520.",
+          "sourceRefs": ["easa-module16"],
+          "mediaPlan": {"mode": "source-image", "status": "planned", "rationale": "A real combined-system schematic prevents the false assumption that cooling methods are always all-or-nothing.", "assetBrief": "Extract the relevant Rotax combined liquid-head/air-barrel cooling schematic with its legend."}
+        },
+        {
+          "type": "web-embed",
+          "title": "Airflow condition",
+          "prompt": "Change the qualitative inputs: low or high cooling airflow, fins clear or obstructed, baffles sealed or leaking. Observe how each condition changes the intended airflow path and relative cooling margin.",
+          "url": "PLACEHOLDER:web-embed/air-cooling-path-explorer",
+          "note": "Documented relationships from FAA-H-8083-32B (2023), PDF pp. 278-282. The planned output will use relative labels only; it will not calculate cylinder-head temperature or declare an engine airworthy.",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "native-html", "status": "planned", "rationale": "Learner-selected airflow and obstruction states make the role of fins and baffles causal rather than merely labelled.", "assetBrief": "Qualitative airflow arrows with controls for airflow level, fin obstruction and baffle seal condition; show 'intended path weakened/maintained', no temperature numbers."}
+        },
+        {
+          "type": "text",
+          "title": "Inspection connection",
+          "prompt": "Cooling fins and baffles work as a system. Damaged or obstructed fins reduce heat-transfer area; missing or poor-fitting baffles let cooling air bypass the surfaces that need it. Actual acceptance limits and corrective action come from the applicable maintenance data.",
+          "note": "Documented general inspection relationship from FAA-H-8083-32B (2023), PDF p. 282. This is a recognition lesson, not an approval-to-service procedure.",
+          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The final step connects theory to maintenance judgment while preserving the manual boundary."}
+        }
+      ]
+    },
+    {
+      "id": "aspiration-methods",
+      "sequenceNumber": 8,
+      "title": "Aspiration Methods",
+      "objective": "Compare naturally aspirated, mechanically supercharged and exhaust-driven turbocharged induction, explain why altitude reduces the charge available to a naturally aspirated engine, and trace the GTSIO-520 turbocharger/intercooler induction path.",
+      "models": ["gtsio520-h-v5-teaching-engine"],
+      "listed": true,
+      "scheduledDay": 2,
+      "completionCriteria": "Trace air through each aspiration method, identify what drives the compressor where present, explain critical altitude in qualitative terms, and use the GTSIO-520 manual diagram to identify its turbocharger and induction path.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "Filling the cylinder",
+          "prompt": "A cylinder can only burn the oxygen charge that reaches it. As altitude increases and ambient pressure falls, predict what happens to the mass of air drawn into a naturally aspirated cylinder of fixed volume.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 133-142 and glossary p. 476, supported by EASA Module 16, PDF pp. 205-216.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The prediction establishes the altitude problem before introducing compressors."}
+        },
+        {
+          "type": "text",
+          "title": "Natural aspiration",
+          "prompt": "A naturally aspirated engine has no supercharger or turbocharger. Ambient pressure supplies the pressure difference that fills the cylinders, so available charge mass and manifold pressure decrease as the aircraft climbs, all else equal.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF glossary p. 476 and induction-system discussion pp. 133-134. This statement is qualitative and does not assign a universal power-loss rate.",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The baseline system has no additional mechanism to animate."}
+        },
+        {
+          "type": "image",
+          "title": "Driven supercharger",
+          "prompt": "Trace the mechanically driven supercharger from crankshaft drive to compressor impeller and intake manifold. The compressor increases charge density, but the engine must supply the drive power.",
+          "url": "PLACEHOLDER:drive-asset/faa-internally-driven-supercharger-figure-3-10",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 133-135. Use FAA Figure 3-10 as the primary visual source.",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "source-image", "status": "planned", "rationale": "The source schematic already shows the drive and induction path accurately.", "assetBrief": "Extract FAA Figure 3-10 and clean it for screen display without changing labels or flow direction."}
+        },
+        {
+          "type": "web-embed",
+          "title": "Turbo energy path",
+          "prompt": "Open and close the wastegate control, then trace exhaust energy through the turbine and compressor. Observe how compressor discharge, upper-deck pressure and manifold pressure are related without treating them as identical at every operating condition.",
+          "url": "PLACEHOLDER:web-embed/turbocharger-energy-path",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 135-142. The animation will explain control relationships qualitatively; it will not calculate boost for a real engine.",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "native-html", "status": "planned", "rationale": "A turbocharger links exhaust flow, turbine speed, compressor delivery and wastegate position; learner-controlled animation reveals that causal chain.", "assetBrief": "Wastegate open/closed control, animated exhaust/compressor paths and labelled pressure regions; no numeric boost values."}
+        },
+        {
+          "type": "text",
+          "title": "Normalize or boost",
+          "prompt": "A normalizing turbocharger compensates for pressure loss with altitude up to its critical altitude. A ground-boosted system can raise manifold pressure above standard sea-level ambient pressure. Both descriptions depend on the installed system and its limits.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 137-140. The lesson keeps these terms distinct and does not assume every turbocharged engine is ground boosted.",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A concise contrast prevents the common assumption that all turbocharging has the same purpose."}
+        },
+        {
+          "type": "image",
+          "title": "GTSIO induction",
+          "prompt": "Use the GTSIO-520 induction diagram to locate the turbocharger, air throttle, ducting and intercooler path. Trace air through the actual reference-engine arrangement before returning to the generic comparison.",
+          "url": "PLACEHOLDER:drive-asset/gtsio520-induction-system-figure-c2-2",
+          "note": "Documented from the GTSIO-520 overhaul manual, PDF pp. 13, 15, 18 and 144/161 as applicable to the variant section. Confirm the exact H-variant figure and effectivity before publication.",
+          "sourceRefs": ["gtsio520-overhaul"],
+          "mediaPlan": {"mode": "source-image", "status": "needs-review", "rationale": "The manufacturer diagram is required for configuration-specific routing, but the exact H-variant applicability must be verified before use.", "assetBrief": "Select the applicable GTSIO-520-H induction-system figure, preserve callouts, and add no route that the manual does not show."}
+        },
+        {
+          "type": "web-embed",
+          "title": "Altitude compare",
+          "prompt": "Move the altitude slider and switch among naturally aspirated, normalizing turbocharged and ground-boosted modes. Compare ambient pressure with a schematic manifold-pressure capability and identify the point beyond which the selected system can no longer maintain its target.",
+          "url": "PLACEHOLDER:web-embed/aspiration-altitude-comparator",
+          "note": "Documented relationships from FAA-H-8083-32B (2023), PDF pp. 133-142, and EASA Module 16, PDF pp. 205-216. The graph will use normalized, explicitly schematic values unless a separately validated engine model is approved.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "native-html", "status": "planned", "rationale": "Altitude and critical-altitude relationships are easiest to understand by changing one input and watching three system responses on the same axes.", "assetBrief": "Altitude slider, three selectable system curves, ambient-pressure reference, schematic critical-altitude marker and persistent 'not engine performance data' label."}
+        },
+        {
+          "type": "text",
+          "title": "Limits and control",
+          "prompt": "Compressing the intake charge raises pressure and temperature and introduces control limits. Wastegate/controller behaviour, manifold pressure, upper-deck pressure and temperature limits must be interpreted from the installed engine and aircraft data. Rapid throttle movement and overboost are operational concerns, not effects to improvise from a generic animation.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 138-142, and supported by the GTSIO-520 manufacturer manual. This lesson explains system purpose but does not provide operating limits or procedures.",
+          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The applicability and safety boundary should remain direct text."}
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "cycles-four-stroke-order",
+      "lessonId": "thermodynamic-cycles",
+      "type": "ordering",
+      "question": "Put the four strokes in operating order.",
+      "hint": "Begin with the stroke that admits the fresh charge.",
+      "items": ["Intake", "Compression", "Power", "Exhaust"],
+      "rationale": "A four-stroke cycle repeats intake, compression, power and exhaust over two crankshaft revolutions."
+    },
+    {
+      "id": "cycles-diesel-trigger",
+      "lessonId": "thermodynamic-cycles",
+      "type": "multiple-choice",
+      "question": "What initiates combustion in the diesel cycle described by the FAA and EASA sources?",
+      "hint": "Consider what happens to air temperature during high compression.",
+      "answers": ["An electric spark across a plug gap", "High temperature produced by compressing air before fuel injection", "A continuously burning flame in the exhaust"],
+      "correct": 1,
+      "rationale": "The cylinder compresses air to high pressure and temperature, then injected fuel ignites in that hot compressed air."
+    },
+    {
+      "id": "arrangements-radial",
+      "lessonId": "cylinder-arrangements",
+      "type": "multiple-choice",
+      "question": "Which description identifies a radial engine arrangement?",
+      "hint": "Think about the view from the propeller end.",
+      "answers": ["One straight cylinder bank", "Two banks directly opposite each other", "One or more rows of cylinders around a central crankcase"],
+      "correct": 2,
+      "rationale": "A radial engine arranges its cylinders in one or more rows around a central crankcase."
+    },
+    {
+      "id": "arrangements-gtsio",
+      "lessonId": "cylinder-arrangements",
+      "type": "multiple-choice",
+      "question": "How does the GTSIO-520 overhaul manual describe the basic engine's cylinder arrangement?",
+      "hint": "The two banks face each other across the crankcase.",
+      "answers": ["Six-cylinder horizontally opposed", "Nine-cylinder radial", "Twelve-cylinder V-type"],
+      "correct": 0,
+      "rationale": "The manual describes the basic GTSIO-520 engine as a six-cylinder horizontally opposed engine."
+    },
+    {
+      "id": "ignition-trigger",
+      "lessonId": "ignition-methods",
+      "type": "multiple-choice",
+      "question": "Which statement correctly distinguishes spark ignition from compression ignition?",
+      "hint": "Focus on what starts combustion, not the number of strokes.",
+      "answers": ["Spark ignition uses an electric spark; compression ignition relies on the temperature of highly compressed air", "Spark ignition is always two-stroke; compression ignition is always four-stroke", "Spark ignition uses a turbocharger; compression ignition cannot"],
+      "correct": 0,
+      "rationale": "The ignition methods differ in the combustion trigger. Stroke cycle and aspiration are separate classifications."
+    },
+    {
+      "id": "ignition-data-source",
+      "lessonId": "ignition-methods",
+      "type": "multiple-choice",
+      "question": "Where should a technician obtain the correct ignition timing value for a particular engine?",
+      "hint": "A general handbook explains the principle but not every engine's approved setting.",
+      "answers": ["From the colour of the lesson animation", "From the applicable manufacturer's technical data", "From the timing used by any engine with the same number of cylinders"],
+      "correct": 1,
+      "rationale": "The FAA handbook explicitly directs technicians to the engine manufacturer's recommendation."
+    },
+    {
+      "id": "cooling-air-path",
+      "lessonId": "cooling-methods",
+      "type": "ordering",
+      "question": "Put the air-cooled heat-transfer path in order.",
+      "hint": "Begin inside the cylinder structure and end in the atmosphere.",
+      "items": ["Hot cylinder metal", "Cooling fins", "Directed cooling air", "Surrounding atmosphere"],
+      "rationale": "Fins increase surface area so heat in the cylinder metal can transfer to cooling air and then to the atmosphere."
+    },
+    {
+      "id": "cooling-baffles",
+      "lessonId": "cooling-methods",
+      "type": "multiple-choice",
+      "question": "Why are baffles important in an air-cooled engine installation?",
+      "hint": "Cooling air must pass across the surfaces that need it.",
+      "answers": ["They direct cooling air across the cylinders and fins", "They ignite the fuel-air mixture", "They drive the coolant pump"],
+      "correct": 0,
+      "rationale": "Baffles control the airflow path so air does useful cooling work instead of bypassing the finned surfaces."
+    },
+    {
+      "id": "aspiration-driver",
+      "lessonId": "aspiration-methods",
+      "type": "multiple-choice",
+      "question": "What drives a turbocharger compressor?",
+      "hint": "Follow the energy path on the exhaust side.",
+      "answers": ["A turbine driven by exhaust gas", "The magneto distributor", "The radiator coolant pump"],
+      "correct": 0,
+      "rationale": "Exhaust gas drives the turbine, which shares a shaft with the intake compressor."
+    },
+    {
+      "id": "aspiration-normalizer",
+      "lessonId": "aspiration-methods",
+      "type": "multiple-choice",
+      "question": "What is the primary purpose of a normalizing turbocharger system?",
+      "hint": "Compare pressure capability as the aircraft climbs.",
+      "answers": ["Compensate for induction-pressure loss with altitude up to a critical altitude", "Convert a four-stroke engine into a two-stroke engine", "Replace the engine's cooling fins"],
+      "correct": 0,
+      "rationale": "A normalizing system maintains a target pressure as ambient pressure falls, until the system reaches its critical altitude."
+    }
+  ]
+}
+

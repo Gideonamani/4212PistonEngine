@@ -10,10 +10,13 @@ assert.ok(pack.draftStatus && /UNREVIEWED/.test(pack.draftStatus), 'pack must ca
 assert.equal(pack.lessons.length, 3);
 const [mechanical, aircraft, terminologies] = pack.lessons;
 assert.equal(mechanical.id, 'history-mechanical-engines');
+assert.equal(mechanical.sequenceNumber, 1);
 assert.deepEqual(mechanical.models, []);
 assert.equal(aircraft.id, 'history-aircraft-engines');
+assert.equal(aircraft.sequenceNumber, 2);
 assert.deepEqual(aircraft.models, ['wright-1903']);
 assert.equal(terminologies.id, 'terminologies');
+assert.equal(terminologies.sequenceNumber, 3);
 assert.deepEqual(terminologies.models, []);
 
 for (const lesson of pack.lessons) {

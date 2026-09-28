@@ -7,12 +7,15 @@ import type {
 } from '../types/engine';
 
 type PackStep = {
-  type: 'text' | 'image' | 'model-pose';
+  type: 'text' | 'image' | 'model-pose' | 'external-link' | 'web-embed';
   title: string;
   prompt: string;
   note?: string;
   modelId?: string;
   action?: { type: string; value?: number | string };
+  url?: string;
+  sourceRefs?: string[];
+  mediaPlan?: LessonStep['mediaPlan'];
 };
 
 type PackLesson = {
@@ -21,6 +24,7 @@ type PackLesson = {
   objective: string;
   models?: string[];
   steps: PackStep[];
+  sequenceNumber?: number;
 };
 
 type PackCheck = {
@@ -83,6 +87,7 @@ const supportedModels = new Set(['cylinder', 'gtsio520-h-v5-teaching-engine']);
 
 function mapLesson(lesson: PackLesson, index: number): Lesson {
   const steps = lesson.steps.map((step, stepIndex): LessonStep => ({
+    type: step.type,
     stepNumber: stepIndex + 1,
     title: step.title,
     text: step.prompt,
@@ -92,11 +97,14 @@ function mapLesson(lesson: PackLesson, index: number): Lesson {
     referenceModel: modelLabel(step.modelId),
     note: step.note,
     action: step.action,
+    url: step.url,
+    sourceRefs: step.sourceRefs,
+    mediaPlan: step.mediaPlan,
   }));
 
   return {
     id: lesson.id,
-    lessonNumber: `Lesson ${String(index + 1).padStart(2, '0')}`,
+    lessonNumber: `Lesson ${String(lesson.sequenceNumber || index + 1).padStart(2, '0')}`,
     title: lesson.title,
     subtitle: lesson.objective,
     description: lesson.objective,

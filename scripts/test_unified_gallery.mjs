@@ -10,11 +10,11 @@ import { validateLessonPack } from '../web/schema/content-schema.mjs';
 const readJson = name => JSON.parse(fs.readFileSync(new URL(`../web/${name}`, import.meta.url), 'utf8'));
 
 const manifest = readJson('lessons-manifest.json');
-assert.deepEqual(manifest.packs, ['./m2-cylinder-lessons.json', './history-lessons.json']);
+assert.deepEqual(manifest.packs, ['./history-lessons.json', './fundamentals-lessons.json', './m2-cylinder-lessons.json']);
 
 const packs = manifest.packs.map(url => readJson(url.replace('./', '')));
 const packIds = packs.map(pack => pack.id);
-assert.deepEqual(packIds, ['m2-cylinder-study', 'history-and-fundamentals']);
+assert.deepEqual(packIds, ['history-and-fundamentals', 'fundamentals-and-classification', 'm2-cylinder-study']);
 assert.equal(new Set(packIds).size, packIds.length, 'track ids must be unique across packs');
 
 for (const pack of packs) {
@@ -33,8 +33,10 @@ assert.equal(new Set(allLessonIds).size, allLessonIds.length, 'lesson ids must b
 // this is the exact derivation check-modes.mjs's renderCheckGallery() performs.
 const lessonsWithChecks = packs.flatMap(pack =>
   pack.lessons.filter(lesson => (pack.checks || []).some(item => item.lessonId === lesson.id)).map(lesson => ({ lesson, pack })));
-assert.equal(lessonsWithChecks.length, 4, 'expected 1 M2 lesson + 3 history lessons to each own at least one check');
+assert.equal(lessonsWithChecks.length, 9, 'expected 3 history + 5 fundamentals + 1 M2 lessons to each own at least one check');
 const historyChecks = lessonsWithChecks.filter(({ pack }) => pack.id === 'history-and-fundamentals');
 assert.equal(historyChecks.length, 3, 'all 3 history lessons must be reachable from the Check gallery, not just the M2 lesson');
+const fundamentalsChecks = lessonsWithChecks.filter(({ pack }) => pack.id === 'fundamentals-and-classification');
+assert.equal(fundamentalsChecks.length, 5, 'all 5 fundamentals lessons must be reachable from the Check gallery');
 
 console.log('unified gallery data model is valid: manifest lists every track, ids are unique, all packs\' checks are reachable');

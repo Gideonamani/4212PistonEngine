@@ -33,6 +33,7 @@ export interface ExploreAssembly {
 }
 
 export interface LessonStep {
+  type?: 'text' | 'image' | 'model-pose' | 'external-link' | 'web-embed';
   stepNumber: number;
   title: string;
   text: string;
@@ -46,6 +47,14 @@ export interface LessonStep {
   action?: {
     type: string;
     value?: number | string;
+  };
+  url?: string;
+  sourceRefs?: string[];
+  mediaPlan?: {
+    mode: 'none' | 'source-image' | 'native-html' | 'existing-3d' | 'web-media' | 'imagegen';
+    status: 'not-needed' | 'available' | 'planned' | 'needs-review';
+    rationale: string;
+    assetBrief?: string;
   };
 }
 
