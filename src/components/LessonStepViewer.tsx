@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Lesson, LessonStep } from '../types/engine';
 import { VisualIllustration } from './VisualIllustrations';
 import {
@@ -11,6 +11,8 @@ import {
   RotateCcw,
   Box,
   Construction,
+  Info,
+  X,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -28,6 +30,9 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
   const [currentStepIndex, setCurrentStepIndex] = useState<number>(0);
   const [userAnswers, setUserAnswers] = useState<Record<number, string>>({});
   const [showAnswerFeedback, setShowAnswerFeedback] = useState<Record<number, boolean>>({});
+  const [isEvidenceOpen, setIsEvidenceOpen] = useState(false);
+  const evidenceButtonRef = useRef<HTMLButtonElement>(null);
+  const evidenceCloseRef = useRef<HTMLButtonElement>(null);
 
   const totalSteps = lesson.steps.length || 10;
   const currentStep: LessonStep = lesson.steps[currentStepIndex] || {
@@ -44,6 +49,29 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
   const percentComplete = Math.round(((currentStepIndex + 1) / totalSteps) * 100);
   const mediaIsPlanned = currentStep.mediaPlan?.status === 'planned' || currentStep.url?.startsWith('PLACEHOLDER:');
   const shouldShowMedia = currentStep.mediaPlan?.mode !== 'none';
+  const hasEvidence = Boolean(currentStep.note || currentStep.sourceRefs?.length || (currentStep.url && !currentStep.url.startsWith('PLACEHOLDER:')));
+
+  useEffect(() => {
+    setIsEvidenceOpen(false);
+  }, [currentStepIndex]);
+
+  useEffect(() => {
+    if (!isEvidenceOpen) return;
+    evidenceCloseRef.current?.focus();
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsEvidenceOpen(false);
+        evidenceButtonRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isEvidenceOpen]);
+
+  const closeEvidence = () => {
+    setIsEvidenceOpen(false);
+    evidenceButtonRef.current?.focus();
+  };
 
   const handleNextStep = () => {
     if (currentStepIndex < totalSteps - 1) {
@@ -77,9 +105,12 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
           <ChevronLeft className="w-4 h-4" />
           <span>Back to Lessons</span>
         </button>
-        <span className="text-[10px] font-mono tracking-wider text-slate-400 uppercase font-semibold">
-          {lesson.lessonNumber}
-        </span>
+        <div className="flex items-center gap-2">
+          {hasEvidence && <button ref={evidenceButtonRef} type="button" onClick={() => setIsEvidenceOpen(true)} aria-label="Open evidence and scope note" aria-haspopup="dialog" aria-controls="lesson-evidence-dialog" className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-slate-900/70 text-slate-300 transition hover:border-teal-400 hover:text-teal-300"><Info className="h-4 w-4" /></button>}
+          <span className="text-[10px] font-mono tracking-wider text-slate-400 uppercase font-semibold">
+            {lesson.lessonNumber}
+          </span>
+        </div>
       </div>
 
       {/* Stepper Progress Section (Matching Screenshot 5) */}
@@ -162,15 +193,6 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
             {currentStep.text}
           </p>
-
-          {currentStep.note && (
-            <details className="rounded-xl border border-slate-700/70 bg-slate-900/45 p-3 text-xs text-slate-300">
-              <summary className="cursor-pointer font-semibold text-teal-300">Evidence and scope note</summary>
-              <p className="mt-2 leading-relaxed">{currentStep.note}</p>
-            </details>
-          )}
-
-          {currentStep.sourceRefs?.length ? <div className="font-mono text-[10px] text-slate-500">SOURCE REFS · {currentStep.sourceRefs.join(' · ')}</div> : null}
 
           {/* GUIDED PROMPT Card (Matching Screenshot 5) */}
           {currentStep.promptQuestion && (
@@ -257,6 +279,15 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
           </div>
         </div>
       </div>
+
+      {isEvidenceOpen && <div className="fixed inset-0 z-[80] flex items-end justify-center bg-black/65 p-3 backdrop-blur-sm sm:items-center" onMouseDown={(event) => { if (event.target === event.currentTarget) closeEvidence(); }}>
+        <section id="lesson-evidence-dialog" role="dialog" aria-modal="true" aria-labelledby="lesson-evidence-title" className="max-h-[75dvh] w-full max-w-lg overflow-y-auto rounded-2xl border border-teal-500/30 bg-[#09191f] p-4 text-slate-200 shadow-2xl sm:p-5">
+          <div className="flex items-start justify-between gap-4"><div><span className="font-mono text-[10px] font-bold tracking-widest text-teal-400">STEP {currentStepIndex + 1}</span><h2 id="lesson-evidence-title" className="mt-1 text-base font-bold text-white">Evidence &amp; scope note</h2></div><button ref={evidenceCloseRef} type="button" onClick={closeEvidence} aria-label="Close evidence and scope note" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-700 text-slate-300 hover:border-teal-400 hover:text-teal-300"><X className="h-4 w-4" /></button></div>
+          {currentStep.note && <p className="mt-4 text-sm leading-relaxed text-slate-300">{currentStep.note}</p>}
+          {currentStep.sourceRefs?.length ? <div className="mt-4 border-t border-slate-700/70 pt-3"><h3 className="font-mono text-[10px] font-bold tracking-wider text-slate-400">SOURCE REFERENCES</h3><ul className="mt-2 space-y-2 text-xs text-slate-300">{currentStep.sourceRefs.map((reference) => <li key={reference} className="break-words">{/^https?:\/\//i.test(reference) ? <a href={reference} target="_blank" rel="noreferrer" className="text-teal-300 underline decoration-teal-500/50 underline-offset-2 hover:text-teal-200">{reference}</a> : reference}</li>)}</ul></div> : null}
+          {currentStep.url && !currentStep.url.startsWith('PLACEHOLDER:') ? <a href={currentStep.url} target="_blank" rel="noreferrer" className="mt-4 inline-flex text-xs font-semibold text-teal-300 underline decoration-teal-500/50 underline-offset-2 hover:text-teal-200">Open supporting source</a> : null}
+        </section>
+      </div>}
 
       {/* Bottom Mini Dock (Contained within frame) */}
       <div className="sticky bottom-0 left-0 right-0 z-20 px-4 py-2 bg-[#061014]/95 backdrop-blur-md border-t border-teal-500/15 flex items-center justify-between shrink-0">
