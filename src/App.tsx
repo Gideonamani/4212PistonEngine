@@ -24,6 +24,7 @@ export default function App() {
   const [quizModules, setQuizModules] = useState<QuizModule[]>([]);
   const [loadError, setLoadError] = useState<string>('');
   const [loadAttempt, setLoadAttempt] = useState(0);
+  const [quizLessonId, setQuizLessonId] = useState<string>();
 
   const availableModels = [
     'Detailed operating cylinder',
@@ -88,6 +89,7 @@ export default function App() {
   const handleViewChange = (view: ViewMode) => {
     setIsFullscreen3D(false);
     setIsExploreViewerOpen(false);
+    setQuizLessonId(undefined);
     setActiveView(view);
     history.replaceState(null, '', `${location.pathname}${location.search}#/${view}`);
   };
@@ -142,6 +144,11 @@ export default function App() {
         {activeView === 'learn' && (tracks.length ? (
           <LearnView
             tracks={tracks}
+            onTakeLessonQuiz={(lessonId) => {
+              setQuizLessonId(lessonId);
+              setActiveView('check');
+              history.pushState(null, '', `${location.pathname}${location.search}#/check`);
+            }}
             onSwitchToExploreModel={(modelName) => {
               if (availableModels.includes(modelName)) setActiveModelName(modelName);
               setIsFullscreen3D(false);
@@ -151,7 +158,7 @@ export default function App() {
             }}
           />
         ) : curriculumState)}
-        {activeView === 'check' && (quizModules.length ? <CheckView modules={quizModules} /> : curriculumState)}
+        {activeView === 'check' && (quizModules.length ? <CheckView modules={quizModules} focusLessonId={quizLessonId} /> : curriculumState)}
       </MobileFrame>
 
       <EngineInfoModal

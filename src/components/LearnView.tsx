@@ -14,16 +14,32 @@ import {
   Sparkles,
   Info,
 } from 'lucide-react';
+import { getCompletedLessonIds, LESSON_PROGRESS_EVENT } from '../data/lessonProgress';
 
 interface LearnViewProps {
   tracks: CourseTrack[];
   onSwitchToExploreModel?: (modelName: string) => void;
+  onTakeLessonQuiz?: (lessonId: string) => void;
 }
 
-export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreModel }) => {
+export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreModel, onTakeLessonQuiz }) => {
   const [activeTrack, setActiveTrack] = useState<CourseTrack>(tracks[0]);
   const [isViewingAllTracks, setIsViewingAllTracks] = useState<boolean>(false);
   const [activeLesson, setActiveLesson] = useState<Lesson | null>(null);
+  const [progressVersion, setProgressVersion] = useState(0);
+  const completedLessonIds = getCompletedLessonIds();
+
+  useEffect(() => {
+    const refreshProgress = () => setProgressVersion((value) => value + 1);
+    window.addEventListener(LESSON_PROGRESS_EVENT, refreshProgress);
+    window.addEventListener('storage', refreshProgress);
+    return () => {
+      window.removeEventListener(LESSON_PROGRESS_EVENT, refreshProgress);
+      window.removeEventListener('storage', refreshProgress);
+    };
+  }, []);
+
+  void progressVersion;
 
   useEffect(() => {
     if (!tracks.some((track) => track.id === activeTrack?.id)) {
@@ -40,6 +56,7 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
         lesson={activeLesson}
         onBackToLessons={() => setActiveLesson(null)}
         onSwitchTo3DModel={(model) => onSwitchToExploreModel?.(model)}
+        onTakeQuiz={onTakeLessonQuiz}
       />
     );
   }
@@ -75,6 +92,7 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
         <div className="px-4 py-2 flex flex-col gap-3 max-w-xl mx-auto w-full">
           {tracks.map((track) => {
             const isCurrent = activeTrack.id === track.id;
+            const trackProgress = Math.round((track.lessons.filter((lesson) => completedLessonIds.has(lesson.id)).length / Math.max(track.lessons.length, 1)) * 100);
 
             return (
               <div
@@ -120,10 +138,10 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
                         <span>{track.stepCountApprox}</span>
                       </div>
 
-                      {track.progressPercent > 0 && (
+                      {trackProgress > 0 && (
                         <div className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-teal-950/40 border border-teal-500/30 text-teal-300 font-semibold">
                           <span className="w-2 h-2 rounded-full border border-teal-400 border-t-transparent animate-spin" />
-                          <span>{track.progressPercent}% complete</span>
+                          <span>{trackProgress}% complete</span>
                         </div>
                       )}
                     </div>
@@ -263,6 +281,7 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
                 <div className="flex items-center gap-1 text-[11px] font-mono text-slate-400 mt-2">
                   <FileText className="w-3 h-3 text-teal-400" />
                   <span>{lesson.stepCount} steps</span>
+                  {completedLessonIds.has(lesson.id) && <span className="ml-2 inline-flex items-center gap-1 font-sans font-semibold text-emerald-400"><CheckCircle className="h-3.5 w-3.5" />Completed</span>}
                 </div>
               </div>
 

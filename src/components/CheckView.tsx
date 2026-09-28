@@ -1,10 +1,10 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import confetti from 'canvas-confetti';
 import { Award, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Clock, FileQuestion, Lightbulb, RotateCcw, Sparkles } from 'lucide-react';
 import type { QuizModule, QuizQuestion } from '../types/engine';
 import { VisualIllustration } from './VisualIllustrations';
 
-interface CheckViewProps { modules: QuizModule[] }
+interface CheckViewProps { modules: QuizModule[]; focusLessonId?: string }
 type Answer = number | string[];
 
 const shuffled = (items: string[]) => {
@@ -23,7 +23,7 @@ const isCorrectAnswer = (question: QuizQuestion, answer?: Answer) => {
   return answer.every((item, index) => item === question.items?.[index]);
 };
 
-export const CheckView: React.FC<CheckViewProps> = ({ modules }) => {
+export const CheckView: React.FC<CheckViewProps> = ({ modules, focusLessonId }) => {
   const [activeModule, setActiveModule] = useState<QuizModule | null>(null);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, Answer>>({});
@@ -35,6 +35,21 @@ export const CheckView: React.FC<CheckViewProps> = ({ modules }) => {
     () => activeModule?.questions.reduce((sum, question, index) => sum + (submitted[index] && isCorrectAnswer(question, answers[index]) ? 1 : 0), 0) || 0,
     [activeModule, answers, submitted],
   );
+
+  useEffect(() => {
+    if (!focusLessonId) return;
+    const sourceModule = modules.find((module) => module.questions.some((question) => question.lessonId === focusLessonId));
+    if (!sourceModule) return;
+    const questions = sourceModule.questions.filter((question) => question.lessonId === focusLessonId);
+    const initial: Record<number, Answer> = {};
+    questions.forEach((question, index) => {
+      if (question.type === 'ordering') initial[index] = shuffled(question.items || []);
+    });
+    setActiveModule({ ...sourceModule, id: `${sourceModule.id}:${focusLessonId}`, title: 'Lesson knowledge check', subtitle: sourceModule.title, questions, questionCount: questions.length });
+    setQuestionIndex(0);
+    setAnswers(initial);
+    setSubmitted({});
+  }, [focusLessonId, modules]);
 
   const start = (module: QuizModule) => {
     const initial: Record<number, Answer> = {};

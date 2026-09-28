@@ -84,6 +84,7 @@ export interface CourseTrack {
 
 export interface QuizQuestion {
   id: string;
+  lessonId?: string;
   question: string;
   scenario?: string;
   type?: 'multiple-choice' | 'ordering';

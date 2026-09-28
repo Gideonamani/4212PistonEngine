@@ -119,6 +119,7 @@ function mapQuestion(check: PackCheck, packId: string): QuizQuestion {
   const options = check.answers || [];
   return {
     id: check.id,
+    lessonId: check.lessonId,
     type: check.type,
     question: check.question,
     options,
