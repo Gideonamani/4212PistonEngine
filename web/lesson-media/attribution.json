@@ -1,0 +1,50 @@
+{
+  "watermill-operation.webp": {
+    "title": "Watermill in operation",
+    "creator": "Jonathan Wilkins",
+    "source": "https://commons.wikimedia.org/wiki/File:Watermill_in_operation.jpg",
+    "license": "CC BY-SA 3.0"
+  },
+  "gnome-omega.webp": {
+    "title": "Gnome Omega Rotary Engine Running",
+    "creator": "Valder137",
+    "source": "https://commons.wikimedia.org/wiki/File:Gnome_Omega_Rotary_Engine_Running_02_Dawn_Patrol_NMUSAF_26Sept09_(14619976863).jpg",
+    "license": "CC BY 2.0"
+  },
+  "radial-arrangements.webp": {
+    "title": "Single- and double-row radial engines",
+    "source": "FAA-H-8083-32B, Figures 1-2 and 1-3",
+    "license": "U.S. Government work"
+  },
+  "air-cooling-path.webp": {
+    "title": "Cylinder baffle and deflector system",
+    "source": "FAA-H-8083-32B, Figure 6-50",
+    "license": "U.S. Government work"
+  },
+  "driven-supercharger.webp": {
+    "title": "Internally driven supercharger",
+    "source": "FAA-H-8083-32B, Figure 3-10",
+    "license": "U.S. Government work"
+  },
+  "rotary-cycle-phases.webp": {
+    "title": "Rotary engine phases of operation",
+    "source": "EASA Module 16 course reference, Figure 1-4",
+    "license": "Course reference extract"
+  },
+  "rotax-combined-cooling.webp": {
+    "title": "Rotax combined cooling example",
+    "source": "EASA Module 16 course reference",
+    "license": "Course reference extract"
+  },
+  "gtsio-dual-ignition.webp": {
+    "title": "GTSIO-520 ignition wiring diagram",
+    "source": "Continental GTSIO-520 overhaul manual, Figure A4-43",
+    "license": "Course reference extract"
+  },
+  "gtsio-induction.webp": {
+    "title": "GTSIO-520 induction-system diagram",
+    "source": "Continental GTSIO-520 overhaul manual, Figure C-2-2",
+    "license": "Course reference extract",
+    "note": "Retain the in-app effectivity review notice before final course publication."
+  }
+}

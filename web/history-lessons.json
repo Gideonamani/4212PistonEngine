@@ -30,8 +30,13 @@
           "type": "image",
           "title": "Waterwheel image",
           "prompt": "A working waterwheel: a natural flow of water turning a shaft continuously, with no fuel burned and no combustion involved.",
-          "url": "PLACEHOLDER:drive-asset/history-mechanical/waterwheel-watermill.jpg",
-          "note": "Image asset not yet sourced - placeholder only, to be replaced with a Drive-hosted asset per the existing image-asset convention before publication."
+          "url": "./lesson-media/watermill-operation.webp",
+          "alt": "A working watermill wheel being turned by flowing water",
+          "credit": "Jonathan Wilkins via Wikimedia Commons",
+          "license": "CC BY-SA 3.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Watermill_in_operation.jpg",
+          "note": "Licensed documentary image of a working watermill.",
+          "mediaPlan": {"mode": "web-media", "status": "available", "rationale": "A documentary photograph grounds the transition from muscle power to natural-flow machinery."}
         },
         {
           "type": "text",
@@ -43,8 +48,10 @@
           "type": "image",
           "title": "Steam engine schematic",
           "prompt": "A simplified steam engine schematic: boiler and furnace supplying steam to a cylinder, separate from the piston they drive.",
-          "url": "PLACEHOLDER:drive-asset/history-mechanical/steam-engine-schematic.jpg",
-          "note": "Image asset not yet sourced - placeholder only."
+          "url": "artifact:steam-engine-schematic",
+          "alt": "Interactive simplified steam engine schematic",
+          "note": "Purpose-built teaching schematic showing external combustion, steam delivery, piston and flywheel.",
+          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "A clean authored schematic isolates the external-combustion relationship without adding period-specific machinery detail."}
         },
         {
           "type": "text",
@@ -62,8 +69,10 @@
           "type": "image",
           "title": "Otto four-stroke diagram",
           "prompt": "A four-stroke Otto-cycle diagram: intake, compression, power, exhaust, shown as one continuous repeating sequence.",
-          "url": "PLACEHOLDER:drive-asset/history-mechanical/otto-four-stroke-diagram.jpg",
-          "note": "Image asset not yet sourced - placeholder only. Reuse opportunity: check whether the Thermodynamic Cycles lesson already has (or will produce) an equivalent diagram before commissioning a second one."
+          "url": "artifact:otto-cycle-overview",
+          "alt": "Interactive four-stroke Otto-cycle sequence",
+          "note": "Shared with the operating-cycles lesson so the same 720-degree teaching model is used consistently.",
+          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "The shared scrubber makes the repeating intake, compression, power and exhaust sequence directly observable."}
         },
         {
           "type": "text",
@@ -130,8 +139,13 @@
           "type": "image",
           "title": "Gnome Omega rotary",
           "prompt": "The Gnome Omega: a rotary engine, where the entire cylinder block spins with the propeller around a fixed crankshaft.",
-          "url": "PLACEHOLDER:drive-asset/history-aircraft/gnome-omega-engine.jpg",
-          "note": "Image asset not yet sourced - placeholder only; the course slide deck (slide 18) has an existing image that may be reusable with permission, rather than needing a new one sourced."
+          "url": "./lesson-media/gnome-omega.webp",
+          "alt": "A Gnome Omega rotary aircraft engine running on a test stand",
+          "credit": "Valder137 via Wikimedia Commons",
+          "license": "CC BY 2.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gnome_Omega_Rotary_Engine_Running_02_Dawn_Patrol_NMUSAF_26Sept09_(14619976863).jpg",
+          "note": "Licensed documentary image of a running Gnome Omega rotary engine.",
+          "mediaPlan": {"mode": "web-media", "status": "available", "rationale": "The running engine photograph makes the unusual rotating-cylinder arrangement visible in context."}
         },
         {
           "type": "text",
@@ -214,8 +228,10 @@
           "type": "image",
           "title": "Piston-rod-crank diagram",
           "prompt": "A basic piston-rod-crank diagram: the piston's straight-line (reciprocating) motion becoming the crankshaft's turning (rotating) motion.",
-          "url": "PLACEHOLDER:drive-asset/terminologies/piston-rod-crank-basic-diagram.jpg",
-          "note": "Image asset not yet sourced - placeholder only, to be replaced with a Drive-hosted asset per the existing image-asset convention before publication."
+          "url": "artifact:piston-crank-converter",
+          "alt": "Interactive piston, connecting rod and crankshaft motion diagram",
+          "note": "Purpose-built teaching diagram; dimensions and kinematics are schematic rather than engine-specific.",
+          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Dragging the crank makes the conversion between rotary and reciprocating motion visible."}
         },
         {
           "type": "text",
