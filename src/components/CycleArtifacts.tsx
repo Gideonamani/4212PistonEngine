@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 
 /**
- * Native lesson interactives for lessons 3 and 4 (dead centres, swept/clearance volume, Otto and Diesel
+ * Native lesson interactives for lessons 3, 4 and 6 (dead centres, swept/clearance volume, Otto and Diesel
  * pressure-volume diagrams, valve timing, engine data comparison).
  *
  * Everything here is schematic: pressure-volume shapes come from the ideal-gas relations, valve timing uses the
@@ -311,5 +311,32 @@ export function EngineDataComparison() {
     </div>
     <p className="mt-2 text-xs leading-relaxed text-slate-300">Same cylinder size, different firing order and spark timing: two engines can share bore, stroke and displacement and still differ in the data that matters for timing and maintenance.</p>
     <p className={caption}>GTSIO-520-H: Continental GTSIO-520 overhaul manual, Chapter C Section III, pp. C-3-2 and C-3-3. IO-520: Continental IO-520 overhaul manual, Tables II and III and the model test data. The IO-520 is a different engine shown for comparison only; check applicability before using any value.</p>
+  </div>;
+}
+
+// ---------------------------------------------------------------------------------------------------------------
+// Construction comparison: GTSIO-520-H (course engine) and IO-520 (comparison engine)
+// ---------------------------------------------------------------------------------------------------------------
+
+const CONSTRUCTION_ROWS: { part: string; gtsio: string; io: string; same?: boolean }[] = [
+  { part: 'Crankcase', gtsio: 'Two aluminium alloy castings, left and right, joined on the vertical centre plane', io: 'Two aluminium alloy castings, left and right, joined on the vertical centre plane', same: true },
+  { part: 'Crankshaft', gtsio: 'Six-throw steel alloy forging; journals and crankpins nitrided', io: 'Six-throw steel alloy forging; journals and crankpins nitrided', same: true },
+  { part: 'Counterweights', gtsio: 'Third-order counterweights on pins; their oscillation damps torsional vibration', io: 'Fourth-, fifth- and sixth-order counterweights (the mix varies by model)' },
+  { part: 'Propeller drive', gtsio: 'Geared: quill shaft to a reduction gear (0.667:1) driving a flanged propeller shaft', io: 'Direct: a flange formed at the front of the crankshaft carries the propeller' },
+  { part: 'Connecting rods', gtsio: 'I-beam; split bronze piston-pin bushings; two identical precision inserts at the crankpin', io: 'I-beam; split bronze piston-pin bushings; two identical precision inserts at the crankpin', same: true },
+  { part: 'Pistons', gtsio: 'Aluminium alloy; four-ring piston since 1975 (five before); full-floating pin with aluminium plugs', io: 'Aluminium alloy forging; four ring grooves (three above the pin, one below); full-floating pin with aluminium plugs' },
+  { part: 'Cylinders', gtsio: 'Aluminium head heated and shrunk onto a steel barrel; 18 mm helical-coil spark-plug inserts', io: 'Aluminium head heated and shrunk onto a steel barrel; 18 mm helical-coil spark-plug inserts', same: true },
+];
+
+export function ConstructionComparison() {
+  return <div className={panel}>
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[30rem] border-collapse text-left text-[11px]">
+        <thead><tr className="border-b border-slate-700 text-slate-400"><th className="py-1.5 pr-2 font-semibold">Part</th><th className="py-1.5 pr-2 font-semibold text-teal-300">GTSIO-520-H (course engine)</th><th className="py-1.5 font-semibold text-amber-300">IO-520 (comparison)</th></tr></thead>
+        <tbody>{CONSTRUCTION_ROWS.map((row) => <tr key={row.part} className="border-b border-slate-800/80 align-top"><th scope="row" className="py-1.5 pr-2 font-medium text-slate-300">{row.part}</th><td className="py-1.5 pr-2 text-slate-100">{row.gtsio}</td><td className={`py-1.5 ${row.same ? 'text-slate-100' : 'text-amber-100'}`}>{row.io}</td></tr>)}</tbody>
+      </table>
+    </div>
+    <p className="mt-2 text-xs leading-relaxed text-slate-300">Most of the construction is shared. What differs is how the crankshaft's power leaves the engine, and details of the vibration damping and piston rings.</p>
+    <p className={caption}>GTSIO-520-H: Continental GTSIO-520 overhaul manual, Section III (PDF pp. 16-17) and Chapter C-3 (PDF p. 152). IO-520: Continental IO-520 overhaul manual, paragraphs 2-3 to 2-9. The IO-520 is a different engine shown for comparison only; check applicability before using any value.</p>
   </div>;
 }

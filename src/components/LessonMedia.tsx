@@ -42,6 +42,7 @@ export const LessonMedia: React.FC<LessonMediaProps> = ({ step, immersive = fals
       initialCycle={step.action?.type === 'cycle-angle'}
       viewPreset={step.viewPreset}
       focusHotspots={step.focusHotspots}
+      focusParts={step.focusParts}
       onOpenExplore={() => onSwitchTo3DModel?.(definition.label)}
     />
     </Suspense>;

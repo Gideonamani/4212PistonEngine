@@ -105,6 +105,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
 
   let selectedId = '';
   let isolated = false;
+  const focusSet = new Set(context.focusParts || []);
   let playing = false;
   let cycleEnabled = Boolean(context.initialCycle);
   const section = createSectionController(meshes, bounds, runtime.render, onChange);
@@ -113,7 +114,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
     for (const mesh of meshes) {
       mesh.material = mesh.userData.partId === selectedId
         ? highlight
-        : isolated
+        : isolated || (focusSet.size > 0 && !focusSet.has(mesh.userData.partId))
           ? ghost
           : snapshot.appearance === 'cad'
             ? originals.get(mesh)!
@@ -184,6 +185,19 @@ export async function createCylinderSession(definition: ModelDefinition, context
 
   setAngle(context.initialAngle ?? motionProfile.bind_angle_deg);
 
+  // A lesson step can spotlight a group of parts: the rest are ghosted and the camera frames the group at the posed angle.
+  if (focusSet.size) {
+    const unknown = [...focusSet].filter((id) => !catalogueById.has(id));
+    if (unknown.length) throw Error(`Unknown component id in focusParts: ${unknown.join(', ')}.`);
+    const focusBox = new THREE.Box3();
+    for (const mesh of meshes) if (focusSet.has(mesh.userData.partId)) focusBox.union(new THREE.Box3().setFromObject(mesh));
+    const size = focusBox.getSize(new THREE.Vector3());
+    const proxy = new THREE.Mesh(new THREE.BoxGeometry(size.x, size.y, size.z));
+    proxy.position.copy(focusBox.getCenter(new THREE.Vector3()));
+    applyAppearance();
+    runtime.fit(proxy);
+  }
+
   const parts: ModelComponent[] = [...catalogueById.entries()].map(([id, part]) => ({
     id,
     label: part.display_name || id,
@@ -221,6 +235,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
         showAll() {
           selectedId = '';
           isolated = false;
+          focusSet.clear();
           snapshot.selectedId = undefined;
           snapshot.selectedLabel = undefined;
           snapshot.selectedDescription = undefined;

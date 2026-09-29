@@ -15,6 +15,7 @@ type PackStep = {
   modelId?: string;
   viewPreset?: string;
   focusHotspots?: string[];
+  focusParts?: string[];
   deepDiveLinks?: string[];
   action?: { type: string; value?: number | string };
   url?: string;
@@ -104,6 +105,7 @@ function mapLesson(lesson: PackLesson, index: number, deepDive = false): Lesson 
     referenceModel: modelLabel(step.modelId),
     viewPreset: step.viewPreset,
     focusHotspots: step.focusHotspots,
+    focusParts: step.focusParts,
     deepDiveLinks: step.deepDiveLinks,
     note: step.note,
     action: step.action,

@@ -37,10 +37,10 @@ const isVisible = (pack, lesson) => lesson.listed !== false
   || pack.lessons.some(other => other.steps.some(step => (step.deepDiveLinks || []).includes(lesson.id)));
 const lessonsWithChecks = packs.flatMap(pack =>
   pack.lessons.filter(lesson => isVisible(pack, lesson) && (pack.checks || []).some(item => item.lessonId === lesson.id)).map(lesson => ({ lesson, pack })));
-assert.equal(lessonsWithChecks.length, 9, 'expected 3 history + 5 fundamentals (3 listed lessons + 2 deep dives) + 1 M2 lessons to each own at least one check');
+assert.equal(lessonsWithChecks.length, 10, 'expected 3 history + 6 fundamentals (4 listed lessons + 2 deep dives) + 1 M2 lessons to each own at least one check');
 const historyChecks = lessonsWithChecks.filter(({ pack }) => pack.id === 'history-and-fundamentals');
 assert.equal(historyChecks.length, 3, 'all 3 history lessons must be reachable from the Check gallery, not just the M2 lesson');
 const fundamentalsChecks = lessonsWithChecks.filter(({ pack }) => pack.id === 'fundamentals-and-classification');
-assert.equal(fundamentalsChecks.length, 5, 'the 3 listed fundamentals lessons and 2 deep dives must be reachable from the Check gallery');
+assert.equal(fundamentalsChecks.length, 6, 'the 4 listed fundamentals lessons and 2 deep dives must be reachable from the Check gallery');
 
 console.log('unified gallery data model is valid: manifest lists every track, ids are unique, all packs\' checks are reachable');

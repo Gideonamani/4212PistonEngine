@@ -15,8 +15,8 @@ for (const source of pack.sources.filter(source => source.tier === 5)) {
 // Ignition and aspiration are parked (unlisted) source drafts for lessons 8 and 11; only listed lessons carry a curriculum number.
 const listed = pack.lessons.filter(lesson => lesson.listed !== false);
 const parked = pack.lessons.filter(lesson => lesson.listed === false);
-assert.deepEqual(listed.map(lesson => lesson.sequenceNumber), [4, 5, 7]);
-assert.deepEqual(listed.map(lesson => lesson.id), ['thermodynamic-cycles', 'classification', 'cooling-methods']);
+assert.deepEqual(listed.map(lesson => lesson.sequenceNumber), [4, 5, 6, 7]);
+assert.deepEqual(listed.map(lesson => lesson.id), ['thermodynamic-cycles', 'classification', 'parts-construction', 'cooling-methods']);
 assert.deepEqual(parked.map(lesson => lesson.id), ['two-stroke-cycle', 'rotary-cycle', 'ignition-methods', 'aspiration-methods']);
 // Unlisted lessons are either deep dives (linked from a step's deepDiveLinks) or parked drafts waiting for a later lesson.
 const linked = new Set(pack.lessons.flatMap(lesson => lesson.steps.flatMap(step => step.deepDiveLinks || [])));
@@ -48,12 +48,12 @@ for (const lesson of pack.lessons) {
   }
 }
 
-assert.equal(pack.checks.length, 18);
-const expectedChecks = { 'thermodynamic-cycles': 7, classification: 3, 'two-stroke-cycle': 2, 'rotary-cycle': 1, 'ignition-methods': 1, 'cooling-methods': 2, 'aspiration-methods': 2 };
+assert.equal(pack.checks.length, 26);
+const expectedChecks = { 'thermodynamic-cycles': 7, classification: 3, 'parts-construction': 8, 'two-stroke-cycle': 2, 'rotary-cycle': 1, 'ignition-methods': 1, 'cooling-methods': 2, 'aspiration-methods': 2 };
 for (const lesson of pack.lessons) {
   assert.equal(pack.checks.filter(check => check.lessonId === lesson.id).length, expectedChecks[lesson.id], lesson.id);
 }
 
 assert.deepEqual(validateLessonPack(pack), []);
-console.log('Fundamentals lesson pack is valid (lessons 4, 5, 7 listed; ignition and aspiration parked; 18 checks; deep dives linked; sourced media plans)');
+console.log('Fundamentals lesson pack is valid (lessons 4, 5, 6, 7 listed; ignition and aspiration parked; 26 checks; deep dives linked; sourced media plans)');
 
