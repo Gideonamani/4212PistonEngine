@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Lesson, LessonStep } from '../types/engine';
 import { VisualIllustration } from './VisualIllustrations';
-import { LessonMedia } from './LessonMedia';
+import { LessonMedia, LessonModelStage, isModelStep } from './LessonMedia';
+import { preloadModels } from '../viewer/preload';
 import {
   ChevronLeft,
   ChevronRight,
@@ -76,7 +77,14 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
   const currentAnswer = userAnswers[currentStepIndex] || '';
   const percentComplete = Math.round(((currentStepIndex + 1) / totalSteps) * 100);
   const shouldShowMedia = currentStep.mediaPlan?.mode !== 'none';
+  // The 3D viewer outlives non-model steps: keep the last model step so the loaded scene is only hidden, never rebuilt.
+  const modelStep = isModelStep(currentStep) ? currentStep : undefined;
+  const heldModelStep = useRef<LessonStep | undefined>(undefined);
+  if (modelStep) heldModelStep.current = modelStep;
   const hasEvidence = Boolean(currentStep.note || currentStep.sourceRefs?.length || currentStep.credit || currentStep.license || currentStep.sourceUrl || (currentStep.url && /^https?:\/\//i.test(currentStep.url)));
+
+  // Fetch every model this lesson uses in the background while the learner reads, in lesson order.
+  useEffect(() => preloadModels(lesson.steps.filter(isModelStep).map((step) => step.modelId!)), [lesson.id]);
 
   useEffect(() => {
     setIsEvidenceOpen(false);
@@ -264,7 +272,8 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
           </div>
 
           {/* Published media, a clearly labelled production placeholder, or legacy illustration. */}
-          {shouldShowMedia && <LessonMedia step={currentStep} immersive={isImmersive} onSwitchTo3DModel={onSwitchTo3DModel} />}
+          {heldModelStep.current && <LessonModelStage step={heldModelStep.current} active={Boolean(modelStep)} immersive={isImmersive} onSwitchTo3DModel={onSwitchTo3DModel} />}
+          {shouldShowMedia && !modelStep && <LessonMedia step={currentStep} immersive={isImmersive} onSwitchTo3DModel={onSwitchTo3DModel} />}
 
           {/* Heading */}
           <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white mt-1">

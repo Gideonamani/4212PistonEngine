@@ -15,6 +15,34 @@ interface LessonMediaProps {
 
 const isWebUrl = (value?: string) => Boolean(value && /^https?:\/\//i.test(value));
 
+const isPlannedStep = (step: LessonStep) => step.mediaPlan?.status === 'planned' || (step.url || '').startsWith('PLACEHOLDER:');
+
+/** A step whose media is the live 3D viewer; rendered by LessonModelStage so the loaded model survives step changes. */
+export const isModelStep = (step: LessonStep) => step.mediaPlan?.mode !== 'none' && !isPlannedStep(step) && !(step.url || '').startsWith('artifact:')
+  && step.type === 'model-pose' && Boolean(step.modelId && modelsById[step.modelId]);
+
+/**
+ * The lesson's 3D viewer. It stays mounted (hidden) while the learner passes text or image steps, and each model step only
+ * changes the pose and spotlight, so the model is not rebuilt until the lesson switches to a different model.
+ */
+export const LessonModelStage: React.FC<{ step: LessonStep; active: boolean; immersive?: boolean; onSwitchTo3DModel?: (modelName: string) => void }> = ({ step, active, immersive = false, onSwitchTo3DModel }) => {
+  const definition = modelsById[step.modelId!];
+  const dynamic = definition.adapter !== 'static-gltf';
+  return <div hidden={!active}><Suspense fallback={<div className="flex h-80 items-center justify-center rounded-xl border border-teal-400/20 bg-[#071418] text-xs text-teal-300">Preparing interactive 3D viewer…</div>}>
+    <ModelViewer
+      modelId={step.modelId!}
+      profile={dynamic ? 'lesson-dynamic' : 'lesson-reference'}
+      immersive={immersive}
+      initialAngle={typeof step.action?.value === 'number' ? step.action.value : undefined}
+      initialCycle={step.action?.type === 'cycle-angle'}
+      viewPreset={step.viewPreset}
+      focusHotspots={step.focusHotspots}
+      focusParts={step.focusParts}
+      onOpenExplore={() => onSwitchTo3DModel?.(definition.label)}
+    />
+  </Suspense></div>;
+};
+
 export const LessonMedia: React.FC<LessonMediaProps> = ({ step, immersive = false, onSwitchTo3DModel }) => {
   const url = step.url || '';
   const isPlanned = step.mediaPlan?.status === 'planned' || url.startsWith('PLACEHOLDER:');
@@ -30,23 +58,7 @@ export const LessonMedia: React.FC<LessonMediaProps> = ({ step, immersive = fals
 
   if (artifactId) return <LessonArtifact id={artifactId} />;
 
-  if (step.type === 'model-pose' && step.modelId && modelsById[step.modelId]) {
-    const definition = modelsById[step.modelId];
-    const dynamic = definition.adapter !== 'static-gltf';
-    return <Suspense fallback={<div className="flex h-80 items-center justify-center rounded-xl border border-teal-400/20 bg-[#071418] text-xs text-teal-300">Preparing interactive 3D viewer…</div>}>
-    <ModelViewer
-      modelId={step.modelId}
-      profile={dynamic ? 'lesson-dynamic' : 'lesson-reference'}
-      immersive={immersive}
-      initialAngle={typeof step.action?.value === 'number' ? step.action.value : undefined}
-      initialCycle={step.action?.type === 'cycle-angle'}
-      viewPreset={step.viewPreset}
-      focusHotspots={step.focusHotspots}
-      focusParts={step.focusParts}
-      onOpenExplore={() => onSwitchTo3DModel?.(definition.label)}
-    />
-    </Suspense>;
-  }
+  if (isModelStep(step)) return null;
 
   if (step.type === 'image' && url) return <figure className="overflow-hidden rounded-xl border border-white/5 bg-slate-950/60 shadow-inner">
     <img src={url} alt={step.alt || step.title} className={`w-full object-contain ${immersive ? 'max-h-[58dvh]' : 'max-h-80'}`} loading="lazy" />
