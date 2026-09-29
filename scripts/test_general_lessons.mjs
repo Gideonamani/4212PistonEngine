@@ -14,7 +14,7 @@ assert.equal(mechanical.sequenceNumber, 1);
 assert.deepEqual(mechanical.models, []);
 assert.equal(aircraft.id, 'history-aircraft-engines');
 assert.equal(aircraft.sequenceNumber, 2);
-assert.deepEqual(aircraft.models, ['wright-1903']);
+assert.deepEqual(aircraft.models, ['wright-1903-engine']);
 assert.equal(terminologies.id, 'terminologies');
 assert.equal(terminologies.sequenceNumber, 3);
 assert.deepEqual(terminologies.models, []);
@@ -32,12 +32,14 @@ for (const lesson of pack.lessons) {
   }
 }
 
-// The wright-1903 model-pose step is the one worked example of a thin reference-model step -
-// confirm it stays schema-valid despite having no real motion profile (see docs/history-lessons-content-draft.md).
+// The Wright model-pose step is the worked example of a static reference model:
+// a named camera view and guided hotspots replace the fake crank-angle action.
 const modelPoseStep = aircraft.steps.find(step => step.type === 'model-pose');
 assert.ok(modelPoseStep);
-assert.equal(modelPoseStep.modelId, 'wright-1903');
-assert.deepEqual(modelPoseStep.action, { type: 'angle', value: 0 });
+assert.equal(modelPoseStep.modelId, 'wright-1903-engine');
+assert.equal(modelPoseStep.viewPreset, 'engine-overview');
+assert.deepEqual(modelPoseStep.focusHotspots, ['magneto', 'valve', 'crankcase']);
+assert.equal(modelPoseStep.action, undefined);
 
 assert.equal(pack.checks.length, 6);
 for (const item of pack.checks) {

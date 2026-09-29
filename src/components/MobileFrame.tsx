@@ -62,7 +62,7 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
         {!isFullscreen3D && !isLessonImmersive && (
           <header className="w-full px-4 sm:px-6 py-2.5 border-b border-teal-500/20 flex items-center justify-between z-30 bg-[#06141a]/95 backdrop-blur-md shrink-0 shadow-lg">
           {/* Left: Brand & Model Dropdown */}
-          <div className="flex items-center gap-3">
+          <div className="flex min-w-0 flex-1 items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-teal-950/80 border border-teal-400/60 flex items-center justify-center shadow-sm shadow-teal-500/30 shrink-0">
               <svg viewBox="0 0 24 24" className="w-5 h-5 text-teal-300 stroke-current" fill="none" strokeWidth="1.8">
                 <rect x="6" y="3" width="12" height="8" rx="1.5" />
@@ -73,9 +73,9 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
               </svg>
             </div>
 
-            <div className="flex flex-col relative">
-              <span className="text-sm sm:text-base font-bold text-white tracking-tight leading-tight flex items-center gap-2">
-                Piston Engine Fundamentals
+            <div className="relative flex min-w-0 flex-col">
+              <span className="flex min-w-0 items-center gap-2 text-sm font-bold leading-tight tracking-tight text-white sm:text-base">
+                <span className="truncate">Piston Engine Fundamentals</span>
                 <span className="hidden md:inline text-[11px] px-2 py-0.5 rounded-full bg-teal-950/60 border border-teal-500/30 text-teal-300 font-mono font-medium">
                   AEROSPACE CAD 3D
                 </span>
@@ -85,11 +85,11 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
               {activeView === 'explore' ? <div className="relative">
                 <button
                   onClick={() => setIsModelDropdownOpen(!isModelDropdownOpen)}
-                  className="flex items-center gap-1.5 text-[11px] font-mono tracking-wider text-teal-400 hover:text-teal-300 font-semibold uppercase leading-tight mt-0.5 transition-colors group cursor-pointer text-left"
+                  className="group mt-0.5 flex max-w-full items-center gap-1.5 text-left font-mono text-[11px] font-semibold uppercase leading-tight tracking-wider text-teal-400 transition-colors hover:text-teal-300"
                   aria-label="Select 3D Engine Model"
                 >
                   <span className="text-slate-400">MODEL:</span>
-                  <span className="text-teal-300 underline decoration-teal-500/40 underline-offset-2">
+                  <span className="truncate text-teal-300 underline decoration-teal-500/40 underline-offset-2">
                     {activeModelName}
                   </span>
                   <ChevronDown
@@ -175,7 +175,7 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
           </nav>
 
           {/* Right: Viewport Toggle & Tool Controls */}
-          <div className="flex items-center gap-2">
+          <div className="ml-2 flex shrink-0 items-center gap-2">
             {/* Viewport Mode Switcher (Full Page vs Phone Mockup) */}
             <button
               onClick={() => setIsDeviceFrameEnabled(true)}

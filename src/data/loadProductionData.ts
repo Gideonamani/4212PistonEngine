@@ -12,6 +12,8 @@ type PackStep = {
   prompt: string;
   note?: string;
   modelId?: string;
+  viewPreset?: string;
+  focusHotspots?: string[];
   action?: { type: string; value?: number | string };
   url?: string;
   alt?: string;
@@ -83,11 +85,11 @@ const stepVisualFor = (text: string): LessonStep['imageType'] => {
 const modelLabel = (modelId?: string) => {
   if (modelId === 'cylinder') return 'Detailed operating cylinder';
   if (modelId === 'gtsio520-h-v5-teaching-engine') return 'Full six-cylinder engine';
-  if (modelId === 'wright-1903') return 'Wright 1903 reference model';
+  if (modelId === 'wright-1903-engine') return '1903 Wright Flyer engine';
   return modelId || 'Detailed operating cylinder';
 };
 
-const supportedModels = new Set(['cylinder', 'gtsio520-h-v5-teaching-engine']);
+const supportedModels = new Set(['cylinder', 'gtsio520-h-v5-teaching-engine', 'wright-1903-engine']);
 
 function mapLesson(lesson: PackLesson, index: number): Lesson {
   const steps = lesson.steps.map((step, stepIndex): LessonStep => ({
@@ -98,7 +100,10 @@ function mapLesson(lesson: PackLesson, index: number): Lesson {
     imageType: stepVisualFor(`${step.title} ${step.prompt}`),
     suggestedAnswer: step.note,
     has3DReference: step.type === 'model-pose' && supportedModels.has(step.modelId || ''),
+    modelId: step.modelId,
     referenceModel: modelLabel(step.modelId),
+    viewPreset: step.viewPreset,
+    focusHotspots: step.focusHotspots,
     note: step.note,
     action: step.action,
     url: step.url,

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Box, Construction, ExternalLink } from 'lucide-react';
 import { LessonStep } from '../types/engine';
 import { VisualIllustration } from './VisualIllustrations';
 import { LessonArtifact } from './LessonArtifacts';
+
+const ReferenceModelViewer = React.lazy(() => import('./ReferenceModelViewer'));
 
 interface LessonMediaProps {
   step: LessonStep;
@@ -26,6 +28,15 @@ export const LessonMedia: React.FC<LessonMediaProps> = ({ step, immersive = fals
   </div>;
 
   if (artifactId) return <LessonArtifact id={artifactId} />;
+
+  if (step.type === 'model-pose' && step.modelId === 'wright-1903-engine') return <Suspense fallback={<div className="flex h-80 items-center justify-center rounded-xl border border-teal-400/20 bg-[#071418] text-xs text-teal-300">Preparing interactive 3D viewer…</div>}>
+    <ReferenceModelViewer
+      modelId={step.modelId}
+      immersive={immersive}
+      focusHotspots={step.focusHotspots}
+      onOpenExplore={() => onSwitchTo3DModel?.(step.referenceModel || '1903 Wright Flyer engine')}
+    />
+  </Suspense>;
 
   if (step.type === 'image' && url) return <figure className="overflow-hidden rounded-xl border border-white/5 bg-slate-950/60 shadow-inner">
     <img src={url} alt={step.alt || step.title} className={`w-full object-contain ${immersive ? 'max-h-[58dvh]' : 'max-h-80'}`} loading="lazy" />

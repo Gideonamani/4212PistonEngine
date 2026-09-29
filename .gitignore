@@ -8,6 +8,9 @@ renders/
 *.FCStd1
 node_modules/
 dist/
-# Published models live in the synced Google Drive web folder (served via the Drive API), never in git.
+# Large production teaching models live in the synced Google Drive web folder.
+# The compact, CC0 Wright reference is also checked in so lesson media remains
+# available on GitHub Pages without depending on Drive permissions.
 *.glb
 *.glb.gz
+!web/wright-1903-engine.glb

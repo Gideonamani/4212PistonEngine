@@ -17,7 +17,7 @@ A new page, [`web/learn.html`](../web/learn.html) + [`web/learn.mjs`](../web/lea
 **What the build adds beyond raw content rendering:**
 - A visible **evidence tag** per text/model-pose step ("Documented" vs. "General / illustrative"), derived by pattern-matching each step's `note` field — this surfaces the sourcing-rigor distinction directly to whoever is reviewing, not just in this markdown file.
 - **Image placeholders**: any step whose `url` starts with `PLACEHOLDER:` renders as a dashed-border placeholder card with the note, instead of a broken `<img>`.
-- **Model-pose steps**: if `step.modelId` resolves in `models.json`, shows an "Open 3D view →" link to `training.html?model=<id>`; if not (true today for `wright-1903`, since no registry entry or asset exists — see below), shows an honest "3D reference model not yet available" placeholder instead of faking a viewer.
+- **Model-pose steps**: the React lesson renderer now mounts the lightweight Wright reference viewer in place. It offers orbit, zoom, reset and three guided hotspots, plus an "Explore fully" handoff to the larger Explore presentation.
 - A persistent **content-draft banner** at the top of the page, so the unreviewed status is visible in the running page itself, not only in this doc and the JSON's `draftStatus` field.
 - Deliberately **does not** render `checks` inline — Check yourself stays a separate, not-yet-rebuilt experience per the architecture doc's existing design (a standalone tab plus a nudge after finishing a lesson); building that is out of scope for this pass.
 
@@ -35,29 +35,13 @@ Per the project's evidence-rigor convention (the same documented/reconstructed/i
 - **Lesson 2 (History of Aircraft Engines) is documented from the course's own current slide deck**, `Notes/Aircraft Piston Engine Slides - 21May2026.pptx`, slides 6–43 ("History and Introduction" — verified by extracting the deck's actual slide text; this matches the day-based report's slide-range estimate). Nearly every step's `note` cites the specific slide(s) it draws from (e.g. the Wright 1903 engine's cast-aluminium/cast-iron/180 lb/12 hp @ 1,025 rpm description is slide 16 verbatim-in-substance; the pre-WW1 engine table is slide 17; WW1 rotary vs inline is slides 19–21; and so on through the WW2 and post-WW2/modern slides). Nothing in lesson 2 was invented or pulled from general web knowledge — where the deck was silent, the step was cut rather than filled in from outside sources, keeping the "documented" claim honest.
 - Check-yourself questions in both lessons are **original phrasing**, written for this platform rather than copied from the deck's own recap-quiz slides (41–43) — they test the same underlying ideas (era sequencing, why the Wright engine mattered) without reproducing the instructor's existing quiz wording, in case that bank gets reused separately.
 
-## The Wright 1903 reference model — what's proposed vs. what exists
+## The Wright 1903 reference model — implemented 29 Sep 2026
 
-Lesson 2 has exactly one `model-pose` step, per the agreed worked example: `modelId: "wright-1903"`, a thin reference/illustrative registry entry (orbit/zoom only — no section, no isolation, no operating-mechanism animation), distinct from the course's real teaching engine (GTSIO-520-H).
+Lesson 2 has exactly one `model-pose` step: `modelId: "wright-1903-engine"`, a thin reference/illustrative registry entry distinct from the course's GTSIO-520-H teaching engine. The source is the Smithsonian National Air and Space Museum's CC0 scan of the 1903 Wright Flyer engine.
 
-**This registry entry does not exist yet.** It is *not* added to `web/models.json` in this draft, deliberately — the architecture doc's own open-questions list (`docs/lesson-and-assessment-architecture.md`) already flags that a reference-model registry entry's minimal shape isn't finalized, and that no one has yet decided where a Wright 1903 asset would be sourced or modeled from, or at what fidelity. Adding a real registry entry now would either point at a nonexistent asset or require producing one under this task's authority, neither of which seemed right to decide unilaterally. A proposed entry, shaped like the existing `models.json` entries, for whenever an asset exists:
+The medium GLB is stored canonically in the project's Drive `web` folder and is also committed as `web/wright-1903-engine.glb` so GitHub Pages can serve lesson media without depending on Drive access permissions. `web/models.json` records both the local publish URL and Drive file id. The model intentionally declares no section view, isolation or operating animation.
 
-```json
-{
-  "id": "wright-1903",
-  "label": "1903 Wright Flyer engine (reference)",
-  "adapter": "reference",
-  "title": "Inspect the 1903 Wright engine",
-  "kicker": "History of Aircraft Engines · Reference model",
-  "description": "Drag to rotate · Scroll or pinch to zoom. A lightweight reference model, not the course's GTSIO-520-H teaching engine.",
-  "asset_url": "TBD — no 3D asset has been produced yet",
-  "supportsSection": false,
-  "supportsIsolation": false,
-  "supportsAnimateMechanism": false,
-  "hasTeachingComponents": false
-}
-```
-
-**A schema gap surfaced while writing the step, worth flagging to whoever reviews the v3→v4 schema evolution:** `validateStep` (in `web/schema/content-schema.mjs`) currently requires *every* `model-pose` step to carry an `action: {type: 'angle'|'cycle-angle', value: number}`, inherited unchanged from the v1 runtime contract. That makes sense for the operating-cylinder model, which has a real crank-angle motion profile to pose. The Wright reference model has no rig and no motion profile at all — it's a static orbit/zoom viewer. The draft step satisfies the validator with `action: {"type": "angle", "value": 0}` and explains in its `note` that the model holds a single fixed pose and does not animate, but this is a workaround, not a clean fit: a future schema revision could reasonably make `action` optional for reference-model steps (or scope it to models whose registry entry declares `supportsAnimateMechanism: true`). Flagging it here rather than quietly deciding it, since it changes a validated field's cardinality.
+The schema gap is also closed: animated `model-pose` steps still require their `action`, while static reference steps can instead declare a `viewPreset` and optional `focusHotspots`. The Wright step therefore no longer carries a misleading zero-degree crank-angle action.
 
 ## Images — all placeholders
 

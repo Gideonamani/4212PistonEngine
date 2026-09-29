@@ -42,7 +42,10 @@ export interface LessonStep {
   promptPlaceholder?: string;
   suggestedAnswer?: string;
   has3DReference?: boolean;
+  modelId?: string;
   referenceModel?: string;
+  viewPreset?: string;
+  focusHotspots?: string[];
   note?: string;
   action?: {
     type: string;

@@ -8,12 +8,16 @@ const registry = await fetch('./models.json?v=20260923-drive-models-1').then(res
 });
 const model = registry.models.find(item => item.id === requested);
 if (!model) throw Error(`Unknown training model: ${requested}`);
+if (model.adapter === 'reference') {
+  location.replace(`./?model=${encodeURIComponent(model.id)}#/explore`);
+  await new Promise(() => {});
+}
 document.title = `4212 Piston Engine · ${model.label}`;
 document.querySelector('.kicker').textContent = model.kicker;
 document.querySelector('h1').textContent = model.title;
 document.querySelector('.lede').textContent = model.description;
 const gallery = document.getElementById('model-gallery');
-if (gallery) gallery.innerHTML = registry.models.map(item => `<a class="model-pick" href="./explore.html?model=${item.id}" aria-current="${item.id === model.id}">${item.label}</a>`).join('');
+if (gallery) gallery.innerHTML = registry.models.filter(item => item.adapter !== 'reference').map(item => `<a class="model-pick" href="./explore.html?model=${item.id}" aria-current="${item.id === model.id}">${item.label}</a>`).join('');
 document.body.dataset.model = model.id;
 globalThis.trainingModel = model;
 initPageShell('explore', model.id);

@@ -36,6 +36,15 @@ const samplePack = {
   ],
 };
 assert.deepEqual(validateLessonPack(samplePack), []);
+assert.deepEqual(validateLessonPack({
+  ...samplePack,
+  lessons: [{
+    ...samplePack.lessons[0],
+    models: ['wright-1903-engine'],
+    steps: [{ type: 'model-pose', modelId: 'wright-1903-engine', prompt: 'Inspect it.', viewPreset: 'engine-overview', focusHotspots: ['magneto'] }],
+  }],
+  checks: [],
+}), []);
 
 // A general/theory lesson (models: []) is the natural empty case, not a
 // special error state, per the v3 "Resolved" note.
@@ -51,6 +60,10 @@ assert.ok(validateLessonPack({
   ...samplePack,
   lessons: [{ ...samplePack.lessons[0], models: ['cylinder'], steps: [{ type: 'model-pose', modelId: 'wright-1903', prompt: 'wrong model', action: { type: 'angle', value: 0 } }] }],
 }).some(e => e.includes("not declared")));
+assert.ok(validateLessonPack({
+  ...samplePack,
+  lessons: [{ ...samplePack.lessons[0], steps: [{ type: 'model-pose', modelId: 'cylinder', prompt: 'no action or preset' }] }],
+}).some(e => e.includes('action or static viewPreset')));
 assert.ok(validateLessonPack({ ...samplePack, checks: [{ id: 'x', lessonId: 'not-a-lesson', type: 'multiple-choice', question: 'q', answers: ['a', 'b'], correct: 0 }] }).some(e => e.includes('lessonId')));
 
 // Model registry: capability flags are required booleans.

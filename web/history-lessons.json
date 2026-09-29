@@ -94,7 +94,7 @@
       "sequenceNumber": 2,
       "title": "History of Aircraft Engines",
       "objective": "Follow how the internal combustion engine from lesson 1 was adapted and refined specifically to power flight, from the Wright brothers' hand-built 1903 engine through the wartime power race, to today's FADEC-managed general-aviation engines.",
-      "models": ["wright-1903"],
+      "models": ["wright-1903-engine"],
       "listed": true,
       "steps": [
         {
@@ -124,10 +124,11 @@
         {
           "type": "model-pose",
           "title": "Inspect the 1903 engine",
-          "modelId": "wright-1903",
+          "modelId": "wright-1903-engine",
           "prompt": "This is the actual engine from that flight, shown as a reference model. Orbit and zoom to inspect it, and compare what you see with the documented description: a cast-aluminium body, bored on a lathe for four independent cylinders in an inline arrangement; cast-iron pistons, turned and grooved to take piston rings. The complete engine weighed about 180 lb and produced 12 hp at 1,025 rpm - though it reportedly made closer to 16 hp when first started cold, settling to 12 hp as it warmed up.",
-          "action": {"type": "angle", "value": 0},
-          "note": "This is a lightweight reference/illustrative model (registry id 'wright-1903'), not the course's teaching engine - it supports orbit and zoom only, with no section view, no isolation and no operating mechanism/crank-angle animation, so it holds a single fixed pose rather than moving through a cycle. Engine description documented from the course slide deck (slide 16). Registry entry and 3D asset are not yet produced - see docs/history-lessons-content-draft.md."
+          "viewPreset": "engine-overview",
+          "focusHotspots": ["magneto", "valve", "crankcase"],
+          "note": "Interactive CC0 reference model from the Smithsonian National Air and Space Museum. The embedded lesson view supports orbit, zoom, reset and guided hotspots; section view, isolation and operating animation remain unavailable for this static historical scan. Engine description documented from the course slide deck (slide 16)."
         },
         {
           "type": "text",

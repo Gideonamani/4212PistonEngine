@@ -84,7 +84,9 @@ export const MODEL_CAPABILITY_FLAGS = Object.freeze([
  * @property {string} prompt
  * @property {string} [note]
  * @property {string} [modelId] - required when type === 'model-pose'; must be one of the owning lesson's `models`
- * @property {StepAction} [action] - required when type === 'model-pose' (today's angle/cycle-angle pose)
+ * @property {StepAction} [action] - animated model-pose steps use an angle/cycle-angle pose
+ * @property {string} [viewPreset] - static reference model-pose steps use a named camera preset instead of an action
+ * @property {string[]} [focusHotspots] - optional guided hotspot ids for a static reference view
  * @property {string} [focusNodeId] - model-pose only: scopes Learn's viewer to one Explore ContentNode (component or group)
  * @property {string[]} [deepDiveLinks] - ids of related deep-dive lessons (lessons with listed: false)
  * @property {string} [url] - image / external-link / web-embed source
@@ -185,8 +187,11 @@ function validateStep(step, lessonModels, lessonIndex, stepIndex, knownSourceIds
   if (step.type === 'model-pose') {
     if (!step.modelId) errors.push(`${where}: model-pose step missing modelId`);
     else if (!lessonModels.includes(step.modelId)) errors.push(`${where}: modelId '${step.modelId}' is not declared in lesson.models`);
-    if (!step.action || !['angle', 'cycle-angle'].includes(step.action.type) || typeof step.action.value !== 'number') {
-      errors.push(`${where}: model-pose step missing a valid action ({type: 'angle'|'cycle-angle', value})`);
+    const hasAction = step.action && ['angle', 'cycle-angle'].includes(step.action.type) && typeof step.action.value === 'number';
+    const hasReferencePreset = typeof step.viewPreset === 'string' && step.viewPreset.trim().length > 0;
+    if (!hasAction && !hasReferencePreset) errors.push(`${where}: model-pose step needs a valid action or static viewPreset`);
+    if (step.focusHotspots !== undefined && (!Array.isArray(step.focusHotspots) || step.focusHotspots.some(id => typeof id !== 'string' || !id))) {
+      errors.push(`${where}: focusHotspots must be an array of non-empty ids`);
     }
   }
   if (step.deepDiveLinks && !Array.isArray(step.deepDiveLinks)) errors.push(`${where}: deepDiveLinks must be an array of lesson ids`);

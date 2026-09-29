@@ -4,17 +4,24 @@ import { MODEL_REGISTRY_SCHEMA, MODEL_CAPABILITY_FLAGS, validateModelRegistry } 
 
 const registry=JSON.parse(fs.readFileSync(new URL('../web/models.json',import.meta.url),'utf8'));
 assert.equal(registry.schema,MODEL_REGISTRY_SCHEMA);
-assert.deepEqual(registry.models.map(model=>model.id),['cylinder','gtsio520-h-v5-teaching-engine']);
-assert.equal(new Set(registry.models.map(model=>model.adapter)).size,2);
+assert.deepEqual(registry.models.map(model=>model.id),['cylinder','gtsio520-h-v5-teaching-engine','wright-1903-engine']);
+assert.equal(new Set(registry.models.map(model=>model.adapter)).size,3);
 assert.ok(registry.models.every(model=>model.title&&model.kicker&&model.description));
 const cylinder=registry.models.find(model=>model.id==='cylinder');
 assert.deepEqual([cylinder.asset_url,cylinder.asset_fallback_url,cylinder.component_catalogue_url,cylinder.motion_profile_url],['./control.glb.gz?v=20260912-lesson-ready','./control.glb?v=20260912-lesson-ready','./components.json','./motion.json?v=20260912-operating-cylinder']);
 assert.equal(cylinder.component_tree_url,'./component-tree.json');
+const wright=registry.models.find(model=>model.id==='wright-1903-engine');
+assert.equal(wright.adapter,'reference');
+assert.equal(wright.asset_url,'./wright-1903-engine.glb?v=20260929-smithsonian-medium');
+assert.equal(wright.license,'CC0');
+assert.deepEqual(wright.learn_view.hotspots.map(hotspot=>hotspot.id),['magneto','valve','crankcase']);
+assert.ok(fs.statSync(new URL('../web/wright-1903-engine.glb',import.meta.url)).size>1_000_000,'the Pages build needs the compact reference GLB');
 
 // Published GLBs are not in git: the live site can only load a model that names its Drive files.
 const driveId=/^[-\w]{20,}$/;
 assert.match(cylinder.asset_drive_id,driveId);
 assert.match(cylinder.asset_fallback_drive_id,driveId);
+assert.match(wright.asset_drive_id,driveId);
 const transport=JSON.parse(fs.readFileSync(new URL('../web/engine-contract.json',import.meta.url),'utf8')).asset.transport;
 assert.match(transport.drive_file_id,driveId);
 assert.match(transport.fallback_drive_file_id,driveId);

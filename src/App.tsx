@@ -13,12 +13,20 @@ const viewFromHash = (): ViewMode => {
   return value === 'learn' || value === 'check' ? value : 'explore';
 };
 
+const modelNamesById: Record<string, string> = {
+  cylinder: 'Detailed operating cylinder',
+  'gtsio520-h-v5-teaching-engine': 'Full six-cylinder engine',
+  'wright-1903-engine': '1903 Wright Flyer engine',
+};
+
+const requestedModelName = () => modelNamesById[new URLSearchParams(location.search).get('model') || ''];
+
 export default function App() {
   const [activeView, setActiveView] = useState<ViewMode>(viewFromHash);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState<boolean>(false);
-  const [activeModelName, setActiveModelName] = useState<string>('Detailed operating cylinder');
-  const [isExploreViewerOpen, setIsExploreViewerOpen] = useState<boolean>(false);
+  const [activeModelName, setActiveModelName] = useState<string>(() => requestedModelName() || 'Detailed operating cylinder');
+  const [isExploreViewerOpen, setIsExploreViewerOpen] = useState<boolean>(() => Boolean(requestedModelName()));
   const [isFullscreen3D, setIsFullscreen3D] = useState<boolean>(false);
   const [tracks, setTracks] = useState<CourseTrack[]>([]);
   const [quizModules, setQuizModules] = useState<QuizModule[]>([]);
@@ -31,6 +39,7 @@ export default function App() {
   const availableModels = [
     'Detailed operating cylinder',
     'Full six-cylinder engine',
+    '1903 Wright Flyer engine',
   ];
 
   useEffect(() => {
@@ -82,7 +91,9 @@ export default function App() {
   const getHeaderSubtitle = () => {
     switch (activeView) {
       case 'explore':
-        return isExploreViewerOpen ? `GTSIO-520-H · ${activeModelName}` : 'GTSIO-520-H · MODEL LIBRARY';
+        return isExploreViewerOpen
+          ? activeModelName === '1903 Wright Flyer engine' ? 'WRIGHT FLYER · 1903 REFERENCE' : `GTSIO-520-H · ${activeModelName}`
+          : 'GTSIO-520-H · MODEL LIBRARY';
       case 'learn':
         return 'GTSIO-520-H · GUIDED LESSONS';
       case 'check':
