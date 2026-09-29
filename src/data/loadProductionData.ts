@@ -5,6 +5,7 @@ import type {
   QuizModule,
   QuizQuestion,
 } from '../types/engine';
+import { modelLabel, modelsById } from './modelRegistry';
 
 type PackStep = {
   type: 'text' | 'image' | 'model-pose' | 'external-link' | 'web-embed';
@@ -82,15 +83,6 @@ const stepVisualFor = (text: string): LessonStep['imageType'] => {
   return 'piston';
 };
 
-const modelLabel = (modelId?: string) => {
-  if (modelId === 'cylinder') return 'Detailed operating cylinder';
-  if (modelId === 'gtsio520-h-v5-teaching-engine') return 'Full six-cylinder engine';
-  if (modelId === 'wright-1903-engine') return '1903 Wright Flyer engine';
-  return modelId || 'Detailed operating cylinder';
-};
-
-const supportedModels = new Set(['cylinder', 'gtsio520-h-v5-teaching-engine', 'wright-1903-engine']);
-
 function mapLesson(lesson: PackLesson, index: number): Lesson {
   const steps = lesson.steps.map((step, stepIndex): LessonStep => ({
     type: step.type,
@@ -99,7 +91,7 @@ function mapLesson(lesson: PackLesson, index: number): Lesson {
     text: step.prompt,
     imageType: stepVisualFor(`${step.title} ${step.prompt}`),
     suggestedAnswer: step.note,
-    has3DReference: step.type === 'model-pose' && supportedModels.has(step.modelId || ''),
+    has3DReference: step.type === 'model-pose' && Boolean(step.modelId && modelsById[step.modelId]),
     modelId: step.modelId,
     referenceModel: modelLabel(step.modelId),
     viewPreset: step.viewPreset,

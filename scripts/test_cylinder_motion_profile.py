@@ -9,9 +9,9 @@ web = root / 'web'
 profile = json.loads((web / 'motion.json').read_text())
 config = json.loads((web / 'config.json').read_text())
 
-registry = json.loads((web / 'models.json').read_text())
-cylinder = next(model for model in registry['models'] if model['id'] == 'cylinder')
-assert cylinder['asset_drive_id'] and cylinder['asset_fallback_drive_id']
+registry = json.loads((root / 'src' / 'data' / 'models.json').read_text())
+cylinder = next(model for model in registry if model['id'] == 'cylinder')
+assert all(source['driveId'] for source in cylinder['sources'])
 assert config['drive_api_key']
 
 # Published GLBs live in Google Drive, not git. Bind the local synced copies when
