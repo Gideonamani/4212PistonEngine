@@ -71,7 +71,7 @@ export const ExploreView: React.FC<ExploreViewProps> = ({
     <Suspense fallback={<div className="flex h-full items-center justify-center text-sm text-teal-300">Preparing historical 3D reference…</div>}>
       <ReferenceModelViewer modelId={modelId} mode="explore" immersive />
     </Suspense>
-    <div className="absolute right-16 top-5 z-20 flex gap-2"><button onClick={onToggleFullscreen} className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-600/70 bg-[#07161b]/90 text-slate-200 shadow-lg backdrop-blur hover:border-teal-400 hover:text-teal-300" title={isFullscreen3D ? 'Exit immersive view' : 'Open immersive view'} aria-label={isFullscreen3D ? 'Exit immersive view' : 'Open immersive view'}>{isFullscreen3D ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}</button></div>
+    <div className="absolute right-28 top-5 z-20 flex gap-2"><button onClick={onToggleFullscreen} className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-600/70 bg-[#07161b]/90 text-slate-200 shadow-lg backdrop-blur hover:border-teal-400 hover:text-teal-300" title={isFullscreen3D ? 'Exit immersive view' : 'Open immersive view'} aria-label={isFullscreen3D ? 'Exit immersive view' : 'Open immersive view'}>{isFullscreen3D ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}</button></div>
   </div>;
   return <div className="absolute inset-0 min-h-0 overflow-hidden bg-[#061014]">
     <iframe key={modelId} src={viewerUrl} title={`${activeModelName} interactive 3D explorer`} className="absolute inset-0 h-full w-full border-0 bg-[#061014]" allow="fullscreen" />

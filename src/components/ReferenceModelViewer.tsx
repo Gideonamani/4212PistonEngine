@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Box, ExternalLink, Focus, LoaderCircle, RotateCcw, TriangleAlert } from 'lucide-react';
+import { Box, ExternalLink, Focus, LoaderCircle, Move3D, RotateCcw, TriangleAlert } from 'lucide-react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -9,6 +9,7 @@ type ViewerApi = {
   reset: () => void;
   focus: (hotspot: ReferenceModelHotspot) => void;
   nudge: (theta: number, phi: number, zoom: number) => void;
+  setInteractionMode: (mode: 'orbit' | 'pan') => void;
 };
 
 interface ReferenceModelViewerProps {
@@ -40,6 +41,7 @@ export default function ReferenceModelViewer({
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState('');
   const [activeHotspot, setActiveHotspot] = useState<string>();
+  const [interactionMode, setInteractionMode] = useState<'orbit' | 'pan'>('orbit');
 
   const hotspots = useMemo(() => {
     if (!definition) return [];
@@ -70,10 +72,12 @@ export default function ReferenceModelViewer({
     mount.appendChild(renderer.domElement);
 
     const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enablePan = false;
+    controls.enablePan = true;
     controls.enableDamping = false;
     controls.rotateSpeed = 0.72;
     controls.zoomSpeed = 0.9;
+    controls.panSpeed = 0.8;
+    controls.screenSpacePanning = true;
     controls.minPolarAngle = 0.12;
     controls.maxPolarAngle = Math.PI - 0.12;
 
@@ -120,7 +124,15 @@ export default function ReferenceModelViewer({
       render();
     };
 
-    apiRef.current = { reset: applyHome, focus, nudge };
+    const applyInteractionMode = (mode: 'orbit' | 'pan') => {
+      controls.mouseButtons.LEFT = mode === 'pan' ? THREE.MOUSE.PAN : THREE.MOUSE.ROTATE;
+      controls.mouseButtons.RIGHT = THREE.MOUSE.PAN;
+      controls.touches.ONE = mode === 'pan' ? THREE.TOUCH.PAN : THREE.TOUCH.ROTATE;
+      controls.touches.TWO = THREE.TOUCH.DOLLY_PAN;
+    };
+
+    applyInteractionMode('orbit');
+    apiRef.current = { reset: applyHome, focus, nudge, setInteractionMode: applyInteractionMode };
     controls.addEventListener('change', render);
 
     const resize = new ResizeObserver(() => {
@@ -227,8 +239,24 @@ export default function ReferenceModelViewer({
     {error && <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#071418] p-6 text-center text-rose-200" role="alert"><TriangleAlert className="h-7 w-7" /><p className="mt-2 max-w-xs text-xs leading-relaxed">{error}</p></div>}
 
     <div className="pointer-events-none absolute inset-x-0 top-0 z-[2] flex items-start justify-between gap-2 bg-gradient-to-b from-[#061216]/95 via-[#061216]/55 to-transparent p-3 pb-10">
-      <div><div className="flex items-center gap-1.5 font-mono text-[9px] font-bold tracking-[0.18em] text-teal-300"><Box className="h-3.5 w-3.5" />INTERACTIVE REFERENCE</div><p className="mt-1 text-[10px] text-slate-300">Drag to rotate · Pinch or scroll to zoom</p></div>
-      <button type="button" onClick={() => apiRef.current?.reset()} className="pointer-events-auto flex h-9 w-9 items-center justify-center rounded-full border border-slate-600/70 bg-[#07161b]/90 text-slate-200 shadow-lg hover:border-teal-400 hover:text-teal-300" aria-label="Reset 3D view" title="Reset 3D view"><RotateCcw className="h-4 w-4" /></button>
+      <div><div className="flex items-center gap-1.5 font-mono text-[9px] font-bold tracking-[0.18em] text-teal-300"><Box className="h-3.5 w-3.5" />INTERACTIVE REFERENCE</div><p className="mt-1 text-[10px] text-slate-300">{interactionMode === 'pan' ? 'Drag to pan · Pinch to zoom' : 'Drag to rotate · Pinch to zoom · Two-finger drag to pan'}</p></div>
+      <div className="pointer-events-auto flex gap-1.5">
+        <button
+          type="button"
+          onClick={() => {
+            const nextMode = interactionMode === 'pan' ? 'orbit' : 'pan';
+            setInteractionMode(nextMode);
+            apiRef.current?.setInteractionMode(nextMode);
+          }}
+          className={`flex h-9 w-9 items-center justify-center rounded-full border shadow-lg transition ${interactionMode === 'pan' ? 'border-teal-300 bg-teal-400/20 text-teal-200' : 'border-slate-600/70 bg-[#07161b]/90 text-slate-200 hover:border-teal-400 hover:text-teal-300'}`}
+          aria-label={interactionMode === 'pan' ? 'Return to rotate mode' : 'Pan model'}
+          aria-pressed={interactionMode === 'pan'}
+          title={interactionMode === 'pan' ? 'Return to rotate mode' : 'Pan model'}
+        >
+          <Move3D className="h-4 w-4" />
+        </button>
+        <button type="button" onClick={() => apiRef.current?.reset()} className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-600/70 bg-[#07161b]/90 text-slate-200 shadow-lg hover:border-teal-400 hover:text-teal-300" aria-label="Reset 3D view" title="Reset 3D view"><RotateCcw className="h-4 w-4" /></button>
+      </div>
     </div>
 
     <div className="absolute inset-x-2 bottom-2 z-[2] rounded-xl border border-slate-700/80 bg-[#07161b]/95 p-2 shadow-xl backdrop-blur-sm sm:inset-x-3 sm:bottom-3">
