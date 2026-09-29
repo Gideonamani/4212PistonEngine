@@ -10,18 +10,30 @@ export async function createStaticGltfSession(definition: ModelDefinition, conte
   signal.throwIfAborted();
   const root = gltf.scene;
   runtime.scene.add(root);
-  const preset = context.viewPreset && definition.viewPresets?.[context.viewPreset];
-  runtime.fit(root, preset ? new THREE.Vector3(...preset.direction) : undefined);
+  const fitPreset = (viewPreset?: string) => {
+    const preset = viewPreset && definition.viewPresets?.[viewPreset];
+    runtime.fit(root, preset ? new THREE.Vector3(...preset.direction) : undefined);
+  };
+  fitPreset(context.viewPreset);
   const allHotspots = definition.hotspots || [];
-  const permitted = context.focusHotspots?.length ? context.focusHotspots : context.profile === 'explore' ? undefined : definition.lessonHotspotIds;
-  const hotspots = permitted?.length ? allHotspots.filter((hotspot) => permitted.includes(hotspot.id)) : allHotspots;
+  const visibleHotspots = (focusHotspots?: string[]) => {
+    const permitted = focusHotspots?.length ? focusHotspots : context.profile === 'explore' ? undefined : definition.lessonHotspotIds;
+    return permitted?.length ? allHotspots.filter((hotspot) => permitted.includes(hotspot.id)) : allHotspots;
+  };
+  const hotspots = { items: visibleHotspots(context.focusHotspots) };
   const snapshot: ViewerSnapshot = { status: `${definition.label} ready`, progress: 100 };
 
   return {
     snapshot: () => ({ ...snapshot }),
+    update(view) {
+      fitPreset(view.viewPreset);
+      hotspots.items = visibleHotspots(view.focusHotspots);
+      snapshot.activeHotspotId = undefined;
+      onChange();
+    },
     features: {
       hotspots: {
-        items: hotspots,
+        get items() { return hotspots.items; },
         focus(id: string) {
           const hotspot = allHotspots.find((item) => item.id === id);
           if (!hotspot) return;

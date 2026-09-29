@@ -92,6 +92,9 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
   let playing = false;
   const section = createSectionController(items.map((item) => item.mesh), bounds, runtime.render, onChange);
 
+  // A lesson step can spotlight teaching components: everything else is ghosted and the camera frames the spotlit parts.
+  const focusComponents: any[] = [];
+  const isFocused = (item: EngineItem) => !focusComponents.length || focusComponents.some((component) => bindingMatches(item, component));
   const selectedComponent = () => componentsById.get(selectedId);
   const applyVisibility = () => {
     const isolated = componentsById.get(isolatedId);
@@ -101,7 +104,14 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
     const selected = selectedComponent();
     for (const item of items) {
       const highlighted = Boolean(selected && bindingMatches(item, selected));
+      const ghosted = !isFocused(item);
       for (const material of item.materials) {
+        material.userData.solid ??= { transparent: material.transparent, opacity: material.opacity, depthWrite: material.depthWrite };
+        const solid = material.userData.solid;
+        material.transparent = ghosted || solid.transparent;
+        material.opacity = ghosted ? 0.12 : solid.opacity;
+        material.depthWrite = ghosted ? false : solid.depthWrite;
+        material.needsUpdate = true;
         if (snapshot.appearance === 'inspection') {
           material.color.set(
             /Intake/i.test(item.label) ? 0x379e9b
@@ -162,8 +172,30 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
     } : undefined);
     onChange();
   };
+  const fitFull = () => runtime.fit(root, new THREE.Vector3(1.3, 0.8, 1.55));
+  const applyFocus = (ids: string[] = []) => {
+    const unknown = ids.filter((id) => !componentsById.has(id));
+    if (unknown.length) throw Error(`Unknown component id in focusParts: ${unknown.join(', ')}.`);
+    focusComponents.splice(0, focusComponents.length, ...ids.map((id) => componentsById.get(id)));
+    selectedId = '';
+    isolatedId = '';
+    snapshot.selectedId = undefined;
+    snapshot.selectedLabel = undefined;
+    snapshot.selectedDescription = undefined;
+    snapshot.isolated = false;
+    applyVisibility();
+    applyAppearance();
+    const box = new THREE.Box3();
+    for (const item of items) if (focusComponents.length && isFocused(item)) box.expandByObject(item.mesh);
+    if (box.isEmpty()) { fitFull(); return; }
+    const proxy = new THREE.Mesh(new THREE.BoxGeometry(...box.getSize(new THREE.Vector3()).toArray()));
+    proxy.position.copy(box.getCenter(new THREE.Vector3()));
+    runtime.fit(proxy, new THREE.Vector3(1.3, 0.8, 1.55));
+    proxy.geometry.dispose();
+  };
   setAngle(snapshot.angle || 0);
-  applyAppearance();
+  if (context.focusParts?.length) applyFocus(context.focusParts);
+  else applyAppearance();
 
   const components: ModelComponent[] = contract.teaching_components.map((component: any) => ({
     id: component.id,
@@ -177,6 +209,12 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
 
   return {
     snapshot: () => ({ ...snapshot, ...section.snapshot() }),
+    update(view) {
+      setPlaying(false);
+      setAngle(view.initialAngle ?? 0);
+      applyFocus(view.focusParts);
+      onChange();
+    },
     features: {
       components: {
         items: components,
@@ -208,9 +246,10 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
           snapshot.selectedLabel = undefined;
           snapshot.selectedDescription = undefined;
           snapshot.isolated = false;
+          focusComponents.length = 0;
           applyVisibility();
           applyAppearance();
-          runtime.fit(root, new THREE.Vector3(1.3, 0.8, 1.55));
+          fitFull();
           onChange();
         },
       },

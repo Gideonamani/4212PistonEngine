@@ -78,9 +78,19 @@ export type ViewerFeatures = {
   };
 };
 
+/** The per-step view a lesson can change on an already-loaded model, so consecutive steps do not reload the scene. */
+export type ViewUpdate = {
+  initialAngle?: number;
+  initialCycle?: boolean;
+  viewPreset?: string;
+  focusHotspots?: string[];
+  focusParts?: string[];
+};
+
 export type ViewerSession = {
   features: ViewerFeatures;
   snapshot: () => ViewerSnapshot;
+  update?: (view: ViewUpdate) => void;
   dispose: () => void;
 };
 
@@ -99,16 +109,10 @@ export type ViewerRuntime = {
   dispose: () => void;
 };
 
-export type AdapterContext = {
+export type AdapterContext = ViewUpdate & {
   runtime: ViewerRuntime;
   profile: ViewerProfile;
   signal: AbortSignal;
   onChange: () => void;
   onProgress: (status: string, progress?: number) => void;
-  initialAngle?: number;
-  initialCycle?: boolean;
-  viewPreset?: string;
-  focusHotspots?: string[];
-  /** Component ids to spotlight in a lesson step; every other part is ghosted and the camera frames the group. */
-  focusParts?: string[];
 };

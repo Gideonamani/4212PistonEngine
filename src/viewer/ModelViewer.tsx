@@ -5,7 +5,9 @@ import { modelsById } from '../data/modelRegistry';
 import { createModelSession } from './adapters';
 import { createViewerRuntime } from './core/runtime';
 import { CompactMotionPlayer, ExploreControls, type ExplorePanel } from './ExploreControls';
-import type { InteractionMode, ViewerProfile, ViewerSession, ViewerSnapshot } from './types';
+import type { InteractionMode, ViewUpdate, ViewerProfile, ViewerSession, ViewerSnapshot } from './types';
+
+const viewKey = (view: ViewUpdate) => JSON.stringify([view.initialAngle, view.initialCycle, view.viewPreset, view.focusHotspots, view.focusParts]);
 
 type ModelViewerProps = {
   modelId: string;
@@ -50,7 +52,19 @@ export default function ModelViewer({
   const [controlsOpen, setControlsOpen] = useState(profile === 'explore');
   const [query, setQuery] = useState('');
   const [group, setGroup] = useState('');
+  // The model loads once per model/profile; a step's pose, cycle cues and spotlight are applied to the loaded scene.
+  const view: ViewUpdate = { initialAngle, initialCycle, viewPreset, focusHotspots, focusParts };
+  const viewRef = useRef(view);
+  viewRef.current = view;
+  const appliedViewKey = useRef('');
   const [showPlayerOnViewer, setShowPlayerOnViewer] = useState(() => localStorage.getItem('4212-explore-show-player') !== 'false');
+
+  const applyView = (target: ViewerSession) => {
+    const key = viewKey(viewRef.current);
+    if (key === appliedViewKey.current) return;
+    appliedViewKey.current = key;
+    try { target.update?.(viewRef.current); } catch (reason) { console.error(reason); setError(reason instanceof Error ? reason.message : 'The 3D view could not be updated.'); }
+  };
 
   useEffect(() => {
     const mount = mountRef.current;
@@ -62,20 +76,18 @@ export default function ModelViewer({
     setLoadState({ status: 'Preparing 3D viewer…', progress: 0 });
     if (profile === 'lesson-dynamic' || profile === 'assessment') runtime.controls.enabled = false;
     let disposed = false;
+    appliedViewKey.current = viewKey(viewRef.current);
     createModelSession(definition, {
       runtime,
       profile,
       signal: controller.signal,
-      initialAngle,
-      initialCycle,
-      viewPreset,
-      focusHotspots,
-      focusParts,
+      ...viewRef.current,
       onChange: () => { if (!disposed) setVersion((value) => value + 1); },
       onProgress: (status, progress) => { if (!disposed) setLoadState({ status, progress }); },
     }).then((session) => {
       if (disposed) { session.dispose(); return; }
       sessionRef.current = session;
+      applyView(session);
       setLoadState(session.snapshot());
       setVersion((value) => value + 1);
     }).catch((reason: unknown) => {
@@ -92,7 +104,12 @@ export default function ModelViewer({
       runtime.dispose();
       runtimeRef.current = undefined;
     };
-  }, [definition, modelId, profile, initialAngle, initialCycle, viewPreset, focusHotspots?.join('|'), focusParts?.join('|')]);
+  }, [definition, modelId, profile]);
+
+  const currentViewKey = viewKey(view);
+  useEffect(() => {
+    if (sessionRef.current) applyView(sessionRef.current);
+  }, [currentViewKey]);
 
   void version;
   const session = sessionRef.current;
