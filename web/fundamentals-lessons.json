@@ -216,11 +216,11 @@
       "id": "classification",
       "sequenceNumber": 5,
       "title": "Classification",
-      "objective": "Classify a piston engine on separate axes - cylinder arrangement (inline, V-type, radial, horizontally opposed) and ignition method (spark or compression) - and explain how arrangement influences frontal area, cooling access, crankshaft/rod layout and installation without turning typical traits into universal rules.",
+      "objective": "Classify a piston engine on separate axes - cylinder arrangement (inline, V-type, radial, horizontally opposed) and ignition method (spark or compression) - explain how arrangement influences frontal area, cooling access, crankshaft/rod layout and installation without turning typical traits into universal rules, and read cylinder numbering and firing order from the engine manual.",
       "models": ["gtsio520-h-v5-teaching-engine"],
       "listed": true,
       "scheduledDay": 2,
-      "completionCriteria": "Correctly identify the four conventional arrangements from a plan/front view and explain at least one source-backed installation consequence for each, identify the GTSIO-520-H as a six-cylinder horizontally opposed engine, and state what initiates combustion in spark-ignition and compression-ignition engines.",
+      "completionCriteria": "Correctly identify the four conventional arrangements from a plan/front view and explain at least one source-backed installation consequence for each, identify the GTSIO-520-H as a six-cylinder horizontally opposed engine, state how its cylinders are numbered and what its firing order is, and state what initiates combustion in spark-ignition and compression-ignition engines.",
       "steps": [
         {
           "type": "text",
@@ -288,6 +288,24 @@
           "note": "Documented synthesis of the FAA and EASA configuration sections. This boundary prevents the lesson from turning a layout label into an unsupported claim about every engine of that type.",
           "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
           "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The closing distinction is conceptual."}
+        },
+        {
+          "type": "web-embed",
+          "title": "Numbering the cylinders",
+          "prompt": "Find cylinder No. 1, then predict where No. 2 goes. On the GTSIO-520-H the cylinders are numbered from the rear, with odd numbers on the right bank and even numbers on the left, as seen from the accessory end. Numbering is not standardised - some manufacturers number from the front - so always check the engine manual.",
+          "url": "artifact:cylinder-numbering",
+          "note": "Documented from the GTSIO-520 overhaul manual, paragraph 1-7 and the definition of terms (PDF pp. 13-14: cylinders numbered from the rear, odd on the right and even on the left, right and left taken facing the accessory end) and FAA-H-8083-32B (2023), PDF pp. 36-37 (left and right taken from the rear; inline and V engines numbered from the rear; opposed-engine numbering 'is by no means standard'; Figure 1-19). The IO-520 manual gives the same rule (paragraph 1-5). The whole-engine model contract (web/engine-contract.json) labels cylinder-1 as left-forward, a reconstruction that does not match the manual; the manual is followed here.",
+          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul", "io520-overhaul"],
+          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "A top-view diagram with the numbers on the cylinders shows the rule at a glance."}
+        },
+        {
+          "type": "web-embed",
+          "title": "Firing order",
+          "prompt": "The firing order is the sequence in which the cylinders' power events occur, chosen for balance and low vibration. Scrub the crank angle and watch the GTSIO-520-H fire 1-4-5-2-3-6, one cylinder every 120 degrees. The IO-520 has the same layout but fires 1-6-3-2-5-4, so never assume one engine's order from another's.",
+          "url": "artifact:cylinder-firing-order",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 37 (firing order chosen for balance; opposed engines list in pairs; a six-cylinder opposed example 1-4-5-2-3-6), the GTSIO-520 overhaul manual (PDF p. 15, and PDF p. 153 for the -H: 1-4-5-2-3-6) and the IO-520 overhaul manual Table II (1-6-3-2-5-4). The 120-degree spacing is derived (720 / 6) for teaching; the manuals give the order, not crank-angle timing.",
+          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul", "io520-overhaul"],
+          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Scrubbing the crank angle shows the order as a sequence in time on the layout."}
         },
         {
           "type": "web-embed",
@@ -996,6 +1014,25 @@
       "hint": "Start where the expanding gas meets the engine and finish at the shaft that turns.",
       "items": ["Expanding gas pushes on the piston", "The piston pin passes the load to the connecting rod", "The connecting rod turns the crankpin", "The crankshaft rotates and drives the propeller shaft"],
       "rationale": "Gas pressure on the piston is carried through the pin and rod to the crankpin, and the crankshaft turns the reciprocating force into rotation that drives the propeller."
+    },
+    {
+      "id": "classification-numbering",
+      "lessonId": "classification",
+      "type": "multiple-choice",
+      "question": "How are the GTSIO-520-H's cylinders numbered?",
+      "hint": "Left and right are taken as seen from the accessory end.",
+      "answers": ["From the rear, with odd numbers on the right and even numbers on the left", "From the front, filling one bank before the other", "Clockwise from the top cylinder"],
+      "correct": 0,
+      "rationale": "The overhaul manual numbers the cylinders starting from the rear, odd on the right and even on the left; other manufacturers may number from the front, so the manual always decides."
+    },
+    {
+      "id": "classification-firing-order",
+      "lessonId": "classification",
+      "type": "ordering",
+      "question": "Put the GTSIO-520-H cylinders in firing order.",
+      "hint": "Cylinder 1 fires first; the order is in the manual's ignition system table.",
+      "items": ["Cylinder 1", "Cylinder 4", "Cylinder 5", "Cylinder 2", "Cylinder 3", "Cylinder 6"],
+      "rationale": "The GTSIO-520-H fires 1-4-5-2-3-6; the similar IO-520 fires 1-6-3-2-5-4, so the order must come from the engine's own manual."
     }
   ]
 }

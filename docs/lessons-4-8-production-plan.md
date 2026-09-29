@@ -12,7 +12,7 @@ The instructor confirmed a final 18-lesson list, ending with Practicals. It supe
 | 2 | History of Aircraft Engines | Draft built |
 | 3 | Terminologies | Draft built; vocabulary extended (dead centres, bore, stroke, swept/clearance volume, compression ratio) |
 | 4 | Thermodynamic Cycles (Otto and Diesel) | Rebuilt around PV diagrams, valve lead/lag/overlap and the Diesel cycle; two-stroke and rotary are deep dives |
-| 5 | Classification | Draft built (arrangements plus the spark vs compression-ignition comparison) |
+| 5 | Classification | Draft built (arrangements, cylinder numbering, firing order, and the spark vs compression-ignition comparison) |
 | 6 | Parts & Construction | Draft built (13 steps, 8 checks; spotlighted 3D parts, FAA figures, GTSIO-520-H vs IO-520 comparison) |
 | 7 | Cooling Methods | Draft built |
 | 8 | Accessories & Drives | Not started; absorbs magnetos and dual ignition |
@@ -59,7 +59,8 @@ Still noted in the steps: the IO-520 compression ratio is not stated in its over
 - **Sources.** FAA-H-8083-32B PDF pp. 26-36 and 43-45 (construction) and pp. 343-344 (mounts); EASA Module 16 PDF pp. 51-70 and 275-276 as cross-check; GTSIO-520 overhaul manual Section III (PDF pp. 16-17) and C-3 (PDF p. 152) for the course engine; IO-520 overhaul manual paragraphs 2-3 to 2-9 for the comparison.
 - **New viewer option.** A model-pose step may set `focusParts` (component ids from the operating-cylinder catalogue); those parts render normally, everything else is ghosted, and the camera frames the group. Lessons 8 and 9 (accessories, valve train) can reuse it.
 - **Bug fixed along the way.** The 3D canvas overflowed its container on any display scaled above 100% (the renderer's pixel ratio scaled the drawing buffer while the CSS size was left unset), so every 3D view was zoomed and cropped there. The canvas now fills its container.
-- **Not covered yet.** Cylinder numbering and firing order (outcomes 3.7.3 and 3.7.4) are still not taught in any lesson; lesson 5 (Classification) is the natural home for numbering.
+- **Cylinder numbering and firing order** (outcomes 3.7.3 and 3.7.4) are now in lesson 5 (Classification), as two interactive steps built from the GTSIO-520 manual: numbered from the rear, odd cylinders on the right, firing order 1-4-5-2-3-6 (the IO-520 fires 1-6-3-2-5-4).
+- **Open data issue.** `web/engine-contract.json` labels `cylinder-1` as `left-forward` (and `cylinder-2` as `right-forward`). That is an earlier reconstruction and contradicts the GTSIO-520 manual, which numbers from the rear with odd cylinders on the right (No. 1 is right rear). Lessons follow the manual. Any future lesson that labels cylinders on the whole-engine 3D model must correct the contract's station map first.
 
 ### Additional editable sources
 
