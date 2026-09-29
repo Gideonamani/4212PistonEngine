@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { LESSON_PACK_SCHEMA, validateLessonPack } from '../web/schema/content-schema.mjs';
+import { assertStrokeLabelsMatch } from './stroke-labels.mjs';
 
 const pack = JSON.parse(fs.readFileSync(new URL('../web/m2-cylinder-lessons.json', import.meta.url), 'utf8'));
 assert.equal(pack.schema, LESSON_PACK_SCHEMA);
@@ -16,6 +17,7 @@ for (const step of lesson.steps) {
   assert.ok(['angle', 'cycle-angle'].includes(step.action.type));
   assert.ok(Number.isInteger(step.action.value) && step.action.value >= 0 && step.action.value <= 720);
 }
+assertStrokeLabelsMatch(lesson.steps, lesson.id);
 assert.equal(pack.checks.length, 5);
 for (const item of pack.checks) {
   assert.equal(item.lessonId, lesson.id);

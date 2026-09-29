@@ -15,6 +15,7 @@ type PackStep = {
   modelId?: string;
   viewPreset?: string;
   focusHotspots?: string[];
+  deepDiveLinks?: string[];
   action?: { type: string; value?: number | string };
   url?: string;
   alt?: string;
@@ -32,6 +33,7 @@ type PackLesson = {
   models?: string[];
   steps: PackStep[];
   sequenceNumber?: number;
+  listed?: boolean;
 };
 
 type PackCheck = {
@@ -61,6 +63,12 @@ export type ProductionCurriculum = {
   quizModules: QuizModule[];
 };
 
+// Lessons with listed:false never appear in the lesson list. Those a step links to (deepDiveLinks) are deep dives, reachable
+// through that link; the rest are parked drafts that students never see, along with their checks.
+const isListed = (lesson: PackLesson) => lesson.listed !== false;
+const linkedDeepDiveIds = (pack: LessonPack) => new Set(pack.lessons.flatMap((lesson) => lesson.steps.flatMap((step) => step.deepDiveLinks || [])));
+const isDeepDive = (lesson: PackLesson, linked: Set<string>) => !isListed(lesson) && linked.has(lesson.id);
+
 const visualFor = (text: string): Lesson['imageType'] => {
   const value = text.toLowerCase();
   if (value.includes('wright') || value.includes('aircraft')) return 'wright';
@@ -83,7 +91,7 @@ const stepVisualFor = (text: string): LessonStep['imageType'] => {
   return 'piston';
 };
 
-function mapLesson(lesson: PackLesson, index: number): Lesson {
+function mapLesson(lesson: PackLesson, index: number, deepDive = false): Lesson {
   const steps = lesson.steps.map((step, stepIndex): LessonStep => ({
     type: step.type,
     stepNumber: stepIndex + 1,
@@ -96,6 +104,7 @@ function mapLesson(lesson: PackLesson, index: number): Lesson {
     referenceModel: modelLabel(step.modelId),
     viewPreset: step.viewPreset,
     focusHotspots: step.focusHotspots,
+    deepDiveLinks: step.deepDiveLinks,
     note: step.note,
     action: step.action,
     url: step.url,
@@ -109,7 +118,8 @@ function mapLesson(lesson: PackLesson, index: number): Lesson {
 
   return {
     id: lesson.id,
-    lessonNumber: `Lesson ${String(lesson.sequenceNumber || index + 1).padStart(2, '0')}`,
+    lessonNumber: deepDive ? 'Deep dive' : `Lesson ${String(lesson.sequenceNumber || index + 1).padStart(2, '0')}`,
+    isDeepDive: deepDive || undefined,
     title: lesson.title,
     subtitle: lesson.objective,
     description: lesson.objective,
@@ -137,7 +147,9 @@ function mapQuestion(check: PackCheck, packId: string): QuizQuestion {
 }
 
 function mapTrack(pack: LessonPack, index: number): CourseTrack {
-  const lessons = pack.lessons.map(mapLesson);
+  const linked = linkedDeepDiveIds(pack);
+  const lessons = pack.lessons.filter(isListed).map((lesson, lessonIndex) => mapLesson(lesson, lessonIndex));
+  const deepDives = pack.lessons.filter((lesson) => isDeepDive(lesson, linked)).map((lesson, lessonIndex) => mapLesson(lesson, lessonIndex, true));
   const stepCount = lessons.reduce((sum, lesson) => sum + lesson.stepCount, 0);
   return {
     id: pack.id,
@@ -149,11 +161,14 @@ function mapTrack(pack: LessonPack, index: number): CourseTrack {
     isCurrent: index === 0,
     imageType: visualFor(`${pack.title} ${pack.description}`) === 'piston' ? 'radial' : visualFor(`${pack.title} ${pack.description}`) as CourseTrack['imageType'],
     lessons,
+    deepDives,
   };
 }
 
 function mapQuizModule(pack: LessonPack): QuizModule {
-  const questions = pack.checks.map((check) => mapQuestion(check, pack.id));
+  const linked = linkedDeepDiveIds(pack);
+  const unlisted = new Set(pack.lessons.filter((lesson) => !isListed(lesson) && !isDeepDive(lesson, linked)).map((lesson) => lesson.id));
+  const questions = pack.checks.filter((check) => !unlisted.has(check.lessonId)).map((check) => mapQuestion(check, pack.id));
   return {
     id: `${pack.id}-check`,
     title: pack.title,

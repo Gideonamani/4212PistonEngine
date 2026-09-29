@@ -31,12 +31,16 @@ assert.equal(new Set(allLessonIds).size, allLessonIds.length, 'lesson ids must b
 
 // The Check gallery lists every lesson that owns at least one check, across all packs -
 // this is the exact derivation the React assessment gallery performs.
+// Students see listed lessons and the deep dives a step links to; parked drafts (listed:false, not linked) stay hidden
+// together with their checks (see src/data/loadProductionData.ts).
+const isVisible = (pack, lesson) => lesson.listed !== false
+  || pack.lessons.some(other => other.steps.some(step => (step.deepDiveLinks || []).includes(lesson.id)));
 const lessonsWithChecks = packs.flatMap(pack =>
-  pack.lessons.filter(lesson => (pack.checks || []).some(item => item.lessonId === lesson.id)).map(lesson => ({ lesson, pack })));
-assert.equal(lessonsWithChecks.length, 9, 'expected 3 history + 5 fundamentals + 1 M2 lessons to each own at least one check');
+  pack.lessons.filter(lesson => isVisible(pack, lesson) && (pack.checks || []).some(item => item.lessonId === lesson.id)).map(lesson => ({ lesson, pack })));
+assert.equal(lessonsWithChecks.length, 9, 'expected 3 history + 5 fundamentals (3 listed lessons + 2 deep dives) + 1 M2 lessons to each own at least one check');
 const historyChecks = lessonsWithChecks.filter(({ pack }) => pack.id === 'history-and-fundamentals');
 assert.equal(historyChecks.length, 3, 'all 3 history lessons must be reachable from the Check gallery, not just the M2 lesson');
 const fundamentalsChecks = lessonsWithChecks.filter(({ pack }) => pack.id === 'fundamentals-and-classification');
-assert.equal(fundamentalsChecks.length, 5, 'all 5 fundamentals lessons must be reachable from the Check gallery');
+assert.equal(fundamentalsChecks.length, 5, 'the 3 listed fundamentals lessons and 2 deep dives must be reachable from the Check gallery');
 
 console.log('unified gallery data model is valid: manifest lists every track, ids are unique, all packs\' checks are reachable');

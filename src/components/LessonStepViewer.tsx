@@ -25,6 +25,8 @@ import { completeLesson, getLessonProgress, saveLessonReflection, saveLessonStep
 interface LessonStepViewerProps {
   lesson: Lesson;
   onBackToLessons: () => void;
+  deepDives?: Lesson[];
+  onOpenDeepDive?: (lessonId: string) => void;
   onSwitchTo3DModel?: (modelName: string) => void;
   onTakeQuiz?: (lessonId: string) => void;
   initialStepIndex?: number;
@@ -37,6 +39,8 @@ interface LessonStepViewerProps {
 export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
   lesson,
   onBackToLessons,
+  deepDives,
+  onOpenDeepDive,
   onSwitchTo3DModel,
   onTakeQuiz,
   initialStepIndex,
@@ -271,6 +275,12 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
             {currentStep.text}
           </p>
+
+          {/* Optional deep dives: unlisted lessons, never required to progress. */}
+          {currentStep.deepDiveLinks?.map((linkId) => {
+            const target = deepDives?.find((item) => item.id === linkId);
+            return target ? <button key={linkId} type="button" onClick={() => onOpenDeepDive?.(linkId)} className="flex items-center justify-between gap-3 rounded-xl border border-teal-500/30 bg-teal-500/10 px-3.5 py-2.5 text-left text-xs font-semibold text-teal-200 transition hover:border-teal-400"><span><span className="block font-mono text-[10px] uppercase tracking-widest text-teal-400">Optional deep dive</span>{target.title}</span><span aria-hidden="true">→</span></button> : null;
+          })}
 
           {/* GUIDED PROMPT Card (Matching Screenshot 5) */}
           {currentStep.promptQuestion && (

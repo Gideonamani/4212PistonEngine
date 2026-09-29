@@ -46,6 +46,8 @@ export interface LessonStep {
   referenceModel?: string;
   viewPreset?: string;
   focusHotspots?: string[];
+  /** Ids of unlisted deep-dive lessons this step links to (optional, never required to progress). */
+  deepDiveLinks?: string[];
   note?: string;
   action?: {
     type: string;
@@ -74,6 +76,8 @@ export interface Lesson {
   stepCount: number;
   hasModelBadge?: boolean;
   imageType: 'oxen' | 'wright' | 'piston' | 'systems' | 'maintenance' | 'gauges' | 'borescope';
+  /** True for an unlisted lesson reached only through a step's deepDiveLinks. */
+  isDeepDive?: boolean;
   steps: LessonStep[];
 }
 
@@ -87,6 +91,8 @@ export interface CourseTrack {
   isCurrent?: boolean;
   imageType: 'radial' | 'systems' | 'maintenance' | 'gauges' | 'borescope';
   lessons: Lesson[];
+  /** Unlisted lessons linked from a step; opened by route or link, absent from the lesson list. */
+  deepDives?: Lesson[];
 }
 
 export interface QuizQuestion {

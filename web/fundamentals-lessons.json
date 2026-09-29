@@ -4,7 +4,7 @@
   "draftStatus": "UNREVIEWED INSTRUCTOR DRAFT - 2026-09-28. Source-backed media and native lesson interactions are implemented; configuration-specific applicability notes remain visible where required.",
   "id": "fundamentals-and-classification",
   "title": "Fundamentals & Classification",
-  "description": "Lessons 4-8: operating cycles, cylinder arrangements, ignition, cooling and aspiration, with the GTSIO-520-H used as the continuing aircraft-engine example.",
+  "description": "Operating cycles, engine classification (cylinder arrangement and ignition) and cooling, with the GTSIO-520-H used as the continuing aircraft-engine example.",
   "sources": [
     {
       "id": "faa-powerplant-2023",
@@ -26,6 +26,55 @@
       "title": "Continental GTSIO-520 Series Overhaul Manual X30045A",
       "path": "Notes/gtsio520_series.pdf",
       "applicability": "Configuration-specific source for the course reference engine. Variant applicability must be checked before using a limit, dimension or maintenance instruction."
+    },
+    {
+      "id": "course-deck-2026-05",
+      "tier": 4,
+      "title": "Aircraft Piston Engine Slides - 21 May 2026 (instructor course deck)",
+      "path": "Notes/Aircraft Piston Engine Slides - 21May2026.pptx",
+      "applicability": "Instructor-authored course slides. Used only where FAA-H-8083-32B and EASA Module 16 are silent: Otto and Diesel pressure-volume theory (slides 56-58, 76) and the diesel pros and cons (slide 78). Carries no independent evidence; claims here need the instructor's confirmation."
+    },
+    {
+      "id": "wikipedia-otto-cycle",
+      "tier": 5,
+      "title": "Otto cycle - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Otto_cycle",
+      "applicability": "Publisher: Wikimedia Foundation. Licence: CC BY-SA 4.0. Page last edited 19 August 2026; accessed 29 September 2026. Used for the general air-standard process definitions only."
+    },
+    {
+      "id": "wikipedia-diesel-cycle",
+      "tier": 5,
+      "title": "Diesel cycle - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Diesel_cycle",
+      "applicability": "Publisher: Wikimedia Foundation. Licence: CC BY-SA 4.0. Page last edited 3 February 2026; accessed 29 September 2026. Used for the general air-standard process definitions and the Otto/Diesel contrast only."
+    },
+    {
+      "id": "io520-overhaul",
+      "tier": 3,
+      "title": "Continental IO-520 Series Overhaul Manual (editable reflow copy)",
+      "path": "C:/Users/user/KeonGeraldo/CodeProjects/DigiMan/work/deliverables/io520_overhaul/IO520_Overhaul_reflow.md",
+      "applicability": "Comparison engine only - a different engine from the GTSIO-520-H. Confirm applicability before using any value."
+    },
+    {
+      "id": "mit-unified-thermo-propulsion",
+      "tier": 4,
+      "title": "Thermodynamics and Propulsion, MIT Unified Engineering course notes (sections 3.5 Otto cycle and 3.6 Diesel cycle)",
+      "url": "https://web.mit.edu/16.unified/www/SPRING/propulsion/notes/node25.html",
+      "applicability": "University aeronautics course text (MIT Aeronautics and Astronautics), used as the textbook cross-check the instructor requested on 29 September 2026. Accessed 29 September 2026; content paraphrased, nothing reproduced. Section 3.6 (Diesel cycle) is at the sibling page node26.html."
+    },
+    {
+      "id": "nasa-glenn-otto-cycle",
+      "tier": 5,
+      "title": "Internal Combustion Engine - Otto Cycle, NASA Glenn Research Center Beginner's Guide to Aeronautics",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/internal-combustion-engine-otto-cycle/",
+      "applicability": "Publisher: NASA Glenn Research Center. Licence: US Government work (public domain). Page last updated 28 July 2023; accessed 29 September 2026. Used to cross-check the ideal Otto cycle and the gap between ideal and real cycles."
+    },
+    {
+      "id": "faa-diesel-special-conditions-2006",
+      "tier": 5,
+      "title": "Special Conditions: Aero Propulsion, Inc.; Piper PA28-236 with SMA SR305-230 Aircraft Diesel Engine, Federal Register vol. 71 no. 114 (14 June 2006), proposed rules, 14 CFR Part 23",
+      "url": "https://www.govinfo.gov/content/pkg/FR-2006-06-14/pdf/E6-9227.pdf",
+      "applicability": "Publisher: Federal Aviation Administration via the Federal Register. Licence: US Government work (public domain). Published 14 June 2006; accessed 29 September 2026. A proposed rule stating the FAA's concerns for one diesel installation; it says the concerns are not universally applicable to all diesel engines."
     }
   ],
   "lessons": [
@@ -33,11 +82,11 @@
       "id": "thermodynamic-cycles",
       "sequenceNumber": 4,
       "title": "Thermodynamic Cycles",
-      "objective": "Distinguish the four-stroke, two-stroke, rotary and diesel operating cycles by how they admit, compress, ignite, expand and discharge the working charge, while keeping an ideal teaching cycle separate from manufacturer-specific timing and measured pressure data.",
+      "objective": "Apply the Otto and Diesel cycles to aero piston engine operation: relate the four strokes to crankshaft and piston movement, read the ideal and practical Otto pressure-volume diagram, explain valve lead, lag and overlap, and distinguish the Diesel cycle by how it adds heat and starts combustion - while keeping ideal teaching diagrams separate from manufacturer timing and measured pressure data.",
       "models": ["cylinder"],
       "listed": true,
       "scheduledDay": 2,
-      "completionCriteria": "Describe the four events of a four-stroke cycle in order, explain why it takes 720 crankshaft degrees, and give one accurate distinction between four-stroke, two-stroke, rotary and diesel operation without treating an illustrative diagram as measured engine data.",
+      "completionCriteria": "Describe the four events of a four-stroke cycle in order and why it takes 720 crankshaft degrees, and state how a two-stroke cycle completes the same events in one revolution; label the four processes of the ideal Otto cycle on a pressure-volume diagram and give two reasons the practical diagram differs; explain valve lead, lag and overlap and why overlap helps rather than harms; and state how the Diesel cycle differs from the Otto cycle in heat addition and ignition - without treating an illustrative diagram as measured engine data.",
       "steps": [
         {
           "type": "text",
@@ -68,42 +117,90 @@
         },
         {
           "type": "model-pose",
-          "title": "Compression pose",
+          "title": "Power pose",
           "modelId": "cylinder",
-          "prompt": "At 450 degrees, compare the piston direction and cylinder volume with the 90-degree intake pose. Which mechanical motion repeats, and which cycle event has changed?",
+          "prompt": "At 450 degrees the piston is travelling the same direction as at 90 degrees, yet compression has come and gone in between. Compare the two poses: which mechanical motion repeats, and which cycle event has changed?",
           "action": {"type": "cycle-angle", "value": 450},
-          "note": "Documented four-stroke sequence from FAA-H-8083-32B (2023), PDF pp. 46-48. The shared 720-degree profile distinguishes the second crankshaft revolution from the first.",
+          "note": "Documented four-stroke sequence from FAA-H-8083-32B (2023), PDF pp. 46-48. In the shared 720-degree teaching profile 0-180 is intake, 180-360 compression, 360-540 power and 540-720 exhaust, so 450 degrees is mid-power stroke; the profile distinguishes the second crankshaft revolution from the first.",
           "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "A paired pose comparison shows why piston position alone does not identify the stroke."}
+          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "A paired pose comparison (both poses descending) shows why piston direction alone does not identify the stroke."}
         },
         {
           "type": "web-embed",
-          "title": "Two-stroke overlap",
-          "prompt": "Step through one crankshaft revolution of a two-stroke cycle. Observe how intake and exhaust functions share part of the same piston movement, rather than occupying four separate strokes.",
-          "url": "artifact:two-stroke-port-timing",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48. The FAA text states that a two-stroke cycle completes in one crankshaft revolution and combines intake and exhaust functions during the same stroke.",
-          "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Port opening and closing are time relationships; a learner-controlled phase animation is clearer than a single still."}
-        },
-        {
-          "type": "image",
-          "title": "Rotary chambers",
-          "prompt": "Trace how the three-sided rotor creates changing chambers for intake, compression, combustion/expansion and exhaust while producing rotary output.",
-          "url": "./lesson-media/rotary-cycle-phases.webp",
-          "alt": "EASA diagram showing intake, compression, power and exhaust chambers in a rotary engine",
-          "credit": "EASA Module 16 course reference, Figure 1-4",
-          "license": "Course reference extract",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48, and EASA Module 16, PDF pp. 22-23. Use the source figure first. A short licensed or self-authored motion clip is optional only if the static chamber sequence proves insufficient in review.",
-          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
-          "mediaPlan": {"mode": "source-image", "status": "available", "rationale": "The EASA source already supplies the required rotor, housing and phase geometry; a generated technical image would add avoidable fidelity risk."}
+          "title": "Ideal Otto cycle",
+          "prompt": "A pressure-volume (PV) diagram plots the cylinder's pressure against its volume through one cycle. Step through the ideal Otto cycle and watch the piston beside it. Which two processes hold the volume constant, and which two have no heat exchange?",
+          "url": "artifact:otto-pv-diagram",
+          "note": "Neither FAA-H-8083-32B nor EASA Module 16 covers pressure-volume diagram theory (both searched 29 September 2026). Ideal Otto processes (two adiabatic, two constant-volume) are from the instructor's course deck, slides 56 and 58 (tier 4), and the Wikipedia Otto cycle article (tier 5, CC BY-SA 4.0, accessed 29 September 2026). The curves are schematic ideal-gas shapes, not data for any engine. Cross-checked against MIT Unified Engineering, 'Thermodynamics and Propulsion' section 3.5 (isentropic compression and expansion; constant-volume combustion and heat rejection; tier 4 textbook-grade source) and NASA Glenn's Otto cycle page (combustion at constant volume; no heat exchange during the compression and power strokes).",
+          "sourceRefs": ["course-deck-2026-05", "wikipedia-otto-cycle", "mit-unified-thermo-propulsion", "nasa-glenn-otto-cycle"],
+          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Stepping a marker around the loop while the piston moves shows how each process links to a stroke."}
         },
         {
           "type": "text",
-          "title": "Diesel ignition",
-          "prompt": "In a diesel-cycle engine, the cylinder first compresses air. Fuel enters near maximum pressure, and the resulting high temperature initiates combustion without an electric spark. Notice that 'diesel' describes the ignition/heat-addition strategy; diesel engines may still use two-stroke or four-stroke mechanical cycles.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48, and EASA Module 16, PDF p. 23. Both sources also note aircraft examples that operate on Jet A/kerosene. No unsourced claim about a universal efficiency or weight advantage is made here.",
+          "title": "Why constant volume?",
+          "prompt": "The ideal cycle treats combustion as instant heat addition while the piston sits at top dead centre, so the volume cannot change and the pressure jumps straight up. Real burning takes time, which is why the spark fires before TDC and cylinder pressure peaks a little after it. The ideal loop also leaves out the pumping done on the intake and exhaust strokes.",
+          "note": "Ideal-cycle assumptions from the course deck, slide 56 (tier 4), and Wikipedia Otto cycle (tier 5). Spark before TDC and the pressure peak after TDC are documented in FAA-H-8083-32B (2023), PDF pp. 48 and 51.",
+          "sourceRefs": ["faa-powerplant-2023", "course-deck-2026-05", "wikipedia-otto-cycle"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The constant-volume idea is stated once, directly after the diagram that shows it."}
+        },
+        {
+          "type": "web-embed",
+          "title": "Ideal versus practical",
+          "prompt": "Switch between the ideal and practical diagrams. Find two differences in shape, then link each to a physical cause: burning takes time, heat is lost to the cylinder walls, and valves open early and close late.",
+          "url": "artifact:otto-pv-ideal-vs-practical",
+          "note": "FAA-H-8083-32B (2023), PDF pp. 48 and 51 (Figure 1-39) documents the actual cylinder-pressure diagram and its peak after top center. The list of causes follows the course deck, slides 57-58 (tier 4). The practical curve is an illustrative rounding of the ideal loop, not measured data. MIT section 3.5 notes the actual cycle lacks the sharp transitions between processes that the ideal cycle has, and NASA Glenn notes the real cycle's enclosed area (work) is always less than the ideal value.",
+          "sourceRefs": ["faa-powerplant-2023", "course-deck-2026-05", "mit-unified-thermo-propulsion", "nasa-glenn-otto-cycle"],
+          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Overlaying the ideal loop as a dashed line makes each departure from the ideal visible."}
+        },
+        {
+          "type": "web-embed",
+          "title": "Valve lead, lag and overlap",
+          "prompt": "Move the crank through the FAA example timing chart. Find where each valve opens and closes relative to TDC and BDC, and locate the interval around TDC when both valves are open.",
+          "url": "artifact:valve-timing-diagram",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 47, Figure 1-37 (example valve timing chart) and its text: valve events vary considerably in different engines, and the manufacturer's recommendations must be followed. The chart values are an FAA example, not GTSIO-520-H timing; the GTSIO-520 manual searched here gives no valve timing figures. The instructor accepted the FAA example chart for this lesson (29 September 2026).",
+          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
+          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "A crank-angle marker over a two-revolution timeline shows valve state and overlap at any angle."}
+        },
+        {
+          "type": "text",
+          "title": "Why overlap helps",
+          "prompt": "The intake valve opens before TDC on the exhaust stroke (valve lead), and the exhaust valve closes after TDC (valve lag). The overlap cools the cylinder internally with cool incoming charge, draws in more mixture and helps scavenge burnt gas. It works because moving gas has momentum: the outgoing exhaust leaves the cylinder at low pressure, which speeds the fresh charge in. Timing is limited, though - open the intake too early and hot gas can flash back; close it too late and charge can be pushed back out.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 47-48 (valve lead, valve lag, valve overlap, scavenging effect and the limits on early opening and late closing).",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The merits and limits of lead and lag follow the diagram that defines them."}
+        },
+        {
+          "type": "text",
+          "title": "Other cycles",
+          "prompt": "The four-stroke Otto cycle spreads intake, compression, power and exhaust over four strokes and two crankshaft revolutions. A two-stroke engine completes the same operating cycle in one revolution by combining intake and exhaust in the same stroke. A rotary engine has no reciprocating piston at all: a three-sided rotor turns inside an elliptical housing. Follow either link for the detail; neither is needed to continue.",
+          "deepDiveLinks": ["two-stroke-cycle", "rotary-cycle"],
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 46-48, and EASA Module 16, PDF pp. 19-23. The two-stroke and rotary cycles are standalone deep-dive lessons (instructor decision, 29 September 2026); this step keeps the outcome 'interrelate the 4 and 2 stroke Otto cycle' in the main flow.",
           "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The ignition distinction is concise; the comparative ignition visual belongs in lesson 6."}
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A short orienting step; the detail and visuals sit in the linked deep dives."}
+        },
+        {
+          "type": "web-embed",
+          "title": "Diesel versus Otto",
+          "prompt": "Compare the two ideal cycles. Both start with the same compression, so predict which one process differs before you toggle, and what that means for how the fuel burns. Then raise the compression ratio and notice how each loop changes.",
+          "url": "artifact:diesel-otto-pv-compare",
+          "note": "Diesel cycle description documented from FAA-H-8083-32B (2023), PDF p. 48, and EASA Module 16, PDF p. 23; EASA PDF p. 210 notes the diesel compression ratio is far greater than a gasoline engine's. The constant-pressure heat-addition process is from the course deck, slide 76 (tier 4), and Wikipedia Diesel cycle (tier 5, CC BY-SA 4.0, accessed 29 September 2026). Neither FAA-H-8083-32B nor EASA Module 16 covers pressure-volume diagram theory (both searched 29 September 2026). Curves are schematic. Cross-checked against MIT section 3.6: compression ignition, fuel sprayed in once compression is complete, and a higher compression ratio is possible because only air is compressed with no risk of auto-ignition.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16", "course-deck-2026-05", "wikipedia-diesel-cycle", "mit-unified-thermo-propulsion"],
+          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Overlaying the two loops isolates the single process that differs: constant-volume versus constant-pressure heat addition."}
+        },
+        {
+          "type": "text",
+          "title": "Diesel combustion",
+          "prompt": "A diesel-cycle engine first compresses air alone. Near maximum pressure fuel is sprayed in, and the high pressure and temperature make it burn without a spark; the rising pressure drives the piston down. Because the fuel burns as it is injected, the ideal diesel cycle adds heat at roughly constant pressure while the piston moves away from TDC. 'Diesel' names the ignition strategy - two-stroke and four-stroke diesels both exist.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48, and EASA Module 16, PDF p. 23. Constant-pressure heat addition from the course deck, slide 76 (tier 4). Replaces the earlier single 'Diesel ignition' step; the spark-versus-compression comparison now lives in lesson 5. Cross-checked against MIT section 3.6 (fuel sprayed into the cylinder when compression is complete; ignition without a spark).",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16", "course-deck-2026-05", "mit-unified-thermo-propulsion"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The combustion sequence is short and follows the diagram just studied."}
+        },
+        {
+          "type": "text",
+          "title": "Diesel in aviation",
+          "prompt": "Diesel-cycle engines can burn Jet A, but regulators raised specific concerns when they returned to small aeroplanes. Turbine fuel must be accommodated in fuel systems designed for gasoline. A conventional diesel vibrates badly if one cylinder stops firing, which can damage the airframe and propeller. High internal pressures mean cylinder parts could be shed in a failure. The engine needs FADEC control with its own limits and indications. Add heavier construction, complex fuel injection, long cold-weather cranking and the risk of misfuelling.",
+          "note": "Aero-specific concerns are from the FAA's proposed special conditions for the Piper PA-28-236 with an SMA SR305-230 diesel engine (Federal Register vol. 71 no. 114, 14 June 2006): turbine fuel in gasoline-designed systems, vibration and failure modes with a cylinder inoperative, high-energy fragments from high internal pressures, FADEC control, and limitations and indications. The FAA states these concerns are not universally applicable to all diesel engines. Heavier construction, complex injection and cold cranking are from the course deck, slide 78 (tier 4); misfuelling from EASA Module 16, PDF p. 228. The FAA and EASA handbook texts contain no limitations list, so per the instructor's decision (29 September 2026) this step uses the FAA notice, the deck and common engineering sense.",
+          "sourceRefs": ["faa-diesel-special-conditions-2006", "course-deck-2026-05", "easa-module16"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A short list of concerns needs no visual."}
         },
         {
           "type": "text",
@@ -116,14 +213,14 @@
       ]
     },
     {
-      "id": "cylinder-arrangements",
+      "id": "classification",
       "sequenceNumber": 5,
-      "title": "Cylinder Arrangements & Configurations",
-      "objective": "Identify inline, V-type, radial and horizontally opposed arrangements from their geometry and explain how arrangement influences frontal area, cooling access, crankshaft/rod layout and installation without turning typical traits into universal rules.",
+      "title": "Classification",
+      "objective": "Classify a piston engine on separate axes - cylinder arrangement (inline, V-type, radial, horizontally opposed) and ignition method (spark or compression) - and explain how arrangement influences frontal area, cooling access, crankshaft/rod layout and installation without turning typical traits into universal rules.",
       "models": ["gtsio520-h-v5-teaching-engine"],
       "listed": true,
       "scheduledDay": 2,
-      "completionCriteria": "Correctly identify the four conventional arrangements from a plan/front view and explain at least one source-backed installation consequence for each, then identify the GTSIO-520-H as a six-cylinder horizontally opposed engine.",
+      "completionCriteria": "Correctly identify the four conventional arrangements from a plan/front view and explain at least one source-backed installation consequence for each, identify the GTSIO-520-H as a six-cylinder horizontally opposed engine, and state what initiates combustion in spark-ignition and compression-ignition engines.",
       "steps": [
         {
           "type": "text",
@@ -191,27 +288,111 @@
           "note": "Documented synthesis of the FAA and EASA configuration sections. This boundary prevents the lesson from turning a layout label into an unsupported claim about every engine of that type.",
           "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
           "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The closing distinction is conceptual."}
+        },
+        {
+          "type": "web-embed",
+          "title": "Ignition compare",
+          "prompt": "Predict what supplies the initiating energy in a spark-ignition engine and in a compression-ignition engine, then toggle between them. Scrub through the end of compression and observe what enters the cylinder, when fuel is present, and what initiates combustion in each case.",
+          "url": "artifact:ignition-method-comparator",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 47-48, and EASA Module 16, PDF p. 23. The diesel cycle itself is taught in lesson 4; this step only contrasts the trigger. The animation is qualitative and assigns no unsourced compression ratios, injection pressures or temperatures.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "A controlled toggle keeps piston position constant while changing only the ignition mechanism."}
+        },
+        {
+          "type": "text",
+          "title": "Name all three",
+          "prompt": "Operating cycle, cylinder arrangement and ignition method are separate classifications. A diesel engine can use a two-stroke or four-stroke cycle, and a four-stroke engine can use spark ignition or compression ignition. Name all three when describing an engine - the GTSIO-520-H, for example, is a four-stroke, six-cylinder horizontally opposed, spark-ignition engine.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48, which notes both two-stroke and four-stroke diesel cycles. The GTSIO-520-H's spark ignition follows from the overhaul manual's magneto and spark-plug description (PDF pp. 15, 18-19); instructor to confirm this wording.",
+          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A verbal classification check prevents a common category error."}
+        }
+      ]
+    },
+    {
+      "id": "two-stroke-cycle",
+      "title": "Two-stroke cycle",
+      "objective": "Explain how a two-stroke engine completes the operating cycle in one crankshaft revolution by combining intake and exhaust in the same stroke, and where it is used in aircraft.",
+      "models": [],
+      "listed": false,
+      "deepDiveOf": "thermodynamic-cycles",
+      "completionCriteria": "State that a two-stroke cycle completes in one crankshaft revolution, name the functions that share a stroke, and give one advantage and one disadvantage compared with the four-stroke cycle.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "One revolution, one cycle",
+          "prompt": "A four-stroke engine needs two crankshaft revolutions for one cycle. A two-stroke engine needs only one upstroke and one downstroke, so it completes the operating cycle in a single revolution and every cylinder fires once per revolution. Predict how that is possible: what has to happen to the intake and exhaust functions?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48: two upstroke-and-downstroke pairs are not needed; the cycle completes in one revolution and 'the intake and exhaust functions are accomplished during the same stroke'. That every cylinder fires once per revolution follows from one cycle per revolution.",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A prediction prompt frames the port-timing interactive that follows."}
+        },
+        {
+          "type": "web-embed",
+          "title": "Port timing",
+          "prompt": "Step through one crankshaft revolution of a two-stroke cycle. Observe how intake and exhaust functions share part of the same piston movement, rather than occupying four separate strokes.",
+          "url": "artifact:two-stroke-port-timing",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48. The FAA text states that a two-stroke cycle completes in one crankshaft revolution and combines intake and exhaust functions during the same stroke.",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Port opening and closing are time relationships; a learner-controlled phase animation is clearer than a single still."}
+        },
+        {
+          "type": "text",
+          "title": "Where two-strokes fly",
+          "prompt": "The two-stroke engine has re-emerged in ultra-light, light sport and many experimental aircraft. These engines can be air or water cooled and generally need a gear reduction housing between engine and propeller. The course's comparison lists a power stroke every revolution, light and simple construction (no valves) and compact size as advantages, against lower fuel efficiency, shorter time between overhauls, more emissions and poorer scavenging.",
+          "note": "Aircraft use, cooling and gear reduction documented from FAA-H-8083-32B (2023), PDF p. 48. The advantages and disadvantages list is the course deck, slides 65 and 67 (tier 4); it is not in the FAA or EASA text.",
+          "sourceRefs": ["faa-powerplant-2023", "course-deck-2026-05"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A short comparison list needs no visual."}
+        }
+      ]
+    },
+    {
+      "id": "rotary-cycle",
+      "title": "Rotary (Wankel) cycle",
+      "objective": "Describe how a rotary engine produces the four cycle events in chambers around a three-sided rotor instead of in a reciprocating piston engine's cylinders.",
+      "models": [],
+      "listed": false,
+      "deepDiveOf": "thermodynamic-cycles",
+      "completionCriteria": "Describe the rotor and housing, name the four events that occur in the chambers, and give one advantage and one disadvantage of the rotary engine.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "A rotor instead of a piston",
+          "prompt": "A rotary (Wankel) engine has no reciprocating piston. A three-sided rotor turns inside an elliptical housing, and the four events of the cycle take place in the changing chambers between rotor and housing. These engines can have one rotor or several, can be air or water cooled, are used mostly in experimental and light aircraft, and have very low vibration.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48, and EASA Module 16, PDF pp. 22-23.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A short orientation before the source figure."}
+        },
+        {
+          "type": "image",
+          "title": "Chambers around the rotor",
+          "prompt": "Trace how the three-sided rotor creates changing chambers for intake, compression, combustion/expansion and exhaust while producing rotary output.",
+          "url": "./lesson-media/rotary-cycle-phases.webp",
+          "alt": "EASA diagram showing intake, compression, power and exhaust chambers in a rotary engine",
+          "credit": "EASA Module 16 course reference, Figure 1-4",
+          "license": "Course reference extract",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48, and EASA Module 16, PDF pp. 22-23. Use the source figure first. A short licensed or self-authored motion clip is optional only if the static chamber sequence proves insufficient in review.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "source-image", "status": "available", "rationale": "The EASA source already supplies the required rotor, housing and phase geometry; a generated technical image would add avoidable fidelity risk."}
+        },
+        {
+          "type": "text",
+          "title": "Rotary trade-offs",
+          "prompt": "The course lists the strengths of the Wankel as very compact and light, few moving parts and so low vibration, and no valves. Against that come lower thermal efficiency from the shape of the combustion chamber, poor emissions control, faster apex-seal wear, higher fuel and oil consumption, and limited certification and support in aviation.",
+          "note": "Advantages and disadvantages are the course deck, slide 71 (tier 4); they are not in the FAA or EASA text.",
+          "sourceRefs": ["course-deck-2026-05"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A short comparison list needs no visual."}
         }
       ]
     },
     {
       "id": "ignition-methods",
-      "sequenceNumber": 6,
-      "title": "Ignition Methods",
-      "objective": "Compare spark ignition and compression ignition, relate ignition timing to piston position, and explain the GTSIO-520's dual-plug magneto arrangement at an introductory level without substituting a general lesson for applicable maintenance data.",
+      "parkedFor": "Lesson 8 (Accessories & Drives) - magnetos and dual ignition. The spark-vs-compression comparison now lives in lesson 5 (Classification).",
+      "title": "Ignition and timing (parked draft)",
+      "objective": "Relate ignition timing to piston position and explain the GTSIO-520 dual-plug magneto arrangement at an introductory level without substituting a general lesson for applicable maintenance data.",
       "models": ["cylinder"],
-      "listed": true,
+      "listed": false,
       "scheduledDay": 2,
-      "completionCriteria": "Explain the trigger for combustion in spark-ignition and compression-ignition engines, state why spark occurs before top dead centre in a four-stroke spark-ignition engine, and describe the GTSIO-520's two-plug-per-cylinder arrangement without attempting an unsupervised timing procedure.",
+      "completionCriteria": "State why spark occurs before top dead centre in a four-stroke spark-ignition engine and describe the GTSIO-520 two-plug-per-cylinder arrangement without attempting an unsupervised timing procedure.",
       "steps": [
-        {
-          "type": "text",
-          "title": "What starts burning",
-          "prompt": "Both engines compress a charge, but they do not start combustion in the same way. Predict what supplies the initiating energy in a spark-ignition engine and in a compression-ignition engine.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 47-48, supported by EASA Module 16, PDF p. 23.",
-          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A prediction cleanly frames the one decisive comparison."}
-        },
         {
           "type": "model-pose",
           "title": "Spark before TDC",
@@ -233,31 +414,6 @@
           "note": "Documented from the GTSIO-520 overhaul manual, PDF pp. 15, 18-19 and 50. Use the manual wiring diagram as the visual; do not redraw or simplify cable destinations without checking every label and connection.",
           "sourceRefs": ["gtsio520-overhaul"],
           "mediaPlan": {"mode": "source-image", "status": "available", "rationale": "The manufacturer diagram is the safest way to preserve actual plug and magneto routing."}
-        },
-        {
-          "type": "text",
-          "title": "Compression ignition",
-          "prompt": "A diesel-cycle engine draws in air and compresses it until pressure and temperature are high. Fuel is then sprayed into the cylinder near maximum pressure, and the hot compressed air initiates combustion. No spark plug provides the trigger.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48, and EASA Module 16, PDF p. 23.",
-          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The injection and auto-ignition sequence is stated plainly before the comparison animation."}
-        },
-        {
-          "type": "web-embed",
-          "title": "Ignition compare",
-          "prompt": "Toggle between spark ignition and compression ignition. Scrub through the end of compression and observe what enters the cylinder, when fuel is present, and what initiates combustion in each case.",
-          "url": "artifact:ignition-method-comparator",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 47-48, and EASA Module 16, PDF p. 23. The animation will remain qualitative and will not assign unsourced compression ratios, injection pressures or temperatures.",
-          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "A controlled toggle keeps piston position constant while changing only the ignition mechanism."}
-        },
-        {
-          "type": "text",
-          "title": "Two classifications",
-          "prompt": "Ignition method and stroke cycle are separate classifications. A diesel engine can use a two-stroke or four-stroke cycle, and a four-stroke engine can use spark ignition or compression ignition. Name both classifications when describing an engine.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48, which notes both two-stroke and four-stroke diesel cycles.",
-          "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A verbal classification check prevents a common category error."}
         },
         {
           "type": "text",
@@ -350,11 +506,11 @@
     },
     {
       "id": "aspiration-methods",
-      "sequenceNumber": 8,
-      "title": "Aspiration Methods",
+      "parkedFor": "Lesson 11 (Induction & Exhaust) - aspiration is taught once, inside that lesson.",
+      "title": "Aspiration (parked draft)",
       "objective": "Compare naturally aspirated, mechanically supercharged and exhaust-driven turbocharged induction, explain why altitude reduces the charge available to a naturally aspirated engine, and trace the GTSIO-520 turbocharger/intercooler induction path.",
       "models": ["gtsio520-h-v5-teaching-engine"],
-      "listed": true,
+      "listed": false,
       "scheduledDay": 2,
       "completionCriteria": "Trace air through each aspiration method, identify what drives the compressor where present, explain critical altitude in qualitative terms, and use the GTSIO-520 manual diagram to identify its turbocharger and induction path.",
       "steps": [
@@ -457,7 +613,7 @@
     },
     {
       "id": "arrangements-radial",
-      "lessonId": "cylinder-arrangements",
+      "lessonId": "classification",
       "type": "multiple-choice",
       "question": "Which description identifies a radial engine arrangement?",
       "hint": "Think about the view from the propeller end.",
@@ -467,7 +623,7 @@
     },
     {
       "id": "arrangements-gtsio",
-      "lessonId": "cylinder-arrangements",
+      "lessonId": "classification",
       "type": "multiple-choice",
       "question": "How does the GTSIO-520 overhaul manual describe the basic engine's cylinder arrangement?",
       "hint": "The two banks face each other across the crankcase.",
@@ -477,7 +633,7 @@
     },
     {
       "id": "ignition-trigger",
-      "lessonId": "ignition-methods",
+      "lessonId": "classification",
       "type": "multiple-choice",
       "question": "Which statement correctly distinguishes spark ignition from compression ignition?",
       "hint": "Focus on what starts combustion, not the number of strokes.",
@@ -533,6 +689,85 @@
       "answers": ["Compensate for induction-pressure loss with altitude up to a critical altitude", "Convert a four-stroke engine into a two-stroke engine", "Replace the engine's cooling fins"],
       "correct": 0,
       "rationale": "A normalizing system maintains a target pressure as ambient pressure falls, until the system reaches its critical altitude."
+    },
+    {
+      "id": "cycles-otto-processes",
+      "lessonId": "thermodynamic-cycles",
+      "type": "ordering",
+      "question": "Put the four processes of the ideal Otto cycle in order.",
+      "hint": "Start with the piston moving toward top dead centre.",
+      "items": ["Adiabatic compression", "Heat added at constant volume (combustion)", "Adiabatic expansion (power stroke)", "Heat rejected at constant volume (exhaust)"],
+      "rationale": "The ideal Otto cycle compresses the charge, adds heat at constant volume, expands it, then rejects heat at constant volume."
+    },
+    {
+      "id": "cycles-diesel-heat-addition",
+      "lessonId": "thermodynamic-cycles",
+      "type": "multiple-choice",
+      "question": "How does heat addition in the ideal Diesel cycle differ from the ideal Otto cycle?",
+      "hint": "Compare the heat-addition line on the two diagrams.",
+      "answers": ["Diesel adds heat at constant pressure; Otto adds it at constant volume", "Diesel adds no heat; Otto adds heat with a spark", "Both add heat at constant volume, but Diesel does it more slowly"],
+      "correct": 0,
+      "rationale": "Fuel burns as it is injected in the diesel cycle, so heat is added at roughly constant pressure; the ideal Otto cycle adds it instantly at constant volume."
+    },
+    {
+      "id": "cycles-valve-overlap",
+      "lessonId": "thermodynamic-cycles",
+      "type": "multiple-choice",
+      "question": "What is valve overlap?",
+      "hint": "Look for the shaded interval around TDC on the timing chart.",
+      "answers": ["Both valves off their seats at the same time around TDC, between the exhaust and intake strokes", "The intake valve staying open throughout the compression stroke", "The time a valve takes to open fully"],
+      "correct": 0,
+      "rationale": "The intake valve opens before TDC (lead) and the exhaust valve closes after TDC (lag), so both are open briefly, which aids cooling, charging and scavenging."
+    },
+    {
+      "id": "cycles-valve-lead",
+      "lessonId": "thermodynamic-cycles",
+      "type": "multiple-choice",
+      "question": "The intake valve opening before TDC on the exhaust stroke is called:",
+      "hint": "The valve acts before the piston reaches the end of the stroke.",
+      "answers": ["Valve lead", "Valve lag", "Valve clearance"],
+      "correct": 0,
+      "rationale": "Opening a valve before its stroke begins is valve lead; closing it after its stroke ends is valve lag."
+    },
+    {
+      "id": "cycles-practical-rounding",
+      "lessonId": "thermodynamic-cycles",
+      "type": "multiple-choice",
+      "question": "Why is the practical pressure-volume diagram rounder than the ideal Otto diagram?",
+      "hint": "Think about what the ideal cycle assumes happens instantly.",
+      "answers": ["Burning takes time and the valves open early and close late", "A real engine has no compression stroke", "The piston stops for a moment at TDC in a real engine"],
+      "correct": 0,
+      "rationale": "The ideal cycle assumes instant heat addition and instant valve action; real burning and valve events take crank angle, and heat is lost to the walls."
+    },
+    {
+      "id": "twostroke-revolutions",
+      "lessonId": "two-stroke-cycle",
+      "type": "multiple-choice",
+      "question": "How many crankshaft revolutions does a two-stroke engine need to complete one operating cycle?",
+      "hint": "Compare it with the 720 degrees of a four-stroke cycle.",
+      "answers": ["One", "Two", "Four"],
+      "correct": 0,
+      "rationale": "A two-stroke engine needs one upstroke and one downstroke, so it completes the cycle in one revolution."
+    },
+    {
+      "id": "twostroke-shared",
+      "lessonId": "two-stroke-cycle",
+      "type": "multiple-choice",
+      "question": "In a two-stroke cycle, which functions are accomplished during the same stroke?",
+      "hint": "Think about the ports that open near the bottom of the stroke.",
+      "answers": ["Intake and exhaust", "Compression and ignition", "Power and compression"],
+      "correct": 0,
+      "rationale": "The intake and exhaust functions are accomplished during the same stroke, which is how one revolution is enough."
+    },
+    {
+      "id": "rotary-heart",
+      "lessonId": "rotary-cycle",
+      "type": "multiple-choice",
+      "question": "What is at the heart of a rotary (Wankel) engine?",
+      "hint": "There are no reciprocating pistons.",
+      "answers": ["A three-sided rotor turning inside an elliptical housing", "A double-acting piston in a long cylinder", "A rotating cylinder block around a fixed crankshaft"],
+      "correct": 0,
+      "rationale": "The rotary cycle uses a three-sided rotor in an elliptical housing; the events occur in the chambers between rotor and housing."
     }
   ]
 }
