@@ -349,6 +349,7 @@
           "modelId": "gtsio520-h-v5-teaching-engine",
           "prompt": "The crankcase is the foundation. It holds the crankshaft bearings, supports the cylinders and carries the mounting lugs, so it must stay rigid under bending and vibration. It is normally cast or forged aluminium alloy. On the GTSIO-520-H, two aluminium alloy castings, left and right, are joined along the vertical centre plane.",
           "action": {"type": "angle", "value": 0},
+          "focusParts": ["crankcase-and-mounts"],
           "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 26-27, EASA Module 16, PDF p. 51, and the GTSIO-520 overhaul manual, Section III paragraph 3-1b (PDF p. 16). The whole-engine mesh is a teaching reconstruction and keeps its modelling-status disclosure.",
           "sourceRefs": ["faa-powerplant-2023", "easa-module16", "gtsio520-overhaul"],
           "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "The whole-engine model shows the two crankcase halves with the cylinders on each side."}

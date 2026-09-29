@@ -74,12 +74,31 @@ export async function loadModelBytes(
   throw Error(`Every configured model source failed. ${failures.join(' ')}`);
 }
 
+// Decoded model bytes are kept for the session, so returning to a model after a text or image step skips the download and unpacking.
+const byteCache = new Map<string, Promise<ArrayBuffer>>();
+
 export async function loadGltf(
   sources: ModelSource[],
   signal: AbortSignal,
   onProgress: (status: string, progress?: number) => void,
 ) {
-  const bytes = await loadModelBytes(sources, signal, onProgress);
+  const cacheKey = sources.map((source) => source.localUrl || source.driveId || '').join('|');
+  let pending = cacheKey ? byteCache.get(cacheKey) : undefined;
+  if (!pending) {
+    pending = loadModelBytes(sources, signal, onProgress);
+    if (cacheKey) {
+      byteCache.set(cacheKey, pending);
+      pending.catch(() => byteCache.delete(cacheKey));
+    }
+  }
+  let bytes: ArrayBuffer;
+  try {
+    bytes = await pending;
+  } catch (error) {
+    // A shared download may have been aborted by another viewer; retry with this viewer's own signal.
+    if (signal.aborted) throw error;
+    bytes = await loadModelBytes(sources, signal, onProgress);
+  }
   signal.throwIfAborted();
   onProgress('Preparing model geometry…', 99);
   return { bytes, gltf: await new GLTFLoader().parseAsync(bytes, '') };

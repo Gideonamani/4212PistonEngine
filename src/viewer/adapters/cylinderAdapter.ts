@@ -186,17 +186,28 @@ export async function createCylinderSession(definition: ModelDefinition, context
   setAngle(context.initialAngle ?? motionProfile.bind_angle_deg);
 
   // A lesson step can spotlight a group of parts: the rest are ghosted and the camera frames the group at the posed angle.
-  if (focusSet.size) {
-    const unknown = [...focusSet].filter((id) => !catalogueById.has(id));
+  const applyFocus = (ids: string[] = []) => {
+    const unknown = ids.filter((id) => !catalogueById.has(id));
     if (unknown.length) throw Error(`Unknown component id in focusParts: ${unknown.join(', ')}.`);
+    focusSet.clear();
+    for (const id of ids) focusSet.add(id);
+    selectedId = '';
+    isolated = false;
+    snapshot.selectedId = undefined;
+    snapshot.selectedLabel = undefined;
+    snapshot.selectedDescription = undefined;
+    snapshot.isolated = false;
+    applyAppearance();
+    if (!focusSet.size) { runtime.fit(root); return; }
     const focusBox = new THREE.Box3();
     for (const mesh of meshes) if (focusSet.has(mesh.userData.partId)) focusBox.union(new THREE.Box3().setFromObject(mesh));
     const size = focusBox.getSize(new THREE.Vector3());
     const proxy = new THREE.Mesh(new THREE.BoxGeometry(size.x, size.y, size.z));
     proxy.position.copy(focusBox.getCenter(new THREE.Vector3()));
-    applyAppearance();
     runtime.fit(proxy);
-  }
+    proxy.geometry.dispose();
+  };
+  if (focusSet.size) applyFocus([...focusSet]);
 
   const parts: ModelComponent[] = [...catalogueById.entries()].map(([id, part]) => ({
     id,
@@ -218,6 +229,16 @@ export async function createCylinderSession(definition: ModelDefinition, context
 
   return {
     snapshot: () => ({ ...snapshot, ...section.snapshot() }),
+    // Lesson step change on the already-loaded model: new pose, cycle cues and spotlight without reloading the GLB.
+    update(view) {
+      setPlaying(false);
+      cycleEnabled = Boolean(view.initialCycle);
+      snapshot.cycleEnabled = cycleEnabled;
+      cycleVisuals?.setVisible(cycleEnabled);
+      setAngle(view.initialAngle ?? motionProfile.bind_angle_deg);
+      applyFocus(view.focusParts);
+      onChange();
+    },
     features: {
       components: {
         items: parts,
