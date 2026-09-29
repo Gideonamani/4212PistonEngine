@@ -191,8 +191,8 @@
       "id": "terminologies",
       "sequenceNumber": 3,
       "title": "Terminologies",
-      "objective": "Build the core vocabulary for describing a reciprocating aircraft engine - engine, powerplant, reciprocating engine - and connect it to the basic oscillating-piston-to-rotating-crankshaft operating principle every later lesson assumes you already know.",
-      "models": [],
+      "objective": "Build the core vocabulary for describing a reciprocating aircraft engine - engine, powerplant, reciprocating engine, top and bottom dead centre, bore, stroke, swept and clearance volume, compression ratio - and connect it to the basic oscillating-piston-to-rotating-crankshaft operating principle every later lesson assumes you already know.",
+      "models": ["cylinder"],
       "listed": true,
       "steps": [
         {
@@ -235,13 +235,45 @@
           "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Dragging the crank makes the conversion between rotary and reciprocating motion visible."}
         },
         {
+          "type": "model-pose",
+          "title": "Top dead centre",
+          "modelId": "cylinder",
+          "prompt": "At a crank angle of 0 degrees the piston has risen as far as it goes. This is top dead centre (TDC): for an instant the piston stops and reverses direction while the crankshaft keeps turning. Where do you predict the piston will be after half a turn?",
+          "action": {"type": "angle", "value": 0},
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 46 (Figure 1-35 and text): stroke is measured between top dead center and bottom dead center. Pose from the profile-checked operating-cylinder model; in the shared teaching profile 0 degrees is TDC at the start of the intake stroke."
+        },
+        {
+          "type": "model-pose",
+          "title": "Bottom dead centre",
+          "modelId": "cylinder",
+          "prompt": "At 180 degrees the piston has fallen as far as it goes: bottom dead centre (BDC). The distance it travels between TDC and BDC is the stroke, and the cylinder's inside diameter is the bore. The readout shows the piston pin 219.1 mm from the crank axis at TDC and 117.5 mm here. Subtract them: how many inches is the stroke?",
+          "action": {"type": "angle", "value": 180},
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 46: the bore is the cylinder's inside diameter; the stroke is the distance the piston moves from TDC to BDC or vice versa. Pose from the profile-checked operating-cylinder model. Its readout gives the piston pin 219.1 mm from the crank axis at 0 degrees and 117.5 mm at 180 degrees; the 101.6 mm difference equals the 4.000 in stroke in the GTSIO-520-H manual (Chapter C-3, PDF p. 152)."
+        },
+        {
+          "type": "web-embed",
+          "title": "Swept and clearance volume",
+          "prompt": "Switch between swept, clearance and total volume, then move the piston. Swept volume (piston displacement) is what the piston sweeps between TDC and BDC; clearance volume is what is left above it at TDC. Compression ratio compares the volume at BDC with the volume at TDC.",
+          "url": "artifact:swept-volume-diagram",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 49-51 (piston displacement, compression ratio, Figure 1-38) and EASA Module 16, PDF pp. 24-26 (Figure 1-9); the deck's slides 211-212 give the same definitions. Definitions only here - the calculations belong to lesson 12. The diagram is drawn at the GTSIO-520-H's 7.5:1 ratio so volumes are to scale.",
+          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Moving the piston between marked dead centres makes swept and clearance volume visible."}
+        },
+        {
+          "type": "web-embed",
+          "title": "Two engines, same cylinder",
+          "prompt": "Compare the course engine with the IO-520. Find the data that is identical and the data that differs. Which differences would matter to a technician setting up ignition timing?",
+          "url": "artifact:engine-data-comparison",
+          "note": "GTSIO-520-H values read from the scanned overhaul manual, Chapter C-3 (PDF pp. 152-153): bore 5.250 in, stroke 4.000 in, 520 cu in, 7.5:1, firing order 1-4-5-2-3-6, spark 20 degrees BTC. IO-520 values from its overhaul manual (editable copy): Tables II and III and the model test data. The IO-520 is a different engine, shown for comparison only. Manual values carry more weight (instructor decision, 29 September 2026): the lesson uses the -H manual's 20 degrees BTC. Deck slide 207 shows 22 degrees BTDC for its GTSIO-520-H example and should be corrected to match.",
+          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "A side-by-side table makes identical and differing data obvious at a glance."}
+        },
+        {
           "type": "text",
           "title": "Vocabulary set, cycle next",
-          "prompt": "Every lesson from here on assumes you can use these words precisely: engine vs. powerplant, reciprocating vs. rotating, and the piston as the component that converts one into the other. The next lesson, Thermodynamic Cycles, gives the piston's motion a repeating shape - the four events every reciprocating engine cycles through, no matter its configuration.",
-          "note": "Documented closing synthesis, drawing on the deck's own Terminologies/Working Principle framing (slides 45-46); bridges into lesson 4."
+          "prompt": "Every lesson from here on assumes you can use these words precisely: engine vs. powerplant, reciprocating vs. rotating, the piston as the component that converts one into the other, top and bottom dead centre, bore and stroke, swept and clearance volume, and compression ratio. You will calculate with them in Performance Calculations. The next lesson, Thermodynamic Cycles, gives the piston's motion a repeating shape - the events every reciprocating engine cycles through.",
+          "note": "Documented closing synthesis, drawing on the deck's own Terminologies/Working Principle framing (slides 45-46) and the FAA vocabulary (PDF pp. 46-51); bridges into lesson 4."
         }
       ],
-      "completionCriteria": "In your own words, define 'engine', 'powerplant' and 'reciprocating engine', explain why powerplant is the broader term, and describe the path energy takes from burning fuel to a turning propeller shaft (heat -> expanding gas -> the piston's reciprocating motion -> the crankshaft's rotating motion), naming the piston as the key energy-converting component."
+      "completionCriteria": "In your own words, define 'engine', 'powerplant' and 'reciprocating engine', explain why powerplant is the broader term, describe the path energy takes from burning fuel to a turning propeller shaft (heat -> expanding gas -> the piston's reciprocating motion -> the crankshaft's rotating motion), naming the piston as the key energy-converting component, and define TDC, BDC, bore, stroke, swept volume, clearance volume and compression ratio."
     }
   ],
   "checks": [
@@ -331,6 +363,26 @@
         "The crankshaft converts the motion into rotating output"
       ],
       "rationale": "Heat from combustion becomes pressure, pressure pushes the piston in a straight line, the connecting rod carries that push to the crankshaft, and the crankshaft is what finally turns reciprocating motion into the rotating output the propeller needs."
+    },
+    {
+      "id": "terminologies-stroke",
+      "lessonId": "terminologies",
+      "type": "multiple-choice",
+      "question": "What is the stroke of an engine?",
+      "hint": "Think of the two dead-centre positions.",
+      "answers": ["The distance the piston moves between top and bottom dead centre", "The inside diameter of the cylinder", "The volume left above the piston at TDC"],
+      "correct": 0,
+      "rationale": "Stroke is the distance the piston travels between TDC and BDC; the bore is the cylinder's inside diameter."
+    },
+    {
+      "id": "terminologies-compression-ratio",
+      "lessonId": "terminologies",
+      "type": "multiple-choice",
+      "question": "Compression ratio compares which two volumes?",
+      "hint": "One is measured with the piston at the bottom of its stroke, one at the top.",
+      "answers": ["The volume with the piston at BDC and the volume with the piston at TDC", "The volume of the intake port and the exhaust port", "The swept volume of one cylinder and of the whole engine"],
+      "correct": 0,
+      "rationale": "Compression ratio is the total volume with the piston at the bottom of the stroke divided by the clearance volume with the piston at the top."
     }
   ]
 }

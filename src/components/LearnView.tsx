@@ -61,7 +61,7 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
       const route = getLessonRoute();
       const routeTrack = tracks.find((track) => track.id === route.trackId);
       if (routeTrack) setActiveTrack(routeTrack);
-      const routeLesson = routeTrack?.lessons.find((lesson) => lesson.id === route.lessonId);
+      const routeLesson = routeTrack?.lessons.find((lesson) => lesson.id === route.lessonId) || routeTrack?.deepDives?.find((lesson) => lesson.id === route.lessonId);
       setActiveLesson(routeLesson || null);
     };
     syncRoute();
@@ -83,6 +83,11 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
     setActiveLesson(lesson);
   };
 
+  const openDeepDive = (lessonId: string) => {
+    const target = activeTrack.deepDives?.find((lesson) => lesson.id === lessonId);
+    if (target) openLesson(target);
+  };
+
   const returnToLessons = () => {
     history.pushState(null, '', `${location.pathname}${location.search}#/learn/${encodeURIComponent(activeTrack.id)}`);
     setActiveLesson(null);
@@ -101,10 +106,13 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
   if (activeLesson) {
     return (
       <LessonStepViewer
+        key={activeLesson.id}
         lesson={activeLesson}
         initialStepIndex={getLessonRoute().stepIndex}
         initialComplete={getLessonRoute().isComplete}
         onBackToLessons={returnToLessons}
+        deepDives={activeTrack.deepDives}
+        onOpenDeepDive={openDeepDive}
         onSwitchTo3DModel={(model) => onSwitchToExploreModel?.(model)}
         onTakeQuiz={onTakeLessonQuiz}
         onStepChange={(stepIndex) => history.replaceState(null, '', `${location.pathname}${location.search}#/learn/${encodeURIComponent(activeTrack.id)}/${encodeURIComponent(activeLesson.id)}/step/${stepIndex + 1}`)}

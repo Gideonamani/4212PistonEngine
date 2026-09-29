@@ -17,7 +17,7 @@ assert.equal(aircraft.sequenceNumber, 2);
 assert.deepEqual(aircraft.models, ['wright-1903-engine']);
 assert.equal(terminologies.id, 'terminologies');
 assert.equal(terminologies.sequenceNumber, 3);
-assert.deepEqual(terminologies.models, []);
+assert.deepEqual(terminologies.models, ['cylinder']);
 
 for (const lesson of pack.lessons) {
   assert.equal(lesson.listed, true);
@@ -41,7 +41,7 @@ assert.equal(modelPoseStep.viewPreset, 'engine-overview');
 assert.deepEqual(modelPoseStep.focusHotspots, ['magneto', 'valve', 'crankcase']);
 assert.equal(modelPoseStep.action, undefined);
 
-assert.equal(pack.checks.length, 6);
+assert.equal(pack.checks.length, 8);
 for (const item of pack.checks) {
   assert.ok(CHECK_TYPES.includes(item.type));
   assert.ok(pack.lessons.some(lesson => lesson.id === item.lessonId));
@@ -49,4 +49,4 @@ for (const item of pack.checks) {
 }
 
 assert.deepEqual(validateLessonPack(pack), []);
-console.log('General/history lesson pack is valid (3 lessons, 6 checks)');
+console.log('General/history lesson pack is valid (3 lessons, 8 checks)');

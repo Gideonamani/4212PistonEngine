@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { DieselOttoCompare, EngineDataComparison, OttoPVDiagram, SweptVolumeDiagram, ValveTimingDiagram } from './CycleArtifacts';
 
 type ArtifactProps = { id: string };
 
@@ -172,6 +173,7 @@ export const lessonArtifactIds = [
   'cycle-phase-scrubber', 'two-stroke-port-timing', 'arrangement-comparator', 'ignition-method-comparator',
   'air-cooling-path-explorer', 'turbocharger-energy-path', 'aspiration-altitude-comparator',
   'steam-engine-schematic', 'otto-cycle-overview', 'piston-crank-converter', 'arrangement-inline', 'arrangement-v',
+  'swept-volume-diagram', 'engine-data-comparison', 'otto-pv-diagram', 'otto-pv-ideal-vs-practical', 'diesel-otto-pv-compare', 'valve-timing-diagram',
 ] as const;
 
 export const LessonArtifact: React.FC<ArtifactProps> = ({ id }) => {
@@ -187,6 +189,12 @@ export const LessonArtifact: React.FC<ArtifactProps> = ({ id }) => {
     if (id === 'aspiration-altitude-comparator') return <AltitudeComparator />;
     if (id === 'steam-engine-schematic') return <SteamSchematic />;
     if (id === 'piston-crank-converter') return <PistonCrank />;
+    if (id === 'swept-volume-diagram') return <SweptVolumeDiagram />;
+    if (id === 'engine-data-comparison') return <EngineDataComparison />;
+    if (id === 'otto-pv-diagram') return <OttoPVDiagram />;
+    if (id === 'otto-pv-ideal-vs-practical') return <OttoPVDiagram startPractical />;
+    if (id === 'diesel-otto-pv-compare') return <DieselOttoCompare />;
+    if (id === 'valve-timing-diagram') return <ValveTimingDiagram />;
     return <div className={panel}><p className="text-xs text-slate-300">This learning activity is not available.</p></div>;
   }, [id]);
   return <div className="w-full">{content}</div>;

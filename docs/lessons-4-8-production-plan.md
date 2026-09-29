@@ -1,10 +1,64 @@
-# Lessons 4-8 production plan
+# Lesson production plan (originally lessons 4-8)
 
 Status: unreviewed content and media plan, prepared 24 September 2026. The lesson pack is live locally as a draft but must not be presented as instructor-approved or published as final.
 
+## Curriculum update - 29 September 2026
+
+The instructor confirmed a final 18-lesson list, ending with Practicals. It supersedes both the "lessons 4-8" scope this plan was first written for and the older 17-item mapping. Valve Operating follows Accessories & Drives (the camshaft is driven from the accessory gear train) and precedes Power Generation.
+
+| No. | Lesson | Status |
+|---:|---|---|
+| 1 | History of Mechanical Engines | Draft built |
+| 2 | History of Aircraft Engines | Draft built |
+| 3 | Terminologies | Draft built; vocabulary extended (dead centres, bore, stroke, swept/clearance volume, compression ratio) |
+| 4 | Thermodynamic Cycles (Otto and Diesel) | Rebuilt around PV diagrams, valve lead/lag/overlap and the Diesel cycle; two-stroke and rotary are deep dives |
+| 5 | Classification | Draft built (arrangements plus the spark vs compression-ignition comparison) |
+| 6 | Parts & Construction | Not started |
+| 7 | Cooling Methods | Draft built |
+| 8 | Accessories & Drives | Not started; absorbs magnetos and dual ignition |
+| 9 | Valve Operating | Not started |
+| 10 | Power Generation | Not started |
+| 11 | Induction & Exhaust | Not started; absorbs aspiration |
+| 12 | Performance Calculations | Not started |
+| 13 | Factors Affecting Power | Not started |
+| 14 | Engine Requirements | Not started |
+| 15 | Operation Malfunctions | Not started |
+| 16 | Maintenance & Servicing | Not started |
+| 17 | Light Sport Aircraft (optional) | Not started |
+| 18 | Practicals | Not started |
+
+### Repair batch (29 September 2026)
+
+- **Stroke labels corrected.** In the 720-degree teaching profile (`web/cycle-cues.mjs`) 450 degrees is the power stroke, not compression. Lesson 4's "Compression pose" is now "Power pose", and the operating-cylinder lesson has a new compression step (270 degrees) plus a corrected power step (450 degrees). `scripts/stroke-labels.mjs` is a regression check run by the lesson-pack tests.
+- **Ignition folded in.** The ignition comparator and the three-classification summary moved into lesson 5; the compression-ignition explanation was dropped as a duplicate of lesson 4's diesel step. The remaining ignition steps (spark before TDC, dual-plug wiring, manual controls timing) are kept in an unlisted lesson `ignition-methods` for lesson 8.
+- **Aspiration parked.** `aspiration-methods` is unlisted and kept intact as source material for lesson 11. Unlisted lessons carry a `parkedFor` note and no sequence number. The React loader (`src/data/loadProductionData.ts`) now hides unlisted lessons and their checks.
+- **Lesson 5 renamed** to Classification (id `classification`). Cylinder numbering, a module outcome under 3.7.3, is not yet covered.
+
+### Lessons 3 and 4 (29 September 2026)
+
+**Lesson 3 (Terminologies)** gained four steps: top and bottom dead centre (operating-cylinder model at 0 and 180 degrees; the model's readout gives 219.1 mm and 117.5 mm, a 101.6 mm = 4.000 in stroke that matches the GTSIO-520-H manual), swept and clearance volume (new interactive drawn at the -H's 7.5:1 ratio) and a GTSIO-520-H versus IO-520 data comparison. Definitions only; the calculations stay in lesson 12. Two checks added.
+
+**Lesson 4 (Thermodynamic Cycles)** now runs: prediction, four-stroke scrubber, intake and power poses, ideal Otto PV diagram, why constant volume, ideal versus practical, valve lead/lag/overlap chart, why overlap helps, other cycles (links to the two-stroke and rotary deep dives), Diesel versus Otto, Diesel combustion, Diesel in aviation, and the evidence boundary. Five checks added (seven in total). New native interactives are in `src/components/CycleArtifacts.tsx`.
+
+**Sources.** FAA-H-8083-32B (PDF pp. 46-51) supplies dead centres, bore and stroke, displacement, compression ratio, the valve timing chart, and lead/lag/overlap. Neither the FAA handbook nor EASA Module 16 contains Otto or Diesel pressure-volume theory (both searched), so that came from the instructor's deck (slides 56-58, 76; tier 4) and Wikipedia's Otto and Diesel cycle articles (tier 5, CC BY-SA 4.0, accessed 29 September 2026), all recorded in the pack's source registry. GTSIO-520-H values were read from the scanned pages (PDF pp. 152-153); IO-520 values are from its overhaul manual (Tables II and III and the test data).
+
+**Instructor decisions (resolved 29 September 2026):**
+
+1. **Diesel limitations in aero application.** Use common sense and online research. The step now draws on the FAA's proposed special conditions for a diesel-engined Piper PA-28-236 (Federal Register vol. 71 no. 114, 14 June 2006), which name turbine fuel in gasoline-designed systems, vibration and failure modes with a cylinder inoperative, high-energy fragments, and FADEC control with limits and indications, and says these concerns are not universal. The deck's slide 78 (weight, complex injection, cold cranking) and EASA's misfuelling passage complete the list.
+2. **Otto and Diesel PV theory.** Cross-checked against textbook-grade sources: MIT Unified Engineering, Thermodynamics and Propulsion, sections 3.5-3.6 (tier 4), and NASA Glenn's Otto cycle page (tier 5). Both agree with the deck and Wikipedia.
+3. **GTSIO-520-H spark timing.** Manual values carry more weight: the lesson uses the -H manual's 20 degrees BTC. Deck slide 207 (22 degrees BTDC) should be corrected to match.
+4. **Two-stroke and rotary.** Now standalone deep-dive lessons (`two-stroke-cycle`, `rotary-cycle`; unlisted, `deepDiveOf: thermodynamic-cycles`), reached from lesson 4's "Other cycles" step. The React app gained deep-dive support: `deepDiveLinks` on a step renders an "Optional deep dive" button, and the loader keeps linked unlisted lessons (with their checks) while hiding parked drafts. Lesson 4 is now 14 steps.
+5. **Valve timing.** FAA charts are acceptable; the lesson keeps the FAA example chart (Figure 1-37). Lesson 9 may still look for GTSIO-520-H figures.
+
+Still noted in the steps: the IO-520 compression ratio is not stated in its overhaul manual and its displacement is calculated from bore and stroke.
+
+### Additional editable sources
+
+Reflowed and editable IO-520 manual copies exist in `C:/Users/user/KeonGeraldo/CodeProjects/DigiMan/work/deliverables` (`io520_overhaul`, `io520_ipc`, `io520_ops_install`, and a reviewed `gtsio520` docx/pdf). They are text-searchable, so use them for the claim ledger in lessons 6, 8, 9, 16 and 18. The IO-520 is a related but different engine: use it as a cross-check and for comparison, and confirm GTSIO-520-H applicability before quoting any limit, dimension or procedure.
+
 ## Scope
 
-The next five lessons in the authoritative 18-lesson sequence are:
+The first batch covered these five lessons. Under the final list above, ignition and aspiration were folded into lessons 5/8 and 11, so the built lessons are now 4, 5 and 7:
 
 | No. | Lesson | Primary question |
 |---:|---|---|
