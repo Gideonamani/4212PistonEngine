@@ -1,5 +1,5 @@
-import React, { Suspense } from 'react';
-import { Box, ChevronRight, Gauge, Layers3, Maximize2, Minimize2, Move3D } from 'lucide-react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
+import { Box, ChevronRight, Gauge, Layers3, Move3D } from 'lucide-react';
 import { VisualIllustration } from './VisualIllustrations';
 import { modelRegistry, modelsByLabel } from '../data/modelRegistry';
 
@@ -9,17 +9,34 @@ interface ExploreViewProps {
   activeModelName: string;
   isViewerOpen: boolean;
   onSelectModel: (model: string) => void;
-  isFullscreen3D: boolean;
-  onToggleFullscreen: () => void;
+  isFullPage: boolean;
+  onToggleFullPage: () => void;
 }
 
 export const ExploreView: React.FC<ExploreViewProps> = ({
   activeModelName,
   isViewerOpen,
   onSelectModel,
-  isFullscreen3D,
-  onToggleFullscreen,
+  isFullPage,
+  onToggleFullPage,
 }) => {
+  const viewerRef = useRef<HTMLDivElement>(null);
+  const [isBrowserFullscreen, setIsBrowserFullscreen] = useState(false);
+
+  useEffect(() => {
+    const syncFullscreenState = () => setIsBrowserFullscreen(document.fullscreenElement === viewerRef.current);
+    document.addEventListener('fullscreenchange', syncFullscreenState);
+    return () => document.removeEventListener('fullscreenchange', syncFullscreenState);
+  }, []);
+
+  const toggleBrowserFullscreen = async () => {
+    if (document.fullscreenElement) {
+      await document.exitFullscreen();
+    } else if (viewerRef.current && document.fullscreenEnabled) {
+      await viewerRef.current.requestFullscreen();
+    }
+  };
+
   if (!isViewerOpen) {
     return <div className="h-full w-full overflow-y-auto bg-[#061014] pb-24 text-slate-100">
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-3 px-4 pb-5 pt-4 sm:px-6">
@@ -38,10 +55,17 @@ export const ExploreView: React.FC<ExploreViewProps> = ({
   }
 
   const modelId = modelsByLabel[activeModelName]?.id || 'cylinder';
-  return <div className="absolute inset-0 min-h-0 overflow-hidden bg-[#061014]">
+  return <div ref={viewerRef} className="absolute inset-0 min-h-0 overflow-hidden bg-[#061014]">
     <Suspense fallback={<div className="flex h-full items-center justify-center text-sm text-teal-300">Preparing interactive 3D viewer…</div>}>
-      <ModelViewer modelId={modelId} profile="explore" immersive />
+      <ModelViewer
+        modelId={modelId}
+        profile="explore"
+        immersive
+        isFullPage={isFullPage}
+        isFullscreen={isBrowserFullscreen}
+        onToggleFullPage={onToggleFullPage}
+        onToggleFullscreen={toggleBrowserFullscreen}
+      />
     </Suspense>
-    <div className="absolute right-28 top-14 z-20 flex gap-2"><button onClick={onToggleFullscreen} className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-600/70 bg-[#07161b]/90 text-slate-200 shadow-lg backdrop-blur hover:border-teal-400 hover:text-teal-300" title={isFullscreen3D ? 'Exit immersive view' : 'Open immersive view'} aria-label={isFullscreen3D ? 'Exit immersive view' : 'Open immersive view'}>{isFullscreen3D ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}</button></div>
   </div>;
 };

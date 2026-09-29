@@ -44,6 +44,12 @@
       "reduction propeller shaft",
       "magneto branch"
     ],
+    "motion_selector": {
+      "any_regex": [
+        "^RUN \\|",
+        "^C[1-6] \\| EXT (?:Piston|Rod)(?: \\||\\.|$)"
+      ]
+    },
     "phase_reference": {
       "id": "cylinder-1-firing-tdc",
       "meaning": "Teaching-cycle zero. It is an event reference, not a measured manufacturer timing datum.",
