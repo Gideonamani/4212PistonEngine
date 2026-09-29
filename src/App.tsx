@@ -7,19 +7,14 @@ import { LearnView } from './components/LearnView';
 import { CheckView } from './components/CheckView';
 import { EngineInfoModal } from './components/EngineInfoModal';
 import { loadProductionData } from './data/loadProductionData';
+import { modelRegistry, modelsById } from './data/modelRegistry';
 
 const viewFromHash = (): ViewMode => {
   const value = location.hash.replace(/^#\/?/, '').split('/')[0];
   return value === 'learn' || value === 'check' ? value : 'explore';
 };
 
-const modelNamesById: Record<string, string> = {
-  cylinder: 'Detailed operating cylinder',
-  'gtsio520-h-v5-teaching-engine': 'Full six-cylinder engine',
-  'wright-1903-engine': '1903 Wright Flyer engine',
-};
-
-const requestedModelName = () => modelNamesById[new URLSearchParams(location.search).get('model') || ''];
+const requestedModelName = () => modelsById[new URLSearchParams(location.search).get('model') || '']?.label;
 
 export default function App() {
   const [activeView, setActiveView] = useState<ViewMode>(viewFromHash);
@@ -36,11 +31,7 @@ export default function App() {
   const [isLessonStepOpen, setIsLessonStepOpen] = useState(false);
   const [isLessonImmersive, setIsLessonImmersive] = useState(false);
 
-  const availableModels = [
-    'Detailed operating cylinder',
-    'Full six-cylinder engine',
-    '1903 Wright Flyer engine',
-  ];
+  const availableModels = modelRegistry.map((model) => model.label);
 
   useEffect(() => {
     let current = true;

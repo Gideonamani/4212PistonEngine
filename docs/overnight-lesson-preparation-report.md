@@ -153,7 +153,7 @@ Local browser verification on 13 September 2026 confirmed the delivered interact
 From `4212PistonEngine`, run the following before opening the browser:
 
 ```powershell
-& 'C:\Users\user\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' --test scripts/test_lesson_pack.mjs scripts/test_training_shell.mjs scripts/test_kinematics.mjs scripts/test_valve_kinematics.mjs scripts/test_cycle_cues.mjs scripts/test_transfer.mjs
+npm test
 & 'C:\Users\user\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' scripts/test_cylinder_motion_profile.py
 & 'C:\Users\user\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' scripts/test_operating_release.py
 ```

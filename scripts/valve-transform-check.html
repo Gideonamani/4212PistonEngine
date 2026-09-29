@@ -3,7 +3,7 @@
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"}}</script>
 <script type="module">
 import * as THREE from 'three';
-import {valveMatrices} from './valve-transforms.mjs';
+import {valveMatrices} from '../src/viewer/engineering/valve-transforms.mjs';
 const result=document.getElementById('result');
 try{
   const profile=(await (await fetch('./motion.json')).json()).valves;

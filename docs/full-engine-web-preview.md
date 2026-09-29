@@ -2,7 +2,7 @@
 
 This GitHub Pages preview reuses `../EngineSimulation/v5/GTSIO-520-H_V5_Crankcase_and_Function_Tour.blend`, scene `07 | Six cylinders - dissolve to operating internals`. It includes the existing six-cylinder drivetrain study and V5 crankcase, not six hand-copied browser cylinders.
 
-`scripts/export_full_engine_web.py` opens the Blender file without saving it, limits the export to native frames 1–241 (one 720-degree cycle at three crank degrees per frame), bakes evaluated Blender drivers in memory, and exports a GLB. `scripts/prepare_full_engine_preview.py` packages that asset with the shared `web/training.html` shell and full-engine adapter for local serving.
+`scripts/export_full_engine_web.py` opens the Blender file without saving it, limits the export to native frames 1–241 (one 720-degree cycle at three crank degrees per frame), bakes evaluated Blender drivers in memory, and exports a GLB. The React application loads the result through `src/viewer/adapters/fullEngineAdapter.ts`; local preview uses Vite rather than a separately packaged HTML shell.
 
 The web viewer combines the exported object actions into one `AnimationMixer` clip. Its crank-angle range maps 0–720° directly over that clip, so play, pause, reset and scrubbing use the same action for the six pistons, connecting rods, crankshaft, camshaft, reduction propeller shaft and magneto branch.
 
@@ -12,9 +12,10 @@ Run:
 
 ```powershell
 & 'C:\Program Files\Blender Foundation\Blender 5.0\blender.exe' -b ..\EngineSimulation\v5\GTSIO-520-H_V5_Crankcase_and_Function_Tour.blend --python scripts\export_full_engine_web.py
-python scripts\prepare_full_engine_preview.py
 python scripts\test_full_engine_export.py
-python -m http.server 8767 --bind 127.0.0.1 --directory build\full-engine-web\web
+python scripts\prepare_full_engine_preview.py
+Set-Location build\full-engine-web\preview
+npm run dev
 ```
 
-For GitHub Pages, `web/engine.glb.gz` is the 4.0 MB versioned delivery asset and `web/engine.glb` is its compatible raw fallback. The engine contract validates the gzip round trip before release. `engine.html` selects the full-engine entry in the shared training shell.
+For GitHub Pages, the engine contract names the 4.0 MB gzip delivery asset and compatible raw fallback hosted through Drive. The contract validator checks the gzip round trip before release. Select “Full six-cylinder engine” in the React Explore gallery to load the full-engine adapter.

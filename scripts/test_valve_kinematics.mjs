@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {illustrativeCycle,valveTrainPose} from '../web/valve-kinematics.mjs';
+import {illustrativeCycle,valveTrainPose} from '../src/viewer/engineering/valve-kinematics.mjs';
 const read=name=>JSON.parse(fs.readFileSync(new URL('../data/'+name,import.meta.url)));
 const frames=read('pushrod-frames.json');
 const reference=read('housing-candidate-contact.json');

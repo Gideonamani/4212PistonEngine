@@ -30,7 +30,7 @@ const allLessonIds = packs.flatMap(pack => pack.lessons.map(lesson => lesson.id)
 assert.equal(new Set(allLessonIds).size, allLessonIds.length, 'lesson ids must be unique across every pack in the manifest');
 
 // The Check gallery lists every lesson that owns at least one check, across all packs -
-// this is the exact derivation check-modes.mjs's renderCheckGallery() performs.
+// this is the exact derivation the React assessment gallery performs.
 const lessonsWithChecks = packs.flatMap(pack =>
   pack.lessons.filter(lesson => (pack.checks || []).some(item => item.lessonId === lesson.id)).map(lesson => ({ lesson, pack })));
 assert.equal(lessonsWithChecks.length, 9, 'expected 3 history + 5 fundamentals + 1 M2 lessons to each own at least one check');

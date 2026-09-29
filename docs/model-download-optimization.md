@@ -19,7 +19,7 @@ From the repository directory:
 ```powershell
 python scripts/package_model_transport.py --package build/pipeline-spring-seat
 python scripts/prepare_package_preview.py --package build/pipeline-spring-seat --valves
-node --test scripts/test_model_transport.mjs scripts/test_cycle_cues.mjs scripts/test_kinematics.mjs scripts/test_valve_kinematics.mjs scripts/test_transfer.mjs
+npm run lint && npm test && npm run build
 ```
 
 The package gains `engine.glb.gz` and `transport.json`. Preview preparation checks the compressed hash and its decoded/source bindings, then sets the local model URL to `control.glb.gz`. Browsers without native gzip decompression select the retained `control.glb` fallback. The decoder also accepts ordinary GLBs and HTTP responses already decompressed by the browser. The local Reload model button now reloads the configured local asset.

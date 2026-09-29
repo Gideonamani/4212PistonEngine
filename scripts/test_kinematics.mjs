@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {mechanismPose} from '../web/kinematics.mjs';
+import {mechanismPose} from '../src/viewer/engineering/kinematics.mjs';
 const cad=JSON.parse(readFileSync(new URL('../data/motion-profile.json',import.meta.url)));
 const r=cad.dimensions.Stroke.value_mm/2000,L=cad.dimensions.RodLength.value_mm/1000;
 test('web mechanism agrees with all recorded FreeCAD joint positions',()=>{

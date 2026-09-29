@@ -2,7 +2,7 @@
 // tree for the "cylinder" model — from the existing flat catalogue at
 // web/components.json.
 //
-// Grouping mirrors web/viewer.js's partGroup(id) exactly (the six teaching
+// Grouping mirrors cylinderAdapter.ts's componentGroup(id) exactly (the six teaching
 // groups the M1 component picker already filters by: structure, piston,
 // crank, intake, exhaust, ignition). This turns that grouping into explicit
 // tree data per docs/explore-mode-content-architecture.md rather than
@@ -24,7 +24,7 @@ const outputUrl = new URL('../web/component-tree.json', import.meta.url);
 
 const catalogue = JSON.parse(fs.readFileSync(catalogueUrl, 'utf8'));
 
-// Mirrors web/viewer.js's partGroup(id).
+// Mirrors src/viewer/adapters/cylinderAdapter.ts's componentGroup(id).
 function partGroup(id) {
   if (id.startsWith('Intake')) return 'intake';
   if (id.startsWith('Exhaust')) return 'exhaust';

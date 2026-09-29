@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {cycleCueState} from '../web/cycle-cues.mjs';
-import {chamberParticle,portPath,pathParticle,streamFraction,particleRadiusMm} from '../web/cycle-particles.mjs';
-import {mechanismPose} from '../web/kinematics.mjs';
+import {cycleCueState} from '../src/viewer/engineering/cycle-cues.mjs';
+import {chamberParticle,portPath,pathParticle,streamFraction,particleRadiusMm} from '../src/viewer/engineering/cycle-particles.mjs';
+import {mechanismPose} from '../src/viewer/engineering/kinematics.mjs';
 import fs from 'node:fs';
 test('cycle cues agree with open valves and remain deterministic across two revolutions',()=>{
  for(let angle=0;angle<=720;angle++){

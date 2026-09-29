@@ -300,10 +300,11 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
         {/* Lessons List (Matching Screenshot 3) */}
         <div className="flex flex-col gap-2.5">
           {activeTrack.lessons.map((lesson) => (
-            <div
+            <button
+              type="button"
               key={lesson.id}
               onClick={() => openLesson(lesson)}
-              className="p-3.5 rounded-2xl bg-[#09181e]/90 border border-white/5 hover:border-teal-500/40 shadow-md cursor-pointer transition-all hover:scale-[1.005] active:scale-[0.99] flex items-center justify-between gap-3 group"
+              className="w-full p-3.5 rounded-2xl bg-[#09181e]/90 border border-white/5 hover:border-teal-500/40 shadow-md cursor-pointer transition-all hover:scale-[1.005] active:scale-[0.99] flex items-center justify-between gap-3 group text-left"
             >
               {/* Thumbnail Image on Left */}
               <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-xl overflow-hidden border border-white/10 shrink-0 relative">
@@ -342,7 +343,7 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
               <div className="w-8 h-8 rounded-full bg-slate-900/80 border border-white/5 flex items-center justify-center text-slate-400 group-hover:text-teal-300 group-hover:border-teal-400/40 shrink-0 transition-colors">
                 <ChevronRight className="w-4 h-4" />
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>
