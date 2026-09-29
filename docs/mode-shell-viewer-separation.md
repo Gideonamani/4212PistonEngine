@@ -21,6 +21,7 @@ flowchart TD
 ## Responsibilities
 
 - `src/viewer/ModelViewer.tsx` owns the shared React presentation: load/error state, keyboard support, camera actions, capability-driven panels, lesson overlays and the Explore handoff.
+- `src/viewer/ExploreControls.tsx` owns the responsive Explore controls: a fixed side panel on large screens, a panel below the viewport on small screens, and the optional compact crank-angle player.
 - `src/viewer/core/runtime.ts` is the only scene infrastructure layer. It creates and disposes the Three.js scene, camera, renderer, lighting, OrbitControls, resize observer, picking and render loop.
 - `src/viewer/core/assets.ts` owns local/Drive candidates, progress reporting, gzip decoding, GLB validation and GLTF parsing.
 - `src/viewer/adapters/` contains model-specific binding only. An adapter receives an existing runtime and returns a `ViewerSession` describing the features that model actually supports.
@@ -32,6 +33,12 @@ flowchart TD
 `explore` enables orbit/pan and exposes every feature returned by the adapter. `lesson-dynamic` and `assessment` lock free camera interaction and render the requested mechanism pose. `lesson-reference` retains a small static-model camera and the lesson-selected hotspots.
 
 The UI is capability-driven rather than model-name-driven. A static reference adapter returns hotspots but no component, motion, section or appearance feature, so those panels are absent. The operating-cylinder and full-engine adapters return their supported controls through the same session interface. A future adapter can add a model without creating another page or copying the viewer shell.
+
+Explore exposes two distinct expansion actions in the viewer toolbar. **Full page** removes the application/device shell while keeping browser chrome visible. **Fullscreen** uses the browser Fullscreen API for the viewer itself. Both remain aligned with pan, reset and control-panel actions. The control-panel button hides or restores the responsive panel; if “Show player on viewer” is enabled, hiding the panel leaves a compact motion player over the viewport.
+
+Camera fitting is recomputed when an untouched viewer changes size, including when the side panel mounts or unmounts. Once the learner has moved the camera, a resize preserves that chosen viewpoint; Reset returns to the latest centred home view.
+
+The full-engine adapter does not blindly play every baked export track. `engine-contract.json` declares the operating motion selector, currently the tagged drivetrain plus each cylinder's piston/rod hierarchy. Static crankcase and cylinder structure therefore remain fixed during mechanism playback.
 
 ## Lifecycle and navigation
 

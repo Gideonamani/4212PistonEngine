@@ -8,9 +8,14 @@ const runtime = read('src/viewer/core/runtime.ts');
 const adapters = read('src/viewer/adapters/index.ts');
 const explore = read('src/components/ExploreView.tsx');
 const lessonMedia = read('src/components/LessonMedia.tsx');
+const controls = read('src/viewer/ExploreControls.tsx');
+const engineAdapter = read('src/viewer/adapters/fullEngineAdapter.ts');
 
 // Explore and lessons select a viewer profile instead of embedding separate pages.
-assert.match(explore, /<ModelViewer modelId=\{modelId\} profile="explore"/);
+assert.match(explore, /<ModelViewer[\s\S]*modelId=\{modelId\}[\s\S]*profile="explore"/);
+assert.match(explore, /requestFullscreen/);
+assert.match(explore, /fullscreenchange/);
+assert.match(explore, /onToggleFullPage/);
 assert.doesNotMatch(explore, /iframe|explore\.html/);
 assert.match(lessonMedia, /<ModelViewer/);
 assert.match(lessonMedia, /lesson-reference/);
@@ -37,6 +42,15 @@ assert.match(viewer,/hasControlPanels/);
 assert.match(viewer,/profile === 'explore'/);
 assert.match(viewer,/ArrowLeft/);
 assert.match(viewer,/Home/);
+assert.match(viewer,/ExploreControls/);
+assert.match(viewer,/CompactMotionPlayer/);
+assert.match(viewer,/4212-explore-show-player/);
+assert.match(controls,/lg:w-80/);
+assert.match(controls,/lg:border-l/);
+
+// Full-engine playback is contract-scoped so static casing cannot receive baked export tracks.
+assert.match(engineAdapter,/contract\.operation\.motion_selector/);
+assert.match(engineAdapter,/filter\(\(track\) => trackMatchesSelector/);
 
 // Legacy entry points and duplicate viewer/controller implementations stay retired.
 for (const path of [

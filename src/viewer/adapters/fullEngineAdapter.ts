@@ -21,6 +21,12 @@ function bindingMatches(item: EngineItem, target: any) {
   return selectorMatches(item, target?.selector);
 }
 
+function trackMatchesSelector(track: THREE.KeyframeTrack, selector: any) {
+  // GLTFLoader replaces spaces in target node names with underscores when it creates track names.
+  const sourceLabel = track.name.replaceAll('_', ' ');
+  return Boolean(selector?.any_regex?.some((pattern: string) => new RegExp(pattern, 'i').test(sourceLabel)));
+}
+
 export async function createFullEngineSession(definition: ModelDefinition, context: AdapterContext): Promise<ViewerSession> {
   const { runtime, signal, onChange, onProgress } = context;
   const response = await fetch(definition.contractUrl!, { signal });
@@ -59,7 +65,10 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
   const bounds = new THREE.Box3().setFromObject(root);
   runtime.fit(root, new THREE.Vector3(1.3, 0.8, 1.55));
 
-  const clip = new THREE.AnimationClip('shared-engine-action', -1, loaded.gltf.animations.flatMap((animation) => animation.tracks));
+  const motionTracks = loaded.gltf.animations
+    .flatMap((animation) => animation.tracks)
+    .filter((track) => trackMatchesSelector(track, contract.operation.motion_selector));
+  const clip = new THREE.AnimationClip('shared-engine-action', -1, motionTracks);
   if (!clip.tracks.length) throw Error('The published full engine contains no operating action.');
   const mixer = new THREE.AnimationMixer(root);
   const action = mixer.clipAction(clip);

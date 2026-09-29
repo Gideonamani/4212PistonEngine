@@ -43,6 +43,9 @@ export function createViewerRuntime(container: HTMLElement): ViewerRuntime {
 
   let homePosition = new THREE.Vector3(2, 1, 2);
   let homeTarget = new THREE.Vector3();
+  let homeObject: THREE.Object3D | undefined;
+  let homeDirection = new THREE.Vector3(1, 0.62, 1);
+  let homePadding: number | undefined;
   let pickTargets: THREE.Object3D[] = [];
   let onPick: ((object: THREE.Object3D, point: THREE.Vector3) => void) | undefined;
   let pointerDown: [number, number] | undefined;
@@ -75,7 +78,7 @@ export function createViewerRuntime(container: HTMLElement): ViewerRuntime {
     }
   };
 
-  const fit = (object: THREE.Object3D, direction = new THREE.Vector3(1, 0.62, 1), padding = camera.aspect < 1 ? 1.04 : 0.84) => {
+  const fit = (object: THREE.Object3D, direction = new THREE.Vector3(1, 0.62, 1), padding = camera.aspect < 1 ? 1.18 : 1.08) => {
     object.updateMatrixWorld(true);
     const box = new THREE.Box3().setFromObject(object);
     if (box.isEmpty()) return;
@@ -93,6 +96,9 @@ export function createViewerRuntime(container: HTMLElement): ViewerRuntime {
     controls.update();
     homePosition = camera.position.clone();
     homeTarget = controls.target.clone();
+    homeObject = object;
+    homeDirection = direction.clone();
+    homePadding = padding;
     render();
   };
 
@@ -143,10 +149,13 @@ export function createViewerRuntime(container: HTMLElement): ViewerRuntime {
   const resize = new ResizeObserver(() => {
     const { width, height } = container.getBoundingClientRect();
     if (!width || !height) return;
+    const isAtHome = camera.position.distanceToSquared(homePosition) < 1e-8
+      && controls.target.distanceToSquared(homeTarget) < 1e-8;
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    render();
+    if (isAtHome && homeObject) fit(homeObject, homeDirection, homePadding);
+    else render();
   });
   resize.observe(container);
 

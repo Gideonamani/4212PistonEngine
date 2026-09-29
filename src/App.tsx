@@ -22,7 +22,7 @@ export default function App() {
   const [isInfoModalOpen, setIsInfoModalOpen] = useState<boolean>(false);
   const [activeModelName, setActiveModelName] = useState<string>(() => requestedModelName() || 'Detailed operating cylinder');
   const [isExploreViewerOpen, setIsExploreViewerOpen] = useState<boolean>(() => Boolean(requestedModelName()));
-  const [isFullscreen3D, setIsFullscreen3D] = useState<boolean>(false);
+  const [isExploreFullPage, setIsExploreFullPage] = useState<boolean>(false);
   const [tracks, setTracks] = useState<CourseTrack[]>([]);
   const [quizModules, setQuizModules] = useState<QuizModule[]>([]);
   const [loadError, setLoadError] = useState<string>('');
@@ -67,16 +67,16 @@ export default function App() {
     }
   }, [isDarkMode]);
 
-  // Handle ESC key to exit fullscreen 3D
+  // Escape exits the in-app full-page layout. Browser fullscreen has its own native Escape handling.
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isFullscreen3D) {
-        setIsFullscreen3D(false);
+      if (e.key === 'Escape' && isExploreFullPage && !document.fullscreenElement) {
+        setIsExploreFullPage(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isFullscreen3D]);
+  }, [isExploreFullPage]);
 
   // Determine top header subtitle based on active screen (matching screenshots)
   const getHeaderSubtitle = () => {
@@ -95,7 +95,7 @@ export default function App() {
   };
 
   const handleViewChange = (view: ViewMode) => {
-    setIsFullscreen3D(false);
+    setIsExploreFullPage(false);
     setIsExploreViewerOpen(false);
     setQuizLessonId(undefined);
     setActiveView(view);
@@ -130,7 +130,7 @@ export default function App() {
           setIsExploreViewerOpen(true);
         }}
         availableModels={availableModels}
-        isFullscreen3D={isFullscreen3D}
+        isExploreFullPage={isExploreFullPage}
         isLessonStepOpen={isLessonStepOpen}
         isLessonImmersive={isLessonImmersive}
       >
@@ -142,8 +142,8 @@ export default function App() {
               setActiveModelName(model);
               setIsExploreViewerOpen(true);
             }}
-            isFullscreen3D={isFullscreen3D}
-            onToggleFullscreen={() => setIsFullscreen3D((prev) => !prev)}
+            isFullPage={isExploreFullPage}
+            onToggleFullPage={() => setIsExploreFullPage((value) => !value)}
           />
         )}
         {activeView === 'learn' && (tracks.length ? (
@@ -158,7 +158,7 @@ export default function App() {
             }}
             onSwitchToExploreModel={(modelName) => {
               if (availableModels.includes(modelName)) setActiveModelName(modelName);
-              setIsFullscreen3D(false);
+              setIsExploreFullPage(false);
               setIsExploreViewerOpen(true);
               setActiveView('explore');
               history.replaceState(null, '', `${location.pathname}${location.search}#/explore`);
