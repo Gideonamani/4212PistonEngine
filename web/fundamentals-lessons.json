@@ -4,7 +4,7 @@
   "draftStatus": "UNREVIEWED INSTRUCTOR DRAFT - 2026-09-28. Source-backed media and native lesson interactions are implemented; configuration-specific applicability notes remain visible where required.",
   "id": "fundamentals-and-classification",
   "title": "Fundamentals & Classification",
-  "description": "Operating cycles, engine classification (cylinder arrangement and ignition) and cooling, with the GTSIO-520-H used as the continuing aircraft-engine example.",
+  "description": "Operating cycles, engine classification (cylinder arrangement and ignition), parts and construction, and cooling, with the GTSIO-520-H used as the continuing aircraft-engine example.",
   "sources": [
     {
       "id": "faa-powerplant-2023",
@@ -216,11 +216,11 @@
       "id": "classification",
       "sequenceNumber": 5,
       "title": "Classification",
-      "objective": "Classify a piston engine on separate axes - cylinder arrangement (inline, V-type, radial, horizontally opposed) and ignition method (spark or compression) - and explain how arrangement influences frontal area, cooling access, crankshaft/rod layout and installation without turning typical traits into universal rules.",
+      "objective": "Classify a piston engine on separate axes - cylinder arrangement (inline, V-type, radial, horizontally opposed) and ignition method (spark or compression) - explain how arrangement influences frontal area, cooling access, crankshaft/rod layout and installation without turning typical traits into universal rules, and read cylinder numbering and firing order from the engine manual.",
       "models": ["gtsio520-h-v5-teaching-engine"],
       "listed": true,
       "scheduledDay": 2,
-      "completionCriteria": "Correctly identify the four conventional arrangements from a plan/front view and explain at least one source-backed installation consequence for each, identify the GTSIO-520-H as a six-cylinder horizontally opposed engine, and state what initiates combustion in spark-ignition and compression-ignition engines.",
+      "completionCriteria": "Correctly identify the four conventional arrangements from a plan/front view and explain at least one source-backed installation consequence for each, identify the GTSIO-520-H as a six-cylinder horizontally opposed engine, state how its cylinders are numbered and what its firing order is, and state what initiates combustion in spark-ignition and compression-ignition engines.",
       "steps": [
         {
           "type": "text",
@@ -291,6 +291,24 @@
         },
         {
           "type": "web-embed",
+          "title": "Numbering the cylinders",
+          "prompt": "Find cylinder No. 1, then predict where No. 2 goes. On the GTSIO-520-H the cylinders are numbered from the rear, with odd numbers on the right bank and even numbers on the left, as seen from the accessory end. Numbering is not standardised - some manufacturers number from the front - so always check the engine manual.",
+          "url": "artifact:cylinder-numbering",
+          "note": "Documented from the GTSIO-520 overhaul manual, paragraph 1-7 and the definition of terms (PDF pp. 13-14: cylinders numbered from the rear, odd on the right and even on the left, right and left taken facing the accessory end) and FAA-H-8083-32B (2023), PDF pp. 36-37 (left and right taken from the rear; inline and V engines numbered from the rear; opposed-engine numbering 'is by no means standard'; Figure 1-19). The IO-520 manual gives the same rule (paragraph 1-5). The whole-engine model contract (web/engine-contract.json) labels cylinder-1 as left-forward, a reconstruction that does not match the manual; the manual is followed here.",
+          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul", "io520-overhaul"],
+          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "A top-view diagram with the numbers on the cylinders shows the rule at a glance."}
+        },
+        {
+          "type": "web-embed",
+          "title": "Firing order",
+          "prompt": "The firing order is the sequence in which the cylinders' power events occur, chosen for balance and low vibration. Scrub the crank angle and watch the GTSIO-520-H fire 1-4-5-2-3-6, one cylinder every 120 degrees. The IO-520 has the same layout but fires 1-6-3-2-5-4, so never assume one engine's order from another's.",
+          "url": "artifact:cylinder-firing-order",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 37 (firing order chosen for balance; opposed engines list in pairs; a six-cylinder opposed example 1-4-5-2-3-6), the GTSIO-520 overhaul manual (PDF p. 15, and PDF p. 153 for the -H: 1-4-5-2-3-6) and the IO-520 overhaul manual Table II (1-6-3-2-5-4). The 120-degree spacing is derived (720 / 6) for teaching; the manuals give the order, not crank-angle timing.",
+          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul", "io520-overhaul"],
+          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Scrubbing the crank angle shows the order as a sequence in time on the layout."}
+        },
+        {
+          "type": "web-embed",
           "title": "Ignition compare",
           "prompt": "Predict what supplies the initiating energy in a spark-ignition engine and in a compression-ignition engine, then toggle between them. Scrub through the end of compression and observe what enters the cylinder, when fuel is present, and what initiates combustion in each case.",
           "url": "artifact:ignition-method-comparator",
@@ -305,6 +323,155 @@
           "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48, which notes both two-stroke and four-stroke diesel cycles. The GTSIO-520-H's spark ignition follows from the overhaul manual's magneto and spark-plug description (PDF pp. 15, 18-19); instructor to confirm this wording.",
           "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
           "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A verbal classification check prevents a common category error."}
+        }
+      ]
+    },
+    {
+      "id": "parts-construction",
+      "sequenceNumber": 6,
+      "title": "Parts and Construction",
+      "objective": "Name the major structural and power-section parts of a piston engine - crankcase sections, crankshaft, connecting rods, pistons, rings and pins, cylinders, bearings, propeller shaft and mounts - state what each does and what it is made of, and recognise how the GTSIO-520-H's construction differs from a direct-drive engine such as the IO-520.",
+      "models": ["cylinder", "gtsio520-h-v5-teaching-engine"],
+      "listed": true,
+      "completionCriteria": "Name the parts of the power section in the order force passes through them, state one function and one material for the crankcase, crankshaft, piston and cylinder, give the difference between compression and oil control rings, and explain how the GTSIO-520-H's propeller drive differs from a direct-drive engine.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "The basic parts",
+          "prompt": "Every piston engine is built from the same core parts: a crankcase, cylinders, pistons, connecting rods, a crankshaft, and valves with their operating mechanism. Before opening them up, predict which part carries the whole engine's load and keeps the crankshaft in alignment.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 26 (major components of a reciprocating engine; the crankcase must be rigid enough to prevent misalignment of the crankshaft and its bearings).",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A prediction prompt frames the walk through the components."}
+        },
+        {
+          "type": "model-pose",
+          "title": "The crankcase",
+          "modelId": "gtsio520-h-v5-teaching-engine",
+          "prompt": "The crankcase is the foundation. It holds the crankshaft bearings, supports the cylinders and carries the mounting lugs, so it must stay rigid under bending and vibration. It is normally cast or forged aluminium alloy. On the GTSIO-520-H, two aluminium alloy castings, left and right, are joined along the vertical centre plane.",
+          "action": {"type": "angle", "value": 0},
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 26-27, EASA Module 16, PDF p. 51, and the GTSIO-520 overhaul manual, Section III paragraph 3-1b (PDF p. 16). The whole-engine mesh is a teaching reconstruction and keeps its modelling-status disclosure.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16", "gtsio520-overhaul"],
+          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "The whole-engine model shows the two crankcase halves with the cylinders on each side."}
+        },
+        {
+          "type": "image",
+          "title": "Sections of the case",
+          "prompt": "Find the two crankcase halves, the accessory (rear) case and the oil sump. The nose section at the front houses the propeller shaft, or the reduction gears on a geared engine, while the rear section carries the magnetos, pumps, starter and alternator.",
+          "url": "./lesson-media/faa-opposed-engine-exploded.webp",
+          "alt": "FAA exploded view of an opposed engine showing the crankcase halves, accessory case, oil sump, crankshaft, camshaft, cylinder and accessories",
+          "credit": "FAA-H-8083-32B, Figure 1-6",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 26-28 (nose section, accessory section, Figure 1-6). Sump construction differs by engine: the IO-520 manual notes cast or stamped aluminium sumps.",
+          "sourceRefs": ["faa-powerplant-2023", "io520-overhaul"],
+          "mediaPlan": {"mode": "source-image", "status": "available", "rationale": "The FAA exploded view names every major case section and accessory in one labelled figure."}
+        },
+        {
+          "type": "model-pose",
+          "title": "The crankshaft",
+          "modelId": "cylinder",
+          "prompt": "The crankshaft is the engine's backbone: a forged alloy steel shaft with a throw for each cylinder. A throw is two crank cheeks and a crankpin, and the journals turn in the main bearings. The crankpin is usually hollow, which saves weight and carries oil. The GTSIO-520-H's six-throw shaft has nitrided journals and crankpins, and counterweights that oscillate on pins to damp torsional vibration.",
+          "action": {"type": "angle", "value": 90},
+          "focusParts": ["CrankThrow"],
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 29-30, EASA Module 16, PDF pp. 53-55, and the GTSIO-520 overhaul manual, Section III paragraph 3-1e (PDF pp. 16-17). The model shows one throw of the detailed operating cylinder.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16", "gtsio520-overhaul"],
+          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "Spotlighting one crank throw on the operating-cylinder model shows cheeks, crankpin and journal in place."}
+        },
+        {
+          "type": "model-pose",
+          "title": "Connecting rods",
+          "modelId": "cylinder",
+          "prompt": "The connecting rod links the piston to the crankpin. It must stay rigid under load yet be light enough to limit inertia forces at each stroke end. Opposed and inline engines use plain rods, with a cap and two-piece bearing at the crankpin end and a bushing at the piston end. Rods go back in the same cylinder and position. The GTSIO-520-H uses I-beam rods with split bronze piston-pin bushings.",
+          "action": {"type": "angle", "value": 90},
+          "focusParts": ["ConnectingRodBody", "ConnectingRodCap", "BigEndBearing", "CapBearingHalf", "SmallEndBush", "RodBoltMinus1", "RodNutMinus1", "RodBolt1", "RodNut1"],
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 30-32, EASA Module 16, PDF p. 66, and the GTSIO-520 overhaul manual, paragraph 3-1f (PDF p. 17): I-beam rods, two identical precision inserts at the crankpin end, weight variation limited to 1/2 ounce in a bay.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16", "gtsio520-overhaul"],
+          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "The rod, cap, bearing halves, bolts and small-end bushing are spotlighted together."}
+        },
+        {
+          "type": "image",
+          "title": "Other rod types",
+          "prompt": "Radial engines use a master rod with articulated rods, and V engines use fork-and-blade rods. Match the four connecting-rod types in the figure - plain, fork-and-blade, master-and-articulated, and split-type - to the engine layouts that use them.",
+          "url": "./lesson-media/faa-connecting-rod-types.webp",
+          "alt": "FAA diagram of connecting rod assemblies: solid master rod with articulated rod, fork-and-blade rod, plain rod and split-type master rod",
+          "credit": "FAA-H-8083-32B, Figure 1-11",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 30-32 (four types of connecting-rod assembly; Figure 1-11) and EASA Module 16, PDF p. 66.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "source-image", "status": "available", "rationale": "The FAA figure shows all four rod assemblies side by side with their parts labelled."}
+        },
+        {
+          "type": "model-pose",
+          "title": "Piston and pin",
+          "modelId": "cylinder",
+          "prompt": "The piston is the moving wall of the combustion chamber: an aluminium alloy forging with ring grooves, heavy pin bosses and inner ribs that help oil carry heat away. The full-floating piston pin turns freely in both the piston and the rod, and soft aluminium end plugs stop it scoring the cylinder wall.",
+          "action": {"type": "angle", "value": 0},
+          "focusParts": ["PistonBody", "FloatingPin", "PinPlugLeft", "PinPlugRight"],
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 33-34, EASA Module 16, PDF p. 63, and the GTSIO-520 overhaul manual, paragraph 3-1g (PDF p. 17): aluminium alloy pistons with solid skirts, full-floating ground steel pins with forged-in aluminium plugs.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16", "gtsio520-overhaul"],
+          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "The piston body, pin and end plugs are spotlighted with the cylinder ghosted around them."}
+        },
+        {
+          "type": "model-pose",
+          "title": "Piston rings",
+          "modelId": "cylinder",
+          "prompt": "Rings seal the combustion gas and control the oil. Compression rings, usually two, sit nearest the crown; oil control rings scrape surplus oil back to the crankcase. Most rings are gray cast iron, and chrome rings belong only with steel cylinder walls. This piston has two compression rings, a slotted oil-control ring and an oil scraper. The GTSIO-520 series has used a four-ring piston since 1975, and piston types must not be intermixed.",
+          "action": {"type": "angle", "value": 0},
+          "focusParts": ["PistonRing1", "PistonRing2", "PistonRing3", "PistonRing4"],
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 34-35, EASA Module 16, PDF p. 65, and the GTSIO-520 overhaul manual, paragraph 3-1g (PDF p. 17): four-ring piston since 1975, replacing the five-ring model; some pistons have a cast steel top-groove insert and the weight difference means they are not to be intermixed.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16", "gtsio520-overhaul"],
+          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "The four rings are spotlighted so each can be named by its job."}
+        },
+        {
+          "type": "model-pose",
+          "title": "The cylinder",
+          "modelId": "cylinder",
+          "prompt": "Each cylinder is two parts: a light aluminium alloy head with deep cooling fins, and a steel barrel nitrided inside to resist wear. The head is heated and screwed onto the chilled barrel, so as they equalise they lock into a gastight shrink joint. The head also carries the valve seats and guides and the spark plug openings.",
+          "action": {"type": "angle", "value": 0},
+          "focusParts": ["CylinderBarrel", "CylinderHead"],
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 35-36, EASA Module 16, PDF pp. 56-57, and the GTSIO-520 overhaul manual, paragraph 3-1c (PDF p. 16): heads heated, seats and guides installed, then screwed and shrunk onto the steel barrel; 18 mm helical-coil spark plug inserts.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16", "gtsio520-overhaul"],
+          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "The barrel and head are spotlighted as one assembly."}
+        },
+        {
+          "type": "text",
+          "title": "Bearings",
+          "prompt": "Bearings support moving parts with little friction and carry radial loads, thrust loads, or both. Plain bearings of soft alloys serve the crankshaft, camshaft and connecting rods. Deep-groove ball bearings carry radial and thrust loads; straight roller bearings carry radial load only. The GTSIO-520-H's crankshaft rides in precision steel-backed, lead-alloy-lined main bearing inserts.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 43-44 (radial and thrust loads; plain, ball and roller bearings), and the GTSIO-520 overhaul manual, paragraph 3-1b (PDF p. 16).",
+          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A short classification by load type needs no visual."}
+        },
+        {
+          "type": "image",
+          "title": "Propeller shaft and reduction gears",
+          "prompt": "The propeller shaft is tapered, splined or flanged; on small direct-drive engines it is just an extension of the crankshaft. Powerful engines add reduction gears so the crankshaft can turn fast while the propeller turns slower, before its tip speed nears the speed of sound. Name the three common types in the figure. The GTSIO-520-H is geared: a quill shaft carries torque to a reduction gear that drives the flanged propeller shaft at 0.667:1.",
+          "url": "./lesson-media/faa-reduction-gears.webp",
+          "alt": "FAA diagram of propeller reduction gears: spur planetary, bevel planetary, and spur and pinion",
+          "credit": "FAA-H-8083-32B, Figure 1-34",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 44-45, EASA Module 16, PDF pp. 67-70, and the GTSIO-520 overhaul manual (PDF pp. 16-17 for the quill shaft and reduction gear; PDF p. 152 for the 0.667:1 propeller drive ratio).",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16", "gtsio520-overhaul"],
+          "mediaPlan": {"mode": "source-image", "status": "available", "rationale": "The FAA figure shows the three reduction-gear arrangements with their parts named."}
+        },
+        {
+          "type": "image",
+          "title": "Engine mounts",
+          "prompt": "The engine hangs from the airframe on an engine mount: a steel-tube structure with a ring that surrounds the engine near its point of balance. Dynafocal mounts angle their pads toward the engine's centre of gravity. Rubber-and-steel shock mounts let the engine move a little while metal snubbers limit extreme movement. Rubber ages, so hoses and controls must be able to flex.",
+          "url": "./lesson-media/faa-engine-mounting-ring.webp",
+          "alt": "Photograph of an engine mounting ring on a light aircraft firewall with four dynamic mount fittings",
+          "credit": "FAA-H-8083-32B, Figure 8-16",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 27 and 343-344 (mounting lugs, mount ring, dynafocal and shock mounts), and EASA Module 16, PDF pp. 53 and 275-276 (rubber mounts, relative motion between engine and airframe).",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "source-image", "status": "available", "rationale": "A photograph of a real mounting ring shows the fittings that hold the dynamic mounts."}
+        },
+        {
+          "type": "web-embed",
+          "title": "Direct or geared?",
+          "prompt": "Compare the GTSIO-520-H with the IO-520 part by part. Find what is identical and what differs. Which difference changes how the propeller is attached to the engine?",
+          "url": "artifact:construction-comparison",
+          "note": "GTSIO-520-H from its overhaul manual, Section III (PDF pp. 16-17) and Chapter C-3 (PDF p. 152). IO-520 from its overhaul manual, paragraphs 2-3 to 2-9. The IO-520 is a different engine, used for comparison only.",
+          "sourceRefs": ["gtsio520-overhaul", "io520-overhaul"],
+          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "A side-by-side table makes identical and differing construction obvious at a glance."}
         }
       ]
     },
@@ -768,6 +935,104 @@
       "answers": ["A three-sided rotor turning inside an elliptical housing", "A double-acting piston in a long cylinder", "A rotating cylinder block around a fixed crankshaft"],
       "correct": 0,
       "rationale": "The rotary cycle uses a three-sided rotor in an elliptical housing; the events occur in the chambers between rotor and housing."
+    },
+    {
+      "id": "parts-crankcase",
+      "lessonId": "parts-construction",
+      "type": "multiple-choice",
+      "question": "Which statement best describes the crankcase?",
+      "hint": "Think about what has to stay aligned and what the cylinders bolt to.",
+      "answers": ["The rigid foundation that holds the crankshaft bearings, supports the cylinders and provides mounting for the powerplant", "The chamber in which fuel and air are burned", "The part that meters fuel to each cylinder"],
+      "correct": 0,
+      "rationale": "The crankcase contains the bearings and supports in which the crankshaft revolves, supports the cylinder assemblies and the mounting lugs, and must stay rigid to prevent misalignment."
+    },
+    {
+      "id": "parts-crankshaft",
+      "lessonId": "parts-construction",
+      "type": "multiple-choice",
+      "question": "What are the three main parts of a crankshaft?",
+      "hint": "Two cheeks and one of these make a throw.",
+      "answers": ["Journal, crankpin and crank cheek", "Piston, ring and pin", "Main bearing, cap and bolt"],
+      "correct": 0,
+      "rationale": "Every crankshaft has journals that turn in the main bearings, crankpins to which the rods attach, and crank cheeks joining them."
+    },
+    {
+      "id": "parts-rod-type",
+      "lessonId": "parts-construction",
+      "type": "multiple-choice",
+      "question": "Which connecting-rod type is used in inline and opposed engines?",
+      "hint": "It has a cap and a two-piece bearing at the crankpin end.",
+      "answers": ["Plain", "Master-and-articulated", "Fork-and-blade"],
+      "correct": 0,
+      "rationale": "Plain-type rods suit inline and opposed engines; master-and-articulated rods are used in radials and fork-and-blade rods mainly in V-type engines."
+    },
+    {
+      "id": "parts-rings",
+      "lessonId": "parts-construction",
+      "type": "multiple-choice",
+      "question": "What do oil control rings do?",
+      "hint": "Compression rings deal with gas; these deal with the other fluid.",
+      "answers": ["Scrape surplus oil from the cylinder wall and return it to the crankcase", "Seal combustion gas above the piston crown", "Hold the piston pin in place"],
+      "correct": 0,
+      "rationale": "Compression rings seal the combustion gases; oil control rings limit oil reaching the combustion chamber and return the surplus to the crankcase."
+    },
+    {
+      "id": "parts-cylinder-joint",
+      "lessonId": "parts-construction",
+      "type": "multiple-choice",
+      "question": "How is the aluminium cylinder head joined to the steel barrel?",
+      "hint": "Temperature is doing the work.",
+      "answers": ["The head is heated and screwed onto the chilled barrel, forming a gastight shrink joint", "The two are welded along the cooling fins", "They are bolted together with a gasket between them"],
+      "correct": 0,
+      "rationale": "The head is expanded by heating and screwed onto the chilled barrel; as they equalise the joint becomes gastight."
+    },
+    {
+      "id": "parts-bearing-thrust",
+      "lessonId": "parts-construction",
+      "type": "multiple-choice",
+      "question": "Which bearing type carries both radial and thrust loads?",
+      "hint": "Think of the bearing that holds propeller thrust.",
+      "answers": ["Deep-groove ball bearing", "Straight roller bearing", "Plain bushing"],
+      "correct": 0,
+      "rationale": "A deep-groove ball bearing controls both radial and thrust loads; a straight roller bearing carries radial load only."
+    },
+    {
+      "id": "parts-gtsio-drive",
+      "lessonId": "parts-construction",
+      "type": "multiple-choice",
+      "question": "How does the GTSIO-520-H drive its propeller?",
+      "hint": "The manual describes a quill shaft.",
+      "answers": ["Through a quill shaft and reduction gear to a flanged propeller shaft", "Directly from a flange formed on the crankshaft", "Through a belt drive"],
+      "correct": 0,
+      "rationale": "The crankshaft's internal spline mates with a quill shaft that drives the reduction gear, which drives the flanged propeller shaft; a direct-drive engine such as the IO-520 has the propeller flange on the crankshaft itself."
+    },
+    {
+      "id": "parts-force-path",
+      "lessonId": "parts-construction",
+      "type": "ordering",
+      "question": "Put these in the order force passes through them during the power stroke.",
+      "hint": "Start where the expanding gas meets the engine and finish at the shaft that turns.",
+      "items": ["Expanding gas pushes on the piston", "The piston pin passes the load to the connecting rod", "The connecting rod turns the crankpin", "The crankshaft rotates and drives the propeller shaft"],
+      "rationale": "Gas pressure on the piston is carried through the pin and rod to the crankpin, and the crankshaft turns the reciprocating force into rotation that drives the propeller."
+    },
+    {
+      "id": "classification-numbering",
+      "lessonId": "classification",
+      "type": "multiple-choice",
+      "question": "How are the GTSIO-520-H's cylinders numbered?",
+      "hint": "Left and right are taken as seen from the accessory end.",
+      "answers": ["From the rear, with odd numbers on the right and even numbers on the left", "From the front, filling one bank before the other", "Clockwise from the top cylinder"],
+      "correct": 0,
+      "rationale": "The overhaul manual numbers the cylinders starting from the rear, odd on the right and even on the left; other manufacturers may number from the front, so the manual always decides."
+    },
+    {
+      "id": "classification-firing-order",
+      "lessonId": "classification",
+      "type": "ordering",
+      "question": "Put the GTSIO-520-H cylinders in firing order.",
+      "hint": "Cylinder 1 fires first; the order is in the manual's ignition system table.",
+      "items": ["Cylinder 1", "Cylinder 4", "Cylinder 5", "Cylinder 2", "Cylinder 3", "Cylinder 6"],
+      "rationale": "The GTSIO-520-H fires 1-4-5-2-3-6; the similar IO-520 fires 1-6-3-2-5-4, so the order must come from the engine's own manual."
     }
   ]
 }

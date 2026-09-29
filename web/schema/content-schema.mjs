@@ -193,6 +193,9 @@ function validateStep(step, lessonModels, lessonIndex, stepIndex, knownSourceIds
     if (step.focusHotspots !== undefined && (!Array.isArray(step.focusHotspots) || step.focusHotspots.some(id => typeof id !== 'string' || !id))) {
       errors.push(`${where}: focusHotspots must be an array of non-empty ids`);
     }
+    if (step.focusParts !== undefined && (!Array.isArray(step.focusParts) || step.focusParts.length === 0 || step.focusParts.some(id => typeof id !== 'string' || !id))) {
+      errors.push(`${where}: focusParts must be a non-empty array of component ids`);
+    }
   }
   if (step.deepDiveLinks && !Array.isArray(step.deepDiveLinks)) errors.push(`${where}: deepDiveLinks must be an array of lesson ids`);
   if (step.sourceRefs !== undefined) {

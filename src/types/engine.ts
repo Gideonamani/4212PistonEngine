@@ -46,6 +46,8 @@ export interface LessonStep {
   referenceModel?: string;
   viewPreset?: string;
   focusHotspots?: string[];
+  /** Component ids spotlighted in the 3D view (operating-cylinder model); other parts are ghosted. */
+  focusParts?: string[];
   /** Ids of unlisted deep-dive lessons this step links to (optional, never required to progress). */
   deepDiveLinks?: string[];
   note?: string;

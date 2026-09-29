@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { DieselOttoCompare, EngineDataComparison, OttoPVDiagram, SweptVolumeDiagram, ValveTimingDiagram } from './CycleArtifacts';
+import { ConstructionComparison, CylinderNumberingDiagram, DieselOttoCompare, EngineDataComparison, OttoPVDiagram, SweptVolumeDiagram, ValveTimingDiagram } from './CycleArtifacts';
 
 type ArtifactProps = { id: string };
 
@@ -173,7 +173,7 @@ export const lessonArtifactIds = [
   'cycle-phase-scrubber', 'two-stroke-port-timing', 'arrangement-comparator', 'ignition-method-comparator',
   'air-cooling-path-explorer', 'turbocharger-energy-path', 'aspiration-altitude-comparator',
   'steam-engine-schematic', 'otto-cycle-overview', 'piston-crank-converter', 'arrangement-inline', 'arrangement-v',
-  'swept-volume-diagram', 'engine-data-comparison', 'otto-pv-diagram', 'otto-pv-ideal-vs-practical', 'diesel-otto-pv-compare', 'valve-timing-diagram',
+  'swept-volume-diagram', 'engine-data-comparison', 'otto-pv-diagram', 'otto-pv-ideal-vs-practical', 'diesel-otto-pv-compare', 'valve-timing-diagram', 'construction-comparison', 'cylinder-numbering', 'cylinder-firing-order',
 ] as const;
 
 export const LessonArtifact: React.FC<ArtifactProps> = ({ id }) => {
@@ -195,7 +195,11 @@ export const LessonArtifact: React.FC<ArtifactProps> = ({ id }) => {
     if (id === 'otto-pv-ideal-vs-practical') return <OttoPVDiagram startPractical />;
     if (id === 'diesel-otto-pv-compare') return <DieselOttoCompare />;
     if (id === 'valve-timing-diagram') return <ValveTimingDiagram />;
+    if (id === 'construction-comparison') return <ConstructionComparison />;
+    if (id === 'cylinder-numbering') return <CylinderNumberingDiagram />;
+    if (id === 'cylinder-firing-order') return <CylinderNumberingDiagram startFiring />;
     return <div className={panel}><p className="text-xs text-slate-300">This learning activity is not available.</p></div>;
   }, [id]);
-  return <div className="w-full">{content}</div>;
+  // Keyed by id so two consecutive steps that use the same component (for example, different starting modes) do not share state.
+  return <div className="w-full"><React.Fragment key={id}>{content}</React.Fragment></div>;
 };

@@ -46,5 +46,25 @@
     "source": "Continental GTSIO-520 overhaul manual, Figure C-2-2",
     "license": "Course reference extract",
     "note": "Retain the in-app effectivity review notice before final course publication."
+  },
+  "faa-opposed-engine-exploded.webp": {
+    "title": "Typical opposed engine exploded into component assemblies",
+    "source": "FAA-H-8083-32B, Figure 1-6",
+    "license": "U.S. Government work"
+  },
+  "faa-connecting-rod-types.webp": {
+    "title": "Connecting rod assemblies",
+    "source": "FAA-H-8083-32B, Figure 1-11",
+    "license": "U.S. Government work"
+  },
+  "faa-reduction-gears.webp": {
+    "title": "Propeller reduction gears",
+    "source": "FAA-H-8083-32B, Figure 1-34",
+    "license": "U.S. Government work"
+  },
+  "faa-engine-mounting-ring.webp": {
+    "title": "Engine mounting ring",
+    "source": "FAA-H-8083-32B, Figure 8-16",
+    "license": "U.S. Government work"
   }
 }

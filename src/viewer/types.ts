@@ -109,4 +109,6 @@ export type AdapterContext = {
   initialCycle?: boolean;
   viewPreset?: string;
   focusHotspots?: string[];
+  /** Component ids to spotlight in a lesson step; every other part is ghosted and the camera frames the group. */
+  focusParts?: string[];
 };

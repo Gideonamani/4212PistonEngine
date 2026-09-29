@@ -14,6 +14,10 @@ export function createViewerRuntime(container: HTMLElement): ViewerRuntime {
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 0.9;
   renderer.domElement.setAttribute('aria-hidden', 'true');
+  // setSize(..., false) leaves the CSS size alone, so without this the canvas displays at its pixel-ratio-scaled buffer size
+  // and overflows the container on any screen scaled above 100%.
+  renderer.domElement.style.width = '100%';
+  renderer.domElement.style.height = '100%';
   container.appendChild(renderer.domElement);
 
   const controls = new OrbitControls(camera, renderer.domElement);

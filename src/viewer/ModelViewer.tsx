@@ -15,6 +15,7 @@ type ModelViewerProps = {
   initialCycle?: boolean;
   viewPreset?: string;
   focusHotspots?: string[];
+  focusParts?: string[];
   onOpenExplore?: () => void;
   isFullPage?: boolean;
   isFullscreen?: boolean;
@@ -30,6 +31,7 @@ export default function ModelViewer({
   initialCycle,
   viewPreset,
   focusHotspots,
+  focusParts,
   onOpenExplore,
   isFullPage = false,
   isFullscreen = false,
@@ -68,6 +70,7 @@ export default function ModelViewer({
       initialCycle,
       viewPreset,
       focusHotspots,
+      focusParts,
       onChange: () => { if (!disposed) setVersion((value) => value + 1); },
       onProgress: (status, progress) => { if (!disposed) setLoadState({ status, progress }); },
     }).then((session) => {
@@ -89,7 +92,7 @@ export default function ModelViewer({
       runtime.dispose();
       runtimeRef.current = undefined;
     };
-  }, [definition, modelId, profile, initialAngle, initialCycle, viewPreset, focusHotspots?.join('|')]);
+  }, [definition, modelId, profile, initialAngle, initialCycle, viewPreset, focusHotspots?.join('|'), focusParts?.join('|')]);
 
   void version;
   const session = sessionRef.current;

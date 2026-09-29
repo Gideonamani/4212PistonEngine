@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 
 /**
- * Native lesson interactives for lessons 3 and 4 (dead centres, swept/clearance volume, Otto and Diesel
+ * Native lesson interactives for lessons 3 to 6 (dead centres, cylinder numbering, swept/clearance volume, Otto and Diesel
  * pressure-volume diagrams, valve timing, engine data comparison).
  *
  * Everything here is schematic: pressure-volume shapes come from the ideal-gas relations, valve timing uses the
@@ -311,5 +311,87 @@ export function EngineDataComparison() {
     </div>
     <p className="mt-2 text-xs leading-relaxed text-slate-300">Same cylinder size, different firing order and spark timing: two engines can share bore, stroke and displacement and still differ in the data that matters for timing and maintenance.</p>
     <p className={caption}>GTSIO-520-H: Continental GTSIO-520 overhaul manual, Chapter C Section III, pp. C-3-2 and C-3-3. IO-520: Continental IO-520 overhaul manual, Tables II and III and the model test data. The IO-520 is a different engine shown for comparison only; check applicability before using any value.</p>
+  </div>;
+}
+
+// ---------------------------------------------------------------------------------------------------------------
+// Construction comparison: GTSIO-520-H (course engine) and IO-520 (comparison engine)
+// ---------------------------------------------------------------------------------------------------------------
+
+const CONSTRUCTION_ROWS: { part: string; gtsio: string; io: string; same?: boolean }[] = [
+  { part: 'Crankcase', gtsio: 'Two aluminium alloy castings, left and right, joined on the vertical centre plane', io: 'Two aluminium alloy castings, left and right, joined on the vertical centre plane', same: true },
+  { part: 'Crankshaft', gtsio: 'Six-throw steel alloy forging; journals and crankpins nitrided', io: 'Six-throw steel alloy forging; journals and crankpins nitrided', same: true },
+  { part: 'Counterweights', gtsio: 'Third-order counterweights on pins; their oscillation damps torsional vibration', io: 'Fourth-, fifth- and sixth-order counterweights (the mix varies by model)' },
+  { part: 'Propeller drive', gtsio: 'Geared: quill shaft to a reduction gear (0.667:1) driving a flanged propeller shaft', io: 'Direct: a flange formed at the front of the crankshaft carries the propeller' },
+  { part: 'Connecting rods', gtsio: 'I-beam; split bronze piston-pin bushings; two identical precision inserts at the crankpin', io: 'I-beam; split bronze piston-pin bushings; two identical precision inserts at the crankpin', same: true },
+  { part: 'Pistons', gtsio: 'Aluminium alloy; four-ring piston since 1975 (five before); full-floating pin with aluminium plugs', io: 'Aluminium alloy forging; four ring grooves (three above the pin, one below); full-floating pin with aluminium plugs' },
+  { part: 'Cylinders', gtsio: 'Aluminium head heated and shrunk onto a steel barrel; 18 mm helical-coil spark-plug inserts', io: 'Aluminium head heated and shrunk onto a steel barrel; 18 mm helical-coil spark-plug inserts', same: true },
+];
+
+export function ConstructionComparison() {
+  return <div className={panel}>
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[30rem] border-collapse text-left text-[11px]">
+        <thead><tr className="border-b border-slate-700 text-slate-400"><th className="py-1.5 pr-2 font-semibold">Part</th><th className="py-1.5 pr-2 font-semibold text-teal-300">GTSIO-520-H (course engine)</th><th className="py-1.5 font-semibold text-amber-300">IO-520 (comparison)</th></tr></thead>
+        <tbody>{CONSTRUCTION_ROWS.map((row) => <tr key={row.part} className="border-b border-slate-800/80 align-top"><th scope="row" className="py-1.5 pr-2 font-medium text-slate-300">{row.part}</th><td className="py-1.5 pr-2 text-slate-100">{row.gtsio}</td><td className={`py-1.5 ${row.same ? 'text-slate-100' : 'text-amber-100'}`}>{row.io}</td></tr>)}</tbody>
+      </table>
+    </div>
+    <p className="mt-2 text-xs leading-relaxed text-slate-300">Most of the construction is shared. What differs is how the crankshaft's power leaves the engine, and details of the vibration damping and piston rings.</p>
+    <p className={caption}>GTSIO-520-H: Continental GTSIO-520 overhaul manual, Section III (PDF pp. 16-17) and Chapter C-3 (PDF p. 152). IO-520: Continental IO-520 overhaul manual, paragraphs 2-3 to 2-9. The IO-520 is a different engine shown for comparison only; check applicability before using any value.</p>
+  </div>;
+}
+
+// ---------------------------------------------------------------------------------------------------------------
+// Cylinder numbering and firing order (GTSIO-520-H, from the overhaul manual)
+// ---------------------------------------------------------------------------------------------------------------
+
+// GTSIO-520 overhaul manual paragraph 1-7 (PDF p. 13): cylinders are numbered from the rear, odd numbers on the right and even
+// on the left, with left and right taken as seen facing the accessory end. Firing order 1-4-5-2-3-6 (Section II table, PDF p. 15;
+// -H specifications, PDF p. 153). The left crankcase pads sit farther forward than the right ones (paragraph 3-1b, PDF p. 16).
+const GTSIO_FIRING_ORDER = [1, 4, 5, 2, 3, 6];
+const CYLINDER_PLACES: Record<number, { x: number; y: number }> = {
+  1: { x: 236, y: 26 }, 3: { x: 156, y: 26 }, 5: { x: 76, y: 26 },
+  2: { x: 218, y: 118 }, 4: { x: 138, y: 118 }, 6: { x: 58, y: 118 },
+};
+
+export function CylinderNumberingDiagram({ startFiring = false }: { startFiring?: boolean }) {
+  const [mode, setMode] = useState<'numbering' | 'firing'>(startFiring ? 'firing' : 'numbering');
+  const [angle, setAngle] = useState(0);
+  const index = Math.floor(angle / 120) % 6;
+  const firing = GTSIO_FIRING_ORDER[index];
+  const next = GTSIO_FIRING_ORDER[(index + 1) % 6];
+  return <div className={panel}>
+    <div className="mb-3 flex gap-1.5">
+      <button type="button" className={button} aria-pressed={mode === 'numbering'} onClick={() => setMode('numbering')}>Numbering</button>
+      <button type="button" className={button} aria-pressed={mode === 'firing'} onClick={() => setMode('firing')}>Firing order</button>
+    </div>
+    <svg viewBox="0 0 320 200" role="img" aria-label="Top view of the six-cylinder opposed engine showing cylinder numbers" className="mx-auto max-h-64 w-full rounded-lg bg-slate-950/50">
+      <path d="M30 100H290" stroke="#64748b" strokeWidth="6" strokeLinecap="round" />
+      <rect x="50" y="88" width="216" height="24" rx="6" fill="#132b31" stroke="#55707a" />
+      {Object.entries(CYLINDER_PLACES).map(([key, place]) => {
+        const id = Number(key);
+        const active = mode === 'firing' && id === firing;
+        const upcoming = mode === 'firing' && id === next;
+        return <g key={id}>
+          <rect x={place.x} y={place.y} width="30" height="56" rx="5" fill={active ? '#f59e0b' : '#1e3a42'} stroke={active ? '#fde68a' : upcoming ? '#5eead4' : '#94a3b8'} strokeWidth={active || upcoming ? 3 : 1.5} />
+          <text x={place.x + 15} y={place.y + (id % 2 ? 36 : 24)} textAnchor="middle" fontSize="20" fontWeight="700" fill={active ? '#111827' : '#e2e8f0'}>{id}</text>
+        </g>;
+      })}
+      <g fontSize="12" fill="#94a3b8">
+        <text x="8" y="14">Right bank (odd)</text>
+        <text x="8" y="196">Left bank (even)</text>
+        <text x="8" y="100" fontSize="10">FRONT</text>
+        <text x="292" y="100" fontSize="10">REAR</text>
+      </g>
+      <text x="160" y="103" textAnchor="middle" fontSize="10" fill="#94a3b8">crankshaft</text>
+    </svg>
+    {mode === 'numbering'
+      ? <p className="mt-2 text-xs leading-relaxed text-slate-300">Numbered from the rear (accessory end): No. 1 is the right rear cylinder, No. 2 the left rear, then forward in pairs. Odd numbers are on the right and even on the left, as seen from the rear. Notice the left bank sits slightly forward of the right, so each connecting rod has its own crankpin.</p>
+      : <div>
+        <input aria-label="Crank angle" className="mt-2 w-full accent-teal-400" type="range" min="0" max="719" value={angle} onChange={(event) => setAngle(Number(event.target.value))} />
+        <p className="mt-2 text-xs text-slate-300"><strong className="text-white">Crank angle {angle}°: cylinder {firing} is in its power event.</strong> Next: cylinder {next} at {((index + 1) % 6) * 120}°.</p>
+        <p className="mt-1 font-mono text-[11px] text-slate-400">{GTSIO_FIRING_ORDER.map((id, i) => `${id}${i === index ? '●' : ''}`).join(' – ')}</p>
+      </div>}
+    <p className={caption}>Layout from the GTSIO-520 manual (numbering rule, paragraph 1-7; firing order 1-4-5-2-3-6). Firing events are drawn 120° apart (720° ÷ 6) for teaching; the manual gives the order, not crank-angle timing.</p>
   </div>;
 }
