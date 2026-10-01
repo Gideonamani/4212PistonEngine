@@ -74,26 +74,56 @@ export async function loadModelBytes(
   throw Error(`Every configured model source failed. ${failures.join(' ')}`);
 }
 
-// Decoded model bytes are kept for the session, so returning to a model after a text or image step skips the download and unpacking.
-const byteCache = new Map<string, Promise<ArrayBuffer>>();
+type Progress = (status: string, progress?: number) => void;
+type CacheEntry = { promise: Promise<ArrayBuffer>; last?: [string, number | undefined]; listeners: Set<Progress> };
+
+// Decoded model bytes are kept for the session, so a preload and every later viewer of the same model share one download and unpack.
+const byteCache = new Map<string, CacheEntry>();
+
+const cacheKeyFor = (sources: ModelSource[]) => sources.map((source) => source.localUrl || source.driveId || '').join('|');
+
+function cachedModelBytes(sources: ModelSource[], signal: AbortSignal, onProgress: Progress) {
+  const key = cacheKeyFor(sources);
+  let entry = key ? byteCache.get(key) : undefined;
+  if (!entry) {
+    const created: CacheEntry = { listeners: new Set(), promise: undefined as unknown as Promise<ArrayBuffer> };
+    created.promise = loadModelBytes(sources, signal, (status, progress) => {
+      created.last = [status, progress];
+      created.listeners.forEach((listener) => listener(status, progress));
+    });
+    entry = created;
+    if (key) {
+      byteCache.set(key, created);
+      created.promise.catch(() => { if (byteCache.get(key) === created) byteCache.delete(key); });
+    }
+  }
+  entry.listeners.add(onProgress);
+  if (entry.last) onProgress(...entry.last);
+  return entry.promise.finally(() => entry.listeners.delete(onProgress));
+}
+
+/** Start downloading a model in the background so a later viewer finds it already local. */
+export function preloadModelBytes(sources: ModelSource[]) {
+  return cachedModelBytes(sources, new AbortController().signal, () => undefined);
+}
+
+/** Sources for the full engine, taken from its published contract. */
+export function sourcesFromEngineContract(contract: any): ModelSource[] {
+  const transport = contract.asset.transport;
+  return transport ? [
+    { localUrl: transport.web_url, driveId: transport.drive_file_id, compressed: transport.encoding === 'gzip', transferBytes: transport.bytes, decodedBytes: contract.asset.bytes },
+    { localUrl: transport.fallback_web_url, driveId: transport.fallback_drive_file_id, transferBytes: contract.asset.bytes, decodedBytes: contract.asset.bytes },
+  ] : [{ localUrl: contract.asset.web_url, transferBytes: contract.asset.bytes }];
+}
 
 export async function loadGltf(
   sources: ModelSource[],
   signal: AbortSignal,
-  onProgress: (status: string, progress?: number) => void,
+  onProgress: Progress,
 ) {
-  const cacheKey = sources.map((source) => source.localUrl || source.driveId || '').join('|');
-  let pending = cacheKey ? byteCache.get(cacheKey) : undefined;
-  if (!pending) {
-    pending = loadModelBytes(sources, signal, onProgress);
-    if (cacheKey) {
-      byteCache.set(cacheKey, pending);
-      pending.catch(() => byteCache.delete(cacheKey));
-    }
-  }
   let bytes: ArrayBuffer;
   try {
-    bytes = await pending;
+    bytes = await cachedModelBytes(sources, signal, onProgress);
   } catch (error) {
     // A shared download may have been aborted by another viewer; retry with this viewer's own signal.
     if (signal.aborted) throw error;

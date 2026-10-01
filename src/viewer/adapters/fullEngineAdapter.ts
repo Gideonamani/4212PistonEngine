@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import type { ModelDefinition, ModelSource } from '../../data/modelRegistry';
-import { loadGltf } from '../core/assets';
+import type { ModelDefinition } from '../../data/modelRegistry';
+import { loadGltf, sourcesFromEngineContract } from '../core/assets';
 import { cloneMaterials, createSectionController, disposeObject, meshMaterials } from '../core/modelUtils';
 import type { AdapterContext, AppearanceMode, ModelComponent, ModelGroup, ViewerSession, ViewerSnapshot } from '../types';
 
@@ -32,11 +32,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
   const response = await fetch(definition.contractUrl!, { signal });
   if (!response.ok) throw Error('The full-engine contract is unavailable.');
   const contract = await response.json();
-  const transport = contract.asset.transport;
-  const sources: ModelSource[] = transport ? [
-    { localUrl: transport.web_url, driveId: transport.drive_file_id, compressed: transport.encoding === 'gzip', transferBytes: transport.bytes, decodedBytes: contract.asset.bytes },
-    { localUrl: transport.fallback_web_url, driveId: transport.fallback_drive_file_id, transferBytes: contract.asset.bytes, decodedBytes: contract.asset.bytes },
-  ] : [{ localUrl: contract.asset.web_url, transferBytes: contract.asset.bytes }];
+  const sources = sourcesFromEngineContract(contract);
   const loaded = await loadGltf(sources, signal, onProgress);
   const digest = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', loaded.bytes)), (byte) => byte.toString(16).padStart(2, '0')).join('');
   if (digest !== contract.asset.sha256) throw Error('This full-engine asset does not match its published contract.');
