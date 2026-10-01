@@ -1,3 +1,5 @@
 
 # Preserve byte-exact native-source hashes across Windows and Linux checkouts.
-cad-studies/** -text
+cad-studies/** -text whitespace=cr-at-eol
+# STEP files are generated CAD artifacts; regenerate them rather than merging text.
+cad-studies/**/*.step binary
