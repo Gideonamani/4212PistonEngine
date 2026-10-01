@@ -1,0 +1,54 @@
+{
+  "cad-studies/cylinder/Cylinder_Saved_Motions.blend": {
+    "bytes": 41125577,
+    "sha256": "3e5b60c21fc911ca9ace8c980cf1ff208809a53f6e77186130fbb5dfd984cf13"
+  },
+  "cad-studies/cylinder/native-motion-samples.json": {
+    "bytes": 115298,
+    "sha256": "0b41f40a970c85c0a6a7dfde1e49d79af35bfb6b8cdf2a69e422529b68634403"
+  },
+  "cad-studies/cylinder/verification.json": {
+    "bytes": 267,
+    "sha256": "896502e10d77e34cedb27c611ca02af8999ca69da7fe581643de460a68d99946"
+  },
+  "cad-studies/hydraulic-tappet/blender-verification.json": {
+    "bytes": 396,
+    "sha256": "2a3a359133044c345299263484ae4286a74eb184dacc5747eaef66f276706705"
+  },
+  "cad-studies/hydraulic-tappet/cad-verification.json": {
+    "bytes": 228,
+    "sha256": "1eaf0786c6b0c3761ec1825fb329c96bcc7c6e0da9eedeaa290a34675f33103b"
+  },
+  "cad-studies/hydraulic-tappet/hydraulic-tappet.blend": {
+    "bytes": 4824177,
+    "sha256": "53b82eff57f6e3a988d15af523da99aa5841c7cabf28210ac677897cc3c3d029"
+  },
+  "cad-studies/hydraulic-tappet/hydraulic-tappet.FCStd": {
+    "bytes": 47021,
+    "sha256": "30ba0353dc7f1cab8eb8cf73430513bae1b6746d88a7f82d92ca86587aacc0e0"
+  },
+  "cad-studies/hydraulic-tappet/hydraulic-tappet.step": {
+    "bytes": 152361,
+    "sha256": "0521aa8a4470f0c0b86d2f5d53a4a5031c804f2b396f160456d455b522753cda"
+  },
+  "cad-studies/oil-pump/blender-verification.json": {
+    "bytes": 426,
+    "sha256": "1ecf4da9e516b7d799d84a716ca956b2b170dc7329a618727795c51f824a7a7a"
+  },
+  "cad-studies/oil-pump/cad-verification.json": {
+    "bytes": 273,
+    "sha256": "2bafbaf3058e136417dab457fd19909aa43f92a2283ede9830d0ccc1b2c27810"
+  },
+  "cad-studies/oil-pump/oil-pump.blend": {
+    "bytes": 3311316,
+    "sha256": "a5126bdc5df278f9e768947ff55c9637dd88e9c18e60266577cadecb588a46f1"
+  },
+  "cad-studies/oil-pump/oil-pump.FCStd": {
+    "bytes": 145067,
+    "sha256": "6c6d7fcf7a6baee91f63a129525d0e287c0db79017d918e2375ad107ecc95895"
+  },
+  "cad-studies/oil-pump/oil-pump.step": {
+    "bytes": 556619,
+    "sha256": "2f7620718144968fd3c7a5d395479a661a3df6473b01c0ed93c0c95689967e81"
+  }
+}

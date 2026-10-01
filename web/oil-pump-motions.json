@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "model_id": "oil-pump",
+  "reference": "IO-520 overhaul, Figure 4-19 and section 7-7 (permold full-flow-filter engine). Simplified pump/relief study; filter and tachometer drive omitted.",
+  "scope": "Manual-based mechanism teaching study. All dimensions and operating travel are illustrative; not a maintenance procedure or pressure simulation.",
+  "duration_seconds": 10,
+  "stages": [
+    {
+      "label": "Assembled",
+      "progress": 0,
+      "note": "Locate the pump and relief assembly."
+    },
+    {
+      "label": "Cover and fasteners",
+      "progress": 33.333333,
+      "note": "Reveal the gear chambers."
+    },
+    {
+      "label": "Gear and shaft pair",
+      "progress": 66.666667,
+      "note": "Inspect the opposite rotating gears and their shafts."
+    },
+    {
+      "label": "Relief valve",
+      "progress": 100,
+      "note": "Locate the plunger, spring and adjusting plug."
+    }
+  ],
+  "parts": {
+    "PumpHousing": {
+      "stage": 3,
+      "offset_m": [
+        0,
+        0,
+        0
+      ]
+    },
+    "DriveGear": {
+      "stage": 2,
+      "offset_m": [
+        -0.012,
+        0.03,
+        0
+      ]
+    },
+    "DrivenGear": {
+      "stage": 2,
+      "offset_m": [
+        0.012,
+        0.03,
+        0
+      ]
+    },
+    "DriveShaft": {
+      "stage": 2,
+      "offset_m": [
+        -0.012,
+        0.03,
+        0
+      ]
+    },
+    "DrivenShaft": {
+      "stage": 2,
+      "offset_m": [
+        0.012,
+        0.03,
+        0
+      ]
+    },
+    "PumpCover": {
+      "stage": 1,
+      "offset_m": [
+        0,
+        0.065,
+        0
+      ]
+    },
+    "ReliefHousing": {
+      "stage": 3,
+      "offset_m": [
+        0.075,
+        0,
+        0
+      ]
+    },
+    "ReliefPlunger": {
+      "stage": 3,
+      "offset_m": [
+        0.075,
+        0.05,
+        0
+      ]
+    },
+    "ReliefSpring": {
+      "stage": 3,
+      "offset_m": [
+        0.075,
+        0.075,
+        0
+      ]
+    },
+    "ReliefAdjuster": {
+      "stage": 3,
+      "offset_m": [
+        0.075,
+        0.105,
+        0
+      ]
+    },
+    "CoverBolt10": {
+      "stage": 1,
+      "offset_m": [
+        0,
+        0.09,
+        0
+      ]
+    },
+    "CoverBolt11": {
+      "stage": 1,
+      "offset_m": [
+        0,
+        0.09,
+        0
+      ]
+    },
+    "CoverBolt12": {
+      "stage": 1,
+      "offset_m": [
+        0,
+        0.09,
+        0
+      ]
+    },
+    "CoverBolt13": {
+      "stage": 1,
+      "offset_m": [
+        0,
+        0.09,
+        0
+      ]
+    }
+  }
+}

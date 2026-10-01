@@ -10,11 +10,11 @@ import { validateLessonPack } from '../web/schema/content-schema.mjs';
 const readJson = name => JSON.parse(fs.readFileSync(new URL(`../web/${name}`, import.meta.url), 'utf8'));
 
 const manifest = readJson('lessons-manifest.json');
-assert.deepEqual(manifest.packs, ['./history-lessons.json', './fundamentals-lessons.json', './m2-cylinder-lessons.json']);
+assert.deepEqual(manifest.packs, ['./history-lessons.json', './fundamentals-lessons.json', './m2-cylinder-lessons.json', './internal-mechanism-lessons.json']);
 
 const packs = manifest.packs.map(url => readJson(url.replace('./', '')));
 const packIds = packs.map(pack => pack.id);
-assert.deepEqual(packIds, ['history-and-fundamentals', 'fundamentals-and-classification', 'm2-cylinder-study']);
+assert.deepEqual(packIds, ['history-and-fundamentals', 'fundamentals-and-classification', 'm2-cylinder-study', 'internal-mechanisms']);
 assert.equal(new Set(packIds).size, packIds.length, 'track ids must be unique across packs');
 
 for (const pack of packs) {

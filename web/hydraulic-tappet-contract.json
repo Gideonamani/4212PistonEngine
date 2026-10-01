@@ -1,0 +1,125 @@
+{
+  "asset_sha256": "e7dca7e92b65f861e448019fd49aaa6295da4d550eb319cfb1b779f1318c54e0",
+  "parts": [
+    {
+      "id": "LifterBody",
+      "label": "Hydraulic tappet body",
+      "group": "body",
+      "description": "Contains the internal oil reservoir, oil inlet and guiding bore.",
+      "volume_mm3": 5601.529993584136
+    },
+    {
+      "id": "PlungerSpring",
+      "label": "Plunger return spring",
+      "group": "plunger",
+      "description": "Biases the plunger outward during clearance compensation.",
+      "volume_mm3": 149.27805549751804
+    },
+    {
+      "id": "CheckHousing",
+      "label": "Check-valve housing",
+      "group": "check-valve",
+      "description": "Carries the check plate and its spring.",
+      "volume_mm3": 215.63891974240335
+    },
+    {
+      "id": "CheckSpring",
+      "label": "Check-valve spring",
+      "group": "check-valve",
+      "description": "Illustrative spring bias at the internal check valve.",
+      "volume_mm3": 30.45265109612678
+    },
+    {
+      "id": "CheckPlate",
+      "label": "Check-valve plate",
+      "group": "check-valve",
+      "description": "Closes to trap oil under load; opens to allow replenishment.",
+      "volume_mm3": 19.79203371761569
+    },
+    {
+      "id": "Plunger",
+      "label": "Hydraulic plunger",
+      "group": "plunger",
+      "description": "Hollow plunger provides a reservoir and transmits force through trapped oil.",
+      "volume_mm3": 2177.020972281658
+    },
+    {
+      "id": "Socket",
+      "label": "Pushrod socket",
+      "group": "plunger",
+      "description": "Receives the pushrod end and provides an oil discharge passage.",
+      "volume_mm3": 768.5061556524845
+    },
+    {
+      "id": "RetainingRing",
+      "label": "Retaining ring",
+      "group": "body",
+      "description": "Retains the plunger/socket assembly inside the body.",
+      "volume_mm3": 46.374837253370686
+    }
+  ],
+  "reference": "GTSIO-520 reviewed manual, Figure A-4-10, printed A-4-7, items 1-16. Geometry and travel illustrative.",
+  "scope": "Manual-based mechanism teaching study. All dimensions and operating travel are illustrative; not a maintenance procedure or pressure simulation.",
+  "motions": [
+    {
+      "id": "Operating mechanism",
+      "label": "Operating mechanism",
+      "loop": true,
+      "stages": []
+    },
+    {
+      "id": "Exploded overview",
+      "label": "Exploded overview",
+      "loop": false,
+      "stages": [
+        {
+          "label": "Assembled",
+          "progress": 0,
+          "note": "Inspect the assembled mechanism."
+        },
+        {
+          "label": "Retainer and socket",
+          "progress": 33.333333,
+          "note": "Locate the retaining ring and pushrod socket."
+        },
+        {
+          "label": "Plunger and return spring",
+          "progress": 66.666667,
+          "note": "Locate the oil reservoir and plunger return spring."
+        },
+        {
+          "label": "Check valve internals",
+          "progress": 100,
+          "note": "Follow the check-valve housing, plate and spring."
+        }
+      ]
+    },
+    {
+      "id": "Reassembly overview",
+      "label": "Reassembly overview",
+      "loop": false,
+      "stages": [
+        {
+          "label": "Check valve internals",
+          "progress": 0,
+          "note": "Follow the check-valve housing, plate and spring."
+        },
+        {
+          "label": "Plunger and return spring",
+          "progress": 33.333332999999996,
+          "note": "Locate the oil reservoir and plunger return spring."
+        },
+        {
+          "label": "Retainer and socket",
+          "progress": 66.66666699999999,
+          "note": "Locate the retaining ring and pushrod socket."
+        },
+        {
+          "label": "Assembled",
+          "progress": 100,
+          "note": "Inspect the assembled mechanism."
+        }
+      ]
+    }
+  ]
+}

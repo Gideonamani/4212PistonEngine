@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "parts": 14,
+  "authored_actions": [
+    "Operating mechanism",
+    "Exploded overview",
+    "Reassembly overview",
+    "Relief valve opening"
+  ],
+  "asset_sha256": "3622888d4e44a07edb43bdbdc9446b825c913756c2852b5d15c48324db9c2558",
+  "scope": "Manual-based mechanism teaching study. All dimensions and operating travel are illustrative; not a maintenance procedure or pressure simulation."
+}

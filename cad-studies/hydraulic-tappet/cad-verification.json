@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "parts": 8,
+  "all_valid_single_solids": true,
+  "dimensions": "illustrative",
+  "reference": "GTSIO-520 reviewed manual, Figure A-4-10, printed A-4-7, items 1-16. Geometry and travel illustrative."
+}

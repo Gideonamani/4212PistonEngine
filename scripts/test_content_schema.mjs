@@ -63,7 +63,7 @@ assert.ok(validateLessonPack({
 assert.ok(validateLessonPack({
   ...samplePack,
   lessons: [{ ...samplePack.lessons[0], steps: [{ type: 'model-pose', modelId: 'cylinder', prompt: 'no action or preset' }] }],
-}).some(e => e.includes('action or static viewPreset')));
+}).some(e => e.includes('action, saved motion or static viewPreset')));
 assert.ok(validateLessonPack({ ...samplePack, checks: [{ id: 'x', lessonId: 'not-a-lesson', type: 'multiple-choice', question: 'q', answers: ['a', 'b'], correct: 0 }] }).some(e => e.includes('lessonId')));
 
 // Model registry: capability flags are required booleans.
@@ -94,3 +94,9 @@ assert.ok(validateContentTree({ ...sampleTree, root: { id: 'g', label: 'g', kind
 assert.ok(validateContentTree({ ...sampleTree, root: { id: 'c', label: 'c', kind: 'component', evidenceStatus: 'not-a-real-status' } }).some(e => e.includes('evidenceStatus')));
 
 console.log('content-schema validators behave as specified');
+
+const savedPack = structuredClone(samplePack);
+savedPack.lessons[0].steps[1] = { type: 'model-pose', modelId: 'cylinder', prompt: 'Inspect the exploded pose.', savedMotionId: 'exploded', motionProgress: 50 };
+assert.deepEqual(validateLessonPack(savedPack), []);
+savedPack.lessons[0].steps[1].motionProgress = 101;
+assert.ok(validateLessonPack(savedPack).some(error => error.includes('motionProgress')));

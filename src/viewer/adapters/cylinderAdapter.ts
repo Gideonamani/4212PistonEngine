@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import type { ModelDefinition } from '../../data/modelRegistry';
+import { createExplodedMotion } from '../core/saved-motions.mjs';
 import { groupComponentIds } from '../core/component-groups.mjs';
 import { loadGltf } from '../core/assets';
 import { createSectionController, disposeObject } from '../core/modelUtils';
@@ -42,15 +43,19 @@ function groupMatrices(degrees: number, profile: any) {
 
 export async function createCylinderSession(definition: ModelDefinition, context: AdapterContext): Promise<ViewerSession> {
   const { runtime, signal, onChange, onProgress } = context;
-  const [catalogueResponse, motionResponse, loaded] = await Promise.all([
+  const [catalogueResponse, motionResponse, loaded, savedResponse] = await Promise.all([
     fetch(definition.componentCatalogueUrl!, { signal }),
     fetch(definition.motionProfileUrl!, { signal }),
     loadGltf(definition.sources || [], signal, onProgress),
+    definition.savedMotionsUrl ? fetch(definition.savedMotionsUrl, { signal }) : undefined,
   ]);
   if (!catalogueResponse.ok) throw Error('The cylinder component catalogue is unavailable.');
   if (!motionResponse.ok) throw Error('The cylinder motion profile is unavailable.');
   const catalogue = await catalogueResponse.json();
   const motionProfile = await motionResponse.json();
+  if (savedResponse && !savedResponse.ok) throw Error('Saved cylinder motions are unavailable.');
+  const savedProfile = savedResponse ? await savedResponse.json() : undefined;
+  if (savedProfile && savedProfile.source_asset_sha256 !== motionProfile.asset_sha256) throw Error('Saved motions belong to a different cylinder revision.');
   const digest = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', loaded.bytes)), (byte) => byte.toString(16).padStart(2, '0')).join('');
   if (digest !== motionProfile.asset_sha256) throw Error('This cylinder asset does not match its verified motion profile.');
   signal.throwIfAborted();
@@ -150,6 +155,9 @@ export async function createCylinderSession(definition: ModelDefinition, context
     mesh.matrixAutoUpdate = false;
     return { mesh, group, localBind: bind[group].clone().invert().multiply(mesh.matrixWorld) };
   });
+  const explodedMotion = savedProfile ? createExplodedMotion(meshes, savedProfile) : undefined;
+  let savedMotionId = 'operating';
+  let motionProgress = 0;
   const cycleVisuals = motionProfile.cycle_landmarks ? createCycleVisuals(runtime.scene, motionProfile.cycle_landmarks, runtime.camera) : undefined;
   cycleVisuals?.setVisible(cycleEnabled);
 
@@ -183,14 +191,42 @@ export async function createCylinderSession(definition: ModelDefinition, context
   const setPlaying = (value: boolean) => {
     playing = value;
     snapshot.playing = value;
+    if (value && savedMotionId !== 'operating' && motionProgress >= 100) applyMotionProgress(0);
     runtime.setAnimationCallback(value ? (elapsed) => {
       if (!playing) return false;
-      setAngle((snapshot.angle || 0) + elapsed * 30);
+      if (savedMotionId === 'operating') setAngle((snapshot.angle || 0) + elapsed * 30);
+      else {
+        applyMotionProgress(Math.min(100, motionProgress + elapsed * 100 / savedProfile.duration_seconds));
+        if (motionProgress >= 100) { playing = false; snapshot.playing = false; onChange(); return false; }
+      }
       return true;
     } : undefined);
     onChange();
   };
 
+  const applyMotionProgress = (value: number) => {
+    if (!explodedMotion || savedMotionId === 'operating') return;
+    motionProgress = Math.max(0, Math.min(100, value));
+    snapshot.motionProgress = motionProgress;
+    explodedMotion.apply(motionProgress, savedMotionId === 'reassembly');
+    root.updateMatrixWorld(true);
+    const stage = explodedMotion.stage(motionProgress, savedMotionId === 'reassembly');
+    snapshot.motionStage = stage.label;
+    snapshot.motionNote = `${stage.note} ${savedProfile.scope}`;
+    section.sync(); runtime.render(); onChange();
+  };
+  const selectMotion = (id: string) => {
+    if (!['operating', 'exploded', 'reassembly'].includes(id)) throw Error(`Unknown cylinder motion: ${id}`);
+    setPlaying(false); savedMotionId = id; snapshot.savedMotionId = id;
+    cycleVisuals?.setVisible(id === 'operating' && cycleEnabled);
+    if (id === 'operating') { snapshot.motionStage = undefined; setAngle(snapshot.angle || 0); }
+    else { applyMotionProgress(id === 'exploded' ? 100 : 0); }
+    section.updateBounds(new THREE.Box3().setFromObject(root));
+    runtime.fit(root);
+    if (id === 'exploded') applyMotionProgress(0);
+    onChange();
+  };
+  snapshot.savedMotionId = 'operating';
   setAngle(context.initialAngle ?? motionProfile.bind_angle_deg);
 
   // A lesson step can spotlight a group of parts: the rest are ghosted and the camera frames the group at the posed angle.
@@ -235,6 +271,8 @@ export async function createCylinderSession(definition: ModelDefinition, context
     { id: 'ignition', label: 'Spark plugs' },
   ];
 
+  if (context.savedMotionId && context.savedMotionId !== 'operating') { selectMotion(context.savedMotionId); applyMotionProgress(context.motionProgress ?? 0); applyFocus(context.focusParts); }
+
   return {
     snapshot: () => ({ ...snapshot, ...section.snapshot() }),
     // Lesson step change on the already-loaded model: new pose, cycle cues and spotlight without reloading the GLB.
@@ -244,6 +282,8 @@ export async function createCylinderSession(definition: ModelDefinition, context
       snapshot.cycleEnabled = cycleEnabled;
       cycleVisuals?.setVisible(cycleEnabled);
       setAngle(view.initialAngle ?? motionProfile.bind_angle_deg);
+      selectMotion(view.savedMotionId || 'operating');
+      if (view.savedMotionId && view.savedMotionId !== 'operating') applyMotionProgress(view.motionProgress ?? 0);
       applyFocus(view.focusParts);
       onChange();
     },
@@ -296,13 +336,23 @@ export async function createCylinderSession(definition: ModelDefinition, context
           onChange();
         },
       },
-      motion: { setAngle: (angle) => { setPlaying(false); setAngle(angle); }, setPlaying, reset: () => { setPlaying(false); setAngle(motionProfile.bind_angle_deg); } },
+      savedMotions: savedProfile ? {
+        items: [{ id: 'operating', label: 'Operating cycle', stages: [] }, { id: 'exploded', label: 'Exploded overview', stages: savedProfile.stages }, { id: 'reassembly', label: 'Reassembly overview', stages: [...savedProfile.stages].reverse().map(stage => ({ ...stage, progress: 100 - stage.progress })) }],
+        select: selectMotion,
+        setProgress(value) { setPlaying(false); applyMotionProgress(value); },
+        step(direction) {
+          const stops = [0, 25, 50, 75, 100];
+          const target = direction > 0 ? stops.find(value => value > motionProgress + .01) ?? 100 : [...stops].reverse().find(value => value < motionProgress - .01) ?? 0;
+          setPlaying(false); applyMotionProgress(target);
+        },
+      } : undefined,
+      motion: { setAngle: (angle) => { setPlaying(false); if (savedMotionId !== 'operating') selectMotion('operating'); setAngle(angle); }, setPlaying, reset: () => { setPlaying(false); if (savedMotionId === 'operating') setAngle(motionProfile.bind_angle_deg); else applyMotionProgress(0); } },
       cycleCues: {
         setEnabled(value) {
           cycleEnabled = value;
           snapshot.cycleEnabled = value;
-          cycleVisuals?.setVisible(value);
-          setAngle(snapshot.angle || 0);
+          cycleVisuals?.setVisible(value && savedMotionId === 'operating');
+          if (savedMotionId === 'operating') setAngle(snapshot.angle || 0);
         },
       },
       section: section.feature,

@@ -6,7 +6,7 @@ import { assertStrokeLabelsMatch } from './stroke-labels.mjs';
 const pack = JSON.parse(fs.readFileSync(new URL('../web/m2-cylinder-lessons.json', import.meta.url), 'utf8'));
 assert.equal(pack.schema, LESSON_PACK_SCHEMA);
 assert.ok(pack.privacy.includes('no learner identity'));
-assert.equal(pack.lessons.length, 1);
+assert.equal(pack.lessons.length, 2);
 const lesson = pack.lessons[0];
 assert.deepEqual(lesson.models, ['cylinder']);
 assert.equal(lesson.listed, true);
@@ -25,5 +25,6 @@ for (const item of pack.checks) {
   assert.ok(item.correct >= 0 && item.correct < item.answers.length && item.rationale && item.hint);
 }
 
+for (const step of pack.lessons[1].steps) { assert.equal(step.savedMotionId, 'exploded'); assert.ok(step.motionProgress >= 0 && step.motionProgress <= 100); }
 assert.deepEqual(validateLessonPack(pack), []);
 console.log('M2 lesson pack is valid');

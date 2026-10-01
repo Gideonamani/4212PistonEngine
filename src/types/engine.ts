@@ -43,6 +43,8 @@ export interface LessonStep {
   suggestedAnswer?: string;
   has3DReference?: boolean;
   modelId?: string;
+  savedMotionId?: string;
+  motionProgress?: number;
   referenceModel?: string;
   viewPreset?: string;
   focusHotspots?: string[];

@@ -2,6 +2,10 @@ import type { ModelDefinition } from '../../data/modelRegistry';
 import type { AdapterContext, ViewerSession } from '../types';
 
 export async function createModelSession(definition: ModelDefinition, context: AdapterContext): Promise<ViewerSession> {
+  if (definition.adapter === 'animated-study') {
+    const { createAnimatedStudySession } = await import('./animatedStudyAdapter');
+    return createAnimatedStudySession(definition, context);
+  }
   if (definition.adapter === 'static-gltf') {
     const { createStaticGltfSession } = await import('./staticGltfAdapter');
     return createStaticGltfSession(definition, context);

@@ -189,7 +189,9 @@ function validateStep(step, lessonModels, lessonIndex, stepIndex, knownSourceIds
     else if (!lessonModels.includes(step.modelId)) errors.push(`${where}: modelId '${step.modelId}' is not declared in lesson.models`);
     const hasAction = step.action && ['angle', 'cycle-angle'].includes(step.action.type) && typeof step.action.value === 'number';
     const hasReferencePreset = typeof step.viewPreset === 'string' && step.viewPreset.trim().length > 0;
-    if (!hasAction && !hasReferencePreset) errors.push(`${where}: model-pose step needs a valid action or static viewPreset`);
+    const hasSavedMotion = typeof step.savedMotionId === 'string' && step.savedMotionId.trim().length > 0;
+    if (!hasAction && !hasReferencePreset && !hasSavedMotion) errors.push(`${where}: model-pose step needs a valid action, saved motion or static viewPreset`);
+    if (step.motionProgress !== undefined && (!hasSavedMotion || !Number.isFinite(step.motionProgress) || step.motionProgress < 0 || step.motionProgress > 100)) errors.push(`${where}: motionProgress needs a saved motion and a value from 0 to 100`);
     if (step.focusHotspots !== undefined && (!Array.isArray(step.focusHotspots) || step.focusHotspots.some(id => typeof id !== 'string' || !id))) {
       errors.push(`${where}: focusHotspots must be an array of non-empty ids`);
     }

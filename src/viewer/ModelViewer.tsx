@@ -5,15 +5,17 @@ import { modelsById } from '../data/modelRegistry';
 import { createModelSession } from './adapters';
 import { inComponentGroup } from './core/component-groups.mjs';
 import { createViewerRuntime } from './core/runtime';
-import { CompactMotionPlayer, ExploreControls, type ExplorePanel } from './ExploreControls';
+import { CompactMotionPlayer, SavedMotionControls, ExploreControls, type ExplorePanel } from './ExploreControls';
 import type { InteractionMode, ViewUpdate, ViewerProfile, ViewerSession, ViewerSnapshot } from './types';
 
-const viewKey = (view: ViewUpdate) => JSON.stringify([view.initialAngle, view.initialCycle, view.viewPreset, view.focusHotspots, view.focusParts]);
+const viewKey = (view: ViewUpdate) => JSON.stringify([view.initialAngle, view.initialCycle, view.viewPreset, view.focusHotspots, view.focusParts, view.savedMotionId, view.motionProgress]);
 
 type ModelViewerProps = {
   modelId: string;
   profile?: ViewerProfile;
   immersive?: boolean;
+  savedMotionId?: string;
+  motionProgress?: number;
   initialAngle?: number;
   initialCycle?: boolean;
   viewPreset?: string;
@@ -30,6 +32,8 @@ export default function ModelViewer({
   modelId,
   profile = 'explore',
   immersive = false,
+  savedMotionId,
+  motionProgress,
   initialAngle,
   initialCycle,
   viewPreset,
@@ -54,7 +58,7 @@ export default function ModelViewer({
   const [query, setQuery] = useState('');
   const [group, setGroup] = useState('');
   // The model loads once per model/profile; a step's pose, cycle cues and spotlight are applied to the loaded scene.
-  const view: ViewUpdate = { initialAngle, initialCycle, viewPreset, focusHotspots, focusParts };
+  const view: ViewUpdate = { savedMotionId, motionProgress, initialAngle, initialCycle, viewPreset, focusHotspots, focusParts };
   const viewRef = useRef(view);
   viewRef.current = view;
   const appliedViewKey = useRef('');
@@ -75,7 +79,7 @@ export default function ModelViewer({
     runtimeRef.current = runtime;
     setError('');
     setLoadState({ status: 'Preparing 3D viewer…', progress: 0 });
-    if (profile === 'lesson-dynamic' || profile === 'assessment') runtime.controls.enabled = false;
+    if (profile === 'assessment') runtime.controls.enabled = false;
     let disposed = false;
     appliedViewKey.current = viewKey(viewRef.current);
     createModelSession(definition, {
@@ -192,7 +196,7 @@ export default function ModelViewer({
         {activeHotspot && <p className="px-1 pt-1.5 text-[10px] leading-relaxed text-slate-300"><strong className="text-white">{activeHotspot.label}:</strong> {activeHotspot.description}</p>}
       </div>}
 
-      {showExploreControls && features?.motion && !controlsOpen && showPlayerOnViewer && <CompactMotionPlayer motion={features.motion} snapshot={snapshot} />}
+      {showExploreControls && features?.motion && !controlsOpen && showPlayerOnViewer && (features.savedMotions && snapshot.savedMotionId !== 'operating' ? <div className="absolute inset-x-3 bottom-3 z-20 max-h-[45%] overflow-y-auto rounded-xl border border-slate-700 bg-[#07161b]/95 p-3 sm:w-80"><SavedMotionControls features={features} snapshot={snapshot} /></div> : <CompactMotionPlayer motion={features.motion} snapshot={snapshot} />)}
 
       {!showExploreControls && session && <div className="absolute inset-x-2 bottom-2 z-10 rounded-xl border border-slate-700/80 bg-[#07161b]/95 p-2 shadow-xl backdrop-blur-sm sm:inset-x-3 sm:bottom-3">
         {features?.hotspots && <div className="flex gap-1.5 overflow-x-auto pb-1" aria-label="Guided model hotspots">{features.hotspots.items.map((hotspot) => <button key={hotspot.id} type="button" onClick={() => features.hotspots!.focus(hotspot.id)} aria-pressed={snapshot.activeHotspotId === hotspot.id} className={`inline-flex shrink-0 items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-[10px] font-semibold ${snapshot.activeHotspotId === hotspot.id ? 'border-teal-300 bg-teal-400/20 text-teal-200' : 'border-slate-700 bg-slate-900/80 text-slate-300'}`}><Focus className="h-3 w-3" />{hotspot.label}</button>)}</div>}

@@ -13,6 +13,8 @@ type PackStep = {
   prompt: string;
   note?: string;
   modelId?: string;
+  savedMotionId?: string;
+  motionProgress?: number;
   viewPreset?: string;
   focusHotspots?: string[];
   focusParts?: string[];
@@ -102,6 +104,8 @@ function mapLesson(lesson: PackLesson, index: number, deepDive = false): Lesson 
     suggestedAnswer: step.note,
     has3DReference: step.type === 'model-pose' && Boolean(step.modelId && modelsById[step.modelId]),
     modelId: step.modelId,
+    savedMotionId: step.savedMotionId,
+    motionProgress: step.motionProgress,
     referenceModel: modelLabel(step.modelId),
     viewPreset: step.viewPreset,
     focusHotspots: step.focusHotspots,

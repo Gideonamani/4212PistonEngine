@@ -44,6 +44,9 @@ export type ViewerSnapshot = {
   sectionPosition?: number;
   sectionFlipped?: boolean;
   activeHotspotId?: string;
+  savedMotionId?: string;
+  motionProgress?: number;
+  motionStage?: string;
 };
 
 export type ViewerFeatures = {
@@ -59,6 +62,12 @@ export type ViewerFeatures = {
     setAngle: (angle: number) => void;
     setPlaying: (playing: boolean) => void;
     reset: () => void;
+  };
+  savedMotions?: {
+    items: { id: string; label: string; stages: { label: string; progress: number; note?: string }[] }[];
+    select: (id: string) => void;
+    setProgress: (value: number) => void;
+    step: (direction: number) => void;
   };
   cycleCues?: {
     setEnabled: (enabled: boolean) => void;
@@ -81,6 +90,8 @@ export type ViewerFeatures = {
 
 /** The per-step view a lesson can change on an already-loaded model, so consecutive steps do not reload the scene. */
 export type ViewUpdate = {
+  savedMotionId?: string;
+  motionProgress?: number;
   initialAngle?: number;
   initialCycle?: boolean;
   viewPreset?: string;

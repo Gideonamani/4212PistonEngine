@@ -3,11 +3,12 @@ import * as THREE from 'three';
 // Per-part winding counts fill solid cuts while leaving bores and cavities open.
 // Helpers live outside the model so camera framing and picking use real parts only.
 export function createSectionController(meshes, bounds, render, onChange, scene) {
+  bounds = bounds.clone();
   const plane = new THREE.Plane();
   const helpers = new THREE.Group();
   helpers.name = 'Section cut faces';
   scene.add(helpers);
-  const capGeometry = new THREE.PlaneGeometry(bounds.getSize(new THREE.Vector3()).length() * 3, bounds.getSize(new THREE.Vector3()).length() * 3);
+  const capGeometry = new THREE.PlaneGeometry(1, 1);
   const entries = meshes.map((source, index) => {
     const passes = [THREE.BackSide, THREE.FrontSide].map((side, sideIndex) => {
       const operation = sideIndex === 0 ? THREE.IncrementWrapStencilOp : THREE.DecrementWrapStencilOp;
@@ -48,6 +49,7 @@ export function createSectionController(meshes, bounds, render, onChange, scene)
         pass.morphTargetInfluences = source.morphTargetInfluences;
       }
       cap.visible = visible;
+      cap.scale.setScalar(bounds.getSize(new THREE.Vector3()).length() * 3);
       if (appearance.color) cap.material.color.copy(appearance.color);
       plane.projectPoint(bounds.getCenter(cap.position), cap.position);
       cap.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), plane.normal);
@@ -76,6 +78,7 @@ export function createSectionController(meshes, bounds, render, onChange, scene)
       reset() { enabled = false; axis = 'z'; position = 50; flipped = true; apply(); },
     },
     sync, refresh: apply,
+    updateBounds(value) { bounds.copy(value); apply(); },
     dispose() {
       scene.remove(helpers);
       capGeometry.dispose();

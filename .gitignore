@@ -16,3 +16,10 @@ dist/
 !web/wright-1903-engine.glb
 # Versioned compact cylinder transport is served directly by GitHub Pages.
 !web/cylinder-reviewed-20261001.glb.gz
+
+!web/hydraulic-tappet.glb.gz
+!web/oil-pump.glb.gz
+# Generated tessellation and build logs; regenerate from native FreeCAD files.
+cad-studies/*/geometry.json
+*_build.log
+*.FCBak

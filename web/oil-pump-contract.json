@@ -1,0 +1,182 @@
+{
+  "asset_sha256": "3622888d4e44a07edb43bdbdc9446b825c913756c2852b5d15c48324db9c2558",
+  "parts": [
+    {
+      "id": "PumpHousing",
+      "label": "Oil pump housing",
+      "group": "pump",
+      "description": "Two gear pockets and illustrative inlet/outlet passages.",
+      "volume_mm3": 31844.499531858462
+    },
+    {
+      "id": "DriveGear",
+      "label": "Driver gear",
+      "group": "gears",
+      "description": "Driven by the engine accessory train; teeth are schematic, not an involute manufacturing profile.",
+      "volume_mm3": 3451.391697570473
+    },
+    {
+      "id": "DrivenGear",
+      "label": "Driven gear",
+      "group": "gears",
+      "description": "Rotates opposite the driver; oil travels around the outside of the gear pair.",
+      "volume_mm3": 3451.3916975704733
+    },
+    {
+      "id": "DriveShaft",
+      "label": "Driver shaft",
+      "group": "gears",
+      "description": "Supports and drives the driver gear.",
+      "volume_mm3": 961.3273519984766
+    },
+    {
+      "id": "DrivenShaft",
+      "label": "Driven gear shaft",
+      "group": "gears",
+      "description": "Supports the driven gear.",
+      "volume_mm3": 706.8583470577036
+    },
+    {
+      "id": "PumpCover",
+      "label": "Pump cover",
+      "group": "pump",
+      "description": "Closes the gear chambers; remove in overview to inspect the pair.",
+      "volume_mm3": 7762.030114136951
+    },
+    {
+      "id": "ReliefHousing",
+      "label": "Pressure relief housing",
+      "group": "relief",
+      "description": "Separate illustrative housing for the spring-loaded pressure relief mechanism.",
+      "volume_mm3": 3009.871411806103
+    },
+    {
+      "id": "ReliefPlunger",
+      "label": "Pressure relief plunger",
+      "group": "relief",
+      "description": "Illustrative opening travel; pressure is not calculated.",
+      "volume_mm3": 348.5282889892516
+    },
+    {
+      "id": "ReliefSpring",
+      "label": "Pressure relief spring",
+      "group": "relief",
+      "description": "Biases the relief plunger toward its seat.",
+      "volume_mm3": 107.479932115686
+    },
+    {
+      "id": "ReliefAdjuster",
+      "label": "Relief adjusting plug",
+      "group": "relief",
+      "description": "Shows the spring adjustment location without prescribing a pressure setting.",
+      "volume_mm3": 392.6990816987241
+    },
+    {
+      "id": "CoverBolt10",
+      "label": "Cover fastening screw",
+      "group": "pump",
+      "description": "Illustrative cover fastening location.",
+      "volume_mm3": 219.126087587888
+    },
+    {
+      "id": "CoverBolt11",
+      "label": "Cover fastening screw",
+      "group": "pump",
+      "description": "Illustrative cover fastening location.",
+      "volume_mm3": 219.126087587888
+    },
+    {
+      "id": "CoverBolt12",
+      "label": "Cover fastening screw",
+      "group": "pump",
+      "description": "Illustrative cover fastening location.",
+      "volume_mm3": 219.12608758788798
+    },
+    {
+      "id": "CoverBolt13",
+      "label": "Cover fastening screw",
+      "group": "pump",
+      "description": "Illustrative cover fastening location.",
+      "volume_mm3": 219.12608758788798
+    }
+  ],
+  "reference": "IO-520 overhaul, Figure 4-19 and section 7-7 (permold full-flow-filter engine). Simplified pump/relief study; filter and tachometer drive omitted.",
+  "scope": "Manual-based mechanism teaching study. All dimensions and operating travel are illustrative; not a maintenance procedure or pressure simulation.",
+  "motions": [
+    {
+      "id": "Operating mechanism",
+      "label": "Operating mechanism",
+      "loop": true,
+      "stages": []
+    },
+    {
+      "id": "Exploded overview",
+      "label": "Exploded overview",
+      "loop": false,
+      "stages": [
+        {
+          "label": "Assembled",
+          "progress": 0,
+          "note": "Locate the pump and relief assembly."
+        },
+        {
+          "label": "Cover and fasteners",
+          "progress": 33.333333,
+          "note": "Reveal the gear chambers."
+        },
+        {
+          "label": "Gear and shaft pair",
+          "progress": 66.666667,
+          "note": "Inspect the opposite rotating gears and their shafts."
+        },
+        {
+          "label": "Relief valve",
+          "progress": 100,
+          "note": "Locate the plunger, spring and adjusting plug."
+        }
+      ]
+    },
+    {
+      "id": "Reassembly overview",
+      "label": "Reassembly overview",
+      "loop": false,
+      "stages": [
+        {
+          "label": "Relief valve",
+          "progress": 0,
+          "note": "Locate the plunger, spring and adjusting plug."
+        },
+        {
+          "label": "Gear and shaft pair",
+          "progress": 33.333332999999996,
+          "note": "Inspect the opposite rotating gears and their shafts."
+        },
+        {
+          "label": "Cover and fasteners",
+          "progress": 66.66666699999999,
+          "note": "Reveal the gear chambers."
+        },
+        {
+          "label": "Assembled",
+          "progress": 100,
+          "note": "Locate the pump and relief assembly."
+        }
+      ]
+    },
+    {
+      "id": "Relief valve opening",
+      "label": "Relief valve opening",
+      "loop": false,
+      "stages": [
+        {
+          "label": "Seated",
+          "progress": 0
+        },
+        {
+          "label": "Open",
+          "progress": 100
+        }
+      ]
+    }
+  ]
+}

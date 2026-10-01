@@ -1,0 +1,103 @@
+{
+  "schema": "4212.lesson-pack/v3",
+  "id": "internal-mechanisms",
+  "title": "Internal Mechanisms and Assembly Interfaces",
+  "description": "Use manual-based CAD teaching studies to explain hydraulic tappet internals and an IO-520 permold oil pump. Dimensions and operating travel are illustrative.",
+  "lessons": [
+    {
+      "id": "hydraulic-tappet-internal-study",
+      "title": "Inside the hydraulic tappet",
+      "objective": "Identify the manual-listed internal parts and explain the role of trapped oil and replenishment.",
+      "listed": true,
+      "models": [
+        "hydraulic-tappet"
+      ],
+      "steps": [
+        {
+          "type": "model-pose",
+          "title": "Assembled tappet",
+          "modelId": "hydraulic-tappet",
+          "savedMotionId": "Operating mechanism",
+          "motionProgress": 0,
+          "prompt": "Inspect the body and oil inlet. Open Explore to section the model and play the illustrative motion.",
+          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls."
+        },
+        {
+          "type": "model-pose",
+          "title": "Plunger and socket",
+          "modelId": "hydraulic-tappet",
+          "savedMotionId": "Exploded overview",
+          "motionProgress": 66.666667,
+          "prompt": "Rotate the exploded pose. Identify the socket, hollow plunger and return spring. Explain how these connect to the pushrod.",
+          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls."
+        },
+        {
+          "type": "model-pose",
+          "title": "Check-valve parts",
+          "modelId": "hydraulic-tappet",
+          "savedMotionId": "Exploded overview",
+          "motionProgress": 100,
+          "prompt": "Find the check-valve housing, plate and spring. Explain why the valve traps oil under load and permits replenishment.",
+          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls."
+        },
+        {
+          "type": "model-pose",
+          "title": "Reassembly relationships",
+          "modelId": "hydraulic-tappet",
+          "savedMotionId": "Reassembly overview",
+          "motionProgress": 66.666667,
+          "prompt": "Follow the internal stack toward its assembled position. This view shows relationships, not a maintenance procedure.",
+          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls."
+        }
+      ]
+    },
+    {
+      "id": "oil-pump-internal-study",
+      "title": "Inside the oil pump and relief valve",
+      "objective": "Explain external-gear pumping and identify the spring-loaded relief mechanism.",
+      "listed": true,
+      "models": [
+        "oil-pump"
+      ],
+      "steps": [
+        {
+          "type": "model-pose",
+          "title": "The gear pair",
+          "modelId": "oil-pump",
+          "savedMotionId": "Operating mechanism",
+          "motionProgress": 25,
+          "prompt": "Open Explore, isolate the gears and play. Observe their opposite directions; oil is carried around the outside, not through the meshing region.",
+          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls."
+        },
+        {
+          "type": "model-pose",
+          "title": "Cover and shafts",
+          "modelId": "oil-pump",
+          "savedMotionId": "Exploded overview",
+          "motionProgress": 66.666667,
+          "prompt": "Rotate the separated view and identify the cover, driver shaft and driven shaft.",
+          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls."
+        },
+        {
+          "type": "model-pose",
+          "title": "Relief mechanism",
+          "modelId": "oil-pump",
+          "savedMotionId": "Exploded overview",
+          "motionProgress": 100,
+          "prompt": "Identify the relief plunger, spring and adjusting plug. Explain how opening a relief path can limit pressure.",
+          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls."
+        },
+        {
+          "type": "model-pose",
+          "title": "Illustrative relief opening",
+          "modelId": "oil-pump",
+          "savedMotionId": "Relief valve opening",
+          "motionProgress": 100,
+          "prompt": "Compare the plunger position with its seated position. Travel is illustrative: this model does not calculate pressure or a setting.",
+          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls."
+        }
+      ]
+    }
+  ],
+  "checks": []
+}

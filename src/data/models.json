@@ -9,7 +9,8 @@
     "badges": [
       "61 components",
       "Animated valve gear",
-      "Section view"
+      "Section view",
+      "Exploded view"
     ],
     "sources": [
       {
@@ -20,7 +21,8 @@
       }
     ],
     "componentCatalogueUrl": "./components.json?v=20261001-reviewed",
-    "motionProfileUrl": "./motion.json?v=20261001-reviewed"
+    "motionProfileUrl": "./motion.json?v=20261001-reviewed",
+    "savedMotionsUrl": "./cylinder-saved-motions.json?v=c6fa854411be"
   },
   {
     "id": "gtsio520-h-v5-teaching-engine",
@@ -133,5 +135,49 @@
         ]
       }
     ]
+  },
+  {
+    "id": "hydraulic-tappet",
+    "label": "Hydraulic tappet internals",
+    "adapter": "animated-study",
+    "eyebrow": "INTERNAL-MECHANISM STUDY",
+    "description": "Inspect the eight manual-identified tappet parts, an illustrative operating motion, and staged exploded/reassembly views. Dimensions are teaching approximations.",
+    "imageType": "systems",
+    "badges": [
+      "8 internal parts",
+      "3 saved motions",
+      "Illustrative dimensions"
+    ],
+    "sources": [
+      {
+        "localUrl": "./hydraulic-tappet.glb.gz?v=e7dca7e92b65",
+        "compressed": true,
+        "transferBytes": 7125831
+      }
+    ],
+    "contractUrl": "./hydraulic-tappet-contract.json?v=e7dca7e92b65",
+    "previewUrl": "./model-previews/hydraulic-tappet.png"
+  },
+  {
+    "id": "oil-pump",
+    "label": "IO-520 oil pump and relief valve",
+    "adapter": "animated-study",
+    "eyebrow": "INTERNAL-MECHANISM STUDY",
+    "description": "Explore a simplified IO-520 permold pump/relief mechanism with rotating gears, relief opening and staged exploded views. Filter and tachometer drive are omitted.",
+    "imageType": "systems",
+    "badges": [
+      "14 components",
+      "4 saved motions",
+      "IO-520 permold study"
+    ],
+    "sources": [
+      {
+        "localUrl": "./oil-pump.glb.gz?v=3622888d4e44",
+        "compressed": true,
+        "transferBytes": 4696163
+      }
+    ],
+    "contractUrl": "./oil-pump-contract.json?v=3622888d4e44",
+    "previewUrl": "./model-previews/oil-pump.png"
   }
 ]

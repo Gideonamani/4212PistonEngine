@@ -81,6 +81,53 @@
           "note": "A four-stroke cycle requires two crankshaft revolutions."
         }
       ]
+    },
+    {
+      "id": "m2-cylinder-interfaces",
+      "title": "Explore how the cylinder parts fit",
+      "listed": true,
+      "objective": "Use staged exploded poses to identify part interfaces and distinguish a structural overview from a maintenance removal sequence.",
+      "models": [
+        "cylinder"
+      ],
+      "steps": [
+        {
+          "type": "model-pose",
+          "title": "Assembled interfaces",
+          "modelId": "cylinder",
+          "savedMotionId": "exploded",
+          "motionProgress": 0,
+          "prompt": "Rotate the cylinder and locate the rocker covers, spark plugs and piston/rod interface.",
+          "note": "Structural overview only. Presentation offsets do not define a maintenance sequence; permanent joints remain together."
+        },
+        {
+          "type": "model-pose",
+          "title": "Valve-train relationships",
+          "modelId": "cylinder",
+          "savedMotionId": "exploded",
+          "motionProgress": 50,
+          "prompt": "Trace tappet to pushrod to rocker to valve. Which parts retain the valve springs? Rotate the paused exploded pose to compare the two valve trains.",
+          "note": "Structural overview only. Presentation offsets do not define a maintenance sequence; permanent joints remain together."
+        },
+        {
+          "type": "model-pose",
+          "title": "Permanent cylinder joints",
+          "modelId": "cylinder",
+          "savedMotionId": "exploded",
+          "motionProgress": 75,
+          "prompt": "Identify the head/barrel unit and pressed guides/seats. Why are these kept together in this structural overview?",
+          "note": "Structural overview only. Presentation offsets do not define a maintenance sequence; permanent joints remain together."
+        },
+        {
+          "type": "model-pose",
+          "title": "Piston and rod connections",
+          "modelId": "cylinder",
+          "savedMotionId": "exploded",
+          "motionProgress": 100,
+          "prompt": "Locate the piston rings, floating pin, rod cap and bearing halves. Explain which interfaces guide sliding motion and which permit rotation.",
+          "note": "Structural overview only. Presentation offsets do not define a maintenance sequence; permanent joints remain together."
+        }
+      ]
     }
   ],
   "checks": [

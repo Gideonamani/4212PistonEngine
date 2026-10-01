@@ -1,7 +1,7 @@
 import type { ModelHotspot } from '../viewer/types';
 import registryData from './models.json';
 
-export type ModelAdapterId = 'static-gltf' | 'operating-cylinder' | 'full-engine';
+export type ModelAdapterId = 'static-gltf' | 'operating-cylinder' | 'full-engine' | 'animated-study';
 
 export type ModelSource = {
   localUrl?: string;
@@ -17,11 +17,13 @@ export type ModelDefinition = {
   adapter: ModelAdapterId;
   eyebrow: string;
   description: string;
+  previewUrl?: string;
   imageType: 'piston' | 'systems' | 'wright';
   badges: string[];
   sources?: ModelSource[];
   componentCatalogueUrl?: string;
   motionProfileUrl?: string;
+  savedMotionsUrl?: string;
   contractUrl?: string;
   sourceUrl?: string;
   sourceLabel?: string;

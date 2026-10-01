@@ -33,6 +33,8 @@ export const LessonModelStage: React.FC<{ step: LessonStep; active: boolean; imm
       modelId={step.modelId!}
       profile={dynamic ? 'lesson-dynamic' : 'lesson-reference'}
       immersive={immersive}
+      savedMotionId={step.savedMotionId}
+      motionProgress={step.motionProgress}
       initialAngle={typeof step.action?.value === 'number' ? step.action.value : undefined}
       initialCycle={step.action?.type === 'cycle-angle'}
       viewPreset={step.viewPreset}

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "model_id": "hydraulic-tappet",
+  "reference": "GTSIO-520 reviewed manual, Figure A-4-10, printed A-4-7, items 1-16. Geometry and travel illustrative.",
+  "scope": "Manual-based mechanism teaching study. All dimensions and operating travel are illustrative; not a maintenance procedure or pressure simulation.",
+  "duration_seconds": 10,
+  "stages": [
+    {
+      "label": "Assembled",
+      "progress": 0,
+      "note": "Inspect the assembled mechanism."
+    },
+    {
+      "label": "Retainer and socket",
+      "progress": 33.333333,
+      "note": "Locate the retaining ring and pushrod socket."
+    },
+    {
+      "label": "Plunger and return spring",
+      "progress": 66.666667,
+      "note": "Locate the oil reservoir and plunger return spring."
+    },
+    {
+      "label": "Check valve internals",
+      "progress": 100,
+      "note": "Follow the check-valve housing, plate and spring."
+    }
+  ],
+  "parts": {
+    "LifterBody": {
+      "stage": 3,
+      "offset_m": [
+        0,
+        0,
+        0
+      ]
+    },
+    "PlungerSpring": {
+      "stage": 2,
+      "offset_m": [
+        0,
+        0.065,
+        0
+      ]
+    },
+    "CheckHousing": {
+      "stage": 3,
+      "offset_m": [
+        0.022,
+        0.09,
+        0
+      ]
+    },
+    "CheckSpring": {
+      "stage": 3,
+      "offset_m": [
+        -0.022,
+        0.09,
+        0
+      ]
+    },
+    "CheckPlate": {
+      "stage": 3,
+      "offset_m": [
+        0,
+        0.1,
+        0
+      ]
+    },
+    "Plunger": {
+      "stage": 2,
+      "offset_m": [
+        0,
+        0.07,
+        0
+      ]
+    },
+    "Socket": {
+      "stage": 1,
+      "offset_m": [
+        0,
+        0.09,
+        0
+      ]
+    },
+    "RetainingRing": {
+      "stage": 1,
+      "offset_m": [
+        0,
+        0.115,
+        0
+      ]
+    }
+  }
+}

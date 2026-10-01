@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "parts": 61,
+  "actions": [
+    "Exploded overview",
+    "Reassembly overview"
+  ],
+  "maximum_native_offset_error_m": 1.4901161193847656e-08,
+  "source_asset_sha256": "ba39a78c89ac14d5d263487e446011cfa4710346270d2ebe377a997174793647"
+}

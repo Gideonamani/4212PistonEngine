@@ -2,8 +2,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const registry=JSON.parse(fs.readFileSync(new URL('../src/data/models.json',import.meta.url),'utf8'));
 
-assert.deepEqual(registry.map(model=>model.id),['cylinder','gtsio520-h-v5-teaching-engine','wright-1903-engine']);
-assert.deepEqual(registry.map(model=>model.adapter),['operating-cylinder','full-engine','static-gltf']);
+assert.deepEqual(registry.map(model=>model.id),['cylinder','gtsio520-h-v5-teaching-engine','wright-1903-engine','hydraulic-tappet','oil-pump']);
+assert.deepEqual(registry.map(model=>model.adapter),['operating-cylinder','full-engine','static-gltf','animated-study','animated-study']);
 assert.equal(new Set(registry.map(model=>model.id)).size,registry.length,'model ids must be unique');
 assert.ok(registry.every(model=>model.label&&model.eyebrow&&model.description&&model.imageType));
 assert.ok(registry.every(model=>Array.isArray(model.badges)&&model.badges.length));

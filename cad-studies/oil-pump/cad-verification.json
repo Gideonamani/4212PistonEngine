@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "parts": 14,
+  "all_valid_single_solids": true,
+  "dimensions": "illustrative",
+  "reference": "IO-520 overhaul, Figure 4-19 and section 7-7 (permold full-flow-filter engine). Simplified pump/relief study; filter and tachometer drive omitted."
+}

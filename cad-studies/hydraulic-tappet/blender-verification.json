@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "parts": 8,
+  "authored_actions": [
+    "Operating mechanism",
+    "Exploded overview",
+    "Reassembly overview"
+  ],
+  "asset_sha256": "e7dca7e92b65f861e448019fd49aaa6295da4d550eb319cfb1b779f1318c54e0",
+  "scope": "Manual-based mechanism teaching study. All dimensions and operating travel are illustrative; not a maintenance procedure or pressure simulation."
+}
