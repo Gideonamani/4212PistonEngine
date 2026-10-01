@@ -1,5 +1,5 @@
 {
-  "asset_sha256": "e7dca7e92b65f861e448019fd49aaa6295da4d550eb319cfb1b779f1318c54e0",
+  "asset_sha256": "a6c88a23cd42971dc6b5df4404acd22b5d236955280b049a286e46a56e61ee60",
   "parts": [
     {
       "id": "LifterBody",
@@ -65,7 +65,33 @@
       "id": "Operating mechanism",
       "label": "Operating mechanism",
       "loop": true,
-      "stages": []
+      "stages": [
+        {
+          "label": "Unloaded",
+          "progress": 0,
+          "note": "Plunger extended; replenishment travel is illustrative."
+        },
+        {
+          "label": "Loading",
+          "progress": 25,
+          "note": "The body and internals rise together; the check plate stays closed during loading."
+        },
+        {
+          "label": "Trapped oil under load",
+          "progress": 50,
+          "note": "The closed check valve retains oil as the load is transmitted."
+        },
+        {
+          "label": "Replenishing",
+          "progress": 75,
+          "note": "During return, the plunger extends and the check plate opens for illustrative replenishment."
+        },
+        {
+          "label": "Cycle returns",
+          "progress": 100,
+          "note": "The illustration returns to its initial pose."
+        }
+      ]
     },
     {
       "id": "Exploded overview",

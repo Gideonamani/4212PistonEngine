@@ -42,6 +42,18 @@ for (const id of ['hydraulic-tappet', 'oil-pump']) test(`${id} exported clips pr
   const meshes = []; scene.traverse(mesh => { if (mesh.isMesh) meshes.push(mesh); });
   assert.deepEqual(meshes.map(mesh => mesh.userData.cad_part_id).sort(), contract.parts.map(part => part.id).sort());
   const bases = meshes.map(mesh => mesh.matrixWorld.clone()), mixer = new THREE.AnimationMixer(scene);
+  if (id === 'hydraulic-tappet') {
+    const clip = animations.find(clip => clip.name === 'Operating mechanism');
+    for (const [progress, opening] of [[.25, 0], [.75, .0003]]) {
+      mixer.stopAllAction(); const action = mixer.clipAction(clip).reset().setLoop(THREE.LoopOnce, 1).play(); action.paused = true; action.time = progress * clip.duration; mixer.update(0); scene.updateMatrixWorld(true);
+      const plate = meshes.find(mesh => mesh.userData.cad_part_id === 'CheckPlate'), plunger = meshes.find(mesh => mesh.userData.cad_part_id === 'Plunger');
+      assert.ok(Math.abs(plate.position.y - plunger.position.y - opening) < .000001, 'check plate opens on replenishment, stays closed on loading');
+      const body = meshes.find(mesh => mesh.userData.cad_part_id === 'LifterBody');
+      assert.ok(Math.abs(plunger.position.y - body.position.y - (progress === .25 ? 0 : .0005)) < .000001, 'loaded internals travel with the body; plunger extension occurs on return');
+    }
+    mixer.stopAllAction(); scene.updateMatrixWorld(true);
+  }
+
   for (const progress of [0, .25, .5, .75, 1]) {
     mixer.stopAllAction(); let clip = animations.find(clip => clip.name === 'Exploded overview'); let action = mixer.clipAction(clip).reset().setLoop(THREE.LoopOnce, 1).play(); action.clampWhenFinished = true; action.paused = true; action.time = progress * clip.duration; mixer.update(0); scene.updateMatrixWorld(true);
     const exploded = meshes.map(mesh => mesh.matrixWorld.clone());

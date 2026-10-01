@@ -150,12 +150,13 @@
     ],
     "sources": [
       {
-        "localUrl": "./hydraulic-tappet.glb.gz?v=e7dca7e92b65",
+        "localUrl": "./hydraulic-tappet.glb.gz?v=a6c88a23cd42",
         "compressed": true,
-        "transferBytes": 7125831
+        "transferBytes": 7126499,
+        "decodedBytes": 21503284
       }
     ],
-    "contractUrl": "./hydraulic-tappet-contract.json?v=e7dca7e92b65",
+    "contractUrl": "./hydraulic-tappet-contract.json?v=a6c88a23cd42",
     "previewUrl": "./model-previews/hydraulic-tappet.png"
   },
   {
@@ -174,7 +175,8 @@
       {
         "localUrl": "./oil-pump.glb.gz?v=3622888d4e44",
         "compressed": true,
-        "transferBytes": 4696163
+        "transferBytes": 4696163,
+        "decodedBytes": 15292568
       }
     ],
     "contractUrl": "./oil-pump-contract.json?v=3622888d4e44",

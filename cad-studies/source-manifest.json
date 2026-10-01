@@ -13,15 +13,15 @@
   },
   "cad-studies/hydraulic-tappet/blender-verification.json": {
     "bytes": 396,
-    "sha256": "2a3a359133044c345299263484ae4286a74eb184dacc5747eaef66f276706705"
+    "sha256": "afb33a3dc0d3e09c868b9c0209d46741c151ee1f58831a8da3211248b1939f26"
   },
   "cad-studies/hydraulic-tappet/cad-verification.json": {
     "bytes": 228,
     "sha256": "1eaf0786c6b0c3761ec1825fb329c96bcc7c6e0da9eedeaa290a34675f33103b"
   },
   "cad-studies/hydraulic-tappet/hydraulic-tappet.blend": {
-    "bytes": 4824177,
-    "sha256": "53b82eff57f6e3a988d15af523da99aa5841c7cabf28210ac677897cc3c3d029"
+    "bytes": 4823196,
+    "sha256": "bc25f268e7cfac8b309e4cbf10b8c57722d22b47da8f678e5e3a399399d76fa2"
   },
   "cad-studies/hydraulic-tappet/hydraulic-tappet.FCStd": {
     "bytes": 47021,

@@ -1,9 +1,11 @@
 """Rig the FreeCAD solid studies in Blender; export named interactive GLB clips."""
 from pathlib import Path
-import bpy,json,math,gzip,hashlib
+import bpy,json,math,gzip,hashlib,sys
 from mathutils import Vector
 R=Path(__file__).resolve().parents[1]
-for name in ['hydraulic-tappet','oil-pump']:
+selected = sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else ['hydraulic-tappet','oil-pump']
+for name in selected:
+ assert name in ['hydraulic-tappet','oil-pump']
  folder=R/'cad-studies'/name;data=json.loads((folder/'geometry.json').read_text());profile=json.loads((R/'web'/ (name+'-motions.json')).read_text())
  bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)
  for action in list(bpy.data.actions):bpy.data.actions.remove(action)
@@ -20,7 +22,7 @@ for name in ['hydraulic-tappet','oil-pump']:
   mesh.materials.append(material)
  spring_keys={}
  for identifier,bottom,height,travel,anchored_top in ([('PlungerSpring',.004,.010,.001,False)] if name=='hydraulic-tappet' else [('ReliefSpring',.012,.012,.005,True)]):
-  obj=objects[identifier];obj.shape_key_add(name='Basis');key=obj.shape_key_add(name='Illustrative compression')
+  obj=objects[identifier];obj.shape_key_add(name='Basis');key=obj.shape_key_add(name='Illustrative compression');key.slider_min=-1
   for vertex,target in zip(obj.data.vertices,key.data):
    fraction=max(0,min(1,(vertex.co.z-bottom)/height))
    target.co.z += travel*(1-fraction) if anchored_top else -travel*fraction
@@ -40,9 +42,10 @@ for name in ['hydraulic-tappet','oil-pump']:
      if name=='oil-pump' and o.name in ['DriveGear','DriveShaft','DrivenGear','DrivenShaft']:o.rotation_euler.z=math.pi*2*u*(-1 if o.name.startswith('Driven') else 1)
      elif name=='hydraulic-tappet':
       # Small, illustrative loaded/replenishing travel, not actual valve timing or oil-pressure simulation.
-      travel=.001*(.5-.5*math.cos(2*math.pi*u))
-      if o.name in ['Plunger','Socket','CheckHousing','CheckPlate','CheckSpring']:o.location.z-=travel
-      if o.name=='CheckPlate':o.location.z+=.0003*max(0,math.sin(2*math.pi*u))
+      body_lift=.004*(.5-.5*math.cos(2*math.pi*u));replenishment=max(0,-math.sin(2*math.pi*u))
+      o.location.z+=body_lift
+      if o.name in ['Plunger','Socket','CheckHousing','CheckPlate','CheckSpring']:o.location.z+=.0005*replenishment
+      if o.name=='CheckPlate':o.location.z+=.0003*max(0,-math.sin(2*math.pi*u))
     elif o.name=='ReliefPlunger':o.location.z+=.005*u
     o.keyframe_insert('location',frame=frame);o.keyframe_insert('rotation_euler',frame=frame)
    # Include exact terminal frame (loop closure / full explosion).
@@ -51,7 +54,7 @@ for name in ['hydraulic-tappet','oil-pump']:
   for identifier,key in spring_keys.items():
    key_data=objects[identifier].data.shape_keys;key_data.animation_data_create();key_data.animation_data.action=action;key_data.animation_data.action_slot=action.slots.new(id_type='KEY',name=identifier+' deformation')
    for frame in range(1,302,5):
-    u=(frame-1)/300;key.value=(.5-.5*math.cos(2*math.pi*u)) if name=='hydraulic-tappet' and title=='Operating mechanism' else u if name=='oil-pump' and title=='Relief valve opening' else 0
+    u=(frame-1)/300;key.value=-.5*max(0,-math.sin(2*math.pi*u)) if name=='hydraulic-tappet' and title=='Operating mechanism' else u if name=='oil-pump' and title=='Relief valve opening' else 0
     key.keyframe_insert('value',frame=frame)
    track=key_data.animation_data.nla_tracks.new();track.name=title;strip=track.strips.new(title,1,action);strip.action_slot=key_data.animation_data.action_slot;track.mute=True
   for layer in action.layers:
@@ -68,5 +71,7 @@ for name in ['hydraulic-tappet','oil-pump']:
  bpy.ops.export_scene.gltf(filepath=str(folder/(name+'.glb')),export_format='GLB',export_extras=True,export_animations=True,export_animation_mode='ACTIONS',export_force_sampling=True,export_anim_slide_to_zero=True)
  raw=(folder/(name+'.glb')).read_bytes();packed=gzip.compress(raw,mtime=0);(R/'web'/ (name+'.glb.gz')).write_bytes(packed)
  contract={'asset_sha256':hashlib.sha256(raw).hexdigest(),'parts':[{k:v for k,v in p.items() if k not in ['vertices_mm','triangles','offset_m','stage']} for p in data['parts']],'reference':data['reference'],'scope':data['scope'],'motions':[{'id':title,'label':title,'loop':title=='Operating mechanism','stages':[] if title=='Operating mechanism' else [{'label':'Seated','progress':0},{'label':'Open','progress':100}] if title=='Relief valve opening' else [dict(stage,progress=100-stage['progress']) for stage in reversed(profile['stages'])] if title=='Reassembly overview' else profile['stages']} for title in names]}
+ if name=='hydraulic-tappet':
+  contract['motions'][0]['stages']=[{'label':'Unloaded','progress':0,'note':'Plunger extended; replenishment travel is illustrative.'},{'label':'Loading','progress':25,'note':'The body and internals rise together; the check plate stays closed during loading.'},{'label':'Trapped oil under load','progress':50,'note':'The closed check valve retains oil as the load is transmitted.'},{'label':'Replenishing','progress':75,'note':'During return, the plunger extends and the check plate opens for illustrative replenishment.'},{'label':'Cycle returns','progress':100,'note':'The illustration returns to its initial pose.'}]
  (R/'web'/ (name+'-contract.json')).write_text(json.dumps(contract,indent=2));(folder/'blender-verification.json').write_text(json.dumps({'passed':True,'parts':len(objects),'authored_actions':names,'asset_sha256':contract['asset_sha256'],'scope':data['scope']},indent=2))
  print('STUDY_ANIMATED',name,flush=True)
