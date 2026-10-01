@@ -52,6 +52,7 @@ export type ViewerFeatures = {
     groups: ModelGroup[];
     select: (id: string) => void;
     isolate: () => void;
+    isolateGroup?: (groupId: string) => void;
     showAll: () => void;
   };
   motion?: {

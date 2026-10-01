@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import type { ModelDefinition } from '../../data/modelRegistry';
+import { groupComponentIds } from '../core/component-groups.mjs';
 import { loadGltf, sourcesFromEngineContract } from '../core/assets';
 import { cloneMaterials, createSectionController, disposeObject, meshMaterials } from '../core/modelUtils';
 import type { AdapterContext, AppearanceMode, ModelComponent, ModelGroup, ViewerSession, ViewerSnapshot } from '../types';
@@ -85,8 +86,9 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
   };
   let selectedId = '';
   let isolatedId = '';
+  let isolatedGroupIds: string[] = [];
   let playing = false;
-  const section = createSectionController(items.map((item) => item.mesh), bounds, runtime.render, onChange);
+  const section = createSectionController(items.map((item) => item.mesh), bounds, runtime.render, onChange, runtime.scene);
 
   // A lesson step can spotlight teaching components: everything else is ghosted and the camera frames the spotlit parts.
   const focusComponents: any[] = [];
@@ -94,7 +96,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
   const selectedComponent = () => componentsById.get(selectedId);
   const applyVisibility = () => {
     const isolated = componentsById.get(isolatedId);
-    for (const item of items) item.mesh.visible = !isolated || bindingMatches(item, isolated);
+    for (const item of items) item.mesh.visible = isolatedGroupIds.length ? isolatedGroupIds.some(id => bindingMatches(item, componentsById.get(id))) : !isolated || bindingMatches(item, isolated);
   };
   const applyAppearance = () => {
     const selected = selectedComponent();
@@ -129,6 +131,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
   const select = (id: string) => {
     selectedId = id;
     isolatedId = '';
+    isolatedGroupIds = [];
     const component = componentsById.get(id);
     snapshot.selectedId = id || undefined;
     snapshot.selectedLabel = component?.label;
@@ -154,6 +157,8 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
     mixer.setTime(clip.duration * angle / 720);
     const stroke = angle < 180 ? 'Power' : angle < 360 ? 'Exhaust' : angle < 540 ? 'Intake' : 'Compression';
     snapshot.motionNote = `${stroke} stroke · all engine motion is sampled from the shared 720° action.`;
+    root.updateMatrixWorld(true);
+    section.sync();
     runtime.render();
     onChange();
   };
@@ -175,6 +180,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
     focusComponents.splice(0, focusComponents.length, ...ids.map((id) => componentsById.get(id)));
     selectedId = '';
     isolatedId = '';
+    isolatedGroupIds = [];
     snapshot.selectedId = undefined;
     snapshot.selectedLabel = undefined;
     snapshot.selectedDescription = undefined;
@@ -218,6 +224,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
         select,
         isolate() {
           if (!selectedId) return;
+          isolatedGroupIds = [];
           isolatedId = selectedId;
           snapshot.isolated = true;
           applyVisibility();
@@ -235,9 +242,30 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
           runtime.render();
           onChange();
         },
+        isolateGroup(groupId) {
+          const ids = groupComponentIds(components, groupId);
+          if (!groupId || groupId === 'all' || !ids.length) return;
+          select('');
+          focusComponents.length = 0;
+          isolatedGroupIds = ids;
+          snapshot.isolated = true;
+          snapshot.selectedLabel = groups.find(group => group.id === groupId)?.label;
+          snapshot.selectedDescription = `${ids.length} teaching components isolated.`;
+          applyVisibility();
+          applyAppearance();
+          const box = new THREE.Box3();
+          for (const item of items) if (item.mesh.visible) box.expandByObject(item.mesh);
+          if (!box.isEmpty()) {
+            const proxy = new THREE.Mesh(new THREE.BoxGeometry(...box.getSize(new THREE.Vector3()).toArray()));
+            proxy.position.copy(box.getCenter(new THREE.Vector3()));
+            runtime.fit(proxy); proxy.geometry.dispose();
+          }
+          onChange();
+        },
         showAll() {
           selectedId = '';
           isolatedId = '';
+          isolatedGroupIds = [];
           snapshot.selectedId = undefined;
           snapshot.selectedLabel = undefined;
           snapshot.selectedDescription = undefined;
@@ -257,6 +285,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
       playing = false;
       runtime.setAnimationCallback(undefined);
       runtime.setPickTargets([]);
+      section.dispose();
       mixer.stopAllAction();
       mixer.uncacheRoot(root);
       runtime.scene.remove(root);

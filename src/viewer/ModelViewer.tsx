@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { Box, Expand, Focus, LoaderCircle, Maximize2, Minimize2, Move3D, RotateCcw, Shrink, SlidersHorizontal, TriangleAlert } from 'lucide-react';
 import { modelsById } from '../data/modelRegistry';
 import { createModelSession } from './adapters';
+import { inComponentGroup } from './core/component-groups.mjs';
 import { createViewerRuntime } from './core/runtime';
 import { CompactMotionPlayer, ExploreControls, type ExplorePanel } from './ExploreControls';
 import type { InteractionMode, ViewUpdate, ViewerProfile, ViewerSession, ViewerSnapshot } from './types';
@@ -127,7 +128,7 @@ export default function ModelViewer({
   const filteredComponents = useMemo(() => {
     const items = features?.components?.items || [];
     const term = query.trim().toLowerCase();
-    return items.filter((component) => (!group || group === 'all' || component.group === group || (group === 'cylinders' && component.group.startsWith('cylinder-')))
+    return items.filter((component) => inComponentGroup(component, group)
       && (!term || `${component.label} ${component.description}`.toLowerCase().includes(term)));
   }, [features?.components?.items, query, group]);
 
@@ -212,7 +213,7 @@ export default function ModelViewer({
       query={query}
       onQueryChange={setQuery}
       group={group}
-      onGroupChange={setGroup}
+      onGroupChange={(value) => { setGroup(value); features.components?.select(''); }}
       showPlayerOnViewer={showPlayerOnViewer}
       onShowPlayerOnViewerChange={setPlayerPreference}
     />}

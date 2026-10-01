@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import type { ModelDefinition } from '../../data/modelRegistry';
+import { groupComponentIds } from '../core/component-groups.mjs';
 import { loadGltf } from '../core/assets';
 import { createSectionController, disposeObject } from '../core/modelUtils';
 import { mechanismPose } from '../engineering/kinematics.mjs';
@@ -109,16 +110,18 @@ export async function createCylinderSession(definition: ModelDefinition, context
 
   let selectedId = '';
   let isolated = false;
+  const isolatedParts = new Set<string>();
   const focusSet = new Set(context.focusParts || []);
   let playing = false;
   let cycleEnabled = Boolean(context.initialCycle);
-  const section = createSectionController(meshes, bounds, runtime.render, onChange);
+  const section = createSectionController(meshes, bounds, runtime.render, onChange, runtime.scene);
 
   const applyAppearance = () => {
     for (const mesh of meshes) {
+      mesh.visible = !isolated || isolatedParts.has(mesh.userData.partId);
       mesh.material = mesh.userData.partId === selectedId
         ? highlight
-        : isolated || (focusSet.size > 0 && !focusSet.has(mesh.userData.partId))
+        : (focusSet.size > 0 && !focusSet.has(mesh.userData.partId))
           ? ghost
           : snapshot.appearance === 'cad'
             ? originals.get(mesh)!
@@ -172,6 +175,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
       ? `${valves.cycle.stroke} · piston pin ${pistonMillimetres.toFixed(1)} mm from crank axis · intake lift ${valves.cycle.intakeLift.toFixed(1)} mm · exhaust lift ${valves.cycle.exhaustLift.toFixed(1)} mm.`
       : `Piston pin ${pistonMillimetres.toFixed(1)} mm from crank axis.`;
     if (cycleVisuals) snapshot.cycleNote = cycleVisuals.update(angle, pistonMillimetres).description;
+    section.sync();
     runtime.render();
     onChange();
   };
@@ -250,11 +254,33 @@ export async function createCylinderSession(definition: ModelDefinition, context
         select,
         isolate() {
           if (!selectedId) return;
+          isolatedParts.clear();
+          isolatedParts.add(selectedId);
           isolated = true;
           snapshot.isolated = true;
           applyAppearance();
           const picked = meshes.find((mesh) => mesh.userData.partId === selectedId);
           if (picked) runtime.fit(picked);
+          onChange();
+        },
+        isolateGroup(groupId) {
+          const ids = groupComponentIds(parts, groupId);
+          if (!groupId || groupId === 'all' || !ids.length) return;
+          select('');
+          focusSet.clear();
+          isolatedParts.clear();
+          for (const id of ids) isolatedParts.add(id);
+          isolated = true;
+          snapshot.isolated = true;
+          snapshot.selectedLabel = groups.find(group => group.id === groupId)?.label;
+          snapshot.selectedDescription = `${ids.length} components isolated. Motion and section controls remain available.`;
+          applyAppearance();
+          const box = new THREE.Box3();
+          for (const mesh of meshes) if (mesh.visible) box.expandByObject(mesh);
+          const proxy = new THREE.Mesh(new THREE.BoxGeometry(...box.getSize(new THREE.Vector3()).toArray()));
+          proxy.position.copy(box.getCenter(new THREE.Vector3()));
+          runtime.fit(proxy);
+          proxy.geometry.dispose();
           onChange();
         },
         showAll() {
@@ -288,6 +314,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
       playing = false;
       runtime.setAnimationCallback(undefined);
       runtime.setPickTargets([]);
+      section.dispose();
       cycleVisuals?.dispose();
       runtime.scene.remove(root);
       for (const material of inspection.values()) material.dispose();
