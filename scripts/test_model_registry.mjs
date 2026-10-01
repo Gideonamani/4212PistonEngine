@@ -9,10 +9,11 @@ assert.ok(registry.every(model=>model.label&&model.eyebrow&&model.description&&m
 assert.ok(registry.every(model=>Array.isArray(model.badges)&&model.badges.length));
 
 const cylinder=registry.find(model=>model.id==='cylinder');
-assert.deepEqual(cylinder.sources.map(source=>source.localUrl),['./control.glb.gz?v=20260912-lesson-ready','./control.glb?v=20260912-lesson-ready']);
-assert.equal(cylinder.componentCatalogueUrl,'./components.json');
-assert.equal(cylinder.motionProfileUrl,'./motion.json?v=20260912-operating-cylinder');
+assert.deepEqual(cylinder.sources.map(source=>source.localUrl),['./cylinder-reviewed-20261001.glb.gz']);
+assert.equal(cylinder.componentCatalogueUrl,'./components.json?v=20261001-reviewed');
+assert.equal(cylinder.motionProfileUrl,'./motion.json?v=20261001-reviewed');
 assert.equal(cylinder.sources[0].compressed,true);
+assert.ok(fs.statSync(new URL('../web/cylinder-reviewed-20261001.glb.gz',import.meta.url)).size>0,'Pages must include the reviewed cylinder');
 
 const engine=registry.find(model=>model.id==='gtsio520-h-v5-teaching-engine');
 assert.equal(engine.contractUrl,'./engine-contract.json');
@@ -27,7 +28,7 @@ assert.ok(wright.lessonHotspotIds.every(id=>wright.hotspots.some(hotspot=>hotspo
 assert.ok(fs.statSync(new URL('../web/wright-1903-engine.glb',import.meta.url)).size>1_000_000,'the Pages build needs the compact reference GLB');
 
 const driveId=/^[-\w]{20,}$/;
-for (const source of [...cylinder.sources,...wright.sources]) assert.match(source.driveId,driveId);
+for (const source of wright.sources) assert.match(source.driveId,driveId);
 const transport=JSON.parse(fs.readFileSync(new URL('../web/engine-contract.json',import.meta.url),'utf8')).asset.transport;
 assert.match(transport.drive_file_id,driveId);
 assert.match(transport.fallback_drive_file_id,driveId);

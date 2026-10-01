@@ -13,6 +13,7 @@ export function valveMatrices(degrees,profile){
     const lower=point(train.pushrod_lower_mm),upper=point(train.pushrod_socket_mm),follower=point(pose.follower),socket=point(pose.socket);
     const quaternion=new THREE.Quaternion().setFromUnitVectors(upper.clone().sub(lower).normalize(),socket.clone().sub(follower).normalize());
     const rod=new THREE.Matrix4().makeRotationFromQuaternion(quaternion);rod.setPosition(follower.clone().sub(lower.clone().applyMatrix4(rod)));matrices[label+'Pushrod']=rod;
+    matrices[label+'HydraulicLifterBody']=new THREE.Matrix4().makeTranslation(...follower.clone().sub(lower));
   }
   return {cycle,matrices};
 }

@@ -1,5 +1,5 @@
 {
   "drive_api_key": "AIzaSyDvsWV7UJ9DeC-kPi7gjmvkzzqe3lwVdYk",
   "drive_api_key_note": "Restricted browser key for public model delivery (Drive API only, this Pages site only). Not a secret; see docs/decisions/001-public-drive-browser-key.md.",
-  "status": "Published models are served from the synced Google Drive web folder through the Drive API; local web/*.glb copies are used only on localhost."
+  "status": "The reviewed cylinder is served directly from GitHub Pages. Other configured models retain their Drive delivery and local fallbacks."
 }

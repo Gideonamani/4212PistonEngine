@@ -14,3 +14,5 @@ dist/
 *.glb
 *.glb.gz
 !web/wright-1903-engine.glb
+# Versioned compact cylinder transport is served directly by GitHub Pages.
+!web/cylinder-reviewed-20261001.glb.gz

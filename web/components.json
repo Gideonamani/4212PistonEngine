@@ -782,6 +782,20 @@
       "structured_claim_review": "pending",
       "existing_study_instance": "cylinder-study:LowerSparkTerminal",
       "web_asset": null
+    },
+    {
+      "definition_id": "gtsio520h:cad:FuelDischargeNozzle",
+      "cad_stable_id": "FuelDischargeNozzle",
+      "display_name": "Fuel discharge nozzle",
+      "function": "Delivers fuel continuously into the intake port outside the intake valve. This reconstructed nozzle is not timed direct injection.",
+      "manufacturer_part_number": null,
+      "source_module": "current-cylinder-study",
+      "function_source_summary": "X-30045A A-3-4 / physical PDF19",
+      "geometry_evidence_status": "Component and injection function sourced; nozzle envelope and mounting station reconstructed",
+      "structured_claim_review": "pending",
+      "existing_study_instance": "cylinder-study:FuelDischargeNozzle",
+      "web_asset": "web/cylinder-reviewed-20261001.glb.gz"
     }
-  ]
+  ],
+  "model_revision": "cylinder-reviewed-20261001"
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "asset_sha256": "f1f54fa57ae1ccc1aa23a635674eeece7ee1c518db1e6fbd5b508ab09bb2da3c",
+  "asset_sha256": "ba39a78c89ac14d5d263487e446011cfa4710346270d2ebe377a997174793647",
   "bind_angle_deg": 0.0,
   "radius_m": 0.0508,
   "rod_length_m": 0.168275,
@@ -64,9 +64,10 @@
     "ExhaustPushrodHousing": "Cylinder",
     "ExhaustLowerPushrodSeal": "Cylinder",
     "ExhaustUpperPushrodSeal": "Cylinder",
-    "ExhaustHydraulicLifterBody": "Cylinder"
+    "ExhaustHydraulicLifterBody": "Cylinder",
+    "FuelDischargeNozzle": "Cylinder"
   },
-  "scope": "Unreleased operating-cylinder preview with illustrative cycle cues; instructor review pending.",
+  "scope": "GTSIO-520-H teaching reconstruction; illustrative ideal valve timing and lift; chamber volume not calibrated",
   "valves": {
     "schema_version": 1,
     "source_sha256": "050ff5444c8115abfeaf2bcb34e9a7b6b1bab07ab604f7aa3e16aa6c91bbb2de",
@@ -477,5 +478,48 @@
     "audit_sha256": "780d93e4366af0bf423626ba034349ff0b14695b5de9af258a4c03959351a8d4",
     "scope": "Whole maximum display region clears head/barrel and sampled valve lifts; piston clearance uses its moving axial bound. Reconstructed geometry, illustrative cues, not CFD.",
     "flow_path_status": "Schematic connection through CAD port and valve frames; not an audited fluid passage or CFD trajectory."
+  },
+  "model_revision": "cylinder-reviewed-20261001",
+  "cad_source_sha256": "551b325b47464c05fe52269674c9de0587c406e130b7c7c439de730633f9f4de",
+  "evidence_lineage": {
+    "inherited_valve_and_spring_audit_source_sha256": "050ff5444c8115abfeaf2bcb34e9a7b6b1bab07ab604f7aa3e16aa6c91bbb2de",
+    "current_cad_sha256": "551b325b47464c05fe52269674c9de0587c406e130b7c7c439de730633f9f4de",
+    "unchanged_motion_solids": [
+      "IntakeSeatInsert",
+      "IntakeValve",
+      "IntakeValveGuide",
+      "IntakeOuterSpring",
+      "IntakeInnerSpring",
+      "IntakeSpringRetainer",
+      "IntakeValveKeeper",
+      "IntakeRockerHousing",
+      "IntakeRockerGasket",
+      "IntakeRockerCover",
+      "IntakeRockerShaft",
+      "IntakeRockerArm",
+      "ExhaustSeatInsert",
+      "ExhaustValve",
+      "ExhaustValveGuide",
+      "ExhaustOuterSpring",
+      "ExhaustInnerSpring",
+      "ExhaustSpringRetainer",
+      "ExhaustValveKeeper",
+      "ExhaustRockerHousing",
+      "ExhaustRockerGasket",
+      "ExhaustRockerCover",
+      "ExhaustRockerShaft",
+      "ExhaustRockerArm",
+      "IntakePushrod",
+      "IntakePushrodHousing",
+      "IntakeLowerPushrodSeal",
+      "IntakeUpperPushrodSeal",
+      "IntakeHydraulicLifterBody",
+      "ExhaustPushrod",
+      "ExhaustPushrodHousing",
+      "ExhaustLowerPushrodSeal",
+      "ExhaustUpperPushrodSeal",
+      "ExhaustHydraulicLifterBody"
+    ],
+    "rule": "Inherited source hashes identify the original audits; they are not rewritten to imply a new complete collision audit."
   }
 }

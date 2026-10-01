@@ -253,6 +253,12 @@
             "label": "Intake hydraulic tappet body",
             "kind": "component",
             "function": "Carries cam motion toward the pushrod. The complete hydraulic tappet compensates for operating clearance; only its outer body is modelled."
+          },
+          {
+            "id": "FuelDischargeNozzle",
+            "label": "Fuel discharge nozzle",
+            "kind": "component",
+            "function": "Delivers fuel continuously into the intake port outside the intake valve. This reconstructed nozzle is not timed direct injection."
           }
         ]
       },

@@ -1,0 +1,666 @@
+{
+  "schema_version": 1,
+  "release_id": "cylinder-reviewed-20261001",
+  "delivery": "GitHub Pages versioned gzip asset",
+  "source_cad": "../EngineSimulation/FreeCAD/v3/GTSIO520H_Reviewed_Cylinder.FCStd",
+  "cad_sha256": "551b325b47464c05fe52269674c9de0587c406e130b7c7c439de730633f9f4de",
+  "parent_cad_sha256": "050ff5444c8115abfeaf2bcb34e9a7b6b1bab07ab604f7aa3e16aa6c91bbb2de",
+  "source_blender": "../EngineSimulation/FreeCAD/v3/GTSIO520H_Operating_Cylinder.blend",
+  "blender_sha256": "56b4aa3536de446caabda69e0b943c43305f3d415e31276b3517ebec636a284d",
+  "asset_file": "web/cylinder-reviewed-20261001.glb",
+  "asset_sha256": "ba39a78c89ac14d5d263487e446011cfa4710346270d2ebe377a997174793647",
+  "asset_bytes": 34858120,
+  "transport_file": "web/cylinder-reviewed-20261001.glb.gz",
+  "transport_sha256": "b34300914d27a5f133eb31f434da0bf7cfff8b8fc11e0e56734708c217c29e7a",
+  "transport_bytes": 15937570,
+  "parts": [
+    "BigEndBearing",
+    "CapBearingHalf",
+    "ConnectingRodBody",
+    "ConnectingRodCap",
+    "CrankThrow",
+    "CylinderBarrel",
+    "CylinderHead",
+    "ExhaustHydraulicLifterBody",
+    "ExhaustInnerSpring",
+    "ExhaustLowerPushrodSeal",
+    "ExhaustOuterSpring",
+    "ExhaustPushrod",
+    "ExhaustPushrodHousing",
+    "ExhaustRockerArm",
+    "ExhaustRockerCover",
+    "ExhaustRockerGasket",
+    "ExhaustRockerHousing",
+    "ExhaustRockerShaft",
+    "ExhaustSeatInsert",
+    "ExhaustSpringRetainer",
+    "ExhaustUpperPushrodSeal",
+    "ExhaustValve",
+    "ExhaustValveGuide",
+    "ExhaustValveKeeper",
+    "FloatingPin",
+    "FuelDischargeNozzle",
+    "IntakeHydraulicLifterBody",
+    "IntakeInnerSpring",
+    "IntakeLowerPushrodSeal",
+    "IntakeOuterSpring",
+    "IntakePushrod",
+    "IntakePushrodHousing",
+    "IntakeRockerArm",
+    "IntakeRockerCover",
+    "IntakeRockerGasket",
+    "IntakeRockerHousing",
+    "IntakeRockerShaft",
+    "IntakeSeatInsert",
+    "IntakeSpringRetainer",
+    "IntakeUpperPushrodSeal",
+    "IntakeValve",
+    "IntakeValveGuide",
+    "IntakeValveKeeper",
+    "LowerSparkInsulator",
+    "LowerSparkPlug",
+    "LowerSparkTerminal",
+    "PinPlugLeft",
+    "PinPlugRight",
+    "PistonBody",
+    "PistonRing1",
+    "PistonRing2",
+    "PistonRing3",
+    "PistonRing4",
+    "RodBolt1",
+    "RodBoltMinus1",
+    "RodNut1",
+    "RodNutMinus1",
+    "SmallEndBush",
+    "UpperSparkInsulator",
+    "UpperSparkPlug",
+    "UpperSparkTerminal"
+  ],
+  "bind_angle_deg": 0,
+  "scope": "GTSIO-520-H teaching reconstruction; illustrative ideal valve timing and lift; chamber volume not calibrated",
+  "cad_checks": {
+    "target": "GTSIO-520-H (provisional pending user variant confirmation)",
+    "parent_sha256": "050ff5444c8115abfeaf2bcb34e9a7b6b1bab07ab604f7aa3e16aa6c91bbb2de",
+    "cad_sha256": "551b325b47464c05fe52269674c9de0587c406e130b7c7c439de730633f9f4de",
+    "valid_single_solid_bodies": 61,
+    "nozzle_head_intersection_mm3": 0.0,
+    "unchanged_motion_solids": [
+      "IntakeSeatInsert",
+      "IntakeValve",
+      "IntakeValveGuide",
+      "IntakeOuterSpring",
+      "IntakeInnerSpring",
+      "IntakeSpringRetainer",
+      "IntakeValveKeeper",
+      "IntakeRockerHousing",
+      "IntakeRockerGasket",
+      "IntakeRockerCover",
+      "IntakeRockerShaft",
+      "IntakeRockerArm",
+      "ExhaustSeatInsert",
+      "ExhaustValve",
+      "ExhaustValveGuide",
+      "ExhaustOuterSpring",
+      "ExhaustInnerSpring",
+      "ExhaustSpringRetainer",
+      "ExhaustValveKeeper",
+      "ExhaustRockerHousing",
+      "ExhaustRockerGasket",
+      "ExhaustRockerCover",
+      "ExhaustRockerShaft",
+      "ExhaustRockerArm",
+      "IntakePushrod",
+      "IntakePushrodHousing",
+      "IntakeLowerPushrodSeal",
+      "IntakeUpperPushrodSeal",
+      "IntakeHydraulicLifterBody",
+      "ExhaustPushrod",
+      "ExhaustPushrodHousing",
+      "ExhaustLowerPushrodSeal",
+      "ExhaustUpperPushrodSeal",
+      "ExhaustHydraulicLifterBody"
+    ],
+    "nominal_swept_volume_cc": 1418.9582890906777,
+    "target_clearance_volume_cc": 218.30127524471965,
+    "compression_volume_calibrated": false,
+    "new_geometry_status": "Nozzle shape and station reconstructed; source-backed component and port-injection function",
+    "timing_status": "Illustrative sin-squared lift over ideal intake/exhaust strokes; not manufacturer cam timing"
+  },
+  "blender_checks": {
+    "passed": true,
+    "mesh_count": 61,
+    "cycle_degrees": 720,
+    "keyed_degree_samples": 721,
+    "stroke_mm": 101.60000000000001,
+    "maximum_pushrod_length_error_mm": 1.893743637992884e-05,
+    "valve_timing": "Illustrative ideal cycle, 7 mm maximum lift",
+    "spring_deformation": "Native-derived screw-sweep presentation; no stress simulation",
+    "collision_scope": "Inherited sampled train audit; no complete 720-degree engine collision audit",
+    "saved_file_reopened_check": {
+      "passed": true,
+      "sampled_angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        270,
+        360,
+        450,
+        540,
+        585,
+        630,
+        675,
+        720
+      ],
+      "maximum_valve_or_pushrod_error_mm": 3.8195033255306043e-05,
+      "checks": "Evaluated valve translation, rocker/pushrod socket coincidence, rod length, spring shape-key weights"
+    }
+  },
+  "presentation_precision": {
+    "position_coordinate_rounding_m": 1e-06,
+    "maximum_coordinate_rounding_error_mm": 0.0005,
+    "normal_component_rounding": 0.0001,
+    "scope": "Presentation mesh precision; native CAD is unchanged"
+  },
+  "cad_bind_bounds_gltf_m": {
+    "CylinderBarrel": [
+      0.10799999999999908,
+      -0.11400000000000021,
+      -0.09097183091807047,
+      0.25405000000000205,
+      0.11400000000000016,
+      0.09097183091807048
+    ],
+    "PistonBody": [
+      0.17407499999999998,
+      -0.06654673,
+      -0.06654673,
+      0.255075,
+      0.06654673,
+      0.06654673
+    ],
+    "FloatingPin": [
+      0.20479512,
+      -0.014275441556269882,
+      -0.06319875000000005,
+      0.23335488,
+      0.0142754415562698,
+      0.06319875
+    ],
+    "ConnectingRodBody": [
+      0.050799999999999956,
+      -0.04200000000000004,
+      -0.012000000000000014,
+      0.23957499999999998,
+      0.042,
+      0.012000000000000009
+    ],
+    "BigEndBearing": [
+      0.05079999999999996,
+      -0.02956865000000002,
+      -0.010500000000000035,
+      0.08036865,
+      0.029568650000000005,
+      0.010500000000000034
+    ],
+    "SmallEndBush": [
+      0.20326504299931747,
+      -0.01580874802327464,
+      -0.012000000000000012,
+      0.23488536,
+      0.015806733129408952,
+      0.012000000000000012
+    ],
+    "CrankThrow": [
+      -0.03798818891603102,
+      -0.03800000000000005,
+      -0.08560160000000003,
+      0.0888,
+      0.03800000000000004,
+      0.08560160000000001
+    ],
+    "PistonRing1": [
+      0.2410749999999999,
+      -0.06666638197568643,
+      -0.06665318259109822,
+      0.24307499999999999,
+      0.06666817500000001,
+      0.06665318259109822
+    ],
+    "PistonRing2": [
+      0.23507499999999992,
+      -0.06666798091546187,
+      -0.06665633928254978,
+      0.23707499999999998,
+      0.06666739866297737,
+      0.06664950086048338
+    ],
+    "PistonRing3": [
+      0.22732499999999964,
+      -0.06666798091546192,
+      -0.06666067024285796,
+      0.230825,
+      0.06666739866297741,
+      0.06666067024285785
+    ],
+    "PistonRing4": [
+      0.1798249999999999,
+      -0.06666737809832061,
+      -0.06665643972794195,
+      0.18232500000000001,
+      0.06666797577428248,
+      0.06664952709242367
+    ],
+    "PinPlugLeft": [
+      0.20479512,
+      -0.014279751510398517,
+      0.06319875,
+      0.23335488,
+      0.014278746154217729,
+      0.06619875
+    ],
+    "PinPlugRight": [
+      0.20479512,
+      -0.014279751510498956,
+      -0.06619875,
+      0.23335488,
+      0.014278746158125771,
+      -0.06319875
+    ],
+    "ConnectingRodCap": [
+      0.013799999999999996,
+      -0.04200000000000004,
+      -0.011500000000000106,
+      0.0508,
+      0.042,
+      0.011500000000000078
+    ],
+    "CapBearingHalf": [
+      0.02124054046863156,
+      -0.02956865000000002,
+      -0.010500000000000035,
+      0.0508,
+      0.029568650000000005,
+      0.010500000000000034
+    ],
+    "RodBoltMinus1": [
+      0.031799999999999995,
+      -0.042500000000000024,
+      -0.0064951905283832925,
+      0.06980000000000001,
+      -0.02750000000000001,
+      0.0064951905283832925
+    ],
+    "RodNutMinus1": [
+      0.03079999999999999,
+      -0.04250000000000002,
+      -0.0064951905283832986,
+      0.03680000000000001,
+      -0.027499999999999993,
+      0.006495190528383298
+    ],
+    "RodBolt1": [
+      0.031799999999999995,
+      0.02749999999999998,
+      -0.0064951905283832925,
+      0.06980000000000001,
+      0.04249999999999999,
+      0.0064951905283832925
+    ],
+    "RodNut1": [
+      0.03079999999999999,
+      0.027499999999999986,
+      -0.0064951905283832986,
+      0.03680000000000001,
+      0.04250000000000001,
+      0.006495190528383298
+    ],
+    "CylinderHead": [
+      0.24210333333333334,
+      -0.102,
+      -0.09200000000000001,
+      0.343044953822909,
+      0.1019714047440751,
+      0.09200000000000001
+    ],
+    "IntakeSeatInsert": [
+      0.2676702260986497,
+      -0.031990053824026136,
+      0.0016424094521334388,
+      0.2863093221290753,
+      0.03199005382402613,
+      0.06555379815436976
+    ],
+    "IntakeValve": [
+      0.265029503886413,
+      -0.03049052005102491,
+      0.0025141927058131017,
+      0.3920293502862012,
+      0.030490520051024903,
+      0.06288770349093532
+    ],
+    "IntakeValveGuide": [
+      0.30185329340042716,
+      -0.008000000000000038,
+      0.0311440770214376,
+      0.34913880058476005,
+      0.008000000000000021,
+      0.0557895560923681
+    ],
+    "IntakeOuterSpring": [
+      0.3377829816014095,
+      -0.01749999943961952,
+      0.029168857156558606,
+      0.38497180498551153,
+      0.01749999942150317,
+      0.07103756608079909
+    ],
+    "IntakeInnerSpring": [
+      0.3387827871408696,
+      -0.011899999075296184,
+      0.034548945512496036,
+      0.383963171111163,
+      0.01189999900517722,
+      0.06563999109306945
+    ],
+    "IntakeSpringRetainer": [
+      0.37785435881994744,
+      -0.019993783640016333,
+      0.03533197869347506,
+      0.38974877501511856,
+      0.01999378364001633,
+      0.07532643861597706
+    ],
+    "IntakeValveKeeper": [
+      0.3823063525941463,
+      -0.007499333303701072,
+      0.04797977337006985,
+      0.3899572084274655,
+      0.007498329275289395,
+      0.06267842184927859
+    ],
+    "IntakeRockerHousing": [
+      0.33766053096302817,
+      -0.04700000000000027,
+      0.02245763779368299,
+      0.41818350641658786,
+      0.04699222955002058,
+      0.08580836430276281
+    ],
+    "IntakeRockerGasket": [
+      0.40821510969572794,
+      -0.04700000000000011,
+      0.036812129071721184,
+      0.41877146123936027,
+      0.04699222955002075,
+      0.0859279850634131
+    ],
+    "IntakeRockerCover": [
+      0.40860369658408324,
+      -0.048000000000000126,
+      0.03595182512775068,
+      0.42387045269688167,
+      0.04799191873202157,
+      0.08790474944011992
+    ],
+    "IntakeRockerShaft": [
+      0.3873309321459933,
+      -0.027512517419099238,
+      0.0335025579675872,
+      0.41554949105542255,
+      -0.008487482580900789,
+      0.08433310498088406
+    ],
+    "IntakeRockerArm": [
+      0.3869091806845261,
+      -0.04203485315338884,
+      0.04750719426195075,
+      0.41597124251688994,
+      0.0038352670260810838,
+      0.07032846868652023
+    ],
+    "ExhaustSeatInsert": [
+      0.26745011434988575,
+      -0.02549207414102082,
+      -0.05918402284098636,
+      0.2864454406078487,
+      0.025492074141020817,
+      -0.008368891429628772
+    ],
+    "ExhaustValve": [
+      0.2649405654386723,
+      -0.023992540368019594,
+      -0.0692048680583631,
+      0.3907361885804278,
+      0.023992540368019587,
+      -0.009041323033754817
+    ],
+    "ExhaustValveGuide": [
+      0.3009578659927939,
+      -0.008000000000000035,
+      -0.060136433175940134,
+      0.3485643457675583,
+      0.008000000000000021,
+      -0.033039566559824596
+    ],
+    "ExhaustOuterSpring": [
+      0.3327553698691549,
+      -0.01749999943961951,
+      -0.07792403268738479,
+      0.38121305915680087,
+      0.017499999421503164,
+      -0.03425300151215311
+    ],
+    "ExhaustInnerSpring": [
+      0.3340700357784756,
+      -0.01189999907529618,
+      -0.07264973753365517,
+      0.3798802510065223,
+      0.011899999005177216,
+      -0.03955094395079972
+    ],
+    "ExhaustSpringRetainer": [
+      0.37512545998974706,
+      -0.021,
+      -0.08330114681417643,
+      0.3915309064387122,
+      0.020999999999999998,
+      -0.042151578435495954
+    ],
+    "ExhaustValveKeeper": [
+      0.3802925497061068,
+      -0.00749933330370107,
+      -0.06936716098261608,
+      0.388693851602791,
+      0.0074983292752893935,
+      -0.05474350827171273
+    ],
+    "ExhaustRockerHousing": [
+      0.33519433171267166,
+      -0.04700000000000023,
+      -0.0939004500617848,
+      0.4176819434606109,
+      0.04699222955002057,
+      -0.026969187499949736
+    ],
+    "ExhaustRockerGasket": [
+      0.4047409912054846,
+      -0.04700000000000008,
+      -0.09405574148884627,
+      0.4182614989563842,
+      0.046992229550020734,
+      -0.045604158747331265
+    ],
+    "ExhaustRockerCover": [
+      0.40506172765615556,
+      -0.048000000000000105,
+      -0.09631576254064794,
+      0.42334994713293206,
+      0.047991918732021556,
+      -0.044793524348103714
+    ],
+    "ExhaustRockerShaft": [
+      0.3842174572832104,
+      -0.027512517419099256,
+      -0.09229148184746229,
+      0.41502325755194736,
+      -0.008487482580900785,
+      -0.041001469879193196
+    ],
+    "ExhaustRockerArm": [
+      0.3847368744699768,
+      -0.04203282195691245,
+      -0.07870367234921245,
+      0.41450384036518106,
+      0.003849794204964624,
+      -0.05458927937744273
+    ],
+    "LowerSparkPlug": [
+      0.27405,
+      -0.09500000000000001,
+      -0.010392304845413269,
+      0.29805000000000004,
+      -0.06699999999999999,
+      0.010392304845413269
+    ],
+    "LowerSparkInsulator": [
+      0.27825,
+      -0.11900000000000001,
+      -0.007797575619606366,
+      0.29385000000000006,
+      -0.09499999999999997,
+      0.007797575619606368
+    ],
+    "LowerSparkTerminal": [
+      0.28305,
+      -0.127,
+      -0.0029990675460024488,
+      0.28905000000000003,
+      -0.11899999999999997,
+      0.0029990675460024496
+    ],
+    "UpperSparkPlug": [
+      0.27405,
+      0.06699999999999999,
+      -0.010392304845413269,
+      0.29805000000000004,
+      0.09500000000000001,
+      0.010392304845413269
+    ],
+    "UpperSparkInsulator": [
+      0.27824999999999994,
+      0.09499999999999997,
+      -0.007797575619606366,
+      0.29385,
+      0.11900000000000001,
+      0.007797575619606368
+    ],
+    "UpperSparkTerminal": [
+      0.28305,
+      0.11899999999999997,
+      -0.0029990675460024488,
+      0.28905000000000003,
+      0.127,
+      0.0029990675460024496
+    ],
+    "IntakePushrod": [
+      0.04750003714006843,
+      -0.12049986722026443,
+      0.030501703528502976,
+      0.40997293159262665,
+      -0.033382755411697246,
+      0.06423426631487283
+    ],
+    "IntakePushrodHousing": [
+      0.06480593011254111,
+      -0.120913459409158,
+      0.02724952588249368,
+      0.39266703862015406,
+      -0.032969037737908664,
+      0.067488779303262
+    ],
+    "IntakeLowerPushrodSeal": [
+      0.06435428601174548,
+      -0.12253585366996289,
+      0.026047469786173626,
+      0.0708190612217986,
+      -0.10257483864073144,
+      0.046134240968936834
+    ],
+    "IntakeUpperPushrodSeal": [
+      0.38665390751089646,
+      -0.05130765850633543,
+      0.048604064216818836,
+      0.39311868272094946,
+      -0.031346643477103725,
+      0.06869083539958204
+    ],
+    "IntakeHydraulicLifterBody": [
+      0.016999999999999994,
+      -0.12850000000000003,
+      0.022503885224989795,
+      0.052000000000000025,
+      -0.1035,
+      0.047496114775010215
+    ],
+    "ExhaustPushrod": [
+      0.04750033943298301,
+      -0.12049982490591882,
+      -0.0721965168104304,
+      0.40804575674890925,
+      -0.03339323725966722,
+      -0.03050237379104463
+    ],
+    "ExhaustPushrodHousing": [
+      0.06470960298425012,
+      -0.12089901138132489,
+      -0.07503281078324489,
+      0.3908364931976422,
+      -0.03299400459498172,
+      -0.027665563611676307
+    ],
+    "ExhaustLowerPushrodSeal": [
+      0.06424126825051148,
+      -0.12252336518950675,
+      -0.04649517004278876,
+      0.07086900784379192,
+      -0.1025645118648492,
+      -0.026398491603035815
+    ],
+    "ExhaustUpperPushrodSeal": [
+      0.38467708833810027,
+      -0.05132850411145751,
+      -0.07629988279188538,
+      0.3913048279313806,
+      -0.03136965078679987,
+      -0.056203204352132434
+    ],
+    "ExhaustHydraulicLifterBody": [
+      0.016999999999999994,
+      -0.12850000000000003,
+      -0.04749611477501021,
+      0.052000000000000025,
+      -0.1035,
+      -0.02250388522498979
+    ],
+    "FuelDischargeNozzle": [
+      0.28805000000000003,
+      0.009999999999999993,
+      0.06307179676972448,
+      0.30405000000000004,
+      0.10000000000000003,
+      0.07692820323027551
+    ]
+  },
+  "current_cue_static_clearance_check": {
+    "cad_sha256": "551b325b47464c05fe52269674c9de0587c406e130b7c7c439de730633f9f4de",
+    "passed": true,
+    "intersection_mm3": {
+      "CylinderHead": 0.0,
+      "CylinderBarrel": 0.0,
+      "FuelDischargeNozzle": 0.0
+    },
+    "scope": "Inherited maximum central chamber cue region against revised stationary solids. Prior sampled valve audit remains identified by its original source hash; no CFD claim."
+  }
+}

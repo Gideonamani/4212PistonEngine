@@ -10,7 +10,7 @@ import type { AdapterContext, AppearanceMode, ModelComponent, ModelGroup, Viewer
 type MotionEntry = { mesh: THREE.Mesh; group: 'Piston' | 'ConnectingRod' | 'Crank' | 'Cylinder'; localBind: THREE.Matrix4 };
 
 function componentGroup(id: string) {
-  if (id.startsWith('Intake')) return 'intake';
+  if (id.startsWith('Intake') || id === 'FuelDischargeNozzle') return 'intake';
   if (id.startsWith('Exhaust')) return 'exhaust';
   if (/Spark/.test(id)) return 'ignition';
   if (/^(Piston|FloatingPin|PinPlug)/.test(id)) return 'piston';
@@ -20,7 +20,7 @@ function componentGroup(id: string) {
 
 function inspectionMaterial(id: string) {
   let color = 0x9cabb8;
-  if (/Intake/i.test(id)) color = 0x379e9b;
+  if (/Intake|FuelDischargeNozzle/i.test(id)) color = 0x379e9b;
   else if (/Exhaust/i.test(id)) color = 0xbc7353;
   else if (/Seal|Gasket/i.test(id)) color = 0x364451;
   else if (/Ring|Bolt|Nut|Crank/i.test(id)) color = 0x596d80;
@@ -65,7 +65,11 @@ export async function createCylinderSession(definition: ModelDefinition, context
     mesh.userData.partId = id;
     meshes.push(mesh);
   });
-  if (new Set(meshes.map((mesh) => mesh.userData.partId)).size !== 60) throw Error('The operating cylinder must expose 60 stable component IDs.');
+  const expectedIds = new Set<string>(catalogue.parts.map((part: any) => part.cad_stable_id));
+  const actualIds = new Set<string>(meshes.map((mesh) => mesh.userData.partId));
+  if (expectedIds.size !== catalogue.parts.length || actualIds.size !== expectedIds.size || [...actualIds].some((id) => !expectedIds.has(id))) {
+    throw Error('The operating cylinder components do not match its catalogue.');
+  }
   const motionGroups = new Set(['Piston', 'ConnectingRod', 'Crank', 'Cylinder']);
   if (meshes.some((mesh) => !motionGroups.has(motionProfile.groups[mesh.userData.partId]))) throw Error('The cylinder motion profile is missing a component group.');
   if (motionProfile.valves && motionProfile.bind_angle_deg !== 0) throw Error('Valve motion requires the verified closed zero-degree bind pose.');

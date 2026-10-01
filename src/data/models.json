@@ -4,22 +4,23 @@
     "label": "Detailed operating cylinder",
     "adapter": "operating-cylinder",
     "eyebrow": "OPERATING-CYCLE STUDY",
-    "description": "Inspect 60 catalogued components, operate the 720° mechanism, isolate parts and use a live section view.",
+    "description": "Explore the revised GTSIO-520-H cylinder: 61 components, continuous-flow fuel nozzle, synchronized valve gear and a live section view.",
     "imageType": "piston",
-    "badges": ["60 components", "Animated mechanism", "Section view"],
+    "badges": [
+      "61 components",
+      "Animated valve gear",
+      "Section view"
+    ],
     "sources": [
       {
-        "localUrl": "./control.glb.gz?v=20260912-lesson-ready",
-        "driveId": "16G_TF5Mw8wzbvVFE6bNE2a3K1_QiddEU",
-        "compressed": true
-      },
-      {
-        "localUrl": "./control.glb?v=20260912-lesson-ready",
-        "driveId": "1piLPj-HLhBmGKXMvIML5aJtJlLsyJLDm"
+        "localUrl": "./cylinder-reviewed-20261001.glb.gz",
+        "compressed": true,
+        "transferBytes": 15937570,
+        "decodedBytes": 34858120
       }
     ],
-    "componentCatalogueUrl": "./components.json",
-    "motionProfileUrl": "./motion.json?v=20260912-operating-cylinder"
+    "componentCatalogueUrl": "./components.json?v=20261001-reviewed",
+    "motionProfileUrl": "./motion.json?v=20261001-reviewed"
   },
   {
     "id": "gtsio520-h-v5-teaching-engine",
@@ -28,7 +29,11 @@
     "eyebrow": "WHOLE-ENGINE STUDY",
     "description": "Explore the developing GTSIO-520-H teaching assembly, its six-cylinder installation and drivetrain structure.",
     "imageType": "systems",
-    "badges": ["6 cylinders", "Animated drivetrain", "Section view"],
+    "badges": [
+      "6 cylinders",
+      "Animated drivetrain",
+      "Section view"
+    ],
     "contractUrl": "./engine-contract.json"
   },
   {
@@ -38,7 +43,11 @@
     "eyebrow": "HISTORICAL REFERENCE",
     "description": "Inspect the Smithsonian engine scan with six guided feature hotspots and its original museum source context.",
     "imageType": "wright",
-    "badges": ["CC0 museum scan", "6 guided hotspots", "Static reference"],
+    "badges": [
+      "CC0 museum scan",
+      "6 guided hotspots",
+      "Static reference"
+    ],
     "sources": [
       {
         "localUrl": "./wright-1903-engine.glb?v=20260929-smithsonian-medium",
@@ -48,46 +57,80 @@
     "sourceUrl": "https://airandspace.si.edu/collection-objects/1903-wright-flyer/nasm_A19610048000",
     "sourceLabel": "Smithsonian National Air and Space Museum",
     "license": "CC0",
-    "lessonHotspotIds": ["magneto", "valve", "crankcase"],
+    "lessonHotspotIds": [
+      "magneto",
+      "valve",
+      "crankcase"
+    ],
     "viewPresets": {
-      "engine-overview": { "direction": [1.15, 0.6, 1.25] }
+      "engine-overview": {
+        "direction": [
+          1.15,
+          0.6,
+          1.25
+        ]
+      }
     },
     "hotspots": [
       {
         "id": "magneto",
         "label": "Magneto",
         "description": "The ignition magneto supplied high-voltage current without relying on a battery in flight.",
-        "position": [-27.4804567, -31.0524163, -71.9050751]
+        "position": [
+          -27.4804567,
+          -31.0524163,
+          -71.9050751
+        ]
       },
       {
         "id": "valve",
         "label": "Valve",
-        "description": "One of the exposed valve mechanisms serving the engine’s four inline cylinders.",
-        "position": [-3.4664779, -4.7900186, -40.4502107]
+        "description": "One of the exposed valve mechanisms serving the engine\u00e2\u20ac\u2122s four inline cylinders.",
+        "position": [
+          -3.4664779,
+          -4.7900186,
+          -40.4502107
+        ]
       },
       {
         "id": "crankcase",
         "label": "Cast-aluminium crankcase",
-        "description": "The unusually light cast-aluminium crankcase was central to meeting the Flyer’s weight target.",
-        "position": [-53.5493818, -10.0742283, -16.1144613]
+        "description": "The unusually light cast-aluminium crankcase was central to meeting the Flyer\u00e2\u20ac\u2122s weight target.",
+        "position": [
+          -53.5493818,
+          -10.0742283,
+          -16.1144613
+        ]
       },
       {
         "id": "engine",
         "label": "Four-cylinder engine",
         "description": "The complete inline four-cylinder engine produced the power used on the first Wright Flyer.",
-        "position": [-40.3678868, -8.6396178, -12.6260955]
+        "position": [
+          -40.3678868,
+          -8.6396178,
+          -12.6260955
+        ]
       },
       {
         "id": "revolution-counter",
         "label": "Revolution counter",
         "description": "The revolution counter provided an engine-speed reference during operation and testing.",
-        "position": [-46.1110966, -17.7575759, 10.1611368]
+        "position": [
+          -46.1110966,
+          -17.7575759,
+          10.1611368
+        ]
       },
       {
         "id": "bearings",
         "label": "Bearings",
         "description": "The bearing locations supported the rotating shaft within the early lightweight engine structure.",
-        "position": [-11.2661911, -24.9888547, -20.8326146]
+        "position": [
+          -11.2661911,
+          -24.9888547,
+          -20.8326146
+        ]
       }
     ]
   }

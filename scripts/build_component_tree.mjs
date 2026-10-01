@@ -26,7 +26,7 @@ const catalogue = JSON.parse(fs.readFileSync(catalogueUrl, 'utf8'));
 
 // Mirrors src/viewer/adapters/cylinderAdapter.ts's componentGroup(id).
 function partGroup(id) {
-  if (id.startsWith('Intake')) return 'intake';
+  if (id.startsWith('Intake') || id === 'FuelDischargeNozzle') return 'intake';
   if (id.startsWith('Exhaust')) return 'exhaust';
   if (/Spark/.test(id)) return 'ignition';
   if (/^(Piston|FloatingPin|PinPlug)/.test(id)) return 'piston';
