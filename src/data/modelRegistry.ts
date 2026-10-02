@@ -18,6 +18,7 @@ export type ModelDefinition = {
   eyebrow: string;
   description: string;
   previewUrl?: string;
+  lessonControls?: boolean;
   imageType: 'piston' | 'systems' | 'wright';
   badges: string[];
   sources?: ModelSource[];

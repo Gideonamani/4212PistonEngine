@@ -15,7 +15,7 @@ The instructor confirmed a final 18-lesson list, ending with Practicals. It supe
 | 5 | Classification | Draft built (arrangements, cylinder numbering, firing order, and the spark vs compression-ignition comparison) |
 | 6 | Parts & Construction | Draft built (13 steps, 8 checks; spotlighted 3D parts, FAA figures, GTSIO-520-H vs IO-520 comparison) |
 | 7 | Cooling Methods | Draft built |
-| 8 | Accessories & Drives | Not started; absorbs magnetos and dual ignition |
+| 8 | Accessories & Drives | Source-backed interactive study implemented; 16 steps, 8 checks, 47 parts, 10 saved motions. Instructor and physical-phone review pending; see accessories-and-drives.md |
 | 9 | Valve Operating | Not started |
 | 10 | Power Generation | Not started |
 | 11 | Induction & Exhaust | Not started; absorbs aspiration |

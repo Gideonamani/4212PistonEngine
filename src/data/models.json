@@ -17,7 +17,8 @@
         "localUrl": "./cylinder-reviewed-20261001.glb.gz",
         "compressed": true,
         "transferBytes": 15937570,
-        "decodedBytes": 34858120
+        "decodedBytes": 34858120,
+        "driveId": "1CwfNUitCMgFcHJPJg66RZtqRSD2ZEhkH"
       }
     ],
     "componentCatalogueUrl": "./components.json?v=20261001-reviewed",
@@ -153,7 +154,8 @@
         "localUrl": "./hydraulic-tappet.glb.gz?v=a6c88a23cd42",
         "compressed": true,
         "transferBytes": 7126499,
-        "decodedBytes": 21503284
+        "decodedBytes": 21503284,
+        "driveId": "1u8hplcsX8Au9v9fOGPrEFUkwDouYhn2v"
       }
     ],
     "contractUrl": "./hydraulic-tappet-contract.json?v=a6c88a23cd42",
@@ -176,10 +178,35 @@
         "localUrl": "./oil-pump.glb.gz?v=3622888d4e44",
         "compressed": true,
         "transferBytes": 4696163,
-        "decodedBytes": 15292568
+        "decodedBytes": 15292568,
+        "driveId": "167cbQkDPiIE6nYG1kyhURez_FLnnmVCK"
       }
     ],
     "contractUrl": "./oil-pump-contract.json?v=3622888d4e44",
     "previewUrl": "./model-previews/oil-pump.png"
+  },
+  {
+    "id": "accessory-drives",
+    "label": "GTSIO-520-H accessories and drives",
+    "adapter": "animated-study",
+    "eyebrow": "LESSON 8 / ACCESSORIES & DRIVES",
+    "description": "Trace seven selectable power paths through a 47-part solid teaching assembly; operate, explode, reassemble and inspect the spring-clutch starting sequence. Dimensions are illustrative.",
+    "imageType": "systems",
+    "badges": [
+      "47 components",
+      "10 saved motions",
+      "Verified H output ratios"
+    ],
+    "sources": [
+      {
+        "localUrl": "./accessory-drives.glb.gz?v=687729f70a7d",
+        "compressed": true,
+        "transferBytes": 9884618,
+        "decodedBytes": 28000164,
+        "driveId": "1LS2Hwc27wVkavCzc6ODt26BDEt-okTy6"
+      }
+    ],
+    "contractUrl": "./accessory-drives-contract.json?v=687729f70a7d",
+    "lessonControls": true
   }
 ]

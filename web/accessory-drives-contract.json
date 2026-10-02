@@ -1,0 +1,1741 @@
+{
+  "asset_sha256": "687729f70a7d1c47c582584a35bf65ed55d792ce3c50e44adfaac2cff0b56c37",
+  "parts": [
+    {
+      "id": "Fastener0",
+      "label": "Housing fastener",
+      "group": "housing",
+      "description": "Representative stud, washer seat and fastening interface; pattern illustrative.",
+      "evidence": "A-4-11",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        0,
+        0,
+        170
+      ],
+      "volume_mm3": 716.2831250184726
+    },
+    {
+      "id": "Fastener1",
+      "label": "Housing fastener",
+      "group": "housing",
+      "description": "Representative stud, washer seat and fastening interface; pattern illustrative.",
+      "evidence": "A-4-11",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        0,
+        0,
+        170
+      ],
+      "volume_mm3": 716.2831250184727
+    },
+    {
+      "id": "Fastener2",
+      "label": "Housing fastener",
+      "group": "housing",
+      "description": "Representative stud, washer seat and fastening interface; pattern illustrative.",
+      "evidence": "A-4-11",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        0,
+        0,
+        170
+      ],
+      "volume_mm3": 716.2831250184726
+    },
+    {
+      "id": "Fastener3",
+      "label": "Housing fastener",
+      "group": "housing",
+      "description": "Representative stud, washer seat and fastening interface; pattern illustrative.",
+      "evidence": "A-4-11",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        0,
+        0,
+        170
+      ],
+      "volume_mm3": 716.2831250184727
+    },
+    {
+      "id": "AccessoryHousing",
+      "label": "Accessory housing / rear case study",
+      "group": "housing",
+      "description": "Solid shell with open chamber and bored exits. Outline is illustrative; compare FAA Figure 1-6 and manufacturer interfaces.",
+      "evidence": "FAA 1-7; A-4-11",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 3,
+      "offset_mm": [
+        0,
+        0,
+        0
+      ],
+      "volume_mm3": 607902.2663264992
+    },
+    {
+      "id": "HousingCover",
+      "label": "Housing inspection cover",
+      "group": "housing",
+      "description": "Illustrative removable teaching cover, not an identified manufacturer part.",
+      "evidence": "A-4-8",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        -240,
+        0,
+        160
+      ],
+      "volume_mm3": 225425.84109637333
+    },
+    {
+      "id": "HousingGasket",
+      "label": "Housing perimeter gasket study",
+      "group": "housing",
+      "description": "Illustrative sealing boundary. Manufacturer pad gaskets are represented separately.",
+      "evidence": "A-4-11",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        -220,
+        0,
+        145
+      ],
+      "volume_mm3": 6523.9999999999945
+    },
+    {
+      "id": "CrankGear",
+      "label": "Crankshaft gear",
+      "group": "core",
+      "description": "Main torque input; A-4-8 item 1. Tooth count and profile are illustrative.",
+      "evidence": "A-4-8",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": -1,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        0,
+        110
+      ],
+      "volume_mm3": 22027.81928977726
+    },
+    {
+      "id": "CrankShaft",
+      "label": "Crankshaft rear stub",
+      "group": "core",
+      "description": "Shortened crankshaft; complete crank throws omitted.",
+      "evidence": "A-4-8",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": -1,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        0,
+        -75
+      ],
+      "volume_mm3": 3981.0262106289865
+    },
+    {
+      "id": "CamGear",
+      "label": "Camshaft gear",
+      "group": "core",
+      "description": "Driven directly by crankshaft gear; half-speed four-stroke cam relationship. Tooth count and profile are illustrative.",
+      "evidence": "A-4-8",
+      "pivot_mm": [
+        0,
+        -90,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0.5,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        0,
+        110
+      ],
+      "volume_mm3": 89886.22589514419
+    },
+    {
+      "id": "CamCluster",
+      "label": "Camshaft fuel-pump cluster gear",
+      "group": "fuel",
+      "description": "Bolted cluster drives fuel pump; chosen tooth numbers do not establish a manufacturer fuel-pump ratio. Tooth count and profile are illustrative.",
+      "evidence": "A-4-8",
+      "pivot_mm": [
+        0,
+        -90,
+        12
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0.5,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        0,
+        110
+      ],
+      "volume_mm3": 5843.778370519502
+    },
+    {
+      "id": "CamShaft",
+      "label": "Camshaft stub",
+      "group": "core",
+      "description": "Camshaft stub and splined drive interface; valve internals are in the existing cylinder model.",
+      "evidence": "A-4-8",
+      "pivot_mm": [
+        0,
+        -90,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0.5,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        -30,
+        -70
+      ],
+      "volume_mm3": 3981.0262106289865
+    },
+    {
+      "id": "IdlerGear",
+      "label": "Idler gear assembly",
+      "group": "core",
+      "description": "Crankshaft to both magneto gears; idler speed chosen for the schematic tooth layout. Tooth count and profile are illustrative.",
+      "evidence": "A-4-8",
+      "pivot_mm": [
+        0,
+        60,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 1,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        0,
+        110
+      ],
+      "volume_mm3": 22027.819289777253
+    },
+    {
+      "id": "IdlerPin",
+      "label": "Idler support pin",
+      "group": "core",
+      "description": "Fixed support pin, A-4-8 item 13.",
+      "evidence": "A-4-8",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        0,
+        100
+      ],
+      "volume_mm3": 1881.93966320643
+    },
+    {
+      "id": "LeftMagGear",
+      "label": "Left magneto drive gear",
+      "group": "magneto-left",
+      "description": "H verified drive 1.5:1, clockwise facing engine drive pad. Internal splines also supply optional upper-rear accessories. Tooth count and profile are illustrative.",
+      "evidence": "A-3-2; C-3-2",
+      "pivot_mm": [
+        -40,
+        90,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": -1.5,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        0,
+        110
+      ],
+      "volume_mm3": 9461.439863331387
+    },
+    {
+      "id": "LeftMagShaft",
+      "label": "Left magneto splined shaft",
+      "group": "magneto-left",
+      "description": "Representative internal spline coupling; spline dimensions illustrative.",
+      "evidence": "A-3-2; A-4-11",
+      "pivot_mm": [
+        -40,
+        90,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": -1.5,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        0,
+        110
+      ],
+      "volume_mm3": 3184.8209685031898
+    },
+    {
+      "id": "LeftMagAdapter",
+      "label": "Left magneto/accessory adapter",
+      "group": "magneto-left",
+      "description": "Bored mounting pad with representative stud holes.",
+      "evidence": "A-4-11 items 12-15",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        0,
+        0,
+        100
+      ],
+      "volume_mm3": 10838.442872687105
+    },
+    {
+      "id": "LeftMagSeal",
+      "label": "Left adapter oil seal",
+      "group": "magneto-left",
+      "description": "Solid annular seal with a preserved shaft opening.",
+      "evidence": "A-4-11 item 15",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        0,
+        0,
+        115
+      ],
+      "volume_mm3": 891.9609862072141
+    },
+    {
+      "id": "LeftMagneto",
+      "label": "Left magneto envelope",
+      "group": "magneto-left",
+      "description": "External envelope only: engine-driven ignition energy for spark plugs. Two separate magnetos; no inferred distributor internals.",
+      "evidence": "C-3-2; FAA 4-1",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        0,
+        0,
+        150
+      ],
+      "volume_mm3": 39188.22676087907
+    },
+    {
+      "id": "RightMagGear",
+      "label": "Right magneto drive gear",
+      "group": "magneto-right",
+      "description": "H verified drive 1.5:1, clockwise facing engine drive pad. Internal splines also supply optional upper-rear accessories. Tooth count and profile are illustrative.",
+      "evidence": "A-3-2; C-3-2",
+      "pivot_mm": [
+        40,
+        90,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": -1.5,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        0,
+        110
+      ],
+      "volume_mm3": 9461.439863331381
+    },
+    {
+      "id": "RightMagShaft",
+      "label": "Right magneto splined shaft",
+      "group": "magneto-right",
+      "description": "Representative internal spline coupling; spline dimensions illustrative.",
+      "evidence": "A-3-2; A-4-11",
+      "pivot_mm": [
+        40,
+        90,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": -1.5,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        0,
+        110
+      ],
+      "volume_mm3": 3184.8209685031898
+    },
+    {
+      "id": "RightMagAdapter",
+      "label": "Right magneto/accessory adapter",
+      "group": "magneto-right",
+      "description": "Bored mounting pad with representative stud holes.",
+      "evidence": "A-4-11 items 12-15",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        0,
+        0,
+        100
+      ],
+      "volume_mm3": 10838.442872687105
+    },
+    {
+      "id": "RightMagSeal",
+      "label": "Right adapter oil seal",
+      "group": "magneto-right",
+      "description": "Solid annular seal with a preserved shaft opening.",
+      "evidence": "A-4-11 item 15",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        0,
+        0,
+        115
+      ],
+      "volume_mm3": 891.9609862072141
+    },
+    {
+      "id": "RightMagneto",
+      "label": "Right magneto envelope",
+      "group": "magneto-right",
+      "description": "External envelope only: engine-driven ignition energy for spark plugs. Two separate magnetos; no inferred distributor internals.",
+      "evidence": "C-3-2; FAA 4-1",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        0,
+        0,
+        150
+      ],
+      "volume_mm3": 39188.22676087907
+    },
+    {
+      "id": "FuelGear",
+      "label": "Fuel pump drive gear",
+      "group": "fuel",
+      "description": "Documented cluster-to-pump mesh; numerical fuel ratio here is illustrative, not specified in the reviewed H table. Tooth count and profile are illustrative.",
+      "evidence": "A-4-8",
+      "pivot_mm": [
+        42,
+        -90,
+        12
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": -0.3076923076923077,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        0,
+        110
+      ],
+      "volume_mm3": 16399.5396503827
+    },
+    {
+      "id": "FuelCoupling",
+      "label": "Fuel pump detachable coupling",
+      "group": "fuel",
+      "description": "H later pump installation uses a coupling and changed drive gear; old-style pump differs.",
+      "evidence": "C-3-6; C-3-3 figure item 76",
+      "pivot_mm": [
+        42,
+        -90,
+        12
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": -0.3076923076923077,
+      "stage": 2,
+      "offset_mm": [
+        30,
+        0,
+        110
+      ],
+      "volume_mm3": 2513.274122871834
+    },
+    {
+      "id": "FuelPump",
+      "label": "Fuel pump envelope",
+      "group": "fuel",
+      "description": "Engine-driven pump supplies the continuous-flow injection system. Fuel internals omitted.",
+      "evidence": "C-3-2; C-3-6",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        50,
+        0,
+        130
+      ],
+      "volume_mm3": 36945.12960621597
+    },
+    {
+      "id": "OilTachShaft",
+      "label": "Oil pump / tach splined shaftgear",
+      "group": "oil-tach",
+      "description": "Splined into cam gear; transmits torque to oil pump and tach drive.",
+      "evidence": "A-3-2; A-4-8 item 8",
+      "pivot_mm": [
+        0,
+        -90,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0.5,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        -45,
+        110
+      ],
+      "volume_mm3": 5066.760631709619
+    },
+    {
+      "id": "OilDriver",
+      "label": "Oil pump driver",
+      "group": "oil-tach",
+      "description": "Representative pump driver on cam-connected shaft. Tooth count and profile are illustrative.",
+      "evidence": "A-4-16 item 22",
+      "pivot_mm": [
+        0,
+        -90,
+        55
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0.5,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        -45,
+        110
+      ],
+      "volume_mm3": 3657.2216290412657
+    },
+    {
+      "id": "OilDriven",
+      "label": "Oil pump driven gear",
+      "group": "oil-tach",
+      "description": "Opposite-running external gear pair; equal tooth sizes are illustrative. Tooth count and profile are illustrative.",
+      "evidence": "A-4-16 item 8",
+      "pivot_mm": [
+        26,
+        -90,
+        55
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": -0.5,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        -45,
+        110
+      ],
+      "volume_mm3": 3657.221629041268
+    },
+    {
+      "id": "OilHousing",
+      "label": "Oil pump housing",
+      "group": "oil-tach",
+      "description": "Two actual gear cavities; section cuts must preserve the empty pockets. Full bypass, relief and scavenge internals omitted.",
+      "evidence": "A-4-16",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        0,
+        -65,
+        130
+      ],
+      "volume_mm3": 20588.625392567435
+    },
+    {
+      "id": "TachOutput",
+      "label": "Tachometer output shaft",
+      "group": "oil-tach",
+      "description": "H verified 0.5:1 clockwise facing drive pad. Relocated output represents omitted bevel transfer; not a coaxial connection to the cam shaft.",
+      "evidence": "C-3-2; A-4-16 items 24,47",
+      "pivot_mm": [
+        0,
+        -90,
+        78
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": -0.5,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        -45,
+        110
+      ],
+      "volume_mm3": 1206.3715789784806
+    },
+    {
+      "id": "StarterShaftGear",
+      "label": "Starter shaftgear / drum",
+      "group": "starter",
+      "description": "Meshes with crank gear; engine back-drives this shaft after clutch disengages. Tooth count and profile are illustrative.",
+      "evidence": "A-4-8",
+      "pivot_mm": [
+        60,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 1,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        0,
+        110
+      ],
+      "volume_mm3": 22027.819289777257
+    },
+    {
+      "id": "StarterDrum",
+      "label": "Starter clutch drum",
+      "group": "starter",
+      "description": "Knurled drum simplified; spring grips during cranking.",
+      "evidence": "A-3-2; A-4-15",
+      "pivot_mm": [
+        60,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 1,
+      "stage": 2,
+      "offset_mm": [
+        65,
+        0,
+        110
+      ],
+      "volume_mm3": 6911.503837897544
+    },
+    {
+      "id": "WormWheel",
+      "label": "Starter worm wheel",
+      "group": "starter",
+      "description": "Worm wheel and clutch spring transmit starting torque. Wheel tooth count is illustrative. Tooth count and profile are illustrative.",
+      "evidence": "A-4-15 item 31",
+      "pivot_mm": [
+        60,
+        0,
+        14
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 2,
+      "offset_mm": [
+        65,
+        0,
+        110
+      ],
+      "volume_mm3": 12706.277748401651
+    },
+    {
+      "id": "ClutchSpring",
+      "label": "Starter wrap-spring clutch",
+      "group": "starter",
+      "description": "Tightens to grip drum during starting, relaxes after start. Coil dimensions and visual tightening are illustrative.",
+      "evidence": "A-3-2; A-4-15 item 30",
+      "pivot_mm": [
+        60,
+        0,
+        14
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 2,
+      "offset_mm": [
+        65,
+        0,
+        110
+      ],
+      "volume_mm3": 927.7740920362045
+    },
+    {
+      "id": "StarterWorm",
+      "label": "Starter worm drive shaft",
+      "group": "starter",
+      "description": "Right-angle worm arrangement schematic. H starter drive 32:1 CCW facing pad; exact worm geometry not reconstructed.",
+      "evidence": "C-3-2; A-4-15",
+      "pivot_mm": [
+        40,
+        -30,
+        22
+      ],
+      "axis": [
+        1,
+        0,
+        0
+      ],
+      "rate": 0,
+      "stage": 2,
+      "offset_mm": [
+        65,
+        -30,
+        100
+      ],
+      "volume_mm3": 5234.2907239242695
+    },
+    {
+      "id": "StarterMotor",
+      "label": "Starter motor envelope",
+      "group": "starter",
+      "description": "Electrical energy enters here during starting; motor internals omitted.",
+      "evidence": "A-4-15; FAA 5-6",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        80,
+        -40,
+        110
+      ],
+      "volume_mm3": 21735.894172024386
+    },
+    {
+      "id": "AlternatorOutput",
+      "label": "Alternator output shaft",
+      "group": "alternator",
+      "description": "H 3:1 CW. Gear-driven assembly with hub and clutch shown in A-4-13; transfer geometry to this relocated endpoint unresolved. Do not substitute the general generator pulley sentence for H alternator geometry.",
+      "evidence": "C-3-3; A-4-13",
+      "pivot_mm": [
+        110,
+        65,
+        40
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": -3,
+      "stage": 2,
+      "offset_mm": [
+        55.0,
+        0,
+        100
+      ],
+      "volume_mm3": 1306.9025438933543
+    },
+    {
+      "id": "AlternatorPad",
+      "label": "Alternator mounting pad",
+      "group": "alternator",
+      "description": "Representative open flange; actual position, bolt pattern and connection dimensions unknown.",
+      "evidence": "C-3-3; A-4-13",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        55.0,
+        0,
+        80
+      ],
+      "volume_mm3": 10178.760197630929
+    },
+    {
+      "id": "AlternatorBody",
+      "label": "Alternator envelope",
+      "group": "alternator",
+      "description": "H 3:1 CW. Gear-driven assembly with hub and clutch shown in A-4-13; transfer geometry to this relocated endpoint unresolved. Do not substitute the general generator pulley sentence for H alternator geometry. External envelope only.",
+      "evidence": "C-3-3; A-4-13",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        55.0,
+        0,
+        130
+      ],
+      "volume_mm3": 29405.307237600457
+    },
+    {
+      "id": "VacuumOutput",
+      "label": "Optional vacuum pump output shaft",
+      "group": "vacuum",
+      "description": "H 1.14:1 CCW; deice and autopilot drive listings also 1.14:1. Installation dependent. Optional accessory transfer ratio is documented, internal adapter gearing is not reconstructed.",
+      "evidence": "C-3-3; A-3-2",
+      "pivot_mm": [
+        -78,
+        10,
+        40
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 1.14,
+      "stage": 2,
+      "offset_mm": [
+        -39.0,
+        0,
+        100
+      ],
+      "volume_mm3": 1306.9025438933543
+    },
+    {
+      "id": "VacuumPad",
+      "label": "Optional vacuum pump mounting pad",
+      "group": "vacuum",
+      "description": "Representative open flange; actual position, bolt pattern and connection dimensions unknown.",
+      "evidence": "C-3-3; A-3-2",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        -39.0,
+        0,
+        80
+      ],
+      "volume_mm3": 6861.238355440106
+    },
+    {
+      "id": "VacuumBody",
+      "label": "Optional vacuum pump envelope",
+      "group": "vacuum",
+      "description": "H 1.14:1 CCW; deice and autopilot drive listings also 1.14:1. Installation dependent. Optional accessory transfer ratio is documented, internal adapter gearing is not reconstructed. External envelope only.",
+      "evidence": "C-3-3; A-3-2",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        -39.0,
+        0,
+        130
+      ],
+      "volume_mm3": 16587.60921095411
+    },
+    {
+      "id": "GovernorOutput",
+      "label": "Propeller governor (front remote output) output shaft",
+      "group": "governor",
+      "description": "H 0.809:1 CW. Camshaft front bevel pair drives governor; relocated here for teaching. Controls oil to propeller pitch mechanism.",
+      "evidence": "C-3-3; A-3-2",
+      "pivot_mm": [
+        -75,
+        -115,
+        40
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": -0.809,
+      "stage": 2,
+      "offset_mm": [
+        -37.5,
+        0,
+        100
+      ],
+      "volume_mm3": 1306.9025438933543
+    },
+    {
+      "id": "GovernorPad",
+      "label": "Propeller governor (front remote output) mounting pad",
+      "group": "governor",
+      "description": "Representative open flange; actual position, bolt pattern and connection dimensions unknown.",
+      "evidence": "C-3-3; A-3-2",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        -37.5,
+        0,
+        80
+      ],
+      "volume_mm3": 7634.070148223196
+    },
+    {
+      "id": "GovernorBody",
+      "label": "Propeller governor (front remote output) envelope",
+      "group": "governor",
+      "description": "H 0.809:1 CW. Camshaft front bevel pair drives governor; relocated here for teaching. Controls oil to propeller pitch mechanism. External envelope only.",
+      "evidence": "C-3-3; A-3-2",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        -37.5,
+        0,
+        130
+      ],
+      "volume_mm3": 19509.290378792608
+    }
+  ],
+  "reference": "GTSIO-520 reviewed manual: A-3-2, Figures A-4-8, A-4-11, A-4-13, A-4-15, A-4-16; H difference data C-3-1 to C-3-3 and C-3-6.",
+  "scope": "GTSIO-520-H relationship study. All dimensions, tooth profiles, pad locations and explosion travel are illustrative. Remote outputs are relocated for visibility. Not a maintenance assembly sequence.",
+  "motions": [
+    {
+      "id": "Operating mechanism",
+      "label": "Operating mechanism",
+      "loop": false,
+      "stages": [
+        {
+          "label": "Start of sample",
+          "progress": 0
+        },
+        {
+          "label": "One crank revolution",
+          "progress": 50
+        },
+        {
+          "label": "Two crank revolutions",
+          "progress": 100
+        }
+      ]
+    },
+    {
+      "id": "Exploded overview",
+      "label": "Exploded overview",
+      "loop": false,
+      "stages": [
+        {
+          "label": "Assembled",
+          "progress": 0,
+          "note": "Inspect mounting interfaces."
+        },
+        {
+          "label": "Covers, seals and envelopes",
+          "progress": 50,
+          "note": "Expose the actual open chambers."
+        },
+        {
+          "label": "Gears, shafts and couplings",
+          "progress": 100,
+          "note": "Trace power paths; explosion order is pedagogical."
+        }
+      ]
+    },
+    {
+      "id": "Reassembly overview",
+      "label": "Reassembly overview",
+      "loop": false,
+      "stages": [
+        {
+          "label": "Gears, shafts and couplings",
+          "progress": 0,
+          "note": "Trace power paths; explosion order is pedagogical."
+        },
+        {
+          "label": "Covers, seals and envelopes",
+          "progress": 50,
+          "note": "Expose the actual open chambers."
+        },
+        {
+          "label": "Assembled",
+          "progress": 100,
+          "note": "Inspect mounting interfaces."
+        }
+      ]
+    },
+    {
+      "id": "Focus: magnetos",
+      "label": "Focus: magnetos",
+      "loop": false,
+      "stages": [
+        {
+          "label": "Start of sample",
+          "progress": 0
+        },
+        {
+          "label": "One crank revolution",
+          "progress": 50
+        },
+        {
+          "label": "Two crank revolutions",
+          "progress": 100
+        }
+      ]
+    },
+    {
+      "id": "Focus: fuel",
+      "label": "Focus: fuel",
+      "loop": false,
+      "stages": [
+        {
+          "label": "Start of sample",
+          "progress": 0
+        },
+        {
+          "label": "One crank revolution",
+          "progress": 50
+        },
+        {
+          "label": "Two crank revolutions",
+          "progress": 100
+        }
+      ]
+    },
+    {
+      "id": "Focus: oil-tach",
+      "label": "Focus: oil-tach",
+      "loop": false,
+      "stages": [
+        {
+          "label": "Start of sample",
+          "progress": 0
+        },
+        {
+          "label": "One crank revolution",
+          "progress": 50
+        },
+        {
+          "label": "Two crank revolutions",
+          "progress": 100
+        }
+      ]
+    },
+    {
+      "id": "Focus: alternator",
+      "label": "Focus: alternator",
+      "loop": false,
+      "stages": [
+        {
+          "label": "Start of sample",
+          "progress": 0
+        },
+        {
+          "label": "One crank revolution",
+          "progress": 50
+        },
+        {
+          "label": "Two crank revolutions",
+          "progress": 100
+        }
+      ]
+    },
+    {
+      "id": "Focus: vacuum",
+      "label": "Focus: vacuum",
+      "loop": false,
+      "stages": [
+        {
+          "label": "Start of sample",
+          "progress": 0
+        },
+        {
+          "label": "One crank revolution",
+          "progress": 50
+        },
+        {
+          "label": "Two crank revolutions",
+          "progress": 100
+        }
+      ]
+    },
+    {
+      "id": "Focus: governor",
+      "label": "Focus: governor",
+      "loop": false,
+      "stages": [
+        {
+          "label": "Start of sample",
+          "progress": 0
+        },
+        {
+          "label": "One crank revolution",
+          "progress": 50
+        },
+        {
+          "label": "Two crank revolutions",
+          "progress": 100
+        }
+      ]
+    },
+    {
+      "id": "Starter engagement and start",
+      "label": "Starter engagement and start",
+      "loop": false,
+      "stages": [
+        {
+          "label": "Motor cranking / spring grips",
+          "progress": 10,
+          "note": "Battery energy enters motor; clutch contraction is illustrative."
+        },
+        {
+          "label": "Engine takes over / spring releases",
+          "progress": 65,
+          "note": "Worm and wheel stop; engine continues to drive shaftgear. No Bendix pinion translation."
+        },
+        {
+          "label": "Running",
+          "progress": 100,
+          "note": "Starting timings are illustrative; not an aircraft start checklist."
+        }
+      ]
+    }
+  ],
+  "powerPaths": [
+    {
+      "id": "magnetos",
+      "label": "Magnetos: ignition",
+      "parts": [
+        "CrankGear",
+        "CrankShaft",
+        "IdlerGear",
+        "IdlerPin",
+        "LeftMagGear",
+        "LeftMagShaft",
+        "LeftMagAdapter",
+        "LeftMagSeal",
+        "LeftMagneto",
+        "RightMagGear",
+        "RightMagShaft",
+        "RightMagAdapter",
+        "RightMagSeal",
+        "RightMagneto"
+      ],
+      "ratio": 1.5,
+      "direction": "CW",
+      "outputs": [
+        "LeftMagShaft",
+        "RightMagShaft"
+      ],
+      "note": "Crank \u2192 idler \u2192 left/right drive gears \u2192 splined shafts \u2192 magnetos. Supplies timed ignition; two separate magnetos, twelve plugs. C-3-2; A-3-2.",
+      "edges": [
+        [
+          "CrankGear",
+          "IdlerGear"
+        ],
+        [
+          "IdlerGear",
+          "LeftMagGear"
+        ],
+        [
+          "IdlerGear",
+          "RightMagGear"
+        ],
+        [
+          "LeftMagGear",
+          "LeftMagShaft"
+        ],
+        [
+          "RightMagGear",
+          "RightMagShaft"
+        ],
+        [
+          "LeftMagShaft",
+          "LeftMagneto"
+        ],
+        [
+          "RightMagShaft",
+          "RightMagneto"
+        ]
+      ]
+    },
+    {
+      "id": "fuel",
+      "label": "Fuel: continuous-flow injection",
+      "parts": [
+        "CrankGear",
+        "CamGear",
+        "CamShaft",
+        "CamCluster",
+        "FuelGear",
+        "FuelCoupling",
+        "FuelPump"
+      ],
+      "ratio": null,
+      "direction": "Unverified",
+      "outputs": [
+        "FuelCoupling"
+      ],
+      "note": "Crank \u2192 cam cluster \u2192 fuel drive gear \u2192 coupling \u2192 fuel pump. H replacement pump coupling differs from old style. Fuel-drive numerical ratio is unverified; animation uses illustrative tooth sizes. C-3-6.",
+      "edges": [
+        [
+          "CrankGear",
+          "CamGear"
+        ],
+        [
+          "CamGear",
+          "CamCluster"
+        ],
+        [
+          "CamCluster",
+          "FuelGear"
+        ],
+        [
+          "FuelGear",
+          "FuelCoupling"
+        ],
+        [
+          "FuelCoupling",
+          "FuelPump"
+        ]
+      ]
+    },
+    {
+      "id": "oil-tach",
+      "label": "Oil and tachometer",
+      "parts": [
+        "CrankGear",
+        "CamGear",
+        "CamShaft",
+        "OilTachShaft",
+        "OilDriver",
+        "OilDriven",
+        "OilHousing",
+        "TachOutput"
+      ],
+      "ratio": 0.5,
+      "direction": "CW (tach output)",
+      "outputs": [
+        "TachOutput"
+      ],
+      "note": "Crank \u2192 cam \u2192 splined oil/tach shaftgear \u2192 pump and bevel tach output. 0.5:1 is verified for tach, not a separately published oil-pump specification. Lubrication and speed indication. A-3-2; A-4-16; C-3-2.",
+      "edges": [
+        [
+          "CrankGear",
+          "CamGear"
+        ],
+        [
+          "CamGear",
+          "OilTachShaft"
+        ],
+        [
+          "OilTachShaft",
+          "OilDriver"
+        ],
+        [
+          "OilDriver",
+          "OilDriven"
+        ],
+        [
+          "OilTachShaft",
+          "TachOutput"
+        ]
+      ]
+    },
+    {
+      "id": "starter",
+      "label": "Starter: power into engine",
+      "parts": [
+        "CrankGear",
+        "CrankShaft",
+        "StarterShaftGear",
+        "StarterDrum",
+        "WormWheel",
+        "ClutchSpring",
+        "StarterWorm",
+        "StarterMotor"
+      ],
+      "ratio": 32,
+      "direction": "CCW (starter drive)",
+      "outputs": [
+        "StarterWorm"
+      ],
+      "note": "Motor \u2192 worm \u2192 worm wheel \u2192 wrap spring grips drum \u2192 shaftgear \u2192 crank. After starting, spring releases; shaftgear stays engine-driven. 32:1 is starter drive/crank speed during cranking, not normal operation. A-3-2; C-3-2.",
+      "edges": [
+        [
+          "StarterMotor",
+          "StarterWorm"
+        ],
+        [
+          "StarterWorm",
+          "WormWheel"
+        ],
+        [
+          "WormWheel",
+          "ClutchSpring"
+        ],
+        [
+          "ClutchSpring",
+          "StarterDrum"
+        ],
+        [
+          "StarterDrum",
+          "StarterShaftGear"
+        ],
+        [
+          "StarterShaftGear",
+          "CrankGear"
+        ]
+      ]
+    },
+    {
+      "id": "alternator",
+      "label": "Alternator: electrical supply",
+      "parts": [
+        "CrankGear",
+        "AlternatorOutput",
+        "AlternatorPad",
+        "AlternatorBody"
+      ],
+      "ratio": 3,
+      "direction": "CW",
+      "outputs": [
+        "AlternatorOutput"
+      ],
+      "note": "Gear-driven alternator endpoint: 3:1 verified. Dashed route marks unresolved transfer geometry; A-3-2 generator-pulley wording is not an H alternator reconstruction. A-4-13; C-3-3.",
+      "edges": [
+        [
+          "CrankGear",
+          "AlternatorOutput"
+        ],
+        [
+          "AlternatorOutput",
+          "AlternatorBody"
+        ]
+      ]
+    },
+    {
+      "id": "vacuum",
+      "label": "Optional vacuum drive",
+      "parts": [
+        "CrankGear",
+        "IdlerGear",
+        "LeftMagGear",
+        "LeftMagShaft",
+        "LeftMagAdapter",
+        "VacuumOutput",
+        "VacuumPad",
+        "VacuumBody"
+      ],
+      "ratio": 1.14,
+      "direction": "CCW",
+      "outputs": [
+        "VacuumOutput"
+      ],
+      "note": "Optional upper-rear accessory splines; adapter transfer shown schematically, not reconstructed. H vacuum, deice and autopilot drive listings are 1.14:1. Aircraft equipment depends on installation. A-3-2; C-3-3.",
+      "edges": [
+        [
+          "CrankGear",
+          "IdlerGear"
+        ],
+        [
+          "IdlerGear",
+          "LeftMagGear"
+        ],
+        [
+          "LeftMagGear",
+          "LeftMagShaft"
+        ],
+        [
+          "LeftMagShaft",
+          "VacuumOutput"
+        ],
+        [
+          "VacuumOutput",
+          "VacuumBody"
+        ]
+      ]
+    },
+    {
+      "id": "governor",
+      "label": "Governor: propeller control",
+      "parts": [
+        "CrankGear",
+        "CamGear",
+        "CamShaft",
+        "GovernorOutput",
+        "GovernorPad",
+        "GovernorBody"
+      ],
+      "ratio": 0.809,
+      "direction": "CW",
+      "outputs": [
+        "GovernorOutput"
+      ],
+      "note": "Crank \u2192 camshaft \u2192 front bevel pair \u2192 governor. Remote front drive relocated; bevel geometry omitted. 0.809:1 output controls propeller pitch hydraulically. A-3-2; C-3-3.",
+      "edges": [
+        [
+          "CrankGear",
+          "CamGear"
+        ],
+        [
+          "CamGear",
+          "CamShaft"
+        ],
+        [
+          "CamShaft",
+          "GovernorOutput"
+        ],
+        [
+          "GovernorOutput",
+          "GovernorBody"
+        ]
+      ]
+    }
+  ],
+  "viewpoint": "CW/CCW facing engine drive pad. CAD +Z points toward the rear observer; outputs are relocated. Arrows indicate output direction, not an inferred intermediate mesh.",
+  "rotationOutputs": [
+    {
+      "id": "LeftMagShaft",
+      "direction": "CW",
+      "axis": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "RightMagShaft",
+      "direction": "CW",
+      "axis": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "TachOutput",
+      "direction": "CW (tach output)",
+      "axis": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "StarterWorm",
+      "direction": "CCW (starter drive)",
+      "axis": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "AlternatorOutput",
+      "direction": "CW",
+      "axis": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "VacuumOutput",
+      "direction": "CCW",
+      "axis": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "GovernorOutput",
+      "direction": "CW",
+      "axis": [
+        0,
+        1,
+        0
+      ]
+    }
+  ]
+}

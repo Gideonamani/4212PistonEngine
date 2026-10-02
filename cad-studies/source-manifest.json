@@ -1,4 +1,24 @@
 {
+  "cad-studies/accessory-drives/accessory-drives.blend": {
+    "bytes": 11723645,
+    "sha256": "7557d7d6842f8db1df077adafec2e8e60863359b635cdf382f9dfe6b0556aeb4"
+  },
+  "cad-studies/accessory-drives/accessory-drives.FCStd": {
+    "bytes": 415444,
+    "sha256": "20e996b3f32d072304f82d5c71d0a8785e14a0decc1aa6bce5e23aaec4976226"
+  },
+  "cad-studies/accessory-drives/accessory-drives.step": {
+    "bytes": 3821999,
+    "sha256": "8e34053ed5fc90a80a9195f8546d905cea4f52ac86f9c7c09133ce2f3a2aaed9"
+  },
+  "cad-studies/accessory-drives/blender-verification.json": {
+    "bytes": 774,
+    "sha256": "efdd86884b75150e0ca66ea4dec305d0abf5bcc4c12ba643534bef4acf405219"
+  },
+  "cad-studies/accessory-drives/cad-verification.json": {
+    "bytes": 468,
+    "sha256": "768d88c0bb89495de5e25ad9bc35a3831ba6d8b3f37056a926b9d24fafcf3629"
+  },
   "cad-studies/cylinder/Cylinder_Saved_Motions.blend": {
     "bytes": 41125577,
     "sha256": "3e5b60c21fc911ca9ace8c980cf1ff208809a53f6e77186130fbb5dfd984cf13"

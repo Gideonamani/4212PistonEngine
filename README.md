@@ -4,6 +4,8 @@ Status (1 October 2026): Explore and Lesson Steps share the reviewed GTSIO-520-H
 
 Start with [the project roadmap](docs/ROADMAP.md) for milestones, acceptance checks and working priorities. This document supplies technical architecture; the roadmap controls milestone names and status.
 
+Lesson 8 **Accessories & Drives** now has a separate GTSIO-520-H solid teaching assembly, native FreeCAD/Blender sources, ten exported motions, seven selectable power paths and eight knowledge checks. See [the evidence and rebuild record](docs/accessories-and-drives.md). Endpoint ratios are source-backed; dimensions, layouts, tooth profiles and unresolved transfer geometry are explicitly illustrative. Instructor moderation and physical-phone review remain pending.
+
 The current scalable implementation is described in [the engine-platform architecture](docs/engine-platform-architecture.md). It introduces one versioned engine contract consumed by both Blender export/video work and the interactive web viewer.
 
 The objective is a reusable teaching platform in which students can inspect components, operate mechanisms, follow systems and test their understanding. Start with one complete cylinder workflow and extend it through linked engine subassemblies.

@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "parts": 47,
+  "authored_actions": [
+    "Operating mechanism",
+    "Exploded overview",
+    "Reassembly overview",
+    "Focus: magnetos",
+    "Focus: fuel",
+    "Focus: oil-tach",
+    "Focus: alternator",
+    "Focus: vacuum",
+    "Focus: governor",
+    "Starter engagement and start"
+  ],
+  "asset_sha256": "687729f70a7d1c47c582584a35bf65ed55d792ce3c50e44adfaac2cff0b56c37",
+  "scope": "GTSIO-520-H relationship study. All dimensions, tooth profiles, pad locations and explosion travel are illustrative. Remote outputs are relocated for visibility. Not a maintenance assembly sequence.",
+  "native_reopened": true,
+  "all_motion_slots_match_components": true,
+  "exploded_cover_moves_aside": true,
+  "blender_version": "5.0.1"
+}

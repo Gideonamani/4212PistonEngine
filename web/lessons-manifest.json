@@ -5,6 +5,7 @@
     "./history-lessons.json",
     "./fundamentals-lessons.json",
     "./m2-cylinder-lessons.json",
-    "./internal-mechanism-lessons.json"
+    "./internal-mechanism-lessons.json",
+    "./accessories-lessons.json"
   ]
 }

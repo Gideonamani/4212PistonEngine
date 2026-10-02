@@ -8,17 +8,15 @@ renders/
 *.FCStd1
 node_modules/
 dist/
-# Large production teaching models live in the synced Google Drive web folder.
-# The compact, CC0 Wright reference is also checked in so lesson media remains
-# available on GitHub Pages without depending on Drive permissions.
+# Model exports live in Google Drive. Restore ignored copies for local/CI tests.
 *.glb
 *.glb.gz
-!web/wright-1903-engine.glb
-# Versioned compact cylinder transport is served directly by GitHub Pages.
-!web/cylinder-reviewed-20261001.glb.gz
-
-!web/hydraulic-tappet.glb.gz
-!web/oil-pump.glb.gz
+# Native CAD sources are stored in Google Drive; retain local editable copies.
+*.FCStd
+*.blend
+*.step
+*.stp
+web/model-previews/accessory-drives.png
 # Generated tessellation and build logs; regenerate from native FreeCAD files.
 cad-studies/*/geometry.json
 *_build.log

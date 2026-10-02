@@ -19,6 +19,7 @@ export type ModelComponent = {
   group: string;
   source?: string;
   evidence?: string;
+  groups?: string[];
 };
 
 export type ModelGroup = {
@@ -47,9 +48,16 @@ export type ViewerSnapshot = {
   savedMotionId?: string;
   motionProgress?: number;
   motionStage?: string;
+  powerPathId?: string;
+  powerPathNote?: string;
 };
 
 export type ViewerFeatures = {
+  powerPaths?: {
+    items: { id: string; label: string }[];
+    select: (id: string) => void;
+    isolate: () => void;
+  };
   components?: {
     items: ModelComponent[];
     groups: ModelGroup[];

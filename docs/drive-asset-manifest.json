@@ -1,0 +1,96 @@
+{
+  "date": "2026-10-02",
+  "native_folder_url": "https://drive.google.com/drive/folders/1V-6yZX2FZ-GQDS2yF5hDJGbXjloEVrbJ",
+  "native_archive": {
+    "path": "build/drive-migration/native-cad-sources-20261002.zip",
+    "drive_id": "11RYAcw0GdmCXQFmef_nLFmPqhSlzGOkU",
+    "bytes": 61690558,
+    "sha256": "7a1ea843b742874dc0dc8cb91a777c680e24a3aceadec5702f036d22c7072e1e",
+    "files": [
+      {
+        "path": "cad-studies/accessory-drives/accessory-drives.FCStd",
+        "bytes": 415444,
+        "sha256": "20e996b3f32d072304f82d5c71d0a8785e14a0decc1aa6bce5e23aaec4976226"
+      },
+      {
+        "path": "cad-studies/accessory-drives/accessory-drives.blend",
+        "bytes": 11723645,
+        "sha256": "7557d7d6842f8db1df077adafec2e8e60863359b635cdf382f9dfe6b0556aeb4"
+      },
+      {
+        "path": "cad-studies/accessory-drives/accessory-drives.step",
+        "bytes": 3821999,
+        "sha256": "8e34053ed5fc90a80a9195f8546d905cea4f52ac86f9c7c09133ce2f3a2aaed9"
+      },
+      {
+        "path": "cad-studies/cylinder/Cylinder_Saved_Motions.blend",
+        "bytes": 41125577,
+        "sha256": "3e5b60c21fc911ca9ace8c980cf1ff208809a53f6e77186130fbb5dfd984cf13"
+      },
+      {
+        "path": "cad-studies/hydraulic-tappet/hydraulic-tappet.FCStd",
+        "bytes": 47021,
+        "sha256": "30ba0353dc7f1cab8eb8cf73430513bae1b6746d88a7f82d92ca86587aacc0e0"
+      },
+      {
+        "path": "cad-studies/hydraulic-tappet/hydraulic-tappet.blend",
+        "bytes": 4823196,
+        "sha256": "bc25f268e7cfac8b309e4cbf10b8c57722d22b47da8f678e5e3a399399d76fa2"
+      },
+      {
+        "path": "cad-studies/hydraulic-tappet/hydraulic-tappet.step",
+        "bytes": 152361,
+        "sha256": "0521aa8a4470f0c0b86d2f5d53a4a5031c804f2b396f160456d455b522753cda"
+      },
+      {
+        "path": "cad-studies/oil-pump/oil-pump.FCStd",
+        "bytes": 145067,
+        "sha256": "6c6d7fcf7a6baee91f63a129525d0e287c0db79017d918e2375ad107ecc95895"
+      },
+      {
+        "path": "cad-studies/oil-pump/oil-pump.blend",
+        "bytes": 3311316,
+        "sha256": "a5126bdc5df278f9e768947ff55c9637dd88e9c18e60266577cadecb588a46f1"
+      },
+      {
+        "path": "cad-studies/oil-pump/oil-pump.step",
+        "bytes": 556619,
+        "sha256": "2f7620718144968fd3c7a5d395479a661a3df6473b01c0ed93c0c95689967e81"
+      }
+    ],
+    "url": "https://drive.google.com/file/d/11RYAcw0GdmCXQFmef_nLFmPqhSlzGOkU/view"
+  },
+  "web_assets": [
+    {
+      "path": "web/accessory-drives.glb.gz",
+      "drive_id": "1LS2Hwc27wVkavCzc6ODt26BDEt-okTy6",
+      "bytes": 9884618,
+      "sha256": "1458b7dee17159c5f80e131633d1c8e86733b57dd04d1b9b64ad82758c5349cd"
+    },
+    {
+      "path": "web/cylinder-reviewed-20261001.glb.gz",
+      "drive_id": "1CwfNUitCMgFcHJPJg66RZtqRSD2ZEhkH",
+      "bytes": 15937570,
+      "sha256": "b34300914d27a5f133eb31f434da0bf7cfff8b8fc11e0e56734708c217c29e7a"
+    },
+    {
+      "path": "web/hydraulic-tappet.glb.gz",
+      "drive_id": "1u8hplcsX8Au9v9fOGPrEFUkwDouYhn2v",
+      "bytes": 7126499,
+      "sha256": "0e2632609a9ec7c5f3691aec1a7b06aad6337a84adde6d6a43a2bb2d68c21d0b"
+    },
+    {
+      "path": "web/oil-pump.glb.gz",
+      "drive_id": "167cbQkDPiIE6nYG1kyhURez_FLnnmVCK",
+      "bytes": 4696163,
+      "sha256": "0322990a175dde3486278d98de7edafb8c948d7aeb801bea86f1194da1fd6287"
+    },
+    {
+      "path": "web/wright-1903-engine.glb",
+      "drive_id": "1qzyRZ0tkt6xRuHlvknFD4r1QRvjy6ExV",
+      "bytes": 9565828,
+      "sha256": "e626ab347a7f587fee2169f81ac3516185aef033adf32c920533f85293b52daf"
+    }
+  ],
+  "history_policy": "New unpublished accessory commits exclude model binaries. Existing published history retained; native CAD and exported GLBs are no longer tracked going forward."
+}

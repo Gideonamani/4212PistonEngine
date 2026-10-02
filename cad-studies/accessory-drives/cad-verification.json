@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "parts": 47,
+  "all_valid_single_solids": true,
+  "scope": "GTSIO-520-H relationship study. All dimensions, tooth profiles, pad locations and explosion travel are illustrative. Remote outputs are relocated for visibility. Not a maintenance assembly sequence.",
+  "native_reopened": true,
+  "step_solids": 47,
+  "pump_pocket_empty": true,
+  "step_volume_matches_native": true,
+  "freecad_version": [
+    "1",
+    "1",
+    "1"
+  ]
+}

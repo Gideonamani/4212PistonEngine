@@ -44,14 +44,19 @@ export function ExploreControls({
     </div>
 
     <div className="grid grid-cols-4 gap-1 border-b border-slate-800 p-2">
-      {features.components && <button type="button" onClick={() => onPanelChange('components')} className={tabClass(panel === 'components')}><Box className="h-3.5 w-3.5" /><span className="hidden min-[380px]:inline lg:inline">Parts</span></button>}
-      {features.motion && <button type="button" onClick={() => onPanelChange('motion')} className={tabClass(panel === 'motion')}><Play className="h-3.5 w-3.5" /><span className="hidden min-[380px]:inline lg:inline">Motion</span></button>}
-      {features.section && <button type="button" onClick={() => onPanelChange('section')} className={tabClass(panel === 'section')}><Layers3 className="h-3.5 w-3.5" /><span className="hidden min-[380px]:inline lg:inline">Inside</span></button>}
-      {features.appearance && <button type="button" onClick={() => onPanelChange('appearance')} className={tabClass(panel === 'appearance')}><Eye className="h-3.5 w-3.5" /><span className="hidden min-[380px]:inline lg:inline">Look</span></button>}
+      {features.components && <button type="button" aria-label="Parts" onClick={() => onPanelChange('components')} className={tabClass(panel === 'components')}><Box className="h-3.5 w-3.5" /><span className="hidden min-[380px]:inline lg:inline">Parts</span></button>}
+      {features.motion && <button type="button" aria-label="Motion" onClick={() => onPanelChange('motion')} className={tabClass(panel === 'motion')}><Play className="h-3.5 w-3.5" /><span className="hidden min-[380px]:inline lg:inline">Motion</span></button>}
+      {features.section && <button type="button" aria-label="Inside" onClick={() => onPanelChange('section')} className={tabClass(panel === 'section')}><Layers3 className="h-3.5 w-3.5" /><span className="hidden min-[380px]:inline lg:inline">Inside</span></button>}
+      {features.appearance && <button type="button" aria-label="Look" onClick={() => onPanelChange('appearance')} className={tabClass(panel === 'appearance')}><Eye className="h-3.5 w-3.5" /><span className="hidden min-[380px]:inline lg:inline">Look</span></button>}
     </div>
 
     <div className="min-h-0 flex-1 overflow-y-auto p-3">
       {panel === 'components' && features.components && <div className="space-y-2.5">
+        {features.powerPaths && <div className="space-y-2 rounded-xl border border-teal-500/30 p-3">
+          <label className="block text-xs font-bold">Trace power path<select aria-label="Power path" value={snapshot.powerPathId || ''} onChange={event => features.powerPaths!.select(event.target.value)} className="mt-1 min-h-11 w-full rounded-lg border border-slate-700 bg-slate-950 px-2 text-xs"><option value="">Choose an accessory</option>{features.powerPaths.items.map(path => <option key={path.id} value={path.id}>{path.label}</option>)}</select></label>
+          <p className="text-xs leading-relaxed text-teal-100">{snapshot.powerPathNote || 'Select an accessory to highlight its mechanical path and show output rotation arrows. All geometry dimensions are illustrative.'}</p>
+          <button disabled={!snapshot.powerPathId} onClick={() => features.powerPaths!.isolate()} className="min-h-11 w-full rounded-lg bg-teal-400 p-2 text-xs font-bold text-slate-950 disabled:opacity-40">Isolate complete drive path</button>
+        </div>}
         <div className="relative"><Search className="pointer-events-none absolute left-2.5 top-2.5 h-3.5 w-3.5 text-slate-500" /><input value={query} onChange={(event) => onQueryChange(event.target.value)} placeholder="Search components…" className="h-9 w-full rounded-lg border border-slate-700 bg-slate-950/70 pl-8 pr-2 text-xs outline-none focus:border-teal-400" /></div>
         <select aria-label="Subassembly" value={group} onChange={(event) => onGroupChange(event.target.value)} className="h-9 w-full rounded-lg border border-slate-700 bg-slate-950/70 px-2 text-xs outline-none focus:border-teal-400">{features.components.groups.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}</select>
         <select aria-label="Component" value={snapshot.selectedId || ''} onChange={(event) => features.components!.select(event.target.value)} className="h-9 w-full rounded-lg border border-slate-700 bg-slate-950/70 px-2 text-xs outline-none focus:border-teal-400"><option value="">Choose a component (optional)</option>{filteredComponents.map((component) => <option key={component.id} value={component.id}>{component.label}</option>)}</select>

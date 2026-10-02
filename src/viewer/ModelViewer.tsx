@@ -122,9 +122,9 @@ export default function ModelViewer({
   const features = session?.features;
   const hasControlPanels = Boolean(features?.components || features?.motion || features?.section || features?.appearance);
   const activeHotspot = features?.hotspots?.items.find((hotspot) => hotspot.id === snapshot.activeHotspotId);
-  const showExploreControls = profile === 'explore';
+  const showExploreControls = profile === 'explore' || (definition.lessonControls === true && profile !== 'assessment');
   const viewerHeight = showExploreControls
-    ? 'h-full min-h-[22rem]'
+    ? profile === 'explore' ? 'h-full min-h-[22rem]' : 'h-[75dvh] min-h-[36rem] lg:h-[32rem] lg:min-h-[24rem]'
     : immersive
       ? 'h-[58dvh] min-h-[22rem]'
       : 'h-[20rem] min-h-[18rem] sm:h-[24rem]';

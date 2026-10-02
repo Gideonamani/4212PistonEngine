@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-02",
+  "engine_variant": "GTSIO-520-H",
+  "asset_sha256": "687729f70a7d1c47c582584a35bf65ed55d792ce3c50e44adfaac2cff0b56c37",
+  "transfer_bytes": 9884618,
+  "checks": {
+    "javascript_tests": {
+      "passed": 35,
+      "failed": 0,
+      "command": "npm test"
+    },
+    "typescript": "npm run lint passed",
+    "production_build": "npm run build passed",
+    "native_freecad": "reopened; 47 valid single solids; actual pump pocket void verified",
+    "step": "47 solids; total volume agrees with native within 0.1 mm3",
+    "native_blender": "reopened; 10 actions with all 47 component slots; cover moves aside",
+    "exported_animation": "endpoint speed/sign including 32x starter; release after takeover; reversed explosion matrices verified",
+    "section": "actual exported pump pocket winding stays empty; solid cap colour matches part",
+    "public_viewer_controls": "pause/scrub, isolation, complete paths, moving arrows and section hold exploded poses",
+    "existing_models": "full-engine transport/contract, six-cylinder foundation, operating-cylinder profile and all JavaScript regression checks passed",
+    "browser": "phone-sized and desktop in-app browser: model loads, exploded section, path isolation in Explore/Lesson Steps, completion and quiz feedback; no observed console errors",
+    "storage": "No CAD/GLB binaries tracked; production dist contains zero CAD/GLB files; private native archive uploaded and size verified.",
+    "drive_delivery": "All five migrated web exports downloaded anonymously through the restricted Drive API; byte counts and SHA-256 hashes match the local release files."
+  },
+  "remaining": [
+    "Physical phone performance not tested.",
+    "Instructor moderation pending.",
+    "All dimensions, tooth profiles, pad locations and explosion travel illustrative.",
+    "Exact vacuum adapter, H alternator transfer and governor bevel geometry unresolved/omitted.",
+    "Fuel drive ratio/direction unverified; no inferred maintenance limits.",
+    "Fault scenarios hypothetical; no dynamics or certified assembly procedure."
+  ],
+  "native_archive_url": "https://drive.google.com/file/d/11RYAcw0GdmCXQFmef_nLFmPqhSlzGOkU/view"
+}

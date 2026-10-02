@@ -34,7 +34,7 @@ test('staged explosion preserves permanent joints, reverses and restores every b
   for (const mesh of meshes) assert.deepEqual(mesh.matrixWorld.elements, binds.get(mesh.userData.partId).elements);
 });
 
-for (const id of ['hydraulic-tappet', 'oil-pump']) test(`${id} exported clips preserve component identity and reverse exploded poses`, async () => {
+for (const id of ['hydraulic-tappet', 'oil-pump', 'accessory-drives']) test(`${id} exported clips preserve component identity and reverse exploded poses`, async () => {
   const contract = read(`web/${id}-contract.json`), raw = gunzipSync(fs.readFileSync(`web/${id}.glb.gz`));
   assert.equal(createHash('sha256').update(raw).digest('hex'), contract.asset_sha256);
   const { scene, animations } = await parse(`web/${id}.glb.gz`); scene.updateMatrixWorld(true);
@@ -76,7 +76,7 @@ globalThis.fetch = async url => {
   if (name === 'config.json') return new Response('{}');
   return new Response(fs.readFileSync('web/' + name));
 };
-for (const id of ['cylinder', 'hydraulic-tappet', 'oil-pump']) test(`${id} public viewer controls hold, isolate, switch and replay saved motions`, async () => {
+for (const id of ['cylinder', 'hydraulic-tappet', 'oil-pump', 'accessory-drives']) test(`${id} public viewer controls hold, isolate, switch and replay saved motions`, async () => {
   let tick, renders = 0;
   const runtime = { scene: new THREE.Scene(), camera: new THREE.PerspectiveCamera(), render() { renders++; }, fit() {}, setPickTargets() {}, setAnimationCallback(callback) { tick = callback; } };
   const creator = id === 'cylinder' ? createCylinderSession : createAnimatedStudySession;
@@ -86,7 +86,21 @@ for (const id of ['cylinder', 'hydraulic-tappet', 'oil-pump']) test(`${id} publi
   const partMeshes = []; runtime.scene.traverse(mesh => { if (mesh.isMesh && mesh.userData.partId) partMeshes.push(mesh); });
   const held = partMeshes.map(mesh => mesh.matrixWorld.clone()); runtime.render();
   assert.equal(session.snapshot().motionProgress, 62.5); assert.equal(session.snapshot().playing, false);
-  session.features.components.isolateGroup(id === 'cylinder' ? 'intake' : id === 'oil-pump' ? 'gears' : 'plunger');
+  if (id === 'accessory-drives') {
+    session.features.powerPaths.select('magnetos'); session.features.powerPaths.isolate();
+    const path = read('web/accessory-drives-contract.json').powerPaths.find(path => path.id === 'magnetos');
+    assert.deepEqual(partMeshes.filter(mesh => mesh.visible).map(mesh => mesh.userData.partId).sort(), [...path.parts].sort());
+    partMeshes.forEach((mesh, index) => assert.deepEqual(mesh.matrixWorld.elements, held[index].elements));
+    assert.equal(session.snapshot().motionProgress, 62.5);
+    const arrows = runtime.scene.getObjectByName('Output rotation arrows');
+    assert.equal(arrows.children.filter(arrow => arrow.visible).length, 2);
+    assert.ok(runtime.scene.getObjectByName('Selected power path').children.length > 0);
+    session.features.section.setEnabled(true); session.features.section.setAxis('y'); session.features.section.setPosition(65);
+    assert.equal(session.snapshot().sectionEnabled, true);
+    assert.equal(session.snapshot().motionProgress, 62.5);
+    session.features.components.showAll(); session.features.section.reset();
+  }
+  session.features.components.isolateGroup(id === 'cylinder' ? 'intake' : id === 'oil-pump' ? 'gears' : id === 'accessory-drives' ? 'starter' : 'plunger');
   partMeshes.forEach((mesh, index) => assert.deepEqual(mesh.matrixWorld.elements, held[index].elements));
   assert.ok(partMeshes.some(mesh => !mesh.visible)); session.features.components.showAll(); assert.ok(partMeshes.every(mesh => mesh.visible));
   session.features.savedMotions.select(id === 'cylinder' ? 'reassembly' : 'Reassembly overview'); session.features.savedMotions.setProgress(37.5);

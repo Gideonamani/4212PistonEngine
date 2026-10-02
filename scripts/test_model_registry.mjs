@@ -2,8 +2,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const registry=JSON.parse(fs.readFileSync(new URL('../src/data/models.json',import.meta.url),'utf8'));
 
-assert.deepEqual(registry.map(model=>model.id),['cylinder','gtsio520-h-v5-teaching-engine','wright-1903-engine','hydraulic-tappet','oil-pump']);
-assert.deepEqual(registry.map(model=>model.adapter),['operating-cylinder','full-engine','static-gltf','animated-study','animated-study']);
+assert.deepEqual(registry.map(model=>model.id),['cylinder','gtsio520-h-v5-teaching-engine','wright-1903-engine','hydraulic-tappet','oil-pump','accessory-drives']);
+assert.deepEqual(registry.map(model=>model.adapter),['operating-cylinder','full-engine','static-gltf','animated-study','animated-study','animated-study']);
 assert.equal(new Set(registry.map(model=>model.id)).size,registry.length,'model ids must be unique');
 assert.ok(registry.every(model=>model.label&&model.eyebrow&&model.description&&model.imageType));
 assert.ok(registry.every(model=>Array.isArray(model.badges)&&model.badges.length));
@@ -13,7 +13,7 @@ assert.deepEqual(cylinder.sources.map(source=>source.localUrl),['./cylinder-revi
 assert.equal(cylinder.componentCatalogueUrl,'./components.json?v=20261001-reviewed');
 assert.equal(cylinder.motionProfileUrl,'./motion.json?v=20261001-reviewed');
 assert.equal(cylinder.sources[0].compressed,true);
-assert.ok(fs.statSync(new URL('../web/cylinder-reviewed-20261001.glb.gz',import.meta.url)).size>0,'Pages must include the reviewed cylinder');
+assert.ok(fs.statSync(new URL('../web/cylinder-reviewed-20261001.glb.gz',import.meta.url)).size>0,'restore the reviewed cylinder from Drive before asset validation');
 
 const engine=registry.find(model=>model.id==='gtsio520-h-v5-teaching-engine');
 assert.equal(engine.contractUrl,'./engine-contract.json');
@@ -25,10 +25,13 @@ assert.equal(wright.license,'CC0');
 assert.deepEqual(wright.lessonHotspotIds,['magneto','valve','crankcase']);
 assert.equal(wright.hotspots.length,6);
 assert.ok(wright.lessonHotspotIds.every(id=>wright.hotspots.some(hotspot=>hotspot.id===id)));
-assert.ok(fs.statSync(new URL('../web/wright-1903-engine.glb',import.meta.url)).size>1_000_000,'the Pages build needs the compact reference GLB');
+assert.ok(fs.statSync(new URL('../web/wright-1903-engine.glb',import.meta.url)).size>1_000_000,'restore the compact reference GLB from Drive before asset validation');
 
 const driveId=/^[-\w]{20,}$/;
 for (const source of wright.sources) assert.match(source.driveId,driveId);
+for (const model of registry.filter(model=>model.sources)) {
+  for (const source of model.sources) assert.match(source.driveId,driveId,'published models must have Drive delivery');
+}
 const transport=JSON.parse(fs.readFileSync(new URL('../web/engine-contract.json',import.meta.url),'utf8')).asset.transport;
 assert.match(transport.drive_file_id,driveId);
 assert.match(transport.fallback_drive_file_id,driveId);

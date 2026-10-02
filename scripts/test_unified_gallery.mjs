@@ -10,11 +10,11 @@ import { validateLessonPack } from '../web/schema/content-schema.mjs';
 const readJson = name => JSON.parse(fs.readFileSync(new URL(`../web/${name}`, import.meta.url), 'utf8'));
 
 const manifest = readJson('lessons-manifest.json');
-assert.deepEqual(manifest.packs, ['./history-lessons.json', './fundamentals-lessons.json', './m2-cylinder-lessons.json', './internal-mechanism-lessons.json']);
+assert.deepEqual(manifest.packs, ['./history-lessons.json', './fundamentals-lessons.json', './m2-cylinder-lessons.json', './internal-mechanism-lessons.json', './accessories-lessons.json']);
 
 const packs = manifest.packs.map(url => readJson(url.replace('./', '')));
 const packIds = packs.map(pack => pack.id);
-assert.deepEqual(packIds, ['history-and-fundamentals', 'fundamentals-and-classification', 'm2-cylinder-study', 'internal-mechanisms']);
+assert.deepEqual(packIds, ['history-and-fundamentals', 'fundamentals-and-classification', 'm2-cylinder-study', 'internal-mechanisms', 'accessories-and-drives']);
 assert.equal(new Set(packIds).size, packIds.length, 'track ids must be unique across packs');
 
 for (const pack of packs) {
@@ -37,7 +37,7 @@ const isVisible = (pack, lesson) => lesson.listed !== false
   || pack.lessons.some(other => other.steps.some(step => (step.deepDiveLinks || []).includes(lesson.id)));
 const lessonsWithChecks = packs.flatMap(pack =>
   pack.lessons.filter(lesson => isVisible(pack, lesson) && (pack.checks || []).some(item => item.lessonId === lesson.id)).map(lesson => ({ lesson, pack })));
-assert.equal(lessonsWithChecks.length, 10, 'expected 3 history + 6 fundamentals (4 listed lessons + 2 deep dives) + 1 M2 lessons to each own at least one check');
+assert.equal(lessonsWithChecks.length, 11, 'expected existing 10 check lessons plus Accessories & Drives');
 const historyChecks = lessonsWithChecks.filter(({ pack }) => pack.id === 'history-and-fundamentals');
 assert.equal(historyChecks.length, 3, 'all 3 history lessons must be reachable from the Check gallery, not just the M2 lesson');
 const fundamentalsChecks = lessonsWithChecks.filter(({ pack }) => pack.id === 'fundamentals-and-classification');

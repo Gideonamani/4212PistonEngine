@@ -24,6 +24,8 @@ jobs:
           cache: npm
       - name: Install web application dependencies
         run: npm ci
+      - name: Restore and verify Drive-hosted model assets for tests
+        run: python3 scripts/fetch_drive_assets.py
       - name: Type-check the React application
         run: npm run lint
       - name: Run every JavaScript test
