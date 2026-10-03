@@ -18,10 +18,10 @@
     "section": "actual exported pump pocket winding stays empty; solid cap colour matches part",
     "public_viewer_controls": "pause/scrub, isolation, complete paths, moving arrows and section hold exploded poses",
     "existing_models": "full-engine transport/contract, six-cylinder foundation, operating-cylinder profile and all JavaScript regression checks passed",
-    "browser": "Previous-release browser checks retained in Git history; revised browser validation pending",
+    "browser": "Revised public viewer checked at 360 x 800: ten motions, play/pause, scrub to 100%, component selection, starter complete-path isolation, section controls and keyboard rotation/zoom. Guided step 3 starts exploded and keeps its 45% scrub position after oil/tach subassembly isolation. Assessment questions 1 and 8 return source-backed feedback. Mobile text wraps and the controls panel scrolls.",
     "storage": "Private native archive uploaded, size and owner-only permissions verified; connector raw-file readback confirms 14,879,328 bytes. Local sources preserved. No CAD/model binaries tracked; production dist contains zero CAD/GLB files.",
     "drive_delivery": "New export downloaded anonymously through the restricted Drive API: 10,613,966 bytes and SHA-256 exactly match local release. Old release retained.",
-    "published_browser": "Revised publication pending",
+    "published_browser": "GitHub Pages deployed f897556ae372d7b9ec3081a71adea51222b218db; revised 64-component asset loaded successfully from Drive. No browser console errors observed; WebGL compiler reported floating-point precision warnings without a visible failure.",
     "visual_shape_review": "Manual page images and isolated Blender renders of starter, oil/tach and alternator reviewed; visible traits and unresolved geometry documented in accessory-shape-review.md"
   },
   "remaining": [
@@ -31,5 +31,12 @@
     "Fuel ratio/direction unverified; fault scenarios hypothetical.",
     "Physical phone and trainer comparison, serial-specific part effectivity and instructor review pending."
   ],
-  "native_archive_url": "https://drive.google.com/file/d/1TqkLA2Yvc8GlOxAoJJ4UBkWgUd21ZZO5/view?usp=drivesdk"
+  "native_archive_url": "https://drive.google.com/file/d/1TqkLA2Yvc8GlOxAoJJ4UBkWgUd21ZZO5/view?usp=drivesdk",
+  "ci": {
+    "commit": "f897556ae372d7b9ec3081a71adea51222b218db",
+    "url": "https://github.com/Gideonamani/4212PistonEngine/actions/runs/37107344881",
+    "conclusion": "success",
+    "checks": "Fresh checkout restored all five approved Drive exports, passed type-check, all JavaScript tests, full-engine/foundation and operating-cylinder checks, built and deployed Pages."
+  },
+  "review_url": "https://gideonamani.github.io/4212PistonEngine/?model=accessory-drives"
 }

@@ -134,7 +134,7 @@
           "type": "model-pose",
           "title": "Electrical supply",
           "prompt": "Select Alternator and explain the conversion from shaft power to aircraft electrical supply. Compare the marked remote endpoint with the documented shaft train.",
-          "note": "H C-3-3: 3:1 CW. A-4-13 identifies driven gear, hub and clutch spring; only its envelope and output are modelled here. The basic narrative mentions a generator pulley; its transfer geometry is not used as an H alternator claim. Dashed path is conceptual; transfer geometry remains unresolved.",
+          "note": "H C-3-3: 3:1 CW. A-4-13 supports the driven gear, hub, clutch-sleeve study, four-lug flange and ventilated exterior represented here. The H photograph A-4-4 places the alternator toward the front; this module is relocated. Rotor/stator and detailed clutch spring are omitted. The basic narrative mentions a generator pulley; its transfer geometry is not used as an H alternator claim. Dashed path is conceptual; transfer geometry remains unresolved.",
           "sourceRefs": [
             "gtsio-reviewed",
             "faa-powerplant"
