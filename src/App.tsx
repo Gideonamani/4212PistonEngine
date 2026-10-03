@@ -100,6 +100,8 @@ export default function App() {
     setQuizLessonId(undefined);
     setActiveView(view);
     history.replaceState(null, '', `${location.pathname}${location.search}#/${view}`);
+    // replaceState fires no event; tell route-driven views (Learn returns to its course menu) to resync.
+    window.dispatchEvent(new HashChangeEvent('hashchange'));
   };
 
   const curriculumState = loadError ? (
