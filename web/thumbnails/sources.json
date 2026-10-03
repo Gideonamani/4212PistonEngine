@@ -1,6 +1,6 @@
 {
   "schema": "4212.thumbnail-sources/v1",
-  "description": "Where each course and lesson card thumbnail comes from. scripts/build_thumbnails.py reads this and writes the square WebP files beside it. Crop boxes are [left, top, right, bottom] as fractions of the source. Manual and book pages are read from the Notes folder (--notes); renders live in scripts/thumbnail_sources and were captured from the app's own 3D viewer with scripts/capture_model_thumbnail.js.",
+  "description": "Where each course and lesson card thumbnail comes from. scripts/build_thumbnails.py reads this and writes the square WebP files beside it. Crop boxes are [left, top, right, bottom] as fractions of the source. Manual and book pages are read from the Notes folder (--notes); renders live in scripts/thumbnail_sources and were captured from the app's own 3D viewer with scripts/capture_model_thumbnail.js. The 'previews' section builds the Explore gallery card images (web/model-previews/<model id>.webp) the same way.",
   "size": 360,
   "items": {
     "course-history-and-fundamentals": {
@@ -48,27 +48,15 @@
       "kind": "diagonal",
       "parts": [
         {
-          "kind": "image",
-          "path": "model-previews/hydraulic-tappet.png",
-          "box": [
-            0.1,
-            0,
-            0.9,
-            1
-          ]
+          "kind": "render",
+          "path": "hydraulic-tappet-square.webp"
         },
         {
-          "kind": "image",
-          "path": "model-previews/oil-pump.png",
-          "box": [
-            0.1,
-            0,
-            0.9,
-            1
-          ]
+          "kind": "render",
+          "path": "oil-pump-square.webp"
         }
       ],
-      "credit": "Hydraulic tappet and oil pump teaching studies",
+      "credit": "Hydraulic tappet and oil pump teaching studies, rendered from the app's 3D models",
       "license": "Course material"
     },
     "course-accessories-and-drives": {
@@ -220,40 +208,66 @@
       ]
     },
     "lesson-hydraulic-tappet-internal-study": {
-      "kind": "image",
-      "path": "model-previews/hydraulic-tappet.png",
-      "box": [
-        0.12,
-        0,
-        0.88,
-        1
-      ],
-      "credit": "Hydraulic tappet teaching study",
+      "kind": "render",
+      "path": "hydraulic-tappet-square.webp",
+      "credit": "Hydraulic tappet teaching study (exploded), rendered from the app's 3D model",
       "license": "Course material"
     },
     "lesson-oil-pump-internal-study": {
-      "kind": "image",
-      "path": "model-previews/oil-pump.png",
-      "box": [
-        0.12,
-        0,
-        0.88,
-        1
-      ],
-      "credit": "IO-520 oil pump teaching study",
+      "kind": "render",
+      "path": "oil-pump-square.webp",
+      "credit": "IO-520 oil pump teaching study (exploded), rendered from the app's 3D model",
       "license": "Course material"
     },
     "lesson-accessories-and-drives": {
-      "kind": "image",
-      "path": "model-previews/accessory-drives.png",
-      "box": [
-        0.1,
-        0,
-        0.9,
-        1
-      ],
-      "credit": "GTSIO-520-H accessory drives teaching study",
+      "kind": "render",
+      "path": "accessory-drives-square.webp",
+      "credit": "GTSIO-520-H accessories and drives teaching study, rendered from the app's 3D model",
       "license": "Course material"
+    }
+  },
+  "previews": {
+    "size": [
+      640,
+      256
+    ],
+    "items": {
+      "cylinder": {
+        "kind": "render",
+        "path": "explore-cylinder.webp",
+        "credit": "Rendered from the app's operating-cylinder teaching model",
+        "license": "Course material"
+      },
+      "gtsio520-h-v5-teaching-engine": {
+        "kind": "render",
+        "path": "explore-full-engine.webp",
+        "credit": "Rendered from the app's GTSIO-520-H full-engine teaching model",
+        "license": "Course material"
+      },
+      "wright-1903-engine": {
+        "kind": "render",
+        "path": "explore-wright-1903-engine.webp",
+        "credit": "Rendered from the Smithsonian NASM 1903 Wright Flyer engine scan",
+        "license": "CC0"
+      },
+      "hydraulic-tappet": {
+        "kind": "render",
+        "path": "explore-hydraulic-tappet.webp",
+        "credit": "Rendered from the app's hydraulic tappet teaching model",
+        "license": "Course material"
+      },
+      "oil-pump": {
+        "kind": "render",
+        "path": "explore-oil-pump.webp",
+        "credit": "Rendered from the app's IO-520 oil pump teaching model",
+        "license": "Course material"
+      },
+      "accessory-drives": {
+        "kind": "render",
+        "path": "explore-accessory-drives.webp",
+        "credit": "Rendered from the app's GTSIO-520-H accessory drives teaching model",
+        "license": "Course material"
+      }
     }
   }
 }

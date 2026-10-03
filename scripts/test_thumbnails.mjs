@@ -50,3 +50,23 @@ test('thumbnails are small WebP files with a recorded source', () => {
     assert.ok(item.credit && item.license, `${name} needs a credit and licence in sources.json`);
   }
 });
+
+// The Explore gallery: every 3D study card has its own preview image, rendered from the current model.
+const models = JSON.parse(fs.readFileSync('src/data/models.json', 'utf8'));
+
+test('every Explore model has a distinct preview that sources.json can rebuild', () => {
+  assert.deepEqual(Object.keys(sources.previews.items).sort(), models.map((model) => model.id).sort(), 'previews must cover exactly the registered models');
+  const seen = new Map();
+  for (const model of models) {
+    assert.equal(model.previewUrl, `./model-previews/${model.id}.webp`, `${model.id} previewUrl`);
+    const bytes = fs.readFileSync(fileFor(model.previewUrl));
+    assert.equal(bytes.toString('ascii', 0, 4), 'RIFF', model.id);
+    assert.equal(bytes.toString('ascii', 8, 12), 'WEBP', model.id);
+    assert.ok(bytes.length < 60 * 1024, `${model.id} preview is ${bytes.length} bytes`);
+    const hash = crypto.createHash('sha256').update(bytes).digest('hex');
+    assert.ok(!seen.has(hash), `${model.id} repeats the preview of ${seen.get(hash)}`);
+    seen.set(hash, model.id);
+    const item = sources.previews.items[model.id];
+    assert.ok(item.credit && item.license, `${model.id} needs a credit and licence in sources.json`);
+  }
+});

@@ -1,36 +1,35 @@
 /*
- * Renders one of the app's 3D models to a square PNG for a card thumbnail.
+ * Renders one of the app's 3D models to a PNG for a card thumbnail or an Explore gallery preview.
  *
  * Use: run `npm run dev`, open the app in a browser, paste this whole file into the DevTools console, then call
- * `captureModel(...)` (examples below). The PNG downloads; convert it to WebP in scripts/thumbnail_sources/ and reference it from
- * web/thumbnails/sources.json as a "render" item, then run scripts/build_thumbnails.py.
+ * `captureModel(...)` (the calls that made the current images are in scripts/thumbnail_sources/captures.js). The PNG downloads, or
+ * pass `onImage(dataUrl, filename)` to receive it instead. Save the image in scripts/thumbnail_sources/ and reference it from
+ * web/thumbnails/sources.json; scripts/build_thumbnails.py then writes the final WebP files.
  *
- * Renders currently in scripts/thumbnail_sources, and the calls that made them (720 px, tone-mapping exposure 0.8 unless noted):
- *   cylinder-operating-cycle  captureModel('cylinder', 'cylinder-operating-cycle', { initialAngle: 400, initialCycle: true }, { zoom: 0.85, pan: [-20, -5] })
- *   cylinder-exploded         captureModel('cylinder', 'cylinder-exploded', { savedMotionId: 'exploded', motionProgress: 60 }, { zoom: 0.64, pan: [-125, 12] })
- *   cylinder-course           captureModel('cylinder', 'cylinder-course', { initialAngle: 250, initialCycle: true }, { orbit: [-75, -12], zoom: 0.85 })
- *   gtsio520-full-engine      captureModel('gtsio520-h-v5-teaching-engine', 'gtsio520-full-engine', {}, { zoom: 0.8, pan: [-22, 12] })
- *   wright-1903-engine        captureModel('wright-1903-engine', 'wright-1903-engine', { viewPreset: 'engine-overview' }, { exposure: 0.5, zoom: 0.5, pan: [30, -20] })
+ * Options: exposure (tone mapping, default 0.8), zoom (fraction of the fitted camera distance), pan ([x, y] in output pixels),
+ * orbit ([azimuth, elevation] degrees), roll (degrees about the view axis, to lay a tall stack on its side), width/height (default 720 square), setup(session, runtime) to pose the model further,
+ * e.g. choose a power path, and onImage.
  */
-async function captureModel(modelId, name, view = {}, { exposure = 0.8, zoom = 1, pan = [0, 0], orbit = [0, 0], size = 720 } = {}) {
+async function captureModel(modelId, name, view = {}, { exposure = 0.8, zoom = 1, pan = [0, 0], orbit = [0, 0], roll = 0, size = 720, width = size, height = size, setup, onImage } = {}) {
   const THREE = await import('/node_modules/.vite/deps/three.js');
   const { createViewerRuntime } = await import('/src/viewer/core/runtime.ts');
   const { createModelSession } = await import('/src/viewer/adapters/index.ts');
   const { modelsById } = await import('/src/data/modelRegistry.ts');
 
   const mount = document.createElement('div');
-  mount.style.cssText = `position:fixed;left:0;top:0;width:${size}px;height:${size}px;z-index:99999;`;
+  mount.style.cssText = `position:fixed;left:0;top:0;width:${width}px;height:${height}px;z-index:99999;`;
   document.body.appendChild(mount);
   const runtime = createViewerRuntime(mount);
-  const square = () => {
+  const resize = () => {
     runtime.renderer.setPixelRatio(1);
-    runtime.renderer.setSize(size, size, false);
-    runtime.camera.aspect = 1;
+    runtime.renderer.setSize(width, height, false);
+    runtime.camera.aspect = width / height;
     runtime.camera.updateProjectionMatrix();
   };
-  square();
+  resize();
   const session = await createModelSession(modelsById[modelId], { runtime, profile: 'lesson-dynamic', signal: new AbortController().signal, onChange() {}, onProgress() {}, ...view });
   session.update?.(view);
+  await setup?.(session, runtime);
   runtime.renderer.toneMappingExposure = exposure;
 
   const { camera, controls } = runtime;
@@ -41,25 +40,31 @@ async function captureModel(modelId, name, view = {}, { exposure = 0.8, zoom = 1
     spherical.phi = Math.min(Math.PI - 0.1, Math.max(0.1, spherical.phi + orbit[1] * Math.PI / 180));
     camera.position.copy(target).add(new THREE.Vector3().setFromSpherical(spherical));
   }
-  camera.position.copy(target).add(camera.position.clone().sub(target).multiplyScalar(zoom));
+  const offset = camera.position.clone().sub(target).multiplyScalar(zoom);
+  camera.position.copy(target).add(offset);
   controls.update();
   camera.updateMatrixWorld(true);
   // Screen-space pan in pixels of the final image.
-  const perPixel = 2 * camera.position.distanceTo(controls.target) * Math.tan(camera.fov * Math.PI / 360) / size;
+  const perPixel = 2 * camera.position.distanceTo(controls.target) * Math.tan(camera.fov * Math.PI / 360) / height;
   const right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0);
   const up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1);
   const move = right.multiplyScalar(-pan[0] * perPixel).add(up.multiplyScalar(pan[1] * perPixel));
   camera.position.add(move);
   controls.target.add(move);
   controls.update();
+  if (roll) camera.rotateZ(roll * Math.PI / 180);
 
   await new Promise((resolve) => setTimeout(resolve, 800));
-  square();
+  resize();
   runtime.render();
-  const link = document.createElement('a');
-  link.href = runtime.renderer.domElement.toDataURL('image/png');
-  link.download = `${name}.png`;
-  link.click();
+  const dataUrl = runtime.renderer.domElement.toDataURL('image/png');
+  if (onImage) await onImage(dataUrl, `${name}.png`);
+  else {
+    const link = document.createElement('a');
+    link.href = dataUrl;
+    link.download = `${name}.png`;
+    link.click();
+  }
   session.dispose();
   runtime.dispose();
   mount.remove();

@@ -1,4 +1,4 @@
-"""Build the square course and lesson card thumbnails listed in web/thumbnails/sources.json.
+"""Build the course and lesson card thumbnails and the Explore gallery previews listed in web/thumbnails/sources.json.
 
 Manual and book pages are read from the Notes folder (not part of the repository), so an item whose PDF is missing is skipped
 with a warning and its committed thumbnail is left as it is.
@@ -17,6 +17,7 @@ from PIL import Image, ImageDraw
 ROOT = Path(__file__).resolve().parent.parent
 WEB = ROOT / "web"
 SPEC = WEB / "thumbnails" / "sources.json"
+PREVIEWS = WEB / "model-previews"
 RENDERS = ROOT / "scripts" / "thumbnail_sources"
 ACCENT = (45, 212, 191)  # the app's teal, used for the diagonal seam
 PAGE_DPI = 200
@@ -40,30 +41,34 @@ def edge_colour(image: Image.Image) -> tuple[int, int, int]:
     return max(set(pixels), key=pixels.count)
 
 
-def to_square(image: Image.Image, size: int, fit: str, focus: list[float], bg: str | None) -> Image.Image:
+def fit_to(image: Image.Image, size: tuple[int, int], fit: str, focus: list[float], bg: str | None) -> Image.Image:
+    """Resize to exactly `size`: 'cover' crops the overflow around `focus`, 'contain' pads with the figure's own background."""
     image = image.convert("RGB")
     w, h = image.size
+    target_w, target_h = size
     if fit == "contain":
         colour = tuple(int(bg.lstrip("#")[i:i + 2], 16) for i in (0, 2, 4)) if bg else edge_colour(image)
-        scale = size / max(w, h)
+        scale = min(target_w / w, target_h / h)
         resized = image.resize((max(1, round(w * scale)), max(1, round(h * scale))), Image.LANCZOS)
-        canvas = Image.new("RGB", (size, size), colour)
-        canvas.paste(resized, ((size - resized.width) // 2, (size - resized.height) // 2))
+        canvas = Image.new("RGB", size, colour)
+        canvas.paste(resized, ((target_w - resized.width) // 2, (target_h - resized.height) // 2))
         return canvas
-    side = min(w, h)
-    left = round((w - side) * focus[0])
-    top = round((h - side) * focus[1])
-    return image.crop((left, top, left + side, top + side)).resize((size, size), Image.LANCZOS)
+    scale = max(target_w / w, target_h / h)
+    crop_w, crop_h = round(target_w / scale), round(target_h / scale)
+    left = round((w - crop_w) * focus[0])
+    top = round((h - crop_h) * focus[1])
+    return image.crop((left, top, left + crop_w, top + crop_h)).resize(size, Image.LANCZOS)
 
 
-def load(spec: dict, notes: Path, size: int) -> Image.Image:
+def load(spec: dict, notes: Path, size: tuple[int, int]) -> Image.Image:
     kind = spec["kind"]
     if kind == "diagonal":
+        side = size[0]
         first, second = (load(part, notes, size) for part in spec["parts"])
-        mask = Image.new("L", (size, size), 0)
-        ImageDraw.Draw(mask).polygon([(size, 0), (size, size), (0, size)], fill=255)
+        mask = Image.new("L", size, 0)
+        ImageDraw.Draw(mask).polygon([(side, 0), (side, side), (0, side)], fill=255)
         first.paste(second, (0, 0), mask)
-        ImageDraw.Draw(first).line([(size, 0), (0, size)], fill=ACCENT, width=max(2, size // 120))
+        ImageDraw.Draw(first).line([(side, 0), (0, side)], fill=ACCENT, width=max(2, side // 120))
         return first
     if kind == "pdf":
         import fitz  # PyMuPDF
@@ -80,7 +85,7 @@ def load(spec: dict, notes: Path, size: int) -> Image.Image:
         image = Image.open(WEB / spec["path"])
     else:
         raise ValueError(f"Unknown thumbnail kind: {kind}")
-    return to_square(crop_fraction(image, spec.get("box")), size, spec.get("fit", "cover"), spec.get("focus", [0.5, 0.5]), spec.get("bg"))
+    return fit_to(crop_fraction(image, spec.get("box")), size, spec.get("fit", "cover"), spec.get("focus", [0.5, 0.5]), spec.get("bg"))
 
 
 def main() -> int:
@@ -91,32 +96,38 @@ def main() -> int:
     args = parser.parse_args()
 
     spec = json.loads(SPEC.read_text(encoding="utf-8"))
-    size = spec["size"]
     built: list[tuple[str, Image.Image]] = []
-    for item_id, item in spec["items"].items():
+    jobs = [(item_id, item, (spec["size"], spec["size"]), SPEC.parent) for item_id, item in spec["items"].items()]
+    jobs += [(f"preview {model_id}", item, tuple(spec["previews"]["size"]), PREVIEWS) for model_id, item in spec["previews"]["items"].items()]
+    for label, item, size, folder in jobs:
+        item_id = label.removeprefix("preview ")
         if args.only and item_id not in args.only:
             continue
         try:
             image = load(item, args.notes, size)
         except MissingSource as missing:
-            print(f"skip {item_id}: source not found ({missing})", file=sys.stderr)
+            print(f"skip {label}: source not found ({missing})", file=sys.stderr)
             continue
-        target = SPEC.parent / f"{item_id}.webp"
+        folder.mkdir(exist_ok=True)
+        target = folder / f"{item_id}.webp"
         image.save(target, quality=82, method=6)
-        built.append((item_id, image))
-        print(f"{item_id}: {target.stat().st_size // 1024} KB")
+        built.append((label, image))
+        print(f"{label}: {target.stat().st_size // 1024} KB")
 
     if args.sheet and built:
+        size = spec["size"]
         columns = 5
+        gap, caption = 12, 22
         rows = -(-len(built) // columns)
-        gap, label = 12, 22
-        sheet = Image.new("RGB", (columns * (size + gap) + gap, rows * (size + label + gap) + gap), (7, 20, 24))
+        row_height = max(image.height for _, image in built) + caption + gap
+        sheet = Image.new("RGB", (columns * (max(image.width for _, image in built) + gap) + gap, rows * row_height + gap), (7, 20, 24))
         draw = ImageDraw.Draw(sheet)
-        for index, (item_id, image) in enumerate(built):
-            x = gap + (index % columns) * (size + gap)
-            y = gap + (index // columns) * (size + label + gap)
+        cell = max(image.width for _, image in built) + gap
+        for index, (label, image) in enumerate(built):
+            x = gap + (index % columns) * cell
+            y = gap + (index // columns) * row_height
             sheet.paste(image, (x, y))
-            draw.text((x, y + size + 4), item_id, fill=(150, 220, 215))
+            draw.text((x, y + image.height + 4), label, fill=(150, 220, 215))
         sheet.save(args.sheet)
     return 0
 
