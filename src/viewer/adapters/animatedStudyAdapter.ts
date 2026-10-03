@@ -32,31 +32,35 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   let powerPath: any;
   // Helpers follow each animated shaft, including the exploded pose. They are not pick targets.
   const arrows = new THREE.Group(); arrows.name = 'Output rotation arrows'; runtime.scene.add(arrows);
-  const arrowBindings: { helper: THREE.Group; mesh: THREE.Mesh }[] = [];
+  const arrowBindings: { helper: THREE.Group; mesh: THREE.Mesh; offset: THREE.Vector3 }[] = [];
   for (const output of contract.rotationOutputs || []) {
     const mesh = meshes.find(mesh => mesh.userData.partId === output.id);
     if (!mesh) continue;
     const helper = new THREE.Group(); helper.name = `${output.id} rotation direction`;
-    if (output.id === 'StarterWorm') helper.rotation.z = -Math.PI / 2;
+    const axis = new THREE.Vector3(...(output.axis || [0, 1, 0]) as [number, number, number]).normalize();
+    helper.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), axis);
+    const offset = axis.clone().multiplyScalar(output.markerOffsetM ?? (output.id === 'StarterWorm' ? .046 : .027));
     const color = 0x62f4cf, radius = .014;
     const arc = new THREE.Mesh(new THREE.TorusGeometry(radius, .0012, 6, 28, Math.PI * 1.65), new THREE.MeshBasicMaterial({ color, depthTest: false, depthWrite: false, toneMapped: false }));
     arc.rotation.x = Math.PI / 2;
     const tip = new THREE.Mesh(new THREE.ConeGeometry(.0035, .008, 8), new THREE.MeshBasicMaterial({ color, depthTest: false, depthWrite: false, toneMapped: false }));
     arc.renderOrder = 10000; tip.renderOrder = 10001;
     const cw = output.direction.startsWith('CW'); tip.position.set(radius, 0, 0); tip.rotation.x = cw ? Math.PI / 2 : -Math.PI / 2;
-    helper.add(arc, tip); helper.userData.partId = output.id; arrows.add(helper); arrowBindings.push({ helper, mesh });
+    helper.add(arc, tip); helper.userData.partId = output.id; arrows.add(helper); arrowBindings.push({ helper, mesh, offset });
   }
   const route = new THREE.Group(); route.name = 'Selected power path'; runtime.scene.add(route);
   const syncHelpers = () => {
-    for (const { helper, mesh } of arrowBindings) {
+    for (const { helper, mesh, offset } of arrowBindings) {
       helper.visible = !!powerPath?.outputs.includes(mesh.userData.partId) && mesh.visible;
       // World positions follow Blender's metre and glTF Y-up conversion; direction arrows remain in the pad frame.
-      helper.position.copy(mesh.getWorldPosition(new THREE.Vector3())).add(mesh.userData.partId === 'StarterWorm' ? new THREE.Vector3(.046, 0, 0) : new THREE.Vector3(0, .027, 0));
+      helper.position.copy(mesh.getWorldPosition(new THREE.Vector3())).add(offset);
     }
     if (powerPath) {
       const points = (powerPath.edges || []).flatMap(([from, to]: string[]) => {
         const a = meshes.find(mesh => mesh.userData.partId === from), b = meshes.find(mesh => mesh.userData.partId === to);
-        return a?.visible && b?.visible ? [a.getWorldPosition(new THREE.Vector3()), b.getWorldPosition(new THREE.Vector3())] : [];
+        // CAD solids can have an origin at (0,0,0) while their vertices sit at
+        // an accessory pad. Anchor paths to visible geometry, not that origin.
+        return a?.visible && b?.visible ? [new THREE.Box3().setFromObject(a).getCenter(new THREE.Vector3()), new THREE.Box3().setFromObject(b).getCenter(new THREE.Vector3())] : [];
       });
       if (points.length > 1) {
         let line = route.children[0] as THREE.LineSegments | undefined;
@@ -82,12 +86,16 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
         const ghost = powerPath ? !powerPath.parts.includes(mesh.userData.partId) : focus.size > 0 && !focus.has(mesh.userData.partId);
         material.opacity = ghost ? .12 : 1; material.transparent = ghost; material.depthWrite = !ghost;
         material.color.copy(materialColors.get(material)!);
-        if (paths.length && snapshot.appearance === 'inspection') material.color.set(pathColors[components.find((part: any) => part.id === mesh.userData.partId)?.group] || '#84929e');
+        const part = contract.parts.find((part: any) => part.id === mesh.userData.partId);
+        if (paths.length && snapshot.appearance === 'inspection') material.color.set(part?.role === 'teaching-fixture' ? '#46515a' : pathColors[part?.group] || '#84929e');
         if (snapshot.appearance === 'inspection' && /Spring|Plate|Plunger/.test(mesh.userData.partId)) material.color.set(0x379e9b);
         material.emissive.set(mesh.userData.partId === snapshot.selectedId ? 0x087567 : powerPath?.parts.includes(mesh.userData.partId) ? 0x174638 : 0); material.emissiveIntensity = .6;
         material.needsUpdate = true;
       }
     }
+    const separate = (contract.remoteDisplays || []).filter((display: any) =>
+      components.some((part: any) => part.group === display.group && meshes.some(mesh => mesh.userData.partId === part.id && mesh.visible)));
+    snapshot.assemblyNotice = separate.length ? `${separate.map((display: any) => display.label).join(' · ')}: separate relocated displays. Engine connections omitted.` : undefined;
     section.refresh();
     syncHelpers();
   };

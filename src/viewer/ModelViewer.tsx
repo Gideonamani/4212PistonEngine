@@ -196,6 +196,8 @@ export default function ModelViewer({
         {activeHotspot && <p className="px-1 pt-1.5 text-[10px] leading-relaxed text-slate-300"><strong className="text-white">{activeHotspot.label}:</strong> {activeHotspot.description}</p>}
       </div>}
 
+      {snapshot.assemblyNotice && <p className="pointer-events-none absolute inset-x-3 top-20 z-10 max-w-sm rounded-lg bg-[#07161b]/90 px-3 py-2 text-xs leading-relaxed text-amber-100">{snapshot.assemblyNotice}</p>}
+
       {showExploreControls && features?.motion && !controlsOpen && showPlayerOnViewer && (features.savedMotions && snapshot.savedMotionId !== 'operating' ? <div className="absolute inset-x-3 bottom-3 z-20 max-h-[45%] overflow-y-auto rounded-xl border border-slate-700 bg-[#07161b]/95 p-3 sm:w-80"><SavedMotionControls features={features} snapshot={snapshot} /></div> : <CompactMotionPlayer motion={features.motion} snapshot={snapshot} />)}
 
       {!showExploreControls && session && <div className="absolute inset-x-2 bottom-2 z-10 rounded-xl border border-slate-700/80 bg-[#07161b]/95 p-2 shadow-xl backdrop-blur-sm sm:inset-x-3 sm:bottom-3">

@@ -120,8 +120,8 @@
         {
           "type": "model-pose",
           "title": "Oil and speed indication",
-          "prompt": "Trace the Oil and tachometer path. Section the pump housing and find the empty gear pockets. Identify the shaft that takes power from the camshaft and the separately represented tach output.",
-          "note": "A-3-2; A-4-16; H C-3-2: tach output 0.5:1 CW. The relocated output represents an omitted bevel transfer. Pump gear sizes are illustrative. Figure A-4-8 items 10/11 are scavenge gears, not interchangeable tach labels. The existing IO-520 permold pump is a separate comparison study.",
+          "prompt": "Trace the Oil and tachometer path. Section the pump housing and find the empty gear pockets. Follow the male spline into the cam-gear socket, then trace the pump driver and the 90-degree bevel pair to the lateral tach output.",
+          "note": "A-3-2; A-4-16 items 24/45/47; H C-3-2: tach output 0.5:1 CW facing its pad. The bevels are smooth pitch-form studies; teeth and spatial layout remain illustrative. The housing is placed left of the cam axis to clear the separate fuel bay. Figure A-4-8 items 10/11 are scavenge gears, not interchangeable tach labels. The IO-520 permold pump is a separate comparison study.",
           "sourceRefs": [
             "gtsio-reviewed",
             "faa-powerplant"
@@ -134,7 +134,7 @@
           "type": "model-pose",
           "title": "Electrical supply",
           "prompt": "Select Alternator and explain the conversion from shaft power to aircraft electrical supply. Compare the marked remote endpoint with the documented shaft train.",
-          "note": "H C-3-3: 3:1 CW. A-4-13 supports the driven gear, hub, clutch-sleeve study, four-lug flange and ventilated exterior represented here. The H photograph A-4-4 places the alternator toward the front; this module is relocated. Rotor/stator and detailed clutch spring are omitted. The basic narrative mentions a generator pulley; its transfer geometry is not used as an H alternator claim. Dashed path is conceptual; transfer geometry remains unresolved.",
+          "note": "H C-3-3: 3:1 CW. A-4-13 supports the nested driven-gear cup, bushing, clutch sleeve and keyed hub represented here. Item 5 is the mounting gasket; the four-lug flange belongs to body item 4. The H photograph A-4-4 places the alternator toward the front; this module is relocated onto a grey teaching stand. These supports are not engine hardware. Rotor/stator and detailed clutch spring are omitted. The basic narrative mentions a generator pulley; its transfer geometry is not used as an H alternator claim. Dashed path is conceptual; transfer geometry remains unresolved.",
           "sourceRefs": [
             "gtsio-reviewed",
             "faa-powerplant"

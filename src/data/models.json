@@ -190,23 +190,23 @@
     "label": "GTSIO-520-H accessories and drives",
     "adapter": "animated-study",
     "eyebrow": "LESSON 8 / ACCESSORIES & DRIVES",
-    "description": "Compare drawing-led adapters, starter, oil pump and front alternator parts; trace seven power paths through 64 unscaled solids and ten saved motions. Unsupported accessory bodies remain labelled function markers.",
+    "description": "Inspect seated flanges, continuous shaft paths and a lateral tach bevel drive across 80 unscaled part studies and 3 grey display fixtures. Unknown front/optional transfers remain labelled as omitted.",
     "imageType": "systems",
     "badges": [
-      "64 components",
+      "80 part studies + 3 fixtures",
       "10 saved motions",
-      "Drawing-led forms"
+      "Seated mounting interfaces"
     ],
     "sources": [
       {
-        "localUrl": "./accessory-drives.glb.gz?v=492149e93c24",
+        "localUrl": "./accessory-drives.glb.gz?v=dde7e6d7832d",
         "compressed": true,
-        "transferBytes": 10613966,
-        "decodedBytes": 31301996,
-        "driveId": "1EDreVc_o783PfmmhqMIrVDMegCRUi0Lc"
+        "transferBytes": 12394258,
+        "decodedBytes": 55709888,
+        "driveId": "1bi7mtPAAL5GNhLSBZpG5GtmYEPslrl4t"
       }
     ],
-    "contractUrl": "./accessory-drives-contract.json?v=492149e93c24",
+    "contractUrl": "./accessory-drives-contract.json?v=dde7e6d7832d",
     "lessonControls": true
   }
 ]

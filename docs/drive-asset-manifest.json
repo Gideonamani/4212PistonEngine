@@ -63,9 +63,9 @@
   "web_assets": [
     {
       "path": "web/accessory-drives.glb.gz",
-      "drive_id": "1EDreVc_o783PfmmhqMIrVDMegCRUi0Lc",
-      "bytes": 10613966,
-      "sha256": "e112fd3354b1b42ae3753f8f5197d11ea607f2be2903f7ff68e408dd68de3337"
+      "drive_id": "1bi7mtPAAL5GNhLSBZpG5GtmYEPslrl4t",
+      "bytes": 12394258,
+      "sha256": "00010e5d535c943e47ab3a5374701559cae510c1433f5eb797be2572ff163686"
     },
     {
       "path": "web/cylinder-reviewed-20261001.glb.gz",
@@ -100,33 +100,96 @@
       "bytes": 9884618,
       "sha256": "1458b7dee17159c5f80e131633d1c8e86733b57dd04d1b9b64ad82758c5349cd",
       "retained_reason": "Previous working schematic release retained during drawing-led revision."
+    },
+    {
+      "path": "web/accessory-drives.glb.gz",
+      "drive_id": "1EDreVc_o783PfmmhqMIrVDMegCRUi0Lc",
+      "bytes": 10613966,
+      "sha256": "e112fd3354b1b42ae3753f8f5197d11ea607f2be2903f7ff68e408dd68de3337",
+      "retained_reason": "64-solid drawing-led release retained during connected-interface revision."
     }
   ],
   "accessory_native_archive": {
-    "path": "build/accessory-native-shape-review-20261002.zip",
-    "bytes": 14879328,
-    "sha256": "90179aaea2bdd78d497925a49b9abdab755f4fd5490f8aa1569847d283acbefb",
+    "path": "build/accessory-native-connected-20261003-quaternion.zip",
+    "bytes": 19242883,
+    "sha256": "0e1d0a0fa232d032a04a7796eb1511894f693b42a961a6624b90ea6c69cd8d0d",
     "files": [
       {
         "path": "cad-studies/accessory-drives/accessory-drives.FCStd",
-        "bytes": 684856,
-        "sha256": "8a2fc1d63c8bc266e1073c37215735c973ce6695d64d26be3c54c61e9b955b6e"
+        "bytes": 960281,
+        "sha256": "d95f16c491055ecb72777598e9e280a65ec85871f7fc09242b640db099234891"
       },
       {
         "path": "cad-studies/accessory-drives/accessory-drives.blend",
-        "bytes": 13834405,
-        "sha256": "8d44c0066ecbfde28c779c6b695f1a8b5739042bc951a0de1df69561ecbdf4f2"
+        "bytes": 17747230,
+        "sha256": "c377fd69a13d3568eacd638c2f37066d8b7cf6ae0f4debe39bb8460975f206f4"
       },
       {
         "path": "cad-studies/accessory-drives/accessory-drives.step",
-        "bytes": 5027333,
-        "sha256": "ebbc42bde3c0ec4c4ba74586b82cfb81ef14c313c36e9fbf1566deca861014d5"
+        "bytes": 7125726,
+        "sha256": "c839bb2e58890528cb321947d218d7cbe1f4c79a7e3b80a9b385f98e6b2e22c4"
       }
     ],
-    "drive_id": "1TqkLA2Yvc8GlOxAoJJ4UBkWgUd21ZZO5",
-    "url": "https://drive.google.com/file/d/1TqkLA2Yvc8GlOxAoJJ4UBkWgUd21ZZO5/view?usp=drivesdk",
+    "drive_id": "1Q_JsxohlRb18GlpdZUSc2jkXfMsuEtb1",
+    "url": "https://drive.google.com/file/d/1Q_JsxohlRb18GlpdZUSc2jkXfMsuEtb1/view?usp=drivesdk",
     "private": true,
     "drive_size_verified": true,
-    "connector_raw_readback_bytes": 14879328
-  }
+    "connector_raw_readback_bytes": 19242883,
+    "remote_sha256_verified": false
+  },
+  "previous_accessory_native_archives": [
+    {
+      "path": "build/accessory-native-shape-review-20261002.zip",
+      "bytes": 14879328,
+      "sha256": "90179aaea2bdd78d497925a49b9abdab755f4fd5490f8aa1569847d283acbefb",
+      "files": [
+        {
+          "path": "cad-studies/accessory-drives/accessory-drives.FCStd",
+          "bytes": 684856,
+          "sha256": "8a2fc1d63c8bc266e1073c37215735c973ce6695d64d26be3c54c61e9b955b6e"
+        },
+        {
+          "path": "cad-studies/accessory-drives/accessory-drives.blend",
+          "bytes": 13834405,
+          "sha256": "8d44c0066ecbfde28c779c6b695f1a8b5739042bc951a0de1df69561ecbdf4f2"
+        },
+        {
+          "path": "cad-studies/accessory-drives/accessory-drives.step",
+          "bytes": 5027333,
+          "sha256": "ebbc42bde3c0ec4c4ba74586b82cfb81ef14c313c36e9fbf1566deca861014d5"
+        }
+      ],
+      "drive_id": "1TqkLA2Yvc8GlOxAoJJ4UBkWgUd21ZZO5",
+      "url": "https://drive.google.com/file/d/1TqkLA2Yvc8GlOxAoJJ4UBkWgUd21ZZO5/view?usp=drivesdk",
+      "private": true,
+      "drive_size_verified": true,
+      "connector_raw_readback_bytes": 14879328
+    },
+    {
+      "path": "build/accessory-native-connected-20261003.zip",
+      "bytes": 18385653,
+      "sha256": "28eef7faa8715b958b3d5d32b8e8687e82913b327678d40d4a2a43068abe94aa",
+      "files": [
+        {
+          "path": "cad-studies/accessory-drives/accessory-drives.FCStd",
+          "bytes": 960281,
+          "sha256": "d95f16c491055ecb72777598e9e280a65ec85871f7fc09242b640db099234891"
+        },
+        {
+          "path": "cad-studies/accessory-drives/accessory-drives.blend",
+          "bytes": 16910050,
+          "sha256": "5356b94a801d66a764ced46c0861dc66f5d216346158961c0af980431dbc750a"
+        },
+        {
+          "path": "cad-studies/accessory-drives/accessory-drives.step",
+          "bytes": 7125726,
+          "sha256": "c839bb2e58890528cb321947d218d7cbe1f4c79a7e3b80a9b385f98e6b2e22c4"
+        }
+      ],
+      "drive_id": "1j7GZj8zC-XG1hn-diW5RPG0gF3GTbSki",
+      "url": "https://drive.google.com/file/d/1j7GZj8zC-XG1hn-diW5RPG0gF3GTbSki/view?usp=drivesdk",
+      "private": true,
+      "retained_reason": "Intermediate 83-solid native revision preserved before quaternion-track conversion; not the current release."
+    }
+  ]
 }

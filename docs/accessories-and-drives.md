@@ -1,6 +1,6 @@
 # Accessories & Drives — Lesson 8
 
-This release adds an independent GTSIO-520-H accessory teaching study. The shape-review revision replaces the initial schematic with 64 drawing-led solids and explicitly labelled function markers; see [the feature audit](accessory-shape-review.md). Existing engine masters, cylinder geometry, hydraulic tappet and IO-520 permold pump remain separate assets. The working tree was clean before the revision; applicable project AGENTS.md storage/validation instructions were read and local originals backed up.
+This release adds an independent GTSIO-520-H accessory teaching study. The shape-review revision replaces the initial schematic with 80 drawing-led engine/interface studies, explicitly labelled function markers and three grey teaching fixtures; see [the feature audit](accessory-shape-review.md). Existing engine masters, cylinder geometry, hydraulic tappet and IO-520 permold pump remain separate assets. The working tree was clean before the revision; applicable project AGENTS.md storage/validation instructions were read and local originals backed up.
 
 ## Evidence and applicability
 
@@ -12,9 +12,9 @@ The final curriculum plan identifies Lesson 8 as Accessories & Drives, absorbing
 |---|---|---|---|
 | Both magnetos | Crank → idler → drive gears → splined shafts | 1.5:1 | CW facing engine drive pad |
 | Fuel pump | Crank → cam cluster → drive gear → coupling → pump | Unknown | Gear tooth choices and speed are illustrative; later H coupling differs from old pump |
-| Oil / tach | Crank → cam → splined shaftgear → oil pump and tach bevel transfer | Tach 0.5:1 | Tach CW facing pad; do not present as a separately specified oil-pump ratio |
+| Oil / tach | Crank → internal cam-gear spline → oil pump shaft → 90-degree tach bevel pair | Tach 0.5:1 | Tach CW facing pad; do not present as a separately specified oil-pump ratio |
 | Starter | Motor → worm → wheel → spring grips drum → shaftgear → crank | 32:1 | Starter drive CCW facing pad, during cranking; shaftgear stays engine-driven after release |
-| Alternator | Referenced driven gear, hub and clutch; relocated output | 3:1 | CW facing pad; exact intervening H transfer not reconstructed |
+| Alternator | Referenced driven gear → clutch → keyed hub → shaft; relocated module | 3:1 | CW facing pad; exact intervening H transfer not reconstructed |
 | Optional vacuum | Upper-rear splined accessory interface; adapter transfer unresolved | 1.14:1 | CCW facing pad; same table value for deice/autopilot drives, installation dependent |
 | Governor | Crank → cam → front bevel pair → governor | 0.809:1 | CW facing pad; front output relocated and bevel geometry omitted |
 | Propeller (context only) | Front crank splines → quill → reduction gears | 0.667:1 | CW **looking forward**, not accessory-pad viewpoint; not included in accessory model |
@@ -27,9 +27,9 @@ There are two source ambiguities worth preserving: A-4-8 calls items 10/11 scave
 
 `cad-studies/accessory-drives/accessory-drives.FCStd` contains individually editable named solids grouped by subsystem, evidence/dimension properties and signed illustrative rates. `accessory-drives.step` supplies neutral solids. The CAD authoring recipe is `scripts/build_accessory_study.py`; dimensions are deliberately declared in the recipe, not asserted as measurements. This is not a fully constrained assembly or a manufacturer dimensional reconstruction.
 
-The rear region is represented by cropped left/right crankcase halves, following A-4-18. The invented rectangular accessory box and inspection lid have been removed. Rounded bored adapters, gasket/bushing/seal interfaces, visible spline teeth, a hollow right-angle starter adapter, stepped oil/scavenge casing and front alternator parts follow the cited drawings. Reconstructed pump pockets, seals and pads retain empty volumes. Exact rear casting contour, thickness, spline profiles, bevel teeth and toleranced fits remain unverified. Magnetos, vacuum and governor bodies are visibly named function markers. The H photograph A-4-4 places the alternator toward the front; its assembly remains a separate relocated module, not a rear mounting claim.
+The rear region is represented by cropped left/right crankcase halves, following A-4-18. The invented rectangular accessory box and inspection lid have been removed. Rounded bored adapters, gasket/bushing/seal interfaces, visible spline teeth, a hollow right-angle starter adapter, stepped oil/scavenge casing and front alternator parts follow the cited drawings. Reconstructed pump pockets, seals and pads retain empty volumes. Exact rear casting contour, thickness, spline profiles, bevel teeth and toleranced fits remain unverified. Magnetos, vacuum and governor bodies are visibly named function markers. A-3-3 mounts magnetos on the front of accessory pads; their function markers now seat there. The H photograph A-4-4 places the alternator toward the front; its assembly remains a separate relocated module on a labelled teaching stand. Similar stands support the optional vacuum and governor markers. Unknown transfers remain omitted. Tach uses the documented lateral bevel transfer, modelled as smooth pitch cones. See the connected-assembly revision in the feature audit for the mounting and shaft checks.
 
-`accessory-drives.blend` contains CAD IDs, group materials, per-component action slots and muted named NLA tracks. Ten independent exportable actions cover normal operation, exploded overview, staged reassembly, six focused paths and spring-clutch starting. The Blender-to-glTF export bakes transforms, so the web consumes those exported clips rather than reimplementing gear kinematics. Millimetres become metres once; Blender Z-up becomes glTF Y-up. Main meshes rotate about their CAD pivots.
+`accessory-drives.blend` contains CAD IDs, group materials, per-component action slots and muted named NLA tracks. Ten independent exportable actions cover normal operation, exploded overview, staged reassembly, six focused paths and spring-clutch starting. The Blender-to-glTF export bakes transforms, so the web consumes those exported clips rather than reimplementing gear kinematics. Millimetres become metres once; Blender Z-up becomes glTF Y-up. Main meshes rotate about their CAD pivots. Quaternion keys preserve every sampled turn; the direct-curve export is shifted to zero seconds so pause, scrub and reverse poses share the native action interval. Compression streams the file to limit authoring memory.
 
 Normal operation is a two-crank-revolution sample. Motions do not loop automatically: noninteger endpoint ratios such as 1.14 and 0.809 do not close after two crank revolutions. Restart deliberately resets the sample. Starter contraction and the takeover timeline are illustrative; no torque, spring friction, oil pressure or engine-start physics is calculated.
 
@@ -37,7 +37,7 @@ Rebuild from the repository directory:
 
 ```powershell
 & 'C:\Program Files\FreeCAD 1.1\bin\python.exe' scripts/build_accessory_study.py
-& 'C:\Program Files\Blender Foundation\Blender 5.0\blender.exe' --background --python scripts/rig_accessory_study.py
+& 'C:\Program Files\Blender Foundation\Blender 5.0\blender.exe' --background --python-exit-code 1 --python scripts/rig_accessory_study.py
 python scripts/publish_accessory_lesson.py
 python scripts/publish_study_metadata.py
 npm run lint
@@ -57,7 +57,7 @@ Run `python scripts/fetch_drive_assets.py` before asset-dependent tests on a fre
 
 Lesson 8 has 16 steps and eight knowledge checks: identification, power tracing, prediction, operation, interface inspection and explaining consequences. Existing dual-ignition wiring is reused; H 20° BTC is distinguished from illustrative cylinder poses. Three fault questions are explicitly hypothetical and do not claim a measured fault response.
 
-The existing animated-study adapter owns pause/scrub, selection, isolation, clipping, appearance and disposal. Lesson Steps exposes the same controls for this model. Complete-path groups overlap intentionally so shared crank/cam parts are included with each accessory. Search filters never truncate group isolation. Path highlights and output rotation arrows follow moving parts, including exploded states; dashed lines identify conceptual connectivity, not physical shafts. Verified ratios and a 1000-crank-RPM example appear in a wrapping, scrollable panel for phones.
+The existing animated-study adapter owns pause/scrub, selection, isolation, clipping, appearance and disposal. Lesson Steps exposes the same controls for this model. Complete-path groups overlap intentionally so shared crank/cam parts are included with each accessory. Search filters never truncate group isolation. Path highlights and output rotation arrows follow moving parts, including exploded states; dashed lines identify conceptual connectivity, not physical shafts. Verified ratios and a 1000-crank-RPM example appear in a wrapping, scrollable panel for phones. A visible notice names the alternator, optional vacuum and governor as separate relocated displays with omitted engine connections; it disappears when none of those modules is visible.
 
 Section caps use the existing per-solid front/back winding stencil passes. They track animated and scaled geometry while preserving holes and chambers; cap colours follow each component material. Motion framing and cut ranges now include both assembled and exploded extremes, including reassembly's initially exploded pose.
 

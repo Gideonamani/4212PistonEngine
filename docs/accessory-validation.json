@@ -1,38 +1,36 @@
 {
   "date": "2026-10-03",
   "engine_variant": "GTSIO-520-H",
-  "asset_sha256": "492149e93c24d811527b73a5cd1463a65ee794d973ca2dbd0917047b33c249ca",
-  "transfer_bytes": 10613966,
+  "asset_sha256": "dde7e6d7832d65fc73975f494b530e1051c37e8ebc41954e6d704077d80a6be3",
+  "transfer_bytes": 12394258,
   "checks": {
     "javascript_tests": {
-      "passed": 35,
+      "passed": 37,
       "failed": 0,
       "command": "npm test"
     },
     "typescript": "npm run lint passed",
-    "production_build": "npm run build passed",
-    "native_freecad": "reopened; 64 valid single solids; oil pocket and starter chamber empty",
-    "step": "64 valid solids; total volume relative error 1.46e-7; each solid below 1e-5 relative error",
-    "native_blender": "reopened; 10 actions with all 64 component slots; right case half moves aside",
-    "exported_animation": "endpoint speed/sign including 32x starter; release after takeover; reversed explosion matrices verified",
-    "section": "actual exported pump pocket winding stays empty; solid cap colour matches part",
-    "public_viewer_controls": "pause/scrub, isolation, complete paths, moving arrows and section hold exploded poses",
-    "existing_models": "full-engine transport/contract, six-cylinder foundation, operating-cylinder profile and all JavaScript regression checks passed",
-    "browser": "Revised public viewer checked at 360 x 800: ten motions, play/pause, scrub to 100%, component selection, starter complete-path isolation, section controls and keyboard rotation/zoom. Guided step 3 starts exploded and keeps its 45% scrub position after oil/tach subassembly isolation. Assessment questions 1 and 8 return source-backed feedback. Mobile text wraps and the controls panel scrolls.",
-    "storage": "Private native archive uploaded, size and owner-only permissions verified; connector raw-file readback confirms 14,879,328 bytes. Local sources preserved. No CAD/model binaries tracked; production dist contains zero CAD/GLB files.",
-    "drive_delivery": "New export downloaded anonymously through the restricted Drive API: 10,613,966 bytes and SHA-256 exactly match local release. Old release retained.",
-    "published_browser": "GitHub Pages deployed f897556ae372d7b9ec3081a71adea51222b218db; revised 64-component asset loaded successfully from Drive. No browser console errors observed; WebGL compiler reported floating-point precision warnings without a visible failure.",
-    "visual_shape_review": "Manual page images and isolated Blender renders of starter, oil/tach and alternator reviewed; visible traits and unresolved geometry documented in accessory-shape-review.md"
+    "production_build": "npm run build passed; zero CAD/GLB files in dist",
+    "native_freecad": "Reopened 83 valid single solids; 74 declared interface gap checks and 31 selected non-interference checks passed. These are model consistency checks, not engineering clearances.",
+    "step": "83 valid solids; total relative volume error 4.87e-07; individual solids below 1e-5",
+    "native_blender": "Reopened 10 native actions with all 83 component slots; right case half separates; quaternion keys retain complete turns.",
+    "exported_animation": "Verified signed endpoint speeds, 32x starting input, clutch release, matching tach pitch-contact velocities and reversed exploded poses. Clip timestamps normalized to 0..20 seconds.",
+    "section": "Actual exported pump pocket remains empty; coloured cap covers solid wall; animated geometry and cavities tested.",
+    "existing_models": "All 37 regression checks passed, including cylinder, hydraulic tappet, oil pump, full-engine motion scope, lesson packs and exported source bindings.",
+    "browser": "Local viewer visually checked at 1280 x 720 and 360 x 800. Separate-display notice is readable. Oil/tach complete-path isolation removes that notice. Exploded endpoint remains at 100% while sectioning, selecting the new lateral bevel and rotating/zooming. Guided bindings validated by the automated suite.",
+    "storage": "Private native archive 19,242,883 bytes; owner-only permissions and connector raw-file readback byte count verified. Local native-file and archive SHA-256 recorded; private remote checksum not independently verified. No model binaries added to Git.",
+    "drive_delivery": "New teaching export anonymously retrieved from Drive: 12,394,258 bytes, SHA-256 00010e5d535c943e47ab3a5374701559cae510c1433f5eb797be2572ff163686; exact local match before binding. Previous releases retained.",
+    "visual_shape_review": "Manual page images plus assembled front/rear native renders reviewed; source-backed traits, omitted transfers, markers and fixtures documented."
   },
   "remaining": [
-    "Exact rear casting contour, dimensions, teeth, pad positions and hidden surfaces reconstructed.",
-    "Magneto, vacuum and governor external forms not resolved; labelled function markers.",
-    "Front alternator/governor relocated; intermediate alternator/vacuum and tach/governor bevel geometry unresolved.",
-    "Fuel ratio/direction unverified; fault scenarios hypothetical.",
-    "Physical phone and trainer comparison, serial-specific part effectivity and instructor review pending."
+    "Unscaled rear casting contour, dimensions, tooth profiles, pad locations and hidden surfaces remain inferred.",
+    "Actual magneto, vacuum and governor bodies are unresolved; these remain labelled function markers.",
+    "Alternator, optional vacuum and governor are separate relocated modules; engine transfer geometry remains omitted. Grey stands are teaching fixtures.",
+    "Fuel drive ratio and direction unverified; fault scenarios remain hypothetical.",
+    "Physical-phone testing, trainer comparison, serial-specific part effectivity and instructor review pending."
   ],
-  "native_archive_url": "https://drive.google.com/file/d/1TqkLA2Yvc8GlOxAoJJ4UBkWgUd21ZZO5/view?usp=drivesdk",
-  "ci": {
+  "native_archive_url": "https://drive.google.com/file/d/1Q_JsxohlRb18GlpdZUSc2jkXfMsuEtb1/view?usp=drivesdk",
+  "previous_ci": {
     "commit": "f897556ae372d7b9ec3081a71adea51222b218db",
     "url": "https://github.com/Gideonamani/4212PistonEngine/actions/runs/37107344881",
     "conclusion": "success",

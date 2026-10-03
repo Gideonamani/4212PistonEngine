@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "parts": 64,
+  "parts": 83,
   "authored_actions": [
     "Operating mechanism",
     "Exploded overview",
@@ -13,8 +13,8 @@
     "Focus: governor",
     "Starter engagement and start"
   ],
-  "asset_sha256": "492149e93c24d811527b73a5cd1463a65ee794d973ca2dbd0917047b33c249ca",
-  "scope": "Drawing-led, unscaled GTSIO-520-H teaching reconstruction. Dimensions, teeth, case contour and pad positions illustrative. Front alternator/governor and optional outputs relocated. Function markers are not accessory replicas.",
+  "asset_sha256": "dde7e6d7832d65fc73975f494b530e1051c37e8ebc41954e6d704077d80a6be3",
+  "scope": "Drawing-led, unscaled GTSIO-520-H teaching reconstruction. Flanges and shaft seats meet in the assembled pose. Dimensions, teeth, case contour and pad positions illustrative. Grey display stands hold relocated front/optional modules; their omitted engine transfers are not physical shafts. Function markers are not accessory replicas.",
   "native_reopened": true,
   "all_motion_slots_match_components": true,
   "right_case_half_moves_aside": true,

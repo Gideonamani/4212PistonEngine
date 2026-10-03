@@ -12,9 +12,23 @@ if mode=='cad':
     assert all(o.Shape.isValid() and len(o.Shape.Solids)==1 and o.DimensionStatus for o in objects)
     pump=doc.getObject('OilHousing').Shape
     assert not pump.isInside(A.Vector(0,-90,60),.001,True)
-    assert pump.isInside(A.Vector(-17,-90,60),.001,True)
-    assert not doc.getObject('StarterAdapter').Shape.isInside(A.Vector(60,0,30),.001,True)
+    assert pump.isInside(A.Vector(-43,-90,52),.001,True)
+    assert not doc.getObject('StarterAdapter').Shape.isInside(A.Vector(60,0,66),.001,True)
+    assert not doc.getObject('StarterAdapter').Shape.isInside(A.Vector(60,-26,77),.001,True)
     assert all(o.ShapeStatus for o in objects)
+    joints=[]
+    for pair in geometry['interfaces']:
+        gap=doc.getObject(pair['a']).Shape.distToShape(doc.getObject(pair['b']).Shape)[0]
+        joints.append(dict(pair,distance_mm=gap))
+        assert gap<=pair['max_gap_mm']+.005, f"Open assembled joint {pair['a']} / {pair['b']}: {gap} mm"
+    collision_pairs=[('OilHousing','FuelPump'),('OilCover','FuelPump'),('ScavengeBody','FuelPump'),('OilHousing','OilDriver'),('OilHousing','OilDriven'),('OilHousing','OilDrivenPin'),('ScavengeBody','TachDriveBevel'),('ScavengeBody','TachDrivenBevel'),('ScavengeBody','TachOutput'),('StarterAdapter','StarterDrum'),('StarterAdapter','WormWheel'),('StarterAdapter','StarterWorm'),('StarterMotor','StarterWorm'),('AlternatorBody','AlternatorOutput'),('CamShaft','OilTachShaft')]
+    for housing in ['AccessoryHousing','HousingCover']:
+        collision_pairs.extend((housing,gear) for gear in ['CrankGear','CamGear','CamCluster','IdlerGear','LeftMagGear','RightMagGear','FuelGear','StarterShaftGear'])
+    clearances=[]
+    for a,b in collision_pairs:
+        overlap=doc.getObject(a).Shape.common(doc.getObject(b).Shape).Volume
+        clearances.append(dict(a=a,b=b,overlap_mm3=overlap))
+        assert overlap<1e-4, f"Solid interference {a} / {b}: {overlap} mm3"
     step=Part.read(str(F/'accessory-drives.step'))
     assert len(step.Solids)==len(objects), 'Neutral export must not duplicate assembly groups'
     native_volume=sum(o.Shape.Volume for o in objects)
@@ -23,7 +37,7 @@ if mode=='cad':
     relative_error=abs(step.Volume-native_volume)/native_volume
     assert relative_error<1e-6
     assert all(s.isValid() and abs(s.Volume-o.Shape.Volume)/o.Shape.Volume<1e-5 for o,s in zip(objects,step.Solids))
-    file=F/'cad-verification.json';report=json.loads(file.read_text());report.update(native_reopened=True,step_solids=len(objects),pump_pocket_empty=True,starter_chamber_empty=True,step_volume_relative_error=relative_error,step_volume_difference_mm3=step.Volume-native_volume,freecad_version=A.Version()[:3])
+    file=F/'cad-verification.json';report=json.loads(file.read_text());report.update(native_reopened=True,step_solids=len(objects),pump_pocket_empty=True,starter_chamber_empty=True,assembled_interfaces=joints,interference_checks=clearances,step_volume_relative_error=relative_error,step_volume_difference_mm3=step.Volume-native_volume,freecad_version=A.Version()[:3])
 else:
     import bpy
     bpy.ops.wm.open_mainfile(filepath=str(F/'accessory-drives.blend'))

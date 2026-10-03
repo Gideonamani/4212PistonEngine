@@ -1,13 +1,14 @@
 {
-  "asset_sha256": "492149e93c24d811527b73a5cd1463a65ee794d973ca2dbd0917047b33c249ca",
+  "asset_sha256": "dde7e6d7832d65fc73975f494b530e1051c37e8ebc41954e6d704077d80a6be3",
   "parts": [
     {
       "id": "AccessoryHousing",
       "label": "Left crankcase - cropped rear region",
       "group": "housing",
-      "description": "Split casting, stepped bored bosses, rear wall and chamber. Full cylinder-barrel region and nose omitted. Exact rear contour/depth/pad positions inferred.",
-      "evidence": "A-4-18 items 126/127; C-3-1",
+      "description": "Lobed split casting with connected mounting pads and open drive bays. Full cylinder-barrel region and nose omitted. Contour/depth/pad positions inferred around the documented train.",
+      "evidence": "A-4-18 items 126/127; A-4-8; C-3-1",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -25,7 +26,7 @@
         0,
         0
       ],
-      "volume_mm3": 276232.55784383847
+      "volume_mm3": 261378.29353995147
     },
     {
       "id": "HousingCover",
@@ -34,6 +35,7 @@
       "description": "Right crankcase half, replacing the invented inspection cover. Side separation is pedagogical, not the approved disassembly sequence.",
       "evidence": "A-4-18 items 126/127; C-3-1",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -51,15 +53,16 @@
         0,
         90
       ],
-      "volume_mm3": 295474.7117435176
+      "volume_mm3": 350869.8281936013
     },
     {
       "id": "Fastener0",
       "label": "Representative case fastener",
       "group": "housing",
-      "description": "Representative fastener: size and placement illustrative.",
+      "description": "Head seats on the casting; shank enters its hole. Size and placement illustrative.",
       "evidence": "A-4-18",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -77,15 +80,16 @@
         0,
         150
       ],
-      "volume_mm3": 276.4601535159017
+      "volume_mm3": 263.8937829015426
     },
     {
       "id": "Fastener1",
       "label": "Representative case fastener",
       "group": "housing",
-      "description": "Representative fastener: size and placement illustrative.",
+      "description": "Head seats on the casting; shank enters its hole. Size and placement illustrative.",
       "evidence": "A-4-18",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -103,15 +107,16 @@
         0,
         150
       ],
-      "volume_mm3": 276.4601535159017
+      "volume_mm3": 263.89378290154264
     },
     {
       "id": "Fastener2",
       "label": "Representative case fastener",
       "group": "housing",
-      "description": "Representative fastener: size and placement illustrative.",
+      "description": "Head seats on the casting; shank enters its hole. Size and placement illustrative.",
       "evidence": "A-4-18",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -129,15 +134,16 @@
         0,
         150
       ],
-      "volume_mm3": 276.46015351590165
+      "volume_mm3": 263.8937829015425
     },
     {
       "id": "Fastener3",
       "label": "Representative case fastener",
       "group": "housing",
-      "description": "Representative fastener: size and placement illustrative.",
+      "description": "Head seats on the casting; shank enters its hole. Size and placement illustrative.",
       "evidence": "A-4-18",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -155,148 +161,19 @@
         0,
         150
       ],
-      "volume_mm3": 276.46015351590165
+      "volume_mm3": 263.8937829015425
     },
     {
       "id": "CrankGear",
       "label": "Crankshaft gear",
       "group": "core",
-      "description": "Main torque input, item 1. Teeth and web proportions illustrative.",
+      "description": "Torque input. Rear-frame sign inferred from external meshes and front-facing magneto pads (A-3-3 / C-3-2), not a directly quoted crank-rotation specification. Teeth and web proportions illustrative.",
       "evidence": "A-4-8",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
-        0
-      ],
-      "axis": [
-        0,
-        0,
-        1
-      ],
-      "rate": -1,
-      "stage": 2,
-      "offset_mm": [
-        0,
-        0,
-        110
-      ],
-      "volume_mm3": 18608.384181903977
-    },
-    {
-      "id": "CrankShaft",
-      "label": "Crankshaft rear stub",
-      "group": "core",
-      "description": "Shortened shaft and stepped journal; full crank throws omitted.",
-      "evidence": "A-4-8",
-      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
-      "pivot_mm": [
-        0,
-        0,
-        0
-      ],
-      "axis": [
-        0,
-        0,
-        1
-      ],
-      "rate": -1,
-      "stage": 2,
-      "offset_mm": [
-        0,
-        0,
-        -75
-      ],
-      "volume_mm3": 4753.104021175213
-    },
-    {
-      "id": "CamGear",
-      "label": "Camshaft gear",
-      "group": "core",
-      "description": "Crank-driven cam gear; half-speed four-stroke relationship. Teeth and web proportions illustrative.",
-      "evidence": "A-4-8",
-      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
-      "pivot_mm": [
-        0,
-        -90,
-        0
-      ],
-      "axis": [
-        0,
-        0,
-        1
-      ],
-      "rate": 0.5,
-      "stage": 2,
-      "offset_mm": [
-        0,
-        0,
-        110
-      ],
-      "volume_mm3": 68913.7073220156
-    },
-    {
-      "id": "CamCluster",
-      "label": "Camshaft fuel-pump cluster gear",
-      "group": "fuel",
-      "description": "Cluster drives fuel pump; chosen teeth do not establish manufacturer fuel ratio. Teeth and web proportions illustrative.",
-      "evidence": "A-4-8",
-      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
-      "pivot_mm": [
-        0,
-        -90,
-        12
-      ],
-      "axis": [
-        0,
-        0,
-        1
-      ],
-      "rate": 0.5,
-      "stage": 2,
-      "offset_mm": [
-        0,
-        0,
-        110
-      ],
-      "volume_mm3": 5843.778370519502
-    },
-    {
-      "id": "CamShaft",
-      "label": "Camshaft splined rear stub",
-      "group": "core",
-      "description": "Longitudinal spline form follows A-4-8; counts/profile unmeasured.",
-      "evidence": "A-4-8",
-      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
-      "pivot_mm": [
-        0,
-        -90,
-        0
-      ],
-      "axis": [
-        0,
-        0,
-        1
-      ],
-      "rate": 0.5,
-      "stage": 2,
-      "offset_mm": [
-        0,
-        -30,
-        -70
-      ],
-      "volume_mm3": 3651.430839398404
-    },
-    {
-      "id": "IdlerGear",
-      "label": "Idler gear assembly",
-      "group": "core",
-      "description": "Crank to both magneto gears; schematic idler speed. Teeth and web proportions illustrative.",
-      "evidence": "A-4-8",
-      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
-      "pivot_mm": [
-        0,
-        60,
         0
       ],
       "axis": [
@@ -311,15 +188,151 @@
         0,
         110
       ],
-      "volume_mm3": 18608.384181903977
+      "volume_mm3": 18531.477993744094
+    },
+    {
+      "id": "CrankShaft",
+      "label": "Crankshaft rear stub",
+      "group": "core",
+      "description": "Shortened shaft and stepped journal; collar seats below the gear. Full crank throws omitted.",
+      "evidence": "A-4-8",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 1,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        0,
+        -75
+      ],
+      "volume_mm3": 4753.104021175212
+    },
+    {
+      "id": "CamGear",
+      "label": "Camshaft gear",
+      "group": "core",
+      "description": "Crank-driven cam gear with internal spline seat for the oil/tach shaft. Teeth and web proportions illustrative.",
+      "evidence": "A-4-8",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        0,
+        -90,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": -0.5,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        0,
+        110
+      ],
+      "volume_mm3": 69082.67946767696
+    },
+    {
+      "id": "CamCluster",
+      "label": "Camshaft fuel-pump cluster gear",
+      "group": "fuel",
+      "description": "Cluster drives fuel pump; chosen teeth do not establish manufacturer fuel ratio. Teeth and web proportions illustrative.",
+      "evidence": "A-4-8",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        0,
+        -90,
+        12
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": -0.5,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        0,
+        110
+      ],
+      "volume_mm3": 5956.426467627109
+    },
+    {
+      "id": "CamShaft",
+      "label": "Camshaft rear stub and flange",
+      "group": "core",
+      "description": "Shortened camshaft seats at the front of its gear. The oil/tach shaft enters the gear internal splines, not an overlapping solid camshaft.",
+      "evidence": "A-3-2; A-4-8",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        0,
+        -90,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": -0.5,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        -30,
+        -70
+      ],
+      "volume_mm3": 3081.902393171588
+    },
+    {
+      "id": "IdlerGear",
+      "label": "Idler gear assembly",
+      "group": "core",
+      "description": "Crank to both magneto gears; schematic idler speed. Teeth and web proportions illustrative.",
+      "evidence": "A-4-8",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        0,
+        60,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": -1,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        0,
+        110
+      ],
+      "volume_mm3": 18531.477993744094
     },
     {
       "id": "IdlerPin",
-      "label": "Idler support pin",
+      "label": "Idler support pin and mounting head",
       "group": "core",
-      "description": "Fixed stepped support pin, A-4-8 item 13.",
+      "description": "Fixed pin extends into the rear wall; mounting head seats on the case. A-4-8 item 13 / A-4-18 item 28; dimensions inferred.",
       "evidence": "A-4-8",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -337,15 +350,16 @@
         0,
         100
       ],
-      "volume_mm3": 2396.6582035705815
+      "volume_mm3": 6085.610545195324
     },
     {
       "id": "LeftMagGear",
       "label": "Left magneto drive gear",
       "group": "magneto-left",
-      "description": "H 1.5:1 CW facing pad. Gear/shaft form from A-4-11, not magneto internals. Teeth and web proportions illustrative.",
-      "evidence": "A-4-11; C-3-2",
+      "description": "H 1.5:1 CW facing the FRONT magneto pad. Positive rear-frame spin appears CW from the opposite end. Teeth and web proportions illustrative.",
+      "evidence": "A-3-3; A-4-11; C-3-2",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         -40,
         90,
@@ -356,22 +370,23 @@
         0,
         1
       ],
-      "rate": -1.5,
+      "rate": 1.5,
       "stage": 2,
       "offset_mm": [
         0,
         0,
         110
       ],
-      "volume_mm3": 9461.439863331387
+      "volume_mm3": 9410.169071224802
     },
     {
       "id": "LeftMagShaft",
       "label": "Left splined accessory shaft",
       "group": "magneto-left",
-      "description": "Visible longitudinal spline; exact engagement unknown.",
-      "evidence": "A-4-11 items 16/20/22",
+      "description": "Continuous shaft reaches front magneto function marker and rear accessory adapter. Signed rate uses the front-facing pad axis; spline dimensions unmeasured.",
+      "evidence": "A-3-3; A-4-11 items 16/20/22",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         -40,
         90,
@@ -380,7 +395,7 @@
       "axis": [
         0,
         0,
-        1
+        -1
       ],
       "rate": -1.5,
       "stage": 2,
@@ -389,15 +404,16 @@
         0,
         100
       ],
-      "volume_mm3": 2921.1446715187203
+      "volume_mm3": 5089.857739635438
     },
     {
       "id": "LeftMagAdapter",
       "label": "Left accessory drive adapter",
       "group": "magneto-left",
-      "description": "Rounded four-corner flange, raised circular seal bore and bolt holes follow item 12. Proportions unscaled.",
+      "description": "Four-corner flange and locating spigot seat on the case. Stepped bushing/seal bore follows item 12; dimensions inferred.",
       "evidence": "A-4-11 item 12",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -415,15 +431,16 @@
         0,
         95
       ],
-      "volume_mm3": 8514.911576184342
+      "volume_mm3": 12473.318319707476
     },
     {
       "id": "LeftMagGasket",
       "label": "Left adapter gasket",
       "group": "magneto-left",
-      "description": "Separate four-hole gasket with centre opening.",
+      "description": "Separate four-hole gasket between two seated faces.",
       "evidence": "A-4-11 item 13",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -441,15 +458,16 @@
         0,
         83
       ],
-      "volume_mm3": 1341.0708415433248
+      "volume_mm3": 1341.0708415433241
     },
     {
       "id": "LeftMagBushing",
       "label": "Left adapter bushing",
       "group": "magneto-left",
-      "description": "Separate bore sleeve; dimensions inferred.",
+      "description": "Sleeve seats in the small step of the adapter bore.",
       "evidence": "A-4-11 item 14",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -473,9 +491,10 @@
       "id": "LeftMagSeal",
       "label": "Left adapter oil seal",
       "group": "magneto-left",
-      "description": "Annular oil seal with actual shaft opening.",
+      "description": "Seal seats in the larger bore step; shaft passes through it.",
       "evidence": "A-4-11 item 15",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -493,15 +512,16 @@
         0,
         120
       ],
-      "volume_mm3": 891.9609862072141
+      "volume_mm3": 1337.941479310821
     },
     {
       "id": "LeftMagneto",
-      "label": "Left magneto - function marker",
+      "label": "Left magneto - front function marker",
       "group": "magneto-left",
-      "description": "FUNCTION MARKER, not the shape of a Bendix magneto. Reviewed drawings do not resolve its external form/distributor. Supplies ignition energy.",
-      "evidence": "C-3-2; FAA 4-1",
+      "description": "FUNCTION MARKER seated on the front pad, following A-3-3. This ring is not a Bendix body replica; the case front is cropped and its pad dimensions inferred. Supplies ignition energy.",
+      "evidence": "A-3-3; C-3-2; FAA 4-1",
       "shape_status": "Functional endpoint marker; actual accessory body not reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -517,17 +537,18 @@
       "offset_mm": [
         0,
         0,
-        150
+        -100
       ],
-      "volume_mm3": 3619.1147369354417
+      "volume_mm3": 4975.277453637083
     },
     {
       "id": "RightMagGear",
       "label": "Right magneto drive gear",
       "group": "magneto-right",
-      "description": "H 1.5:1 CW facing pad. Gear/shaft form from A-4-11, not magneto internals. Teeth and web proportions illustrative.",
-      "evidence": "A-4-11; C-3-2",
+      "description": "H 1.5:1 CW facing the FRONT magneto pad. Positive rear-frame spin appears CW from the opposite end. Teeth and web proportions illustrative.",
+      "evidence": "A-3-3; A-4-11; C-3-2",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         40,
         90,
@@ -538,22 +559,23 @@
         0,
         1
       ],
-      "rate": -1.5,
+      "rate": 1.5,
       "stage": 2,
       "offset_mm": [
         0,
         0,
         110
       ],
-      "volume_mm3": 9461.439863331381
+      "volume_mm3": 9410.1690712248
     },
     {
       "id": "RightMagShaft",
       "label": "Right splined accessory shaft",
       "group": "magneto-right",
-      "description": "Visible longitudinal spline; exact engagement unknown.",
-      "evidence": "A-4-11 items 16/20/22",
+      "description": "Continuous shaft reaches front magneto function marker and rear accessory adapter. Signed rate uses the front-facing pad axis; spline dimensions unmeasured.",
+      "evidence": "A-3-3; A-4-11 items 16/20/22",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         40,
         90,
@@ -562,7 +584,7 @@
       "axis": [
         0,
         0,
-        1
+        -1
       ],
       "rate": -1.5,
       "stage": 2,
@@ -571,15 +593,16 @@
         0,
         100
       ],
-      "volume_mm3": 2921.1446715187176
+      "volume_mm3": 5089.857739635434
     },
     {
       "id": "RightMagAdapter",
       "label": "Right accessory drive adapter",
       "group": "magneto-right",
-      "description": "Rounded four-corner flange, raised circular seal bore and bolt holes follow item 12. Proportions unscaled.",
+      "description": "Four-corner flange and locating spigot seat on the case. Stepped bushing/seal bore follows item 12; dimensions inferred.",
       "evidence": "A-4-11 item 12",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -597,15 +620,16 @@
         0,
         95
       ],
-      "volume_mm3": 8514.911576184342
+      "volume_mm3": 12473.318319707476
     },
     {
       "id": "RightMagGasket",
       "label": "Right adapter gasket",
       "group": "magneto-right",
-      "description": "Separate four-hole gasket with centre opening.",
+      "description": "Separate four-hole gasket between two seated faces.",
       "evidence": "A-4-11 item 13",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -623,15 +647,16 @@
         0,
         83
       ],
-      "volume_mm3": 1341.070841543325
+      "volume_mm3": 1341.0708415433244
     },
     {
       "id": "RightMagBushing",
       "label": "Right adapter bushing",
       "group": "magneto-right",
-      "description": "Separate bore sleeve; dimensions inferred.",
+      "description": "Sleeve seats in the small step of the adapter bore.",
       "evidence": "A-4-11 item 14",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -655,9 +680,10 @@
       "id": "RightMagSeal",
       "label": "Right adapter oil seal",
       "group": "magneto-right",
-      "description": "Annular oil seal with actual shaft opening.",
+      "description": "Seal seats in the larger bore step; shaft passes through it.",
       "evidence": "A-4-11 item 15",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -675,15 +701,16 @@
         0,
         120
       ],
-      "volume_mm3": 891.9609862072141
+      "volume_mm3": 1337.941479310821
     },
     {
       "id": "RightMagneto",
-      "label": "Right magneto - function marker",
+      "label": "Right magneto - front function marker",
       "group": "magneto-right",
-      "description": "FUNCTION MARKER, not the shape of a Bendix magneto. Reviewed drawings do not resolve its external form/distributor. Supplies ignition energy.",
-      "evidence": "C-3-2; FAA 4-1",
+      "description": "FUNCTION MARKER seated on the front pad, following A-3-3. This ring is not a Bendix body replica; the case front is cropped and its pad dimensions inferred. Supplies ignition energy.",
+      "evidence": "A-3-3; C-3-2; FAA 4-1",
       "shape_status": "Functional endpoint marker; actual accessory body not reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -699,9 +726,9 @@
       "offset_mm": [
         0,
         0,
-        150
+        -100
       ],
-      "volume_mm3": 3619.1147369354417
+      "volume_mm3": 4975.2774536370825
     },
     {
       "id": "FuelGear",
@@ -710,6 +737,7 @@
       "description": "H later installation changed gear and added detachable coupling. Teeth and web proportions illustrative.",
       "evidence": "C-3-1 figure items 75/76; C-3-6",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         42,
         -90,
@@ -720,14 +748,41 @@
         0,
         1
       ],
-      "rate": -0.3076923076923077,
+      "rate": 0.3076923076923077,
       "stage": 2,
       "offset_mm": [
         0,
         0,
         110
       ],
-      "volume_mm3": 16399.5396503827
+      "volume_mm3": 16348.268858276111
+    },
+    {
+      "id": "FuelGearShaft",
+      "label": "Fuel gear shaft and coupling input",
+      "group": "fuel",
+      "description": "Continuous gear-to-coupling input stub. Shoulder/fit reconstructed from H detachable-drive relationship.",
+      "evidence": "C-3-1 figure items 75/76; C-3-6",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        42,
+        -90,
+        12
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0.3076923076923077,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        0,
+        100
+      ],
+      "volume_mm3": 1456.6936816165153
     },
     {
       "id": "FuelCoupling",
@@ -736,6 +791,7 @@
       "description": "Stepped detachable coupling; end engagement profile inferred.",
       "evidence": "C-3-1 figure item 76; C-3-6",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         42,
         -90,
@@ -746,22 +802,50 @@
         0,
         1
       ],
-      "rate": -0.3076923076923077,
+      "rate": 0.3076923076923077,
       "stage": 2,
       "offset_mm": [
         30,
         0,
         110
       ],
-      "volume_mm3": 1918.8504920956839
+      "volume_mm3": 947.1099308264081
+    },
+    {
+      "id": "FuelCaseGasket",
+      "label": "Fuel adapter-to-case gasket",
+      "group": "fuel",
+      "description": "Illustrative locating gasket at the seated case interface.",
+      "evidence": "C-3-1 figure; C-3-6",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        30,
+        0,
+        105
+      ],
+      "volume_mm3": 1247.194701202819
     },
     {
       "id": "FuelPad",
       "label": "H fuel-pump adapter flange",
       "group": "fuel",
-      "description": "H-specific two-stud interface; proportions inferred.",
+      "description": "H-specific two-stud interface seated at the case. Proportions inferred.",
       "evidence": "C-3-1 figure items 69/73; C-3-6",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -779,15 +863,16 @@
         0,
         120
       ],
-      "volume_mm3": 6235.973506014093
+      "volume_mm3": 6235.973506014089
     },
     {
       "id": "FuelSeal",
       "label": "Fuel-pump adapter gasket",
       "group": "fuel",
-      "description": "Separate adapter seal; thickness illustrative.",
+      "description": "Separate gasket between adapter and pump.",
       "evidence": "C-3-1 figure",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -805,7 +890,7 @@
         0,
         130
       ],
-      "volume_mm3": 1272.3274424315346
+      "volume_mm3": 1247.194701202819
     },
     {
       "id": "FuelPump",
@@ -814,6 +899,7 @@
       "description": "Stepped casing volumes and external connection bosses follow H C-3-1 item 68. Hidden surfaces/fittings inferred; fuel internals omitted.",
       "evidence": "C-3-1 figure item 68 (PDF 159); C-3-6",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -831,18 +917,46 @@
         0,
         145
       ],
-      "volume_mm3": 28726.929279034084
+      "volume_mm3": 28726.929279034106
     },
     {
-      "id": "OilTachShaft",
-      "label": "Oil pump / tach splined shaftgear",
-      "group": "oil-tach",
-      "description": "Splined cam connection and pump drive; profile unscaled.",
-      "evidence": "A-4-8 item 8; A-4-16 item 22",
+      "id": "FuelPumpInput",
+      "label": "Fuel pump input tang study",
+      "group": "fuel",
+      "description": "Input tang enters the coupling notch; internal pump drive terminates in the casing. Engagement profile illustrative.",
+      "evidence": "C-3-1 figure items 68/76; C-3-6",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        42,
+        -90,
+        12
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0.3076923076923077,
+      "stage": 2,
+      "offset_mm": [
+        35,
+        0,
+        130
+      ],
+      "volume_mm3": 1660.028189512885
+    },
+    {
+      "id": "FuelInputBushing",
+      "label": "Fuel input locating sleeve study",
+      "group": "fuel",
+      "description": "Illustrative locating sleeve in the reconstructed pump input bore; not a separately identified manufacturer part.",
+      "evidence": "Illustrative interface reconstruction",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
-        -90,
+        0,
         0
       ],
       "axis": [
@@ -850,52 +964,27 @@
         0,
         1
       ],
-      "rate": 0.5,
-      "stage": 2,
+      "rate": 0,
+      "stage": 1,
       "offset_mm": [
+        40,
         0,
-        -45,
-        110
+        135
       ],
-      "volume_mm3": 4647.275613779786
+      "volume_mm3": 678.5840131753951
     },
     {
-      "id": "OilDriver",
-      "label": "Oil pump driver",
+      "id": "OilTachShaft",
+      "label": "Oil pump / tach splined shaftgear",
       "group": "oil-tach",
-      "description": "Pump driver on cam-connected shaft. Teeth and web proportions illustrative.",
-      "evidence": "A-4-16 item 22",
+      "description": "Male spline enters the internal cam-gear spline and continues through pump driver to tach bevel gear. Profile unscaled.",
+      "evidence": "A-3-2; A-4-8 item 8; A-4-16 item 22",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         -90,
-        55
-      ],
-      "axis": [
-        0,
-        0,
-        1
-      ],
-      "rate": 0.5,
-      "stage": 2,
-      "offset_mm": [
-        0,
-        -45,
-        110
-      ],
-      "volume_mm3": 3657.2216290412657
-    },
-    {
-      "id": "OilDriven",
-      "label": "Oil pump driven gear",
-      "group": "oil-tach",
-      "description": "Opposite-running pair; equal tooth sizes illustrative. Teeth and web proportions illustrative.",
-      "evidence": "A-4-16 item 8",
-      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
-      "pivot_mm": [
-        26,
-        -90,
-        55
+        0
       ],
       "axis": [
         0,
@@ -909,15 +998,70 @@
         -45,
         110
       ],
-      "volume_mm3": 3657.221629041268
+      "volume_mm3": 5960.919299181619
+    },
+    {
+      "id": "OilDriver",
+      "label": "Oil pump driver",
+      "group": "oil-tach",
+      "description": "Pump driver on cam-connected shaft. Teeth and web proportions illustrative.",
+      "evidence": "A-4-16 item 22",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        0,
+        -90,
+        44
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": -0.5,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        -45,
+        110
+      ],
+      "volume_mm3": 3605.9508369346836
+    },
+    {
+      "id": "OilDriven",
+      "label": "Oil pump driven gear",
+      "group": "oil-tach",
+      "description": "Opposite-running pair. Placed left of the driver to keep the separate H fuel mounting bay clear; layout unmeasured. Teeth and web proportions illustrative.",
+      "evidence": "A-4-16 item 8",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        -26,
+        -90,
+        44
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0.5,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        -45,
+        110
+      ],
+      "volume_mm3": 3605.9508369346804
     },
     {
       "id": "OilHousing",
       "label": "Oil pump cast housing study",
       "group": "oil-tach",
-      "description": "Stepped casting, mounting holes and gear pockets follow A-4-16 item 5. Valve galleries omitted; gear cavities remain empty.",
+      "description": "Stepped casting and two real gear pockets. Seated on the case; positioned clear of the fuel pump. Contour/galleries unmeasured.",
       "evidence": "A-4-16 item 5",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -935,15 +1079,43 @@
         -65,
         135
       ],
-      "volume_mm3": 27762.076681339924
+      "volume_mm3": 33281.285307076556
+    },
+    {
+      "id": "OilDrivenPin",
+      "label": "Oil driven-gear locating journal study",
+      "group": "oil-tach",
+      "description": "Illustrative shouldered support journal through the driven-gear bore; A-4-16 item 8/9 establish a supported driven-gear assembly, not these dimensions.",
+      "evidence": "A-4-16 items 8/9",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        -65,
+        130
+      ],
+      "volume_mm3": 1951.6201882630514
     },
     {
       "id": "HousingGasket",
       "label": "Oil pump mounting gasket",
       "group": "oil-tach",
-      "description": "Pump flange gasket replaces invented accessory-box perimeter seal; outline inferred.",
+      "description": "Gasket sits between the case pad and pump flange; outline inferred.",
       "evidence": "A-4-16 item 1",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -961,15 +1133,43 @@
         -65,
         112
       ],
-      "volume_mm3": 1222.4313491535333
+      "volume_mm3": 1222.4313491535336
+    },
+    {
+      "id": "OilCoverGasket",
+      "label": "Oil gear-box cover gasket",
+      "group": "oil-tach",
+      "description": "Thin gasket closes the former cover gap; outline illustrative.",
+      "evidence": "A-4-16 item 48",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        0,
+        -75,
+        150
+      ],
+      "volume_mm3": 2482.575222039231
     },
     {
       "id": "OilCover",
       "label": "Oil-pump gear-box cover study",
       "group": "oil-tach",
-      "description": "Separate cover with drive opening; outline unscaled.",
-      "evidence": "A-4-16 items 35/49",
+      "description": "Cover seats on its gasket; oil/tach shaft passes through its opening.",
+      "evidence": "A-4-16 item 49",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -987,15 +1187,16 @@
         -75,
         155
       ],
-      "volume_mm3": 9930.300888156915
+      "volume_mm3": 9930.300888156924
     },
     {
       "id": "OilReliefBody",
       "label": "Oil-pressure relief housing",
       "group": "oil-tach",
-      "description": "Lateral relief housing, item 15. Internal calibrated spring and plunger omitted.",
+      "description": "Relief housing seats on the side of the casting at an open port. Calibrated spring/plunger omitted.",
       "evidence": "A-4-16 item 15",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -1016,12 +1217,40 @@
       "volume_mm3": 3619.114736935442
     },
     {
-      "id": "ScavengeBody",
-      "label": "Scavenge pump body study",
+      "id": "ScavengeGasket",
+      "label": "Scavenge-body interface gasket study",
       "group": "oil-tach",
-      "description": "Separate body follows item 26. Scavenge gears/galleries omitted; this is not a complete pump.",
-      "evidence": "A-4-16 item 26",
+      "description": "Illustrative gasket at the staged pump-body interface.",
+      "evidence": "A-4-16 body/interface relationships; illustrative outline",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        0,
+        -85,
+        170
+      ],
+      "volume_mm3": 1665.4424808105111
+    },
+    {
+      "id": "ScavengeBody",
+      "label": "Scavenge / tach drive body study",
+      "group": "oil-tach",
+      "description": "Stepped body and bored lateral tach boss. Connected chamber holds the documented bevel pair. Scavenge gears and fluid galleries omitted; depth/shape reconstructed.",
+      "evidence": "A-4-16 items 26/35/39",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -1039,15 +1268,16 @@
         -85,
         180
       ],
-      "volume_mm3": 16292.07984368997
+      "volume_mm3": 25017.066649444598
     },
     {
       "id": "OilScreenPlug",
       "label": "Oil screen plug study",
       "group": "oil-tach",
-      "description": "Representative plug; screen mesh and oil circuit omitted.",
+      "description": "Representative side plug enters a bore and its head seats on the casting. Screen and oil circuit omitted.",
       "evidence": "A-4-16 item 44",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -1061,23 +1291,24 @@
       "rate": 0,
       "stage": 1,
       "offset_mm": [
-        15,
+        -15,
         -65,
         140
       ],
-      "volume_mm3": 1168.672467135403
+      "volume_mm3": 1325.7520998148927
     },
     {
-      "id": "TachOutput",
-      "label": "Tachometer shaft - relocated marker",
+      "id": "TachDriveBevel",
+      "label": "Tach drive bevel gear - pitch-form study",
       "group": "oil-tach",
-      "description": "H 0.5:1 CW facing pad. Actual bevel transfer omitted; this is not a coaxial continuation of the cam shaft.",
-      "evidence": "C-3-2; A-4-16 items 24/47",
-      "shape_status": "Functional endpoint marker; actual accessory body not reconstructed",
+      "description": "Documented bevel transfer; smooth pitch-cone form. Tooth form, cone angles and dimensions illustrative.",
+      "evidence": "A-4-16 items 24/47",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         -90,
-        104
+        73
       ],
       "axis": [
         0,
@@ -1088,10 +1319,118 @@
       "stage": 2,
       "offset_mm": [
         0,
+        -55,
+        155
+      ],
+      "volume_mm3": 1093.085747890033
+    },
+    {
+      "id": "TachDrivenBevel",
+      "label": "Tach driven bevel gear - pitch-form study",
+      "group": "oil-tach",
+      "description": "Documented bevel transfer; smooth pitch-cone form. Tooth form, cone angles and dimensions illustrative.",
+      "evidence": "A-4-16 items 24/47",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        -6,
+        -90,
+        85
+      ],
+      "axis": [
+        -1,
+        0,
+        0
+      ],
+      "rate": -0.5,
+      "stage": 2,
+      "offset_mm": [
+        0,
+        -55,
+        155
+      ],
+      "volume_mm3": 1378.091033423699
+    },
+    {
+      "id": "TachOutput",
+      "label": "Tachometer output shaft",
+      "group": "oil-tach",
+      "description": "Lateral shaft passes through the driven bevel and bored tach pad. H 0.5:1 CW facing its engine pad; geometry and layout unmeasured.",
+      "evidence": "C-3-2; A-4-16 items 24/45/47",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        0,
+        -90,
+        85
+      ],
+      "axis": [
+        -1,
+        0,
+        0
+      ],
+      "rate": -0.5,
+      "stage": 2,
+      "offset_mm": [
+        -40,
         -45,
         190
       ],
-      "volume_mm3": 1206.3715789784806
+      "volume_mm3": 2363.2630736629217
+    },
+    {
+      "id": "TachPadGasket",
+      "label": "Tach drive-pad gasket",
+      "group": "oil-tach",
+      "description": "Bored gasket between tach body and cover; dimensions illustrative.",
+      "evidence": "A-4-16 item 38",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        -40,
+        -55,
+        180
+      ],
+      "volume_mm3": 553.911951835125
+    },
+    {
+      "id": "TachPadCover",
+      "label": "Tach drive-pad cover",
+      "group": "oil-tach",
+      "description": "Rounded four-corner plate with output bore follows drive-pad cover item 39.",
+      "evidence": "A-4-16 item 39",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        -50,
+        -55,
+        185
+      ],
+      "volume_mm3": 1661.7358555053752
     },
     {
       "id": "StarterShaftGear",
@@ -1100,6 +1439,7 @@
       "description": "Crank-meshing gear remains engine-driven after clutch release. Teeth and web proportions illustrative.",
       "evidence": "A-4-8",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         60,
         0,
@@ -1110,22 +1450,23 @@
         0,
         1
       ],
-      "rate": 1,
+      "rate": -1,
       "stage": 2,
       "offset_mm": [
         0,
         0,
         110
       ],
-      "volume_mm3": 18608.384181903977
+      "volume_mm3": 18531.4779937441
     },
     {
       "id": "StarterDrum",
       "label": "Starter clutch shaftgear drum",
       "group": "starter",
-      "description": "Stepped shaftgear drum/journal; knurling and fits unmeasured.",
+      "description": "Continuous shaft seats through the crank-meshing gear and case bearing; drum is inside the adapter, clear of its floor. Knurling/fits unmeasured.",
       "evidence": "A-4-15 item 12",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         60,
         0,
@@ -1136,14 +1477,14 @@
         0,
         1
       ],
-      "rate": 1,
+      "rate": -1,
       "stage": 2,
       "offset_mm": [
         65,
         0,
         110
       ],
-      "volume_mm3": 5627.2207611100375
+      "volume_mm3": 9246.335498045477
     },
     {
       "id": "WormWheel",
@@ -1152,10 +1493,11 @@
       "description": "Wheel-side hub meets shaftgear drum under wrap spring. Teeth and web proportions illustrative.",
       "evidence": "A-4-15 item 31",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         60,
         0,
-        35
+        73
       ],
       "axis": [
         0,
@@ -1169,19 +1511,20 @@
         0,
         130
       ],
-      "volume_mm3": 11517.950220988178
+      "volume_mm3": 10762.962674477509
     },
     {
       "id": "WormWheelHub",
       "label": "Worm-wheel clutch hub",
       "group": "starter",
-      "description": "Wheel-side drum receiving wrap spring; hidden dimensions inferred.",
+      "description": "Wheel-side hub seats against its wheel and meets the drum under the spring; dimensions inferred.",
       "evidence": "A-4-15 items 30/31",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         60,
         0,
-        19
+        57
       ],
       "axis": [
         0,
@@ -1195,19 +1538,20 @@
         0,
         130
       ],
-      "volume_mm3": 3896.5802001004913
+      "volume_mm3": 3667.36960009458
     },
     {
       "id": "ClutchSpring",
       "label": "Starter wrap-spring clutch",
       "group": "starter",
-      "description": "Spans shaft drum and wheel hub. Pitch, winding hand and tightening remain illustrative.",
+      "description": "Spans the two touching drum surfaces. Pitch, winding hand and tightening illustrative.",
       "evidence": "A-4-15 item 30; A-3-2",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         60,
         0,
-        13
+        50
       ],
       "axis": [
         0,
@@ -1227,13 +1571,14 @@
       "id": "StarterWorm",
       "label": "Starter worm drive shaft",
       "group": "starter",
-      "description": "Cross-axis worm and shaft, A-4-15. H 32:1 CCW facing pad; thread profile/count unmeasured.",
+      "description": "Cross-axis worm shaft reaches into the motor input. H 32:1 CCW facing pad; thread/fit unmeasured.",
       "evidence": "A-4-15 items 38/42; C-3-2",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         40,
         -30,
-        41
+        77
       ],
       "axis": [
         1,
@@ -1247,15 +1592,43 @@
         -30,
         130
       ],
-      "volume_mm3": 5234.2907239242695
+      "volume_mm3": 9305.794930551898
+    },
+    {
+      "id": "StarterCaseGasket",
+      "label": "Starter adapter-to-case gasket",
+      "group": "starter",
+      "description": "Mounting gasket between seated case and adapter faces.",
+      "evidence": "A-4-15 item 11",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        95,
+        0,
+        145
+      ],
+      "volume_mm3": 3162.6106277387157
     },
     {
       "id": "StarterAdapter",
       "label": "Starter right-angle adapter housing",
       "group": "starter",
-      "description": "Circular wheel chamber, cross-axis worm tunnel and flange follow item 29. Cavity/wall thickness inferred.",
+      "description": "Lobed mounting foot, circular chamber and open cross-axis worm passage. Motor flange reaches its tunnel; wheel mesh opening is clear. Dimensions inferred.",
       "evidence": "A-4-15 item 29",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -1273,15 +1646,70 @@
         0,
         160
       ],
-      "volume_mm3": 64454.600708025806
+      "volume_mm3": 77989.94855815012
+    },
+    {
+      "id": "StarterCaseBushing",
+      "label": "Starter shaft locating bearing study",
+      "group": "starter",
+      "description": "Stepped support seats in case and adapter bores, clear of the clutch drum. Needle internals omitted.",
+      "evidence": "A-4-15 item 43",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        95,
+        0,
+        150
+      ],
+      "volume_mm3": 1713.8016243863035
+    },
+    {
+      "id": "StarterCoverGasket",
+      "label": "Starter cover-to-adapter gasket",
+      "group": "starter",
+      "description": "Lobed gasket closes the adapter-to-cover interface.",
+      "evidence": "A-4-15 item 28",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        95,
+        0,
+        182
+      ],
+      "volume_mm3": 3544.6814286109793
     },
     {
       "id": "StarterCover",
       "label": "Starter adapter circular cover",
       "group": "starter",
-      "description": "Circular cover with oil-seal bore and flange holes; dimensions inferred.",
+      "description": "Circular cover with projecting bolt ears and seated oil seal.",
       "evidence": "A-4-15 item 23",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -1299,15 +1727,16 @@
         0,
         190
       ],
-      "volume_mm3": 17033.698027086393
+      "volume_mm3": 17723.40714305489
     },
     {
       "id": "StarterSeal",
       "label": "Starter adapter oil seal",
       "group": "starter",
-      "description": "Separate annular shaft seal.",
+      "description": "Seal seats in the cover bore around the continued shaft.",
       "evidence": "A-4-15 item 26",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -1331,9 +1760,10 @@
       "id": "StarterMotor",
       "label": "Starter motor exterior study",
       "group": "starter",
-      "description": "Long cylinder, end bands and four-corner flange visible in A-4-15 item 3. Motor internals omitted.",
+      "description": "Banded cylindrical motor flange seats on the adapter. Extended worm shaft enters the input bore. Motor internals omitted.",
       "evidence": "A-4-15 item 3; C-3-1",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -1351,15 +1781,16 @@
         -40,
         160
       ],
-      "volume_mm3": 27667.30997798286
+      "volume_mm3": 27667.309977982877
     },
     {
       "id": "AlternatorPad",
-      "label": "Alternator four-lug flange - front remote",
+      "label": "Alternator mounting gasket - front display",
       "group": "alternator",
-      "description": "Circular flange with four projecting bolt lugs, item 5. Front assembly relocated alongside rear drive study.",
-      "evidence": "A-4-13 item 5; A-4-4 H photo",
+      "description": "Item 5 is the four-lug GASKET. The matching mounting flange belongs to alternator body item 4. Front module is on a grey teaching stand; engine transfer omitted.",
+      "evidence": "A-4-13 items 4/5; A-4-4 H photo",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -1377,15 +1808,16 @@
         0,
         100
       ],
-      "volume_mm3": 6889.046379689909
+      "volume_mm3": 1307.5713646486122
     },
     {
       "id": "AlternatorDrivenGear",
-      "label": "Alternator driven gear - remote",
+      "label": "Alternator driven gear and clutch cup - remote",
       "group": "alternator",
-      "description": "Driven gear identified; intervening engine transfer unresolved. Teeth and web proportions illustrative.",
+      "description": "Driven gear/cup encloses the clutch sleeve and hub; intervening engine transfer unresolved. Teeth and web proportions illustrative.",
       "evidence": "A-4-13 item 10; C-3-3",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         137,
         82,
@@ -1403,15 +1835,16 @@
         0,
         85
       ],
-      "volume_mm3": 5065.799515566926
+      "volume_mm3": 7247.070126807393
     },
     {
       "id": "AlternatorOutput",
       "label": "Alternator shaft - remote",
       "group": "alternator",
-      "description": "H 3:1 CW facing pad. Exact input mesh/front installation not reconstructed.",
+      "description": "Shaft passes through the driven-gear bushing and hub into the body input seat. H 3:1 CW. Exact engine input mesh omitted.",
       "evidence": "C-3-3; A-4-13",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         137,
         82,
@@ -1429,15 +1862,70 @@
         0,
         100
       ],
-      "volume_mm3": 2412.743157956961
+      "volume_mm3": 4134.964250654884
+    },
+    {
+      "id": "AlternatorThrustWasher",
+      "label": "Alternator thrust washer",
+      "group": "alternator",
+      "description": "Washer seats below driven gear; nut/cotter detail omitted.",
+      "evidence": "A-4-13 item 9",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 1,
+      "offset_mm": [
+        65,
+        0,
+        80
+      ],
+      "volume_mm3": 175.9291886010285
+    },
+    {
+      "id": "AlternatorBushing",
+      "label": "Alternator driven-gear bushing",
+      "group": "alternator",
+      "description": "Bushing seats inside driven gear and around its shaft. Dimensions illustrative.",
+      "evidence": "A-4-13 item 11",
+      "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
+      "pivot_mm": [
+        137,
+        82,
+        24
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": -3,
+      "stage": 2,
+      "offset_mm": [
+        65,
+        0,
+        90
+      ],
+      "volume_mm3": 76.15220592301705
     },
     {
       "id": "AlternatorHub",
       "label": "Alternator gear-driven hub",
       "group": "alternator",
-      "description": "Separate hollow clutch hub, item 13. Inner ribs simplified.",
+      "description": "Hollow keyed hub inside clutch sleeve. Internal ribs/key shape simplified.",
       "evidence": "A-4-13 item 13",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         137,
         82,
@@ -1455,15 +1943,16 @@
         0,
         115
       ],
-      "volume_mm3": 4523.893421169301
+      "volume_mm3": 5428.672105403162
     },
     {
       "id": "AlternatorClutch",
       "label": "Alternator clutch sleeve study",
       "group": "alternator",
-      "description": "Envelope of identified clutch spring; turns/friction not inferred.",
+      "description": "Clutch envelope nests between driven-gear cup and hub; winding/friction omitted.",
       "evidence": "A-4-13 item 12",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         137,
         82,
@@ -1481,15 +1970,16 @@
         0,
         125
       ],
-      "volume_mm3": 1557.3503102375325
+      "volume_mm3": 1726.2423312945189
     },
     {
       "id": "AlternatorBody",
       "label": "Gear-driven alternator exterior - front remote",
       "group": "alternator",
-      "description": "Banded body, fastening ribs and cooling openings follow A-4-13 and H photo. Rotor/stator omitted; hidden vent depth inferred.",
+      "description": "Four-lug body flange, banded casing, tie ribs and elongated ventilation openings. Gasket touches its face; shaft enters its locating bore. Rotor/stator omitted; all depth/proportions inferred.",
       "evidence": "A-4-13 item 4; A-4-4 H photo",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -1507,15 +1997,43 @@
         0,
         165
       ],
-      "volume_mm3": 68977.56103921242
+      "volume_mm3": 65101.766191987284
+    },
+    {
+      "id": "AlternatorDisplayStand",
+      "label": "Teaching stand - front alternator / transfer omitted",
+      "group": "alternator",
+      "description": "Author-created display stand. Supports a relocated module; no engine shaft or gearbox is implied by these posts. Actual engine transfer remains omitted.",
+      "evidence": "Teaching presentation fixture; no manufacturer geometry claim",
+      "shape_status": "Teaching display fixture; not an engine part or transmission",
+      "role": "teaching-fixture",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 3,
+      "offset_mm": [
+        0,
+        0,
+        0
+      ],
+      "volume_mm3": 15277.188083288755
     },
     {
       "id": "VacuumOutput",
       "label": "Optional vacuum output shaft marker",
       "group": "vacuum",
-      "description": "H 1.14:1 CCW; accessory/adapter internals not shown. Relocated marker.",
+      "description": "H 1.14:1 CCW; accessory/adapter internals not shown. Relocated shaft display, located in the pad and function marker.",
       "evidence": "C-3-3; A-3-2",
       "shape_status": "Functional endpoint marker; actual accessory body not reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         -109,
         10,
@@ -1533,15 +2051,16 @@
         0,
         100
       ],
-      "volume_mm3": 1306.9025438933543
+      "volume_mm3": 1809.557368467721
     },
     {
       "id": "VacuumPad",
       "label": "Optional vacuum output interface marker",
       "group": "vacuum",
-      "description": "Conceptual interface, not manufacturer flange geometry.",
+      "description": "Conceptual bored interface on grey teaching stand, not manufacturer flange geometry.",
       "evidence": "C-3-3; A-3-2",
       "shape_status": "Functional endpoint marker; actual accessory body not reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -1559,15 +2078,16 @@
         0,
         80
       ],
-      "volume_mm3": 6861.238355440108
+      "volume_mm3": 7191.294079626251
     },
     {
       "id": "VacuumBody",
       "label": "Optional vacuum output function marker",
       "group": "vacuum",
-      "description": "FUNCTION MARKER, not an actual accessory body. H 1.14:1 CCW; accessory/adapter internals not shown.",
+      "description": "FUNCTION MARKER with display sleeve seated on its pad, not an actual accessory body. H 1.14:1 CCW; accessory/adapter internals not shown. Shaft reaches its bore; exact engine transfer not modelled.",
       "evidence": "C-3-3; A-3-2",
       "shape_status": "Functional endpoint marker; actual accessory body not reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -1585,15 +2105,43 @@
         0,
         130
       ],
-      "volume_mm3": 3619.1147369354408
+      "volume_mm3": 7107.162228363119
+    },
+    {
+      "id": "VacuumDisplayStand",
+      "label": "Teaching stand - vacuum / transfer omitted",
+      "group": "vacuum",
+      "description": "Author-created display stand. Supports a relocated module; no engine shaft or gearbox is implied by these posts. Actual engine transfer remains omitted.",
+      "evidence": "Teaching presentation fixture; no manufacturer geometry claim",
+      "shape_status": "Teaching display fixture; not an engine part or transmission",
+      "role": "teaching-fixture",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 3,
+      "offset_mm": [
+        0,
+        0,
+        0
+      ],
+      "volume_mm3": 17057.591471931133
     },
     {
       "id": "GovernorOutput",
       "label": "Governor front remote output shaft marker",
       "group": "governor",
-      "description": "H 0.809:1 CW. Front cam bevel pair documented; governor body not shown. Relocated marker.",
+      "description": "H 0.809:1 CW. Front cam bevel pair documented; governor body not shown. Relocated shaft display, located in the pad and function marker.",
       "evidence": "C-3-3; A-3-2",
       "shape_status": "Functional endpoint marker; actual accessory body not reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         -107,
         -124,
@@ -1611,15 +2159,16 @@
         0,
         100
       ],
-      "volume_mm3": 1306.9025438933543
+      "volume_mm3": 1809.5573684677208
     },
     {
       "id": "GovernorPad",
       "label": "Governor front remote output interface marker",
       "group": "governor",
-      "description": "Conceptual interface, not manufacturer flange geometry.",
+      "description": "Conceptual bored interface on grey teaching stand, not manufacturer flange geometry.",
       "evidence": "C-3-3; A-3-2",
       "shape_status": "Functional endpoint marker; actual accessory body not reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -1637,15 +2186,16 @@
         0,
         80
       ],
-      "volume_mm3": 7634.070148223196
+      "volume_mm3": 7964.1258724093395
     },
     {
       "id": "GovernorBody",
       "label": "Governor front remote output function marker",
       "group": "governor",
-      "description": "FUNCTION MARKER, not an actual accessory body. H 0.809:1 CW. Front cam bevel pair documented; governor body not shown.",
+      "description": "FUNCTION MARKER with display sleeve seated on its pad, not an actual accessory body. H 0.809:1 CW. Front cam bevel pair documented; governor body not shown. Shaft reaches its bore; exact engine transfer not modelled.",
       "evidence": "C-3-3; A-3-2",
       "shape_status": "Functional endpoint marker; actual accessory body not reconstructed",
+      "role": "engine-study",
       "pivot_mm": [
         0,
         0,
@@ -1663,11 +2213,38 @@
         0,
         130
       ],
-      "volume_mm3": 4398.229715025712
+      "volume_mm3": 7886.277206453386
+    },
+    {
+      "id": "GovernorDisplayStand",
+      "label": "Teaching stand - governor / transfer omitted",
+      "group": "governor",
+      "description": "Author-created display stand. Supports a relocated module; no engine shaft or gearbox is implied by these posts. Actual engine transfer remains omitted.",
+      "evidence": "Teaching presentation fixture; no manufacturer geometry claim",
+      "shape_status": "Teaching display fixture; not an engine part or transmission",
+      "role": "teaching-fixture",
+      "pivot_mm": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "rate": 0,
+      "stage": 3,
+      "offset_mm": [
+        0,
+        0,
+        0
+      ],
+      "volume_mm3": 17057.591471931133
     }
   ],
   "reference": "GTSIO reviewed manual: H photo A-4-4; drive train A-4-8; parts A-4-11/13/15/16/18; H C-3-1/2/3/6 and C-3-1 fuel figure.",
-  "scope": "Drawing-led, unscaled GTSIO-520-H teaching reconstruction. Dimensions, teeth, case contour and pad positions illustrative. Front alternator/governor and optional outputs relocated. Function markers are not accessory replicas.",
+  "scope": "Drawing-led, unscaled GTSIO-520-H teaching reconstruction. Flanges and shaft seats meet in the assembled pose. Dimensions, teeth, case contour and pad positions illustrative. Grey display stands hold relocated front/optional modules; their omitted engine transfers are not physical shafts. Function markers are not accessory replicas.",
   "motions": [
     {
       "id": "Operating mechanism",
@@ -1940,10 +2517,14 @@
         "CamShaft",
         "CamCluster",
         "FuelGear",
+        "FuelGearShaft",
         "FuelCoupling",
+        "FuelCaseGasket",
         "FuelPad",
         "FuelSeal",
-        "FuelPump"
+        "FuelPump",
+        "FuelPumpInput",
+        "FuelInputBushing"
       ],
       "ratio": null,
       "direction": "Unverified",
@@ -1966,10 +2547,18 @@
         ],
         [
           "FuelGear",
+          "FuelGearShaft"
+        ],
+        [
+          "FuelGearShaft",
           "FuelCoupling"
         ],
         [
           "FuelCoupling",
+          "FuelPumpInput"
+        ],
+        [
+          "FuelPumpInput",
           "FuelPump"
         ]
       ]
@@ -1985,19 +2574,26 @@
         "OilDriver",
         "OilDriven",
         "OilHousing",
+        "OilDrivenPin",
         "HousingGasket",
+        "OilCoverGasket",
         "OilCover",
         "OilReliefBody",
+        "ScavengeGasket",
         "ScavengeBody",
         "OilScreenPlug",
-        "TachOutput"
+        "TachDriveBevel",
+        "TachDrivenBevel",
+        "TachOutput",
+        "TachPadGasket",
+        "TachPadCover"
       ],
       "ratio": 0.5,
       "direction": "CW (tach output)",
       "outputs": [
         "TachOutput"
       ],
-      "note": "Crank \u2192 cam \u2192 splined oil/tach shaftgear \u2192 pump and bevel tach output. 0.5:1 is verified for tach, not a separately published oil-pump specification. Lubrication and speed indication. A-3-2; A-4-16; C-3-2.",
+      "note": "Crank \u2192 internal cam-gear spline \u2192 oil/tach shaft \u2192 pump and 90\u00b0 tach bevel pair \u2192 lateral output. Bevels are smooth pitch-form studies, not manufactured teeth. 0.5:1 is verified for tach, not a separately published oil-pump specification. A-3-2; A-4-16; C-3-2.",
       "edges": [
         [
           "CrankGear",
@@ -2017,6 +2613,14 @@
         ],
         [
           "OilTachShaft",
+          "TachDriveBevel"
+        ],
+        [
+          "TachDriveBevel",
+          "TachDrivenBevel"
+        ],
+        [
+          "TachDrivenBevel",
           "TachOutput"
         ]
       ]
@@ -2033,7 +2637,10 @@
         "WormWheelHub",
         "ClutchSpring",
         "StarterWorm",
+        "StarterCaseGasket",
         "StarterAdapter",
+        "StarterCaseBushing",
+        "StarterCoverGasket",
         "StarterCover",
         "StarterSeal",
         "StarterMotor"
@@ -2079,9 +2686,12 @@
         "AlternatorPad",
         "AlternatorDrivenGear",
         "AlternatorOutput",
+        "AlternatorThrustWasher",
+        "AlternatorBushing",
         "AlternatorHub",
         "AlternatorClutch",
-        "AlternatorBody"
+        "AlternatorBody",
+        "AlternatorDisplayStand"
       ],
       "ratio": 3,
       "direction": "CW",
@@ -2096,14 +2706,14 @@
         ],
         [
           "AlternatorDrivenGear",
-          "AlternatorHub"
-        ],
-        [
-          "AlternatorHub",
           "AlternatorClutch"
         ],
         [
           "AlternatorClutch",
+          "AlternatorHub"
+        ],
+        [
+          "AlternatorHub",
           "AlternatorOutput"
         ],
         [
@@ -2123,7 +2733,8 @@
         "LeftMagAdapter",
         "VacuumOutput",
         "VacuumPad",
-        "VacuumBody"
+        "VacuumBody",
+        "VacuumDisplayStand"
       ],
       "ratio": 1.14,
       "direction": "CCW",
@@ -2163,7 +2774,8 @@
         "CamShaft",
         "GovernorOutput",
         "GovernorPad",
-        "GovernorBody"
+        "GovernorBody",
+        "GovernorDisplayStand"
       ],
       "ratio": 0.809,
       "direction": "CW",
@@ -2191,34 +2803,497 @@
       ]
     }
   ],
-  "viewpoint": "CW/CCW facing engine drive pad. CAD +Z points toward the rear observer; outputs are relocated. Arrows indicate output direction, not an inferred intermediate mesh.",
+  "interfaces": [
+    {
+      "a": "Fastener0",
+      "b": "AccessoryHousing",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "Fastener1",
+      "b": "HousingCover",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "Fastener2",
+      "b": "AccessoryHousing",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "Fastener3",
+      "b": "HousingCover",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "IdlerPin",
+      "b": "AccessoryHousing",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "IdlerPin",
+      "b": "HousingCover",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "LeftMagGasket",
+      "b": "AccessoryHousing",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "LeftMagGasket",
+      "b": "LeftMagAdapter",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "LeftMagBushing",
+      "b": "LeftMagAdapter",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "LeftMagSeal",
+      "b": "LeftMagAdapter",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "LeftMagneto",
+      "b": "AccessoryHousing",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "LeftMagShaft",
+      "b": "LeftMagBushing",
+      "kind": "shaft-seat",
+      "max_gap_mm": 0.45
+    },
+    {
+      "a": "RightMagGasket",
+      "b": "HousingCover",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "RightMagGasket",
+      "b": "RightMagAdapter",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "RightMagBushing",
+      "b": "RightMagAdapter",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "RightMagSeal",
+      "b": "RightMagAdapter",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "RightMagneto",
+      "b": "HousingCover",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "RightMagShaft",
+      "b": "RightMagBushing",
+      "kind": "shaft-seat",
+      "max_gap_mm": 0.45
+    },
+    {
+      "a": "FuelCaseGasket",
+      "b": "HousingCover",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "FuelCaseGasket",
+      "b": "FuelPad",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "FuelPad",
+      "b": "FuelSeal",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "FuelSeal",
+      "b": "FuelPump",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "FuelInputBushing",
+      "b": "FuelPump",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "FuelGearShaft",
+      "b": "FuelGear",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "FuelGearShaft",
+      "b": "FuelCoupling",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "FuelPumpInput",
+      "b": "FuelCoupling",
+      "kind": "tang-seat",
+      "max_gap_mm": 0.25
+    },
+    {
+      "a": "FuelPumpInput",
+      "b": "FuelInputBushing",
+      "kind": "shaft-seat",
+      "max_gap_mm": 0.25
+    },
+    {
+      "a": "HousingGasket",
+      "b": "AccessoryHousing",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "HousingGasket",
+      "b": "OilHousing",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "OilHousing",
+      "b": "OilCoverGasket",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "OilCoverGasket",
+      "b": "OilCover",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "OilCover",
+      "b": "ScavengeGasket",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "ScavengeGasket",
+      "b": "ScavengeBody",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "OilReliefBody",
+      "b": "OilHousing",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "OilScreenPlug",
+      "b": "OilHousing",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "TachPadGasket",
+      "b": "ScavengeBody",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "TachPadCover",
+      "b": "TachPadGasket",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "OilTachShaft",
+      "b": "CamGear",
+      "kind": "shaft-seat",
+      "max_gap_mm": 0.35
+    },
+    {
+      "a": "OilTachShaft",
+      "b": "OilDriver",
+      "kind": "shaft-seat",
+      "max_gap_mm": 0.45
+    },
+    {
+      "a": "OilDrivenPin",
+      "b": "OilDriven",
+      "kind": "shaft-seat",
+      "max_gap_mm": 0.15
+    },
+    {
+      "a": "OilDrivenPin",
+      "b": "OilHousing",
+      "kind": "shaft-seat",
+      "max_gap_mm": 0.25
+    },
+    {
+      "a": "OilTachShaft",
+      "b": "TachDriveBevel",
+      "kind": "shaft-seat",
+      "max_gap_mm": 0.45
+    },
+    {
+      "a": "TachOutput",
+      "b": "TachDrivenBevel",
+      "kind": "shaft-seat",
+      "max_gap_mm": 0.25
+    },
+    {
+      "a": "TachOutput",
+      "b": "TachPadCover",
+      "kind": "shaft-seat",
+      "max_gap_mm": 0.35
+    },
+    {
+      "a": "StarterCaseGasket",
+      "b": "HousingCover",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "StarterCaseGasket",
+      "b": "StarterAdapter",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "StarterCaseBushing",
+      "b": "StarterAdapter",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "StarterCaseBushing",
+      "b": "HousingCover",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "StarterAdapter",
+      "b": "StarterCoverGasket",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "StarterCoverGasket",
+      "b": "StarterCover",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "StarterSeal",
+      "b": "StarterCover",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "StarterMotor",
+      "b": "StarterAdapter",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "WormWheelHub",
+      "b": "WormWheel",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "StarterDrum",
+      "b": "StarterCaseBushing",
+      "kind": "shaft-seat",
+      "max_gap_mm": 0.45
+    },
+    {
+      "a": "StarterDrum",
+      "b": "StarterShaftGear",
+      "kind": "shaft-seat",
+      "max_gap_mm": 0.45
+    },
+    {
+      "a": "StarterWorm",
+      "b": "StarterMotor",
+      "kind": "motor-input-seat",
+      "max_gap_mm": 0.55
+    },
+    {
+      "a": "AlternatorPad",
+      "b": "AlternatorBody",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "AlternatorBushing",
+      "b": "AlternatorDrivenGear",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "AlternatorThrustWasher",
+      "b": "AlternatorDrivenGear",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "AlternatorThrustWasher",
+      "b": "AlternatorOutput",
+      "kind": "mount-face",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "AlternatorOutput",
+      "b": "AlternatorBushing",
+      "kind": "shaft-or-clutch-seat",
+      "max_gap_mm": 0.15
+    },
+    {
+      "a": "AlternatorClutch",
+      "b": "AlternatorDrivenGear",
+      "kind": "shaft-or-clutch-seat",
+      "max_gap_mm": 0.25
+    },
+    {
+      "a": "AlternatorClutch",
+      "b": "AlternatorHub",
+      "kind": "shaft-or-clutch-seat",
+      "max_gap_mm": 0.15
+    },
+    {
+      "a": "AlternatorOutput",
+      "b": "AlternatorHub",
+      "kind": "shaft-or-clutch-seat",
+      "max_gap_mm": 0.25
+    },
+    {
+      "a": "AlternatorOutput",
+      "b": "AlternatorBody",
+      "kind": "shaft-or-clutch-seat",
+      "max_gap_mm": 0.25
+    },
+    {
+      "a": "AlternatorDisplayStand",
+      "b": "AlternatorPad",
+      "kind": "display-seat",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "VacuumDisplayStand",
+      "b": "VacuumPad",
+      "kind": "display-seat",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "VacuumBody",
+      "b": "VacuumPad",
+      "kind": "display-seat",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "VacuumOutput",
+      "b": "VacuumPad",
+      "kind": "shaft-seat",
+      "max_gap_mm": 0.35
+    },
+    {
+      "a": "VacuumOutput",
+      "b": "VacuumBody",
+      "kind": "shaft-seat",
+      "max_gap_mm": 0.35
+    },
+    {
+      "a": "GovernorDisplayStand",
+      "b": "GovernorPad",
+      "kind": "display-seat",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "GovernorBody",
+      "b": "GovernorPad",
+      "kind": "display-seat",
+      "max_gap_mm": 0.02
+    },
+    {
+      "a": "GovernorOutput",
+      "b": "GovernorPad",
+      "kind": "shaft-seat",
+      "max_gap_mm": 0.35
+    },
+    {
+      "a": "GovernorOutput",
+      "b": "GovernorBody",
+      "kind": "shaft-seat",
+      "max_gap_mm": 0.35
+    }
+  ],
+  "remoteDisplays": [
+    {
+      "group": "alternator",
+      "label": "Alternator"
+    },
+    {
+      "group": "vacuum",
+      "label": "Optional vacuum"
+    },
+    {
+      "group": "governor",
+      "label": "Governor"
+    }
+  ],
+  "viewpoint": "CW/CCW facing each engine drive pad. Magnetos face the front side of their accessory pads (A-3-3); tach faces a lateral pad (A-4-16). Arrows follow those study shaft axes. The crank and intermediate signed rotations are inferred from external meshes and the front magneto pad viewpoint, not a directly published crank-direction specification. Grey fixtures are teaching stands. Front/optional modules are relocated and omitted transfers remain conceptual.",
   "rotationOutputs": [
     {
       "id": "LeftMagShaft",
       "direction": "CW",
       "axis": [
         0,
-        1,
+        -1,
         0
-      ]
+      ],
+      "markerOffsetM": 0.041
     },
     {
       "id": "RightMagShaft",
       "direction": "CW",
       "axis": [
         0,
-        1,
+        -1,
         0
-      ]
+      ],
+      "markerOffsetM": 0.041
     },
     {
       "id": "TachOutput",
       "direction": "CW (tach output)",
       "axis": [
+        -1,
         0,
-        1,
         0
-      ]
+      ],
+      "markerOffsetM": 0.066
     },
     {
       "id": "StarterWorm",
@@ -2227,7 +3302,8 @@
         1,
         0,
         0
-      ]
+      ],
+      "markerOffsetM": 0.087
     },
     {
       "id": "AlternatorOutput",
@@ -2236,7 +3312,8 @@
         0,
         1,
         0
-      ]
+      ],
+      "markerOffsetM": 0.058
     },
     {
       "id": "VacuumOutput",
@@ -2245,7 +3322,8 @@
         0,
         1,
         0
-      ]
+      ],
+      "markerOffsetM": 0.034999999999999996
     },
     {
       "id": "GovernorOutput",
@@ -2254,7 +3332,8 @@
         0,
         1,
         0
-      ]
+      ],
+      "markerOffsetM": 0.034999999999999996
     }
   ]
 }

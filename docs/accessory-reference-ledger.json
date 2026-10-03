@@ -1,6 +1,6 @@
 {
   "engine_variant": "GTSIO-520-H",
-  "date": "2026-10-02",
+  "date": "2026-10-03",
   "source_files": [
     {
       "id": "gtsio-reviewed",
@@ -32,6 +32,20 @@
       ],
       "printed": "A-3-2; A-4-8",
       "claim": "Crank→idler→magnetos; crank→cam cluster→fuel; cam spline→oil/tach; front cam bevel→governor; starter worm→wheel→clutch→shaftgear→crank."
+    },
+    {
+      "id": "rotation-frame",
+      "source": "gtsio-reviewed",
+      "pdf_pages": [
+        13,
+        14,
+        18,
+        33,
+        152,
+        153
+      ],
+      "printed": "A-1; A-3-3; A-4-16; C-3-2/3",
+      "claim": "Front is the propeller end, rear the accessory end. Magnetos mount on the front of accessory pads; tach bevel output is lateral. Signed crank/intermediate study rotations are inferred from external meshes and the front magneto pad viewpoint; this is not a directly published crank-direction specification."
     },
     {
       "id": "ratios",
@@ -71,7 +85,7 @@
         160
       ],
       "printed": "A-4-4/11/13/15/16/18; C-3-1 figure",
-      "claim": "H photograph places alternator toward the front; basic parts drawings show split crankcase, flanged bored adapters, starter adapter/motor, oil/scavenge casing and alternator driven gear/hub/clutch; H fuel figure supplies the later pump/coupling forms. Unscaled drawings do not establish rear case contour, dimensions or accessory-body detail."
+      "claim": "H photograph places alternator toward the front; A-4-13 item 5 is its gasket and item 11 its bushing. Basic drawings show split crankcase, flanged bored adapters, supported starter adapter/motor, oil/scavenge casing and tach bevel pair, and nested alternator gear/clutch/hub; H fuel figure supplies the later pump/coupling forms. Unscaled drawings do not establish rear case contour, dimensions or accessory-body detail."
     },
     {
       "id": "general-functions",
@@ -94,11 +108,11 @@
     "Visible traits reconstructed from drawings, not measured replicas. Exact rear casting contour, dimensions, tooth counts/profile, placements, seal details and explosion travel illustrative; no engineering fit or manufacture claim.",
     "Cam 0.5 relationship follows four-stroke cycle; idler speed and fuel gearing chosen for schematic layout, not manufacturer tooth counts.",
     "Governor front drive relocated; actual bevel transfer omitted. Vacuum adapter and H alternator intermediate geometry unresolved; dashed routes are conceptual.",
-    "Fuel ratio and fuel direction unverified. Tach ratio is not a separately verified oil-pump specification.",
+    "Fuel ratio and fuel direction unverified. Tach ratio is not a separately verified oil-pump specification. Its documented 90-degree bevel transfer is now a smooth pitch-form reconstruction; geometry and tooth profiles remain illustrative.",
     "A-4-8 caption calls items 10/11 scavenge gears while narrative uses item 11 for tach; oil/tach naming cross-checked with A-4-16 rather than silently merging labels.",
     "Basic A-3-2 generator pulley wording does not establish H gear-driven alternator transfer geometry.",
     "No IO-520 configuration used; existing IO-520 permold pump remains a separate study.",
-    "Magnetos, optional vacuum and governor bodies remain functional markers, not replicas. No detailed internals except referenced drive/clutch parts and reconstructed pump gear cavities. No flow, oil pressure, wear or failure dynamics.",
+    "Magnetos, optional vacuum and governor bodies remain functional markers, not replicas. Grey support stands are author-created teaching fixtures, not engine parts or drive connections. Basic A-3-3 mounts magnetos on the front of accessory pads; the function markers now seat on that front side, while optional rear adapters occupy the opposite side. No detailed internals except referenced drive/clutch/bevel parts and reconstructed pump gear cavities. No flow, oil pressure, wear or failure dynamics.",
     "Historical references do not establish current service applicability; no engine serial number or measured trainer supplied.",
     "Native source solids and rebuild recipe are editable; not a constrained assembly or measured reverse-engineering model."
   ]

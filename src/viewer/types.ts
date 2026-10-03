@@ -38,6 +38,7 @@ export type ViewerSnapshot = {
   angle?: number;
   playing?: boolean;
   motionNote?: string;
+  assemblyNotice?: string;
   cycleEnabled?: boolean;
   cycleNote?: string;
   sectionEnabled?: boolean;
