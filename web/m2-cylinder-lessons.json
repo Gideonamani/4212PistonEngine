@@ -2,11 +2,13 @@
   "schema": "4212.lesson-pack/v3",
   "privacy": "Progress is held only in this page session; no learner identity or answers are stored or transmitted.",
   "id": "m2-cylinder-study",
+  "thumbnail": "./thumbnails/course-m2-cylinder-study.webp",
   "title": "Operating Cylinder Study",
   "description": "Follow the revised GTSIO-520-H cylinder through a four-stroke teaching cycle, using the same 61-component model as Explore.",
   "lessons": [
     {
       "id": "m2-four-stroke-guided",
+      "thumbnail": "./thumbnails/lesson-m2-four-stroke-guided.webp",
       "title": "Follow one four-stroke cycle",
       "objective": "Use the shared 720-degree crank angle to sequence the four ideal teaching strokes and relate mechanism motion to valve/cue observations.",
       "models": [
@@ -84,6 +86,7 @@
     },
     {
       "id": "m2-cylinder-interfaces",
+      "thumbnail": "./thumbnails/lesson-m2-cylinder-interfaces.webp",
       "title": "Explore how the cylinder parts fit",
       "listed": true,
       "objective": "Use staged exploded poses to identify part interfaces and distinguish a structural overview from a maintenance removal sequence.",

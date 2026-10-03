@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CourseTrack, Lesson } from '../types/engine';
-import { VisualIllustration } from './VisualIllustrations';
+import { CardThumbnail } from './CardThumbnail';
 import { LessonStepViewer } from './LessonStepViewer';
 import {
   BookOpen,
@@ -172,8 +172,8 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
                   </div>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
-                  <div className="w-18 h-18 sm:w-20 sm:h-20 rounded-xl overflow-hidden border border-white/10 shrink-0">
-                    <VisualIllustration type={track.imageType} className="w-full h-full" />
+                  <div className="w-22 h-22 sm:w-24 sm:h-24 rounded-xl overflow-hidden border border-white/10 shrink-0">
+                    <CardThumbnail src={track.thumbnail} fallbackType={track.imageType} />
                   </div>
                   <div className="w-8 h-8 rounded-full bg-slate-900/80 border border-white/5 flex items-center justify-center text-slate-400 group-hover:text-teal-300 group-hover:border-teal-400/40 transition-all">
                     <ChevronRight className="w-4 h-4" />
@@ -239,7 +239,7 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
               </div>
             </div>
             <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden border border-teal-500/20 shrink-0 relative bg-slate-950/60">
-              <VisualIllustration type={activeTrack.imageType} className="w-full h-full" />
+              <CardThumbnail src={activeTrack.thumbnail} fallbackType={activeTrack.imageType} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
             </div>
           </div>
@@ -259,7 +259,7 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
               className="w-full p-3.5 rounded-2xl bg-[#09181e]/90 border border-white/5 hover:border-teal-500/40 shadow-md cursor-pointer transition-all hover:scale-[1.005] active:scale-[0.99] flex items-center justify-between gap-3 group text-left"
             >
               <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-xl overflow-hidden border border-white/10 shrink-0 relative">
-                <VisualIllustration type={lesson.imageType} className="w-full h-full" />
+                <CardThumbnail src={lesson.thumbnail} fallbackType={lesson.imageType} />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="text-[10px] font-mono tracking-wider uppercase text-slate-400 font-semibold">{lesson.lessonNumber}</div>

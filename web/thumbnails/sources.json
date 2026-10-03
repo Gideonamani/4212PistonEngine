@@ -1,0 +1,273 @@
+{
+  "schema": "4212.thumbnail-sources/v1",
+  "description": "Where each course and lesson card thumbnail comes from. scripts/build_thumbnails.py reads this and writes the square WebP files beside it. Crop boxes are [left, top, right, bottom] as fractions of the source. Manual and book pages are read from the Notes folder (--notes); renders live in scripts/thumbnail_sources and were captured from the app's own 3D viewer with scripts/capture_model_thumbnail.js. The 'previews' section builds the Explore gallery card images (web/model-previews/<model id>.webp) the same way.",
+  "size": 360,
+  "items": {
+    "course-history-and-fundamentals": {
+      "kind": "image",
+      "path": "lesson-media/gnome-omega.webp",
+      "box": [
+        0.2,
+        0,
+        0.8,
+        1
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": "Gnome Omega rotary engine, Valder137",
+      "license": "CC BY 2.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Gnome_Omega_Rotary_Engine_Running_02_Dawn_Patrol_NMUSAF_26Sept09_(14619976863).jpg"
+    },
+    "course-fundamentals-and-classification": {
+      "kind": "render",
+      "path": "gtsio520-full-engine.webp",
+      "credit": "Rendered from the app's GTSIO-520-H full-engine teaching model",
+      "license": "Course material",
+      "box": [
+        0.051,
+        0.058,
+        0.94,
+        0.947
+      ]
+    },
+    "course-m2-cylinder-study": {
+      "kind": "render",
+      "path": "cylinder-course.webp",
+      "credit": "Rendered from the app's operating-cylinder teaching model",
+      "license": "Course material",
+      "box": [
+        0.056,
+        0.079,
+        0.958,
+        0.982
+      ]
+    },
+    "course-internal-mechanisms": {
+      "kind": "diagonal",
+      "parts": [
+        {
+          "kind": "render",
+          "path": "hydraulic-tappet-square.webp"
+        },
+        {
+          "kind": "render",
+          "path": "oil-pump-square.webp"
+        }
+      ],
+      "credit": "Hydraulic tappet and oil pump teaching studies, rendered from the app's 3D models",
+      "license": "Course material"
+    },
+    "course-accessories-and-drives": {
+      "kind": "pdf",
+      "pdf": "gtsio520_series.pdf",
+      "page": 25,
+      "box": [
+        0.12,
+        0.075,
+        0.97,
+        0.59
+      ],
+      "fit": "cover",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": "Continental GTSIO-520 overhaul manual, Figure A4-8 (gear train diagram)",
+      "license": "Course reference extract"
+    },
+    "lesson-history-mechanical-engines": {
+      "kind": "image",
+      "path": "lesson-media/watermill-operation.webp",
+      "box": [
+        0.18,
+        0,
+        0.78,
+        1
+      ],
+      "credit": "Watermill in operation, Jonathan Wilkins",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Watermill_in_operation.jpg"
+    },
+    "lesson-history-aircraft-engines": {
+      "kind": "render",
+      "path": "wright-1903-engine.webp",
+      "credit": "Rendered from the Smithsonian NASM 1903 Wright Flyer engine scan",
+      "license": "CC0",
+      "box": [
+        0.11,
+        0.21,
+        0.876,
+        0.976
+      ]
+    },
+    "lesson-terminologies": {
+      "kind": "pdf",
+      "pdf": "AMT Handbook - Powerplant (FAA-H-8083-32B) 22-57, 328-329, 369-412, 434-458.pdf",
+      "page": 25,
+      "box": [
+        0.512,
+        0.468,
+        0.905,
+        0.892
+      ],
+      "fit": "contain",
+      "credit": "FAA-H-8083-32B, Figure 1-35 (components and terminology of engine operation)",
+      "license": "U.S. Government work"
+    },
+    "lesson-thermodynamic-cycles": {
+      "kind": "pdf",
+      "pdf": "AMT Handbook - Powerplant (FAA-H-8083-32B) 22-57, 328-329, 369-412, 434-458.pdf",
+      "page": 26,
+      "box": [
+        0.1,
+        0.44,
+        0.49,
+        0.89
+      ],
+      "fit": "contain",
+      "credit": "FAA-H-8083-32B, Figure 1-36 (four-stroke cycle)",
+      "license": "U.S. Government work"
+    },
+    "lesson-classification": {
+      "kind": "diagonal",
+      "parts": [
+        {
+          "kind": "pdf",
+          "pdf": "AMT Handbook - Powerplant (FAA-H-8083-32B) 22-57, 328-329, 369-412, 434-458.pdf",
+          "page": 4,
+          "box": [
+            0.092,
+            0.69,
+            0.494,
+            0.898
+          ]
+        },
+        {
+          "kind": "pdf",
+          "pdf": "AMT Handbook - Powerplant (FAA-H-8083-32B) 22-57, 328-329, 369-412, 434-458.pdf",
+          "page": 4,
+          "box": [
+            0.545,
+            0.62,
+            0.915,
+            0.9
+          ]
+        }
+      ],
+      "credit": "FAA-H-8083-32B, Figures 1-1 (opposed engine) and 1-3 (double-row radial)",
+      "license": "U.S. Government work"
+    },
+    "lesson-parts-construction": {
+      "kind": "image",
+      "path": "lesson-media/faa-opposed-engine-exploded.webp",
+      "box": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "credit": "FAA-H-8083-32B, Figure 1-6 (typical opposed engine exploded into component assemblies)",
+      "license": "U.S. Government work"
+    },
+    "lesson-cooling-methods": {
+      "kind": "image",
+      "path": "lesson-media/air-cooling-path.webp",
+      "box": [
+        0.03,
+        0.02,
+        0.97,
+        0.86
+      ],
+      "credit": "FAA-H-8083-32B, Figure 6-50 (cylinder baffle and deflector system)",
+      "license": "U.S. Government work"
+    },
+    "lesson-m2-four-stroke-guided": {
+      "kind": "render",
+      "path": "cylinder-operating-cycle.webp",
+      "credit": "Rendered from the app's operating-cylinder teaching model",
+      "license": "Course material",
+      "box": [
+        0.076,
+        0.076,
+        0.979,
+        0.979
+      ]
+    },
+    "lesson-m2-cylinder-interfaces": {
+      "kind": "render",
+      "path": "cylinder-exploded.webp",
+      "credit": "Rendered from the app's operating-cylinder teaching model (exploded pose)",
+      "license": "Course material",
+      "box": [
+        0.051,
+        0.051,
+        0.94,
+        0.94
+      ]
+    },
+    "lesson-hydraulic-tappet-internal-study": {
+      "kind": "render",
+      "path": "hydraulic-tappet-square.webp",
+      "credit": "Hydraulic tappet teaching study (exploded), rendered from the app's 3D model",
+      "license": "Course material"
+    },
+    "lesson-oil-pump-internal-study": {
+      "kind": "render",
+      "path": "oil-pump-square.webp",
+      "credit": "IO-520 oil pump teaching study (exploded), rendered from the app's 3D model",
+      "license": "Course material"
+    },
+    "lesson-accessories-and-drives": {
+      "kind": "render",
+      "path": "accessory-drives-square.webp",
+      "credit": "GTSIO-520-H accessories and drives teaching study, rendered from the app's 3D model",
+      "license": "Course material"
+    }
+  },
+  "previews": {
+    "size": [
+      640,
+      256
+    ],
+    "items": {
+      "cylinder": {
+        "kind": "render",
+        "path": "explore-cylinder.webp",
+        "credit": "Rendered from the app's operating-cylinder teaching model",
+        "license": "Course material"
+      },
+      "gtsio520-h-v5-teaching-engine": {
+        "kind": "render",
+        "path": "explore-full-engine.webp",
+        "credit": "Rendered from the app's GTSIO-520-H full-engine teaching model",
+        "license": "Course material"
+      },
+      "wright-1903-engine": {
+        "kind": "render",
+        "path": "explore-wright-1903-engine.webp",
+        "credit": "Rendered from the Smithsonian NASM 1903 Wright Flyer engine scan",
+        "license": "CC0"
+      },
+      "hydraulic-tappet": {
+        "kind": "render",
+        "path": "explore-hydraulic-tappet.webp",
+        "credit": "Rendered from the app's hydraulic tappet teaching model",
+        "license": "Course material"
+      },
+      "oil-pump": {
+        "kind": "render",
+        "path": "explore-oil-pump.webp",
+        "credit": "Rendered from the app's IO-520 oil pump teaching model",
+        "license": "Course material"
+      },
+      "accessory-drives": {
+        "kind": "render",
+        "path": "explore-accessory-drives.webp",
+        "credit": "Rendered from the app's GTSIO-520-H accessory drives teaching model",
+        "license": "Course material"
+      }
+    }
+  }
+}

@@ -1,11 +1,13 @@
 {
   "schema": "4212.lesson-pack/v3",
   "id": "internal-mechanisms",
+  "thumbnail": "./thumbnails/course-internal-mechanisms.webp",
   "title": "Internal Mechanisms and Assembly Interfaces",
   "description": "Use manual-based CAD teaching studies to explain hydraulic tappet internals and an IO-520 permold oil pump. Dimensions and operating travel are illustrative.",
   "lessons": [
     {
       "id": "hydraulic-tappet-internal-study",
+      "thumbnail": "./thumbnails/lesson-hydraulic-tappet-internal-study.webp",
       "title": "Inside the hydraulic tappet",
       "objective": "Identify the manual-listed internal parts and explain the role of trapped oil and replenishment.",
       "listed": true,
@@ -53,6 +55,7 @@
     },
     {
       "id": "oil-pump-internal-study",
+      "thumbnail": "./thumbnails/lesson-oil-pump-internal-study.webp",
       "title": "Inside the oil pump and relief valve",
       "objective": "Explain external-gear pumping and identify the spring-loaded relief mechanism.",
       "listed": true,

@@ -6,6 +6,7 @@
     "eyebrow": "OPERATING-CYCLE STUDY",
     "description": "Explore the revised GTSIO-520-H cylinder: 61 components, continuous-flow fuel nozzle, synchronized valve gear and a live section view.",
     "imageType": "piston",
+    "previewUrl": "./model-previews/cylinder.webp",
     "badges": [
       "61 components",
       "Animated valve gear",
@@ -32,6 +33,7 @@
     "eyebrow": "WHOLE-ENGINE STUDY",
     "description": "Explore the developing GTSIO-520-H teaching assembly, its six-cylinder installation and drivetrain structure.",
     "imageType": "systems",
+    "previewUrl": "./model-previews/gtsio520-h-v5-teaching-engine.webp",
     "badges": [
       "6 cylinders",
       "Animated drivetrain",
@@ -46,6 +48,7 @@
     "eyebrow": "HISTORICAL REFERENCE",
     "description": "Inspect the Smithsonian engine scan with six guided feature hotspots and its original museum source context.",
     "imageType": "wright",
+    "previewUrl": "./model-previews/wright-1903-engine.webp",
     "badges": [
       "CC0 museum scan",
       "6 guided hotspots",
@@ -159,7 +162,7 @@
       }
     ],
     "contractUrl": "./hydraulic-tappet-contract.json?v=a6c88a23cd42",
-    "previewUrl": "./model-previews/hydraulic-tappet.png"
+    "previewUrl": "./model-previews/hydraulic-tappet.webp"
   },
   {
     "id": "oil-pump",
@@ -183,7 +186,7 @@
       }
     ],
     "contractUrl": "./oil-pump-contract.json?v=3622888d4e44",
-    "previewUrl": "./model-previews/oil-pump.png"
+    "previewUrl": "./model-previews/oil-pump.webp"
   },
   {
     "id": "accessory-drives",
@@ -192,6 +195,7 @@
     "eyebrow": "LESSON 8 / ACCESSORIES & DRIVES",
     "description": "Inspect seated flanges, continuous shaft paths and a lateral tach bevel drive across 80 unscaled part studies and 3 grey display fixtures. Unknown front/optional transfers remain labelled as omitted.",
     "imageType": "systems",
+    "previewUrl": "./model-previews/accessory-drives.webp",
     "badges": [
       "80 part studies + 3 fixtures",
       "10 saved motions",

@@ -217,10 +217,13 @@ function validateStep(step, lessonModels, lessonIndex, stepIndex, knownSourceIds
   return errors;
 }
 
+const isThumbnailPath = (value) => typeof value === 'string' && /^\.\/thumbnails\/[\w-]+\.webp$/.test(value);
+
 function validateLesson(lesson, lessonIndex, knownSourceIds) {
   const errors = [];
   const where = `lessons[${lessonIndex}]`;
   if (!lesson.id) errors.push(`${where}: missing id`);
+  if (lesson.thumbnail !== undefined && !isThumbnailPath(lesson.thumbnail)) errors.push(`${where}: thumbnail must be a ./thumbnails/*.webp path`);
   if (lesson.sequenceNumber !== undefined && !(Number.isInteger(lesson.sequenceNumber) && lesson.sequenceNumber > 0)) errors.push(`${where}: sequenceNumber must be a positive integer`);
   if (!Array.isArray(lesson.models)) errors.push(`${where}: models must be an array (use [] for a general/theory lesson)`);
   if (!Array.isArray(lesson.steps) || lesson.steps.length === 0) errors.push(`${where}: steps must be a non-empty array`);
@@ -270,6 +273,7 @@ export function validateLessonPack(pack) {
   if (pack.id !== undefined && typeof pack.id !== 'string') errors.push('id must be a string');
   if (pack.title !== undefined && typeof pack.title !== 'string') errors.push('title must be a string');
   if (pack.description !== undefined && typeof pack.description !== 'string') errors.push('description must be a string');
+  if (pack.thumbnail !== undefined && !isThumbnailPath(pack.thumbnail)) errors.push('thumbnail must be a ./thumbnails/*.webp path');
   const knownSourceIds = new Set();
   if (pack.sources !== undefined) {
     if (!Array.isArray(pack.sources)) errors.push('sources must be an array');
