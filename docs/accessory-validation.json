@@ -17,7 +17,7 @@
     "exported_animation": "Verified signed endpoint speeds, 32x starting input, clutch release, matching tach pitch-contact velocities and reversed exploded poses. Clip timestamps normalized to 0..20 seconds.",
     "section": "Actual exported pump pocket remains empty; coloured cap covers solid wall; animated geometry and cavities tested.",
     "existing_models": "All 37 regression checks passed, including cylinder, hydraulic tappet, oil pump, full-engine motion scope, lesson packs and exported source bindings.",
-    "browser": "Local viewer visually checked at 1280 x 720 and 360 x 800. Separate-display notice is readable. Oil/tach complete-path isolation removes that notice. Exploded endpoint remains at 100% while sectioning, selecting the new lateral bevel and rotating/zooming. Guided bindings validated by the automated suite.",
+    "browser": "Local viewer visually checked at 1280 x 720 and 360 x 800. Separate-display notice is readable. Oil/tach complete-path isolation removes that notice. Exploded endpoint remains at 100% while sectioning, selecting the new lateral bevel and rotating/zooming. Published Pages viewer independently loaded the new 83-component Drive asset; all 10 motions listed, and the exploded overview scrubbed to a paused 100% at 360 x 800 with the three-module notice readable. Guided bindings validated by the automated suite.",
     "storage": "Private native archive 19,242,883 bytes; owner-only permissions and connector raw-file readback byte count verified. Local native-file and archive SHA-256 recorded; private remote checksum not independently verified. No model binaries added to Git.",
     "drive_delivery": "New teaching export anonymously retrieved from Drive: 12,394,258 bytes, SHA-256 00010e5d535c943e47ab3a5374701559cae510c1433f5eb797be2572ff163686; exact local match before binding. Previous releases retained.",
     "visual_shape_review": "Manual page images plus assembled front/rear native renders reviewed; source-backed traits, omitted transfers, markers and fixtures documented."
@@ -30,6 +30,12 @@
     "Physical-phone testing, trainer comparison, serial-specific part effectivity and instructor review pending."
   ],
   "native_archive_url": "https://drive.google.com/file/d/1Q_JsxohlRb18GlpdZUSc2jkXfMsuEtb1/view?usp=drivesdk",
+  "ci": {
+    "commit": "8ed25a4a38ea479c62c3c5952ed35f20dc1fddd8",
+    "url": "https://github.com/Gideonamani/4212PistonEngine/actions/runs/37120325390",
+    "conclusion": "success",
+    "checks": "Fresh checkout restored approved Drive exports, passed type-check and all 37 JavaScript tests, built and deployed Pages. Public browser verification then confirmed the new 83-component revision."
+  },
   "previous_ci": {
     "commit": "f897556ae372d7b9ec3081a71adea51222b218db",
     "url": "https://github.com/Gideonamani/4212PistonEngine/actions/runs/37107344881",
