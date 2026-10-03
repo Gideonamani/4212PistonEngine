@@ -16,7 +16,7 @@
       "steps": [
         {
           "type": "model-pose",
-          "title": "Piston direction at 90\u00c2\u00b0",
+          "title": "Piston direction at 90\u00b0",
           "modelId": "cylinder",
           "prompt": "Start with the mechanism. At 90 degrees, predict whether the piston is travelling away from or toward the cylinder head, then reveal the pose.",
           "action": {
@@ -27,7 +27,7 @@
         },
         {
           "type": "model-pose",
-          "title": "Rod angle at 270\u00c2\u00b0",
+          "title": "Rod angle at 270\u00b0",
           "modelId": "cylinder",
           "prompt": "At 270 degrees, inspect the changed rod angle and piston direction. What has rotated continuously while the piston reverses direction?",
           "action": {
