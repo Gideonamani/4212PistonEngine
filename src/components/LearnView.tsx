@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { CourseTrack, Lesson } from '../types/engine';
 import { CardThumbnail } from './CardThumbnail';
+import { BackLink, CardImage, CardRow, Chip } from './ui';
 import { LessonStepViewer } from './LessonStepViewer';
 import {
   BookOpen,
   ChevronRight,
-  ChevronLeft,
   Box,
   FileText,
   Layers,
   CheckCircle,
-  Clock,
   Sparkles,
-  Info,
 } from 'lucide-react';
 import { getCompletedLessonIds, LESSON_PROGRESS_EVENT } from '../data/lessonProgress';
 import { resolveLearn } from '../routes/route.mjs';
@@ -100,41 +98,21 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
           {tracks.map((track) => {
             const progress = percentDone(track);
             return (
-              <button
-                type="button"
+              <CardRow
                 key={track.id}
                 onClick={() => openCourse(track)}
-                className="p-3.5 rounded-2xl border border-white/5 bg-[#09181e]/90 hover:border-teal-500/40 text-left cursor-pointer transition-all hover:scale-[1.005] active:scale-[0.99] flex items-start justify-between gap-3 group"
+                align="start"
+                imageSide="end"
+                image={<CardImage src={track.thumbnail} fallbackType={track.imageType} size="lg" />}
               >
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-base font-bold text-white group-hover:text-teal-300 transition-colors">{track.title}</h3>
-                  <p className="text-xs text-slate-300 leading-snug mt-1 line-clamp-2">{track.description}</p>
-                  <div className="flex items-center flex-wrap gap-2 mt-2.5 text-[11px] font-mono">
-                    <div className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-slate-900/60 border border-slate-700/50 text-slate-300">
-                      <Layers className="w-3 h-3 text-teal-400" />
-                      <span>{track.lessonCount} {track.lessonCount === 1 ? 'lesson' : 'lessons'}</span>
-                    </div>
-                    <div className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-slate-900/60 border border-slate-700/50 text-slate-300">
-                      <FileText className="w-3 h-3 text-teal-400" />
-                      <span>{track.stepCountApprox}</span>
-                    </div>
-                    {progress > 0 && (
-                      <div className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-teal-950/40 border border-teal-500/30 text-teal-300 font-semibold">
-                        <CheckCircle className="w-3 h-3" />
-                        <span>{progress}% complete</span>
-                      </div>
-                    )}
-                  </div>
+                <h3 className="text-base font-bold text-white group-hover:text-teal-300 transition-colors">{track.title}</h3>
+                <p className="text-xs text-slate-300 leading-snug mt-1 line-clamp-2">{track.description}</p>
+                <div className="flex items-center flex-wrap gap-2 mt-2.5 text-[11px] font-mono">
+                  <Chip icon={Layers}>{track.lessonCount} {track.lessonCount === 1 ? 'lesson' : 'lessons'}</Chip>
+                  <Chip icon={FileText}>{track.stepCountApprox}</Chip>
+                  {progress > 0 && <Chip icon={CheckCircle} tone="accent">{progress}% complete</Chip>}
                 </div>
-                <div className="flex items-center gap-2 shrink-0">
-                  <div className="w-22 h-22 sm:w-24 sm:h-24 rounded-xl overflow-hidden border border-white/10 shrink-0">
-                    <CardThumbnail src={track.thumbnail} fallbackType={track.imageType} />
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-slate-900/80 border border-white/5 flex items-center justify-center text-slate-400 group-hover:text-teal-300 group-hover:border-teal-400/40 transition-all">
-                    <ChevronRight className="w-4 h-4" />
-                  </div>
-                </div>
-              </button>
+              </CardRow>
             );
           })}
         </div>
@@ -148,14 +126,7 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
     <div className="relative w-full h-full flex flex-col bg-[#061014] text-slate-100 overflow-y-auto select-none pb-24">
       <div className="px-4 pt-3 pb-2 flex flex-col gap-4 max-w-xl mx-auto w-full">
         <div>
-          <button
-            onClick={backToCourses}
-            className="inline-flex items-center gap-1.5 text-xs text-teal-400 hover:text-teal-300 font-medium py-1 px-2.5 -ml-2 rounded-lg hover:bg-slate-800/60 transition-colors"
-            aria-label="Back to courses"
-          >
-            <ChevronLeft className="w-4 h-4" />
-            <span>All Courses</span>
-          </button>
+          <BackLink label="All Courses" ariaLabel="Back to courses" onClick={backToCourses} />
         </div>
 
         <div
@@ -177,20 +148,9 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
               <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-teal-300 transition-colors">{activeTrack.title}</h3>
               <p className="text-xs text-slate-300 leading-relaxed mt-1">{activeTrack.description}</p>
               <div className="flex items-center flex-wrap gap-2 mt-3 text-[11px] font-mono">
-                <div className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-900/80 border border-slate-700/60 text-slate-300">
-                  <Layers className="w-3.5 h-3.5 text-teal-400" />
-                  <span>{activeTrack.lessonCount} {activeTrack.lessonCount === 1 ? 'Lesson' : 'Lessons'}</span>
-                </div>
-                <div className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-900/80 border border-slate-700/60 text-slate-300">
-                  <FileText className="w-3.5 h-3.5 text-teal-400" />
-                  <span>{activeTrack.stepCountApprox}</span>
-                </div>
-                {courseProgress > 0 && (
-                  <div className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-teal-950/50 border border-teal-500/30 text-teal-300 font-semibold">
-                    <Sparkles className="w-3 h-3 text-teal-400" />
-                    <span>{courseProgress}% complete</span>
-                  </div>
-                )}
+                <Chip icon={Layers} size="md">{activeTrack.lessonCount} {activeTrack.lessonCount === 1 ? 'Lesson' : 'Lessons'}</Chip>
+                <Chip icon={FileText} size="md">{activeTrack.stepCountApprox}</Chip>
+                {courseProgress > 0 && <Chip icon={Sparkles} tone="accent" size="md">{courseProgress}% complete</Chip>}
               </div>
             </div>
             <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden border border-teal-500/20 shrink-0 relative bg-slate-950/60">
@@ -207,35 +167,22 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
 
         <div className="flex flex-col gap-2.5">
           {activeTrack.lessons.map((lesson) => (
-            <button
-              type="button"
-              key={lesson.id}
-              onClick={() => openLesson(lesson)}
-              className="w-full p-3.5 rounded-2xl bg-[#09181e]/90 border border-white/5 hover:border-teal-500/40 shadow-md cursor-pointer transition-all hover:scale-[1.005] active:scale-[0.99] flex items-center justify-between gap-3 group text-left"
-            >
-              <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-xl overflow-hidden border border-white/10 shrink-0 relative">
-                <CardThumbnail src={lesson.thumbnail} fallbackType={lesson.imageType} />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-[10px] font-mono tracking-wider uppercase text-slate-400 font-semibold">{lesson.lessonNumber}</div>
-                <h4 className="text-sm sm:text-base font-bold text-white group-hover:text-teal-300 transition-colors mt-0.5 truncate">{lesson.title}</h4>
-                {lesson.hasModelBadge && (
-                  <div className="inline-flex items-center gap-1 px-2 py-0.5 mt-1 rounded-md bg-teal-950/40 border border-teal-500/30 text-teal-300 text-[10px] font-medium">
-                    <Box className="w-3 h-3" />
-                    <span>Has a reference model</span>
-                  </div>
-                )}
-                <p className="text-xs text-slate-300 leading-snug mt-1 line-clamp-2">{lesson.subtitle}</p>
-                <div className="flex items-center gap-1 text-[11px] font-mono text-slate-400 mt-2">
-                  <FileText className="w-3 h-3 text-teal-400" />
-                  <span>{lesson.stepCount} steps</span>
-                  {completedLessonIds.has(lesson.id) && <span className="ml-2 inline-flex items-center gap-1 font-sans font-semibold text-emerald-400"><CheckCircle className="h-3.5 w-3.5" />Completed</span>}
+            <CardRow key={lesson.id} onClick={() => openLesson(lesson)} image={<CardImage src={lesson.thumbnail} fallbackType={lesson.imageType} />}>
+              <div className="text-[10px] font-mono tracking-wider uppercase text-slate-400 font-semibold">{lesson.lessonNumber}</div>
+              <h4 className="text-sm sm:text-base font-bold text-white group-hover:text-teal-300 transition-colors mt-0.5 truncate">{lesson.title}</h4>
+              {lesson.hasModelBadge && (
+                <div className="inline-flex items-center gap-1 px-2 py-0.5 mt-1 rounded-md bg-teal-950/40 border border-teal-500/30 text-teal-300 text-[10px] font-medium">
+                  <Box className="w-3 h-3" />
+                  <span>Has a reference model</span>
                 </div>
+              )}
+              <p className="text-xs text-slate-300 leading-snug mt-1 line-clamp-2">{lesson.subtitle}</p>
+              <div className="flex items-center gap-1 text-[11px] font-mono text-slate-400 mt-2">
+                <FileText className="w-3 h-3 text-teal-400" />
+                <span>{lesson.stepCount} steps</span>
+                {completedLessonIds.has(lesson.id) && <span className="ml-2 inline-flex items-center gap-1 font-sans font-semibold text-emerald-400"><CheckCircle className="h-3.5 w-3.5" />Completed</span>}
               </div>
-              <div className="w-8 h-8 rounded-full bg-slate-900/80 border border-white/5 flex items-center justify-center text-slate-400 group-hover:text-teal-300 group-hover:border-teal-400/40 shrink-0 transition-colors">
-                <ChevronRight className="w-4 h-4" />
-              </div>
-            </button>
+            </CardRow>
           ))}
         </div>
       </div>
