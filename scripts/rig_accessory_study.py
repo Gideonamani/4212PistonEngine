@@ -14,7 +14,7 @@ for p in d['parts']:
     m=bpy.data.meshes.new(p['id']);pivot=Vector(p['pivot_mm'])/1000
     m.from_pydata([Vector(v)/1000-pivot for v in p['vertices_mm']],[],p['triangles']);m.update()
     o=bpy.data.objects.new(p['id'],m);bpy.context.collection.objects.link(o);o.location=pivot
-    o['cad_part_id']=p['id'];o['dimension_status']=d['scope'];o['evidence']=p['evidence'];objects[p['id']]=o
+    o['cad_part_id']=p['id'];o['dimension_status']=d['scope'];o['evidence']=p['evidence'];o['shape_status']=p['shape_status'];objects[p['id']]=o
     mat=bpy.data.materials.get(p['group']) or bpy.data.materials.new(p['group']);mat.diffuse_color=colors[p['group']]+(1,);mat.use_nodes=True;mat.node_tree.nodes.get('Principled BSDF').inputs['Base Color'].default_value=mat.diffuse_color;m.materials.append(mat)
 paths=[
  dict(id='magnetos',label='Magnetos: ignition',parts=['CrankGear','CrankShaft','IdlerGear','IdlerPin']+[p['id'] for p in d['parts'] if p['group'].startswith('magneto')],ratio=1.5,direction='CW',outputs=['LeftMagShaft','RightMagShaft'],note='Crank → idler → left/right drive gears → splined shafts → magnetos. Supplies timed ignition; two separate magnetos, twelve plugs. C-3-2; A-3-2.'),
@@ -26,7 +26,7 @@ paths=[
  dict(id='governor',label='Governor: propeller control',parts=['CrankGear','CamGear','CamShaft']+[p['id'] for p in d['parts'] if p['group']=='governor'],ratio=.809,direction='CW',outputs=['GovernorOutput'],note='Crank → camshaft → front bevel pair → governor. Remote front drive relocated; bevel geometry omitted. 0.809:1 output controls propeller pitch hydraulically. A-3-2; C-3-3.')]
 for path in paths:path['edges']=EDGES[path['id']]
 names=['Operating mechanism','Exploded overview','Reassembly overview']+['Focus: '+p['id'] for p in paths if p['id']!='starter']+['Starter engagement and start']
-stages=[dict(label='Assembled',progress=0,note='Inspect mounting interfaces.'),dict(label='Covers, seals and envelopes',progress=50,note='Expose the actual open chambers.'),dict(label='Gears, shafts and couplings',progress=100,note='Trace power paths; explosion order is pedagogical.')]
+stages=[dict(label='Assembled',progress=0,note='Inspect mounting interfaces; front modules are relocated.'),dict(label='Case half, adapters and bodies',progress=50,note='Expose model chambers; hidden casting details are reconstructed.'),dict(label='Gears, shafts and couplings',progress=100,note='Trace power paths; explosion order is pedagogical.')]
 scene=bpy.context.scene;scene.frame_start=1;scene.frame_end=601;scene.render.fps=30;scene['scope']=d['scope'];scene['reference']=d['reference']
 for title in names:
     action=bpy.data.actions.new(title)
@@ -45,7 +45,7 @@ for title in names:
                     crank=min(u,.65)*4*math.pi+max(0,u-.65)*8*math.pi
                     angle=crank*rate
                     if p['id']=='StarterWorm': angle=min(u,.65)*4*math.pi*32
-                    if p['id'] in ['WormWheel','ClutchSpring']:angle=min(u,.65)*4*math.pi
+                    if p['id'] in ['WormWheel','WormWheelHub','ClutchSpring']:angle=min(u,.65)*4*math.pi
                     if p['id']=='ClutchSpring':
                         tight=1 if .1<=u<.65 else max(0,u/.1) if u<.1 else 0
                         o.scale=(1-.04*tight,1-.04*tight,1)

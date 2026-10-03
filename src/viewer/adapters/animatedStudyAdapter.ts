@@ -17,7 +17,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   const meshes: THREE.Mesh[] = [];
   root.traverse(object => { const mesh = object as THREE.Mesh; if (mesh.isMesh) { mesh.userData.partId = mesh.userData.cad_part_id; meshes.push(mesh); } });
   const paths: any[] = contract.powerPaths || [];
-  const components = contract.parts.map((part: any) => ({ id: part.id, label: part.label, group: part.group, groups: paths.filter(path => path.parts.includes(part.id)).map(path => `path:${path.id}`), description: part.description, source: part.evidence || contract.reference, evidence: 'Illustrative dimensions' }));
+  const components = contract.parts.map((part: any) => ({ id: part.id, label: part.label, group: part.group, groups: paths.filter(path => path.parts.includes(part.id)).map(path => `path:${path.id}`), description: part.description, source: part.evidence || contract.reference, evidence: part.shape_status || 'Illustrative dimensions' }));
   if (meshes.length !== components.length || meshes.some(mesh => !components.some((part: any) => part.id === mesh.userData.partId))) throw Error('Mechanism components do not match the contract.');
   const clips = new Map(loaded.gltf.animations.map(clip => [clip.name, clip]));
   for (const motion of contract.motions) if (!clips.has(motion.id)) throw Error(`Saved motion is missing: ${motion.id}`);

@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-02",
+  "date": "2026-10-03",
   "native_folder_url": "https://drive.google.com/drive/folders/1V-6yZX2FZ-GQDS2yF5hDJGbXjloEVrbJ",
   "native_archive": {
     "path": "build/drive-migration/native-cad-sources-20261002.zip",
@@ -63,9 +63,9 @@
   "web_assets": [
     {
       "path": "web/accessory-drives.glb.gz",
-      "drive_id": "1LS2Hwc27wVkavCzc6ODt26BDEt-okTy6",
-      "bytes": 9884618,
-      "sha256": "1458b7dee17159c5f80e131633d1c8e86733b57dd04d1b9b64ad82758c5349cd"
+      "drive_id": "1EDreVc_o783PfmmhqMIrVDMegCRUi0Lc",
+      "bytes": 10613966,
+      "sha256": "e112fd3354b1b42ae3753f8f5197d11ea607f2be2903f7ff68e408dd68de3337"
     },
     {
       "path": "web/cylinder-reviewed-20261001.glb.gz",
@@ -92,5 +92,41 @@
       "sha256": "e626ab347a7f587fee2169f81ac3516185aef033adf32c920533f85293b52daf"
     }
   ],
-  "history_policy": "New unpublished accessory commits exclude model binaries. Existing published history retained; native CAD and exported GLBs are no longer tracked going forward."
+  "history_policy": "New unpublished accessory commits exclude model binaries. Existing published history retained; native CAD and exported GLBs are no longer tracked going forward.",
+  "previous_web_releases": [
+    {
+      "path": "web/accessory-drives.glb.gz",
+      "drive_id": "1LS2Hwc27wVkavCzc6ODt26BDEt-okTy6",
+      "bytes": 9884618,
+      "sha256": "1458b7dee17159c5f80e131633d1c8e86733b57dd04d1b9b64ad82758c5349cd",
+      "retained_reason": "Previous working schematic release retained during drawing-led revision."
+    }
+  ],
+  "accessory_native_archive": {
+    "path": "build/accessory-native-shape-review-20261002.zip",
+    "bytes": 14879328,
+    "sha256": "90179aaea2bdd78d497925a49b9abdab755f4fd5490f8aa1569847d283acbefb",
+    "files": [
+      {
+        "path": "cad-studies/accessory-drives/accessory-drives.FCStd",
+        "bytes": 684856,
+        "sha256": "8a2fc1d63c8bc266e1073c37215735c973ce6695d64d26be3c54c61e9b955b6e"
+      },
+      {
+        "path": "cad-studies/accessory-drives/accessory-drives.blend",
+        "bytes": 13834405,
+        "sha256": "8d44c0066ecbfde28c779c6b695f1a8b5739042bc951a0de1df69561ecbdf4f2"
+      },
+      {
+        "path": "cad-studies/accessory-drives/accessory-drives.step",
+        "bytes": 5027333,
+        "sha256": "ebbc42bde3c0ec4c4ba74586b82cfb81ef14c313c36e9fbf1566deca861014d5"
+      }
+    ],
+    "drive_id": "1TqkLA2Yvc8GlOxAoJJ4UBkWgUd21ZZO5",
+    "url": "https://drive.google.com/file/d/1TqkLA2Yvc8GlOxAoJJ4UBkWgUd21ZZO5/view?usp=drivesdk",
+    "private": true,
+    "drive_size_verified": true,
+    "connector_raw_readback_bytes": 14879328
+  }
 }

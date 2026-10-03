@@ -20,7 +20,10 @@ const sample = (name, fraction) => {
 };
 test('source ledger, H endpoint ratios and all published lesson bindings agree', () => {
   assert.equal(createHash('sha256').update(raw).digest('hex'), contract.asset_sha256);
-  assert.equal(parts.size, 47); assert.equal(animations.length, 10);
+  assert.equal(parts.size, contract.parts.length); assert.equal(animations.length, 10);
+  for (const id of ['StarterAdapter', 'StarterCover', 'AlternatorDrivenGear', 'LeftMagGasket', 'OilReliefBody']) assert.ok(parts.has(id));
+  assert.match(contract.parts.find(part => part.id === 'HousingCover').label, /Right crankcase/);
+  assert.match(contract.parts.find(part => part.id === 'LeftMagneto').shape_status, /marker/);
   assert.deepEqual(validateLessonPack(read('web/accessories-lessons.json')), []);
   const pack = read('web/accessories-lessons.json'); assert.equal(pack.lessons[0].sequenceNumber, 8); assert.equal(pack.checks.length, 8);
   for (const step of pack.lessons[0].steps) {
@@ -69,7 +72,7 @@ test('published FreeCAD pump pockets stay empty in a coloured section cut', () =
     return helpers.children.slice(0, 2).reduce((sum, mesh, i) => sum + (i === 0 ? 1 : -1) * ray.intersectObject(mesh).filter(hit => pump.material.clippingPlanes[0].distanceToPoint(hit.point) >= 0).length, 0);
   };
   assert.equal(winding(.008, .09), 0, 'empty gear pocket stays empty above its floor');
-  assert.notEqual(winding(-.018, .108), 0, 'solid corner receives a cap');
+  assert.notEqual(winding(-.017, .09), 0, 'solid side wall receives a cap');
   assert.equal(helpers.children[2].material.color.getHex(), pump.material.color.getHex());
   section.dispose(); mixer.stopAllAction();
 });

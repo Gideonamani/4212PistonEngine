@@ -1,5 +1,5 @@
 {
   "drive_api_key": "AIzaSyDvsWV7UJ9DeC-kPi7gjmvkzzqe3lwVdYk",
   "drive_api_key_note": "Restricted browser key for public model delivery (Drive API only, this Pages site only). Not a secret; see docs/decisions/001-public-drive-browser-key.md.",
-  "status": "The reviewed cylinder is served directly from GitHub Pages. Other configured models retain their Drive delivery and local fallbacks."
+  "status": "Teaching model exports are served from Google Drive. GitHub Pages publishes viewer code, lessons and asset contracts; ignored local copies support development and validation."
 }

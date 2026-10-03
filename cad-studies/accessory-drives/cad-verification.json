@@ -1,12 +1,14 @@
 {
   "passed": true,
-  "parts": 47,
+  "parts": 64,
   "all_valid_single_solids": true,
-  "scope": "GTSIO-520-H relationship study. All dimensions, tooth profiles, pad locations and explosion travel are illustrative. Remote outputs are relocated for visibility. Not a maintenance assembly sequence.",
+  "scope": "Drawing-led, unscaled GTSIO-520-H teaching reconstruction. Dimensions, teeth, case contour and pad positions illustrative. Front alternator/governor and optional outputs relocated. Function markers are not accessory replicas.",
   "native_reopened": true,
-  "step_solids": 47,
+  "step_solids": 64,
   "pump_pocket_empty": true,
-  "step_volume_matches_native": true,
+  "starter_chamber_empty": true,
+  "step_volume_relative_error": 1.4556749509347887e-07,
+  "step_volume_difference_mm3": -0.16732400539331138,
   "freecad_version": [
     "1",
     "1",

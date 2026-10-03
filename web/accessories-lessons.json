@@ -46,7 +46,7 @@
           "type": "model-pose",
           "title": "Identify the section",
           "prompt": "Rotate the assembled study. Select the housing, crank gear, cam gear and idler. Open Inside and move a section plane through the chamber; distinguish solid wall from empty cavity.",
-          "note": "FAA 1-7; GTSIO A-3-2 and A-4-8 (PDF 17,25). All dimensions, housing outline and inspection cover are illustrative. This is a subsystem study, not the full engine.",
+          "note": "FAA 1-7; GTSIO A-3-2 and A-4-8 (PDF 17,25). A-4-18 (PDF 35-36) identifies the split crankcase. Compare its rear region with the cropped case halves here. Adapter, starter and pump forms follow the parts drawings, while rear contour, proportions and pad positions remain inferred. Ring markers are not accessory bodies.",
           "sourceRefs": [
             "gtsio-reviewed",
             "faa-powerplant"
@@ -58,7 +58,7 @@
         {
           "type": "model-pose",
           "title": "Expose interfaces",
-          "prompt": "Scrub from assembled to exploded. Pause at any stage, rotate and select a seal, shaft, pad and coupling. Explain which part carries torque and which contains oil or locates the accessory.",
+          "prompt": "Scrub from assembled to exploded. Pause at any stage, rotate and select a seal, splined shaft, bored adapter and coupling. Compare the adapter with A-4-11 and starter with A-4-15; identify one visible feature and one reconstructed surface. Explain which part carries torque and which contains oil or locates the accessory.",
           "note": "GTSIO A-4-11 (PDF 28), A-4-15 (32), A-4-16 (33). Separation order and distances teach relationships; they are not maintenance instructions.",
           "sourceRefs": [
             "gtsio-reviewed",
@@ -357,11 +357,11 @@
       "question": "Which statement accurately describes this 3D model?",
       "answers": [
         "Manufacturer dimensions and exact pad positions",
-        "Documented relationships and endpoint ratios with illustrative solids",
+        "Drawing-led unscaled forms and documented drive relationships",
         "IO-520 permold parts automatically apply to GTSIO-520-H"
       ],
       "correct": 1,
-      "rationale": "H effectivity is established by C-3-1. Shapes, teeth, locations and travel are illustrative; the IO-520 pump is not used as GTSIO geometry.",
+      "rationale": "H effectivity is established by C-3-1. Visible part forms follow manufacturer drawings; dimensions, hidden surfaces, teeth, locations and travel remain reconstructed; the IO-520 pump is not used as GTSIO geometry.",
       "sourceRefs": [
         "gtsio-reviewed",
         "faa-powerplant"

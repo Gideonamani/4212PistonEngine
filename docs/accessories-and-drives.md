@@ -1,6 +1,6 @@
 # Accessories & Drives — Lesson 8
 
-This release adds an independent GTSIO-520-H accessory relationship study. Existing engine masters, cylinder geometry, hydraulic tappet and IO-520 permold pump remain separate assets. Git was clean at the start; no applicable AGENTS.md was found in the project or checked ancestor directories.
+This release adds an independent GTSIO-520-H accessory teaching study. The shape-review revision replaces the initial schematic with 64 drawing-led solids and explicitly labelled function markers; see [the feature audit](accessory-shape-review.md). Existing engine masters, cylinder geometry, hydraulic tappet and IO-520 permold pump remain separate assets. The working tree was clean before the revision; applicable project AGENTS.md storage/validation instructions were read and local originals backed up.
 
 ## Evidence and applicability
 
@@ -27,7 +27,7 @@ There are two source ambiguities worth preserving: A-4-8 calls items 10/11 scave
 
 `cad-studies/accessory-drives/accessory-drives.FCStd` contains individually editable named solids grouped by subsystem, evidence/dimension properties and signed illustrative rates. `accessory-drives.step` supplies neutral solids. The CAD authoring recipe is `scripts/build_accessory_study.py`; dimensions are deliberately declared in the recipe, not asserted as measurements. This is not a fully constrained assembly or a manufacturer dimensional reconstruction.
 
-The housing has actual wall thickness, an open internal chamber, bored shaft exits and fastener holes. Pump pockets, annular seals and open pads retain empty volumes. Cylinders, shafts, gears, splined-interface proxies and coupling envelopes are separate solids. The auxiliary inspection cover is a teaching device, not an identified manufacturer part. True spline profiles, bevel teeth, casting contours and toleranced fits are not reconstructed.
+The rear region is represented by cropped left/right crankcase halves, following A-4-18. The invented rectangular accessory box and inspection lid have been removed. Rounded bored adapters, gasket/bushing/seal interfaces, visible spline teeth, a hollow right-angle starter adapter, stepped oil/scavenge casing and front alternator parts follow the cited drawings. Reconstructed pump pockets, seals and pads retain empty volumes. Exact rear casting contour, thickness, spline profiles, bevel teeth and toleranced fits remain unverified. Magnetos, vacuum and governor bodies are visibly named function markers. The H photograph A-4-4 places the alternator toward the front; its assembly remains a separate relocated module, not a rear mounting claim.
 
 `accessory-drives.blend` contains CAD IDs, group materials, per-component action slots and muted named NLA tracks. Ten independent exportable actions cover normal operation, exploded overview, staged reassembly, six focused paths and spring-clutch starting. The Blender-to-glTF export bakes transforms, so the web consumes those exported clips rather than reimplementing gear kinematics. Millimetres become metres once; Blender Z-up becomes glTF Y-up. Main meshes rotate about their CAD pivots.
 
@@ -48,6 +48,8 @@ npm run build
 Native and published asset hashes are recorded in `cad-studies/source-manifest.json`; the contract binds the decoded GLB hash. Regenerate the preview with the accessory preview script. Tool-specific paths can be adjusted when rebuilding elsewhere.
 
 CAD sources and GLB exports are stored in the project's Google Drive folders. Git tracks code, lesson content, contracts, reference records and hashes. See `docs/drive-asset-manifest.json` for file identities and the private native-source archive, which retains the original relative paths. Download and extract that archive into the project to edit existing CAD sources; verify each file against the manifest before replacing a local copy. Existing local files have been preserved.
+
+For the drawing-led accessory revision, use the newer `accessory_native_archive` entry, which contains the revised FreeCAD, Blender and STEP files. The original `native_archive` is retained for the other studies and the earlier accessory source. Extract the newer accessory archive after the original when restoring a complete workspace. Archive and individual native-file SHA-256 values are local delivery checksums; Drive permissions, byte count and authenticated raw-file readback were verified. The web export was additionally downloaded anonymously and its SHA-256 compared byte for byte before binding.
 
 Run `python scripts/fetch_drive_assets.py` before asset-dependent tests on a fresh checkout. It downloads approved public web exports using the existing restricted browser key, checks their sizes and SHA-256 hashes, and restores ignored local copies. The production build removes these test copies from `dist`; students load model bytes through the existing Drive adapter. Published Git history is retained, so previously committed binaries remain in old revisions; the new accessory commit adds no CAD/GLB binaries.
 

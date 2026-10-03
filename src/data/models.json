@@ -190,23 +190,23 @@
     "label": "GTSIO-520-H accessories and drives",
     "adapter": "animated-study",
     "eyebrow": "LESSON 8 / ACCESSORIES & DRIVES",
-    "description": "Trace seven selectable power paths through a 47-part solid teaching assembly; operate, explode, reassemble and inspect the spring-clutch starting sequence. Dimensions are illustrative.",
+    "description": "Compare drawing-led adapters, starter, oil pump and front alternator parts; trace seven power paths through 64 unscaled solids and ten saved motions. Unsupported accessory bodies remain labelled function markers.",
     "imageType": "systems",
     "badges": [
-      "47 components",
+      "64 components",
       "10 saved motions",
-      "Verified H output ratios"
+      "Drawing-led forms"
     ],
     "sources": [
       {
-        "localUrl": "./accessory-drives.glb.gz?v=687729f70a7d",
+        "localUrl": "./accessory-drives.glb.gz?v=492149e93c24",
         "compressed": true,
-        "transferBytes": 9884618,
-        "decodedBytes": 28000164,
-        "driveId": "1LS2Hwc27wVkavCzc6ODt26BDEt-okTy6"
+        "transferBytes": 10613966,
+        "decodedBytes": 31301996,
+        "driveId": "1EDreVc_o783PfmmhqMIrVDMegCRUi0Lc"
       }
     ],
-    "contractUrl": "./accessory-drives-contract.json?v=687729f70a7d",
+    "contractUrl": "./accessory-drives-contract.json?v=492149e93c24",
     "lessonControls": true
   }
 ]

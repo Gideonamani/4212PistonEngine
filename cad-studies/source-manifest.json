@@ -1,23 +1,23 @@
 {
   "cad-studies/accessory-drives/accessory-drives.blend": {
-    "bytes": 11723645,
-    "sha256": "7557d7d6842f8db1df077adafec2e8e60863359b635cdf382f9dfe6b0556aeb4"
+    "bytes": 13834405,
+    "sha256": "8d44c0066ecbfde28c779c6b695f1a8b5739042bc951a0de1df69561ecbdf4f2"
   },
   "cad-studies/accessory-drives/accessory-drives.FCStd": {
-    "bytes": 415444,
-    "sha256": "20e996b3f32d072304f82d5c71d0a8785e14a0decc1aa6bce5e23aaec4976226"
+    "bytes": 684856,
+    "sha256": "8a2fc1d63c8bc266e1073c37215735c973ce6695d64d26be3c54c61e9b955b6e"
   },
   "cad-studies/accessory-drives/accessory-drives.step": {
-    "bytes": 3821999,
-    "sha256": "8e34053ed5fc90a80a9195f8546d905cea4f52ac86f9c7c09133ce2f3a2aaed9"
+    "bytes": 5027333,
+    "sha256": "ebbc42bde3c0ec4c4ba74586b82cfb81ef14c313c36e9fbf1566deca861014d5"
   },
   "cad-studies/accessory-drives/blender-verification.json": {
-    "bytes": 774,
-    "sha256": "efdd86884b75150e0ca66ea4dec305d0abf5bcc4c12ba643534bef4acf405219"
+    "bytes": 802,
+    "sha256": "e9d9d0696af57e61e5e27e80e33528c47ad575ccd18b815e669e6a1f084c76c0"
   },
   "cad-studies/accessory-drives/cad-verification.json": {
-    "bytes": 468,
-    "sha256": "768d88c0bb89495de5e25ad9bc35a3831ba6d8b3f37056a926b9d24fafcf3629"
+    "bytes": 602,
+    "sha256": "892f8b159d3af6961457c46d37e9f2f2ec8e57765fc3d63e89b8cc3410d73e98"
   },
   "cad-studies/cylinder/Cylinder_Saved_Motions.blend": {
     "bytes": 41125577,
