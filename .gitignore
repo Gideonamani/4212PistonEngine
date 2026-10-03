@@ -16,7 +16,6 @@ dist/
 *.blend
 *.step
 *.stp
-web/model-previews/accessory-drives.png
 # Generated tessellation and build logs; regenerate from native FreeCAD files.
 cad-studies/*/geometry.json
 *_build.log
