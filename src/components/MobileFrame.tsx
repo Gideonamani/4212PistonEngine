@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ViewMode } from '../types/engine';
+import { useShellChrome } from './ShellChrome';
 import {
   Box,
   BookOpen,
@@ -23,9 +24,7 @@ interface MobileFrameProps {
   activeModelName?: string;
   onSelectModel?: (model: string) => void;
   availableModels?: string[];
-  isExploreFullPage?: boolean;
   isLessonStepOpen?: boolean;
-  isLessonImmersive?: boolean;
 }
 
 export const MobileFrame: React.FC<MobileFrameProps> = ({
@@ -44,10 +43,9 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
     'GTSIO-520 Full Engine',
     'Combustion Chamber Section',
   ],
-  isExploreFullPage = false,
   isLessonStepOpen = false,
-  isLessonImmersive = false,
 }) => {
+  const { exploreFullPage: isExploreFullPage, lessonImmersive: isLessonImmersive } = useShellChrome();
   // Default to whole actual page (desktop full-page mode) with seamless phone shell toggle
   const [isDeviceFrameEnabled, setIsDeviceFrameEnabled] = useState<boolean>(false);
   const [isModelDropdownOpen, setIsModelDropdownOpen] = useState<boolean>(false);

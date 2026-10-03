@@ -1,6 +1,7 @@
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Box, ChevronRight, Gauge, Layers3, Move3D } from 'lucide-react';
 import { CardThumbnail } from './CardThumbnail';
+import { useShellChrome } from './ShellChrome';
 import { modelRegistry, modelsByLabel } from '../data/modelRegistry';
 
 const ExploreViewer = React.lazy(() => import('../viewer/ExploreViewer'));
@@ -9,17 +10,15 @@ interface ExploreViewProps {
   activeModelName: string;
   isViewerOpen: boolean;
   onSelectModel: (model: string) => void;
-  isFullPage: boolean;
-  onToggleFullPage: () => void;
 }
 
 export const ExploreView: React.FC<ExploreViewProps> = ({
   activeModelName,
   isViewerOpen,
   onSelectModel,
-  isFullPage,
-  onToggleFullPage,
 }) => {
+  const { exploreFullPage: isFullPage, setExploreFullPage } = useShellChrome();
+  const onToggleFullPage = () => setExploreFullPage((value) => !value);
   const viewerRef = useRef<HTMLDivElement>(null);
   const [isBrowserFullscreen, setIsBrowserFullscreen] = useState(false);
 

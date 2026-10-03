@@ -22,10 +22,9 @@ interface LearnViewProps {
   tracks: CourseTrack[];
   onSwitchToExploreModel?: (modelName: string) => void;
   onTakeLessonQuiz?: (lessonId: string) => void;
-  onLessonImmersiveChange?: (isImmersive: boolean) => void;
 }
 
-export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreModel, onTakeLessonQuiz, onLessonImmersiveChange }) => {
+export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreModel, onTakeLessonQuiz }) => {
   // The address decides the level: #/learn = course menu, #/learn/<course> = its lessons, then a lesson's steps.
   const route = useRoute();
   const { track: activeTrack, lesson: activeLesson } = resolveLearn(tracks, route);
@@ -59,7 +58,6 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
   const returnToLessons = () => {
     if (!activeTrack) return;
     navigate({ view: 'learn', course: activeTrack.id });
-    onLessonImmersiveChange?.(false);
   };
 
   const backToCourses = () => navigate({ view: 'learn' });
@@ -79,7 +77,6 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
         onTakeQuiz={onTakeLessonQuiz}
         onStepChange={(stepIndex) => navigate({ view: 'learn', course: activeTrack.id, lesson: activeLesson.id, step: stepIndex + 1 }, { replace: true })}
         onComplete={() => navigate({ view: 'learn', course: activeTrack.id, lesson: activeLesson.id, complete: true }, { replace: true })}
-        onImmersiveChange={onLessonImmersiveChange}
       />
     );
   }

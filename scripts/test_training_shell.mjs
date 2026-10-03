@@ -27,6 +27,18 @@ assert.match(lessonViewer, /lessonProfile/);
 assert.doesNotMatch(lessonViewer + exploreViewer, /\bModelViewer\b/, 'the single catch-all ModelViewer stays retired');
 assert.equal(exists('src/viewer/ModelViewer.tsx'), false);
 
+// Full-screen flags live in one context: the screen that goes full-screen sets it, the frame reads it, nothing is passed between.
+const app = read('src/App.tsx');
+const frame = read('src/components/MobileFrame.tsx');
+const lessonStepViewer = read('src/components/LessonStepViewer.tsx');
+const learn = read('src/components/LearnView.tsx');
+assert.match(read('src/main.tsx'), /<ShellChromeProvider>/);
+assert.match(frame, /useShellChrome\(\)/);
+assert.match(lessonStepViewer, /useShellChrome\(\)/);
+assert.match(explore, /useShellChrome\(\)/);
+assert.doesNotMatch(app + learn + lessonStepViewer + frame, /onImmersiveChange|onLessonImmersiveChange|isLessonImmersive=|isExploreFullPage=/, 'no prop chain for the full-screen flags');
+assert.doesNotMatch(explore, /onToggleFullPage:|isFullPage:/, 'ExploreView takes no full-page props');
+
 // The runtime owns scene infrastructure; adapters attach model-specific behaviour.
 assert.match(runtime, /new THREE\.WebGLRenderer/);
 assert.match(runtime, /new THREE\.PerspectiveCamera/);
