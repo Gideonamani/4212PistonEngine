@@ -3,6 +3,7 @@
   "privacy": "Lesson progress may be held locally on the learner's device and is never transmitted. Check-yourself answers remain session-only.",
   "draftStatus": "UNREVIEWED INSTRUCTOR DRAFT - 2026-09-28. Source-backed media and native lesson interactions are implemented; configuration-specific applicability notes remain visible where required.",
   "id": "fundamentals-and-classification",
+  "thumbnail": "./thumbnails/course-fundamentals-and-classification.webp",
   "title": "Fundamentals & Classification",
   "description": "Operating cycles, engine classification (cylinder arrangement and ignition), parts and construction, and cooling, with the GTSIO-520-H used as the continuing aircraft-engine example.",
   "sources": [
@@ -80,6 +81,7 @@
   "lessons": [
     {
       "id": "thermodynamic-cycles",
+      "thumbnail": "./thumbnails/lesson-thermodynamic-cycles.webp",
       "sequenceNumber": 4,
       "title": "Thermodynamic Cycles",
       "objective": "Apply the Otto and Diesel cycles to aero piston engine operation: relate the four strokes to crankshaft and piston movement, read the ideal and practical Otto pressure-volume diagram, explain valve lead, lag and overlap, and distinguish the Diesel cycle by how it adds heat and starts combustion - while keeping ideal teaching diagrams separate from manufacturer timing and measured pressure data.",
@@ -214,6 +216,7 @@
     },
     {
       "id": "classification",
+      "thumbnail": "./thumbnails/lesson-classification.webp",
       "sequenceNumber": 5,
       "title": "Classification",
       "objective": "Classify a piston engine on separate axes - cylinder arrangement (inline, V-type, radial, horizontally opposed) and ignition method (spark or compression) - explain how arrangement influences frontal area, cooling access, crankshaft/rod layout and installation without turning typical traits into universal rules, and read cylinder numbering and firing order from the engine manual.",
@@ -328,6 +331,7 @@
     },
     {
       "id": "parts-construction",
+      "thumbnail": "./thumbnails/lesson-parts-construction.webp",
       "sequenceNumber": 6,
       "title": "Parts and Construction",
       "objective": "Name the major structural and power-section parts of a piston engine - crankcase sections, crankshaft, connecting rods, pistons, rings and pins, cylinders, bearings, propeller shaft and mounts - state what each does and what it is made of, and recognise how the GTSIO-520-H's construction differs from a direct-drive engine such as the IO-520.",
@@ -595,6 +599,7 @@
     },
     {
       "id": "cooling-methods",
+      "thumbnail": "./thumbnails/lesson-cooling-methods.webp",
       "sequenceNumber": 7,
       "title": "Cooling Methods",
       "objective": "Trace heat from the cylinder to the surrounding air in air-cooled, liquid-cooled and combined systems, identify the roles of fins, baffles, coolant, pump and radiator, and recognise why cooling condition and airflow path matter.",

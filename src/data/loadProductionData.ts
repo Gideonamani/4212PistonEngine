@@ -31,6 +31,7 @@ type PackStep = {
 
 type PackLesson = {
   id: string;
+  thumbnail?: string;
   title: string;
   objective: string;
   models?: string[];
@@ -53,6 +54,7 @@ type PackCheck = {
 
 type LessonPack = {
   id: string;
+  thumbnail?: string;
   title: string;
   description: string;
   lessons: PackLesson[];
@@ -132,6 +134,7 @@ function mapLesson(lesson: PackLesson, index: number, deepDive = false): Lesson 
     stepCount: steps.length,
     hasModelBadge: Boolean(lesson.models?.length || steps.some((step) => step.has3DReference)),
     imageType: visualFor(`${lesson.title} ${lesson.objective}`),
+    thumbnail: lesson.thumbnail,
     steps,
   };
 }
@@ -166,6 +169,7 @@ function mapTrack(pack: LessonPack, index: number): CourseTrack {
     progressPercent: 0,
     isCurrent: index === 0,
     imageType: visualFor(`${pack.title} ${pack.description}`) === 'piston' ? 'radial' : visualFor(`${pack.title} ${pack.description}`) as CourseTrack['imageType'],
+    thumbnail: pack.thumbnail,
     lessons,
     deepDives,
   };
@@ -185,6 +189,7 @@ function mapQuizModule(pack: LessonPack): QuizModule {
     approxMinutes: `${Math.max(3, Math.ceil(questions.length * 1.5))} min`,
     badge: pack.id.includes('cylinder') ? 'OPERATING CYCLE' : 'FOUNDATIONS',
     imageType: pack.id.includes('cylinder') ? 'piston' : 'radial',
+    thumbnail: pack.thumbnail,
     questions,
   };
 }

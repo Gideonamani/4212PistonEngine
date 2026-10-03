@@ -3,6 +3,7 @@ import confetti from 'canvas-confetti';
 import { Award, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Clock, FileQuestion, Lightbulb, RotateCcw, Sparkles } from 'lucide-react';
 import type { QuizModule, QuizQuestion } from '../types/engine';
 import { VisualIllustration } from './VisualIllustrations';
+import { CardThumbnail } from './CardThumbnail';
 
 interface CheckViewProps { modules: QuizModule[]; focusLessonId?: string }
 type Answer = number | string[];
@@ -93,7 +94,7 @@ export const CheckView: React.FC<CheckViewProps> = ({ modules, focusLessonId }) 
         </section>
         <div className="flex items-center justify-between"><h3 className="font-bold text-white">Assessment modules</h3><span className="font-mono text-xs text-slate-400">{modules.reduce((sum, module) => sum + module.questionCount, 0)} questions</span></div>
         <div className="flex flex-col gap-2.5">{modules.map((module) => <button key={module.id} onClick={() => start(module)} className="group flex w-full items-center gap-3 rounded-2xl border border-white/5 bg-[#09181e]/90 p-3.5 text-left shadow-md transition hover:border-teal-500/40">
-          <div className="h-20 w-20 shrink-0 overflow-hidden rounded-xl border border-white/10"><VisualIllustration type={module.imageType} className="h-full w-full" /></div>
+          <div className="h-20 w-20 shrink-0 overflow-hidden rounded-xl border border-white/10"><CardThumbnail src={module.thumbnail} fallbackType={module.imageType} /></div>
           <div className="min-w-0 flex-1"><div className="flex flex-wrap items-center gap-2"><span className="rounded-md border border-teal-500/30 bg-teal-950/40 px-2 py-0.5 font-mono text-[10px] font-semibold text-teal-400">{module.badge}</span>{bestScores[module.id] !== undefined && <span className="font-mono text-[10px] font-bold text-emerald-400">Best {bestScores[module.id]}/{module.questionCount}</span>}</div><h4 className="mt-1 truncate text-sm font-bold text-white transition group-hover:text-teal-300 sm:text-base">{module.title}</h4><p className="mt-0.5 line-clamp-2 text-xs leading-snug text-slate-300">{module.subtitle}</p><div className="mt-2 flex items-center gap-3 font-mono text-[11px] text-slate-400"><span><FileQuestion className="mr-1 inline h-3 w-3 text-teal-400" />{module.questionCount} questions</span><span><Clock className="mr-1 inline h-3 w-3" />{module.approxMinutes}</span></div></div>
           <ChevronRight className="h-5 w-5 shrink-0 text-slate-400 group-hover:text-teal-300" />
         </button>)}</div>

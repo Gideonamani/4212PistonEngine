@@ -80,6 +80,8 @@ export interface Lesson {
   stepCount: number;
   hasModelBadge?: boolean;
   imageType: 'oxen' | 'wright' | 'piston' | 'systems' | 'maintenance' | 'gauges' | 'borescope';
+  /** Card image from the lesson pack; the drawn imageType illustration stands in when it is absent. */
+  thumbnail?: string;
   /** True for an unlisted lesson reached only through a step's deepDiveLinks. */
   isDeepDive?: boolean;
   steps: LessonStep[];
@@ -94,6 +96,7 @@ export interface CourseTrack {
   progressPercent: number;
   isCurrent?: boolean;
   imageType: 'radial' | 'systems' | 'maintenance' | 'gauges' | 'borescope';
+  thumbnail?: string;
   lessons: Lesson[];
   /** Unlisted lessons linked from a step; opened by route or link, absent from the lesson list. */
   deepDives?: Lesson[];
@@ -123,5 +126,6 @@ export interface QuizModule {
   approxMinutes: string;
   badge: string;
   imageType: 'radial' | 'piston' | 'maintenance' | 'gauges' | 'borescope';
+  thumbnail?: string;
   questions: QuizQuestion[];
 }
