@@ -35,10 +35,13 @@ export function ModelCanvas({ viewer }: { viewer: ModelViewerState }) {
       onKeyDown={onKeyDown}
       className="absolute inset-0 touch-none outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-teal-300"
     />
-    {!session && !error && <div className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center bg-[#071418]/95 text-teal-200" role="status" aria-live="polite">
-      <LoaderCircle className="h-7 w-7 animate-spin" />
-      <span className="mt-2 px-4 text-center font-mono text-[10px] font-bold tracking-widest">{snapshot.status.toUpperCase()}</span>
-      {snapshot.progress !== undefined && <div className="mt-3 h-1.5 w-44 overflow-hidden rounded-full bg-slate-800"><div className="h-full rounded-full bg-teal-400 transition-[width]" style={{ width: `${snapshot.progress}%` }} /></div>}
+    {!session && !error && <div className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center overflow-hidden bg-[#071418] text-teal-200" role="status" aria-live="polite">
+      {definition.previewUrl && <img src={definition.previewUrl} alt="" className="absolute inset-0 h-full w-full object-contain opacity-40" />}
+      <div className="relative flex flex-col items-center">
+        <LoaderCircle className="h-7 w-7 animate-spin" />
+        <span className="mt-2 px-4 text-center font-mono text-[10px] font-bold tracking-widest">{snapshot.status.toUpperCase()}</span>
+        {snapshot.progress !== undefined && <div className="mt-3 h-1.5 w-44 overflow-hidden rounded-full bg-slate-800"><div className="h-full rounded-full bg-teal-400 transition-[width]" style={{ width: `${snapshot.progress}%` }} /></div>}
+      </div>
     </div>}
     {error && <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-[#071418] p-6 text-center text-rose-200" role="alert"><TriangleAlert className="h-7 w-7" /><p className="mt-2 max-w-sm text-xs leading-relaxed">{error}</p></div>}
   </>;

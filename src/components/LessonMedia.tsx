@@ -38,6 +38,12 @@ export const LessonModelStage: React.FC<{ step: LessonStep; active: boolean; imm
   </Suspense></div>;
 };
 
+/** A step picture. It holds a minimum height until it has loaded so the text below does not jump when it arrives. */
+const StepImage: React.FC<{ src: string; alt: string; immersive: boolean }> = ({ src, alt, immersive }) => {
+  const [loaded, setLoaded] = React.useState(false);
+  return <img src={src} alt={alt} decoding="async" onLoad={() => setLoaded(true)} onError={() => setLoaded(true)} className={`w-full object-contain ${immersive ? 'max-h-[58dvh]' : 'max-h-80'} ${loaded ? '' : 'min-h-48'}`} />;
+};
+
 export const LessonMedia: React.FC<LessonMediaProps> = ({ step, immersive = false, onSwitchTo3DModel }) => {
   const url = step.url || '';
   const isPlanned = step.mediaPlan?.status === 'planned' || url.startsWith('PLACEHOLDER:');
@@ -56,7 +62,7 @@ export const LessonMedia: React.FC<LessonMediaProps> = ({ step, immersive = fals
   if (isModelStep(step)) return null;
 
   if (step.type === 'image' && url) return <figure className="overflow-hidden rounded-xl border border-white/5 bg-slate-950/60 shadow-inner">
-    <img src={url} alt={step.alt || step.title} className={`w-full object-contain ${immersive ? 'max-h-[58dvh]' : 'max-h-80'}`} loading="lazy" />
+    <StepImage src={url} alt={step.alt || step.title} immersive={immersive} />
     {(step.credit || step.license) && <figcaption className="border-t border-slate-800 px-3 py-2 text-[10px] leading-relaxed text-slate-500">{step.credit}{step.credit && step.license ? ' · ' : ''}{step.license}</figcaption>}
   </figure>;
 
