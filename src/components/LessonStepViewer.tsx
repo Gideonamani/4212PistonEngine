@@ -23,6 +23,7 @@ import {
 import confetti from 'canvas-confetti';
 import { completeLesson, getLessonProgress, saveLessonReflection, saveLessonStep } from '../data/lessonProgress';
 import { useShellChrome } from './ShellChrome';
+import { BackLink } from './ui';
 
 interface LessonStepViewerProps {
   lesson: Lesson;
@@ -202,14 +203,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
     <div ref={viewerRef} className={`relative flex h-full w-full flex-col overflow-y-auto bg-[#061014] text-slate-100 ${isImmersive && !document.fullscreenElement ? 'fixed inset-0 z-[100] h-[100dvh]' : ''}`}>
       {/* Top Navigation Bar */}
       <div className="px-5 pt-3 pb-1 flex items-center justify-between">
-        <button
-          onClick={onBackToLessons}
-          className="inline-flex items-center gap-1.5 text-xs text-teal-400 hover:text-teal-300 font-medium py-1 px-2.5 -ml-2 rounded-lg hover:bg-slate-800/60 transition-colors"
-          aria-label="Back to lessons"
-        >
-          <ChevronLeft className="w-4 h-4" />
-          <span>Back to Lessons</span>
-        </button>
+        <BackLink label="Back to Lessons" ariaLabel="Back to lessons" onClick={onBackToLessons} />
         <div className="flex items-center gap-2">
           {hasEvidence && <button ref={evidenceButtonRef} type="button" onClick={() => setIsEvidenceOpen(true)} aria-label="Open evidence and scope note" aria-haspopup="dialog" aria-controls="lesson-evidence-dialog" className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-slate-900/70 text-slate-300 transition hover:border-teal-400 hover:text-teal-300"><Info className="h-4 w-4" /></button>}
           <button type="button" onClick={toggleImmersive} aria-label={isImmersive ? 'Exit full-screen lesson' : 'Open full-screen lesson'} aria-pressed={isImmersive} className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-slate-900/70 text-slate-300 transition hover:border-teal-400 hover:text-teal-300">{isImmersive ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}</button>
