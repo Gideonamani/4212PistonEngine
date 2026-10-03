@@ -1,6 +1,6 @@
 import type * as THREE from 'three';
 
-export type ViewerProfile = 'explore' | 'lesson-dynamic' | 'lesson-reference' | 'assessment';
+export type ViewerProfile = 'explore' | 'lesson-dynamic' | 'lesson-reference';
 export type InteractionMode = 'orbit' | 'pan';
 export type SectionAxis = 'x' | 'y' | 'z';
 export type AppearanceMode = 'inspection' | 'cad';

@@ -3,7 +3,7 @@ import { Box, ChevronRight, Gauge, Layers3, Move3D } from 'lucide-react';
 import { CardThumbnail } from './CardThumbnail';
 import { modelRegistry, modelsByLabel } from '../data/modelRegistry';
 
-const ModelViewer = React.lazy(() => import('../viewer/ModelViewer'));
+const ExploreViewer = React.lazy(() => import('../viewer/ExploreViewer'));
 
 interface ExploreViewProps {
   activeModelName: string;
@@ -57,10 +57,8 @@ export const ExploreView: React.FC<ExploreViewProps> = ({
   const modelId = modelsByLabel[activeModelName]?.id || 'cylinder';
   return <div ref={viewerRef} className="absolute inset-0 min-h-0 overflow-hidden bg-[#061014]">
     <Suspense fallback={<div className="flex h-full items-center justify-center text-sm text-teal-300">Preparing interactive 3D viewer…</div>}>
-      <ModelViewer
+      <ExploreViewer
         modelId={modelId}
-        profile="explore"
-        immersive
         isFullPage={isFullPage}
         isFullscreen={isBrowserFullscreen}
         onToggleFullPage={onToggleFullPage}

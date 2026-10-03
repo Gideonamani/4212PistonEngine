@@ -5,7 +5,10 @@ import { VisualIllustration } from './VisualIllustrations';
 import { LessonArtifact } from './LessonArtifacts';
 import { modelsById } from '../data/modelRegistry';
 
-const ModelViewer = React.lazy(() => import('../viewer/ModelViewer'));
+import { viewFromStep } from '../viewer/core/view-state.mjs';
+
+const LessonViewer = React.lazy(() => import('../viewer/LessonViewer'));
+const ExploreViewer = React.lazy(() => import('../viewer/ExploreViewer'));
 
 interface LessonMediaProps {
   step: LessonStep;
@@ -27,21 +30,11 @@ export const isModelStep = (step: LessonStep) => step.mediaPlan?.mode !== 'none'
  */
 export const LessonModelStage: React.FC<{ step: LessonStep; active: boolean; immersive?: boolean; onSwitchTo3DModel?: (modelName: string) => void }> = ({ step, active, immersive = false, onSwitchTo3DModel }) => {
   const definition = modelsById[step.modelId!];
-  const dynamic = definition.adapter !== 'static-gltf';
+  const view = viewFromStep(step);
   return <div hidden={!active}><Suspense fallback={<div className="flex h-80 items-center justify-center rounded-xl border border-teal-400/20 bg-[#071418] text-xs text-teal-300">Preparing interactive 3D viewer…</div>}>
-    <ModelViewer
-      modelId={step.modelId!}
-      profile={dynamic ? 'lesson-dynamic' : 'lesson-reference'}
-      immersive={immersive}
-      savedMotionId={step.savedMotionId}
-      motionProgress={step.motionProgress}
-      initialAngle={typeof step.action?.value === 'number' ? step.action.value : undefined}
-      initialCycle={step.action?.type === 'cycle-angle'}
-      viewPreset={step.viewPreset}
-      focusHotspots={step.focusHotspots}
-      focusParts={step.focusParts}
-      onOpenExplore={() => onSwitchTo3DModel?.(definition.label)}
-    />
+    {definition.lessonControls
+      ? <ExploreViewer modelId={step.modelId!} embedded view={view} />
+      : <LessonViewer modelId={step.modelId!} view={view} immersive={immersive} onOpenExplore={() => onSwitchTo3DModel?.(definition.label)} />}
   </Suspense></div>;
 };
 
