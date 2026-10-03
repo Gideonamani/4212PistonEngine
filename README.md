@@ -12,7 +12,20 @@ The objective is a reusable teaching platform in which students can inspect comp
 
 ## Web application
 
-The student-facing site now uses a responsive React/Vite shell for Explore, Learn and Check. Learn and Check load the published `web/lessons-manifest.json` and lesson packs at runtime, so curriculum files remain the source of truth. Explore embeds the existing production Three.js viewer in a chrome-free mode, preserving the Drive-hosted GLBs, component catalogue, isolation, section view and validated mechanism controls.
+The student-facing site now uses a responsive React/Vite shell for Explore, Learn and Check. Learn and Check load the published `web/lessons-manifest.json` and lesson packs at runtime, so curriculum files remain the source of truth. Explore and the 3D steps of a lesson share one Three.js viewer (`src/viewer/`) that keeps the Drive-hosted GLBs, component catalogue, isolation, section view and validated mechanism controls.
+
+### Where things live
+
+| Folder | What it holds |
+|---|---|
+| `src/` | The React app. `components/` are the screens (Explore, Learn, Check) and lesson-step pieces, `viewer/` is the 3D viewer and its model adapters, `data/` loads the lesson packs and model registry, `types/` are shared types. |
+| `web/` | Everything served as-is (Vite `publicDir`): lesson packs (`*-lessons.json`) listed in `lessons-manifest.json`, model contracts and motion profiles, `thumbnails/` and `lesson-media/` images, and `schema/`. GLB models are not committed; they live on Drive (see `AGENTS.md`). |
+| `scripts/` | The tests (`test_*.mjs`, `test_*.py`, run by `npm test` and the Pages workflow) and the Python pipeline that exports, validates and publishes the CAD-derived assets. |
+| `cad-studies/` | Per-study manifests and verification records; native FreeCAD/Blender files stay local or on Drive. |
+| `data/`, `releases/` | Evidence, audit and release records produced by the pipeline. |
+| `docs/` | Design notes, decisions, validation records and the roadmap. |
+
+Generated or local-only and git-ignored: `dist/`, `build/`, `node_modules/`, `.local/`, `*_build.log`, model binaries (`*.glb`, `*.glb.gz`) and native CAD files.
 
 ```powershell
 npm install
