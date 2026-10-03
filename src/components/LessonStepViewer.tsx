@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { completeLesson, getLessonProgress, saveLessonReflection, saveLessonStep } from '../data/lessonProgress';
+import { useShellChrome } from './ShellChrome';
 
 interface LessonStepViewerProps {
   lesson: Lesson;
@@ -34,7 +35,6 @@ interface LessonStepViewerProps {
   initialComplete?: boolean;
   onStepChange?: (stepIndex: number) => void;
   onComplete?: () => void;
-  onImmersiveChange?: (isImmersive: boolean) => void;
 }
 
 export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
@@ -48,8 +48,8 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
   initialComplete = false,
   onStepChange,
   onComplete,
-  onImmersiveChange,
 }) => {
+  const { setLessonImmersive } = useShellChrome();
   const initialProgress = getLessonProgress(lesson.id);
   const [currentStepIndex, setCurrentStepIndex] = useState<number>(() => Math.min(initialStepIndex ?? initialProgress.currentStep ?? 0, Math.max(lesson.steps.length - 1, 0)));
   const [userAnswers, setUserAnswers] = useState<Record<number, string>>({});
@@ -100,31 +100,31 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
     const exitFallback = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setIsImmersive(false);
-        onImmersiveChange?.(false);
+        setLessonImmersive(false);
       }
     };
     window.addEventListener('keydown', exitFallback);
     return () => window.removeEventListener('keydown', exitFallback);
-  }, [isImmersive, onImmersiveChange]);
+  }, [isImmersive, setLessonImmersive]);
 
   useEffect(() => {
     const syncFullscreen = () => {
       const active = document.fullscreenElement === viewerRef.current;
       setIsImmersive(active);
-      onImmersiveChange?.(active);
+      setLessonImmersive(active);
     };
     document.addEventListener('fullscreenchange', syncFullscreen);
     return () => {
       document.removeEventListener('fullscreenchange', syncFullscreen);
-      onImmersiveChange?.(false);
+      setLessonImmersive(false);
     };
-  }, [onImmersiveChange]);
+  }, [setLessonImmersive]);
 
   const toggleImmersive = async () => {
     if (isImmersive) {
       if (document.fullscreenElement) await document.exitFullscreen().catch(() => undefined);
       setIsImmersive(false);
-      onImmersiveChange?.(false);
+      setLessonImmersive(false);
       return;
     }
     if (viewerRef.current?.requestFullscreen && document.fullscreenEnabled) {
@@ -136,7 +136,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
       }
     }
     setIsImmersive(true);
-    onImmersiveChange?.(true);
+    setLessonImmersive(true);
   };
 
   useEffect(() => {

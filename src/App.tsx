@@ -6,6 +6,7 @@ import { ExploreView } from './components/ExploreView';
 import { LearnView } from './components/LearnView';
 import { CheckView } from './components/CheckView';
 import { EngineInfoModal } from './components/EngineInfoModal';
+import { useShellChrome } from './components/ShellChrome';
 import { loadProductionData } from './data/loadProductionData';
 import { modelRegistry, modelsById } from './data/modelRegistry';
 import { resolveLearn } from './routes/route.mjs';
@@ -20,13 +21,12 @@ export default function App() {
   const [isInfoModalOpen, setIsInfoModalOpen] = useState<boolean>(false);
   const [activeModelName, setActiveModelName] = useState<string>(() => requestedModelName() || 'Detailed operating cylinder');
   const [isExploreViewerOpen, setIsExploreViewerOpen] = useState<boolean>(() => Boolean(requestedModelName()));
-  const [isExploreFullPage, setIsExploreFullPage] = useState<boolean>(false);
+  const { exploreFullPage: isExploreFullPage, setExploreFullPage: setIsExploreFullPage } = useShellChrome();
   const [tracks, setTracks] = useState<CourseTrack[]>([]);
   const [quizModules, setQuizModules] = useState<QuizModule[]>([]);
   const [loadError, setLoadError] = useState<string>('');
   const [loadAttempt, setLoadAttempt] = useState(0);
   const [quizLessonId, setQuizLessonId] = useState<string>();
-  const [isLessonImmersive, setIsLessonImmersive] = useState(false);
 
   const availableModels = modelRegistry.map((model) => model.label);
 
@@ -119,9 +119,7 @@ export default function App() {
           setIsExploreViewerOpen(true);
         }}
         availableModels={availableModels}
-        isExploreFullPage={isExploreFullPage}
         isLessonStepOpen={isLessonStepOpen}
-        isLessonImmersive={isLessonImmersive}
       >
         {activeView === 'explore' && (
           <ExploreView
@@ -131,14 +129,11 @@ export default function App() {
               setActiveModelName(model);
               setIsExploreViewerOpen(true);
             }}
-            isFullPage={isExploreFullPage}
-            onToggleFullPage={() => setIsExploreFullPage((value) => !value)}
           />
         )}
         {activeView === 'learn' && (tracks.length ? (
           <LearnView
             tracks={tracks}
-            onLessonImmersiveChange={setIsLessonImmersive}
             onTakeLessonQuiz={(lessonId) => {
               setQuizLessonId(lessonId);
               navigate({ view: 'check' });
