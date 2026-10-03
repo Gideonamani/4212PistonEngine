@@ -8,16 +8,14 @@ import { CheckView } from './components/CheckView';
 import { EngineInfoModal } from './components/EngineInfoModal';
 import { loadProductionData } from './data/loadProductionData';
 import { modelRegistry, modelsById } from './data/modelRegistry';
-
-const viewFromHash = (): ViewMode => {
-  const value = location.hash.replace(/^#\/?/, '').split('/')[0];
-  return value === 'learn' || value === 'check' ? value : 'explore';
-};
+import { resolveLearn } from './routes/route.mjs';
+import { navigate, useRoute } from './routes/useRoute';
 
 const requestedModelName = () => modelsById[new URLSearchParams(location.search).get('model') || '']?.label;
 
 export default function App() {
-  const [activeView, setActiveView] = useState<ViewMode>(viewFromHash);
+  const route = useRoute();
+  const activeView: ViewMode = route.view;
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState<boolean>(false);
   const [activeModelName, setActiveModelName] = useState<string>(() => requestedModelName() || 'Detailed operating cylinder');
@@ -28,7 +26,6 @@ export default function App() {
   const [loadError, setLoadError] = useState<string>('');
   const [loadAttempt, setLoadAttempt] = useState(0);
   const [quizLessonId, setQuizLessonId] = useState<string>();
-  const [isLessonStepOpen, setIsLessonStepOpen] = useState(false);
   const [isLessonImmersive, setIsLessonImmersive] = useState(false);
 
   const availableModels = modelRegistry.map((model) => model.label);
@@ -47,16 +44,6 @@ export default function App() {
       });
     return () => { current = false; };
   }, [loadAttempt]);
-
-  useEffect(() => {
-    const sync = () => setActiveView(viewFromHash());
-    window.addEventListener('hashchange', sync);
-    window.addEventListener('popstate', sync);
-    return () => {
-      window.removeEventListener('hashchange', sync);
-      window.removeEventListener('popstate', sync);
-    };
-  }, []);
 
   // Sync dark class on document element
   useEffect(() => {
@@ -98,11 +85,11 @@ export default function App() {
     setIsExploreFullPage(false);
     setIsExploreViewerOpen(false);
     setQuizLessonId(undefined);
-    setActiveView(view);
-    history.replaceState(null, '', `${location.pathname}${location.search}#/${view}`);
-    // replaceState fires no event; tell route-driven views (Learn returns to its course menu) to resync.
-    window.dispatchEvent(new HashChangeEvent('hashchange'));
+    navigate({ view }, { replace: true });
   };
+
+  // Lesson steps bring their own bottom bar, so the app's tab bar steps aside while one is open.
+  const isLessonStepOpen = Boolean(resolveLearn(tracks, route).lesson);
 
   const curriculumState = loadError ? (
     <div className="flex h-full items-center justify-center bg-[#061014] p-6 text-slate-200">
@@ -151,19 +138,16 @@ export default function App() {
         {activeView === 'learn' && (tracks.length ? (
           <LearnView
             tracks={tracks}
-            onLessonStepModeChange={setIsLessonStepOpen}
             onLessonImmersiveChange={setIsLessonImmersive}
             onTakeLessonQuiz={(lessonId) => {
               setQuizLessonId(lessonId);
-              setActiveView('check');
-              history.pushState(null, '', `${location.pathname}${location.search}#/check`);
+              navigate({ view: 'check' });
             }}
             onSwitchToExploreModel={(modelName) => {
               if (availableModels.includes(modelName)) setActiveModelName(modelName);
               setIsExploreFullPage(false);
               setIsExploreViewerOpen(true);
-              setActiveView('explore');
-              history.replaceState(null, '', `${location.pathname}${location.search}#/explore`);
+              navigate({ view: 'explore' }, { replace: true });
             }}
           />
         ) : curriculumState)}
