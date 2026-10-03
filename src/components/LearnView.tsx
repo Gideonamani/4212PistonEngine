@@ -15,32 +15,21 @@ import {
   Info,
 } from 'lucide-react';
 import { getCompletedLessonIds, LESSON_PROGRESS_EVENT } from '../data/lessonProgress';
+import { resolveLearn } from '../routes/route.mjs';
+import { navigate, useRoute } from '../routes/useRoute';
 
 interface LearnViewProps {
   tracks: CourseTrack[];
   onSwitchToExploreModel?: (modelName: string) => void;
   onTakeLessonQuiz?: (lessonId: string) => void;
-  onLessonStepModeChange?: (isOpen: boolean) => void;
   onLessonImmersiveChange?: (isImmersive: boolean) => void;
 }
 
-type LessonRoute = { trackId?: string; lessonId?: string; stepIndex?: number; isComplete?: boolean };
-
-const getLessonRoute = (): LessonRoute => {
-  const parts = location.hash.replace(/^#\/?/, '').split('/').map(decodeURIComponent);
-  if (parts[0] !== 'learn') return {};
-  return {
-    trackId: parts[1],
-    lessonId: parts[2],
-    stepIndex: parts[3] === 'step' ? Math.max(Number(parts[4] || 1) - 1, 0) : undefined,
-    isComplete: parts[3] === 'complete',
-  };
-};
-
-export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreModel, onTakeLessonQuiz, onLessonStepModeChange, onLessonImmersiveChange }) => {
-  // The route is the source of truth: #/learn = course menu, #/learn/<course> = its lessons, then lesson steps.
-  const [activeTrack, setActiveTrack] = useState<CourseTrack | null>(null);
-  const [activeLesson, setActiveLesson] = useState<Lesson | null>(null);
+export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreModel, onTakeLessonQuiz, onLessonImmersiveChange }) => {
+  // The address decides the level: #/learn = course menu, #/learn/<course> = its lessons, then a lesson's steps.
+  const route = useRoute();
+  const { track: activeTrack, lesson: activeLesson } = resolveLearn(tracks, route);
+  const learn = route.view === 'learn' ? route : { view: 'learn' as const };
   const [progressVersion, setProgressVersion] = useState(0);
   const completedLessonIds = getCompletedLessonIds();
 
@@ -56,37 +45,10 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
 
   void progressVersion;
 
-  useEffect(() => {
-    const syncRoute = () => {
-      const route = getLessonRoute();
-      const routeTrack = tracks.find((track) => track.id === route.trackId);
-      setActiveTrack(routeTrack || null);
-      const routeLesson = routeTrack?.lessons.find((lesson) => lesson.id === route.lessonId) || routeTrack?.deepDives?.find((lesson) => lesson.id === route.lessonId);
-      setActiveLesson(routeLesson || null);
-    };
-    syncRoute();
-    window.addEventListener('popstate', syncRoute);
-    window.addEventListener('hashchange', syncRoute);
-    return () => {
-      window.removeEventListener('popstate', syncRoute);
-      window.removeEventListener('hashchange', syncRoute);
-    };
-  }, [tracks]);
-
-  useEffect(() => {
-    onLessonStepModeChange?.(Boolean(activeLesson));
-    return () => onLessonStepModeChange?.(false);
-  }, [activeLesson, onLessonStepModeChange]);
-
-  const openCourse = (track: CourseTrack) => {
-    history.pushState(null, '', `${location.pathname}${location.search}#/learn/${encodeURIComponent(track.id)}`);
-    setActiveTrack(track);
-  };
+  const openCourse = (track: CourseTrack) => navigate({ view: 'learn', course: track.id });
 
   const openLesson = (lesson: Lesson) => {
-    if (!activeTrack) return;
-    history.pushState(null, '', `${location.pathname}${location.search}#/learn/${encodeURIComponent(activeTrack.id)}/${encodeURIComponent(lesson.id)}/step/1`);
-    setActiveLesson(lesson);
+    if (activeTrack) navigate({ view: 'learn', course: activeTrack.id, lesson: lesson.id, step: 1 });
   };
 
   const openDeepDive = (lessonId: string) => {
@@ -96,15 +58,11 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
 
   const returnToLessons = () => {
     if (!activeTrack) return;
-    history.pushState(null, '', `${location.pathname}${location.search}#/learn/${encodeURIComponent(activeTrack.id)}`);
-    setActiveLesson(null);
+    navigate({ view: 'learn', course: activeTrack.id });
     onLessonImmersiveChange?.(false);
   };
 
-  const backToCourses = () => {
-    history.pushState(null, '', `${location.pathname}${location.search}#/learn`);
-    setActiveTrack(null);
-  };
+  const backToCourses = () => navigate({ view: 'learn' });
 
   // A lesson in step mode.
   if (activeLesson && activeTrack) {
@@ -112,15 +70,15 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
       <LessonStepViewer
         key={activeLesson.id}
         lesson={activeLesson}
-        initialStepIndex={getLessonRoute().stepIndex}
-        initialComplete={getLessonRoute().isComplete}
+        initialStepIndex={learn.step ? learn.step - 1 : undefined}
+        initialComplete={learn.complete}
         onBackToLessons={returnToLessons}
         deepDives={activeTrack.deepDives}
         onOpenDeepDive={openDeepDive}
         onSwitchTo3DModel={(model) => onSwitchToExploreModel?.(model)}
         onTakeQuiz={onTakeLessonQuiz}
-        onStepChange={(stepIndex) => history.replaceState(null, '', `${location.pathname}${location.search}#/learn/${encodeURIComponent(activeTrack.id)}/${encodeURIComponent(activeLesson.id)}/step/${stepIndex + 1}`)}
-        onComplete={() => history.replaceState(null, '', `${location.pathname}${location.search}#/learn/${encodeURIComponent(activeTrack.id)}/${encodeURIComponent(activeLesson.id)}/complete`)}
+        onStepChange={(stepIndex) => navigate({ view: 'learn', course: activeTrack.id, lesson: activeLesson.id, step: stepIndex + 1 }, { replace: true })}
+        onComplete={() => navigate({ view: 'learn', course: activeTrack.id, lesson: activeLesson.id, complete: true }, { replace: true })}
         onImmersiveChange={onLessonImmersiveChange}
       />
     );
