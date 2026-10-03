@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Lesson, LessonStep } from '../types/engine';
-import { VisualIllustration } from './VisualIllustrations';
+import { CardThumbnail } from './CardThumbnail';
 import { LessonMedia, LessonModelStage, isModelStep } from './LessonMedia';
 import { preloadModels } from '../viewer/preload';
 import {
@@ -387,7 +387,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
         <div className="flex items-center gap-3">
           {/* Mini Thumbnail */}
           <div className="w-9 h-9 rounded-lg overflow-hidden border border-teal-500/20 shrink-0">
-            <VisualIllustration type={currentStep.imageType} className="w-full h-full" />
+            <CardThumbnail src={lesson.thumbnail} fallbackType={currentStep.imageType} />
           </div>
 
           {/* Mini Dots / Bar */}
