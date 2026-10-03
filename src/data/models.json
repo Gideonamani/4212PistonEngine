@@ -63,6 +63,7 @@
     "sourceUrl": "https://airandspace.si.edu/collection-objects/1903-wright-flyer/nasm_A19610048000",
     "sourceLabel": "Smithsonian National Air and Space Museum",
     "license": "CC0",
+    "fitPadding": 0.55,
     "lessonHotspotIds": [
       "magneto",
       "valve",

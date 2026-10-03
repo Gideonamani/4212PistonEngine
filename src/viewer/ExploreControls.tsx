@@ -16,8 +16,9 @@ type ExploreControlsProps = {
   onQueryChange: (value: string) => void;
   group: string;
   onGroupChange: (value: string) => void;
-  showPlayerOnViewer: boolean;
-  onShowPlayerOnViewerChange: (value: boolean) => void;
+  /** Explore only: whether the motion player floats over the model while this panel is closed. Omit both in a lesson. */
+  showPlayerOnViewer?: boolean;
+  onShowPlayerOnViewerChange?: (value: boolean) => void;
 };
 
 const tabClass = (active: boolean) => `flex min-h-9 items-center justify-center gap-1.5 rounded-lg px-2 text-[10px] font-bold transition ${active ? 'bg-teal-400 text-slate-950' : 'text-slate-300 hover:bg-slate-800'}`;
@@ -68,7 +69,7 @@ export function ExploreControls({
       {panel === 'motion' && features.motion && <div className="space-y-3">
         {features.savedMotions && <SavedMotionControls features={features} snapshot={snapshot} />}
 
-        <label className="flex items-center justify-between gap-3 rounded-xl border border-slate-800 bg-slate-950/45 p-3 text-xs"><span><strong className="block text-white">Show player on viewer</strong><small className="text-[10px] leading-relaxed text-slate-500">Keep the motion player available when this panel is hidden.</small></span><input type="checkbox" checked={showPlayerOnViewer} onChange={(event) => onShowPlayerOnViewerChange(event.target.checked)} className="accent-teal-400" /></label>
+        {onShowPlayerOnViewerChange && <label className="flex items-center justify-between gap-3 rounded-xl border border-slate-800 bg-slate-950/45 p-3 text-xs"><span><strong className="block text-white">Show player on viewer</strong><small className="text-[10px] leading-relaxed text-slate-500">Keep the motion player available when this panel is hidden.</small></span><input type="checkbox" checked={Boolean(showPlayerOnViewer)} onChange={(event) => onShowPlayerOnViewerChange(event.target.checked)} className="accent-teal-400" /></label>}
         {(!snapshot.savedMotionId || snapshot.savedMotionId === 'operating') && <><div className="flex items-center justify-between"><span className="font-mono text-[10px] text-slate-400">CRANK ANGLE</span><strong className="font-mono text-sm text-teal-300">{Math.round(snapshot.angle ?? 0)}°</strong></div>
         <input type="range" min="0" max="720" step="1" value={snapshot.angle ?? 0} onChange={(event) => features.motion!.setAngle(Number(event.target.value))} className="w-full accent-teal-400" />
         <div className="grid grid-cols-2 gap-2"><button type="button" onClick={() => features.motion!.setPlaying(!snapshot.playing)} className="flex items-center justify-center gap-1.5 rounded-lg bg-teal-400 px-3 py-2 text-[10px] font-bold text-slate-950">{snapshot.playing ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}{snapshot.playing ? 'Pause' : 'Play'}</button><button type="button" onClick={() => features.motion!.reset()} className="rounded-lg border border-slate-700 px-3 py-2 text-[10px] font-bold">Reset</button></div>

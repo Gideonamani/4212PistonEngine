@@ -12,7 +12,7 @@ export async function createStaticGltfSession(definition: ModelDefinition, conte
   runtime.scene.add(root);
   const fitPreset = (viewPreset?: string) => {
     const preset = viewPreset && definition.viewPresets?.[viewPreset];
-    runtime.fit(root, preset ? new THREE.Vector3(...preset.direction) : undefined);
+    runtime.fit(root, preset ? new THREE.Vector3(...preset.direction) : undefined, definition.fitPadding);
   };
   fitPreset(context.viewPreset);
   const allHotspots = definition.hotspots || [];
