@@ -4,6 +4,7 @@ import fs from 'node:fs';
 const read = path => fs.readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 const exists = path => fs.existsSync(new URL(`../${path}`, import.meta.url));
 const exploreViewer = read('src/viewer/ExploreViewer.tsx');
+const controlsPanel = read('src/viewer/useControlsPanel.tsx');
 const lessonViewer = read('src/viewer/LessonViewer.tsx');
 const viewerParts = read('src/viewer/ViewerParts.tsx');
 const viewerHook = read('src/viewer/useModelViewer.ts');
@@ -21,7 +22,7 @@ assert.match(explore, /fullscreenchange/);
 assert.match(explore, /onToggleFullPage/);
 assert.doesNotMatch(explore, /iframe|explore\.html/);
 assert.match(lessonMedia, /<LessonViewer/);
-assert.match(lessonMedia, /<ExploreViewer[\s\S]*embedded/);
+assert.doesNotMatch(lessonMedia, /ExploreViewer/, 'lesson steps use LessonViewer for every model');
 assert.match(lessonMedia, /viewFromStep\(step\)/);
 assert.match(lessonViewer, /lessonProfile/);
 assert.doesNotMatch(lessonViewer + exploreViewer, /\bModelViewer\b/, 'the single catch-all ModelViewer stays retired');
@@ -52,14 +53,17 @@ assert.equal((runtime.match(/new THREE\.WebGLRenderer/g)||[]).length,1);
 
 // Capability panels disappear for a static model without a separate component.
 for (const feature of ['components','motion','section','appearance']) {
-  assert.match(exploreViewer,new RegExp(`features\\?\\.${feature}|features\\.${feature}`));
+  assert.match(exploreViewer + controlsPanel + controls,new RegExp(`features\\?\\.${feature}|features\\.${feature}`));
 }
 assert.match(viewerParts,/features\?\.hotspots/);
 assert.match(exploreViewer,/hasControlPanels/);
 assert.match(exploreViewer,/'explore'/);
 assert.match(viewerParts,/Home/);
 assert.match(viewerParts,/offsetAfterKey/);
-assert.match(exploreViewer,/ExploreControls/);
+assert.match(exploreViewer,/useControlsPanel/);
+assert.match(controlsPanel,/<ExploreControls/);
+assert.match(lessonViewer,/useControlsPanel/);
+assert.match(lessonViewer,/MotionStrip/);
 assert.match(exploreViewer,/CompactMotionPlayer/);
 assert.match(exploreViewer,/4212-explore-show-player/);
 assert.match(viewerHook,/createViewerRuntime/);

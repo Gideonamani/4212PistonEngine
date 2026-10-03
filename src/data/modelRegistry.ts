@@ -32,6 +32,8 @@ export type ModelDefinition = {
   lessonHotspotIds?: string[];
   hotspots?: ModelHotspot[];
   viewPresets?: Record<string, { direction: [number, number, number] }>;
+  /** How far back the camera sits when the model is framed (the default, about 1.1, leaves room around the bounding sphere). Below 1 fills more of the frame; use it for scans whose stray geometry inflates that sphere. */
+  fitPadding?: number;
 };
 
 export const modelRegistry = registryData as ModelDefinition[];

@@ -8,7 +8,6 @@ import { modelsById } from '../data/modelRegistry';
 import { viewFromStep } from '../viewer/core/view-state.mjs';
 
 const LessonViewer = React.lazy(() => import('../viewer/LessonViewer'));
-const ExploreViewer = React.lazy(() => import('../viewer/ExploreViewer'));
 
 interface LessonMediaProps {
   step: LessonStep;
@@ -32,9 +31,7 @@ export const LessonModelStage: React.FC<{ step: LessonStep; active: boolean; imm
   const definition = modelsById[step.modelId!];
   const view = viewFromStep(step);
   return <div hidden={!active}><Suspense fallback={<div className="flex h-80 items-center justify-center rounded-xl border border-teal-400/20 bg-[#071418] text-xs text-teal-300">Preparing interactive 3D viewer…</div>}>
-    {definition.lessonControls
-      ? <ExploreViewer modelId={step.modelId!} embedded view={view} />
-      : <LessonViewer modelId={step.modelId!} view={view} immersive={immersive} onOpenExplore={() => onSwitchTo3DModel?.(definition.label)} />}
+    <LessonViewer modelId={step.modelId!} view={view} immersive={immersive} onOpenExplore={() => onSwitchTo3DModel?.(definition.label)} />
   </Suspense></div>;
 };
 

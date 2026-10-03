@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Focus, LoaderCircle, Move3D, RotateCcw, TriangleAlert } from 'lucide-react';
+import { Box, Focus, LoaderCircle, Move3D, Pause, Play, RotateCcw, TriangleAlert } from 'lucide-react';
 import { offsetAfterKey } from './core/keyboard-orbit.mjs';
 import type { ModelViewerState } from './useModelViewer';
 
@@ -85,4 +85,25 @@ export function HotspotChips({ viewer, className = '' }: { viewer: ModelViewerSt
 export function HotspotNote({ viewer, className = '' }: { viewer: ModelViewerState; className?: string }) {
   const active = viewer.features?.hotspots?.items.find((hotspot) => hotspot.id === viewer.snapshot.activeHotspotId);
   return active ? <p className={`text-[10px] leading-relaxed text-slate-300 ${className}`}><strong className="text-white">{active.label}:</strong> {active.description}</p> : null;
+}
+
+/**
+ * A play button and scrubber that sit under the model, for a lesson. It drives the crank angle (0 to 720 degrees) for the operating
+ * cylinder, or the progress of the chosen saved motion (0 to 100 per cent) for the assembly studies.
+ */
+export function MotionStrip({ viewer }: { viewer: ModelViewerState }) {
+  const { features, snapshot } = viewer;
+  const motion = features?.motion;
+  if (!motion) return null;
+  const saved = Boolean(features?.savedMotions) && snapshot.savedMotionId !== 'operating';
+  const value = saved ? snapshot.motionProgress ?? 0 : snapshot.angle ?? 0;
+  const label = saved ? snapshot.motionStage || 'Motion' : 'Crank angle';
+  const readout = saved ? `${Math.round(value)}%` : `${Math.round(value)}°`;
+  return <div className="flex items-center gap-2.5" aria-label="Motion player">
+    <button type="button" onClick={() => motion.setPlaying(!snapshot.playing)} className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-teal-400 text-slate-950" aria-label={snapshot.playing ? 'Pause motion' : 'Play motion'} aria-pressed={Boolean(snapshot.playing)}>{snapshot.playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}</button>
+    <div className="min-w-0 flex-1">
+      <div className="mb-0.5 flex items-center justify-between gap-2 font-mono text-[9px] font-bold tracking-wider text-slate-400"><span className="truncate uppercase">{label}</span><output className="shrink-0 text-xs text-teal-300">{readout}</output></div>
+      <input aria-label={saved ? 'Motion progress' : 'Crank angle'} type="range" min="0" max={saved ? 100 : 720} step={saved ? 0.1 : 1} value={value} onChange={(event) => saved ? features!.savedMotions!.setProgress(Number(event.target.value)) : motion.setAngle(Number(event.target.value))} className="block w-full accent-teal-400" />
+    </div>
+  </div>;
 }
