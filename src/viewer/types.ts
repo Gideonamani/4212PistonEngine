@@ -4,6 +4,8 @@ export type ViewerProfile = 'explore' | 'lesson-dynamic' | 'lesson-reference';
 export type InteractionMode = 'orbit' | 'pan';
 export type SectionAxis = 'x' | 'y' | 'z';
 export type AppearanceMode = 'inspection' | 'cad';
+/** How a spotlight (a step's focusParts) draws attention: colour the parts, x-ray the rest, or isolate the parts. See core/focus-style.mjs. */
+export type FocusMode = 'highlight' | 'xray' | 'isolate';
 
 export type ModelHotspot = {
   id: string;
@@ -51,6 +53,9 @@ export type ViewerSnapshot = {
   motionStage?: string;
   powerPathId?: string;
   powerPathNote?: string;
+  /** Whether a spotlight is active, and how it is drawn. Only models that spotlight parts report them. */
+  focusActive?: boolean;
+  focusMode?: FocusMode;
 };
 
 export type ViewerFeatures = {
@@ -95,6 +100,10 @@ export type ViewerFeatures = {
     items: ModelHotspot[];
     focus: (id: string) => void;
   };
+  /** Change how the current spotlight is drawn, until the next step sets its own. Does nothing while no spotlight is active. */
+  focus?: {
+    setMode: (mode: FocusMode) => void;
+  };
 };
 
 /** The per-step view a lesson can change on an already-loaded model, so consecutive steps do not reload the scene. */
@@ -106,6 +115,8 @@ export type ViewUpdate = {
   viewPreset?: string;
   focusHotspots?: string[];
   focusParts?: string[];
+  /** How focusParts is drawn; omitted means x-ray. */
+  focusMode?: FocusMode;
 };
 
 export type ViewerSession = {

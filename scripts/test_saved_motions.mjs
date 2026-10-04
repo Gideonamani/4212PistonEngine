@@ -6,6 +6,7 @@ import { createHash } from 'node:crypto';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { createExplodedMotion, explosionAmount } from '../src/viewer/core/saved-motions.mjs';
+import { XRAY_OPACITY } from '../src/viewer/core/focus-style.mjs';
 import { rolldown } from 'rolldown';
 const read = path => JSON.parse(fs.readFileSync(path, 'utf8'));
 const profile = read('web/cylinder-saved-motions.json');
@@ -116,7 +117,7 @@ for (const id of ['cylinder', 'hydraulic-tappet', 'oil-pump', 'accessory-drives'
   const first = session.features.components.items[0].id;
   session.update({ savedMotionId: explodedId, motionProgress: 50, focusParts: [first] });
   assert.equal(session.snapshot().motionProgress, 50);
-  assert.ok(partMeshes.filter(mesh => mesh.userData.partId !== first).every(mesh => (Array.isArray(mesh.material) ? mesh.material[0] : mesh.material).opacity === .12));
+  assert.ok(partMeshes.filter(mesh => mesh.userData.partId !== first).every(mesh => (Array.isArray(mesh.material) ? mesh.material[0] : mesh.material).opacity === XRAY_OPACITY));
   session.dispose(); assert.equal(runtime.scene.children.filter(child => child.name === 'Section cut faces').length, 0); assert.ok(renders > 0);
 });
 process.on('exit', () => { globalThis.fetch = realFetch; });

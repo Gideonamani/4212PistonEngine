@@ -3,7 +3,8 @@ import type { ModelDefinition } from '../../data/modelRegistry';
 import { groupComponentIds } from '../core/component-groups.mjs';
 import { loadGltf, sourcesFromEngineContract } from '../core/assets';
 import { cloneMaterials, createSectionController, disposeObject, meshMaterials } from '../core/modelUtils';
-import type { AdapterContext, AppearanceMode, ModelComponent, ModelGroup, ViewerSession, ViewerSnapshot } from '../types';
+import { HIGHLIGHT_COLOR, HIGHLIGHT_EMISSIVE, PALE_COLOR, XRAY_COLOR, XRAY_OPACITY, focusModeOrDefault, partLook, partRole } from '../core/focus-style.mjs';
+import type { AdapterContext, AppearanceMode, FocusMode, ModelComponent, ModelGroup, ViewerSession, ViewerSnapshot } from '../types';
 
 type EngineItem = {
   mesh: THREE.Mesh;
@@ -48,7 +49,9 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
     const lineage: string[] = [];
     const binding: Record<string, unknown> = {};
     for (let node: THREE.Object3D | null = mesh; node; node = node.parent) {
-      lineage.push(node.name || '');
+      // GLTFLoader turns spaces in node names into underscores and keeps the exported name in userData.name. The contract's
+      // selectors ("V5 ", "C1 |") are written against the exported names, so match on those.
+      lineage.push(node.userData?.name ?? node.name ?? '');
       for (const key of ['engine_id', 'module_id', 'instance_id']) if (node.userData?.[key] !== undefined && binding[key] === undefined) binding[key] = node.userData[key];
     }
     const materials = meshMaterials(mesh) as THREE.MeshStandardMaterial[];
@@ -90,27 +93,39 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
   let playing = false;
   const section = createSectionController(items.map((item) => item.mesh), bounds, runtime.render, onChange, runtime.scene);
 
-  // A lesson step can spotlight teaching components: everything else is ghosted and the camera frames the spotlit parts.
+  // A lesson step can spotlight teaching components, drawn as its focus mode says, and the camera frames the spotlit parts.
   const focusComponents: any[] = [];
+  let focusMode: FocusMode = focusModeOrDefault(context.focusMode);
   const isFocused = (item: EngineItem) => !focusComponents.length || focusComponents.some((component) => bindingMatches(item, component));
+  const lookOf = (item: EngineItem) => partLook(focusMode, partRole(focusComponents.length > 0, isFocused(item)));
   const selectedComponent = () => componentsById.get(selectedId);
   const applyVisibility = () => {
     const isolated = componentsById.get(isolatedId);
-    for (const item of items) item.mesh.visible = isolatedGroupIds.length ? isolatedGroupIds.some(id => bindingMatches(item, componentsById.get(id))) : !isolated || bindingMatches(item, isolated);
+    for (const item of items) {
+      const wanted = isolatedGroupIds.length ? isolatedGroupIds.some(id => bindingMatches(item, componentsById.get(id))) : !isolated || bindingMatches(item, isolated);
+      item.mesh.visible = wanted && lookOf(item).visible;
+    }
   };
   const applyAppearance = () => {
     const selected = selectedComponent();
+    snapshot.focusActive = focusComponents.length > 0;
+    snapshot.focusMode = focusMode;
     for (const item of items) {
-      const highlighted = Boolean(selected && bindingMatches(item, selected));
-      const ghosted = !isFocused(item);
+      const { look } = lookOf(item);
+      const highlighted = look === 'highlight' || Boolean(selected && bindingMatches(item, selected));
+      const ghosted = look === 'ghost';
+      const pale = look === 'pale';
       for (const material of item.materials) {
         material.userData.solid ??= { transparent: material.transparent, opacity: material.opacity, depthWrite: material.depthWrite };
         const solid = material.userData.solid;
-        material.transparent = ghosted || solid.transparent;
-        material.opacity = ghosted ? 0.12 : solid.opacity;
+        material.transparent = ghosted || (!pale && solid.transparent);
+        material.opacity = ghosted ? XRAY_OPACITY : pale ? 1 : solid.opacity;
         material.depthWrite = ghosted ? false : solid.depthWrite;
         material.needsUpdate = true;
-        if (snapshot.appearance === 'inspection') {
+        if (ghosted) material.color.set(XRAY_COLOR);
+        else if (pale) material.color.set(PALE_COLOR);
+        else if (look === 'highlight') material.color.set(HIGHLIGHT_COLOR);
+        else if (snapshot.appearance === 'inspection') {
           material.color.set(
             /Intake/i.test(item.label) ? 0x379e9b
               : /Exhaust/i.test(item.label) ? 0xbc7353
@@ -120,7 +135,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
           );
         } else if (material.userData.originalColor) material.color.copy(material.userData.originalColor);
         if (material.emissive) {
-          material.emissive.set(highlighted ? 0x087567 : 0x000000);
+          material.emissive.set(highlighted ? HIGHLIGHT_EMISSIVE : 0x000000);
           material.emissiveIntensity = highlighted ? 0.72 : 0;
         }
       }
@@ -174,10 +189,11 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
     onChange();
   };
   const fitFull = () => runtime.fit(root, new THREE.Vector3(1.3, 0.8, 1.55));
-  const applyFocus = (ids: string[] = []) => {
+  const applyFocus = (ids: string[] = [], mode: FocusMode = focusMode) => {
     const unknown = ids.filter((id) => !componentsById.has(id));
     if (unknown.length) throw Error(`Unknown component id in focusParts: ${unknown.join(', ')}.`);
     focusComponents.splice(0, focusComponents.length, ...ids.map((id) => componentsById.get(id)));
+    focusMode = mode;
     selectedId = '';
     isolatedId = '';
     isolatedGroupIds = [];
@@ -214,10 +230,18 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
     update(view) {
       setPlaying(false);
       setAngle(view.initialAngle ?? 0);
-      applyFocus(view.focusParts);
+      applyFocus(view.focusParts, focusModeOrDefault(view.focusMode));
       onChange();
     },
     features: {
+      focus: {
+        setMode(mode) {
+          focusMode = focusModeOrDefault(mode);
+          applyVisibility();
+          applyAppearance();
+          onChange();
+        },
+      },
       components: {
         items: components,
         groups,

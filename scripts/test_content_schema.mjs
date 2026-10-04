@@ -6,6 +6,7 @@ import {
   validateLessonPack,
   validateModelRegistry,
   validateContentTree,
+  FOCUS_MODES,
 } from '../web/schema/content-schema.mjs';
 
 // A minimal valid pack exercising all five check-item question types, to
@@ -100,3 +101,10 @@ savedPack.lessons[0].steps[1] = { type: 'model-pose', modelId: 'cylinder', promp
 assert.deepEqual(validateLessonPack(savedPack), []);
 savedPack.lessons[0].steps[1].motionProgress = 101;
 assert.ok(validateLessonPack(savedPack).some(error => error.includes('motionProgress')));
+
+// A step's spotlight style: a known mode, and only together with the parts it styles.
+const withStep = (step) => ({ ...samplePack, lessons: [{ ...samplePack.lessons[0], steps: [samplePack.lessons[0].steps[0], { ...samplePack.lessons[0].steps[1], ...step }] }, samplePack.lessons[1]] });
+for (const mode of FOCUS_MODES) assert.deepEqual(validateLessonPack(withStep({ focusParts: ['CrankThrow'], focusMode: mode })), [], `focusMode ${mode} is valid`);
+assert.deepEqual(validateLessonPack(withStep({ focusParts: ['CrankThrow'] })), [], 'focusMode is optional');
+assert.match(validateLessonPack(withStep({ focusParts: ['CrankThrow'], focusMode: 'ghost' })).join('\n'), /focusMode must be one of highlight, xray, isolate/);
+assert.match(validateLessonPack(withStep({ focusMode: 'isolate' })).join('\n'), /focusMode needs focusParts/);

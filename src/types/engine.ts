@@ -48,8 +48,10 @@ export interface LessonStep {
   referenceModel?: string;
   viewPreset?: string;
   focusHotspots?: string[];
-  /** Component ids spotlighted in the 3D view (operating-cylinder model); other parts are ghosted. */
+  /** Component ids spotlighted in the 3D view; the other parts are de-emphasised as focusMode says. */
   focusParts?: string[];
+  /** How the spotlight looks: 'highlight' colours the parts and greys the rest, 'xray' (the default) ghosts the rest, 'isolate' hides the rest. */
+  focusMode?: 'highlight' | 'xray' | 'isolate';
   /** Ids of unlisted deep-dive lessons this step links to (optional, never required to progress). */
   deepDiveLinks?: string[];
   note?: string;

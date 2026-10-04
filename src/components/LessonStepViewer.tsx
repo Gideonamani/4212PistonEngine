@@ -23,7 +23,8 @@ import {
 import confetti from 'canvas-confetti';
 import { completeLesson, getLessonProgress, saveLessonReflection, saveLessonStep } from '../data/lessonProgress';
 import { useShellChrome } from './ShellChrome';
-import { BackLink } from './ui';
+import { BackLink, IconButton } from './ui';
+import { ProgressNavigator, type ProgressItem } from './ProgressNavigator';
 
 interface LessonStepViewerProps {
   lesson: Lesson;
@@ -185,11 +186,11 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
   if (isComplete) return <div className="flex h-full w-full overflow-y-auto bg-[#061014] px-4 py-6 text-slate-100">
     <section className="m-auto w-full max-w-xl rounded-3xl border border-teal-500/35 bg-gradient-to-br from-[#0a2427] via-[#08191e] to-[#050f13] p-5 shadow-2xl sm:p-7">
       <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-teal-400/40 bg-teal-500/15 text-teal-300"><Award className="h-7 w-7" /></div>
-      <p className="mt-5 font-mono text-[10px] font-bold tracking-[0.2em] text-teal-400">LESSON COMPLETE</p>
+      <p className="mt-5 font-mono text-[11px] font-bold tracking-[0.2em] text-teal-400">LESSON COMPLETE</p>
       <h1 className="mt-1 text-2xl font-bold text-white sm:text-3xl">You completed {lesson.title}</h1>
       <p className="mt-2 text-sm leading-relaxed text-slate-300">Your progress is saved on this device. Reflection and checking your knowledge are optional.</p>
 
-      {isWritingReflection ? <div className="mt-5 rounded-2xl border border-teal-500/30 bg-[#061418] p-4"><label htmlFor="lesson-reflection" className="text-sm font-semibold text-white">What were the three most important things you learned?</label><textarea id="lesson-reflection" rows={6} autoFocus value={reflection} onChange={(event) => { setReflection(event.target.value); saveLessonReflection(lesson.id, event.target.value); }} placeholder="Write your reflection or summary here…" className="mt-3 w-full resize-y rounded-xl border border-slate-700 bg-slate-950/60 p-3 text-sm leading-relaxed text-white placeholder:text-slate-500 focus:border-teal-400 focus:outline-none" /><p className="mt-2 text-[10px] text-slate-500">Saved locally as you type.</p></div> : null}
+      {isWritingReflection ? <div className="mt-5 rounded-2xl border border-teal-500/30 bg-[#061418] p-4"><label htmlFor="lesson-reflection" className="text-sm font-semibold text-white">What were the three most important things you learned?</label><textarea id="lesson-reflection" rows={6} autoFocus value={reflection} onChange={(event) => { setReflection(event.target.value); saveLessonReflection(lesson.id, event.target.value); }} placeholder="Write your reflection or summary here…" className="mt-3 w-full resize-y rounded-xl border border-slate-700 bg-slate-950/60 p-3 text-sm leading-relaxed text-white placeholder:text-slate-400 focus:border-teal-400 focus:outline-none" /><p className="mt-2 text-[11px] text-slate-400">Saved locally as you type.</p></div> : null}
 
       <div className="mt-5 grid gap-2.5 sm:grid-cols-3">
         <button type="button" onClick={() => setIsWritingReflection((value) => !value)} className="flex min-h-24 flex-col items-start justify-between rounded-2xl border border-slate-700 bg-slate-900/55 p-3.5 text-left transition hover:border-teal-400"><PenLine className="h-5 w-5 text-teal-300" /><span className="mt-3 text-xs font-bold text-white">{isWritingReflection ? 'Close reflection' : 'Write a reflection'}</span></button>
@@ -204,64 +205,35 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
       {/* Top Navigation Bar */}
       <div className="px-5 pt-3 pb-1 flex items-center justify-between">
         <BackLink label="Back to Lessons" ariaLabel="Back to lessons" onClick={onBackToLessons} />
-        <div className="flex items-center gap-2">
-          {hasEvidence && <button ref={evidenceButtonRef} type="button" onClick={() => setIsEvidenceOpen(true)} aria-label="Open evidence and scope note" aria-haspopup="dialog" aria-controls="lesson-evidence-dialog" className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-slate-900/70 text-slate-300 transition hover:border-teal-400 hover:text-teal-300"><Info className="h-4 w-4" /></button>}
-          <button type="button" onClick={toggleImmersive} aria-label={isImmersive ? 'Exit full-screen lesson' : 'Open full-screen lesson'} aria-pressed={isImmersive} className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-slate-900/70 text-slate-300 transition hover:border-teal-400 hover:text-teal-300">{isImmersive ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}</button>
+        <div className="-my-1.5 -mr-1.5 flex items-center">
+          {hasEvidence && <IconButton ref={evidenceButtonRef} size="sm" label="Open evidence and scope note" aria-haspopup="dialog" aria-controls="lesson-evidence-dialog" onClick={() => setIsEvidenceOpen(true)}><Info className="h-4 w-4" /></IconButton>}
+          <IconButton size="sm" label={isImmersive ? 'Exit full-screen lesson' : 'Open full-screen lesson'} active={isImmersive} onClick={toggleImmersive}>{isImmersive ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}</IconButton>
         </div>
       </div>
 
-      {/* Stepper Progress Section (Matching Screenshot 5) */}
+      {/* Where you are in the lesson; tap it for the list of steps. */}
       <div className="px-5 pt-3 pb-2">
-        <div className="flex items-center justify-between text-xs text-slate-400 font-medium mb-2.5">
-          <div className="flex items-center gap-2">
-            <span className="text-slate-300 font-semibold">{lesson.lessonNumber}</span>
-            <span className="text-slate-600">|</span>
-            <span className="text-white">Step {currentStepIndex + 1} of {totalSteps}</span>
-          </div>
-          <span className="text-teal-400 font-mono text-[11px] font-bold">
-            {percentComplete}% complete
-          </span>
-        </div>
-
-        {/* Step Nodes Bar with connecting lines */}
-        <div className="flex items-center justify-between gap-0.5 sm:gap-1 overflow-x-auto scrollbar-none py-1 w-full">
-          {Array.from({ length: totalSteps }).map((_, idx) => {
-            const isCompleted = idx < currentStepIndex;
-            const isCurrent = idx === currentStepIndex;
-
-            return (
-              <React.Fragment key={idx}>
-                <button
-                  onClick={() => setCurrentStepIndex(idx)}
-                  className={`w-5.5 h-5.5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[9px] sm:text-[10px] font-bold font-mono transition-all shrink-0 ${
-                    isCompleted
-                      ? 'bg-teal-500 text-slate-950 shadow-xs shadow-teal-500/50'
-                      : isCurrent
-                      ? 'border-2 border-teal-400 text-teal-300 bg-teal-950/40 shadow-sm shadow-teal-400/40 scale-105'
-                      : 'border border-slate-700 text-slate-500 bg-slate-900/40 hover:border-slate-500'
-                  }`}
-                  aria-label={`Jump to step ${idx + 1}`}
-                >
-                  {isCompleted ? <Check className="w-3 h-3 stroke-[3]" /> : idx + 1}
-                </button>
-
-                {idx < totalSteps - 1 && (
-                  <div
-                    className={`flex-1 h-0.5 min-w-[3px] sm:min-w-[6px] transition-colors ${
-                      idx < currentStepIndex ? 'bg-teal-500' : 'bg-slate-800'
-                    }`}
-                  />
-                )}
-              </React.Fragment>
-            );
-          })}
-        </div>
+        <ProgressNavigator
+          noun="step"
+          heading="Steps in this lesson"
+          currentIndex={currentStepIndex}
+          onSelect={setCurrentStepIndex}
+          items={lesson.steps.map((step, index): ProgressItem => ({ id: String(index), title: step.title || `Step ${index + 1}`, state: index < currentStepIndex ? 'done' : 'todo' }))}
+          summary={<>
+            <span className="flex items-center gap-2">
+              <span className="text-slate-300 font-semibold">{lesson.lessonNumber}</span>
+              <span className="text-slate-600">|</span>
+              <span className="text-white">Step {currentStepIndex + 1} of {totalSteps}</span>
+            </span>
+            <span className="ml-auto text-teal-400 font-mono text-[11px] font-bold">{percentComplete}% complete</span>
+          </>}
+        />
       </div>
 
       {/* Main Step Content Card (Matching Screenshot 5) */}
       <div className={`mx-auto flex w-full flex-1 flex-col gap-4 px-4 py-2 pb-20 ${isImmersive ? 'max-w-5xl' : 'max-w-xl'}`}>
         <div className="p-4 rounded-2xl bg-[#09191f]/90 border border-teal-500/20 shadow-xl flex flex-col gap-3.5">
-          <div className="text-[10px] font-mono tracking-widest text-slate-400 uppercase font-semibold">
+          <div className="text-[11px] font-mono tracking-widest text-slate-400 uppercase font-semibold">
             STEP {currentStepIndex + 1}
           </div>
 
@@ -282,7 +254,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
           {/* Optional deep dives: unlisted lessons, never required to progress. */}
           {currentStep.deepDiveLinks?.map((linkId) => {
             const target = deepDives?.find((item) => item.id === linkId);
-            return target ? <button key={linkId} type="button" onClick={() => onOpenDeepDive?.(linkId)} className="flex items-center justify-between gap-3 rounded-xl border border-teal-500/30 bg-teal-500/10 px-3.5 py-2.5 text-left text-xs font-semibold text-teal-200 transition hover:border-teal-400"><span><span className="block font-mono text-[10px] uppercase tracking-widest text-teal-400">Optional deep dive</span>{target.title}</span><span aria-hidden="true">→</span></button> : null;
+            return target ? <button key={linkId} type="button" onClick={() => onOpenDeepDive?.(linkId)} className="flex items-center justify-between gap-3 rounded-xl border border-teal-500/30 bg-teal-500/10 px-3.5 py-2.5 text-left text-xs font-semibold text-teal-200 transition hover:border-teal-400"><span><span className="block font-mono text-[11px] uppercase tracking-widest text-teal-400">Optional deep dive</span>{target.title}</span><span aria-hidden="true">→</span></button> : null;
           })}
 
           {/* GUIDED PROMPT Card (Matching Screenshot 5) */}
@@ -314,7 +286,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
                   className="w-full p-2.5 rounded-lg bg-slate-900/60 border border-slate-700/60 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-teal-400 transition-colors resize-none leading-relaxed"
                 />
 
-                <div className="flex items-center justify-between text-[10px] text-slate-500 mt-1">
+                <div className="flex items-center justify-between text-[11px] text-slate-400 mt-1">
                   <span>Optional · For your learning</span>
                   {currentStep.suggestedAnswer && (
                     <button
@@ -336,7 +308,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
               {/* Instructor Insight Accordion */}
               {showAnswerFeedback[currentStepIndex] && currentStep.suggestedAnswer && (
                 <div className="p-2.5 rounded-lg bg-teal-950/30 border border-teal-500/30 text-xs text-teal-100 leading-relaxed animate-in fade-in duration-200">
-                  <div className="text-[10px] font-mono font-semibold text-teal-300 mb-0.5">
+                  <div className="text-[11px] font-mono font-semibold text-teal-300 mb-0.5">
                     AEROSPACE ENGINEERING CONTEXT:
                   </div>
                   {currentStep.suggestedAnswer}
@@ -350,7 +322,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
             <button
               onClick={handlePrevStep}
               disabled={currentStepIndex === 0}
-              className={`py-2.5 px-4 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
+              className={`min-h-11 px-4 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
                 currentStepIndex === 0
                   ? 'border-slate-800 text-slate-600 cursor-not-allowed'
                   : 'bg-slate-900/60 hover:bg-slate-800 border-slate-700 text-slate-300 active:scale-98'
@@ -362,7 +334,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
 
             <button
               onClick={handleNextStep}
-              className="py-2.5 px-4 rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-teal-400/25 active:scale-98 transition-all"
+              className="min-h-11 px-4 rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-teal-400/25 active:scale-98 transition-all"
             >
               <span>{currentStepIndex === totalSteps - 1 ? 'Complete Lesson' : 'Next Step'}</span>
               <ChevronRight className="w-4 h-4 stroke-[2.5]" />
@@ -373,11 +345,11 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
 
       {isEvidenceOpen && <div className="fixed inset-0 z-[80] flex items-end justify-center bg-black/65 p-3 backdrop-blur-sm sm:items-center" onMouseDown={(event) => { if (event.target === event.currentTarget) closeEvidence(); }}>
         <section id="lesson-evidence-dialog" role="dialog" aria-modal="true" aria-labelledby="lesson-evidence-title" className="max-h-[75dvh] w-full max-w-lg overflow-y-auto rounded-2xl border border-teal-500/30 bg-[#09191f] p-4 text-slate-200 shadow-2xl sm:p-5">
-          <div className="flex items-start justify-between gap-4"><div><span className="font-mono text-[10px] font-bold tracking-widest text-teal-400">STEP {currentStepIndex + 1}</span><h2 id="lesson-evidence-title" className="mt-1 text-base font-bold text-white">Evidence &amp; scope note</h2></div><button ref={evidenceCloseRef} type="button" onClick={closeEvidence} aria-label="Close evidence and scope note" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-700 text-slate-300 hover:border-teal-400 hover:text-teal-300"><X className="h-4 w-4" /></button></div>
+          <div className="flex items-start justify-between gap-4"><div><span className="font-mono text-[11px] font-bold tracking-widest text-teal-400">STEP {currentStepIndex + 1}</span><h2 id="lesson-evidence-title" className="mt-1 text-base font-bold text-white">Evidence &amp; scope note</h2></div><button ref={evidenceCloseRef} type="button" onClick={closeEvidence} aria-label="Close evidence and scope note" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-700 text-slate-300 hover:border-teal-400 hover:text-teal-300"><X className="h-4 w-4" /></button></div>
           {currentStep.note && <p className="mt-4 text-sm leading-relaxed text-slate-300">{currentStep.note}</p>}
           {(currentStep.credit || currentStep.license) && <p className="mt-3 text-xs leading-relaxed text-slate-400"><span className="font-semibold text-slate-300">Media:</span> {[currentStep.credit, currentStep.license].filter(Boolean).join(' · ')}</p>}
           {currentStep.sourceUrl ? <a href={currentStep.sourceUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex text-xs font-semibold text-teal-300 underline decoration-teal-500/50 underline-offset-2 hover:text-teal-200">Open media source</a> : null}
-          {currentStep.sourceRefs?.length ? <div className="mt-4 border-t border-slate-700/70 pt-3"><h3 className="font-mono text-[10px] font-bold tracking-wider text-slate-400">SOURCE REFERENCES</h3><ul className="mt-2 space-y-2 text-xs text-slate-300">{currentStep.sourceRefs.map((reference) => <li key={reference} className="break-words">{/^https?:\/\//i.test(reference) ? <a href={reference} target="_blank" rel="noreferrer" className="text-teal-300 underline decoration-teal-500/50 underline-offset-2 hover:text-teal-200">{reference}</a> : reference}</li>)}</ul></div> : null}
+          {currentStep.sourceRefs?.length ? <div className="mt-4 border-t border-slate-700/70 pt-3"><h3 className="font-mono text-[11px] font-bold tracking-wider text-slate-400">SOURCE REFERENCES</h3><ul className="mt-2 space-y-2 text-xs text-slate-300">{currentStep.sourceRefs.map((reference) => <li key={reference} className="break-words">{/^https?:\/\//i.test(reference) ? <a href={reference} target="_blank" rel="noreferrer" className="text-teal-300 underline decoration-teal-500/50 underline-offset-2 hover:text-teal-200">{reference}</a> : reference}</li>)}</ul></div> : null}
           {currentStep.url && /^https?:\/\//i.test(currentStep.url) ? <a href={currentStep.url} target="_blank" rel="noreferrer" className="mt-4 inline-flex text-xs font-semibold text-teal-300 underline decoration-teal-500/50 underline-offset-2 hover:text-teal-200">Open supporting source</a> : null}
         </section>
       </div>}
@@ -390,26 +362,19 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
             <CardThumbnail src={lesson.thumbnail} fallbackType={currentStep.imageType} />
           </div>
 
-          {/* Mini Dots / Bar */}
-          <div className="flex items-center gap-1">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <span
-                key={i}
-                className={`h-1 rounded-full transition-all ${
-                  i < (currentStepIndex % 6) + 1 ? 'w-5 bg-teal-400' : 'w-2 bg-slate-700'
-                }`}
-              />
-            ))}
+          {/* How far through the lesson, to scale. */}
+          <div className="h-1 w-24 overflow-hidden rounded-full bg-slate-700" aria-hidden="true">
+            <div className="h-full rounded-full bg-teal-400 transition-all" style={{ width: `${percentComplete}%` }} />
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           <span className="text-xs font-mono font-bold text-slate-300">
             {currentStepIndex + 1} / {totalSteps}
           </span>
           <button
             onClick={onBackToLessons}
-            className="p-1 text-slate-400 hover:text-white"
+            className="-mr-2 flex h-11 w-11 items-center justify-center text-slate-400 hover:text-white"
             aria-label="Back to lessons"
           >
             <ChevronUp className="w-4 h-4" />

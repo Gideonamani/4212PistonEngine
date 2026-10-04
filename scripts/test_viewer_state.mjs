@@ -5,8 +5,8 @@ import { lessonProfile, viewFromStep, viewKey } from '../src/viewer/core/view-st
 import { offsetAfterKey } from '../src/viewer/core/keyboard-orbit.mjs';
 
 test('a lesson step maps to the view the viewer applies', () => {
-  assert.deepEqual(viewFromStep({ action: { type: 'cycle-angle', value: 400 }, focusParts: ['CylinderHead'], savedMotionId: 'exploded', motionProgress: 50, viewPreset: 'x', focusHotspots: ['a'] }), {
-    savedMotionId: 'exploded', motionProgress: 50, initialAngle: 400, initialCycle: true, viewPreset: 'x', focusHotspots: ['a'], focusParts: ['CylinderHead'],
+  assert.deepEqual(viewFromStep({ action: { type: 'cycle-angle', value: 400 }, focusParts: ['CylinderHead'], focusMode: 'isolate', savedMotionId: 'exploded', motionProgress: 50, viewPreset: 'x', focusHotspots: ['a'] }), {
+    savedMotionId: 'exploded', motionProgress: 50, initialAngle: 400, initialCycle: true, viewPreset: 'x', focusHotspots: ['a'], focusParts: ['CylinderHead'], focusMode: 'isolate',
   });
   assert.equal(viewFromStep({ action: { type: 'angle', value: 90 } }).initialCycle, false);
   assert.equal(viewFromStep({ action: { type: 'angle', value: 90 } }).initialAngle, 90);
@@ -19,7 +19,7 @@ test('the view key changes only when something the viewer shows changes', () => 
   assert.equal(viewKey(base), viewKey({ ...base }));
   assert.equal(viewKey({ initialAngle: 90 }), viewKey({ initialAngle: 90, viewPreset: undefined }), 'undefined and absent are the same');
   assert.equal(viewKey(base), viewKey({ initialAngle: 90, focusParts: ['a', 'b'] }), 'a new array with the same parts is not a change');
-  for (const change of [{ initialAngle: 91 }, { initialCycle: true }, { viewPreset: 'engine-overview' }, { focusHotspots: ['magneto'] }, { focusParts: ['a'] }, { savedMotionId: 'exploded' }, { motionProgress: 25 }]) {
+  for (const change of [{ initialAngle: 91 }, { initialCycle: true }, { viewPreset: 'engine-overview' }, { focusHotspots: ['magneto'] }, { focusParts: ['a'] }, { focusMode: 'isolate' }, { savedMotionId: 'exploded' }, { motionProgress: 25 }]) {
     assert.notEqual(viewKey(base), viewKey({ ...base, ...change }), JSON.stringify(change));
   }
   assert.equal(viewKey(undefined), viewKey({}));
