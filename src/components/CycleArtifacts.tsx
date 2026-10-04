@@ -11,7 +11,7 @@ import React, { useMemo, useState } from 'react';
 
 const panel = 'rounded-xl border border-teal-500/20 bg-[#061418] p-3 text-slate-100';
 const button = 'rounded-lg border border-slate-700 bg-slate-900/70 px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-teal-400 aria-pressed:border-teal-400 aria-pressed:bg-teal-500/15 aria-pressed:text-teal-200';
-const caption = 'mt-2 text-[10px] text-slate-500';
+const caption = 'mt-2 text-[11px] text-slate-400';
 
 // ---------------------------------------------------------------------------------------------------------------
 // Swept volume, clearance volume and compression ratio
@@ -70,7 +70,7 @@ export function SweptVolumeDiagram() {
       </svg>
       <div>
         <input aria-label="Crank angle" className="w-full accent-teal-400" type="range" min="0" max="360" value={angle} onChange={(event) => setAngle(Number(event.target.value))} />
-        <div className="mt-1 flex justify-between font-mono text-[10px] text-slate-500"><span>0° TDC</span><span>180° BDC</span><span>360° TDC</span></div>
+        <div className="mt-1 flex justify-between font-mono text-[11px] text-slate-400"><span>0° TDC</span><span>180° BDC</span><span>360° TDC</span></div>
         <p className="mt-3 text-xs text-slate-300"><strong className="text-white">Crank angle {angle}°.</strong> {readout}</p>
         <p className="mt-2 text-xs leading-relaxed text-slate-300">{viewText[view]}</p>
       </div>

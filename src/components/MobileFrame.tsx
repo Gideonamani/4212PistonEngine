@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ViewMode } from '../types/engine';
 import { useShellChrome } from './ShellChrome';
+import { IconButton } from './ui';
 import {
   Box,
   BookOpen,
@@ -83,7 +84,7 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
               {activeView === 'explore' ? <div className="relative">
                 <button
                   onClick={() => setIsModelDropdownOpen(!isModelDropdownOpen)}
-                  className="group mt-0.5 flex max-w-full items-center gap-1.5 text-left font-mono text-[11px] font-semibold uppercase leading-tight tracking-wider text-teal-400 transition-colors hover:text-teal-300"
+                  className="group -mb-[15px] -mt-[13px] flex max-w-full items-center gap-1.5 py-[15px] text-left font-mono text-[11px] font-semibold uppercase leading-tight tracking-wider text-teal-400 transition-colors hover:text-teal-300"
                   aria-label="Select 3D Engine Model"
                 >
                   <span className="text-slate-400">MODEL:</span>
@@ -104,7 +105,7 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
                       onClick={() => setIsModelDropdownOpen(false)}
                     />
                     <div className="absolute left-0 top-full mt-2 w-72 rounded-2xl bg-[#091b22]/98 backdrop-blur-xl border border-teal-500/40 shadow-2xl p-1.5 z-50 flex flex-col gap-1">
-                      <div className="px-3 py-1.5 text-[10px] font-mono text-teal-400 font-bold uppercase tracking-wider border-b border-teal-500/20">
+                      <div className="px-3 py-1.5 text-[11px] font-mono text-teal-400 font-bold uppercase tracking-wider border-b border-teal-500/20">
                         Select 3D Engine Assembly
                       </div>
                       {availableModels.map((model) => (
@@ -185,24 +186,14 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
             </button>
 
             {/* Dark / Light Mode Toggle */}
-            <button
-              onClick={onToggleTheme}
-              className="w-8 h-8 rounded-xl bg-slate-900/60 border border-slate-700/60 hover:border-teal-400/50 text-slate-300 hover:text-white flex items-center justify-center transition-colors"
-              title="Toggle Theme"
-              aria-label="Toggle Theme"
-            >
+            <IconButton size="sm" shape="soft" label="Toggle Theme" title="Toggle Theme" onClick={onToggleTheme} className="-my-1.5">
               {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
+            </IconButton>
 
             {/* Info Modal Button */}
-            <button
-              onClick={onOpenInfoModal}
-              className="w-8 h-8 rounded-xl bg-slate-900/60 border border-slate-700/60 hover:border-teal-400/50 text-slate-300 hover:text-white flex items-center justify-center transition-colors"
-              title="About Course & Model"
-              aria-label="About Course & Model"
-            >
+            <IconButton size="sm" shape="soft" label="About Course & Model" title="About Course & Model" onClick={onOpenInfoModal} className="-my-1.5 -mr-1.5">
               <Info className="w-4 h-4" />
-            </button>
+            </IconButton>
           </div>
         </header>
         )}
@@ -340,7 +331,7 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
                 <div className="relative">
                   <button
                     onClick={() => setIsModelDropdownOpen(!isModelDropdownOpen)}
-                    className="flex items-center gap-1 text-[10px] font-mono tracking-wider text-teal-400 hover:text-teal-300 font-semibold uppercase leading-tight mt-0.5 transition-colors group cursor-pointer text-left"
+                    className="group -mb-[15px] -mt-[13px] flex cursor-pointer items-center gap-1 py-[15px] text-left font-mono text-[11px] font-semibold uppercase leading-tight tracking-wider text-teal-400 transition-colors hover:text-teal-300"
                     aria-label="Select 3D Engine Model"
                   >
                     <span className="truncate max-w-[190px]">{activeModelName}</span>
@@ -358,7 +349,7 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
                         onClick={() => setIsModelDropdownOpen(false)}
                       />
                       <div className="absolute left-0 top-full mt-1.5 w-64 rounded-xl bg-[#091b22]/98 backdrop-blur-xl border border-teal-500/40 shadow-2xl p-1.5 z-50 flex flex-col gap-1">
-                        <div className="px-2 py-1 text-[9px] font-mono text-teal-400 font-bold uppercase tracking-wider border-b border-teal-500/20">
+                        <div className="px-2 py-1 text-[11px] font-mono text-teal-400 font-bold uppercase tracking-wider border-b border-teal-500/20">
                           Select 3D Model
                         </div>
                         {availableModels.map((model) => (
@@ -385,7 +376,7 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
                   )}
                 </div>
               ) : (
-                <span className="text-[10px] font-mono tracking-wider text-teal-400/80 font-semibold uppercase leading-tight mt-0.5 truncate max-w-[200px]">
+                <span className="text-[11px] font-mono tracking-wider text-teal-400/80 font-semibold uppercase leading-tight mt-0.5 truncate max-w-[200px]">
                   {subtitle}
                 </span>
               )}
@@ -393,23 +384,13 @@ export const MobileFrame: React.FC<MobileFrameProps> = ({
           </div>
 
           <div className="flex items-center gap-1.5">
-            <button
-              onClick={onToggleTheme}
-              className="w-8 h-8 rounded-full bg-slate-900/60 border border-slate-700/60 hover:border-teal-400/50 text-slate-300 hover:text-white flex items-center justify-center transition-colors"
-              title="Toggle Theme"
-              aria-label="Toggle Theme"
-            >
+            <IconButton size="sm" label="Toggle Theme" title="Toggle Theme" onClick={onToggleTheme} className="-my-1.5">
               {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
+            </IconButton>
 
-            <button
-              onClick={onOpenInfoModal}
-              className="w-8 h-8 rounded-full bg-slate-900/60 border border-slate-700/60 hover:border-teal-400/50 text-slate-300 hover:text-white flex items-center justify-center transition-colors"
-              title="About Course & Model"
-              aria-label="About Course & Model"
-            >
+            <IconButton size="sm" label="About Course & Model" title="About Course & Model" onClick={onOpenInfoModal} className="-my-1.5 -mr-1.5">
               <Info className="w-4 h-4" />
-            </button>
+            </IconButton>
           </div>
         </header>}
 

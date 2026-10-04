@@ -17,12 +17,42 @@ export const Chip: React.FC<{ icon?: LucideIcon; tone?: 'plain' | 'accent'; size
   </div>
 );
 
+/**
+ * A round icon-only button. The touch target is always 44 px (the size phones and our own rule ask for), while the visible circle stays
+ * smaller so toolbars keep their look: 'md' is 36 px (viewer tools), 'sm' is 32 px (header tools). Pass `active` for a toggle, which then
+ * reports aria-pressed; leave it out for a plain action. `className` positions the 44 px box, for example with a negative margin to
+ * keep a tight header from growing.
+ */
+type IconButtonProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'aria-label' | 'aria-pressed' | 'type'> & {
+  label: string;
+  active?: boolean;
+  tone?: 'dark' | 'primary';
+  size?: 'sm' | 'md';
+  shape?: 'round' | 'soft';
+};
+
+const circleSize = { sm: 'h-8 w-8', md: 'h-9 w-9' };
+
+export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(({ label, active, tone = 'dark', size = 'md', shape = 'round', className = '', children, ...rest }, ref) => {
+  const look = tone === 'primary'
+    ? 'border-transparent bg-teal-400 text-slate-950'
+    : active
+      ? 'border-teal-300 bg-teal-400/20 text-teal-200'
+      : 'border-slate-600/70 bg-[#07161b]/90 text-slate-200 group-hover:border-teal-400';
+  return (
+    <button ref={ref} type="button" aria-label={label} aria-pressed={active} {...rest} className={`group flex h-11 w-11 shrink-0 items-center justify-center outline-none ${className}`}>
+      <span className={`flex ${circleSize[size]} items-center justify-center border shadow-lg transition-colors group-focus-visible:ring-2 group-focus-visible:ring-teal-300 ${shape === 'round' ? 'rounded-full' : 'rounded-xl'} ${look}`}>{children}</span>
+    </button>
+  );
+});
+IconButton.displayName = 'IconButton';
+
 /** The "‹ Back to …" link at the top of a screen. */
 export const BackLink: React.FC<{ label: string; ariaLabel: string; onClick: () => void }> = ({ label, ariaLabel, onClick }) => (
   <button
     type="button"
     onClick={onClick}
-    className="inline-flex items-center gap-1.5 text-xs text-teal-400 hover:text-teal-300 font-medium py-1 px-2.5 -ml-2 rounded-lg hover:bg-slate-800/60 transition-colors"
+    className="-my-2 -ml-2 inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2.5 text-xs font-medium text-teal-400 transition-colors hover:bg-slate-800/60 hover:text-teal-300"
     aria-label={ariaLabel}
   >
     <ChevronLeft className="w-4 h-4" />

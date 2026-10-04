@@ -7,7 +7,7 @@ const panel = 'rounded-xl border border-teal-500/20 bg-[#061418] p-3 text-slate-
 const button = 'rounded-lg border border-slate-700 bg-slate-900/70 px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-teal-400 aria-pressed:border-teal-400 aria-pressed:bg-teal-500/15 aria-pressed:text-teal-200';
 
 const PhaseBadge = ({ active, children }: { active: boolean; children: React.ReactNode }) => (
-  <span className={`rounded-full border px-2 py-1 text-[10px] font-bold uppercase tracking-wide ${active ? 'border-teal-400 bg-teal-500/15 text-teal-200' : 'border-slate-700 text-slate-500'}`}>{children}</span>
+  <span className={`rounded-full border px-2 py-1 text-[11px] font-bold uppercase tracking-wide ${active ? 'border-teal-400 bg-teal-500/15 text-teal-200' : 'border-slate-700 text-slate-400'}`}>{children}</span>
 );
 
 function CycleScrubber() {
@@ -22,7 +22,7 @@ function CycleScrubber() {
       <div>
         <div className="mb-3 flex flex-wrap gap-1.5">{phases.map((phase, index) => <PhaseBadge key={phase} active={index === phaseIndex}>{phase}</PhaseBadge>)}</div>
         <input aria-label="Crank angle" className="w-full accent-teal-400" type="range" min="0" max="719" value={angle} onChange={(event) => setAngle(Number(event.target.value))} />
-        <div className="mt-1 flex justify-between font-mono text-[10px] text-slate-500"><span>0°</span><span>360°</span><span>720°</span></div>
+        <div className="mt-1 flex justify-between font-mono text-[11px] text-slate-400"><span>0°</span><span>360°</span><span>720°</span></div>
         <p className="mt-3 text-xs text-slate-300"><strong className="text-white">{phases[phaseIndex]}</strong> · crank angle {angle}°. Intake valve {intakeOpen ? 'open' : 'closed'}; exhaust valve {exhaustOpen ? 'open' : 'closed'}.</p>
       </div>
       <svg viewBox="0 0 180 130" role="img" aria-label={`${phases[phaseIndex]} stroke cylinder diagram`} className="mx-auto h-40 w-full max-w-48 rounded-lg bg-slate-950/50">
@@ -36,7 +36,7 @@ function CycleScrubber() {
         {phaseIndex === 2 && <path d="M72 39l10 11 8-17 8 17 10-11" fill="none" stroke="#f59e0b" strokeWidth="4" />}
       </svg>
     </div>
-    <p className="mt-2 text-[10px] text-slate-500">Ideal teaching cycle. Valve timing and motion are schematic, not engine-specific data.</p>
+    <p className="mt-2 text-[11px] text-slate-400">Ideal teaching cycle. Valve timing and motion are schematic, not engine-specific data.</p>
   </div>;
 }
 
@@ -63,7 +63,7 @@ function TwoStrokeTiming() {
         <text x="8" y="103" fill="#94a3b8" fontSize="9">transfer</text><text x="135" y="99" fill="#94a3b8" fontSize="9">exhaust</text>
       </svg>
     </div>
-    <p className="mt-2 text-[10px] text-slate-500">Schematic port timing: one crankshaft revolution completes the cycle.</p>
+    <p className="mt-2 text-[11px] text-slate-400">Schematic port timing: one crankshaft revolution completes the cycle.</p>
   </div>;
 }
 
@@ -94,7 +94,7 @@ function ArrangementComparator({ fixed }: { fixed?: Arrangement }) {
   };
   return <div className={panel}>
     {!fixed && <div className="mb-3 grid grid-cols-2 gap-1.5 sm:grid-cols-4">{(['Inline', 'V-type', 'Radial', 'Opposed'] as Arrangement[]).map((kind) => <button key={kind} type="button" className={button} aria-pressed={selected === kind} onClick={() => setSelected(kind)}>{kind}</button>)}</div>}
-    <div className="grid items-center gap-3 sm:grid-cols-[13rem_minmax(0,1fr)]"><ArrangementDiagram kind={selected} /><div><h3 className="font-bold text-white">{selected}</h3><p className="mt-1 text-xs leading-relaxed text-slate-300">{details[selected]}</p><p className="mt-3 text-[10px] text-slate-500">Geometry is simplified for recognition; installation details vary by engine.</p></div></div>
+    <div className="grid items-center gap-3 sm:grid-cols-[13rem_minmax(0,1fr)]"><ArrangementDiagram kind={selected} /><div><h3 className="font-bold text-white">{selected}</h3><p className="mt-1 text-xs leading-relaxed text-slate-300">{details[selected]}</p><p className="mt-3 text-[11px] text-slate-400">Geometry is simplified for recognition; installation details vary by engine.</p></div></div>
   </div>;
 }
 
@@ -107,7 +107,7 @@ function IgnitionComparator() {
     <div className="mt-4 grid items-center gap-4 sm:grid-cols-[minmax(0,1fr)_12rem]">
       <div><label className="text-xs font-semibold text-slate-300" htmlFor="ignition-position">Piston position near compression TDC</label><input id="ignition-position" className="mt-2 w-full accent-teal-400" type="range" min="55" max="100" value={position} onChange={(event) => setPosition(Number(event.target.value))} /><p className="mt-2 text-xs text-slate-300">{method === 'spark' ? `The spark is commanded about ${beforeTdc}° before the teaching TDC marker so combustion pressure can build.` : 'Highly compressed air reaches a temperature that ignites fuel injected near the end of compression.'}</p></div>
       <svg viewBox="0 0 180 125" role="img" aria-label={`${method} ignition diagram`} className="h-40 w-full rounded-lg bg-slate-950/50"><path d="M48 12h84v103H48z" fill="#0c2026" stroke="#55707a" strokeWidth="3" /><rect x="56" y={82 - position * .45} width="68" height="20" rx="4" fill="#94a3b8" /><path d="M90 13v20" stroke="#cbd5e1" strokeWidth="5" />{method === 'spark' ? <path d="M76 39l10 10 8-18 8 18 10-10" fill="none" stroke="#f59e0b" strokeWidth="4" /> : <path d="M66 42q24-25 48 0" fill="none" stroke="#fb923c" strokeWidth="8" opacity=".8" />}</svg>
-    </div><p className="mt-2 text-[10px] text-slate-500">Conceptual comparison only; do not use it as an engine timing procedure.</p>
+    </div><p className="mt-2 text-[11px] text-slate-400">Conceptual comparison only; do not use it as an engine timing procedure.</p>
   </div>;
 }
 
@@ -139,7 +139,7 @@ function TurboEnergyPath() {
       <path d="M30 65h195" fill="none" stroke="#fb923c" strokeWidth={wastegateOpen ? 4 : 9} markerEnd="url(#turbo-arrow)" className="motion-safe:animate-pulse" /><text x="105" y="50" fill="#fdba74" fontSize="13">exhaust energy</text>
       <path d="M25 145h195Q260 145 260 128" fill="none" stroke="#fb923c" strokeWidth={wastegateOpen ? 9 : 3} markerEnd="url(#turbo-arrow)" /><text x="105" y="170" fill="#94a3b8" fontSize="12">wastegate bypass</text>
       <path d="M430 95h175" fill="none" stroke="#67e8f9" strokeWidth={wastegateOpen ? 4 : 9} markerEnd="url(#turbo-arrow)" className="motion-safe:animate-pulse" /><text x="520" y="78" fill="#a5f3fc" fontSize="13">compressed induction air</text>
-    </svg><p className="mt-2 text-xs text-slate-300">{flow}</p><p className="mt-1 text-[10px] text-slate-500">Conceptual flow only; control schedules and limits are installation-specific.</p>
+    </svg><p className="mt-2 text-xs text-slate-300">{flow}</p><p className="mt-1 text-[11px] text-slate-400">Conceptual flow only; control schedules and limits are installation-specific.</p>
   </div>;
 }
 
@@ -152,7 +152,7 @@ function AltitudeComparator() {
   return <div className={panel}>
     <label htmlFor="altitude" className="text-xs font-semibold text-white">Altitude: {altitude.toLocaleString()} ft</label><input id="altitude" className="mt-2 w-full accent-teal-400" type="range" min="0" max="20000" step="500" value={altitude} onChange={(event) => setAltitude(Number(event.target.value))} />
     <div className="mt-4 space-y-2">{values.map((item) => <div key={item.name} className="grid grid-cols-[8rem_minmax(0,1fr)_3rem] items-center gap-2 text-[11px]"><span className="text-slate-300">{item.name}</span><div className="h-3 overflow-hidden rounded-full bg-slate-800"><div className="h-full rounded-full transition-[width]" style={{ width: `${item.value / 40 * 100}%`, backgroundColor: item.color }} /></div><span className="font-mono text-slate-300">{item.value.toFixed(0)}</span></div>)}</div>
-    <p className="mt-3 text-[10px] font-semibold uppercase tracking-wide text-amber-300">Schematic comparison — not engine performance data</p>
+    <p className="mt-3 text-[11px] font-semibold uppercase tracking-wide text-amber-300">Schematic comparison — not engine performance data</p>
   </div>;
 }
 

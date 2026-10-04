@@ -88,7 +88,7 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
         <div className="px-4 pt-4 pb-2 max-w-xl mx-auto w-full">
           <div className="flex items-center gap-1.5 text-teal-300">
             <BookOpen className="w-4 h-4 text-teal-400" />
-            <span className="text-[10px] font-mono font-bold tracking-wider uppercase">Learn mode · Guided curriculum</span>
+            <span className="text-[11px] font-mono font-bold tracking-wider uppercase">Learn mode · Guided curriculum</span>
           </div>
           <h2 className="mt-2 text-2xl font-bold tracking-tight text-white">Courses</h2>
           <p className="text-xs text-slate-400 mt-1">Choose a course, then work through its lessons step by step.</p>
@@ -136,9 +136,9 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1.5 text-teal-300">
               <BookOpen className="w-4 h-4 text-teal-400" />
-              <span className="text-[10px] font-mono font-bold tracking-wider uppercase">Course</span>
+              <span className="text-[11px] font-mono font-bold tracking-wider uppercase">Course</span>
             </div>
-            <span className="text-[10px] font-mono text-teal-400/80 group-hover:text-teal-300 flex items-center gap-0.5 font-semibold">
+            <span className="text-[11px] font-mono text-teal-400/80 group-hover:text-teal-300 flex items-center gap-0.5 font-semibold">
               {courseProgress > 0 ? 'Review lessons' : 'Start course'} <ChevronRight className="w-3.5 h-3.5" />
             </span>
           </div>
@@ -168,10 +168,10 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
         <div className="flex flex-col gap-2.5">
           {activeTrack.lessons.map((lesson) => (
             <CardRow key={lesson.id} onClick={() => openLesson(lesson)} image={<CardImage src={lesson.thumbnail} fallbackType={lesson.imageType} />}>
-              <div className="text-[10px] font-mono tracking-wider uppercase text-slate-400 font-semibold">{lesson.lessonNumber}</div>
+              <div className="text-[11px] font-mono tracking-wider uppercase text-slate-400 font-semibold">{lesson.lessonNumber}</div>
               <h4 className="text-sm sm:text-base font-bold text-white group-hover:text-teal-300 transition-colors mt-0.5 truncate">{lesson.title}</h4>
               {lesson.hasModelBadge && (
-                <div className="inline-flex items-center gap-1 px-2 py-0.5 mt-1 rounded-md bg-teal-950/40 border border-teal-500/30 text-teal-300 text-[10px] font-medium">
+                <div className="inline-flex items-center gap-1 px-2 py-0.5 mt-1 rounded-md bg-teal-950/40 border border-teal-500/30 text-teal-300 text-[11px] font-medium">
                   <Box className="w-3 h-3" />
                   <span>Has a reference model</span>
                 </div>

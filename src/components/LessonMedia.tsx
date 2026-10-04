@@ -50,7 +50,7 @@ export const LessonMedia: React.FC<LessonMediaProps> = ({ step, immersive = fals
 
   if (isPlanned) return <div className="flex min-h-44 w-full flex-col items-center justify-center rounded-xl border border-white/5 bg-gradient-to-br from-[#0b2429] to-[#071317] px-6 text-center shadow-inner">
     <Construction className="h-7 w-7 text-teal-400" />
-    <span className="mt-2 font-mono text-[10px] font-bold tracking-widest text-teal-300">PLANNED LEARNING MEDIA</span>
+    <span className="mt-2 font-mono text-[11px] font-bold tracking-widest text-teal-300">PLANNED LEARNING MEDIA</span>
     <p className="mt-2 max-w-sm text-xs leading-relaxed text-slate-300">{step.mediaPlan?.assetBrief || step.mediaPlan?.rationale || 'This activity is awaiting its published media asset.'}</p>
   </div>;
 
@@ -60,7 +60,7 @@ export const LessonMedia: React.FC<LessonMediaProps> = ({ step, immersive = fals
 
   if (step.type === 'image' && url) return <figure className="overflow-hidden rounded-xl border border-white/5 bg-slate-950/60 shadow-inner">
     <StepImage src={url} alt={step.alt || step.title} immersive={immersive} />
-    {(step.credit || step.license) && <figcaption className="border-t border-slate-800 px-3 py-2 text-[10px] leading-relaxed text-slate-500">{step.credit}{step.credit && step.license ? ' · ' : ''}{step.license}</figcaption>}
+    {(step.credit || step.license) && <figcaption className="border-t border-slate-800 px-3 py-2 text-[11px] leading-relaxed text-slate-400">{step.credit}{step.credit && step.license ? ' · ' : ''}{step.license}</figcaption>}
   </figure>;
 
   if (step.type === 'web-embed' && isWebUrl(url)) return <div className="overflow-hidden rounded-xl border border-white/5 bg-slate-950/60">
