@@ -1,0 +1,403 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cad-pipeline:part-spec:v1",
+  "title": "Evidence-bearing engineering part/assembly specification",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "model_id",
+    "units",
+    "input_mode",
+    "scope",
+    "sources",
+    "parameters",
+    "parts"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "model_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "units": {
+      "const": "mm"
+    },
+    "input_mode": {
+      "enum": [
+        "image",
+        "text",
+        "mesh",
+        "mixed"
+      ]
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "coordinate_frame": {
+      "type": "string"
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "locator": {
+            "type": "string"
+          }
+        },
+        "anyOf": [
+          {
+            "required": [
+              "path"
+            ]
+          },
+          {
+            "required": [
+              "url"
+            ]
+          },
+          {
+            "required": [
+              "text"
+            ]
+          }
+        ]
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[A-Za-z][A-Za-z0-9_]*$"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/parameter"
+      }
+    },
+    "parts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/part"
+      }
+    }
+  },
+  "$defs": {
+    "dimension": {
+      "oneOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "string",
+          "minLength": 1
+        }
+      ]
+    },
+    "vector": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "$ref": "#/$defs/dimension"
+      }
+    },
+    "parameter": {
+      "type": "object",
+      "required": [
+        "value",
+        "unit",
+        "status",
+        "source_ids",
+        "rationale"
+      ],
+      "properties": {
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "specified",
+            "measured",
+            "inferred",
+            "unknown"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "unknown"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "value": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "measured"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "method"
+            ]
+          }
+        }
+      ]
+    },
+    "part": {
+      "type": "object",
+      "required": [
+        "id",
+        "label",
+        "group",
+        "evidence",
+        "features"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "group": {
+          "type": "string"
+        },
+        "material": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 1
+        },
+        "features": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/feature"
+          }
+        }
+      }
+    },
+    "feature": {
+      "type": "object",
+      "required": [
+        "primitive",
+        "operation"
+      ],
+      "properties": {
+        "primitive": {
+          "enum": [
+            "box",
+            "cylinder",
+            "cone",
+            "sphere",
+            "tube",
+            "prism",
+            "helix"
+          ]
+        },
+        "operation": {
+          "enum": [
+            "add",
+            "cut"
+          ]
+        },
+        "origin": {
+          "$ref": "#/$defs/vector"
+        },
+        "axis": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number"
+          }
+        },
+        "label": {
+          "type": "string"
+        },
+        "length": {
+          "$ref": "#/$defs/dimension"
+        },
+        "width": {
+          "$ref": "#/$defs/dimension"
+        },
+        "height": {
+          "$ref": "#/$defs/dimension"
+        },
+        "radius": {
+          "$ref": "#/$defs/dimension"
+        },
+        "radius1": {
+          "$ref": "#/$defs/dimension"
+        },
+        "radius2": {
+          "$ref": "#/$defs/dimension"
+        },
+        "inner_radius": {
+          "$ref": "#/$defs/dimension"
+        },
+        "wire_radius": {
+          "$ref": "#/$defs/dimension"
+        },
+        "pitch": {
+          "$ref": "#/$defs/dimension"
+        },
+        "points": {
+          "type": "array",
+          "minItems": 3,
+          "items": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/dimension"}}
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"primitive": {"const": "prism"}}},
+          "then": {"required": ["points", "height"]}
+        },
+        {
+          "if": {"properties": {"primitive": {"const": "helix"}}},
+          "then": {"required": ["radius", "wire_radius", "pitch", "height"]}
+        },
+        {
+          "if": {
+            "properties": {
+              "primitive": {
+                "const": "box"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "length",
+              "width",
+              "height"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primitive": {
+                "const": "cylinder"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "radius",
+              "height"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primitive": {
+                "const": "cone"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "radius1",
+              "radius2",
+              "height"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primitive": {
+                "const": "sphere"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "radius"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primitive": {
+                "const": "tube"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "radius",
+              "inner_radius",
+              "height"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

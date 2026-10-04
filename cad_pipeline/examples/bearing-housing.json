@@ -1,0 +1,20 @@
+{
+  "schema_version":1,"model_id":"bearing-housing","units":"mm","input_mode":"text",
+  "scope":"Text-to-CAD benchmark: 100 x 65 x 50 block, 30 mm transverse bore, four 8 mm mounting holes.",
+  "sources":{"request":{"text":"Create a 100 mm long, 65 mm wide, 50 mm high housing, with a 30 mm bore along X and four 8 mm vertical mounting holes centered 10 mm from the corners."}},
+  "parameters":{
+    "length":{"value":100,"unit":"mm","status":"specified","source_ids":["request"],"rationale":"User-supplied block length."},
+    "width":{"value":65,"unit":"mm","status":"specified","source_ids":["request"],"rationale":"User-supplied block width."},
+    "height":{"value":50,"unit":"mm","status":"specified","source_ids":["request"],"rationale":"User-supplied block height."},
+    "bore":{"value":30,"unit":"mm","status":"specified","source_ids":["request"],"rationale":"User-supplied transverse bore."},
+    "mount_hole":{"value":8,"unit":"mm","status":"specified","source_ids":["request"],"rationale":"User-supplied four mounting hole diameters."}
+  },
+  "parts":[{"id":"Housing","label":"Bearing housing","group":"housing","material":"aluminium","evidence":"All dimensions and hole locations specified in benchmark text; solid generation does not establish load capacity.","features":[
+    {"primitive":"box","operation":"add","length":"length","width":"width","height":"height","origin":[0,0,0]},
+    {"primitive":"cylinder","operation":"cut","radius":"bore/2","height":"length+2","origin":[-1,"width/2","height/2"],"axis":[1,0,0]},
+    {"primitive":"cylinder","operation":"cut","radius":"mount_hole/2","height":"height+2","origin":[10,10,-1]},
+    {"primitive":"cylinder","operation":"cut","radius":"mount_hole/2","height":"height+2","origin":["length-10",10,-1]},
+    {"primitive":"cylinder","operation":"cut","radius":"mount_hole/2","height":"height+2","origin":[10,"width-10",-1]},
+    {"primitive":"cylinder","operation":"cut","radius":"mount_hole/2","height":"height+2","origin":["length-10","width-10",-1]}
+  ]}]
+}
