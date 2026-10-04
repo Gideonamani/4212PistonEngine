@@ -23,6 +23,8 @@ export const EXPLORE_CONTENT_TREE_SCHEMA = '4212.explore-content-tree/v1';
 
 export const STEP_TYPES = Object.freeze(['model-pose', 'image', 'text', 'external-link', 'web-embed']);
 export const CHECK_TYPES = Object.freeze(['multiple-choice', 'model-click', 'ordering', 'matching', 'numeric']);
+/** How a step's spotlight (focusParts) draws attention: colour the parts, x-ray the rest, or isolate the parts. Mirrors src/viewer/core/focus-style.mjs. */
+export const FOCUS_MODES = Object.freeze(['highlight', 'xray', 'isolate']);
 export const NODE_KINDS = Object.freeze(['group', 'component']);
 export const MEDIA_MODES = Object.freeze(['none', 'source-image', 'native-html', 'existing-3d', 'web-media', 'imagegen']);
 export const MEDIA_STATUSES = Object.freeze(['not-needed', 'available', 'planned', 'needs-review']);
@@ -87,6 +89,8 @@ export const MODEL_CAPABILITY_FLAGS = Object.freeze([
  * @property {StepAction} [action] - animated model-pose steps use an angle/cycle-angle pose
  * @property {string} [viewPreset] - static reference model-pose steps use a named camera preset instead of an action
  * @property {string[]} [focusHotspots] - optional guided hotspot ids for a static reference view
+ * @property {string[]} [focusParts] - model-pose only: component ids to spotlight; the rest of the model is de-emphasised
+ * @property {'highlight'|'xray'|'isolate'} [focusMode] - model-pose only, needs focusParts: how the spotlight looks (default 'xray')
  * @property {string} [focusNodeId] - model-pose only: scopes Learn's viewer to one Explore ContentNode (component or group)
  * @property {string[]} [deepDiveLinks] - ids of related deep-dive lessons (lessons with listed: false)
  * @property {string} [url] - image / external-link / web-embed source
@@ -197,6 +201,10 @@ function validateStep(step, lessonModels, lessonIndex, stepIndex, knownSourceIds
     }
     if (step.focusParts !== undefined && (!Array.isArray(step.focusParts) || step.focusParts.length === 0 || step.focusParts.some(id => typeof id !== 'string' || !id))) {
       errors.push(`${where}: focusParts must be a non-empty array of component ids`);
+    }
+    if (step.focusMode !== undefined) {
+      if (!FOCUS_MODES.includes(step.focusMode)) errors.push(`${where}: focusMode must be one of ${FOCUS_MODES.join(', ')}`);
+      else if (step.focusParts === undefined) errors.push(`${where}: focusMode needs focusParts, which it styles`);
     }
   }
   if (step.deepDiveLinks && !Array.isArray(step.deepDiveLinks)) errors.push(`${where}: deepDiveLinks must be an array of lesson ids`);

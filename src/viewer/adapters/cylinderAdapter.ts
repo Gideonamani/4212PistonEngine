@@ -7,7 +7,8 @@ import { createSectionController, disposeObject } from '../core/modelUtils';
 import { mechanismPose } from '../engineering/kinematics.mjs';
 import { valveMatrices } from '../engineering/valve-transforms.mjs';
 import { createCycleVisuals } from '../engineering/cycle-visuals.mjs';
-import type { AdapterContext, AppearanceMode, ModelComponent, ModelGroup, ViewerSession, ViewerSnapshot } from '../types';
+import { PALE_COLOR, XRAY_COLOR, XRAY_OPACITY, focusModeOrDefault, partLook, partRole } from '../core/focus-style.mjs';
+import type { AdapterContext, AppearanceMode, FocusMode, ModelComponent, ModelGroup, ViewerSession, ViewerSnapshot } from '../types';
 
 type MotionEntry = { mesh: THREE.Mesh; group: 'Piston' | 'ConnectingRod' | 'Crank' | 'Cylinder'; localBind: THREE.Matrix4 };
 
@@ -92,7 +93,8 @@ export async function createCylinderSession(definition: ModelDefinition, context
     inspection.set(mesh, inspectionMaterial(mesh.userData.partId));
   }
   const highlight = new THREE.MeshStandardMaterial({ color: 0x39e4c4, emissive: 0x063e38, emissiveIntensity: 0.7, metalness: 0.45, roughness: 0.3 });
-  const ghost = new THREE.MeshStandardMaterial({ color: 0x9cbdcf, transparent: true, opacity: 0.12, depthWrite: false });
+  const ghost = new THREE.MeshStandardMaterial({ color: XRAY_COLOR, transparent: true, opacity: XRAY_OPACITY, depthWrite: false });
+  const pale = new THREE.MeshStandardMaterial({ color: PALE_COLOR, metalness: 0, roughness: 0.85 });
 
   runtime.scene.add(root);
   root.updateMatrixWorld(true);
@@ -117,20 +119,28 @@ export async function createCylinderSession(definition: ModelDefinition, context
   let isolated = false;
   const isolatedParts = new Set<string>();
   const focusSet = new Set(context.focusParts || []);
+  let focusMode: FocusMode = focusModeOrDefault(context.focusMode);
   let playing = false;
   let cycleEnabled = Boolean(context.initialCycle);
   const section = createSectionController(meshes, bounds, runtime.render, onChange, runtime.scene);
 
   const applyAppearance = () => {
+    const spotlight = focusSet.size > 0;
+    snapshot.focusActive = spotlight;
+    snapshot.focusMode = focusMode;
     for (const mesh of meshes) {
-      mesh.visible = !isolated || isolatedParts.has(mesh.userData.partId);
-      mesh.material = mesh.userData.partId === selectedId
+      const id = mesh.userData.partId;
+      const { visible, look } = partLook(focusMode, partRole(spotlight, focusSet.has(id)));
+      mesh.visible = visible && (!isolated || isolatedParts.has(id));
+      mesh.material = id === selectedId || look === 'highlight'
         ? highlight
-        : (focusSet.size > 0 && !focusSet.has(mesh.userData.partId))
+        : look === 'ghost'
           ? ghost
-          : snapshot.appearance === 'cad'
-            ? originals.get(mesh)!
-            : inspection.get(mesh)!;
+          : look === 'pale'
+            ? pale
+            : snapshot.appearance === 'cad'
+              ? originals.get(mesh)!
+              : inspection.get(mesh)!;
     }
     section.refresh();
   };
@@ -229,12 +239,13 @@ export async function createCylinderSession(definition: ModelDefinition, context
   snapshot.savedMotionId = 'operating';
   setAngle(context.initialAngle ?? motionProfile.bind_angle_deg);
 
-  // A lesson step can spotlight a group of parts: the rest are ghosted and the camera frames the group at the posed angle.
-  const applyFocus = (ids: string[] = []) => {
+  // A lesson step can spotlight a group of parts, drawn as its focus mode says, and the camera frames the group at the posed angle.
+  const applyFocus = (ids: string[] = [], mode: FocusMode = focusMode) => {
     const unknown = ids.filter((id) => !catalogueById.has(id));
     if (unknown.length) throw Error(`Unknown component id in focusParts: ${unknown.join(', ')}.`);
     focusSet.clear();
     for (const id of ids) focusSet.add(id);
+    focusMode = mode;
     selectedId = '';
     isolated = false;
     snapshot.selectedId = undefined;
@@ -284,10 +295,17 @@ export async function createCylinderSession(definition: ModelDefinition, context
       setAngle(view.initialAngle ?? motionProfile.bind_angle_deg);
       selectMotion(view.savedMotionId || 'operating');
       if (view.savedMotionId && view.savedMotionId !== 'operating') applyMotionProgress(view.motionProgress ?? 0);
-      applyFocus(view.focusParts);
+      applyFocus(view.focusParts, focusModeOrDefault(view.focusMode));
       onChange();
     },
     features: {
+      focus: {
+        setMode(mode) {
+          focusMode = focusModeOrDefault(mode);
+          applyAppearance();
+          onChange();
+        },
+      },
       components: {
         items: parts,
         groups,

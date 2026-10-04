@@ -2,7 +2,7 @@
 // components and tested without a browser.
 
 /** The ViewUpdate fields, in the order used to compare two views. */
-export const VIEW_FIELDS = ['savedMotionId', 'motionProgress', 'initialAngle', 'initialCycle', 'viewPreset', 'focusHotspots', 'focusParts'];
+export const VIEW_FIELDS = ['savedMotionId', 'motionProgress', 'initialAngle', 'initialCycle', 'viewPreset', 'focusHotspots', 'focusParts', 'focusMode'];
 
 /** A stable string for a view, so the viewer re-applies it only when something it shows has really changed. */
 export function viewKey(view) {
@@ -19,6 +19,7 @@ export function viewFromStep(step) {
     viewPreset: step.viewPreset,
     focusHotspots: step.focusHotspots,
     focusParts: step.focusParts,
+    focusMode: step.focusMode,
   };
 }
 

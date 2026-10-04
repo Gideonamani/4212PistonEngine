@@ -150,3 +150,15 @@ This is a starting set grounded in activities already sketched elsewhere in the 
 ## Related, deliberately out of scope here
 
 User accounts/login, an AI/MCP-assisted tutor with audio conversation, and expansion beyond this module to other aircraft systems were raised in the same discussion. Accounts are already covered by the roadmap's parking lot ("Student accounts, grade storage and LMS integration are outside the initial public teaching release unless separately requested"). The AI-tutor and multi-module ideas are new; see the roadmap parking lot for where they now live.
+
+## Spotlighting parts in a model step
+
+A `model-pose` step can point the learner at some parts with `focusParts` (component ids from the model's catalogue, or the teaching-component ids for the full engine) and choose how the rest of the model is drawn with `focusMode`:
+
+| `focusMode` | The spotlit parts | Everything else | Best for |
+|---|---|---|---|
+| `highlight` | coloured teal | plain pale grey, solid | an outside part whose place in the whole matters |
+| `xray` (default) | as they normally look | a faint see-through grey | parts hidden behind others, shown in context |
+| `isolate` | as they normally look | hidden | inspecting one part or group on its own |
+
+Choose by what the learner can see: highlight only reads for parts visible from the camera, so use `xray` or `isolate` for internal parts. `focusMode` needs `focusParts`, and the schema test rejects it without them. The viewer reports whether a spotlight is active and its mode, and offers `features.focus.setMode()` so a student-facing switch can change the look for the current step; the next step starts again from its own `focusMode`. The rules live in `src/viewer/core/focus-style.mjs`.

@@ -1,9 +1,10 @@
 import * as THREE from 'three';
 import type { ModelDefinition } from '../../data/modelRegistry';
-import type { AdapterContext, ViewerSession, ViewerSnapshot } from '../types';
+import type { AdapterContext, FocusMode, ViewerSession, ViewerSnapshot } from '../types';
 import { loadGltf } from '../core/assets';
 import { cloneMaterials, createSectionController, disposeObject, meshMaterials } from '../core/modelUtils';
 import { groupComponentIds } from '../core/component-groups.mjs';
+import { HIGHLIGHT_COLOR, HIGHLIGHT_EMISSIVE, PALE_COLOR, XRAY_COLOR, XRAY_OPACITY, focusModeOrDefault, partLook, partRole } from '../core/focus-style.mjs';
 
 export async function createAnimatedStudySession(definition: ModelDefinition, context: AdapterContext): Promise<ViewerSession> {
   const { runtime, signal, onChange, onProgress } = context;
@@ -29,6 +30,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   let active: any, action: THREE.AnimationAction, progress = 0, playing = false;
   let isolation: Set<string> | undefined;
   const focus = new Set<string>();
+  let focusMode: FocusMode = focusModeOrDefault(context.focusMode);
   let powerPath: any;
   // Helpers follow each animated shaft, including the exploded pose. They are not pick targets.
   const arrows = new THREE.Group(); arrows.name = 'Output rotation arrows'; runtime.scene.add(arrows);
@@ -80,16 +82,26 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   for (const mesh of meshes) for (const material of meshMaterials(mesh) as THREE.MeshStandardMaterial[]) materialColors.set(material, material.color.clone());
   const applyAppearance = () => {
     const pathColors: Record<string, string> = { housing: '#536878', core: '#84929e', fuel: '#be7b12', 'magneto-left': '#148365', 'magneto-right': '#148365', 'oil-tach': '#1b60bc', starter: '#963f7c', alternator: '#a58b21', vacuum: '#7752a7', governor: '#187f88' };
+    // A selected power path ghosts every part outside it; otherwise a lesson step's spotlight is drawn as its focus mode says.
+    const spotlight = !powerPath && focus.size > 0;
+    snapshot.focusActive = spotlight;
+    snapshot.focusMode = focusMode;
     for (const mesh of meshes) {
-      mesh.visible = !isolation || isolation.has(mesh.userData.partId);
+      const id = mesh.userData.partId;
+      const spot = partLook(focusMode, partRole(spotlight, focus.has(id)));
+      mesh.visible = spot.visible && (!isolation || isolation.has(id));
+      const look = powerPath && !powerPath.parts.includes(id) ? 'ghost' : spot.look;
       for (const material of meshMaterials(mesh) as THREE.MeshStandardMaterial[]) {
-        const ghost = powerPath ? !powerPath.parts.includes(mesh.userData.partId) : focus.size > 0 && !focus.has(mesh.userData.partId);
-        material.opacity = ghost ? .12 : 1; material.transparent = ghost; material.depthWrite = !ghost;
+        const ghost = look === 'ghost';
+        material.opacity = ghost ? XRAY_OPACITY : 1; material.transparent = ghost; material.depthWrite = !ghost;
         material.color.copy(materialColors.get(material)!);
-        const part = contract.parts.find((part: any) => part.id === mesh.userData.partId);
+        const part = contract.parts.find((part: any) => part.id === id);
         if (paths.length && snapshot.appearance === 'inspection') material.color.set(part?.role === 'teaching-fixture' ? '#46515a' : pathColors[part?.group] || '#84929e');
-        if (snapshot.appearance === 'inspection' && /Spring|Plate|Plunger/.test(mesh.userData.partId)) material.color.set(0x379e9b);
-        material.emissive.set(mesh.userData.partId === snapshot.selectedId ? 0x087567 : powerPath?.parts.includes(mesh.userData.partId) ? 0x174638 : 0); material.emissiveIntensity = .6;
+        if (snapshot.appearance === 'inspection' && /Spring|Plate|Plunger/.test(id)) material.color.set(0x379e9b);
+        if (ghost) material.color.set(XRAY_COLOR);
+        else if (look === 'pale') material.color.set(PALE_COLOR);
+        else if (look === 'highlight') material.color.set(HIGHLIGHT_COLOR);
+        material.emissive.set(id === snapshot.selectedId || look === 'highlight' ? HIGHLIGHT_EMISSIVE : powerPath?.parts.includes(id) ? 0x174638 : 0); material.emissiveIntensity = .6;
         material.needsUpdate = true;
       }
     }
@@ -143,6 +155,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   const update = (view: any) => {
     powerPath = undefined; snapshot.powerPathId = ''; snapshot.powerPathNote = '';
     focus.clear(); for (const id of view.focusParts || []) focus.add(id);
+    focusMode = focusModeOrDefault(view.focusMode);
     isolation = undefined; snapshot.isolated = false;
     selectMotion(view.savedMotionId || contract.motions[0].id); sample(view.motionProgress || 0); applyAppearance();
   };
@@ -150,6 +163,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   return {
     snapshot: () => ({ ...snapshot, ...section.snapshot() }), update,
     features: {
+      focus: { setMode(mode) { focusMode = focusModeOrDefault(mode); applyAppearance(); onChange(); } },
       ...(paths.length ? { powerPaths: { items: paths.map(path => ({ id: path.id, label: path.label })), select(id: string) {
         powerPath = paths.find(path => path.id === id); snapshot.powerPathId = powerPath?.id || '';
         snapshot.powerPathNote = powerPath ? `${powerPath.note} Output direction: ${powerPath.direction}. ${powerPath.ratio === null ? 'Speed ratio unverified.' : `Drive / crank speed = ${powerPath.ratio}:1; at 1000 crank RPM: ${powerPath.ratio * 1000} drive RPM (${powerPath.id === 'starter' ? 'cranking only' : 'speed example'}).`} ${contract.viewpoint} Dashed lines are a conceptual path, not physical shaft geometry.` : '';
