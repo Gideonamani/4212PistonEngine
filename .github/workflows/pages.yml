@@ -2,20 +2,20 @@ name: Validate and publish engine explorer
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 permissions:
   contents: read
-  pages: write
-  id-token: write
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  # A newer push to a pull request cancels the older run; runs on main queue so a deploy is never cut off half way.
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
-  deploy:
+  # Everything a change must pass. Pull requests stop here; a push to main also publishes what this job built.
+  # Branch protection should require this job ("verify") before a pull request can merge.
+  verify:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -24,12 +24,19 @@ jobs:
           cache: npm
       - name: Install web application dependencies
         run: npm ci
+      - name: Cache Drive-hosted model assets
+        uses: actions/cache@v4
+        with:
+          path: |
+            web/*.glb
+            web/*.glb.gz
+          key: drive-models-${{ hashFiles('docs/drive-asset-manifest.json') }}
       - name: Restore and verify Drive-hosted model assets for tests
         run: python3 scripts/fetch_drive_assets.py
-      - name: Type-check the React application
+      - name: Type-check the React application and the browser tests
         run: npm run lint
       - name: Run every JavaScript test
-        run: node --test scripts/test_*.mjs
+        run: npm test
       - name: Verify the published engine contract and asset binding
         run: |
           python3 scripts/package_full_engine_transport.py --check
@@ -39,9 +46,42 @@ jobs:
         run: python3 scripts/test_cylinder_motion_profile.py
       - name: Build the GitHub Pages application
         run: npm run build
+      - name: Cache the Playwright browser
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - name: Install the Playwright browser
+        run: npx playwright install --with-deps chromium
+      - name: Run the browser tests at phone and tablet widths
+        run: npm run e2e
+      - name: Keep the browser test traces when a test fails
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-traces
+          path: test-results/
+          retention-days: 7
       - uses: actions/configure-pages@v5
+        if: github.event_name != 'pull_request'
       - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
         with:
           path: dist
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - uses: actions/deploy-pages@v4
         id: deployment

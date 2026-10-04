@@ -34,7 +34,23 @@ npm test
 npm run build
 ```
 
-The Vite build uses relative URLs (`base: './'`) and copies the static viewer/data files from `web/` into `dist/`, so the result works under a GitHub Pages repository subpath. The Pages workflow validates both the curriculum/model contracts and the React build before publishing `dist/`.
+The Vite build uses relative URLs (`base: './'`) and copies the static viewer/data files from `web/` into `dist/`, so the result works under a GitHub Pages repository subpath. The Pages workflow validates both the curriculum/model contracts and the React build before publishing `dist/`. It runs on every pull request as well as on pushes to `main`; only a push to `main` deploys.
+
+### Testing
+
+| Command | What it checks |
+|---|---|
+| `npm run lint` | TypeScript for the app (`src/`) and the browser tests (`e2e/`). |
+| `npm test` | Node tests in `scripts/test_*.mjs`: lesson and curriculum data, contracts, routing, the order models are tried in, and that retired files stay gone. |
+| `npm run e2e` | Playwright browser tests (`e2e/`) at 320, 360, 390 and 768 px against the dev server: every screen loads with no console or network errors and no sideways scroll, a lesson can be stepped through, a Check answer locks, the 3D viewer loads a model, plus accessibility and touch-target checks. |
+| `npm run e2e:rebaseline` | Re-records `e2e/baselines/` after a fix. |
+
+The accessibility and touch-target checks are ratchets: `e2e/baselines/*.json` records today's known problems, a test fails on anything new, and the files shrink toward empty as they are fixed (review the diff: it should only ever get smaller). The 3D tests need the model files restored by `python scripts/fetch_drive_assets.py`. Locally the browser tests use the installed Google Chrome when Playwright's own Chromium is not installed (`PW_CHANNEL=msedge` picks Edge); CI installs Chromium.
+
+`scripts/test_full_engine_export.py` and `scripts/test_operating_release.py` are local pipeline checks: they read `build/` outputs that are not in Git, so they run on the machine that ran the pipeline and are not part of CI.
+
+Pull requests should be required to pass the `verify` job (repository setting: branch protection on `main`).
+
 
 ```mermaid
 flowchart LR

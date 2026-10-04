@@ -65,7 +65,8 @@ for (const id of ['hydraulic-tappet', 'oil-pump', 'accessory-drives']) test(`${i
 });
 
 // Bundle the actual TypeScript adapters, then exercise their public controls with the published assets.
-const build = await rolldown({ input: ['src/viewer/adapters/cylinderAdapter.ts', 'src/viewer/adapters/animatedStudyAdapter.ts'], external: ['three'], logLevel: 'silent' });
+// Vite provides import.meta.env in the app; outside Vite it must be defined. These tests load the local files, as development does.
+const build = await rolldown({ input: ['src/viewer/adapters/cylinderAdapter.ts', 'src/viewer/adapters/animatedStudyAdapter.ts'], external: ['three'], logLevel: 'silent', transform: { define: { 'import.meta.env.PROD': 'false' } } });
 fs.mkdirSync('.local/motion-tests', { recursive: true }); await build.write({ dir: '.local/motion-tests', format: 'esm', entryFileNames: '[name].mjs', chunkFileNames: '[name]-[hash].mjs' }); await build.close();
 const { createCylinderSession } = await import('../.local/motion-tests/cylinderAdapter.mjs');
 const { createAnimatedStudySession } = await import('../.local/motion-tests/animatedStudyAdapter.mjs');
