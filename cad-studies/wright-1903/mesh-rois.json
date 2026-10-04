@@ -1,0 +1,10 @@
+{
+  "coordinate_frame": "Blender imported XYZ, Smithsonian centimetre candidate",
+  "selection_note": "Manually reviewed exterior housing bands. Radial gate excludes stem/ignition details; thresholds bias the fit and are not evidence of automatic feature recognition.",
+  "regions": [
+    {"id":"valve_box_1","bounds":[[-8,-3.8,-22],[2,6.2,-20]],"projection_axes":[0,1],"radial_filter":{"center":[-2.8,1.2],"minimum":3,"maximum":4}},
+    {"id":"valve_box_2","bounds":[[-8,9.2,-22],[2,19.2,-20]],"projection_axes":[0,1],"radial_filter":{"center":[-2.8,14.2],"minimum":3,"maximum":4}},
+    {"id":"valve_box_3","bounds":[[-8,22.3,-22],[2,32.3,-20]],"projection_axes":[0,1],"radial_filter":{"center":[-2.8,27.3],"minimum":3,"maximum":4}},
+    {"id":"valve_box_4","bounds":[[-8,35.2,-22],[2,45.2,-20]],"projection_axes":[0,1],"radial_filter":{"center":[-2.8,40.2],"minimum":3,"maximum":4}}
+  ]
+}

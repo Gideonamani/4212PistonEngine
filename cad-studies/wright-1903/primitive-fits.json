@@ -1,0 +1,166 @@
+{
+  "units": "raw imported mesh units",
+  "method": "Reviewed ROI; deduplicated vertex-weighted algebraic least-squares circle",
+  "regions": [
+    {
+      "id": "valve_box_1",
+      "roi": {
+        "id": "valve_box_1",
+        "bounds": [
+          [
+            -8,
+            -3.8,
+            -22
+          ],
+          [
+            2,
+            6.2,
+            -20
+          ]
+        ],
+        "projection_axes": [
+          0,
+          1
+        ],
+        "radial_filter": {
+          "center": [
+            -2.8,
+            1.2
+          ],
+          "minimum": 3,
+          "maximum": 4
+        }
+      },
+      "fit": {
+        "center": [
+          -2.8759514300045477,
+          1.167629785396698
+        ],
+        "radius": 3.4680862784285873,
+        "rms": 0.259704668443927,
+        "p95_absolute_residual": 0.40038082918131107,
+        "points": 80
+      }
+    },
+    {
+      "id": "valve_box_2",
+      "roi": {
+        "id": "valve_box_2",
+        "bounds": [
+          [
+            -8,
+            9.2,
+            -22
+          ],
+          [
+            2,
+            19.2,
+            -20
+          ]
+        ],
+        "projection_axes": [
+          0,
+          1
+        ],
+        "radial_filter": {
+          "center": [
+            -2.8,
+            14.2
+          ],
+          "minimum": 3,
+          "maximum": 4
+        }
+      },
+      "fit": {
+        "center": [
+          -3.0202657575454213,
+          14.167046625610412
+        ],
+        "radius": 3.4817218390070375,
+        "rms": 0.2105221336766863,
+        "p95_absolute_residual": 0.35688324339278754,
+        "points": 59
+      }
+    },
+    {
+      "id": "valve_box_3",
+      "roi": {
+        "id": "valve_box_3",
+        "bounds": [
+          [
+            -8,
+            22.3,
+            -22
+          ],
+          [
+            2,
+            32.3,
+            -20
+          ]
+        ],
+        "projection_axes": [
+          0,
+          1
+        ],
+        "radial_filter": {
+          "center": [
+            -2.8,
+            27.3
+          ],
+          "minimum": 3,
+          "maximum": 4
+        }
+      },
+      "fit": {
+        "center": [
+          -3.25913671863858,
+          27.34036716150214
+        ],
+        "radius": 3.453316673916993,
+        "rms": 0.17420496603772276,
+        "p95_absolute_residual": 0.3238192347040041,
+        "points": 41
+      }
+    },
+    {
+      "id": "valve_box_4",
+      "roi": {
+        "id": "valve_box_4",
+        "bounds": [
+          [
+            -8,
+            35.2,
+            -22
+          ],
+          [
+            2,
+            45.2,
+            -20
+          ]
+        ],
+        "projection_axes": [
+          0,
+          1
+        ],
+        "radial_filter": {
+          "center": [
+            -2.8,
+            40.2
+          ],
+          "minimum": 3,
+          "maximum": 4
+        }
+      },
+      "fit": {
+        "center": [
+          -3.210368716497636,
+          40.074481792216304
+        ],
+        "radius": 3.4636070994009422,
+        "rms": 0.16363326006993578,
+        "p95_absolute_residual": 0.3024413085744708,
+        "points": 41
+      }
+    }
+  ]
+}

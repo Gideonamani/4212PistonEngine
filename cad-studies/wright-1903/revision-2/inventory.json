@@ -1,0 +1,1566 @@
+{
+  "schema_version": 1,
+  "target": "Surviving rebuilt horizontal four-cylinder engine; Science Museum construction lineage",
+  "decision": "Ready for detailed static teaching CAD with explicitly estimated manufacturing details; exact 1903 reproduction and operating dynamics remain unverified.",
+  "reviewed_at": "2026-10-04T12:53:05.550012+00:00",
+  "sources": {
+    "H1": {
+      "url": "https://www.gutenberg.org/files/38739/38739-h/38739-h.htm",
+      "title": "Hobbs, The Wright Brothers' Engines and Their Design",
+      "date": "1971",
+      "variant": "1903 discussion; surviving rebuilt engine; incompatible drawing sets"
+    },
+    "L1": {
+      "url": "https://tile.loc.gov/storage-services/service/mss/mss46706/mss46706-04134/mss46706-04134.pdf",
+      "title": "Library of Congress Wright papers engine file (67 scanned pages)",
+      "variant": "mixed dates; locators mandatory"
+    },
+    "N1": {
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/timing-system/",
+      "title": "NASA Glenn Timing System",
+      "variant": "teaching computer model"
+    },
+    "N2": {
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/electrical-system/",
+      "title": "NASA Glenn Electrical System",
+      "variant": "teaching computer model"
+    },
+    "N3": {
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/cooling-system/",
+      "title": "NASA Glenn Cooling System",
+      "variant": "1903 engine/airframe explanation"
+    },
+    "A1": {
+      "url": "https://www.si.edu/object/archives/sova-nasm-1986-0152",
+      "title": "NASM.1986.0152 drawing collection finding aid",
+      "variant": "multiple drawing lineages; sheets not acquired"
+    },
+    "A2": {
+      "url": "https://collection.sciencemuseumgroup.org.uk/objects/co30309/replica-of-1903-wright-brothers-aero-engine",
+      "title": "Science Museum 1951-20 working replica",
+      "variant": "1951 replica"
+    },
+    "M1": {
+      "path": "web/wright-1903-engine.glb",
+      "sha256": "e626ab347a7f587fee2169f81ac3516185aef033adf32c920533f85293b52daf",
+      "title": "Existing joined exterior mesh",
+      "variant": "museum-derived exterior; internal construction invisible"
+    }
+  },
+  "expected_callouts": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24",
+    "25",
+    "26",
+    "27",
+    "28",
+    "29",
+    "30",
+    "31",
+    "32",
+    "33",
+    "34",
+    "35",
+    "36",
+    "37",
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44",
+    "45",
+    "46",
+    "47"
+  ],
+  "components": [
+    {
+      "id": "1",
+      "name": "End bearing cap",
+      "function": "Retain crankshaft end bearing",
+      "interfaces": "End plate and main journal",
+      "part_ids": [
+        "MainCap0"
+      ],
+      "decision": "45-degree split cap; attachment sizes estimated",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 1"
+    },
+    {
+      "id": "2",
+      "name": "Cam end bearing cap",
+      "function": "Retain timing-end cam bearing",
+      "interfaces": "End plate and exhaust shaft",
+      "part_ids": [
+        "CamBearing0"
+      ],
+      "decision": "Three shaft supports; caps simplified",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 2"
+    },
+    {
+      "id": "3",
+      "name": "Detachable end plate",
+      "function": "Permit shaft installation",
+      "interfaces": "End wall, end bearings",
+      "part_ids": [
+        "EndPlate"
+      ],
+      "decision": "Separate plate; keyhole shaft access; screw holes shown",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 3"
+    },
+    {
+      "id": "4",
+      "name": "End access aperture",
+      "function": "Permit bearing/shaft assembly",
+      "interfaces": "End plate and casting",
+      "part_ids": [
+        "Crankcase"
+      ],
+      "decision": "Keyhole relief belongs to casting, not a separate part",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 4"
+    },
+    {
+      "id": "5",
+      "name": "Intermediate rib apertures",
+      "function": "Support bearing and permit assembly",
+      "interfaces": "Intermediate ribs and crankshaft",
+      "part_ids": [
+        "Crankcase"
+      ],
+      "decision": "Three internal keyed ribs; bearing bores and reliefs",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 5"
+    },
+    {
+      "id": "6",
+      "name": "Intermediate bearing caps and lining",
+      "function": "Close plain main bearings",
+      "interfaces": "Ribs, journals, bolts",
+      "part_ids": [
+        "MainCap1",
+        "MainCap2",
+        "MainCap3",
+        "MainBearing0_Lower",
+        "MainBearing0_Upper",
+        "MainBearing1_Lower",
+        "MainBearing1_Upper",
+        "MainBearing2_Lower",
+        "MainBearing2_Upper",
+        "MainBearing3_Lower",
+        "MainBearing3_Upper",
+        "MainBearing4_Lower",
+        "MainBearing4_Upper"
+      ],
+      "decision": "Separate caps and split babbitt liners; 45-degree construction",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 6"
+    },
+    {
+      "id": "7",
+      "name": "Split rib bearing seats",
+      "function": "Carry alternating crank loads",
+      "interfaces": "Casting ribs, caps",
+      "part_ids": [
+        "Crankcase"
+      ],
+      "decision": "Integral bearing supports; detailed casting radii estimated",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 7"
+    },
+    {
+      "id": "8",
+      "name": "Splash/drip bearing feeds",
+      "function": "Distribute lubricant",
+      "interfaces": "Main journals and sump",
+      "part_ids": [
+        "Crankcase"
+      ],
+      "decision": "Oil pockets/scuppers represented; flow quantity unverified",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 8"
+    },
+    {
+      "id": "9",
+      "name": "Sump compartment returns",
+      "function": "Collect oil",
+      "interfaces": "Rib compartments and gallery",
+      "part_ids": [
+        "Crankcase"
+      ],
+      "decision": "Drain openings communicate with return gallery",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 9"
+    },
+    {
+      "id": "10",
+      "name": "Oil return gallery",
+      "function": "Connect sump returns",
+      "interfaces": "Four compartment drains and pump",
+      "part_ids": [
+        "OilReturnGallery"
+      ],
+      "decision": "External educational pipe representation; buried passage route approximate",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 10"
+    },
+    {
+      "id": "11",
+      "name": "Oil pump",
+      "function": "Circulate oil in surviving assembly",
+      "interfaces": "Return/feed and worm cross shaft",
+      "part_ids": [
+        "OilPumpCase",
+        "OilPumpCover",
+        "OilPumpGear1",
+        "OilPumpGear2"
+      ],
+      "decision": "Rebuilt-engine accessory; original 1903 inclusion disputed",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 11"
+    },
+    {
+      "id": "12",
+      "name": "Pump feed union",
+      "function": "Join pump to distribution hose",
+      "interfaces": "Pump outlet and feed hose",
+      "part_ids": [
+        "OilFeedUnion"
+      ],
+      "decision": "Union and pipe bore represented",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 12"
+    },
+    {
+      "id": "13",
+      "name": "Oil delivery hose and cylinder feeds",
+      "function": "Oil upper thrust faces",
+      "interfaces": "Pump, distributor and liner holes",
+      "part_ids": [
+        "OilFeedHose",
+        "OilDistributor",
+        "OilJet1",
+        "OilJet2",
+        "OilJet3",
+        "OilJet4"
+      ],
+      "decision": "Four jet drillings; no pressure-fed main bearings claimed",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 13"
+    },
+    {
+      "id": "14",
+      "name": "Oil pump drive",
+      "function": "Drive selected accessory",
+      "interfaces": "Crank worm, cross shaft and pump",
+      "part_ids": [],
+      "decision": "Narrative crankshaft worm/cross-shaft route selected as research direction; conflicting Figure 5 cam drive and unavailable drive dimensions prevent defensible placed geometry. Acquire chosen-lineage drive drawing.",
+      "disposition": "deferred",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5 key 14; p.28 narrative conflict"
+    },
+    {
+      "id": "15",
+      "name": "Big-end nuts, lock strips and shims",
+      "function": "Close and secure bearing",
+      "interfaces": "Split rod ends and crankpins",
+      "part_ids": [
+        "BigCap1",
+        "BigCap2",
+        "BigCap3",
+        "BigCap4",
+        "BigShim1",
+        "BigShim2",
+        "BigShim3",
+        "BigShim4",
+        "BigLock1",
+        "BigLock2",
+        "BigLock3",
+        "BigLock4",
+        "BigBoltA1",
+        "BigBoltA2",
+        "BigBoltA3",
+        "BigBoltA4",
+        "BigBoltB1",
+        "BigBoltB2",
+        "BigBoltB3",
+        "BigBoltB4"
+      ],
+      "decision": "Cap split, shim, two bolt/nut assemblies and locking strip; threads omitted",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 15"
+    },
+    {
+      "id": "16",
+      "name": "Wrist-pin lock",
+      "function": "Prevent pin movement in piston",
+      "interfaces": "Piston boss and pin",
+      "part_ids": [
+        "PinLock1",
+        "PinLock2",
+        "PinLock3",
+        "PinLock4"
+      ],
+      "decision": "Setscrew shown; nominal engagement only",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 16"
+    },
+    {
+      "id": "17",
+      "name": "Ring retaining pegs",
+      "function": "Prevent ring rotation",
+      "interfaces": "Piston grooves and split rings",
+      "part_ids": [
+        "RingPeg1_0",
+        "RingPeg1_1",
+        "RingPeg1_2",
+        "RingPeg2_0",
+        "RingPeg2_1",
+        "RingPeg2_2",
+        "RingPeg3_0",
+        "RingPeg3_1",
+        "RingPeg3_2",
+        "RingPeg4_0",
+        "RingPeg4_1",
+        "RingPeg4_2"
+      ],
+      "decision": "Three pins aligned with ring gaps; small clearances estimated",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 17"
+    },
+    {
+      "id": "18",
+      "name": "Threaded liner",
+      "function": "Form short bore and partial head",
+      "interfaces": "Case, box boss and gasket",
+      "part_ids": [
+        "Sleeve1",
+        "Sleeve2",
+        "Sleeve3",
+        "Sleeve4"
+      ],
+      "decision": "Nominal bore/wall; engagement lands and oil holes; thread pitch unresolved",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 18"
+    },
+    {
+      "id": "19",
+      "name": "Open air can",
+      "function": "Admit air and gravity fuel",
+      "interfaces": "Hot-plate mixer and fuel nozzle",
+      "part_ids": [
+        "AirCan"
+      ],
+      "decision": "Open both ends, rim beads and entering fuel pipe",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 19"
+    },
+    {
+      "id": "20",
+      "name": "Gravity fuel supply",
+      "function": "Meter and shut off fuel",
+      "interfaces": "External tank and open air can",
+      "part_ids": [
+        "FuelLine",
+        "FuelShutoff",
+        "FuelMeter"
+      ],
+      "decision": "Engine-side pipe and two distinct cocks; tank outside assembly",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 20"
+    },
+    {
+      "id": "21",
+      "name": "Hot-plate vaporizer",
+      "function": "Vaporize and route charge",
+      "interfaces": "Hot casting wall, ribs, can, intake box",
+      "part_ids": [
+        "Crankcase",
+        "HotPlateCover"
+      ],
+      "decision": "Integral vertical baffles with sheet-steel cover, not standalone carburetor body",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 21"
+    },
+    {
+      "id": "22",
+      "name": "Make-and-break igniter assembly",
+      "function": "Ignite charge on contact separation",
+      "interfaces": "Busbar, chamber and lever shaft",
+      "part_ids": [
+        "FixedElectrode1",
+        "FixedElectrode2",
+        "FixedElectrode3",
+        "FixedElectrode4",
+        "MovingContact1",
+        "MovingContact2",
+        "MovingContact3",
+        "MovingContact4"
+      ],
+      "decision": "Fixed electrode and moving contact remain distinct",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 22"
+    },
+    {
+      "id": "23",
+      "name": "Fixed positive electrode",
+      "function": "Carry insulated feed into chamber",
+      "interfaces": "Busbar and moving contact",
+      "part_ids": [
+        "FixedElectrode1",
+        "FixedElectrode2",
+        "FixedElectrode3",
+        "FixedElectrode4",
+        "ElectrodeInsulator1",
+        "ElectrodeInsulator2",
+        "ElectrodeInsulator3",
+        "ElectrodeInsulator4"
+      ],
+      "decision": "Insulated bushing and internal tip; platinum category on tips",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 23"
+    },
+    {
+      "id": "24",
+      "name": "Movable contact",
+      "function": "Close then snap open circuit",
+      "interfaces": "Oscillating shaft and fixed tip",
+      "part_ids": [
+        "MovingContact1",
+        "MovingContact2",
+        "MovingContact3",
+        "MovingContact4"
+      ],
+      "decision": "Internal lever/contact mounted on oscillating shaft",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 24"
+    },
+    {
+      "id": "25",
+      "name": "Igniter shaft lever",
+      "function": "Transmit breaker motion",
+      "interfaces": "Moving contact shaft and paired lever",
+      "part_ids": [
+        "IgniterLever1",
+        "IgniterLever2",
+        "IgniterLever3",
+        "IgniterLever4"
+      ],
+      "decision": "Separate lever, through-neck shaft and bearing",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 25"
+    },
+    {
+      "id": "26",
+      "name": "Cam/snap lever",
+      "function": "Load release springs",
+      "interfaces": "Ignition cam and igniter lever",
+      "part_ids": [
+        "TripLever1",
+        "TripLever2",
+        "TripLever3",
+        "TripLever4"
+      ],
+      "decision": "Visible lever pair; exact snap timing unverified",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 26"
+    },
+    {
+      "id": "27",
+      "name": "Igniter shaft bearing",
+      "function": "Guide and seal oscillation",
+      "interfaces": "Chamber neck and shaft",
+      "part_ids": [
+        "IgniterBearing1",
+        "IgniterBearing2",
+        "IgniterBearing3",
+        "IgniterBearing4"
+      ],
+      "decision": "Bronze support sleeve with through bore",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 27"
+    },
+    {
+      "id": "28",
+      "name": "Chamber neck",
+      "function": "Carry sealed igniter penetration",
+      "interfaces": "Valve box and igniter bearing",
+      "part_ids": [
+        "ValveBox1",
+        "ValveBox2",
+        "ValveBox3",
+        "ValveBox4"
+      ],
+      "decision": "Integral boss and through bore",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 28"
+    },
+    {
+      "id": "29",
+      "name": "Ignition main spring",
+      "function": "Store contact-opening energy",
+      "interfaces": "Snap levers and chamber bracket",
+      "part_ids": [
+        "IgnitionMainSpring1",
+        "IgnitionMainSpring2",
+        "IgnitionMainSpring3",
+        "IgnitionMainSpring4"
+      ],
+      "decision": "Real helical wire; dimensions/rate estimated",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 29"
+    },
+    {
+      "id": "30",
+      "name": "Inter-spring",
+      "function": "Couple/load paired lever action",
+      "interfaces": "Igniter and trip levers",
+      "part_ids": [
+        "IgnitionInterSpring1",
+        "IgnitionInterSpring2",
+        "IgnitionInterSpring3",
+        "IgnitionInterSpring4"
+      ],
+      "decision": "Separate helical spring; topology shown, stiffness unverified",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 30"
+    },
+    {
+      "id": "31",
+      "name": "Bent-strip ignition cams",
+      "function": "Actuate snap mechanism",
+      "interfaces": "Ignition shaft and trip lever",
+      "part_ids": [
+        "IgnitionCam1",
+        "IgnitionCam2",
+        "IgnitionCam3",
+        "IgnitionCam4"
+      ],
+      "decision": "Bent-section approximation; no certified timing law",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 31"
+    },
+    {
+      "id": "32",
+      "name": "Positive busbar",
+      "function": "Feed four parallel igniters",
+      "interfaces": "Generator feed and four electrode terminals",
+      "part_ids": [
+        "Busbar",
+        "BusLink1",
+        "BusLink2",
+        "BusLink3",
+        "BusLink4"
+      ],
+      "decision": "Dogleg bar clears boxes; each chamber gets separate connection",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 32"
+    },
+    {
+      "id": "33",
+      "name": "Valve cage retaining rings",
+      "function": "Clamp cages on shoulders",
+      "interfaces": "Cage and threaded valve-box mouth",
+      "part_ids": [
+        "IntakeRetainer1",
+        "ExhaustRetainer1",
+        "IntakeRetainer2",
+        "ExhaustRetainer2",
+        "IntakeRetainer3",
+        "ExhaustRetainer3",
+        "IntakeRetainer4",
+        "ExhaustRetainer4"
+      ],
+      "decision": "Ring nuts shown separately; thread helices omitted",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 33"
+    },
+    {
+      "id": "34",
+      "name": "Igniter sealing disc",
+      "function": "Seal contact penetration",
+      "interfaces": "Chamber neck and oscillating shaft",
+      "part_ids": [
+        "IgniterSeal1",
+        "IgniterSeal2",
+        "IgniterSeal3",
+        "IgniterSeal4"
+      ],
+      "decision": "Thin separate seal; material/construction estimate",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 34"
+    },
+    {
+      "id": "35",
+      "name": "Exhaust apertures",
+      "function": "Discharge after lower cage",
+      "interfaces": "Exhaust cage window space and atmosphere",
+      "part_ids": [
+        "ValveBox1",
+        "ValveBox2",
+        "ValveBox3",
+        "ValveBox4"
+      ],
+      "decision": "Eight obround apertures per housing; count read from mesh/figures, exact machining dimensions estimated",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 35"
+    },
+    {
+      "id": "36",
+      "name": "Hollow exhaust camshaft",
+      "function": "Transmit half-speed valve motion",
+      "interfaces": "Chain, separate cams, three bearings",
+      "part_ids": [
+        "Camshaft",
+        "ExhaustCam1",
+        "ExhaustCam2",
+        "ExhaustCam3",
+        "ExhaustCam4",
+        "CamBearing0",
+        "CamBearing1",
+        "CamBearing2",
+        "CamWasherA",
+        "CamWasherB"
+      ],
+      "decision": "Hollow shaft and locating washers; separate cam parts",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 36"
+    },
+    {
+      "id": "37",
+      "name": "Sliding ignition gear/sleeve",
+      "function": "Drive and adjust breaker phase",
+      "interfaces": "Equal spur gear, pin and spring",
+      "part_ids": [
+        "IgnitionGear",
+        "IgnitionGearSpring",
+        "ExhaustGear"
+      ],
+      "decision": "1:1 gear pair and 45-degree sleeve slot; tooth flanks illustrative",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 37"
+    },
+    {
+      "id": "38",
+      "name": "Solid ignition shaft",
+      "function": "Carry bent strip cams",
+      "interfaces": "Sliding gear, support bearings and four cams",
+      "part_ids": [
+        "IgnitionShaft",
+        "IgnitionBearing0",
+        "IgnitionBearing1",
+        "IgnitionBearing2"
+      ],
+      "decision": "Solid small bar; support lug geometry estimated",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 38"
+    },
+    {
+      "id": "39",
+      "name": "Angled sleeve slot and pin",
+      "function": "Convert axial slide into relative rotation",
+      "interfaces": "Ignition sleeve and shaft pin",
+      "part_ids": [
+        "IgnitionGear",
+        "IgnitionDrivePin"
+      ],
+      "decision": "Actual inclined slot and driven transverse pin, not a solid envelope",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 39"
+    },
+    {
+      "id": "40",
+      "name": "Spark advance lever cam",
+      "function": "Set gear axial position",
+      "interfaces": "Sliding sleeve and opposing spring",
+      "part_ids": [
+        "AdvanceCam",
+        "AdvanceLever",
+        "AdvanceBracket"
+      ],
+      "decision": "Pivot/cam/handle assembly; pilot use conflict retained",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 40"
+    },
+    {
+      "id": "41",
+      "name": "Separate exhaust cams",
+      "function": "Lift rocker roller",
+      "interfaces": "Hollow shaft and roller",
+      "part_ids": [
+        "ExhaustCam1",
+        "ExhaustCam2",
+        "ExhaustCam3",
+        "ExhaustCam4"
+      ],
+      "decision": "Rounded lobe silhouette approximates rapid rise/dwell; profile not authenticated",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 41"
+    },
+    {
+      "id": "42",
+      "name": "Rocker rollers",
+      "function": "Reduce sliding contact",
+      "interfaces": "Cam, lever cheeks and valve stem",
+      "part_ids": [
+        "CamRoller1",
+        "CamRoller2",
+        "CamRoller3",
+        "CamRoller4",
+        "ValveRoller1",
+        "ValveRoller2",
+        "ValveRoller3",
+        "ValveRoller4"
+      ],
+      "decision": "Two actual rollers per rocker with separate axles",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 42"
+    },
+    {
+      "id": "43",
+      "name": "Two-cheek rocker",
+      "function": "Transfer lift to exhaust valve",
+      "interfaces": "Pivot axle and both roller axles",
+      "part_ids": [
+        "RockerLeft1",
+        "RockerLeft2",
+        "RockerLeft3",
+        "RockerLeft4",
+        "RockerRight1",
+        "RockerRight2",
+        "RockerRight3",
+        "RockerRight4",
+        "RockerPivot1",
+        "RockerPivot2",
+        "RockerPivot3",
+        "RockerPivot4",
+        "CamRollerAxle1",
+        "CamRollerAxle2",
+        "CamRollerAxle3",
+        "CamRollerAxle4",
+        "ValveRollerAxle1",
+        "ValveRollerAxle2",
+        "ValveRollerAxle3",
+        "ValveRollerAxle4"
+      ],
+      "decision": "Native planar profiles with three axle holes; source Fig.6 construction",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 43"
+    },
+    {
+      "id": "44",
+      "name": "Generator magnet/coil assembly",
+      "function": "Supply low-tension ignition",
+      "interfaces": "Armature shaft, friction drive and base",
+      "part_ids": [
+        "MagnetoBase",
+        "MagnetoMagnet",
+        "MagnetoCoil1",
+        "MagnetoCoil2",
+        "MagnetoArmature",
+        "GeneratorLead",
+        "GroundLead"
+      ],
+      "decision": "Visible horseshoe, two coil bodies, armature and leads; winding/poles unresolved",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 44"
+    },
+    {
+      "id": "45",
+      "name": "Generator friction drive",
+      "function": "Drive armature off flywheel rim",
+      "interfaces": "Flywheel and generator shaft",
+      "part_ids": [
+        "MagnetoDriveWheel",
+        "MagnetoShaft"
+      ],
+      "decision": "Wheel tangent to flywheel; friction material inferred",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 45"
+    },
+    {
+      "id": "46",
+      "name": "Generator sight-feed lubricator",
+      "function": "Oil generator sleeve bearing",
+      "interfaces": "Generator stationary bearing",
+      "part_ids": [
+        "SightOiler"
+      ],
+      "decision": "Cup, stem and cap represented; interior metering unresolved",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 46"
+    },
+    {
+      "id": "47",
+      "name": "Hardwood chain tensioner",
+      "function": "Support timing-chain span",
+      "interfaces": "Timing-end bracket and chain",
+      "part_ids": [
+        "ChainTensioner",
+        "TensionerBracket"
+      ],
+      "decision": "Block chosen from H1 rather than NASA tension wheel",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "Figure 5, key 47"
+    },
+    {
+      "id": "S01",
+      "name": "Casting and upper cover",
+      "function": "Enclose crank/jacket",
+      "interfaces": "Ribs, liners, feet and closure",
+      "part_ids": [
+        "Crankcase",
+        "Cover",
+        "MainCap0",
+        "MainCap1",
+        "MainCap2",
+        "MainCap3",
+        "MainCap4",
+        "MainCap4",
+        "MountBolt1",
+        "MountBolt2",
+        "MountBolt3",
+        "MountBolt4"
+      ],
+      "decision": "One-piece sloping hollow casting; steel top closure",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "pp.14\u201316; Figures 2,5,6"
+    },
+    {
+      "id": "S02",
+      "name": "Piston/pin/rings",
+      "function": "Seal and transmit gas force",
+      "interfaces": "Liner, bronze little end and pin",
+      "part_ids": [
+        "Piston1",
+        "Piston2",
+        "Piston3",
+        "Piston4",
+        "WristPin1",
+        "WristPin2",
+        "WristPin3",
+        "WristPin4",
+        "Ring1_0",
+        "Ring1_1",
+        "Ring1_2",
+        "Ring2_0",
+        "Ring2_1",
+        "Ring2_2",
+        "Ring3_0",
+        "Ring3_1",
+        "Ring3_2",
+        "Ring4_0",
+        "Ring4_1",
+        "Ring4_2"
+      ],
+      "decision": "Long cast iron piston; three compression rings above pin; no bottom scraper",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "pp.19\u201320; Figure 6"
+    },
+    {
+      "id": "S03",
+      "name": "Three-piece connecting rods",
+      "function": "Transmit reversing load",
+      "interfaces": "Pin, crankpin and locking bolts",
+      "part_ids": [
+        "RodTube1",
+        "RodTube2",
+        "RodTube3",
+        "RodTube4",
+        "BigEnd1",
+        "BigEnd2",
+        "BigEnd3",
+        "BigEnd4",
+        "LittleEnd1",
+        "LittleEnd2",
+        "LittleEnd3",
+        "LittleEnd4",
+        "LittleClamp1",
+        "LittleClamp2",
+        "LittleClamp3",
+        "LittleClamp4",
+        "RodPinA1",
+        "RodPinA2",
+        "RodPinA3",
+        "RodPinA4",
+        "RodPinB1",
+        "RodPinB2",
+        "RodPinB3",
+        "RodPinB4"
+      ],
+      "decision": "Science Museum direct-thread lineage; no Smithsonian adapters",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "pp.26\u201327; Figures 5\u20137"
+    },
+    {
+      "id": "S04",
+      "name": "Crankshaft/flywheel/drive wheels",
+      "function": "Convert/load/smooth power",
+      "interfaces": "Five main bearings and external propeller chains",
+      "part_ids": [
+        "Crankshaft",
+        "Flywheel",
+        "FlywheelKey",
+        "PropellerDriveA",
+        "PropellerDriveB"
+      ],
+      "decision": "No counterweights; surviving shaft/flywheel are from 1904\u201305",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "pp.7,27\u201328; Figures 2,5"
+    },
+    {
+      "id": "S05",
+      "name": "Valves, seats and open cages",
+      "function": "Admit and exhaust charge",
+      "interfaces": "Box shoulders, manifold and rocker",
+      "part_ids": [
+        "IntakeHead1",
+        "IntakeStem1",
+        "IntakeCage1",
+        "IntakeSpring1",
+        "IntakeSpringWasher1",
+        "ExhaustHead1",
+        "ExhaustStem1",
+        "ExhaustCage1",
+        "ExhaustSpring1",
+        "ExhaustSpringWasher1",
+        "IntakeHead2",
+        "IntakeStem2",
+        "IntakeCage2",
+        "IntakeSpring2",
+        "IntakeSpringWasher2",
+        "ExhaustHead2",
+        "ExhaustStem2",
+        "ExhaustCage2",
+        "ExhaustSpring2",
+        "ExhaustSpringWasher2",
+        "IntakeHead3",
+        "IntakeStem3",
+        "IntakeCage3",
+        "IntakeSpring3",
+        "IntakeSpringWasher3",
+        "ExhaustHead3",
+        "ExhaustStem3",
+        "ExhaustCage3",
+        "ExhaustSpring3",
+        "ExhaustSpringWasher3",
+        "IntakeHead4",
+        "IntakeStem4",
+        "IntakeCage4",
+        "IntakeSpring4",
+        "IntakeSpringWasher4",
+        "ExhaustHead4",
+        "ExhaustStem4",
+        "ExhaustCage4",
+        "ExhaustSpring4",
+        "ExhaustSpringWasher4"
+      ],
+      "decision": "Cast-iron heads/cages; steel separate stems; four windows per cage; real helical springs",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "pp.17\u201320,57\u201358; Figures 5\u20137"
+    },
+    {
+      "id": "S06",
+      "name": "Timing chain and sprockets",
+      "function": "Maintain 2:1 speed",
+      "interfaces": "Crank and cam axes",
+      "part_ids": [
+        "CrankSprocket",
+        "CamSprocket",
+        "ChainPlate0_A",
+        "ChainPlate0_B",
+        "ChainRoller0",
+        "ChainPlate1_A",
+        "ChainPlate1_B",
+        "ChainRoller1",
+        "ChainPlate2_A",
+        "ChainPlate2_B",
+        "ChainRoller2",
+        "ChainPlate3_A",
+        "ChainPlate3_B",
+        "ChainRoller3",
+        "ChainPlate4_A",
+        "ChainPlate4_B",
+        "ChainRoller4",
+        "ChainPlate5_A",
+        "ChainPlate5_B",
+        "ChainRoller5",
+        "ChainPlate6_A",
+        "ChainPlate6_B",
+        "ChainRoller6",
+        "ChainPlate7_A",
+        "ChainPlate7_B",
+        "ChainRoller7",
+        "ChainPlate8_A",
+        "ChainPlate8_B",
+        "ChainRoller8",
+        "ChainPlate9_A",
+        "ChainPlate9_B",
+        "ChainRoller9",
+        "ChainPlate10_A",
+        "ChainPlate10_B",
+        "ChainRoller10",
+        "ChainPlate11_A",
+        "ChainPlate11_B",
+        "ChainRoller11",
+        "ChainPlate12_A",
+        "ChainPlate12_B",
+        "ChainRoller12",
+        "ChainPlate13_A",
+        "ChainPlate13_B",
+        "ChainRoller13",
+        "ChainPlate14_A",
+        "ChainPlate14_B",
+        "ChainRoller14",
+        "ChainPlate15_A",
+        "ChainPlate15_B",
+        "ChainRoller15",
+        "ChainPlate16_A",
+        "ChainPlate16_B",
+        "ChainRoller16",
+        "ChainPlate17_A",
+        "ChainPlate17_B",
+        "ChainRoller17",
+        "ChainPlate18_A",
+        "ChainPlate18_B",
+        "ChainRoller18",
+        "ChainPlate19_A",
+        "ChainPlate19_B",
+        "ChainRoller19",
+        "ChainPlate20_A",
+        "ChainPlate20_B",
+        "ChainRoller20",
+        "ChainPlate21_A",
+        "ChainPlate21_B",
+        "ChainRoller21",
+        "ChainPlate22_A",
+        "ChainPlate22_B",
+        "ChainRoller22",
+        "ChainPlate23_A",
+        "ChainPlate23_B",
+        "ChainRoller23",
+        "ChainPlate24_A",
+        "ChainPlate24_B",
+        "ChainRoller24",
+        "ChainPlate25_A",
+        "ChainPlate25_B",
+        "ChainRoller25",
+        "ChainPlate26_A",
+        "ChainPlate26_B",
+        "ChainRoller26",
+        "ChainPlate27_A",
+        "ChainPlate27_B",
+        "ChainRoller27",
+        "ChainPlate28_A",
+        "ChainPlate28_B",
+        "ChainRoller28",
+        "ChainPlate29_A",
+        "ChainPlate29_B",
+        "ChainRoller29",
+        "ChainPlate30_A",
+        "ChainPlate30_B",
+        "ChainRoller30",
+        "ChainPlate31_A",
+        "ChainPlate31_B",
+        "ChainRoller31",
+        "ChainPlate32_A",
+        "ChainPlate32_B",
+        "ChainRoller32",
+        "ChainPlate33_A",
+        "ChainPlate33_B",
+        "ChainRoller33",
+        "ChainPlate34_A",
+        "ChainPlate34_B",
+        "ChainRoller34",
+        "ChainPlate35_A",
+        "ChainPlate35_B",
+        "ChainRoller35",
+        "ChainPlate36_A",
+        "ChainPlate36_B",
+        "ChainRoller36",
+        "ChainPlate37_A",
+        "ChainPlate37_B",
+        "ChainRoller37"
+      ],
+      "decision": "Rollers/plates and cut tooth pockets; pitch layout solved; flank/contact engineering remains approximate",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1",
+        "L1",
+        "N1"
+      ],
+      "locator": "p.21; Figure 5; L1 p.65"
+    },
+    {
+      "id": "S07",
+      "name": "Water/gas joint gaskets",
+      "function": "Seal common head joint",
+      "interfaces": "Case flange, liner and valve box",
+      "part_ids": [
+        "HeadGasket1",
+        "HeadGasket2",
+        "HeadGasket3",
+        "HeadGasket4"
+      ],
+      "decision": "Separate annular gasket; exact material/compression unknown",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "p.16; Figure 6"
+    },
+    {
+      "id": "S08",
+      "name": "Intake manifold",
+      "function": "Distribute hot mixture",
+      "interfaces": "Mixer outlet and four suction cages",
+      "part_ids": [
+        "IntakeManifold"
+      ],
+      "decision": "Shallow sheet-steel box with four open connections, not aluminum",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "p.23; Figures 5,6"
+    },
+    {
+      "id": "S09",
+      "name": "Coolant fittings/hoses",
+      "function": "Feed bottom and return at top",
+      "interfaces": "Jacket and external radiator",
+      "part_ids": [
+        "WaterInlet",
+        "WaterReturnA",
+        "WaterReturnB",
+        "WaterHoseIn",
+        "WaterHoseA",
+        "WaterHoseB"
+      ],
+      "decision": "Three engine-side open connections; radiator belongs to airframe",
+      "disposition": "simplified",
+      "source_ids": [
+        "H1",
+        "N3"
+      ],
+      "locator": "Figure 6; NASA cooling system"
+    },
+    {
+      "id": "S10",
+      "name": "External service equipment",
+      "function": "Feed fuel/coolant and start ignition",
+      "interfaces": "Fuel cock, coolant hoses and generator",
+      "part_ids": [],
+      "decision": "Radiator, elevated tank, starting dry cells/coil and long propeller chains require airframe installation study",
+      "disposition": "outside_scope",
+      "source_ids": [
+        "H1",
+        "N2",
+        "N3"
+      ],
+      "locator": "pp.24\u201325; NASA cooling/electrical"
+    },
+    {
+      "id": "S11",
+      "name": "Later-engine features",
+      "function": "Identify excluded variants",
+      "interfaces": "Cylinder/case redesign",
+      "part_ids": [],
+      "decision": "No compression release, fuel pump, auxiliary barrel exhaust or vertical-cylinder components",
+      "disposition": "outside_scope",
+      "source_ids": [
+        "H1"
+      ],
+      "locator": "pp.29\u201333,34\u201356"
+    }
+  ],
+  "mechanisms": [
+    {
+      "id": "load",
+      "source_ids": [
+        "H1"
+      ],
+      "components": [
+        "6",
+        "7",
+        "15",
+        "16",
+        "S02",
+        "S03",
+        "S04"
+      ],
+      "path": "piston -> locked pin -> bronze little end -> steel tube -> split bronze big end -> crankpin -> cheeks/journals -> five split main bearings -> casting ribs/feet",
+      "checks": [
+        "nominal throw",
+        "pin/rod alignment",
+        "five main station alignment",
+        "split cap and shell construction",
+        "ring position inside short liner"
+      ]
+    },
+    {
+      "id": "gas",
+      "source_ids": [
+        "H1"
+      ],
+      "components": [
+        "18",
+        "19",
+        "20",
+        "21",
+        "33",
+        "35",
+        "S05",
+        "S07",
+        "S08"
+      ],
+      "path": "gravity nozzle + air can -> baffled hot plate -> low manifold -> suction inlet cage/valve -> chamber/liner -> exhaust valve/cage -> wall apertures",
+      "checks": [
+        "continuous open ports",
+        "four cage windows",
+        "retainer shoulders",
+        "valve head diameter/lift",
+        "jacket excludes valve boxes"
+      ]
+    },
+    {
+      "id": "timing",
+      "source_ids": [
+        "H1",
+        "L1",
+        "N1"
+      ],
+      "components": [
+        "36",
+        "41",
+        "42",
+        "43",
+        "47",
+        "S06"
+      ],
+      "path": "crank 6T -> roller chain -> cam 12T -> separate lobe -> cam roller -> two cheeks/pivot -> valve roller -> exhaust stem",
+      "checks": [
+        "2:1 tooth ratio",
+        "integer chain pitch closure",
+        "roller/cam and roller/stem tangency",
+        "three cam bearing stations"
+      ]
+    },
+    {
+      "id": "ignition",
+      "source_ids": [
+        "H1",
+        "N2"
+      ],
+      "components": [
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "29",
+        "30",
+        "31",
+        "32",
+        "37",
+        "38",
+        "39",
+        "40",
+        "44",
+        "45",
+        "46"
+      ],
+      "path": "flywheel friction rim -> generator -> positive lead/busbar -> insulated electrode -> moving contact -> grounded engine; 1:1 gears -> sliding sleeve/pin -> strip cams -> paired levers/springs -> contact snap",
+      "checks": [
+        "equal gear pitch diameters/centers",
+        "inclined slot with shaft pin",
+        "four individual bus links",
+        "fixed/moving contact separation",
+        "drive-wheel/flywheel tangency"
+      ]
+    },
+    {
+      "id": "oil",
+      "source_ids": [
+        "H1"
+      ],
+      "components": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "46"
+      ],
+      "path": "sump compartments -> gallery -> selected rebuilt pump -> feed union/hose -> distributor/four jets -> upper liner thrust faces -> splash/drip returns",
+      "checks": [
+        "four jets communicate with liner holes",
+        "pump inlet/outlet opens",
+        "cross shaft route kept distinct from contradictory cam-drive key"
+      ]
+    },
+    {
+      "id": "coolant",
+      "source_ids": [
+        "H1",
+        "N3"
+      ],
+      "components": [
+        "18",
+        "S07",
+        "S09"
+      ],
+      "path": "external radiator -> lower hose/inlet -> shared jacket around barrels -> two upper returns -> external radiator",
+      "checks": [
+        "three open jacket connections",
+        "no water pump",
+        "uncooled valve boxes",
+        "liner wall and gasket joint"
+      ]
+    }
+  ],
+  "reviewed_locators": [
+    "H1 pp.1\u20138,9\u201328,29\u201333,57\u201364; relevant variant differences pp.34\u201356",
+    "H1 Figures 1\u20137; all Figure 5 keyed numbers",
+    "L1 contact sheet all pages; enlarged pp.1,4,7,63,65\u201367",
+    "N1/N2/N3 full mechanical-operation sections",
+    "A1/A2 catalogue lineage/access records"
+  ],
+  "conflicts": [
+    {
+      "topic": "Oil pump",
+      "decision": "Surviving accessory; narrative crankshaft worm/cross shaft selected; original 1903 presence unresolved; Fig.5 key cam drive not adopted"
+    },
+    {
+      "topic": "Rod joints",
+      "decision": "Science Museum direct-thread steel tube to bronze ends; Smithsonian adapter/brazed route excluded"
+    },
+    {
+      "topic": "Timing tensioner",
+      "decision": "H1 hardwood block rather than N1 wheel"
+    },
+    {
+      "topic": "Pilot advance/firing phases",
+      "decision": "Control hardware represented; in-flight use and phase certification withheld"
+    },
+    {
+      "topic": "Bearing materials",
+      "decision": "H1 direct phosphor bronze rod ends; babbitt main/cam shells"
+    }
+  ],
+  "gaps": [
+    {
+      "topic": "Exact dimensions/threads",
+      "blocks_selected_scope": false,
+      "next_evidence": "Acquire a complete chosen-lineage dimensioned drawing set",
+      "modelling_consequence": "Nominal documented bore/stroke/valves/wall retained; other dimensions labelled estimates"
+    },
+    {
+      "topic": "Cam law and phases",
+      "blocks_selected_scope": false,
+      "next_evidence": "Chosen-lineage timing drawings and measurements",
+      "modelling_consequence": "Static lobes; no authenticated running animation"
+    },
+    {
+      "topic": "Mesh scale/global agreement",
+      "blocks_selected_scope": false,
+      "next_evidence": "Independent visible dimension with scan correspondence",
+      "modelling_consequence": "Candidate 10 mm/import-unit; limited ROI comparisons; no whole-mesh recovery claim"
+    },
+    {
+      "topic": "Spring properties",
+      "blocks_selected_scope": false,
+      "next_evidence": "Wire diameter, coil count and load/deflection measurements",
+      "modelling_consequence": "Helical visual geometry estimated; no spring rate claim"
+    },
+    {
+      "topic": "Generator/pump internals",
+      "blocks_selected_scope": false,
+      "next_evidence": "Accessory-specific drawings",
+      "modelling_consequence": "Named visible structure and illustrative internals; no performance certification"
+    }
+  ]
+}

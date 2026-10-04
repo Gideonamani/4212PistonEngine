@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "components": 58,
+  "source_callouts": 47,
+  "dispositions": {
+    "modelled": 0,
+    "simplified": 55,
+    "deferred": 1,
+    "outside_scope": 2
+  },
+  "coverage_checked": true,
+  "mechanisms": 6,
+  "historical_accuracy_verified": false,
+  "scope": "Ready for detailed static teaching CAD with explicitly estimated manufacturing details; exact 1903 reproduction and operating dynamics remain unverified."
+}

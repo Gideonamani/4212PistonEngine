@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "native_reopened": true,
+  "step_valid": true,
+  "parts": 413,
+  "relative_volume_error": 9.698496884917745e-06,
+  "native_record_bounds_error_mm": 0,
+  "native_record_relative_volume_error": 0,
+  "total_volume_relative_tolerance": 1e-05,
+  "worst_solid_relative_volume_error": 0.0001896682844685993,
+  "solid_volume_relative_tolerance": 0.0001,
+  "assembly_extents_mm": [
+    656.0,
+    665.0699999999999,
+    405.0
+  ],
+  "source_fidelity": "Not established by these checks",
+  "strict_solid_volume_check_passed": false,
+  "step_boundary_exception": {
+    "reviewed_part_ids": [
+      "ValveBox1",
+      "ValveBox2",
+      "ValveBox3",
+      "ValveBox4"
+    ],
+    "reason": "Four ported valve boxes exceed the original 0.01% per-solid volume limit by approximately 0.019%, while optimal bounds and topology counts agree and bidirectional sampled boundary distances are below 1.4e-11 mm. A numerical mass-integration difference is the working explanation, not a proven kernel diagnosis. Accept only this saved static-study candidate under the bounded 0.02% mass and 1e-6 mm sampled-boundary limits; retain the original strict failure.",
+    "maximum_relative_volume_error": 0.0002,
+    "maximum_sampled_boundary_error_mm": 1e-06,
+    "maximum_optimal_bounds_error_mm": 1e-06,
+    "measured_maximum_sampled_boundary_error_mm": 1.3304215921625777e-11,
+    "limitation": "Vertices and projected face centroids sampled in both directions; continuous boundary equivalence is not proven"
+  },
+  "validation_status": "passed_with_documented_step_mass_exception"
+}

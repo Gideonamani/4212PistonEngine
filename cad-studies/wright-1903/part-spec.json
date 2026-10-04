@@ -1,0 +1,5873 @@
+{
+  "schema_version": 1,
+  "model_id": "wright-1903-reconstruction",
+  "units": "mm",
+  "input_mode": "mixed",
+  "scope": "First evidence-led teaching reconstruction of the scanned Wright engine. Nominal historical bore/stroke and exterior measurements ground the model; hidden dimensions, casting internals and interfaces remain inferred. Not an exact replica. No operating simulation.",
+  "coordinate_frame": "X cylinder axes from crankshaft toward valve boxes; Y crankshaft; Z up. Mesh alignment approximate raw origin [-46,1.2,-21] cm, scale 10 mm/cm.",
+  "sources": {
+    "mesh": {
+      "path": "web/wright-1903-engine.glb",
+      "sha256": "e626ab347a7f587fee2169f81ac3516185aef033adf32c920533f85293b52daf",
+      "locator": "Imported XYZ; mesh-rois.json and primitive-fits.json"
+    },
+    "nasa-bore": {
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/bore-and-stroke-old/",
+      "locator": "Bore and Stroke, 4 inches each; four cylinders"
+    },
+    "nasa-case": {
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/crankcase/",
+      "locator": "Crankcase, cylinder/water-jacket structure and sheet steel closure"
+    },
+    "nasa-valves": {
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/combustion-chamber/",
+      "locator": "Suction intake; cam-actuated exhaust; cages"
+    },
+    "nasa-timing": {
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/timing-system/",
+      "locator": "Six/twelve timing sprockets; ratio 2:1"
+    },
+    "nasa-ignition": {
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/electrical-system/",
+      "locator": "Low-tension make-and-break, friction drive"
+    },
+    "hobbs": {
+      "url": "https://repository.si.edu/bitstream/handle/10088/18675/SAoF-0005-Lo_res.pdf",
+      "locator": "Hobbs, The Wright Brothers Engines and Their Design; printed pp. 5-8,16-26; Figures 5-7"
+    },
+    "museum-scale": {
+      "url": "https://airandspace.si.edu/collection-objects/wright-flyer-1903/nasm_A19610048000",
+      "locator": "3D mesh download lists scale in cm"
+    }
+  },
+  "parameters": {
+    "bore": {
+      "value": 101.6,
+      "unit": "mm",
+      "status": "specified",
+      "source_ids": [
+        "nasa-bore"
+      ],
+      "rationale": "4 in converted exactly to mm; nominal historical bore, not scan interior measurement."
+    },
+    "stroke": {
+      "value": 101.6,
+      "unit": "mm",
+      "status": "specified",
+      "source_ids": [
+        "nasa-bore"
+      ],
+      "rationale": "4 in converted exactly to mm."
+    },
+    "pitch": {
+      "value": 129.69,
+      "unit": "mm",
+      "status": "measured",
+      "source_ids": [
+        "mesh"
+      ],
+      "rationale": "Mean Y spacing of four reviewed valve-box fits, assuming cm scale.",
+      "method": "Average adjacent fit centers times 10; reviewed exterior ROIs; see primitive-fits.json."
+    },
+    "valve_box_radius": {
+      "value": 34.667,
+      "unit": "mm",
+      "status": "measured",
+      "source_ids": [
+        "mesh"
+      ],
+      "rationale": "Mean exterior housing radius after ROI filtering; low-resolution scan estimate.",
+      "method": "Mean four deduplicated circle radii times 10; individual residuals retained."
+    },
+    "mesh_to_mm": {
+      "value": 10,
+      "unit": "ratio",
+      "status": "inferred",
+      "source_ids": [
+        "museum-scale"
+      ],
+      "rationale": "Parent museum download reports cm; cropped engine file has no standalone calibration. Confirm against a known external dimension."
+    },
+    "wall": {
+      "value": 7,
+      "unit": "mm",
+      "status": "inferred",
+      "source_ids": [],
+      "rationale": "First teaching candidate; dimension needs a dimensioned drawing."
+    },
+    "rod_length": {
+      "value": 240,
+      "unit": "mm",
+      "status": "inferred",
+      "source_ids": [],
+      "rationale": "First teaching candidate; dimension needs a dimensioned drawing."
+    },
+    "piston_clearance": {
+      "value": 0.3,
+      "unit": "mm",
+      "status": "inferred",
+      "source_ids": [],
+      "rationale": "First teaching candidate; dimension needs a dimensioned drawing."
+    },
+    "piston_length": {
+      "value": 130,
+      "unit": "mm",
+      "status": "inferred",
+      "source_ids": [],
+      "rationale": "First teaching candidate; dimension needs a dimensioned drawing."
+    },
+    "sleeve_length": {
+      "value": 240,
+      "unit": "mm",
+      "status": "inferred",
+      "source_ids": [],
+      "rationale": "First teaching candidate; dimension needs a dimensioned drawing."
+    },
+    "sleeve_start": {
+      "value": 135,
+      "unit": "mm",
+      "status": "inferred",
+      "source_ids": [],
+      "rationale": "First teaching candidate; dimension needs a dimensioned drawing."
+    },
+    "sleeve_wall": {
+      "value": 5.6,
+      "unit": "mm",
+      "status": "inferred",
+      "source_ids": [],
+      "rationale": "First teaching candidate; dimension needs a dimensioned drawing."
+    },
+    "case_radius": {
+      "value": 122,
+      "unit": "mm",
+      "status": "inferred",
+      "source_ids": [],
+      "rationale": "First teaching candidate; dimension needs a dimensioned drawing."
+    },
+    "jacket_end": {
+      "value": 375,
+      "unit": "mm",
+      "status": "inferred",
+      "source_ids": [],
+      "rationale": "First teaching candidate; dimension needs a dimensioned drawing."
+    },
+    "case_top": {
+      "value": 110,
+      "unit": "mm",
+      "status": "inferred",
+      "source_ids": [],
+      "rationale": "First teaching candidate; dimension needs a dimensioned drawing."
+    },
+    "valve_x": {
+      "value": 430,
+      "unit": "mm",
+      "status": "inferred",
+      "source_ids": [],
+      "rationale": "First teaching candidate; dimension needs a dimensioned drawing."
+    },
+    "flywheel_radius": {
+      "value": 190,
+      "unit": "mm",
+      "status": "inferred",
+      "source_ids": [],
+      "rationale": "First teaching candidate; dimension needs a dimensioned drawing."
+    },
+    "journal_radius": {
+      "value": 14,
+      "unit": "mm",
+      "status": "inferred",
+      "source_ids": [],
+      "rationale": "First teaching candidate; dimension needs a dimensioned drawing."
+    },
+    "pin_radius": {
+      "value": 10,
+      "unit": "mm",
+      "status": "inferred",
+      "source_ids": [],
+      "rationale": "First teaching candidate; dimension needs a dimensioned drawing."
+    },
+    "cam_radius": {
+      "value": 9,
+      "unit": "mm",
+      "status": "inferred",
+      "source_ids": [],
+      "rationale": "First teaching candidate; dimension needs a dimensioned drawing."
+    },
+    "cylinders": {
+      "value": 4,
+      "unit": "count",
+      "status": "specified",
+      "source_ids": [
+        "nasa-bore"
+      ],
+      "rationale": "Documented four-cylinder arrangement."
+    },
+    "crank_sprocket_teeth": {
+      "value": 6,
+      "unit": "count",
+      "status": "specified",
+      "source_ids": [
+        "nasa-timing"
+      ],
+      "rationale": "Reference tooth count; pitch-form disk only in first candidate."
+    },
+    "cam_sprocket_teeth": {
+      "value": 12,
+      "unit": "count",
+      "status": "specified",
+      "source_ids": [
+        "nasa-timing"
+      ],
+      "rationale": "Reference tooth count; pitch-form disk only in first candidate."
+    }
+  },
+  "parts": [
+    {
+      "id": "Crankcase",
+      "label": "Crankcase and integral water jacket",
+      "group": "crankcase",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "case_radius",
+          "height": "3*pitch+140",
+          "origin": [
+            0,
+            -70,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": "jacket_end",
+          "width": "3*pitch+140",
+          "height": 220,
+          "origin": [
+            0,
+            -70,
+            -110
+          ],
+          "label": "Block"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "case_radius-wall",
+          "height": "3*pitch+126",
+          "origin": [
+            0,
+            -63,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Crank bay"
+        },
+        {
+          "primitive": "box",
+          "operation": "cut",
+          "length": "case_radius*2",
+          "width": "3*pitch+126",
+          "height": 130,
+          "origin": [
+            "-case_radius",
+            -63,
+            0
+          ],
+          "label": "Upper cover opening"
+        },
+        {
+          "primitive": "box",
+          "operation": "cut",
+          "length": "jacket_end-150",
+          "width": "3*pitch+126",
+          "height": 180,
+          "origin": [
+            140,
+            -63,
+            -90
+          ],
+          "label": "Jacket cavity"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "bore/2+sleeve_wall+.3",
+          "height": "jacket_end-100",
+          "origin": [
+            100,
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Sleeve opening"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "bore/2+sleeve_wall+.3",
+          "height": "jacket_end-100",
+          "origin": [
+            100,
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Sleeve opening"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "bore/2+sleeve_wall+.3",
+          "height": "jacket_end-100",
+          "origin": [
+            100,
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Sleeve opening"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "bore/2+sleeve_wall+.3",
+          "height": "jacket_end-100",
+          "origin": [
+            100,
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Sleeve opening"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 50,
+          "width": 40,
+          "height": 85,
+          "origin": [
+            -110,
+            -70,
+            -170
+          ],
+          "label": "Cast mounting leg"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 80,
+          "width": 60,
+          "height": 12,
+          "origin": [
+            -125,
+            "(-70)-10",
+            -178
+          ],
+          "label": "Mounting foot"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 50,
+          "width": 40,
+          "height": 85,
+          "origin": [
+            -110,
+            "3*pitch+30",
+            -170
+          ],
+          "label": "Cast mounting leg"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 80,
+          "width": 60,
+          "height": 12,
+          "origin": [
+            -125,
+            "(3*pitch+30)-10",
+            -178
+          ],
+          "label": "Mounting foot"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 50,
+          "width": 40,
+          "height": 85,
+          "origin": [
+            330,
+            -70,
+            -170
+          ],
+          "label": "Cast mounting leg"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 80,
+          "width": 60,
+          "height": 12,
+          "origin": [
+            315,
+            "(-70)-10",
+            -178
+          ],
+          "label": "Mounting foot"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 50,
+          "width": 40,
+          "height": 85,
+          "origin": [
+            330,
+            "3*pitch+30",
+            -170
+          ],
+          "label": "Cast mounting leg"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 80,
+          "width": 60,
+          "height": 12,
+          "origin": [
+            315,
+            "(3*pitch+30)-10",
+            -178
+          ],
+          "label": "Mounting foot"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 18,
+          "height": 30,
+          "origin": [
+            310,
+            -60,
+            105
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Water outlet boss"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 18,
+          "height": 30,
+          "origin": [
+            310,
+            "3*pitch+52",
+            105
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Water outlet boss"
+        }
+      ],
+      "material": "aluminium",
+      "evidence": "NASA crankcase; simplified casting envelope inferred from scan. Internal webs, detailed threads and galleries unresolved."
+    },
+    {
+      "id": "Cover",
+      "label": "Curved sheet-steel crankcase cover",
+      "group": "cover",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "case_radius",
+          "height": "3*pitch+140",
+          "origin": [
+            0,
+            -70,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "case_radius-2",
+          "height": "3*pitch+140",
+          "origin": [
+            0,
+            -70,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Through bore"
+        },
+        {
+          "primitive": "box",
+          "operation": "cut",
+          "length": "case_radius*2+4",
+          "width": "3*pitch+144",
+          "height": "case_radius+2",
+          "origin": [
+            "-case_radius-2",
+            -72,
+            "-case_radius-2"
+          ],
+          "label": "Remove lower half"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA crankcase closure; thickness and contour approximated."
+    },
+    {
+      "id": "Sleeve1",
+      "label": "Cylinder liner 1",
+      "group": "cylinders",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "bore/2+sleeve_wall",
+          "height": "sleeve_length",
+          "origin": [
+            "sleeve_start",
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "bore/2",
+          "height": "sleeve_length",
+          "origin": [
+            "sleeve_start",
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "bore/2+sleeve_wall+5",
+          "height": 8,
+          "origin": [
+            "sleeve_start+sleeve_length",
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 22,
+          "height": 10,
+          "origin": [
+            "sleeve_start+sleeve_length-1",
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Transfer port"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "NASA nominal bore; Hobbs short separate cast-iron barrels. Length/head/boss/thread form inferred."
+    },
+    {
+      "id": "Piston1",
+      "label": "Cast-iron piston 1",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "(bore-piston_clearance)/2",
+          "height": "piston_length",
+          "origin": [
+            "(1*stroke/2+rod_length)-65",
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "(bore-piston_clearance)/2-6",
+          "height": "piston_length-10",
+          "origin": [
+            "(1*stroke/2+rod_length)-65",
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Hollow skirt"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 18,
+          "height": 20,
+          "origin": [
+            "1*stroke/2+rod_length",
+            "(0*pitch)+-1*25",
+            0
+          ],
+          "axis": [
+            0,
+            -1,
+            0
+          ],
+          "label": "Pin boss"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 18,
+          "height": 20,
+          "origin": [
+            "1*stroke/2+rod_length",
+            "(0*pitch)+1*25",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Pin boss"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "pin_radius+.15",
+          "height": 120,
+          "origin": [
+            "1*stroke/2+rod_length",
+            "(0*pitch)-60",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Wrist-pin bore"
+        },
+        {
+          "primitive": "tube",
+          "operation": "cut",
+          "radius": "bore/2+1",
+          "inner_radius": "(bore-piston_clearance)/2-2",
+          "height": 4,
+          "origin": [
+            "(1*stroke/2+rod_length)+40",
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Ring groove"
+        },
+        {
+          "primitive": "tube",
+          "operation": "cut",
+          "radius": "bore/2+1",
+          "inner_radius": "(bore-piston_clearance)/2-2",
+          "height": 4,
+          "origin": [
+            "(1*stroke/2+rod_length)+48",
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Ring groove"
+        },
+        {
+          "primitive": "tube",
+          "operation": "cut",
+          "radius": "bore/2+1",
+          "inner_radius": "(bore-piston_clearance)/2-2",
+          "height": 4,
+          "origin": [
+            "(1*stroke/2+rod_length)+56",
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Ring groove"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Historical cast-iron piston form; length, wall, three groove dimensions and clearance inferred."
+    },
+    {
+      "id": "Ring1_1",
+      "label": "Piston 1 ring 1",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "tube",
+          "operation": "add",
+          "radius": "bore/2-.05",
+          "inner_radius": "(bore-piston_clearance)/2-1.9",
+          "height": 3.8,
+          "origin": [
+            "(1*stroke/2+rod_length)+40.1",
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "primitive": "box",
+          "operation": "cut",
+          "length": 6,
+          "width": 12,
+          "height": 0.6,
+          "origin": [
+            "(1*stroke/2+rod_length)+39",
+            "(0*pitch)+bore/2-4",
+            -0.3
+          ],
+          "label": "Ring split"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed."
+    },
+    {
+      "id": "Ring1_2",
+      "label": "Piston 1 ring 2",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "tube",
+          "operation": "add",
+          "radius": "bore/2-.05",
+          "inner_radius": "(bore-piston_clearance)/2-1.9",
+          "height": 3.8,
+          "origin": [
+            "(1*stroke/2+rod_length)+48.1",
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "primitive": "box",
+          "operation": "cut",
+          "length": 6,
+          "width": 12,
+          "height": 0.6,
+          "origin": [
+            "(1*stroke/2+rod_length)+47",
+            "(0*pitch)+bore/2-4",
+            -0.3
+          ],
+          "label": "Ring split"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed."
+    },
+    {
+      "id": "Ring1_3",
+      "label": "Piston 1 ring 3",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "tube",
+          "operation": "add",
+          "radius": "bore/2-.05",
+          "inner_radius": "(bore-piston_clearance)/2-1.9",
+          "height": 3.8,
+          "origin": [
+            "(1*stroke/2+rod_length)+56.1",
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "primitive": "box",
+          "operation": "cut",
+          "length": 6,
+          "width": 12,
+          "height": 0.6,
+          "origin": [
+            "(1*stroke/2+rod_length)+55",
+            "(0*pitch)+bore/2-4",
+            -0.3
+          ],
+          "label": "Ring split"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed."
+    },
+    {
+      "id": "WristPin1",
+      "label": "Wrist pin 1",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "pin_radius",
+          "height": 90,
+          "origin": [
+            "1*stroke/2+rod_length",
+            "(0*pitch)-45",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        }
+      ],
+      "material": "steel",
+      "evidence": "Inferred dimensions; source-grounded component role; see research.md."
+    },
+    {
+      "id": "RodTube1",
+      "label": "Connecting rod steel tube 1",
+      "group": "rods",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 8,
+          "height": "rod_length-30",
+          "origin": [
+            "(1*stroke/2)+15",
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 5,
+          "height": "rod_length-30",
+          "origin": [
+            "(1*stroke/2)+15",
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "steel",
+      "evidence": "Hobbs p.26 built-up rod; dimensions, end fastening and static pose illustrative."
+    },
+    {
+      "id": "BigEnd1",
+      "label": "Bronze rod bigend 1",
+      "group": "rods",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 27,
+          "height": 18,
+          "origin": [
+            "1*stroke/2",
+            "(0*pitch)-9",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 14.3,
+          "height": 18,
+          "origin": [
+            "1*stroke/2",
+            "(0*pitch)-9",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Through bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 10,
+          "height": 22,
+          "origin": [
+            "(1*stroke/2)+0",
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Tube socket"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 14.3,
+          "height": 20,
+          "origin": [
+            "1*stroke/2",
+            "(0*pitch)-10",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Reopen bearing bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 8.1,
+          "height": 15,
+          "origin": [
+            "(1*stroke/2)+15",
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Tube socket bore"
+        }
+      ],
+      "material": "bronze",
+      "evidence": "Hobbs built-up rod end material; socket, bearing dimensions and cap split simplified."
+    },
+    {
+      "id": "LittleEnd1",
+      "label": "Bronze rod littleend 1",
+      "group": "rods",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 23,
+          "height": 18,
+          "origin": [
+            "1*stroke/2+rod_length",
+            "(0*pitch)-9",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "pin_radius+.2",
+          "height": 18,
+          "origin": [
+            "1*stroke/2+rod_length",
+            "(0*pitch)-9",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Through bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 10,
+          "height": 22,
+          "origin": [
+            "(1*stroke/2+rod_length)+-22",
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Tube socket"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "pin_radius+.2",
+          "height": 20,
+          "origin": [
+            "1*stroke/2+rod_length",
+            "(0*pitch)-10",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Reopen bearing bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 8.1,
+          "height": 15,
+          "origin": [
+            "(1*stroke/2+rod_length)+-30",
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Tube socket bore"
+        }
+      ],
+      "material": "bronze",
+      "evidence": "Hobbs built-up rod end material; socket, bearing dimensions and cap split simplified."
+    },
+    {
+      "id": "Sleeve2",
+      "label": "Cylinder liner 2",
+      "group": "cylinders",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "bore/2+sleeve_wall",
+          "height": "sleeve_length",
+          "origin": [
+            "sleeve_start",
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "bore/2",
+          "height": "sleeve_length",
+          "origin": [
+            "sleeve_start",
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "bore/2+sleeve_wall+5",
+          "height": 8,
+          "origin": [
+            "sleeve_start+sleeve_length",
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 22,
+          "height": 10,
+          "origin": [
+            "sleeve_start+sleeve_length-1",
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Transfer port"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "NASA nominal bore; Hobbs short separate cast-iron barrels. Length/head/boss/thread form inferred."
+    },
+    {
+      "id": "Piston2",
+      "label": "Cast-iron piston 2",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "(bore-piston_clearance)/2",
+          "height": "piston_length",
+          "origin": [
+            "(-1*stroke/2+rod_length)-65",
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "(bore-piston_clearance)/2-6",
+          "height": "piston_length-10",
+          "origin": [
+            "(-1*stroke/2+rod_length)-65",
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Hollow skirt"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 18,
+          "height": 20,
+          "origin": [
+            "-1*stroke/2+rod_length",
+            "(1*pitch)+-1*25",
+            0
+          ],
+          "axis": [
+            0,
+            -1,
+            0
+          ],
+          "label": "Pin boss"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 18,
+          "height": 20,
+          "origin": [
+            "-1*stroke/2+rod_length",
+            "(1*pitch)+1*25",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Pin boss"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "pin_radius+.15",
+          "height": 120,
+          "origin": [
+            "-1*stroke/2+rod_length",
+            "(1*pitch)-60",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Wrist-pin bore"
+        },
+        {
+          "primitive": "tube",
+          "operation": "cut",
+          "radius": "bore/2+1",
+          "inner_radius": "(bore-piston_clearance)/2-2",
+          "height": 4,
+          "origin": [
+            "(-1*stroke/2+rod_length)+40",
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Ring groove"
+        },
+        {
+          "primitive": "tube",
+          "operation": "cut",
+          "radius": "bore/2+1",
+          "inner_radius": "(bore-piston_clearance)/2-2",
+          "height": 4,
+          "origin": [
+            "(-1*stroke/2+rod_length)+48",
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Ring groove"
+        },
+        {
+          "primitive": "tube",
+          "operation": "cut",
+          "radius": "bore/2+1",
+          "inner_radius": "(bore-piston_clearance)/2-2",
+          "height": 4,
+          "origin": [
+            "(-1*stroke/2+rod_length)+56",
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Ring groove"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Historical cast-iron piston form; length, wall, three groove dimensions and clearance inferred."
+    },
+    {
+      "id": "Ring2_1",
+      "label": "Piston 2 ring 1",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "tube",
+          "operation": "add",
+          "radius": "bore/2-.05",
+          "inner_radius": "(bore-piston_clearance)/2-1.9",
+          "height": 3.8,
+          "origin": [
+            "(-1*stroke/2+rod_length)+40.1",
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "primitive": "box",
+          "operation": "cut",
+          "length": 6,
+          "width": 12,
+          "height": 0.6,
+          "origin": [
+            "(-1*stroke/2+rod_length)+39",
+            "(1*pitch)+bore/2-4",
+            -0.3
+          ],
+          "label": "Ring split"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed."
+    },
+    {
+      "id": "Ring2_2",
+      "label": "Piston 2 ring 2",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "tube",
+          "operation": "add",
+          "radius": "bore/2-.05",
+          "inner_radius": "(bore-piston_clearance)/2-1.9",
+          "height": 3.8,
+          "origin": [
+            "(-1*stroke/2+rod_length)+48.1",
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "primitive": "box",
+          "operation": "cut",
+          "length": 6,
+          "width": 12,
+          "height": 0.6,
+          "origin": [
+            "(-1*stroke/2+rod_length)+47",
+            "(1*pitch)+bore/2-4",
+            -0.3
+          ],
+          "label": "Ring split"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed."
+    },
+    {
+      "id": "Ring2_3",
+      "label": "Piston 2 ring 3",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "tube",
+          "operation": "add",
+          "radius": "bore/2-.05",
+          "inner_radius": "(bore-piston_clearance)/2-1.9",
+          "height": 3.8,
+          "origin": [
+            "(-1*stroke/2+rod_length)+56.1",
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "primitive": "box",
+          "operation": "cut",
+          "length": 6,
+          "width": 12,
+          "height": 0.6,
+          "origin": [
+            "(-1*stroke/2+rod_length)+55",
+            "(1*pitch)+bore/2-4",
+            -0.3
+          ],
+          "label": "Ring split"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed."
+    },
+    {
+      "id": "WristPin2",
+      "label": "Wrist pin 2",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "pin_radius",
+          "height": 90,
+          "origin": [
+            "-1*stroke/2+rod_length",
+            "(1*pitch)-45",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        }
+      ],
+      "material": "steel",
+      "evidence": "Inferred dimensions; source-grounded component role; see research.md."
+    },
+    {
+      "id": "RodTube2",
+      "label": "Connecting rod steel tube 2",
+      "group": "rods",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 8,
+          "height": "rod_length-30",
+          "origin": [
+            "(-1*stroke/2)+15",
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 5,
+          "height": "rod_length-30",
+          "origin": [
+            "(-1*stroke/2)+15",
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "steel",
+      "evidence": "Hobbs p.26 built-up rod; dimensions, end fastening and static pose illustrative."
+    },
+    {
+      "id": "BigEnd2",
+      "label": "Bronze rod bigend 2",
+      "group": "rods",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 27,
+          "height": 18,
+          "origin": [
+            "-1*stroke/2",
+            "(1*pitch)-9",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 14.3,
+          "height": 18,
+          "origin": [
+            "-1*stroke/2",
+            "(1*pitch)-9",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Through bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 10,
+          "height": 22,
+          "origin": [
+            "(-1*stroke/2)+0",
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Tube socket"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 14.3,
+          "height": 20,
+          "origin": [
+            "-1*stroke/2",
+            "(1*pitch)-10",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Reopen bearing bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 8.1,
+          "height": 15,
+          "origin": [
+            "(-1*stroke/2)+15",
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Tube socket bore"
+        }
+      ],
+      "material": "bronze",
+      "evidence": "Hobbs built-up rod end material; socket, bearing dimensions and cap split simplified."
+    },
+    {
+      "id": "LittleEnd2",
+      "label": "Bronze rod littleend 2",
+      "group": "rods",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 23,
+          "height": 18,
+          "origin": [
+            "-1*stroke/2+rod_length",
+            "(1*pitch)-9",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "pin_radius+.2",
+          "height": 18,
+          "origin": [
+            "-1*stroke/2+rod_length",
+            "(1*pitch)-9",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Through bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 10,
+          "height": 22,
+          "origin": [
+            "(-1*stroke/2+rod_length)+-22",
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Tube socket"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "pin_radius+.2",
+          "height": 20,
+          "origin": [
+            "-1*stroke/2+rod_length",
+            "(1*pitch)-10",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Reopen bearing bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 8.1,
+          "height": 15,
+          "origin": [
+            "(-1*stroke/2+rod_length)+-30",
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Tube socket bore"
+        }
+      ],
+      "material": "bronze",
+      "evidence": "Hobbs built-up rod end material; socket, bearing dimensions and cap split simplified."
+    },
+    {
+      "id": "Sleeve3",
+      "label": "Cylinder liner 3",
+      "group": "cylinders",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "bore/2+sleeve_wall",
+          "height": "sleeve_length",
+          "origin": [
+            "sleeve_start",
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "bore/2",
+          "height": "sleeve_length",
+          "origin": [
+            "sleeve_start",
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "bore/2+sleeve_wall+5",
+          "height": 8,
+          "origin": [
+            "sleeve_start+sleeve_length",
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 22,
+          "height": 10,
+          "origin": [
+            "sleeve_start+sleeve_length-1",
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Transfer port"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "NASA nominal bore; Hobbs short separate cast-iron barrels. Length/head/boss/thread form inferred."
+    },
+    {
+      "id": "Piston3",
+      "label": "Cast-iron piston 3",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "(bore-piston_clearance)/2",
+          "height": "piston_length",
+          "origin": [
+            "(-1*stroke/2+rod_length)-65",
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "(bore-piston_clearance)/2-6",
+          "height": "piston_length-10",
+          "origin": [
+            "(-1*stroke/2+rod_length)-65",
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Hollow skirt"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 18,
+          "height": 20,
+          "origin": [
+            "-1*stroke/2+rod_length",
+            "(2*pitch)+-1*25",
+            0
+          ],
+          "axis": [
+            0,
+            -1,
+            0
+          ],
+          "label": "Pin boss"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 18,
+          "height": 20,
+          "origin": [
+            "-1*stroke/2+rod_length",
+            "(2*pitch)+1*25",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Pin boss"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "pin_radius+.15",
+          "height": 120,
+          "origin": [
+            "-1*stroke/2+rod_length",
+            "(2*pitch)-60",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Wrist-pin bore"
+        },
+        {
+          "primitive": "tube",
+          "operation": "cut",
+          "radius": "bore/2+1",
+          "inner_radius": "(bore-piston_clearance)/2-2",
+          "height": 4,
+          "origin": [
+            "(-1*stroke/2+rod_length)+40",
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Ring groove"
+        },
+        {
+          "primitive": "tube",
+          "operation": "cut",
+          "radius": "bore/2+1",
+          "inner_radius": "(bore-piston_clearance)/2-2",
+          "height": 4,
+          "origin": [
+            "(-1*stroke/2+rod_length)+48",
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Ring groove"
+        },
+        {
+          "primitive": "tube",
+          "operation": "cut",
+          "radius": "bore/2+1",
+          "inner_radius": "(bore-piston_clearance)/2-2",
+          "height": 4,
+          "origin": [
+            "(-1*stroke/2+rod_length)+56",
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Ring groove"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Historical cast-iron piston form; length, wall, three groove dimensions and clearance inferred."
+    },
+    {
+      "id": "Ring3_1",
+      "label": "Piston 3 ring 1",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "tube",
+          "operation": "add",
+          "radius": "bore/2-.05",
+          "inner_radius": "(bore-piston_clearance)/2-1.9",
+          "height": 3.8,
+          "origin": [
+            "(-1*stroke/2+rod_length)+40.1",
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "primitive": "box",
+          "operation": "cut",
+          "length": 6,
+          "width": 12,
+          "height": 0.6,
+          "origin": [
+            "(-1*stroke/2+rod_length)+39",
+            "(2*pitch)+bore/2-4",
+            -0.3
+          ],
+          "label": "Ring split"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed."
+    },
+    {
+      "id": "Ring3_2",
+      "label": "Piston 3 ring 2",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "tube",
+          "operation": "add",
+          "radius": "bore/2-.05",
+          "inner_radius": "(bore-piston_clearance)/2-1.9",
+          "height": 3.8,
+          "origin": [
+            "(-1*stroke/2+rod_length)+48.1",
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "primitive": "box",
+          "operation": "cut",
+          "length": 6,
+          "width": 12,
+          "height": 0.6,
+          "origin": [
+            "(-1*stroke/2+rod_length)+47",
+            "(2*pitch)+bore/2-4",
+            -0.3
+          ],
+          "label": "Ring split"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed."
+    },
+    {
+      "id": "Ring3_3",
+      "label": "Piston 3 ring 3",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "tube",
+          "operation": "add",
+          "radius": "bore/2-.05",
+          "inner_radius": "(bore-piston_clearance)/2-1.9",
+          "height": 3.8,
+          "origin": [
+            "(-1*stroke/2+rod_length)+56.1",
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "primitive": "box",
+          "operation": "cut",
+          "length": 6,
+          "width": 12,
+          "height": 0.6,
+          "origin": [
+            "(-1*stroke/2+rod_length)+55",
+            "(2*pitch)+bore/2-4",
+            -0.3
+          ],
+          "label": "Ring split"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed."
+    },
+    {
+      "id": "WristPin3",
+      "label": "Wrist pin 3",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "pin_radius",
+          "height": 90,
+          "origin": [
+            "-1*stroke/2+rod_length",
+            "(2*pitch)-45",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        }
+      ],
+      "material": "steel",
+      "evidence": "Inferred dimensions; source-grounded component role; see research.md."
+    },
+    {
+      "id": "RodTube3",
+      "label": "Connecting rod steel tube 3",
+      "group": "rods",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 8,
+          "height": "rod_length-30",
+          "origin": [
+            "(-1*stroke/2)+15",
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 5,
+          "height": "rod_length-30",
+          "origin": [
+            "(-1*stroke/2)+15",
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "steel",
+      "evidence": "Hobbs p.26 built-up rod; dimensions, end fastening and static pose illustrative."
+    },
+    {
+      "id": "BigEnd3",
+      "label": "Bronze rod bigend 3",
+      "group": "rods",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 27,
+          "height": 18,
+          "origin": [
+            "-1*stroke/2",
+            "(2*pitch)-9",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 14.3,
+          "height": 18,
+          "origin": [
+            "-1*stroke/2",
+            "(2*pitch)-9",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Through bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 10,
+          "height": 22,
+          "origin": [
+            "(-1*stroke/2)+0",
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Tube socket"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 14.3,
+          "height": 20,
+          "origin": [
+            "-1*stroke/2",
+            "(2*pitch)-10",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Reopen bearing bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 8.1,
+          "height": 15,
+          "origin": [
+            "(-1*stroke/2)+15",
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Tube socket bore"
+        }
+      ],
+      "material": "bronze",
+      "evidence": "Hobbs built-up rod end material; socket, bearing dimensions and cap split simplified."
+    },
+    {
+      "id": "LittleEnd3",
+      "label": "Bronze rod littleend 3",
+      "group": "rods",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 23,
+          "height": 18,
+          "origin": [
+            "-1*stroke/2+rod_length",
+            "(2*pitch)-9",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "pin_radius+.2",
+          "height": 18,
+          "origin": [
+            "-1*stroke/2+rod_length",
+            "(2*pitch)-9",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Through bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 10,
+          "height": 22,
+          "origin": [
+            "(-1*stroke/2+rod_length)+-22",
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Tube socket"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "pin_radius+.2",
+          "height": 20,
+          "origin": [
+            "-1*stroke/2+rod_length",
+            "(2*pitch)-10",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Reopen bearing bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 8.1,
+          "height": 15,
+          "origin": [
+            "(-1*stroke/2+rod_length)+-30",
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Tube socket bore"
+        }
+      ],
+      "material": "bronze",
+      "evidence": "Hobbs built-up rod end material; socket, bearing dimensions and cap split simplified."
+    },
+    {
+      "id": "Sleeve4",
+      "label": "Cylinder liner 4",
+      "group": "cylinders",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "bore/2+sleeve_wall",
+          "height": "sleeve_length",
+          "origin": [
+            "sleeve_start",
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "bore/2",
+          "height": "sleeve_length",
+          "origin": [
+            "sleeve_start",
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "bore/2+sleeve_wall+5",
+          "height": 8,
+          "origin": [
+            "sleeve_start+sleeve_length",
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 22,
+          "height": 10,
+          "origin": [
+            "sleeve_start+sleeve_length-1",
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Transfer port"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "NASA nominal bore; Hobbs short separate cast-iron barrels. Length/head/boss/thread form inferred."
+    },
+    {
+      "id": "Piston4",
+      "label": "Cast-iron piston 4",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "(bore-piston_clearance)/2",
+          "height": "piston_length",
+          "origin": [
+            "(1*stroke/2+rod_length)-65",
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "(bore-piston_clearance)/2-6",
+          "height": "piston_length-10",
+          "origin": [
+            "(1*stroke/2+rod_length)-65",
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Hollow skirt"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 18,
+          "height": 20,
+          "origin": [
+            "1*stroke/2+rod_length",
+            "(3*pitch)+-1*25",
+            0
+          ],
+          "axis": [
+            0,
+            -1,
+            0
+          ],
+          "label": "Pin boss"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 18,
+          "height": 20,
+          "origin": [
+            "1*stroke/2+rod_length",
+            "(3*pitch)+1*25",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Pin boss"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "pin_radius+.15",
+          "height": 120,
+          "origin": [
+            "1*stroke/2+rod_length",
+            "(3*pitch)-60",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Wrist-pin bore"
+        },
+        {
+          "primitive": "tube",
+          "operation": "cut",
+          "radius": "bore/2+1",
+          "inner_radius": "(bore-piston_clearance)/2-2",
+          "height": 4,
+          "origin": [
+            "(1*stroke/2+rod_length)+40",
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Ring groove"
+        },
+        {
+          "primitive": "tube",
+          "operation": "cut",
+          "radius": "bore/2+1",
+          "inner_radius": "(bore-piston_clearance)/2-2",
+          "height": 4,
+          "origin": [
+            "(1*stroke/2+rod_length)+48",
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Ring groove"
+        },
+        {
+          "primitive": "tube",
+          "operation": "cut",
+          "radius": "bore/2+1",
+          "inner_radius": "(bore-piston_clearance)/2-2",
+          "height": 4,
+          "origin": [
+            "(1*stroke/2+rod_length)+56",
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Ring groove"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Historical cast-iron piston form; length, wall, three groove dimensions and clearance inferred."
+    },
+    {
+      "id": "Ring4_1",
+      "label": "Piston 4 ring 1",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "tube",
+          "operation": "add",
+          "radius": "bore/2-.05",
+          "inner_radius": "(bore-piston_clearance)/2-1.9",
+          "height": 3.8,
+          "origin": [
+            "(1*stroke/2+rod_length)+40.1",
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "primitive": "box",
+          "operation": "cut",
+          "length": 6,
+          "width": 12,
+          "height": 0.6,
+          "origin": [
+            "(1*stroke/2+rod_length)+39",
+            "(3*pitch)+bore/2-4",
+            -0.3
+          ],
+          "label": "Ring split"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed."
+    },
+    {
+      "id": "Ring4_2",
+      "label": "Piston 4 ring 2",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "tube",
+          "operation": "add",
+          "radius": "bore/2-.05",
+          "inner_radius": "(bore-piston_clearance)/2-1.9",
+          "height": 3.8,
+          "origin": [
+            "(1*stroke/2+rod_length)+48.1",
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "primitive": "box",
+          "operation": "cut",
+          "length": 6,
+          "width": 12,
+          "height": 0.6,
+          "origin": [
+            "(1*stroke/2+rod_length)+47",
+            "(3*pitch)+bore/2-4",
+            -0.3
+          ],
+          "label": "Ring split"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed."
+    },
+    {
+      "id": "Ring4_3",
+      "label": "Piston 4 ring 3",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "tube",
+          "operation": "add",
+          "radius": "bore/2-.05",
+          "inner_radius": "(bore-piston_clearance)/2-1.9",
+          "height": 3.8,
+          "origin": [
+            "(1*stroke/2+rod_length)+56.1",
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "primitive": "box",
+          "operation": "cut",
+          "length": 6,
+          "width": 12,
+          "height": 0.6,
+          "origin": [
+            "(1*stroke/2+rod_length)+55",
+            "(3*pitch)+bore/2-4",
+            -0.3
+          ],
+          "label": "Ring split"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed."
+    },
+    {
+      "id": "WristPin4",
+      "label": "Wrist pin 4",
+      "group": "pistons",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "pin_radius",
+          "height": 90,
+          "origin": [
+            "1*stroke/2+rod_length",
+            "(3*pitch)-45",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        }
+      ],
+      "material": "steel",
+      "evidence": "Inferred dimensions; source-grounded component role; see research.md."
+    },
+    {
+      "id": "RodTube4",
+      "label": "Connecting rod steel tube 4",
+      "group": "rods",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 8,
+          "height": "rod_length-30",
+          "origin": [
+            "(1*stroke/2)+15",
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 5,
+          "height": "rod_length-30",
+          "origin": [
+            "(1*stroke/2)+15",
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "steel",
+      "evidence": "Hobbs p.26 built-up rod; dimensions, end fastening and static pose illustrative."
+    },
+    {
+      "id": "BigEnd4",
+      "label": "Bronze rod bigend 4",
+      "group": "rods",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 27,
+          "height": 18,
+          "origin": [
+            "1*stroke/2",
+            "(3*pitch)-9",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 14.3,
+          "height": 18,
+          "origin": [
+            "1*stroke/2",
+            "(3*pitch)-9",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Through bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 10,
+          "height": 22,
+          "origin": [
+            "(1*stroke/2)+0",
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Tube socket"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 14.3,
+          "height": 20,
+          "origin": [
+            "1*stroke/2",
+            "(3*pitch)-10",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Reopen bearing bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 8.1,
+          "height": 15,
+          "origin": [
+            "(1*stroke/2)+15",
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Tube socket bore"
+        }
+      ],
+      "material": "bronze",
+      "evidence": "Hobbs built-up rod end material; socket, bearing dimensions and cap split simplified."
+    },
+    {
+      "id": "LittleEnd4",
+      "label": "Bronze rod littleend 4",
+      "group": "rods",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 23,
+          "height": 18,
+          "origin": [
+            "1*stroke/2+rod_length",
+            "(3*pitch)-9",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "pin_radius+.2",
+          "height": 18,
+          "origin": [
+            "1*stroke/2+rod_length",
+            "(3*pitch)-9",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Through bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 10,
+          "height": 22,
+          "origin": [
+            "(1*stroke/2+rod_length)+-22",
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Tube socket"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "pin_radius+.2",
+          "height": 20,
+          "origin": [
+            "1*stroke/2+rod_length",
+            "(3*pitch)-10",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Reopen bearing bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 8.1,
+          "height": 15,
+          "origin": [
+            "(1*stroke/2+rod_length)+-30",
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Tube socket bore"
+        }
+      ],
+      "material": "bronze",
+      "evidence": "Hobbs built-up rod end material; socket, bearing dimensions and cap split simplified."
+    },
+    {
+      "id": "Crankshaft",
+      "label": "Four-throw crankshaft",
+      "group": "crankshaft",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "journal_radius",
+          "height": 52,
+          "origin": [
+            0,
+            -70,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": "stroke/2+2*journal_radius",
+          "width": 8,
+          "height": "journal_radius*2",
+          "origin": [
+            "-journal_radius",
+            "(0*pitch)+-18",
+            "-journal_radius"
+          ],
+          "label": "Crank web"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": "stroke/2+2*journal_radius",
+          "width": 8,
+          "height": "journal_radius*2",
+          "origin": [
+            "-journal_radius",
+            "(0*pitch)+10",
+            "-journal_radius"
+          ],
+          "label": "Crank web"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "journal_radius",
+          "height": 20,
+          "origin": [
+            "1*stroke/2",
+            "(0*pitch)-10",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Crankpin"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "journal_radius",
+          "height": "pitch-36",
+          "origin": [
+            0,
+            "(0*pitch)+18",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Main journal"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": "stroke/2+2*journal_radius",
+          "width": 8,
+          "height": "journal_radius*2",
+          "origin": [
+            "-stroke/2-journal_radius",
+            "(1*pitch)+-18",
+            "-journal_radius"
+          ],
+          "label": "Crank web"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": "stroke/2+2*journal_radius",
+          "width": 8,
+          "height": "journal_radius*2",
+          "origin": [
+            "-stroke/2-journal_radius",
+            "(1*pitch)+10",
+            "-journal_radius"
+          ],
+          "label": "Crank web"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "journal_radius",
+          "height": 20,
+          "origin": [
+            "-1*stroke/2",
+            "(1*pitch)-10",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Crankpin"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "journal_radius",
+          "height": "pitch-36",
+          "origin": [
+            0,
+            "(1*pitch)+18",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Main journal"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": "stroke/2+2*journal_radius",
+          "width": 8,
+          "height": "journal_radius*2",
+          "origin": [
+            "-stroke/2-journal_radius",
+            "(2*pitch)+-18",
+            "-journal_radius"
+          ],
+          "label": "Crank web"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": "stroke/2+2*journal_radius",
+          "width": 8,
+          "height": "journal_radius*2",
+          "origin": [
+            "-stroke/2-journal_radius",
+            "(2*pitch)+10",
+            "-journal_radius"
+          ],
+          "label": "Crank web"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "journal_radius",
+          "height": 20,
+          "origin": [
+            "-1*stroke/2",
+            "(2*pitch)-10",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Crankpin"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "journal_radius",
+          "height": "pitch-36",
+          "origin": [
+            0,
+            "(2*pitch)+18",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Main journal"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": "stroke/2+2*journal_radius",
+          "width": 8,
+          "height": "journal_radius*2",
+          "origin": [
+            "-journal_radius",
+            "(3*pitch)+-18",
+            "-journal_radius"
+          ],
+          "label": "Crank web"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": "stroke/2+2*journal_radius",
+          "width": 8,
+          "height": "journal_radius*2",
+          "origin": [
+            "-journal_radius",
+            "(3*pitch)+10",
+            "-journal_radius"
+          ],
+          "label": "Crank web"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "journal_radius",
+          "height": 20,
+          "origin": [
+            "1*stroke/2",
+            "(3*pitch)-10",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Crankpin"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "journal_radius",
+          "height": 70,
+          "origin": [
+            0,
+            "(3*pitch)+18",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Main journal"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA power train arrangement; stroke controls throw. Journal sizes and static 0/180/180/0 phases illustrative, not established firing order."
+    },
+    {
+      "id": "ValveBox1",
+      "label": "Combustion chamber / valve box 1",
+      "group": "valve_boxes",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "valve_box_radius",
+          "height": 150,
+          "origin": [
+            "valve_x",
+            "0*pitch",
+            -75
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 26,
+          "height": 51,
+          "origin": [
+            383,
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder connection boss"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "valve_box_radius-6",
+          "height": 152,
+          "origin": [
+            "valve_x",
+            "0*pitch",
+            -76
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Chamber bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 22,
+          "height": 53,
+          "origin": [
+            382,
+            "0*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Gas transfer"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+22.666829726883897",
+            "(0*pitch)+0.0",
+            -57
+          ],
+          "axis": [
+            1.0,
+            0.0,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+16.027869007880422",
+            "(0*pitch)+16.027869007880422",
+            -57
+          ],
+          "axis": [
+            0.7071067811865476,
+            0.7071067811865476,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+1.387943023592322e-15",
+            "(0*pitch)+22.666829726883897",
+            -57
+          ],
+          "axis": [
+            6.123233995736766e-17,
+            1.0,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+-16.027869007880422",
+            "(0*pitch)+16.027869007880422",
+            -57
+          ],
+          "axis": [
+            -0.7071067811865475,
+            0.7071067811865476,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+-22.666829726883897",
+            "(0*pitch)+2.775886047184644e-15",
+            -57
+          ],
+          "axis": [
+            -1.0,
+            1.2246467991473532e-16,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+-16.027869007880426",
+            "(0*pitch)+-16.027869007880422",
+            -57
+          ],
+          "axis": [
+            -0.7071067811865477,
+            -0.7071067811865475,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+-4.1638290707769655e-15",
+            "(0*pitch)+-22.666829726883897",
+            -57
+          ],
+          "axis": [
+            -1.8369701987210297e-16,
+            -1.0,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+16.02786900788042",
+            "(0*pitch)+-16.027869007880426",
+            -57
+          ],
+          "axis": [
+            0.7071067811865474,
+            -0.7071067811865477,
+            0
+          ],
+          "label": "Exhaust outlet"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Hobbs perpendicular valve-box construction and exhaust ports; scanned exterior guides radius; interior contours and apertures simplified."
+    },
+    {
+      "id": "IntakeValve1",
+      "label": "Intake valve 1",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 23,
+          "height": 3,
+          "origin": [
+            "valve_x",
+            "0*pitch",
+            54
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Valve head"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 3,
+          "height": 68,
+          "origin": [
+            "valve_x",
+            "0*pitch",
+            54
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Valve stem"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA suction intake/cam-driven exhaust; head/stem union simplified; seat angle unknown."
+    },
+    {
+      "id": "IntakeCage1",
+      "label": "Intake valve cage 1",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "valve_box_radius-6",
+          "height": 18,
+          "origin": [
+            "valve_x",
+            "0*pitch",
+            54
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 24,
+          "height": 18,
+          "origin": [
+            "valve_x",
+            "0*pitch",
+            54
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "NASA valve cages; first candidate annular support, four legs and threads omitted."
+    },
+    {
+      "id": "IntakeSpringEnvelope1",
+      "label": "Intake spring envelope 1",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 9,
+          "height": 34,
+          "origin": [
+            "valve_x",
+            "0*pitch",
+            78
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 7,
+          "height": 34,
+          "origin": [
+            "valve_x",
+            "0*pitch",
+            78
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "steel",
+      "evidence": "Space envelope only: spring wire/turn count/stiffness not reconstructed."
+    },
+    {
+      "id": "ExhaustValve1",
+      "label": "Exhaust valve 1",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 23,
+          "height": 3,
+          "origin": [
+            "valve_x",
+            "0*pitch",
+            -54
+          ],
+          "axis": [
+            0,
+            0,
+            -1
+          ],
+          "label": "Valve head"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 3,
+          "height": 68,
+          "origin": [
+            "valve_x",
+            "0*pitch",
+            -54
+          ],
+          "axis": [
+            0,
+            0,
+            -1
+          ],
+          "label": "Valve stem"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA suction intake/cam-driven exhaust; head/stem union simplified; seat angle unknown."
+    },
+    {
+      "id": "ExhaustCage1",
+      "label": "Exhaust valve cage 1",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "valve_box_radius-6",
+          "height": 18,
+          "origin": [
+            "valve_x",
+            "0*pitch",
+            -54
+          ],
+          "axis": [
+            0,
+            0,
+            -1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 24,
+          "height": 18,
+          "origin": [
+            "valve_x",
+            "0*pitch",
+            -54
+          ],
+          "axis": [
+            0,
+            0,
+            -1
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "NASA valve cages; first candidate annular support, four legs and threads omitted."
+    },
+    {
+      "id": "ExhaustSpringEnvelope1",
+      "label": "Exhaust spring envelope 1",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 9,
+          "height": 34,
+          "origin": [
+            "valve_x",
+            "0*pitch",
+            -112
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 7,
+          "height": 34,
+          "origin": [
+            "valve_x",
+            "0*pitch",
+            -112
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "steel",
+      "evidence": "Space envelope only: spring wire/turn count/stiffness not reconstructed."
+    },
+    {
+      "id": "ValveBox2",
+      "label": "Combustion chamber / valve box 2",
+      "group": "valve_boxes",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "valve_box_radius",
+          "height": 150,
+          "origin": [
+            "valve_x",
+            "1*pitch",
+            -75
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 26,
+          "height": 51,
+          "origin": [
+            383,
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder connection boss"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "valve_box_radius-6",
+          "height": 152,
+          "origin": [
+            "valve_x",
+            "1*pitch",
+            -76
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Chamber bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 22,
+          "height": 53,
+          "origin": [
+            382,
+            "1*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Gas transfer"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+22.666829726883897",
+            "(1*pitch)+0.0",
+            -57
+          ],
+          "axis": [
+            1.0,
+            0.0,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+16.027869007880422",
+            "(1*pitch)+16.027869007880422",
+            -57
+          ],
+          "axis": [
+            0.7071067811865476,
+            0.7071067811865476,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+1.387943023592322e-15",
+            "(1*pitch)+22.666829726883897",
+            -57
+          ],
+          "axis": [
+            6.123233995736766e-17,
+            1.0,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+-16.027869007880422",
+            "(1*pitch)+16.027869007880422",
+            -57
+          ],
+          "axis": [
+            -0.7071067811865475,
+            0.7071067811865476,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+-22.666829726883897",
+            "(1*pitch)+2.775886047184644e-15",
+            -57
+          ],
+          "axis": [
+            -1.0,
+            1.2246467991473532e-16,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+-16.027869007880426",
+            "(1*pitch)+-16.027869007880422",
+            -57
+          ],
+          "axis": [
+            -0.7071067811865477,
+            -0.7071067811865475,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+-4.1638290707769655e-15",
+            "(1*pitch)+-22.666829726883897",
+            -57
+          ],
+          "axis": [
+            -1.8369701987210297e-16,
+            -1.0,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+16.02786900788042",
+            "(1*pitch)+-16.027869007880426",
+            -57
+          ],
+          "axis": [
+            0.7071067811865474,
+            -0.7071067811865477,
+            0
+          ],
+          "label": "Exhaust outlet"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Hobbs perpendicular valve-box construction and exhaust ports; scanned exterior guides radius; interior contours and apertures simplified."
+    },
+    {
+      "id": "IntakeValve2",
+      "label": "Intake valve 2",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 23,
+          "height": 3,
+          "origin": [
+            "valve_x",
+            "1*pitch",
+            54
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Valve head"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 3,
+          "height": 68,
+          "origin": [
+            "valve_x",
+            "1*pitch",
+            54
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Valve stem"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA suction intake/cam-driven exhaust; head/stem union simplified; seat angle unknown."
+    },
+    {
+      "id": "IntakeCage2",
+      "label": "Intake valve cage 2",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "valve_box_radius-6",
+          "height": 18,
+          "origin": [
+            "valve_x",
+            "1*pitch",
+            54
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 24,
+          "height": 18,
+          "origin": [
+            "valve_x",
+            "1*pitch",
+            54
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "NASA valve cages; first candidate annular support, four legs and threads omitted."
+    },
+    {
+      "id": "IntakeSpringEnvelope2",
+      "label": "Intake spring envelope 2",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 9,
+          "height": 34,
+          "origin": [
+            "valve_x",
+            "1*pitch",
+            78
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 7,
+          "height": 34,
+          "origin": [
+            "valve_x",
+            "1*pitch",
+            78
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "steel",
+      "evidence": "Space envelope only: spring wire/turn count/stiffness not reconstructed."
+    },
+    {
+      "id": "ExhaustValve2",
+      "label": "Exhaust valve 2",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 23,
+          "height": 3,
+          "origin": [
+            "valve_x",
+            "1*pitch",
+            -54
+          ],
+          "axis": [
+            0,
+            0,
+            -1
+          ],
+          "label": "Valve head"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 3,
+          "height": 68,
+          "origin": [
+            "valve_x",
+            "1*pitch",
+            -54
+          ],
+          "axis": [
+            0,
+            0,
+            -1
+          ],
+          "label": "Valve stem"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA suction intake/cam-driven exhaust; head/stem union simplified; seat angle unknown."
+    },
+    {
+      "id": "ExhaustCage2",
+      "label": "Exhaust valve cage 2",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "valve_box_radius-6",
+          "height": 18,
+          "origin": [
+            "valve_x",
+            "1*pitch",
+            -54
+          ],
+          "axis": [
+            0,
+            0,
+            -1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 24,
+          "height": 18,
+          "origin": [
+            "valve_x",
+            "1*pitch",
+            -54
+          ],
+          "axis": [
+            0,
+            0,
+            -1
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "NASA valve cages; first candidate annular support, four legs and threads omitted."
+    },
+    {
+      "id": "ExhaustSpringEnvelope2",
+      "label": "Exhaust spring envelope 2",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 9,
+          "height": 34,
+          "origin": [
+            "valve_x",
+            "1*pitch",
+            -112
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 7,
+          "height": 34,
+          "origin": [
+            "valve_x",
+            "1*pitch",
+            -112
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "steel",
+      "evidence": "Space envelope only: spring wire/turn count/stiffness not reconstructed."
+    },
+    {
+      "id": "ValveBox3",
+      "label": "Combustion chamber / valve box 3",
+      "group": "valve_boxes",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "valve_box_radius",
+          "height": 150,
+          "origin": [
+            "valve_x",
+            "2*pitch",
+            -75
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 26,
+          "height": 51,
+          "origin": [
+            383,
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder connection boss"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "valve_box_radius-6",
+          "height": 152,
+          "origin": [
+            "valve_x",
+            "2*pitch",
+            -76
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Chamber bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 22,
+          "height": 53,
+          "origin": [
+            382,
+            "2*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Gas transfer"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+22.666829726883897",
+            "(2*pitch)+0.0",
+            -57
+          ],
+          "axis": [
+            1.0,
+            0.0,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+16.027869007880422",
+            "(2*pitch)+16.027869007880422",
+            -57
+          ],
+          "axis": [
+            0.7071067811865476,
+            0.7071067811865476,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+1.387943023592322e-15",
+            "(2*pitch)+22.666829726883897",
+            -57
+          ],
+          "axis": [
+            6.123233995736766e-17,
+            1.0,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+-16.027869007880422",
+            "(2*pitch)+16.027869007880422",
+            -57
+          ],
+          "axis": [
+            -0.7071067811865475,
+            0.7071067811865476,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+-22.666829726883897",
+            "(2*pitch)+2.775886047184644e-15",
+            -57
+          ],
+          "axis": [
+            -1.0,
+            1.2246467991473532e-16,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+-16.027869007880426",
+            "(2*pitch)+-16.027869007880422",
+            -57
+          ],
+          "axis": [
+            -0.7071067811865477,
+            -0.7071067811865475,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+-4.1638290707769655e-15",
+            "(2*pitch)+-22.666829726883897",
+            -57
+          ],
+          "axis": [
+            -1.8369701987210297e-16,
+            -1.0,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+16.02786900788042",
+            "(2*pitch)+-16.027869007880426",
+            -57
+          ],
+          "axis": [
+            0.7071067811865474,
+            -0.7071067811865477,
+            0
+          ],
+          "label": "Exhaust outlet"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Hobbs perpendicular valve-box construction and exhaust ports; scanned exterior guides radius; interior contours and apertures simplified."
+    },
+    {
+      "id": "IntakeValve3",
+      "label": "Intake valve 3",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 23,
+          "height": 3,
+          "origin": [
+            "valve_x",
+            "2*pitch",
+            54
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Valve head"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 3,
+          "height": 68,
+          "origin": [
+            "valve_x",
+            "2*pitch",
+            54
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Valve stem"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA suction intake/cam-driven exhaust; head/stem union simplified; seat angle unknown."
+    },
+    {
+      "id": "IntakeCage3",
+      "label": "Intake valve cage 3",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "valve_box_radius-6",
+          "height": 18,
+          "origin": [
+            "valve_x",
+            "2*pitch",
+            54
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 24,
+          "height": 18,
+          "origin": [
+            "valve_x",
+            "2*pitch",
+            54
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "NASA valve cages; first candidate annular support, four legs and threads omitted."
+    },
+    {
+      "id": "IntakeSpringEnvelope3",
+      "label": "Intake spring envelope 3",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 9,
+          "height": 34,
+          "origin": [
+            "valve_x",
+            "2*pitch",
+            78
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 7,
+          "height": 34,
+          "origin": [
+            "valve_x",
+            "2*pitch",
+            78
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "steel",
+      "evidence": "Space envelope only: spring wire/turn count/stiffness not reconstructed."
+    },
+    {
+      "id": "ExhaustValve3",
+      "label": "Exhaust valve 3",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 23,
+          "height": 3,
+          "origin": [
+            "valve_x",
+            "2*pitch",
+            -54
+          ],
+          "axis": [
+            0,
+            0,
+            -1
+          ],
+          "label": "Valve head"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 3,
+          "height": 68,
+          "origin": [
+            "valve_x",
+            "2*pitch",
+            -54
+          ],
+          "axis": [
+            0,
+            0,
+            -1
+          ],
+          "label": "Valve stem"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA suction intake/cam-driven exhaust; head/stem union simplified; seat angle unknown."
+    },
+    {
+      "id": "ExhaustCage3",
+      "label": "Exhaust valve cage 3",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "valve_box_radius-6",
+          "height": 18,
+          "origin": [
+            "valve_x",
+            "2*pitch",
+            -54
+          ],
+          "axis": [
+            0,
+            0,
+            -1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 24,
+          "height": 18,
+          "origin": [
+            "valve_x",
+            "2*pitch",
+            -54
+          ],
+          "axis": [
+            0,
+            0,
+            -1
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "NASA valve cages; first candidate annular support, four legs and threads omitted."
+    },
+    {
+      "id": "ExhaustSpringEnvelope3",
+      "label": "Exhaust spring envelope 3",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 9,
+          "height": 34,
+          "origin": [
+            "valve_x",
+            "2*pitch",
+            -112
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 7,
+          "height": 34,
+          "origin": [
+            "valve_x",
+            "2*pitch",
+            -112
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "steel",
+      "evidence": "Space envelope only: spring wire/turn count/stiffness not reconstructed."
+    },
+    {
+      "id": "ValveBox4",
+      "label": "Combustion chamber / valve box 4",
+      "group": "valve_boxes",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "valve_box_radius",
+          "height": 150,
+          "origin": [
+            "valve_x",
+            "3*pitch",
+            -75
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 26,
+          "height": 51,
+          "origin": [
+            383,
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Cylinder connection boss"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": "valve_box_radius-6",
+          "height": 152,
+          "origin": [
+            "valve_x",
+            "3*pitch",
+            -76
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Chamber bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 22,
+          "height": 53,
+          "origin": [
+            382,
+            "3*pitch",
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "label": "Gas transfer"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+22.666829726883897",
+            "(3*pitch)+0.0",
+            -57
+          ],
+          "axis": [
+            1.0,
+            0.0,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+16.027869007880422",
+            "(3*pitch)+16.027869007880422",
+            -57
+          ],
+          "axis": [
+            0.7071067811865476,
+            0.7071067811865476,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+1.387943023592322e-15",
+            "(3*pitch)+22.666829726883897",
+            -57
+          ],
+          "axis": [
+            6.123233995736766e-17,
+            1.0,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+-16.027869007880422",
+            "(3*pitch)+16.027869007880422",
+            -57
+          ],
+          "axis": [
+            -0.7071067811865475,
+            0.7071067811865476,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+-22.666829726883897",
+            "(3*pitch)+2.775886047184644e-15",
+            -57
+          ],
+          "axis": [
+            -1.0,
+            1.2246467991473532e-16,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+-16.027869007880426",
+            "(3*pitch)+-16.027869007880422",
+            -57
+          ],
+          "axis": [
+            -0.7071067811865477,
+            -0.7071067811865475,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+-4.1638290707769655e-15",
+            "(3*pitch)+-22.666829726883897",
+            -57
+          ],
+          "axis": [
+            -1.8369701987210297e-16,
+            -1.0,
+            0
+          ],
+          "label": "Exhaust outlet"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 3,
+          "height": 20,
+          "origin": [
+            "valve_x+16.02786900788042",
+            "(3*pitch)+-16.027869007880426",
+            -57
+          ],
+          "axis": [
+            0.7071067811865474,
+            -0.7071067811865477,
+            0
+          ],
+          "label": "Exhaust outlet"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "Hobbs perpendicular valve-box construction and exhaust ports; scanned exterior guides radius; interior contours and apertures simplified."
+    },
+    {
+      "id": "IntakeValve4",
+      "label": "Intake valve 4",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 23,
+          "height": 3,
+          "origin": [
+            "valve_x",
+            "3*pitch",
+            54
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Valve head"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 3,
+          "height": 68,
+          "origin": [
+            "valve_x",
+            "3*pitch",
+            54
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Valve stem"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA suction intake/cam-driven exhaust; head/stem union simplified; seat angle unknown."
+    },
+    {
+      "id": "IntakeCage4",
+      "label": "Intake valve cage 4",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "valve_box_radius-6",
+          "height": 18,
+          "origin": [
+            "valve_x",
+            "3*pitch",
+            54
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 24,
+          "height": 18,
+          "origin": [
+            "valve_x",
+            "3*pitch",
+            54
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "NASA valve cages; first candidate annular support, four legs and threads omitted."
+    },
+    {
+      "id": "IntakeSpringEnvelope4",
+      "label": "Intake spring envelope 4",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 9,
+          "height": 34,
+          "origin": [
+            "valve_x",
+            "3*pitch",
+            78
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 7,
+          "height": 34,
+          "origin": [
+            "valve_x",
+            "3*pitch",
+            78
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "steel",
+      "evidence": "Space envelope only: spring wire/turn count/stiffness not reconstructed."
+    },
+    {
+      "id": "ExhaustValve4",
+      "label": "Exhaust valve 4",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 23,
+          "height": 3,
+          "origin": [
+            "valve_x",
+            "3*pitch",
+            -54
+          ],
+          "axis": [
+            0,
+            0,
+            -1
+          ],
+          "label": "Valve head"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 3,
+          "height": 68,
+          "origin": [
+            "valve_x",
+            "3*pitch",
+            -54
+          ],
+          "axis": [
+            0,
+            0,
+            -1
+          ],
+          "label": "Valve stem"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA suction intake/cam-driven exhaust; head/stem union simplified; seat angle unknown."
+    },
+    {
+      "id": "ExhaustCage4",
+      "label": "Exhaust valve cage 4",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "valve_box_radius-6",
+          "height": 18,
+          "origin": [
+            "valve_x",
+            "3*pitch",
+            -54
+          ],
+          "axis": [
+            0,
+            0,
+            -1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 24,
+          "height": 18,
+          "origin": [
+            "valve_x",
+            "3*pitch",
+            -54
+          ],
+          "axis": [
+            0,
+            0,
+            -1
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "NASA valve cages; first candidate annular support, four legs and threads omitted."
+    },
+    {
+      "id": "ExhaustSpringEnvelope4",
+      "label": "Exhaust spring envelope 4",
+      "group": "valves",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 9,
+          "height": 34,
+          "origin": [
+            "valve_x",
+            "3*pitch",
+            -112
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 7,
+          "height": 34,
+          "origin": [
+            "valve_x",
+            "3*pitch",
+            -112
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "steel",
+      "evidence": "Space envelope only: spring wire/turn count/stiffness not reconstructed."
+    },
+    {
+      "id": "Camshaft",
+      "label": "Exhaust camshaft",
+      "group": "camshafts",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "cam_radius",
+          "height": "3*pitch+140",
+          "origin": [
+            350,
+            -70,
+            -108
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA chain-driven exhaust camshaft. True cam lobes and event timing not modelled."
+    },
+    {
+      "id": "IgnitionShaft",
+      "label": "Ignition breaker camshaft",
+      "group": "camshafts",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 5,
+          "height": "3*pitch+140",
+          "origin": [
+            393,
+            -70,
+            -73
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA ignition shaft; cam profiles, spur gears and timing adjustment omitted."
+    },
+    {
+      "id": "Rocker1",
+      "label": "Exhaust rocker arm 1",
+      "group": "camshafts",
+      "features": [
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 85,
+          "width": 12,
+          "height": 8,
+          "origin": [
+            345,
+            "0*pitch-6",
+            -120
+          ],
+          "label": "Block"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 13,
+          "height": 12,
+          "origin": [
+            357,
+            "0*pitch-6",
+            -116
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA cam-driven exhaust rocker; flat lever envelope, pivot clearance and roller contact unresolved."
+    },
+    {
+      "id": "Rocker2",
+      "label": "Exhaust rocker arm 2",
+      "group": "camshafts",
+      "features": [
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 85,
+          "width": 12,
+          "height": 8,
+          "origin": [
+            345,
+            "1*pitch-6",
+            -120
+          ],
+          "label": "Block"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 13,
+          "height": 12,
+          "origin": [
+            357,
+            "1*pitch-6",
+            -116
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA cam-driven exhaust rocker; flat lever envelope, pivot clearance and roller contact unresolved."
+    },
+    {
+      "id": "Rocker3",
+      "label": "Exhaust rocker arm 3",
+      "group": "camshafts",
+      "features": [
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 85,
+          "width": 12,
+          "height": 8,
+          "origin": [
+            345,
+            "2*pitch-6",
+            -120
+          ],
+          "label": "Block"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 13,
+          "height": 12,
+          "origin": [
+            357,
+            "2*pitch-6",
+            -116
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA cam-driven exhaust rocker; flat lever envelope, pivot clearance and roller contact unresolved."
+    },
+    {
+      "id": "Rocker4",
+      "label": "Exhaust rocker arm 4",
+      "group": "camshafts",
+      "features": [
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 85,
+          "width": 12,
+          "height": 8,
+          "origin": [
+            345,
+            "3*pitch-6",
+            -120
+          ],
+          "label": "Block"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 13,
+          "height": 12,
+          "origin": [
+            357,
+            "3*pitch-6",
+            -116
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA cam-driven exhaust rocker; flat lever envelope, pivot clearance and roller contact unresolved."
+    },
+    {
+      "id": "CrankTimingDisk",
+      "label": "Timing sprocket - 6-tooth pitch envelope",
+      "group": "timing",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 27,
+          "height": 10,
+          "origin": [
+            0,
+            -81,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 14.2,
+          "height": 10,
+          "origin": [
+            0,
+            -81,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA 6 teeth; disk has no tooth profile and is not a usable sprocket."
+    },
+    {
+      "id": "CamTimingDisk",
+      "label": "Timing sprocket - 12-tooth pitch envelope",
+      "group": "timing",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 54,
+          "height": 10,
+          "origin": [
+            350,
+            -81,
+            -108
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 9.2,
+          "height": 10,
+          "origin": [
+            350,
+            -81,
+            -108
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA 12 teeth; chosen radius ratio 2:1; chain and tooth flanks omitted."
+    },
+    {
+      "id": "Flywheel",
+      "label": "Engine flywheel",
+      "group": "flywheel",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "flywheel_radius",
+          "height": 16,
+          "origin": [
+            0,
+            "3*pitch+62",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 14.2,
+          "height": 16,
+          "origin": [
+            0,
+            "3*pitch+62",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Through bore"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": "flywheel_radius",
+          "height": 8,
+          "origin": [
+            0,
+            "3*pitch+58",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 14.2,
+          "height": 24,
+          "origin": [
+            0,
+            "3*pitch+56",
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Cylinder"
+        }
+      ],
+      "material": "cast_iron",
+      "evidence": "NASA power train; approximate scan silhouette, diameter inferred. Restored engine flywheel history differs from lost original."
+    },
+    {
+      "id": "IntakeManifold",
+      "label": "Intake manifold",
+      "group": "induction",
+      "features": [
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 80,
+          "width": "3*pitch+90",
+          "height": 20,
+          "origin": [
+            390,
+            -45,
+            75
+          ],
+          "label": "Block"
+        },
+        {
+          "primitive": "box",
+          "operation": "cut",
+          "length": 68,
+          "width": "3*pitch+78",
+          "height": 8,
+          "origin": [
+            396,
+            -39,
+            81
+          ],
+          "label": "Intake gallery"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 25,
+          "height": 22,
+          "origin": [
+            "valve_x",
+            "0*pitch",
+            74
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Intake opening"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 25,
+          "height": 22,
+          "origin": [
+            "valve_x",
+            "1*pitch",
+            74
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Intake opening"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 25,
+          "height": 22,
+          "origin": [
+            "valve_x",
+            "2*pitch",
+            74
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Intake opening"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 25,
+          "height": 22,
+          "origin": [
+            "valve_x",
+            "3*pitch",
+            74
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Intake opening"
+        }
+      ],
+      "material": "aluminium",
+      "evidence": "NASA combustion chamber and scan top manifold; rectangular shell/ports are teaching approximations."
+    },
+    {
+      "id": "FuelMixer",
+      "label": "Surface fuel-mixing chamber and air inlet",
+      "group": "induction",
+      "features": [
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 170,
+          "width": "3*pitch+80",
+          "height": 18,
+          "origin": [
+            160,
+            -40,
+            110
+          ],
+          "label": "Block"
+        },
+        {
+          "primitive": "box",
+          "operation": "cut",
+          "length": 156,
+          "width": "3*pitch+66",
+          "height": 11,
+          "origin": [
+            167,
+            -33,
+            118
+          ],
+          "label": "Mixing chamber"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 25,
+          "height": 65,
+          "origin": [
+            245,
+            "1.5*pitch",
+            112
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 20,
+          "height": 67,
+          "origin": [
+            245,
+            "1.5*pitch",
+            111
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Open air inlet"
+        }
+      ],
+      "material": "aluminium",
+      "evidence": "NASA heated surface carburetor role; baffles, metering connection and transfer passage unresolved."
+    },
+    {
+      "id": "WaterPort1",
+      "label": "Water outlet connector 1",
+      "group": "cooling",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 16,
+          "height": 42,
+          "origin": [
+            310,
+            -60,
+            112
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 12,
+          "height": 42,
+          "origin": [
+            310,
+            -60,
+            112
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "bronze",
+      "evidence": "NASA two upper water outlets; scan routing pipes omitted, connector dimensions inferred."
+    },
+    {
+      "id": "WaterPort2",
+      "label": "Water outlet connector 2",
+      "group": "cooling",
+      "features": [
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 16,
+          "height": 42,
+          "origin": [
+            310,
+            "3*pitch+52",
+            112
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 12,
+          "height": 42,
+          "origin": [
+            310,
+            "3*pitch+52",
+            112
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Through bore"
+        }
+      ],
+      "material": "bronze",
+      "evidence": "NASA two upper water outlets; scan routing pipes omitted, connector dimensions inferred."
+    },
+    {
+      "id": "OilPump",
+      "label": "Oil-pump housing envelope",
+      "group": "lubrication",
+      "features": [
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 60,
+          "width": 55,
+          "height": 48,
+          "origin": [
+            200,
+            -65,
+            -172
+          ],
+          "label": "Block"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "add",
+          "radius": 18,
+          "height": 12,
+          "origin": [
+            230,
+            -37.5,
+            -124
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "label": "Cylinder"
+        }
+      ],
+      "material": "steel",
+      "evidence": "Hobbs lubrication pump; internal gears, oil galleries and drive unresolved."
+    },
+    {
+      "id": "Magneto",
+      "label": "Low-tension ignition generator envelope",
+      "group": "ignition",
+      "features": [
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 95,
+          "width": 90,
+          "height": 90,
+          "origin": [
+            240,
+            "3*pitch+145",
+            -140
+          ],
+          "label": "Block"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 95,
+          "width": 90,
+          "height": 18,
+          "origin": [
+            240,
+            "3*pitch+145",
+            -38
+          ],
+          "label": "Block"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 18,
+          "width": 90,
+          "height": 102,
+          "origin": [
+            240,
+            "3*pitch+145",
+            -140
+          ],
+          "label": "Block"
+        },
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 18,
+          "width": 90,
+          "height": 102,
+          "origin": [
+            317,
+            "3*pitch+145",
+            -140
+          ],
+          "label": "Block"
+        }
+      ],
+      "material": "steel",
+      "evidence": "NASA electrical system; U-magnet housing approximation. Coils, friction wheel and mounting link not reconstructed; pose provisional."
+    },
+    {
+      "id": "IgnitionBus",
+      "label": "Ignition bus bar",
+      "group": "ignition",
+      "features": [
+        {
+          "primitive": "box",
+          "operation": "add",
+          "length": 4,
+          "width": "3*pitch+30",
+          "height": 8,
+          "origin": [
+            "valve_x+valve_box_radius+5",
+            -15,
+            -15
+          ],
+          "label": "Block"
+        }
+      ],
+      "material": "bronze",
+      "evidence": "NASA low-tension bus; individual insulated contacts and leads omitted."
+    }
+  ],
+  "assumptions": [
+    "Mesh cm scale provisional for this cropped file.",
+    "Hidden parts constructed from references with estimated dimensions.",
+    "Static TDC/BDC pose, not measured firing phases.",
+    "No gear teeth, timing chain, real cam profiles, spring wire, galleries, threads or full mounting interfaces."
+  ]
+}

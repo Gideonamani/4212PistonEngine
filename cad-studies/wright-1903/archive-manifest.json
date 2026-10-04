@@ -1,0 +1,11 @@
+{
+  "path": "build/wright-reconstruction/wright-reconstruction-20261004.zip",
+  "bytes": 36209811,
+  "sha256": "12d6900160dd314a4d816b3e2198c204f35661247367ee6a14199e413a35fbf5",
+  "file_count": 62,
+  "scope": "Private review candidate, not a student viewer release",
+  "drive_id": "1nkqTZnpA9sSfTJO9oHQIe0uIbIk-AZtp",
+  "drive_url": "https://drive.google.com/file/d/1nkqTZnpA9sSfTJO9oHQIe0uIbIk-AZtp/view?usp=drivesdk",
+  "parent_folder_id": "1V-6yZX2FZ-GQDS2yF5hDJGbXjloEVrbJ",
+  "cloud_verification": "Connector readback: matching 36209811 bytes, expected parent and owner-only permissions. Local SHA-256 recorded; remote content hash not exposed by connector."
+}

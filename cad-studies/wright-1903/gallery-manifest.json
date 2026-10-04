@@ -1,0 +1,18 @@
+{
+  "files": {
+    "component-sheet.jpg": {
+      "bytes": 348796,
+      "sha256": "90a1ce859f2dee73d611b8da8d39669b2df2ba3f8717327fbc036b793c7f3c6a"
+    },
+    "component-tour.mp4": {
+      "bytes": 697122,
+      "sha256": "53e1516b54587c4bd80b8dc0f29441ae70ce29ecc35438a96126b202b8bdab67"
+    },
+    "index.html": {
+      "bytes": 4968,
+      "sha256": "c0aa63e70a4db4451b9ecbdeed11603f9156f04cfe152a938535dacc8ad41740"
+    }
+  },
+  "video_seconds": 48,
+  "scope": "Static component identification plates; no mechanism simulation"
+}
