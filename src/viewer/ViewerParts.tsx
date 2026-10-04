@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Focus, LoaderCircle, Move3D, Pause, Play, RotateCcw, TriangleAlert } from 'lucide-react';
+import { WHEEL_ZOOM_HINT, viewerHint } from './core/interaction.mjs';
 import { offsetAfterKey } from './core/keyboard-orbit.mjs';
 import { IconButton } from '../components/ui';
 import type { ModelViewerState } from './useModelViewer';
@@ -9,6 +10,11 @@ import type { ModelViewerState } from './useModelViewer';
 export function UnknownModel({ modelId }: { modelId: string }) {
   return <div className="flex min-h-52 items-center justify-center rounded-xl border border-rose-400/30 bg-rose-950/20 p-5 text-sm text-rose-200">Unknown 3D model: {modelId}</div>;
 }
+
+const holdingByTouch = () => typeof window !== 'undefined' && Boolean(window.matchMedia?.('(pointer: coarse)').matches);
+
+/** The "how do I move this" line for the viewer's current tool and the learner's device. */
+export const useViewerHint = (viewer: ModelViewerState) => viewerHint({ mode: viewer.interactionMode, touch: holdingByTouch(), wheelZoom: viewer.wheelZoom });
 
 /** The WebGL canvas with its keyboard controls and the loading and error cover. Fills its positioned parent. */
 export function ModelCanvas({ viewer }: { viewer: ModelViewerState }) {
@@ -32,7 +38,7 @@ export function ModelCanvas({ viewer }: { viewer: ModelViewerState }) {
       ref={mountRef}
       role="application"
       tabIndex={0}
-      aria-label={`${definition.label}. Drag to rotate, pinch or scroll to zoom. Arrow keys rotate, plus and minus zoom, and Home resets the view.`}
+      aria-label={`${definition.label}. Drag to rotate, ${viewer.wheelZoom === 'always' ? 'pinch or scroll to zoom' : 'pinch to zoom, or hold Control and scroll'}. Arrow keys rotate, plus and minus zoom, and Home resets the view.`}
       onKeyDown={onKeyDown}
       className="absolute inset-0 touch-none outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-teal-300"
     />
@@ -50,7 +56,7 @@ export function ModelCanvas({ viewer }: { viewer: ModelViewerState }) {
 
 /** The title strip over the canvas: model eyebrow and hint on the left, round tool buttons on the right. */
 export function ViewerHeader({ viewer, children }: { viewer: ModelViewerState; children?: React.ReactNode }) {
-  const hint = viewer.interactionMode === 'pan' ? 'Drag to pan · Pinch to zoom' : 'Drag to rotate · Pinch to zoom · Two-finger drag to pan';
+  const hint = useViewerHint(viewer);
   return <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-wrap items-start justify-between gap-x-2 bg-gradient-to-b from-[#061216]/95 via-[#061216]/55 to-transparent p-3 pb-12">
     {/* The title takes what the 44 px buttons leave; on a very narrow screen the buttons drop below it instead of squeezing it. */}
     <div className="min-w-0 flex-1 basis-28 pr-2">
@@ -59,9 +65,22 @@ export function ViewerHeader({ viewer, children }: { viewer: ModelViewerState; c
     </div>
     <div className="pointer-events-auto -mr-1 -mt-1 ml-auto flex shrink-0 flex-nowrap justify-end">
       {children}
-      <ToolbarButton label={viewer.interactionMode === 'pan' ? 'Return to rotate mode' : 'Pan model'} active={viewer.interactionMode === 'pan'} onClick={viewer.togglePan}><Move3D className="h-4 w-4" /></ToolbarButton>
+      <PanToggle viewer={viewer} />
       <ToolbarButton label="Reset and centre 3D view" onClick={viewer.resetView}><RotateCcw className="h-4 w-4" /></ToolbarButton>
     </div>
+  </div>;
+}
+
+/** Switches a one-finger (or left-button) drag between rotating the model and panning it. */
+export function PanToggle({ viewer }: { viewer: ModelViewerState }) {
+  return <ToolbarButton label={viewer.interactionMode === 'pan' ? 'Return to rotate mode' : 'Pan model'} active={viewer.interactionMode === 'pan'} onClick={viewer.togglePan}><Move3D className="h-4 w-4" /></ToolbarButton>;
+}
+
+/** Tells a mouse user, for a moment, why the wheel scrolled the page instead of zooming the model. Only a lesson viewer ever shows it. */
+export function WheelZoomHint({ viewer }: { viewer: ModelViewerState }) {
+  if (!viewer.wheelHint) return null;
+  return <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-3 z-20 flex justify-center px-3">
+    <span className="rounded-full border border-teal-400/40 bg-[#07161b]/90 px-3 py-1.5 text-[11px] font-semibold text-teal-100 shadow-lg">{WHEEL_ZOOM_HINT}</span>
   </div>;
 }
 

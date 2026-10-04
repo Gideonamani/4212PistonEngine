@@ -3,6 +3,7 @@ import { modelsById } from '../data/modelRegistry';
 import { createModelSession } from './adapters';
 import { createViewerRuntime } from './core/runtime';
 import { viewKey } from './core/view-state.mjs';
+import type { WheelZoom } from './core/interaction.mjs';
 import type { InteractionMode, ViewUpdate, ViewerProfile, ViewerRuntime, ViewerSession, ViewerSnapshot } from './types';
 
 /**
@@ -17,7 +18,11 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
   const [loadState, setLoadState] = useState<ViewerSnapshot>({ status: 'Preparing 3D viewer…', progress: 0 });
   const [error, setError] = useState('');
   const [interactionMode, setInteractionMode] = useState<InteractionMode>('orbit');
+  const [wheelHint, setWheelHint] = useState(false);
+  const wheelHintTimer = useRef(0);
   const [, refresh] = useReducer((count: number) => count + 1, 0);
+  // Inside a lesson the page scrolls, so the mouse wheel zooms only with Ctrl or Cmd held; Explore owns the screen and zooms freely.
+  const wheelZoom: WheelZoom = profile === 'explore' ? 'always' : 'modifier';
 
   const viewRef = useRef(view);
   viewRef.current = view;
@@ -34,9 +39,18 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
     const mount = mountRef.current;
     if (!mount || !definition) return;
     const controller = new AbortController();
-    const runtime = createViewerRuntime(mount);
+    const runtime = createViewerRuntime(mount, {
+      wheelZoom,
+      onWheelPassed: () => {
+        setWheelHint(true);
+        window.clearTimeout(wheelHintTimer.current);
+        wheelHintTimer.current = window.setTimeout(() => setWheelHint(false), 1800);
+      },
+    });
     runtimeRef.current = runtime;
     setError('');
+    // A fresh runtime starts in orbit mode, so the toggle must too (a lesson can move to another model while Pan is on).
+    setInteractionMode('orbit');
     setLoadState({ status: 'Preparing 3D viewer…', progress: 0 });
     let disposed = false;
     appliedViewKey.current = viewKey(viewRef.current);
@@ -61,13 +75,14 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
 
     return () => {
       disposed = true;
+      window.clearTimeout(wheelHintTimer.current);
       controller.abort();
       sessionRef.current?.dispose();
       sessionRef.current = undefined;
       runtime.dispose();
       runtimeRef.current = undefined;
     };
-  }, [definition, modelId, profile]);
+  }, [definition, modelId, profile, wheelZoom]);
 
   const currentViewKey = viewKey(view);
   useEffect(() => {
@@ -84,6 +99,9 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
     snapshot: session?.snapshot() || loadState,
     error,
     interactionMode,
+    wheelZoom,
+    /** True for a moment after a wheel turn was left to the page, so the viewer can explain that zooming needs Ctrl or Cmd. */
+    wheelHint,
     togglePan() {
       const next: InteractionMode = interactionMode === 'pan' ? 'orbit' : 'pan';
       setInteractionMode(next);
