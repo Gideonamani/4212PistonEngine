@@ -43,3 +43,16 @@
 .border-teal-glow {
   border-color: rgba(20, 184, 166, 0.4);
 }
+
+/*
+ * The lesson 3D viewer's height. --lesson-area is the lesson's scroll area in px, published by useScrollArea on the element that scrolls.
+ *   stacked  at most 75% of the area, so a finger can always land on lesson text to scroll (the canvas itself keeps touch-none)
+ *   side     the viewer's own column, as tall as the area less a little breathing room
+ * 100svh is only the fallback for the instant before the area is measured.
+ */
+.lesson-viewer-stacked { height: min(19rem, calc(var(--lesson-area, 100svh) * 0.75)); }
+.lesson-viewer-stacked-immersive { height: calc(var(--lesson-area, 100svh) * 0.6); }
+.lesson-media-side { height: calc(var(--lesson-area, 100svh) - 1rem); }
+@media (min-width: 640px) {
+  .lesson-viewer-stacked { height: min(22rem, calc(var(--lesson-area, 100svh) * 0.75)); }
+}
