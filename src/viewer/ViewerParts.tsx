@@ -18,7 +18,10 @@ const holdingByTouch = () => typeof window !== 'undefined' && Boolean(window.mat
 /** The "how do I move this" line for the viewer's current tool and the learner's device. */
 export const useViewerHint = (viewer: ModelViewerState) => viewerHint({ mode: viewer.interactionMode, touch: holdingByTouch(), wheelZoom: viewer.wheelZoom });
 
-/** The WebGL canvas with its keyboard controls and the loading and error cover. Fills its positioned parent. */
+/**
+ * The WebGL canvas with its keyboard controls and the loading and error cover. Fills its positioned parent. Both covers let clicks
+ * through to the toolbar over the canvas: a model that fails to load should not also take Reset and Explore away.
+ */
 export function ModelCanvas({ viewer }: { viewer: ModelViewerState }) {
   const { definition, mountRef, runtimeRef, session, snapshot, error } = viewer;
   const onKeyDown = (event: React.KeyboardEvent) => {
@@ -52,7 +55,7 @@ export function ModelCanvas({ viewer }: { viewer: ModelViewerState }) {
         {snapshot.progress !== undefined && <div className="mt-3 h-1.5 w-44 overflow-hidden rounded-full bg-slate-800"><div className="h-full rounded-full bg-teal-400 transition-[width]" style={{ width: `${snapshot.progress}%` }} /></div>}
       </div>
     </div>}
-    {error && <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-[#071418] p-6 text-center text-rose-200" role="alert"><TriangleAlert className="h-7 w-7" /><p className="mt-2 max-w-sm text-xs leading-relaxed">{error}</p></div>}
+    {error && <div className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center bg-[#071418] p-6 text-center text-rose-200" role="alert"><TriangleAlert className="h-7 w-7" /><p className="mt-2 max-w-sm text-xs leading-relaxed">{error}</p></div>}
   </>;
 }
 

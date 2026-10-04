@@ -6,6 +6,9 @@ import { centreOf, openViewerStep, scrollAreaOf } from './viewer-helpers';
 
 test('the lesson viewer has a pan toggle, and the hint follows it', async ({ page }) => {
   const { viewer } = await openViewerStep(page);
+  // The model download is refused, so the viewer shows its load-error cover. The toolbar must still work underneath it (and waiting for
+  // the cover first keeps the test from racing it).
+  await expect(viewer.getByRole('alert')).toBeVisible({ timeout: 30_000 });
   const pan = viewer.getByRole('button', { name: 'Pan model' });
   await expect(pan).toHaveAttribute('aria-pressed', 'false');
   await expect(viewer.getByText(/Drag to rotate/)).toBeVisible();
