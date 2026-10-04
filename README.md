@@ -22,6 +22,8 @@ The student-facing site now uses a responsive React/Vite shell for Explore, Lear
 | `web/` | Everything served as-is (Vite `publicDir`): lesson packs (`*-lessons.json`) listed in `lessons-manifest.json`, model contracts and motion profiles, `thumbnails/` and `lesson-media/` images, and `schema/`. GLB models are not committed; they live on Drive (see `AGENTS.md`). |
 | `scripts/` | The tests (`test_*.mjs`, `test_*.py`, run by `npm test` and the Pages workflow) and the Python pipeline that exports, validates and publishes the CAD-derived assets. |
 | `cad-studies/` | Per-study manifests and verification records; native FreeCAD/Blender files stay local or on Drive. |
+| `cad_pipeline/` | The reconstruction pipeline: a reviewed JSON part specification becomes editable FreeCAD geometry, a STEP export and named Blender scenes, with its own tests. It runs in FreeCAD's and Blender's bundled Python (commands in its README) and is not part of CI. |
+| `.agents/` | Agent skills for engineering reconstruction (`engineering-research`, `image-to-cad`, `text-to-cad`, `mesh-to-cad`, `cad-generation`, `cad-validation`, `cad-to-blender`), routed from `AGENTS.md`. |
 | `data/`, `releases/` | Evidence, audit and release records produced by the pipeline. |
 | `docs/` | Design notes, decisions, validation records and the roadmap. |
 
