@@ -1,0 +1,309 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "check": "Cylinder 1 nominal bore",
+      "passed": true,
+      "target_diameter_mm": 101.6
+    },
+    {
+      "check": "Sleeve1 / Piston1 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Piston1 / WristPin1 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "BigEnd1 / Crankshaft no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "LittleEnd1 / WristPin1 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Crankcase / Sleeve1 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Sleeve1 / ValveBox1 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "IntakeManifold / ValveBox1 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring1_1 / Piston1 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring1_1 / Sleeve1 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring1_2 / Piston1 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring1_2 / Sleeve1 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring1_3 / Piston1 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring1_3 / Sleeve1 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Cylinder 2 nominal bore",
+      "passed": true,
+      "target_diameter_mm": 101.6
+    },
+    {
+      "check": "Sleeve2 / Piston2 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Piston2 / WristPin2 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "BigEnd2 / Crankshaft no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "LittleEnd2 / WristPin2 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Crankcase / Sleeve2 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Sleeve2 / ValveBox2 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "IntakeManifold / ValveBox2 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring2_1 / Piston2 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring2_1 / Sleeve2 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring2_2 / Piston2 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring2_2 / Sleeve2 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring2_3 / Piston2 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring2_3 / Sleeve2 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Cylinder 3 nominal bore",
+      "passed": true,
+      "target_diameter_mm": 101.6
+    },
+    {
+      "check": "Sleeve3 / Piston3 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Piston3 / WristPin3 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "BigEnd3 / Crankshaft no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "LittleEnd3 / WristPin3 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Crankcase / Sleeve3 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Sleeve3 / ValveBox3 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "IntakeManifold / ValveBox3 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring3_1 / Piston3 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring3_1 / Sleeve3 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring3_2 / Piston3 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring3_2 / Sleeve3 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring3_3 / Piston3 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring3_3 / Sleeve3 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Cylinder 4 nominal bore",
+      "passed": true,
+      "target_diameter_mm": 101.6
+    },
+    {
+      "check": "Sleeve4 / Piston4 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Piston4 / WristPin4 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "BigEnd4 / Crankshaft no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "LittleEnd4 / WristPin4 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Crankcase / Sleeve4 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Sleeve4 / ValveBox4 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "IntakeManifold / ValveBox4 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring4_1 / Piston4 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring4_1 / Sleeve4 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring4_2 / Piston4 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring4_2 / Sleeve4 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring4_3 / Piston4 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Ring4_3 / Sleeve4 no solid overlap",
+      "passed": true,
+      "intersection_volume_mm3": 0.0
+    },
+    {
+      "check": "Reopened engine bore regeneration",
+      "passed": true,
+      "changed_bore_mm": 111.6
+    },
+    {
+      "check": "Piston follows changed bore",
+      "passed": true,
+      "diameter_change_mm": 10.00111912061918
+    },
+    {
+      "check": "Split ring follows changed bore",
+      "passed": true,
+      "outer_diameter_mm": 111.50000000000003
+    }
+  ],
+  "scope": "Saved geometry: four bores, selected internal/mating clearances and disposable bore change. No complete assembly-motion or historical fidelity certification.",
+  "unresolved": [
+    "Actual cam/rocker contacts",
+    "Generator/flywheel friction drive",
+    "Rod socket fastening details",
+    "Cooling/induction/oil routing",
+    "Casting webs/bearing supports",
+    "Threads, timing chain and spring wire"
+  ]
+}

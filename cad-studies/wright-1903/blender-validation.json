@@ -1,0 +1,105 @@
+{
+  "passed": true,
+  "parts": 83,
+  "blender_reopened": true,
+  "glb_id_roundtrip": true,
+  "bounds_roundtrip_error_m": 0.0,
+  "tour": [
+    {
+      "group": "overview",
+      "frame": 1,
+      "visible_parts": 83,
+      "title": "Major components - assembly"
+    },
+    {
+      "group": "crankcase",
+      "frame": 73,
+      "visible_parts": 1,
+      "title": "Crankcase & water jacket"
+    },
+    {
+      "group": "cover",
+      "frame": 145,
+      "visible_parts": 1,
+      "title": "Sheet-steel crankcase cover"
+    },
+    {
+      "group": "cylinders",
+      "frame": 217,
+      "visible_parts": 4,
+      "title": "Four cylinder liners"
+    },
+    {
+      "group": "pistons",
+      "frame": 289,
+      "visible_parts": 20,
+      "title": "Cast-iron pistons & wrist pins"
+    },
+    {
+      "group": "rods",
+      "frame": 361,
+      "visible_parts": 12,
+      "title": "Built-up connecting rods"
+    },
+    {
+      "group": "crankshaft",
+      "frame": 433,
+      "visible_parts": 1,
+      "title": "Four-throw crankshaft"
+    },
+    {
+      "group": "valve_boxes",
+      "frame": 505,
+      "visible_parts": 4,
+      "title": "Combustion chambers / valve boxes"
+    },
+    {
+      "group": "valves",
+      "frame": 577,
+      "visible_parts": 24,
+      "title": "Intake & exhaust valves"
+    },
+    {
+      "group": "camshafts",
+      "frame": 649,
+      "visible_parts": 6,
+      "title": "Exhaust & ignition camshafts"
+    },
+    {
+      "group": "timing",
+      "frame": 721,
+      "visible_parts": 2,
+      "title": "Timing sprocket envelopes"
+    },
+    {
+      "group": "flywheel",
+      "frame": 793,
+      "visible_parts": 1,
+      "title": "Engine flywheel"
+    },
+    {
+      "group": "induction",
+      "frame": 865,
+      "visible_parts": 2,
+      "title": "Intake & fuel mixing system"
+    },
+    {
+      "group": "cooling",
+      "frame": 937,
+      "visible_parts": 2,
+      "title": "Water outlet connectors"
+    },
+    {
+      "group": "lubrication",
+      "frame": 1009,
+      "visible_parts": 1,
+      "title": "Oil-pump envelope"
+    },
+    {
+      "group": "ignition",
+      "frame": 1081,
+      "visible_parts": 2,
+      "title": "Low-tension ignition generator"
+    }
+  ]
+}

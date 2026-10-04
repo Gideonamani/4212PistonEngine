@@ -1,0 +1,165 @@
+{
+  "passed": true,
+  "parts": 413,
+  "blender_reopened": true,
+  "glb_id_roundtrip": true,
+  "bounds_roundtrip_error_m": 0.0,
+  "tour": [
+    {
+      "group": "overview",
+      "frame": 1,
+      "visible_parts": 413,
+      "title": "Major components - assembly"
+    },
+    {
+      "group": "crankcase",
+      "frame": 73,
+      "visible_parts": 5,
+      "title": "Crankcase & water jacket"
+    },
+    {
+      "group": "cover",
+      "frame": 145,
+      "visible_parts": 1,
+      "title": "Sheet-steel crankcase cover"
+    },
+    {
+      "group": "bearings",
+      "frame": 217,
+      "visible_parts": 22,
+      "title": "Split main bearings & shaft supports"
+    },
+    {
+      "group": "crankshaft",
+      "frame": 289,
+      "visible_parts": 1,
+      "title": "Four-throw crankshaft"
+    },
+    {
+      "group": "cylinders",
+      "frame": 361,
+      "visible_parts": 8,
+      "title": "Short liners, head joints and gaskets"
+    },
+    {
+      "group": "pistons",
+      "frame": 433,
+      "visible_parts": 36,
+      "title": "Cast-iron pistons & wrist pins"
+    },
+    {
+      "group": "rods",
+      "frame": 505,
+      "visible_parts": 44,
+      "title": "Built-up connecting rods"
+    },
+    {
+      "group": "valve_boxes",
+      "frame": 577,
+      "visible_parts": 4,
+      "title": "Combustion chambers / valve boxes"
+    },
+    {
+      "group": "valves",
+      "frame": 649,
+      "visible_parts": 48,
+      "title": "Open cages, two-piece valves and springs"
+    },
+    {
+      "group": "camshafts",
+      "frame": 721,
+      "visible_parts": 8,
+      "title": "Exhaust & ignition camshafts"
+    },
+    {
+      "group": "rockers",
+      "frame": 793,
+      "visible_parts": 28,
+      "title": "Two-cheek exhaust rockers & rollers"
+    },
+    {
+      "group": "ignition",
+      "frame": 865,
+      "visible_parts": 54,
+      "title": "Make-and-break ignition & spark control"
+    },
+    {
+      "group": "timing",
+      "frame": 937,
+      "visible_parts": 118,
+      "title": "6/12 sprockets, chain and hardwood tensioner"
+    },
+    {
+      "group": "flywheel",
+      "frame": 1009,
+      "visible_parts": 4,
+      "title": "Engine flywheel"
+    },
+    {
+      "group": "induction",
+      "frame": 1081,
+      "visible_parts": 6,
+      "title": "Baffled hot-plate mixer and steel intake box"
+    },
+    {
+      "group": "cooling",
+      "frame": 1153,
+      "visible_parts": 6,
+      "title": "Water connections"
+    },
+    {
+      "group": "lubrication",
+      "frame": 1225,
+      "visible_parts": 12,
+      "title": "Oil system (rebuilt accessory)"
+    },
+    {
+      "group": "generator",
+      "frame": 1297,
+      "visible_parts": 8,
+      "title": "Generator & flywheel friction drive"
+    },
+    {
+      "group": "cutaway",
+      "frame": 1369,
+      "visible_parts": 387,
+      "title": "Crankcase open: bearings, rods and liners"
+    },
+    {
+      "group": "cylinder-detail",
+      "frame": 1441,
+      "visible_parts": 28,
+      "title": "Cylinder 1: liner, piston and pinned rings"
+    },
+    {
+      "group": "valve-detail",
+      "frame": 1513,
+      "visible_parts": 12,
+      "title": "Valve box 1: open cages and helical springs"
+    },
+    {
+      "group": "rocker-detail",
+      "frame": 1585,
+      "visible_parts": 9,
+      "title": "Rocker 1: two cheeks and two rollers"
+    },
+    {
+      "group": "igniter-detail",
+      "frame": 1657,
+      "visible_parts": 11,
+      "title": "Igniter 1: insulated electrode and snap levers"
+    },
+    {
+      "group": "timing-control",
+      "frame": 1729,
+      "visible_parts": 7,
+      "title": "Sliding gear, 45-degree slot and timing lever"
+    },
+    {
+      "group": "cylinder-section",
+      "frame": 1801,
+      "visible_parts": 61,
+      "title": "Cylinder 1 section: jacket, piston, cages and rocker"
+    }
+  ]
+}

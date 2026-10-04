@@ -1,0 +1,1779 @@
+{
+  "schema_version": 1,
+  "model_id": "wright-1903-reconstruction",
+  "geometric_validation_passed": true,
+  "historical_accuracy_verified": false,
+  "freecad_version": [
+    "1",
+    "1",
+    "1",
+    "20260414 (Git shallow)",
+    "Unknown",
+    "2026/04/14 22:09:59",
+    "(HEAD detached at 0108fd4b4)",
+    "0108fd4b4850cc46e625b60e53cea7a7bbe69f8d"
+  ],
+  "part_count": 83,
+  "feature_count": 298,
+  "native_feature_history": "Linked Part primitives and Booleans, driven by Parameters expressions; no embedded Python proxy needed on reopen",
+  "spec_sha256": "8f0699ebb7e9384d07fb050ef79b3c385b0ec959a9863e5457ba45b77e6128f1",
+  "files": {
+    "wright-1903-reconstruction.FCStd": {
+      "bytes": 4386127,
+      "sha256": "0a78f0f4db5c990e005342783b58c59457292de7343c8d869e1d7e5fa73f8cde"
+    },
+    "wright-1903-reconstruction.step": {
+      "bytes": 1969914,
+      "sha256": "727681ea6c353d3fe32a20bfb99605c90dce35f60b656db2c85472a6bc7a9621"
+    },
+    "geometry.json": {
+      "bytes": 5722052,
+      "sha256": "f48fd1cb403f39dce1245c8ed5e42b5c8341160137ee6e90543915c0cae941ef"
+    }
+  },
+  "parts": [
+    {
+      "id": "Crankcase",
+      "label": "Crankcase and integral water jacket",
+      "group": "crankcase",
+      "material": "aluminium",
+      "evidence": "NASA crankcase; simplified casting envelope inferred from scan. Internal webs, detailed threads and galleries unresolved.",
+      "volume_mm3": 11244322.223969806,
+      "bounds_mm": [
+        [
+          -125.0,
+          -80.0,
+          -178.0
+        ],
+        [
+          395.0,
+          469.07,
+          135.0
+        ]
+      ],
+      "feature_count": 19
+    },
+    {
+      "id": "Cover",
+      "label": "Curved sheet-steel crankcase cover",
+      "group": "cover",
+      "material": "steel",
+      "evidence": "NASA crankcase closure; thickness and contour approximated.",
+      "volume_mm3": 402233.62690680753,
+      "bounds_mm": [
+        [
+          -122.00000000000003,
+          -70.0,
+          -8.808561594814981e-14
+        ],
+        [
+          122.00000000000003,
+          459.07000000000005,
+          121.96208020409964
+        ]
+      ],
+      "feature_count": 3
+    },
+    {
+      "id": "Sleeve1",
+      "label": "Cylinder liner 1",
+      "group": "cylinders",
+      "material": "cast_iron",
+      "evidence": "NASA nominal bore; Hobbs short separate cast-iron barrels. Length/head/boss/thread form inferred.",
+      "volume_mm3": 535215.7988006456,
+      "bounds_mm": [
+        [
+          135.0,
+          -61.380915774850145,
+          -61.40000000000001
+        ],
+        [
+          383.0,
+          61.38091577485013,
+          61.40000000000001
+        ]
+      ],
+      "feature_count": 4
+    },
+    {
+      "id": "Piston1",
+      "label": "Cast-iron piston 1",
+      "group": "pistons",
+      "material": "cast_iron",
+      "evidence": "Historical cast-iron piston form; length, wall, three groove dimensions and clearance inferred.",
+      "volume_mm3": 310350.55559859227,
+      "bounds_mm": [
+        [
+          225.8,
+          -50.65000000000001,
+          -50.65000000000004
+        ],
+        [
+          355.80000000000007,
+          50.650000000000006,
+          50.65000000000001
+        ]
+      ],
+      "feature_count": 8
+    },
+    {
+      "id": "Ring1_1",
+      "label": "Piston 1 ring 1",
+      "group": "pistons",
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed.",
+      "volume_mm3": 2371.1123369973284,
+      "bounds_mm": [
+        [
+          330.90000000000003,
+          -50.74463294100263,
+          -50.750000000000014
+        ],
+        [
+          334.70000000000005,
+          50.74911329274632,
+          50.73938343081183
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "Ring1_2",
+      "label": "Piston 1 ring 2",
+      "group": "pistons",
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed.",
+      "volume_mm3": 2371.1123369973284,
+      "bounds_mm": [
+        [
+          338.90000000000003,
+          -50.74463294100263,
+          -50.750000000000014
+        ],
+        [
+          342.70000000000005,
+          50.74911329274632,
+          50.73938343081183
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "Ring1_3",
+      "label": "Piston 1 ring 3",
+      "group": "pistons",
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed.",
+      "volume_mm3": 2371.1123369973284,
+      "bounds_mm": [
+        [
+          346.90000000000003,
+          -50.74463294100263,
+          -50.750000000000014
+        ],
+        [
+          350.70000000000005,
+          50.74911329274632,
+          50.73938343081183
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "WristPin1",
+      "label": "Wrist pin 1",
+      "group": "pistons",
+      "material": "steel",
+      "evidence": "Inferred dimensions; source-grounded component role; see research.md.",
+      "volume_mm3": 28274.333882308143,
+      "bounds_mm": [
+        [
+          280.8,
+          -45.0,
+          -9.996891820008184
+        ],
+        [
+          300.8,
+          45.000000000000014,
+          9.996891820008166
+        ]
+      ],
+      "feature_count": 1
+    },
+    {
+      "id": "RodTube1",
+      "label": "Connecting rod steel tube 1",
+      "group": "rods",
+      "material": "steel",
+      "evidence": "Hobbs p.26 built-up rod; dimensions, end fastening and static pose illustrative.",
+      "volume_mm3": 25729.643832900423,
+      "bounds_mm": [
+        [
+          65.8,
+          -7.9975134560065335,
+          -8.000000000000048
+        ],
+        [
+          275.80000000000007,
+          7.997513456006532,
+          8.000000000000002
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "BigEnd1",
+      "label": "Bronze rod bigend 1",
+      "group": "rods",
+      "material": "bronze",
+      "evidence": "Hobbs built-up rod end material; socket, bearing dimensions and cap split simplified.",
+      "volume_mm3": 27342.258053886424,
+      "bounds_mm": [
+        [
+          23.79999999999999,
+          -10.0,
+          -26.99160791402205
+        ],
+        [
+          77.80000000000001,
+          10.000000000000004,
+          26.99160791402205
+        ]
+      ],
+      "feature_count": 5
+    },
+    {
+      "id": "LittleEnd1",
+      "label": "Bronze rod littleend 1",
+      "group": "rods",
+      "material": "bronze",
+      "evidence": "Hobbs built-up rod end material; socket, bearing dimensions and cap split simplified.",
+      "volume_mm3": 22626.341784022614,
+      "bounds_mm": [
+        [
+          267.8,
+          -9.999440510278053,
+          -22.992851186018783
+        ],
+        [
+          313.8,
+          9.99944051027714,
+          22.992851186018783
+        ]
+      ],
+      "feature_count": 5
+    },
+    {
+      "id": "Sleeve2",
+      "label": "Cylinder liner 2",
+      "group": "cylinders",
+      "material": "cast_iron",
+      "evidence": "NASA nominal bore; Hobbs short separate cast-iron barrels. Length/head/boss/thread form inferred.",
+      "volume_mm3": 535215.7988006456,
+      "bounds_mm": [
+        [
+          135.0,
+          68.30908422514986,
+          -61.40000000000001
+        ],
+        [
+          383.0,
+          191.07091577485016,
+          61.40000000000001
+        ]
+      ],
+      "feature_count": 4
+    },
+    {
+      "id": "Piston2",
+      "label": "Cast-iron piston 2",
+      "group": "pistons",
+      "material": "cast_iron",
+      "evidence": "Historical cast-iron piston form; length, wall, three groove dimensions and clearance inferred.",
+      "volume_mm3": 310350.5556446499,
+      "bounds_mm": [
+        [
+          124.19999999999997,
+          79.04000000000002,
+          -50.65000000000004
+        ],
+        [
+          254.20000000000002,
+          180.33999999999997,
+          50.65000000000001
+        ]
+      ],
+      "feature_count": 8
+    },
+    {
+      "id": "Ring2_1",
+      "label": "Piston 2 ring 1",
+      "group": "pistons",
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed.",
+      "volume_mm3": 2371.112336997321,
+      "bounds_mm": [
+        [
+          229.29999999999998,
+          78.94536705899736,
+          -50.750000000000014
+        ],
+        [
+          233.1,
+          180.43911329274633,
+          50.73938343081183
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "Ring2_2",
+      "label": "Piston 2 ring 2",
+      "group": "pistons",
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed.",
+      "volume_mm3": 2371.112336997321,
+      "bounds_mm": [
+        [
+          237.29999999999998,
+          78.94536705899736,
+          -50.750000000000014
+        ],
+        [
+          241.1,
+          180.43911329274633,
+          50.73938343081183
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "Ring2_3",
+      "label": "Piston 2 ring 3",
+      "group": "pistons",
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed.",
+      "volume_mm3": 2371.112336997321,
+      "bounds_mm": [
+        [
+          245.29999999999998,
+          78.94536705899736,
+          -50.750000000000014
+        ],
+        [
+          249.1,
+          180.43911329274633,
+          50.73938343081183
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "WristPin2",
+      "label": "Wrist pin 2",
+      "group": "pistons",
+      "material": "steel",
+      "evidence": "Inferred dimensions; source-grounded component role; see research.md.",
+      "volume_mm3": 28274.333882308158,
+      "bounds_mm": [
+        [
+          179.2,
+          84.69,
+          -9.996891820008184
+        ],
+        [
+          199.19999999999996,
+          174.69,
+          9.996891820008166
+        ]
+      ],
+      "feature_count": 1
+    },
+    {
+      "id": "RodTube2",
+      "label": "Connecting rod steel tube 2",
+      "group": "rods",
+      "material": "steel",
+      "evidence": "Hobbs p.26 built-up rod; dimensions, end fastening and static pose illustrative.",
+      "volume_mm3": 25729.643832900427,
+      "bounds_mm": [
+        [
+          -35.8,
+          121.69248654399347,
+          -8.000000000000048
+        ],
+        [
+          174.20000000000005,
+          137.68751345600654,
+          8.000000000000002
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "BigEnd2",
+      "label": "Bronze rod bigend 2",
+      "group": "rods",
+      "material": "bronze",
+      "evidence": "Hobbs built-up rod end material; socket, bearing dimensions and cap split simplified.",
+      "volume_mm3": 27342.258056403633,
+      "bounds_mm": [
+        [
+          -77.80000000000001,
+          119.69,
+          -26.99160791402205
+        ],
+        [
+          -23.79999999999999,
+          139.69,
+          26.99160791402205
+        ]
+      ],
+      "feature_count": 5
+    },
+    {
+      "id": "LittleEnd2",
+      "label": "Bronze rod littleend 2",
+      "group": "rods",
+      "material": "bronze",
+      "evidence": "Hobbs built-up rod end material; socket, bearing dimensions and cap split simplified.",
+      "volume_mm3": 22626.34178398957,
+      "bounds_mm": [
+        [
+          166.2,
+          119.69055948994573,
+          -22.992851186018783
+        ],
+        [
+          212.2,
+          139.68944051005414,
+          22.992851186018783
+        ]
+      ],
+      "feature_count": 5
+    },
+    {
+      "id": "Sleeve3",
+      "label": "Cylinder liner 3",
+      "group": "cylinders",
+      "material": "cast_iron",
+      "evidence": "NASA nominal bore; Hobbs short separate cast-iron barrels. Length/head/boss/thread form inferred.",
+      "volume_mm3": 535215.7988006452,
+      "bounds_mm": [
+        [
+          135.0,
+          197.99908422514983,
+          -61.40000000000001
+        ],
+        [
+          383.0,
+          320.7609157748501,
+          61.40000000000001
+        ]
+      ],
+      "feature_count": 4
+    },
+    {
+      "id": "Piston3",
+      "label": "Cast-iron piston 3",
+      "group": "pistons",
+      "material": "cast_iron",
+      "evidence": "Historical cast-iron piston form; length, wall, three groove dimensions and clearance inferred.",
+      "volume_mm3": 310350.55567279714,
+      "bounds_mm": [
+        [
+          124.19999999999997,
+          208.73,
+          -50.65000000000004
+        ],
+        [
+          254.20000000000002,
+          310.03,
+          50.65000000000001
+        ]
+      ],
+      "feature_count": 8
+    },
+    {
+      "id": "Ring3_1",
+      "label": "Piston 3 ring 1",
+      "group": "pistons",
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed.",
+      "volume_mm3": 2371.1123369973284,
+      "bounds_mm": [
+        [
+          229.29999999999998,
+          208.63536705899736,
+          -50.750000000000014
+        ],
+        [
+          233.1,
+          310.1291132927463,
+          50.73938343081183
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "Ring3_2",
+      "label": "Piston 3 ring 2",
+      "group": "pistons",
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed.",
+      "volume_mm3": 2371.1123369973284,
+      "bounds_mm": [
+        [
+          237.29999999999998,
+          208.63536705899736,
+          -50.750000000000014
+        ],
+        [
+          241.1,
+          310.1291132927463,
+          50.73938343081183
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "Ring3_3",
+      "label": "Piston 3 ring 3",
+      "group": "pistons",
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed.",
+      "volume_mm3": 2371.1123369973284,
+      "bounds_mm": [
+        [
+          245.29999999999998,
+          208.63536705899736,
+          -50.750000000000014
+        ],
+        [
+          249.1,
+          310.1291132927463,
+          50.73938343081183
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "WristPin3",
+      "label": "Wrist pin 3",
+      "group": "pistons",
+      "material": "steel",
+      "evidence": "Inferred dimensions; source-grounded component role; see research.md.",
+      "volume_mm3": 28274.333882308154,
+      "bounds_mm": [
+        [
+          179.2,
+          214.38,
+          -9.996891820008184
+        ],
+        [
+          199.19999999999996,
+          304.38,
+          9.996891820008166
+        ]
+      ],
+      "feature_count": 1
+    },
+    {
+      "id": "RodTube3",
+      "label": "Connecting rod steel tube 3",
+      "group": "rods",
+      "material": "steel",
+      "evidence": "Hobbs p.26 built-up rod; dimensions, end fastening and static pose illustrative.",
+      "volume_mm3": 25729.643832900405,
+      "bounds_mm": [
+        [
+          -35.8,
+          251.38248654399345,
+          -8.000000000000048
+        ],
+        [
+          174.20000000000005,
+          267.3775134560065,
+          8.000000000000002
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "BigEnd3",
+      "label": "Bronze rod bigend 3",
+      "group": "rods",
+      "material": "bronze",
+      "evidence": "Hobbs built-up rod end material; socket, bearing dimensions and cap split simplified.",
+      "volume_mm3": 27342.25805641125,
+      "bounds_mm": [
+        [
+          -77.80000000000001,
+          249.38,
+          -26.99160791402205
+        ],
+        [
+          -23.79999999999999,
+          269.38,
+          26.99160791402205
+        ]
+      ],
+      "feature_count": 5
+    },
+    {
+      "id": "LittleEnd3",
+      "label": "Bronze rod littleend 3",
+      "group": "rods",
+      "material": "bronze",
+      "evidence": "Hobbs built-up rod end material; socket, bearing dimensions and cap split simplified.",
+      "volume_mm3": 22626.341784093875,
+      "bounds_mm": [
+        [
+          166.2,
+          249.3805594899433,
+          -22.992851186018783
+        ],
+        [
+          212.2,
+          269.37944051027523,
+          22.992851186018783
+        ]
+      ],
+      "feature_count": 5
+    },
+    {
+      "id": "Sleeve4",
+      "label": "Cylinder liner 4",
+      "group": "cylinders",
+      "material": "cast_iron",
+      "evidence": "NASA nominal bore; Hobbs short separate cast-iron barrels. Length/head/boss/thread form inferred.",
+      "volume_mm3": 535215.7988006452,
+      "bounds_mm": [
+        [
+          135.0,
+          327.6890842251498,
+          -61.40000000000001
+        ],
+        [
+          383.0,
+          450.4509157748501,
+          61.40000000000001
+        ]
+      ],
+      "feature_count": 4
+    },
+    {
+      "id": "Piston4",
+      "label": "Cast-iron piston 4",
+      "group": "pistons",
+      "material": "cast_iron",
+      "evidence": "Historical cast-iron piston form; length, wall, three groove dimensions and clearance inferred.",
+      "volume_mm3": 310350.555606772,
+      "bounds_mm": [
+        [
+          225.8,
+          338.41999999999985,
+          -50.65000000000004
+        ],
+        [
+          355.80000000000007,
+          439.72000000000014,
+          50.65000000000001
+        ]
+      ],
+      "feature_count": 8
+    },
+    {
+      "id": "Ring4_1",
+      "label": "Piston 4 ring 1",
+      "group": "pistons",
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed.",
+      "volume_mm3": 2371.1123369973284,
+      "bounds_mm": [
+        [
+          330.90000000000003,
+          338.32536705899736,
+          -50.750000000000014
+        ],
+        [
+          334.70000000000005,
+          439.8191132927463,
+          50.73938343081183
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "Ring4_2",
+      "label": "Piston 4 ring 2",
+      "group": "pistons",
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed.",
+      "volume_mm3": 2371.1123369973284,
+      "bounds_mm": [
+        [
+          338.90000000000003,
+          338.32536705899736,
+          -50.750000000000014
+        ],
+        [
+          342.70000000000005,
+          439.8191132927463,
+          50.73938343081183
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "Ring4_3",
+      "label": "Piston 4 ring 3",
+      "group": "pistons",
+      "material": "cast_iron",
+      "evidence": "Three rings above the pin; inferred groove, ring and gap dimensions. Retainer pegs not reconstructed.",
+      "volume_mm3": 2371.1123369973284,
+      "bounds_mm": [
+        [
+          346.90000000000003,
+          338.32536705899736,
+          -50.750000000000014
+        ],
+        [
+          350.70000000000005,
+          439.8191132927463,
+          50.73938343081183
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "WristPin4",
+      "label": "Wrist pin 4",
+      "group": "pistons",
+      "material": "steel",
+      "evidence": "Inferred dimensions; source-grounded component role; see research.md.",
+      "volume_mm3": 28274.333882308143,
+      "bounds_mm": [
+        [
+          280.8,
+          344.07,
+          -9.996891820008184
+        ],
+        [
+          300.8,
+          434.07,
+          9.996891820008166
+        ]
+      ],
+      "feature_count": 1
+    },
+    {
+      "id": "RodTube4",
+      "label": "Connecting rod steel tube 4",
+      "group": "rods",
+      "material": "steel",
+      "evidence": "Hobbs p.26 built-up rod; dimensions, end fastening and static pose illustrative.",
+      "volume_mm3": 25729.643832900387,
+      "bounds_mm": [
+        [
+          65.8,
+          381.0724865439935,
+          -8.000000000000048
+        ],
+        [
+          275.80000000000007,
+          397.0675134560065,
+          8.000000000000002
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "BigEnd4",
+      "label": "Bronze rod bigend 4",
+      "group": "rods",
+      "material": "bronze",
+      "evidence": "Hobbs built-up rod end material; socket, bearing dimensions and cap split simplified.",
+      "volume_mm3": 27342.258051380686,
+      "bounds_mm": [
+        [
+          23.79999999999999,
+          379.07,
+          -26.99160791402205
+        ],
+        [
+          77.80000000000001,
+          399.07,
+          26.99160791402205
+        ]
+      ],
+      "feature_count": 5
+    },
+    {
+      "id": "LittleEnd4",
+      "label": "Bronze rod littleend 4",
+      "group": "rods",
+      "material": "bronze",
+      "evidence": "Hobbs built-up rod end material; socket, bearing dimensions and cap split simplified.",
+      "volume_mm3": 22626.341784196808,
+      "bounds_mm": [
+        [
+          267.8,
+          379.0705594897975,
+          -22.992851186018783
+        ],
+        [
+          313.8,
+          399.06944051020434,
+          22.992851186018783
+        ]
+      ],
+      "feature_count": 5
+    },
+    {
+      "id": "Crankshaft",
+      "label": "Four-throw crankshaft",
+      "group": "crankshaft",
+      "material": "steel",
+      "evidence": "NASA power train arrangement; stroke controls throw. Journal sizes and static 0/180/180/0 phases illustrative, not established firing order.",
+      "volume_mm3": 438660.9959812458,
+      "bounds_mm": [
+        [
+          -64.8,
+          -70.0,
+          -14.000000000000012
+        ],
+        [
+          64.8,
+          477.07,
+          14.000000000000002
+        ]
+      ],
+      "feature_count": 17
+    },
+    {
+      "id": "ValveBox1",
+      "label": "Combustion chamber / valve box 1",
+      "group": "valve_boxes",
+      "material": "cast_iron",
+      "evidence": "Hobbs perpendicular valve-box construction and exhaust ports; scanned exterior guides radius; interior contours and apertures simplified.",
+      "volume_mm3": 178159.8365557616,
+      "bounds_mm": [
+        [
+          383.0,
+          -34.666995655837056,
+          -75.0
+        ],
+        [
+          464.66700000000003,
+          34.666997984292244,
+          75.0
+        ]
+      ],
+      "feature_count": 12
+    },
+    {
+      "id": "IntakeValve1",
+      "label": "Intake valve 1",
+      "group": "valves",
+      "material": "steel",
+      "evidence": "NASA suction intake/cam-driven exhaust; head/stem union simplified; seat angle unknown.",
+      "volume_mm3": 6823.539243597024,
+      "bounds_mm": [
+        [
+          407.0,
+          -22.99285118601878,
+          54.0
+        ],
+        [
+          453.0,
+          22.992851186018775,
+          122.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "IntakeCage1",
+      "label": "Intake valve cage 1",
+      "group": "valves",
+      "material": "cast_iron",
+      "evidence": "NASA valve cages; first candidate annular support, four legs and threads omitted.",
+      "volume_mm3": 13899.48661363727,
+      "bounds_mm": [
+        [
+          401.33299999999997,
+          -28.658089780417406,
+          54.0
+        ],
+        [
+          458.66700000000003,
+          28.658089780417402,
+          72.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "IntakeSpringEnvelope1",
+      "label": "Intake spring envelope 1",
+      "group": "valves",
+      "material": "steel",
+      "evidence": "Space envelope only: spring wire/turn count/stiffness not reconstructed.",
+      "volume_mm3": 3418.0528071056874,
+      "bounds_mm": [
+        [
+          421.0,
+          -8.997202638007348,
+          78.0
+        ],
+        [
+          439.0,
+          8.997202638007346,
+          112.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "ExhaustValve1",
+      "label": "Exhaust valve 1",
+      "group": "valves",
+      "material": "steel",
+      "evidence": "NASA suction intake/cam-driven exhaust; head/stem union simplified; seat angle unknown.",
+      "volume_mm3": 6823.539243597024,
+      "bounds_mm": [
+        [
+          407.0,
+          -22.99285118601878,
+          -122.0
+        ],
+        [
+          453.0,
+          22.992851186018775,
+          -54.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "ExhaustCage1",
+      "label": "Exhaust valve cage 1",
+      "group": "valves",
+      "material": "cast_iron",
+      "evidence": "NASA valve cages; first candidate annular support, four legs and threads omitted.",
+      "volume_mm3": 13899.48661363727,
+      "bounds_mm": [
+        [
+          401.33299999999997,
+          -28.658089780417406,
+          -72.0
+        ],
+        [
+          458.66700000000003,
+          28.658089780417402,
+          -54.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "ExhaustSpringEnvelope1",
+      "label": "Exhaust spring envelope 1",
+      "group": "valves",
+      "material": "steel",
+      "evidence": "Space envelope only: spring wire/turn count/stiffness not reconstructed.",
+      "volume_mm3": 3418.0528071056874,
+      "bounds_mm": [
+        [
+          421.0,
+          -8.997202638007348,
+          -112.0
+        ],
+        [
+          439.0,
+          8.997202638007346,
+          -78.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "ValveBox2",
+      "label": "Combustion chamber / valve box 2",
+      "group": "valve_boxes",
+      "material": "cast_iron",
+      "evidence": "Hobbs perpendicular valve-box construction and exhaust ports; scanned exterior guides radius; interior contours and apertures simplified.",
+      "volume_mm3": 178159.8589711726,
+      "bounds_mm": [
+        [
+          383.0,
+          95.02300434368081,
+          -75.0
+        ],
+        [
+          464.66700000000003,
+          164.3569979846018,
+          75.0
+        ]
+      ],
+      "feature_count": 12
+    },
+    {
+      "id": "IntakeValve2",
+      "label": "Intake valve 2",
+      "group": "valves",
+      "material": "steel",
+      "evidence": "NASA suction intake/cam-driven exhaust; head/stem union simplified; seat angle unknown.",
+      "volume_mm3": 6823.539243597025,
+      "bounds_mm": [
+        [
+          407.0,
+          106.69714881398122,
+          54.0
+        ],
+        [
+          453.0,
+          152.68285118601878,
+          122.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "IntakeCage2",
+      "label": "Intake valve cage 2",
+      "group": "valves",
+      "material": "cast_iron",
+      "evidence": "NASA valve cages; first candidate annular support, four legs and threads omitted.",
+      "volume_mm3": 13899.48661363727,
+      "bounds_mm": [
+        [
+          401.33299999999997,
+          101.03191021958258,
+          54.0
+        ],
+        [
+          458.66700000000003,
+          158.3480897804174,
+          72.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "IntakeSpringEnvelope2",
+      "label": "Intake spring envelope 2",
+      "group": "valves",
+      "material": "steel",
+      "evidence": "Space envelope only: spring wire/turn count/stiffness not reconstructed.",
+      "volume_mm3": 3418.0528071056865,
+      "bounds_mm": [
+        [
+          421.0,
+          120.69279736199265,
+          78.0
+        ],
+        [
+          439.0,
+          138.68720263800734,
+          112.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "ExhaustValve2",
+      "label": "Exhaust valve 2",
+      "group": "valves",
+      "material": "steel",
+      "evidence": "NASA suction intake/cam-driven exhaust; head/stem union simplified; seat angle unknown.",
+      "volume_mm3": 6823.539243597025,
+      "bounds_mm": [
+        [
+          407.0,
+          106.69714881398122,
+          -122.0
+        ],
+        [
+          453.0,
+          152.68285118601878,
+          -54.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "ExhaustCage2",
+      "label": "Exhaust valve cage 2",
+      "group": "valves",
+      "material": "cast_iron",
+      "evidence": "NASA valve cages; first candidate annular support, four legs and threads omitted.",
+      "volume_mm3": 13899.48661363727,
+      "bounds_mm": [
+        [
+          401.33299999999997,
+          101.03191021958258,
+          -72.0
+        ],
+        [
+          458.66700000000003,
+          158.3480897804174,
+          -54.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "ExhaustSpringEnvelope2",
+      "label": "Exhaust spring envelope 2",
+      "group": "valves",
+      "material": "steel",
+      "evidence": "Space envelope only: spring wire/turn count/stiffness not reconstructed.",
+      "volume_mm3": 3418.0528071056865,
+      "bounds_mm": [
+        [
+          421.0,
+          120.69279736199265,
+          -112.0
+        ],
+        [
+          439.0,
+          138.68720263800734,
+          -78.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "ValveBox3",
+      "label": "Combustion chamber / valve box 3",
+      "group": "valve_boxes",
+      "material": "cast_iron",
+      "evidence": "Hobbs perpendicular valve-box construction and exhaust ports; scanned exterior guides radius; interior contours and apertures simplified.",
+      "volume_mm3": 178159.85551640345,
+      "bounds_mm": [
+        [
+          383.0,
+          224.71300434368044,
+          -75.0
+        ],
+        [
+          464.66700000000003,
+          294.0469979845112,
+          75.0
+        ]
+      ],
+      "feature_count": 12
+    },
+    {
+      "id": "IntakeValve3",
+      "label": "Intake valve 3",
+      "group": "valves",
+      "material": "steel",
+      "evidence": "NASA suction intake/cam-driven exhaust; head/stem union simplified; seat angle unknown.",
+      "volume_mm3": 6823.539243597025,
+      "bounds_mm": [
+        [
+          407.0,
+          236.3871488139812,
+          54.0
+        ],
+        [
+          453.0,
+          282.37285118601875,
+          122.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "IntakeCage3",
+      "label": "Intake valve cage 3",
+      "group": "valves",
+      "material": "cast_iron",
+      "evidence": "NASA valve cages; first candidate annular support, four legs and threads omitted.",
+      "volume_mm3": 13899.486613637273,
+      "bounds_mm": [
+        [
+          401.33299999999997,
+          230.72191021958258,
+          54.0
+        ],
+        [
+          458.66700000000003,
+          288.0380897804174,
+          72.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "IntakeSpringEnvelope3",
+      "label": "Intake spring envelope 3",
+      "group": "valves",
+      "material": "steel",
+      "evidence": "Space envelope only: spring wire/turn count/stiffness not reconstructed.",
+      "volume_mm3": 3418.052807105687,
+      "bounds_mm": [
+        [
+          421.0,
+          250.38279736199266,
+          78.0
+        ],
+        [
+          439.0,
+          268.37720263800736,
+          112.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "ExhaustValve3",
+      "label": "Exhaust valve 3",
+      "group": "valves",
+      "material": "steel",
+      "evidence": "NASA suction intake/cam-driven exhaust; head/stem union simplified; seat angle unknown.",
+      "volume_mm3": 6823.539243597025,
+      "bounds_mm": [
+        [
+          407.0,
+          236.3871488139812,
+          -122.0
+        ],
+        [
+          453.0,
+          282.37285118601875,
+          -54.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "ExhaustCage3",
+      "label": "Exhaust valve cage 3",
+      "group": "valves",
+      "material": "cast_iron",
+      "evidence": "NASA valve cages; first candidate annular support, four legs and threads omitted.",
+      "volume_mm3": 13899.486613637273,
+      "bounds_mm": [
+        [
+          401.33299999999997,
+          230.72191021958258,
+          -72.0
+        ],
+        [
+          458.66700000000003,
+          288.0380897804174,
+          -54.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "ExhaustSpringEnvelope3",
+      "label": "Exhaust spring envelope 3",
+      "group": "valves",
+      "material": "steel",
+      "evidence": "Space envelope only: spring wire/turn count/stiffness not reconstructed.",
+      "volume_mm3": 3418.052807105687,
+      "bounds_mm": [
+        [
+          421.0,
+          250.38279736199266,
+          -112.0
+        ],
+        [
+          439.0,
+          268.37720263800736,
+          -78.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "ValveBox4",
+      "label": "Combustion chamber / valve box 4",
+      "group": "valve_boxes",
+      "material": "cast_iron",
+      "evidence": "Hobbs perpendicular valve-box construction and exhaust ports; scanned exterior guides radius; interior contours and apertures simplified.",
+      "volume_mm3": 178159.8555154438,
+      "bounds_mm": [
+        [
+          383.0,
+          354.403004343975,
+          -75.0
+        ],
+        [
+          464.66700000000003,
+          423.7369979845474,
+          75.0
+        ]
+      ],
+      "feature_count": 12
+    },
+    {
+      "id": "IntakeValve4",
+      "label": "Intake valve 4",
+      "group": "valves",
+      "material": "steel",
+      "evidence": "NASA suction intake/cam-driven exhaust; head/stem union simplified; seat angle unknown.",
+      "volume_mm3": 6823.539243597026,
+      "bounds_mm": [
+        [
+          407.0,
+          366.07714881398124,
+          54.0
+        ],
+        [
+          453.0,
+          412.06285118601875,
+          122.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "IntakeCage4",
+      "label": "Intake valve cage 4",
+      "group": "valves",
+      "material": "cast_iron",
+      "evidence": "NASA valve cages; first candidate annular support, four legs and threads omitted.",
+      "volume_mm3": 13899.486613637273,
+      "bounds_mm": [
+        [
+          401.33299999999997,
+          360.4119102195826,
+          54.0
+        ],
+        [
+          458.66700000000003,
+          417.7280897804174,
+          72.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "IntakeSpringEnvelope4",
+      "label": "Intake spring envelope 4",
+      "group": "valves",
+      "material": "steel",
+      "evidence": "Space envelope only: spring wire/turn count/stiffness not reconstructed.",
+      "volume_mm3": 3418.0528071056915,
+      "bounds_mm": [
+        [
+          421.0,
+          380.0727973619926,
+          78.0
+        ],
+        [
+          439.0,
+          398.06720263800736,
+          112.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "ExhaustValve4",
+      "label": "Exhaust valve 4",
+      "group": "valves",
+      "material": "steel",
+      "evidence": "NASA suction intake/cam-driven exhaust; head/stem union simplified; seat angle unknown.",
+      "volume_mm3": 6823.539243597026,
+      "bounds_mm": [
+        [
+          407.0,
+          366.07714881398124,
+          -122.0
+        ],
+        [
+          453.0,
+          412.06285118601875,
+          -54.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "ExhaustCage4",
+      "label": "Exhaust valve cage 4",
+      "group": "valves",
+      "material": "cast_iron",
+      "evidence": "NASA valve cages; first candidate annular support, four legs and threads omitted.",
+      "volume_mm3": 13899.486613637273,
+      "bounds_mm": [
+        [
+          401.33299999999997,
+          360.4119102195826,
+          -72.0
+        ],
+        [
+          458.66700000000003,
+          417.7280897804174,
+          -54.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "ExhaustSpringEnvelope4",
+      "label": "Exhaust spring envelope 4",
+      "group": "valves",
+      "material": "steel",
+      "evidence": "Space envelope only: spring wire/turn count/stiffness not reconstructed.",
+      "volume_mm3": 3418.0528071056915,
+      "bounds_mm": [
+        [
+          421.0,
+          380.0727973619926,
+          -112.0
+        ],
+        [
+          439.0,
+          398.06720263800736,
+          -78.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "Camshaft",
+      "label": "Exhaust camshaft",
+      "group": "camshafts",
+      "material": "steel",
+      "evidence": "NASA chain-driven exhaust camshaft. True cam lobes and event timing not modelled.",
+      "volume_mm3": 134631.9164440149,
+      "bounds_mm": [
+        [
+          341.0,
+          -70.0,
+          -116.99720263800747
+        ],
+        [
+          359.0,
+          459.07000000000005,
+          -99.00279736199265
+        ]
+      ],
+      "feature_count": 1
+    },
+    {
+      "id": "IgnitionShaft",
+      "label": "Ignition breaker camshaft",
+      "group": "camshafts",
+      "material": "steel",
+      "evidence": "NASA ignition shaft; cam profiles, spur gears and timing adjustment omitted.",
+      "volume_mm3": 41553.06063086883,
+      "bounds_mm": [
+        [
+          388.0,
+          -70.0,
+          -77.9984459100042
+        ],
+        [
+          398.0,
+          459.07000000000005,
+          -68.00155408999592
+        ]
+      ],
+      "feature_count": 1
+    },
+    {
+      "id": "Rocker1",
+      "label": "Exhaust rocker arm 1",
+      "group": "camshafts",
+      "material": "steel",
+      "evidence": "NASA cam-driven exhaust rocker; flat lever envelope, pivot clearance and roller contact unresolved.",
+      "volume_mm3": 12151.131779293713,
+      "bounds_mm": [
+        [
+          344.0,
+          -6.000000000000003,
+          -128.99805095627624
+        ],
+        [
+          430.0,
+          6.000000000000006,
+          -103.00194904372377
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "Rocker2",
+      "label": "Exhaust rocker arm 2",
+      "group": "camshafts",
+      "material": "steel",
+      "evidence": "NASA cam-driven exhaust rocker; flat lever envelope, pivot clearance and roller contact unresolved.",
+      "volume_mm3": 12151.131779293706,
+      "bounds_mm": [
+        [
+          344.0,
+          123.69,
+          -128.99805095627624
+        ],
+        [
+          430.0,
+          135.69,
+          -103.00194904372377
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "Rocker3",
+      "label": "Exhaust rocker arm 3",
+      "group": "camshafts",
+      "material": "steel",
+      "evidence": "NASA cam-driven exhaust rocker; flat lever envelope, pivot clearance and roller contact unresolved.",
+      "volume_mm3": 12151.131779293693,
+      "bounds_mm": [
+        [
+          344.0,
+          253.38,
+          -128.99805095627624
+        ],
+        [
+          430.0,
+          265.38,
+          -103.00194904372377
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "Rocker4",
+      "label": "Exhaust rocker arm 4",
+      "group": "camshafts",
+      "material": "steel",
+      "evidence": "NASA cam-driven exhaust rocker; flat lever envelope, pivot clearance and roller contact unresolved.",
+      "volume_mm3": 12151.131779293712,
+      "bounds_mm": [
+        [
+          344.0,
+          383.07,
+          -128.99805095627624
+        ],
+        [
+          430.0,
+          395.07,
+          -103.00194904372377
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "CrankTimingDisk",
+      "label": "Timing sprocket - 6-tooth pitch envelope",
+      "group": "timing",
+      "material": "steel",
+      "evidence": "NASA 6 teeth; disk has no tooth profile and is not a usable sprocket.",
+      "volume_mm3": 16567.503017971147,
+      "bounds_mm": [
+        [
+          -27.000000000000007,
+          -81.0,
+          -26.99160791402205
+        ],
+        [
+          27.000000000000007,
+          -71.0,
+          26.99160791402205
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "CamTimingDisk",
+      "label": "Timing sprocket - 12-tooth pitch envelope",
+      "group": "timing",
+      "material": "steel",
+      "evidence": "NASA 12 teeth; chosen radius ratio 2:1; chain and tooth flanks omitted.",
+      "volume_mm3": 88949.79775668003,
+      "bounds_mm": [
+        [
+          296.0,
+          -81.00000000000003,
+          -161.9832158280441
+        ],
+        [
+          404.0,
+          -70.99999999999999,
+          -54.0167841719559
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "Flywheel",
+      "label": "Engine flywheel",
+      "group": "flywheel",
+      "material": "cast_iron",
+      "evidence": "NASA power train; approximate scan silhouette, diameter inferred. Restored engine flywheel history differs from lost original.",
+      "volume_mm3": 2255560.4810384344,
+      "bounds_mm": [
+        [
+          -190.00000000000003,
+          447.06999999999994,
+          -189.9409445801551
+        ],
+        [
+          190.00000000000003,
+          467.07000000000005,
+          189.94094458015516
+        ]
+      ],
+      "feature_count": 4
+    },
+    {
+      "id": "IntakeManifold",
+      "label": "Intake manifold",
+      "group": "induction",
+      "material": "aluminium",
+      "evidence": "NASA combustion chamber and scan top manifold; rectangular shell/ports are teaching approximations.",
+      "volume_mm3": 418178.14039230626,
+      "bounds_mm": [
+        [
+          390.0,
+          -45.0,
+          75.0
+        ],
+        [
+          470.0,
+          434.07,
+          95.0
+        ]
+      ],
+      "feature_count": 6
+    },
+    {
+      "id": "FuelMixer",
+      "label": "Surface fuel-mixing chamber and air inlet",
+      "group": "induction",
+      "material": "aluminium",
+      "evidence": "NASA heated surface carburetor role; baffles, metering connection and transfer passage unresolved.",
+      "volume_mm3": 758353.183046353,
+      "bounds_mm": [
+        [
+          160.0,
+          -40.0,
+          110.0
+        ],
+        [
+          330.0,
+          429.07,
+          177.0
+        ]
+      ],
+      "feature_count": 4
+    },
+    {
+      "id": "WaterPort1",
+      "label": "Water outlet connector 1",
+      "group": "cooling",
+      "material": "bronze",
+      "evidence": "NASA two upper water outlets; scan routing pipes omitted, connector dimensions inferred.",
+      "volume_mm3": 14778.051842486397,
+      "bounds_mm": [
+        [
+          294.0,
+          -75.99502691201306,
+          112.0
+        ],
+        [
+          326.0,
+          -44.00497308798694,
+          154.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "WaterPort2",
+      "label": "Water outlet connector 2",
+      "group": "cooling",
+      "material": "bronze",
+      "evidence": "NASA two upper water outlets; scan routing pipes omitted, connector dimensions inferred.",
+      "volume_mm3": 14778.051842486391,
+      "bounds_mm": [
+        [
+          294.0,
+          425.0749730879869,
+          112.0
+        ],
+        [
+          326.0,
+          457.0650269120131,
+          154.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "OilPump",
+      "label": "Oil-pump housing envelope",
+      "group": "lubrication",
+      "material": "steel",
+      "evidence": "Hobbs lubrication pump; internal gears, oil galleries and drive unresolved.",
+      "volume_mm3": 170614.51223715715,
+      "bounds_mm": [
+        [
+          200.0,
+          -65.0,
+          -172.0
+        ],
+        [
+          260.0,
+          -10.0,
+          -112.0
+        ]
+      ],
+      "feature_count": 2
+    },
+    {
+      "id": "Magneto",
+      "label": "Low-tension ignition generator envelope",
+      "group": "ignition",
+      "material": "steel",
+      "evidence": "NASA electrical system; U-magnet housing approximation. Coils, friction wheel and mounting link not reconstructed; pose provisional.",
+      "volume_mm3": 962280.0000000005,
+      "bounds_mm": [
+        [
+          240.0,
+          534.0699999999999,
+          -140.0
+        ],
+        [
+          335.0,
+          624.0699999999999,
+          -20.0
+        ]
+      ],
+      "feature_count": 4
+    },
+    {
+      "id": "IgnitionBus",
+      "label": "Ignition bus bar",
+      "group": "ignition",
+      "material": "bronze",
+      "evidence": "NASA low-tension bus; individual insulated contacts and leads omitted.",
+      "volume_mm3": 13410.239999999998,
+      "bounds_mm": [
+        [
+          469.66700000000003,
+          -15.0,
+          -15.0
+        ],
+        [
+          473.66700000000003,
+          404.07,
+          -7.0
+        ]
+      ],
+      "feature_count": 1
+    }
+  ]
+}

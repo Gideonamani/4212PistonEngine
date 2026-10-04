@@ -1,0 +1,764 @@
+{
+  "path": "build/wright-reconstruction-v2/wright-research-revision-2-20261004.zip",
+  "bytes": 120584730,
+  "sha256": "0a9bd1a9f605875b9108a96d14bfaf88fff46e1931a82dc65e6ce75787927c25",
+  "file_count": 152,
+  "scope": "Private researched reconstruction candidate; student release retained",
+  "files": [
+    {
+      "path": ".agents/skills/cad-generation/SKILL.md",
+      "bytes": 2385,
+      "sha256": "33a1dbbf3a6d727a36b9777678491660399d49a2d8ca554e744e89907657a366"
+    },
+    {
+      "path": ".agents/skills/cad-to-blender/SKILL.md",
+      "bytes": 1850,
+      "sha256": "6cc52c0f8dca0a7ccbeb79e4209f4c3bbfea10a977e77fe58e6b118f9f59376d"
+    },
+    {
+      "path": ".agents/skills/cad-validation/SKILL.md",
+      "bytes": 2488,
+      "sha256": "1242c983f5e1eaadb130a9fd1312edd72a47a3fe29a5c5e8ce3bbe24fa3a00ff"
+    },
+    {
+      "path": ".agents/skills/engineering-research/references/research-readiness.md",
+      "bytes": 2252,
+      "sha256": "7f32d80fdbf30b1a3793e8cc2415751d09d154e17c72389e10bcf71e1cf158a8"
+    },
+    {
+      "path": ".agents/skills/engineering-research/SKILL.md",
+      "bytes": 3157,
+      "sha256": "8b451e1a618ea3a0c1c0ab01cb7bbd36520140538d73c621451614e1e8b20987"
+    },
+    {
+      "path": ".agents/skills/image-to-cad/SKILL.md",
+      "bytes": 1708,
+      "sha256": "44cd30b9f9c2144535a44cd35f7d08f234a7385567e2d685f9b38a2c93ebefd7"
+    },
+    {
+      "path": ".agents/skills/mesh-to-cad/SKILL.md",
+      "bytes": 2151,
+      "sha256": "e3191c24974206e3f6e9bb06391bcb67e7c3f557f96459950325545c6519a714"
+    },
+    {
+      "path": ".agents/skills/text-to-cad/SKILL.md",
+      "bytes": 1351,
+      "sha256": "d52cc9b5fa7a0a0b6b6168cad39cd664d017e10add1a0e5893d22c7a710ddd4f"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 2173,
+      "sha256": "c9efc578202af13ce49a3e729ea84cd4bcd85a1cc1e6a848aeb58d8c18c7e9f1"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/cad/cad-validation.json",
+      "bytes": 271521,
+      "sha256": "decb9bfa5233e12309637ca8b360658e8bf97bc11be497845c15c5075678a1cf"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/cad/engineering-checks.json",
+      "bytes": 14550,
+      "sha256": "5a73ea1f86973bf5270b624d28a8e6d44ee46752fe86eb1db121cc6de180c9db"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/cad/geometry.json",
+      "bytes": 13385540,
+      "sha256": "f466e8c0e948d98c81354fcd5880ecaadf2aa2a44e1d626164befe954289b2d6"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/cad/metadata-differences.json",
+      "bytes": 45764,
+      "sha256": "ef0bf6e44b0ab7dbab7ff36cd4a3a165f8bda7ba0b2363252ad0b8f731bd25a9"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/cad/reopen-validation.json",
+      "bytes": 1615,
+      "sha256": "8cc24f88bea2a779eaca634a850f7c84854287b66c7cf0383f30db09df9c38f9"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/cad/step-boundary-checks.json",
+      "bytes": 2490,
+      "sha256": "d69ba27d22e3f9d98502abf4234cc389377974b2e3e6adf6893d393e9f6c3bcb"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/cad/step-differences.json",
+      "bytes": 77927,
+      "sha256": "f6569102396e69754fe6bb63a99fc8620886b4d71c31cd32593ca0bafd83ce7c"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/cad/wright-research-revision-2.FCStd",
+      "bytes": 33651557,
+      "sha256": "406f8fae10aa8c1ae1aaf8981db33376d6a4c90e418959a75888a742cb9f7ed7"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/cad/wright-research-revision-2.step",
+      "bytes": 9105758,
+      "sha256": "1c0af4ab1068ed265951f92195e030303703b57be3fc7b6ebf655b4fac546787"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/bearings.png",
+      "bytes": 1495413,
+      "sha256": "8d8c2c1f36cd169d77db82a20f34f1b069a1d8460dd3b0870653a810495a1451"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/blender-validation.json",
+      "bytes": 3964,
+      "sha256": "7352cb33e89f1bf29293f4968131c4962d9e7f2e25ca26ab3779f5f5c6e6a363"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/camshafts.png",
+      "bytes": 1518732,
+      "sha256": "87061148584a511869bb66e8c1ef64ddfc53af0138f8f27026f963d068bfd7a9"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/component-sheet.jpg",
+      "bytes": 619460,
+      "sha256": "4ccf95641c5bba29bbbc51be8a3ca5e58ec04fc288f9b530b18d988d720cc2e5"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/component-tour.mp4",
+      "bytes": 1228646,
+      "sha256": "b6fa08058bdb4381e72ae10fa7244a8546c97d758f65f125157e10583b31fd7d"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/cooling.png",
+      "bytes": 1443909,
+      "sha256": "4785179809dbea00fe51b05abbe17c521a3e53a85cb483f53c6511448be411cd"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/cover.png",
+      "bytes": 1500297,
+      "sha256": "7448141be00492501731701fd94eca393716222cf9362ac004b55293117ee7bd"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/crankcase.png",
+      "bytes": 1588688,
+      "sha256": "c5916ea7ca9e8a577ce1362af7226e39c066040fc171d336a275f012ed1e005e"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/crankshaft.png",
+      "bytes": 1508286,
+      "sha256": "f09bf4949f83cc8861ea6c1c991ce64bdb9349afc9ab973e4f739d314399329e"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/cutaway.png",
+      "bytes": 1581426,
+      "sha256": "b45bf7cd058ddd3b904e33f27734be1817bbea1641f5d00e4f98069b65f5f523"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/cylinder-detail.png",
+      "bytes": 1497600,
+      "sha256": "72b8e90afe66f442b33747597863ba9d51034ec88a0415aff98d94d00f88f643"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/cylinder-section.png",
+      "bytes": 1638394,
+      "sha256": "1685d9a0843bb03a0f4add230d18de561f5e28c8f8b2f7624a5ace2e8af2ca4c"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/cylinders.png",
+      "bytes": 1529014,
+      "sha256": "a57bdada5e7ddc52a07a0f47eaa05956181919890933d1d938bf264c5ece3ec7"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/flywheel.png",
+      "bytes": 1472248,
+      "sha256": "a35fd1acd2b9b5ead61920a6395dcffe5cc35d87592316d5ebe5a81afffb1cac"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/gallery-manifest.json",
+      "bytes": 555,
+      "sha256": "116fc59204e95bd53cd53424a13cd421fc0c6d73324ce9a06f280adf92877e33"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/generator.png",
+      "bytes": 1503955,
+      "sha256": "855c84d84779bce34f3c4d1350082294b1b9568c8ab874971cf470309359f65a"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/igniter-detail.png",
+      "bytes": 1499677,
+      "sha256": "9072eaf4e692b4c7e849766279f5d8f092f3db0ba5fb489e826414efb7a5477b"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/ignition.png",
+      "bytes": 1507530,
+      "sha256": "6b44b9d41e7480efae64dc61345abfb6f036ad38e1f3b6a739273535803a891d"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/index.html",
+      "bytes": 60831,
+      "sha256": "bc5e8b7174bd40e730466c42c03e029ec38d19524a433b13b43e5494d7770e07"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/induction.png",
+      "bytes": 1543447,
+      "sha256": "1897db924c6b7a1ec5a2b68b3cad164b05e92bf3ab4925903ce3bcd94fd9bab8"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/lubrication.png",
+      "bytes": 1481618,
+      "sha256": "ecb6670749672e3d95ba3ac49b360c38a9ac7a10000555f63dd6177ac33e5f8c"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/overview.png",
+      "bytes": 1587031,
+      "sha256": "5bfdef4447b97c5df7cdb19115672ae6b857b4c544fea9790f9e5175c8ba230b"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/pistons.png",
+      "bytes": 1513715,
+      "sha256": "e6712e642bd88be3a0ec4a81aa49e3356b390eade58e9bc7740081e45db650b0"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/presentation-manifest.json",
+      "bytes": 100328,
+      "sha256": "4337078695a10216a1a60099dcf184a3a181644ee391262bb67d519343a83d2c"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/rocker-detail.png",
+      "bytes": 1494902,
+      "sha256": "65eec887feb9db42e16a94b269bfe6f66199176de9a0fd2c8e1957ea25b60b1e"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/rockers.png",
+      "bytes": 1464327,
+      "sha256": "40d9e76051af2c5ee5a454008037500f1845d708ecc71ba252e8e45c7d49fda9"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/rods.png",
+      "bytes": 1535157,
+      "sha256": "04e77e1f2061b5ec4b0dca4107b3e4c06a7302a464690e66993dc6ce2da6745e"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/timing-control.png",
+      "bytes": 1509237,
+      "sha256": "15530f798e670c207e3672bc42abb6d2e87f0d2fae45c7df0aa0385673e6d361"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/timing.png",
+      "bytes": 1496207,
+      "sha256": "99e8251303ab1a962a3d8761354151a818ee06a8cacda542a01865e671eef13e"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/tour-chapters.txt",
+      "bytes": 2501,
+      "sha256": "570f5041c398d18becdc6b9cce014aa6016da78ca8bdf6042c9114882933ed1f"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/tour-frames.txt",
+      "bytes": 921,
+      "sha256": "b6357c7a95906e85093b77dbb5b81463651fdf901fcfd3679e81ba1148b8b249"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/valve-detail.png",
+      "bytes": 1472741,
+      "sha256": "2c2473623dbd82961b914be85208f5acd60d8f8d3a3fcdde7317476db16fd5b5"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/valve_boxes.png",
+      "bytes": 1539310,
+      "sha256": "50245ca4b7b93f548537e84d2cc98d419dc31ed0768cbcb29b7c63ac185125dc"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/valves.png",
+      "bytes": 1536461,
+      "sha256": "2b619c3dbd724aa113f92d130e3b2c120cc74cd73d58e0c0d23f1d9ba0bbf4fd"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/wright-research-revision-2.blend",
+      "bytes": 6266244,
+      "sha256": "642ab88c55e482aae81bd64e31a0a9c96f68f7cc22e1d9f0cd94801d7a64b890"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/presentation/wright-research-revision-2.glb",
+      "bytes": 18891160,
+      "sha256": "da265ec646831606dae7e7016f2709b8630ff0bece05aa00a5d118d28b444e76"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/hobbs-gutenberg.html",
+      "bytes": 209172,
+      "sha256": "6ae61c5ee5c298a37561aa24868524e641e345a15915d08f85d466ec28105003"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/hobbs-gutenberg.txt",
+      "bytes": 183875,
+      "sha256": "c5b0d540fb1ce44398432e77f04d24876aa0a0b8f21a53356790aed5d3ab15a7"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/images.json",
+      "bytes": 3859,
+      "sha256": "5f3473434c1d4c0cc9c02dc364aee55af252b1767cff694e46200b9353528c86"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/img004.jpg",
+      "bytes": 47631,
+      "sha256": "40408b0f2646572dcaebe13107d126f20abe3c0f673e6b910d38cb0ce4056ac9"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/img005.jpg",
+      "bytes": 40077,
+      "sha256": "1a4d117e40a5879c3457252b202de9dbc4239126e5144815f02d7cb3f8c4864a"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/img006.jpg",
+      "bytes": 57270,
+      "sha256": "680acd4b7f413f333ecd8c09a6cdc4481fd1c526c1de61fdd4bfd05b8d9a0b66"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/img007.jpg",
+      "bytes": 31911,
+      "sha256": "ee7cfebcf35ab37df886452cc23b96b6b378f17dfc301ada241ac8b114fc0d7f"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/img008.jpg",
+      "bytes": 39413,
+      "sha256": "35b7e97251643c3c1756e225b073ae9b4cc4a39a2d5046248e7d3de26b1d37bb"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/img009.jpg",
+      "bytes": 704254,
+      "sha256": "b417a7a1fd4b968cf2abb641c9951f5fda1b625c9cf16a96e1419b673811e7a9"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/img010.jpg",
+      "bytes": 329559,
+      "sha256": "9f10ea9cc78efd8c7af09ca80642038e93678f628e003ebde2148c176872c618"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/img011.jpg",
+      "bytes": 17843,
+      "sha256": "f40c0e3ef4d4f627c04ab9e0a5dc0660bb1c66fe23d6b84fa4bfee6cdaedd2d0"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/img012.jpg",
+      "bytes": 26089,
+      "sha256": "fe5da33ae7320e472324b77762a4387233fd777842461208edc564c2beebc948"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/loc-memorandum-page1.png",
+      "bytes": 288949,
+      "sha256": "4aaafe2eb9238571bc4a4d43f63117cd3ceedc4ee35a692e2eafef3f0dadee6e"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/loc-original-engine-memorandum.pdf",
+      "bytes": 11532136,
+      "sha256": "46bb14f9bf1ff342b6f95e7e582044fa0aa9293984a9cde2177a5f4ff5ab7049"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/loc-original-engine-memorandum.txt",
+      "bytes": 132,
+      "sha256": "3676c53eeac487db70125a37ef09b8d7bb1804fb8d6bf836bea310ac55ac986c"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/loc-page4.png",
+      "bytes": 524793,
+      "sha256": "353eb565f6662c0f3e4d1ca296e1f1d2364e97342b213fef626c353d6c2440a2"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/loc-page56.png",
+      "bytes": 1271016,
+      "sha256": "7c83bc06e7c6b88a74fa3148097ad5ec55e0212e9b8e532eafca10d71895ff82"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/loc-page58.png",
+      "bytes": 1997794,
+      "sha256": "0700159fa147f3527761edb7a634fdc32b1c9253ad9f48673319d17826b2032f"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/loc-page63.png",
+      "bytes": 1081323,
+      "sha256": "c28c864a107e49992ac1f2472ffd9af700017e9c2fdd78d9e010c414f6cb2bad"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/loc-page65.png",
+      "bytes": 798120,
+      "sha256": "a9385eacb4124fedbbb93aed113e41896eedaca921693ff8431a6e4f71bdd72b"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/loc-page66.png",
+      "bytes": 787031,
+      "sha256": "8ad2aff3fca3143df45b4a15424567d84f309da17c9579c8f26c9d1ad8ca7285"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/loc-page67.png",
+      "bytes": 482644,
+      "sha256": "551e3adeb87ef79aca919e145de1e709dc8133446debd79e5f00110f5d1d0a65"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/loc-page7.png",
+      "bytes": 1033675,
+      "sha256": "e15406209fcd47f70f001041467d9e73197f3f40358a009fbf726aea1c97fc02"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/loc-page8.png",
+      "bytes": 914187,
+      "sha256": "c49d8edd1a7a32422d6f5a60f770a98b4540b8ed942ac402427bf566432c81d2"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/research/loc-pages-contact.jpg",
+      "bytes": 267355,
+      "sha256": "efed9c00f8a3c67bf224f62ed819f38ffb46603ff756d84759d3b172f9fd3be5"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/review.html",
+      "bytes": 54878,
+      "sha256": "0b429adbdc2b48afaff68f45342764e75b503c98bb2ef6650c5a336907461f18"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/blender-validation.json",
+      "bytes": 3964,
+      "sha256": "7352cb33e89f1bf29293f4968131c4962d9e7f2e25ca26ab3779f5f5c6e6a363"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/cad-validation.json",
+      "bytes": 271521,
+      "sha256": "decb9bfa5233e12309637ca8b360658e8bf97bc11be497845c15c5075678a1cf"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/chain-layout.json",
+      "bytes": 3731,
+      "sha256": "33c19d631e0d4a3849bdf0304d872e1e124e43f668a76a75ef2127c518269f28"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/coverage-plan.json",
+      "bytes": 445,
+      "sha256": "fc3002fe4955e466daaedd251e65ac7c4695e098fbc5c40bae1da2ca15f8f2c4"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/engineering-checks.json",
+      "bytes": 14550,
+      "sha256": "5a73ea1f86973bf5270b624d28a8e6d44ee46752fe86eb1db121cc6de180c9db"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/gallery-manifest.json",
+      "bytes": 555,
+      "sha256": "116fc59204e95bd53cd53424a13cd421fc0c6d73324ce9a06f280adf92877e33"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/inventory.json",
+      "bytes": 44416,
+      "sha256": "a331a60ad0e581b7b44ca057432e494391f07340a4453cf676acaa231f9f4583"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/metadata-differences.json",
+      "bytes": 45764,
+      "sha256": "ef0bf6e44b0ab7dbab7ff36cd4a3a165f8bda7ba0b2363252ad0b8f731bd25a9"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/part-spec.json",
+      "bytes": 733354,
+      "sha256": "4b1354932087cf667b0e812c18bfd42690e9373ae733578145bdb5656221f331"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/presentation-manifest.json",
+      "bytes": 100328,
+      "sha256": "4337078695a10216a1a60099dcf184a3a181644ee391262bb67d519343a83d2c"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/README.md",
+      "bytes": 4559,
+      "sha256": "4ee8bad6d8d73c3b9be19adab7ed2048b67d14757a4f8fdba6e0a7f7e1727fa9"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/reopen-validation.json",
+      "bytes": 1615,
+      "sha256": "8cc24f88bea2a779eaca634a850f7c84854287b66c7cf0383f30db09df9c38f9"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/research-readiness.json",
+      "bytes": 445,
+      "sha256": "fc3002fe4955e466daaedd251e65ac7c4695e098fbc5c40bae1da2ca15f8f2c4"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/research.md",
+      "bytes": 20030,
+      "sha256": "ddedf2d33f18e84dea9ffd0a7b88ff5703d821713eaeb024ee1abb28373b027c"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/source-manifest.json",
+      "bytes": 3842,
+      "sha256": "6905698eb384816bd2acfa5dbb03bc9353245cdca9a57de10f2537a3963b04d4"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/step-boundary-checks.json",
+      "bytes": 2490,
+      "sha256": "d69ba27d22e3f9d98502abf4234cc389377974b2e3e6adf6893d393e9f6c3bcb"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/step-differences.json",
+      "bytes": 77927,
+      "sha256": "f6569102396e69754fe6bb63a99fc8620886b4d71c31cd32593ca0bafd83ce7c"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/step-exception-policy.json",
+      "bytes": 827,
+      "sha256": "e4b5ab3436c5d252fea16672e883d6abbbf3905e1b0d4ca06aa6ab85e8f779e8"
+    },
+    {
+      "path": "build/wright-reconstruction-v2/study/validation-history.md",
+      "bytes": 6747,
+      "sha256": "829deb7bd7a47658ea28310f9f6f22511804b3c143c0d798c62b2af098d31b84"
+    },
+    {
+      "path": "cad-studies/wright-1903/mesh-analysis.json",
+      "bytes": 1339,
+      "sha256": "2420e44d0493e5ef553ea16a4d7938499788f22193d47506d2374e8d27c244ab"
+    },
+    {
+      "path": "cad-studies/wright-1903/mesh-rois.json",
+      "bytes": 891,
+      "sha256": "fb9b2fc467cd230374f40ee60929c5b67f767362088a8d1d37ef982f69e5e1a0"
+    },
+    {
+      "path": "cad-studies/wright-1903/primitive-fits.json",
+      "bytes": 3317,
+      "sha256": "259fe5247de7f58b97cf744b927a16d3599941611a3538fabed83fdc9949ed05"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/blender-validation.json",
+      "bytes": 3964,
+      "sha256": "7352cb33e89f1bf29293f4968131c4962d9e7f2e25ca26ab3779f5f5c6e6a363"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/cad-validation.json",
+      "bytes": 271521,
+      "sha256": "decb9bfa5233e12309637ca8b360658e8bf97bc11be497845c15c5075678a1cf"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/chain-layout.json",
+      "bytes": 3731,
+      "sha256": "33c19d631e0d4a3849bdf0304d872e1e124e43f668a76a75ef2127c518269f28"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/coverage-plan.json",
+      "bytes": 445,
+      "sha256": "fc3002fe4955e466daaedd251e65ac7c4695e098fbc5c40bae1da2ca15f8f2c4"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/engineering-checks.json",
+      "bytes": 14550,
+      "sha256": "5a73ea1f86973bf5270b624d28a8e6d44ee46752fe86eb1db121cc6de180c9db"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/gallery-manifest.json",
+      "bytes": 555,
+      "sha256": "116fc59204e95bd53cd53424a13cd421fc0c6d73324ce9a06f280adf92877e33"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/inventory.json",
+      "bytes": 44416,
+      "sha256": "a331a60ad0e581b7b44ca057432e494391f07340a4453cf676acaa231f9f4583"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/metadata-differences.json",
+      "bytes": 45764,
+      "sha256": "ef0bf6e44b0ab7dbab7ff36cd4a3a165f8bda7ba0b2363252ad0b8f731bd25a9"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/part-spec.json",
+      "bytes": 733354,
+      "sha256": "4b1354932087cf667b0e812c18bfd42690e9373ae733578145bdb5656221f331"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/presentation-manifest.json",
+      "bytes": 100328,
+      "sha256": "4337078695a10216a1a60099dcf184a3a181644ee391262bb67d519343a83d2c"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/README.md",
+      "bytes": 4559,
+      "sha256": "4ee8bad6d8d73c3b9be19adab7ed2048b67d14757a4f8fdba6e0a7f7e1727fa9"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/reopen-validation.json",
+      "bytes": 1615,
+      "sha256": "8cc24f88bea2a779eaca634a850f7c84854287b66c7cf0383f30db09df9c38f9"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/research-readiness.json",
+      "bytes": 445,
+      "sha256": "fc3002fe4955e466daaedd251e65ac7c4695e098fbc5c40bae1da2ca15f8f2c4"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/research.md",
+      "bytes": 20030,
+      "sha256": "ddedf2d33f18e84dea9ffd0a7b88ff5703d821713eaeb024ee1abb28373b027c"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/source-manifest.json",
+      "bytes": 3842,
+      "sha256": "6905698eb384816bd2acfa5dbb03bc9353245cdca9a57de10f2537a3963b04d4"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/step-boundary-checks.json",
+      "bytes": 2490,
+      "sha256": "d69ba27d22e3f9d98502abf4234cc389377974b2e3e6adf6893d393e9f6c3bcb"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/step-differences.json",
+      "bytes": 77927,
+      "sha256": "f6569102396e69754fe6bb63a99fc8620886b4d71c31cd32593ca0bafd83ce7c"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/step-exception-policy.json",
+      "bytes": 827,
+      "sha256": "e4b5ab3436c5d252fea16672e883d6abbbf3905e1b0d4ca06aa6ab85e8f779e8"
+    },
+    {
+      "path": "cad-studies/wright-1903/revision-2/validation-history.md",
+      "bytes": 6747,
+      "sha256": "829deb7bd7a47658ea28310f9f6f22511804b3c143c0d798c62b2af098d31b84"
+    },
+    {
+      "path": "cad_pipeline/__init__.py",
+      "bytes": 79,
+      "sha256": "947b56de7d24b077ccb11f9662a33e5d9170128af394f29bdaf25609fb270941"
+    },
+    {
+      "path": "cad_pipeline/add_sections.py",
+      "bytes": 3663,
+      "sha256": "625d2d4c71d5eb718114405ca2d4c283b42d0acbc299ee93c58ad6ab214efcc3"
+    },
+    {
+      "path": "cad_pipeline/audit_wright.py",
+      "bytes": 3448,
+      "sha256": "e198a272050d3ac2a4c6f0018201713da477bff202bbb8db9ab6d9480e67f3e0"
+    },
+    {
+      "path": "cad_pipeline/audit_wright_v2.py",
+      "bytes": 9534,
+      "sha256": "da425a62198bfc2439a8d0afa5bb5108b38d0834b91a6f742efb9e8dbd036b13"
+    },
+    {
+      "path": "cad_pipeline/build_review.py",
+      "bytes": 6502,
+      "sha256": "7af64d4797cc4e5bd23e2e44cdbeb2a6f9e89fce86560a15ed131b2a85f873ef"
+    },
+    {
+      "path": "cad_pipeline/examples/bearing-housing.json",
+      "bytes": 2025,
+      "sha256": "e4bc4747abe83ec2aa4513511e4ac0e838f306b9c20b2a8a542df4499542b4ec"
+    },
+    {
+      "path": "cad_pipeline/export_saved.py",
+      "bytes": 3384,
+      "sha256": "588d78d127f5db73ed8a5112d7a0a73f35d4ba7daa0197a3f6b9b872cf730cd2"
+    },
+    {
+      "path": "cad_pipeline/fit_mesh.py",
+      "bytes": 2048,
+      "sha256": "cc32807101609f6578a1852917a38058ab6d78ee46fb4ce02754b9a0d10957f1"
+    },
+    {
+      "path": "cad_pipeline/generate.py",
+      "bytes": 10379,
+      "sha256": "a2bf00347c0da07fcf626e227feac66e500a1fa05791b8cc44a85cd02b872f56"
+    },
+    {
+      "path": "cad_pipeline/inspect_mesh.py",
+      "bytes": 4251,
+      "sha256": "91ba597654cfa2fe5fa915acf160a1d51fb98890cdfb3061d1d7e825f62d1ab7"
+    },
+    {
+      "path": "cad_pipeline/inspect_step_difference.py",
+      "bytes": 2917,
+      "sha256": "a836d382093d330395ac5a0b0c93ba822b91800aa92ed7cae79f04ff94470dd1"
+    },
+    {
+      "path": "cad_pipeline/package_presentation.py",
+      "bytes": 6261,
+      "sha256": "d86218c0182d0348489c14abe9d7dbe93ab7146ca15112e5f6a9b5f13f4cfd65"
+    },
+    {
+      "path": "cad_pipeline/package_reconstruction.py",
+      "bytes": 3676,
+      "sha256": "ce764c7b396d2735bcbe9fbb856bf047ace115b5c6105a1205ef1fab675cd4b8"
+    },
+    {
+      "path": "cad_pipeline/present.py",
+      "bytes": 11950,
+      "sha256": "205c913b4e695ebe13545eb1fd27934fbc176efcefc6708b8530ce57cdade850"
+    },
+    {
+      "path": "cad_pipeline/README.md",
+      "bytes": 10238,
+      "sha256": "fc355dcde154d6df3050f0cb6e2f988cd4af167cc11e520639cb5c683e427f83"
+    },
+    {
+      "path": "cad_pipeline/refresh_metadata.py",
+      "bytes": 2233,
+      "sha256": "1dea3802f9f1c4dd722b7957f45427de1d27aab5fb5e6b145452e65193824da5"
+    },
+    {
+      "path": "cad_pipeline/research_gate.py",
+      "bytes": 3935,
+      "sha256": "643ffcc9dbee934f538f8d68265f1e3c627f41d5d30de8871846aad1e70b75ed"
+    },
+    {
+      "path": "cad_pipeline/schemas/part_spec.schema.json",
+      "bytes": 8384,
+      "sha256": "75d2260b4072767321819c249c1ae75c3aca1499abf7ee904df934ad39c11ada"
+    },
+    {
+      "path": "cad_pipeline/spec.py",
+      "bytes": 5418,
+      "sha256": "2fec3ac2958fe8f90b126b733f65ffd513cc91b1176fab803bcf3cb88a90ff2f"
+    },
+    {
+      "path": "cad_pipeline/step_roundtrip.py",
+      "bytes": 2349,
+      "sha256": "e38a888869c7bef228edd006847f1db51011719ab77c8b5ca2cc410b8b55a3bb"
+    },
+    {
+      "path": "cad_pipeline/tests/test_pipeline.py",
+      "bytes": 3034,
+      "sha256": "25119940ff321cfff8a1979252209953ec89d4e88f2664a983aa9c76fe551153"
+    },
+    {
+      "path": "cad_pipeline/tests/test_research_and_features.py",
+      "bytes": 2996,
+      "sha256": "dd9bbc74e26d4ad98913d15729855c20389499f89095892685b09a4b69ecedca"
+    },
+    {
+      "path": "cad_pipeline/tests/test_step_exception.py",
+      "bytes": 1648,
+      "sha256": "e4618f74e88359e5d1759550e7b25135197dd0cf5a24fcd2370500934c3f0a41"
+    },
+    {
+      "path": "cad_pipeline/update_native.py",
+      "bytes": 6522,
+      "sha256": "f24d1779077bd49469bbfd6550f02a9f413e0930e79da7a1f8bab09746fc1913"
+    },
+    {
+      "path": "cad_pipeline/verify.py",
+      "bytes": 5181,
+      "sha256": "9a103eaa77d57299390f6b73d5c38dbf878188f4ddd91e4ce503f00e834dc175"
+    },
+    {
+      "path": "cad_pipeline/verify_blender.py",
+      "bytes": 2572,
+      "sha256": "af5bbca13dc4c451023f03a02b37eb0a5821795ead95f596e27045ac9aad0a3c"
+    },
+    {
+      "path": "cad_pipeline/wright_research.py",
+      "bytes": 20172,
+      "sha256": "29caf27597e562454ca314890e97cdeea9c63398fdd1535d3d0e97b3a1bc7caf"
+    },
+    {
+      "path": "cad_pipeline/wright_spec.py",
+      "bytes": 16391,
+      "sha256": "15eb47ae60d0bfa63a8ef4ee7a4aab58fd5c7a98a379139f166b41dfc2b99736"
+    },
+    {
+      "path": "cad_pipeline/wright_v2.py",
+      "bytes": 37588,
+      "sha256": "a371b303b0f93a0975d43cfe49883ba5c507c75edff91ee7c8f86eda5b81817d"
+    },
+    {
+      "path": "web/wright-1903-engine.glb",
+      "bytes": 9565828,
+      "sha256": "e626ab347a7f587fee2169f81ac3516185aef033adf32c920533f85293b52daf"
+    }
+  ]
+}

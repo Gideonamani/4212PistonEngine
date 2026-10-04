@@ -1,0 +1,50 @@
+{
+  "source": "web/wright-1903-engine.glb",
+  "sha256": "e626ab347a7f587fee2169f81ac3516185aef033adf32c920533f85293b52daf",
+  "importer": "Blender 5.0.1",
+  "units": "raw imported coordinates; physical scale must be established independently",
+  "coordinate_note": "Blender XYZ after glTF Y-up conversion; all node transforms applied",
+  "bounds": [
+    [
+      -67.01806640625,
+      -20.022855758666992,
+      -40.23815155029297
+    ],
+    [
+      16.15436363220215,
+      71.92781066894531,
+      26.207727432250977
+    ]
+  ],
+  "extents": [
+    83.17243003845215,
+    91.9506664276123,
+    66.44587898254395
+  ],
+  "objects": [
+    {
+      "name": "Engine_Joined-50k",
+      "vertices": 161070,
+      "polygons": 53690,
+      "bounds": [
+        [
+          -67.01806640625,
+          -20.022855758666992,
+          -40.23815155029297
+        ],
+        [
+          16.15436363220215,
+          71.92781066894531,
+          26.207727432250977
+        ]
+      ],
+      "boundary_edges": 161070,
+      "nonmanifold_edges": 0,
+      "weld_decimal_places": 5,
+      "welded_vertices": 26151,
+      "welded_boundary_edges": 603,
+      "welded_nonmanifold_edges": 404
+    }
+  ],
+  "warning": "Connected scan surfaces are not a semantic component inventory. Hidden geometry is unresolved."
+}

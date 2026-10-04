@@ -1,0 +1,560 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "check": "All applicable source callouts have explicit disposition and generated mapping",
+      "passed": true,
+      "coverage": {
+        "passed": true,
+        "components": 58,
+        "source_callouts": 47,
+        "dispositions": {
+          "outside_scope": 2,
+          "modelled": 0,
+          "simplified": 55,
+          "deferred": 1
+        },
+        "coverage_checked": true,
+        "mechanisms": 6,
+        "historical_accuracy_verified": false,
+        "scope": "Ready for detailed static teaching CAD with explicitly estimated manufacturing details; exact 1903 reproduction and operating dynamics remain unverified."
+      }
+    },
+    {
+      "check": "Documented nominal bore/stroke/valve/lift/wall retained",
+      "passed": true
+    },
+    {
+      "check": "Six/twelve timing tooth-pocket counts",
+      "passed": true
+    },
+    {
+      "check": "Liner 1 bore and specified wall",
+      "passed": true
+    },
+    {
+      "check": "Piston 1 clears short liner",
+      "passed": true
+    },
+    {
+      "check": "Wrist pin 1 clears bronze little-end bore",
+      "passed": true
+    },
+    {
+      "check": "Big end 1 clears crankpin",
+      "passed": true
+    },
+    {
+      "check": "Piston 1 ring 1 stays inside liner and above pin",
+      "passed": true
+    },
+    {
+      "check": "Piston 1 ring 2 stays inside liner and above pin",
+      "passed": true
+    },
+    {
+      "check": "Piston 1 ring 3 stays inside liner and above pin",
+      "passed": true
+    },
+    {
+      "check": "Cylinder 1 open liner-to-box gas path",
+      "passed": true
+    },
+    {
+      "check": "Cylinder 1 oil jet connects distributor to liner drilling",
+      "passed": true
+    },
+    {
+      "check": "Valve box 1 exhaust apertures open",
+      "passed": true
+    },
+    {
+      "check": "Intake 1 head is 2 inches",
+      "passed": true
+    },
+    {
+      "check": "Intake 1 cage has four open windows and four legs",
+      "passed": true
+    },
+    {
+      "check": "Intake 1 stem clears guide and closed head clears cage",
+      "passed": true
+    },
+    {
+      "check": "Intake 1 documented lift clears cage",
+      "passed": true
+    },
+    {
+      "check": "Intake 1 spring clears stem",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 1 head is 2 inches",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 1 cage has four open windows and four legs",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 1 stem clears guide and closed head clears cage",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 1 documented lift clears cage",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 1 spring clears stem",
+      "passed": true
+    },
+    {
+      "check": "Rocker 1 cam roller contacts lobe",
+      "passed": true,
+      "distance_mm": 0.0
+    },
+    {
+      "check": "Rocker 1 valve roller contacts stem",
+      "passed": true,
+      "distance_mm": 0.0
+    },
+    {
+      "check": "Rocker 1 cheeks clear cast pivot support",
+      "passed": true
+    },
+    {
+      "check": "Liner 2 bore and specified wall",
+      "passed": true
+    },
+    {
+      "check": "Piston 2 clears short liner",
+      "passed": true
+    },
+    {
+      "check": "Wrist pin 2 clears bronze little-end bore",
+      "passed": true
+    },
+    {
+      "check": "Big end 2 clears crankpin",
+      "passed": true
+    },
+    {
+      "check": "Piston 2 ring 1 stays inside liner and above pin",
+      "passed": true
+    },
+    {
+      "check": "Piston 2 ring 2 stays inside liner and above pin",
+      "passed": true
+    },
+    {
+      "check": "Piston 2 ring 3 stays inside liner and above pin",
+      "passed": true
+    },
+    {
+      "check": "Cylinder 2 open liner-to-box gas path",
+      "passed": true
+    },
+    {
+      "check": "Cylinder 2 oil jet connects distributor to liner drilling",
+      "passed": true
+    },
+    {
+      "check": "Valve box 2 exhaust apertures open",
+      "passed": true
+    },
+    {
+      "check": "Intake 2 head is 2 inches",
+      "passed": true
+    },
+    {
+      "check": "Intake 2 cage has four open windows and four legs",
+      "passed": true
+    },
+    {
+      "check": "Intake 2 stem clears guide and closed head clears cage",
+      "passed": true
+    },
+    {
+      "check": "Intake 2 documented lift clears cage",
+      "passed": true
+    },
+    {
+      "check": "Intake 2 spring clears stem",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 2 head is 2 inches",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 2 cage has four open windows and four legs",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 2 stem clears guide and closed head clears cage",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 2 documented lift clears cage",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 2 spring clears stem",
+      "passed": true
+    },
+    {
+      "check": "Rocker 2 cam roller contacts lobe",
+      "passed": true,
+      "distance_mm": 0.0
+    },
+    {
+      "check": "Rocker 2 valve roller contacts stem",
+      "passed": true,
+      "distance_mm": 0.0
+    },
+    {
+      "check": "Rocker 2 cheeks clear cast pivot support",
+      "passed": true
+    },
+    {
+      "check": "Liner 3 bore and specified wall",
+      "passed": true
+    },
+    {
+      "check": "Piston 3 clears short liner",
+      "passed": true
+    },
+    {
+      "check": "Wrist pin 3 clears bronze little-end bore",
+      "passed": true
+    },
+    {
+      "check": "Big end 3 clears crankpin",
+      "passed": true
+    },
+    {
+      "check": "Piston 3 ring 1 stays inside liner and above pin",
+      "passed": true
+    },
+    {
+      "check": "Piston 3 ring 2 stays inside liner and above pin",
+      "passed": true
+    },
+    {
+      "check": "Piston 3 ring 3 stays inside liner and above pin",
+      "passed": true
+    },
+    {
+      "check": "Cylinder 3 open liner-to-box gas path",
+      "passed": true
+    },
+    {
+      "check": "Cylinder 3 oil jet connects distributor to liner drilling",
+      "passed": true
+    },
+    {
+      "check": "Valve box 3 exhaust apertures open",
+      "passed": true
+    },
+    {
+      "check": "Intake 3 head is 2 inches",
+      "passed": true
+    },
+    {
+      "check": "Intake 3 cage has four open windows and four legs",
+      "passed": true
+    },
+    {
+      "check": "Intake 3 stem clears guide and closed head clears cage",
+      "passed": true
+    },
+    {
+      "check": "Intake 3 documented lift clears cage",
+      "passed": true
+    },
+    {
+      "check": "Intake 3 spring clears stem",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 3 head is 2 inches",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 3 cage has four open windows and four legs",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 3 stem clears guide and closed head clears cage",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 3 documented lift clears cage",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 3 spring clears stem",
+      "passed": true
+    },
+    {
+      "check": "Rocker 3 cam roller contacts lobe",
+      "passed": true,
+      "distance_mm": 0.0
+    },
+    {
+      "check": "Rocker 3 valve roller contacts stem",
+      "passed": true,
+      "distance_mm": 0.0
+    },
+    {
+      "check": "Rocker 3 cheeks clear cast pivot support",
+      "passed": true
+    },
+    {
+      "check": "Liner 4 bore and specified wall",
+      "passed": true
+    },
+    {
+      "check": "Piston 4 clears short liner",
+      "passed": true
+    },
+    {
+      "check": "Wrist pin 4 clears bronze little-end bore",
+      "passed": true
+    },
+    {
+      "check": "Big end 4 clears crankpin",
+      "passed": true
+    },
+    {
+      "check": "Piston 4 ring 1 stays inside liner and above pin",
+      "passed": true
+    },
+    {
+      "check": "Piston 4 ring 2 stays inside liner and above pin",
+      "passed": true
+    },
+    {
+      "check": "Piston 4 ring 3 stays inside liner and above pin",
+      "passed": true
+    },
+    {
+      "check": "Cylinder 4 open liner-to-box gas path",
+      "passed": true
+    },
+    {
+      "check": "Cylinder 4 oil jet connects distributor to liner drilling",
+      "passed": true
+    },
+    {
+      "check": "Valve box 4 exhaust apertures open",
+      "passed": true
+    },
+    {
+      "check": "Intake 4 head is 2 inches",
+      "passed": true
+    },
+    {
+      "check": "Intake 4 cage has four open windows and four legs",
+      "passed": true
+    },
+    {
+      "check": "Intake 4 stem clears guide and closed head clears cage",
+      "passed": true
+    },
+    {
+      "check": "Intake 4 documented lift clears cage",
+      "passed": true
+    },
+    {
+      "check": "Intake 4 spring clears stem",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 4 head is 2 inches",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 4 cage has four open windows and four legs",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 4 stem clears guide and closed head clears cage",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 4 documented lift clears cage",
+      "passed": true
+    },
+    {
+      "check": "Exhaust 4 spring clears stem",
+      "passed": true
+    },
+    {
+      "check": "Rocker 4 cam roller contacts lobe",
+      "passed": true,
+      "distance_mm": 0.0
+    },
+    {
+      "check": "Rocker 4 valve roller contacts stem",
+      "passed": true,
+      "distance_mm": 0.0
+    },
+    {
+      "check": "Rocker 4 cheeks clear cast pivot support",
+      "passed": true
+    },
+    {
+      "check": "Main bearing 1 shaft clearance",
+      "passed": true
+    },
+    {
+      "check": "Main bearing 2 shaft clearance",
+      "passed": true
+    },
+    {
+      "check": "Main bearing 3 shaft clearance",
+      "passed": true
+    },
+    {
+      "check": "Main bearing 4 shaft clearance",
+      "passed": true
+    },
+    {
+      "check": "Main bearing 5 shaft clearance",
+      "passed": true
+    },
+    {
+      "check": "Water jacket has free volume between liners",
+      "passed": true
+    },
+    {
+      "check": "Lower water feed and both upper returns open",
+      "passed": true
+    },
+    {
+      "check": "All liners clear cast flange counterbores",
+      "passed": true
+    },
+    {
+      "check": "Crankshaft clears cast bearing access",
+      "passed": true
+    },
+    {
+      "check": "Flywheel generator friction-wheel tangency",
+      "passed": true
+    },
+    {
+      "check": "Ignition equal gears have tangent pitch circles",
+      "passed": true
+    },
+    {
+      "check": "Reopened bore change propagates liner/piston/rings",
+      "passed": true
+    }
+  ],
+  "coverage": {
+    "passed": true,
+    "components": 58,
+    "source_callouts": 47,
+    "dispositions": {
+      "outside_scope": 2,
+      "modelled": 0,
+      "simplified": 55,
+      "deferred": 1
+    },
+    "coverage_checked": true,
+    "mechanisms": 6,
+    "historical_accuracy_verified": false,
+    "scope": "Ready for detailed static teaching CAD with explicitly estimated manufacturing details; exact 1903 reproduction and operating dynamics remain unverified."
+  },
+  "source_alignment": {
+    "scope": "Four exterior housing ROIs at inferred scale; no global fit claim",
+    "regions": [
+      {
+        "cylinder": 1,
+        "mesh_center_mm": [
+          431.24048569995455,
+          -0.3237021460330203
+        ],
+        "cad_center_mm": [
+          415.0,
+          0.0
+        ],
+        "center_deviation_mm": 16.24371136316373,
+        "radius_deviation_mm": 0.013862784285869623,
+        "mesh_fit_rms_mm": 2.59704668443927
+      },
+      {
+        "cylinder": 2,
+        "mesh_center_mm": [
+          429.7973424245458,
+          129.67046625610413
+        ],
+        "cad_center_mm": [
+          415.0,
+          129.69
+        ],
+        "center_deviation_mm": 14.797355317637432,
+        "radius_deviation_mm": 0.1502183900703713,
+        "mesh_fit_rms_mm": 2.105221336766863
+      },
+      {
+        "cylinder": 3,
+        "mesh_center_mm": [
+          427.4086328136142,
+          261.4036716150214
+        ],
+        "cad_center_mm": [
+          415.0,
+          259.38
+        ],
+        "center_deviation_mm": 12.572565971532862,
+        "radius_deviation_mm": 0.1338332608300732,
+        "mesh_fit_rms_mm": 1.7420496603772275
+      },
+      {
+        "cylinder": 4,
+        "mesh_center_mm": [
+          427.89631283502365,
+          388.744817922163
+        ],
+        "cad_center_mm": [
+          415.0,
+          389.07
+        ],
+        "center_deviation_mm": 12.900411936157004,
+        "radius_deviation_mm": 0.030929005990579128,
+        "mesh_fit_rms_mm": 1.6363326006993577
+      }
+    ]
+  },
+  "unresolved": [
+    {
+      "topic": "Chain",
+      "status": "unverified_for_operation",
+      "nominal_pitch_mm": 25.4,
+      "chord_pitch_range_mm": [
+        24.380024765488603,
+        25.429072212389453
+      ],
+      "reason": "Static arc-length layout; curved-span chord spacing and pocket profiles do not constitute a manufactured chain/sprocket pair."
+    },
+    {
+      "topic": "Oil pump drive and service network",
+      "status": "deferred_geometry",
+      "reason": "Narrative worm/cross-shaft and Figure 5 cam-drive conflict; dimensioned drive drawings not acquired. Full pump/return/hose joint continuity is unverified; distributor/liner jet openings are checked separately."
+    },
+    {
+      "topic": "Dynamic phase, exact cam law and snap mechanism",
+      "status": "unverified_for_operation",
+      "reason": "Static geometry and bounded contacts only; no kinematic or combustion certification."
+    },
+    {
+      "topic": "Manufacturing/identity",
+      "status": "unverified",
+      "reason": "Exact drawing dimensions, fits, spring rates and authentic 1903 configuration not established."
+    }
+  ],
+  "scope": "Saved static CAD: nominal dimensions, selected interfaces/flow openings, native regeneration and source inventory. Not full-motion, stress, thermal or manufacturing validation."
+}

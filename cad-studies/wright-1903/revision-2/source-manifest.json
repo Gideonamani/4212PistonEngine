@@ -1,0 +1,101 @@
+{
+  "access_date": "2026-10-04",
+  "sources": {
+    "H1": {
+      "url": "https://www.gutenberg.org/files/38739/38739-h/38739-h.htm",
+      "title": "Hobbs, The Wright Brothers' Engines and Their Design",
+      "date": "1971",
+      "variant": "1903 discussion; surviving rebuilt engine; incompatible drawing sets"
+    },
+    "L1": {
+      "url": "https://tile.loc.gov/storage-services/service/mss/mss46706/mss46706-04134/mss46706-04134.pdf",
+      "title": "Library of Congress Wright papers engine file (67 scanned pages)",
+      "variant": "mixed dates; locators mandatory"
+    },
+    "N1": {
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/timing-system/",
+      "title": "NASA Glenn Timing System",
+      "variant": "teaching computer model"
+    },
+    "N2": {
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/electrical-system/",
+      "title": "NASA Glenn Electrical System",
+      "variant": "teaching computer model"
+    },
+    "N3": {
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/cooling-system/",
+      "title": "NASA Glenn Cooling System",
+      "variant": "1903 engine/airframe explanation"
+    },
+    "A1": {
+      "url": "https://www.si.edu/object/archives/sova-nasm-1986-0152",
+      "title": "NASM.1986.0152 drawing collection finding aid",
+      "variant": "multiple drawing lineages; sheets not acquired"
+    },
+    "A2": {
+      "url": "https://collection.sciencemuseumgroup.org.uk/objects/co30309/replica-of-1903-wright-brothers-aero-engine",
+      "title": "Science Museum 1951-20 working replica",
+      "variant": "1951 replica"
+    },
+    "M1": {
+      "path": "web/wright-1903-engine.glb",
+      "sha256": "e626ab347a7f587fee2169f81ac3516185aef033adf32c920533f85293b52daf",
+      "title": "Existing joined exterior mesh",
+      "variant": "museum-derived exterior; internal construction invisible"
+    }
+  },
+  "local_research_root": "build\\wright-reconstruction-v2\\research",
+  "files": {
+    "hobbs-gutenberg.html": {
+      "bytes": 209172,
+      "sha256": "6ae61c5ee5c298a37561aa24868524e641e345a15915d08f85d466ec28105003"
+    },
+    "img004.jpg": {
+      "bytes": 47631,
+      "sha256": "40408b0f2646572dcaebe13107d126f20abe3c0f673e6b910d38cb0ce4056ac9"
+    },
+    "img005.jpg": {
+      "bytes": 40077,
+      "sha256": "1a4d117e40a5879c3457252b202de9dbc4239126e5144815f02d7cb3f8c4864a"
+    },
+    "img006.jpg": {
+      "bytes": 57270,
+      "sha256": "680acd4b7f413f333ecd8c09a6cdc4481fd1c526c1de61fdd4bfd05b8d9a0b66"
+    },
+    "img007.jpg": {
+      "bytes": 31911,
+      "sha256": "ee7cfebcf35ab37df886452cc23b96b6b378f17dfc301ada241ac8b114fc0d7f"
+    },
+    "img008.jpg": {
+      "bytes": 39413,
+      "sha256": "35b7e97251643c3c1756e225b073ae9b4cc4a39a2d5046248e7d3de26b1d37bb"
+    },
+    "img009.jpg": {
+      "bytes": 704254,
+      "sha256": "b417a7a1fd4b968cf2abb641c9951f5fda1b625c9cf16a96e1419b673811e7a9"
+    },
+    "img010.jpg": {
+      "bytes": 329559,
+      "sha256": "9f10ea9cc78efd8c7af09ca80642038e93678f628e003ebde2148c176872c618"
+    },
+    "img011.jpg": {
+      "bytes": 17843,
+      "sha256": "f40c0e3ef4d4f627c04ab9e0a5dc0660bb1c66fe23d6b84fa4bfee6cdaedd2d0"
+    },
+    "img012.jpg": {
+      "bytes": 26089,
+      "sha256": "fe5da33ae7320e472324b77762a4387233fd777842461208edc564c2beebc948"
+    },
+    "loc-original-engine-memorandum.pdf": {
+      "bytes": 11532136,
+      "sha256": "46bb14f9bf1ff342b6f95e7e582044fa0aa9293984a9cde2177a5f4ff5ab7049"
+    },
+    "loc-pages-contact.jpg": {
+      "bytes": 267355,
+      "sha256": "efed9c00f8a3c67bf224f62ed819f38ffb46603ff756d84759d3b172f9fd3be5"
+    }
+  },
+  "unavailable": [
+    "Official Smithsonian PDF returned service interruption; no local source acquired"
+  ]
+}

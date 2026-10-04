@@ -1,0 +1,35 @@
+{
+  "original_archive_sha256": "0a9bd1a9f605875b9108a96d14bfaf88fff46e1931a82dc65e6ce75787927c25",
+  "original_archive_bytes": 120584730,
+  "format": "Two self-contained ZIP parts; extract both into the same folder",
+  "all_original_payload_hashes_verified": true,
+  "parts": [
+    {
+      "path": "build/wright-reconstruction-v2/wright-research-revision-2-20261004-cad-research.zip",
+      "bytes": 66738027,
+      "sha256": "94a5802e6b1b3238e277a576891a37ba10b798f9f65797b24ee44064aeb482b2",
+      "payload_files": 115,
+      "part": "cad-research",
+      "drive_id": "1TdKHWlx5Slgu8vnwUapPi8XXSi_Pk_b8",
+      "drive_url": "https://drive.google.com/file/d/1TdKHWlx5Slgu8vnwUapPi8XXSi_Pk_b8/view?usp=drivesdk",
+      "parent_folder_id": "1V-6yZX2FZ-GQDS2yF5hDJGbXjloEVrbJ",
+      "private": true,
+      "drive_size_verified": true,
+      "remote_sha256_verified": false
+    },
+    {
+      "path": "build/wright-reconstruction-v2/wright-research-revision-2-20261004-blender-gallery.zip",
+      "bytes": 53854141,
+      "sha256": "d9ce033919b17259054d4f84165d2cdd97622af1daf401b736805d12361d8557",
+      "payload_files": 36,
+      "part": "blender-gallery",
+      "drive_id": "1o_Xcrcaq9IvZ5ltdIQ1XeetyxInItg-z",
+      "drive_url": "https://drive.google.com/file/d/1o_Xcrcaq9IvZ5ltdIQ1XeetyxInItg-z/view?usp=drivesdk",
+      "parent_folder_id": "1V-6yZX2FZ-GQDS2yF5hDJGbXjloEVrbJ",
+      "private": true,
+      "drive_size_verified": true,
+      "remote_sha256_verified": false
+    }
+  ],
+  "cloud_verification": "Connector metadata readback verified both byte counts, expected parent and owner-only permissions. All original payload hashes and local delivery ZIP CRCs verified. Remote content hashes are not exposed by the connector."
+}
