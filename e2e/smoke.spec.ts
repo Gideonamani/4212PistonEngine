@@ -77,7 +77,9 @@ test('Check: an answer locks and the explanation appears', async ({ page, proble
 test.describe('3D viewer', () => {
   onlyIn('phone-390');
   // Each test decodes a 35 MB model; running them side by side makes every one of them slow enough to time out.
-  test.describe.configure({ mode: 'serial' });
+  // The timeout is set here, not inside each test, so it also covers the browser starting up for the test: on a busy CI runner that alone
+  // can pass the default 60 s.
+  test.describe.configure({ mode: 'serial', timeout: 180_000 });
 
   test('a lesson step loads its model and shows the canvas inside the screen', async ({ page, problems }) => {
     test.setTimeout(180_000);

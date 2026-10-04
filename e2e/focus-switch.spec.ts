@@ -13,7 +13,7 @@ const SWITCH = 'How the highlighted part is shown';
 
 test('a spotlight step offers three ways to show the part, and the choice carries to the next steps', async ({ page, problems }) => {
   test.setTimeout(240_000);
-  const { viewer } = await openViewerStep(page, SPOTLIGHT_STEP);
+  const { viewer } = await openViewerStep(page, SPOTLIGHT_STEP, { loadModel: true });
   await expect(viewer.getByRole('status')).toHaveCount(0, { timeout: 150_000 });
 
   const group = viewer.getByRole('group', { name: SWITCH });
@@ -56,7 +56,7 @@ test('a spotlight step offers three ways to show the part, and the choice carrie
 test('a choice made on an earlier visit is already in force when the model appears', async ({ page, problems }) => {
   test.setTimeout(240_000);
   await page.addInitScript((key) => { try { localStorage.setItem(key, 'isolate'); } catch { /* storage blocked */ } }, STORAGE_KEY);
-  const { viewer } = await openViewerStep(page, SPOTLIGHT_STEP);
+  const { viewer } = await openViewerStep(page, SPOTLIGHT_STEP, { loadModel: true });
   await expect(viewer.getByRole('status')).toHaveCount(0, { timeout: 150_000 });
   const group = viewer.getByRole('group', { name: SWITCH });
   await expect(group.getByRole('button', { name: 'Isolate' })).toHaveAttribute('aria-pressed', 'true');

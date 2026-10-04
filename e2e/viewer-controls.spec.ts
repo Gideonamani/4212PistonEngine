@@ -1,4 +1,4 @@
-import { expect, test } from './fixtures';
+import { expect, onlyIn, test } from './fixtures';
 import { centreOf, openViewerStep, scrollAreaOf } from './viewer-helpers';
 
 // What a learner can do to the 3D viewer inside a lesson, apart from where it sits (layout.spec.ts) and how a spotlight is drawn
@@ -31,12 +31,15 @@ test('every tool on the viewer sits inside the canvas, even on the narrowest pho
 });
 
 test.describe('mouse wheel', () => {
-  // A phone has no wheel; this is for the learner on a laptop or desktop, so run once at a tablet width with a mouse.
+  // A phone has no wheel; this is for the learner on a laptop or desktop, so run once, with a mouse. It needs a lesson that is taller
+  // than the screen (a phone-width window): on a tablet the whole step fits, so there is nothing to scroll.
+  onlyIn('phone-390');
   test.use({ hasTouch: false, isMobile: false });
 
   test('turning the wheel over the viewer scrolls the lesson, and says how to zoom', async ({ page }) => {
     const { canvasHost, viewer } = await openViewerStep(page);
     const scroller = await scrollAreaOf(canvasHost);
+    expect(await scroller.evaluate((node: HTMLElement) => node.scrollHeight - node.clientHeight), 'the lesson must be taller than its scroll area for this check to mean anything').toBeGreaterThan(20);
     const before = await scroller.evaluate((node: HTMLElement) => node.scrollTop);
     const { x, y } = await centreOf(canvasHost);
     await page.mouse.move(x, y);
