@@ -20,7 +20,7 @@ From the repository directory:
 
 ```powershell
 python scripts/prepare_package_preview.py --package build/pipeline-spring-seat --valves
-node --test scripts/test_cycle_cues.mjs scripts/test_kinematics.mjs scripts/test_valve_kinematics.mjs scripts/test_training_shell.mjs
+node --test scripts/test_cycle_cues.mjs scripts/test_kinematics.mjs scripts/test_valve_kinematics.mjs
 python -m http.server 8765 --bind 127.0.0.1 --directory build/pipeline-spring-seat/preview
 ```
 

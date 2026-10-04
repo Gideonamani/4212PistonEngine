@@ -8,6 +8,9 @@ renders/
 *.FCStd1
 node_modules/
 dist/
+# Browser test output (traces, screenshots, reports).
+test-results/
+playwright-report/
 # Model exports live in Google Drive. Restore ignored copies for local/CI tests.
 *.glb
 *.glb.gz

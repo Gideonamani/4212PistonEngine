@@ -59,4 +59,4 @@ Do not add another HTML entry point, iframe bridge, renderer, camera-control imp
 
 ## Verification
 
-`npm run lint`, `npm test` and `npm run build` validate the typed integration, engineering calculations, lesson/schema data, registry, viewer boundaries and production bundle. `scripts/test_training_shell.mjs` is intentionally an architecture regression test: it prevents the retired shells and duplicate viewer components from returning.
+`npm run lint`, `npm test` and `npm run build` validate the typed integration, engineering calculations, lesson/schema data, registry, viewer boundaries and production bundle. `scripts/test_retired_files.mjs` prevents the retired shells and duplicate viewer components from returning, and `npm run e2e` drives the real app in a browser at phone and tablet widths.

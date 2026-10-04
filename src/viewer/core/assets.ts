@@ -1,5 +1,6 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import type { ModelSource } from '../../data/modelRegistry';
+import { orderAttempts } from './source-order.mjs';
 
 type Candidate = ModelSource & { url: string; headers: Record<string, string>; label: string };
 let configRequest: Promise<{ drive_api_key?: string }> | undefined;
@@ -11,14 +12,14 @@ async function deliveryConfig() {
 
 async function candidatesFor(sources: ModelSource[]): Promise<Candidate[]> {
   const { drive_api_key: apiKey = '' } = await deliveryConfig();
-  const local = sources.filter((source) => source.localUrl).map((source) => ({ ...source, url: source.localUrl!, headers: {}, label: 'local asset' }));
-  const drive = sources.filter((source) => source.driveId && apiKey).map((source) => ({
-    ...source,
-    url: `https://www.googleapis.com/drive/v3/files/${encodeURIComponent(source.driveId!)}?alt=media`,
-    headers: { 'X-Goog-Api-Key': apiKey },
-    label: 'Drive asset',
-  }));
-  return [...local, ...drive];
+  return orderAttempts(sources, { apiKey, production: import.meta.env.PROD }).map(({ source, from }): Candidate => from === 'local'
+    ? { ...source, url: source.localUrl!, headers: {}, label: 'local asset' }
+    : {
+      ...source,
+      url: `https://www.googleapis.com/drive/v3/files/${encodeURIComponent(source.driveId!)}?alt=media`,
+      headers: { 'X-Goog-Api-Key': apiKey },
+      label: 'Drive asset',
+    });
 }
 
 async function decodeModel(bytes: ArrayBuffer, signal: AbortSignal, onProgress: (status: string, progress?: number) => void) {
