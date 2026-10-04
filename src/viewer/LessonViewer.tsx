@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { Box, RotateCcw, SlidersHorizontal } from 'lucide-react';
 import { modelsById } from '../data/modelRegistry';
+import { FOCUS_MODES } from './core/focus-style.mjs';
 import { lessonProfile } from './core/view-state.mjs';
-import { HotspotChips, HotspotNote, ModelCanvas, MotionStrip, PanToggle, ToolbarButton, UnknownModel, WheelZoomHint, useViewerHint } from './ViewerParts';
+import { useStoredChoice } from '../data/localChoice';
+import { FocusModeSwitch, HotspotChips, HotspotNote, ModelCanvas, MotionStrip, PanToggle, ToolbarButton, UnknownModel, WheelZoomHint, useViewerHint } from './ViewerParts';
 import { hasControlPanels, useControlsPanel } from './useControlsPanel';
 import { useModelViewer } from './useModelViewer';
-import type { ViewUpdate } from './types';
+import type { FocusMode, ViewUpdate } from './types';
+
+/** Where the learner's own choice of spotlight style is remembered on this device. */
+const FOCUS_CHOICE_KEY = '4212-lesson-focus-mode';
 
 type LessonViewerProps = {
   modelId: string;
@@ -21,7 +26,8 @@ type LessonViewerProps = {
  */
 export default function LessonViewer({ modelId, view, immersive = false, onOpenExplore }: LessonViewerProps) {
   const definition = modelsById[modelId];
-  const viewer = useModelViewer(modelId, lessonProfile(definition?.adapter), view);
+  const [focusChoice, chooseFocusMode] = useStoredChoice<FocusMode>(FOCUS_CHOICE_KEY, FOCUS_MODES as FocusMode[]);
+  const viewer = useModelViewer(modelId, lessonProfile(definition?.adapter), view, focusChoice);
   const [controlsOpen, setControlsOpen] = useState(false);
   const renderControls = useControlsPanel(viewer);
   const hint = useViewerHint(viewer);
@@ -46,6 +52,7 @@ export default function LessonViewer({ modelId, view, immersive = false, onOpenE
     </div>
 
     <div className="space-y-2 border-t border-slate-800/80 px-3 py-2.5">
+      <FocusModeSwitch viewer={viewer} onChoose={chooseFocusMode} />
       {snapshot.assemblyNotice && <p className="rounded-lg border border-amber-300/20 bg-amber-300/5 px-2.5 py-1.5 text-[11px] leading-snug text-amber-100">{snapshot.assemblyNotice}</p>}
       {interactiveMotion
         ? <MotionStrip viewer={viewer} />

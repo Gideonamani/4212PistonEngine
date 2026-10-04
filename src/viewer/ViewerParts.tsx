@@ -1,8 +1,10 @@
 import React from 'react';
 import { Box, Focus, LoaderCircle, Move3D, Pause, Play, RotateCcw, TriangleAlert } from 'lucide-react';
+import { DEFAULT_FOCUS_MODE, FOCUS_MODES, FOCUS_MODE_HINTS, FOCUS_MODE_LABELS } from './core/focus-style.mjs';
 import { WHEEL_ZOOM_HINT, viewerHint } from './core/interaction.mjs';
 import { offsetAfterKey } from './core/keyboard-orbit.mjs';
 import { IconButton } from '../components/ui';
+import type { FocusMode } from './types';
 import type { ModelViewerState } from './useModelViewer';
 
 /** The pieces ExploreViewer and LessonViewer share: the canvas, its toolbar and the hotspot chips. */
@@ -87,6 +89,24 @@ export function WheelZoomHint({ viewer }: { viewer: ModelViewerState }) {
 /** A round tool button over the canvas. Pass `active` for a toggle (it then reports aria-pressed); omit it for a plain action. */
 export function ToolbarButton({ label, title, active, onClick, children }: { label: string; title?: string; active?: boolean; onClick: () => void; children: React.ReactNode }) {
   return <IconButton label={label} title={title} active={active} onClick={onClick}>{children}</IconButton>;
+}
+
+/**
+ * Lets the learner choose how the highlighted part is drawn: coloured with the rest pale, solid with the rest as a faint ghost, or on its
+ * own. It appears only while a step is spotlighting something, and shows what is actually drawn (the step's own mode until they choose).
+ */
+export function FocusModeSwitch({ viewer, onChoose }: { viewer: ModelViewerState; onChoose: (mode: FocusMode) => void }) {
+  if (!viewer.features?.focus || !viewer.snapshot.focusActive) return null;
+  const current: FocusMode = viewer.snapshot.focusMode ?? DEFAULT_FOCUS_MODE;
+  return <div>
+    <div role="group" aria-label="How the highlighted part is shown" className="flex items-center gap-2">
+      <span aria-hidden="true" className="shrink-0 font-mono text-[11px] font-bold tracking-wider text-slate-400">SHOW</span>
+      <div className="flex min-w-0 flex-1 rounded-xl border border-slate-700 bg-slate-900/70 p-0.5">
+        {(FOCUS_MODES as FocusMode[]).map((mode) => <button key={mode} type="button" aria-pressed={mode === current} onClick={() => onChoose(mode)} className={`min-h-11 min-w-0 flex-1 rounded-[0.65rem] px-1 text-[11px] font-semibold outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${mode === current ? 'bg-teal-400/20 text-teal-100 ring-1 ring-teal-300/70' : 'text-slate-300 hover:text-white'}`}>{FOCUS_MODE_LABELS[mode as FocusMode]}</button>)}
+      </div>
+    </div>
+    <p className="mt-1 px-0.5 text-[11px] leading-snug text-slate-400">{FOCUS_MODE_HINTS[current]}</p>
+  </div>;
 }
 
 /** The row of guided hotspot buttons, if the model has hotspots. */

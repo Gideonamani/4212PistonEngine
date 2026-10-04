@@ -4,13 +4,16 @@ import { createModelSession } from './adapters';
 import { createViewerRuntime } from './core/runtime';
 import { viewKey } from './core/view-state.mjs';
 import type { WheelZoom } from './core/interaction.mjs';
-import type { InteractionMode, ViewUpdate, ViewerProfile, ViewerRuntime, ViewerSession, ViewerSnapshot } from './types';
+import type { FocusMode, InteractionMode, ViewUpdate, ViewerProfile, ViewerRuntime, ViewerSession, ViewerSnapshot } from './types';
 
 /**
  * Owns one loaded model: it creates the scene runtime, loads the model once per model and profile, and then applies the view a
  * lesson step asks for (pose, cues, spotlight) to the loaded scene instead of rebuilding it.
+ *
+ * `preferredFocusMode` is the learner's own choice of how a spotlight is drawn. It wins over the step's `focusMode` on every step, and
+ * changing it redraws the current spotlight without moving the camera.
  */
-export function useModelViewer(modelId: string, profile: ViewerProfile, view: ViewUpdate = {}) {
+export function useModelViewer(modelId: string, profile: ViewerProfile, view: ViewUpdate = {}, preferredFocusMode?: FocusMode) {
   const definition = modelsById[modelId];
   const mountRef = useRef<HTMLDivElement>(null);
   const runtimeRef = useRef<ViewerRuntime | undefined>(undefined);
@@ -26,13 +29,17 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
 
   const viewRef = useRef(view);
   viewRef.current = view;
+  const preferredFocusRef = useRef(preferredFocusMode);
+  preferredFocusRef.current = preferredFocusMode;
+  // The view with the learner's own focus mode laid over the step's, if they have chosen one.
+  const effectiveView = (): ViewUpdate => ({ ...viewRef.current, focusMode: preferredFocusRef.current ?? viewRef.current.focusMode });
   const appliedViewKey = useRef('');
 
   const applyView = (target: ViewerSession) => {
     const key = viewKey(viewRef.current);
     if (key === appliedViewKey.current) return;
     appliedViewKey.current = key;
-    try { target.update?.(viewRef.current); } catch (reason) { console.error(reason); setError(reason instanceof Error ? reason.message : 'The 3D view could not be updated.'); }
+    try { target.update?.(effectiveView()); } catch (reason) { console.error(reason); setError(reason instanceof Error ? reason.message : 'The 3D view could not be updated.'); }
   };
 
   useEffect(() => {
@@ -58,7 +65,7 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
       runtime,
       profile,
       signal: controller.signal,
-      ...viewRef.current,
+      ...effectiveView(),
       onChange: () => { if (!disposed) refresh(); },
       onProgress: (status, progress) => { if (!disposed) setLoadState({ status, progress }); },
     }).then((session) => {
@@ -88,6 +95,11 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
   useEffect(() => {
     if (sessionRef.current) applyView(sessionRef.current);
   }, [currentViewKey]);
+
+  // A new choice redraws the spotlight that is already showing; the next step then starts from it too.
+  useEffect(() => {
+    if (preferredFocusMode) sessionRef.current?.features.focus?.setMode(preferredFocusMode);
+  }, [preferredFocusMode]);
 
   const session = sessionRef.current;
   return {

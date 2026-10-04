@@ -93,6 +93,7 @@ test.describe('3D viewer', () => {
     expect(box.width).toBeGreaterThan(100);
     expect(box.height).toBeGreaterThan(100);
     expect(box.x + box.width, 'canvas overflows the screen width').toBeLessThanOrEqual(viewport.width + 1);
+    await expect(viewer.getByRole('group', { name: 'How the highlighted part is shown' }), 'a step that spotlights nothing has no focus switch').toHaveCount(0);
     await expectNoHorizontalOverflow(page);
     problems.assertNone();
   });
