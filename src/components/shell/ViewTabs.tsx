@@ -4,21 +4,29 @@ import { VIEW_TABS } from './tabs';
 
 type TabsProps = { activeView: AppScreen; onViewChange: (view: ViewMode) => void };
 
-/** The pill of three modes in the header (hidden below the md breakpoint, where the bottom bar takes over). */
+/**
+ * The pill of three modes in the header (hidden below the md breakpoint, where the bottom bar takes over). Each button is a 44 px touch
+ * target; the visible tab inside it stays 28 px, and the negative margin hands the extra height back so the pill and the header do not
+ * grow (the same trade as IconButton).
+ */
 export const HeaderTabs: React.FC<TabsProps> = ({ activeView, onViewChange }) => (
   <nav className="hidden md:flex items-center gap-1 p-1 rounded-xl bg-slate-900/80 border border-teal-500/20">
     {VIEW_TABS.map(({ view, icon: Icon, longLabel }) => (
       <button
         key={view}
         onClick={() => onViewChange(view)}
-        className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
-          activeView === view
-            ? 'bg-teal-500 text-slate-950 font-bold shadow-xs shadow-teal-500/50'
-            : 'text-slate-300 hover:text-white hover:bg-white/5'
-        }`}
+        className="group -my-2 flex min-h-11 items-center outline-none"
       >
-        <Icon className="w-4 h-4" />
-        <span>{longLabel}</span>
+        <span
+          className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all group-focus-visible:ring-2 group-focus-visible:ring-teal-300 ${
+            activeView === view
+              ? 'bg-teal-500 text-slate-950 font-bold shadow-xs shadow-teal-500/50'
+              : 'text-slate-300 group-hover:text-white group-hover:bg-white/5'
+          }`}
+        >
+          <Icon className="w-4 h-4" />
+          <span>{longLabel}</span>
+        </span>
       </button>
     ))}
   </nav>
