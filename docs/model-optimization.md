@@ -25,8 +25,22 @@ vertex), so almost no vertices repeat and floating-point positions do not compre
 many identical copies of the same part (cylinders, bolts, gears) that are now stored once. Much of the Wright model's size is its two embedded
 textures, which are left exactly as they were.
 
-Not measured: load and parse time, GPU memory, or behaviour on the Galaxy A16. The decoded size is a proxy for parse work, not a
-measurement of it. Measure on the phone before quoting a time saving (`docs/galaxy-a16-release-check.md`).
+Parse time, measured as the app's loader turning each file's bytes into a scene (best of three, desktop Chrome; excludes the download,
+the gzip unpacking and the GPU upload):
+
+| Model | Original | Optimised |
+|---|---|---|
+| Operating cylinder | 143 ms | 150 ms |
+| Hydraulic tappet | 69 ms | 79 ms |
+| Oil pump | 57 ms | 72 ms |
+| Accessory drives | 358 ms | 235 ms |
+| Full engine | 480 ms | 251 ms |
+| Wright 1903 engine | 288 ms | 276 ms |
+
+So the smaller decoded size does not mean faster parsing everywhere. The large models with repeated parts and thousands of animation
+tracks (full engine, accessory drives) parse much faster; the small ones pay a few milliseconds for the meshopt decoder, which is
+negligible next to their download. Nothing is slower in a way a student could notice here, but this is one desktop; GPU memory and the
+Galaxy A16 are not measured. Measure on the phone before quoting a time saving (`docs/galaxy-a16-release-check.md`).
 
 ## What was and was not changed
 

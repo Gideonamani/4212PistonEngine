@@ -60,6 +60,19 @@ const inPage = `(async () => {
     return pixels;
   }
 
+  // How long the app's loader takes to turn each file's bytes into a scene: the best of three, in this browser on this machine (desktop
+  // Chrome; a phone is slower, but the comparison between the two files carries over).
+  async function timeParse(bytes) {
+    const times = [];
+    for (let run = 0; run < 3; run += 1) {
+      const start = performance.now();
+      await createGltfLoader().parseAsync(bytes.slice(0), '');
+      times.push(performance.now() - start);
+    }
+    return Math.min(...times);
+  }
+  const timing = { originalMs: await timeParse(originalBytes), optimisedMs: await timeParse(optimisedBytes) };
+
   const results = [];
   for (const [fraction, morphs] of [[0, false], [0.37, false], [0.8, false], [0, true]]) {
     const a = await pose(originalBytes, fraction, morphs);
@@ -88,9 +101,10 @@ const inPage = `(async () => {
     b.gltf.scene.traverse((o) => { o.geometry?.dispose(); });
   }
   renderer.dispose();
-  return results;
+  return { results, timing };
 })()`;
 
+/** @returns {Promise<{ results: object[], timing: { originalMs: number, optimisedMs: number } }>} */
 export async function compareModels(originalFile, optimisedFile) {
   const originalBytes = unpack(originalFile);
   const optimisedBytes = unpack(optimisedFile);
@@ -119,12 +133,13 @@ if (process.argv[1] && import.meta.url === new URL(`file:///${process.argv[1].re
     console.error('usage: node scripts/compare_model_renders.mjs <original.glb[.gz]> <optimised.glb[.gz]> [label]');
     process.exit(2);
   }
-  const results = await compareModels(original, optimised);
+  const { results, timing } = await compareModels(original, optimised);
   console.log(label);
   for (const entry of results) {
     console.log(`  ${entry.view.padEnd(5)} at ${String(entry.atFraction).padEnd(9)} model ${(entry.modelPixels * 100).toFixed(0).padStart(3)}% of frame, differing pixels ${(entry.differingPixels * 100).toFixed(4)}%, mean difference ${entry.meanDifference.toFixed(4)}, worst ${entry.worstDifference}`);
   }
   const ok = passes(results);
+  console.log(`  parse time ${timing.originalMs.toFixed(0)} ms -> ${timing.optimisedMs.toFixed(0)} ms (best of 3, desktop Chrome)`);
   console.log(ok ? '  SAME: every view is within the limits' : '  DIFFERENT: a view is over the limits');
   if (flag('--record') && flag('--model')) {
     const record = JSON.parse(fs.readFileSync(flag('--record'), 'utf8'));
@@ -138,6 +153,7 @@ if (process.argv[1] && import.meta.url === new URL(`file:///${process.argv[1].re
       limits: { differingPixels: MAX_DIFFERING_PIXELS, meanDifference: MAX_MEAN_DIFFERENCE },
       passed: ok,
     };
+    entry.parseTime = { originalMs: Math.round(timing.originalMs), optimisedMs: Math.round(timing.optimisedMs), runs: 3, where: 'desktop Chrome, best of three, app loader' };
     fs.writeFileSync(flag('--record'), `${JSON.stringify(record, null, 2)}
 `);
   }

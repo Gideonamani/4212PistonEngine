@@ -55,6 +55,12 @@
           "meanDifference": 0.05
         },
         "passed": true
+      },
+      "parseTime": {
+        "originalMs": 143,
+        "optimisedMs": 150,
+        "runs": 3,
+        "where": "desktop Chrome, best of three, app loader"
       }
     },
     {
@@ -106,6 +112,12 @@
           "meanDifference": 0.05
         },
         "passed": true
+      },
+      "parseTime": {
+        "originalMs": 69,
+        "optimisedMs": 79,
+        "runs": 3,
+        "where": "desktop Chrome, best of three, app loader"
       }
     },
     {
@@ -157,6 +169,12 @@
           "meanDifference": 0.05
         },
         "passed": true
+      },
+      "parseTime": {
+        "originalMs": 57,
+        "optimisedMs": 72,
+        "runs": 3,
+        "where": "desktop Chrome, best of three, app loader"
       }
     },
     {
@@ -208,6 +226,12 @@
           "meanDifference": 0.05
         },
         "passed": true
+      },
+      "parseTime": {
+        "originalMs": 358,
+        "optimisedMs": 235,
+        "runs": 3,
+        "where": "desktop Chrome, best of three, app loader"
       }
     },
     {
@@ -263,6 +287,12 @@
           "meanDifference": 0.05
         },
         "passed": true
+      },
+      "parseTime": {
+        "originalMs": 480,
+        "optimisedMs": 251,
+        "runs": 3,
+        "where": "desktop Chrome, best of three, app loader"
       }
     },
     {
@@ -314,6 +344,12 @@
           "meanDifference": 0.05
         },
         "passed": true
+      },
+      "parseTime": {
+        "originalMs": 288,
+        "optimisedMs": 276,
+        "runs": 3,
+        "where": "desktop Chrome, best of three, app loader"
       }
     }
   ]
