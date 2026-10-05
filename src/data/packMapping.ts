@@ -41,7 +41,7 @@ export type PackLesson = {
 export type PackCheck = {
   id: string;
   lessonId: string;
-  type: 'multiple-choice' | 'ordering' | 'matching' | 'numeric';
+  type: 'multiple-choice' | 'ordering' | 'matching' | 'numeric' | 'model-click';
   question: string;
   hint?: string;
   answers?: string[];
@@ -51,6 +51,10 @@ export type PackCheck = {
   unit?: string;
   correctValue?: number;
   tolerance?: number;
+  modelId?: string;
+  correctNodeId?: string;
+  alsoAccept?: string[];
+  view?: { initialAngle?: number };
   rationale: string;
 };
 
@@ -107,8 +111,9 @@ export function mapQuestion(check: PackCheck): QuizQuestion {
     case 'ordering': return { ...base, type: 'ordering', items: check.items || [] };
     case 'matching': return { ...base, type: 'matching', pairs: check.pairs || [] };
     case 'numeric': return { ...base, type: 'numeric', unit: check.unit || '', correctValue: check.correctValue ?? Number.NaN, tolerance: check.tolerance ?? 0 };
-    // A type the pack schema allows but the screen cannot show yet (model-click) must not ship: the pack tests refuse it, and a pack
-    // that gets past them fails loudly here rather than showing the wrong kind of question.
+    case 'model-click': return { ...base, type: 'model-click', modelId: check.modelId || '', correctNodeId: check.correctNodeId || '', alsoAccept: check.alsoAccept, view: check.view };
+    // A type the pack schema allows but the screen cannot show must not ship: the pack tests refuse it, and a pack that gets past
+    // them fails loudly here rather than showing the wrong kind of question.
     default: throw new Error(`Check ${check.id}: the app cannot show a '${(check as { type: string }).type}' question`);
   }
 }

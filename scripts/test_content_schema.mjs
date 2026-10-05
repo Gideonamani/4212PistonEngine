@@ -32,7 +32,7 @@ const samplePack = {
   ],
   checks: [
     { id: 'c1', lessonId: 'lesson-a', type: 'multiple-choice', question: 'q', answers: ['a', 'b'], correct: 0 },
-    { id: 'c2', lessonId: 'lesson-a', type: 'model-click', question: 'q', modelId: 'cylinder', correctNodeId: 'CrankThrow' },
+    { id: 'c2', lessonId: 'lesson-a', type: 'model-click', question: 'q', modelId: 'cylinder', correctNodeId: 'CrankThrow', alsoAccept: ['crank'], view: { initialAngle: 90 } },
     { id: 'c3', lessonId: 'lesson-a', type: 'ordering', question: 'q', items: ['first', 'second'] },
     { id: 'c4', lessonId: 'lesson-a', type: 'matching', question: 'q', pairs: [{ left: 'a', right: 'b' }, { left: 'c', right: 'd' }] },
     { id: 'c5', lessonId: 'lesson-a', type: 'numeric', question: 'q', unit: 'mm', correctValue: 5, tolerance: 0.1 },
@@ -131,6 +131,12 @@ assert.match(errorsFor({ type: 'numeric', unit: 'hp', correctValue: 170, toleran
 assert.match(errorsFor({ type: 'numeric', unit: '  ', correctValue: 170 }), /numeric needs a unit/);
 assert.match(errorsFor({ type: 'numeric', unit: 'hp', correctValue: '170' }), /finite correctValue/);
 assert.match(errorsFor({ type: 'numeric', unit: 'hp', correctValue: Number.NaN }), /finite correctValue/);
+assert.deepEqual(validateLessonPack(withCheck({ type: 'model-click', modelId: 'cylinder', correctNodeId: 'PistonBody' })), [], 'alsoAccept and view are optional');
+assert.match(errorsFor({ type: 'model-click', correctNodeId: 'PistonBody' }), /model-click needs modelId/);
+assert.match(errorsFor({ type: 'model-click', modelId: 'cylinder' }), /model-click needs correctNodeId/);
+assert.match(errorsFor({ type: 'model-click', modelId: 'cylinder', correctNodeId: 'PistonBody', alsoAccept: 'FloatingPin' }), /alsoAccept must be an array of ids/);
+assert.match(errorsFor({ type: 'model-click', modelId: 'cylinder', correctNodeId: 'PistonBody', alsoAccept: ['PistonBody'] }), /alsoAccept must not repeat an id/);
+assert.match(errorsFor({ type: 'model-click', modelId: 'cylinder', correctNodeId: 'PistonBody', view: { initialAngle: 'ninety' } }), /view.initialAngle must be a number/);
 assert.match(errorsFor({ type: 'matching', pairs: [{ left: 'a', right: 'b' }] }), /matching needs >= 2/);
 assert.match(errorsFor({ type: 'matching', pairs: [{ left: 'a', right: 'b' }, { left: 'a', right: 'c' }] }), /must each be unique/);
 assert.match(errorsFor({ type: 'matching', pairs: [{ left: 'a', right: 'b' }, { left: 'c', right: 'b' }] }), /must each be unique/);

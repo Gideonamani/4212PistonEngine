@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import type { ModelDefinition } from '../../data/modelRegistry';
 import { createExplodedMotion } from '../core/saved-motions.mjs';
-import { groupComponentIds } from '../core/component-groups.mjs';
+import { cylinderPartGroup, groupComponentIds } from '../core/component-groups.mjs';
 import { loadGltf } from '../core/assets';
 import { createSectionController, disposeObject } from '../core/modelUtils';
 import { mechanismPose } from '../engineering/kinematics.mjs';
@@ -11,15 +11,6 @@ import { PALE_COLOR, XRAY_COLOR, XRAY_OPACITY, focusModeOrDefault, partLook, par
 import type { AdapterContext, AppearanceMode, FocusMode, ModelComponent, ModelGroup, ViewerSession, ViewerSnapshot } from '../types';
 
 type MotionEntry = { mesh: THREE.Mesh; group: 'Piston' | 'ConnectingRod' | 'Crank' | 'Cylinder'; localBind: THREE.Matrix4 };
-
-function componentGroup(id: string) {
-  if (id.startsWith('Intake') || id === 'FuelDischargeNozzle') return 'intake';
-  if (id.startsWith('Exhaust')) return 'exhaust';
-  if (/Spark/.test(id)) return 'ignition';
-  if (/^(Piston|FloatingPin|PinPlug)/.test(id)) return 'piston';
-  if (/^Cylinder/.test(id)) return 'structure';
-  return 'crank';
-}
 
 function inspectionMaterial(id: string) {
   let color = 0x9cabb8;
@@ -268,7 +259,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
     id,
     label: part.display_name || id,
     description: part.function || '',
-    group: componentGroup(id),
+    group: cylinderPartGroup(id),
     source: part.function_source_summary,
     evidence: part.geometry_evidence_status,
   })).sort((left, right) => left.label.localeCompare(right.label));
