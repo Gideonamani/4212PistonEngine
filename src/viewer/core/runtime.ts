@@ -2,8 +2,16 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import type { InteractionMode, ViewerRuntime } from '../types';
+import { wheelDecision, type WheelZoom } from './interaction.mjs';
 
-export function createViewerRuntime(container: HTMLElement): ViewerRuntime {
+type RuntimeOptions = {
+  /** Whether the mouse wheel zooms always, or only with Ctrl or Cmd held so the page can scroll under the pointer. Default: always. */
+  wheelZoom?: WheelZoom;
+  /** Called when a wheel turn was left to the page, so the viewer can say why it did not zoom. */
+  onWheelPassed?: () => void;
+};
+
+export function createViewerRuntime(container: HTMLElement, options: RuntimeOptions = {}): ViewerRuntime {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color('#071418');
   const camera = new THREE.PerspectiveCamera(40, 1, 0.001, 1200);
@@ -150,6 +158,15 @@ export function createViewerRuntime(container: HTMLElement): ViewerRuntime {
   renderer.domElement.addEventListener('pointerup', handlePointerUp);
   controls.addEventListener('change', render);
 
+  // OrbitControls zooms (and cancels the scroll) on any wheel turn. A capture listener on the container runs before it, and
+  // stopping the event there leaves the page free to scroll.
+  const passWheelToPage = (event: WheelEvent) => {
+    if (wheelDecision(event, options.wheelZoom ?? 'always') === 'zoom') return;
+    event.stopPropagation();
+    options.onWheelPassed?.();
+  };
+  container.addEventListener('wheel', passWheelToPage, { capture: true, passive: true });
+
   const resize = new ResizeObserver(() => {
     const { width, height } = container.getBoundingClientRect();
     if (!width || !height) return;
@@ -178,6 +195,7 @@ export function createViewerRuntime(container: HTMLElement): ViewerRuntime {
     dispose() {
       disposed = true;
       resize.disconnect();
+      container.removeEventListener('wheel', passWheelToPage, { capture: true });
       setAnimationCallback(undefined);
       controls.removeEventListener('change', render);
       controls.dispose();

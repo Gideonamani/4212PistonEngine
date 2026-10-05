@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AlertTriangle, LoaderCircle, RefreshCw } from 'lucide-react';
 import { ViewMode, type CourseTrack, type QuizModule } from './types/engine';
-import { MobileFrame } from './components/MobileFrame';
+import { AppShell } from './components/AppShell';
 import { ExploreView } from './components/ExploreView';
 import { LearnView } from './components/LearnView';
 import { CheckView } from './components/CheckView';
@@ -106,7 +106,7 @@ export default function App() {
 
   return (
     <>
-      <MobileFrame
+      <AppShell
         activeView={activeView}
         onViewChange={handleViewChange}
         isDarkMode={isDarkMode}
@@ -147,7 +147,7 @@ export default function App() {
           />
         ) : curriculumState)}
         {activeView === 'check' && (quizModules.length ? <CheckView modules={quizModules} focusLessonId={quizLessonId} /> : curriculumState)}
-      </MobileFrame>
+      </AppShell>
 
       <EngineInfoModal
         isOpen={isInfoModalOpen}

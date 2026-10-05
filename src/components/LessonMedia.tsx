@@ -27,11 +27,12 @@ export const isModelStep = (step: LessonStep) => step.mediaPlan?.mode !== 'none'
  * The lesson's 3D viewer. It stays mounted (hidden) while the learner passes text or image steps, and each model step only
  * changes the pose and spotlight, so the model is not rebuilt until the lesson switches to a different model.
  */
-export const LessonModelStage: React.FC<{ step: LessonStep; active: boolean; immersive?: boolean; onSwitchTo3DModel?: (modelName: string) => void }> = ({ step, active, immersive = false, onSwitchTo3DModel }) => {
+export const LessonModelStage: React.FC<{ step: LessonStep; active: boolean; immersive?: boolean; layout?: 'stacked' | 'side'; onSwitchTo3DModel?: (modelName: string) => void }> = ({ step, active, immersive = false, layout = 'stacked', onSwitchTo3DModel }) => {
   const definition = modelsById[step.modelId!];
   const view = viewFromStep(step);
-  return <div hidden={!active}><Suspense fallback={<div className="flex h-80 items-center justify-center rounded-xl border border-teal-400/20 bg-[#071418] text-xs text-teal-300">Preparing interactive 3D viewer…</div>}>
-    <LessonViewer modelId={step.modelId!} view={view} immersive={immersive} onOpenExplore={() => onSwitchTo3DModel?.(definition.label)} />
+  const side = layout === 'side';
+  return <div hidden={!active} className={side ? 'h-full' : ''}><Suspense fallback={<div className={`flex items-center justify-center rounded-xl border border-teal-400/20 bg-[#071418] text-xs text-teal-300 ${side ? 'h-full' : 'h-80'}`}>Preparing interactive 3D viewer…</div>}>
+    <LessonViewer modelId={step.modelId!} view={view} immersive={immersive} layout={layout} onOpenExplore={() => onSwitchTo3DModel?.(definition.label)} />
   </Suspense></div>;
 };
 
