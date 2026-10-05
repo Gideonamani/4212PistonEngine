@@ -99,18 +99,25 @@ export interface CourseTrack {
   deepDives?: Lesson[];
 }
 
-export interface QuizQuestion {
+/** What every Check question has, whatever its type. */
+interface QuizQuestionBase {
   id: string;
   lessonId?: string;
   question: string;
-  scenario?: string;
-  type?: 'multiple-choice' | 'ordering';
-  options: string[];
-  correctIndex: number;
-  items?: string[];
   hint?: string;
   explanation: string;
 }
+
+export interface ChoiceQuestion extends QuizQuestionBase { type: 'multiple-choice'; options: string[]; correctIndex: number }
+/** `items` are in the correct order; the screen shuffles them for display. */
+export interface OrderingQuestion extends QuizQuestionBase { type: 'ordering'; items: string[] }
+/** Each left-hand term goes with its right-hand text. */
+export interface MatchingQuestion extends QuizQuestionBase { type: 'matching'; pairs: { left: string; right: string }[] }
+/** The learner types a number; any value within `tolerance` of `correctValue` is right. */
+export interface NumericQuestion extends QuizQuestionBase { type: 'numeric'; unit: string; correctValue: number; tolerance: number }
+
+export type QuizQuestion = ChoiceQuestion | OrderingQuestion | MatchingQuestion | NumericQuestion;
+export type QuizQuestionType = QuizQuestion['type'];
 
 export interface QuizModule {
   id: string;

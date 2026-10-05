@@ -34,7 +34,7 @@ const samplePack = {
     { id: 'c1', lessonId: 'lesson-a', type: 'multiple-choice', question: 'q', answers: ['a', 'b'], correct: 0 },
     { id: 'c2', lessonId: 'lesson-a', type: 'model-click', question: 'q', modelId: 'cylinder', correctNodeId: 'CrankThrow' },
     { id: 'c3', lessonId: 'lesson-a', type: 'ordering', question: 'q', items: ['first', 'second'] },
-    { id: 'c4', lessonId: 'lesson-a', type: 'matching', question: 'q', pairs: [{ left: 'a', right: 'b' }] },
+    { id: 'c4', lessonId: 'lesson-a', type: 'matching', question: 'q', pairs: [{ left: 'a', right: 'b' }, { left: 'c', right: 'd' }] },
     { id: 'c5', lessonId: 'lesson-a', type: 'numeric', question: 'q', unit: 'mm', correctValue: 5, tolerance: 0.1 },
   ],
 };
@@ -121,3 +121,20 @@ for (const mode of FOCUS_MODES) assert.deepEqual(validateLessonPack(withStep({ f
 assert.deepEqual(validateLessonPack(withStep({ focusParts: ['CrankThrow'] })), [], 'focusMode is optional');
 assert.match(validateLessonPack(withStep({ focusParts: ['CrankThrow'], focusMode: 'ghost' })).join('\n'), /focusMode must be one of highlight, xray, isolate/);
 assert.match(validateLessonPack(withStep({ focusMode: 'isolate' })).join('\n'), /focusMode needs focusParts/);
+
+// Check questions: each type's own rules, so a mistake in a pack is caught here and not by a student.
+const withCheck = (check) => ({ ...samplePack, checks: [{ id: 'x', lessonId: 'lesson-a', question: 'q', ...check }] });
+const errorsFor = (check) => validateLessonPack(withCheck(check)).join('\n');
+assert.deepEqual(validateLessonPack(withCheck({ type: 'numeric', unit: 'hp', correctValue: 170 })), [], 'tolerance is optional');
+assert.match(errorsFor({ type: 'numeric', unit: 'hp', correctValue: 170, tolerance: -1 }), /tolerance must be a number of 0 or more/);
+assert.match(errorsFor({ type: 'numeric', unit: 'hp', correctValue: 170, tolerance: 'a bit' }), /tolerance/);
+assert.match(errorsFor({ type: 'numeric', unit: '  ', correctValue: 170 }), /numeric needs a unit/);
+assert.match(errorsFor({ type: 'numeric', unit: 'hp', correctValue: '170' }), /finite correctValue/);
+assert.match(errorsFor({ type: 'numeric', unit: 'hp', correctValue: Number.NaN }), /finite correctValue/);
+assert.match(errorsFor({ type: 'matching', pairs: [{ left: 'a', right: 'b' }] }), /matching needs >= 2/);
+assert.match(errorsFor({ type: 'matching', pairs: [{ left: 'a', right: 'b' }, { left: 'a', right: 'c' }] }), /must each be unique/);
+assert.match(errorsFor({ type: 'matching', pairs: [{ left: 'a', right: 'b' }, { left: 'c', right: 'b' }] }), /must each be unique/);
+assert.match(errorsFor({ type: 'ordering', items: ['same', 'same'] }), /ordering items must all differ/);
+assert.match(errorsFor({ type: 'multiple-choice', answers: ['same', 'same'], correct: 0 }), /answers must all differ/);
+assert.match(validateLessonPack({ ...samplePack, checks: [{ ...samplePack.checks[0] }, { ...samplePack.checks[0] }] }).join('\n'), /duplicate id 'c1'/);
+assert.match(errorsFor({ type: 'multiple-choice', answers: ['a', 'b'], correct: 0, question: ' ' }), /missing question/);

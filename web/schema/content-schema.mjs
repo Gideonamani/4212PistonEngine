@@ -254,11 +254,14 @@ function validateLesson(lesson, lessonIndex, knownSourceIds) {
 function validateCheckItem(check, lessonIds, index) {
   const errors = [];
   const where = `checks[${index}]`;
+  if (!check.id) errors.push(`${where}: missing id`);
+  if (typeof check.question !== 'string' || !check.question.trim()) errors.push(`${where}: missing question`);
   if (!CHECK_TYPES.includes(check.type)) errors.push(`${where}: unknown check type '${check.type}'`);
   if (!check.lessonId || !lessonIds.includes(check.lessonId)) errors.push(`${where}: lessonId must reference a lesson owned by this pack`);
   switch (check.type) {
     case 'multiple-choice':
       if (!Array.isArray(check.answers) || check.answers.length < 2) errors.push(`${where}: multiple-choice needs >= 2 answers`);
+      else if (new Set(check.answers).size !== check.answers.length) errors.push(`${where}: multiple-choice answers must all differ`);
       if (!(Number.isInteger(check.correct) && check.correct >= 0 && check.correct < (check.answers || []).length)) {
         errors.push(`${where}: correct must index into answers`);
       }
@@ -269,15 +272,19 @@ function validateCheckItem(check, lessonIds, index) {
       break;
     case 'ordering':
       if (!Array.isArray(check.items) || check.items.length < 2) errors.push(`${where}: ordering needs >= 2 items`);
+      else if (new Set(check.items).size !== check.items.length) errors.push(`${where}: ordering items must all differ`);
       break;
     case 'matching':
-      if (!Array.isArray(check.pairs) || check.pairs.length < 1 || check.pairs.some(pair => !pair.left || !pair.right)) {
-        errors.push(`${where}: matching needs >= 1 {left, right} pair`);
+      if (!Array.isArray(check.pairs) || check.pairs.length < 2 || check.pairs.some(pair => !pair.left || !pair.right)) {
+        errors.push(`${where}: matching needs >= 2 {left, right} pairs`);
+      } else if (new Set(check.pairs.map(pair => pair.left)).size !== check.pairs.length || new Set(check.pairs.map(pair => pair.right)).size !== check.pairs.length) {
+        errors.push(`${where}: matching terms and matches must each be unique, so every pairing has one right answer`);
       }
       break;
     case 'numeric':
-      if (!check.unit) errors.push(`${where}: numeric needs a unit`);
-      if (typeof check.correctValue !== 'number') errors.push(`${where}: numeric needs correctValue`);
+      if (typeof check.unit !== 'string' || !check.unit.trim()) errors.push(`${where}: numeric needs a unit`);
+      if (!Number.isFinite(check.correctValue)) errors.push(`${where}: numeric needs a finite correctValue`);
+      if (check.tolerance !== undefined && !(Number.isFinite(check.tolerance) && check.tolerance >= 0)) errors.push(`${where}: tolerance must be a number of 0 or more`);
       break;
     default:
       break;
@@ -311,6 +318,11 @@ export function validateLessonPack(pack) {
   const lessonIds = (pack.lessons || []).map(lesson => lesson.id);
   (pack.lessons || []).forEach((lesson, index) => errors.push(...validateLesson(lesson, index, knownSourceIds)));
   (pack.checks || []).forEach((check, index) => errors.push(...validateCheckItem(check, lessonIds, index)));
+  const seenCheckIds = new Set();
+  for (const check of pack.checks || []) {
+    if (check.id && seenCheckIds.has(check.id)) errors.push(`checks: duplicate id '${check.id}'`);
+    seenCheckIds.add(check.id);
+  }
   return errors;
 }
 

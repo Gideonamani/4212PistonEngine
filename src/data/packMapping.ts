@@ -41,12 +41,16 @@ export type PackLesson = {
 export type PackCheck = {
   id: string;
   lessonId: string;
-  type: 'multiple-choice' | 'ordering';
+  type: 'multiple-choice' | 'ordering' | 'matching' | 'numeric';
   question: string;
   hint?: string;
   answers?: string[];
   correct?: number;
   items?: string[];
+  pairs?: { left: string; right: string }[];
+  unit?: string;
+  correctValue?: number;
+  tolerance?: number;
   rationale: string;
 };
 
@@ -97,17 +101,16 @@ export function mapLesson(lesson: PackLesson, index: number, models: ModelLookup
 }
 
 export function mapQuestion(check: PackCheck): QuizQuestion {
-  return {
-    id: check.id,
-    lessonId: check.lessonId,
-    type: check.type,
-    question: check.question,
-    options: check.answers || [],
-    correctIndex: check.correct ?? -1,
-    items: check.items,
-    hint: check.hint,
-    explanation: check.rationale,
-  };
+  const base = { id: check.id, lessonId: check.lessonId, question: check.question, hint: check.hint, explanation: check.rationale };
+  switch (check.type) {
+    case 'multiple-choice': return { ...base, type: 'multiple-choice', options: check.answers || [], correctIndex: check.correct ?? -1 };
+    case 'ordering': return { ...base, type: 'ordering', items: check.items || [] };
+    case 'matching': return { ...base, type: 'matching', pairs: check.pairs || [] };
+    case 'numeric': return { ...base, type: 'numeric', unit: check.unit || '', correctValue: check.correctValue ?? Number.NaN, tolerance: check.tolerance ?? 0 };
+    // A type the pack schema allows but the screen cannot show yet (model-click) must not ship: the pack tests refuse it, and a pack
+    // that gets past them fails loudly here rather than showing the wrong kind of question.
+    default: throw new Error(`Check ${check.id}: the app cannot show a '${(check as { type: string }).type}' question`);
+  }
 }
 
 export function mapTrack(pack: LessonPack, index: number, models: ModelLookup): CourseTrack {
