@@ -32,4 +32,6 @@ const THUMBNAIL_CAPTURES = [
   { model: 'cylinder', name: 'course-breathing-square', view: { initialAngle: 630, initialCycle: true }, options: { zoom: 0.85, orbit: [-40, -10], pan: [-10, 0] } },
   // Lesson 10 (Power Generation).
   { model: 'cylinder', name: 'lesson-power-generation-square', view: { initialAngle: 400, initialCycle: true, focusParts: ['PistonBody', 'FloatingPin', 'PistonRing1', 'PistonRing2', 'PistonRing3', 'PistonRing4', 'ConnectingRodBody', 'ConnectingRodCap', 'CrankThrow'], focusMode: 'xray' }, options: { zoom: 0.85, orbit: [-20, -8], pan: [-45, 0] } },
+  // Lesson 13 (Factors Affecting Power).
+  { model: 'cylinder', name: 'lesson-factors-power-square', view: { initialAngle: 300, initialCycle: true, focusParts: ['PistonRing1', 'PistonRing2', 'PistonRing3', 'PistonRing4', 'IntakeValve', 'ExhaustValve', 'UpperSparkPlug', 'UpperSparkInsulator', 'LowerSparkPlug', 'LowerSparkInsulator'], focusMode: 'xray' }, options: { zoom: 0.85, orbit: [25, -10], pan: [-10, 0] } },
 ];

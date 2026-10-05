@@ -27,6 +27,13 @@
       "title": "Continental GTSIO-520 Series Overhaul Manual X30045A",
       "path": "Notes/gtsio520_series.pdf",
       "applicability": "Configuration-specific source for the course reference engine. Chapter B (table of limits, March 1981) covers the series; Chapter C-3 is the difference data for the -H. Variant applicability must be checked before using a limit, dimension or maintenance instruction; always use the current data for the engine in front of you."
+    },
+    {
+      "id": "course-deck-2026-05",
+      "tier": 4,
+      "title": "Aircraft Piston Engine Slides - 21 May 2026 (instructor course deck)",
+      "path": "Notes/Aircraft Piston Engine Slides - 21May2026.pptx",
+      "applicability": "Instructor-authored course slides. Used only where the handbook, EASA text and manuals are silent. Carries no independent evidence; claims here need the instructor's confirmation."
     }
   ],
   "lessons": [
@@ -344,6 +351,231 @@
           }
         }
       ]
+    },
+    {
+      "id": "factors-affecting-power",
+      "thumbnail": "./thumbnails/lesson-factors-affecting-power.webp",
+      "sequenceNumber": 13,
+      "title": "Factors Affecting Power",
+      "objective": "Explain why a piston engine's power changes: how altitude, temperature and humidity thin the air it breathes, and how ignition timing, spark plugs, fuel metering, induction and exhaust leaks, and low compression take power away.",
+      "reviewStatus": "unreviewed",
+      "models": [
+        "cylinder"
+      ],
+      "listed": true,
+      "scheduledDay": 5,
+      "completionCriteria": "Sort the causes of a power loss into natural and mechanical factors, explain the effect of altitude, temperature and humidity on the oxygen each intake stroke draws in, and say what early or late ignition, a fouled plug, an induction or exhaust leak and a compression leak each do to the engine.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "An air breather",
+          "prompt": "A piston engine is an air breather. It takes in air, adds fuel, lights the charge and takes power from the expanding gas. So anything that changes the quality of the air, or the way the engine burns the charge, changes the power. Before you read on, list what you think can lower an engine's power. Then sort your list into two kinds: things nature changes, and things that can be wrong with the engine.",
+          "note": "Documented from EASA Module 16, PDF p. 37 (the typical aircraft engine is an \"air breather\"; anything that adversely impacts the quality of the atmosphere affects the power output; nature's variables and mechanical issues). The sort into natural and mechanical factors follows the module and the course deck (slides 229-239, 243).",
+          "sourceRefs": [
+            "easa-module16",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A prediction prompt that sets up the two groups of factors."
+          }
+        },
+        {
+          "type": "web-embed",
+          "title": "Air available",
+          "prompt": "Change the altitude, the temperature compared with a standard day, and the humidity. Watch how much air is available to burn. Which of the three matters most? Which can you do nothing about? Then try the three example days.",
+          "url": "artifact:air-density-explorer",
+          "note": "Built for this lesson from the standard atmosphere and the ideal-gas law (pressure and temperature at altitude; Charles's law as in EASA Module 16, PDF pp. 38-39; water vapour taking part of the pressure, EASA Module 16, PDF p. 39). \"Air available\" is the mass of dry air in the volume each intake stroke draws, as a fraction of a standard sea-level day. It is a teaching quantity, not a prediction of any engine's power.",
+          "sourceRefs": [
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "Three sliders make altitude, temperature and humidity something the learner changes and compares."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Altitude and pressure",
+          "prompt": "As an aircraft climbs, the air pressure falls and the air gets thinner. It holds fewer molecules of oxygen in each unit of volume. A piston engine draws in the same volume of air on every intake stroke, whatever the altitude, so each stroke takes in less oxygen and the engine makes less power. The course rule of thumb is a loss of about 3% of the power for every 1,000 ft of climb in a naturally aspirated engine, which the interactive agrees with. A supercharged or turbocharged engine makes up the lost pressure up to its critical altitude.",
+          "note": "Documented from EASA Module 16, PDF pp. 37-38 (ambient pressure falls with altitude; the air becomes rarified, with less oxygen per unit volume; each intake stroke ingests less oxygen at altitude, so the horsepower is reduced; an engine with no supercharging struggles at 15,000 ft). The 3% per 1,000 ft rule of thumb is from the course deck (slide 230) and agrees with the standard-atmosphere model used in the interactive (about 2.8% per 1,000 ft to 5,000 ft). Turbocharging is covered in Induction & Exhaust.",
+          "sourceRefs": [
+            "easa-module16",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The cause is one idea, said once, then explored in the interactive."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Temperature",
+          "prompt": "Hot air is thinner than cold air. When air is heated at constant pressure its volume grows in proportion to its absolute temperature (Charles's law): 500 cu in of air at 0 °C becomes 500 × 323 ÷ 273 = 591.6 cu in at 50 °C. The engine still draws in the same volume, so the same intake stroke holds fewer oxygen molecules, and the power falls as the temperature rises. In an engine with a carburettor the mixture also becomes richer as the temperature rises, which lowers the power further.",
+          "note": "Documented from EASA Module 16, PDF pp. 38-39 (Charles's law, V1 ÷ V2 = T1 ÷ T2 with the worked example of 500 cubic inches at 0 °C and 50 °C, absolute temperatures 273 and 323 K; a piston engine is a positive displacement pump, so the number of oxygen molecules entering falls as temperature rises; the mixture consumed enriches as temperature increases). Absolute temperature is the temperature in degrees Celsius plus 273.",
+          "sourceRefs": [
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A short law with a worked number; the learner then sees it in the interactive."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Humidity",
+          "prompt": "Air always carries some water vapour, and the vapour takes up room that oxygen would otherwise fill. When the humidity is high there is less oxygen per unit volume of air, so each intake stroke takes in less oxygen and the combustion of the charge is altered. The effect is small on its own: saturated air on a standard day holds about 2% less dry air. On a hot, humid day it adds to the effect of the heat, and the interactive shows a loss of about 10% at sea level.",
+          "note": "Documented from EASA Module 16, PDF p. 39 (high humidity means less oxygen per unit volume because of the space occupied by water vapour, so each intake stroke pulls in less oxygen). The figures are from the standard-atmosphere model in the interactive (Magnus formula for the vapour pressure): saturated air at 15 °C is 1.7% water vapour by pressure. The course deck (slide 233) gives a 1-3% loss.",
+          "sourceRefs": [
+            "easa-module16",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The effect and its size are stated once; the interactive shows how it combines with heat."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Spark quality and timing",
+          "prompt": "A spark plug needs thousands of volts to make a hot spark, and the magneto makes them itself. If the contact breaker inside the magneto is timed wrongly, the spark is weaker and the charge burns less well. Separately, the spark has to arrive at the right moment. If it is too late (retarded), the charge is still burning as the piston passes TDC, so less of the heat reaches the piston, more goes out of the exhaust, the exhaust gas temperature rises and power is lost. If it is too early (advanced), the piston absorbs more heat than intended and the charge can detonate. In an extreme case the engine can fail.",
+          "note": "Documented from EASA Module 16, PDF pp. 39-40 (magneto internal timing and the e-gap; retarded timing, heat lost through the exhaust, higher exhaust gas temperature and power loss; advanced timing, detonation and, in extreme cases, engine failure), and FAA-H-8083-32B (2023), PDF p. 48 (the ignition timing is the manufacturer's, 20° to 35° before TDC on various engines). The GTSIO-520 manual lists spark at 20° BTC for both magnetos (PDF p. 153). Timing procedures are in the manufacturer's data.",
+          "sourceRefs": [
+            "easa-module16",
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Cause and effect of early and late timing read best as a short account tied to the earlier lesson."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Spark plugs and leads",
+          "prompt": "The most common ignition fault is a fouled spark plug. Lead fouling is the usual kind, and it is most often found on the lower plugs: once the ceramic nose fills with lead deposit, the high voltage runs along the deposit instead of across the gap and the plug stops sparking. It shows at the pre-takeoff magneto check: the engine runs rough when the magneto that feeds the fouled plug is selected on its own. Faults on the secondary side, such as the coil, the carbon brush, the distributor rotor or the harness, make the cylinders they serve misfire and the engine run rough.",
+          "note": "Documented from EASA Module 16, PDF p. 40 (spark plug fouling, lead fouling most often on the lower plugs, found during the ignition system check before takeoff; secondary system faults cause roughness and misfiring). The magneto check is described in the accessories and maintenance lessons.",
+          "sourceRefs": [
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A diagnostic story that connects a fault to a symptom the learner can recognise."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Fuel metering",
+          "prompt": "The fuel metering system must mix fuel and air in the right proportion at the throttle setting the operator chooses, and the fuel must be broken into a fine spray so it mixes thoroughly. A wrong proportion changes the power. Typical faults: in a float carburettor, a faulty needle valve or a leaking float; in a continuous-flow fuel injection system, dirty nozzles, which cause roughness, or the wrong unmetered fuel pressure, which makes the cylinders get the wrong mixture. The GTSIO-520-H manual, for example, lists an unmetered fuel pressure of 6.0 psi at 450 propeller rpm. The adjustment has many steps and is done only from the manufacturer's data.",
+          "note": "Documented from EASA Module 16, PDF pp. 40-41 (the fuel metering system must supply the right ratio and the fuel must be atomized; float carburettor defects; dirty nozzles in continuous-flow injection; incorrect unmetered fuel pressure in the Continental system) and the GTSIO-520 overhaul manual, PDF p. 153 (C-3-3: unmetered fuel pressure 6.0 psi at 450 propeller rpm). The number is given as an example of the kind of value that has to be right and is not an instruction.",
+          "sourceRefs": [
+            "easa-module16",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The faults are a list the learner connects to the mixture; the example number comes from the course engine's manual."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Leaks, heated air and rigging",
+          "prompt": "The gaskets and seals in the induction system leak with time. Any induction leak changes the fuel-air mixture the engine receives and costs power, so the system is inspected for leaks. Heated air does the same: if the carburettor heat control does not reach full cold, the engine breathes warmed air, the mixture is enriched and the performance falls, which is why the rpm drops when the pilot checks the heat. Control rigging matters too. Without full throttle travel the engine cannot make full power, and a controllable-pitch propeller that cannot reach the full-rpm position will not reach takeoff rpm.",
+          "note": "Documented from EASA Module 16, PDF pp. 40-41 (induction leaks alter the fuel-air mixture and reduce power; the carburettor heat control not at full cold enriches the mixture and reduces performance; lack of full throttle travel or propeller control travel). Induction troubleshooting is also in FAA-H-8083-32B (2023), PDF p. 133 (Figure 3-8, air leaks and restricted ducts and filters). The handbook's statements on the direction of the mixture change with carburettor heat disagree (PDF pp. 130-131), so the direction is taken here only from the EASA text.",
+          "sourceRefs": [
+            "easa-module16",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The chain from a small leak or a short control travel to a loss of power reads best as text."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Exhaust leaks and restrictions",
+          "prompt": "The exhaust is the other end of the breathing path. The gaskets at the exhaust ports are prone to leaking after a time in service, and a leak disturbs the flow of the exhaust leaving the port and so the flow of air and fuel into the cylinder. A leak in the carburettor heat system makes the engine breathe exhaust fumes when the heat is applied, and the rpm drops a lot. Leaks can also let carbon monoxide into the cabin. A blocked or restricted exhaust, such as a muffler with a broken baffle, keeps burned gas in the cylinder and costs power.",
+          "note": "Documented from EASA Module 16, PDF p. 41 (exhaust port gasket leaks; a leak in the carburettor heat system causes a large rpm loss when the heat is applied; carbon monoxide in the cabin) and FAA-H-8083-32B (2023), PDF p. 152 (internal muffler failures restrict the flow of exhaust gases and cause partial or complete power loss). The Induction & Exhaust lesson has the system and its inspection.",
+          "sourceRefs": [
+            "easa-module16",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The exhaust faults reuse the system from the previous lesson, so a short text is enough."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Where compression leaks",
+          "modelId": "cylinder",
+          "prompt": "At 300° both valves are closed and the piston is squeezing the charge. For the power stroke to be strong, the charge must stay in. Find the three places it can leak: past the piston rings, between the valve faces and their seats, and through the cylinder wall if it is scored. Spotlighted here are the rings, the valves and the spark plugs.",
+          "action": {
+            "type": "cycle-angle",
+            "value": 300
+          },
+          "focusParts": [
+            "PistonRing1",
+            "PistonRing2",
+            "PistonRing3",
+            "PistonRing4",
+            "IntakeValve",
+            "ExhaustValve",
+            "UpperSparkPlug",
+            "UpperSparkInsulator",
+            "LowerSparkPlug",
+            "LowerSparkInsulator"
+          ],
+          "note": "Documented from EASA Module 16, PDF p. 41 (cylinder compression is needed to extract the heat energy of the charge; the piston rings and cylinder walls wear and leak; the intake and exhaust valves may become leaky). The course deck (slide 243) adds a leaky head gasket. The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
+          "sourceRefs": [
+            "easa-module16",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The compression-stroke pose with the sealing parts spotlit shows where a cylinder can lose its charge."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Finding a compression leak",
+          "prompt": "A differential compression test finds the leak. Air is fed into the cylinder, and where it escapes tells you the cause: air heard coming out of the intake system is passing a leaky intake valve, air coming from the exhaust pipe is passing an exhaust valve. A borescope can then be used to look inside. Hot gas rushing through a leak burns the carbon off the valve and discolours it at that spot. A leaking hydraulic lifter can also cost power, because it cannot hold the right valve lash and so reduces how high and how long the valve opens.",
+          "note": "Documented from EASA Module 16, PDF p. 41 (leaky valves found with the differential compression test, audible leaks from the intake system or the exhaust pipe, a borescopic inspection, discoloration of the valve at a leak; a leaky zero-lash lifter reduces the height and duration of valve opening). The test procedure and its limits are covered in the Maintenance and Servicing lesson.",
+          "sourceRefs": [
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The diagnostic reasoning is the content; the procedure itself belongs to the maintenance lesson."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Sort the causes",
+          "prompt": "A naturally aspirated engine that is delivering less power than it should: take each of these in turn and decide whether nature or the engine is the cause, what you would check first, and why. High altitude on a hot day. A rough run on one magneto at the check. A big rpm drop when the carburettor heat is applied. A cylinder with air hissing from its exhaust pipe during a compression test. Then take the lesson's quiz.",
+          "note": "Completion step: the learner applies the factors to cases (opening prompt, action, feedback, completion evidence) from EASA Module 16, PDF pp. 37-41.",
+          "sourceRefs": [
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The learner works through cases in their own words."
+          }
+        }
+      ]
     }
   ],
   "checks": [
@@ -513,6 +745,152 @@
       ],
       "correct": 0,
       "rationale": "Overboost means exceeding the manifold pressure limit for the engine. The slow drift in the controls is bootstrapping, which is not harmful to engine life."
+    },
+    {
+      "id": "factors-altitude-chain",
+      "lessonId": "factors-affecting-power",
+      "type": "ordering",
+      "question": "Put the steps in the order that takes a naturally aspirated engine from a climb to a loss of power.",
+      "hint": "Start with the aircraft, end with the power.",
+      "items": [
+        "The aircraft climbs",
+        "The air pressure falls and the air gets thinner",
+        "Each intake stroke draws in fewer oxygen molecules",
+        "Less fuel can be burned and the power falls"
+      ],
+      "rationale": "The engine draws in the same volume of air on every intake stroke, but thinner air holds fewer oxygen molecules per volume, so less fuel can be burned and the power falls."
+    },
+    {
+      "id": "factors-effects",
+      "lessonId": "factors-affecting-power",
+      "type": "matching",
+      "question": "Match each factor to its effect on the engine.",
+      "hint": "Two of these come from nature and two from the engine.",
+      "pairs": [
+        {
+          "left": "Higher altitude",
+          "right": "Thinner air, so fewer oxygen molecules per intake stroke"
+        },
+        {
+          "left": "Higher air temperature",
+          "right": "The air expands, so each intake stroke holds less oxygen"
+        },
+        {
+          "left": "Retarded ignition timing",
+          "right": "The charge burns after TDC and more heat leaves through the exhaust"
+        },
+        {
+          "left": "Advanced ignition timing",
+          "right": "Risk of detonation and, in extreme cases, engine failure"
+        }
+      ],
+      "rationale": "Altitude and temperature thin the air; retarded timing wastes heat through the exhaust and raises the exhaust gas temperature; advanced timing makes the piston absorb too much heat and the charge can detonate."
+    },
+    {
+      "id": "factors-charles",
+      "lessonId": "factors-affecting-power",
+      "type": "numeric",
+      "question": "500 cubic inches of air at 0 °C is heated to 50 °C at the same pressure. What volume does it occupy?",
+      "hint": "Use absolute temperatures: add 273 to each Celsius temperature, then V2 = V1 × T2 ÷ T1.",
+      "unit": "cu in",
+      "correctValue": 591.6,
+      "tolerance": 1,
+      "rationale": "V2 = 500 × 323 ÷ 273 = 591.6 cu in. The engine still draws in the same volume, but this much air now holds the oxygen of the original 500 cu in, so each intake stroke takes in about 15% less."
+    },
+    {
+      "id": "factors-rule-of-thumb",
+      "lessonId": "factors-affecting-power",
+      "type": "numeric",
+      "question": "A naturally aspirated engine makes 200 hp at sea level. Using a loss of 3% of the sea-level power for each 1,000 ft, estimate its power at 5,000 ft.",
+      "hint": "Five thousand feet is five lots of 3%.",
+      "unit": "hp",
+      "correctValue": 170,
+      "tolerance": 0,
+      "rationale": "Five lots of 3% is 15%, so the power is 85% of 200 hp, which is 170 hp. It is a rule of thumb for a naturally aspirated engine; real engines differ."
+    },
+    {
+      "id": "factors-humidity",
+      "lessonId": "factors-affecting-power",
+      "type": "multiple-choice",
+      "question": "Why does high humidity reduce engine power?",
+      "hint": "Think about what the water vapour takes the place of.",
+      "answers": [
+        "Water vapour takes up space, so each intake stroke draws in less oxygen",
+        "Water makes the fuel heavier so it will not burn",
+        "Humid air is denser, which chokes the intake valve"
+      ],
+      "correct": 0,
+      "rationale": "Water vapour occupies room that oxygen would otherwise fill, so there is less oxygen per unit volume and each intake stroke takes in less of it. The effect is small by itself but adds to heat."
+    },
+    {
+      "id": "factors-retarded-egt",
+      "lessonId": "factors-affecting-power",
+      "type": "multiple-choice",
+      "question": "What happens to the exhaust gas temperature when the ignition timing is retarded?",
+      "hint": "Where does the heat go if the charge is still burning after TDC?",
+      "answers": [
+        "It rises, because more of the heat leaves through the exhaust and less reaches the piston",
+        "It falls, because the charge burns more completely",
+        "It stays the same, because only the pressure changes"
+      ],
+      "correct": 0,
+      "rationale": "With a retarded spark the charge keeps burning after the piston has passed TDC, so less heat is transferred to the piston, more is lost through the exhaust, the exhaust gas temperature rises and power is lost."
+    },
+    {
+      "id": "factors-magneto-check",
+      "lessonId": "factors-affecting-power",
+      "type": "multiple-choice",
+      "question": "At the pre-takeoff magneto check the engine runs rough on one magneto. What is a common cause?",
+      "hint": "It is the most common ignition fault, and it favours the lower plugs.",
+      "answers": [
+        "Lead fouling of the spark plugs that magneto feeds",
+        "Too much fuel in the float bowl",
+        "A leaking exhaust gasket"
+      ],
+      "correct": 0,
+      "rationale": "When the ceramic nose of a plug fills with lead the high voltage follows the deposit and not the gap, so the plug does not spark. Selecting the magneto that feeds it makes the engine run rough."
+    },
+    {
+      "id": "factors-carb-heat",
+      "lessonId": "factors-affecting-power",
+      "type": "multiple-choice",
+      "question": "The carburettor heat control does not reach full cold. What is the effect?",
+      "hint": "Warm air is thinner.",
+      "answers": [
+        "The engine breathes warmed air, the mixture is enriched and the performance falls",
+        "The engine gets more oxygen and makes more power",
+        "The throttle travel increases"
+      ],
+      "correct": 0,
+      "rationale": "Heated induction air enriches the fuel-air mixture and reduces engine performance. This is why the rpm falls when the pilot applies carburettor heat at the check."
+    },
+    {
+      "id": "factors-compression-leak",
+      "lessonId": "factors-affecting-power",
+      "type": "multiple-choice",
+      "question": "In a differential compression test, air is heard escaping from the exhaust pipe. Where is the leak?",
+      "hint": "The air goes out the way the burned gas normally leaves.",
+      "answers": [
+        "Past the exhaust valve",
+        "Past the intake valve",
+        "Through the spark plug"
+      ],
+      "correct": 0,
+      "rationale": "Air that escapes from the exhaust pipe is passing a leaky exhaust valve; air heard from the intake system is passing a leaky intake valve. A borescope can then be used to look at the valve."
+    },
+    {
+      "id": "factors-lifter-lash",
+      "lessonId": "factors-affecting-power",
+      "type": "multiple-choice",
+      "question": "How can a leaking hydraulic lifter reduce engine power?",
+      "hint": "Think about the valve-train lesson.",
+      "answers": [
+        "It cannot hold the right valve lash, which reduces the height and duration of the valve opening",
+        "It makes the camshaft turn at the wrong speed",
+        "It changes the firing order"
+      ],
+      "correct": 0,
+      "rationale": "A zero-lash lifter that leaks cannot hold the correct valve lash, so the valve opens less far and for less time than the cam intends, and the engine breathes less well."
     }
   ]
 }
