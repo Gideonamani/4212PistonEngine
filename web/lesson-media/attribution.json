@@ -140,5 +140,10 @@
     "title": "GTSIO-520-H detail engine specifications, continued (page 2)",
     "source": "Continental GTSIO-520 overhaul manual, page C-3-3",
     "license": "Course reference extract"
+  },
+  "faa-thermal-distribution.webp": {
+    "title": "Thermal distribution in a reciprocating engine",
+    "source": "FAA-H-8083-32B, Figure 1-42",
+    "license": "U.S. Government work"
   }
 }

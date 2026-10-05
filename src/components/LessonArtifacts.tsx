@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { lessonArtifactIds } from './lessonArtifactIds';
 import { CamLiftDiagram } from './ValveTrainArtifacts';
-import { AirDensityExplorer } from './PerformanceArtifacts';
+import { AirDensityExplorer, EnginePowerCalculator } from './PerformanceArtifacts';
 import { ConstructionComparison, CylinderNumberingDiagram, DieselOttoCompare, EngineDataComparison, OttoPVDiagram, SweptVolumeDiagram, ValveTimingDiagram } from './CycleArtifacts';
 
 type ArtifactProps = { id: string };
@@ -195,6 +195,7 @@ export const LessonArtifact: React.FC<ArtifactProps> = ({ id }) => {
     if (id === 'valve-timing-diagram') return <ValveTimingDiagram />;
     if (id === 'cam-lift-and-duration') return <CamLiftDiagram />;
     if (id === 'air-density-explorer') return <AirDensityExplorer />;
+    if (id === 'engine-power-calculator') return <EnginePowerCalculator />;
     if (id === 'construction-comparison') return <ConstructionComparison />;
     if (id === 'cylinder-numbering') return <CylinderNumberingDiagram />;
     if (id === 'cylinder-firing-order') return <CylinderNumberingDiagram startFiring />;

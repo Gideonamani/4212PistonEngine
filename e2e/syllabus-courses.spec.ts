@@ -40,7 +40,7 @@ for (const pack of packs) {
           if (step.type === 'image') {
             const image = page.locator(`img[src$="${step.url.replace('./', '/')}"]`);
             await expect(image, `step ${index + 1} (${step.title}) shows its figure`).toBeVisible();
-            expect(await image.evaluate((element: HTMLImageElement) => element.naturalWidth), `${step.url} loaded`).toBeGreaterThan(200);
+            await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.naturalWidth), { message: `${step.url} loaded`, timeout: 10_000 }).toBeGreaterThan(200);
           } else {
             await expect(page.getByText('This learning activity is not available'), `step ${index + 1} (${step.title}) has its interactive`).toHaveCount(0);
           }
