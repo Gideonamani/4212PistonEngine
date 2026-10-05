@@ -657,12 +657,12 @@
           "type": "image",
           "title": "Combined cooling",
           "prompt": "Study an example in which liquid cools the cylinder heads while air cools the cylinder barrels. Follow each heat path separately rather than labelling the whole engine as only air cooled or only liquid cooled.",
-          "url": "./lesson-media/rotax-combined-cooling.webp",
-          "alt": "Rotax combined liquid-head and air-barrel cooling system diagram",
-          "credit": "EASA Module 16 course reference, Rotax cooling example",
-          "license": "Course reference extract",
-          "note": "Documented from EASA Module 16, PDF pp. 201 and 338-339. Use the source Rotax cooling schematic as an example, not as a claim about the GTSIO-520.",
-          "sourceRefs": ["easa-module16"],
+          "url": "./lesson-media/faa-rotax-914-cooling.webp",
+          "alt": "Rotax 914 cooling system diagram: coolant circulates through the cylinder heads, expansion tank, radiator and overflow bottle, while the cylinders are cooled by ram air",
+          "credit": "FAA-H-8083-32B, Figure 11-7 (Rotax 914 cooling system)",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 440 (Figure 11-7 and its text): the Rotax 914 uses liquid cooling of the cylinder heads and ram-air cooling of the cylinders. The figure draws the liquid circuit only; the air path is in the text. Use it as an example, not as a claim about the GTSIO-520.",
+          "sourceRefs": ["faa-powerplant-2023"],
           "mediaPlan": {"mode": "source-image", "status": "available", "rationale": "A real combined-system schematic prevents the false assumption that cooling methods are always all-or-nothing."}
         },
         {

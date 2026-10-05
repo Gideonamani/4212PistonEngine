@@ -31,10 +31,10 @@
     "source": "EASA Module 16 course reference, Figure 1-4",
     "license": "Course reference extract"
   },
-  "rotax-combined-cooling.webp": {
-    "title": "Rotax combined cooling example",
-    "source": "EASA Module 16 course reference",
-    "license": "Course reference extract"
+  "faa-rotax-914-cooling.webp": {
+    "title": "Rotax 914 cooling system",
+    "source": "FAA-H-8083-32B, Figure 11-7",
+    "license": "U.S. Government work"
   },
   "gtsio-dual-ignition.webp": {
     "title": "GTSIO-520 ignition wiring diagram",
