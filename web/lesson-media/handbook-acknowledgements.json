@@ -1,0 +1,155 @@
+{
+  "FAA-H-8083-32B": {
+    "title": "Aviation Maintenance Technician Handbook - Powerplant (FAA-H-8083-32B)",
+    "page": "iii",
+    "text": "The handbook is a U.S. Government work. Its acknowledgments page also thanks these contributors for images in the chapters this app draws figures from, so a figure from those chapters may be one of their photographs or drawings. The handbook does not say which figure is whose.",
+    "contributors": [
+      {
+        "name": "Mr. Tom Wild",
+        "chapters": "all"
+      },
+      {
+        "name": "Free Images Live",
+        "chapters": [
+          1
+        ],
+        "site": "www.freeimageslive.co.uk"
+      },
+      {
+        "name": "Mr. Stephen Sweet",
+        "chapters": [
+          1
+        ],
+        "site": "www.stephensweet.com"
+      },
+      {
+        "name": "Mr. Omar Filipovic",
+        "chapters": [
+          1
+        ],
+        "site": "www.glasair-owners.com"
+      },
+      {
+        "name": "Mr. Warren Lane (Atomic Metalsmith, Inc.)",
+        "chapters": [
+          1
+        ]
+      },
+      {
+        "name": "Pratt & Whitney",
+        "chapters": [
+          2,
+          3,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "name": "Teledyne Continental Motors",
+        "chapters": [
+          2,
+          3,
+          11
+        ],
+        "site": "www.genuinecontinental.aero"
+      },
+      {
+        "name": "Aircraft Tool Supply Company",
+        "chapters": [
+          4
+        ],
+        "site": "www.aircraft-tool.com"
+      },
+      {
+        "name": "Chief Aircraft",
+        "chapters": [
+          4
+        ],
+        "site": "www.chiefaircraft.com"
+      },
+      {
+        "name": "DeltaHawk Engines, Inc.",
+        "chapters": [
+          6
+        ],
+        "site": "www.deltahawkengines.com"
+      },
+      {
+        "name": "Mr. Felix Gottwald",
+        "chapters": [
+          7
+        ]
+      },
+      {
+        "name": "Mr. Stephen Christopher",
+        "chapters": [
+          8
+        ],
+        "site": "www.schristo.com"
+      },
+      {
+        "name": "Mr. Yunjin Lee",
+        "chapters": [
+          9
+        ]
+      },
+      {
+        "name": "Mr. Marco Leerentveld",
+        "chapters": [
+          10
+        ],
+        "site": "www.flightillusion.com"
+      },
+      {
+        "name": "Aeromax Aviation, LLC",
+        "chapters": [
+          11
+        ],
+        "site": "www.aeromaxaviation.com"
+      },
+      {
+        "name": "Avid Aircraft",
+        "chapters": [
+          11
+        ],
+        "site": "www.avidflyeraircraft.com"
+      },
+      {
+        "name": "Flight and Safety Design",
+        "chapters": [
+          11
+        ],
+        "site": "www.eco1aircraft.com"
+      },
+      {
+        "name": "Great Plains Aircraft Supply Co., Inc.",
+        "chapters": [
+          11
+        ],
+        "site": "www.greatplainsas.com"
+      },
+      {
+        "name": "Lycoming Engines",
+        "chapters": [
+          11
+        ],
+        "site": "www.lycoming.textron.com"
+      },
+      {
+        "name": "Revmaster LLC Aviation",
+        "chapters": [
+          11
+        ],
+        "site": "revmasteraviation.com"
+      },
+      {
+        "name": "Rotech Research Canada, Ltd.",
+        "chapters": [
+          11
+        ],
+        "site": "www.rotec.com"
+      }
+    ]
+  }
+}

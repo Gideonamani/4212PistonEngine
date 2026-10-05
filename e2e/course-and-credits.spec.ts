@@ -81,6 +81,17 @@ test.describe('the Credits page', () => {
     problems.assertNone();
   });
 
+  test('names the handbook contributors for the chapters its figures come from, and no others', async ({ page }) => {
+    await page.goto('/#/credits');
+    await appReady(page);
+    const note = page.locator('details').filter({ hasText: 'Who else is thanked in the handbook' });
+    await note.locator('summary').click();
+    await expect(note.getByText('Pratt & Whitney')).toBeVisible();
+    await expect(note.getByText('Teledyne Continental Motors')).toBeVisible();
+    await expect(note.getByText('Aircraft Tool Supply Company'), 'a chapter no figure comes from').toHaveCount(0);
+    await expectNoHorizontalOverflow(page);
+  });
+
   test('can be opened by its address and from the foot of the course list', async ({ page }) => {
     await page.goto('/#/credits');
     await appReady(page);
