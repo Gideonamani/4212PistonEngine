@@ -260,6 +260,18 @@
       "path": "lesson-factors-power-square.webp",
       "credit": "Rendered from the app's operating-cylinder teaching model (rings, valves and spark plugs spotlit on the compression stroke)",
       "license": "Course material"
+    },
+    "course-requirements-and-malfunctions": {
+      "kind": "render",
+      "path": "course-requirements-square.webp",
+      "credit": "Rendered from the app's GTSIO-520-H full-engine teaching model",
+      "license": "Course material"
+    },
+    "lesson-engine-requirements": {
+      "kind": "render",
+      "path": "lesson-engine-requirements-square.webp",
+      "credit": "Rendered from the app's GTSIO-520-H full-engine teaching model",
+      "license": "Course material"
     }
   },
   "previews": {
@@ -392,6 +404,12 @@
         "kind": "render",
         "path": "banner-breathing.webp",
         "credit": "Rendered from the app's operating-cylinder teaching model (intake and exhaust sides coloured)",
+        "license": "Course material"
+      },
+      "requirements-and-malfunctions": {
+        "kind": "render",
+        "path": "banner-requirements.webp",
+        "credit": "Rendered from the app's GTSIO-520-H full-engine teaching model",
         "license": "Course material"
       }
     }

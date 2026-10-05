@@ -34,4 +34,8 @@ const THUMBNAIL_CAPTURES = [
   { model: 'cylinder', name: 'lesson-power-generation-square', view: { initialAngle: 400, initialCycle: true, focusParts: ['PistonBody', 'FloatingPin', 'PistonRing1', 'PistonRing2', 'PistonRing3', 'PistonRing4', 'ConnectingRodBody', 'ConnectingRodCap', 'CrankThrow'], focusMode: 'xray' }, options: { zoom: 0.85, orbit: [-20, -8], pan: [-45, 0] } },
   // Lesson 13 (Factors Affecting Power).
   { model: 'cylinder', name: 'lesson-factors-power-square', view: { initialAngle: 300, initialCycle: true, focusParts: ['PistonRing1', 'PistonRing2', 'PistonRing3', 'PistonRing4', 'IntakeValve', 'ExhaustValve', 'UpperSparkPlug', 'UpperSparkInsulator', 'LowerSparkPlug', 'LowerSparkInsulator'], focusMode: 'xray' }, options: { zoom: 0.85, orbit: [25, -10], pan: [-10, 0] } },
+  // Lesson 14 (Engine Requirements) and its course.
+  { model: 'gtsio520-h-v5-teaching-engine', name: 'lesson-engine-requirements-square', view: {}, options: { zoom: 0.85, orbit: [55, -12], pan: [-18, 10] } },
+  { model: 'gtsio520-h-v5-teaching-engine', name: 'banner-requirements', view: {}, options: { width: 1000, height: 500, zoom: 0.6, orbit: [-35, -10], pan: [0, 8] } },
+  { model: 'gtsio520-h-v5-teaching-engine', name: 'course-requirements-square', view: {}, options: { zoom: 0.8, orbit: [140, 15], pan: [-10, 10] } },
 ];
