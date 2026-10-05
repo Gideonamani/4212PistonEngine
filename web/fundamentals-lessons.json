@@ -561,49 +561,6 @@
       ]
     },
     {
-      "id": "ignition-methods",
-      "parkedFor": "Lesson 8 (Accessories & Drives) - magnetos and dual ignition. The spark-vs-compression comparison now lives in lesson 5 (Classification).",
-      "title": "Ignition and timing (parked draft)",
-      "objective": "Relate ignition timing to piston position and explain the GTSIO-520 dual-plug magneto arrangement at an introductory level without substituting a general lesson for applicable maintenance data.",
-      "reviewStatus": "unreviewed",
-      "models": ["cylinder"],
-      "listed": false,
-      "scheduledDay": 2,
-      "completionCriteria": "State why spark occurs before top dead centre in a four-stroke spark-ignition engine and describe the GTSIO-520 two-plug-per-cylinder arrangement without attempting an unsupervised timing procedure.",
-      "steps": [
-        {
-          "type": "model-pose",
-          "title": "Spark before TDC",
-          "modelId": "cylinder",
-          "prompt": "Move to the end of compression and inspect the piston near top dead centre. The general four-stroke source explains that the spark occurs before TDC so combustion can develop as the piston crosses the top. What would be wrong with treating this ideal pose as the exact timing value for every engine?",
-          "action": {"type": "cycle-angle", "value": 355},
-          "note": "Documented general principle from FAA-H-8083-32B (2023), PDF p. 48. The handbook gives a broad 20-35 degrees BTDC range across various engines and explicitly requires the manufacturer's setting. The 355-degree pose is illustrative, not GTSIO-520 timing data.",
-          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
-          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "The cylinder model shows piston position relative to TDC while the note enforces the timing evidence boundary."}
-        },
-        {
-          "type": "image",
-          "title": "Dual ignition",
-          "prompt": "Follow the GTSIO-520 ignition paths from the left and right magnetos to the upper and lower spark plugs. Each cylinder has two plugs, and the two magnetos distribute high voltage to complementary plug positions.",
-          "url": "./lesson-media/gtsio-dual-ignition.webp",
-          "alt": "Continental GTSIO-520 upper and lower spark-plug ignition wiring diagram",
-          "credit": "Continental GTSIO-520 overhaul manual, Figure A4-43",
-          "license": "Course reference extract",
-          "note": "Documented from the GTSIO-520 overhaul manual, PDF pp. 15, 18-19 and 50. Use the manual wiring diagram as the visual; do not redraw or simplify cable destinations without checking every label and connection.",
-          "sourceRefs": ["gtsio520-overhaul"],
-          "mediaPlan": {"mode": "source-image", "status": "available", "rationale": "The manufacturer diagram is the safest way to preserve actual plug and magneto routing."}
-        },
-        {
-          "type": "text",
-          "title": "Manual controls timing",
-          "prompt": "The correct timing value and adjustment procedure belong to the applicable engine maintenance data. A general animation can explain why timing matters, but it cannot authorize a setting or maintenance action.",
-          "note": "Documented boundary from FAA-H-8083-32B (2023), PDF p. 48, and the configuration-specific GTSIO-520 overhaul manual.",
-          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "This safety and applicability boundary should remain prominent text."}
-        }
-      ]
-    },
-    {
       "id": "cooling-methods",
       "thumbnail": "./thumbnails/lesson-cooling-methods.webp",
       "sequenceNumber": 7,
@@ -734,16 +691,6 @@
       "answers": ["Spark ignition uses an electric spark; compression ignition relies on the temperature of highly compressed air", "Spark ignition is always two-stroke; compression ignition is always four-stroke", "Spark ignition uses a turbocharger; compression ignition cannot"],
       "correct": 0,
       "rationale": "The ignition methods differ in the combustion trigger. Stroke cycle and aspiration are separate classifications."
-    },
-    {
-      "id": "ignition-data-source",
-      "lessonId": "ignition-methods",
-      "type": "multiple-choice",
-      "question": "Where should a technician obtain the correct ignition timing value for a particular engine?",
-      "hint": "A general handbook explains the principle but not every engine's approved setting.",
-      "answers": ["From the colour of the lesson animation", "From the applicable manufacturer's technical data", "From the timing used by any engine with the same number of cylinders"],
-      "correct": 1,
-      "rationale": "The FAA handbook explicitly directs technicians to the engine manufacturer's recommendation."
     },
     {
       "id": "cooling-air-path",
