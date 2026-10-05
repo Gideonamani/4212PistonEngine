@@ -1,0 +1,164 @@
+{
+  "asset_sha256": "ba39a78c89ac14d5d263487e446011cfa4710346270d2ebe377a997174793647",
+  "asset_bytes": 34858120,
+  "parts": 61,
+  "tolerance_mm3": 0.001,
+  "max_penetration_mm": 0.05,
+  "method": "All bound-meeting pairs intersected exactly (Manifold boolean) at the rest pose and at sampled times of each baked animation clip. Touching is allowed, overlap is not; an overlap thinner than max_penetration_mm is treated as mesh tessellation noise on a touching face.",
+  "rest_neighbouring_pairs": 212,
+  "rest_touching_only": 199,
+  "clips": {},
+  "gear_meshes": [],
+  "unverified_parts": [],
+  "unverified_not_waived": [],
+  "stale_ledger_entries": [],
+  "overlaps_total": 13,
+  "known_defects": [
+    {
+      "a": "IntakeRockerHousing",
+      "b": "IntakeRockerShaft",
+      "max_overlap_mm3": 1160.6494392818258,
+      "max_thickness_mm": 1.6660134246560119,
+      "first_seen": "rest",
+      "poses": [
+        "rest"
+      ],
+      "ledger": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error."
+    },
+    {
+      "a": "ExhaustRockerHousing",
+      "b": "ExhaustRockerShaft",
+      "max_overlap_mm3": 1160.6297217526599,
+      "max_thickness_mm": 1.6659794535739252,
+      "first_seen": "rest",
+      "poses": [
+        "rest"
+      ],
+      "ledger": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error."
+    },
+    {
+      "a": "ConnectingRodBody",
+      "b": "RodBoltMinus1",
+      "max_overlap_mm3": 1053.497132999541,
+      "max_thickness_mm": 2.5677811948688465,
+      "first_seen": "rest",
+      "poses": [
+        "rest"
+      ],
+      "ledger": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error."
+    },
+    {
+      "a": "ConnectingRodCap",
+      "b": "RodBoltMinus1",
+      "max_overlap_mm3": 890.2842994492694,
+      "max_thickness_mm": 3.4046167526499427,
+      "first_seen": "rest",
+      "poses": [
+        "rest"
+      ],
+      "ledger": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error."
+    },
+    {
+      "a": "CylinderHead",
+      "b": "LowerSparkPlug",
+      "max_overlap_mm3": 258.98667469417217,
+      "max_thickness_mm": 0.36513576265867287,
+      "first_seen": "rest",
+      "poses": [
+        "rest"
+      ],
+      "ledger": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error."
+    },
+    {
+      "a": "CylinderHead",
+      "b": "UpperSparkPlug",
+      "max_overlap_mm3": 258.96741160677726,
+      "max_thickness_mm": 0.36308332791073894,
+      "first_seen": "rest",
+      "poses": [
+        "rest"
+      ],
+      "ledger": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error."
+    },
+    {
+      "a": "ConnectingRodBody",
+      "b": "RodBolt1",
+      "max_overlap_mm3": 163.20276139140174,
+      "max_thickness_mm": 1.1463004225933495,
+      "first_seen": "rest",
+      "poses": [
+        "rest"
+      ],
+      "ledger": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error."
+    },
+    {
+      "a": "ConnectingRodCap",
+      "b": "RodNut1",
+      "max_overlap_mm3": 161.42171518840775,
+      "max_thickness_mm": 1.102466237827347,
+      "first_seen": "rest",
+      "poses": [
+        "rest"
+      ],
+      "ledger": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error."
+    },
+    {
+      "a": "ConnectingRodCap",
+      "b": "RodNutMinus1",
+      "max_overlap_mm3": 161.42098348361498,
+      "max_thickness_mm": 1.016222631900879,
+      "first_seen": "rest",
+      "poses": [
+        "rest"
+      ],
+      "ledger": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error."
+    },
+    {
+      "a": "PinPlugRight",
+      "b": "PistonRing3",
+      "max_overlap_mm3": 155.62716542416356,
+      "max_thickness_mm": 1.0565256873091415,
+      "first_seen": "rest",
+      "poses": [
+        "rest"
+      ],
+      "ledger": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error."
+    },
+    {
+      "a": "PinPlugLeft",
+      "b": "PistonRing3",
+      "max_overlap_mm3": 155.62716542416337,
+      "max_thickness_mm": 1.0565256873091402,
+      "first_seen": "rest",
+      "poses": [
+        "rest"
+      ],
+      "ledger": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error."
+    },
+    {
+      "a": "FloatingPin",
+      "b": "PistonRing3",
+      "max_overlap_mm3": 102.6184883681945,
+      "max_thickness_mm": 0.6504283005175081,
+      "first_seen": "rest",
+      "poses": [
+        "rest"
+      ],
+      "ledger": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error."
+    },
+    {
+      "a": "CylinderBarrel",
+      "b": "IntakePushrodHousing",
+      "max_overlap_mm3": 36.030361613383626,
+      "max_thickness_mm": 0.5863208582434514,
+      "first_seen": "rest",
+      "poses": [
+        "rest"
+      ],
+      "ledger": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error."
+    }
+  ],
+  "new_violations": [],
+  "clean": false,
+  "passed": true
+}

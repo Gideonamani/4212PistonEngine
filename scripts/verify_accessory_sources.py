@@ -21,14 +21,29 @@ if mode=='cad':
         gap=doc.getObject(pair['a']).Shape.distToShape(doc.getObject(pair['b']).Shape)[0]
         joints.append(dict(pair,distance_mm=gap))
         assert gap<=pair['max_gap_mm']+.005, f"Open assembled joint {pair['a']} / {pair['b']}: {gap} mm"
-    collision_pairs=[('OilHousing','FuelPump'),('OilCover','FuelPump'),('ScavengeBody','FuelPump'),('OilHousing','OilDriver'),('OilHousing','OilDriven'),('OilHousing','OilDrivenPin'),('ScavengeBody','TachDriveBevel'),('ScavengeBody','TachDrivenBevel'),('ScavengeBody','TachOutput'),('StarterAdapter','StarterDrum'),('StarterAdapter','WormWheel'),('StarterAdapter','StarterWorm'),('StarterMotor','StarterWorm'),('AlternatorBody','AlternatorOutput'),('CamShaft','OilTachShaft')]
-    for housing in ['AccessoryHousing','HousingCover']:
-        collision_pairs.extend((housing,gear) for gear in ['CrankGear','CamGear','CamCluster','IdlerGear','LeftMagGear','RightMagGear','FuelGear','StarterShaftGear'])
-    clearances=[]
-    for a,b in collision_pairs:
-        overlap=doc.getObject(a).Shape.common(doc.getObject(b).Shape).Volume
+    # Every pair whose bounds meet is intersected, not a hand-picked list: a short list is how the gear meshes went unchecked.
+    # Pairs in the interference ledger are recorded, not asserted; the ledger may only shrink.
+    import itertools
+    sys.path.append(str(R/'scripts'));import accessory_gears as T
+    policy=json.loads((F/'interference-policy.json').read_text(encoding='utf8'))
+    ledger={frozenset((e['a'],e['b'])):e for e in policy['known_defects']}
+    shapes={o.Name:o.Shape for o in objects}
+    clearances=[];known_overlaps=[]
+    for a,b in itertools.combinations(sorted(shapes),2):
+        if not shapes[a].BoundBox.intersect(shapes[b].BoundBox):continue
+        overlap=shapes[a].common(shapes[b]).Volume
+        entry=ledger.get(frozenset((a,b)))
+        if entry:
+            known_overlaps.append(dict(a=a,b=b,overlap_mm3=overlap,ledger_status=entry['status']));continue
         clearances.append(dict(a=a,b=b,overlap_mm3=overlap))
         assert overlap<1e-4, f"Solid interference {a} / {b}: {overlap} mm3"
+    # Declared gear meshes keep positive clearance at the assembled pose. The swept check through every baked
+    # motion is scripts/audit_assembly_interference.py on the exported GLB.
+    gear_mesh_checks=[]
+    for a,b in T.MESHES:
+        gap=shapes[a].distToShape(shapes[b])[0]
+        gear_mesh_checks.append(dict(driver=a,driven=b,min_gap_mm=gap))
+        assert gap>=.02, f"Gear mesh {a} / {b} has {gap} mm clearance; teeth must touch within backlash and never overlap"
     step=Part.read(str(F/'accessory-drives.step'))
     assert len(step.Solids)==len(objects), 'Neutral export must not duplicate assembly groups'
     native_volume=sum(o.Shape.Volume for o in objects)
@@ -37,7 +52,7 @@ if mode=='cad':
     relative_error=abs(step.Volume-native_volume)/native_volume
     assert relative_error<1e-6
     assert all(s.isValid() and abs(s.Volume-o.Shape.Volume)/o.Shape.Volume<1e-5 for o,s in zip(objects,step.Solids))
-    file=F/'cad-verification.json';report=json.loads(file.read_text());report.update(native_reopened=True,step_solids=len(objects),pump_pocket_empty=True,starter_chamber_empty=True,assembled_interfaces=joints,interference_checks=clearances,step_volume_relative_error=relative_error,step_volume_difference_mm3=step.Volume-native_volume,freecad_version=A.Version()[:3])
+    file=F/'cad-verification.json';report=json.loads(file.read_text());report.update(native_reopened=True,step_solids=len(objects),pump_pocket_empty=True,starter_chamber_empty=True,assembled_interfaces=joints,interference_checks=clearances,known_overlaps=known_overlaps,gear_mesh_checks=gear_mesh_checks,step_volume_relative_error=relative_error,step_volume_difference_mm3=step.Volume-native_volume,freecad_version=A.Version()[:3])
 else:
     import bpy
     bpy.ops.wm.open_mainfile(filepath=str(F/'accessory-drives.blend'))

@@ -1,0 +1,113 @@
+{
+  "_note": "Baseline recorded by the first audit run on 2026-10-05 for web/cylinder-reviewed-20261001.glb.gz. known_defects is a ratchet: it may only shrink. COVERAGE LIMIT: this model has no baked animation (slider-crank and valve motion are driven in the viewer from web/cylinder-saved-motions.json), so only the assembled pose is audited here; swept motion is not yet covered.",
+  "volume_tolerance_mm3": 0.001,
+  "max_penetration_mm": 0.05,
+  "min_gear_clearance_mm": 0.02,
+  "unverified_waivers": [],
+  "known_defects": [
+    {
+      "a": "IntakeRockerHousing",
+      "b": "IntakeRockerShaft",
+      "max_mm3": 1160.7,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    },
+    {
+      "a": "ExhaustRockerHousing",
+      "b": "ExhaustRockerShaft",
+      "max_mm3": 1160.7,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    },
+    {
+      "a": "ConnectingRodBody",
+      "b": "RodBoltMinus1",
+      "max_mm3": 1053.5,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    },
+    {
+      "a": "ConnectingRodCap",
+      "b": "RodBoltMinus1",
+      "max_mm3": 890.3,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    },
+    {
+      "a": "CylinderHead",
+      "b": "LowerSparkPlug",
+      "max_mm3": 259.0,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    },
+    {
+      "a": "CylinderHead",
+      "b": "UpperSparkPlug",
+      "max_mm3": 259.0,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    },
+    {
+      "a": "ConnectingRodBody",
+      "b": "RodBolt1",
+      "max_mm3": 163.3,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    },
+    {
+      "a": "ConnectingRodCap",
+      "b": "RodNut1",
+      "max_mm3": 161.5,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    },
+    {
+      "a": "ConnectingRodCap",
+      "b": "RodNutMinus1",
+      "max_mm3": 161.5,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    },
+    {
+      "a": "PinPlugRight",
+      "b": "PistonRing3",
+      "max_mm3": 155.7,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    },
+    {
+      "a": "PinPlugLeft",
+      "b": "PistonRing3",
+      "max_mm3": 155.7,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    },
+    {
+      "a": "FloatingPin",
+      "b": "PistonRing3",
+      "max_mm3": 102.7,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    },
+    {
+      "a": "CylinderBarrel",
+      "b": "IntakePushrodHousing",
+      "max_mm3": 36.1,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    }
+  ]
+}

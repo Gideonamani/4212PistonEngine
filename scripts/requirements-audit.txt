@@ -1,0 +1,7 @@
+# Dependencies of scripts/audit_assembly_interference.py and scripts/test_assembly_audit.py.
+# They are needed only to audit exported models; the viewer, the gear-train tests and the builders do not use them.
+numpy==2.4.6
+trimesh==5.1.1
+networkx==3.6.1
+manifold3d==3.5.4
+python-fcl==0.7.0.11

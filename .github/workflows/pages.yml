@@ -44,6 +44,20 @@ jobs:
           python3 scripts/test_m4_engine_foundation.py
       - name: Verify the published operating-cylinder profile and asset binding
         run: python3 scripts/test_cylinder_motion_profile.py
+      - name: Verify the accessory gear train (standard library only)
+        run: python3 scripts/test_gear_geometry.py
+      - name: Install the interference-audit dependencies
+        run: python3 -m pip install -r scripts/requirements-audit.txt
+      - name: Self-test the interference audit on gear trains that mesh and gear trains that do not
+        run: python3 scripts/test_assembly_audit.py
+      - name: Audit the published models for part interference
+        # Parts may touch but not overlap, at the assembled pose and through every baked motion. Each model's
+        # interference-policy.json is a ratchet: new overlaps fail, and a fixed overlap must be removed from the ledger.
+        run: |
+          python3 scripts/audit_assembly_interference.py web/accessory-drives.glb.gz --contract web/accessory-drives-contract.json --policy cad-studies/accessory-drives/interference-policy.json
+          python3 scripts/audit_assembly_interference.py web/cylinder-reviewed-20261001.glb.gz --policy cad-studies/cylinder/interference-policy.json
+          python3 scripts/audit_assembly_interference.py web/hydraulic-tappet.glb.gz --policy cad-studies/hydraulic-tappet/interference-policy.json
+          python3 scripts/audit_assembly_interference.py web/oil-pump.glb.gz --policy cad-studies/oil-pump/interference-policy.json
       - name: Build the GitHub Pages application
         run: npm run build
       - name: Cache the Playwright browser

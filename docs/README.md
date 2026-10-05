@@ -26,6 +26,7 @@ publish), then `AGENTS.md` (storage and validation rules), then the guides here.
 | [export-pipeline.md](export-pipeline.md) | guide | The repeatable CAD and Blender export package. |
 | [manual-workflow.md](manual-workflow.md) | guide | From a manual to a modelled, animated teaching module. |
 | [accessories-and-drives.md](accessories-and-drives.md) | guide | The accessories and drives lesson and its model. |
+| [assembly-interference.md](assembly-interference.md) | guide | Parts touch but never overlap: the gear train, the CAD checks and the swept audit that enforce it. |
 | [galaxy-a16-release-check.md](galaxy-a16-release-check.md) | guide | The release check to run on a Samsung Galaxy A16 in Chrome. |
 | [accessory-shape-review.md](accessory-shape-review.md) | record | Manual illustration and model shape audit, 3 October 2026. |
 | [cycle-cues-reference.md](cycle-cues-reference.md) | record | Operating-cycle cue reference, 12 September 2026. |

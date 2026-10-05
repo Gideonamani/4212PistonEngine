@@ -1,0 +1,41 @@
+{
+  "_note": "Baseline recorded by the first audit run on 2026-10-05 for web/hydraulic-tappet.glb.gz (rest pose and every baked clip except the exploded ones). known_defects is a ratchet: it may only shrink.",
+  "volume_tolerance_mm3": 0.001,
+  "max_penetration_mm": 0.05,
+  "min_gear_clearance_mm": 0.02,
+  "unverified_waivers": [],
+  "known_defects": [
+    {
+      "a": "LifterBody",
+      "b": "RetainingRing",
+      "max_mm3": 9.8,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    },
+    {
+      "a": "CheckHousing",
+      "b": "CheckPlate",
+      "max_mm3": 1.5,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    },
+    {
+      "a": "CheckPlate",
+      "b": "CheckSpring",
+      "max_mm3": 1.0,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    },
+    {
+      "a": "CheckHousing",
+      "b": "PlungerSpring",
+      "max_mm3": 0.9,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    }
+  ]
+}
