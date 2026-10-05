@@ -41,12 +41,6 @@
     "source": "Continental GTSIO-520 overhaul manual, Figure A4-43",
     "license": "Course reference extract"
   },
-  "gtsio-induction.webp": {
-    "title": "GTSIO-520 induction-system diagram",
-    "source": "Continental GTSIO-520 overhaul manual, Figure C-2-2",
-    "license": "Course reference extract",
-    "note": "Retain the in-app effectivity review notice before final course publication."
-  },
   "faa-opposed-engine-exploded.webp": {
     "title": "Typical opposed engine exploded into component assemblies",
     "source": "FAA-H-8083-32B, Figure 1-6",
@@ -101,5 +95,35 @@
     "title": "Valve with a normal margin and a feather edge",
     "source": "FAA-H-8083-32B, Figure 10-26",
     "license": "U.S. Government work"
+  },
+  "faa-induction-downdraft.webp": {
+    "title": "Downdraft balanced induction system",
+    "source": "FAA-H-8083-32B, Figure 3-4",
+    "license": "U.S. Government work"
+  },
+  "faa-turbo-system-layout.webp": {
+    "title": "Air induction and exhaust systems of a normalizing turbocharger installation",
+    "source": "FAA-H-8083-32B, Figure 3-16",
+    "license": "U.S. Government work"
+  },
+  "faa-exhaust-collector-opposed.webp": {
+    "title": "Collector exhaust system of an opposed engine",
+    "source": "FAA-H-8083-32B, Figure 3-38",
+    "license": "U.S. Government work"
+  },
+  "faa-radial-collector-ring.webp": {
+    "title": "Exhaust collector ring of a radial engine",
+    "source": "FAA-H-8083-32B, Figure 3-41",
+    "license": "U.S. Government work"
+  },
+  "faa-exhaust-inspection.webp": {
+    "title": "Primary inspection areas of three types of exhaust system",
+    "source": "FAA-H-8083-32B, Figure 3-42",
+    "license": "U.S. Government work"
+  },
+  "gtsio-h-induction.webp": {
+    "title": "GTSIO-520-H induction system",
+    "source": "Continental GTSIO-520 overhaul manual, Figure C-3-2",
+    "license": "Course reference extract"
   }
 }

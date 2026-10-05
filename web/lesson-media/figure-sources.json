@@ -40,5 +40,41 @@
     "page": 384,
     "box": [0.508, 0.66, 0.916, 0.893],
     "width": 800
+  },
+  "faa-induction-downdraft": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 130,
+    "box": [0.05, 0.617, 0.482, 0.884],
+    "width": 800
+  },
+  "faa-turbo-system-layout": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 138,
+    "box": [0.09, 0.056, 0.912, 0.476],
+    "width": 1200
+  },
+  "faa-exhaust-collector-opposed": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 149,
+    "box": [0.51, 0.056, 0.922, 0.292],
+    "width": 1000
+  },
+  "faa-radial-collector-ring": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 150,
+    "box": [0.51, 0.056, 0.912, 0.435],
+    "width": 900
+  },
+  "faa-exhaust-inspection": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 151,
+    "box": [0.09, 0.372, 0.49, 0.888],
+    "width": 800
+  },
+  "gtsio-h-induction": {
+    "pdf": "gtsio520_series.pdf",
+    "page": 161,
+    "box": [0.108, 0.07, 0.893, 0.52],
+    "width": 1100
   }
 }

@@ -683,93 +683,6 @@
           "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The final step connects theory to maintenance judgment while preserving the manual boundary."}
         }
       ]
-    },
-    {
-      "id": "aspiration-methods",
-      "parkedFor": "Lesson 11 (Induction & Exhaust) - aspiration is taught once, inside that lesson.",
-      "title": "Aspiration (parked draft)",
-      "objective": "Compare naturally aspirated, mechanically supercharged and exhaust-driven turbocharged induction, explain why altitude reduces the charge available to a naturally aspirated engine, and trace the GTSIO-520 turbocharger/intercooler induction path.",
-      "reviewStatus": "unreviewed",
-      "models": ["gtsio520-h-v5-teaching-engine"],
-      "listed": false,
-      "scheduledDay": 2,
-      "completionCriteria": "Trace air through each aspiration method, identify what drives the compressor where present, explain critical altitude in qualitative terms, and use the GTSIO-520 manual diagram to identify its turbocharger and induction path.",
-      "steps": [
-        {
-          "type": "text",
-          "title": "Filling the cylinder",
-          "prompt": "A cylinder can only burn the oxygen charge that reaches it. As altitude increases and ambient pressure falls, predict what happens to the mass of air drawn into a naturally aspirated cylinder of fixed volume.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 133-142 and glossary p. 476, supported by EASA Module 16, PDF pp. 205-216.",
-          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The prediction establishes the altitude problem before introducing compressors."}
-        },
-        {
-          "type": "text",
-          "title": "Natural aspiration",
-          "prompt": "A naturally aspirated engine has no supercharger or turbocharger. Ambient pressure supplies the pressure difference that fills the cylinders, so available charge mass and manifold pressure decrease as the aircraft climbs, all else equal.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF glossary p. 476 and induction-system discussion pp. 133-134. This statement is qualitative and does not assign a universal power-loss rate.",
-          "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The baseline system has no additional mechanism to animate."}
-        },
-        {
-          "type": "image",
-          "title": "Driven supercharger",
-          "prompt": "Trace the mechanically driven supercharger from crankshaft drive to compressor impeller and intake manifold. The compressor increases charge density, but the engine must supply the drive power.",
-          "url": "./lesson-media/driven-supercharger.webp",
-          "alt": "FAA internally driven supercharger induction diagram",
-          "credit": "FAA-H-8083-32B, Figure 3-10",
-          "license": "U.S. Government work",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 133-135. Use FAA Figure 3-10 as the primary visual source.",
-          "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "source-image", "status": "available", "rationale": "The source schematic already shows the drive and induction path accurately."}
-        },
-        {
-          "type": "web-embed",
-          "title": "Turbo energy path",
-          "prompt": "Open and close the wastegate control, then trace exhaust energy through the turbine and compressor. Observe how compressor discharge, upper-deck pressure and manifold pressure are related without treating them as identical at every operating condition.",
-          "url": "artifact:turbocharger-energy-path",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 135-142. The animation will explain control relationships qualitatively; it will not calculate boost for a real engine.",
-          "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "A turbocharger links exhaust flow, turbine speed, compressor delivery and wastegate position; learner-controlled animation reveals that causal chain."}
-        },
-        {
-          "type": "text",
-          "title": "Normalize or boost",
-          "prompt": "A normalizing turbocharger compensates for pressure loss with altitude up to its critical altitude. A ground-boosted system can raise manifold pressure above standard sea-level ambient pressure. Both descriptions depend on the installed system and its limits.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 137-140. The lesson keeps these terms distinct and does not assume every turbocharged engine is ground boosted.",
-          "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A concise contrast prevents the common assumption that all turbocharging has the same purpose."}
-        },
-        {
-          "type": "image",
-          "title": "GTSIO induction",
-          "prompt": "Use the GTSIO-520 induction diagram to locate the turbocharger, air throttle, ducting and intercooler path. Trace air through the actual reference-engine arrangement before returning to the generic comparison.",
-          "url": "./lesson-media/gtsio-induction.webp",
-          "alt": "Continental GTSIO-520 induction-system exploded diagram",
-          "credit": "Continental GTSIO-520 overhaul manual, Figure C-2-2",
-          "license": "Course reference extract",
-          "note": "Documented from the GTSIO-520 overhaul manual, PDF pp. 13, 15, 18 and 144/161 as applicable to the variant section. Confirm the exact H-variant figure and effectivity before publication.",
-          "sourceRefs": ["gtsio520-overhaul"],
-          "mediaPlan": {"mode": "source-image", "status": "needs-review", "rationale": "The manufacturer diagram is required for configuration-specific routing, but the exact H-variant applicability must be verified before use.", "assetBrief": "Select the applicable GTSIO-520-H induction-system figure, preserve callouts, and add no route that the manual does not show."}
-        },
-        {
-          "type": "web-embed",
-          "title": "Altitude compare",
-          "prompt": "Move the altitude slider and switch among naturally aspirated, normalizing turbocharged and ground-boosted modes. Compare ambient pressure with a schematic manifold-pressure capability and identify the point beyond which the selected system can no longer maintain its target.",
-          "url": "artifact:aspiration-altitude-comparator",
-          "note": "Documented relationships from FAA-H-8083-32B (2023), PDF pp. 133-142, and EASA Module 16, PDF pp. 205-216. The graph will use normalized, explicitly schematic values unless a separately validated engine model is approved.",
-          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Altitude and critical-altitude relationships are easiest to understand by changing one input and watching three system responses on the same axes."}
-        },
-        {
-          "type": "text",
-          "title": "Limits and control",
-          "prompt": "Compressing the intake charge raises pressure and temperature and introduces control limits. Wastegate/controller behaviour, manifold pressure, upper-deck pressure and temperature limits must be interpreted from the installed engine and aircraft data. Rapid throttle movement and overboost are operational concerns, not effects to improvise from a generic animation.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 138-142, and supported by the GTSIO-520 manufacturer manual. This lesson explains system purpose but does not provide operating limits or procedures.",
-          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The applicability and safety boundary should remain direct text."}
-        }
-      ]
     }
   ],
   "checks": [
@@ -850,26 +763,6 @@
       "answers": ["They direct cooling air across the cylinders and fins", "They ignite the fuel-air mixture", "They drive the coolant pump"],
       "correct": 0,
       "rationale": "Baffles control the airflow path so air does useful cooling work instead of bypassing the finned surfaces."
-    },
-    {
-      "id": "aspiration-driver",
-      "lessonId": "aspiration-methods",
-      "type": "multiple-choice",
-      "question": "What drives a turbocharger compressor?",
-      "hint": "Follow the energy path on the exhaust side.",
-      "answers": ["A turbine driven by exhaust gas", "The magneto distributor", "The radiator coolant pump"],
-      "correct": 0,
-      "rationale": "Exhaust gas drives the turbine, which shares a shaft with the intake compressor."
-    },
-    {
-      "id": "aspiration-normalizer",
-      "lessonId": "aspiration-methods",
-      "type": "multiple-choice",
-      "question": "What is the primary purpose of a normalizing turbocharger system?",
-      "hint": "Compare pressure capability as the aircraft climbs.",
-      "answers": ["Compensate for induction-pressure loss with altitude up to a critical altitude", "Convert a four-stroke engine into a two-stroke engine", "Replace the engine's cooling fins"],
-      "correct": 0,
-      "rationale": "A normalizing system maintains a target pressure as ambient pressure falls, until the system reaches its critical altitude."
     },
     {
       "id": "cycles-otto-processes",

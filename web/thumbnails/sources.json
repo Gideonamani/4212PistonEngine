@@ -236,6 +236,18 @@
       "path": "lesson-valve-operating-square.webp",
       "credit": "Rendered from the app's operating-cylinder teaching model (exploded pose, valve trains spotlit)",
       "license": "Course material"
+    },
+    "course-breathing-and-performance": {
+      "kind": "render",
+      "path": "course-breathing-square.webp",
+      "credit": "Rendered from the app's operating-cylinder teaching model (intake and exhaust sides coloured)",
+      "license": "Course material"
+    },
+    "lesson-induction-exhaust": {
+      "kind": "render",
+      "path": "lesson-induction-exhaust-square.webp",
+      "credit": "Rendered from the app's operating-cylinder teaching model (intake and exhaust sides coloured)",
+      "license": "Course material"
     }
   },
   "previews": {
@@ -362,6 +374,12 @@
         "kind": "render",
         "path": "banner-valve-train.webp",
         "credit": "Rendered from the app's operating-cylinder teaching model (exploded pose, valve trains spotlit)",
+        "license": "Course material"
+      },
+      "breathing-and-performance": {
+        "kind": "render",
+        "path": "banner-breathing.webp",
+        "credit": "Rendered from the app's operating-cylinder teaching model (intake and exhaust sides coloured)",
         "license": "Course material"
       }
     }

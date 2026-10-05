@@ -1,0 +1,518 @@
+{
+  "schema": "4212.lesson-pack/v3",
+  "privacy": "Lesson progress may be held locally on the learner's device and is never transmitted. Check-yourself answers remain session-only.",
+  "id": "breathing-and-performance",
+  "thumbnail": "./thumbnails/course-breathing-and-performance.webp",
+  "banner": "./banners/breathing-and-performance.webp",
+  "title": "Breathing & Performance",
+  "description": "How the engine breathes in and out through its induction and exhaust systems, and, as the course grows, how its performance is measured and what changes it.",
+  "sources": [
+    {
+      "id": "faa-powerplant-2023",
+      "tier": 1,
+      "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
+      "path": "Notes/amt_powerplant_handbook 2023.pdf",
+      "applicability": "Primary source for the general principles in this course. PDF page locators are used in step notes."
+    },
+    {
+      "id": "easa-module16",
+      "tier": 2,
+      "title": "EASA Module 16 - Piston Engines, Aircraft Technical Book Company",
+      "path": "Notes/EASA Module 16 - Piston Engines by Aircraft Technical Book Co LLC.pdf",
+      "applicability": "Secondary source used to cross-check the handbook; its text follows the FAA handbook closely. PDF page locators are used in step notes."
+    },
+    {
+      "id": "gtsio520-overhaul",
+      "tier": 3,
+      "title": "Continental GTSIO-520 Series Overhaul Manual X30045A",
+      "path": "Notes/gtsio520_series.pdf",
+      "applicability": "Configuration-specific source for the course reference engine. Chapter B (table of limits, March 1981) covers the series; Chapter C-3 is the difference data for the -H. Variant applicability must be checked before using a limit, dimension or maintenance instruction; always use the current data for the engine in front of you."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "induction-exhaust",
+      "thumbnail": "./thumbnails/lesson-induction-exhaust.webp",
+      "sequenceNumber": 11,
+      "title": "Induction & Exhaust",
+      "objective": "Follow the air through the induction system and the burned gas through the exhaust: compare natural aspiration with supercharging and turbocharging, trace the GTSIO-520-H induction path, name the kinds of exhaust system, and recognise the hazards and inspections that go with them.",
+      "reviewStatus": "unreviewed",
+      "models": [
+        "cylinder"
+      ],
+      "listed": true,
+      "scheduledDay": 5,
+      "completionCriteria": "Trace the air from the scoop to the cylinder and the gas from the cylinder to the tailpipe, say what drives a turbocharger and what a waste gate does, explain normalizing and critical altitude, and name three things to check on an exhaust system and why.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "Filling the cylinder",
+          "prompt": "A cylinder can burn only the oxygen that reaches it. As altitude increases and the air pressure falls, predict what happens to the mass of air a naturally aspirated cylinder of fixed volume can draw in. Then follow the air in through the induction system, and the burned gas out through the exhaust.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 133-142 and the glossary on PDF p. 476, supported by EASA Module 16, PDF pp. 205-216. The prediction is qualitative; no power-loss rate is given.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A prediction prompt that sets up the whole lesson: charge mass depends on pressure."
+          }
+        },
+        {
+          "type": "image",
+          "title": "From scoop to cylinder",
+          "prompt": "Air is collected by a scoop in the cowling, passes an air filter, and reaches the fuel metering device, a carburettor or a fuel injector. The throttle plate controls how much air flows, and the pressure after it is the manifold pressure, measured in inches of mercury, which sets the power. An intake manifold with long curved pipes then carries the air, or the air-fuel mixture, to each cylinder. A balance tube evens out the pressure between the two sides so that every cylinder gets its share. On a fuel-injected engine the fuel is injected at the intake port just before the intake valve.",
+          "url": "./lesson-media/faa-induction-downdraft.webp",
+          "alt": "FAA exploded drawing of a downdraft balanced induction system: a throttle body, hoses, an induction manifold assembly, four intake manifold tubes and their intake gaskets, all labelled.",
+          "credit": "FAA-H-8083-32B, Figure 3-4",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 129-130 (scoop, filter, fuel metering device, throttle and manifold pressure, balance tube; updraft and downdraft systems; fuel injected at the intake port), cross-checked against EASA Module 16, PDF pp. 71-72 and 195-196. A general example, not a drawing of the GTSIO-520-H, whose induction system comes later in the lesson.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The labelled drawing shows the parts of a balanced intake manifold that the text names."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "The intake stroke",
+          "modelId": "cylinder",
+          "prompt": "At 90° of the cycle the piston is moving down and the intake valve is open, so the charge flows in. The thin coloured trace through the intake port is the model's gas cue: it shows the direction of flow, not a measured flow. Notice how little time there is: the intake valve is open for only part of the cycle, and the whole charge must pass the valve in that time.",
+          "action": {
+            "type": "cycle-angle",
+            "value": 90
+          },
+          "note": "Documented four-stroke sequence from FAA-H-8083-32B (2023), PDF pp. 46-48. The mechanism pose is profile-checked; the valve and gas cues are an ideal teaching profile, not GTSIO-520-H timing or CFD. The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The shared 720-degree cylinder profile puts the learner at the intake stroke with the valve open."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Dirt, ice and heat",
+          "prompt": "The induction system has three enemies. Dust is hard and abrasive, and an engine that breathes it wears its cylinder walls, rings and bearings, so the air passes a filter that must be cleaned or replaced on schedule. Ice can form in clouds, fog, rain or humid air, in three kinds: impact ice, fuel evaporation ice and throttle ice, and it can cut off the charge or change the air-fuel ratio. Carburettor heat takes warm air from around the exhaust to melt it, but warm air is less dense, so it reduces the weight of the charge and the power. Use it only as needed.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 131-132 (three types of induction icing; carburettor heat takes warm air from around the exhaust and reduces the weight of the charge and the power; dust damage and filter servicing), cross-checked against EASA Module 16, PDF pp. 195-196. The handbook says on PDF p. 130 that carburettor heat leans the mixture and on PDF p. 131 that the mixture becomes richer, so this step does not state a direction.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A maintenance-relevance step; the hazards are explained in words before the boosted systems."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Driven supercharger",
+          "prompt": "Trace the mechanically driven supercharger from the crankshaft drive to the compressor impeller and the intake manifold. The compressor raises the density of the charge, but the engine itself has to supply the power to turn it. Compressing air also heats it, so some installations need to cool the charge before it reaches the cylinders.",
+          "url": "./lesson-media/driven-supercharger.webp",
+          "alt": "FAA drawing of an internally driven supercharger induction system, with the intake air duct, carburettor heat valve, carburettor, supercharger, intake pipe and manifold pressure gauge labelled.",
+          "credit": "FAA-H-8083-32B, Figure 3-10",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 133-135 (internally driven superchargers, mechanical drive, the charge gains heat as it is compressed). Figure 3-10 is the primary visual source.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "A real induction diagram makes the engine-driven compressor visible."
+          }
+        },
+        {
+          "type": "web-embed",
+          "title": "Turbo energy path",
+          "prompt": "Open and close the waste gate, then trace the exhaust energy through the turbine and the compressor. Notice how the compressor discharge pressure, the pressure before the throttle (upper-deck pressure) and the manifold pressure are related, without treating them as identical at every operating condition.",
+          "url": "artifact:turbocharger-energy-path",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 135-142 (a turbine driven by exhaust gas turns the compressor; the waste gate controls how much exhaust reaches the turbine). The animation explains control relationships qualitatively and does not calculate boost for a real engine.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "Opening and closing the waste gate makes the control relationship causal, not just labelled."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Where the turbocharger sits",
+          "prompt": "This normalizing installation shows the whole layout in a nacelle. The exhaust from the cylinders is collected and carried to the turbocharger. The compressor air goes into the induction system and on to the intake manifold. Find the alternate air intake: if the air filter clogs, an alternate air door lets the compressor draw air from inside the cowling instead.",
+          "url": "./lesson-media/faa-turbo-system-layout.webp",
+          "alt": "FAA cutaway of an engine nacelle with the air intake, alternate air intake, induction system, intake manifold, turbocharger, exhaust system, control system and the throttle and mixture control labelled.",
+          "credit": "FAA-H-8083-32B, Figure 3-16",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 137 (the turbocharger air induction system consists of a filtered ram-air intake; an alternate air door within the nacelle admits alternate air if the filter clogs) and PDF p. 138 (Figure 3-16). A general example of a small-aircraft installation, not the GTSIO-520-H.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "A single cutaway shows where the induction and exhaust systems meet at the turbocharger."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Normalize or boost",
+          "prompt": "A normalizing turbocharger makes up for the pressure lost with altitude, up to its critical altitude. It is not used to raise the manifold pressure above 30 inches of mercury. A ground-boosted (sea-level boosted) system can raise it above ambient, to around 40 inches, so the engine can develop more power at sea level than it could without the turbocharger. Critical altitude is the highest altitude, in a standard atmosphere, at which the system can still hold a chosen power or manifold pressure at a given engine speed. The handbook is careful to call only a ground-boosted system a true supercharger. Which kind an engine has depends on its installation and limits.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 133 (normalizing systems are not ground-boost systems and never boost above 30 inches; a true supercharger boosts manifold pressure above ambient), PDF p. 137 (normalizer turbocharger; ground-boosted systems raise manifold pressure above 30 inches to around 40 inches) and PDF p. 140 (the definition of critical altitude).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A vocabulary step that keeps normalizing, ground boosting and critical altitude distinct."
+          }
+        },
+        {
+          "type": "image",
+          "title": "The GTSIO-520-H induction path",
+          "prompt": "The GTSIO-520-H is geared, turbocharged, fuel injected and has an intake air intercooler. Follow the numbered parts in the manual's figure: the turbocharger (3) feeds the air throttle (6), a duct (7) carries the air to the intercooler (14), and the intake manifold (17) shares it between the intake tubes (23), one to each cylinder. Compression heats the air a great deal: the handbook gives an example of up to 500 °F leaving a compressor on a 100 °F day, when the allowable air temperature at the throttle inlet is only about 230 to 300 °F. A cooler stops the charge getting close to detonation.",
+          "url": "./lesson-media/gtsio-h-induction.webp",
+          "alt": "Continental manual figure C-3-2, an exploded drawing of the GTSIO-520-H induction system with the turbocharger, air throttle, air induction duct, intercooler, intake manifold and intake tubes numbered.",
+          "credit": "Continental GTSIO-520 overhaul manual, Figure C-3-2",
+          "license": "Course reference extract",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 152 (C-3-2: the engine is geared, turbocharged, fuel injected, with an intake air intercooler) and PDF p. 161 (Figure C-3-2, the -H induction system and its parts list), with the disassembly order on PDF p. 157. The flow order is read from the figure. The handbook (FAA-H-8083-32B, PDF p. 142) describes an aftercooler between the compressor and the air throttle inlet and gives the temperature figures; installations differ, so follow the manual for the engine in front of you.",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The manufacturer figure for the course engine names every part of its induction path."
+          }
+        },
+        {
+          "type": "web-embed",
+          "title": "Altitude compare",
+          "prompt": "Move the altitude slider and switch between the naturally aspirated, normalizing and ground-boosted modes. Compare the ambient pressure with the manifold pressure each system can hold, and find the altitude beyond which a system can no longer reach its target.",
+          "url": "artifact:aspiration-altitude-comparator",
+          "note": "Documented relationships from FAA-H-8083-32B (2023), PDF pp. 133-142, and EASA Module 16, PDF pp. 205-216. The graph uses explicitly schematic values and is not performance data for any engine.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "Moving the altitude makes critical altitude something the learner finds, not just reads."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Control and limits",
+          "prompt": "A turbocharger is controlled by its waste gate, which lets exhaust gas bypass the turbine. On many engines engine oil pressure moves the waste gate: more oil pressure closes it, more gas goes through the turbine and the boost rises. Two controllers share the work, one for full throttle and one for part throttle. Two terms are easy to confuse. Overboost is manifold pressure above the engine's limit, and it can cause serious damage. Bootstrapping is a slow drift of manifold pressure in the controls, which is not harmful to engine life. Limits and procedures come from the data for the installed engine.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 138-142 (waste gate position set by oil pressure in the actuator; density controller and differential pressure controller; overboost versus bootstrapping and overshoot; a pressure relief valve in some systems). This step explains purpose and vocabulary; it gives no operating limits or procedures.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A vocabulary and control step; the numbers belong to the installed engine's data."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "The exhaust stroke",
+          "modelId": "cylinder",
+          "prompt": "At 630° the piston is moving up and the exhaust valve is open, pushing the burned gas out. The thin coloured trace through the exhaust port is the gas cue, again only a direction. The exhaust system's first job is to take this hot, poisonous gas away safely, and it also has to survive the heat, corrosion and vibration while doing it.",
+          "action": {
+            "type": "cycle-angle",
+            "value": 630
+          },
+          "note": "Documented four-stroke sequence from FAA-H-8083-32B (2023), PDF pp. 46-48 and exhaust-system duty from PDF p. 149 (a scavenging system that collects and disposes of high-temperature, noxious gases safely). The valve and gas cues are an ideal teaching profile, not GTSIO-520-H timing or CFD. The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The shared 720-degree profile puts the learner at the exhaust stroke with the exhaust valve open."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Short stack or collector",
+          "prompt": "There are two kinds of exhaust system. A short stack (open) system lets each cylinder blow out through its own short pipe; it suits non-supercharged and low-power engines where noise does not matter. A collector system gathers the gas from the cylinders into collector tubes. It is used on most large non-supercharged engines and on all turbosupercharged engines, because on those the gas must be collected to drive the turbine. A collector raises the back pressure, the pressure the exhaust has to push against, but on a turbocharged engine the power gained is more than the power lost. The tapered ends of the collectors work as ejectors, drawing cooling air through the engine compartment.",
+          "url": "./lesson-media/faa-exhaust-collector-opposed.webp",
+          "alt": "FAA cutaway of a horizontally opposed engine in its nacelle, with red exhaust down-stacks joining collector tubes on each side that run aft to the exhaust ejectors at the firewall.",
+          "credit": "FAA-H-8083-32B, Figure 3-38",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 149-150 (short stack and collector systems; collector systems on all turbosupercharged engines; back pressure and the turbosupercharging gain; exhaust ejectors and augmenter tube action), cross-checked against EASA Module 16, PDF p. 72.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The cutaway shows the stacks, collectors and ejectors in place in a nacelle."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Radial collector ring",
+          "prompt": "A radial engine has its own pattern. Its collector ring is a welded, corrosion-resistant steel assembly made in sections, each section collecting the exhaust from two cylinders; on the 14-cylinder engine in the figure there are seven. The sections grow in size from the inboard side to the outboard side, where the tailpipe joins the ring. A telescoping expansion joint at the tailpipe lets a section of the ring be removed without taking the tailpipe off.",
+          "url": "./lesson-media/faa-radial-collector-ring.webp",
+          "alt": "FAA drawing of the exhaust collector ring of a radial engine: a ring of welded sections joined to short stacks at each cylinder port, graduated in size towards the tailpipe connection.",
+          "credit": "FAA-H-8083-32B, Figure 3-41",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 150 (radial engine exhaust collector ring: seven sections on a 14-cylinder engine, each collecting from two cylinders, graduated in size; telescoping expansion joint), cross-checked against EASA Module 16, PDF p. 73.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The handbook drawing shows the graduated sections of a collector ring."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Mufflers and heat exchangers",
+          "prompt": "On many single-engine aircraft a shroud around part of the exhaust acts as a heat exchanger. It heats air for the cabin, for windscreen defrosting and for carburettor heat. That makes it a risk: about half of all muffler and heat-exchanger failures are cracks in the heat-exchanger surface, which let exhaust gas into the cabin heat system, a carbon monoxide hazard, or into the induction system, causing overheating and power loss. Inside a muffler, erosion and carbonisation can break baffles loose and block the flow. Blocked or restricted exhaust raises the back pressure and takes power away; backfiring and burning of unburned fuel in the exhaust make these failures more likely.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 149 (shroud heat for the inlet air, cabin heater and windshield defrosting), PDF pp. 151-152 (about half of muffler and heat-exchanger failures are cracks in the heat-exchanger surfaces; carbon monoxide; exhaust drawn into the induction system; internal baffle and diffuser failures restrict the flow and cause partial or complete power loss; backfiring and unburned fuel in the exhaust are contributing factors). Backfiring itself is covered in the Operation Malfunctions lesson.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The hazards are chains of cause and effect that read best as text."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Inspecting the exhaust",
+          "prompt": "Any exhaust failure is a severe hazard: carbon monoxide in the cabin, loss of power, or fire. Inspect the clamped joints and port connections for leaks, which show as a flat grey or sooty black streak. Look at every weld, bend, clamp, support and gasket for cracks, dents and missing parts. A part that cannot be inspected where it is can be plugged, pressurised to about 2 psi and dipped in water, and any leak shows as bubbles. Never use galvanised or zinc-plated tools on an exhaust system and never mark its parts with a lead pencil: the lead or zinc enters the hot metal, softens it, and causes cracks.",
+          "url": "./lesson-media/faa-exhaust-inspection.webp",
+          "alt": "FAA drawing of three types of exhaust system, labelled A, B and C, with red arrows marking the primary areas to inspect at joints, flanges, mufflers and heat-exchanger shrouds.",
+          "credit": "FAA-H-8083-32B, Figure 3-42",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 150-151 (any exhaust failure is a severe hazard; no galvanised tools or lead pencil marks; leaks show as a flat gray or sooty black streak; inspection of welds, clamps, supports and gaskets; the 2 psi water test; Figure 3-42). This is a recognition lesson: the system manufacturer's data gives the limits and torques.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The figure marks where each type of exhaust system is inspected."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Turbocharged exhaust",
+          "prompt": "When there is a turbocharger the exhaust works under much higher pressure and temperature. At altitude the exhaust pressure is held near its sea-level value, so a small leak escapes with torch-like force and can damage nearby structure. Carbon (coke) deposits in the waste gate make it work erratically, and a waste gate that sticks closed causes overboost. Deposits in the turbocharger itself cause a slow loss of power. Periodic de-coking keeps the system efficient, and the cleaning and adjustment follow the manufacturer's instructions.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 152 (exhaust systems with a turbocharger: greatly increased pressure and temperature, torch-like leaks, coke deposits in the waste gate, waste gate sticking closed causing overboost, de-coking, manufacturer's instructions).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A short maintenance step that connects the exhaust to the turbocharger control ideas."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Breathing sets the power",
+          "prompt": "Trace the whole path in your own words: the scoop, filter and throttle, the intake manifold, the open intake valve, then the exhaust valve, collector and tailpipe, and where a turbocharger takes energy from the exhaust to raise the pressure of the induction air. How well an engine fills its cylinders is called volumetric efficiency, which the next lessons use. Then take the lesson's quiz.",
+          "note": "Completion step: the learner pulls the lesson together (opening prompt, action, feedback, completion evidence). Volumetric efficiency is defined in FAA-H-8083-32B (2023), PDF p. 56, and used in the performance lessons.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The learner explains the path in their own words."
+          }
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "breathing-gtsio-induction-order",
+      "lessonId": "induction-exhaust",
+      "type": "ordering",
+      "question": "Using the GTSIO-520-H manual's figure, put these parts in the order the air passes through them.",
+      "hint": "Start at the part that raises the pressure and end at the part nearest the cylinders.",
+      "items": [
+        "Turbocharger",
+        "Air throttle",
+        "Intercooler",
+        "Intake manifold",
+        "Intake tube to a cylinder"
+      ],
+      "rationale": "In Figure C-3-2 the turbocharger feeds the air throttle, a duct leads to the intercooler, and the intake manifold shares the cooled air between the intake tubes, one to each cylinder."
+    },
+    {
+      "id": "breathing-turbo-driver",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "What drives the compressor of a turbocharger?",
+      "hint": "Follow the energy path on the exhaust side.",
+      "answers": [
+        "A turbine turned by exhaust gas",
+        "A gear train from the crankshaft",
+        "The magneto drive"
+      ],
+      "correct": 0,
+      "rationale": "Exhaust gas turns the turbine, which shares a shaft with the compressor impeller. A supercharger that is driven from the crankshaft is an internally driven supercharger, not a turbocharger."
+    },
+    {
+      "id": "breathing-normalizing",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "What does a normalizing turbocharger system do?",
+      "hint": "Compare the pressure it holds with the pressure outside as the aircraft climbs.",
+      "answers": [
+        "Makes up the pressure lost with altitude, up to its critical altitude",
+        "Raises the manifold pressure above 30 inches of mercury at sea level",
+        "Cools the cylinder heads with the exhaust gas"
+      ],
+      "correct": 0,
+      "rationale": "A normalizer regains the pressure lost as the aircraft climbs, up to its critical altitude. It is not used to boost manifold pressure above 30 inches of mercury; that is a ground-boosted system."
+    },
+    {
+      "id": "breathing-critical-altitude",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "What is the critical altitude of a turbocharged engine?",
+      "hint": "It is a limit on how high the system can keep its target.",
+      "answers": [
+        "The highest altitude at which it can still hold a chosen power or manifold pressure at a given speed",
+        "The altitude at which the waste gate opens fully",
+        "The altitude at which the engine must be shut down"
+      ],
+      "correct": 0,
+      "rationale": "Critical altitude is the maximum altitude, in a standard atmosphere, at which a specified power or manifold pressure can still be held at a specified speed. Above it the waste gate is fully closed and the manifold pressure falls."
+    },
+    {
+      "id": "breathing-induction-parts",
+      "lessonId": "induction-exhaust",
+      "type": "matching",
+      "question": "Match each part of a turbocharged induction and exhaust system to its job.",
+      "hint": "One part acts on the exhaust side and three on the air side.",
+      "pairs": [
+        {
+          "left": "Waste gate",
+          "right": "Decides how much exhaust gas goes through the turbine"
+        },
+        {
+          "left": "Compressor impeller",
+          "right": "Raises the pressure of the incoming air"
+        },
+        {
+          "left": "Intercooler",
+          "right": "Cools the compressed air before it reaches the manifold"
+        },
+        {
+          "left": "Air filter",
+          "right": "Stops dust and other matter entering the engine"
+        }
+      ],
+      "rationale": "The waste gate sets the turbine speed by bypassing exhaust gas, the compressor raises the air pressure, the cooler takes out the heat of compression, and the filter protects the cylinders from abrasive dust."
+    },
+    {
+      "id": "breathing-collector-turbo",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "Which kind of exhaust system do all turbosupercharged engines use, and why?",
+      "hint": "The gas must be gathered in one place.",
+      "answers": [
+        "A collector system, because the exhaust must be collected to drive the turbine",
+        "A short stack system, because it gives the lowest back pressure",
+        "No exhaust system, because the turbine lets the gas out directly"
+      ],
+      "correct": 0,
+      "rationale": "On a turbosupercharged engine the exhaust gas has to be collected and carried to the turbine. A collector system raises the back pressure, but the gain from turbosupercharging is greater than the loss."
+    },
+    {
+      "id": "breathing-exhaust-leak",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "How does an exhaust leak at a clamped joint show itself?",
+      "hint": "Look for a mark, not for a sound.",
+      "answers": [
+        "As a flat grey or sooty black streak on the pipes near the leak",
+        "As a bright blue stain on the cowling",
+        "As frost on the collector tube"
+      ],
+      "correct": 0,
+      "rationale": "An exhaust leak leaves a flat grey or sooty black streak around the joint. It is usually caused by poor alignment of two mated parts, which are repositioned to make a gas-tight fit."
+    },
+    {
+      "id": "breathing-no-lead-pencil",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "Why must exhaust parts never be marked with a lead pencil or worked with galvanised tools?",
+      "hint": "Think about what happens to the mark when the metal gets hot.",
+      "answers": [
+        "The lead or zinc is absorbed by the hot metal, softens it and causes cracks",
+        "The marks make the part heavier",
+        "The tools would rust and block the pipes"
+      ],
+      "correct": 0,
+      "rationale": "When the metal is heated the lead or zinc is absorbed, changing its structure and softening it in that area, which leads to cracks and eventual failure."
+    },
+    {
+      "id": "breathing-heat-exchanger",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "A crack opens in the heat-exchanger surface of an exhaust muff that heats the cabin. What is the main hazard?",
+      "hint": "Exhaust gas is poisonous.",
+      "answers": [
+        "Exhaust gas, with carbon monoxide, can reach the cabin",
+        "The cabin heater will make too much heat",
+        "The exhaust will become quieter"
+      ],
+      "correct": 0,
+      "rationale": "A failure of the heat-exchanger surface lets exhaust gas into the cabin heat system, a carbon monoxide hazard. The gas can also be drawn into the induction system, causing overheating and power loss."
+    },
+    {
+      "id": "breathing-muffler-internal",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "What can happen when baffles inside a muffler break loose?",
+      "hint": "Think about the gas that needs to get out.",
+      "answers": [
+        "They can block the exhaust flow and cause partial or complete loss of power",
+        "They make the engine run cooler",
+        "They only make the engine quieter"
+      ],
+      "correct": 0,
+      "rationale": "Pieces of internal baffling that partly or fully block the flow restrict the exhaust and can cause partial or complete engine power loss. Erosion and carbonisation under extreme heat are the usual causes."
+    },
+    {
+      "id": "breathing-overboost",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "What is overboost?",
+      "hint": "It is not the same as the manifold pressure drifting up and down.",
+      "answers": [
+        "Manifold pressure above the limits set for the engine, which can cause serious damage",
+        "A slow drift of manifold pressure in the controls, which does no harm to the engine",
+        "The pressure of the exhaust gas at the turbine"
+      ],
+      "correct": 0,
+      "rationale": "Overboost means exceeding the manifold pressure limit for the engine. The slow drift in the controls is bootstrapping, which is not harmful to engine life."
+    }
+  ]
+}
