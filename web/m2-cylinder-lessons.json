@@ -3,6 +3,7 @@
   "privacy": "Progress is held only in this page session; no learner identity or answers are stored or transmitted.",
   "id": "m2-cylinder-study",
   "thumbnail": "./thumbnails/course-m2-cylinder-study.webp",
+  "banner": "./banners/m2-cylinder-study.webp",
   "title": "Operating Cylinder Study",
   "description": "Follow the revised GTSIO-520-H cylinder through a four-stroke teaching cycle, using the same 61-component model as Explore.",
   "lessons": [

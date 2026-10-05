@@ -3,6 +3,7 @@
   "privacy": "Progress is held only in this page session (or locally on-device per the lesson-progress decision); no learner identity or answers are stored or transmitted.",
   "id": "history-and-fundamentals",
   "thumbnail": "./thumbnails/course-history-and-fundamentals.webp",
+  "banner": "./banners/history-and-fundamentals.webp",
   "title": "History & Fundamentals",
   "description": "General engine history and core terminology. Mostly text and image steps; one lesson references the Wright 1903 reference model.",
   "lessons": [

@@ -143,6 +143,8 @@ export const MODEL_CAPABILITY_FLAGS = Object.freeze([
  * @property {string} privacy
  * @property {string} [id] - stable track id for gallery navigation; required in practice once a pack is added to lessons-manifest.json, optional in the type so ad hoc/test fixtures aren't forced to set it
  * @property {string} [title] - track name shown in the Learn/Check gallery
+ * @property {string} [thumbnail] - ./thumbnails/*.webp square card image
+ * @property {string} [banner] - ./banners/<pack id>.webp, a 2:1 image across the top of the course page
  * @property {string} [description] - one-line track summary shown in the gallery
  * @property {{id:string, tier:number, title:string, path?:string, url?:string, applicability?:string}[]} [sources] - pack-local evidence registry; tier follows the instructor's 1-6 source hierarchy
  * @property {Lesson[]} lessons
@@ -229,6 +231,7 @@ function validateStep(step, lessonModels, lessonIndex, stepIndex, knownSourceIds
 }
 
 const isThumbnailPath = (value) => typeof value === 'string' && /^\.\/thumbnails\/[\w-]+\.webp$/.test(value);
+const isBannerPath = (value) => typeof value === 'string' && /^\.\/banners\/[\w-]+\.webp$/.test(value);
 const isIsoDate = (value) => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value));
 
 function validateLesson(lesson, lessonIndex, knownSourceIds) {
@@ -289,6 +292,7 @@ export function validateLessonPack(pack) {
   if (pack.title !== undefined && typeof pack.title !== 'string') errors.push('title must be a string');
   if (pack.description !== undefined && typeof pack.description !== 'string') errors.push('description must be a string');
   if (pack.thumbnail !== undefined && !isThumbnailPath(pack.thumbnail)) errors.push('thumbnail must be a ./thumbnails/*.webp path');
+  if (pack.banner !== undefined && !isBannerPath(pack.banner)) errors.push('banner must be a ./banners/*.webp path');
   if (pack.draftStatus !== undefined) errors.push('draftStatus is retired: set reviewStatus on each lesson instead');
   const knownSourceIds = new Set();
   if (pack.sources !== undefined) {

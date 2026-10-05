@@ -2,6 +2,7 @@
   "schema": "4212.lesson-pack/v3",
   "id": "accessories-and-drives",
   "thumbnail": "./thumbnails/course-accessories-and-drives.webp",
+  "banner": "./banners/accessories-and-drives.webp",
   "title": "Accessories & Drives",
   "description": "Lesson 8: trace GTSIO-520-H mechanical power into useful accessory functions.",
   "privacy": "Local progress only; no learner identity collected.",

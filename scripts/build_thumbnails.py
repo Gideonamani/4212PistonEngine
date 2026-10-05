@@ -1,4 +1,4 @@
-"""Build the course and lesson card thumbnails and the Explore gallery previews listed in web/thumbnails/sources.json.
+"""Build the course and lesson card thumbnails, the Explore gallery previews and the course banners listed in web/thumbnails/sources.json.
 
 Manual and book pages are read from the Notes folder (not part of the repository), so an item whose PDF is missing is skipped
 with a warning and its committed thumbnail is left as it is.
@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 WEB = ROOT / "web"
 SPEC = WEB / "thumbnails" / "sources.json"
 PREVIEWS = WEB / "model-previews"
+BANNERS = WEB / "banners"
 RENDERS = ROOT / "scripts" / "thumbnail_sources"
 ACCENT = (45, 212, 191)  # the app's teal, used for the diagonal seam
 PAGE_DPI = 200
@@ -60,15 +61,27 @@ def fit_to(image: Image.Image, size: tuple[int, int], fit: str, focus: list[floa
     return image.crop((left, top, left + crop_w, top + crop_h)).resize(size, Image.LANCZOS)
 
 
+def shifted(image: Image.Image, shift: list[int]) -> Image.Image:
+    """Slide the picture by (dx, dy) pixels, filling the gap with its own background, to place a subject off-centre."""
+    canvas = Image.new("RGB", image.size, edge_colour(image))
+    canvas.paste(image, (shift[0], shift[1]))
+    return canvas
+
+
 def load(spec: dict, notes: Path, size: tuple[int, int]) -> Image.Image:
     kind = spec["kind"]
     if kind == "diagonal":
-        side = size[0]
+        # The second picture fills the right of a slanted seam running from (seam[0], top) to (seam[1], bottom), as fractions of the
+        # width, drawn with a teal line unless "line" is false. The default [1, 0] is the corner-to-corner diagonal of a square card.
+        width, height = size
+        top, bottom = spec.get("seam", [1.0, 0.0])
         first, second = (load(part, notes, size) for part in spec["parts"])
+        start, end = (round(top * width), 0), (round(bottom * width), height)
         mask = Image.new("L", size, 0)
-        ImageDraw.Draw(mask).polygon([(side, 0), (side, side), (0, side)], fill=255)
+        ImageDraw.Draw(mask).polygon([start, (width, 0), (width, height), end], fill=255)
         first.paste(second, (0, 0), mask)
-        ImageDraw.Draw(first).line([(side, 0), (0, side)], fill=ACCENT, width=max(2, side // 120))
+        if spec.get("line", True):
+            ImageDraw.Draw(first).line([start, end], fill=ACCENT, width=max(2, width // 120))
         return first
     if kind == "pdf":
         import fitz  # PyMuPDF
@@ -85,7 +98,8 @@ def load(spec: dict, notes: Path, size: tuple[int, int]) -> Image.Image:
         image = Image.open(WEB / spec["path"])
     else:
         raise ValueError(f"Unknown thumbnail kind: {kind}")
-    return fit_to(crop_fraction(image, spec.get("box")), size, spec.get("fit", "cover"), spec.get("focus", [0.5, 0.5]), spec.get("bg"))
+    fitted = fit_to(crop_fraction(image, spec.get("box")), size, spec.get("fit", "cover"), spec.get("focus", [0.5, 0.5]), spec.get("bg"))
+    return shifted(fitted, spec["shift"]) if spec.get("shift") else fitted
 
 
 def main() -> int:
@@ -99,8 +113,9 @@ def main() -> int:
     built: list[tuple[str, Image.Image]] = []
     jobs = [(item_id, item, (spec["size"], spec["size"]), SPEC.parent) for item_id, item in spec["items"].items()]
     jobs += [(f"preview {model_id}", item, tuple(spec["previews"]["size"]), PREVIEWS) for model_id, item in spec["previews"]["items"].items()]
+    jobs += [(f"banner {pack_id}", item, tuple(spec["banners"]["size"]), BANNERS) for pack_id, item in spec["banners"]["items"].items()]
     for label, item, size, folder in jobs:
-        item_id = label.removeprefix("preview ")
+        item_id = label.removeprefix("preview ").removeprefix("banner ")
         if args.only and item_id not in args.only:
             continue
         try:

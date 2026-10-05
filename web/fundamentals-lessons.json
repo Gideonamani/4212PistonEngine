@@ -3,6 +3,7 @@
   "privacy": "Lesson progress may be held locally on the learner's device and is never transmitted. Check-yourself answers remain session-only.",
   "id": "fundamentals-and-classification",
   "thumbnail": "./thumbnails/course-fundamentals-and-classification.webp",
+  "banner": "./banners/fundamentals-and-classification.webp",
   "title": "Fundamentals & Classification",
   "description": "Operating cycles, engine classification (cylinder arrangement and ignition), parts and construction, and cooling, with the GTSIO-520-H used as the continuing aircraft-engine example.",
   "sources": [
