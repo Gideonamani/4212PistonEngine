@@ -272,6 +272,12 @@
       "path": "lesson-engine-requirements-square.webp",
       "credit": "Rendered from the app's GTSIO-520-H full-engine teaching model",
       "license": "Course material"
+    },
+    "lesson-performance-calculations": {
+      "kind": "render",
+      "path": "lesson-performance-calculations-square.webp",
+      "credit": "Rendered from the app's operating-cylinder teaching model",
+      "license": "Course material"
     }
   },
   "previews": {

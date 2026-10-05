@@ -38,4 +38,6 @@ const THUMBNAIL_CAPTURES = [
   { model: 'gtsio520-h-v5-teaching-engine', name: 'lesson-engine-requirements-square', view: {}, options: { zoom: 0.85, orbit: [55, -12], pan: [-18, 10] } },
   { model: 'gtsio520-h-v5-teaching-engine', name: 'banner-requirements', view: {}, options: { width: 1000, height: 500, zoom: 0.6, orbit: [-35, -10], pan: [0, 8] } },
   { model: 'gtsio520-h-v5-teaching-engine', name: 'course-requirements-square', view: {}, options: { zoom: 0.8, orbit: [140, 15], pan: [-10, 10] } },
+  // Lesson 12 (Performance Calculations).
+  { model: 'cylinder', name: 'lesson-performance-calculations-square', view: { initialAngle: 200, initialCycle: true }, options: { zoom: 0.8, orbit: [100, 18], pan: [95, 0] } },
 ];

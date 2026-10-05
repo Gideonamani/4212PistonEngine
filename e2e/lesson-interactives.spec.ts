@@ -76,3 +76,28 @@ test.describe('Factors Affecting Power: air available', () => {
     problems.assertNone();
   });
 });
+
+test.describe('Performance Calculations: PLANK calculator', () => {
+  const PLANK_STEP = '#/learn/breathing-and-performance/performance-calculations/step/4';
+
+  test('the example engines and the sliders change the horsepower the formula gives', async ({ page, problems }) => {
+    await page.goto(`/${PLANK_STEP}`);
+    await appReady(page);
+    await expect(page.getByRole('heading', { name: 'PLANK calculator' })).toBeVisible();
+    const result = page.getByText(/^Indicated horsepower = P × L × A × N × K ÷ 33,000 = /);
+
+    await page.getByRole('button', { name: 'Four-cylinder example' }).click();
+    await expect(result, 'the course deck example: 135 psi, 4.5 in stroke, 5.0 in bore, 2,400 rpm, four cylinders').toContainText('= 144.6 hp');
+    await expect(result).toContainText('the brake horsepower is 130.1 hp');
+
+    await page.getByRole('button', { name: 'Handbook example, 12 cylinders' }).click();
+    await expect(result, 'the handbook example, with its pressure corrected to 165 psi').toContainText('= 1069.1 hp');
+
+    // Twice the cylinders is twice the power: the handbook example with six cylinders gives half.
+    await page.getByLabel(/^K: number of cylinders/).fill('6');
+    await expect(result).toContainText('= 534.6 hp');
+    await expectNoHorizontalOverflow(page);
+    await expectAccessibleAndTouchable(page, 'PLANK calculator');
+    problems.assertNone();
+  });
+});

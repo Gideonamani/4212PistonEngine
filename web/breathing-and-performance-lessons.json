@@ -5,7 +5,7 @@
   "thumbnail": "./thumbnails/course-breathing-and-performance.webp",
   "banner": "./banners/breathing-and-performance.webp",
   "title": "Breathing & Performance",
-  "description": "How the engine breathes in and out through its induction and exhaust systems, and, as the course grows, how its performance is measured and what changes it.",
+  "description": "How the engine breathes in and out through its induction and exhaust systems, how its power and efficiency are calculated, and what makes the power change.",
   "sources": [
     {
       "id": "faa-powerplant-2023",
@@ -348,6 +348,229 @@
             "mode": "none",
             "status": "not-needed",
             "rationale": "The learner explains the path in their own words."
+          }
+        }
+      ]
+    },
+    {
+      "id": "performance-calculations",
+      "thumbnail": "./thumbnails/lesson-performance-calculations.webp",
+      "sequenceNumber": 12,
+      "title": "Performance Calculations",
+      "objective": "Calculate an engine's displacement, compression ratio, indicated, brake, friction and thrust horsepower and mean effective pressure from its data, and explain the thermal, mechanical, volumetric and propulsive efficiencies and where the fuel's heat goes.",
+      "reviewStatus": "unreviewed",
+      "models": [],
+      "listed": true,
+      "scheduledDay": 5,
+      "completionCriteria": "Work a displacement, compression ratio, PLANK and brake horsepower calculation without help, state the relationships between indicated, brake, friction and thrust horsepower, and name the four efficiencies and what each compares.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "Work and horsepower",
+          "prompt": "Work is a force acting through a distance: lift one pound one foot and you have done one foot-pound. Power is work done in a given time. James Watt found that a good horse could work at 550 ft-lb every second, which is 33,000 ft-lb every minute, and that became the horsepower. Drag a 100 lb weight 660 ft in 2 minutes with a steady pull of 90 lb and you do 59,400 ft-lb of work, which is 29,700 ft-lb a minute, so you are using 29,700 ÷ 33,000 = 0.9 hp. To find an engine's horsepower, divide the work it does each minute by 33,000.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 48-49 (work = force x distance; the foot-pound; Watt's 550 ft-lb per second or 33,000 ft-lb per minute; the worked example of a 100 lb weight dragged 660 ft in 2 minutes, 0.9 hp), cross-checked against EASA Module 16, PDF p. 37. In watts, one horsepower is 746 W (EASA p. 37).",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The unit and its definition are the start of every calculation that follows."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Size and compression",
+          "prompt": "The size of an engine is its piston displacement: the area of the piston multiplied by the stroke, for one cylinder, and then by the number of cylinders. The area of the piston is 0.7854 × bore². The 14-cylinder handbook engine, 5.5 in bore and 5.5 in stroke, displaces 130.67 cu in a cylinder and 1,829 cu in in all. The compression ratio is the total volume divided by the clearance volume. A cylinder with a 5.0 in bore, a 3.75 in stroke and a clearance volume of 10.5 cu in sweeps 73.6 cu in, so its ratio is (73.6 + 10.5) ÷ 10.5 = 8.01:1.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 49-50 (piston displacement, the area of a circle, the 14-cylinder example with total displacement 1,829.4 cubic inches; compression ratio) and the course deck (slides 212 and 218: the 5.0 in bore, 3.75 in stroke and 10.5 cu in clearance volume example, 8.01:1). The Power Generation lesson works the same formulas for the GTSIO-520-H.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Two formulas the learner already met, restated with new numbers."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Indicated horsepower: PLANK",
+          "prompt": "Indicated horsepower is the power developed in the cylinders, before any friction is taken off. It is found from the pressure in the cylinder. Because the pressure changes through the cycle, an average, the indicated mean effective pressure, is used. The formula spells PLANK: P is that pressure in psi, L the stroke in feet, A the area of the piston in square inches, N the power strokes per minute of one cylinder, and K the number of cylinders. Then ihp = PLANK ÷ 33,000. In a four-stroke engine each cylinder fires once in two turns of the crankshaft, so N is the rpm divided by 2.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 50-52 (indicated horsepower from the indicated mean effective pressure; the mnemonic PLANK; N is the number of power strokes per minute, half the rpm in a four-stroke engine; the cylinder pressure rises on the compression stroke and peaks after top centre, Figure 1-39). The handbook's worked example prints the pressure as 1.65 lb/in2, but its result of 1,069.123 hp needs 165 lb/in2; the lesson uses the corrected number. The example also writes \"number of cycles = 12\" where it means twelve cylinders.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The formula is stated once and then used in the calculator and the worked example."
+          }
+        },
+        {
+          "type": "web-embed",
+          "title": "PLANK calculator",
+          "prompt": "Try the three example engines, then change one thing at a time. Double the stroke, then double the speed, then double the number of cylinders. What happens to the indicated horsepower each time? Which change cannot be made without making the engine bigger? Then move the mechanical efficiency to see how much of the power reaches the propeller.",
+          "url": "artifact:engine-power-calculator",
+          "note": "Built for this lesson from the handbook's PLANK formula (FAA-H-8083-32B, PDF pp. 50-52) and the friction horsepower and mechanical efficiency of PDF pp. 53 and 56. The GTSIO-520-H preset uses the manual's bore, stroke, cylinder count and 375 hp at 2275 propeller rpm with a 0.667:1 drive (PDF pp. 152-153); the mean effective pressure is not in the manual and is chosen to match, at an assumed 90 percent mechanical efficiency. It is a teaching calculator, not engine data.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "Changing one input at a time makes each factor in PLANK something the learner can feel."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Worked example",
+          "prompt": "A four-cylinder, four-stroke engine runs at 2,400 rpm. The bore is 5.0 in, the stroke 4.5 in and the indicated mean effective pressure 135 psi. A = 0.7854 × 5.0² = 19.635 sq in. L = 4.5 ÷ 12 = 0.375 ft. N = 2,400 ÷ 2 = 1,200 power strokes a minute. K = 4. Then ihp = 135 × 0.375 × 19.635 × 1,200 × 4 ÷ 33,000 = 144.6 hp. Write each term down before you multiply: most mistakes are a stroke left in inches or an rpm that has not been halved.",
+          "note": "Calculation from the course deck (slide 219: four cylinders, four-stroke, 2,400 rpm, bore 5.0 in, stroke 4.5 in, mean effective pressure 135 psi), using the formula of FAA-H-8083-32B (2023), PDF pp. 50-52. The deck gives the problem without an answer; the answer is calculated here and checked in the unit tests.",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A worked calculation the learner can repeat step by step."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Brake horsepower and torque",
+          "prompt": "Brake horsepower is the power the engine delivers to the propeller shaft. It is measured as torque, the force times its distance from the axis, and the speed. A Prony brake clamps a collar on a drum on the shaft, and an arm of known length rests on a scale. If the scale reads 200 lb and the arm is 3.18 ft long, the torque is 200 × 3.18 = 636 lb-ft. The work done per turn is 2π times the torque, so at 3,000 rpm bhp = 2π × 200 × 3.18 × 3,000 ÷ 33,000 = 363 hp. The same bhp can come from more torque at less speed or less torque at more speed.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 52-53 (brake horsepower is the power delivered to the propeller; torque = force x distance; the Prony brake; 200 lb x 3.18 ft = 636 lb-ft; work per revolution = 2 pi x torque; power = work per revolution x rpm, divided by 33,000; horsepower is a function of both torque and rpm). The final figure is calculated from the handbook's example numbers at 3,000 rpm (the handbook's own substitution uses 3,000 rpm).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The measurement method and one worked number; the formula follows from the definition of torque."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Friction and mechanical efficiency",
+          "prompt": "The difference between indicated and brake horsepower is the friction horsepower: the power used overcoming the friction of the moving parts, drawing in fuel, pushing out exhaust and driving the oil and fuel pumps and other accessories. On modern engines it may be as much as 10 to 15 percent of the indicated horsepower. The mechanical efficiency is the brake horsepower divided by the indicated horsepower, and for the average aircraft engine it approaches 90 percent. Friction stays about the same at all speeds, so mechanical efficiency is best at the speed that gives maximum bhp. An engine with 200 ihp and 30 fhp delivers 170 bhp, and its mechanical efficiency is 170 ÷ 200 = 85 percent.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 53 (friction horsepower is ihp minus bhp; as high as 10 to 15 percent of the indicated horsepower) and PDF p. 56 (mechanical efficiency = bhp / ihp; friction between moving parts remains practically constant over the speed range, so mechanical efficiency is highest at the rpm of maximum bhp; the average aircraft reciprocating engine approaches 90 percent). The 200 ihp and 30 fhp example is from the course daily quiz (day 5).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Definitions and a short example that connect the three kinds of horsepower."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Mean effective pressures",
+          "prompt": "The part of the indicated mean effective pressure that produces brake horsepower is the brake mean effective pressure, BMEP, and the part used against friction is FMEP. They are not real pressures you could measure in a cylinder, but they are useful: they let engines be rated, and limits be set, in terms of the pressure in the cylinder. If the bhp is known, BMEP = bhp × 33,000 ÷ (L × A × N × K). For the GTSIO-520-H, 375 hp at about 3,411 crankshaft rpm, with L = 0.333 ft, A = 21.65 sq in, N = 1,705 and K = 6, gives a BMEP of about 168 psi.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 54 (IMEP, FMEP and BMEP; BMEP = bhp x 33,000 / (L A N K); the worked example of 1,000 bhp on twelve cylinders giving 154.32 lb/in2; they are useful, but not real, physical pressures; one of the basic limits on engine operation is the pressure in the cylinder). The GTSIO-520-H figure is calculated from the manual's bore, stroke, 375 horsepower at 2275 propeller rpm and 0.667:1 drive ratio (PDF pp. 152-153); the manual does not give a BMEP.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A definition, the formula and one calculated value for the course engine."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Thrust horsepower",
+          "prompt": "Brake horsepower stops at the propeller shaft. What the aircraft feels is the thrust the propeller makes. Thrust horsepower is the engine and propeller working together. If the propeller were 100 percent efficient, thrust horsepower and brake horsepower would be equal, but the propeller's efficiency changes with engine speed, attitude, altitude, temperature and airspeed, so it never is. An engine that develops 1,000 bhp with an 85 percent efficient propeller gives 850 thrust horsepower. Of the kinds of horsepower, it is the thrust horsepower that decides the performance of the engine and propeller together.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 54 (thrust horsepower is the engine and propeller together; propeller efficiency varies with engine speed, attitude, altitude, temperature and airspeed; the 1,000 bhp and 85 percent example giving 850 thrust hp).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "One idea, one example."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Where the heat goes",
+          "prompt": "Burning fuel releases heat, and only part of it becomes power. In this figure about 25 to 30 percent is converted into useful power, 40 to 45 percent leaves with the exhaust, 15 to 20 percent is removed by the cooling fins, and 5 to 10 percent is removed by the oil. The biggest loss is out of the exhaust pipe. Anything that puts more of the heat into work on the piston, or reduces friction, pumping loss, unburned fuel or heat lost to the engine parts, raises the thermal efficiency.",
+          "url": "./lesson-media/faa-thermal-distribution.webp",
+          "alt": "FAA figure of five engines in a row showing where the heat of combustion goes: heat released by combustion, 25 to 30 percent converted into useful power, 40 to 45 percent carried out with the exhaust, 15 to 20 percent removed by the fins and 5 to 10 percent removed by the oil.",
+          "credit": "FAA-H-8083-32B, Figure 1-42",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 55-56 (Figure 1-42 and its text: 25 to 30 percent to useful power, 15 to 20 percent lost in cooling, 5 to 10 percent lost in overcoming friction, 40 to 45 percent lost through the exhaust). The figure labels the 5 to 10 percent as removed by the oil and the text as friction.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The handbook figure shows the whole heat balance in one picture."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Thermal efficiency",
+          "prompt": "Thermal efficiency is the share of the energy in the fuel that becomes useful work. A pound of fuel gives up about 20,000 BTU, and each BTU is worth 778 ft-lb of work. The brake thermal efficiency uses the brake horsepower: bhp × 33,000 ÷ (fuel burned per minute × heat value × 778). An engine that delivers 85 bhp for an hour on 50 lb of fuel of 18,800 BTU per pound has a brake thermal efficiency of 0.23, or 23 percent. The handbook says reciprocating engines are only about 34 percent thermally efficient. That figure and the 25 to 30 percent that reaches useful power fit together if friction takes the difference. A higher compression ratio raises the efficiency, but it also raises the cylinder head temperature and the risk of detonation.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 55-56 (thermal efficiency; 20,000 BTU per pound and 778 ft-lb per BTU; the brake thermal efficiency example of 85 bhp for one hour on 50 lb of 18,800 BTU per pound = 0.23; reciprocating engines are about 34 percent thermally efficient; the compression ratio raises efficiency but also the cylinder head temperature and the risk of detonation). The handbook's figure for the calculation prints 8.5 ihp where its own arithmetic uses 85. That about 34 percent (in the cylinders) less the 5 to 10 percent lost to friction leaves 25 to 30 percent is this lesson's reading, not the handbook's statement.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A definition, a formula and a worked example that ties the heat balance to the horsepowers."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Volumetric efficiency",
+          "prompt": "Volumetric efficiency compares the volume of charge the engine actually draws in, corrected for temperature and pressure, with the piston displacement. At standard sea-level conditions, 15 °C and 29.92 inches of mercury, a charge that exactly fills the displacement is 100 percent. A naturally aspirated engine draws in less, so its volumetric efficiency is lower. Part-throttle operation, long small-bore intake pipes and sharp bends in the induction system all reduce it. An engine with true supercharging, boosting above 30 inches, can exceed 100 percent. The course deck gives about 75 to 85 percent for a naturally aspirated engine.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 56 (volumetric efficiency as the volume of charge corrected for temperature and pressure compared with the piston displacement; standard sea level 59 °F or 15 °C, 29.92 inches of mercury; factors that reduce it; true supercharging above 30 inches may give more than 100 percent). The 75 to 85 percent typical value is from the course deck (slide 226).",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A definition with its standard conditions and the factors that move it."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Propulsive and overall efficiency",
+          "prompt": "Propulsive efficiency is how well the engine and propeller turn brake horsepower into thrust: the thrust horsepower divided by the brake horsepower. It depends on the propeller's design, the airspeed, the altitude and the propeller speed. The overall efficiency is the combined result of them all, thermal, mechanical, volumetric and propulsive, from the fuel to the thrust. If any one is poor, say the engine breathes badly, it drags the whole chain down.",
+          "note": "The efficiency types follow FAA-H-8083-32B (2023), PDF pp. 54-56 (thrust horsepower and the propeller's efficiency; thermal, mechanical and volumetric efficiency). The definitions of propulsive and overall efficiency and their key factors are from the course deck (slides 221-222 and 227-228); the handbook pages read here do not define overall efficiency.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Two definitions that complete the chain of efficiencies."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Calculate and explain",
+          "prompt": "Take one engine, such as the GTSIO-520-H, and work out in your own words and numbers: its displacement, its compression ratio and clearance volume, its crankshaft speed at rated power, and its BMEP. Then say what each kind of horsepower means, which is bigger than which, and where the rest of the fuel's energy goes. Then take the lesson's quiz.",
+          "note": "Completion step: the learner applies the formulas to the course engine (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 48-56, and the GTSIO-520 overhaul manual, PDF pp. 152-153.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The learner works the numbers for the course engine in their own words."
           }
         }
       ]
@@ -891,6 +1114,175 @@
       ],
       "correct": 0,
       "rationale": "A zero-lash lifter that leaks cannot hold the correct valve lash, so the valve opens less far and for less time than the cam intends, and the engine breathes less well."
+    },
+    {
+      "id": "calc-total-displacement",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "A 14-cylinder engine has a bore of 5.5 in and a stroke of 5.5 in. What is its total piston displacement, to the nearest cubic inch?",
+      "hint": "Area = 0.7854 × bore²; one cylinder = area × stroke; then multiply by the number of cylinders.",
+      "unit": "cu in",
+      "correctValue": 1829,
+      "tolerance": 1,
+      "rationale": "The area is 0.7854 × 30.25 = 23.76 sq in, one cylinder sweeps 23.76 × 5.5 = 130.67 cu in, and 14 cylinders sweep 130.67 × 14 = 1,829 cu in."
+    },
+    {
+      "id": "calc-compression-ratio",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "Each of six cylinders has a 5.0 in bore, a 3.75 in stroke and a clearance volume of 10.5 cu in. What is the compression ratio? Give the first number of the ratio to two decimal places.",
+      "hint": "Swept volume = 0.7854 × bore² × stroke. Ratio = (swept + clearance) ÷ clearance.",
+      "unit": ": 1",
+      "correctValue": 8.01,
+      "tolerance": 0.02,
+      "rationale": "The swept volume is 0.7854 × 25 × 3.75 = 73.63 cu in. The total volume is 73.63 + 10.5 = 84.13 cu in, and 84.13 ÷ 10.5 = 8.01, so the ratio is 8.01 to 1."
+    },
+    {
+      "type": "numeric",
+      "id": "calc-indicated-horsepower",
+      "lessonId": "performance-calculations",
+      "question": "A four-cylinder, four-stroke engine runs at 2,400 rpm. Bore 5.0 in, stroke 4.5 in, indicated mean effective pressure 135 psi. What is its indicated horsepower?",
+      "hint": "ihp = P × L × A × N × K ÷ 33,000, with L in feet and N = rpm ÷ 2.",
+      "unit": "hp",
+      "correctValue": 144.6,
+      "tolerance": 0.5,
+      "rationale": "A = 19.635 sq in, L = 0.375 ft, N = 1,200, K = 4. ihp = 135 × 0.375 × 19.635 × 1,200 × 4 ÷ 33,000 = 144.6 hp."
+    },
+    {
+      "id": "calc-prony",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "A Prony brake with an arm 3.18 ft long reads 200 lb on its scale while the engine turns at 3,000 rpm. What is the brake horsepower?",
+      "hint": "bhp = 2π × force × arm × rpm ÷ 33,000.",
+      "unit": "hp",
+      "correctValue": 363.3,
+      "tolerance": 0.5,
+      "rationale": "The torque is 200 × 3.18 = 636 lb-ft. bhp = 6.2832 × 636 × 3,000 ÷ 33,000 = 363.3 hp."
+    },
+    {
+      "id": "calc-brake-from-indicated",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "An engine has an indicated horsepower of 200 and a friction horsepower of 30. What is its brake horsepower?",
+      "hint": "Friction horsepower is the difference between the two.",
+      "unit": "hp",
+      "correctValue": 170,
+      "tolerance": 0,
+      "rationale": "bhp = ihp - fhp = 200 - 30 = 170 hp, and the mechanical efficiency is 170 ÷ 200 = 85 percent."
+    },
+    {
+      "id": "calc-mechanical-efficiency",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "An engine develops 310 indicated horsepower but delivers only 260 brake horsepower. What is its mechanical efficiency, as a percentage to one decimal place?",
+      "hint": "Mechanical efficiency = bhp ÷ ihp.",
+      "unit": "%",
+      "correctValue": 83.9,
+      "tolerance": 0.2,
+      "rationale": "260 ÷ 310 = 0.839, so the mechanical efficiency is 83.9 percent. The friction horsepower is 310 - 260 = 50 hp, lost to the friction of the moving parts, pumping and the accessories."
+    },
+    {
+      "id": "calc-bmep",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "The GTSIO-520-H develops 375 hp at a crankshaft speed of 3,411 rpm. Its bore is 5.25 in, its stroke 4.00 in and it has six cylinders. What is its brake mean effective pressure, to the nearest psi?",
+      "hint": "BMEP = bhp × 33,000 ÷ (L × A × N × K), with L in feet and N = rpm ÷ 2.",
+      "unit": "psi",
+      "correctValue": 168,
+      "tolerance": 1,
+      "rationale": "L = 0.3333 ft, A = 21.65 sq in, N = 1,705.5, K = 6. The product LANK is 73,840, and 375 × 33,000 ÷ 73,840 = 167.6, so about 168 psi."
+    },
+    {
+      "id": "calc-thrust-hp",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "An engine develops 1,000 brake horsepower and drives a propeller that is 85 percent efficient. What is the thrust horsepower?",
+      "hint": "Thrust horsepower is the brake horsepower multiplied by the propeller's efficiency.",
+      "unit": "hp",
+      "correctValue": 850,
+      "tolerance": 0,
+      "rationale": "1,000 × 0.85 = 850 thrust horsepower. It is the thrust horsepower that decides the performance of the engine and propeller together."
+    },
+    {
+      "id": "calc-types-of-horsepower",
+      "lessonId": "performance-calculations",
+      "type": "matching",
+      "question": "Match each kind of horsepower to what it means.",
+      "hint": "Think about where in the engine each one is measured.",
+      "pairs": [
+        {
+          "left": "Indicated horsepower",
+          "right": "The power developed in the cylinders, before friction"
+        },
+        {
+          "left": "Brake horsepower",
+          "right": "The useful power delivered to the propeller shaft"
+        },
+        {
+          "left": "Friction horsepower",
+          "right": "The power used overcoming the engine's own friction"
+        },
+        {
+          "left": "Thrust horsepower",
+          "right": "The power as thrust, after the propeller's efficiency"
+        }
+      ],
+      "rationale": "Indicated minus friction is brake, and brake multiplied by the propeller's efficiency is thrust horsepower."
+    },
+    {
+      "id": "calc-order-of-horsepower",
+      "lessonId": "performance-calculations",
+      "type": "ordering",
+      "question": "Put these in order from the largest to the smallest for a given engine and propeller.",
+      "hint": "Each loses some power to the next stage.",
+      "items": [
+        "Indicated horsepower",
+        "Brake horsepower",
+        "Thrust horsepower"
+      ],
+      "rationale": "The indicated horsepower is the most, because friction is taken away to give the brake horsepower, and the propeller is less than 100 percent efficient, so the thrust horsepower is less again."
+    },
+    {
+      "id": "calc-rpm-half",
+      "lessonId": "performance-calculations",
+      "type": "multiple-choice",
+      "question": "Why is the crankshaft rpm divided by 2 when finding the number of power strokes per minute of one cylinder?",
+      "hint": "Think about the 720 degrees of a four-stroke cycle.",
+      "answers": [
+        "A cylinder fires once in every two turns of the crankshaft",
+        "Half of the crankshaft's power is lost to friction",
+        "The camshaft turns at twice the crankshaft speed"
+      ],
+      "correct": 0,
+      "rationale": "A four-stroke cycle takes two revolutions, 720 degrees, and has one power stroke, so each cylinder has one power stroke per two turns: N = rpm ÷ 2."
+    },
+    {
+      "id": "calc-heat-loss",
+      "lessonId": "performance-calculations",
+      "type": "multiple-choice",
+      "question": "In the handbook's heat distribution for a reciprocating engine, where does the largest share of the fuel's heat go?",
+      "hint": "Look at the largest percentage in the figure.",
+      "answers": [
+        "Out with the exhaust, 40 to 45 percent",
+        "Into useful power, 25 to 30 percent",
+        "Away with the cooling fins, 15 to 20 percent"
+      ],
+      "correct": 0,
+      "rationale": "About 40 to 45 percent of the heat leaves with the exhaust. Useful power is only 25 to 30 percent, the fins remove 15 to 20 percent and the oil 5 to 10 percent."
+    },
+    {
+      "id": "calc-volumetric",
+      "lessonId": "performance-calculations",
+      "type": "multiple-choice",
+      "question": "Which engine can have a volumetric efficiency greater than 100 percent?",
+      "hint": "It forces more charge in than the pistons draw.",
+      "answers": [
+        "One with true supercharging, which boosts the manifold pressure above 30 inches of mercury",
+        "One that runs at part throttle",
+        "A naturally aspirated engine at sea level"
+      ],
+      "correct": 0,
+      "rationale": "A naturally aspirated engine draws in less than its displacement at standard conditions, so it is below 100 percent. True supercharging forces in more charge than that, so it can exceed 100 percent."
     }
   ]
 }

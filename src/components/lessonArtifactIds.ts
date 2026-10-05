@@ -5,5 +5,5 @@ export const lessonArtifactIds = [
   'air-cooling-path-explorer', 'turbocharger-energy-path', 'aspiration-altitude-comparator',
   'steam-engine-schematic', 'otto-cycle-overview', 'piston-crank-converter', 'arrangement-inline', 'arrangement-v',
   'swept-volume-diagram', 'engine-data-comparison', 'otto-pv-diagram', 'otto-pv-ideal-vs-practical', 'diesel-otto-pv-compare', 'valve-timing-diagram', 'construction-comparison', 'cylinder-numbering', 'cylinder-firing-order',
-  'cam-lift-and-duration', 'air-density-explorer',
+  'cam-lift-and-duration', 'air-density-explorer', 'engine-power-calculator',
 ] as const;

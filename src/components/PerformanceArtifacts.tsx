@@ -1,5 +1,6 @@
 import React, { useId, useState } from 'react';
 import { airAvailable } from './airDensity.mjs';
+import { cylinderDisplacement, frictionHorsepower, indicatedHorsepower, pistonArea, powerStrokesPerMinute } from './enginePower.mjs';
 
 /**
  * Native lesson interactive for lesson 13 (Factors Affecting Power): how altitude, temperature and humidity change the air a naturally
@@ -48,5 +49,54 @@ export function AirDensityExplorer() {
     </div>
     <p className="mt-2 text-xs text-slate-300">Outside: <strong className="text-white">{result.pressureInHg.toFixed(1)} inHg</strong> and <strong className="text-white">{result.temperatureC.toFixed(0)} °C</strong>. Each intake stroke draws in the same volume of air, but a volume holds less oxygen when the air is thinner, hotter or wetter.</p>
     <p className="mt-1 text-[11px] text-slate-400">Standard atmosphere and ideal-gas law. A naturally aspirated engine&apos;s power follows the mass of air it breathes, so expect something like this fraction of its standard sea-level power; real engines differ. A supercharged engine holds its manifold pressure up to its critical altitude.</p>
+  </div>;
+}
+
+// ---------------------------------------------------------------------------------------------------------------
+// PLANK: indicated horsepower from the engine's size, speed and mean effective pressure
+// ---------------------------------------------------------------------------------------------------------------
+
+type EngineInputs = { pressurePsi: number; strokeIn: number; boreIn: number; rpm: number; cylinders: number; mechanicalEfficiencyPct: number };
+
+const ENGINE_PRESETS: { label: string; values: EngineInputs }[] = [
+  // Pressure chosen so that, at the assumed 90% mechanical efficiency, the brake horsepower is the manual's 375 hp at about 3,411 crankshaft rpm.
+  { label: 'GTSIO-520-H at rated power', values: { pressurePsi: 186, strokeIn: 4, boreIn: 5.25, rpm: 3411, cylinders: 6, mechanicalEfficiencyPct: 90 } },
+  { label: 'Handbook example, 12 cylinders', values: { pressurePsi: 165, strokeIn: 6, boreIn: 5.5, rpm: 3000, cylinders: 12, mechanicalEfficiencyPct: 90 } },
+  { label: 'Four-cylinder example', values: { pressurePsi: 135, strokeIn: 4.5, boreIn: 5, rpm: 2400, cylinders: 4, mechanicalEfficiencyPct: 90 } },
+];
+
+export function EnginePowerCalculator() {
+  const baseId = useId();
+  const [engine, setEngine] = useState<EngineInputs>(ENGINE_PRESETS[0].values);
+  const set = (patch: Partial<EngineInputs>) => setEngine((previous) => ({ ...previous, ...patch }));
+  const area = pistonArea(engine.boreIn);
+  const lengthFt = engine.strokeIn / 12;
+  const strokes = powerStrokesPerMinute(engine.rpm);
+  const ihp = indicatedHorsepower(engine);
+  const bhp = ihp * (engine.mechanicalEfficiencyPct / 100);
+  const fhp = frictionHorsepower(ihp, bhp);
+  const displacement = cylinderDisplacement(engine.boreIn, engine.strokeIn) * engine.cylinders;
+  const row = (label: string, value: string) => <div className="flex justify-between gap-3 border-b border-slate-800 py-1.5 text-xs"><dt className="text-slate-300">{label}</dt><dd className="font-mono font-semibold text-white">{value}</dd></div>;
+
+  return <div className={panel}>
+    <div className="mb-3 flex flex-wrap gap-1.5" role="group" aria-label="Example engines">
+      {ENGINE_PRESETS.map((preset) => <button key={preset.label} type="button" onClick={() => setEngine(preset.values)} className={button}>{preset.label}</button>)}
+    </div>
+    <div className="grid gap-x-4 gap-y-0 sm:grid-cols-2">
+      <Slider id={`${baseId}-p`} label="P: mean effective pressure" value={engine.pressurePsi} min={50} max={250} step={1} format={(value) => `${value} psi`} onChange={(pressurePsi) => set({ pressurePsi })} />
+      <Slider id={`${baseId}-l`} label="Stroke" value={engine.strokeIn} min={3} max={6} step={0.25} format={(value) => `${value} in`} onChange={(strokeIn) => set({ strokeIn })} />
+      <Slider id={`${baseId}-d`} label="Bore" value={engine.boreIn} min={3.5} max={6} step={0.25} format={(value) => `${value} in`} onChange={(boreIn) => set({ boreIn })} />
+      <Slider id={`${baseId}-n`} label="Crankshaft speed" value={engine.rpm} min={1000} max={3600} step={100} format={(value) => `${value.toLocaleString()} rpm`} onChange={(rpm) => set({ rpm })} />
+      <Slider id={`${baseId}-k`} label="K: number of cylinders" value={engine.cylinders} min={1} max={14} step={1} format={(value) => `${value}`} onChange={(cylinders) => set({ cylinders })} />
+      <Slider id={`${baseId}-m`} label="Mechanical efficiency" value={engine.mechanicalEfficiencyPct} min={70} max={95} step={1} format={(value) => `${value}%`} onChange={(mechanicalEfficiencyPct) => set({ mechanicalEfficiencyPct })} />
+    </div>
+    <dl className="mt-2">
+      {row('L: stroke in feet', `${lengthFt.toFixed(3)} ft`)}
+      {row('A: piston area', `${area.toFixed(2)} sq in`)}
+      {row('N: power strokes per minute (rpm ÷ 2)', strokes.toLocaleString(undefined, { maximumFractionDigits: 1 }))}
+      {row('Total displacement', `${displacement.toFixed(1)} cu in`)}
+    </dl>
+    <p className="mt-2 text-xs text-slate-300">Indicated horsepower = P × L × A × N × K ÷ 33,000 = <strong className="text-white">{ihp.toFixed(1)} hp</strong>. At {engine.mechanicalEfficiencyPct}% mechanical efficiency the brake horsepower is <strong className="text-white">{bhp.toFixed(1)} hp</strong> and the friction horsepower is <strong className="text-white">{fhp.toFixed(1)} hp</strong>.</p>
+    <p className="mt-1 text-[11px] text-slate-400">Worked with the handbook&apos;s PLANK formula. The mean effective pressure of the GTSIO-520-H preset is chosen so that the result matches the manual&apos;s 375 hp at an assumed 90% mechanical efficiency; the manual does not give the pressure.</p>
   </div>;
 }
