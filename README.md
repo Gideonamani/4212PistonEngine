@@ -25,7 +25,7 @@ The student-facing site now uses a responsive React/Vite shell for Explore, Lear
 | `cad_pipeline/` | The reconstruction pipeline: a reviewed JSON part specification becomes editable FreeCAD geometry, a STEP export and named Blender scenes, with its own tests. It runs in FreeCAD's and Blender's bundled Python (commands in its README) and is not part of CI. |
 | `.agents/` | Agent skills for engineering reconstruction (`engineering-research`, `image-to-cad`, `text-to-cad`, `mesh-to-cad`, `cad-generation`, `cad-validation`, `cad-to-blender`), routed from `AGENTS.md`. |
 | `data/`, `releases/` | Evidence, audit and release records produced by the pipeline. |
-| `docs/` | Design notes, decisions, validation records and the roadmap. |
+| `docs/` | Design notes, decisions, validation records and the roadmap, sorted into guides (kept accurate) and dated records in [docs/README.md](docs/README.md). |
 
 Generated or local-only and git-ignored: `dist/`, `build/`, `node_modules/`, `.local/`, `*_build.log`, model binaries (`*.glb`, `*.glb.gz`) and native CAD files.
 

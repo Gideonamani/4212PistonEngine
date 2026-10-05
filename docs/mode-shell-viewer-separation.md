@@ -6,9 +6,9 @@ The application has one React 3D viewer. Explore, lesson poses, static reference
 
 ```mermaid
 flowchart TD
-  REG[src/data/models.json] --> MV[ModelViewer.tsx]
-  EXP[ExploreView] -->|profile: explore| MV
-  LES[LessonMedia] -->|profile: lesson-dynamic or lesson-reference| MV
+  REG[src/data/models.json] --> MV[useModelViewer.ts]
+  EXP[ExploreViewer.tsx] -->|profile: explore| MV
+  LES[LessonViewer.tsx] -->|profile: lesson-dynamic or lesson-reference| MV
   MV --> RT[core/runtime.ts]
   MV --> AD[adapter factory]
   AD --> CYL[operating-cylinder adapter]
@@ -20,10 +20,10 @@ flowchart TD
 
 ## Responsibilities
 
-- `src/viewer/ModelViewer.tsx` owns the shared React presentation: load/error state, keyboard support, camera actions, capability-driven panels, lesson overlays and the Explore handoff.
+- `src/viewer/useModelViewer.ts` owns one loaded model: load and error state, the scene runtime and model-session lifecycle, camera actions, keyboard support and the view a lesson step asks for. `ExploreViewer.tsx` and `LessonViewer.tsx` are the two presentations built on it (capability-driven panels, lesson overlays and the Explore handoff live there), and `ViewerParts.tsx` holds the pieces they share: canvas, header, pan toggle, focus-mode switch, hotspot chips and motion strip.
 - `src/viewer/ExploreControls.tsx` owns the responsive Explore controls: a fixed side panel on large screens, a panel below the viewport on small screens, and the optional compact crank-angle player.
 - `src/viewer/core/runtime.ts` is the only scene infrastructure layer. It creates and disposes the Three.js scene, camera, renderer, lighting, OrbitControls, resize observer, picking and render loop.
-- `src/viewer/core/assets.ts` owns local/Drive candidates, progress reporting, gzip decoding, GLB validation and GLTF parsing.
+- `src/viewer/core/assets.ts` owns local/Drive candidates, progress reporting, the saved copy of a Drive model on the device (`model-cache.mjs`), gzip decoding, GLB validation and GLTF parsing through `gltf-loader.ts`, which also reads meshopt-compressed files.
 - `src/viewer/adapters/` contains model-specific binding only. An adapter receives an existing runtime and returns a `ViewerSession` describing the features that model actually supports.
 - `src/viewer/engineering/` contains the reusable kinematics, valve transforms and four-stroke visual calculations. It has no page or React dependency.
 - `src/data/models.json` is the single model registry. `modelRegistry.ts` supplies its TypeScript contract and lookup helpers.
