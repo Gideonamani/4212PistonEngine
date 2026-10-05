@@ -8,7 +8,7 @@ export const MODEL_STEP = '#/learn/m2-cylinder-study/m2-four-stroke-guided/step/
 export const SPOTLIGHT_STEP = '#/learn/fundamentals-and-classification/parts-construction/step/4';
 
 /** The model downloads: 16 to 35 MB each, and the page also starts them in the background (preload). */
-const MODEL_FILES = /\.glb(\.gz)?(\?.*)?$/;
+export const MODEL_FILES = /\.glb(\.gz)?(\?.*)?$/;
 
 /**
  * Open a lesson step that has a 3D viewer and wait for the viewer to mount. The toolbar, the hint and the layout are all there as soon

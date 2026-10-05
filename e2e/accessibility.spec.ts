@@ -5,8 +5,9 @@ import { SPOTLIGHT_STEP } from './viewer-helpers';
 
 // Two checks that hold the line. e2e/baselines/ records known problems, and the tests fail on anything not recorded there. Both baselines
 // are empty since the shared-components phase (44 px targets, readable text), so any accessibility problem or small target on these
-// screens now fails. Run once, at the most common phone width.
-onlyIn('phone-360');
+// screens now fails. Run at the most common phone width, and again at tablet width, where the header's mode tabs replace the bottom bar.
+// (The native lesson interactives are audited one by one, at every width, in lesson-interactives.spec.ts.)
+onlyIn('phone-360', 'tablet-768');
 // Each test opens ten screens, one of them a 3D step that starts a large model download, and CI runs other tests alongside.
 test.describe.configure({ timeout: 360_000 });
 
@@ -28,6 +29,10 @@ const SCREENS: Screen[] = [
   ['check question list', '#/check', async (page) => { await page.getByRole('button').filter({ has: page.locator('h4') }).first().click(); await page.getByRole('button', { name: /Open the list of questions/ }).click(); await expect(page.getByRole('dialog')).toBeVisible(); }],
 ];
 
+// The 3D steps need the whole model and say nothing more about the shell, so the tablet run leaves them to the phone run.
+const MODEL_SCREENS = new Set(['lesson model step', 'lesson spotlight step']);
+const screensFor = (project: string) => (project === 'tablet-768' ? SCREENS.filter(([name]) => !MODEL_SCREENS.has(name)) : SCREENS);
+
 async function open(page: Page, [, hash, prepare]: Screen) {
   // Start every screen from a fresh page: two screens can share an address while differing in what has been opened.
   await page.goto('about:blank');
@@ -38,9 +43,9 @@ async function open(page: Page, [, hash, prepare]: Screen) {
   await page.waitForTimeout(500);
 }
 
-test('axe finds no new accessibility problems on the main screens', async ({ page }) => {
+test('axe finds no new accessibility problems on the main screens', async ({ page }, testInfo) => {
   const found: Record<string, number> = {};
-  for (const screen of SCREENS) {
+  for (const screen of screensFor(testInfo.project.name)) {
     const [name] = screen;
     await open(page, screen);
     const { violations } = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
@@ -49,9 +54,9 @@ test('axe finds no new accessibility problems on the main screens', async ({ pag
   checkCountBaseline('axe', found);
 });
 
-test('no new touch target is smaller than 44 px (and none below the 24 px WCAG 2.2 minimum)', async ({ page }) => {
+test('no new touch target is smaller than 44 px (and none below the 24 px WCAG 2.2 minimum)', async ({ page }, testInfo) => {
   const offenders: string[] = [];
-  for (const screen of SCREENS) {
+  for (const screen of screensFor(testInfo.project.name)) {
     const [name] = screen;
     await open(page, screen);
     const targets = await page.evaluate(() => {
