@@ -1,6 +1,5 @@
-import AxeBuilder from '@axe-core/playwright';
 import type { Page } from '@playwright/test';
-import { appReady, expect, expectNoHorizontalOverflow, test } from './fixtures';
+import { appReady, expect, expectAccessibleAndTouchable, expectNoHorizontalOverflow, test } from './fixtures';
 
 // The Check screen's answer areas for the question types beyond multiple choice and ordering: a number typed with a tolerance, and
 // terms matched to descriptions. The shipped packs do not need every type yet, so the questions come from a pack made here and served
@@ -32,17 +31,6 @@ async function openFixtureCheck(page: Page) {
   await appReady(page);
   await page.getByRole('button').filter({ has: page.locator('h4') }).first().click();
   await expect(page.getByText('Question 1 of 3')).toBeVisible();
-}
-
-/** Every control on the screen is at least 44 px in both directions, and axe finds nothing wrong. */
-async function expectAccessibleAndTouchable(page: Page, what: string) {
-  const { violations } = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
-  expect(violations.map((rule) => `${rule.id} (${rule.nodes.length})`), `${what}: axe`).toEqual([]);
-  const small = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>('button, a[href], input, select, textarea')]
-    .filter((element) => element.getBoundingClientRect().width > 0 && getComputedStyle(element).visibility !== 'hidden')
-    .map((element) => ({ name: element.getAttribute('aria-label') || element.innerText.trim().slice(0, 30) || element.tagName, size: Math.min(element.getBoundingClientRect().width, element.getBoundingClientRect().height) }))
-    .filter((target) => target.size < 44));
-  expect(small, `${what}: targets under 44 px`).toEqual([]);
 }
 
 test.describe('numeric question', () => {
