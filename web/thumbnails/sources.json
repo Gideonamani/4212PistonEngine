@@ -248,6 +248,12 @@
       "path": "lesson-induction-exhaust-square.webp",
       "credit": "Rendered from the app's operating-cylinder teaching model (intake and exhaust sides coloured)",
       "license": "Course material"
+    },
+    "lesson-power-generation": {
+      "kind": "render",
+      "path": "lesson-power-generation-square.webp",
+      "credit": "Rendered from the app's operating-cylinder teaching model (piston, rod and crank spotlit on the power stroke)",
+      "license": "Course material"
     }
   },
   "previews": {

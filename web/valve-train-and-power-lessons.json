@@ -5,7 +5,7 @@
   "thumbnail": "./thumbnails/course-valve-train-and-power.webp",
   "banner": "./banners/valve-train-and-power.webp",
   "title": "Valve Train & Power Generation",
-  "description": "How the valves are opened and closed, from the camshaft to the valve spring, and how to inspect the parts that do it.",
+  "description": "How the valves are opened and closed, from the camshaft to the valve spring, and how the power section turns burning gas into shaft power and is taken apart and put back together.",
   "sources": [
     {
       "id": "faa-powerplant-2023",
@@ -27,6 +27,13 @@
       "title": "Continental GTSIO-520 Series Overhaul Manual X30045A",
       "path": "Notes/gtsio520_series.pdf",
       "applicability": "Configuration-specific source for the course reference engine: its valve mechanism, camshaft, hydraulic tappets, inspection, overhaul replacement list and spring test data. The Chapter B table of limits is dated March 1981 and covers the series; Chapter C-3 (the -H) lists no different valve spring. Always use the current data for the engine in front of you."
+    },
+    {
+      "id": "course-deck-2026-05",
+      "tier": 4,
+      "title": "Aircraft Piston Engine Slides - 21 May 2026 (instructor course deck)",
+      "path": "Notes/Aircraft Piston Engine Slides - 21May2026.pptx",
+      "applicability": "Instructor-authored course slides. Used only where the handbook, EASA text and manuals are silent. Carries no independent evidence; claims here need the instructor's confirmation."
     }
   ],
   "lessons": [
@@ -416,6 +423,204 @@
           }
         }
       ]
+    },
+    {
+      "id": "power-generation",
+      "thumbnail": "./thumbnails/lesson-power-generation.webp",
+      "sequenceNumber": 10,
+      "title": "Power Generation",
+      "objective": "Follow the push from burning gas to the propeller shaft: explain why the spark comes before top dead centre, define compression ratio and calculate cylinder volumes, and recognise the order and the care needed to take the power section apart and put it back together.",
+      "reviewStatus": "unreviewed",
+      "models": [
+        "cylinder"
+      ],
+      "listed": true,
+      "scheduledDay": 5,
+      "completionCriteria": "Explain why the spark fires before top dead centre, calculate the compression ratio and the swept and clearance volume of a cylinder, trace the push from the piston to the propeller shaft, and state three things that must be kept in order when the power section is assembled.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "From burning gas to shaft power",
+          "prompt": "Everything the engine does for the aircraft starts as burning gas pushing on a piston. At full power the push can be more than 15 tons, and the gas is between 3,000 and 4,000 °F. Before you open the model, predict the path: what carries that push from the piston to the propeller, and what has to be strong enough to survive it?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48 (the piston is pushed down by the burning gases with a force that can be greater than 15 tons at maximum power; the gas temperature may be between 3,000 and 4,000 °F; the connecting rod movement is changed to rotary movement by the crankshaft and transmitted to the propeller shaft). The handbook writes the force as \"(30,000 psi)\"; 15 tons is about 30,000 pounds of force, so the lesson gives the force and not a pressure.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A prediction prompt that sets up the force path traced in the model."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Spark before TDC",
+          "modelId": "cylinder",
+          "prompt": "At 340° of the cycle the piston is still rising towards top dead centre, 20° before it gets there. The spark fires about now. Burning takes time, so the charge is lit early enough that it has burned completely when the piston is just past TDC and ready to be pushed down. Why would it be wrong to treat this pose as the timing for every engine?",
+          "action": {
+            "type": "cycle-angle",
+            "value": 340
+          },
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48: the charge is fired as the piston approaches TDC, the time of ignition varies from 20° to 35° before TDC depending on the engine, to ensure complete combustion by the time the piston is slightly past TDC, and the ignition system must be timed to the manufacturer's recommendations. The GTSIO-520 overhaul manual lists spark at 20° BTC for both magnetos (PDF p. 153, C-3-3). The 340° pose is that figure placed on the model's ideal profile; the model is not timing data. The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The shared 720-degree cylinder profile puts the learner 20 degrees before TDC on the compression stroke."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Compression ratio",
+          "prompt": "The compression ratio compares the volume in the cylinder with the piston at the bottom of its stroke to the volume with the piston at the top. In the figure the total volume at the bottom is seven times the clearance volume left at the top, so the ratio is 7 to 1, written 7:1. Squeezing the charge more makes it able to do more work, like squeezing a spring, but the ratio is limited by the fuel grades, the engine speeds and the manifold pressures an engine must use.",
+          "url": "./lesson-media/faa-compression-ratio.webp",
+          "alt": "FAA drawing of two cylinders side by side: at bottom dead centre the whole cylinder is filled and marked in seven equal slices, and at top dead centre only the clearance volume, one slice, remains. Total volume, displacement volume and clearance volume are marked.",
+          "credit": "FAA-H-8083-32B, Figure 1-38",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 50-51 (the compression ratio compares the volume of space in a cylinder with the piston at the bottom of the stroke to the volume with the piston at the top; 140 cubic inches to 20 cubic inches is 7:1; it is limited by present-day fuel grades, engine speeds and manifold pressures; Figure 1-38).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The figure shows total, displacement and clearance volume on one drawing."
+          }
+        },
+        {
+          "type": "web-embed",
+          "title": "Swept and clearance volume",
+          "prompt": "Move the crank and switch between the swept volume, the clearance volume and the total volume. The clearance volume is what is left above the piston at TDC, and the swept volume is the volume the piston sweeps in one stroke. Check that the total volume divided by the clearance volume gives the compression ratio drawn.",
+          "url": "artifact:swept-volume-diagram",
+          "note": "Schematic interactive from the Terminologies lesson. It draws the GTSIO-520-H compression ratio of 7.5:1 (overhaul manual, Chapter C-3, PDF p. 152) with a constant bore, so heights are proportional to volumes. It is not a to-scale drawing of the combustion chamber.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "Switching between swept, clearance and total volume makes the ratio something the learner can see."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Worked example: one cylinder",
+          "prompt": "Take the GTSIO-520-H: bore 5.250 in, stroke 4.000 in, compression ratio 7.5:1. The swept volume (piston displacement) of one cylinder is 0.7854 × 5.25² × 4.00 = 86.6 cu in. Six cylinders give 519.5, which the manual rounds to 520 cu in. The clearance volume follows from the ratio: total volume ÷ clearance volume = 7.5, and total volume = swept + clearance, so clearance = swept ÷ (7.5 − 1) = 86.6 ÷ 6.5 = 13.3 cu in. The total volume is 86.6 + 13.3 = 99.9 cu in. Check that 99.9 ÷ 13.3 is 7.5.",
+          "note": "Calculation from the bore, stroke and compression ratio in the GTSIO-520 overhaul manual, PDF p. 152 (C-3-2: bore 5.250 in, stroke 4.000 in, displacement 520 cu in, compression ratio 7.5:1) using the piston displacement method in FAA-H-8083-32B (2023), PDF pp. 49-50 (area of the base × stroke; × number of cylinders). The course deck (slide 212) works the same example.",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A worked calculation reads best as text the learner can redo."
+          }
+        },
+        {
+          "type": "text",
+          "title": "High compression and fuel",
+          "prompt": "A higher compression ratio, and a higher manifold pressure, raise the pressure of the charge just before the spark. If it gets too high, one of two things happens. In pre-ignition the charge starts to burn before the spark plug fires. In detonation the spark plug lights the charge, but instead of burning at a controlled rate it explodes, and the cylinder temperature and pressure spike. Left for long enough either can damage or destroy the engine. High-compression engines therefore use high-octane fuel, and some limit their maximum manifold pressure. The GTSIO-520-H calls for 100LL or 100 grade fuel.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 50 (compression ratio and manifold pressure determine the cylinder pressure before ignition; pre-ignition and detonation defined; high-octane fuel and limiting manifold pressure) and the GTSIO-520 overhaul manual, PDF p. 152 (fuel, aviation grade, 100LL blue or 100 green). The handbook's simple rule that the pressure before ignition is the manifold pressure times the compression ratio ignores that compression heats the gas, so this step gives no number. Backfiring, detonation and pre-ignition are covered again in the Operation Malfunctions lesson.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A cause-and-effect step that sets up the malfunctions lesson."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "From piston to crankshaft",
+          "modelId": "cylinder",
+          "prompt": "Now follow the push. At 400° the piston is on its power stroke. The gas presses on the piston crown, the piston pushes through the piston pin to the connecting rod, and the rod, which changes its angle as it goes, pushes on the crankpin. The crankpin is off the centre of the crankshaft, so the push turns it. The rotation goes on to the propeller shaft. Which of these parts slide, and which turn?",
+          "action": {
+            "type": "cycle-angle",
+            "value": 400
+          },
+          "focusParts": [
+            "PistonBody",
+            "FloatingPin",
+            "ConnectingRodBody",
+            "ConnectingRodCap",
+            "CrankThrow"
+          ],
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48 (the piston is forced down by the burning gases; the downward movement of the connecting rod is changed to rotary movement by the crankshaft, which transmits it to the propeller shaft). The one-cylinder model shows a single crank throw. The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The spotlit parts show the force path from the piston crown to the crankpin."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Piston rings and ring gaps",
+          "prompt": "The rings seal the gas above the piston and control the oil on the cylinder wall. Each ring is split, so it has a gap. When a piston is assembled the gaps are not lined up: on the GTSIO-520 pistons the first, third and fifth ring gaps go one side of the piston and the second and fourth go on the opposite side, 180° away. With the gaps staggered, gas that gets past one ring meets a solid part of the next. If the gaps line up, a straight path opens for gas to leak past the piston into the crankcase and for oil to be burned.",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 75 (11-8: five-ring pistons have the first, third and fifth gaps toward the top of the piston and the second and fourth 180° apart from them; four-ring pistons have the first and third gaps on top and the second and fourth 180° away; do not intermix piston types in any one engine). The reason for staggering (less blow-by and oil burning) is from the course deck (slides 168-169) and the daily quiz; the manual gives the positions.",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The positions are a rule in the manual and read best as text."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Taking the power section apart",
+          "prompt": "The manual removes a cylinder in a set order. Position the crankshaft so the valve lifters of the cylinder are on the heels (base circles) of their cam lobes and both valves are fully closed, then take off the rocker covers, rocker assemblies and pushrods. Make sure the piston is at top dead centre, take off the base nuts, and draw the cylinder straight out, catching the piston as it clears the barrel so it does not fall. Support the cylinder on a block when you remove its valve springs, and stone down any nicks on the valve stems before the valves come out. Parts that came off together stay together.",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF pp. 57-58 (7-15: lifters on the heels of the cam lobes with both valves closed; rocker assemblies and pushrods removed; piston at top dead centre; cylinder withdrawn straight outward and the piston caught; a wood block to hold the cylinder while the valve springs are removed; stone down nicks before removing the valves; exhaust valves, rotocaps and hydraulic lifters recommended for replacement). This is a recognition lesson, not a procedure: follow the manual itself, including its cautions, for any real work.",
+          "sourceRefs": [
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A sequence with reasons; the manual is the procedure and the lesson shows why it is in that order."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Putting it back together",
+          "prompt": "Assembly follows the same care in reverse. Connecting rods go on with their position numbers up, odd-numbered rods extended to the right and even-numbered to the left, and their nuts are torqued to specification and safetied. Rotate the crankshaft to put the rod in its outermost position, then fit the piston with the position number on its head facing forward. Check the ring gaps, compress the rings with a ring compressor and slide the cylinder on. Fit cylinders 4 and 5 first, then 2 and 3, then 1 and 6, so the crankshaft is turned as little as possible and stays balanced. Tighten the base nuts in the manual's sequence to the value in its Chapter B.",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF pp. 75-76 (11-10: rods laid out by the position number stamped on the bolt bosses, position numbers on top, odd-numbered rods to the right; nuts torqued and safetied with cotter pins) and PDF pp. 79-80 (12-3: crankshaft turned so the rod is outermost; the position number on the piston head forward; the ring compressor; install Nos. 4 and 5 first, then 2 and 3, then 1 and 6; torque in the sequence of Figure A4-38 to the value in Chapter B). This is a recognition lesson, not a procedure.",
+          "sourceRefs": [
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The assembly rules and their reasons read best as text."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Name the whole path",
+          "prompt": "Explain the power section in your own words: how the spark timing, the compression ratio and the fuel work together to make the push, how the push travels from the piston to the propeller shaft, and what you would check and keep in order when the power section is taken apart and put back together. Then take the lesson's quiz.",
+          "note": "Completion step: the learner pulls the lesson together (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 48-51, and the GTSIO-520 overhaul manual, PDF pp. 57-58, 75-76 and 79-80.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The learner explains the whole path in their own words."
+          }
+        }
+      ]
     }
   ],
   "checks": [
@@ -587,6 +792,164 @@
       ],
       "correct": 0,
       "rationale": "A spring must push back with at least the serviceable limit at the test height. 70 lb is below 73 lb, so it is not reused. A new inner spring gives 78 to 88 lb at that height."
+    },
+    {
+      "id": "power-force-path",
+      "lessonId": "power-generation",
+      "type": "ordering",
+      "question": "Put these in the order the push from the burning gas travels to the propeller.",
+      "hint": "Start with the gas and end with the shaft the propeller is mounted on.",
+      "items": [
+        "Burning gas pressure on the piston crown",
+        "Piston pin",
+        "Connecting rod",
+        "Crankpin and crankshaft",
+        "Propeller shaft"
+      ],
+      "rationale": "The gas pushes the piston down, the piston pin passes the push to the connecting rod, the rod pushes on the crankpin so the crankshaft turns, and the crankshaft drives the propeller shaft."
+    },
+    {
+      "id": "power-spark-before-tdc",
+      "lessonId": "power-generation",
+      "type": "multiple-choice",
+      "question": "Why does the spark fire before the piston reaches top dead centre?",
+      "hint": "Think about how long burning takes.",
+      "answers": [
+        "Burning takes time, so the charge is lit early enough to be burned completely when the piston is just past TDC",
+        "The piston has to be at rest at TDC for the spark plug to work",
+        "The exhaust valve is not yet closed at TDC"
+      ],
+      "correct": 0,
+      "rationale": "The charge is lit before TDC (20° to 35° on various engines) so that combustion is complete when the piston is slightly past TDC and ready to be pushed down."
+    },
+    {
+      "id": "power-timing-source",
+      "lessonId": "power-generation",
+      "type": "multiple-choice",
+      "question": "Where should a technician get the ignition timing for a particular engine?",
+      "hint": "A general handbook explains the principle but not every engine's setting.",
+      "answers": [
+        "From the manufacturer's data for that engine",
+        "From any engine with the same number of cylinders",
+        "From the animation in a lesson"
+      ],
+      "correct": 0,
+      "rationale": "The handbook gives a range of 20° to 35° before TDC across various engines and says the ignition must be timed to the engine manufacturer's recommendations. The GTSIO-520 manual gives its own value."
+    },
+    {
+      "id": "power-compression-ratio",
+      "lessonId": "power-generation",
+      "type": "multiple-choice",
+      "question": "What is the compression ratio?",
+      "hint": "It compares the cylinder's volume with the piston at the two ends of its stroke.",
+      "answers": [
+        "The total cylinder volume with the piston at the bottom divided by the clearance volume with the piston at the top",
+        "The crankshaft speed divided by the camshaft speed",
+        "The piston displacement divided by the bore diameter"
+      ],
+      "correct": 0,
+      "rationale": "Compression ratio = total volume (swept volume plus clearance volume) divided by clearance volume. A cylinder with 140 cu in at the bottom and 20 cu in at the top has a ratio of 7 to 1."
+    },
+    {
+      "id": "power-ratio-calc",
+      "lessonId": "power-generation",
+      "type": "numeric",
+      "question": "A cylinder has a swept volume of 80 cu in and a clearance volume of 10 cu in. What is its compression ratio? Give the first number of the ratio, for example 8 for 8:1.",
+      "hint": "Total volume = swept volume + clearance volume.",
+      "unit": ": 1",
+      "correctValue": 9,
+      "tolerance": 0,
+      "rationale": "Total volume is 80 + 10 = 90 cu in, and 90 ÷ 10 = 9, so the compression ratio is 9:1."
+    },
+    {
+      "id": "power-displacement-calc",
+      "lessonId": "power-generation",
+      "type": "numeric",
+      "question": "One cylinder of the GTSIO-520-H has a bore of 5.250 in and a stroke of 4.000 in. What is its piston displacement, to the nearest tenth of a cubic inch?",
+      "hint": "Area of the piston = 0.7854 × bore squared; displacement = area × stroke.",
+      "unit": "cu in",
+      "correctValue": 86.6,
+      "tolerance": 0.1,
+      "rationale": "0.7854 × 5.25² = 21.65 sq in, and 21.65 × 4.00 = 86.6 cu in. Six cylinders give 519.5 cu in, the 520 cu in in the engine's name."
+    },
+    {
+      "id": "power-clearance-calc",
+      "lessonId": "power-generation",
+      "type": "numeric",
+      "question": "The GTSIO-520-H has a compression ratio of 7.5:1 and a swept volume of 86.6 cu in per cylinder. What is the clearance volume, to the nearest tenth of a cubic inch?",
+      "hint": "Compression ratio = (swept + clearance) ÷ clearance, so swept ÷ clearance = ratio - 1.",
+      "unit": "cu in",
+      "correctValue": 13.3,
+      "tolerance": 0.1,
+      "rationale": "Clearance volume = swept volume ÷ (compression ratio - 1) = 86.6 ÷ 6.5 = 13.3 cu in. The total volume is then 86.6 + 13.3 = 99.9 cu in."
+    },
+    {
+      "id": "power-detonation",
+      "lessonId": "power-generation",
+      "type": "multiple-choice",
+      "question": "Which of these describes detonation?",
+      "hint": "In the other abnormal case the burning starts before the spark.",
+      "answers": [
+        "The spark plug lights the charge, but it explodes instead of burning at a controlled rate",
+        "The charge starts to burn before the spark plug fires",
+        "The charge fails to burn at all"
+      ],
+      "correct": 0,
+      "rationale": "In detonation the spark lights the charge but it explodes, so the cylinder temperature and pressure spike. Burning that starts before the spark is pre-ignition."
+    },
+    {
+      "id": "power-ring-gaps",
+      "lessonId": "power-generation",
+      "type": "multiple-choice",
+      "question": "Why are the gaps of a piston's rings staggered round the piston?",
+      "hint": "Think about a straight path for gas.",
+      "answers": [
+        "So gas that gets past one ring meets a solid part of the next, which keeps blow-by down",
+        "So the rings are easier to push into the cylinder",
+        "So the piston weighs the same on both sides"
+      ],
+      "correct": 0,
+      "rationale": "Staggered gaps do not line up, so there is no straight path for gas to leak past the piston. If they line up, blow-by and oil burning increase."
+    },
+    {
+      "id": "power-assembly-rules",
+      "lessonId": "power-generation",
+      "type": "matching",
+      "question": "Match each rule from the GTSIO-520 assembly pages to what it says.",
+      "hint": "Each rule is about position or order.",
+      "pairs": [
+        {
+          "left": "Cylinder base nuts",
+          "right": "Tightened in the manual's sequence to the value in its limits chapter"
+        },
+        {
+          "left": "Piston ring gaps",
+          "right": "Alternate rings have their gaps 180° apart"
+        },
+        {
+          "left": "Position number on the piston head",
+          "right": "Faces the front of the engine"
+        },
+        {
+          "left": "Cylinders 4 and 5",
+          "right": "Fitted first, so the crankshaft is turned as little as possible"
+        }
+      ],
+      "rationale": "These are the manual's own assembly rules: staggered ring gaps, the piston numbered forward, the order that keeps the crankshaft balanced, and torque in sequence to the manual value."
+    },
+    {
+      "id": "power-lifters-heels",
+      "lessonId": "power-generation",
+      "type": "multiple-choice",
+      "question": "Before a cylinder is removed, where should its valve lifters be?",
+      "hint": "Think about where the cam is not pushing.",
+      "answers": [
+        "On the heels of their cam lobes, with both valves fully closed",
+        "At the top of their cam lobes, with both valves open",
+        "Removed from the crankcase first"
+      ],
+      "correct": 0,
+      "rationale": "The crankshaft is positioned so the lifters rest on the heels (base circles) of the lobes and both valves are closed, so nothing is under spring load when the rocker assemblies and pushrods come off."
     }
   ]
 }

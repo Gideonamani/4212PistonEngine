@@ -30,4 +30,6 @@ const THUMBNAIL_CAPTURES = [
   { model: 'cylinder', name: 'lesson-induction-exhaust-square', view: { initialAngle: 90, initialCycle: true }, options: { zoom: 0.85, pan: [-20, -5] } },
   { model: 'cylinder', name: 'banner-breathing', view: { initialAngle: 630, initialCycle: true }, options: { width: 1000, height: 500, zoom: 0.7, pan: [0, -10] } },
   { model: 'cylinder', name: 'course-breathing-square', view: { initialAngle: 630, initialCycle: true }, options: { zoom: 0.85, orbit: [-40, -10], pan: [-10, 0] } },
+  // Lesson 10 (Power Generation).
+  { model: 'cylinder', name: 'lesson-power-generation-square', view: { initialAngle: 400, initialCycle: true, focusParts: ['PistonBody', 'FloatingPin', 'PistonRing1', 'PistonRing2', 'PistonRing3', 'PistonRing4', 'ConnectingRodBody', 'ConnectingRodCap', 'CrankThrow'], focusMode: 'xray' }, options: { zoom: 0.85, orbit: [-20, -8], pan: [-45, 0] } },
 ];
