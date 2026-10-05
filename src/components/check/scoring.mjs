@@ -26,6 +26,27 @@ export function shuffled(items, random = Math.random) {
   return next;
 }
 
+// An option that only makes sense in the last place ("All of the above", "None of these") is never moved.
+const ANCHORED_LAST = /^(all|none) of (the above|these|them)\b/i;
+
+/**
+ * The order a multiple-choice question's options are shown in: a random order of their indexes, with an option such as "All of the
+ * above" kept last. The pack order is not used, so the right answer cannot be found by knowing where authors tend to put it.
+ * @param {{ options: string[] }} question
+ * @param {() => number} [random]
+ * @returns {number[]}
+ */
+export function optionOrder(question, random = Math.random) {
+  const indexes = question.options.map((_, index) => index);
+  const movable = indexes.filter((index) => !ANCHORED_LAST.test(question.options[index].trim()));
+  const anchored = indexes.filter((index) => ANCHORED_LAST.test(question.options[index].trim()));
+  for (let at = movable.length - 1; at > 0; at -= 1) {
+    const swap = Math.floor(random() * (at + 1));
+    [movable[at], movable[swap]] = [movable[swap], movable[at]];
+  }
+  return [...movable, ...anchored];
+}
+
 /**
  * The answer a question starts with, before the learner has touched it.
  * @param {QuizQuestion} question
