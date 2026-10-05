@@ -13,12 +13,12 @@ for (const source of pack.sources.filter(source => source.tier === 5)) {
   assert.match(source.applicability, /Licence: .*accessed \d+ \w+ 2026/, `${source.id}: tier 5 sources record licence and access date`);
   assert.match(source.url, /^https:\/\//);
 }
-// Ignition is a parked (unlisted) source draft for lessons 8 and 10 (aspiration was folded into lesson 11); only listed lessons carry a curriculum number.
+// The parked ignition and aspiration drafts were folded into lessons 8, 10 and 11 and retired; the unlisted lessons left are the two deep dives. Only listed lessons carry a curriculum number.
 const listed = pack.lessons.filter(lesson => lesson.listed !== false);
 const parked = pack.lessons.filter(lesson => lesson.listed === false);
 assert.deepEqual(listed.map(lesson => lesson.sequenceNumber), [4, 5, 6, 7]);
 assert.deepEqual(listed.map(lesson => lesson.id), ['thermodynamic-cycles', 'classification', 'parts-construction', 'cooling-methods']);
-assert.deepEqual(parked.map(lesson => lesson.id), ['two-stroke-cycle', 'rotary-cycle', 'ignition-methods']);
+assert.deepEqual(parked.map(lesson => lesson.id), ['two-stroke-cycle', 'rotary-cycle']);
 // Unlisted lessons are either deep dives (linked from a step's deepDiveLinks) or parked drafts waiting for a later lesson.
 const linked = new Set(pack.lessons.flatMap(lesson => lesson.steps.flatMap(step => step.deepDiveLinks || [])));
 for (const lesson of parked) {
@@ -49,12 +49,12 @@ for (const lesson of pack.lessons) {
   }
 }
 
-assert.equal(pack.checks.length, 26);
-const expectedChecks = { 'thermodynamic-cycles': 7, classification: 5, 'parts-construction': 8, 'two-stroke-cycle': 2, 'rotary-cycle': 1, 'ignition-methods': 1, 'cooling-methods': 2 };
+assert.equal(pack.checks.length, 25);
+const expectedChecks = { 'thermodynamic-cycles': 7, classification: 5, 'parts-construction': 8, 'two-stroke-cycle': 2, 'rotary-cycle': 1, 'cooling-methods': 2 };
 for (const lesson of pack.lessons) {
   assert.equal(pack.checks.filter(check => check.lessonId === lesson.id).length, expectedChecks[lesson.id], lesson.id);
 }
 
 assert.deepEqual(validateLessonPack(pack), []);
-console.log('Fundamentals lesson pack is valid (lessons 4, 5, 6, 7 listed; ignition parked; 26 checks; deep dives linked; sourced media plans)');
+console.log('Fundamentals lesson pack is valid (lessons 4, 5, 6, 7 listed; two deep dives; 25 checks; deep dives linked; sourced media plans)');
 

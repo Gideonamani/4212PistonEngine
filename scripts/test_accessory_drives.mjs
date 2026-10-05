@@ -25,7 +25,7 @@ test('source ledger, H endpoint ratios and all published lesson bindings agree',
   assert.match(contract.parts.find(part => part.id === 'HousingCover').label, /Right crankcase/);
   assert.match(contract.parts.find(part => part.id === 'LeftMagneto').shape_status, /marker/);
   assert.deepEqual(validateLessonPack(read('web/accessories-lessons.json')), []);
-  const pack = read('web/accessories-lessons.json'); assert.equal(pack.lessons[0].sequenceNumber, 8); assert.equal(pack.checks.length, 8);
+  const pack = read('web/accessories-lessons.json'); assert.equal(pack.lessons[0].sequenceNumber, 8); assert.equal(pack.checks.length, 9);
   for (const step of pack.lessons[0].steps) {
     assert.ok(step.sourceRefs.every(ref => pack.sources.some(source => source.id === ref)));
     if (step.savedMotionId) assert.ok(animations.some(clip => clip.name === step.savedMotionId));

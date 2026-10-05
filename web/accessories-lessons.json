@@ -369,6 +369,20 @@
         "gtsio-reviewed",
         "faa-powerplant"
       ]
+    },
+    {
+      "id": "accessories-timing-data-source",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "Where should a technician get the ignition timing for a particular engine?",
+      "hint": "A general handbook explains the principle but not every engine's approved setting.",
+      "answers": [
+        "From any engine with the same number of cylinders",
+        "From the manufacturer's data for that engine",
+        "From the animation in a lesson"
+      ],
+      "correct": 1,
+      "rationale": "The handbook gives a broad range for the spark before top dead centre across engines and says the ignition must be timed to the engine manufacturer's recommendations. A model or animation cannot authorise a setting."
     }
   ]
 }
