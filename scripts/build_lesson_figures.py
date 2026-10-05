@@ -39,7 +39,7 @@ def render(pdf: fitz.Document, spec: dict) -> Image.Image:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--notes', default=str(ROOT.parent / 'Notes'), help='folder holding the source PDFs')
-    parser.add_argument('--only', action='append', help='build only this figure id (repeatable)')
+    parser.add_argument('--only', nargs='+', help='build only these figure ids')
     parser.add_argument('--sheet', help='also write a contact sheet of what was built to this PNG, to look at the crops')
     args = parser.parse_args()
 
