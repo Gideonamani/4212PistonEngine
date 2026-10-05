@@ -11,7 +11,7 @@ export default async function globalSetup(config: FullConfig) {
     const page = await browser.newPage();
     await page.route(/fonts\.(googleapis|gstatic)\.com/, (route) => route.fulfill({ status: 200, contentType: 'text/css', body: '' }));
     for (const hash of ['#/check', '#/learn', '#/explore', '#/learn/m2-cylinder-study/m2-four-stroke-guided/step/1']) {
-      await page.goto(`${baseURL}/${hash}`, { waitUntil: 'domcontentloaded' });
+      await page.goto(`${baseURL}/${hash}`, { waitUntil: 'domcontentloaded', timeout: 120_000 });
       await page.locator('h1, h2, h3, [role="application"]').first().waitFor({ timeout: 90_000 });
     }
     await page.waitForTimeout(3_000);
