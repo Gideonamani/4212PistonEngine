@@ -9,6 +9,8 @@ export type Answer = number | string | string[];
 
 type QuestionCardProps = {
   question: QuizQuestion;
+  /** For a multiple-choice question, the order its options are shown in, as indexes into question.options; the pack order when absent. */
+  optionOrder?: number[];
   answer: Answer | undefined;
   onAnswer: (answer: Answer) => void;
   /** True once the answer is verified: the answer area locks and the explanation shows. */
@@ -25,14 +27,15 @@ const typeLabel: Record<QuizQuestion['type'], string> = {
   numeric: 'ENTER A NUMBER',
 };
 
-type AnswerProps<T extends QuizQuestion> = { question: T; answer: Answer | undefined; onAnswer: (answer: Answer) => void; revealed: boolean; onVerify: () => void };
+type AnswerProps<T extends QuizQuestion> = { question: T; answer: Answer | undefined; onAnswer: (answer: Answer) => void; revealed: boolean; onVerify: () => void; optionOrder?: number[] };
 
-const ChoiceAnswer: React.FC<AnswerProps<Extract<QuizQuestion, { type: 'multiple-choice' }>>> = ({ question, answer, onAnswer, revealed }) => (
-  <div className="flex flex-col gap-2.5">{question.options.map((option, index) => {
-    const selected = answer === index;
-    const expected = index === question.correctIndex;
+const ChoiceAnswer: React.FC<AnswerProps<Extract<QuizQuestion, { type: 'multiple-choice' }>>> = ({ question, answer, onAnswer, revealed, optionOrder }) => (
+  <div className="flex flex-col gap-2.5">{(optionOrder ?? question.options.map((_, index) => index)).map((original, position) => {
+    const option = question.options[original];
+    const selected = answer === original;
+    const expected = original === question.correctIndex;
     const style = revealed ? (expected ? 'border-teal-400 bg-teal-950/60 text-teal-100' : selected ? 'border-rose-500 bg-rose-950/50 text-rose-100' : 'border-slate-800 bg-slate-900/30 text-slate-400') : selected ? 'border-teal-400 bg-teal-500/20 text-teal-200' : 'border-slate-700/60 bg-slate-900/60 text-slate-200 hover:border-slate-500';
-    return <button key={option} disabled={revealed} onClick={() => onAnswer(index)} className={`flex w-full items-start gap-3 rounded-xl border p-3.5 text-left text-xs transition sm:text-sm ${style}`}><span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-slate-800 font-mono text-xs font-bold">{String.fromCharCode(65 + index)}</span><span>{option}</span></button>;
+    return <button key={option} disabled={revealed} onClick={() => onAnswer(original)} className={`flex w-full items-start gap-3 rounded-xl border p-3.5 text-left text-xs transition sm:text-sm ${style}`}><span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-slate-800 font-mono text-xs font-bold">{String.fromCharCode(65 + position)}</span><span>{option}</span></button>;
   })}</div>
 );
 
@@ -87,14 +90,14 @@ const NumericAnswer: React.FC<AnswerProps<Extract<QuizQuestion, { type: 'numeric
 };
 
 /** One Check question: its prompt and hint, the answer area for its type, then Verify, and after Verify the explanation and the way on. */
-export const QuestionCard: React.FC<QuestionCardProps> = ({ question, answer, onAnswer, revealed, onVerify, onNext, isLast }) => {
+export const QuestionCard: React.FC<QuestionCardProps> = ({ question, optionOrder, answer, onAnswer, revealed, onVerify, onNext, isLast }) => {
   const correct = isCorrect(question, answer);
   const props = { answer, onAnswer, revealed, onVerify };
   return <section className="flex flex-col gap-4 rounded-2xl border border-teal-500/30 bg-[#08181e] p-5 shadow-xl">
     <div className="flex items-center justify-between font-mono text-xs"><span className="font-bold tracking-wider text-teal-400">{typeLabel[question.type]}</span></div>
     <h3 className="text-base font-bold leading-snug text-white sm:text-lg">{question.question}</h3>
     {question.hint && <div className="flex gap-2 rounded-xl border border-amber-500/25 bg-amber-950/20 p-3 text-xs leading-relaxed text-amber-100"><Lightbulb className="h-4 w-4 shrink-0 text-amber-300" />{question.hint}</div>}
-    {question.type === 'multiple-choice' && <ChoiceAnswer question={question} {...props} />}
+    {question.type === 'multiple-choice' && <ChoiceAnswer question={question} optionOrder={optionOrder} {...props} />}
     {question.type === 'ordering' && <OrderingAnswer question={question} {...props} />}
     {question.type === 'matching' && <MatchingAnswer question={question} {...props} />}
     {question.type === 'numeric' && <NumericAnswer question={question} {...props} />}
