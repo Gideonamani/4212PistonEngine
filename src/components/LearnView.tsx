@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { CourseTrack, Lesson } from '../types/engine';
-import { CardThumbnail } from './CardThumbnail';
 import { BackLink, CardImage, CardRow, Chip, ReviewChip } from './ui';
 import { LessonStepViewer } from './LessonStepViewer';
+import { CourseHero } from './learn/CourseHero';
 import {
   BookOpen,
-  ChevronRight,
   Box,
   FileText,
   Layers,
   CheckCircle,
-  Sparkles,
+  Scale,
 } from 'lucide-react';
-import { getCompletedLessonIds, LESSON_PROGRESS_EVENT } from '../data/lessonProgress';
+import { getCompletedLessonIds, getLessonProgress, LESSON_PROGRESS_EVENT } from '../data/lessonProgress';
 import { resolveLearn } from '../routes/route.mjs';
 import { navigate, useRoute } from '../routes/useRoute';
 
@@ -116,12 +115,24 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
             );
           })}
         </div>
+
+        <div className="px-4 pb-2 max-w-xl mx-auto w-full">
+          <button type="button" onClick={() => navigate({ view: 'credits' })} className="-ml-2 inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2 text-xs font-medium text-slate-400 hover:text-teal-300">
+            <Scale className="h-3.5 w-3.5" aria-hidden="true" />Picture credits and licences
+          </button>
+        </div>
       </div>
     );
   }
 
   // LEVEL 2: the chosen course's lesson list.
   const courseProgress = percentDone(activeTrack);
+  // The main button starts the course, resumes the first lesson not yet finished at the step the learner reached, or (all done) reopens it.
+  const nextLesson = activeTrack.lessons.find((lesson) => !completedLessonIds.has(lesson.id));
+  const started = activeTrack.lessons.some((lesson) => completedLessonIds.has(lesson.id) || Boolean(getLessonProgress(lesson.id).currentStep));
+  const action = nextLesson && started
+    ? { label: 'Continue', run: () => navigate({ view: 'learn', course: activeTrack.id, lesson: nextLesson.id, step: Math.min((getLessonProgress(nextLesson.id).currentStep ?? 0) + 1, nextLesson.stepCount) }) }
+    : { label: nextLesson ? 'Start course' : 'Review course', run: () => activeTrack.lessons[0] && openLesson(activeTrack.lessons[0]) };
   return (
     <div className="relative w-full h-full flex flex-col bg-[#061014] text-slate-100 overflow-y-auto select-none pb-24">
       <div className="px-4 pt-3 pb-2 flex flex-col gap-4 max-w-xl mx-auto w-full">
@@ -129,36 +140,7 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
           <BackLink label="All Courses" ariaLabel="Back to courses" onClick={backToCourses} />
         </div>
 
-        <div
-          onClick={() => activeTrack.lessons[0] && openLesson(activeTrack.lessons[0])}
-          className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-[#081a20] via-[#07171d] to-[#040e13] border border-teal-500/35 shadow-xl shadow-black/50 hover:border-teal-400/60 cursor-pointer transition-all flex flex-col gap-2 relative overflow-hidden group"
-        >
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1.5 text-teal-300">
-              <BookOpen className="w-4 h-4 text-teal-400" />
-              <span className="text-[11px] font-mono font-bold tracking-wider uppercase">Course</span>
-            </div>
-            <span className="text-[11px] font-mono text-teal-400/80 group-hover:text-teal-300 flex items-center gap-0.5 font-semibold">
-              {courseProgress > 0 ? 'Review lessons' : 'Start course'} <ChevronRight className="w-3.5 h-3.5" />
-            </span>
-          </div>
-
-          <div className="flex items-start justify-between gap-3 mt-0.5">
-            <div className="flex-1">
-              <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-teal-300 transition-colors">{activeTrack.title}</h3>
-              <p className="text-xs text-slate-300 leading-relaxed mt-1">{activeTrack.description}</p>
-              <div className="flex items-center flex-wrap gap-2 mt-3 text-[11px] font-mono">
-                <Chip icon={Layers} size="md">{activeTrack.lessonCount} {activeTrack.lessonCount === 1 ? 'Lesson' : 'Lessons'}</Chip>
-                <Chip icon={FileText} size="md">{activeTrack.stepCountApprox}</Chip>
-                {courseProgress > 0 && <Chip icon={Sparkles} tone="accent" size="md">{courseProgress}% complete</Chip>}
-              </div>
-            </div>
-            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden border border-teal-500/20 shrink-0 relative bg-slate-950/60">
-              <CardThumbnail src={activeTrack.thumbnail} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
-            </div>
-          </div>
-        </div>
+        <CourseHero track={activeTrack} progress={courseProgress} actionLabel={action.label} onAction={action.run} />
 
         <div className="flex items-center justify-between pt-1">
           <h3 className="text-base font-bold text-white">Lessons</h3>

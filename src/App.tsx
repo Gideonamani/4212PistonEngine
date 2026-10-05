@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { AlertTriangle, LoaderCircle, RefreshCw } from 'lucide-react';
-import { ViewMode, type CourseTrack, type QuizModule } from './types/engine';
+import { AppScreen, ViewMode, type CourseTrack, type QuizModule } from './types/engine';
 import { AppShell } from './components/AppShell';
 import { ExploreView } from './components/ExploreView';
 import { LearnView } from './components/LearnView';
 import { CheckView } from './components/CheckView';
+import { CreditsView } from './components/CreditsView';
 import { EngineInfoModal } from './components/EngineInfoModal';
 import { useShellChrome } from './components/ShellChrome';
 import { loadProductionData } from './data/loadProductionData';
@@ -16,7 +17,7 @@ const requestedModelName = () => modelsById[new URLSearchParams(location.search)
 
 export default function App() {
   const route = useRoute();
-  const activeView: ViewMode = route.view;
+  const activeView: AppScreen = route.view;
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState<boolean>(false);
   const [activeModelName, setActiveModelName] = useState<string>(() => requestedModelName() || 'Detailed operating cylinder');
@@ -76,6 +77,8 @@ export default function App() {
         return 'GTSIO-520-H · GUIDED LESSONS';
       case 'check':
         return 'GTSIO-520-H · KNOWLEDGE CHECK';
+      case 'credits':
+        return 'GTSIO-520-H · CREDITS';
       default:
         return 'GTSIO-520-H';
     }
@@ -147,11 +150,16 @@ export default function App() {
           />
         ) : curriculumState)}
         {activeView === 'check' && (quizModules.length ? <CheckView modules={quizModules} focusLessonId={quizLessonId} /> : curriculumState)}
+        {activeView === 'credits' && <CreditsView />}
       </AppShell>
 
       <EngineInfoModal
         isOpen={isInfoModalOpen}
         onClose={() => setIsInfoModalOpen(false)}
+        onOpenCredits={() => {
+          setIsInfoModalOpen(false);
+          navigate({ view: 'credits' });
+        }}
       />
     </>
   );

@@ -53,6 +53,7 @@ export type PackCheck = {
 export type LessonPack = {
   id: string;
   thumbnail?: string;
+  banner?: string;
   title: string;
   description: string;
   lessons: PackLesson[];
@@ -123,6 +124,7 @@ export function mapTrack(pack: LessonPack, index: number, models: ModelLookup): 
     progressPercent: 0,
     isCurrent: index === 0,
     thumbnail: pack.thumbnail,
+    banner: pack.banner,
     lessons,
     deepDives,
   };

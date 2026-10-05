@@ -16,6 +16,8 @@ export interface EngineComponent {
 }
 
 export type ViewMode = 'explore' | 'learn' | 'check';
+/** The three modes in the tab bar, plus the Credits page, which belongs to no tab. */
+export type AppScreen = ViewMode | 'credits';
 export type DrawerTab = 'components' | 'motion' | 'lookInside' | 'appearance';
 export type AppearanceMode = 'realistic' | 'cutaway' | 'thermal' | 'xray' | 'schematic';
 export type CyclePhase = 'intake' | 'compression' | 'power' | 'exhaust';
@@ -90,6 +92,8 @@ export interface CourseTrack {
   progressPercent: number;
   isCurrent?: boolean;
   thumbnail?: string;
+  /** Wide 2:1 image for the top of the course page; the course page has no picture when it is absent. */
+  banner?: string;
   lessons: Lesson[];
   /** Unlisted lessons linked from a step; opened by route or link, absent from the lesson list. */
   deepDives?: Lesson[];
