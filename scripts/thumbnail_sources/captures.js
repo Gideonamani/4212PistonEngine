@@ -42,4 +42,8 @@ const THUMBNAIL_CAPTURES = [
   { model: 'cylinder', name: 'lesson-performance-calculations-square', view: { initialAngle: 200, initialCycle: true }, options: { zoom: 0.8, orbit: [100, 18], pan: [95, 0] } },
   // Lesson 15 (Operation Malfunctions).
   { model: 'cylinder', name: 'lesson-operation-malfunctions-square', view: { initialAngle: 340, initialCycle: true, focusParts: ['PistonBody', 'ExhaustValve', 'UpperSparkPlug', 'UpperSparkInsulator', 'LowerSparkPlug', 'LowerSparkInsulator'], focusMode: 'xray' }, options: { zoom: 0.8, orbit: [75, 12], pan: [20, 0] } },
+  // Lesson 16 (Maintenance & Servicing) and its course.
+  { model: 'gtsio520-h-v5-teaching-engine', name: 'lesson-maintenance-servicing-square', view: {}, options: { zoom: 0.68, orbit: [-125, 22], pan: [-5, 8] } },
+  { model: 'gtsio520-h-v5-teaching-engine', name: 'course-maintenance-square', view: {}, options: { zoom: 0.8, orbit: [215, 18], pan: [0, 10] } },
+  { model: 'gtsio520-h-v5-teaching-engine', name: 'banner-maintenance', view: {}, options: { width: 1000, height: 500, zoom: 0.6, orbit: [-150, 12], pan: [0, 8] } },
 ];

@@ -150,5 +150,10 @@
     "title": "Normal combustion and detonation within a cylinder",
     "source": "FAA-H-8083-32B, Figures 10-42 and 10-43",
     "license": "U.S. Government work"
+  },
+  "faa-differential-compression.webp": {
+    "title": "Differential compression tester diagram",
+    "source": "FAA-H-8083-32B, Figure 10-53",
+    "license": "U.S. Government work"
   }
 }

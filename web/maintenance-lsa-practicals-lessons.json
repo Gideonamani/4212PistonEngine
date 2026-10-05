@@ -1,0 +1,509 @@
+{
+  "schema": "4212.lesson-pack/v3",
+  "privacy": "Lesson progress may be held locally on the learner's device and is never transmitted. Check-yourself answers remain session-only.",
+  "id": "maintenance-lsa-practicals",
+  "thumbnail": "./thumbnails/course-maintenance-lsa-practicals.webp",
+  "banner": "./banners/maintenance-lsa-practicals.webp",
+  "title": "Maintenance, LSA & Practicals",
+  "description": "Looking after a piston engine: compression tests, taking an engine apart and putting it back, and storing and preserving it. Light-sport aircraft engines and the practical assessments will follow.",
+  "sources": [
+    {
+      "id": "faa-powerplant-2023",
+      "tier": 1,
+      "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
+      "path": "Notes/amt_powerplant_handbook 2023.pdf",
+      "applicability": "Primary source for the general principles in this course. PDF page locators are used in step notes."
+    },
+    {
+      "id": "easa-module16",
+      "tier": 2,
+      "title": "EASA Module 16 - Piston Engines, Aircraft Technical Book Company",
+      "path": "Notes/EASA Module 16 - Piston Engines by Aircraft Technical Book Co LLC.pdf",
+      "applicability": "Secondary source used to cross-check the handbook; its text follows the FAA handbook closely. PDF page locators are used in step notes."
+    },
+    {
+      "id": "gtsio520-overhaul",
+      "tier": 3,
+      "title": "Continental GTSIO-520 Series Overhaul Manual X30045A",
+      "path": "Notes/gtsio520_series.pdf",
+      "applicability": "Configuration-specific source for the course reference engine. Chapter B (table of limits, March 1981) covers the series; Chapter C-3 is the difference data for the -H. Variant applicability must be checked before using a limit, dimension or maintenance instruction; always use the current data for the engine in front of you."
+    },
+    {
+      "id": "course-deck-2026-05",
+      "tier": 4,
+      "title": "Aircraft Piston Engine Slides - 21 May 2026 (instructor course deck)",
+      "path": "Notes/Aircraft Piston Engine Slides - 21May2026.pptx",
+      "applicability": "Instructor-authored course slides. Used only where the handbook, EASA text and manuals are silent. Carries no independent evidence; claims here need the instructor's confirmation."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "maintenance-servicing",
+      "thumbnail": "./thumbnails/lesson-maintenance-servicing.webp",
+      "sequenceNumber": 16,
+      "title": "Maintenance & Servicing",
+      "objective": "Describe scheduled and unscheduled maintenance; test compression and find where a cylinder leaks; list the steps of an overhaul and the care taken in taking an engine apart and putting a cylinder back; and set out how an engine is preserved, stored and returned to service.",
+      "reviewStatus": "unreviewed",
+      "models": [],
+      "listed": true,
+      "scheduledDay": 6,
+      "completionCriteria": "Explain what scheduled and unscheduled maintenance are, run and read a differential compression test, put the ten overhaul steps in order, say how a cylinder is removed and refitted, and plan the storage, preservation and return to service of an engine.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "Scheduled and unscheduled maintenance",
+          "prompt": "Work on an engine is either planned or forced. Scheduled maintenance is on the maintenance program, is usually mandatory, and is preventive. Unscheduled maintenance is reactive: it follows a fault or an incident, is diagnostic or corrective, and is recorded as corrective action. The daily and preflight checks are the first line: oil level, leaks, visible damage, propeller security, induction and exhaust connections, and the mixture, throttle and carburettor heat linkages. Most engine defects come from poor lubrication, inadequate cooling, ignition or fuel faults, detonation or pre-ignition, improper maintenance, or wear and poor storage. Always work to the engine maker's manual and the aircraft handbook.",
+          "note": "Documented from the course deck (slides 248 and 249: scheduled versus unscheduled maintenance; the daily and preflight checks; the frequent causes of defects). The deck is the only source for this step, so its claims need the instructor's confirmation. The 2025-2026 daily quiz activity (days 6-7) asks which checks come first on a preflight inspection.",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A framing step: two kinds of maintenance and the usual causes of defects."
+          }
+        },
+        {
+          "type": "image",
+          "title": "The differential compression test",
+          "prompt": "A cylinder that leaks cannot make full power, so compression is tested at intervals and the results are recorded. Do it as soon as possible after the engine is shut down, while the rings and walls are still oiled. The ignition is off, and each plug is labelled to its cylinder. The tester feeds air at a regulated 80 psi through a small orifice into the cylinder, with the piston at top dead centre on compression. The cylinder gauge shows how much of the air stays in. If it reads less than the minimum for that engine, the cylinder is leaking.",
+          "url": "./lesson-media/faa-differential-compression.webp",
+          "alt": "FAA diagram of a differential compression tester: an air supply from a compressor passes a regulator with a regulated pressure gauge, a shutoff valve and a metering orifice, then a cylinder pressure gauge, into a cylinder whose piston is on true top dead centre.",
+          "credit": "FAA-H-8083-32B, Figure 10-53",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 407-408 (the compression test shows whether the valves, rings and pistons seal the chamber; perform it as soon as possible after shutdown so the rings and walls are still lubricated; ignition off, plugs identified with their cylinders; the differential pressure tester measures leakage through the cylinder; set the regulator to 80 psi; the piston is brought up on compression to top dead centre; a reading below the minimum for the engine means low compression; Figure 10-53). The minimum reading is the manufacturer's figure and is not given here.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The handbook's diagram shows the two gauges and the orifice that make the test a measure of leakage."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Finding the leak",
+          "prompt": "A low reading says a cylinder leaks, not where. Listen while the test air is on. Air escaping at the exhaust outlet is leaking past the exhaust valve. Air escaping at the air intake is leaking past the intake valve. Air coming out of the crankcase breather is leaking past the piston and rings. Next to the valves, the piston is the most common cause, and a lack of oil is one reason, so put oil in the cylinder and test again. If a valve is the cause, check its clearance. If the pressure is still low, the cylinder is replaced. Record every reading, because the trend across checks shows wear building up.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 408-409 (cylinders below the minimum are checked further: leakage past the exhaust valve at the exhaust outlet, the intake valve at the air intake, the piston rings at the breather outlets; next to valve blow-by, the most frequent cause of compression leakage is leakage past the piston, which can be a lack of oil; apply oil and re-check, and replace the cylinder if still below the minimum) and PDF p. 407 (records of previous checks show progressive wear; check valve clearance; if blow-by remains, replace the cylinder). The course deck (slide 257) asks the same question as a recap.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Three leak paths and the three places to listen; the learner matches them in a check."
+          }
+        },
+        {
+          "type": "text",
+          "title": "When an engine comes off",
+          "prompt": "An engine is removed when it cannot be inspected or repaired where it is, or when it reaches a limit: it is due for overhaul, it has lost performance, it leaks heavily, a major part has failed, or it has corroded in storage. After a propeller strike or a sudden stop it is removed for internal checks. Once it is off, it is taken apart for a reason: metal in the oil, lost compression, detonation damage, internal corrosion, odd noises, crankshaft runout, or an airworthiness directive or service bulletin that needs it. One faulty part can still mean a full teardown. A first check on any engine for complete overhaul is the runout of the crankshaft or propeller shaft.",
+          "note": "Documented from the course deck (slide 250, reasons for engine removal; slide 252, reasons for disassembly) and FAA-H-8083-32B (2023), PDF p. 370 (any engine to be completely overhauled should first have its crankshaft or propeller shaft runout checked, and a shaft beyond its limits must be replaced; service bulletins are not mandatory unless an airworthiness directive refers to them or the inspection program requires them). The deck says that a propeller strike or hard landing makes engine removal mandatory; the handbook text read here does not say so, and the lesson keeps the wording to a reason for internal checks.",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A list of reasons the learner will meet again in the course's practical work."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Overhaul and time before overhaul",
+          "prompt": "Each manufacturer sets a total time in service, in hours, at which an engine is overhauled. The handbook calls it the time before overhaul, TBO, and the course deck calls it time between overhauls. Depending on how the engine is used, it can be mandatory. A top overhaul reconditions only the parts above the crankcase, such as the cylinders, pistons, rings and valve gear, without dismantling the engine, and is really a repair. A major overhaul is a complete reconditioning. It has ten steps: receiving inspection, disassembly, visual inspection, cleaning, structural inspection, non-destructive testing, dimensional inspection, repair and replacement, reassembly, and testing and break-in.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 369 (overhaul is set by the manufacturer's recommended hours, called time before overhaul, TBO, and depending on use it can be mandatory; an engine with a life of 2,000 hours that has operated 500 hours has 1,500 hours remaining; a complete overhaul has ten steps; a top overhaul is an overhaul of the parts above the crankcase without completely dismantling the engine, is really a repair and not a true overhaul; a major overhaul is the complete reconditioning of the powerplant). EASA Module 16, PDF p. 334 (Figure 14-1) and the course deck (slide 265) call it time between overhaul.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "One list the learner has to be able to say in order; an ordering check tests it."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Taking the engine apart",
+          "prompt": "Start with the paperwork: the engine's history, its service bulletins and airworthiness directives. Then mount it on an overhaul stand and clean the outside. During disassembly, drain the oil and strain it through a clean cloth, and look at the cloth and the filter for metal. Lay every part out in order, with a container for small parts, so that visual inspection can follow at once. Tag loose studs and damaged fittings. Use the right tool, not a makeshift one. Throw away every safety device as it comes out: lockwire, cotter pins, tab washers, seals and gaskets are never used a second time. Do not clean the engine with a caustic solution, which can strip the finish.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 370 (receiving inspection and records review; the engine is mounted on an overhaul stand; drain the oil and strain it through a clean cloth and check for metal particles; lay parts out in an orderly manner; tag loose studs and damaged fittings; use the proper tool; never reuse safety wire or cotter pins) and the Continental GTSIO-520 overhaul manual, PDF p. 55 (paragraphs 7-3 to 7-5: discard shakeproof washers, lockwires, tab washers, seals, gaskets, cotter pins and hose connectors; use a tilting-bed stand; do not use a caustic or alkaline cleaner, which removes the alodized finish of some aluminium parts). Chapter A is written for the basic GTSIO-520; check the -H difference data in Chapter C-3 for any change.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Practical habits listed once; the 3D cylinder in the rest of the course already shows the parts."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Taking a cylinder off",
+          "prompt": "First, turn the crankshaft so the piston is at top dead centre on compression, which frees the rocker arms, and take out the pushrods. Mark each so it can go back where it came from. Take off all the hold-down nuts except two, 180° apart, then support the cylinder and take off the last two. Pull it straight out along the studs, and catch the piston as it clears the barrel. Before the piston comes out, put a cloth in the opening so no piece of a broken ring falls into the crankcase. When the cylinder is off, support the connecting rod: the base seal ring looped round the rod and the studs will do. The manual may call for a wooden block under the cylinder when removing the valve springs.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 409-410 (turn the crankshaft to top dead centre on compression to relieve the rocker arms before removing the pushrods; mark the pushrods; remove all but two nuts 180 degrees apart; support the cylinder, with two technicians; a cloth stops pieces of broken rings falling into the crankcase; the connecting rod must be supported after removal, by the removed cylinder base oil seal ring looped around the rod and the base studs) and the GTSIO-520 overhaul manual, PDF pp. 57-58 (paragraph 7-15: the cylinder is withdrawn straight outward and the piston caught as it clears; a cylindrical wood block is recommended for removing the valve springs). The deck (slides 253 and 257) says wooden supports or rubber collars on the rods.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A sequence of actions the learner follows in order."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Inspect before you clean",
+          "prompt": "The first inspection is visual and it comes before cleaning, because the residual deposits of metal in the recesses of the engine can show how it failed. Then each part is checked in three ways: visual, structural and dimensional. Visual and structural checks look for defects such as cracks, with a bright light and a magnifier, with magnetic particle inspection for magnetic parts, or with dye penetrant, eddy current, ultrasound or X-ray. Dimensional checks measure each part against the manufacturer's limits. Some signs link back to what you have learned: a depression in the top of a piston usually means that detonation has occurred, and interior cracks in a cylinder head radiate from the valve seat or spark plug bosses.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 371 (visual inspection precedes all other procedures; parts should not be cleaned before a preliminary visual inspection because residual deposits of metallic particles may show a failure), PDF p. 370 (visual, structural and dimensional inspection; magnetic particle inspection for magnetic parts, and dye penetrant, eddy current, ultrasound and X-ray), PDF p. 372 (cylinder head interior cracks almost always radiate from the valve seat bosses or spark plug bushing boss) and PDF p. 373 (a depression in the top of the piston usually means that detonation has occurred).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Ties the inspection back to the malfunctions lesson."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Putting a cylinder back",
+          "prompt": "Oil the piston and rings, and place the ring gaps as the manual says. For the GTSIO-520 the gaps of alternate rings sit 180° apart. Put the piston on the rod with its number toward the front. Compress the rings with a ring compressor and ease the cylinder on straight and without rocking, or a ring can escape and break. Fit two nuts 180° apart, then the rest, snug. Then torque them to the manual's value, in the manual's sequence, with a slow, steady pull, and safety them. Put the pushrods back in their own places, not turned end for end, and set the valve clearance.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 410-411 (oil the piston and stagger the ring gaps; compress the rings with a ring compressor and ease the cylinder on without rocking; install two nuts 180 degrees apart, then the rest snug; torque to the manufacturer's value with a slow, steady motion, then safety; pushrods go back in their original locations and must not be turned end to end; set the valve clearance), and the GTSIO-520 overhaul manual, PDF p. 75 (paragraph 11-8: the gaps of alternate rings are positioned 180 degrees apart), PDF p. 79-80 (paragraph 12-7: ring compressor, tighten the nuts moderately, torque in the sequence of Figure A-4-38) and PDF p. 100 (Table 2, cylinder hold-down nuts 7/16-20 at 490-510 inch-pounds, 40.8-42.5 foot-pounds). The course deck (slide 254) gives a 120 degree stagger and a ring end gap of 0.015 to 0.030 in; neither is in the handbook or the manual read here, and this lesson follows the manual.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A sequence of actions and one torque value; the learner converts units in a check."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Why engines are preserved",
+          "prompt": "An engine that sits does not stay as it was. Combustion leaves moisture and corrosive by-products that attack the cylinder walls and valves, and with no flying and no daily attention nothing removes them. Engines near the sea, lakes, rivers or in humid regions are at greater risk. Running the engine on the ground is not the answer. Each shutdown leaves water in the crankcase, and only a flight that holds the oil at about 180°F for at least 30 minutes drives it out. A ground run does not, so repeated ground runs build up water in the oil and make corrosion worse. That is why preservation is a procedure with steps and a record.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 345 (an engine awaiting overhaul or return to service does not receive the daily attention needed to catch early corrosion; combustion creates moisture and corrosive by-products that attack unprotected cylinder walls, valves and other surfaces; engines near oceans, lakes, rivers and humid regions have a greater need for preservation) and EASA Module 16, PDF p. 323 (running the engine on the ground is harmful: water from each shutdown is purged only by operating at least 30 minutes at 180 degrees F, which ground runs do not achieve, so water accumulates and causes corrosion). The course deck (slide 264) asks the same question as a recap.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The reason for preservation, and the surprising point about ground runs."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Three levels of storage",
+          "prompt": "The longer an engine will sit, the more is done to it. In active storage the engine has had at least an hour of continuous running with the oil at 165 to 200°F, and not more than 30 days pass. The EASA text calls this flyable storage. Temporary storage is for an aircraft that is not flown for 30 to 90 days. Indefinite storage is for over 90 days, or for an engine removed from the aircraft for a long time. In indefinite storage the preservative is renewed at least every six months. The course deck divides storage differently, as up to 30 days, one to six months, and over six months. The handbook and the EASA text agree on 30 and 90 days, and the lesson follows them.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 345 (three types of storage: active, with at least one continuous hour of operation at an oil temperature of at least 165 to 200 degrees F and not more than 30 days; temporary, 30 to 90 days; indefinite, over 90 days or removed from the aircraft for an extended time) and EASA Module 16, PDF pp. 323-326 (flyable, temporary storage limited to 90 days, and indefinite storage for over 90 days; preservation renewed every six months). The course deck (slide 259) groups storage as short term up to 30 days, medium term 1-6 months and long term over 6 months, and its slide 264 as flyable up to 30 days and temporary or indefinite beyond; the handbook and EASA text are followed here and the deck needs the instructor's confirmation.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Three levels set out by duration; a matching check tests them."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Preserving an engine",
+          "prompt": "Run the engine until it is at normal temperature for at least an hour, drain the oil, and refill with a preservative oil. The GTSIO-520 manual specifies MIL-C-6529 Type II, preheated to 225°F. Remove the spark plugs. Spray each cylinder with preservative through the plug hole with the piston at bottom centre, then spray each again with no piston at top centre. Then do not turn the crankshaft, because that would scrape off the coating, and fit a placard saying so, with the date. Fit dehydrator plugs. Spray and seal the exhaust ports and the intake, put silica gel in the intake, and write down every seal and plug.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 345-347 (before temporary or indefinite storage, operate the engine until normal temperature for at least an hour and replace the oil with a preservative mixture; remove the plug leads and top plugs; spray each cylinder at bottom center and again with no piston at top dead center; the crankshaft must not be moved after the last spraying, the seal would be broken, and a sign reads DO NOT TURN CRANKSHAFT, ENGINE PRESERVED, with the date; dehydrator plugs in the plug holes; the exhaust ports are sprayed and sealed; the intake is sealed with silica gel bags), EASA Module 16, PDF pp. 324-325 (the placard, the sealing of ports, and the list of what was plugged) and the GTSIO-520 overhaul manual, PDF p. 54 (paragraph 6-3: oil sump filled to the full mark with MIL-C-6529 Type II, which must be preheated to 225 degrees F; the engine is run first, and stored longer than about a week). The 225 degrees F is the manufacturer's value for that product and engine.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The steps are easiest to remember as one sequence; the learner states the order in the last step."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Reading the dehydrator plugs",
+          "prompt": "A dehydrator plug is a clear plug holding silica gel treated with cobalt chloride, screwed into a spark plug hole. It is also a humidity gauge. Bright blue means the air in the engine is dry, below 30 percent relative humidity, where corrosion does not normally take place. As the humidity rises it fades to lavender at about 30 percent, then through the pinks, to white at 60 percent. Pink means the plug has taken up moisture. Look at them every 15 days in indefinite storage. Replace any that has changed colour, and if half or more have changed, replace all of the desiccant. Look into the cylinders, and if there is corrosion, spray and turn the engine.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 346 (the cobalt-chloride silica gel is bright blue at low relative humidity, lavender at 30 percent, through shades of pink to white at 60 percent; when the relative humidity is below 30 percent, corrosion does not normally take place; some types can be dried and returned to blue) and EASA Module 16, PDF pp. 325-326 (blue is dry and pink means exposure to high moisture; engines in indefinite storage are inspected every 15 days; a plug that changes colour is replaced and, if half or more change, all the desiccants; if cylinder corrosion is found it is sprayed and the engine turned at least 10 turns). The course deck (slide 264) asks what the blue-to-pink change means.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The colour code is the content; a matching check covers it."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Returning to service",
+          "prompt": "Take off all the seals and the desiccant bags, and the dehydrator plugs. Drain the preservative oil from the sump, put the drain plug back, torque and safety it, change the filter, and service the engine with oil. Before you move the propeller, disconnect all the plug leads, make sure the magneto switches are off and the throttle closed, and stay out of the arc of the blades. Turn it by hand several revolutions to clear the preservative oil, and pre-oil the engine so that it makes oil pressure at the first start. Then fit plugs and leads, inspect, start, run the operational test and correct any faults. Change the oil and filter after 25 hours.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 347-348 (return to service: remove seals and desiccant bags; remove the dehydrator plugs; drain the preservative oil, torque and safety the drain plug, change the filter and service with oil; the warning to disconnect plug leads, check the magneto switches off, close the throttle, mixture to idle cut-off, and keep out of the arc before moving the propeller; rotate by hand several revolutions to clear preservative oil; install plugs and leads; inspect and correct; start and test; change the oil and filter after 25 hours) and EASA Module 16, PDF p. 327 (pre-oiling before starting an engine that has been inactive, and after assembly) with the course deck (slide 263).",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A return-to-service sequence with its safety warning."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Plan a job",
+          "prompt": "A six-cylinder engine is going to sit for four months while the aircraft is repaired, and you are told to make sure it comes out as good as it went in. Say in your own words which level of storage it needs, and why. Then list, in order, what you would do to the engine to preserve it, what you would do to the plugs and ports, what you would check and how often while it sits, and what you would do when it returns to service. Finish by naming the one thing you must never do to the crankshaft in storage, and why.",
+          "note": "Completion step: the learner applies the storage and preservation sequence (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 345-348, and EASA Module 16, PDF pp. 323-327. A four-month storage is temporary or indefinite storage depending on whether it passes 90 days; the deck would call it medium term.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The learner plans the job in their own words from what they have read."
+          }
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "maint-overhaul-steps",
+      "lessonId": "maintenance-servicing",
+      "type": "ordering",
+      "question": "Put the steps of a complete overhaul in order.",
+      "hint": "Look before you clean, and measure before you rebuild.",
+      "items": [
+        "Receiving inspection",
+        "Disassembly",
+        "Visual inspection",
+        "Cleaning",
+        "Structural inspection",
+        "Non-destructive testing",
+        "Dimensional inspection",
+        "Repair and replacement",
+        "Reassembly",
+        "Testing and break-in"
+      ],
+      "rationale": "The handbook lists the ten steps in this order. The inspections are the most precise and most important phases, and visual inspection comes before cleaning so that the deposits are still there to be read."
+    },
+    {
+      "id": "maint-match-leak-paths",
+      "lessonId": "maintenance-servicing",
+      "type": "matching",
+      "question": "During a differential compression test, where do you hear air escaping for each leak?",
+      "hint": "Air takes the way out that is open to the leaking part.",
+      "pairs": [
+        {
+          "left": "Past the exhaust valve",
+          "right": "At the exhaust outlet"
+        },
+        {
+          "left": "Past the intake valve",
+          "right": "At the air intake"
+        },
+        {
+          "left": "Past the piston rings",
+          "right": "At the crankcase breather"
+        }
+      ],
+      "rationale": "Air that passes the exhaust valve goes out through the exhaust, air that passes the intake valve goes back out of the induction system, and air that passes the piston goes into the crankcase and out of the breather."
+    },
+    {
+      "id": "maint-match-storage-levels",
+      "lessonId": "maintenance-servicing",
+      "type": "matching",
+      "question": "Match each kind of storage to when it applies.",
+      "hint": "The limits are 30 days and 90 days.",
+      "pairs": [
+        {
+          "left": "Active or flyable storage",
+          "right": "Up to 30 days, after at least an hour of running"
+        },
+        {
+          "left": "Temporary storage",
+          "right": "Not flown for 30 to 90 days"
+        },
+        {
+          "left": "Indefinite storage",
+          "right": "Over 90 days, or the engine is off the aircraft"
+        }
+      ],
+      "rationale": "The handbook and the EASA text agree on 30 and 90 days. The course deck groups storage differently, as up to 30 days, one to six months and over six months, and the lesson follows the handbook."
+    },
+    {
+      "id": "maint-match-dehydrator-colours",
+      "lessonId": "maintenance-servicing",
+      "type": "matching",
+      "question": "Match each dehydrator plug colour to what it tells you.",
+      "hint": "Cobalt chloride changes from blue towards white as moisture arrives.",
+      "pairs": [
+        {
+          "left": "Bright blue",
+          "right": "Dry air, below 30 percent relative humidity"
+        },
+        {
+          "left": "Lavender",
+          "right": "About 30 percent relative humidity"
+        },
+        {
+          "left": "Pink",
+          "right": "The plug has taken up moisture and needs attention"
+        },
+        {
+          "left": "White",
+          "right": "About 60 percent relative humidity"
+        }
+      ],
+      "rationale": "Blue means little internal corrosion is expected. Lavender is about 30 percent, the pinks follow as humidity rises, and the plug is white at 60 percent. A plug that has changed colour is replaced, or dried if it is the kind that can be dried."
+    },
+    {
+      "id": "maint-differential-pressure",
+      "lessonId": "maintenance-servicing",
+      "type": "numeric",
+      "question": "To what regulated pressure is a differential compression tester set before the cylinder is tested?",
+      "hint": "It is the pressure of the air fed in through the orifice.",
+      "unit": "psi",
+      "correctValue": 80,
+      "tolerance": 0,
+      "rationale": "The regulator is set to 80 psi. The gauge on the cylinder then shows how much of that pressure the cylinder holds, and a reading below the minimum for the engine means it is leaking."
+    },
+    {
+      "id": "maint-torque-units",
+      "lessonId": "maintenance-servicing",
+      "type": "numeric",
+      "question": "A cylinder hold-down nut is to be torqued to 500 inch-pounds. Your torque wrench reads in foot-pounds. What setting is that, to one decimal place?",
+      "hint": "There are 12 inches in a foot.",
+      "unit": "ft-lb",
+      "correctValue": 41.7,
+      "tolerance": 0.1,
+      "rationale": "500 ÷ 12 = 41.7 foot-pounds. The GTSIO-520 manual's table gives 490 to 510 inch-pounds for these nuts, which is 40.8 to 42.5 foot-pounds."
+    },
+    {
+      "id": "maint-tbo-remaining",
+      "lessonId": "maintenance-servicing",
+      "type": "numeric",
+      "question": "An engine has an overhaul life of 2,000 hours and has flown 500 hours. How many hours does it have left before overhaul?",
+      "hint": "Subtract the time flown from the life.",
+      "unit": "hours",
+      "correctValue": 1500,
+      "tolerance": 0,
+      "rationale": "2,000 - 500 = 1,500 hours. This is the handbook's own example of time before overhaul. The manufacturer sets the life, and depending on how the engine is used the limit can be mandatory."
+    },
+    {
+      "id": "maint-preservative-mix",
+      "lessonId": "maintenance-servicing",
+      "type": "numeric",
+      "question": "Type I corrosion-preventive compound is a concentrate blended with three parts of oil to one part of concentrate. How many quarts of concentrate are in 8 quarts of the finished mixture?",
+      "hint": "The mixture is four parts in all.",
+      "unit": "quarts",
+      "correctValue": 2,
+      "tolerance": 0,
+      "rationale": "Three parts oil and one part concentrate make four parts, so one quarter of the mixture is concentrate: 2 quarts of concentrate with 6 quarts of oil. The mixture is blended separately and never made by adding concentrate to the oil already in the engine."
+    },
+    {
+      "id": "maint-compression-timing",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "When should a cylinder compression test be done on an engine that has been running?",
+      "hint": "Think about the condition of the rings and walls.",
+      "answers": [
+        "After the engine has stood cold for a day",
+        "As soon as possible after shutdown, while the rings and walls are still oiled",
+        "Only after the spark plugs have been replaced"
+      ],
+      "correct": 1,
+      "rationale": "A test straight after shutdown has the piston rings, cylinder walls and other parts freshly lubricated, so the reading is a true one. The ignition is off, and each plug is labelled to its cylinder."
+    },
+    {
+      "id": "maint-support-rod",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "Why is the connecting rod supported as soon as a cylinder has been taken off?",
+      "hint": "Think about what the rod can hit.",
+      "answers": [
+        "The rod falls and is damaged, or damages the crankcase",
+        "To stop the crankshaft turning",
+        "To keep oil from draining out of the engine"
+      ],
+      "correct": 0,
+      "rationale": "With the cylinder and piston gone, nothing holds the rod. It can drop and strike the crankcase. The handbook supports each rod with the removed cylinder base seal ring looped around the rod and the studs."
+    },
+    {
+      "id": "maint-inspect-first",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "Why are engine parts not cleaned before the first visual inspection?",
+      "hint": "What is in the recesses?",
+      "answers": [
+        "Cleaning would make the parts too hot to handle",
+        "Cleaning always damages the parts",
+        "Deposits of metal particles in the recesses can show how the failure began"
+      ],
+      "correct": 2,
+      "rationale": "Residual metallic deposits in the recesses of the engine can be an indication of a failure, and cleaning removes them. Visual inspection comes first, then cleaning, then the structural and dimensional inspections."
+    },
+    {
+      "id": "maint-ground-runs",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "Why can repeated short ground runs of an engine in storage do more harm than good?",
+      "hint": "Water forms in the crankcase at every shutdown.",
+      "answers": [
+        "The oil does not get hot enough for long enough to drive out the water, so water builds up in the oil and causes corrosion",
+        "They use up the preservative oil in the cylinders",
+        "They wear the piston rings faster than flying does"
+      ],
+      "correct": 0,
+      "rationale": "Each shutdown leaves water vapour condensed in the crankcase. Only about 30 minutes at an oil temperature near 180°F purges it, and a ground run does not reach that, so the water accumulates."
+    },
+    {
+      "id": "maint-crankshaft-in-storage",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "Why must the crankshaft not be turned after the final spraying of a preserved engine?",
+      "hint": "Think about the coating on the cylinder walls.",
+      "answers": [
+        "The spark plugs would be shorted",
+        "The seal between the pistons and cylinder walls is broken and the coating is scraped off",
+        "The oil would drain from the sump"
+      ],
+      "correct": 1,
+      "rationale": "Turning the engine breaks the seal of preservative between the pistons and the cylinder walls, so air can enter, and scrapes the coating off the walls so that bare metal is exposed. The engine carries a sign saying DO NOT TURN CRANKSHAFT and the date."
+    },
+    {
+      "id": "maint-replace-at-overhaul",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "According to the GTSIO-520 overhaul manual, which parts are recommended for replacement at every major overhaul, whatever their condition?",
+      "hint": "Think about the parts in the valve train that work hardest.",
+      "answers": [
+        "The crankshaft and camshaft",
+        "The exhaust valves, their rotocaps and the hydraulic valve lifters",
+        "The crankcase and the cylinder studs"
+      ],
+      "correct": 1,
+      "rationale": "The manual's notes in paragraph 7-15 recommend replacing all exhaust valves and rotocaps, and all hydraulic lifters, at each major overhaul regardless of condition. Always read the current instructions for the engine in front of you."
+    }
+  ]
+}

@@ -284,6 +284,18 @@
       "path": "lesson-operation-malfunctions-square.webp",
       "credit": "Rendered from the app's cylinder teaching model",
       "license": "Course material"
+    },
+    "course-maintenance-lsa-practicals": {
+      "kind": "render",
+      "path": "course-maintenance-square.webp",
+      "credit": "Rendered from the app's GTSIO-520-H full-engine teaching model",
+      "license": "Course material"
+    },
+    "lesson-maintenance-servicing": {
+      "kind": "render",
+      "path": "lesson-maintenance-servicing-square.webp",
+      "credit": "Rendered from the app's GTSIO-520-H full-engine teaching model",
+      "license": "Course material"
     }
   },
   "previews": {
@@ -421,6 +433,12 @@
       "requirements-and-malfunctions": {
         "kind": "render",
         "path": "banner-requirements.webp",
+        "credit": "Rendered from the app's GTSIO-520-H full-engine teaching model",
+        "license": "Course material"
+      },
+      "maintenance-lsa-practicals": {
+        "kind": "render",
+        "path": "banner-maintenance.webp",
         "credit": "Rendered from the app's GTSIO-520-H full-engine teaching model",
         "license": "Course material"
       }
