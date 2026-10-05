@@ -71,12 +71,12 @@
       "scope": "Whole-engine instances use the common mounting, phase and teaching-interface definition. Detailed valve/gas behaviour remains scoped to the single-cylinder lesson."
     },
     "cylinder_instances": [
-      {"id":"cylinder-1","station":"left-forward","bank":"left","orientation":"outboard from crankcase","firing_phase_deg":0,"phase_basis":"derived firing event"},
-      {"id":"cylinder-2","station":"right-forward","bank":"right","orientation":"outboard from crankcase","firing_phase_deg":360,"phase_basis":"derived firing event"},
-      {"id":"cylinder-3","station":"left-middle","bank":"left","orientation":"outboard from crankcase","firing_phase_deg":480,"phase_basis":"derived firing event"},
-      {"id":"cylinder-4","station":"right-middle","bank":"right","orientation":"outboard from crankcase","firing_phase_deg":120,"phase_basis":"derived firing event"},
-      {"id":"cylinder-5","station":"left-aft","bank":"left","orientation":"outboard from crankcase","firing_phase_deg":240,"phase_basis":"derived firing event"},
-      {"id":"cylinder-6","station":"right-aft","bank":"right","orientation":"outboard from crankcase","firing_phase_deg":600,"phase_basis":"derived firing event"}
+      {"id":"cylinder-1","station":"right-aft","bank":"right","orientation":"outboard from crankcase","firing_phase_deg":0,"phase_basis":"derived firing event"},
+      {"id":"cylinder-2","station":"left-aft","bank":"left","orientation":"outboard from crankcase","firing_phase_deg":360,"phase_basis":"derived firing event"},
+      {"id":"cylinder-3","station":"right-middle","bank":"right","orientation":"outboard from crankcase","firing_phase_deg":480,"phase_basis":"derived firing event"},
+      {"id":"cylinder-4","station":"left-middle","bank":"left","orientation":"outboard from crankcase","firing_phase_deg":120,"phase_basis":"derived firing event"},
+      {"id":"cylinder-5","station":"right-forward","bank":"right","orientation":"outboard from crankcase","firing_phase_deg":240,"phase_basis":"derived firing event"},
+      {"id":"cylinder-6","station":"left-forward","bank":"left","orientation":"outboard from crankcase","firing_phase_deg":600,"phase_basis":"derived firing event"}
     ],
     "crankshaft": {
       "id":"gtsio520h:crankshaft:v1",
