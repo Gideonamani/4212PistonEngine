@@ -116,7 +116,13 @@ export interface MatchingQuestion extends QuizQuestionBase { type: 'matching'; p
 /** The learner types a number; any value within `tolerance` of `correctValue` is right. */
 export interface NumericQuestion extends QuizQuestionBase { type: 'numeric'; unit: string; correctValue: number; tolerance: number }
 
-export type QuizQuestion = ChoiceQuestion | OrderingQuestion | MatchingQuestion | NumericQuestion;
+/**
+ * The learner taps a part on a 3D model. `correctNodeId` is the id of a component of that model, or of a group of them (any part in the
+ * group is then right); `alsoAccept` lists further ids that are right too. `view` is the pose the model opens in.
+ */
+export interface ModelClickQuestion extends QuizQuestionBase { type: 'model-click'; modelId: string; correctNodeId: string; alsoAccept?: string[]; view?: { initialAngle?: number } }
+
+export type QuizQuestion = ChoiceQuestion | OrderingQuestion | MatchingQuestion | NumericQuestion | ModelClickQuestion;
 export type QuizQuestionType = QuizQuestion['type'];
 
 export interface QuizModule {

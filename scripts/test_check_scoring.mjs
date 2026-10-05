@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
-  ANSWERABLE_TYPES, describeNumericAnswer, formatNumber, initialAnswer, isAnswered, isCorrect, matchingOptions, matchingResults, optionOrder, parseNumber, shuffled, withinTolerance,
+  ANSWERABLE_TYPES, describeNumericAnswer, formatNumber, initialAnswer, isAnswered, isCorrect, matchingOptions, matchingResults, optionOrder, parseNumber, shuffled, withinTolerance, acceptedNodeIds, nodeIdsOf,
 } from '../src/components/check/scoring.mjs';
 
 const choice = { type: 'multiple-choice', options: ['a', 'b', 'c'], correctIndex: 1 };
@@ -9,8 +9,8 @@ const ordering = { type: 'ordering', items: ['intake', 'compression', 'power', '
 const matching = { type: 'matching', pairs: [{ left: 'Magneto', right: 'Spark' }, { left: 'Vacuum pump', right: 'Gyro instruments' }, { left: 'Oil pump', right: 'Lubrication' }] };
 const numeric = { type: 'numeric', unit: 'cu in', correctValue: 78.5, tolerance: 0.5 };
 
-test('the answerable types are the four the screen has an answer area for', () => {
-  assert.deepEqual([...ANSWERABLE_TYPES], ['multiple-choice', 'ordering', 'matching', 'numeric']);
+test('the answerable types are the five the screen has an answer area for', () => {
+  assert.deepEqual([...ANSWERABLE_TYPES], ['multiple-choice', 'ordering', 'matching', 'numeric', 'model-click']);
 });
 
 test('numbers are read the way a student types them', () => {
@@ -118,4 +118,26 @@ test('an option such as "All of the above" stays last', () => {
 test('a question with one or two options is handled', () => {
   assert.deepEqual(optionOrder({ options: ['only'] }), [0]);
   assert.deepEqual([...optionOrder({ options: ['true', 'false'] })].sort(), [0, 1]);
+});
+
+test('a model-click answer is the list of node ids the tapped part answers to, right when any one is accepted', () => {
+  const click = { type: 'model-click', modelId: 'cylinder', correctNodeId: 'PistonBody', alsoAccept: ['piston-group'] };
+  assert.deepEqual(acceptedNodeIds(click), ['PistonBody', 'piston-group']);
+  assert.deepEqual(acceptedNodeIds({ type: 'model-click', correctNodeId: 'alternator' }), ['alternator']);
+  assert.equal(initialAnswer(click), undefined, 'nothing is tapped to begin with');
+  assert.equal(isAnswered(click, undefined), false);
+  assert.equal(isAnswered(click, []), false, 'a tap that landed on no known part is not an answer');
+  assert.equal(isAnswered(click, ['IntakeValve', 'intake']), true);
+  assert.equal(isCorrect(click, ['PistonBody', 'piston']), true);
+  assert.equal(isCorrect(click, ['PistonRing1', 'piston-group']), true, 'an alternative is right too');
+  assert.equal(isCorrect(click, ['IntakeValve', 'intake']), false);
+  assert.equal(isCorrect(click, undefined), false);
+  assert.equal(isCorrect(click, 'PistonBody'), false, 'the answer is a list, never a bare id');
+});
+
+test('the node ids of a tapped component are its own id, then its groups, with no repeats', () => {
+  assert.deepEqual(nodeIdsOf({ id: 'AlternatorBody', group: 'alternator' }), ['AlternatorBody', 'alternator']);
+  assert.deepEqual(nodeIdsOf({ id: 'OilDriver', group: 'oil-tach', groups: ['path:oil', 'oil-tach'] }), ['OilDriver', 'oil-tach', 'path:oil']);
+  assert.deepEqual(nodeIdsOf({ id: 'Loose' }), ['Loose']);
+  assert.deepEqual(nodeIdsOf(undefined), [], 'a tap on nothing known answers to nothing');
 });

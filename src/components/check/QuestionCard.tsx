@@ -1,8 +1,11 @@
-import React, { useId } from 'react';
+import React, { Suspense, useId } from 'react';
 import { ChevronDown, ChevronRight, ChevronUp, Lightbulb } from 'lucide-react';
 import type { QuizQuestion } from '../../types/engine';
 import { IconButton } from '../ui';
 import { describeNumericAnswer, isAnswered, isCorrect, matchingOptions, matchingResults, parseNumber } from './scoring.mjs';
+
+// The 3D model is only needed by model-click questions, so its code loads when the first one is shown.
+const PartPicker = React.lazy(() => import('./PartPicker'));
 
 /** What the learner has entered so far: an option index, an item order, the chosen right-hand text per term, or typed text. */
 export type Answer = number | string | string[];
@@ -25,6 +28,7 @@ const typeLabel: Record<QuizQuestion['type'], string> = {
   ordering: 'ORDER THE ITEMS',
   matching: 'MATCH EACH ITEM',
   numeric: 'ENTER A NUMBER',
+  'model-click': 'TAP THE PART ON THE MODEL',
 };
 
 type AnswerProps<T extends QuizQuestion> = { question: T; answer: Answer | undefined; onAnswer: (answer: Answer) => void; revealed: boolean; onVerify: () => void; optionOrder?: number[] };
@@ -101,6 +105,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, optionOrde
     {question.type === 'ordering' && <OrderingAnswer question={question} {...props} />}
     {question.type === 'matching' && <MatchingAnswer question={question} {...props} />}
     {question.type === 'numeric' && <NumericAnswer question={question} {...props} />}
+    {question.type === 'model-click' && <Suspense fallback={<div className="flex h-56 items-center justify-center rounded-xl border border-teal-400/20 bg-[#071418] text-xs text-teal-300">Preparing interactive 3D viewer…</div>}><PartPicker question={question} answer={Array.isArray(answer) ? answer : undefined} onAnswer={onAnswer} revealed={revealed} /></Suspense>}
     {!revealed
       ? <button disabled={!isAnswered(question, answer)} onClick={onVerify} className="min-h-11 w-full rounded-xl bg-teal-400 py-3 text-xs font-bold text-slate-950 shadow-lg shadow-teal-400/20 disabled:cursor-not-allowed disabled:bg-slate-800 disabled:text-slate-400">Verify answer</button>
       : <div className="flex flex-col gap-3 border-t border-slate-800 pt-3">

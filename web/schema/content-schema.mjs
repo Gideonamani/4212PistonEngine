@@ -127,7 +127,9 @@ export const MODEL_CAPABILITY_FLAGS = Object.freeze([
  * @property {string[]} [answers] - multiple-choice (also covers true/false as the two-option case)
  * @property {number} [correct] - multiple-choice: index into answers
  * @property {string} [modelId] - model-click
- * @property {string} [correctNodeId] - model-click: id of the correct ContentNode
+ * @property {string} [correctNodeId] - model-click: id of the right component of the model, or of a group of components (any part in the group is right)
+ * @property {string[]} [alsoAccept] - model-click: further component or group ids that are also right
+ * @property {{initialAngle?: number}} [view] - model-click: the pose the model opens in
  * @property {string[]} [items] - ordering: already in correct order; UI shuffles for display
  * @property {{left: string, right: string}[]} [pairs] - matching
  * @property {string} [unit] - numeric
@@ -269,6 +271,11 @@ function validateCheckItem(check, lessonIds, index) {
     case 'model-click':
       if (!check.modelId) errors.push(`${where}: model-click needs modelId`);
       if (!check.correctNodeId) errors.push(`${where}: model-click needs correctNodeId`);
+      if (check.alsoAccept !== undefined) {
+        if (!Array.isArray(check.alsoAccept) || check.alsoAccept.some(id => typeof id !== 'string' || !id)) errors.push(`${where}: alsoAccept must be an array of ids`);
+        else if (check.alsoAccept.includes(check.correctNodeId) || new Set(check.alsoAccept).size !== check.alsoAccept.length) errors.push(`${where}: alsoAccept must not repeat an id`);
+      }
+      if (check.view !== undefined && !(check.view && typeof check.view === 'object' && (check.view.initialAngle === undefined || Number.isFinite(check.view.initialAngle)))) errors.push(`${where}: view.initialAngle must be a number`);
       break;
     case 'ordering':
       if (!Array.isArray(check.items) || check.items.length < 2) errors.push(`${where}: ordering needs >= 2 items`);
