@@ -6,7 +6,8 @@ import { buildCredits, OWN_RENDER_LICENSE } from '../src/data/credits.ts';
 const readJson = (path) => JSON.parse(fs.readFileSync(path, 'utf8'));
 const sources = readJson('web/thumbnails/sources.json');
 const attribution = readJson('web/lesson-media/attribution.json');
-const credits = buildCredits(sources, attribution);
+const acknowledgements = readJson('web/lesson-media/handbook-acknowledgements.json');
+const credits = buildCredits(sources, attribution, acknowledgements);
 const listed = credits.groups.flatMap((group) => group.entries.map((entry) => ({ ...entry, license: group.license })));
 
 // Every picture record anywhere in sources.json, and every figure in attribution.json, that is not the app's own render.
@@ -54,4 +55,41 @@ test('open licences come first, and a made-up licence still gets listed', () => 
   assert.deepEqual(fake.groups.map((group) => group.license), ['CC BY 2.0', 'Custom Terms 9']);
   assert.equal(fake.groups[1].licenseLink, undefined);
   assert.equal(fake.ownRenderCount, 0);
+});
+
+// FAA-H-8083-32B is a U.S. Government work, but its acknowledgments page (p. iii) thanks outside contributors for images by chapter.
+// A figure from one of those chapters may be theirs, so the page names them for every chapter a figure here is taken from.
+const HANDBOOK = 'FAA-H-8083-32B';
+const citedChapters = () => {
+  const references = [
+    ...[sources.items, sources.previews.items, sources.banners.items].flatMap((section) => Object.values(section)).map((item) => item.credit || ''),
+    ...Object.values(attribution).map((item) => item.source || ''),
+  ].filter((text) => text.includes(HANDBOOK));
+  return [...new Set(references.flatMap((text) => [...text.replace(HANDBOOK, '').matchAll(/(\d{1,2})-\d{1,2}/g)].map((match) => Number(match[1]))))].sort((a, b) => a - b);
+};
+
+test('the handbook image contributors are named for exactly the chapters the figures come from', () => {
+  const used = citedChapters();
+  assert.ok(used.includes(1) && used.length >= 3, `expected several chapters, saw ${used}`);
+  const group = credits.groups.find((item) => item.license === 'U.S. Government work');
+  assert.equal(group.notes.length, 1);
+  const [note] = group.notes;
+  assert.deepEqual(note.chapters, used);
+  const listedNames = note.contributors.map((person) => person.name);
+  for (const person of acknowledgements[HANDBOOK].contributors) {
+    const relevant = person.chapters === 'all' || person.chapters.some((chapter) => used.includes(chapter));
+    assert.equal(listedNames.includes(person.name), relevant, `${person.name}: ${relevant ? 'is missing' : 'is listed although none of their chapters is used'}`);
+  }
+});
+
+test('every acknowledged contributor names the chapters they supplied', () => {
+  for (const person of acknowledgements[HANDBOOK].contributors) {
+    assert.ok(person.name, 'a contributor needs a name');
+    assert.ok(person.chapters === 'all' || (Array.isArray(person.chapters) && person.chapters.length && person.chapters.every(Number.isInteger)), person.name);
+  }
+});
+
+test('a group with no figure from an acknowledged work carries no note', () => {
+  const none = buildCredits({ items: { a: { credit: 'Own photo', license: 'CC0' } }, previews: { items: {} } }, {}, acknowledgements);
+  assert.deepEqual(none.groups.map((group) => group.notes), [[]]);
 });

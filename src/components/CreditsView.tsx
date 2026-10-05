@@ -2,12 +2,13 @@ import React from 'react';
 import { ExternalLink, Scale } from 'lucide-react';
 import sources from '../../web/thumbnails/sources.json';
 import attribution from '../../web/lesson-media/attribution.json';
-import { buildCredits, type AttributionFile, type SourcesFile } from '../data/credits';
+import acknowledgements from '../../web/lesson-media/handbook-acknowledgements.json';
+import { buildCredits, type AcknowledgementsFile, type AttributionFile, type SourcesFile } from '../data/credits';
 import { navigate } from '../routes/useRoute';
 import { BackLink } from './ui';
 
 // Generated from the files that record each picture's source, so adding a picture and its record is enough to credit it.
-const credits = buildCredits(sources as SourcesFile, attribution as AttributionFile);
+const credits = buildCredits(sources as SourcesFile, attribution as AttributionFile, acknowledgements as AcknowledgementsFile);
 
 const goBack = () => {
   if (history.length > 1) history.back();
@@ -43,6 +44,15 @@ export const CreditsView: React.FC = () => (
               </li>
             ))}
           </ul>
+          {group.notes.map((note) => (
+            <details key={note.work} className="mt-3 rounded-xl border border-white/5 bg-slate-900/50 px-3 text-xs text-slate-300">
+              <summary className="flex min-h-11 cursor-pointer items-center font-semibold text-teal-300">Who else is thanked in the handbook ({note.contributors.length})</summary>
+              <p className="pb-2 leading-relaxed">{note.work}, page {note.page}, chapter{note.chapters.length === 1 ? '' : 's'} {note.chapters.join(', ')}. {note.text}</p>
+              <ul className="flex flex-col gap-1 pb-3">
+                {note.contributors.map((person) => <li key={person.name}>{person.name}{person.site && <span className="text-slate-400"> · {person.site}</span>}</li>)}
+              </ul>
+            </details>
+          ))}
         </section>
       ))}
     </div>

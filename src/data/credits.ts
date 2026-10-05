@@ -13,6 +13,17 @@ export type SourcesFile = {
 
 export type AttributionFile = Record<string, { title: string; creator?: string; source?: string; license: string }>;
 
+/**
+ * A published work's own list of people it thanks for pictures, by chapter (web/lesson-media/handbook-acknowledgements.json), keyed by
+ * the work's name as it appears in a figure reference such as "FAA-H-8083-32B, Figure 6-50".
+ */
+export type AcknowledgementsFile = Record<string, {
+  title: string;
+  page: string;
+  text: string;
+  contributors: { name: string; chapters: number[] | 'all'; site?: string }[];
+}>;
+
 /** The licence the app gives to pictures it rendered itself from its own 3D models; these are summarised, not listed. */
 export const OWN_RENDER_LICENSE = 'Course material';
 
@@ -27,7 +38,10 @@ export type CreditEntry = {
   reference?: string;
 };
 
-export type CreditGroup = { license: string; licenseLink?: string; entries: CreditEntry[] };
+/** What a work says about who made some of its pictures, narrowed to the chapters this app takes figures from. */
+export type CreditNote = { work: string; page: string; text: string; chapters: number[]; contributors: { name: string; site?: string }[] };
+
+export type CreditGroup = { license: string; licenseLink?: string; entries: CreditEntry[]; notes: CreditNote[] };
 
 export type Credits = {
   groups: CreditGroup[];
@@ -52,7 +66,31 @@ function sourceRecords(sources: SourcesFile): SourceItem[] {
   return sections.flatMap((section) => Object.values(section || {}));
 }
 
-export function buildCredits(sources: SourcesFile, attribution: AttributionFile): Credits {
+/** The chapter numbers of every figure a group's entries cite from `work`, for example "Figures 1-1 and 1-3" gives 1. */
+function chaptersCited(entries: CreditEntry[], work: string): number[] {
+  const chapters = new Set<number>();
+  for (const entry of entries) {
+    const text = `${entry.label} ${entry.reference || ''}`;
+    if (!text.includes(work)) continue;
+    for (const match of text.replace(work, '').matchAll(/(\d{1,2})-\d{1,2}/g)) chapters.add(Number(match[1]));
+  }
+  return [...chapters].sort((a, b) => a - b);
+}
+
+function notesFor(entries: CreditEntry[], acknowledgements: AcknowledgementsFile): CreditNote[] {
+  const notes: CreditNote[] = [];
+  for (const [work, info] of Object.entries(acknowledgements)) {
+    const chapters = chaptersCited(entries, work);
+    if (!chapters.length) continue;
+    const contributors = info.contributors
+      .filter((person) => person.chapters === 'all' || person.chapters.some((chapter) => chapters.includes(chapter)))
+      .map(({ name, site }) => ({ name, site }));
+    notes.push({ work: info.title, page: info.page, text: info.text, chapters, contributors });
+  }
+  return notes;
+}
+
+export function buildCredits(sources: SourcesFile, attribution: AttributionFile, acknowledgements: AcknowledgementsFile = {}): Credits {
   const entries = new Map<string, CreditEntry>();
   let ownRenderCount = 0;
 
@@ -80,11 +118,10 @@ export function buildCredits(sources: SourcesFile, attribution: AttributionFile)
     return rank(a) - rank(b) || a.localeCompare(b);
   });
   return {
-    groups: licenses.map((license) => ({
-      license,
-      licenseLink: LICENSE_LINKS[license],
-      entries: byLicense.get(license)!.sort((a, b) => a.label.localeCompare(b.label)),
-    })),
+    groups: licenses.map((license) => {
+      const groupEntries = byLicense.get(license)!.sort((a, b) => a.label.localeCompare(b.label));
+      return { license, licenseLink: LICENSE_LINKS[license], entries: groupEntries, notes: notesFor(groupEntries, acknowledgements) };
+    }),
     ownRenderCount,
   };
 }
