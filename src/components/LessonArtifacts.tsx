@@ -7,7 +7,7 @@ import { ConstructionComparison, CylinderNumberingDiagram, DieselOttoCompare, En
 type ArtifactProps = { id: string };
 
 const panel = 'rounded-xl border border-teal-500/20 bg-[#061418] p-3 text-slate-100';
-const button = 'rounded-lg border border-slate-700 bg-slate-900/70 px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-teal-400 aria-pressed:border-teal-400 aria-pressed:bg-teal-500/15 aria-pressed:text-teal-200';
+const button = 'min-h-11 rounded-lg border border-slate-700 bg-slate-900/70 px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-teal-400 aria-pressed:border-teal-400 aria-pressed:bg-teal-500/15 aria-pressed:text-teal-200';
 
 const PhaseBadge = ({ active, children }: { active: boolean; children: React.ReactNode }) => (
   <span className={`rounded-full border px-2 py-1 text-[11px] font-bold uppercase tracking-wide ${active ? 'border-teal-400 bg-teal-500/15 text-teal-200' : 'border-slate-700 text-slate-400'}`}>{children}</span>
@@ -24,7 +24,7 @@ function CycleScrubber() {
     <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_11rem]">
       <div>
         <div className="mb-3 flex flex-wrap gap-1.5">{phases.map((phase, index) => <PhaseBadge key={phase} active={index === phaseIndex}>{phase}</PhaseBadge>)}</div>
-        <input aria-label="Crank angle" className="w-full accent-teal-400" type="range" min="0" max="719" value={angle} onChange={(event) => setAngle(Number(event.target.value))} />
+        <input aria-label="Crank angle" className="h-11 w-full accent-teal-400" type="range" min="0" max="719" value={angle} onChange={(event) => setAngle(Number(event.target.value))} />
         <div className="mt-1 flex justify-between font-mono text-[11px] text-slate-400"><span>0°</span><span>360°</span><span>720°</span></div>
         <p className="mt-3 text-xs text-slate-300"><strong className="text-white">{phases[phaseIndex]}</strong> · crank angle {angle}°. Intake valve {intakeOpen ? 'open' : 'closed'}; exhaust valve {exhaustOpen ? 'open' : 'closed'}.</p>
       </div>
@@ -53,7 +53,7 @@ function TwoStrokeTiming() {
     <div className="grid items-center gap-3 sm:grid-cols-[minmax(0,1fr)_12rem]">
       <div>
         <div className="flex flex-wrap gap-2"><PhaseBadge active={!descending}>Compression / intake</PhaseBadge><PhaseBadge active={descending}>Power / exhaust</PhaseBadge></div>
-        <input aria-label="Two-stroke crank angle" className="mt-4 w-full accent-teal-400" type="range" min="0" max="359" value={angle} onChange={(event) => setAngle(Number(event.target.value))} />
+        <input aria-label="Two-stroke crank angle" className="mt-2 h-11 w-full accent-teal-400" type="range" min="0" max="359" value={angle} onChange={(event) => setAngle(Number(event.target.value))} />
         <p className="mt-3 text-xs leading-relaxed text-slate-300">At {angle}°, the piston is moving <strong className="text-white">{descending ? 'down' : 'up'}</strong>. The transfer and exhaust ports are <strong className="text-white">{portsOpen ? 'uncovered' : 'covered'}</strong>.</p>
       </div>
       <svg viewBox="0 0 180 135" role="img" aria-label="Two-stroke port timing diagram" className="mx-auto h-44 w-full max-w-48 rounded-lg bg-slate-950/50">
@@ -108,7 +108,7 @@ function IgnitionComparator() {
   return <div className={panel}>
     <div className="flex gap-2"><button className={button} aria-pressed={method === 'spark'} onClick={() => setMethod('spark')}>Spark ignition</button><button className={button} aria-pressed={method === 'compression'} onClick={() => setMethod('compression')}>Compression ignition</button></div>
     <div className="mt-4 grid items-center gap-4 sm:grid-cols-[minmax(0,1fr)_12rem]">
-      <div><label className="text-xs font-semibold text-slate-300" htmlFor="ignition-position">Piston position near compression TDC</label><input id="ignition-position" className="mt-2 w-full accent-teal-400" type="range" min="55" max="100" value={position} onChange={(event) => setPosition(Number(event.target.value))} /><p className="mt-2 text-xs text-slate-300">{method === 'spark' ? `The spark is commanded about ${beforeTdc}° before the teaching TDC marker so combustion pressure can build.` : 'Highly compressed air reaches a temperature that ignites fuel injected near the end of compression.'}</p></div>
+      <div><label className="text-xs font-semibold text-slate-300" htmlFor="ignition-position">Piston position near compression TDC</label><input id="ignition-position" className="h-11 w-full accent-teal-400" type="range" min="55" max="100" value={position} onChange={(event) => setPosition(Number(event.target.value))} /><p className="mt-2 text-xs text-slate-300">{method === 'spark' ? `The spark is commanded about ${beforeTdc}° before the teaching TDC marker so combustion pressure can build.` : 'Highly compressed air reaches a temperature that ignites fuel injected near the end of compression.'}</p></div>
       <svg viewBox="0 0 180 125" role="img" aria-label={`${method} ignition diagram`} className="h-40 w-full rounded-lg bg-slate-950/50"><path d="M48 12h84v103H48z" fill="#0c2026" stroke="#55707a" strokeWidth="3" /><rect x="56" y={82 - position * .45} width="68" height="20" rx="4" fill="#94a3b8" /><path d="M90 13v20" stroke="#cbd5e1" strokeWidth="5" />{method === 'spark' ? <path d="M76 39l10 10 8-18 8 18 10-10" fill="none" stroke="#f59e0b" strokeWidth="4" /> : <path d="M66 42q24-25 48 0" fill="none" stroke="#fb923c" strokeWidth="8" opacity=".8" />}</svg>
     </div><p className="mt-2 text-[11px] text-slate-400">Conceptual comparison only; do not use it as an engine timing procedure.</p>
   </div>;
@@ -153,7 +153,7 @@ function AltitudeComparator() {
   const boosted = altitude <= 16000 ? 35 : Math.max(18, 35 - (altitude - 16000) / 750);
   const values = [{ name: 'Naturally aspirated', value: ambient, color: '#94a3b8' }, { name: 'Normalizing turbo', value: normalized, color: '#2dd4bf' }, { name: 'Ground-boosted', value: boosted, color: '#f59e0b' }];
   return <div className={panel}>
-    <label htmlFor="altitude" className="text-xs font-semibold text-white">Altitude: {altitude.toLocaleString()} ft</label><input id="altitude" className="mt-2 w-full accent-teal-400" type="range" min="0" max="20000" step="500" value={altitude} onChange={(event) => setAltitude(Number(event.target.value))} />
+    <label htmlFor="altitude" className="text-xs font-semibold text-white">Altitude: {altitude.toLocaleString()} ft</label><input id="altitude" className="h-11 w-full accent-teal-400" type="range" min="0" max="20000" step="500" value={altitude} onChange={(event) => setAltitude(Number(event.target.value))} />
     <div className="mt-4 space-y-2">{values.map((item) => <div key={item.name} className="grid grid-cols-[8rem_minmax(0,1fr)_3rem] items-center gap-2 text-[11px]"><span className="text-slate-300">{item.name}</span><div className="h-3 overflow-hidden rounded-full bg-slate-800"><div className="h-full rounded-full transition-[width]" style={{ width: `${item.value / 40 * 100}%`, backgroundColor: item.color }} /></div><span className="font-mono text-slate-300">{item.value.toFixed(0)}</span></div>)}</div>
     <p className="mt-3 text-[11px] font-semibold uppercase tracking-wide text-amber-300">Schematic comparison — not engine performance data</p>
   </div>;
@@ -169,7 +169,7 @@ function PistonCrank() {
   const crankX = 320 + Math.cos(rad) * 48;
   const crankY = 170 + Math.sin(rad) * 48;
   const pistonY = 40 + (1 - Math.cos(rad)) * 45;
-  return <div className={panel}><input aria-label="Rotate the crankshaft" className="w-full accent-teal-400" type="range" min="0" max="360" value={angle} onChange={(event) => setAngle(Number(event.target.value))} /><svg viewBox="0 0 640 250" role="img" aria-label="Piston, connecting rod and crankshaft motion" className="mt-2 h-56 w-full rounded-lg bg-slate-950/50"><path d="M225 18h190v160H225z" fill="#0c2026" stroke="#55707a" strokeWidth="4" /><rect x="245" y={pistonY} width="150" height="44" rx="8" fill="#94a3b8" stroke="#e2e8f0" strokeWidth="3" /><path d={`M320 ${pistonY + 44}L${crankX} ${crankY}`} stroke="#cbd5e1" strokeWidth="18" strokeLinecap="round" /><circle cx="320" cy="170" r="48" fill="none" stroke="#2dd4bf" strokeWidth="5" /><circle cx={crankX} cy={crankY} r="12" fill="#f59e0b" /><path d="M190 222h260" stroke="#64748b" strokeWidth="12" /><g fill="#e2e8f0" fontSize="16"><text x="430" y="65">Piston: reciprocating</text><text x="430" y="170">Crank: rotating</text></g></svg><p className="mt-2 text-xs text-slate-300">Drag the crank angle to see rotary motion converted to piston travel through the connecting rod.</p></div>;
+  return <div className={panel}><input aria-label="Rotate the crankshaft" className="h-11 w-full accent-teal-400" type="range" min="0" max="360" value={angle} onChange={(event) => setAngle(Number(event.target.value))} /><svg viewBox="0 0 640 250" role="img" aria-label="Piston, connecting rod and crankshaft motion" className="mt-2 h-56 w-full rounded-lg bg-slate-950/50"><path d="M225 18h190v160H225z" fill="#0c2026" stroke="#55707a" strokeWidth="4" /><rect x="245" y={pistonY} width="150" height="44" rx="8" fill="#94a3b8" stroke="#e2e8f0" strokeWidth="3" /><path d={`M320 ${pistonY + 44}L${crankX} ${crankY}`} stroke="#cbd5e1" strokeWidth="18" strokeLinecap="round" /><circle cx="320" cy="170" r="48" fill="none" stroke="#2dd4bf" strokeWidth="5" /><circle cx={crankX} cy={crankY} r="12" fill="#f59e0b" /><path d="M190 222h260" stroke="#64748b" strokeWidth="12" /><g fill="#e2e8f0" fontSize="16"><text x="430" y="65">Piston: reciprocating</text><text x="430" y="170">Crank: rotating</text></g></svg><p className="mt-2 text-xs text-slate-300">Drag the crank angle to see rotary motion converted to piston travel through the connecting rod.</p></div>;
 }
 
 export { lessonArtifactIds };
