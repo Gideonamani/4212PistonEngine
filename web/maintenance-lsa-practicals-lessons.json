@@ -5,7 +5,7 @@
   "thumbnail": "./thumbnails/course-maintenance-lsa-practicals.webp",
   "banner": "./banners/maintenance-lsa-practicals.webp",
   "title": "Maintenance, LSA & Practicals",
-  "description": "Looking after a piston engine: compression tests, taking an engine apart and putting it back, and storing and preserving it, and then the light-sport aircraft engines that are maintained a little differently. The practical assessments will follow.",
+  "description": "Looking after a piston engine: compression tests, taking an engine apart and putting it back, and storing and preserving it, then the light-sport aircraft engines that are maintained a little differently, and finally the practical sessions where you name, describe and inspect real engine parts.",
   "sources": [
     {
       "id": "faa-powerplant-2023",
@@ -34,6 +34,13 @@
       "title": "Aircraft Piston Engine Slides - 21 May 2026 (instructor course deck)",
       "path": "Notes/Aircraft Piston Engine Slides - 21May2026.pptx",
       "applicability": "Instructor-authored course slides. Used only where the handbook, EASA text and manuals are silent. Carries no independent evidence; claims here need the instructor's confirmation."
+    },
+    {
+      "id": "practical-worksheets",
+      "tier": 4,
+      "title": "AMT 04212 practical worksheets, 2025-2026 (student versions): Practical 1 External Component Identification and Practical 2 Internal Component Identification",
+      "path": "Assessments/AMT04212 - 2025-2026 - Practical 1 - External Component ID [Students].docx; Assessments/AMT04212 - 2025-2026 - Practical 2 - Internal Component ID Worksheet [Students].docx",
+      "applicability": "The instructor's own worksheets. They say what each practical session asks the student to do and record; they carry no technical evidence and no answers, and the lesson does not supply any."
     }
   ],
   "lessons": [
@@ -485,6 +492,328 @@
           }
         }
       ]
+    },
+    {
+      "id": "practicals",
+      "thumbnail": "./thumbnails/lesson-practicals.webp",
+      "sequenceNumber": 18,
+      "title": "Practicals",
+      "objective": "Prepare for the three practical sessions: follow the observe, name, describe method, work safely around an engine and its propeller, name the main internal and external parts of a reciprocating engine and the items where it meets the aircraft, and inspect the outside of an engine in a fixed order.",
+      "reviewStatus": "unreviewed",
+      "models": [
+        "cylinder",
+        "accessory-drives"
+      ],
+      "listed": true,
+      "scheduledDay": 7,
+      "completionCriteria": "Tap the main internal and external parts on the 3D models, state the safety actions before a propeller is moved, match common defect terms to their meanings, recognise the sign of an exhaust leak, and write one component entry in your own words.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "Three practical sessions",
+          "prompt": "You will work on real engines in three practical sessions. In one, you look at the parts of a disassembled engine and name and describe each one. In another, you walk round an assembled engine on a display stand, and then the engine installed in an aircraft, and do the same for the parts you can see from the outside. In the third, you inspect the outside of the engine for signs that it is, or is not, fit to fly. The external worksheet is a continuous-assessment item that you keep in your Practical Logbook. This lesson prepares you for all three: the method, the safety rules, and a rehearsal on the 3D models. It does not do the worksheets for you.",
+          "note": "Documented from the student practical worksheets (Practical 1 External Component Identification, whose instructions say it is a continuous-assessment item kept in the Practical Logbook, and Practical 2 Internal Component Identification, at the disassembled engine display) and the course deck, slides 278 to 280 (internal parts, external parts, visual inspection of external components). The deck numbers the sessions 1 internal parts, 2 external parts and 3 visual inspection, while the worksheet files are named Practical 1 External and Practical 2 Internal, so the lesson names each session by what it covers.",
+          "sourceRefs": [
+            "practical-worksheets",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The overview is plain text; the rehearsal comes in the 3D steps and the checks."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Observe, name, describe",
+          "prompt": "Every row of a worksheet asks for the same things. Observe: look at the component from at least two angles, then draw a clear sketch or paste a photograph. Name: write the correct aviation engineering name in full, with no abbreviations. Describe: say what the component does in one or two concise sentences. Record: note its type or variant, its material, where it sits, any dimensions or specifications, and anything that bears on airworthiness, such as security, leakage, corrosion or wear. If you are not sure of a name, ask and look it up in the handbook. Why do you think the worksheet asks for your own words, and not a copied description?",
+          "note": "Documented from the student practical worksheets: the internal worksheet instructions (examine each numbered component, sketch or photograph it, write the correct aviation engineering name with no abbreviations, state its function in one or two concise sentences, record material, type or variant, relevant dimensions or specifications and airworthiness considerations) and the external worksheet instructions (observe each component from at least two angles; record type, material, location and airworthiness considerations such as security, leakage, corrosion and wear; the student declaration that all entries are the student's own work).",
+          "sourceRefs": [
+            "practical-worksheets"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The method is the content; the learner practises it in the last step."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Safety at the engine",
+          "prompt": "An engine can hurt you before it ever runs. The FAA handbook gives a warning for moving a propeller. Before you turn it: disconnect all spark plug leads; check that the magneto switches are connected and off, with the P-leads grounded; close the throttle; set the mixture to idle cut-off; set the brakes, block the wheels and fit the tie-downs; and never stand in the arc of the propeller blades. Your worksheets add two rules: do not climb on the aircraft or open inspection panels without your instructor's permission, and stay clear of the propeller arc at all times. Why is a propeller that is only being turned by hand still dangerous?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 347 (the warning, printed in the procedure for taking an engine out of storage: before moving the propeller, disconnect all spark plug leads, verify that the magneto switches are connected and off and the P-leads grounded, throttle closed, mixture idle cut-off, brakes set, wheels blocked, tie-downs installed, cabin door latch open, and do not stand within the arc of the propeller blades; the lesson treats it as the general rule) and the external student worksheet safety notice (no climbing on the aircraft or opening inspection panels without instructor permission; stay clear of the propeller arc). The handbook also says in the light-sport notes, PDF p. 449, that a P-lead that is not grounded leaves the ignition live.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "practical-worksheets"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The warning is the content; the check asks which actions belong to it."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Name the big parts first",
+          "prompt": "On the engine in front of you, start with the big parts, because every other part is attached to one of them. Find the crankcase halves, the accessory case at the rear, the oil sump and a cylinder. Name these first, then work out towards the small parts. A part is much easier to name once you know what it sits next to, and what lies on either side of it.",
+          "url": "./lesson-media/faa-opposed-engine-exploded.webp",
+          "alt": "FAA exploded view of an opposed engine showing the crankcase halves, accessory case, oil sump, crankshaft, camshaft, cylinder and accessories",
+          "credit": "FAA-H-8083-32B, Figure 1-6",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 26-28 (nose section, accessory section, Figure 1-6), as in the Parts and Construction lesson. Sump construction differs by engine.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The FAA exploded view names every major case section and accessory in one labelled figure."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Piston, rings and pin",
+          "prompt": "Pick up a piston and look for three things. The top, the piston head, takes the pressure of combustion. Below it are the ring grooves: this piston carries four rings, two compression rings above and two oil-control rings below, and a technician names them by position, top ring first. Across the middle is the bore for the piston pin, which joins the piston to the connecting rod. A soft aluminium plug in each end of the pin stops the pin scoring the cylinder wall. Count the grooves, then name each ring.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 33-35 (the piston pin must be held in place to prevent its ends scoring the cylinder walls, and a plug of relatively soft aluminum in the pin end gives a bearing surface against the wall, PDF p. 34), and the GTSIO-520 overhaul manual, paragraph 3-1g (PDF p. 17): aluminium alloy pistons, a four-ring piston since 1975, and full-floating ground steel pins with forged-in aluminium plugs. Ring names follow the component labels of the reviewed cylinder model. The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The cylinder model isolates the piston, its four rings and the pin so each can be named."
+          },
+          "modelId": "cylinder",
+          "action": {
+            "type": "angle",
+            "value": 0
+          },
+          "focusParts": [
+            "PistonBody",
+            "PistonRing1",
+            "PistonRing2",
+            "PistonRing3",
+            "PistonRing4",
+            "FloatingPin",
+            "PinPlugLeft",
+            "PinPlugRight"
+          ]
+        },
+        {
+          "type": "model-pose",
+          "title": "Rod, bearing and crankshaft",
+          "prompt": "The connecting rod joins the piston to the crankshaft. At one end, the small end carries a bushing around the piston pin. Along the middle, the shank is shaped like an I-beam, strong but light. At the other end, the big end is split so it can be put together around the crankpin: the cap is held on by two bolts with slotted nuts, and bearing halves sit between the rod and the crankshaft. The crankshaft throw is the offset part that the big end wraps round. Name each of these in order, from piston to crankshaft.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 29-32, and the GTSIO-520 overhaul manual, paragraphs 3-1e and 3-1f (PDF pp. 16-17): I-beam rods and two precision inserts at the crankpin end. Part names follow the component labels of the reviewed cylinder model, which shows one crankshaft throw. The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The cylinder model isolates the rod, its bearing halves, bolts and the crankshaft throw."
+          },
+          "modelId": "cylinder",
+          "action": {
+            "type": "angle",
+            "value": 90
+          },
+          "focusParts": [
+            "ConnectingRodBody",
+            "ConnectingRodCap",
+            "BigEndBearing",
+            "CapBearingHalf",
+            "SmallEndBush",
+            "CrankThrow"
+          ]
+        },
+        {
+          "type": "model-pose",
+          "title": "Valves and rocker arms",
+          "prompt": "Each cylinder has two valves in its head: one lets the fresh charge in, and the other lets the burned gas out. On a real engine you can often tell them apart by what is connected to their ports: the induction system on the intake side, and the exhaust stack on the other. Each valve is pressed shut by springs and is opened by a rocker arm, which is moved by a pushrod from the camshaft. Find both valves and both rocker arms. Which valve do you expect to run hotter, and why?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 38-42 (valves, springs, rocker arms, pushrods and the cam follower; PDF p. 38: intake valves operate at lower temperatures than exhaust valves, so exhaust valves are made of more heat-resistant alloys) and the GTSIO-520 overhaul manual, PDF p. 16, as in the Valve Operating lesson. The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The cylinder model isolates both valves and both rocker arms in the head."
+          },
+          "modelId": "cylinder",
+          "action": {
+            "type": "angle",
+            "value": 0
+          },
+          "focusParts": [
+            "IntakeValve",
+            "ExhaustValve",
+            "IntakeRockerArm",
+            "ExhaustRockerArm"
+          ]
+        },
+        {
+          "type": "model-pose",
+          "title": "What is fitted at the rear",
+          "prompt": "The accessory section at the rear is where gears turned by the crankshaft drive the parts that keep the engine going: two magnetos for ignition, an engine-driven fuel pump, an oil pump and a tachometer drive, and a starter and an alternator. Where each one sits depends on the engine, and this teaching model moves some of them onto display stands, so always check the engine in front of you. Name each accessory, and say which one turns the engine instead of being turned by it.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 28 (accessory case, mounting pads and geared shafts) and PDF p. 236 (the starter clutch), and the GTSIO-520 overhaul manual, A-3-2 and Figure A-4-8 (PDF pp. 17 and 25), with the -H difference data in C-3-2 and C-3-3 (PDF pp. 152-153) and C-3-6 (PDF p. 156), as in the Accessories and Drives lesson, where starting reverses the flow of power. The accessory model is a teaching reconstruction; its scope note says the front and optional modules are relocated on display stands and omitted transfers are not physical shafts.",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The accessory model shows the magnetos, pump, oil and tachometer drive, starter and alternator in their gear train."
+          },
+          "modelId": "accessory-drives",
+          "savedMotionId": "Operating mechanism",
+          "motionProgress": 0
+        },
+        {
+          "type": "text",
+          "title": "Outside parts, system by system",
+          "prompt": "The external worksheet groups what you can see by system, and it helps to walk the engine in the same order. Cylinders and cooling: the cylinder, its cooling fins and the rocker covers. Ignition: the two magnetos and the harness that carries the spark to each plug. Fuel and induction: the carburettor or fuel-injection servo, the induction manifold and the engine-driven fuel pump. Exhaust: the manifold or stacks. Lubrication: the sump, the oil filter, and the oil cooler and its connections. Accessory drive and power take-off: the propeller flange and the accessory case at the rear. Take one system at a time so nothing is missed.",
+          "note": "Documented from the external student worksheet, Part A (the component groups: cylinder and cooling, ignition system, fuel and induction, exhaust system, lubrication, accessory drive and power take-off). The lesson names the groups and the parts only; it gives no worksheet answers. The course deck (slide 279) also lists the propeller, starter motor and alternator as external parts, which the worksheet does not list.",
+          "sourceRefs": [
+            "practical-worksheets",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The groups are a checklist for the walk-round, tested in a matching check."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Where the engine meets the aircraft",
+          "prompt": "On the aircraft the question changes. You are no longer asking only what a part is, but how the airframe holds the engine and protects the aircraft from it. The engine mount holds the engine to the airframe, often through shock mounts that absorb vibration. The firewall is the foremost bulkhead of the engine compartment, made of stainless steel or another fire-resistant material, so that an engine fire is confined to the nacelle. It is also where the lines, linkages and wiring between engine and aircraft are disconnected. For each part you find, ask: what does it connect, and what happens if it fails?",
+          "url": "./lesson-media/faa-engine-mounting-ring.webp",
+          "alt": "Photograph of an engine mounting ring on a light aircraft firewall with four dynamic mount fittings",
+          "credit": "FAA-H-8083-32B, Figure 8-16",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 27 and 343-344 (mounting lugs, mount ring, dynafocal and shock mounts), EASA Module 16, PDF pp. 275-276 (relative motion between engine and airframe), and FAA PDF pp. 330-331 (the firewall: usually the foremost bulkhead of the engine nacelle, of stainless steel or other fire-resistant material, its primary purpose to confine any engine fire to the nacelle, a mounting surface for units, and a point of disconnect for lines, linkages and wiring). The external worksheet lists the engine mount and the firewall as aircraft-installed items.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "practical-worksheets"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The handbook photograph shows a mounting ring and its fittings on a firewall."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Bonding, oil access and the heat muff",
+          "prompt": "Three more items on the aircraft. A bonding strap is an electrical connection between two conducting parts that are not otherwise connected adequately; bonding and grounding give current a return path, protect against lightning and static, and protect people from shock. The oil filler and dipstick access is where the oil is checked and topped up; the dipstick has marks that show the correct level. The exhaust heat muff is a shroud round the exhaust: warm air from around the exhaust can be ducted to the carburettor, and a heat exchanger can warm the cabin. A cracked heat exchanger is a carbon monoxide hazard. Which of these would you check for security, and which for leakage?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 224 (bonding is the electrical connecting of two or more conducting objects not otherwise connected adequately; bonding and grounding protect against lightning, provide current return paths, prevent radio-frequency potentials, protect personnel from shock and prevent static charge), PDF pp. 260 and 277 (oil level checked with the dipstick or a sight gauge, with marks for the correct level), PDF p. 129 (warm ducted air from around the exhaust directed into the carburettor), and PDF pp. 149 and 152 (cabin heater exhaust shroud; failure of heat exchanger surfaces lets exhaust gas into the cabin heat system, a carbon monoxide hazard, or into the induction system). The external worksheet lists these as aircraft-installed items.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "practical-worksheets"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Three short items described together; the photograph on the previous step shows the mount and firewall."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Notes an inspector can use",
+          "prompt": "In the notes column, use the words an inspector uses. The handbook defines them. Corrosion is loss of metal by chemical or electrochemical action. Chafing is wear from two parts rubbing together under light pressure. A crack is a partial separation of the material, caused by vibration, overloading, internal stress or fatigue. A dent is a small, rounded depression where the part was struck. Fretting is surface erosion from tiny movements between parts that are clamped together. A good note then says where the damage is, and what it could lead to, for example a chafed hose against a clamp. Pick two parts on the engine and write a note for each in this way.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 371 (the common defect terms and their definitions: chafing, corrosion, crack, dent, fretting, among twenty-six). The worksheets ask for airworthiness considerations such as security, leakage, corrosion and wear in the notes column. The chafed-hose example is the lesson's own illustration, not a handbook case.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "practical-worksheets"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Definitions tested in a matching check; the learner writes notes in the last step."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Look before you clean",
+          "prompt": "When parts come off an engine, how you treat them matters. The handbook's practices: lay the parts out in order on a bench, and keep small parts in containers. Drain the oil into a container, strain it through a clean cloth, and check the oil and the cloth for metal particles. Throw away safety wire and cotter pins as they come off, and never use them a second time. Tag any loose or damaged studs and fittings. Use the proper tool for the job, not an improvised one. Above all, look first: a part should not be cleaned before a preliminary visual inspection, because deposits left in recesses may show how it failed.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 370-371 (disassembly practices: parts laid out in an orderly manner, containers for small parts, drain and strain the oil through a clean cloth and check for metal particles, dispose of safety devices and never reuse them, tag loose or damaged studs and fittings, use the proper tool; visual inspection should precede all other inspection, and parts should not be cleaned before a preliminary visual inspection). The disassembled-engine session is supervised; the lesson does not describe a procedure to follow without the instructor.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A short list of habits from the overhaul chapter."
+          }
+        },
+        {
+          "type": "text",
+          "title": "A walk-round in a fixed order",
+          "prompt": "The visual inspection is a systematic walk-round: always the same order, so nothing is skipped. Cowling and mounts: look for cracks, dents and signs of stress. Hoses and wiring: look for wear, chafing and loose connections. Fluid leaks: oil, fuel or hydraulic. Belts and pulleys: tension and alignment. Cooling fins and air intakes: clean and unobstructed. Exhaust system: corrosion or damage. The handbook adds that scratches, dents and tears in cowl panels weaken them, add drag and start corrosion, and that latches are checked for pulled rivets and loose or damaged handles.",
+          "note": "Documented from the course deck, slide 280 (the six areas of the visual inspection of external components) and FAA-H-8083-32B (2023), PDF p. 282 (inspect the cowl panels for scratches, dents and tears, which weaken the panel, increase drag and start corrosion; latches for pulled rivets and loose or damaged handles; the inspections are visual checks performed frequently). The deck refers to an FAA advisory circular on visual inspection without naming it, so it is not cited.",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The six areas are a list to follow; the next steps show two of them in detail."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Reading an exhaust system",
+          "prompt": "The exhaust system is one of the first places to look. An exhaust leak shows as a flat gray or sooty black streak on the pipes where the gas escaped, usually at a clamp or an exhaust port joint. Check every external surface for cracks, dents and missing parts, and the welds, clamps, supports, slip joints, flanges, gaskets and flexible couplings. Never mark exhaust parts with a lead pencil, and never use zinc-plated tools on them: the lead or zinc is absorbed when the metal is heated, which softens it and leads to cracks.",
+          "url": "./lesson-media/faa-exhaust-inspection.webp",
+          "alt": "FAA drawing of three types of exhaust system, labelled A, B and C, with red arrows marking the primary areas to inspect at joints, flanges, mufflers and heat-exchanger shrouds.",
+          "credit": "FAA-H-8083-32B, Figure 3-42",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 151 (an exhaust leak is indicated by a flat gray or sooty black streak on the pipes in the area of the leak; close attention to all external surfaces for cracks, dents or missing parts, and to welds, clamps, supports, lugs, bracing, slip joints, flanges, gaskets and flexible couplings; never use galvanized or zinc-plated tools, and never mark exhaust parts with a lead pencil; Figure 3-42, primary inspection areas of three types of exhaust systems).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The handbook drawing marks the primary inspection areas on three exhaust system layouts."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Fins: repair or reject?",
+          "prompt": "The cooling fins carry heat from the cylinder to the air, so their condition matters. Look for cracks and breaks. The handbook says small cracks are not in themselves a reason to remove a cylinder: they can be filled, or sometimes stop-drilled so they cannot grow, and a sharp corner can be filed smooth. A crack at the base of a fin, however, is a reason to reject the cylinder at overhaul. Too much broken fin leaves a hot spot. On the handbook's example engine, a cylinder is removed if more than 12 inches of one fin is broken off at its base, or more than 83 square inches of fin on one head. Those limits belong to that engine only: for any other, find the manufacturer's.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 282 (the fins are inspected at each regular inspection; small cracks are not a reason for cylinder removal and can be filled or stop-drilled; sharp corners may be filed, after consulting the manufacturer's manual for allowable limits; on a certain engine, more than 12 inches of one fin broken off at its base, or more than 83 square inches of broken fin on one head, means the cylinder is replaced, with limits for adjacent broken fins; the handbook states these specifications apply only to its example engine) and PDF p. 372 (cracks near the edge of the fins are not dangerous if the portion is removed and contoured, cracks at the base of the fin are a reason for rejecting the cylinder).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The example limits are in the text with the handbook's own warning that they are engine-specific."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Write one entry yourself",
+          "prompt": "Choose one part that you can name from the 3D steps, such as an accessory on the rear of the engine. Without looking at any worksheet, write the four things in your own words. Its full name. What it does, in one or two sentences. Its type, its material if you know it, and where it sits. And one thing you would look for to decide whether it is fit to fly, using a word from the list: corrosion, chafing, crack, dent or fretting. Then check your entry against the handbook. Where did your wording differ from it, and what does that tell you about what you still need to look up?",
+          "note": "Completion step: the learner applies the lesson (opening prompt, action, feedback, completion evidence) using the method set out in the student practical worksheets and the defect terms from FAA-H-8083-32B (2023), PDF p. 371. The lesson does not supply answers for the worksheets; the learner's entries are their own.",
+          "sourceRefs": [
+            "practical-worksheets",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The learner writes one entry in their own words."
+          }
+        }
+      ]
     }
   ],
   "checks": [
@@ -893,6 +1222,215 @@
       ],
       "correct": 2,
       "rationale": "The magnetic plug reveals the internal condition of the gearbox and engine. A significant amount of chips means the engine must be inspected, repaired or overhauled. Only a few steel chips under about 3 mm can be tolerated."
+    },
+    {
+      "id": "practicals-click-piston",
+      "lessonId": "practicals",
+      "type": "model-click",
+      "question": "Tap the piston.",
+      "hint": "It slides up and down inside the cylinder barrel.",
+      "modelId": "cylinder",
+      "correctNodeId": "PistonBody",
+      "rationale": "The piston takes the pressure of combustion and passes it, through the pin and the connecting rod, to the crankshaft. The rings sit in grooves round it and the piston pin runs across it."
+    },
+    {
+      "id": "practicals-click-ring",
+      "lessonId": "practicals",
+      "type": "model-click",
+      "question": "Tap a piston ring.",
+      "hint": "The rings sit in grooves round the piston, above the pin.",
+      "modelId": "cylinder",
+      "correctNodeId": "PistonRing1",
+      "alsoAccept": [
+        "PistonRing2",
+        "PistonRing3",
+        "PistonRing4"
+      ],
+      "rationale": "This piston has four rings: two compression rings above and two oil-control rings below. Any of the four is right."
+    },
+    {
+      "id": "practicals-click-rod",
+      "lessonId": "practicals",
+      "type": "model-click",
+      "question": "Tap the connecting rod.",
+      "hint": "It joins the piston to the crankshaft.",
+      "modelId": "cylinder",
+      "correctNodeId": "ConnectingRodBody",
+      "alsoAccept": [
+        "ConnectingRodCap"
+      ],
+      "rationale": "The connecting rod has an I-beam shank, a small end at the piston pin and a big end that is split into a body and a cap round the crankpin. Either the body or the cap is the rod."
+    },
+    {
+      "id": "practicals-click-crank",
+      "lessonId": "practicals",
+      "type": "model-click",
+      "question": "Tap the crankshaft throw.",
+      "hint": "It is the offset part that the big end of the rod wraps round.",
+      "modelId": "cylinder",
+      "correctNodeId": "CrankThrow",
+      "rationale": "The throw is the offset part of the crankshaft, with the crankpin the big end of the connecting rod turns on. The model shows one throw of the crankshaft."
+    },
+    {
+      "id": "practicals-click-intake-valve",
+      "lessonId": "practicals",
+      "type": "model-click",
+      "question": "Tap the intake valve.",
+      "hint": "It lets the fresh charge into the cylinder. There are two valves in the head.",
+      "modelId": "cylinder",
+      "correctNodeId": "IntakeValve",
+      "rationale": "The intake valve admits the fresh charge from the induction system. On a real engine you can tell it from the exhaust valve by the pipework connected to its port."
+    },
+    {
+      "id": "practicals-click-exhaust-valve",
+      "lessonId": "practicals",
+      "type": "model-click",
+      "question": "Tap the exhaust valve.",
+      "hint": "It lets the burned gas out of the cylinder.",
+      "modelId": "cylinder",
+      "correctNodeId": "ExhaustValve",
+      "rationale": "The exhaust valve opens to let the burned gas out to the exhaust stack. It passes the hot gas, so it runs hotter than the intake valve."
+    },
+    {
+      "id": "practicals-click-spark-plug",
+      "lessonId": "practicals",
+      "type": "model-click",
+      "question": "Tap a spark plug.",
+      "hint": "It screws into the cylinder head and ignites the mixture.",
+      "modelId": "cylinder",
+      "correctNodeId": "ignition",
+      "rationale": "Each cylinder has two spark plugs, an upper and a lower, fed by the two magnetos. Any part of either plug is right here."
+    },
+    {
+      "id": "practicals-click-magneto",
+      "lessonId": "practicals",
+      "type": "model-click",
+      "question": "Tap a magneto.",
+      "hint": "It supplies the ignition energy. There are two of them.",
+      "modelId": "accessory-drives",
+      "correctNodeId": "magneto-left",
+      "alsoAccept": [
+        "magneto-right"
+      ],
+      "rationale": "The engine has two magnetos, which are driven by the gear train and supply the ignition energy to the two spark plugs in each cylinder. Either is right."
+    },
+    {
+      "id": "practicals-click-fuel-pump",
+      "lessonId": "practicals",
+      "type": "model-click",
+      "question": "Tap the engine-driven fuel pump.",
+      "hint": "It delivers fuel to the engine. In this model it is driven through the camshaft gear cluster.",
+      "modelId": "accessory-drives",
+      "correctNodeId": "FuelPump",
+      "rationale": "The engine-driven fuel pump delivers fuel to the induction system. It is fitted on the accessory case and, in this model, driven through the camshaft gear cluster; the later -H installation differs from the older one."
+    },
+    {
+      "id": "practicals-click-alternator",
+      "lessonId": "practicals",
+      "type": "model-click",
+      "question": "Tap the alternator.",
+      "hint": "It generates the aircraft's electrical power.",
+      "modelId": "accessory-drives",
+      "correctNodeId": "alternator",
+      "rationale": "The alternator generates electrical power. In this teaching model it stands on a display fixture at the front, with the transfer from the engine omitted."
+    },
+    {
+      "id": "practicals-match-systems",
+      "lessonId": "practicals",
+      "type": "matching",
+      "question": "Match each external part to the system it belongs to.",
+      "hint": "Think about what each system does for the engine.",
+      "pairs": [
+        {
+          "left": "Magneto",
+          "right": "Ignition"
+        },
+        {
+          "left": "Cylinder cooling fins",
+          "right": "Cooling"
+        },
+        {
+          "left": "Oil filter",
+          "right": "Lubrication"
+        },
+        {
+          "left": "Carburettor or fuel-injection servo",
+          "right": "Fuel and induction"
+        },
+        {
+          "left": "Exhaust stack",
+          "right": "Exhaust"
+        }
+      ],
+      "rationale": "The magneto supplies the spark, the fins carry heat from the cylinder to the air, the oil filter cleans the oil, the carburettor or servo meters the fuel into the induction air, and the stack collects the burned gas."
+    },
+    {
+      "id": "practicals-match-defects",
+      "lessonId": "practicals",
+      "type": "matching",
+      "question": "Match each defect term to its meaning.",
+      "hint": "These are the handbook's definitions.",
+      "pairs": [
+        {
+          "left": "Corrosion",
+          "right": "Loss of metal by chemical or electrochemical action"
+        },
+        {
+          "left": "Chafing",
+          "right": "Wear from two parts rubbing together under light pressure"
+        },
+        {
+          "left": "Crack",
+          "right": "A partial separation of the material, from vibration, overloading, stress or fatigue"
+        },
+        {
+          "left": "Dent",
+          "right": "A small rounded depression where the part was struck"
+        }
+      ],
+      "rationale": "Use the inspector's words in your notes. Corrosion products are easily removed by mechanical means, a crack may be a few thousandths deep or run through the full thickness, and a dent is rounded where a nick has sharp sides."
+    },
+    {
+      "id": "practicals-prop-warning",
+      "lessonId": "practicals",
+      "type": "multiple-choice",
+      "question": "Which action is part of the FAA warning before you move a propeller by hand?",
+      "hint": "Think about what could make the engine fire.",
+      "answers": [
+        "Disconnect all spark plug leads",
+        "Set the mixture control to full rich",
+        "Leave the magneto switches on BOTH so the engine is ready"
+      ],
+      "correct": 0,
+      "rationale": "The warning lists disconnecting all spark plug leads, magneto switches off and P-leads grounded, throttle closed, mixture at idle cut-off, brakes set and wheels blocked, tie-downs fitted, and never standing in the arc of the blades."
+    },
+    {
+      "id": "practicals-exhaust-leak",
+      "lessonId": "practicals",
+      "type": "multiple-choice",
+      "question": "You see a flat gray or sooty black streak on an exhaust pipe next to a clamp. What does it most likely show?",
+      "hint": "Hot gas that escapes leaves a trace.",
+      "answers": [
+        "An exhaust gas leak at that joint",
+        "Normal staining that needs no action",
+        "Oil leaking from the sump"
+      ],
+      "correct": 0,
+      "rationale": "The handbook says an exhaust leak is indicated by a flat gray or sooty black streak on the pipes in the area of the leak, usually from poor alignment of two mated parts. The clamps are loosened and the parts repositioned for a gas-tight fit."
+    },
+    {
+      "id": "practicals-firewall",
+      "lessonId": "practicals",
+      "type": "multiple-choice",
+      "question": "What is the primary purpose of the firewall?",
+      "hint": "It is the foremost bulkhead of the engine compartment, made of fire-resistant material.",
+      "answers": [
+        "To confine any engine fire to the engine nacelle",
+        "To carry the weight of the engine",
+        "To cool the cylinders"
+      ],
+      "correct": 0,
+      "rationale": "Without the firewall an engine fire would have ready access to the inside of the aircraft. It is also a mounting surface for units and the point where lines, linkages and wiring between engine and aircraft are disconnected."
     }
   ]
 }

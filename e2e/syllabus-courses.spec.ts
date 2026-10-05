@@ -14,6 +14,36 @@ onlyIn('phone-390');
 // A lesson can have twenty steps, each opened on a fresh page.
 test.describe.configure({ timeout: 300_000 });
 
+// Lesson 18 is the first lesson to ship model-click questions (check-types.spec.ts tests the question type on fixture data). Answer two real
+// ones through the part list, the way a learner who cannot use the model would: a single right part, and a part among several accepted.
+test('Practicals: shipped model-click questions are answered from the part list', async ({ page, problems }) => {
+  await page.goto('/#/check');
+  await appReady(page);
+  await page.getByRole('button').filter({ has: page.getByRole('heading', { name: 'Maintenance, LSA & Practicals' }) }).click();
+  await page.getByRole('button', { name: /Open the list of questions/ }).click();
+  await page.getByRole('dialog').getByRole('button', { name: /Tap the piston\./ }).click();
+  await expect(page.getByText('TAP THE PART ON THE MODEL')).toBeVisible();
+  // The viewer's code loads on demand; the list is enabled once the model has.
+  await expect(page.locator('canvas')).toBeVisible({ timeout: 60_000 });
+  // The list is closed again on every question, and enabled once the model has loaded.
+  const chooseFromList = async (part: string) => {
+    await page.getByText('Cannot use the model? Choose the part from a list').click();
+    const list = page.getByLabel('Part', { exact: true });
+    await expect(list, 'the model has loaded').toBeEnabled({ timeout: 60_000 });
+    await list.selectOption({ label: part });
+  };
+  await chooseFromList('Piston');
+  await page.getByRole('button', { name: 'Verify answer' }).click();
+  await expect(page.getByText('CORRECT — WHY IT MATTERS')).toBeVisible();
+
+  await page.getByRole('button', { name: 'Next question' }).click();
+  await expect(page.getByText('Tap a piston ring.')).toBeVisible();
+  await chooseFromList('Second compression ring');
+  await page.getByRole('button', { name: 'Verify answer' }).click();
+  await expect(page.getByText('CORRECT — WHY IT MATTERS'), 'any of the four rings is right').toBeVisible();
+  problems.assertNone();
+});
+
 for (const pack of packs) {
   test.describe(pack.title, () => {
     test('the course page shows its banner, its lessons and their review status', async ({ page, problems }) => {
@@ -22,7 +52,7 @@ for (const pack of packs) {
       await expect(page.getByRole('heading', { name: pack.title })).toBeVisible();
       const banner = page.locator('img[src$="' + pack.banner.replace('./', '/') + '"]');
       await expect(banner).toBeVisible();
-      expect(await banner.evaluate((image: HTMLImageElement) => image.naturalWidth), 'the banner loaded').toBeGreaterThan(0);
+      await expect.poll(() => banner.evaluate((image: HTMLImageElement) => image.naturalWidth), { message: 'the banner loaded', timeout: 15_000 }).toBeGreaterThan(0);
       for (const lesson of pack.lessons) await expect(page.getByText(lesson.title, { exact: true }).first()).toBeVisible();
       await expect(page.getByText('Instructor review pending').first()).toBeVisible();
       await expectNoHorizontalOverflow(page);
