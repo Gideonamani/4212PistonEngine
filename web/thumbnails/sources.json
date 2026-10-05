@@ -278,6 +278,12 @@
       "path": "lesson-performance-calculations-square.webp",
       "credit": "Rendered from the app's operating-cylinder teaching model",
       "license": "Course material"
+    },
+    "lesson-operation-malfunctions": {
+      "kind": "render",
+      "path": "lesson-operation-malfunctions-square.webp",
+      "credit": "Rendered from the app's cylinder teaching model",
+      "license": "Course material"
     }
   },
   "previews": {

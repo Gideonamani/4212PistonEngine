@@ -5,7 +5,7 @@
   "thumbnail": "./thumbnails/course-requirements-and-malfunctions.webp",
   "banner": "./banners/requirements-and-malfunctions.webp",
   "title": "Requirements & Malfunctions",
-  "description": "What an aircraft engine must do and how to read its data, and, as the course grows, how its common malfunctions show themselves.",
+  "description": "What an aircraft engine must do and how to read its data, and how its common malfunctions show themselves and are found: detonation, pre-ignition, backfiring, afterfiring, blow-by and the run-up checks.",
   "sources": [
     {
       "id": "faa-powerplant-2023",
@@ -218,6 +218,230 @@
           }
         }
       ]
+    },
+    {
+      "id": "operation-malfunctions",
+      "thumbnail": "./thumbnails/lesson-operation-malfunctions.webp",
+      "sequenceNumber": 15,
+      "title": "Operation Malfunctions",
+      "objective": "Outline detonation, pre-ignition, backfiring, afterfiring and blow-by: say what each is, what causes it, how it shows itself, and use the magneto check, the power check and the cold cylinder check to find the cylinder at fault.",
+      "reviewStatus": "unreviewed",
+      "models": [
+        "cylinder"
+      ],
+      "listed": true,
+      "scheduledDay": 6,
+      "completionCriteria": "Define detonation, pre-ignition, backfiring, afterfiring and blow-by and tell them apart, state the usual cause and the first action for each, interpret a fast or slow magneto drop, and read a set of cold cylinder readings to name the dead cylinder.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "What normal combustion looks like",
+          "prompt": "Before you can tell what is wrong, know what is right. In a healthy cylinder the spark starts a flame that spreads across the chamber in ripples from each plug, at about 100 feet a second, and the pressure rises at a steady rate to a peak just after the piston has passed top dead centre. That is the moment the push on the piston is best used. Every malfunction in this lesson is combustion that departs from that pattern. As you read about each one, ask three questions: when does the burning start, how fast does it go, and where does it happen?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 397 (normal combustion: the mixture ignites and burns progressively at a fairly uniform rate; with correct timing the maximum pressure builds just after the piston passes top dead centre; flame fronts start at each plug and burn in wavelike forms; flame travel is about 100 feet per second, influenced by the fuel, the air-fuel ratio, and the pressure and temperature of the mixture). The three questions are this lesson's framing.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A prediction frame that sets the learner up to compare each fault with the normal pattern."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Normal combustion and detonation",
+          "prompt": "On the left, normal combustion: the flame spreads outward from the plug in rings, and the piston feels a firm, even push. On the right, detonation: the last part of the charge explodes by itself, and the piston feels a hammer blow. Notice where the burst starts. It is not at the plug.",
+          "url": "./lesson-media/faa-detonation.webp",
+          "alt": "FAA figure of two cylinders. On the left, normal combustion: concentric rings of flame spread outward from the spark plug and a hand pushes the piston down firmly. On the right, detonation: an explosion in the far side of the chamber and a fist hammering the piston.",
+          "credit": "FAA-H-8083-32B, Figures 10-42 and 10-43",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 397 (Figure 10-42, normal combustion within a cylinder, and Figure 10-43, detonation within a cylinder).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The handbook's paired figure shows the difference between the two kinds of burning in one glance."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Detonation",
+          "prompt": "Every fuel has a limit of temperature and compression. Beyond it, the fuel ignites by itself. Detonation is the spontaneous burning of the unburned charge ahead of the flame fronts after the spark. The flame fronts squeeze the gas ahead of them while the rising piston squeezes it too; if the total compression on the last gas to burn passes the critical point, it explodes. The result is a violent pressure rise, great heat and turbulence that scrub the cylinder and piston, and the handbook warns it can burn a hole completely through the piston. A low-octane fuel in an engine that needs high octane is the standard example.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 397 (all fuels have critical limits of temperature and compression; detonation is the spontaneous combustion of the unburned charge ahead of the flame fronts after ignition; the explosive burning produces an extremely rapid pressure rise and a scrubbing action that can burn a hole completely through the piston) and EASA Module 16, PDF p. 44 (detonation occurs when the charge meets a temperature and pressure above the safe limit of the fuel; low-octane fuel in an engine that requires high octane is an example).",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The figure on the previous step carries the picture; this step gives the definition and the cause."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Why detonation hides",
+          "prompt": "Light to medium detonation causes no roughness, no temperature rise and no loss of power, so it can go on through every takeoff without the crew knowing. Often it is found only when the engine is torn down: dished piston heads, collapsed valve heads, broken ring lands, or eroded valves, pistons and cylinder heads. So prevention matters more than detection. The design supplies rich mixtures at high power, because a rich mixture does not detonate as readily as a lean one. The rest is up to the crew and the technician: respect the rpm and manifold pressure limits, use the right fuel grade and mixture, and keep cylinder head and carburettor air temperatures down. Timing that is too early can also cause it.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 397-398 (at high power the mixture is made richer because a rich mixture does not detonate as readily; light to medium detonation gives no flight deck evidence; severe detonation is found at overhaul as dished piston heads, collapsed valve heads, broken ring lands, or eroded valves, pistons or heads; the basic protection is the design, the rating limits and the correct grade of fuel; the ground and flight crews must observe rpm and manifold pressure limits and use the supercharger, mixture and temperatures correctly) and PDF p. 396 (early ignition can cause detonation and loss of power at takeoff power settings). The course deck (slide 252) lists detonation damage as a reason for disassembly: piston erosion, valve burning and cylinder head cracking. The 2025-2026 daily quiz activity asks that excessively advanced ignition timing can result in detonation, structural damage and potential engine failure.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Text and consequences only; the learner has the figure from the previous step."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Pre-ignition",
+          "prompt": "Pre-ignition means the charge starts to burn before the timed spark jumps. The cause is a hot spot: a deposit of carbon or lead glowing in the chamber, a cracked valve or piston, or a broken spark plug insulator acting as a glow plug. Detonation often leads to it, because the roughened, eroded surface it leaves behind glows. High power on a very lean mixture can also cause it. The signs in the flight deck are engine roughness, backfiring and a sudden rise in cylinder head temperature. The remedy is to cool the cylinder: retard the throttle, lower the manifold pressure if you can, and enrich the mixture.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 398 (pre-ignition is combustion before the timed spark; it is often traced to carbon or other deposits that cause hot spots; detonation often leads to it, and high-power operation on excessively lean mixtures may also cause it; indicated by engine roughness, backfiring and a sudden increase in cylinder head temperature; any incandescent area serves as an igniter; a cracked valve or piston or a broken spark plug insulator may furnish a hot point; the immediate step is to retard the throttle, reduce manifold pressure if a supercharger is in use, and then enrich the mixture) and EASA Module 16, PDF p. 44 (pre-ignition when the charge ignites before the normal ignition event; a leaking valve can overheat until its edge is incandescent). The EASA text also lists water in the magneto distributor and carbon tracking, which make a spark reach the wrong plug; the FAA text says pre-ignition is caused by a hot spot, not by incorrect ignition timing, and this lesson follows the FAA definition.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The 3D step that follows shows where such a hot spot can sit."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Where a hot spot can sit",
+          "modelId": "cylinder",
+          "prompt": "At 340° the piston is rising on the compression stroke and is nearly at the top. Both valves are shut, and the charge is as hot and as squeezed as it will get before the spark. Anything in this chamber that is glowing, an eroded or cracked piston crown, the edge of a burned exhaust valve, a broken plug insulator, or a flake of deposit, can light the charge early. Spotlit here are the piston crown, the exhaust valve and the spark plugs.",
+          "action": {
+            "type": "cycle-angle",
+            "value": 340
+          },
+          "focusParts": [
+            "PistonBody",
+            "ExhaustValve",
+            "UpperSparkPlug",
+            "UpperSparkInsulator",
+            "LowerSparkPlug",
+            "LowerSparkInsulator"
+          ],
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 398 (a cracked valve or piston, or a broken spark plug insulator, may furnish a hot point that serves as a glow plug; deposits on the chamber surfaces from leaded fuels, and normal carbon deposits, can cause pre-ignition) and EASA Module 16, PDF p. 44 (an exhaust valve that leaks and overheats can become incandescent at its edge and ignite the charge during compression). The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The compression-stroke pose with the surfaces that can glow spotlit shows where a hot spot can sit."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Detonation or pre-ignition?",
+          "prompt": "They are easy to mix up, and one can start the other. Ask when and why. Pre-ignition begins before the spark, because something hot lights the charge early. Detonation begins after the spark, because the last of the charge cannot stand the heat and pressure. Pre-ignition is a hot spot and needs a cooler cylinder; detonation is a limit passed and needs less power, a richer mixture or a higher grade of fuel. Early spark timing is neither a hot spot nor detonation, but it can bring on detonation. Try to say which one you would suspect for each of these: a hole burned through a piston, a sudden rise in head temperature with roughness, a dished piston found at overhaul.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 398 (detonation often leads to pre-ignition; pre-ignition is a condition similar to early timing of the spark, but it is caused by a hot spot in the combustion chamber, not by incorrect ignition timing) and PDF p. 396 (early ignition can cause detonation). The contrast and the prompt are this lesson's comparison of those definitions.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A comparison prompt that makes the learner state the two definitions in their own words."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Backfiring",
+          "prompt": "A mixture that is far too lean burns slowly, so slowly that it is still burning when the exhaust stroke ends. The flame lingers, and when the intake valve opens it lights the charge in the induction system. That bang is a backfire, and it can damage the carburettor and the other induction parts. Wrong ignition timing or faulty ignition wires can do it too, by firing a cylinder when the intake valve is open. Backfiring rarely involves the whole engine, so it is seldom the carburettor's fault: it is usually one or two cylinders running leaner than the rest, from wrong valve clearance or a bad injector nozzle. If it happens only at idle, suspect an idle mixture that is too lean.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 398 (an extremely lean mixture burns so slowly that combustion is not complete at the end of the exhaust stroke; the flame ignites the contents of the induction system when the intake valve opens, which is backfiring and can damage the carburetor and induction parts; incorrect timing or faulty ignition wires can cause the cylinder to fire while the intake valve is open; backfiring rarely involves the whole engine, is limited to one or two cylinders, and usually results from faulty valve clearance or defective injector nozzles; backfiring in the idle range only is most likely an excessively lean idle mixture) and EASA Module 16, PDF p. 44 (backfire results from slow burning of the lean mixture; the flame travels back through the combustible mixture in the induction system). The daily quiz also asks that an excessively lean mixture at high power can cause overheating, backfiring through the intake and a risk of detonation.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Text only: the cause and the usual place are what the learner has to know."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Afterfiring",
+          "prompt": "Backfiring is a fire in the intake; afterfiring is a fire in the exhaust. An overly rich mixture burns slowly too, so unburned fuel is left in the exhaust gas. When it meets air from outside the stack, it ignites with a bang. Long exhaust ducting makes it more likely. A cylinder that is not firing can do the same thing: a faulty plug, a defective injector nozzle or wrong valve clearance lets raw mixture pass into the exhaust, where it burns. That torching can be mistaken for a rich carburettor, so the cure is to find the real cause. The cold cylinder check, shown later in this lesson, finds dead or intermittent cylinders.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 399 (afterfiring, or afterburning, often results from a mixture that is too rich; unburned fuel in the exhaust gases mixes with air from outside the stacks and ignites in the exhaust system; more common with long exhaust ducting; it can also be caused by cylinders that are not firing, because of faulty plugs, defective fuel-injection nozzles or incorrect valve clearance, and can be mistaken for a rich carburetor; dead or intermittent cylinders can be located by the cold cylinder check) and PDF p. 404 (a mixture that is too rich is indicated by sluggish operation, a red exhaust flame and black smoke).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A contrast with backfiring: same slow burning, different place and opposite mixture."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Blow-by",
+          "prompt": "Blow-by is compression escaping from a cylinder past something that should have sealed it. Some gas always passes the piston ring gaps and is why the crankcase is vented. Too much means worn rings, a lack of oil or a valve that does not seat. Valve blow-by shows as a hiss or whistle when you pull the propeller through, turn the engine with the starter or, with an intake valve, hear it through the carburettor. Fix it at once, to save the valve and the engine: run a compression test, check the valve clearance, and free a sticking valve with a fibre drift. The next most common cause of low compression is leakage past the piston.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 407 (valve blow-by is a hissing or whistle when pulling the propeller through, turning with the starter, or heard through the carburetor when the intake valve leaks; correct it immediately by a compression test, then checking valve clearance and freeing a sticking valve with a fiber drift on the rocker arm; if blow-by remains, the cylinder may need replacing) and PDF p. 409 (next to valve blow-by, the most frequent cause of compression leakage is leakage past the piston, which can be due to lack of oil), with EASA Module 16, PDF p. 233 (the crankcase vent relieves the pressure that builds up from combustion blow-by seeping past the piston ring end gaps). The course deck (slide 254) adds that ring gaps aligned at assembly cause severe blow-by.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The 3D step on where compression leaks in the Factors Affecting Power lesson already shows the leak paths."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Reading the magneto check",
+          "prompt": "At the run-up you switch from both magnetos to one, and the engine drops a little in rpm because half the plugs are not firing. How it drops tells you where to look. A fast drop, the instant you switch, points to a faulty plug or ignition lead, because the cylinder goes dead at once. A slow drop points to late ignition timing or wrong valve clearance. No drop at all, or an engine that does not cut out with the switch off, means a faulty ground connection, and that is a safety problem. Complete cutting out on one magneto means that side is dead. Give each position time to settle, and tap the tachometer.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 394-395 (the magneto safety check; a slight but noticeable drop shows the opposite magneto is properly grounded out; failure to get any drop, or failure to cut out in the off position, means a faulty ground connection and a safety problem; a fast drop is usually from faulty plugs or harness; a slow drop is usually from incorrect timing or faulty valve adjustment; complete cutting out is definite evidence that side is not working; allow time to settle, up to a minute on one magneto is not excessive; a sticking tachometer can hide the true drop) and the daily quiz (day 6-7: the magneto check confirms each magneto circuit works and the drop is within limits). The permitted drop is the manufacturer's figure and is not given here.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The learner has to hold the pattern in mind; a table in the check below tests it."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Power and cold cylinder checks",
+          "prompt": "With the propeller at low pitch, a good engine needs a known manifold pressure to turn a given rpm. A dead cylinder makes the others work harder, so manifold pressure rises: higher than normal means a dead cylinder or late timing, and lower than normal means early timing. To find the cylinder, run the engine on its roughest magneto, stop it with the mixture control, then read each head with a cold cylinder indicator. Only the pattern matters. In one example, on the right magneto cylinders 5 and 6 read 70 and 60 where cylinders 1 and 2 read 180 and 170, and cylinder 6 was also cold on the left magneto.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 396 (a higher than normal manifold pressure usually indicates a dead cylinder or late ignition timing; an excessively low manifold pressure usually indicates early timing; identical engines should need the same manifold pressure to within 1 inHg), PDF p. 406 (an engine that needs 32 inHg for 2,200 rpm where it used to need 30 has a likely cylinder malfunction) and PDF pp. 411-412 (the cold cylinder check, with the readings of Figure 10-56: right magneto cylinders 3, 5 and 6 cool or cold, left magneto cylinders 4 and 6 cold, cylinder 6 completely dead; the temperatures are relative and an ignition check alone would not disclose cylinder 6; the causes of a dead cylinder include defective plugs, wrong valve clearance, leaking intake pipes, lack of compression, a defective lead and a defective injector nozzle).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The two checks are explained in words and the example readings are in the check below."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Diagnose a squawk",
+          "prompt": "You are the technician. At a run-up at 1,700 rpm the pilot reports: both magnetos give a normal drop of about 60 rpm, but on the right one the drop is 300 rpm and the engine runs very roughly. Say what you think is wrong and why, using the fast and slow drop rule. Then say what you would check first and what test you would use to find the cylinder. Finish by naming one malfunction from this lesson that this fault could lead to if it were left, and why.",
+          "note": "Completion step: the learner applies the magneto check and cold cylinder check (opening prompt, action, feedback, completion evidence). The squawk is from the course deck (slide 277, squawk A: a 60 rpm drop on the left, a 300 rpm drop and violent roughness on the right, deduced to be a defective spark plug or open ignition lead on the right magneto circuit), read with FAA-H-8083-32B (2023), PDF pp. 394-395 (a fast drop is usually a faulty plug or harness) and PDF pp. 411-412 (the cold cylinder check).",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The learner works the diagnosis in their own words; the deck gives the squawk."
+          }
+        }
+      ]
     }
   ],
   "checks": [
@@ -364,6 +588,190 @@
       ],
       "correct": 0,
       "rationale": "Fuel pressure depends on the power setting, so the data gives the manifold pressure and propeller speed at which the limit applies. Reading a number without its condition leads to mistakes."
+    },
+    {
+      "id": "malf-match-definitions",
+      "lessonId": "operation-malfunctions",
+      "type": "matching",
+      "question": "Match each malfunction to what happens in the cylinder or the engine.",
+      "hint": "Think about when the burning starts, and where.",
+      "pairs": [
+        {
+          "left": "Detonation",
+          "right": "The unburned charge explodes after the spark, ahead of the flame"
+        },
+        {
+          "left": "Pre-ignition",
+          "right": "A hot spot lights the charge before the spark"
+        },
+        {
+          "left": "Backfiring",
+          "right": "A lean charge still burning lights the mixture in the intake"
+        },
+        {
+          "left": "Afterfiring",
+          "right": "Unburned fuel ignites in the exhaust system"
+        },
+        {
+          "left": "Blow-by",
+          "right": "Compression leaks past the rings or a valve"
+        }
+      ],
+      "rationale": "Detonation and pre-ignition are both early or violent burning in the chamber, but detonation follows the spark and pre-ignition comes before it. Backfiring and afterfiring are fires outside the cylinder, in the intake and in the exhaust. Blow-by is a leak, not a fire."
+    },
+    {
+      "id": "malf-match-ignition-signs",
+      "lessonId": "operation-malfunctions",
+      "type": "matching",
+      "question": "Match each run-up sign to its likely cause.",
+      "hint": "A fault in a plug or a lead takes effect at once; a timing fault does not.",
+      "pairs": [
+        {
+          "left": "A fast rpm drop on one magneto",
+          "right": "A faulty spark plug or ignition lead"
+        },
+        {
+          "left": "A slow rpm drop on one magneto",
+          "right": "Late ignition timing or wrong valve clearance"
+        },
+        {
+          "left": "No rpm drop on one magneto",
+          "right": "A faulty ground connection on one side"
+        },
+        {
+          "left": "Engine cuts out on one magneto",
+          "right": "That magneto's side of the ignition is dead"
+        },
+        {
+          "left": "Higher manifold pressure than normal for the rpm",
+          "right": "A dead cylinder or late ignition timing"
+        }
+      ],
+      "rationale": "A faulty plug or lead makes its cylinder go dead the instant the switch moves, so the drop is fast. A timing or valve fault lowers the peak pressure and the drop comes on slowly. No drop means the other magneto is not being grounded out, which is a safety fault."
+    },
+    {
+      "id": "malf-detonation-vs-preignition",
+      "lessonId": "operation-malfunctions",
+      "type": "multiple-choice",
+      "question": "Which statement correctly separates pre-ignition from detonation?",
+      "hint": "One of them starts before the spark.",
+      "answers": [
+        "Pre-ignition is caused by spark timing that is too early; detonation is caused by a hot spot",
+        "Pre-ignition starts before the timed spark, from a hot spot; detonation is the unburned charge exploding after the spark",
+        "They are two names for the same event"
+      ],
+      "correct": 1,
+      "rationale": "The handbook is clear that pre-ignition is caused by a hot spot, not by incorrect ignition timing. Detonation is the spontaneous burning of the unburned charge after ignition. Detonation can lead to pre-ignition, but they are not the same."
+    },
+    {
+      "id": "malf-detonation-hides",
+      "lessonId": "operation-malfunctions",
+      "type": "multiple-choice",
+      "question": "Why can light detonation continue through many takeoffs without the crew noticing?",
+      "hint": "Think about what the pilot would feel or see.",
+      "answers": [
+        "Light to medium detonation gives no noticeable roughness, temperature rise or loss of power",
+        "It only happens when the engine is stopped",
+        "The engine shuts down at once, so there is nothing to notice"
+      ],
+      "correct": 0,
+      "rationale": "Light to medium detonation gives no flight deck evidence. Its effects are usually discovered at teardown: dished piston heads, collapsed valve heads, broken ring lands or eroded valves and pistons."
+    },
+    {
+      "id": "malf-preignition-action",
+      "lessonId": "operation-malfunctions",
+      "type": "multiple-choice",
+      "question": "Pre-ignition shows up at high power, with roughness and a sudden rise in head temperature. What is the immediate action?",
+      "hint": "The aim is to cool the cylinder.",
+      "answers": [
+        "Lean the mixture to burn less fuel",
+        "Open the throttle to blow out the deposits",
+        "Retard the throttle, and enrich the mixture if possible"
+      ],
+      "correct": 2,
+      "rationale": "Retarding the throttle reduces the fuel charge and the heat. Enriching the mixture then cools the combustion. Retarding the throttle for a few seconds can even chip off a deposit that is acting as a hot spot."
+    },
+    {
+      "id": "malf-backfire-one-cylinder",
+      "lessonId": "operation-malfunctions",
+      "type": "multiple-choice",
+      "question": "One cylinder keeps backfiring through the induction system while the others run smoothly. What is the most likely cause?",
+      "hint": "Backfiring rarely involves the whole engine.",
+      "answers": [
+        "That cylinder runs leaner than the rest, for example from valve clearance or a defective injector nozzle",
+        "The carburettor is out of adjustment for the whole engine",
+        "The mixture is too rich in all cylinders"
+      ],
+      "correct": 0,
+      "rationale": "Backfiring is almost always limited to one or two cylinders that run leaner than the engine as a whole, and the handbook points to valve clearance and injector nozzles. It is seldom the fault of the carburettor."
+    },
+    {
+      "id": "malf-afterfire-dead-cylinder",
+      "lessonId": "operation-malfunctions",
+      "type": "multiple-choice",
+      "question": "Flames appear in the exhaust. What other fault than a rich mixture can cause this?",
+      "hint": "Where does the mixture from a cylinder that is not firing go?",
+      "answers": [
+        "A leak in the oil cooler",
+        "A dead or intermittently firing cylinder passing unburned mixture into the exhaust",
+        "Too much oil in the sump"
+      ],
+      "correct": 1,
+      "rationale": "The unburned mixture from a cylinder that is not firing, because of a faulty plug, a bad injector nozzle or wrong valve clearance, passes into the exhaust, mixes with air and burns. It can look like a rich carburettor."
+    },
+    {
+      "id": "malf-blowby-breather",
+      "lessonId": "operation-malfunctions",
+      "type": "multiple-choice",
+      "question": "During a compression test on one cylinder, air is heard escaping at the crankcase breather. Where is it leaking past?",
+      "hint": "Air from the breather has come into the crankcase.",
+      "answers": [
+        "The intake valve",
+        "The exhaust valve",
+        "The piston and rings"
+      ],
+      "correct": 2,
+      "rationale": "Air escaping at the breather has passed the piston into the crankcase. A leak past the exhaust valve is heard at the exhaust outlet, and one past the intake valve at the air intake."
+    },
+    {
+      "id": "malf-mixture-too-rich-signs",
+      "lessonId": "operation-malfunctions",
+      "type": "multiple-choice",
+      "question": "Which set of signs points to a mixture that is too rich?",
+      "hint": "Rich gives a cool, sluggish burn with unburned fuel.",
+      "answers": [
+        "Overheating and backfiring",
+        "Sluggish running, a red exhaust flame and black smoke",
+        "Detonation damage at teardown"
+      ],
+      "correct": 1,
+      "rationale": "The handbook's troubleshooting chart gives sluggish operation, a red exhaust flame and black smoke for a mixture that is too rich, and overheating or backfiring for one that is too lean."
+    },
+    {
+      "id": "malf-cold-cylinder-dead",
+      "lessonId": "operation-malfunctions",
+      "type": "numeric",
+      "question": "A cold cylinder check on a six-cylinder engine gives these relative readings for cylinders 1 to 6. Right magneto: 180, 170, 100, 145, 70, 60. Left magneto: 170, 175, 170, 60, 155, 45. Which cylinder is dead on both magnetos?",
+      "hint": "Look for the one reading very low in both rows.",
+      "unit": "cylinder number",
+      "correctValue": 6,
+      "tolerance": 0,
+      "rationale": "Cylinder 6 reads 60 on the right and 45 on the left, far below the others in both rows. Cylinder 5 is cold only on the right and cylinder 4 only on the left. An ignition check alone would not find cylinder 6, because it is dead on both switch positions."
+    },
+    {
+      "id": "malf-cold-cylinder-order",
+      "lessonId": "operation-malfunctions",
+      "type": "ordering",
+      "question": "Put the steps of a cold cylinder check in order.",
+      "hint": "The cylinders must be read before they cool, so the order follows the engine stopping.",
+      "items": [
+        "Run the engine on its roughest magneto at 1,200 to 1,600 rpm until the head temperature is steady",
+        "Stop it with the mixture control at idle cutoff or full lean",
+        "Switch off both the ignition and the master switch when it stops firing",
+        "Apply the cold cylinder indicator to each cylinder in order, firmly and at the same spot",
+        "Compare the readings to find the dead or intermittent cylinders"
+      ],
+      "rationale": "The engine is run until the temperatures are stable, then stopped, then the indicator is applied as quickly as possible once the propeller has stopped. The readings only mean something when compared with the other cylinders on the same engine."
     }
   ]
 }

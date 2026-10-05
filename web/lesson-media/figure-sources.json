@@ -100,5 +100,11 @@
     "page": 56,
     "box": [0.09, 0.7, 0.912, 0.893],
     "width": 1100
+  },
+  "faa-detonation": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 397,
+    "box": [0.045, 0.562, 0.955, 0.905],
+    "width": 1200
   }
 }

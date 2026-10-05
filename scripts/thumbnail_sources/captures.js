@@ -40,4 +40,6 @@ const THUMBNAIL_CAPTURES = [
   { model: 'gtsio520-h-v5-teaching-engine', name: 'course-requirements-square', view: {}, options: { zoom: 0.8, orbit: [140, 15], pan: [-10, 10] } },
   // Lesson 12 (Performance Calculations).
   { model: 'cylinder', name: 'lesson-performance-calculations-square', view: { initialAngle: 200, initialCycle: true }, options: { zoom: 0.8, orbit: [100, 18], pan: [95, 0] } },
+  // Lesson 15 (Operation Malfunctions).
+  { model: 'cylinder', name: 'lesson-operation-malfunctions-square', view: { initialAngle: 340, initialCycle: true, focusParts: ['PistonBody', 'ExhaustValve', 'UpperSparkPlug', 'UpperSparkInsulator', 'LowerSparkPlug', 'LowerSparkInsulator'], focusMode: 'xray' }, options: { zoom: 0.8, orbit: [75, 12], pan: [20, 0] } },
 ];

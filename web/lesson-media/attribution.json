@@ -145,5 +145,10 @@
     "title": "Thermal distribution in a reciprocating engine",
     "source": "FAA-H-8083-32B, Figure 1-42",
     "license": "U.S. Government work"
+  },
+  "faa-detonation.webp": {
+    "title": "Normal combustion and detonation within a cylinder",
+    "source": "FAA-H-8083-32B, Figures 10-42 and 10-43",
+    "license": "U.S. Government work"
   }
 }
