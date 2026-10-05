@@ -1,0 +1,320 @@
+{
+  "schema": "4212.model-optimization/v1",
+  "release": "opt1",
+  "description": "Lossless-looking optimisation of the teaching models (scripts/optimize_model.mjs). The current files are untouched; these are new files that are not yet published or bound. See docs/model-optimization.md.",
+  "tool": {
+    "optimizer": "scripts/optimize_model.mjs"
+  },
+  "models": [
+    {
+      "id": "cylinder",
+      "source": {
+        "file": "cylinder-reviewed-20261001.glb.gz",
+        "transferBytes": 15937570,
+        "transferSha256": "b34300914d27a5f133eb31f434da0bf7cfff8b8fc11e0e56734708c217c29e7a",
+        "decodedBytes": 34858120,
+        "decodedSha256": "ba39a78c89ac14d5d263487e446011cfa4710346270d2ebe377a997174793647"
+      },
+      "optimized": {
+        "file": "cylinder-reviewed-20261001-opt1.glb.gz",
+        "transferBytes": 9066140,
+        "transferSha256": "eef22b4cfb57e61a53e4a808f1029f7723e80a2034ea8f3ed2689a883290109e",
+        "decodedBytes": 12959620,
+        "decodedSha256": "ab9612971a77ce2b3b610345e2aaca055e8b19dbb0e56b089ff31758611b1533",
+        "driveId": null
+      },
+      "saving": {
+        "transferPercent": 43.1,
+        "decodedPercent": 62.8
+      },
+      "changes": {
+        "triangles": 1010794,
+        "trianglesUnchanged": true,
+        "sharedDataUnchanged": true,
+        "accessorsBefore": 191,
+        "accessorsAfter": 184,
+        "animationKeysBefore": 0,
+        "animationKeysAfter": 0
+      },
+      "measuredError": {
+        "modelSizeMetres": 0.46886999905109406,
+        "positionAbsolute": 0.0000019073486328125,
+        "positionRelativeToModel": 0.0000040679690248312325,
+        "normalDegrees": 0.02390587141158443,
+        "animationTranslationRelativeToModel": 0,
+        "animationRotationDegrees": 0
+      },
+      "roundTripExact": true,
+      "renderCheck": {
+        "checkedOn": "2026-10-05",
+        "pictures": 12,
+        "worstDifferingPixels": 0.00006510416666666667,
+        "worstMeanDifference": 0.011462673611111111,
+        "limits": {
+          "differingPixels": 0.0005,
+          "meanDifference": 0.05
+        },
+        "passed": true
+      }
+    },
+    {
+      "id": "hydraulic-tappet",
+      "source": {
+        "file": "hydraulic-tappet.glb.gz",
+        "transferBytes": 7126499,
+        "transferSha256": "0e2632609a9ec7c5f3691aec1a7b06aad6337a84adde6d6a43a2bb2d68c21d0b",
+        "decodedBytes": 21503284,
+        "decodedSha256": "a6c88a23cd42971dc6b5df4404acd22b5d236955280b049a286e46a56e61ee60"
+      },
+      "optimized": {
+        "file": "hydraulic-tappet-opt1.glb.gz",
+        "transferBytes": 5741873,
+        "transferSha256": "7a9004935c3624a0dd271b4f83dba3d08424a088683cafbadd58816e0368baab",
+        "decodedBytes": 8258332,
+        "decodedSha256": "e4be507fae6ca87a4ed19494dffe1db406d75c1b457fd0e3c1559b3058cb55d3",
+        "driveId": null
+      },
+      "saving": {
+        "transferPercent": 19.4,
+        "decodedPercent": 61.6
+      },
+      "changes": {
+        "triangles": 163996,
+        "trianglesUnchanged": true,
+        "sharedDataUnchanged": true,
+        "accessorsBefore": 151,
+        "accessorsAfter": 78,
+        "animationKeysBefore": 6979,
+        "animationKeysAfter": 575
+      },
+      "measuredError": {
+        "modelSizeMetres": 0.04500000178813934,
+        "positionAbsolute": 2.384185791015625e-7,
+        "positionRelativeToModel": 0.000005298190436170216,
+        "normalDegrees": 0.023743143640379057,
+        "animationTranslationRelativeToModel": 0.00005290265974735693,
+        "animationRotationDegrees": 0
+      },
+      "roundTripExact": true,
+      "renderCheck": {
+        "checkedOn": "2026-10-05",
+        "pictures": 12,
+        "worstDifferingPixels": 0.00001736111111111111,
+        "worstMeanDifference": 0.004800347222222222,
+        "limits": {
+          "differingPixels": 0.0005,
+          "meanDifference": 0.05
+        },
+        "passed": true
+      }
+    },
+    {
+      "id": "oil-pump",
+      "source": {
+        "file": "oil-pump.glb.gz",
+        "transferBytes": 4696163,
+        "transferSha256": "0322990a175dde3486278d98de7edafb8c948d7aeb801bea86f1194da1fd6287",
+        "decodedBytes": 15292568,
+        "decodedSha256": "3622888d4e44a07edb43bdbdc9446b825c913756c2852b5d15c48324db9c2558"
+      },
+      "optimized": {
+        "file": "oil-pump-opt1.glb.gz",
+        "transferBytes": 3759379,
+        "transferSha256": "0e6a4548064f21ec91543e0beba105af26559ebbc3c1b289a9a0495179902d45",
+        "decodedBytes": 5530200,
+        "decodedSha256": "3ef23e11a62354264b0e3dc5a89d8977d3f5d6608159d3fbaf354c000ffe6cae",
+        "driveId": null
+      },
+      "saving": {
+        "transferPercent": 19.9,
+        "decodedPercent": 63.8
+      },
+      "changes": {
+        "triangles": 110590,
+        "trianglesUnchanged": true,
+        "sharedDataUnchanged": true,
+        "accessorsBefore": 302,
+        "accessorsAfter": 99,
+        "animationKeysBefore": 9800,
+        "animationKeysAfter": 278
+      },
+      "measuredError": {
+        "modelSizeMetres": 0.06399999931454659,
+        "positionAbsolute": 2.384185791015625e-7,
+        "positionRelativeToModel": 0.0000037252903383605544,
+        "normalDegrees": 0.023580685975015902,
+        "animationTranslationRelativeToModel": 0.000007203183183340033,
+        "animationRotationDegrees": 0.00013071383266874536
+      },
+      "roundTripExact": true,
+      "renderCheck": {
+        "checkedOn": "2026-10-05",
+        "pictures": 12,
+        "worstDifferingPixels": 0.00002604166666666667,
+        "worstMeanDifference": 0.004296875,
+        "limits": {
+          "differingPixels": 0.0005,
+          "meanDifference": 0.05
+        },
+        "passed": true
+      }
+    },
+    {
+      "id": "accessory-drives",
+      "source": {
+        "file": "accessory-drives.glb.gz",
+        "transferBytes": 12394258,
+        "transferSha256": "00010e5d535c943e47ab3a5374701559cae510c1433f5eb797be2572ff163686",
+        "decodedBytes": 55709888,
+        "decodedSha256": "dde7e6d7832d65fc73975f494b530e1051c37e8ebc41954e6d704077d80a6be3"
+      },
+      "optimized": {
+        "file": "accessory-drives-opt1.glb.gz",
+        "transferBytes": 8665999,
+        "transferSha256": "bdde0af9b7b7843d21bc0fc6023f5621e0c3fd492d87b0d9b3b33f12eb88f470",
+        "decodedBytes": 14509476,
+        "decodedSha256": "a991aba7fdbcf0ae705248d5b8989230d406cd1881f7e898fe82c12f9b1e8513",
+        "driveId": null
+      },
+      "saving": {
+        "transferPercent": 30.1,
+        "decodedPercent": 74
+      },
+      "changes": {
+        "triangles": 529298,
+        "trianglesUnchanged": true,
+        "sharedDataUnchanged": true,
+        "accessorsBefore": 7720,
+        "accessorsAfter": 2957,
+        "animationKeysBefore": 1496490,
+        "animationKeysAfter": 5965
+      },
+      "measuredError": {
+        "modelSizeMetres": 0.30000001192092896,
+        "positionAbsolute": 9.5367431640625e-7,
+        "positionRelativeToModel": 0.00000317891426170213,
+        "normalDegrees": 0.023575374238386248,
+        "animationTranslationRelativeToModel": 0.000005069891914668001,
+        "animationRotationDegrees": 0.0011904691042935406
+      },
+      "roundTripExact": true,
+      "renderCheck": {
+        "checkedOn": "2026-10-05",
+        "pictures": 12,
+        "worstDifferingPixels": 0.00004774305555555556,
+        "worstMeanDifference": 0.005394965277777778,
+        "limits": {
+          "differingPixels": 0.0005,
+          "meanDifference": 0.05
+        },
+        "passed": true
+      }
+    },
+    {
+      "id": "gtsio520-h-v5-teaching-engine",
+      "source": {
+        "file": "engine.glb.gz",
+        "transferBytes": 4228178,
+        "transferSha256": "cdaa357e0888b5c89ad0a2135b1536b71a6a4099930b67af1993058c430caf0f",
+        "decodedBytes": 40039232,
+        "decodedSha256": "f363800d58daea8eb9cafedb6acc1db586f87e98d19325ad4c76207e2e26f214"
+      },
+      "optimized": {
+        "file": "engine-opt1.glb.gz",
+        "transferBytes": 1317715,
+        "transferSha256": "a25346c64fad9901ed82d91ba2d8057598ea8d0c6869eac9713810b58d0b9aed",
+        "decodedBytes": 5337968,
+        "decodedSha256": "d159cb3070f5a0d03b6016ea841ccab4b0e6c10d2e3b84ad4f97594b92e20912",
+        "fallbackFile": "engine-opt1.glb",
+        "fallbackBytes": 5337968,
+        "fallbackSha256": "d159cb3070f5a0d03b6016ea841ccab4b0e6c10d2e3b84ad4f97594b92e20912",
+        "driveId": null,
+        "fallbackDriveId": null
+      },
+      "saving": {
+        "transferPercent": 68.8,
+        "decodedPercent": 86.7
+      },
+      "changes": {
+        "triangles": 947894,
+        "trianglesUnchanged": true,
+        "sharedDataUnchanged": true,
+        "accessorsBefore": 16597,
+        "accessorsAfter": 2943,
+        "animationKeysBefore": 45569,
+        "animationKeysAfter": 19558
+      },
+      "measuredError": {
+        "modelSizeMetres": 0.8939999938011169,
+        "positionAbsolute": 0.0000019073486328125,
+        "positionRelativeToModel": 0.000002133499604069144,
+        "normalDegrees": 0.02262813762710099,
+        "animationTranslationRelativeToModel": 0.00003507639842873793,
+        "animationRotationDegrees": 0.00471714196846644
+      },
+      "roundTripExact": true,
+      "renderCheck": {
+        "checkedOn": "2026-10-05",
+        "pictures": 12,
+        "worstDifferingPixels": 0.00012586805555555555,
+        "worstMeanDifference": 0.022925347222222222,
+        "limits": {
+          "differingPixels": 0.0005,
+          "meanDifference": 0.05
+        },
+        "passed": true
+      }
+    },
+    {
+      "id": "wright-1903-engine",
+      "source": {
+        "file": "wright-1903-engine.glb",
+        "transferBytes": 9565828,
+        "transferSha256": "e626ab347a7f587fee2169f81ac3516185aef033adf32c920533f85293b52daf",
+        "decodedBytes": 9565828,
+        "decodedSha256": "e626ab347a7f587fee2169f81ac3516185aef033adf32c920533f85293b52daf"
+      },
+      "optimized": {
+        "file": "wright-1903-engine-opt1.glb.gz",
+        "transferBytes": 5833032,
+        "transferSha256": "f5f257966ddb903d1f51729e8acba73e6fa8e89a42b851ff1ba00c5d68278470",
+        "decodedBytes": 6462660,
+        "decodedSha256": "1fd8cea2fa66e7fb86519dea7d8ab88f981bc1fe236e1b8bf74b25a3228336ef",
+        "driveId": null
+      },
+      "saving": {
+        "transferPercent": 39,
+        "decodedPercent": 32.4
+      },
+      "changes": {
+        "triangles": 53690,
+        "trianglesUnchanged": true,
+        "sharedDataUnchanged": true,
+        "accessorsBefore": 4,
+        "accessorsAfter": 4,
+        "animationKeysBefore": 0,
+        "animationKeysAfter": 0
+      },
+      "measuredError": {
+        "modelSizeMetres": 44.36568260192871,
+        "positionAbsolute": 0.0001220703125,
+        "positionRelativeToModel": 0.000002751458004045073,
+        "normalDegrees": 0.023903728255646236,
+        "animationTranslationRelativeToModel": 0,
+        "animationRotationDegrees": 0
+      },
+      "roundTripExact": true,
+      "renderCheck": {
+        "checkedOn": "2026-10-05",
+        "pictures": 12,
+        "worstDifferingPixels": 0.00004774305555555556,
+        "worstMeanDifference": 0.005138888888888889,
+        "limits": {
+          "differingPixels": 0.0005,
+          "meanDifference": 0.05
+        },
+        "passed": true
+      }
+    }
+  ]
+}

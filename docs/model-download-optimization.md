@@ -1,5 +1,7 @@
 # Lossless model download — 12 September 2026
 
+> Superseded for the current models by [model-optimization.md](model-optimization.md) (5 October 2026), which re-encodes the models themselves rather than only compressing the download.
+
 The spring-seat operating-cylinder preview now downloads a gzip asset and reconstructs the original GLB before its existing SHA-256, motion and rendering checks. It retains all 60 component identities, materials, mesh positions, normals, triangle indices and spring morphs exactly. This is download optimization; no geometry was simplified.
 
 | Measure | Result |
