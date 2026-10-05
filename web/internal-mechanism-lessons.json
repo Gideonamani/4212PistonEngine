@@ -105,5 +105,152 @@
       ]
     }
   ],
-  "checks": []
+  "checks": [
+    {
+      "id": "tappet-parts-jobs",
+      "lessonId": "hydraulic-tappet-internal-study",
+      "type": "matching",
+      "question": "Match each hydraulic tappet part to its job.",
+      "hint": "Use the exploded pose from the lesson.",
+      "pairs": [
+        {
+          "left": "Pushrod socket",
+          "right": "Receives the end of the pushrod"
+        },
+        {
+          "left": "Plunger return spring",
+          "right": "Pushes the plunger outward to take up clearance"
+        },
+        {
+          "left": "Check-valve plate",
+          "right": "Closes to trap oil under load and opens to let oil refill"
+        },
+        {
+          "left": "Retaining ring",
+          "right": "Holds the plunger and socket inside the body"
+        }
+      ],
+      "rationale": "The socket seats the pushrod, the spring keeps the plunger extended so the clearance is taken up, the check plate controls the oil, and the ring keeps the assembly in the body."
+    },
+    {
+      "id": "tappet-trapped-oil",
+      "lessonId": "hydraulic-tappet-internal-study",
+      "type": "multiple-choice",
+      "question": "Why does the check valve close while the tappet is carrying load?",
+      "hint": "Think about what holds the plunger up when the pushrod pushes down on it.",
+      "answers": [
+        "It traps the oil, so the oil carries the load to the pushrod",
+        "It lets the oil escape so the plunger can sink",
+        "It pumps oil up to the rocker arm"
+      ],
+      "correct": 0,
+      "rationale": "A liquid is very hard to compress. With the check plate closed the oil under the plunger cannot escape, so it passes the load on."
+    },
+    {
+      "id": "tappet-replenishment",
+      "lessonId": "hydraulic-tappet-internal-study",
+      "type": "multiple-choice",
+      "question": "When the load comes off and the plunger extends, what happens at the check plate?",
+      "hint": "Oil that leaked out of the reservoir has to come back in.",
+      "answers": [
+        "It opens so oil can refill the reservoir",
+        "It stays closed to hold the plunger in",
+        "It turns the pushrod"
+      ],
+      "correct": 0,
+      "rationale": "In the illustrated cycle the plunger extends and the check plate opens for replenishment, so the reservoir is full again for the next load."
+    },
+    {
+      "id": "tappet-evidence-boundary",
+      "lessonId": "hydraulic-tappet-internal-study",
+      "type": "multiple-choice",
+      "question": "What can you take from this model of the tappet?",
+      "hint": "Read the note on each step.",
+      "answers": [
+        "How the parts are arranged; the travel and dimensions are illustrative",
+        "The oil pressure the tappet must hold",
+        "The steps for taking a tappet apart"
+      ],
+      "correct": 0,
+      "rationale": "The study shows manual-based relationships only. It is not a pressure simulation or a maintenance procedure; limits and procedures come from the manufacturer’s manual."
+    },
+    {
+      "id": "pump-gear-directions",
+      "lessonId": "oil-pump-internal-study",
+      "type": "multiple-choice",
+      "question": "How do the two gears of this pump turn?",
+      "hint": "Play the motion with the gears isolated.",
+      "answers": [
+        "In opposite directions",
+        "In the same direction at the same speed",
+        "Only one turns; the other stays fixed"
+      ],
+      "correct": 0,
+      "rationale": "Two meshing external gears always turn opposite ways, which is how the teeth carry oil from the inlet side to the outlet side."
+    },
+    {
+      "id": "pump-oil-path",
+      "lessonId": "oil-pump-internal-study",
+      "type": "multiple-choice",
+      "question": "Where does an external-gear pump carry the oil?",
+      "hint": "The oil is not squeezed through the point where the teeth mesh.",
+      "answers": [
+        "Around the outside of the gear pair, in the spaces between the teeth and the housing",
+        "Straight through the meshing region between the two gears",
+        "Along the inside of each gear shaft"
+      ],
+      "correct": 0,
+      "rationale": "Oil is trapped between the teeth and the housing wall and carried around the outside to the outlet. The meshing teeth seal the middle so oil cannot flow back."
+    },
+    {
+      "id": "pump-relief-parts",
+      "lessonId": "oil-pump-internal-study",
+      "type": "matching",
+      "question": "Match each relief-valve part to its job.",
+      "hint": "Use the last exploded pose.",
+      "pairs": [
+        {
+          "left": "Relief plunger",
+          "right": "Lifts off its seat to open a path for the oil"
+        },
+        {
+          "left": "Relief spring",
+          "right": "Holds the plunger on its seat until pressure is high enough"
+        },
+        {
+          "left": "Adjusting plug",
+          "right": "Changes how far the spring is compressed"
+        }
+      ],
+      "rationale": "The spring holds the plunger shut, the plunger lifts when pressure overcomes the spring, and the plug is where the spring compression is adjusted."
+    },
+    {
+      "id": "pump-relief-effect",
+      "lessonId": "oil-pump-internal-study",
+      "type": "multiple-choice",
+      "question": "How can opening a relief path limit the oil pressure?",
+      "hint": "Think about what the oil does once the plunger has lifted.",
+      "answers": [
+        "Oil escapes through the opened path, so the pressure stops rising",
+        "It speeds the gears up so more oil reaches the engine",
+        "It closes the inlet so the pump stops pumping"
+      ],
+      "correct": 0,
+      "rationale": "When the pressure is high enough to overcome the spring, the plunger lifts and oil passes through the opened path instead of building more pressure."
+    },
+    {
+      "id": "pump-evidence-boundary",
+      "lessonId": "oil-pump-internal-study",
+      "type": "multiple-choice",
+      "question": "What does the relief-valve opening animation show?",
+      "hint": "Read the note on the last step.",
+      "answers": [
+        "The plunger moving off its seat; the travel is illustrative and no pressure is calculated",
+        "The pressure at which a real relief valve opens",
+        "The correct adjusting-plug setting for the engine"
+      ],
+      "correct": 0,
+      "rationale": "The model shows how the mechanism works. It does not calculate pressure or give a setting; those values come from the manufacturer’s manual."
+    }
+  ]
 }

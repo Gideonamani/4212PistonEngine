@@ -18,13 +18,17 @@ for (const step of lesson.steps) {
   assert.ok(Number.isInteger(step.action.value) && step.action.value >= 0 && step.action.value <= 720);
 }
 assertStrokeLabelsMatch(lesson.steps, lesson.id);
-assert.equal(pack.checks.length, 5);
-for (const item of pack.checks) {
-  assert.equal(item.lessonId, lesson.id);
+const guidedChecks = pack.checks.filter((item) => item.lessonId === lesson.id);
+assert.equal(guidedChecks.length, 5);
+for (const item of guidedChecks) {
   assert.equal(item.type, 'multiple-choice');
   assert.ok(item.correct >= 0 && item.correct < item.answers.length && item.rationale && item.hint);
 }
 
 for (const step of pack.lessons[1].steps) { assert.equal(step.savedMotionId, 'exploded'); assert.ok(step.motionProgress >= 0 && step.motionProgress <= 100); }
+const interfaceChecks = pack.checks.filter((item) => item.lessonId === pack.lessons[1].id);
+assert.ok(interfaceChecks.length >= 3, 'the interfaces lesson has checks of its own');
+assert.deepEqual([...new Set(interfaceChecks.map((item) => item.type))].sort(), ['matching', 'multiple-choice', 'ordering']);
+assert.equal(pack.checks.length, guidedChecks.length + interfaceChecks.length, 'every check belongs to one of the two lessons');
 assert.deepEqual(validateLessonPack(pack), []);
 console.log('M2 lesson pack is valid');

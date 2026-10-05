@@ -163,3 +163,13 @@ test('every shipped check is one the screen can show, and no matching question g
     }
   }
 });
+
+test('every listed lesson owns at least one check, and every check belongs to a lesson of its pack', () => {
+  for (const pack of packs) {
+    const lessonIds = new Set(pack.lessons.map((lesson) => lesson.id));
+    for (const check of pack.checks || []) assert.ok(lessonIds.has(check.lessonId), `${pack.id}/${check.id}: lessonId '${check.lessonId}' is not a lesson of this pack`);
+    for (const lesson of pack.lessons.filter((item) => item.listed !== false)) {
+      assert.ok((pack.checks || []).some((check) => check.lessonId === lesson.id), `${pack.id}/${lesson.id}: a listed lesson needs checks for the Check tab`);
+    }
+  }
+});
