@@ -3,6 +3,7 @@ from pathlib import Path
 import bpy,json,math,gzip,hashlib,sys,shutil
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from accessory_paths import EDGES
+from accessory_gears import SPLINED_TO, spring_grip_scale
 from normalize_glb_motion_time import normalize_motion_time
 from mathutils import Vector,Quaternion
 R=Path(__file__).resolve().parents[1];F=R/'cad-studies/accessory-drives'
@@ -41,7 +42,7 @@ for title in names:
             if title in ['Exploded overview','Reassembly overview']:
                 v=1-u if title=='Reassembly overview' else u;amount=max(0,min(1,v*2-p['stage']+1));o.location+=Vector(p['offset_mm'])/1000*amount
             else:
-                rate=p['rate'] if not path or p['id'] in path['parts'] else 0
+                rate=p['rate'] if not path or p['id'] in path['parts'] or SPLINED_TO.get(p['id']) in path['parts'] else 0
                 angle=4*math.pi*u*rate
                 if title=='Starter engagement and start':
                     # Cranking first; engine takes over at 65%. Temporal profile is illustrative.
@@ -51,7 +52,7 @@ for title in names:
                     if p['id'] in ['WormWheel','WormWheelHub','ClutchSpring']:angle=-min(u,.65)*4*math.pi
                     if p['id']=='ClutchSpring':
                         tight=1 if .1<=u<.65 else max(0,u/.1) if u<.1 else 0
-                        o.scale=(1-.04*tight,1-.04*tight,1)
+                        shrink=1-spring_grip_scale();o.scale=(1-shrink*tight,1-shrink*tight,1)
                 o.rotation_quaternion=Quaternion(Vector(p['axis']),angle)
             o.keyframe_insert('location',frame=frame);o.keyframe_insert('rotation_quaternion',frame=frame);o.keyframe_insert('scale',frame=frame)
         track=o.animation_data.nla_tracks.new();track.name=title;strip=track.strips.new(title,1,action);strip.action_slot=o.animation_data.action_slot;track.mute=True
@@ -82,7 +83,7 @@ for path in paths:
         part=next(p for p in d['parts'] if p['id']==id);x,y,z=part['axis']
         extent=max(sum((v[i]-part['pivot_mm'][i])*part['axis'][i] for i in range(3)) for v in part['vertices_mm'])/1000
         rotation_outputs.append(dict(id=id,direction=path['direction'],axis=[x,z,-y],markerOffsetM=extent+.009))
-contract=dict(asset_sha256=asset_hash,parts=[{k:v for k,v in p.items() if k not in ['vertices_mm','triangles']} for p in d['parts']],reference=d['reference'],scope=d['scope'],motions=motions,powerPaths=paths,interfaces=d['interfaces'],remoteDisplays=[dict(group='alternator',label='Alternator'),dict(group='vacuum',label='Optional vacuum'),dict(group='governor',label='Governor')],viewpoint='CW/CCW facing each engine drive pad. Magnetos face the front side of their accessory pads (A-3-3); tach faces a lateral pad (A-4-16). Arrows follow those study shaft axes. The crank and intermediate signed rotations are inferred from external meshes and the front magneto pad viewpoint, not a directly published crank-direction specification. Grey fixtures are teaching stands. Front/optional modules are relocated and omitted transfers remain conceptual.',rotationOutputs=rotation_outputs)
+contract=dict(asset_sha256=asset_hash,parts=[{k:v for k,v in p.items() if k not in ['vertices_mm','triangles']} for p in d['parts']],reference=d['reference'],scope=d['scope'],motions=motions,powerPaths=paths,interfaces=d['interfaces'],gearMeshes=d['gear_meshes'],gearForm=d['gear_form'],remoteDisplays=[dict(group='alternator',label='Alternator'),dict(group='vacuum',label='Optional vacuum'),dict(group='governor',label='Governor')],viewpoint='CW/CCW facing each engine drive pad. Magnetos face the front side of their accessory pads (A-3-3); tach faces a lateral pad (A-4-16). Arrows follow those study shaft axes. The crank and intermediate signed rotations are inferred from external meshes and the front magneto pad viewpoint, not a directly published crank-direction specification. Grey fixtures are teaching stands. Front/optional modules are relocated and omitted transfers remain conceptual.',rotationOutputs=rotation_outputs)
 (R/'web/accessory-drives-contract.json').write_text(json.dumps(contract,indent=2))
 (F/'blender-verification.json').write_text(json.dumps(dict(passed=True,parts=len(objects),authored_actions=names,asset_sha256=contract['asset_sha256'],scope=d['scope']),indent=2))
 print('ACCESSORY_RIG_EXPORTED',raw_file.stat().st_size,flush=True)

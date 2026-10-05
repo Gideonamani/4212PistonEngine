@@ -5,7 +5,9 @@ See docs/accessory-shape-review.md for the feature audit and remaining gaps.
 from pathlib import Path
 import sys, json, math, os, uuid
 sys.path.append(r'C:/Program Files/FreeCAD 1.1/bin')
+sys.path.append(str(Path(__file__).resolve().parent))
 import FreeCAD as A, Part
+import accessory_gears as T, gear_geometry as G
 R=Path(__file__).resolve().parents[1];OUT=R/'cad-studies/accessory-drives';OUT.mkdir(parents=True,exist_ok=True)
 doc=A.newDocument('GTSIO520H_Accessory_Drives');entries=[];groups={}
 scope='Drawing-led, unscaled GTSIO-520-H teaching reconstruction. Flanges and shaft seats meet in the assembled pose. Dimensions, teeth, case contour and pad positions illustrative. Grey display stands hold relocated front/optional modules; their omitted engine transfers are not physical shafts. Function markers are not accessory replicas.'
@@ -14,6 +16,9 @@ DRAWING='Drawing-led form; dimensions and hidden surfaces reconstructed'
 MARKER='Functional endpoint marker; actual accessory body not reconstructed'
 FIXTURE='Teaching display fixture; not an engine part or transmission'
 interfaces=[]
+# Positions, tooth counts, rates and tooth phases of every gear come from scripts/accessory_gears.py, so a mesh
+# cannot be moved or re-toothed here without the solver (and the clearance check below) seeing it.
+SOLVED=T.solve()
 def cyl(r,h,x=0,y=0,z=0):return Part.makeCylinder(r,h,A.Vector(x,y,z))
 def ring(ro,ri,h,x=0,y=0,z=0):return cyl(ro,h,x,y,z).cut(cyl(ri,h+2,x,y,z-1))
 def union(*shapes):
@@ -56,11 +61,11 @@ def bevel(id,label,group,x,y,z,r0,r1,h,rate,axis=(0,0,1),bore=5.1):
  if axis==(-1,0,0):cone.rotate(A.Vector(),A.Vector(0,1,0),-90)
  cone.translate(A.Vector(x,y,z))
  add(id,label,group,cone,(x,y,z),rate,offset=(0,-55,155),axis=axis,description='Documented bevel transfer; smooth pitch-cone form. Tooth form, cone angles and dimensions illustrative.',evidence='A-4-16 items 24/47')
-def gear(id,label,group,x,y,z,r,teeth,rate,description,evidence='A-4-8',offset=(0,0,110),web=False,splined=False,hub_height=12,cup_height=0):
- pts=[]
- for k in range(teeth*8):
-  a=2*math.pi*k/(teeth*8);rad=r+1.8 if k%8 in (2,3,4,5) else r-1.8;pts.append(A.Vector(x+rad*math.cos(a),y+rad*math.sin(a),z))
- pts.append(pts[0]);shape=Part.Face(Part.makePolygon(pts)).extrude(A.Vector(0,0,8))
+def gear(id,label,group,description,evidence='A-4-8',offset=(0,0,110),web=False,splined=False,hub_height=12,cup_height=0):
+ g=SOLVED[id];x,y=g['centre'];z=g['z'];r=g['r_pitch']
+ # Involute teeth with backlash at the solved phase: neighbours touch within their lash and never overlap.
+ pts=[A.Vector(x+px,y+py,z) for px,py in G.profile(g['teeth'],r,g['addendum'],g['phase'],**g['form'])]
+ pts.append(pts[0]);shape=Part.Face(Part.makePolygon(pts)).extrude(A.Vector(0,0,T.FACE_WIDTH))
  if web:
   shape=shape.cut(ring(r-5,10,3,x,y,z+6))
   for k in range(6):
@@ -68,7 +73,7 @@ def gear(id,label,group,x,y,z,r,teeth,rate,description,evidence='A-4-8',offset=(
   shape=shape.fuse(cyl(9,hub_height,x,y,z))
  if cup_height:shape=shape.fuse(ring(r,13.2,cup_height,x,y,z+8))
  shape=shape.cut(spline(5,16,x,y,z-1) if splined else cyl(5.2,16,x,y,z-1)).removeSplitter()
- add(id,label,group,shape,(x,y,z),rate,2,offset,description+' Teeth and web proportions illustrative.',evidence=evidence)
+ add(id,label,group,shape,(x,y,z),g['rate'],2,offset,description+' '+T.GEAR_FORM_NOTE,evidence=evidence)
 # A-4-18 identifies two CRANKCASE halves. The rear region is cropped here.
 # This contour is an inferred casting envelope, not a traced orthographic view.
 def case_outline(depth,z,inset=0):
@@ -92,17 +97,17 @@ add('HousingCover','Right crankcase - cropped rear region','housing',case.common
 for i,(x,y) in enumerate(case_fasteners):
  add('Fastener'+str(i),'Representative case fastener','housing',union(cyl(2,9,x,y,24),cyl(4,3,x,y,33)),stage=1,offset=(0,0,150),description='Head seats on the casting; shank enters its hole. Size and placement illustrative.',evidence='A-4-18')
  joint('Fastener'+str(i),'AccessoryHousing' if x<0 else 'HousingCover')
-gear('CrankGear','Crankshaft gear','core',0,0,0,30,24,1,'Torque input. Rear-frame sign inferred from external meshes and front-facing magneto pads (A-3-3 / C-3-2), not a directly quoted crank-rotation specification.',web=True)
+gear('CrankGear','Crankshaft gear','core','Torque input. Rear-frame sign inferred from external meshes and front-facing magneto pads (A-3-3 / C-3-2), not a directly quoted crank-rotation specification.',web=True)
 add('CrankShaft','Crankshaft rear stub','core',union(cyl(4.8,55,0,0,-30),cyl(8,6,0,0,-6)),(0,0,0),1,offset=(0,0,-75),description='Shortened shaft and stepped journal; collar seats below the gear. Full crank throws omitted.')
-gear('CamGear','Camshaft gear','core',0,-90,0,60,48,-.5,'Crank-driven cam gear with internal spline seat for the oil/tach shaft.',web=True,splined=True)
-gear('CamCluster','Camshaft fuel-pump cluster gear','fuel',0,-90,12,16,16,-.5,'Cluster drives fuel pump; chosen teeth do not establish manufacturer fuel ratio.',splined=True)
+gear('CamGear','Camshaft gear','core','Crank-driven cam gear with internal spline seat for the oil/tach shaft.',web=True,splined=True)
+gear('CamCluster','Camshaft fuel-pump cluster gear','fuel','Cluster drives fuel pump; chosen teeth do not establish manufacturer fuel ratio.',splined=True)
 add('CamShaft','Camshaft rear stub and flange','core',union(cyl(4.8,30,0,-90,-30),cyl(9,5,0,-90,-5)),(0,-90,0),-.5,offset=(0,-30,-70),description='Shortened camshaft seats at the front of its gear. The oil/tach shaft enters the gear internal splines, not an overlapping solid camshaft.',evidence='A-3-2; A-4-8')
-gear('IdlerGear','Idler gear assembly','core',0,60,0,30,24,-1,'Crank to both magneto gears; schematic idler speed.',web=True)
+gear('IdlerGear','Idler gear assembly','core','Crank to both magneto gears; schematic idler speed.',web=True)
 add('IdlerPin','Idler support pin and mounting head','core',union(cyl(4.8,36,0,60,-10),cyl(5.9,7,0,60,26),cyl(12,6,0,60,33)),offset=(0,0,100),description='Fixed pin extends into the rear wall; mounting head seats on the case. A-4-8 item 13 / A-4-18 item 28; dimensions inferred.')
 joint('IdlerPin','AccessoryHousing');joint('IdlerPin','HousingCover')
 for side,x in [('Left',-40),('Right',40)]:
  group='magneto-'+side.lower();points=[(x+dx,90+dy) for dx in (-16,16) for dy in (-16,16)]
- gear(side+'MagGear',side+' magneto drive gear',group,x,90,0,20,16,1.5,'H 1.5:1 CW facing the FRONT magneto pad. Positive rear-frame spin appears CW from the opposite end.',evidence='A-3-3; A-4-11; C-3-2')
+ gear(side+'MagGear',side+' magneto drive gear',group,'H 1.5:1 CW facing the FRONT magneto pad. Positive rear-frame spin appears CW from the opposite end.',evidence='A-3-3; A-4-11; C-3-2')
  add(side+'MagShaft',side+' splined accessory shaft',group,spline(4.8,86,x,90,-32),(x,90,0),-1.5,axis=(0,0,-1),description='Continuous shaft reaches front magneto function marker and rear accessory adapter. Signed rate uses the front-facing pad axis; spline dimensions unmeasured.',evidence='A-3-3; A-4-11 items 16/20/22')
  pad=union(rounded_box(44,44,5,x-22,68,40),cyl(19,8,x,90,40),cyl(13,7,x,90,33)).cut(cyl(8,17,x,90,32)).cut(cyl(13,5,x,90,45))
  add(side+'MagAdapter',side+' accessory drive adapter',group,bolt_holes(pad,points,39,12),stage=1,offset=(0,0,95),description='Four-corner flange and locating spigot seat on the case. Stepped bushing/seal bore follows item 12; dimensions inferred.',evidence='A-4-11 item 12')
@@ -112,7 +117,7 @@ for side,x in [('Left',-40),('Right',40)]:
  add(side+'Magneto',side+' magneto - front function marker',group,ring(15,5.2,8,x,90,-32),stage=1,offset=(0,0,-100),description='FUNCTION MARKER seated on the front pad, following A-3-3. This ring is not a Bendix body replica; the case front is cropped and its pad dimensions inferred. Supplies ignition energy.',evidence='A-3-3; C-3-2; FAA 4-1',form=MARKER)
  for a,b in [(side+'MagGasket','AccessoryHousing' if x<0 else 'HousingCover'),(side+'MagGasket',side+'MagAdapter'),(side+'MagBushing',side+'MagAdapter'),(side+'MagSeal',side+'MagAdapter'),(side+'Magneto','AccessoryHousing' if x<0 else 'HousingCover')]:joint(a,b)
  joint(side+'MagShaft',side+'MagBushing','shaft-seat',.45)
-gear('FuelGear','Fuel pump drive gear','fuel',42,-90,12,26,26,.5*16/26,'H later installation changed gear and added detachable coupling.',evidence='C-3-1 figure items 75/76; C-3-6')
+gear('FuelGear','Fuel pump drive gear','fuel','H later installation changed gear and added detachable coupling.',evidence='C-3-1 figure items 75/76; C-3-6')
 add('FuelGearShaft','Fuel gear shaft and coupling input','fuel',union(cyl(4.8,19,42,-90,12),cyl(6,2,42,-90,20)),(42,-90,12),.5*16/26,description='Continuous gear-to-coupling input stub. Shoulder/fit reconstructed from H detachable-drive relationship.',evidence='C-3-1 figure items 75/76; C-3-6')
 coupling=spline(6,20,42,-90,22).cut(cyl(5,11,42,-90,21)).cut(Part.makeBox(3,14,6,A.Vector(40.5,-97,37)))
 add('FuelCoupling','H detachable fuel-pump coupling','fuel',coupling,(42,-90,12),.5*16/26,offset=(30,0,110),description='Stepped detachable coupling; end engagement profile inferred.',evidence='C-3-1 figure item 76; C-3-6')
@@ -127,8 +132,8 @@ add('FuelInputBushing','Fuel input locating sleeve study','fuel',ring(7,5,9,42,-
 for a,b in [('FuelCaseGasket','HousingCover'),('FuelCaseGasket','FuelPad'),('FuelPad','FuelSeal'),('FuelSeal','FuelPump'),('FuelInputBushing','FuelPump'),('FuelGearShaft','FuelGear'),('FuelGearShaft','FuelCoupling')]:joint(a,b)
 joint('FuelPumpInput','FuelCoupling','tang-seat',.25);joint('FuelPumpInput','FuelInputBushing','shaft-seat',.25)
 add('OilTachShaft','Oil pump / tach splined shaftgear','oil-tach',union(spline(4.8,20,0,-90,0),cyl(4.8,66,0,-90,20)),(0,-90,0),-.5,offset=(0,-45,110),description='Male spline enters the internal cam-gear spline and continues through pump driver to tach bevel gear. Profile unscaled.',evidence='A-3-2; A-4-8 item 8; A-4-16 item 22')
-gear('OilDriver','Oil pump driver','oil-tach',0,-90,44,13,13,-.5,'Pump driver on cam-connected shaft.',evidence='A-4-16 item 22',offset=(0,-45,110))
-gear('OilDriven','Oil pump driven gear','oil-tach',-26,-90,44,13,13,.5,'Opposite-running pair. Placed left of the driver to keep the separate H fuel mounting bay clear; layout unmeasured.',evidence='A-4-16 item 8',offset=(0,-45,110))
+gear('OilDriver','Oil pump driver','oil-tach','Pump driver on cam-connected shaft.',evidence='A-4-16 item 22',offset=(0,-45,110))
+gear('OilDriven','Oil pump driven gear','oil-tach','Opposite-running pair. Placed left of the driver to keep the separate H fuel mounting bay clear; layout unmeasured.',evidence='A-4-16 item 8',offset=(0,-45,110))
 pump=rounded_box(64,42,25,-45,-111,40,7)
 for x in (0,-26):pump=pump.cut(cyl(15,23,x,-90,43)).cut(cyl(5.3,27,x,-90,39))
 pump=pump.cut(transverse(cyl(5.2,12),-46,-84,51))
@@ -144,22 +149,22 @@ add('ScavengeGasket','Scavenge-body interface gasket study','oil-tach',rounded_b
 scavenge=union(rounded_box(50,36,25,-38,-108,71,5),transverse(ring(9,4.3,8),-44,-90,85),transverse(rounded_box(26,26,3,-13,-13,0,4),-44,-90,85))
 scavenge=scavenge.cut(cyl(15,27,0,-90,70)).cut(transverse(cyl(14,20),-20,-90,85)).cut(transverse(cyl(4.3,60),-49,-90,85))
 add('ScavengeBody','Scavenge / tach drive body study','oil-tach',scavenge.removeSplitter(),stage=1,offset=(0,-85,180),description='Stepped body and bored lateral tach boss. Connected chamber holds the documented bevel pair. Scavenge gears and fluid galleries omitted; depth/shape reconstructed.',evidence='A-4-16 items 26/35/39')
-add('OilScreenPlug','Oil screen plug study','oil-tach',transverse(union(cyl(5,11),cyl(7,3,z=-3)),-45,-84,51),stage=1,offset=(-15,-65,140),description='Representative side plug enters a bore and its head seats on the casting. Screen and oil circuit omitted.',evidence='A-4-16 item 44')
+add('OilScreenPlug','Oil screen plug study','oil-tach',transverse(union(cyl(5,4),cyl(7,3,z=-3)),-45,-84,51),stage=1,offset=(-15,-65,140),description='Representative side plug fills its bore through the wall and stops at the gear pocket; its head seats on the casting. Screen and oil circuit omitted.',evidence='A-4-16 item 44')
 bevel('TachDriveBevel','Tach drive bevel gear - pitch-form study','oil-tach',0,-90,73,12,6,6,-.5)
 bevel('TachDrivenBevel','Tach driven bevel gear - pitch-form study','oil-tach',-6,-90,85,6,12,6,-.5,axis=(-1,0,0),bore=3.3)
-add('TachOutput','Tachometer output shaft','oil-tach',union(transverse(cyl(3.1,25),-25,-90,85),transverse(cyl(4,32),-57,-90,85)),(0,-90,85),-.5,offset=(-40,-45,190),axis=(-1,0,0),description='Lateral shaft passes through the driven bevel and bored tach pad. H 0.5:1 CW facing its engine pad; geometry and layout unmeasured.',evidence='C-3-2; A-4-16 items 24/45/47')
+add('TachOutput','Tachometer output shaft','oil-tach',union(transverse(cyl(3.1,20),-25,-90,85),transverse(cyl(4,32),-57,-90,85)),(0,-90,85),-.5,offset=(-40,-45,190),axis=(-1,0,0),description='Lateral shaft passes through the driven bevel and bored tach pad; its inner end stops short of the vertical shaft. H 0.5:1 CW facing its engine pad; geometry and layout unmeasured.',evidence='C-3-2; A-4-16 items 24/45/47')
 tach_points=[(-9,-9),(-9,9),(9,-9),(9,9)]
 def tach_plate(depth,x):return transverse(bolt_holes(rounded_box(26,26,depth,-13,-13,0,4).cut(cyl(4.3,depth+2,z=-1)),tach_points,-1,depth+2),x,-90,85)
 add('TachPadGasket','Tach drive-pad gasket','oil-tach',tach_plate(1,-45),stage=1,offset=(-40,-55,180),description='Bored gasket between tach body and cover; dimensions illustrative.',evidence='A-4-16 item 38')
 add('TachPadCover','Tach drive-pad cover','oil-tach',tach_plate(3,-48),stage=1,offset=(-50,-55,185),description='Rounded four-corner plate with output bore follows drive-pad cover item 39.',evidence='A-4-16 item 39')
 for a,b in [('HousingGasket','AccessoryHousing'),('HousingGasket','OilHousing'),('OilHousing','OilCoverGasket'),('OilCoverGasket','OilCover'),('OilCover','ScavengeGasket'),('ScavengeGasket','ScavengeBody'),('OilReliefBody','OilHousing'),('OilScreenPlug','OilHousing'),('TachPadGasket','ScavengeBody'),('TachPadCover','TachPadGasket')]:joint(a,b)
 for a,b,limit in [('OilTachShaft','CamGear',.35),('OilTachShaft','OilDriver',.45),('OilDrivenPin','OilDriven',.15),('OilDrivenPin','OilHousing',.25),('OilTachShaft','TachDriveBevel',.45),('TachOutput','TachDrivenBevel',.25),('TachOutput','TachPadCover',.35)]:joint(a,b,'shaft-seat',limit)
-gear('StarterShaftGear','Starter shaftgear','starter',60,0,0,30,24,-1,'Crank-meshing gear remains engine-driven after clutch release.',web=True)
+gear('StarterShaftGear','Starter shaftgear','starter','Crank-meshing gear remains engine-driven after clutch release.',web=True)
 add('StarterDrum','Starter clutch shaftgear drum','starter',union(cyl(10,11,60,0,46),cyl(4.8,91,60,0,0)),(60,0,0),-1,offset=(65,0,110),description='Continuous shaft seats through the crank-meshing gear and case bearing; drum is inside the adapter, clear of its floor. Knurling/fits unmeasured.',evidence='A-4-15 item 12')
-gear('WormWheel','Starter worm wheel','starter',60,0,73,23,32,0,'Wheel-side hub meets shaftgear drum under wrap spring.',evidence='A-4-15 item 31',offset=(65,0,130),web=True,hub_height=8)
+gear('WormWheel','Starter worm wheel','starter','Wheel-side hub meets shaftgear drum under wrap spring.',evidence='A-4-15 item 31',offset=(65,0,130),web=True,hub_height=8)
 add('WormWheelHub','Worm-wheel clutch hub','starter',ring(10,5.2,16,60,0,57),(60,0,57),0,offset=(65,0,130),description='Wheel-side hub seats against its wheel and meets the drum under the spring; dimensions inferred.',evidence='A-4-15 items 30/31')
-helix=Part.makeHelix(2.5,17,10.8);profile=Part.Wire([Part.makeCircle(.8,A.Vector(10.8,0,0),A.Vector(0,1,0))]);coil=Part.Wire(helix.Edges).makePipeShell([profile],True,False);coil.translate(A.Vector(60,0,50))
-add('ClutchSpring','Starter wrap-spring clutch','starter',coil,(60,0,50),0,offset=(65,0,120),description='Spans the two touching drum surfaces. Pitch, winding hand and tightening illustrative.',evidence='A-4-15 item 30; A-3-2')
+helix=Part.makeHelix(2.5,17,T.SPRING_COIL_R);profile=Part.Wire([Part.makeCircle(T.SPRING_WIRE_R,A.Vector(T.SPRING_COIL_R,0,0),A.Vector(0,1,0))]);coil=Part.Wire(helix.Edges).makePipeShell([profile],True,False);coil.translate(A.Vector(60,0,50))
+add('ClutchSpring','Starter wrap-spring clutch','starter',coil,(60,0,50),0,offset=(65,0,120),description='Spans the drum and hub surfaces: released it sits 0.4 mm off them and the grip animation contracts it to touch, never into them. Pitch, winding hand and tightening illustrative.',evidence='A-4-15 item 30; A-3-2')
 worm=cyl(6,78);helix=Part.makeHelix(5,38,6);wire=Part.Wire([Part.makeCircle(1,A.Vector(6,0,0),A.Vector(0,1,0))]);worm=transverse(worm.fuse(Part.Wire(helix.Edges).makePipeShell([wire],True,False)),40,-30,77)
 add('StarterWorm','Starter worm drive shaft','starter',worm,(40,-30,77),0,offset=(65,-30,130),axis=(1,0,0),description='Cross-axis worm shaft reaches into the motor input. H 32:1 CCW facing pad; thread/fit unmeasured.',evidence='A-4-15 items 38/42; C-3-2')
 points=mount_points['starter']
@@ -185,7 +190,7 @@ ax,ay=137,82;angles=[math.pi/4+k*math.pi/2 for k in range(4)]
 alt_points=[(ax+24*math.cos(a),ay+24*math.sin(a)) for a in angles]
 altpad=union(cyl(24,1,ax,ay,49),*[cyl(5,1,x,y,49) for x,y in alt_points]).cut(cyl(14,3,ax,ay,48))
 add('AlternatorPad','Alternator mounting gasket - front display','alternator',bolt_holes(altpad,alt_points,48,4),stage=1,offset=(65,0,100),description='Item 5 is the four-lug GASKET. The matching mounting flange belongs to alternator body item 4. Front module is on a grey teaching stand; engine transfer omitted.',evidence='A-4-13 items 4/5; A-4-4 H photo')
-gear('AlternatorDrivenGear','Alternator driven gear and clutch cup - remote','alternator',ax,ay,24,15,20,-3,'Driven gear/cup encloses the clutch sleeve and hub; intervening engine transfer unresolved.',evidence='A-4-13 item 10; C-3-3',offset=(65,0,85),cup_height=14)
+gear('AlternatorDrivenGear','Alternator driven gear and clutch cup - remote','alternator','Driven gear/cup encloses the clutch sleeve and hub; intervening engine transfer unresolved.',evidence='A-4-13 item 10; C-3-3',offset=(65,0,85),cup_height=14)
 add('AlternatorOutput','Alternator shaft - remote','alternator',union(cyl(4.8,56,ax,ay,22),cyl(7,1,ax,ay,22)),(ax,ay,29),-3,offset=(65,0,100),description='Shaft passes through the driven-gear bushing and hub into the body input seat. H 3:1 CW. Exact engine input mesh omitted.',evidence='C-3-3; A-4-13')
 add('AlternatorThrustWasher','Alternator thrust washer','alternator',ring(9,5,1,ax,ay,23),stage=1,offset=(65,0,80),description='Washer seats below driven gear; nut/cotter detail omitted.',evidence='A-4-13 item 9')
 add('AlternatorBushing','Alternator driven-gear bushing','alternator',ring(5.2,4.9,8,ax,ay,24),(ax,ay,24),-3,offset=(65,0,90),description='Bushing seats inside driven gear and around its shaft. Dimensions illustrative.',evidence='A-4-13 item 11')
@@ -217,6 +222,11 @@ for id,label,group,x,y,r,rate,note,ev in [('Vacuum','Optional vacuum output','va
  joint(id+'DisplayStand',id+'Pad','display-seat');joint(id+'Body',id+'Pad','display-seat');joint(id+'Output',id+'Pad','shaft-seat',.35);joint(id+'Output',id+'Body','shaft-seat',.35)
 doc.recompute();temporary=OUT/('build-'+uuid.uuid4().hex+'.FCStd');doc.saveAs(str(temporary));os.replace(temporary,OUT/'accessory-drives.FCStd')
 Part.export([o for o in doc.Objects if o.TypeId=='PartDesign::Feature'],str(OUT/'accessory-drives.step'))
-(OUT/'geometry.json').write_text(json.dumps(dict(parts=entries,scope=scope,reference=reference,interfaces=interfaces)),encoding='utf8')
+# Independent of the solver that placed them: every declared mesh must keep positive clearance through a full tooth pitch.
+mesh_report=[]
+for a,b in T.MESHES:
+ gap=G.mesh_clearance(SOLVED[a],SOLVED[b],48);mesh_report.append(dict(driver=a,driven=b,min_gap_mm=gap))
+ assert gap>=.04,f'Gear mesh {a} / {b} has {gap:.3f} mm clearance; teeth must touch within backlash and never overlap'
+(OUT/'geometry.json').write_text(json.dumps(dict(parts=entries,scope=scope,reference=reference,interfaces=interfaces,gear_meshes=T.mesh_records(),gear_form=T.GEAR_FORM_NOTE,gear_mesh_profile_check=mesh_report)),encoding='utf8')
 (OUT/'cad-verification.json').write_text(json.dumps(dict(passed=True,parts=len(entries),all_valid_single_solids=True,scope=scope),indent=2),encoding='utf8')
 print('ACCESSORY_CAD_VALID',len(entries),flush=True)

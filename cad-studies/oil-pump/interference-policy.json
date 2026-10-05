@@ -1,0 +1,33 @@
+{
+  "_note": "Baseline recorded by the first audit run on 2026-10-05 for web/oil-pump.glb.gz (rest pose and every baked clip except the exploded ones). known_defects is a ratchet: it may only shrink.",
+  "volume_tolerance_mm3": 0.001,
+  "max_penetration_mm": 0.05,
+  "min_gear_clearance_mm": 0.02,
+  "unverified_waivers": [],
+  "known_defects": [
+    {
+      "a": "ReliefAdjuster",
+      "b": "ReliefHousing",
+      "max_mm3": 44.8,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    },
+    {
+      "a": "ReliefPlunger",
+      "b": "ReliefSpring",
+      "max_mm3": 44.7,
+      "status": "unreviewed",
+      "reason": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error.",
+      "fix": "Review against the CAD source, then fix the geometry or record why the overlap is acceptable."
+    },
+    {
+      "a": "DriveGear",
+      "b": "DrivenGear",
+      "max_mm3": 27.2,
+      "status": "unreviewed",
+      "reason": "Square-tooth gears from the same generator pattern as the accessory gears (scripts/build_component_studies.py gear()): straight flanks, no backlash, so they overlap at every phase.",
+      "fix": "Build both gears with scripts/gear_geometry.profile(12, 12, 1.8, phase) and phase = mesh_phase((0,0), 0, 12, (24,0), 12)."
+    }
+  ]
+}

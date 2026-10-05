@@ -33,6 +33,8 @@ The rear region is represented by cropped left/right crankcase halves, following
 
 Normal operation is a two-crank-revolution sample. Motions do not loop automatically: noninteger endpoint ratios such as 1.14 and 0.809 do not close after two crank revolutions. Restart deliberately resets the sample. Starter contraction and the takeover timeline are illustrative; no torque, spring friction, oil pressure or engine-start physics is calculated.
 
+Gear teeth are involute with backlash and a solved tooth phase, and gear positions, tooth counts and rates are declared once in `scripts/accessory_gears.py`, so meshing gears touch within their backlash and never overlap. Module, tooth counts and proportions remain illustrative. Every pair of parts is checked for overlap at the assembled pose and through each baked motion; see [part interference](assembly-interference.md).
+
 Rebuild from the repository directory:
 
 ```powershell

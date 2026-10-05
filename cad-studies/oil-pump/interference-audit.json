@@ -1,0 +1,75 @@
+{
+  "asset_sha256": "3622888d4e44a07edb43bdbdc9446b825c913756c2852b5d15c48324db9c2558",
+  "asset_bytes": 15292568,
+  "parts": 14,
+  "tolerance_mm3": 0.001,
+  "max_penetration_mm": 0.05,
+  "method": "All bound-meeting pairs intersected exactly (Manifold boolean) at the rest pose and at sampled times of each baked animation clip. Touching is allowed, overlap is not; an overlap thinner than max_penetration_mm is treated as mesh tessellation noise on a touching face.",
+  "rest_neighbouring_pairs": 26,
+  "rest_touching_only": 23,
+  "clips": {
+    "Operating mechanism": {
+      "moving_parts": 4,
+      "poses": 133,
+      "new_overlaps": 0
+    },
+    "Relief valve opening": {
+      "moving_parts": 2,
+      "poses": 133,
+      "new_overlaps": 0
+    }
+  },
+  "gear_meshes": [],
+  "unverified_parts": [],
+  "unverified_not_waived": [],
+  "stale_ledger_entries": [],
+  "overlaps_total": 3,
+  "known_defects": [
+    {
+      "a": "ReliefAdjuster",
+      "b": "ReliefHousing",
+      "max_overlap_mm3": 44.74819872679553,
+      "max_thickness_mm": 0.42844932793538876,
+      "first_seen": "rest",
+      "poses": [
+        "rest"
+      ],
+      "ledger": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error."
+    },
+    {
+      "a": "ReliefPlunger",
+      "b": "ReliefSpring",
+      "max_overlap_mm3": 44.60742014130134,
+      "max_thickness_mm": 0.5156651345815042,
+      "first_seen": "rest",
+      "poses": [
+        "rest",
+        "Relief valve opening @ 0.000s",
+        "Relief valve opening @ 0.010s",
+        "Relief valve opening @ 0.021s",
+        "Relief valve opening @ 0.031s",
+        "Relief valve opening @ 0.042s"
+      ],
+      "ledger": "First automated audit found this overlap; not yet investigated. It may be an intentional simplification (for example a missing bore or thread) or a modelling error."
+    },
+    {
+      "a": "DriveGear",
+      "b": "DrivenGear",
+      "max_overlap_mm3": 27.151080655071894,
+      "max_thickness_mm": 0.4694393955924258,
+      "first_seen": "rest",
+      "poses": [
+        "rest",
+        "Operating mechanism @ 0.000s",
+        "Operating mechanism @ 0.010s",
+        "Operating mechanism @ 0.021s",
+        "Operating mechanism @ 0.031s",
+        "Operating mechanism @ 0.042s"
+      ],
+      "ledger": "Square-tooth gears from the same generator pattern as the accessory gears (scripts/build_component_studies.py gear()): straight flanks, no backlash, so they overlap at every phase."
+    }
+  ],
+  "new_violations": [],
+  "clean": false,
+  "passed": true
+}
