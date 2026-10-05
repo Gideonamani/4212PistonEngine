@@ -1,7 +1,6 @@
 {
   "schema": "4212.lesson-pack/v3",
   "privacy": "Progress is held only in this page session (or locally on-device per the lesson-progress decision); no learner identity or answers are stored or transmitted.",
-  "draftStatus": "UNREVIEWED CONTENT DRAFT — 2026-09-21. Not wired into any live model registry entry or run through instructor review. See docs/history-lessons-content-draft.md before publishing.",
   "id": "history-and-fundamentals",
   "thumbnail": "./thumbnails/course-history-and-fundamentals.webp",
   "title": "History & Fundamentals",
@@ -13,6 +12,7 @@
       "sequenceNumber": 1,
       "title": "History of Mechanical Engines",
       "objective": "Trace the broad arc from manual and animal labour, through mechanical work and the steam engine, to the internal combustion engine and today's electronically managed engines - so the reason aircraft needed a purpose-built engine (lesson 2) has a foundation.",
+      "reviewStatus": "unreviewed",
       "models": [],
       "listed": true,
       "steps": [
@@ -97,6 +97,7 @@
       "sequenceNumber": 2,
       "title": "History of Aircraft Engines",
       "objective": "Follow how the internal combustion engine from lesson 1 was adapted and refined specifically to power flight, from the Wright brothers' hand-built 1903 engine through the wartime power race, to today's FADEC-managed general-aviation engines.",
+      "reviewStatus": "unreviewed",
       "models": ["wright-1903-engine"],
       "listed": true,
       "steps": [
@@ -196,6 +197,7 @@
       "sequenceNumber": 3,
       "title": "Terminologies",
       "objective": "Build the core vocabulary for describing a reciprocating aircraft engine - engine, powerplant, reciprocating engine, top and bottom dead centre, bore, stroke, swept and clearance volume, compression ratio - and connect it to the basic oscillating-piston-to-rotating-crankshaft operating principle every later lesson assumes you already know.",
+      "reviewStatus": "unreviewed",
       "models": ["cylinder"],
       "listed": true,
       "steps": [

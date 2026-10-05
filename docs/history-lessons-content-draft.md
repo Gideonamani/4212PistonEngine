@@ -18,14 +18,14 @@ The React application renders these lessons as a track gallery, lesson list and 
 - A visible **evidence tag** per text/model-pose step ("Documented" vs. "General / illustrative"), derived by pattern-matching each step's `note` field — this surfaces the sourcing-rigor distinction directly to whoever is reviewing, not just in this markdown file.
 - **Image placeholders**: any step whose `url` starts with `PLACEHOLDER:` renders as a dashed-border placeholder card with the note, instead of a broken `<img>`.
 - **Model-pose steps**: the React lesson renderer now mounts the lightweight Wright reference viewer in place. It offers orbit, zoom, reset and three guided hotspots, plus an "Explore fully" handoff to the larger Explore presentation.
-- A persistent **content-draft banner** at the top of the page, so the unreviewed status is visible in the running page itself, not only in this doc and the JSON's `draftStatus` field.
+- A persistent **content-draft banner** at the top of the page, so the unreviewed status is visible in the running page itself, not only in this doc and the JSON. (Superseded: the pack-level `draftStatus` text was replaced by a structured `reviewStatus` on each lesson, and the app now shows an "Instructor review pending" chip on every lesson that is not yet reviewed.)
 - Deliberately **does not** render `checks` inline — Check yourself stays a separate, not-yet-rebuilt experience per the architecture doc's existing design (a standalone tab plus a nudge after finishing a lesson); building that is out of scope for this pass.
 
 **A real bug found and fixed during interactive testing:** the first version put the list-hide toggle button *inside* the collapsible list panel itself — clicking it to hide the list also hid the only way to bring it back, permanently trapping the user in the step-only view. Fixed by moving the toggle into the persistent topbar, outside the panel it controls. Caught by actually clicking through the built page in a browser rather than only eyeballing the code, which is exactly the "interact with it and give feedback" step this build exists for. A second, related issue surfaced on a mobile-width pass: an early fixed-overlay approach for the mobile list covered the topbar entirely, reproducing the same trap; the fix stacks the list above the step content in normal document flow instead of a full-screen overlay, and auto-hides the list after a lesson is tapped so mobile users land on content immediately.
 
 ## Why this file is separate from the JSON
 
-The lesson JSON is the deliverable; this note is the flag the task asked for. The JSON itself carries a `draftStatus` field at its top level restating "unreviewed, not wired live" so the flag travels with the file even if this note is separated from it later.
+The lesson JSON is the deliverable; this note is the flag the task asked for. Each lesson in the JSON carries `reviewStatus: "unreviewed"` (it was a free-text `draftStatus` at the top of the pack when this note was written) so the flag travels with the file even if this note is separated from it later; the instructor sets `reviewStatus: "reviewed"` and `reviewedOn` once a lesson has been checked.
 
 ## Sourcing split — what's documented vs. general/illustrative
 

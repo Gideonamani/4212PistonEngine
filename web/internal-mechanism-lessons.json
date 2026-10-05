@@ -10,6 +10,7 @@
       "thumbnail": "./thumbnails/lesson-hydraulic-tappet-internal-study.webp",
       "title": "Inside the hydraulic tappet",
       "objective": "Identify the manual-listed internal parts and explain the role of trapped oil and replenishment.",
+      "reviewStatus": "unreviewed",
       "listed": true,
       "models": [
         "hydraulic-tappet"
@@ -58,6 +59,7 @@
       "thumbnail": "./thumbnails/lesson-oil-pump-internal-study.webp",
       "title": "Inside the oil pump and relief valve",
       "objective": "Explain external-gear pumping and identify the spring-loaded relief mechanism.",
+      "reviewStatus": "unreviewed",
       "listed": true,
       "models": [
         "oil-pump"

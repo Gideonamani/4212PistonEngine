@@ -5,7 +5,6 @@
   "title": "Accessories & Drives",
   "description": "Lesson 8: trace GTSIO-520-H mechanical power into useful accessory functions.",
   "privacy": "Local progress only; no learner identity collected.",
-  "draftStatus": "Source-backed teaching study — instructor and physical-phone review pending",
   "sources": [
     {
       "id": "gtsio-reviewed",
@@ -29,6 +28,7 @@
       "sequenceNumber": 8,
       "title": "Accessories & Drives",
       "objective": "Identify accessories and interfaces, trace power paths, predict rotation, operate saved motions and explain useful functions and illustrative faults.",
+      "reviewStatus": "unreviewed",
       "models": [
         "accessory-drives"
       ],

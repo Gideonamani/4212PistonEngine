@@ -11,6 +11,7 @@
       "thumbnail": "./thumbnails/lesson-m2-four-stroke-guided.webp",
       "title": "Follow one four-stroke cycle",
       "objective": "Use the shared 720-degree crank angle to sequence the four ideal teaching strokes and relate mechanism motion to valve/cue observations.",
+      "reviewStatus": "unreviewed",
       "models": [
         "cylinder"
       ],
@@ -90,6 +91,7 @@
       "title": "Explore how the cylinder parts fit",
       "listed": true,
       "objective": "Use staged exploded poses to identify part interfaces and distinguish a structural overview from a maintenance removal sequence.",
+      "reviewStatus": "unreviewed",
       "models": [
         "cylinder"
       ],

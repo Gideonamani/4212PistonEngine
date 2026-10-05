@@ -5,7 +5,8 @@ import { LESSON_PACK_SCHEMA, STEP_TYPES, CHECK_TYPES, validateLessonPack } from 
 const pack = JSON.parse(fs.readFileSync(new URL('../web/history-lessons.json', import.meta.url), 'utf8'));
 assert.equal(pack.schema, LESSON_PACK_SCHEMA);
 assert.ok(pack.privacy.includes('no learner identity'));
-assert.ok(pack.draftStatus && /UNREVIEWED/.test(pack.draftStatus), 'pack must carry an unreviewed-draft flag until instructor review');
+assert.equal(pack.draftStatus, undefined, 'draftStatus is retired: review state lives on each lesson');
+assert.ok(pack.lessons.every(lesson => lesson.reviewStatus === 'unreviewed'), 'every lesson waits for instructor review');
 
 assert.equal(pack.lessons.length, 3);
 const [mechanical, aircraft, terminologies] = pack.lessons;
