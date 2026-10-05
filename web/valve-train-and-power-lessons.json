@@ -1,0 +1,588 @@
+{
+  "schema": "4212.lesson-pack/v3",
+  "privacy": "Lesson progress may be held locally on the learner's device and is never transmitted. Check-yourself answers remain session-only.",
+  "id": "valve-train-and-power",
+  "thumbnail": "./thumbnails/course-valve-train-and-power.webp",
+  "banner": "./banners/valve-train-and-power.webp",
+  "title": "Valve Train & Power Generation",
+  "description": "How the valves are opened and closed, from the camshaft to the valve spring, and how to inspect the parts that do it.",
+  "sources": [
+    {
+      "id": "faa-powerplant-2023",
+      "tier": 1,
+      "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
+      "path": "Notes/amt_powerplant_handbook 2023.pdf",
+      "applicability": "Primary source for valve construction, the valve-operating mechanism, hydraulic tappets, valve clearance and valve inspection. PDF page locators are used in step notes."
+    },
+    {
+      "id": "easa-module16",
+      "tier": 2,
+      "title": "EASA Module 16 - Piston Engines, Aircraft Technical Book Company",
+      "path": "Notes/EASA Module 16 - Piston Engines by Aircraft Technical Book Co LLC.pdf",
+      "applicability": "Secondary source used to cross-check the valve-operating mechanism (PDF pp. 58-61); its text follows the FAA handbook closely."
+    },
+    {
+      "id": "gtsio520-overhaul",
+      "tier": 3,
+      "title": "Continental GTSIO-520 Series Overhaul Manual X30045A",
+      "path": "Notes/gtsio520_series.pdf",
+      "applicability": "Configuration-specific source for the course reference engine: its valve mechanism, camshaft, hydraulic tappets, inspection, overhaul replacement list and spring test data. The Chapter B table of limits is dated March 1981 and covers the series; Chapter C-3 (the -H) lists no different valve spring. Always use the current data for the engine in front of you."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "valve-operating",
+      "thumbnail": "./thumbnails/lesson-valve-operating.webp",
+      "sequenceNumber": 9,
+      "title": "Valve Operating",
+      "objective": "Follow the motion from the camshaft to the valve: name the parts of the valve train, explain how the cam lobe sets valve lift and duration and why the camshaft turns at half crankshaft speed, describe how a hydraulic tappet keeps zero clearance, and recognise what to inspect on valves, springs, the camshaft and tappets.",
+      "reviewStatus": "unreviewed",
+      "models": [
+        "cylinder",
+        "gtsio520-h-v5-teaching-engine",
+        "hydraulic-tappet"
+      ],
+      "listed": true,
+      "scheduledDay": 4,
+      "completionCriteria": "Name the parts that carry motion from the camshaft to the valve in order, say why the camshaft turns at half the crankshaft speed, explain how a hydraulic tappet keeps the valve clearance at zero, and name three things to inspect on a valve and its spring.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "Valves open and close the cylinder",
+          "prompt": "Every cylinder breathes through two valves. The intake valve lets the fuel-air mixture in and the exhaust valve lets the burned gas out. Each valve has three jobs: open at the right moment, stay open for the right length of time, and close at the right moment. Before you open the model, predict what pushes a valve open and what shuts it again.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 37 and 39: conventional poppet valves in the cylinder head, and the three requirements of the valve-operating mechanism (open at the proper time, stay open for the required length of time, close at the proper time). The prediction is answered in the steps that follow.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A prediction prompt: the learner commits to an idea before the mechanism is shown."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Valves, seats and guides",
+          "modelId": "cylinder",
+          "prompt": "Find the intake valve and the exhaust valve in the cylinder head. Each valve is a head on a long stem. The face of the head closes on a hard seat insert in its port, and the stem slides in a guide that keeps it square to the seat. These are poppet valves: they lift straight off the seat to open.",
+          "action": {
+            "type": "angle",
+            "value": 0
+          },
+          "focusParts": [
+            "IntakeValve",
+            "ExhaustValve",
+            "IntakeSeatInsert",
+            "ExhaustSeatInsert",
+            "IntakeValveGuide",
+            "ExhaustValveGuide"
+          ],
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 38 (the ground valve face seals on the valve seat; the stem acts as a pilot in the valve guide) and the Continental GTSIO-520 overhaul manual, PDF p. 16 (seats and guides are installed in the heated head before it is screwed and shrunk onto the barrel; the exhaust valves are faced with a heat- and corrosion-resistant material and the solid stem tips are hardened). The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The cylinder model shows where the valves, seats and guides sit relative to the head and ports."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Valve shapes and metals",
+          "prompt": "Valves are named for their shape: mushroom, tulip and semi-tulip. They work in heat, corrosion and constant hammering, so the metal matters. Intake valves run cooler and can be chromic-nickel steel. Exhaust valves run hotter and are made of nichrome, silchrome or cobalt-chromium steel. Some stems are hollow and part filled with metallic sodium (the sodium chamber in the figure). Sodium melts at about 208 °F (98 °C) and sloshes as the valve moves, carrying heat from the head up the stem to the guide, which can cool the valve by 300 to 400 °F. Never cut open or scrap a sodium-filled valve as ordinary metal: sodium exposed to air or water burns or explodes.",
+          "url": "./lesson-media/faa-valve-types.webp",
+          "alt": "FAA figure of six valve types (hollow-head mushroom, mushroom and tulip, then tulip, semi-tulip and tulip), with labels for the sodium chamber, large and small stems, hardened tip, face, neck and head.",
+          "credit": "FAA-H-8083-32B, Figure 1-20",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 38-39 (valve shapes, intake and exhaust valve materials, sodium-filled stems, the 300 to 400 °F cooling and the warning about cutting open a sodium valve). The course deck gives the melting point as 97.5 °C; the handbook gives approximately 208 °F, which is about 98 °C.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The handbook figure names every part of a valve and shows each shape side by side."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Springs, retainers and keepers",
+          "modelId": "cylinder",
+          "prompt": "Each valve is closed by two springs, one inside the other. A single spring would vibrate, or surge, at certain engine speeds. Two springs surge at different speeds, so they damp each other, and they are less likely to break from heat and fatigue. The springs sit under a retainer that is locked to the stem by tapered half-round keepers (split keys), which fit a groove cut near the tip of the stem. On the exhaust valve the retainer is a Rotocoil type. The springs close the valve, hold it on its seat and push the whole valve train back the other way.",
+          "savedMotionId": "exploded",
+          "motionProgress": 50,
+          "focusParts": [
+            "IntakeInnerSpring",
+            "IntakeOuterSpring",
+            "IntakeSpringRetainer",
+            "IntakeValveKeeper",
+            "ExhaustInnerSpring",
+            "ExhaustOuterSpring",
+            "ExhaustSpringRetainer",
+            "ExhaustValveKeeper"
+          ],
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 38 and 42 (stem keys and the groove in the stem; two or three springs, spring surge, and the springs closing the valve and holding it on its seat), cross-checked against EASA Module 16, PDF pp. 62-63, and the GTSIO-520 overhaul manual, PDF p. 16 (outer spring retainers are locked to the stems by tapered, semi-circular keys) and p. 58 (the exhaust side has a rotocap). The model's description of the Rotocoil (it promotes small valve rotations that spread heat and wear) is not stated on the manual pages read here. The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The exploded pose separates the springs, retainer and keepers so each can be named."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Cam lobe and ramps",
+          "prompt": "A valve lifts only when a cam lobe pushes. The shape of the lobe sets the valve lift (how far the valve leaves its seat) and the valve duration (how long it stays open). Look for the ramp on each side of the lobe: it eases the rocker arm into contact with the valve tip, so the shock is much smaller than if the parts met a sharp edge. The round part of the cam, away from the nose, is the base circle. While the follower rides the base circle the valve is closed.",
+          "url": "./lesson-media/faa-cam-lobes.webp",
+          "alt": "FAA figure of a cam lobe seen end-on on its camshaft, and a side view of the lobe profile with the cam ramps marked on both flanks.",
+          "credit": "FAA-H-8083-32B, Figure 1-23",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 39 (valve lift and duration are determined by the shape of the cam lobes; the ramp or step on each side of the lobe) and PDF p. 41 (the tappet body rests on the base circle, or back, of the cam when the valve is closed), cross-checked against EASA Module 16, PDF pp. 58-59.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The handbook figure labels the cam ramps, which the interactive that follows then shows in motion."
+          }
+        },
+        {
+          "type": "web-embed",
+          "title": "Lift and duration",
+          "prompt": "Turn the crank and watch the tappet ride the cam. Then choose the other lobe shapes. How does the taller lobe change the lift? How does the longer lobe change the time the valve stays open? Notice that one turn of the cam covers two turns of the crank.",
+          "url": "artifact:cam-lift-and-duration",
+          "note": "Schematic interactive made for this lesson. Lift and duration follow FAA-H-8083-32B (2023), PDF p. 39 (set by the shape of the cam lobes; ramps on each flank). The standard lobe copies the intake valve of the FAA example timing chart (Figure 1-37, PDF p. 47: opens 50° before TDC, closes 30° after BDC); the other two are invented for contrast. None of the lobes is GTSIO-520-H cam data, and lift is in relative units, not millimetres.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "Choosing a lobe and turning the crank makes lift and duration something the learner changes, not just reads."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Why the cam turns at half speed",
+          "prompt": "A valve opens once in every four-stroke cycle, and a cycle takes two turns of the crankshaft. So the camshaft turns once for every two turns of the crankshaft. The cam gear is twice the size of the crankshaft gear, so it runs at half the speed. Find the crankshaft gear, the larger timing gear on the camshaft and the lobes on the camshaft.",
+          "url": "./lesson-media/faa-cam-drive-opposed.webp",
+          "alt": "FAA drawing of a small crankshaft gear driving a gear twice its size on the camshaft, with the camshaft lobes labelled and a note that the cam gear runs at half speed.",
+          "credit": "FAA-H-8083-32B, Figure 1-28",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 41 (the camshaft of an opposed engine always rotates at one-half the crankshaft speed; Figure 1-28: the cam gear is twice the size of the crankshaft gear), cross-checked against EASA Module 16, PDF pp. 60-61. The GTSIO-520 gear train (overhaul manual, PDF p. 17 and Figure A-4-8, PDF p. 25) also drives the camshaft gear directly from the crankshaft gear. The two-to-one reasoning is the learner-level explanation; the handbook states the ratio.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The handbook figure shows the gear pair and the lobes in one drawing."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "The camshaft in the GTSIO-520-H",
+          "modelId": "gtsio520-h-v5-teaching-engine",
+          "prompt": "In the GTSIO-520-H the camshaft lies inside the crankcase, so this view shows it on its own with the gears of its drive. A gear on its rear end meshes with the crankshaft gear. The camshaft is a hardened and ground steel-alloy forging with four journals and nine lobes. Its gear is bolted on with four unequally spaced bolts so that its timing mark sits in the right place relative to the lobes.",
+          "action": {
+            "type": "angle",
+            "value": 0
+          },
+          "focusParts": [
+            "camshaft-and-timing-drive"
+          ],
+          "focusMode": "isolate",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 17 (section A-3-1 h: four journals, nine cam lobes, gear mount flange at the rear end, four unequally spaced bolts to locate the timing mark in relation to the cam lobes) and the gear train in Figure A-4-8, PDF p. 25. The full-engine model is a teaching reconstruction: what is visible through the crankcase is illustrative.",
+          "sourceRefs": [
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The whole-engine model places the camshaft inside the crankcase relative to the cylinders."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "From cam to valve",
+          "modelId": "cylinder",
+          "prompt": "Trace the motion for the intake valve. The cam lobe lifts the tappet. The tappet moves the pushrod, which runs in a tube from the crankcase to the cylinder head. The pushrod tips the rocker arm on its shaft, and the other end of the rocker arm presses the valve stem and opens the valve. When the lobe passes, the valve spring closes the valve and pushes everything back. Engine oil takes a path too: it reaches the rocker arm through the hollow pushrod and returns to the crankcase through the pushrod housing.",
+          "savedMotionId": "exploded",
+          "motionProgress": 50,
+          "focusParts": [
+            "IntakeHydraulicLifterBody",
+            "IntakePushrod",
+            "IntakePushrodHousing",
+            "IntakeRockerArm",
+            "IntakeRockerShaft",
+            "IntakeValve"
+          ],
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 39 and 42 (cam follower, push rod and ball socket, rocker arm, valve; the hollow pushrod carries engine oil to the rocker assembly), cross-checked against EASA Module 16, PDF pp. 59-62, and the GTSIO-520 overhaul manual, PDF p. 16 (oil is forced through the pushrods to the drilled rockers and returns to the crankcase through the pushrod housings). The cylinder model has no camshaft: the tappet body stands for the end of the train that meets the cam. The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The exploded valve-train stage separates the tappet, pushrod, rocker arm and valve so the order can be traced."
+          }
+        },
+        {
+          "type": "image",
+          "title": "The opposed-engine valve train",
+          "prompt": "Here is the whole valve train of an opposed engine in one picture: the camshaft in the crankcase, the tappet, the pushrod, and the rocker arm and valve spring up in the cylinder head. The GTSIO-520-H is built this way. The figure is a general example, not a GTSIO-520-H drawing.",
+          "url": "./lesson-media/faa-valve-train-opposed.webp",
+          "alt": "FAA cutaway of an opposed engine cylinder and crankcase with the camshaft, tappet and push rod in the crankcase and the valve spring in the cylinder head labelled.",
+          "credit": "FAA-H-8083-32B, Figure 1-25",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 39-41 (the valve mechanism of an opposed engine is operated by a camshaft; Figure 1-25), cross-checked against EASA Module 16, PDF p. 60. The GTSIO-520 layout is described in its overhaul manual, PDF pp. 16-17 (camshaft and hydraulic tappets in the crankcase, pushrods, rocker arms on the cylinder heads).",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "A single cutaway shows how far the motion travels from the crankcase to the head."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Radial engines use a cam ring",
+          "prompt": "A radial engine has no camshaft. A cam ring, a steel ring with lobes, turns around the crankshaft. It has one track of lobes for the intake valves and one for the exhaust valves. Cam rollers ride the tracks and lift the tappets in their guides, and the motion goes on through the pushrod and rocker arm to the valve, as in an opposed engine. The crankshaft drives the ring at a much lower speed. On a nine-cylinder engine a four-lobe ring turns the opposite way to the crankshaft. Compare this figure with the opposed engine.",
+          "url": "./lesson-media/faa-valve-train-radial.webp",
+          "alt": "FAA drawing of the valve-operating mechanism of a radial engine: a cam ring with cam track and lobe, a cam roller, tappet and tappet guide, a push rod tube, and the rocker arm, valve spring and valve guide in the cylinder head.",
+          "credit": "FAA-H-8083-32B, Figure 1-24",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 39-41 (cam rings; one ring with a double cam track on a single-row radial; driven by the crankshaft at a reduced speed; the four-lobe ring on a nine-cylinder engine turns opposite to the crankshaft; Figures 1-24 and 1-27), cross-checked against EASA Module 16, PDF pp. 59-60.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The handbook drawing is the clearest labelled picture of a cam ring and its tracks."
+          }
+        },
+        {
+          "type": "image",
+          "title": "The zero-lash tappet",
+          "prompt": "A solid tappet leaves a small gap in the valve train, the valve clearance, which must be adjusted by hand. A hydraulic tappet takes up the gap by itself. Engine oil from the lubrication system fills a chamber under the plunger. When the cam pushes the tappet body, a check valve closes and traps the oil, and the trapped oil carries the load to the pushrod almost like a solid link. Find the plunger, the plunger spring, the check valve and the two oil chambers. The figure shows a ball check valve; the GTSIO-520 tappet uses a spring-loaded check-valve plate instead.",
+          "url": "./lesson-media/faa-hydraulic-tappet.webp",
+          "alt": "FAA cutaway of a hydraulic valve tappet beside a cam, with the tappet body, plunger, plunger spring, ball check valve, cylinder, oil supply chamber, oil pressure chamber, push rod socket, push rod and shroud tube labelled.",
+          "credit": "FAA-H-8083-32B, Figure 1-30",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 41-42 (solid lifters need the valve clearance adjusted by hand; hydraulic tappets keep the clearance at zero; the oil in the pressure chamber acts as a cushion; a predetermined leakage between plunger and cylinder bore compensates for expansion and contraction), cross-checked against EASA Module 16, PDF p. 61. The GTSIO-520 tappet (overhaul manual, Figure A-4-10, PDF p. 27) lists a check-valve plate, check-valve spring and housing, not a ball.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The labelled cutaway names the oil chambers and the check valve before the model shows them move."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Trapped oil under load",
+          "modelId": "hydraulic-tappet",
+          "prompt": "The tappet body is faint here, so you can see the parts inside it at the moment when the load is on: the closed check valve keeps the oil in the chamber, and the trapped oil carries the load. Open Explore to play the whole cycle. When the valve closes, the plunger spring extends the plunger and oil flows back in. A small controlled leak past the plunger lets the tappet follow the expansion and contraction of the valve train. For a closer look, open the Inside the hydraulic tappet study in the Internal Mechanisms course.",
+          "savedMotionId": "Operating mechanism",
+          "motionProgress": 50,
+          "focusParts": [
+            "Plunger",
+            "PlungerSpring",
+            "Socket",
+            "CheckHousing",
+            "CheckSpring",
+            "CheckPlate"
+          ],
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 42 and the GTSIO-520 overhaul manual, Figure A-4-10, PDF p. 27 (items 1-16). Manual relationships; the dimensions and the operating travel are illustrative, and the model is not a pressure simulation or a maintenance procedure.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The tappet study shows the plunger, check plate and oil path moving through one illustrative cycle."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Valve clearance and why it matters",
+          "prompt": "Solid tappets need valve clearance: a small gap so the valve can close completely when the parts expand with heat. On those engines the clearance must be checked and adjusted. Wrong clearance changes the real valve timing. With too much clearance the valves do not open as wide or stay open as long, so the overlap is shorter. With too little, the overlap is longer. Overlap affects the idle mixture, and clearances are never wrong by the same amount in every cylinder, so the mixture differs from cylinder to cylinder. Hydraulic tappets remove most of this work. They are not maintenance-free: they work only over a limited range and can stick.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 41 (solid lifters and valve clearance) and PDF pp. 401-403 (operational effect of valve clearance on valve overlap and idle mixture, variation between cylinders, and the limited range and sticking of hydraulic lifters). The handbook text and the caption of its Figure 10-51 describe the mixture direction in opposite ways, so this step does not state a direction.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A cause-and-effect step that builds on the overlap diagram from the Thermodynamic Cycles lesson."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Timing the cam to the crank",
+          "prompt": "Valve timing is the relationship between the camshaft and the crankshaft: at which crank angles each lobe lifts its valve. It is set when the engine is built, by meshing the camshaft gear with the crankshaft gear so that their timing marks line up. Lead, lag and overlap, which you met in Thermodynamic Cycles, come from where the lobes sit on the cam and where the cam gear sits on the camshaft. Real timing values come from the engine manufacturer. The FAA chart you used earlier is an example, not GTSIO-520-H timing.",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 77 (section 12-4: mesh the camshaft spur gear with the crankshaft gear so that the timing marks align, Figure A4-35) and PDF p. 17 (the camshaft gear is bolted on to locate its timing mark relative to the lobes). The manual searched here gives no valve timing figures; the FAA example chart is in Thermodynamic Cycles (FAA-H-8083-32B, PDF p. 47, Figure 1-37).",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A short linking step: valve timing is a gear-timing relationship, shown earlier by the timing chart."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Inspecting a valve",
+          "prompt": "At overhaul each valve is inspected. Check the face and the tip for pitting and wear, the stem for stretch (a smaller diameter near the neck) and wear in its guide, and look for cracks, nicks, burning or corrosion: a valve with burn or corrosion damage is not reused. The face must run true with the stem within 0.0015 in. After a valve is ground, check the margin, the thickness of its edge. A thin feather edge overheats, can cause pre-ignition and burns away quickly. If the edge is thinner than the manufacturer's limit after re-facing, the valve is not reused.",
+          "url": "./lesson-media/faa-valve-margin.webp",
+          "alt": "FAA drawing of two valve heads: one with a normal margin, the thickness of the edge of the head, and one ground to a thin feather edge.",
+          "credit": "FAA-H-8083-32B, Figure 10-26",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 379-380 (valve inspection: face and tip, stretch and wear, damage from burning or corrosion; Figure 10-12: face must run true with the stem within 0.0015 inch; edge thickness limit set by the manufacturer) and PDF p. 384 (feather edge, pre-ignition, Figure 10-26). The course deck also quotes a 1/32 in minimum margin, which the handbook pages read here do not give: use the manufacturer's limit.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The drawing shows what a normal margin and a feather edge look like."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Checking a valve spring",
+          "prompt": "Valve springs are checked for cracks, rust and broken ends, and for compression. A spring tester compresses the spring to a set height and its dial shows the force in pounds. The force must be within the manufacturer's limits. The GTSIO-520 overhaul manual's table of limits lists, for the inner spring (P/N 637836): at 1.329 in, a serviceable limit of 73 lb (new springs 78 to 88 lb); at 1.809 in, 40 lb (new 43 to 49 lb). For the outer spring (P/N 637837): at 1.275 in, 118 lb (new 126 to 140 lb); at 1.791 in, 46 lb (new 49 to 55 lb). A spring that pushes back with less than the serviceable limit at the test height is not reused. These are numbers for the springs that manual lists. Always use the data for the engine in front of you.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 379-381 (examine springs for cracks, rust, broken ends and compression; the spring is compressed to the height the manufacturer specifies and the pressure must be within the manufacturer's limits) and the Continental GTSIO-520 overhaul manual, Table of Limits, spring test data, PDF p. 95 (page B-4, March 1981). The chapter for the -H (C-3) lists no different valve spring. The values are teaching data from that manual edition, not a maintenance instruction.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The numbers in the manual table are the evidence; a picture would add nothing."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Cam, tappets and what gets replaced",
+          "prompt": "Inspect the camshaft lobes for scoring, corrosion and overheating, and for pitting at the toes. Clean and inspect each hydraulic tappet: a body with damage on its cam-follower face, deep scoring or corrosion is discarded. A quick dry test checks the plunger. Press it in and release it, and it should kick back, because trapped air is compressed. If it does not return fully, the plunger is worn or the check valve is leaking. The overhaul manual recommends replacing every valve spring, valve keeper, exhaust valve and Rotocoil, and all hydraulic lifters, at each major overhaul, whatever their condition. If lifters are removed early they must go back where they came from.",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual: PDF p. 66 (9-15, camshaft lobe inspection), PDF pp. 67 and 84-86 (9-20 and 13-1 to 13-5, hydraulic lifter inspection and the dry plunger kick-back test), PDF p. 72 (10-12, parts replaced 100 percent at normal major overhaul, and the note that lifters removed early go back in the same location) and PDF p. 58 (7-15, lifters recommended to be replaced at each major overhaul). This is a recognition lesson, not a service procedure: the manual gives the steps.",
+          "sourceRefs": [
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The inspection and replacement rules are the evidence and need no picture."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Trace the whole path",
+          "prompt": "Explain the whole path in your own words, starting at the crankshaft gear and ending with the valve closing again. Which parts move, and how fast does the camshaft turn? What does the tappet do about clearance? Which parts would you inspect, and what would you look for? Then take the lesson's quiz.",
+          "note": "Completion step: the learner pulls the lesson together (opening prompt, action, feedback, completion evidence).",
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The learner explains the path in their own words."
+          }
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "valve-train-order",
+      "lessonId": "valve-operating",
+      "type": "ordering",
+      "question": "Put these parts in the order the motion passes through them, from the cam to the valve.",
+      "hint": "The motion starts where the cam pushes and ends where the valve opens.",
+      "items": [
+        "Camshaft lobe",
+        "Tappet",
+        "Pushrod",
+        "Rocker arm",
+        "Valve"
+      ],
+      "rationale": "The lobe lifts the tappet, the tappet moves the pushrod, the pushrod tips the rocker arm, and the rocker arm presses the valve open."
+    },
+    {
+      "id": "valve-cam-speed",
+      "lessonId": "valve-operating",
+      "type": "numeric",
+      "question": "The crankshaft of a four-stroke engine turns at 2,700 rpm. How fast does the camshaft turn?",
+      "hint": "A four-stroke cycle takes two turns of the crankshaft, and each valve opens once per cycle.",
+      "unit": "rpm",
+      "correctValue": 1350,
+      "tolerance": 0,
+      "rationale": "The camshaft turns once for every two turns of the crankshaft, so it runs at half the speed: 2,700 ÷ 2 = 1,350 rpm. Its gear is twice the size of the crankshaft gear."
+    },
+    {
+      "id": "valve-lift-duration",
+      "lessonId": "valve-operating",
+      "type": "multiple-choice",
+      "question": "What decides how far a valve lifts and how long it stays open?",
+      "hint": "Think about the part that does the pushing.",
+      "answers": [
+        "The shape of the cam lobe",
+        "The strength of the valve spring",
+        "The length of the pushrod housing",
+        "The oil pressure in the tappet"
+      ],
+      "correct": 0,
+      "rationale": "Valve lift and valve duration are both set by the shape of the cam lobe: a taller lobe lifts the valve further and a wider lobe holds it open longer."
+    },
+    {
+      "id": "valve-intake-exhaust-metal",
+      "lessonId": "valve-operating",
+      "type": "multiple-choice",
+      "question": "Why can an intake valve be made of a different steel from an exhaust valve?",
+      "hint": "One of them sits in the stream of burned gas.",
+      "answers": [
+        "It runs cooler, so it does not need the most heat-resistant steel",
+        "It carries a heavier spring load",
+        "It is always hollow and filled with sodium"
+      ],
+      "correct": 0,
+      "rationale": "Intake valves operate at lower temperatures, so chromic-nickel steel will do. Exhaust valves run hotter and use nichrome, silchrome or cobalt-chromium steel, which resist heat much better."
+    },
+    {
+      "id": "valve-sodium",
+      "lessonId": "valve-operating",
+      "type": "multiple-choice",
+      "question": "What does the sodium inside a hollow valve stem do?",
+      "hint": "Sodium melts at about 208 °F and moves as the valve moves.",
+      "answers": [
+        "It carries heat from the valve head up the stem to the guide",
+        "It lubricates the valve guide",
+        "It adds weight so the valve closes faster"
+      ],
+      "correct": 0,
+      "rationale": "The liquid sodium is sloshed up and down by the valve motion and carries heat away from the head, which can cool the valve by 300 to 400 °F. Never cut open or scrap a sodium valve as ordinary metal: sodium exposed to air or water burns or explodes."
+    },
+    {
+      "id": "valve-parts-jobs",
+      "lessonId": "valve-operating",
+      "type": "matching",
+      "question": "Match each valve-train part to its job.",
+      "hint": "Use the cylinder model from the lesson.",
+      "pairs": [
+        {
+          "left": "Valve guide",
+          "right": "Keeps the stem square to the seat as it slides"
+        },
+        {
+          "left": "Spring retainer and keepers",
+          "right": "Lock the springs to the groove in the stem"
+        },
+        {
+          "left": "Rocker arm",
+          "right": "Pivots on its shaft to turn pushrod lift into valve opening"
+        },
+        {
+          "left": "Valve seat insert",
+          "right": "Gives the valve face a hard surface to close on"
+        }
+      ],
+      "rationale": "The guide keeps the stem aligned, the retainer and split keepers hold the springs on the stem, the rocker arm reverses the direction of the pushrod’s lift, and the seat insert is the durable surface the valve face seals against."
+    },
+    {
+      "id": "valve-engine-types",
+      "lessonId": "valve-operating",
+      "type": "matching",
+      "question": "Match each engine layout to the way its valves are worked.",
+      "hint": "One has a camshaft and one has a ring.",
+      "pairs": [
+        {
+          "left": "Horizontally opposed engine",
+          "right": "A camshaft in the crankcase, turning at half crankshaft speed"
+        },
+        {
+          "left": "Radial engine",
+          "right": "A cam ring around the crankshaft, with an intake track and an exhaust track"
+        }
+      ],
+      "rationale": "An opposed engine has a camshaft in the crankcase that always turns at half crankshaft speed. A radial engine has a cam ring concentric with the crankshaft, with one track of lobes for the intake valves and one for the exhaust valves."
+    },
+    {
+      "id": "valve-zero-lash",
+      "lessonId": "valve-operating",
+      "type": "multiple-choice",
+      "question": "What does a hydraulic tappet do that a solid tappet cannot?",
+      "hint": "Think about the gap in the valve train.",
+      "answers": [
+        "It keeps the valve clearance at zero without any adjustment",
+        "It makes the valve stay open for longer",
+        "It lets the camshaft turn faster than the crankshaft"
+      ],
+      "correct": 0,
+      "rationale": "Oil trapped under the plunger takes up the clearance automatically and follows the expansion and contraction of the valve train, so no clearance adjustment mechanism is needed."
+    },
+    {
+      "id": "valve-clearance-overlap",
+      "lessonId": "valve-operating",
+      "type": "multiple-choice",
+      "question": "On an engine with solid tappets, what can wrong valve clearance change?",
+      "hint": "It changes when the valves really open and close.",
+      "answers": [
+        "The valve overlap, and with it the idle mixture",
+        "The firing order of the cylinders",
+        "The direction the camshaft turns"
+      ],
+      "correct": 0,
+      "rationale": "Too much clearance shortens the overlap and too little lengthens it. That changes how much gas is drawn back into the cylinder at idle, so the mixture changes, and it changes by a different amount in each cylinder."
+    },
+    {
+      "id": "valve-feather-edge",
+      "lessonId": "valve-operating",
+      "type": "multiple-choice",
+      "question": "A valve has been ground until its edge is very thin, a feather edge. What can that cause?",
+      "hint": "A thin edge cannot lose its heat.",
+      "answers": [
+        "Pre-ignition, because the thin edge overheats and burns away",
+        "Low oil pressure in the rocker box",
+        "A cracked valve spring"
+      ],
+      "correct": 0,
+      "rationale": "A feather edge overheats, can cause pre-ignition and burns away in a short time. After re-facing, the edge must not be thinner than the manufacturer’s limit."
+    },
+    {
+      "id": "valve-spring-reading",
+      "lessonId": "valve-operating",
+      "type": "multiple-choice",
+      "question": "An inner valve spring (P/N 637836) is compressed to 1.329 in. The tester reads 70 lb. The manual gives a serviceable limit of 73 lb at that height. What do you conclude?",
+      "hint": "Compare the reading with the serviceable limit.",
+      "answers": [
+        "The spring is weaker than the serviceable limit and is not reused",
+        "The spring is serviceable because it is above 60 lb",
+        "The spring is a new part because it is below 78 lb"
+      ],
+      "correct": 0,
+      "rationale": "A spring must push back with at least the serviceable limit at the test height. 70 lb is below 73 lb, so it is not reused. A new inner spring gives 78 to 88 lb at that height."
+    }
+  ]
+}

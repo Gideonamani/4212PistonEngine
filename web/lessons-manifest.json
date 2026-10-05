@@ -1,11 +1,12 @@
 {
   "schema": "4212.lessons-manifest/v1",
-  "description": "Ordered list of lesson-pack files. Each pack is a browsable track in the Learn/Check gallery (see its own title/description/id); within a track, lessons keep their array order.",
+  "description": "Ordered list of lesson-pack files. Each pack is a browsable track in the Learn/Check gallery (see its own title/description/id); within a track, lessons keep their array order. The syllabus courses come first in lesson order; the two supplementary studies (operating cylinder, internal mechanisms) come last.",
   "packs": [
     "./history-lessons.json",
     "./fundamentals-lessons.json",
+    "./accessories-lessons.json",
+    "./valve-train-and-power-lessons.json",
     "./m2-cylinder-lessons.json",
-    "./internal-mechanism-lessons.json",
-    "./accessories-lessons.json"
+    "./internal-mechanism-lessons.json"
   ]
 }

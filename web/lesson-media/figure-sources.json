@@ -1,0 +1,44 @@
+{
+  "faa-valve-types": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 38,
+    "box": [0.088, 0.488, 0.492, 0.903],
+    "width": 900
+  },
+  "faa-cam-lobes": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 39,
+    "box": [0.088, 0.618, 0.492, 0.905],
+    "width": 900
+  },
+  "faa-valve-train-radial": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 39,
+    "box": [0.503, 0.056, 0.916, 0.6305],
+    "width": 1000
+  },
+  "faa-valve-train-opposed": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 40,
+    "box": [0.088, 0.064, 0.916, 0.379],
+    "width": 1200
+  },
+  "faa-cam-drive-opposed": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 41,
+    "box": [0.088, 0.563, 0.492, 0.874],
+    "width": 900
+  },
+  "faa-hydraulic-tappet": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 42,
+    "box": [0.088, 0.056, 0.916, 0.37],
+    "width": 1200
+  },
+  "faa-valve-margin": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 384,
+    "box": [0.508, 0.66, 0.916, 0.893],
+    "width": 800
+  }
+}

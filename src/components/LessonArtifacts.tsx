@@ -1,4 +1,6 @@
 import React, { useMemo, useState } from 'react';
+import { lessonArtifactIds } from './lessonArtifactIds';
+import { CamLiftDiagram } from './ValveTrainArtifacts';
 import { ConstructionComparison, CylinderNumberingDiagram, DieselOttoCompare, EngineDataComparison, OttoPVDiagram, SweptVolumeDiagram, ValveTimingDiagram } from './CycleArtifacts';
 
 type ArtifactProps = { id: string };
@@ -169,12 +171,7 @@ function PistonCrank() {
   return <div className={panel}><input aria-label="Rotate the crankshaft" className="w-full accent-teal-400" type="range" min="0" max="360" value={angle} onChange={(event) => setAngle(Number(event.target.value))} /><svg viewBox="0 0 640 250" role="img" aria-label="Piston, connecting rod and crankshaft motion" className="mt-2 h-56 w-full rounded-lg bg-slate-950/50"><path d="M225 18h190v160H225z" fill="#0c2026" stroke="#55707a" strokeWidth="4" /><rect x="245" y={pistonY} width="150" height="44" rx="8" fill="#94a3b8" stroke="#e2e8f0" strokeWidth="3" /><path d={`M320 ${pistonY + 44}L${crankX} ${crankY}`} stroke="#cbd5e1" strokeWidth="18" strokeLinecap="round" /><circle cx="320" cy="170" r="48" fill="none" stroke="#2dd4bf" strokeWidth="5" /><circle cx={crankX} cy={crankY} r="12" fill="#f59e0b" /><path d="M190 222h260" stroke="#64748b" strokeWidth="12" /><g fill="#e2e8f0" fontSize="16"><text x="430" y="65">Piston: reciprocating</text><text x="430" y="170">Crank: rotating</text></g></svg><p className="mt-2 text-xs text-slate-300">Drag the crank angle to see rotary motion converted to piston travel through the connecting rod.</p></div>;
 }
 
-export const lessonArtifactIds = [
-  'cycle-phase-scrubber', 'two-stroke-port-timing', 'arrangement-comparator', 'ignition-method-comparator',
-  'air-cooling-path-explorer', 'turbocharger-energy-path', 'aspiration-altitude-comparator',
-  'steam-engine-schematic', 'otto-cycle-overview', 'piston-crank-converter', 'arrangement-inline', 'arrangement-v',
-  'swept-volume-diagram', 'engine-data-comparison', 'otto-pv-diagram', 'otto-pv-ideal-vs-practical', 'diesel-otto-pv-compare', 'valve-timing-diagram', 'construction-comparison', 'cylinder-numbering', 'cylinder-firing-order',
-] as const;
+export { lessonArtifactIds };
 
 export const LessonArtifact: React.FC<ArtifactProps> = ({ id }) => {
   const content = useMemo(() => {
@@ -195,6 +192,7 @@ export const LessonArtifact: React.FC<ArtifactProps> = ({ id }) => {
     if (id === 'otto-pv-ideal-vs-practical') return <OttoPVDiagram startPractical />;
     if (id === 'diesel-otto-pv-compare') return <DieselOttoCompare />;
     if (id === 'valve-timing-diagram') return <ValveTimingDiagram />;
+    if (id === 'cam-lift-and-duration') return <CamLiftDiagram />;
     if (id === 'construction-comparison') return <ConstructionComparison />;
     if (id === 'cylinder-numbering') return <CylinderNumberingDiagram />;
     if (id === 'cylinder-firing-order') return <CylinderNumberingDiagram startFiring />;

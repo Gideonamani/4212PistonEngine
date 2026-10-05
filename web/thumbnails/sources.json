@@ -224,6 +224,18 @@
       "path": "accessory-drives-square.webp",
       "credit": "GTSIO-520-H accessories and drives teaching study, rendered from the app's 3D model",
       "license": "Course material"
+    },
+    "course-valve-train-and-power": {
+      "kind": "render",
+      "path": "course-valve-train-square.webp",
+      "credit": "Rendered from the app's operating-cylinder teaching model (exploded pose, valve trains spotlit)",
+      "license": "Course material"
+    },
+    "lesson-valve-operating": {
+      "kind": "render",
+      "path": "lesson-valve-operating-square.webp",
+      "credit": "Rendered from the app's operating-cylinder teaching model (exploded pose, valve trains spotlit)",
+      "license": "Course material"
     }
   },
   "previews": {
@@ -345,6 +357,12 @@
           0,
           -45
         ]
+      },
+      "valve-train-and-power": {
+        "kind": "render",
+        "path": "banner-valve-train.webp",
+        "credit": "Rendered from the app's operating-cylinder teaching model (exploded pose, valve trains spotlit)",
+        "license": "Course material"
       }
     }
   }

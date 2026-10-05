@@ -66,5 +66,40 @@
     "title": "Engine mounting ring",
     "source": "FAA-H-8083-32B, Figure 8-16",
     "license": "U.S. Government work"
+  },
+  "faa-valve-types.webp": {
+    "title": "Aircraft engine valve types",
+    "source": "FAA-H-8083-32B, Figure 1-20",
+    "license": "U.S. Government work"
+  },
+  "faa-cam-lobes.webp": {
+    "title": "Typical cam lobes and ramps",
+    "source": "FAA-H-8083-32B, Figure 1-23",
+    "license": "U.S. Government work"
+  },
+  "faa-valve-train-radial.webp": {
+    "title": "Valve-operating mechanism of a radial engine",
+    "source": "FAA-H-8083-32B, Figure 1-24",
+    "license": "U.S. Government work"
+  },
+  "faa-valve-train-opposed.webp": {
+    "title": "Valve-operating mechanism of an opposed engine",
+    "source": "FAA-H-8083-32B, Figure 1-25",
+    "license": "U.S. Government work"
+  },
+  "faa-cam-drive-opposed.webp": {
+    "title": "Cam drive of an opposed engine",
+    "source": "FAA-H-8083-32B, Figure 1-28",
+    "license": "U.S. Government work"
+  },
+  "faa-hydraulic-tappet.webp": {
+    "title": "Hydraulic valve tappet",
+    "source": "FAA-H-8083-32B, Figure 1-30",
+    "license": "U.S. Government work"
+  },
+  "faa-valve-margin.webp": {
+    "title": "Valve with a normal margin and a feather edge",
+    "source": "FAA-H-8083-32B, Figure 10-26",
+    "license": "U.S. Government work"
   }
 }

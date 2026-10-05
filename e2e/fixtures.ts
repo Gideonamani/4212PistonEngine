@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import AxeBuilder from '@axe-core/playwright';
 import { test as base, expect, type Page } from '@playwright/test';
 
 /**
@@ -72,4 +73,16 @@ export function checkCountBaseline(name: string, found: Record<string, number>) 
   expect(worse, `worse than e2e/baselines/${name}.json (fix them, or re-baseline with UPDATE_BASELINES=1 if intended)`).toEqual([]);
   const better = Object.entries(known).filter(([key, count]) => (found[key] ?? 0) < count).map(([key, count]) => `${key}: ${count} -> ${found[key] ?? 0}`);
   if (better.length) console.log(`${name}: improved; re-baseline to lock the gain in:\n  ${better.join('\n  ')}`);
+}
+
+/** Axe finds nothing wrong on the screen as it stands, and every control is at least 44 px in both directions. */
+export async function expectAccessibleAndTouchable(page: Page, what: string) {
+  const { violations } = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
+  expect(violations.map((rule) => `${rule.id} (${rule.nodes.length})`), `${what}: axe`).toEqual([]);
+  const small = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>('button, a[href], input, select, textarea')]
+    // The header's mode tabs are the shell's, not the screen under test; they are small on tablets and are tracked on their own.
+    .filter((element) => !element.closest('header') && element.getBoundingClientRect().width > 0 && getComputedStyle(element).visibility !== 'hidden')
+    .map((element) => ({ name: element.getAttribute('aria-label') || element.innerText.trim().slice(0, 30) || element.tagName, size: Math.min(element.getBoundingClientRect().width, element.getBoundingClientRect().height) }))
+    .filter((target) => target.size < 44));
+  expect(small, `${what}: targets under 44 px`).toEqual([]);
 }

@@ -4,6 +4,8 @@
 // Squares (720 px) feed the course and lesson card thumbnails; the "explore-" images (1000 x 400) feed the Explore gallery cards.
 // Each saved PNG becomes a WebP of the same name here; sources.json and build_thumbnails.py take it from there.
 const WIDE = { width: 1000, height: 400 };
+// Every part of the intake and exhaust valve trains that sits above the crankcase, for spotlight captures.
+const VALVE_TRAIN = ['IntakeValve', 'ExhaustValve', 'IntakeInnerSpring', 'IntakeOuterSpring', 'ExhaustInnerSpring', 'ExhaustOuterSpring', 'IntakeSpringRetainer', 'ExhaustSpringRetainer', 'IntakeRockerArm', 'ExhaustRockerArm', 'IntakePushrod', 'ExhaustPushrod', 'IntakeHydraulicLifterBody', 'ExhaustHydraulicLifterBody'];
 const THUMBNAIL_CAPTURES = [
   { model: 'cylinder', name: 'cylinder-operating-cycle', view: { initialAngle: 400, initialCycle: true }, options: { zoom: 0.85, pan: [-20, -5] } },
   { model: 'cylinder', name: 'cylinder-exploded', view: { savedMotionId: 'exploded', motionProgress: 60 }, options: { zoom: 0.64, pan: [-125, 12] } },
@@ -20,4 +22,8 @@ const THUMBNAIL_CAPTURES = [
   { model: 'hydraulic-tappet', name: 'explore-hydraulic-tappet', view: { savedMotionId: 'Exploded overview', motionProgress: 100 }, options: { ...WIDE, zoom: 0.52, roll: 90 } },
   { model: 'oil-pump', name: 'explore-oil-pump', view: { savedMotionId: 'Exploded overview', motionProgress: 100 }, options: { ...WIDE, zoom: 0.54, roll: 90, pan: [45, -5] } },
   { model: 'accessory-drives', name: 'explore-accessory-drives', view: { savedMotionId: 'Operating mechanism', motionProgress: 0 }, options: { ...WIDE, zoom: 0.7, orbit: [-25, -22], pan: [0, -8] } },
+  // Lesson 9 (Valve Operating) and its course.
+  { model: 'cylinder', name: 'lesson-valve-operating-square', view: { savedMotionId: 'exploded', motionProgress: 50, focusParts: VALVE_TRAIN, focusMode: 'xray' }, options: { zoom: 0.62, pan: [-95, 10] } },
+  { model: 'cylinder', name: 'banner-valve-train', view: { savedMotionId: 'exploded', motionProgress: 50, focusParts: VALVE_TRAIN, focusMode: 'xray' }, options: { width: 1000, height: 500, zoom: 0.55, pan: [-75, 5] } },
+  { model: 'cylinder', name: 'course-valve-train-square', view: { savedMotionId: 'exploded', motionProgress: 50, focusParts: VALVE_TRAIN, focusMode: 'xray' }, options: { zoom: 0.78, orbit: [-30, -10], pan: [-50, 10] } },
 ];
