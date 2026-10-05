@@ -1,6 +1,6 @@
 # 4212PistonEngine — development blueprint
 
-Status (1 October 2026): Explore and Lesson Steps share the reviewed GTSIO-520-H cylinder revision, with 61 components and synchronized valve gear. Its versioned gzip asset is checked into GitHub and served by Pages, with a hash-bound catalogue/motion profile. The previous engine and Wright study delivery routes remain available. The FreeCAD and Blender source files are in `../EngineSimulation/FreeCAD/v3/`; see [the cylinder release record](releases/cylinder-reviewed-20261001.json) for source hashes, bind bounds and accuracy limits. Physical phone review is pending.
+Status (1 October 2026): Explore and Lesson Steps share the reviewed GTSIO-520-H cylinder revision, with 61 components and synchronized valve gear. Its versioned gzip asset lives in the Drive project folder and is delivered through the Drive API (the production Pages build contains no GLB), with a hash-bound catalogue/motion profile. The previous engine and Wright study delivery routes remain available. The FreeCAD and Blender source files are in `../EngineSimulation/FreeCAD/v3/`; see [the cylinder release record](releases/cylinder-reviewed-20261001.json) for source hashes, bind bounds and accuracy limits. Physical phone review is pending.
 
 Start with [the project roadmap](docs/ROADMAP.md) for milestones, acceptance checks and working priorities. This document supplies technical architecture; the roadmap controls milestone names and status.
 
