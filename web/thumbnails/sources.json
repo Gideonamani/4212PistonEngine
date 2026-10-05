@@ -254,6 +254,12 @@
       "path": "lesson-power-generation-square.webp",
       "credit": "Rendered from the app's operating-cylinder teaching model (piston, rod and crank spotlit on the power stroke)",
       "license": "Course material"
+    },
+    "lesson-factors-affecting-power": {
+      "kind": "render",
+      "path": "lesson-factors-power-square.webp",
+      "credit": "Rendered from the app's operating-cylinder teaching model (rings, valves and spark plugs spotlit on the compression stroke)",
+      "license": "Course material"
     }
   },
   "previews": {

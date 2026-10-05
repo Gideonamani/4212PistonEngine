@@ -50,3 +50,29 @@ test.describe('Valve Operating: lift and duration', () => {
     await expect(page.getByText('the valve is open')).toBeVisible();
   });
 });
+
+test.describe('Factors Affecting Power: air available', () => {
+  const AIR_STEP = '#/learn/breathing-and-performance/factors-affecting-power/step/2';
+
+  test('the example days and the sliders change how much air is available to burn', async ({ page, problems }) => {
+    await page.goto(`/${AIR_STEP}`);
+    await appReady(page);
+    await expect(page.getByRole('heading', { name: 'Air available' })).toBeVisible();
+    const bar = page.getByRole('img', { name: /Air available to burn: [\d.]+ percent/ });
+    await expect(bar).toHaveAccessibleName('Air available to burn: 100 percent of a standard sea-level day');
+
+    await page.getByRole('button', { name: 'Hot, humid day at sea level' }).click();
+    await expect(bar).toHaveAccessibleName('Air available to burn: 89.4 percent of a standard sea-level day');
+
+    await page.getByRole('button', { name: 'Standard day, sea level' }).click();
+    await page.getByLabel(/^Altitude/).fill('5000');
+    await expect(bar).toHaveAccessibleName('Air available to burn: 86.2 percent of a standard sea-level day');
+    await expect(page.getByText('24.9 inHg')).toBeVisible();
+
+    await page.getByLabel(/^Temperature compared with standard/).fill('20');
+    await expect(bar, 'heat takes more away').not.toHaveAccessibleName(/86\.2 percent/);
+    await expectNoHorizontalOverflow(page);
+    await expectAccessibleAndTouchable(page, 'air available');
+    problems.assertNone();
+  });
+});
