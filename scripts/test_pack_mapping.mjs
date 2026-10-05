@@ -148,8 +148,12 @@ test('every check type reaches the screen with its own fields and the same marki
   assert.equal(mapQuestion({ ...base, type: 'numeric', unit: 'hp', correctValue: 170 }).tolerance, 0, 'no tolerance means exact');
 });
 
-test('a check type the screen cannot show is refused, not shown as the wrong kind of question', () => {
-  assert.throws(() => mapQuestion({ ...base, type: 'model-click', modelId: 'cylinder', correctNodeId: 'x' }), /cannot show a 'model-click' question/);
+test('a model-click check keeps its model, its right node and its alternatives, and a type the screen cannot show is refused', () => {
+  const click = mapQuestion({ ...base, type: 'model-click', modelId: 'cylinder', correctNodeId: 'PistonBody', alsoAccept: ['FloatingPin'], view: { initialAngle: 90 } });
+  assert.deepEqual([click.type, click.modelId, click.correctNodeId, click.alsoAccept, click.view], ['model-click', 'cylinder', 'PistonBody', ['FloatingPin'], { initialAngle: 90 }]);
+  assert.equal(isCorrect(click, ['FloatingPin', 'piston']), true);
+  assert.equal(isCorrect(click, ['IntakeValve', 'intake']), false);
+  assert.throws(() => mapQuestion({ ...base, type: 'drag-and-drop', modelId: 'cylinder' }), /cannot show a 'drag-and-drop' question/);
 });
 
 test('every shipped check is one the screen can show, and no matching question gives its answer away by order', () => {

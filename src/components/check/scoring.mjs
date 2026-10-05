@@ -4,11 +4,12 @@
 //   ordering         the answer is the list of items in the order the learner has put them
 //   matching         the answer lists, for each left-hand term in pack order, the right-hand text the learner chose ('' while unchosen)
 //   numeric          the answer is the text the learner typed; it is read as a number and marked within the question's tolerance
+//   model-click      the answer lists the node ids the tapped part answers to (its own id, then its groups); it is right when any of them is accepted
 
 /** @typedef {import('../../types/engine').QuizQuestion} QuizQuestion */
 
 /** The question types the Check screen can show. A type the pack schema allows but is not listed here cannot ship yet. */
-export const ANSWERABLE_TYPES = Object.freeze(['multiple-choice', 'ordering', 'matching', 'numeric']);
+export const ANSWERABLE_TYPES = Object.freeze(['multiple-choice', 'ordering', 'matching', 'numeric', 'model-click']);
 
 /**
  * A copy of `items` in random order, and never the order they came in (a shuffle that came out unchanged would hand over the answer).
@@ -24,6 +25,27 @@ export function shuffled(items, random = Math.random) {
   }
   if (next.length > 1 && next.every((item, index) => item === items[index])) [next[0], next[1]] = [next[1], next[0]];
   return next;
+}
+
+// An option that only makes sense in the last place ("All of the above", "None of these") is never moved.
+const ANCHORED_LAST = /^(all|none) of (the above|these|them)\b/i;
+
+/**
+ * The order a multiple-choice question's options are shown in: a random order of their indexes, with an option such as "All of the
+ * above" kept last. The pack order is not used, so the right answer cannot be found by knowing where authors tend to put it.
+ * @param {{ options: string[] }} question
+ * @param {() => number} [random]
+ * @returns {number[]}
+ */
+export function optionOrder(question, random = Math.random) {
+  const indexes = question.options.map((_, index) => index);
+  const movable = indexes.filter((index) => !ANCHORED_LAST.test(question.options[index].trim()));
+  const anchored = indexes.filter((index) => ANCHORED_LAST.test(question.options[index].trim()));
+  for (let at = movable.length - 1; at > 0; at -= 1) {
+    const swap = Math.floor(random() * (at + 1));
+    [movable[at], movable[swap]] = [movable[swap], movable[at]];
+  }
+  return [...movable, ...anchored];
 }
 
 /**
@@ -65,6 +87,7 @@ export function isAnswered(question, answer) {
     case 'ordering': return Array.isArray(answer) && answer.length === question.items.length;
     case 'matching': return Array.isArray(answer) && answer.length === question.pairs.length && answer.every((chosen) => Boolean(chosen));
     case 'numeric': return parseNumber(answer) !== null;
+    case 'model-click': return Array.isArray(answer) && answer.length > 0;
     default: return typeof answer === 'number';
   }
 }
@@ -87,6 +110,7 @@ export function isCorrect(question, answer) {
       const value = parseNumber(answer);
       return value !== null && withinTolerance(value, question.correctValue, question.tolerance);
     }
+    case 'model-click': return Array.isArray(answer) && acceptedNodeIds(question).some((id) => answer.includes(id));
     default: return answer === question.correctIndex;
   }
 }
@@ -124,4 +148,24 @@ export function describeNumericAnswer(question) {
  */
 export function matchingOptions(question) {
   return question.pairs.map((pair) => pair.right).sort((a, b) => a.localeCompare(b, 'en'));
+}
+
+/**
+ * The node ids a model-click question accepts: the right one, then any alternatives.
+ * @param {Extract<QuizQuestion, { type: 'model-click' }>} question
+ * @returns {string[]}
+ */
+export function acceptedNodeIds(question) {
+  return [question.correctNodeId, ...(question.alsoAccept || [])];
+}
+
+/**
+ * The node ids a tapped component answers to: its own id first, then the group it sits in and any other groups. An unknown component
+ * answers to nothing, so a tap that did not land on a known part never counts.
+ * @param {{ id: string, group?: string, groups?: string[] } | undefined} component
+ * @returns {string[]}
+ */
+export function nodeIdsOf(component) {
+  if (!component) return [];
+  return [...new Set([component.id, component.group, ...(component.groups || [])].filter(Boolean))];
 }

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
-  ANSWERABLE_TYPES, describeNumericAnswer, formatNumber, initialAnswer, isAnswered, isCorrect, matchingOptions, matchingResults, parseNumber, shuffled, withinTolerance,
+  ANSWERABLE_TYPES, describeNumericAnswer, formatNumber, initialAnswer, isAnswered, isCorrect, matchingOptions, matchingResults, optionOrder, parseNumber, shuffled, withinTolerance, acceptedNodeIds, nodeIdsOf,
 } from '../src/components/check/scoring.mjs';
 
 const choice = { type: 'multiple-choice', options: ['a', 'b', 'c'], correctIndex: 1 };
@@ -9,8 +9,8 @@ const ordering = { type: 'ordering', items: ['intake', 'compression', 'power', '
 const matching = { type: 'matching', pairs: [{ left: 'Magneto', right: 'Spark' }, { left: 'Vacuum pump', right: 'Gyro instruments' }, { left: 'Oil pump', right: 'Lubrication' }] };
 const numeric = { type: 'numeric', unit: 'cu in', correctValue: 78.5, tolerance: 0.5 };
 
-test('the answerable types are the four the screen has an answer area for', () => {
-  assert.deepEqual([...ANSWERABLE_TYPES], ['multiple-choice', 'ordering', 'matching', 'numeric']);
+test('the answerable types are the five the screen has an answer area for', () => {
+  assert.deepEqual([...ANSWERABLE_TYPES], ['multiple-choice', 'ordering', 'matching', 'numeric', 'model-click']);
 });
 
 test('numbers are read the way a student types them', () => {
@@ -88,4 +88,56 @@ test('numbers are shown as a student expects to read them', () => {
   assert.equal(describeNumericAnswer({ unit: 'hp', correctValue: 170, tolerance: 0 }), '170 hp');
   assert.equal(describeNumericAnswer({ unit: 'hp', correctValue: 170 }), '170 hp');
   assert.equal(describeNumericAnswer(numeric), '78.5 cu in (accepted within ±0.5 cu in)');
+});
+
+// A small seeded generator, so the statistics below are the same on every run.
+const seeded = (seed) => () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; };
+
+test('multiple-choice options are shown in a random order that still marks the right option correct', () => {
+  const question = { type: 'multiple-choice', options: ['right', 'wrong one', 'wrong two', 'wrong three'], correctIndex: 0 };
+  const random = seeded(7);
+  const counts = [0, 0, 0, 0];
+  for (let run = 0; run < 2000; run += 1) {
+    const order = optionOrder(question, random);
+    assert.deepEqual([...order].sort(), [0, 1, 2, 3], 'every option appears once');
+    counts[order.indexOf(question.correctIndex)] += 1;
+    const shownAt = order.indexOf(0);
+    assert.equal(isCorrect(question, order[shownAt]), true, 'choosing the right option is marked correct wherever it is shown');
+  }
+  for (const [position, count] of counts.entries()) assert.ok(count > 400 && count < 600, `the right option was first-shown ${count} times at position ${position}: not an even spread`);
+});
+
+test('an option such as "All of the above" stays last', () => {
+  const question = { type: 'multiple-choice', options: ['First', 'Second', 'Third', 'All of the above'], correctIndex: 3 };
+  const random = seeded(3);
+  for (let run = 0; run < 200; run += 1) assert.equal(optionOrder(question, random).at(-1), 3);
+  const none = { type: 'multiple-choice', options: ['None of these', 'One', 'Two'], correctIndex: 0 };
+  assert.equal(optionOrder(none, seeded(5)).at(-1), 0, 'a "None of these" option is anchored wherever the pack puts it');
+});
+
+test('a question with one or two options is handled', () => {
+  assert.deepEqual(optionOrder({ options: ['only'] }), [0]);
+  assert.deepEqual([...optionOrder({ options: ['true', 'false'] })].sort(), [0, 1]);
+});
+
+test('a model-click answer is the list of node ids the tapped part answers to, right when any one is accepted', () => {
+  const click = { type: 'model-click', modelId: 'cylinder', correctNodeId: 'PistonBody', alsoAccept: ['piston-group'] };
+  assert.deepEqual(acceptedNodeIds(click), ['PistonBody', 'piston-group']);
+  assert.deepEqual(acceptedNodeIds({ type: 'model-click', correctNodeId: 'alternator' }), ['alternator']);
+  assert.equal(initialAnswer(click), undefined, 'nothing is tapped to begin with');
+  assert.equal(isAnswered(click, undefined), false);
+  assert.equal(isAnswered(click, []), false, 'a tap that landed on no known part is not an answer');
+  assert.equal(isAnswered(click, ['IntakeValve', 'intake']), true);
+  assert.equal(isCorrect(click, ['PistonBody', 'piston']), true);
+  assert.equal(isCorrect(click, ['PistonRing1', 'piston-group']), true, 'an alternative is right too');
+  assert.equal(isCorrect(click, ['IntakeValve', 'intake']), false);
+  assert.equal(isCorrect(click, undefined), false);
+  assert.equal(isCorrect(click, 'PistonBody'), false, 'the answer is a list, never a bare id');
+});
+
+test('the node ids of a tapped component are its own id, then its groups, with no repeats', () => {
+  assert.deepEqual(nodeIdsOf({ id: 'AlternatorBody', group: 'alternator' }), ['AlternatorBody', 'alternator']);
+  assert.deepEqual(nodeIdsOf({ id: 'OilDriver', group: 'oil-tach', groups: ['path:oil', 'oil-tach'] }), ['OilDriver', 'oil-tach', 'path:oil']);
+  assert.deepEqual(nodeIdsOf({ id: 'Loose' }), ['Loose']);
+  assert.deepEqual(nodeIdsOf(undefined), [], 'a tap on nothing known answers to nothing');
 });

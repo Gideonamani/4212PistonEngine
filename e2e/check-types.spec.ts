@@ -16,6 +16,7 @@ const pack = {
     { id: 'displacement', lessonId: 'fixture-lesson', type: 'numeric', question: 'A cylinder has a 5 in bore and a 4 in stroke. What is its piston displacement?', hint: 'Use pi / 4 x bore squared x stroke.', unit: 'cu in', correctValue: 78.54, tolerance: 0.5, rationale: 'Displacement = pi / 4 x 25 x 4 = 78.54 cu in.' },
     { id: 'horsepower', lessonId: 'fixture-lesson', type: 'numeric', question: 'How many ft-lb per minute is one horsepower?', unit: 'ft-lb/min', correctValue: 33000, rationale: 'One horsepower is 33,000 foot-pounds per minute.' },
     { id: 'drives', lessonId: 'fixture-lesson', type: 'matching', question: 'Match each accessory to the job it does.', pairs: [{ left: 'Magneto', right: 'Makes the spark' }, { left: 'Vacuum pump', right: 'Drives gyro instruments' }, { left: 'Oil pump', right: 'Circulates lubricating oil' }], rationale: 'Each accessory is driven from the accessory gear train to do one job.' },
+    { id: 'order-test', lessonId: 'fixture-lesson', type: 'multiple-choice', question: 'Which of these is the right one?', answers: ['The right one', 'A wrong one', 'Another wrong one'], correct: 0, rationale: 'The first option in the pack is the right one.' },
   ],
 };
 
@@ -30,7 +31,7 @@ async function openFixtureCheck(page: Page) {
   await page.goto('/#/check');
   await appReady(page);
   await page.getByRole('button').filter({ has: page.locator('h4') }).first().click();
-  await expect(page.getByText('Question 1 of 3')).toBeVisible();
+  await expect(page.getByText('Question 1 of 4')).toBeVisible();
 }
 
 test.describe('numeric question', () => {
@@ -56,7 +57,7 @@ test.describe('numeric question', () => {
     await expectAccessibleAndTouchable(page, 'numeric question, answered');
 
     await page.getByRole('button', { name: 'Next question' }).click();
-    await expect(page.getByText('Question 2 of 3')).toBeVisible();
+    await expect(page.getByText('Question 2 of 4')).toBeVisible();
     // 33,000 with a thousands separator is read as 33000; Enter verifies.
     const second = page.getByLabel('Your answer, in ft-lb/min');
     await second.fill('33,000');
@@ -80,7 +81,7 @@ test.describe('matching question', () => {
     await openFixtureCheck(page);
     await page.getByRole('button', { name: /Open the list of questions/ }).click();
     await page.getByRole('dialog').getByRole('button', { name: /^question 3:/i }).click();
-    await expect(page.getByText('Question 3 of 3')).toBeVisible();
+    await expect(page.getByText('Question 3 of 4')).toBeVisible();
   }
 
   test('every term needs a match before it can be verified, and the options do not follow the pairs', async ({ page, problems }) => {
@@ -103,7 +104,7 @@ test.describe('matching question', () => {
     await verify.click();
     await expect(page.getByText('CORRECT — WHY IT MATTERS')).toBeVisible();
     await expect(page.getByLabel('Magneto'), 'the answers lock').toBeDisabled();
-    await expect(page.getByRole('button', { name: 'Finish assessment' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Next question' })).toBeVisible();
     await expectAccessibleAndTouchable(page, 'matching question, answered');
     problems.assertNone();
   });
@@ -120,3 +121,103 @@ test.describe('matching question', () => {
     await expect(page.getByText(/Correct match: Drives gyro instruments/), 'the right pairing needs no correction').toHaveCount(0);
   });
 });
+
+test.describe('multiple-choice question', () => {
+  test('the options are shown in a random order, and the right one is still marked right', async ({ page }) => {
+    // With Math.random fixed at 0 the shuffle is a fixed rotation, so the first option in the pack is shown third.
+    await page.addInitScript(() => { Math.random = () => 0; });
+    await openFixtureCheck(page);
+    await page.getByRole('button', { name: /Open the list of questions/ }).click();
+    await page.getByRole('dialog').getByRole('button', { name: /^question 4:/i }).click();
+    await expect(page.getByText('Question 4 of 4')).toBeVisible();
+    const options = page.getByRole('button', { name: /^[A-C]\s/ });
+    const shown = (await options.allInnerTexts()).map((text) => text.replace(/^[A-C]\s*/, '').trim());
+    expect(shown, 'a fixed rotation of the pack order, not the pack order').toEqual(['A wrong one', 'Another wrong one', 'The right one']);
+    await page.getByRole('button', { name: /The right one/ }).click();
+    await page.getByRole('button', { name: 'Verify answer' }).click();
+    await expect(page.getByText('CORRECT — WHY IT MATTERS')).toBeVisible();
+  });
+});
+
+// model-click: tap a part on the 3D model. A second fixture pack, so the questions above keep their numbering.
+const clickPack = {
+  ...pack,
+  id: 'click-pack',
+  title: 'Fixture part checks',
+  checks: [
+    { id: 'tap-piston', lessonId: 'fixture-lesson', type: 'model-click', question: 'Tap the piston.', hint: 'It is the part the rings sit on.', modelId: 'cylinder', correctNodeId: 'PistonBody', rationale: 'The piston carries the rings and takes the force of combustion.' },
+    { id: 'tap-intake', lessonId: 'fixture-lesson', type: 'model-click', question: 'Tap any part of the intake valve train.', modelId: 'cylinder', correctNodeId: 'intake', rationale: 'The intake valve, its guide, springs and rocker are the intake valve train.' },
+  ],
+};
+
+async function openClickCheck(page: Page) {
+  await page.route('**/lessons-manifest.json', (route) => route.fulfill({ json: { ...MANIFEST, packs: ['./click-pack.json'] } }));
+  await page.route('**/click-pack.json', (route) => route.fulfill({ json: clickPack }));
+  await page.goto('/#/check');
+  await appReady(page);
+  await page.getByRole('button').filter({ has: page.locator('h4') }).first().click();
+  await expect(page.getByText('Question 1 of 2')).toBeVisible();
+  await expect(page.getByText('TAP THE PART ON THE MODEL')).toBeVisible();
+  // The viewer's code loads on demand; its canvas appears once it has.
+  await expect(page.locator('canvas')).toBeVisible({ timeout: 60_000 });
+}
+
+// The list needs the model, so it is enabled only once the model has loaded.
+async function chooseFromList(page: Page, part: string) {
+  await page.getByText('Cannot use the model? Choose the part from a list').click();
+  const list = page.getByLabel('Part', { exact: true });
+  await expect(list, 'the model has loaded').toBeEnabled({ timeout: 60_000 });
+  await list.selectOption({ label: part });
+}
+
+test.describe('model-click question', () => {
+  test('a part chosen from the list is marked, and the right part is named once verified', async ({ page, problems }) => {
+    await openClickCheck(page);
+    const verify = page.getByRole('button', { name: 'Verify answer' });
+    await expect(verify, 'nothing tapped yet').toBeDisabled();
+    await expect(page.locator('p[role="status"]')).toContainText('Tap a part on the model');
+    await expectNoHorizontalOverflow(page);
+
+    await chooseFromList(page, 'Piston');
+    await expect(verify).toBeEnabled();
+    await expect(page.locator('p[role="status"]'), 'the name of the chosen part is not given away before Verify').not.toContainText('Piston');
+    await verify.click();
+    await expect(page.getByText('CORRECT — WHY IT MATTERS')).toBeVisible();
+    await expect(page.locator('p[role="status"]')).toContainText('You tapped Piston. The right answer is Piston.');
+    await expect(page.getByLabel('Part', { exact: true }), 'the answer locks').toBeDisabled();
+    await expectAccessibleAndTouchable(page, 'model-click question, answered');
+    problems.assertNone();
+  });
+
+  test('a wrong part is marked and the right one is named; a part in the right group counts', async ({ page }) => {
+    await openClickCheck(page);
+    await chooseFromList(page, 'Intake valve');
+    await page.getByRole('button', { name: 'Verify answer' }).click();
+    await expect(page.getByText('REVIEW THE EVIDENCE')).toBeVisible();
+    await expect(page.locator('p[role="status"]')).toContainText('You tapped Intake valve. The right answer is Piston.');
+
+    await page.getByRole('button', { name: 'Next question' }).click();
+    await expect(page.getByText('Question 2 of 2')).toBeVisible();
+    await chooseFromList(page, 'Intake rocker arm');
+    await page.getByRole('button', { name: 'Verify answer' }).click();
+    await expect(page.getByText('CORRECT — WHY IT MATTERS'), 'any part of the intake group is right').toBeVisible();
+  });
+
+  test('a tap on the model itself chooses a part', async ({ page, problems }) => {
+    await openClickCheck(page);
+    const canvas = page.getByRole('application');
+    // The loading cover goes away when the model's session exists.
+    await expect(page.locator('div[role="status"][aria-live="polite"]')).toHaveCount(0, { timeout: 60_000 });
+    const box = (await canvas.boundingBox())!;
+    const verify = page.getByRole('button', { name: 'Verify answer' });
+    // The model fills the frame, so some point of a coarse grid lands on a part.
+    for (const [fx, fy] of [[0.5, 0.5], [0.4, 0.5], [0.6, 0.5], [0.5, 0.4], [0.5, 0.6], [0.35, 0.35], [0.65, 0.65], [0.3, 0.6], [0.7, 0.4]]) {
+      await page.mouse.click(box.x + box.width * fx, box.y + box.height * fy);
+      if (await verify.isEnabled()) break;
+    }
+    await expect(verify, 'a tap landed on a part').toBeEnabled();
+    await expect(page.locator('p[role="status"]')).toContainText('A part is highlighted');
+    problems.assertNone();
+  });
+});
+
