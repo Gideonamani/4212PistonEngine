@@ -5,9 +5,16 @@ import type { QuizModule, QuizQuestion } from '../types/engine';
 import { CardImage, CardRow } from './ui';
 import { ProgressNavigator, type ProgressItem } from './ProgressNavigator';
 import { QuestionCard, type Answer } from './check/QuestionCard';
-import { initialAnswer, isAnswered, isCorrect } from './check/scoring.mjs';
+import { initialAnswer, isAnswered, isCorrect, optionOrder } from './check/scoring.mjs';
 
 interface CheckViewProps { modules: QuizModule[]; focusLessonId?: string }
+
+/** A fresh random order for the options of each multiple-choice question, so a restart shows them in a new order. */
+const startingOrders = (questions: QuizQuestion[]) => {
+  const orders: Record<number, number[]> = {};
+  questions.forEach((question, index) => { if (question.type === 'multiple-choice') orders[index] = optionOrder(question); });
+  return orders;
+};
 
 const startingAnswers = (questions: QuizQuestion[]) => {
   const initial: Record<number, Answer> = {};
@@ -22,6 +29,7 @@ export const CheckView: React.FC<CheckViewProps> = ({ modules, focusLessonId }) 
   const [activeModule, setActiveModule] = useState<QuizModule | null>(null);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, Answer>>({});
+  const [orders, setOrders] = useState<Record<number, number[]>>({});
   const [submitted, setSubmitted] = useState<Record<number, boolean>>({});
   const [bestScores, setBestScores] = useState<Record<string, number>>({});
   const current = activeModule?.questions[questionIndex];
@@ -39,6 +47,7 @@ export const CheckView: React.FC<CheckViewProps> = ({ modules, focusLessonId }) 
     setActiveModule({ ...sourceModule, id: `${sourceModule.id}:${focusLessonId}`, title: 'Lesson knowledge check', subtitle: sourceModule.title, questions, questionCount: questions.length });
     setQuestionIndex(0);
     setAnswers(startingAnswers(questions));
+    setOrders(startingOrders(questions));
     setSubmitted({});
   }, [focusLessonId, modules]);
 
@@ -46,6 +55,7 @@ export const CheckView: React.FC<CheckViewProps> = ({ modules, focusLessonId }) 
     setActiveModule(module);
     setQuestionIndex(0);
     setAnswers(startingAnswers(module.questions));
+    setOrders(startingOrders(module.questions));
     setSubmitted({});
   };
 
@@ -90,6 +100,7 @@ export const CheckView: React.FC<CheckViewProps> = ({ modules, focusLessonId }) 
       <QuestionCard
         key={current.id}
         question={current}
+        optionOrder={orders[questionIndex]}
         answer={answers[questionIndex]}
         onAnswer={(answer) => setAnswers((previous) => ({ ...previous, [questionIndex]: answer }))}
         revealed={Boolean(submitted[questionIndex])}
