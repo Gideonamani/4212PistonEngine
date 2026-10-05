@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react';
-import { Box, Construction, ExternalLink } from 'lucide-react';
+import { Construction, ExternalLink } from 'lucide-react';
 import { LessonStep } from '../types/engine';
-import { VisualIllustration } from './VisualIllustrations';
 import { LessonArtifact } from './LessonArtifacts';
 import { modelsById } from '../data/modelRegistry';
 
@@ -12,7 +11,6 @@ const LessonViewer = React.lazy(() => import('../viewer/LessonViewer'));
 interface LessonMediaProps {
   step: LessonStep;
   immersive?: boolean;
-  onSwitchTo3DModel?: (modelName: string) => void;
 }
 
 const isWebUrl = (value?: string) => Boolean(value && /^https?:\/\//i.test(value));
@@ -22,6 +20,17 @@ const isPlannedStep = (step: LessonStep) => step.mediaPlan?.status === 'planned'
 /** A step whose media is the live 3D viewer; rendered by LessonModelStage so the loaded model survives step changes. */
 export const isModelStep = (step: LessonStep) => step.mediaPlan?.mode !== 'none' && !isPlannedStep(step) && !(step.url || '').startsWith('artifact:')
   && step.type === 'model-pose' && Boolean(step.modelId && modelsById[step.modelId]);
+
+/**
+ * Whether a step has any media to show above its text: the 3D viewer, a planned-media notice, a native interactive, a picture or an
+ * embedded page. A plain text step has none, and the layout gives it no media slot at all rather than an empty panel.
+ */
+export const stepHasMedia = (step: LessonStep) => {
+  if (step.mediaPlan?.mode === 'none') return false;
+  const url = step.url || '';
+  return isPlannedStep(step) || url.startsWith('artifact:') || isModelStep(step)
+    || (step.type === 'image' && Boolean(url)) || (step.type === 'web-embed' && isWebUrl(url));
+};
 
 /**
  * The lesson's 3D viewer. It stays mounted (hidden) while the learner passes text or image steps, and each model step only
@@ -42,7 +51,7 @@ const StepImage: React.FC<{ src: string; alt: string; immersive: boolean }> = ({
   return <img src={src} alt={alt} decoding="async" onLoad={() => setLoaded(true)} onError={() => setLoaded(true)} className={`w-full object-contain ${immersive ? 'max-h-[58dvh]' : 'max-h-80'} ${loaded ? '' : 'min-h-48'}`} />;
 };
 
-export const LessonMedia: React.FC<LessonMediaProps> = ({ step, immersive = false, onSwitchTo3DModel }) => {
+export const LessonMedia: React.FC<LessonMediaProps> = ({ step, immersive = false }) => {
   const url = step.url || '';
   const isPlanned = step.mediaPlan?.status === 'planned' || url.startsWith('PLACEHOLDER:');
   const artifactId = url.startsWith('artifact:') ? url.slice('artifact:'.length) : '';
@@ -69,8 +78,5 @@ export const LessonMedia: React.FC<LessonMediaProps> = ({ step, immersive = fals
     <a href={url} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 border-t border-slate-800 px-3 py-2 text-xs font-semibold text-teal-300 hover:text-teal-200">Open in a new tab <ExternalLink className="h-3.5 w-3.5" /></a>
   </div>;
 
-  return <div className={`relative w-full overflow-hidden rounded-xl border border-white/5 shadow-inner ${immersive ? 'h-[42dvh] min-h-64' : 'h-44 sm:h-52'}`}>
-    <VisualIllustration type={step.imageType} className="h-full w-full" />
-    {step.has3DReference && <button onClick={() => onSwitchTo3DModel?.(step.referenceModel || 'Wright 1903 Aero Cylinder')} className="absolute bottom-2.5 right-2.5 flex items-center gap-1.5 rounded-lg bg-teal-500 px-3 py-1.5 text-xs font-bold text-slate-950 shadow-lg transition-all active:scale-95"><Box className="h-3.5 w-3.5" /><span>Inspect 3D Model</span></button>}
-  </div>;
+  return null;
 };

@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Lesson, LessonStep } from '../types/engine';
-import { LessonMedia, LessonModelStage, isModelStep } from './LessonMedia';
+import { LessonMedia, LessonModelStage, isModelStep, stepHasMedia } from './LessonMedia';
 import { preloadModels } from '../viewer/preload';
 import { ChevronLeft, ChevronRight, Columns2, Info, Maximize2, Minimize2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { completeLesson, getLessonProgress, saveLessonStep } from '../data/lessonProgress';
-import { BackLink, IconButton } from './ui';
+import { BackLink, IconButton, ReviewChip } from './ui';
 import { ProgressNavigator, type ProgressItem } from './ProgressNavigator';
 import { EvidenceDialog, stepHasEvidence } from './lesson/EvidenceDialog';
 import { GuidedPrompt } from './lesson/GuidedPrompt';
@@ -58,14 +58,13 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
     stepNumber: currentStepIndex + 1,
     title: `Step ${currentStepIndex + 1}`,
     text: 'Continuing through the guided engineering curriculum.',
-    imageType: 'steam',
     promptQuestion: 'How does this principle apply to modern aircraft piston engines?',
     promptPlaceholder: 'Write your thoughts here...',
     suggestedAnswer: 'Modern aviation engines balance thermodynamic efficiency, thermal dissipation, and strict weight constraints.',
   };
 
   const percentComplete = Math.round(((currentStepIndex + 1) / totalSteps) * 100);
-  const shouldShowMedia = currentStep.mediaPlan?.mode !== 'none';
+  const shouldShowMedia = stepHasMedia(currentStep);
   const side = layout === 'side';
   // Side by side has a media column only while the step has media; a step without any takes the whole width for its text.
   const twoColumns = side && shouldShowMedia;
@@ -117,7 +116,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
 
   if (isComplete) return <LessonComplete lesson={lesson} onTakeQuiz={onTakeQuiz} onBackToLessons={onBackToLessons} />;
 
-  const stepLabel = <div className="text-[11px] font-mono tracking-widest text-slate-400 uppercase font-semibold">STEP {currentStepIndex + 1}</div>;
+  const stepLabel = <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-mono tracking-widest text-slate-400 uppercase font-semibold">STEP {currentStepIndex + 1}<ReviewChip lesson={lesson} /></div>;
 
   // One tree for both layouts: only classes change, so the 3D stage keeps its place in React and is never rebuilt when the learner
   // switches. Stacked, the wrappers marked `contents` vanish and the page is the single column it always was. Side by side, the page
@@ -159,10 +158,10 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
           <div className={side ? 'contents' : `flex flex-col gap-3.5 p-4 ${CARD_LOOK}`}>
             {!side && stepLabel}
 
-            {/* Published media, a clearly labelled production placeholder, or legacy illustration. Side by side, the 3D viewer is pinned. */}
+            {/* Published media or a clearly labelled production placeholder; a step with neither gets no slot. Side by side, the 3D viewer is pinned. */}
             <div className={twoColumns ? `col-start-1 row-span-3 row-start-1 self-start ${modelStep ? 'lesson-media-side sticky top-2' : 'pt-3'}` : 'contents'}>
               {heldModelStep.current && <LessonModelStage step={heldModelStep.current} active={Boolean(modelStep)} immersive={isImmersive} layout={side ? 'side' : 'stacked'} onSwitchTo3DModel={onSwitchTo3DModel} />}
-              {shouldShowMedia && !modelStep && <LessonMedia step={currentStep} immersive={isImmersive} onSwitchTo3DModel={onSwitchTo3DModel} />}
+              {shouldShowMedia && !modelStep && <LessonMedia step={currentStep} immersive={isImmersive} />}
             </div>
 
             <div className={side ? `flex flex-col gap-3.5 p-4 ${CARD_LOOK} ${twoColumns ? 'col-start-2 row-start-3' : 'mx-auto w-full max-w-2xl'}` : 'flex flex-col gap-3.5'}>
@@ -223,7 +222,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
       {isEvidenceOpen && <EvidenceDialog step={currentStep} stepNumber={currentStepIndex + 1} onClose={closeEvidence} />}
 
       {/* Side by side there is no height to spare for the dock: the back link and the step list already sit beside the text. */}
-      {!side && <LessonDock thumbnail={lesson.thumbnail} fallbackType={currentStep.imageType} stepNumber={currentStepIndex + 1} totalSteps={totalSteps} percentComplete={percentComplete} onBackToLessons={onBackToLessons} />}
+      {!side && <LessonDock thumbnail={lesson.thumbnail} stepNumber={currentStepIndex + 1} totalSteps={totalSteps} percentComplete={percentComplete} onBackToLessons={onBackToLessons} />}
     </div>
   );
 };

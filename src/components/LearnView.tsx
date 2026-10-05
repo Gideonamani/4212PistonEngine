@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { CourseTrack, Lesson } from '../types/engine';
 import { CardThumbnail } from './CardThumbnail';
-import { BackLink, CardImage, CardRow, Chip } from './ui';
+import { BackLink, CardImage, CardRow, Chip, ReviewChip } from './ui';
 import { LessonStepViewer } from './LessonStepViewer';
 import {
   BookOpen,
@@ -103,7 +103,7 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
                 onClick={() => openCourse(track)}
                 align="start"
                 imageSide="end"
-                image={<CardImage src={track.thumbnail} fallbackType={track.imageType} size="lg" />}
+                image={<CardImage src={track.thumbnail} size="lg" />}
               >
                 <h3 className="text-base font-bold text-white group-hover:text-teal-300 transition-colors">{track.title}</h3>
                 <p className="text-xs text-slate-300 leading-snug mt-1 line-clamp-2">{track.description}</p>
@@ -154,7 +154,7 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
               </div>
             </div>
             <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden border border-teal-500/20 shrink-0 relative bg-slate-950/60">
-              <CardThumbnail src={activeTrack.thumbnail} fallbackType={activeTrack.imageType} />
+              <CardThumbnail src={activeTrack.thumbnail} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
             </div>
           </div>
@@ -167,7 +167,7 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
 
         <div className="flex flex-col gap-2.5">
           {activeTrack.lessons.map((lesson) => (
-            <CardRow key={lesson.id} onClick={() => openLesson(lesson)} image={<CardImage src={lesson.thumbnail} fallbackType={lesson.imageType} />}>
+            <CardRow key={lesson.id} onClick={() => openLesson(lesson)} image={<CardImage src={lesson.thumbnail} />} footer={lesson.reviewStatus === 'reviewed' ? undefined : <ReviewChip lesson={lesson} />}>
               <div className="text-[11px] font-mono tracking-wider uppercase text-slate-400 font-semibold">{lesson.lessonNumber}</div>
               <h4 className="text-sm sm:text-base font-bold text-white group-hover:text-teal-300 transition-colors mt-0.5 truncate">{lesson.title}</h4>
               {lesson.hasModelBadge && (

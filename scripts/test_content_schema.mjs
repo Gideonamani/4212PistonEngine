@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {
   LESSON_PACK_SCHEMA,
+  LESSON_REVIEW_STATUSES,
   MODEL_REGISTRY_SCHEMA,
   EXPLORE_CONTENT_TREE_SCHEMA,
   validateLessonPack,
@@ -20,13 +21,14 @@ const samplePack = {
       id: 'lesson-a',
       title: 'Sample lesson',
       objective: 'Exercise every step and check type.',
+      reviewStatus: 'unreviewed',
       models: ['cylinder'],
       steps: [
         { type: 'text', prompt: 'Read this.' },
         { type: 'model-pose', modelId: 'cylinder', prompt: 'Pose it.', action: { type: 'angle', value: 90 } },
       ],
     },
-    { id: 'lesson-b', title: 'General theory', objective: 'No model needed.', models: [], steps: [{ type: 'text', prompt: 'Read this too.' }] },
+    { id: 'lesson-b', title: 'General theory', objective: 'No model needed.', reviewStatus: 'reviewed', reviewedOn: '2026-10-05', models: [], steps: [{ type: 'text', prompt: 'Read this too.' }] },
   ],
   checks: [
     { id: 'c1', lessonId: 'lesson-a', type: 'multiple-choice', question: 'q', answers: ['a', 'b'], correct: 0 },
@@ -66,6 +68,17 @@ assert.ok(validateLessonPack({
   lessons: [{ ...samplePack.lessons[0], steps: [{ type: 'model-pose', modelId: 'cylinder', prompt: 'no action or preset' }] }],
 }).some(e => e.includes('action, saved motion or static viewPreset')));
 assert.ok(validateLessonPack({ ...samplePack, checks: [{ id: 'x', lessonId: 'not-a-lesson', type: 'multiple-choice', question: 'q', answers: ['a', 'b'], correct: 0 }] }).some(e => e.includes('lessonId')));
+
+// Review status: every lesson says where it stands with the instructor; a reviewed one says when; the retired pack-level field is rejected.
+assert.deepEqual([...LESSON_REVIEW_STATUSES], ['unreviewed', 'reviewed']);
+const withLesson = (changes) => ({ ...samplePack, lessons: [{ ...samplePack.lessons[0], ...changes }], checks: [] });
+assert.ok(validateLessonPack(withLesson({ reviewStatus: undefined })).some(e => e.includes('reviewStatus must be')));
+assert.ok(validateLessonPack(withLesson({ reviewStatus: 'pending' })).some(e => e.includes('reviewStatus must be')));
+assert.ok(validateLessonPack(withLesson({ reviewStatus: 'reviewed' })).some(e => e.includes('reviewedOn')));
+assert.ok(validateLessonPack(withLesson({ reviewStatus: 'reviewed', reviewedOn: '5 Oct 2026' })).some(e => e.includes('reviewedOn')));
+assert.ok(validateLessonPack(withLesson({ reviewStatus: 'unreviewed', reviewedOn: '2026-10-05' })).some(e => e.includes('reviewedOn only belongs')));
+assert.deepEqual(validateLessonPack(withLesson({ reviewStatus: 'reviewed', reviewedOn: '2026-10-05' })), []);
+assert.ok(validateLessonPack({ ...samplePack, draftStatus: 'UNREVIEWED' }).some(e => e.includes('draftStatus is retired')));
 
 // Model registry: capability flags are required booleans.
 const sampleRegistry = {

@@ -6,7 +6,8 @@ import { LESSON_PACK_SCHEMA, MEDIA_MODES, MEDIA_STATUSES, validateLessonPack } f
 const pack = JSON.parse(fs.readFileSync(new URL('../web/fundamentals-lessons.json', import.meta.url), 'utf8'));
 
 assert.equal(pack.schema, LESSON_PACK_SCHEMA);
-assert.match(pack.draftStatus, /UNREVIEWED/);
+assert.equal(pack.draftStatus, undefined, 'draftStatus is retired: review state lives on each lesson');
+assert.ok(pack.lessons.every(lesson => lesson.reviewStatus === 'unreviewed'), 'every lesson waits for instructor review');
 assert.deepEqual(pack.sources.map(source => source.tier), [1, 2, 3, 4, 5, 5, 3, 4, 5, 5]);
 for (const source of pack.sources.filter(source => source.tier === 5)) {
   assert.match(source.applicability, /Licence: .*accessed \d+ \w+ 2026/, `${source.id}: tier 5 sources record licence and access date`);

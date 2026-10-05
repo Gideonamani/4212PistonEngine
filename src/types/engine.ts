@@ -20,24 +20,11 @@ export type DrawerTab = 'components' | 'motion' | 'lookInside' | 'appearance';
 export type AppearanceMode = 'realistic' | 'cutaway' | 'thermal' | 'xray' | 'schematic';
 export type CyclePhase = 'intake' | 'compression' | 'power' | 'exhaust';
 
-export interface ExploreAssembly {
-  id: string;
-  name: string;
-  modelKey: string;
-  subtitle: string;
-  description: string;
-  badge: string;
-  componentCount: number;
-  imageType: 'piston' | 'wright' | 'radial' | 'systems';
-  tags: string[];
-}
-
 export interface LessonStep {
   type?: 'text' | 'image' | 'model-pose' | 'external-link' | 'web-embed';
   stepNumber: number;
   title: string;
   text: string;
-  imageType: 'steam' | 'oxen' | 'wright' | 'piston' | 'systems' | 'gauges' | 'borescope' | 'radial';
   promptQuestion?: string;
   promptPlaceholder?: string;
   suggestedAnswer?: string;
@@ -73,6 +60,9 @@ export interface LessonStep {
   };
 }
 
+/** Where a lesson stands with the instructor: students see a pending chip until it is 'reviewed'. */
+export type LessonReviewStatus = 'unreviewed' | 'reviewed';
+
 export interface Lesson {
   id: string;
   lessonNumber: string;
@@ -81,8 +71,10 @@ export interface Lesson {
   description: string;
   stepCount: number;
   hasModelBadge?: boolean;
-  imageType: 'oxen' | 'wright' | 'piston' | 'systems' | 'maintenance' | 'gauges' | 'borescope';
-  /** Card image from the lesson pack; the drawn imageType illustration stands in when it is absent. */
+  reviewStatus: LessonReviewStatus;
+  /** YYYY-MM-DD, present only when reviewStatus is 'reviewed'. */
+  reviewedOn?: string;
+  /** Card image from the lesson pack; a neutral placeholder stands in when it is absent. */
   thumbnail?: string;
   /** True for an unlisted lesson reached only through a step's deepDiveLinks. */
   isDeepDive?: boolean;
@@ -97,7 +89,6 @@ export interface CourseTrack {
   stepCountApprox: string;
   progressPercent: number;
   isCurrent?: boolean;
-  imageType: 'radial' | 'systems' | 'maintenance' | 'gauges' | 'borescope';
   thumbnail?: string;
   lessons: Lesson[];
   /** Unlisted lessons linked from a step; opened by route or link, absent from the lesson list. */
@@ -115,7 +106,6 @@ export interface QuizQuestion {
   items?: string[];
   hint?: string;
   explanation: string;
-  category: '4stroke' | 'components' | 'diagnostics';
 }
 
 export interface QuizModule {
@@ -123,11 +113,8 @@ export interface QuizModule {
   title: string;
   subtitle: string;
   description: string;
-  category: '4stroke' | 'components' | 'diagnostics' | 'all';
   questionCount: number;
   approxMinutes: string;
-  badge: string;
-  imageType: 'radial' | 'piston' | 'maintenance' | 'gauges' | 'borescope';
   thumbnail?: string;
   questions: QuizQuestion[];
 }

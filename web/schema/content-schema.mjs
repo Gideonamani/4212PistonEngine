@@ -37,6 +37,8 @@ export const MEDIA_STATUSES = Object.freeze(['not-needed', 'available', 'planned
 // note in docs/lesson-and-assessment-architecture.md open questions.
 export const EVIDENCE_STATUSES = Object.freeze(['documented', 'cad-checked', 'reconstructed', 'illustrative']);
 export const REVIEW_STATUSES = Object.freeze(['unreviewed', 'reviewed', 'disputed']);
+/** A lesson is either waiting for the instructor or reviewed on a recorded date; there is no "disputed" for a whole lesson. */
+export const LESSON_REVIEW_STATUSES = Object.freeze(['unreviewed', 'reviewed']);
 
 export const MODEL_CAPABILITY_FLAGS = Object.freeze([
   'supportsSection',
@@ -105,6 +107,8 @@ export const MODEL_CAPABILITY_FLAGS = Object.freeze([
  * @property {string} title
  * @property {string} objective
  * @property {string[]} models - every model id referenced anywhere in this lesson's steps; [] for a general/theory lesson
+ * @property {'unreviewed'|'reviewed'} reviewStatus - required; students see an "Instructor review pending" chip until the instructor sets 'reviewed'
+ * @property {string} [reviewedOn] - YYYY-MM-DD; required when reviewStatus is 'reviewed', not allowed otherwise
  * @property {boolean} [listed] - default true; false marks a deep dive, reachable only via a step's deepDiveLinks
  * @property {number} [sequenceNumber] - lesson number in the authoritative cross-pack curriculum order
  * @property {number} [scheduledDay] - non-ordering classroom-scheduling hint carried over from the day-based report
@@ -140,7 +144,6 @@ export const MODEL_CAPABILITY_FLAGS = Object.freeze([
  * @property {string} [id] - stable track id for gallery navigation; required in practice once a pack is added to lessons-manifest.json, optional in the type so ad hoc/test fixtures aren't forced to set it
  * @property {string} [title] - track name shown in the Learn/Check gallery
  * @property {string} [description] - one-line track summary shown in the gallery
- * @property {string} [draftStatus] - free-text draft/review marker shown as a gallery badge when present (e.g. "UNREVIEWED CONTENT DRAFT — ..."); absent means no special status to flag
  * @property {{id:string, tier:number, title:string, path?:string, url?:string, applicability?:string}[]} [sources] - pack-local evidence registry; tier follows the instructor's 1-6 source hierarchy
  * @property {Lesson[]} lessons
  * @property {CheckItem[]} checks
@@ -226,6 +229,7 @@ function validateStep(step, lessonModels, lessonIndex, stepIndex, knownSourceIds
 }
 
 const isThumbnailPath = (value) => typeof value === 'string' && /^\.\/thumbnails\/[\w-]+\.webp$/.test(value);
+const isIsoDate = (value) => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value));
 
 function validateLesson(lesson, lessonIndex, knownSourceIds) {
   const errors = [];
@@ -233,6 +237,9 @@ function validateLesson(lesson, lessonIndex, knownSourceIds) {
   if (!lesson.id) errors.push(`${where}: missing id`);
   if (lesson.thumbnail !== undefined && !isThumbnailPath(lesson.thumbnail)) errors.push(`${where}: thumbnail must be a ./thumbnails/*.webp path`);
   if (lesson.sequenceNumber !== undefined && !(Number.isInteger(lesson.sequenceNumber) && lesson.sequenceNumber > 0)) errors.push(`${where}: sequenceNumber must be a positive integer`);
+  if (!LESSON_REVIEW_STATUSES.includes(lesson.reviewStatus)) errors.push(`${where}: reviewStatus must be one of ${LESSON_REVIEW_STATUSES.join(', ')}`);
+  else if (lesson.reviewStatus === 'reviewed' && !isIsoDate(lesson.reviewedOn)) errors.push(`${where}: a reviewed lesson needs reviewedOn as YYYY-MM-DD`);
+  else if (lesson.reviewStatus === 'unreviewed' && lesson.reviewedOn !== undefined) errors.push(`${where}: reviewedOn only belongs on a reviewed lesson`);
   if (!Array.isArray(lesson.models)) errors.push(`${where}: models must be an array (use [] for a general/theory lesson)`);
   if (!Array.isArray(lesson.steps) || lesson.steps.length === 0) errors.push(`${where}: steps must be a non-empty array`);
   for (const [stepIndex, step] of (lesson.steps || []).entries()) {
@@ -282,6 +289,7 @@ export function validateLessonPack(pack) {
   if (pack.title !== undefined && typeof pack.title !== 'string') errors.push('title must be a string');
   if (pack.description !== undefined && typeof pack.description !== 'string') errors.push('description must be a string');
   if (pack.thumbnail !== undefined && !isThumbnailPath(pack.thumbnail)) errors.push('thumbnail must be a ./thumbnails/*.webp path');
+  if (pack.draftStatus !== undefined) errors.push('draftStatus is retired: set reviewStatus on each lesson instead');
   const knownSourceIds = new Set();
   if (pack.sources !== undefined) {
     if (!Array.isArray(pack.sources)) errors.push('sources must be an array');

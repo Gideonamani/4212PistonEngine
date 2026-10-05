@@ -19,7 +19,6 @@ export type ModelDefinition = {
   description: string;
   previewUrl?: string;
   lessonControls?: boolean;
-  imageType: 'piston' | 'systems' | 'wright';
   badges: string[];
   sources?: ModelSource[];
   componentCatalogueUrl?: string;
