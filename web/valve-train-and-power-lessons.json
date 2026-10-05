@@ -404,7 +404,11 @@
           "type": "text",
           "title": "Trace the whole path",
           "prompt": "Explain the whole path in your own words, starting at the crankshaft gear and ending with the valve closing again. Which parts move, and how fast does the camshaft turn? What does the tappet do about clearance? Which parts would you inspect, and what would you look for? Then take the lesson's quiz.",
-          "note": "Completion step: the learner pulls the lesson together (opening prompt, action, feedback, completion evidence).",
+          "note": "Completion step: the learner pulls the lesson together (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 37-42 and 379-384, and the GTSIO-520 overhaul manual, PDF pp. 16-17 and 66-67.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
           "mediaPlan": {
             "mode": "none",
             "status": "not-needed",

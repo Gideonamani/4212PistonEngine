@@ -26,4 +26,8 @@ const THUMBNAIL_CAPTURES = [
   { model: 'cylinder', name: 'lesson-valve-operating-square', view: { savedMotionId: 'exploded', motionProgress: 50, focusParts: VALVE_TRAIN, focusMode: 'xray' }, options: { zoom: 0.62, pan: [-95, 10] } },
   { model: 'cylinder', name: 'banner-valve-train', view: { savedMotionId: 'exploded', motionProgress: 50, focusParts: VALVE_TRAIN, focusMode: 'xray' }, options: { width: 1000, height: 500, zoom: 0.55, pan: [-75, 5] } },
   { model: 'cylinder', name: 'course-valve-train-square', view: { savedMotionId: 'exploded', motionProgress: 50, focusParts: VALVE_TRAIN, focusMode: 'xray' }, options: { zoom: 0.78, orbit: [-30, -10], pan: [-50, 10] } },
+  // Lesson 11 (Induction & Exhaust) and its course.
+  { model: 'cylinder', name: 'lesson-induction-exhaust-square', view: { initialAngle: 90, initialCycle: true }, options: { zoom: 0.85, pan: [-20, -5] } },
+  { model: 'cylinder', name: 'banner-breathing', view: { initialAngle: 630, initialCycle: true }, options: { width: 1000, height: 500, zoom: 0.7, pan: [0, -10] } },
+  { model: 'cylinder', name: 'course-breathing-square', view: { initialAngle: 630, initialCycle: true }, options: { zoom: 0.85, orbit: [-40, -10], pan: [-10, 0] } },
 ];
