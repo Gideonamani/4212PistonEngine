@@ -2,6 +2,7 @@
   "schema": "4212.lesson-pack/v3",
   "id": "internal-mechanisms",
   "thumbnail": "./thumbnails/course-internal-mechanisms.webp",
+  "banner": "./banners/internal-mechanisms.webp",
   "title": "Internal Mechanisms and Assembly Interfaces",
   "description": "Use manual-based CAD teaching studies to explain hydraulic tappet internals and an IO-520 permold oil pump. Dimensions and operating travel are illustrative.",
   "lessons": [

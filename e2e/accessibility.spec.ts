@@ -7,7 +7,7 @@ import { SPOTLIGHT_STEP } from './viewer-helpers';
 // are empty since the shared-components phase (44 px targets, readable text), so any accessibility problem or small target on these
 // screens now fails. Run once, at the most common phone width.
 onlyIn('phone-360');
-// Each test opens nine screens, one of them a 3D step that starts a large model download, and CI runs other tests alongside.
+// Each test opens ten screens, one of them a 3D step that starts a large model download, and CI runs other tests alongside.
 test.describe.configure({ timeout: 360_000 });
 
 type Screen = readonly [name: string, hash: string, prepare?: (page: Page) => Promise<void>];
@@ -22,6 +22,7 @@ const SCREENS: Screen[] = [
   // The focus-mode switch only exists once the model has loaded and a spotlight is on, so this one waits for the whole model.
   ['lesson spotlight step', SPOTLIGHT_STEP, (page) => expect(page.getByRole('group', { name: 'How the highlighted part is shown' })).toBeVisible({ timeout: 150_000 })],
   ['lesson step list', '#/learn/history-and-fundamentals/history-mechanical-engines/step/1', async (page) => { await page.getByRole('button', { name: /Open the list of steps/ }).click(); await expect(page.getByRole('dialog')).toBeVisible(); }],
+  ['credits', '#/credits'],
   ['check modules', '#/check'],
   ['check question', '#/check', async (page) => { await page.getByRole('button').filter({ has: page.locator('h4') }).first().click(); await expect(page.getByText(/Question 1 of \d+/)).toBeVisible(); }],
   ['check question list', '#/check', async (page) => { await page.getByRole('button').filter({ has: page.locator('h4') }).first().click(); await page.getByRole('button', { name: /Open the list of questions/ }).click(); await expect(page.getByRole('dialog')).toBeVisible(); }],

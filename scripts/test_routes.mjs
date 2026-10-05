@@ -5,6 +5,7 @@ import { formatRoute, parseHash, resolveLearn } from '../src/routes/route.mjs';
 test('the top-level views', () => {
   assert.deepEqual(parseHash('#/explore'), { view: 'explore' });
   assert.deepEqual(parseHash('#/check'), { view: 'check' });
+  assert.deepEqual(parseHash('#/credits'), { view: 'credits' });
   assert.deepEqual(parseHash('#/learn'), { view: 'learn' });
   for (const hash of ['', '#', '#/', '#/nonsense', '#/learner', 'explore']) assert.equal(parseHash(hash).view, 'explore', hash);
 });
@@ -35,7 +36,7 @@ test('encoded ids round-trip and malformed encoding does not throw', () => {
 
 test('format and parse are inverse for every shape of route', () => {
   const routes = [
-    { view: 'explore' }, { view: 'check' }, { view: 'learn' },
+    { view: 'explore' }, { view: 'check' }, { view: 'credits' }, { view: 'learn' },
     { view: 'learn', course: 'c' },
     { view: 'learn', course: 'c', lesson: 'l' },
     { view: 'learn', course: 'c', lesson: 'l', step: 1 },

@@ -70,3 +70,34 @@ test('every Explore model has a distinct preview that sources.json can rebuild',
     assert.ok(item.credit && item.license, `${model.id} needs a credit and licence in sources.json`);
   }
 });
+
+// Course banners: each course page opens with a wide 2:1 picture, built from sources.json like the cards and previews.
+const webpSize = (bytes) => {
+  // VP8 (lossy) keeps the dimensions at bytes 26-29 as 14-bit little-endian values; VP8L and VP8X store them differently.
+  const kind = bytes.toString('ascii', 12, 16);
+  if (kind === 'VP8 ') return [bytes.readUInt16LE(26) & 0x3fff, bytes.readUInt16LE(28) & 0x3fff];
+  if (kind === 'VP8X') return [1 + bytes.readUIntLE(24, 3), 1 + bytes.readUIntLE(27, 3)];
+  const bits = bytes.readUInt32LE(21);
+  return [1 + (bits & 0x3fff), 1 + ((bits >> 14) & 0x3fff)];
+};
+
+test('every course has a 2:1 banner with a recorded source', () => {
+  assert.deepEqual(Object.keys(sources.banners.items).sort(), packs.map((pack) => pack.id).sort(), 'banners must cover exactly the courses');
+  assert.deepEqual(sources.banners.size, [1000, 500]);
+  const seen = new Map();
+  for (const pack of packs) {
+    assert.equal(pack.banner, `./banners/${pack.id}.webp`, `${pack.id} banner path`);
+    const bytes = fs.readFileSync(fileFor(pack.banner));
+    assert.equal(bytes.toString('ascii', 0, 4), 'RIFF', pack.id);
+    assert.equal(bytes.toString('ascii', 8, 12), 'WEBP', pack.id);
+    assert.deepEqual(webpSize(bytes), sources.banners.size, `${pack.id} banner is not 2:1 at the recorded size`);
+    assert.ok(bytes.length < 80 * 1024, `${pack.id} banner is ${bytes.length} bytes`);
+    const hash = crypto.createHash('sha256').update(bytes).digest('hex');
+    assert.ok(!seen.has(hash), `${pack.id} repeats the banner of ${seen.get(hash)}`);
+    seen.set(hash, pack.id);
+    const item = sources.banners.items[pack.id];
+    assert.ok(item.credit && item.license, `${pack.id} banner needs a credit and licence in sources.json`);
+  }
+  const files = fs.readdirSync('web/banners').filter((name) => name.endsWith('.webp'));
+  assert.deepEqual(files.map((name) => name.replace(/\.webp$/, '')).sort(), packs.map((pack) => pack.id).sort(), 'web/banners holds only the courses banners');
+});

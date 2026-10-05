@@ -1,5 +1,5 @@
 import React from 'react';
-import { ViewMode } from '../types/engine';
+import { AppScreen, ViewMode } from '../types/engine';
 import { useShellChrome } from './ShellChrome';
 import { IconButton } from './ui';
 import { BrandMark } from './shell/BrandMark';
@@ -9,7 +9,7 @@ import { Sun, Moon, Info } from 'lucide-react';
 
 interface AppShellProps {
   children: React.ReactNode;
-  activeView: ViewMode;
+  activeView: AppScreen;
   onViewChange: (view: ViewMode) => void;
   isDarkMode: boolean;
   onToggleTheme: () => void;

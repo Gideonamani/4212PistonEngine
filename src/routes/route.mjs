@@ -1,9 +1,9 @@
 // The app's address, kept in the URL hash so every screen can be bookmarked and the browser Back button works:
-//   #/explore    #/check    #/learn    #/learn/<course>    #/learn/<course>/<lesson>/step/<n>    #/learn/<course>/<lesson>/complete
+//   #/explore    #/check    #/credits    #/learn    #/learn/<course>    #/learn/<course>/<lesson>/step/<n>    #/learn/<course>/<lesson>/complete
 // Pure functions only; useRoute.ts connects them to the browser.
 
 /**
- * @typedef {{ view: 'explore' } | { view: 'check' } | { view: 'learn', course?: string, lesson?: string, step?: number, complete?: boolean }} Route
+ * @typedef {{ view: 'explore' } | { view: 'check' } | { view: 'credits' } | { view: 'learn', course?: string, lesson?: string, step?: number, complete?: boolean }} Route
  */
 
 const safeDecode = (part) => {
@@ -18,6 +18,7 @@ const safeDecode = (part) => {
 export function parseHash(hash) {
   const [view, course, lesson, tail, number] = hash.replace(/^#\/?/, '').split('/').map(safeDecode);
   if (view === 'check') return { view: 'check' };
+  if (view === 'credits') return { view: 'credits' };
   if (view !== 'learn') return { view: 'explore' };
   const route = { view: 'learn' };
   if (course) route.course = course;

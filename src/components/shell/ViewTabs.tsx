@@ -1,8 +1,8 @@
 import React from 'react';
-import type { ViewMode } from '../../types/engine';
+import type { AppScreen, ViewMode } from '../../types/engine';
 import { VIEW_TABS } from './tabs';
 
-type TabsProps = { activeView: ViewMode; onViewChange: (view: ViewMode) => void };
+type TabsProps = { activeView: AppScreen; onViewChange: (view: ViewMode) => void };
 
 /** The pill of three modes in the header (hidden below the md breakpoint, where the bottom bar takes over). */
 export const HeaderTabs: React.FC<TabsProps> = ({ activeView, onViewChange }) => (

@@ -1,6 +1,6 @@
 {
   "schema": "4212.thumbnail-sources/v1",
-  "description": "Where each course and lesson card thumbnail comes from. scripts/build_thumbnails.py reads this and writes the square WebP files beside it. Crop boxes are [left, top, right, bottom] as fractions of the source. Manual and book pages are read from the Notes folder (--notes); renders live in scripts/thumbnail_sources and were captured from the app's own 3D viewer with scripts/capture_model_thumbnail.js. The 'previews' section builds the Explore gallery card images (web/model-previews/<model id>.webp) the same way.",
+  "description": "Where each course and lesson card thumbnail comes from. scripts/build_thumbnails.py reads this and writes the square WebP files beside it. Crop boxes are [left, top, right, bottom] as fractions of the source. Manual and book pages are read from the Notes folder (--notes); renders live in scripts/thumbnail_sources and were captured from the app's own 3D viewer with scripts/capture_model_thumbnail.js. The 'previews' section builds the Explore gallery card images (web/model-previews/<model id>.webp) the same way. The 'banners' section builds the wide course-header images (web/banners/<pack id>.webp, 2:1) the same way; its renders are 1000 x 500 captures (scripts/thumbnail_sources/banner-*.webp), and a 'shift' of [dx, dy] pixels places a subject off-centre.",
   "size": 360,
   "items": {
     "course-history-and-fundamentals": {
@@ -267,6 +267,84 @@
         "path": "explore-accessory-drives.webp",
         "credit": "Rendered from the app's GTSIO-520-H accessory drives teaching model",
         "license": "Course material"
+      }
+    }
+  },
+  "banners": {
+    "size": [
+      1000,
+      500
+    ],
+    "items": {
+      "history-and-fundamentals": {
+        "kind": "image",
+        "path": "lesson-media/gnome-omega.webp",
+        "fit": "cover",
+        "focus": [
+          0.5,
+          0.3
+        ],
+        "credit": "Gnome Omega rotary engine, Valder137",
+        "license": "CC BY 2.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Gnome_Omega_Rotary_Engine_Running_02_Dawn_Patrol_NMUSAF_26Sept09_(14619976863).jpg"
+      },
+      "fundamentals-and-classification": {
+        "kind": "render",
+        "path": "banner-full-engine.webp",
+        "credit": "Rendered from the app's GTSIO-520-H full-engine teaching model",
+        "license": "Course material",
+        "shift": [
+          0,
+          -45
+        ]
+      },
+      "m2-cylinder-study": {
+        "kind": "render",
+        "path": "banner-cylinder.webp",
+        "credit": "Rendered from the app's operating-cylinder teaching model",
+        "license": "Course material",
+        "shift": [
+          0,
+          -45
+        ]
+      },
+      "internal-mechanisms": {
+        "kind": "diagonal",
+        "seam": [
+          0.56,
+          0.44
+        ],
+        "parts": [
+          {
+            "kind": "render",
+            "path": "banner-hydraulic-tappet.webp",
+            "shift": [
+              -200,
+              -45
+            ]
+          },
+          {
+            "kind": "render",
+            "path": "banner-oil-pump.webp",
+            "shift": [
+              200,
+              -45
+            ]
+          }
+        ],
+        "credit": "Hydraulic tappet and oil pump teaching studies, rendered from the app's 3D models",
+        "license": "Course material",
+        "line": false
+      },
+      "accessories-and-drives": {
+        "kind": "render",
+        "path": "banner-accessory-drives.webp",
+        "credit": "GTSIO-520-H accessories and drives teaching study, rendered from the app's 3D model",
+        "license": "Course material",
+        "shift": [
+          0,
+          -45
+        ]
       }
     }
   }
