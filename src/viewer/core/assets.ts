@@ -1,8 +1,9 @@
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import type { ModelSource } from '../../data/modelRegistry';
+import { createGltfLoader } from './gltf-loader';
+import { cacheKeyFor as savedCopyKey, dropCachedModel, readCachedModel, writeCachedModel } from './model-cache.mjs';
 import { orderAttempts } from './source-order.mjs';
 
-type Candidate = ModelSource & { url: string; headers: Record<string, string>; label: string };
+type Candidate = ModelSource & { url: string; headers: Record<string, string>; label: string; from: 'local' | 'drive' };
 let configRequest: Promise<{ drive_api_key?: string }> | undefined;
 
 async function deliveryConfig() {
@@ -13,12 +14,13 @@ async function deliveryConfig() {
 async function candidatesFor(sources: ModelSource[]): Promise<Candidate[]> {
   const { drive_api_key: apiKey = '' } = await deliveryConfig();
   return orderAttempts(sources, { apiKey, production: import.meta.env.PROD }).map(({ source, from }): Candidate => from === 'local'
-    ? { ...source, url: source.localUrl!, headers: {}, label: 'local asset' }
+    ? { ...source, url: source.localUrl!, headers: {}, label: 'local asset', from }
     : {
       ...source,
       url: `https://www.googleapis.com/drive/v3/files/${encodeURIComponent(source.driveId!)}?alt=media`,
       headers: { 'X-Goog-Api-Key': apiKey },
       label: 'Drive asset',
+      from,
     });
 }
 
@@ -46,12 +48,29 @@ export async function loadModelBytes(
   const candidates = await candidatesFor(sources);
   if (!candidates.length) throw Error('No model source is configured.');
   for (const candidate of candidates) {
+    // A Drive file seen before is opened from this device. A copy that will not decode is dropped and downloaded again.
+    const cacheKey = candidate.from === 'drive' ? savedCopyKey(candidate) : undefined;
+    const saved = await readCachedModel(cacheKey, candidate.transferBytes);
+    if (saved) {
+      try {
+        onProgress('Opening saved copy…', 90);
+        return await decodeModel(saved, signal, onProgress);
+      } catch (error) {
+        if (signal.aborted) throw error;
+        await dropCachedModel(cacheKey);
+      }
+    }
     try {
       onProgress('Connecting to model…', 1);
       const response = await fetch(candidate.url, { headers: candidate.headers, signal, mode: 'cors', credentials: 'omit', referrerPolicy: 'strict-origin-when-cross-origin' });
       if (!response.ok) throw Error(`Model download failed (${response.status}).`);
       const total = Number(response.headers.get('content-length')) || candidate.transferBytes || 0;
-      if (!response.body) return decodeModel(await response.arrayBuffer(), signal, onProgress);
+      if (!response.body) {
+        const whole = await response.arrayBuffer();
+        const model = await decodeModel(whole, signal, onProgress);
+        void writeCachedModel(cacheKey, whole);
+        return model;
+      }
       const reader = response.body.getReader();
       const chunks: Uint8Array[] = [];
       let received = 0;
@@ -66,7 +85,10 @@ export async function loadModelBytes(
       const joined = new Uint8Array(received);
       let offset = 0;
       for (const chunk of chunks) { joined.set(chunk, offset); offset += chunk.byteLength; }
-      return decodeModel(joined.buffer, signal, onProgress);
+      // Save the download only once it has unpacked into a complete GLB, so a cut-off transfer is never kept.
+      const model = await decodeModel(joined.buffer, signal, onProgress);
+      void writeCachedModel(cacheKey, joined);
+      return model;
     } catch (error) {
       if (signal.aborted) throw error;
       failures.push(`${candidate.label}: ${error instanceof Error ? error.message : 'unknown failure'}`);
@@ -132,5 +154,5 @@ export async function loadGltf(
   }
   signal.throwIfAborted();
   onProgress('Preparing model geometry…', 99);
-  return { bytes, gltf: await new GLTFLoader().parseAsync(bytes, '') };
+  return { bytes, gltf: await createGltfLoader().parseAsync(bytes, '') };
 }
