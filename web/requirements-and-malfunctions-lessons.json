@@ -1,0 +1,369 @@
+{
+  "schema": "4212.lesson-pack/v3",
+  "privacy": "Lesson progress may be held locally on the learner's device and is never transmitted. Check-yourself answers remain session-only.",
+  "id": "requirements-and-malfunctions",
+  "thumbnail": "./thumbnails/course-requirements-and-malfunctions.webp",
+  "banner": "./banners/requirements-and-malfunctions.webp",
+  "title": "Requirements & Malfunctions",
+  "description": "What an aircraft engine must do and how to read its data, and, as the course grows, how its common malfunctions show themselves.",
+  "sources": [
+    {
+      "id": "faa-powerplant-2023",
+      "tier": 1,
+      "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
+      "path": "Notes/amt_powerplant_handbook 2023.pdf",
+      "applicability": "Primary source for the general principles in this course. PDF page locators are used in step notes."
+    },
+    {
+      "id": "easa-module16",
+      "tier": 2,
+      "title": "EASA Module 16 - Piston Engines, Aircraft Technical Book Company",
+      "path": "Notes/EASA Module 16 - Piston Engines by Aircraft Technical Book Co LLC.pdf",
+      "applicability": "Secondary source used to cross-check the handbook; its text follows the FAA handbook closely. PDF page locators are used in step notes."
+    },
+    {
+      "id": "gtsio520-overhaul",
+      "tier": 3,
+      "title": "Continental GTSIO-520 Series Overhaul Manual X30045A",
+      "path": "Notes/gtsio520_series.pdf",
+      "applicability": "Configuration-specific source for the course reference engine. Chapter B (table of limits, March 1981) covers the series; Chapter C-3 is the difference data for the -H. Variant applicability must be checked before using a limit, dimension or maintenance instruction; always use the current data for the engine in front of you."
+    },
+    {
+      "id": "course-deck-2026-05",
+      "tier": 4,
+      "title": "Aircraft Piston Engine Slides - 21 May 2026 (instructor course deck)",
+      "path": "Notes/Aircraft Piston Engine Slides - 21May2026.pptx",
+      "applicability": "Instructor-authored course slides. Used only where the handbook, EASA text and manuals are silent. Carries no independent evidence; claims here need the instructor's confirmation."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "engine-requirements",
+      "thumbnail": "./thumbnails/lesson-engine-requirements.webp",
+      "sequenceNumber": 14,
+      "title": "Engine Requirements",
+      "objective": "Summarise what an aircraft piston engine must deliver (power for its weight, economy, durability and reliability, flexibility, compactness), say how engines are chosen, and read the leading particulars of the GTSIO-520-H from its manual.",
+      "reviewStatus": "unreviewed",
+      "models": [],
+      "listed": true,
+      "scheduledDay": 5,
+      "completionCriteria": "State the general requirements of an aircraft engine, calculate specific weight and brake-specific fuel consumption, and find and interpret the leading particulars on an engine data sheet, including the condition each figure is quoted for.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "What an engine must do",
+          "prompt": "Think of an engine for a small training aircraft and one for a long-range airliner. What do both owners want? Write down five things before you read on. The handbook lists the general requirements every aircraft engine must meet: efficiency, economy and reliability, a low weight for its power, sustained high power without losing reliability, a long time between overhauls, compactness with easy access for maintenance, as little vibration as possible, and a wide range of power at different speeds and altitudes.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 22-23 (all aircraft engines must meet general requirements of efficiency, economy and reliability; economical in procurement, fuel and maintenance; low weight-to-horsepower ratio; sustained high power output without sacrificing reliability; durable between overhauls; compact yet accessible; as vibration free as possible; a wide range of power at various speeds and altitudes). The course deck (slides 202-205) groups them as power and weight, fuel economy, durability and reliability, operating flexibility, compactness and powerplant selection.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A prediction prompt that lets the learner meet the list before it is organised."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Power and weight",
+          "prompt": "Every extra pound an engine carries lowers the aircraft's performance, so engines are judged by their specific weight, the weight per brake horsepower. Lower is better: it raises the useful load. Take the GTSIO-520-H, which develops 375 horsepower and has a standard dry weight of 550.39 lb. Its specific weight is 550.39 ÷ 375 = 1.47 lb per horsepower. Better design and better metals have brought the specific weight of reciprocating engines down a great deal.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 23 (the weight of an engine per brake horsepower is its specific weight; decreasing it increases the useful load and the performance; improved design and metallurgy have improved the power-to-weight ratio of reciprocating engines) and the Continental GTSIO-520 overhaul manual, PDF pp. 152-153 (375 horsepower at 2275 propeller rpm; standard engine dry weight 550.39 lb). The result is a worked example from those two numbers.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A definition with a worked number from the course engine."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Fuel economy",
+          "prompt": "Fuel economy is measured as specific fuel consumption. For a reciprocating engine it is the fuel flow in pounds per hour divided by the brake horsepower, called brake-specific fuel consumption. An engine that burns 150 lb of fuel an hour while developing 300 brake horsepower has a brake-specific fuel consumption of 0.5 lb per hour per brake horsepower. The lower the figure, the better the economy. At low speed reciprocating and turboprop engines are more economical than turbojets and turbofans; at high speed, losses in the propeller limit them.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 23 (the basic parameter for fuel economy is specific fuel consumption; for reciprocating engines the fuel flow in lb/hr divided by brake horsepower, called brake-specific fuel consumption; reciprocating and turboprop engines have better economy at low speed, and above 400 mph propeller losses limit them) and EASA Module 16, PDF p. 44 (Figure 2-2, specific fuel consumption). The 150 lb/hr and 300 bhp numbers are invented for the example.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A definition with a short invented example, so the formula is used once."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Durability and reliability",
+          "prompt": "Reliability and durability go together but are not the same. Reliability is how often the engine fails, measured as the mean time between failures: a reliable engine performs at its rated power in any flight attitude and in extreme weather. Durability is how long the engine lasts while it stays reliable, measured as the mean time between overhauls, the TBO. The manufacturer builds both in by design and test, and recommends a TBO. No fixed TBO is guaranteed, because it depends on temperatures, time at high power and the maintenance given. After that, keeping the engine reliable is up to the people who maintain, overhaul and operate it.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 23-24 (reliability measured as mean time between failures and durability as mean time between overhauls; reliability means performing at the specified ratings in varying flight attitudes and extreme weather; no definite TBO is specified or implied by the rating, and it varies with operating conditions, time at high power and maintenance; recommended TBOs are specified by the engine manufacturer; continued reliability is determined by maintenance, overhaul and operating personnel).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Two definitions and a caution that are best stated side by side."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Flexible and compact",
+          "prompt": "Operating flexibility is the ability to run smoothly and give the performance wanted at every speed from idle to full power, and in the full range of atmospheric conditions. Compactness matters for three reasons. A smaller, well-shaped engine streamlines and balances the aircraft better, it gives the pilot of a single-engine aircraft a better view, and it creates less drag. Weight and compactness are linked: the longer and more spread out an engine is, the harder it is to keep its specific weight down.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 24 (operating flexibility; compactness for streamlining and balancing, pilot view and drag; weight limitations are closely related to compactness).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Two short requirements that read best together."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Choosing an engine",
+          "prompt": "No single engine is best everywhere, so the choice depends on the mission. The handbook gives a guide by cruising speed. Up to about 250 mph the reciprocating engine is the usual choice, for its efficiency and low cost, and a turbosupercharged one holds its rated power to high altitude. From about 180 to 350 mph the turboprop does very well, because it gives more power per pound. From 350 mph up to Mach 0.8 to 0.9, turbofans are generally used by airlines, and above that, turbojets and low-bypass turbofans. Gas turbines are most economical at high altitude, but cost limits their use.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 24 (powerplant selection: reciprocating engines for aircraft whose cruising speed does not exceed 250 mph; turbosupercharged reciprocating engines for high altitude performance; turboprops perform very well from 180 to 350 mph; turbofans from 350 mph to Mach 0.8-0.9; Mach 1 and above by turbojets, afterburning and low-bypass turbofans; the cost of gas turbines is a limiting factor).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A selection guide by speed band, stated once and tested in the checks."
+          }
+        },
+        {
+          "type": "text",
+          "title": "The data plate and the engine's name",
+          "prompt": "Every certified engine carries a permanent, fireproof data plate that identifies it, with at least its maker, its model and its serial number. The serial number lets you track its total time, time since overhaul and any airworthiness directives. The model name is a code. In GTSIO-520-H the manual's general information says the engine is geared (G), turbocharged (T), fuel injected (I) and horizontally opposed (O), and 520 is its displacement in cubic inches. The H marks the variant, and a limit that belongs to another variant does not apply.",
+          "note": "The regulatory content of the data plate (14 CFR 45.13 and EASA Part 21) and the use of the serial number are from the course deck (slide 207); the handbook pages read here do not describe the engine data plate, so the instructor should confirm the wording against the regulation. The engine's description is from the Continental GTSIO-520 overhaul manual, PDF p. 152 (C-3-2: geared, turbocharged, six-cylinder, fuel injected, horizontally opposed, 520 cubic inches). The deck reads the letters as G for geared, TS for turbosupercharged, I for fuel injected and O for opposed.",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The naming rule is the content; the next steps show the real data."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Leading particulars",
+          "prompt": "Here is the first page of the GTSIO-520-H's detail specifications from its overhaul manual. Find these: the power it develops and at what propeller speed; the propeller drive ratio; the bore, stroke and displacement; the compression ratio; the fuel grade; and the drive ratios of the magnetos, the tachometer and the starter. The numbers are the engine's leading particulars.",
+          "url": "./lesson-media/gtsio-h-specifications-1.webp",
+          "alt": "GTSIO-520-H general information and detail engine specifications, page C-3-2: it is geared, turbocharged, six-cylinder, fuel injected and horizontally opposed, and develops 375 horsepower at 2275 propeller rpm; propeller drive ratio 0.667:1; bore 5.250 in; stroke 4.000 in; displacement 520 cu in; compression ratio 7.5:1; turbosupercharger maximum 75,000 rpm; oil sump 13 quarts; fuel 100LL or 100; magneto drive 1.5:1; tachometer 0.5:1; starter drive 32:1.",
+          "credit": "Continental GTSIO-520 overhaul manual, page C-3-2",
+          "license": "Course reference extract",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 152 (page C-3-2, general information and detail engine specifications for the GTSIO-520-H). Teaching extract of a manufacturer manual dated June 1980; always use the current data for the engine in front of you.",
+          "sourceRefs": [
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The manufacturer's own specification page is the real \"leading particulars\" the module asks the learner to identify."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Operating particulars",
+          "prompt": "The second page continues with the other drive ratios, the spark timing and plug gap, the firing order, the fuel pressures, and the limits for oil pressure, oil temperature and cylinder head temperature. It ends with the dry weight. Find the spark timing, the firing order, the maximum cylinder head temperature and the normal and maximum oil temperature.",
+          "url": "./lesson-media/gtsio-h-specifications-2.webp",
+          "alt": "GTSIO-520-H detail engine specifications, continued, page C-3-3: alternator drive 3:1; vacuum pump drive 1.14:1; propeller governor drive 0.809:1; spark 20 degrees before top centre on both magnetos; spark plug gap 0.017 to 0.018 in; firing order 1-4-5-2-3-6; unmetered fuel pressure 6.0 psi at 450 propeller rpm; maximum metered fuel pressure 16.0 to 17.0 psi at 39.5 inches of mercury manifold pressure and 2275 propeller rpm; oil pressure 100 psi maximum and 10 psi minimum at idle; oil temperature 170 normal and 240 maximum degrees Fahrenheit; cylinder head temperature 460 maximum and 200 minimum for takeoff; standard dry weight 550.39 lb.",
+          "credit": "Continental GTSIO-520 overhaul manual, page C-3-3",
+          "license": "Course reference extract",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 153 (page C-3-3, detail engine specifications continued; dated June 1980). The limits are for teaching reading of a data sheet and are not an operating instruction.",
+          "sourceRefs": [
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The second page of the manufacturer specification gives the timing, firing order and limits."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Reading the numbers",
+          "prompt": "The data are linked, so you can check them against each other. The 0.667:1 propeller drive means the propeller turns at 0.667 of the crankshaft speed, so at 2275 propeller rpm the crankshaft is turning at 2275 ÷ 0.667 = about 3,411 rpm: the engine runs fast, and the reduction gear slows the propeller. A six-cylinder four-stroke engine fires six times in two turns, which is once every 720° ÷ 6 = 120° of the crankshaft, in the order 1-4-5-2-3-6. Fuel pressure is quoted at a stated manifold pressure and propeller speed, 39.5 inches of mercury and 2275 rpm. A number is only meaningful with its conditions.",
+          "note": "Calculations from the Continental GTSIO-520 overhaul manual, PDF pp. 152-153 (propeller drive ratio 0.667:1; 375 horsepower at 2275 propeller rpm; firing order 1-4-5-2-3-6; maximum metered fuel pressure at 39.5 inches of mercury manifold pressure and 2275 propeller rpm) and the 720° cycle from FAA-H-8083-32B (2023), PDF pp. 46-48. The firing order also appears in the FAA handbook as the usual six-cylinder opposed order (PDF p. 37).",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Worked checks that the learner can repeat on the manual page."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Read an engine data sheet",
+          "prompt": "You are handed the data sheet of an engine you have not seen before. In your own words: which numbers describe its size and power, which describe its drives, which are limits and what is the condition each is quoted for, and which of the general requirements (power and weight, fuel economy, durability and reliability, flexibility, compactness) can you judge from it and which can you not? Then take the lesson's quiz.",
+          "note": "Completion step: the learner applies the requirements to a data sheet (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 22-24, and the GTSIO-520 overhaul manual, PDF pp. 152-153.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The learner works with a data sheet in their own words."
+          }
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "requirements-matching",
+      "lessonId": "engine-requirements",
+      "type": "matching",
+      "question": "Match each general requirement to what it asks of the engine.",
+      "hint": "Each requirement answers a different question.",
+      "pairs": [
+        {
+          "left": "Power and weight",
+          "right": "A low weight for each horsepower it develops"
+        },
+        {
+          "left": "Fuel economy",
+          "right": "A low fuel flow for each horsepower, measured as specific fuel consumption"
+        },
+        {
+          "left": "Durability",
+          "right": "A long life between overhauls"
+        },
+        {
+          "left": "Reliability",
+          "right": "A long time between failures, at rated power in any attitude and weather"
+        },
+        {
+          "left": "Operating flexibility",
+          "right": "Smooth running and the wanted performance from idle to full power"
+        }
+      ],
+      "rationale": "The handbook measures durability by the mean time between overhauls and reliability by the mean time between failures; specific weight is weight per brake horsepower; specific fuel consumption is fuel flow per brake horsepower."
+    },
+    {
+      "id": "requirements-specific-weight",
+      "lessonId": "engine-requirements",
+      "type": "numeric",
+      "question": "The GTSIO-520-H develops 375 horsepower and has a standard dry weight of 550.39 lb. What is its specific weight, to two decimal places?",
+      "hint": "Specific weight is the engine's weight per brake horsepower.",
+      "unit": "lb per hp",
+      "correctValue": 1.47,
+      "tolerance": 0.01,
+      "rationale": "550.39 ÷ 375 = 1.468, which is 1.47 lb per horsepower. Lower is better because every extra pound reduces the aircraft's performance."
+    },
+    {
+      "id": "requirements-bsfc",
+      "lessonId": "engine-requirements",
+      "type": "numeric",
+      "question": "An engine burns 150 lb of fuel an hour while developing 300 brake horsepower. What is its brake-specific fuel consumption?",
+      "hint": "Fuel flow in lb/hr divided by brake horsepower.",
+      "unit": "lb/hr per bhp",
+      "correctValue": 0.5,
+      "tolerance": 0,
+      "rationale": "150 ÷ 300 = 0.5 lb of fuel per hour for each brake horsepower. A lower figure means better fuel economy."
+    },
+    {
+      "id": "requirements-crank-speed",
+      "lessonId": "engine-requirements",
+      "type": "numeric",
+      "question": "The GTSIO-520-H develops its rated 375 horsepower at 2275 propeller rpm, and its propeller drive ratio is 0.667:1. At what crankshaft speed does it do so? Give the nearest whole number.",
+      "hint": "The propeller turns at 0.667 of the crankshaft speed.",
+      "unit": "rpm",
+      "correctValue": 3411,
+      "tolerance": 5,
+      "rationale": "Crankshaft speed = propeller speed ÷ drive ratio = 2275 ÷ 0.667 = 3,411 rpm. The reduction gear lets the engine run fast while the propeller turns slowly enough to be efficient."
+    },
+    {
+      "id": "requirements-firing-interval",
+      "lessonId": "engine-requirements",
+      "type": "numeric",
+      "question": "A six-cylinder four-stroke engine completes its cycle in 720° of crankshaft rotation. How many degrees of rotation are there between one cylinder firing and the next?",
+      "hint": "Six firings are spread evenly over the whole cycle.",
+      "unit": "degrees",
+      "correctValue": 120,
+      "tolerance": 0,
+      "rationale": "720° ÷ 6 cylinders = 120° between firings, which keeps the power pulses even. The GTSIO-520-H fires 1-4-5-2-3-6."
+    },
+    {
+      "id": "requirements-selection",
+      "lessonId": "engine-requirements",
+      "type": "multiple-choice",
+      "question": "For an aircraft that cruises at no more than about 250 mph, which type of engine is usually chosen?",
+      "hint": "Think about efficiency and cost at low speed.",
+      "answers": [
+        "A reciprocating engine, for its efficiency and low cost",
+        "A turbofan, for its high-speed efficiency",
+        "A pure turbojet with afterburning"
+      ],
+      "correct": 0,
+      "rationale": "The handbook says the reciprocating engine is the usual choice up to 250 mph because of its excellent efficiency and relatively low cost at low speed."
+    },
+    {
+      "id": "requirements-tbo",
+      "lessonId": "engine-requirements",
+      "type": "multiple-choice",
+      "question": "Who recommends the time between overhauls (TBO) for an engine?",
+      "hint": "The engine's rating does not fix it.",
+      "answers": [
+        "The engine manufacturer",
+        "The pilot at each flight",
+        "The airport where the aircraft is based"
+      ],
+      "correct": 0,
+      "rationale": "Recommended TBOs are specified by the engine manufacturer. The actual interval varies with the operating conditions, the time at high power and the maintenance given."
+    },
+    {
+      "id": "requirements-compactness",
+      "lessonId": "engine-requirements",
+      "type": "multiple-choice",
+      "question": "Why does an engine need to be compact?",
+      "hint": "There are several reasons.",
+      "answers": [
+        "It streamlines and balances the aircraft better, improves the pilot's view and reduces drag",
+        "It lets the engine run at a higher compression ratio",
+        "It makes the fuel burn more slowly"
+      ],
+      "correct": 0,
+      "rationale": "A small, well-shaped engine helps streamlining and balancing, gives a single-engine pilot a better view and creates less drag. It also makes it easier to keep the specific weight within limits."
+    },
+    {
+      "id": "requirements-spark-timing",
+      "lessonId": "engine-requirements",
+      "type": "multiple-choice",
+      "question": "According to the GTSIO-520-H data page, when does the spark occur?",
+      "hint": "Look at the second specification page.",
+      "answers": [
+        "20 degrees before top centre, on both magnetos",
+        "20 degrees after top centre, on one magneto",
+        "At top centre, on both magnetos"
+      ],
+      "correct": 0,
+      "rationale": "Page C-3-3 lists the spark at 20° BTC on both magnetos. A general handbook gives a range of 20° to 35° across engines; the manufacturer's value is the one that applies."
+    },
+    {
+      "id": "requirements-conditions",
+      "lessonId": "engine-requirements",
+      "type": "multiple-choice",
+      "question": "The data page gives the maximum metered fuel pressure at \"39.5 inches of mercury manifold pressure and 2275 propeller rpm\". Why does it say that?",
+      "hint": "Think about what changes with power setting.",
+      "answers": [
+        "A figure only means something with the conditions it is quoted for",
+        "Because the pressure never changes with power",
+        "Because the pressure is measured only in flight"
+      ],
+      "correct": 0,
+      "rationale": "Fuel pressure depends on the power setting, so the data gives the manifold pressure and propeller speed at which the limit applies. Reading a number without its condition leads to mistakes."
+    }
+  ]
+}

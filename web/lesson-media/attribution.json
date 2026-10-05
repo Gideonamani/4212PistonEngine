@@ -130,5 +130,15 @@
     "title": "Compression ratio: total volume and clearance volume",
     "source": "FAA-H-8083-32B, Figure 1-38",
     "license": "U.S. Government work"
+  },
+  "gtsio-h-specifications-1.webp": {
+    "title": "GTSIO-520-H general information and detail engine specifications (page 1)",
+    "source": "Continental GTSIO-520 overhaul manual, page C-3-2",
+    "license": "Course reference extract"
+  },
+  "gtsio-h-specifications-2.webp": {
+    "title": "GTSIO-520-H detail engine specifications, continued (page 2)",
+    "source": "Continental GTSIO-520 overhaul manual, page C-3-3",
+    "license": "Course reference extract"
   }
 }

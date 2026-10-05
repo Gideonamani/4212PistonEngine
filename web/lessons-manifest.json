@@ -7,6 +7,7 @@
     "./accessories-lessons.json",
     "./valve-train-and-power-lessons.json",
     "./breathing-and-performance-lessons.json",
+    "./requirements-and-malfunctions-lessons.json",
     "./m2-cylinder-lessons.json",
     "./internal-mechanism-lessons.json"
   ]
