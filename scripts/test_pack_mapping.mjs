@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import test from 'node:test';
-import { mapQuizModule, mapStep, mapTrack } from '../src/data/packMapping.ts';
+import { mapQuestion, mapQuizModule, mapStep, mapTrack } from '../src/data/packMapping.ts';
+import { ANSWERABLE_TYPES, isCorrect, matchingOptions } from '../src/components/check/scoring.mjs';
 
 const readJson = (path) => JSON.parse(fs.readFileSync(path, 'utf8'));
 const registry = readJson('src/data/models.json');
@@ -128,4 +129,47 @@ test('the shipped packs produce the courses and checks the app lists', () => {
   }
   const questions = packs.filter((pack) => pack.checks?.length).map(mapQuizModule).reduce((sum, quiz) => sum + quiz.questionCount, 0);
   assert.ok(questions > 40, `expected the shipped checks, saw ${questions}`);
+});
+
+const base = { id: 'q', lessonId: 'l', question: 'Which?', hint: 'Think.', rationale: 'Because.' };
+
+test('every check type reaches the screen with its own fields and the same marking the pack intends', () => {
+  const choice = mapQuestion({ ...base, type: 'multiple-choice', answers: ['x', 'y'], correct: 1 });
+  assert.deepEqual([choice.type, choice.options, choice.correctIndex, choice.explanation, choice.hint], ['multiple-choice', ['x', 'y'], 1, 'Because.', 'Think.']);
+  const ordering = mapQuestion({ ...base, type: 'ordering', items: ['a', 'b', 'c'] });
+  assert.deepEqual([ordering.type, ordering.items], ['ordering', ['a', 'b', 'c']]);
+  const pairs = [{ left: 'Magneto', right: 'Spark' }, { left: 'Oil pump', right: 'Lubrication' }];
+  const matching = mapQuestion({ ...base, type: 'matching', pairs });
+  assert.deepEqual([matching.type, matching.pairs], ['matching', pairs]);
+  assert.equal(isCorrect(matching, ['Spark', 'Lubrication']), true);
+  const numeric = mapQuestion({ ...base, type: 'numeric', unit: 'hp', correctValue: 170, tolerance: 1 });
+  assert.deepEqual([numeric.type, numeric.unit, numeric.correctValue, numeric.tolerance], ['numeric', 'hp', 170, 1]);
+  assert.equal(isCorrect(numeric, '170.5'), true);
+  assert.equal(mapQuestion({ ...base, type: 'numeric', unit: 'hp', correctValue: 170 }).tolerance, 0, 'no tolerance means exact');
+});
+
+test('a check type the screen cannot show is refused, not shown as the wrong kind of question', () => {
+  assert.throws(() => mapQuestion({ ...base, type: 'model-click', modelId: 'cylinder', correctNodeId: 'x' }), /cannot show a 'model-click' question/);
+});
+
+test('every shipped check is one the screen can show, and no matching question gives its answer away by order', () => {
+  for (const pack of packs) {
+    for (const check of pack.checks || []) {
+      assert.ok(ANSWERABLE_TYPES.includes(check.type), `${pack.id}/${check.id}: the Check screen cannot show '${check.type}' questions yet`);
+      if (check.type === 'matching') {
+        const rights = check.pairs.map((pair) => pair.right);
+        assert.notDeepEqual(matchingOptions(check), rights, `${pack.id}/${check.id}: the matches are already alphabetical in the pack, so each row's answer sits at its own position in the list`);
+      }
+    }
+  }
+});
+
+test('every listed lesson owns at least one check, and every check belongs to a lesson of its pack', () => {
+  for (const pack of packs) {
+    const lessonIds = new Set(pack.lessons.map((lesson) => lesson.id));
+    for (const check of pack.checks || []) assert.ok(lessonIds.has(check.lessonId), `${pack.id}/${check.id}: lessonId '${check.lessonId}' is not a lesson of this pack`);
+    for (const lesson of pack.lessons.filter((item) => item.listed !== false)) {
+      assert.ok((pack.checks || []).some((check) => check.lessonId === lesson.id), `${pack.id}/${lesson.id}: a listed lesson needs checks for the Check tab`);
+    }
+  }
 });

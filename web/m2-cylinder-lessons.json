@@ -206,6 +206,71 @@
       ],
       "correct": 0,
       "rationale": "The profile checks the mechanism positions. Quantitative temperature and flow-rate claims would need a separate validated model and source."
+    },
+    {
+      "id": "interfaces-valve-train-order",
+      "lessonId": "m2-cylinder-interfaces",
+      "type": "ordering",
+      "question": "Put these valve-train parts in the order the motion passes through them, from the cam to the valve.",
+      "hint": "The motion starts where the cam pushes and ends where the valve opens.",
+      "items": [
+        "Tappet",
+        "Pushrod",
+        "Rocker arm",
+        "Valve"
+      ],
+      "rationale": "The cam lifts the tappet, the tappet moves the pushrod, the pushrod tips the rocker arm, and the rocker arm presses the valve open."
+    },
+    {
+      "id": "interfaces-spring-retention",
+      "lessonId": "m2-cylinder-interfaces",
+      "type": "multiple-choice",
+      "question": "Which parts hold a valve spring on the valve stem?",
+      "hint": "Look at the top end of the valve stem, above the springs.",
+      "answers": [
+        "The spring retainer, locked to the stem by split keepers",
+        "The rocker shaft and the rocker cover",
+        "The pushrod and its housing",
+        "The valve guide and the valve seat"
+      ],
+      "correct": 0,
+      "rationale": "The retainer passes the spring force to the valve, and the split keepers engage a groove in the stem to lock the retainer in place."
+    },
+    {
+      "id": "interfaces-sliding-and-turning",
+      "lessonId": "m2-cylinder-interfaces",
+      "type": "matching",
+      "question": "Match each connection to what it allows.",
+      "hint": "Ask whether the parts slide, swing or turn against each other.",
+      "pairs": [
+        {
+          "left": "Piston rings in the cylinder bore",
+          "right": "Slide along the cylinder wall while sealing gas and oil"
+        },
+        {
+          "left": "Floating piston pin",
+          "right": "Lets the rod swing against the piston"
+        },
+        {
+          "left": "Rod cap and bearing halves",
+          "right": "Let the rod turn on the crankpin"
+        }
+      ],
+      "rationale": "The rings seal a sliding joint, the pin lets the rod change angle as the crank turns, and the bearing halves give the rod a lubricated surface to turn on at the crankpin."
+    },
+    {
+      "id": "interfaces-exploded-order",
+      "lessonId": "m2-cylinder-interfaces",
+      "type": "multiple-choice",
+      "question": "The exploded poses pull the cylinder apart so you can see it. What do they tell you about the order a technician removes parts?",
+      "hint": "Read the note under each step.",
+      "answers": [
+        "Nothing: the offsets are for viewing and do not give a maintenance sequence",
+        "Parts move away in the order a technician removes them",
+        "The part that moves furthest is always removed first"
+      ],
+      "correct": 0,
+      "rationale": "This is a structural overview. Permanent joints stay together and the spacing is only for viewing. The removal sequence comes from the manufacturer’s manual."
     }
   ]
 }

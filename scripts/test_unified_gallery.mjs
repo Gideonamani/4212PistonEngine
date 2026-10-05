@@ -37,7 +37,8 @@ const isVisible = (pack, lesson) => lesson.listed !== false
   || pack.lessons.some(other => other.steps.some(step => (step.deepDiveLinks || []).includes(lesson.id)));
 const lessonsWithChecks = packs.flatMap(pack =>
   pack.lessons.filter(lesson => isVisible(pack, lesson) && (pack.checks || []).some(item => item.lessonId === lesson.id)).map(lesson => ({ lesson, pack })));
-assert.equal(lessonsWithChecks.length, 11, 'expected existing 10 check lessons plus Accessories & Drives');
+const visibleLessons = packs.flatMap(pack => pack.lessons.filter(lesson => isVisible(pack, lesson)));
+assert.equal(lessonsWithChecks.length, visibleLessons.length, 'every lesson a student can open must be reachable from the Check gallery');
 const historyChecks = lessonsWithChecks.filter(({ pack }) => pack.id === 'history-and-fundamentals');
 assert.equal(historyChecks.length, 3, 'all 3 history lessons must be reachable from the Check gallery, not just the M2 lesson');
 const fundamentalsChecks = lessonsWithChecks.filter(({ pack }) => pack.id === 'fundamentals-and-classification');

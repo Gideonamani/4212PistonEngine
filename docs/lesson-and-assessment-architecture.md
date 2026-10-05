@@ -118,6 +118,12 @@ Confirmed 21 Sep 2026: the check schema should plan for several question types n
 | `matching` | `pairs: { left: string, right: string }[]` | Pairing tasks — e.g. component → function. |
 | `numeric` | `unit: string`, `correctValue: number`, `tolerance?: number` | Calculation checks — e.g. a compression-ratio or displacement result for Performance Calculations, where an exact-string match is the wrong comparison. |
 
+**Implementation status (5 Oct 2026).** The Check screen can show `multiple-choice`, `ordering`, `matching` and `numeric` questions; `model-click` is in the schema but has no screen yet, so a pack that uses it is refused (the pack tests and the mapper both say so). Marking lives in `src/components/check/scoring.mjs` and is tested without a browser; the answer areas are in `src/components/check/QuestionCard.tsx`.
+
+- `matching`: each left-hand term gets a drop-down of the right-hand texts, listed alphabetically so their position never hints at the pairing. Every term must be matched before Verify is enabled. Terms and matches must each be unique, and a pack whose matches are already alphabetical in pack order is refused.
+- `numeric`: the learner types a number (a leading minus and thousands commas such as `33,000` are read; a comma is never a decimal point). It is right when it is within `tolerance` of `correctValue` (`tolerance` defaults to 0, so an exact value). Say in the question which unit and how many places are wanted, and set the tolerance to match the rounding a worked answer would give.
+- Every listed lesson must own at least one check, and the unit tests refuse a pack that does not.
+
 This is a starting set grounded in activities already sketched elsewhere in the repo (the day-based report's valve-train sequencing and worked-calculation ideas), not a closed list — a new type can be added the same way if a specific lesson needs one that doesn't fit these five.
 
 ## Decisions log
