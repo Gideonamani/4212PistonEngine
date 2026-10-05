@@ -5,7 +5,7 @@
   "thumbnail": "./thumbnails/course-maintenance-lsa-practicals.webp",
   "banner": "./banners/maintenance-lsa-practicals.webp",
   "title": "Maintenance, LSA & Practicals",
-  "description": "Looking after a piston engine: compression tests, taking an engine apart and putting it back, and storing and preserving it. Light-sport aircraft engines and the practical assessments will follow.",
+  "description": "Looking after a piston engine: compression tests, taking an engine apart and putting it back, and storing and preserving it, and then the light-sport aircraft engines that are maintained a little differently. The practical assessments will follow.",
   "sources": [
     {
       "id": "faa-powerplant-2023",
@@ -284,6 +284,207 @@
           }
         }
       ]
+    },
+    {
+      "id": "light-sport-aircraft",
+      "thumbnail": "./thumbnails/lesson-light-sport-aircraft.webp",
+      "sequenceNumber": 17,
+      "title": "Light Sport Aircraft",
+      "objective": "Describe what makes an aircraft light-sport and why its engine must be light and reliable, name who may maintain and inspect these engines, recognise the common two-stroke and four-stroke light-sport engines, and carry out the basic checks and troubleshooting the handbook describes.",
+      "reviewStatus": "unreviewed",
+      "models": [],
+      "listed": true,
+      "scheduledDay": 6,
+      "completionCriteria": "State the main limits of a light-sport aircraft, say who may work on its engine, tell the common engines apart, work out an overhaul limit and a leak-down loss, read a spark plug tip and a magnetic plug, and describe the first action for an over-temperature or a knocking engine.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "What makes an aircraft light-sport",
+          "prompt": "A light-sport aircraft has to stay within limits. Its maximum takeoff weight is 1,320 lb (600 kg), or 1,430 lb (650 kg) if it is meant for water. Its top speed in level flight at maximum continuous power is 120 knots, and its stall speed with no lift devices is at most 45 knots. It seats two at most, has one reciprocating engine if it is powered, a fixed or ground-adjustable propeller, an unpressurized cabin, and fixed landing gear, except on water and glider types. The handbook warns that regulations change, so always check the current rules. Why do you think engine weight and simplicity matter so much for an aircraft like this?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 434 (the thirteen requirements of a light-sport aircraft: maximum takeoff weight 1,320 lb or 1,430 lb for water, VH not more than 120 knots CAS, stall speed VS1 not more than 45 knots CAS, no more than two seats, a single reciprocating engine if powered, a fixed or ground-adjustable propeller, a non-pressurized cabin, fixed landing gear; the note that regulations are subject to change) and EASA Module 16, PDF p. 333 (the same list). The course deck (slide 268) gives the stall limit as Vs0; the handbook says VS1, and the lesson follows the handbook.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The list of limits is the content; the numeric checks test the key figures."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Engines for a narrow margin",
+          "prompt": "Light-sport aircraft have a narrow margin of useful load, so every excess pound of engine reduces performance. Weight is a key concern. The engine must also be reliable: able to deliver its rating in all flight attitudes and in extreme weather. Its maker ensures this by design, research and testing. Most of these engines are not FAA-certificated, but their makers keep a close control of manufacture and assembly, test every engine before it leaves the factory, and meet American Society for Testing and Materials (ASTM) standards. Some engines used in light-sport aircraft are FAA-certificated, and they are maintained to the maker's instructions and 14 CFR.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 434 (light-sport aircraft have a narrow margin of useful load; engine weight is very important; reliability means performing at the specified ratings in widely varying attitudes and extreme weather; most of these engines are not certificated by the FAA but are closely controlled, factory tested and meet ASTM standards; some are FAA-certificated and are maintained per the manufacturer's instructions and 14 CFR) and EASA Module 16, PDF p. 333. The course deck (slide 271) divides engines into certified engines designed under ASTM standards and experimental engines; the handbook does not describe the Continental O-200 that way and the lesson does not either.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Two ideas, weight and how reliability is assured when most engines are not certificated."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Overhaul time and calendar life",
+          "prompt": "Most light-sport engines need an overhaul after a set time. The maker sets or implies it, and it depends on the type of engine, the engine temperatures, the time spent at high power, and the maintenance given. The table shows the handbook's examples for the Rotax 914. Each limit is in hours and in years, and whichever comes first ends the engine's life. For the earlier engines, carrying out service bulletin SB-914-027 can raise the limit to between 1,000 and 1,200 hours, or 12 years. A seldom-flown engine can reach its calendar limit long before its hours. After that limit the engine is overhauled, sometimes at the maker's facility.",
+          "url": "./lesson-media/faa-lsa-tbo-table.webp",
+          "alt": "FAA table, Examples of TBO and calendar life for engines. Rotax 914 F and 914 UL engines up to a given serial number have a time between overhaul of 1,000 hours or 10 years whichever comes first, which service bulletin SB-914-027 can raise to 1,000 to 1,200 hours or 12 years. Later engines have 1,200 hours or 12 years, whichever comes first, and need no bulletin.",
+          "credit": "FAA-H-8083-32B, Figure 11-1",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 434-435 (most light-sport engines require a definite time interval between overhauls, specified or implied by the manufacturer; it varies with the type of engine, operating conditions such as engine temperatures, time at high-power settings, and the maintenance received; after the limit the engine has to be overhauled, sometimes at an authorized manufacturer's facility; Figure 11-1, examples of TBO and calendar life for engines). EASA Module 16, PDF p. 334 has the same table. The figures are examples for those serial numbers, not general limits.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The handbook table shows hours and calendar limits together."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Who may work on them",
+          "prompt": "The holder of a powerplant certificate can maintain and inspect light-sport engines. A sport pilot may do preventive maintenance on a light-sport aircraft that the pilot owns or operates. A light-sport repairman can hold two ratings. With an inspection rating, which needs a 16-hour course, the holder may do the annual condition inspection on an experimental light-sport aircraft that they own. With a maintenance rating, which needs at least 120 hours of training for airplanes, the holder may approve for return to service after maintenance, the annual condition inspection and the 100-hour inspection of an aircraft with a special airworthiness certificate. Training for a class can be 104 hours or 80 hours.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 435-436 (a powerplant certificate holder can perform maintenance and inspection; a sport pilot may perform preventive maintenance on an aircraft the pilot owns or operates with a special light-sport airworthiness certificate; the repairman certificate (light-sport aircraft) with an inspection rating, a 16-hour course, annual condition inspection of an owned experimental aircraft; with a maintenance rating, training of 120 hours for airplanes, 104 for weight-shift control and powered parachutes, 80 for lighter-than-air and gliders; return to service after maintenance, the annual condition inspection and the 100-hour inspection under 14 CFR 91.327; major repairs need more training). The course deck (slides 269 and 270) gives the same roles and adds the EASA side (B1.2 or B3 licence holders), which the handbook does not cover and the instructor should confirm.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Roles and privileges as a list; a matching check tests them."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Two-stroke engines: Rotax 503 and 582",
+          "prompt": "Many light-sport aircraft and ultralights fly with the Rotax 447, 503 or 582: a two-cylinder, two-stroke inline engine with a small frontal area. It is piston ported. The 447 and 503 are air-cooled, and the 582 is liquid-cooled, with a water pump, a radiator, a pressure cap and an overflow bottle. As a two-stroke engine it must be lubricated by oil in the fuel, either premixed at 1:50, which is 2 percent oil, or from an oil tank by an injection pump driven from the crankshaft. The pump's delivery follows engine speed and a lever linked to the throttle. Ignition is a breakerless capacitor discharge system, and the propeller is driven through a gearbox with a shock absorber.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 436-438 (the Rotax 447 UL SCDI and 503 UL DCDI two-cylinder inline two-stroke, piston ported, fan or free air-cooled; the 582 liquid-cooled, with pressure cap and overflow bottle; lubrication by oil premixed in the fuel at 1:50 (2 percent) or oil injection from a separate tank by a crankshaft-driven pump whose output follows rpm and the throttle-linked lever; breakerless capacitor discharge ignition, a dual system on the 503 and single on the 447; a flange-connected gearbox with shock absorber). The handbook says its light-sport maintenance notes are for education and not for actual maintenance: the current manufacturer's instructions always apply. The course deck (slide 272) lists the Rotax 582 as a liquid-cooled inline two-cylinder.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A compact description of the two-stroke line; the learner has met two-strokes in the Thermodynamic Cycles lesson."
+          }
+        },
+        {
+          "type": "text",
+          "title": "The four-stroke flat four: Rotax 914",
+          "prompt": "The Rotax 912 and 914 are four-cylinder, four-stroke horizontally opposed engines. They weigh about the same as the 582, have a narrow outline and low vibration, and are ASTM approved for light-sport aircraft, with some models certificated by the FAA. The heads are liquid-cooled and the cylinders are cooled by ram air. On the 914, the oil is carried in a tank in a dry-sump system, and a camshaft-driven pump forces it through a cooler and filter. Ignition is a dual breakerless capacitor discharge unit, firing order 1-4-2-3, that needs no battery. The 914 also has an exhaust-driven turbocharger, with an electronically controlled wastegate that sets the boost pressure.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 439-442 (the four-cylinder, four-stroke horizontally opposed engine with liquid-cooled heads and ram-air-cooled cylinders; low weight-to-power ratio, narrow silhouette, low vibration; same weight as the Rotax 582; ASTM approved with some models FAA-certificated; the Rotax 914 cooling circuit with expansion tank and overflow bottle; its dry-sump lubrication with oil tank, cooler and camshaft-driven pump; the dual breakerless capacitor discharge ignition with integrated generator, needing no external power, firing order 1-4-2-3; the exhaust gas turbocharger and electronically controlled wastegate). The handbook says its light-sport maintenance notes are for education and not for actual maintenance: the current manufacturer's instructions always apply. The course deck (slide 272) calls the Rotax 912 air and liquid cooled, opposed, and the most common in light-sport aircraft; the handbook text read here describes the 914.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Description of one widely used engine; the 3D course engine is a larger relative."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Jabiru and other engines",
+          "prompt": "The Jabiru 2200 is a four-cylinder, four-stroke, horizontally opposed, air-cooled engine of 2,200 cc that gives 85 hp at 3,300 rpm and weighs 132 lb installed, with ram-air ducts in place of baffles and direct propeller drive. The Jabiru 3300 is a six-cylinder 120 hp version. Both have fixed ignition timing, dual magneto-type ignition and hydraulic lifters. Others appear too: Volkswagen conversions, and the Continental O-200, a four-cylinder, carbureted 100 hp engine at 2,750 rpm that has become popular in light-sport aircraft. Lycoming makes an experimental, non-certificated version of its 233 series for light-sport aircraft.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 443-448 (the Jabiru 2200 cc: four-cylinder, four-stroke, horizontally opposed, air-cooled, 85 hp at 3,300 rpm, 132 lb, two ram-air cooling ducts in place of baffles and plenum, direct drive, firing order 1-3-2-4, 25 degrees BTDC; the Jabiru 3300: six-cylinder, 120 hp at 3,300 rpm, 178 lb, firing order 1-4-5-2-3-6, fixed timing; hydraulic lifters; Volkswagen conversions; the Teledyne Continental O-200, four-cylinder carbureted, 100 bhp at 2,750 rpm, 201 cu in, popular for light-sport aircraft; the Lycoming O-233, an experimental non-certificated version). The course deck (slides 271 and 272) also lists the Hirth F23 two-stroke and the ULPower UL260i, which the handbook text read here does not mention.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A set of engines to recognise; the matching check tests a few of them."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Daily and preflight checks",
+          "prompt": "Maintenance on these engines begins with a safe habit: the ignition is off, and the ignition system is grounded. As long as the ground lead is not properly connected, the ignition is live, even if the switch says off. For a Rotax engine the preflight list includes: ignition off, fuel content, coolant leaks, oil tank content, spark plug connectors, oil leaks from the engine and gearbox, loose or missing fasteners, propeller condition and mounting, free and full movement of the throttle, oil pump and choke, the cooling fan turning, and the exhaust. Repair every discrepancy before flight. Rotating the engine by hand to listen for noises is done only after double-checking the ignition off.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 449 (ignition off and grounded, battery disconnected; as long as the ground cable (P-lead) is not properly connected to ground, the ignition is switched on, hot) and PDF pp. 454-455 (the Rotax preflight checklist: verify ignition off, fuel content, coolant leaks, oil tank content, spark plug connectors, oil leaks, loose or missing nuts and bolts, propeller splits and mounting, free and full actuation of throttle, oil pump and choke, cooling fan turns, exhaust; repair all discrepancies before flight; rotate the engine by hand and listen for unusual noises after double verifying ignition off), the same list on EASA Module 16, PDF p. 356. The course deck (slide 273) adds the 50-hour and 100-hour or annual checks.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The safety rule about the ground lead is the most important point of the step."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Leak-down on a light-sport engine",
+          "prompt": "The handbook's Jabiru notes give two ways to check compression. A compression gauge reading below 6 bar (90 psi), taken at full throttle with the oil at 30 to 70°C, means the pistons, cylinders, valves and heads need checking. The better test is the pressure differential, or leak-down, test: set the input to 80 psi with the piston at top dead centre on the firing stroke and the propeller restrained. A reading of lower than 80/60, a loss of about 25 percent, shows a problem. Blow-by through the crankcase vent means worn rings or bore. Leaking from the carburettor means a poor intake valve seal, from the exhaust a poor exhaust valve seal, and at the head a poor head-to-cylinder seal.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 457 (in the Jabiru maintenance notes: the compression gauge method, with readings below 6 bar (90 psi) at full throttle and oil temperature 30 to 70 degrees C needing a check of pistons, cylinders, valves and heads; the pressure differential test, a maximum allowable loss of 25 percent, input pressure best set at 80 psi, piston at top dead centre on the firing stroke, the propeller restrained, lower than 80/60 indicating a problem; blow-by through the crankcase vent indicates worn rings or bore, leaking from the carburetor a poor intake valve seal, from the exhaust a poor exhaust valve seal, a head leak a poor head-to-cylinder seal). The handbook says its light-sport maintenance notes are for education and not for actual maintenance: the current manufacturer's instructions always apply.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The same test the learner met in the Maintenance & Servicing lesson, with the light-sport limit."
+          }
+        },
+        {
+          "type": "text",
+          "title": "What a plug and a chip tell you",
+          "prompt": "Two small parts reveal the engine's health. Take the plugs out of a warm engine and look at the tip. Light brown means the plug is working correctly. A black, velvety, sooty tip generally means a mixture that is too rich, so check the choke, the air filter and the intake. A tip covered in oil means too much oil in the combustion chamber, so check for worn piston rings and cylinder walls. The Rotax magnetic plug collects metal from the gearbox and engine. A significant amount of chips means the engine must be inspected, repaired or overhauled, and a few steel chips under about 3 mm can be tolerated, but an unclear finding calls for flushing the oil circuit and a new filter.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 457 (in the Jabiru maintenance notes: with plugs removed from a warm engine, a light brown tip means the plug is operating correctly, a black velvet sooty tip generally an overly rich mixture, a tip covered in oil too much oil in the combustion chamber, to check for worn piston rings and cylinder walls; do not use steel or brass brushes and never sandblast plugs) and PDF p. 454 (in the Rotax notes: the magnetic plug is inspected for accumulation of chips, which shows the internal condition of the gearbox and engine; a significant amount of metal chips means the engine must be inspected, repaired or overhauled; steel chips in low numbers can be tolerated if the accumulation is below 3 mm; unclear findings call for flushing the oil circuit, a new oil filter, a test run and another inspection). The course deck (slide 275) asks plug-tip diagnosis as a recap question.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Two small parts that give the technician information; a matching check covers the plug tips."
+          }
+        },
+        {
+          "type": "text",
+          "title": "When something goes wrong",
+          "prompt": "Troubleshoot in an organised way: for fuel, start at the tank, then the fittings, the filter and the float chamber; for spark, check each plug. Leave complex problems to an engine technician. Knocking under load can mean fuel of too low an octane rating, or fuel starvation and a lean mixture. An engine that keeps running with the ignition off is overheated, and should be left to cool at about 2,000 rpm idle. Exceeding the maximum engine speed means reducing speed. Exceeding the cylinder head or exhaust gas temperature limit means reducing power to the minimum necessary and making a precautionary landing. In every case the pilot enters the overage in the logbook, with its duration and extent.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 455-456 (in the Rotax notes: organised troubleshooting, fuel first (tank, fittings, filter, float chamber) and spark; engine keeps running with ignition off from overheating, let it cool at about 2,000 rpm; knocking under load from too low an octane rating, or fuel starvation and a lean mixture; exceeding maximum engine speed, cylinder head or exhaust gas temperature: reduce speed or power, make a precautionary landing and enter the overage in the logbook with duration and extent), the same on EASA Module 16, PDF p. 357. The course deck (slide 274) lists symptoms and likely causes in a table of its own (rough idle, hot running, power loss on climb, high fuel consumption, vibration), which the handbook does not give and the instructor should confirm. The handbook says its light-sport maintenance notes are for education and not for actual maintenance: the current manufacturer's instructions always apply.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Symptoms and first actions the learner will use in the practical sessions."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Plan an inspection",
+          "prompt": "A customer brings in a two-seat light-sport aircraft with a four-cylinder opposed engine. The engine is rough at idle and runs hot in the climb. The owner holds a sport pilot certificate and asks what they may do themselves. Say in your own words what you would check first, in what order, and why; which test you would use to judge the cylinders and what reading would worry you; what the plug tips and the magnetic plug could tell you; and which of the work the owner could do under a sport pilot certificate, and which must be done by a repairman or a mechanic.",
+          "note": "Completion step: the learner applies the lesson (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 434-458, with the course deck (slide 274, rough engine at idle and an engine that runs hot among its symptoms). The learner works with the handbook's limits for the engines described and is reminded that the current manufacturer's instructions apply.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The learner plans the job in their own words."
+          }
+        }
+      ]
     }
   ],
   "checks": [
@@ -504,6 +705,194 @@
       ],
       "correct": 1,
       "rationale": "The manual's notes in paragraph 7-15 recommend replacing all exhaust valves and rotocaps, and all hydraulic lifters, at each major overhaul regardless of condition. Always read the current instructions for the engine in front of you."
+    },
+    {
+      "id": "lsa-max-speed",
+      "lessonId": "light-sport-aircraft",
+      "type": "numeric",
+      "question": "What is the maximum airspeed in level flight at maximum continuous power (VH) of a light-sport aircraft, in knots?",
+      "hint": "It is one of the limits that defines the category.",
+      "unit": "knots",
+      "correctValue": 120,
+      "tolerance": 0,
+      "rationale": "VH may not be more than 120 knots calibrated airspeed under standard sea-level conditions. The stall speed limit is 45 knots and the maximum takeoff weight is 1,320 lb for an aircraft not intended for water."
+    },
+    {
+      "id": "lsa-stall-speed",
+      "lessonId": "light-sport-aircraft",
+      "type": "numeric",
+      "question": "What is the maximum stall speed of a light-sport aircraft without lift-enhancing devices, in knots?",
+      "hint": "The handbook calls it VS1.",
+      "unit": "knots",
+      "correctValue": 45,
+      "tolerance": 0,
+      "rationale": "The limit is 45 knots calibrated airspeed at maximum certificated takeoff weight and the most critical centre of gravity."
+    },
+    {
+      "id": "lsa-calendar-limit",
+      "lessonId": "light-sport-aircraft",
+      "type": "numeric",
+      "question": "A Rotax 914 has a TBO of 1,200 hours or 12 years, whichever comes first. The aircraft is flown 60 hours a year. After how many years must the engine be overhauled?",
+      "hint": "Work out how long 1,200 hours would take at 60 hours a year, then compare it with the calendar limit.",
+      "unit": "years",
+      "correctValue": 12,
+      "tolerance": 0,
+      "rationale": "1,200 hours at 60 hours a year would take 20 years, so the 12-year calendar limit comes first. A seldom-flown engine is overhauled for its age, not its hours."
+    },
+    {
+      "id": "lsa-leak-down-loss",
+      "lessonId": "light-sport-aircraft",
+      "type": "numeric",
+      "question": "In a leak-down test the input pressure is 80 psi and the cylinder gauge reads 60 psi. What is the percentage loss?",
+      "hint": "Loss = (input - reading) ÷ input.",
+      "unit": "%",
+      "correctValue": 25,
+      "tolerance": 0,
+      "rationale": "(80 - 60) ÷ 80 = 25 percent. The handbook gives a maximum allowable loss of 25 percent, and a differential lower than 80/60 indicates a problem."
+    },
+    {
+      "id": "lsa-match-personnel",
+      "lessonId": "light-sport-aircraft",
+      "type": "matching",
+      "question": "Match each person to what they may do.",
+      "hint": "Think about the rating and what it was trained for.",
+      "pairs": [
+        {
+          "left": "Sport pilot",
+          "right": "Preventive maintenance on a light-sport aircraft they own or operate"
+        },
+        {
+          "left": "Repairman with inspection rating",
+          "right": "The annual condition inspection of an experimental aircraft they own"
+        },
+        {
+          "left": "Repairman with maintenance rating",
+          "right": "Maintenance, annual and 100-hour inspections of a special-certificate aircraft, and return to service"
+        },
+        {
+          "left": "Powerplant certificate holder",
+          "right": "Maintenance and inspection of light-sport engines"
+        }
+      ],
+      "rationale": "The inspection rating needs only a 16-hour course and is limited to the holder's own experimental aircraft. The maintenance rating needs a longer course, 120 hours for airplanes, and allows return to service. A sport pilot may only do preventive maintenance."
+    },
+    {
+      "id": "lsa-match-engines",
+      "lessonId": "light-sport-aircraft",
+      "type": "matching",
+      "question": "Match each engine to its description.",
+      "hint": "Think about cycles, cylinders and cooling.",
+      "pairs": [
+        {
+          "left": "Rotax 582",
+          "right": "Two-cylinder, two-stroke inline engine, liquid-cooled"
+        },
+        {
+          "left": "Rotax 914",
+          "right": "Four-stroke flat four with an exhaust-driven turbocharger"
+        },
+        {
+          "left": "Jabiru 3300",
+          "right": "Air-cooled flat six of 120 hp"
+        },
+        {
+          "left": "Continental O-200",
+          "right": "Four-cylinder carbureted engine of 100 hp"
+        }
+      ],
+      "rationale": "The 582 is a liquid-cooled two-stroke. The 914 is a four-stroke flat four with liquid-cooled heads and a turbocharger. The Jabiru 3300 is a six-cylinder, ram-air-cooled engine, and the O-200 is a four-cylinder carbureted engine producing 100 bhp."
+    },
+    {
+      "id": "lsa-match-plug-tips",
+      "lessonId": "light-sport-aircraft",
+      "type": "matching",
+      "question": "Match each spark plug tip to what it tells you.",
+      "hint": "The plugs are taken out of a warm engine.",
+      "pairs": [
+        {
+          "left": "Light brown",
+          "right": "The plug is working correctly"
+        },
+        {
+          "left": "Black and sooty, like velvet",
+          "right": "The mixture is too rich"
+        },
+        {
+          "left": "Covered in oil",
+          "right": "Too much oil in the chamber: check the rings and cylinder walls"
+        }
+      ],
+      "rationale": "A light brown tip is healthy. Soot means a rich mixture, so check the choke, the air filter and the intake. Oil on the tip means oil is getting into the chamber past worn rings or cylinder walls."
+    },
+    {
+      "id": "lsa-which-qualifies",
+      "lessonId": "light-sport-aircraft",
+      "type": "multiple-choice",
+      "question": "Which powered airplane could qualify as a light-sport aircraft?",
+      "hint": "Check seats, engines, propeller and landing gear.",
+      "answers": [
+        "A two-seat airplane with one piston engine, a fixed-pitch propeller and fixed landing gear",
+        "A four-seat airplane with one piston engine and a fixed-pitch propeller",
+        "A two-seat airplane with two piston engines and fixed landing gear"
+      ],
+      "correct": 0,
+      "rationale": "A light-sport aircraft has no more than two seats, a single reciprocating engine if powered, and a fixed or ground-adjustable propeller, with fixed gear except on water and glider types."
+    },
+    {
+      "id": "lsa-ground-lead",
+      "lessonId": "light-sport-aircraft",
+      "type": "multiple-choice",
+      "question": "When is the ignition of a light-sport engine live, even with the switch off?",
+      "hint": "Think about what the P-lead does.",
+      "answers": [
+        "Only when the engine is hot",
+        "Whenever the ground lead is not properly connected to ground",
+        "Only when the battery is charged"
+      ],
+      "correct": 1,
+      "rationale": "The handbook says that as long as the ground cable, the P-lead, is not properly connected to ground, the ignition is on. That is why the propeller is secured and a safety zone observed whenever the engine could be started."
+    },
+    {
+      "id": "lsa-knocking",
+      "lessonId": "light-sport-aircraft",
+      "type": "multiple-choice",
+      "question": "Knocking under load on a light-sport engine can be caused by:",
+      "hint": "Think back to detonation.",
+      "answers": [
+        "Fuel of too low an octane rating, or fuel starvation giving a lean mixture",
+        "Too much oil in the sump",
+        "A propeller of too high a pitch"
+      ],
+      "correct": 0,
+      "rationale": "Knocking under load is detonation. The handbook gives fuel with too low an octane rating, or fuel starvation and a lean mixture, as the causes, and the remedy is a higher octane fuel or checking the fuel supply."
+    },
+    {
+      "id": "lsa-over-temperature",
+      "lessonId": "light-sport-aircraft",
+      "type": "multiple-choice",
+      "question": "The cylinder head temperature goes above its maximum in flight. What does the handbook say to do?",
+      "hint": "Reduce the heat first, and then record it.",
+      "answers": [
+        "Climb to cooler air and keep the power set",
+        "Reduce power to the minimum necessary, make a precautionary landing, and log the overage",
+        "Lean the mixture and continue to the destination"
+      ],
+      "correct": 1,
+      "rationale": "Reduce engine power to the minimum necessary and carry out a precautionary landing. The pilot also enters the duration and extent of the over-temperature in the logbook."
+    },
+    {
+      "id": "lsa-magnetic-plug",
+      "lessonId": "light-sport-aircraft",
+      "type": "multiple-choice",
+      "question": "A significant amount of metal chips is found on the magnetic plug of a Rotax engine. What must be done?",
+      "hint": "The chips say something about the inside of the engine.",
+      "answers": [
+        "Clean the plug and put it back",
+        "Change the oil only",
+        "The engine must be inspected, repaired or overhauled"
+      ],
+      "correct": 2,
+      "rationale": "The magnetic plug reveals the internal condition of the gearbox and engine. A significant amount of chips means the engine must be inspected, repaired or overhauled. Only a few steel chips under about 3 mm can be tolerated."
     }
   ]
 }

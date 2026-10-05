@@ -46,4 +46,6 @@ const THUMBNAIL_CAPTURES = [
   { model: 'gtsio520-h-v5-teaching-engine', name: 'lesson-maintenance-servicing-square', view: {}, options: { zoom: 0.68, orbit: [-125, 22], pan: [-5, 8] } },
   { model: 'gtsio520-h-v5-teaching-engine', name: 'course-maintenance-square', view: {}, options: { zoom: 0.8, orbit: [215, 18], pan: [0, 10] } },
   { model: 'gtsio520-h-v5-teaching-engine', name: 'banner-maintenance', view: {}, options: { width: 1000, height: 500, zoom: 0.6, orbit: [-150, 12], pan: [0, 8] } },
+  // Lesson 17 (Light Sport Aircraft).
+  { model: 'gtsio520-h-v5-teaching-engine', name: 'lesson-light-sport-aircraft-square', view: {}, options: { zoom: 0.75, orbit: [-30, 15], pan: [0, 5] } },
 ];

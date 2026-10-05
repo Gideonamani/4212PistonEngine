@@ -155,5 +155,10 @@
     "title": "Differential compression tester diagram",
     "source": "FAA-H-8083-32B, Figure 10-53",
     "license": "U.S. Government work"
+  },
+  "faa-lsa-tbo-table.webp": {
+    "title": "Examples of TBO and calendar life for engines",
+    "source": "FAA-H-8083-32B, Figure 11-1",
+    "license": "U.S. Government work"
   }
 }
