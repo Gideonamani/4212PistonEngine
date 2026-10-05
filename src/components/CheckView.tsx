@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from 'react';
 import confetti from 'canvas-confetti';
 import { Award, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Clock, FileQuestion, Lightbulb, RotateCcw, Sparkles } from 'lucide-react';
 import type { QuizModule, QuizQuestion } from '../types/engine';
-import { VisualIllustration } from './VisualIllustrations';
 import { CardImage, CardRow, IconButton } from './ui';
 import { ProgressNavigator, type ProgressItem } from './ProgressNavigator';
 
@@ -90,11 +89,10 @@ export const CheckView: React.FC<CheckViewProps> = ({ modules, focusLessonId }) 
             <div><h2 className="text-2xl font-bold text-white">Knowledge checks</h2><p className="mt-1 text-xs leading-relaxed text-slate-300">Work through the checks shipped with each lesson pack. Answers and rationales come from the same validated curriculum files as Learn mode.</p>
               <div className="mt-3 flex flex-wrap gap-2 font-mono text-[11px]"><span className="rounded-md border border-teal-500/30 bg-teal-950/40 px-2.5 py-1 text-teal-300"><FileQuestion className="mr-1 inline h-3.5 w-3.5" />{modules.length} assessment tracks</span><span className="rounded-md border border-slate-700/60 bg-slate-900/70 px-2.5 py-1 text-slate-300"><Sparkles className="mr-1 inline h-3.5 w-3.5" />Evidence-backed feedback</span></div>
             </div>
-            <div className="h-24 w-24 shrink-0 overflow-hidden rounded-xl border border-teal-500/20"><VisualIllustration type="gauges" className="h-full w-full" /></div>
           </div>
         </section>
         <div className="flex items-center justify-between"><h3 className="font-bold text-white">Assessment modules</h3><span className="font-mono text-xs text-slate-400">{modules.reduce((sum, module) => sum + module.questionCount, 0)} questions</span></div>
-        <div className="flex flex-col gap-2.5">{modules.map((module) => <CardRow key={module.id} onClick={() => start(module)} image={<CardImage src={module.thumbnail} fallbackType={module.imageType} />}><div className="flex flex-wrap items-center gap-2"><span className="rounded-md border border-teal-500/30 bg-teal-950/40 px-2 py-0.5 font-mono text-[11px] font-semibold text-teal-400">{module.badge}</span>{bestScores[module.id] !== undefined && <span className="font-mono text-[11px] font-bold text-emerald-400">Best {bestScores[module.id]}/{module.questionCount}</span>}</div><h4 className="mt-1 truncate text-sm font-bold text-white transition group-hover:text-teal-300 sm:text-base">{module.title}</h4><p className="mt-0.5 line-clamp-2 text-xs leading-snug text-slate-300">{module.subtitle}</p><div className="mt-2 flex items-center gap-3 font-mono text-[11px] text-slate-400"><span><FileQuestion className="mr-1 inline h-3 w-3 text-teal-400" />{module.questionCount} questions</span><span><Clock className="mr-1 inline h-3 w-3" />{module.approxMinutes}</span></div></CardRow>)}</div>
+        <div className="flex flex-col gap-2.5">{modules.map((module) => <CardRow key={module.id} onClick={() => start(module)} image={<CardImage src={module.thumbnail} />}>{bestScores[module.id] !== undefined && <div className="flex flex-wrap items-center gap-2"><span className="font-mono text-[11px] font-bold text-emerald-400">Best {bestScores[module.id]}/{module.questionCount}</span></div>}<h4 className="mt-1 truncate text-sm font-bold text-white transition group-hover:text-teal-300 sm:text-base">{module.title}</h4><p className="mt-0.5 line-clamp-2 text-xs leading-snug text-slate-300">{module.subtitle}</p><div className="mt-2 flex items-center gap-3 font-mono text-[11px] text-slate-400"><span><FileQuestion className="mr-1 inline h-3 w-3 text-teal-400" />{module.questionCount} questions</span><span><Clock className="mr-1 inline h-3 w-3" />{module.approxMinutes}</span></div></CardRow>)}</div>
       </div>
     </div>;
   }
@@ -116,7 +114,7 @@ export const CheckView: React.FC<CheckViewProps> = ({ modules, focusLessonId }) 
         summary={<><span className="text-white">Question {questionIndex + 1} of {total}</span><span className="ml-auto font-mono text-[11px] text-slate-400">{activeModule.questions.filter((_, index) => submitted[index]).length} answered</span></>}
       />
       <section className="flex flex-col gap-4 rounded-2xl border border-teal-500/30 bg-[#08181e] p-5 shadow-xl">
-        <div className="flex items-center justify-between font-mono text-xs"><span className="font-bold tracking-wider text-teal-400">{current.type === 'ordering' ? 'ORDER THE ITEMS' : 'SELECT ONE ANSWER'}</span><span className="rounded-full border border-slate-700 bg-slate-900 px-2 py-0.5 text-[11px] uppercase text-slate-400">{current.category}</span></div>
+        <div className="flex items-center justify-between font-mono text-xs"><span className="font-bold tracking-wider text-teal-400">{current.type === 'ordering' ? 'ORDER THE ITEMS' : 'SELECT ONE ANSWER'}</span></div>
         <h3 className="text-base font-bold leading-snug text-white sm:text-lg">{current.question}</h3>
         {current.hint && <div className="flex gap-2 rounded-xl border border-amber-500/25 bg-amber-950/20 p-3 text-xs leading-relaxed text-amber-100"><Lightbulb className="h-4 w-4 shrink-0 text-amber-300" />{current.hint}</div>}
         {current.type === 'multiple-choice' ? <div className="flex flex-col gap-2.5">{current.options.map((option, index) => {

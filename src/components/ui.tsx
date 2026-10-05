@@ -1,5 +1,6 @@
 import React from 'react';
-import { ChevronLeft, ChevronRight, type LucideIcon } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ClipboardList, type LucideIcon } from 'lucide-react';
+import type { Lesson } from '../types/engine';
 import { CardThumbnail } from './CardThumbnail';
 
 // The small pieces the lists share, so a restyle happens once.
@@ -15,6 +16,13 @@ export const Chip: React.FC<{ icon?: LucideIcon; tone?: 'plain' | 'accent'; size
     {Icon && <Icon className={`${size === 'sm' ? 'w-3 h-3' : 'w-3.5 h-3.5'} text-teal-400`} />}
     <span>{children}</span>
   </div>
+);
+
+/** Shown on a lesson until the instructor has reviewed it (reviewStatus in the lesson pack); renders nothing once it is reviewed. */
+export const ReviewChip: React.FC<{ lesson: Pick<Lesson, 'reviewStatus'> }> = ({ lesson }) => lesson.reviewStatus === 'reviewed' ? null : (
+  <span className="inline-flex items-center gap-1 rounded-md border border-amber-400/30 bg-amber-950/30 px-2 py-0.5 font-mono text-[11px] font-semibold normal-case tracking-normal text-amber-300">
+    <ClipboardList className="h-3 w-3" aria-hidden="true" />Instructor review pending
+  </span>
 );
 
 /**
@@ -66,9 +74,9 @@ const imageSize = {
 };
 
 /** A rounded square card image with the standard frame. */
-export const CardImage: React.FC<{ src?: string; fallbackType: React.ComponentProps<typeof CardThumbnail>['fallbackType']; size?: keyof typeof imageSize }> = ({ src, fallbackType, size = 'md' }) => (
+export const CardImage: React.FC<{ src?: string; size?: keyof typeof imageSize }> = ({ src, size = 'md' }) => (
   <div className={`${imageSize[size]} rounded-xl overflow-hidden border border-white/10 shrink-0 relative`}>
-    <CardThumbnail src={src} fallbackType={fallbackType} />
+    <CardThumbnail src={src} />
   </div>
 );
 
@@ -82,15 +90,17 @@ export const RowChevron: React.FC = () => (
 /**
  * A tappable list row: a card image beside the text, then a chevron. Put the image on the right (`imageSide="end"`) for the course
  * list, where the text leads. Children go in the text column; use `group-hover:` classes in them to react to the row being hovered.
+ * A `footer` takes a line of its own across the whole card, for a note that does not fit the narrow text column.
  */
-export const CardRow: React.FC<{ onClick: () => void; image: React.ReactNode; imageSide?: 'start' | 'end'; align?: 'start' | 'center'; children: React.ReactNode }> = ({ onClick, image, imageSide = 'start', align = 'center', children }) => (
+export const CardRow: React.FC<{ onClick: () => void; image: React.ReactNode; imageSide?: 'start' | 'end'; align?: 'start' | 'center'; footer?: React.ReactNode; children: React.ReactNode }> = ({ onClick, image, imageSide = 'start', align = 'center', footer, children }) => (
   <button
     type="button"
     onClick={onClick}
-    className={`group w-full p-3.5 rounded-2xl bg-[#09181e]/90 border border-white/5 hover:border-teal-500/40 shadow-md cursor-pointer text-left transition-all hover:scale-[1.005] active:scale-[0.99] flex ${align === 'start' ? 'items-start' : 'items-center'} justify-between gap-3`}
+    className={`group w-full p-3.5 rounded-2xl bg-[#09181e]/90 border border-white/5 hover:border-teal-500/40 shadow-md cursor-pointer text-left transition-all hover:scale-[1.005] active:scale-[0.99] flex flex-wrap ${align === 'start' ? 'items-start' : 'items-center'} justify-between gap-x-3 gap-y-2`}
   >
     {imageSide === 'start' && image}
     <div className="flex-1 min-w-0">{children}</div>
     {imageSide === 'end' ? <div className="flex items-center gap-2 shrink-0">{image}<RowChevron /></div> : <RowChevron />}
+    {footer && <div className="basis-full">{footer}</div>}
   </button>
 );

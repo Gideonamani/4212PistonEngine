@@ -13,7 +13,7 @@ const packs = manifest.packs.map((path) => readJson(`web/${path.replace(/^\.\//,
 
 // The fields the mapper copied one by one before it used a spread. Each must still reach the screens untouched.
 const LEGACY_FIELDS = ['type', 'title', 'note', 'modelId', 'savedMotionId', 'motionProgress', 'viewPreset', 'focusHotspots', 'focusParts', 'deepDiveLinks', 'action', 'url', 'alt', 'credit', 'license', 'sourceUrl', 'sourceRefs', 'mediaPlan'];
-const DERIVED = ['stepNumber', 'text', 'imageType', 'suggestedAnswer', 'has3DReference', 'referenceModel'];
+const DERIVED = ['stepNumber', 'text', 'suggestedAnswer', 'has3DReference', 'referenceModel'];
 
 test('every field of every shipped step reaches the mapped step', () => {
   let steps = 0;
@@ -56,7 +56,7 @@ test('a field added to a pack step passes through without touching the mapper', 
 });
 
 test('courses list only listed lessons; unlisted lessons a step links to become deep dives', () => {
-  const lesson = (id, extra = {}) => ({ id, title: id, objective: id, steps: [{ type: 'text', title: id, prompt: id, ...extra.step }], ...extra.lesson });
+  const lesson = (id, extra = {}) => ({ id, title: id, objective: id, reviewStatus: 'unreviewed', steps: [{ type: 'text', title: id, prompt: id, ...extra.step }], ...extra.lesson });
   const pack = {
     id: 'p', title: 'Pack', description: 'About engines', checks: [],
     lessons: [
@@ -81,8 +81,8 @@ test('checks of parked lessons are hidden, those of deep dives stay', () => {
   const pack = {
     id: 'm2-cylinder-study', title: 'Pack', description: 'd',
     lessons: [
-      { id: 'a', title: 'a', objective: 'a', steps: [{ type: 'text', title: 'a', prompt: 'a', deepDiveLinks: ['dive'] }] },
-      { id: 'dive', title: 'd', objective: 'd', listed: false, steps: [{ type: 'text', title: 'd', prompt: 'd' }] },
+      { id: 'a', title: 'a', objective: 'a', reviewStatus: 'unreviewed', steps: [{ type: 'text', title: 'a', prompt: 'a', deepDiveLinks: ['dive'] }] },
+      { id: 'dive', title: 'd', objective: 'd', reviewStatus: 'unreviewed', listed: false, steps: [{ type: 'text', title: 'd', prompt: 'd' }] },
       { id: 'parked', title: 'p', objective: 'p', listed: false, steps: [{ type: 'text', title: 'p', prompt: 'p' }] },
     ],
     checks: [check('c1', 'a'), check('c2', 'dive'), check('c3', 'parked')],
@@ -91,9 +91,32 @@ test('checks of parked lessons are hidden, those of deep dives stay', () => {
   assert.deepEqual(quiz.questions.map((question) => question.id), ['c1', 'c2']);
   assert.equal(quiz.questionCount, 2);
   assert.equal(quiz.id, 'm2-cylinder-study-check');
-  assert.equal(quiz.badge, 'OPERATING CYCLE');
   assert.equal(quiz.questions[0].correctIndex, 1);
   assert.equal(quiz.questions[0].explanation, 'because');
+});
+
+test('review status reaches the lesson card, and nothing about a card is guessed from its words', () => {
+  const lesson = (id, reviewStatus, reviewedOn) => ({ id, title: 'Steam and Wright aircraft gauges', objective: 'inspect the borescope system', reviewStatus, reviewedOn, steps: [{ type: 'text', title: 'Steam', prompt: 'Muscle, labour and flight.' }] });
+  const pack = {
+    id: 'cylinder-pack', title: 'Cylinder system', description: 'd', checks: [{ id: 'c', lessonId: 'a', type: 'multiple-choice', question: 'q', answers: ['x', 'y'], correct: 0, rationale: 'r' }],
+    lessons: [lesson('a', 'unreviewed'), lesson('b', 'reviewed', '2026-10-05')],
+  };
+  const track = mapTrack(pack, 0, models);
+  assert.deepEqual(track.lessons.map((item) => [item.reviewStatus, item.reviewedOn]), [['unreviewed', undefined], ['reviewed', '2026-10-05']]);
+  const quiz = mapQuizModule(pack);
+  const guessed = ['imageType', 'category', 'badge'];
+  for (const [name, object] of [['track', track], ['lesson', track.lessons[0]], ['step', track.lessons[0].steps[0]], ['quiz', quiz], ['question', quiz.questions[0]]]) {
+    assert.deepEqual(guessed.filter((key) => key in object), [], `${name} must not carry a field guessed from words in the title`);
+  }
+});
+
+test('every shipped lesson says where it stands with the instructor', () => {
+  for (const pack of packs) {
+    assert.equal('draftStatus' in pack, false, `${pack.id}: draftStatus is retired`);
+    for (const lesson of pack.lessons) assert.ok(['unreviewed', 'reviewed'].includes(lesson.reviewStatus), `${pack.id}/${lesson.id}: reviewStatus`);
+  }
+  const mapped = packs.flatMap((pack, index) => mapTrack(pack, index, models).lessons);
+  assert.ok(mapped.length >= 10 && mapped.every((lesson) => lesson.reviewStatus), 'the mapped lessons keep their review status');
 });
 
 test('the shipped packs produce the courses and checks the app lists', () => {

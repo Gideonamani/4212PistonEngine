@@ -1,6 +1,7 @@
 import type {
   CourseTrack,
   Lesson,
+  LessonReviewStatus,
   LessonStep,
   QuizModule,
   QuizQuestion,
@@ -19,7 +20,7 @@ export type ModelLookup = {
  * A step as written in a pack: every LessonStep field that passes through unchanged, plus `prompt`, which becomes the body text.
  * Adding a field to LessonStep is therefore enough for it to reach the screens.
  */
-export type PackStep = Omit<LessonStep, 'stepNumber' | 'text' | 'imageType' | 'suggestedAnswer' | 'has3DReference' | 'referenceModel' | 'promptQuestion' | 'promptPlaceholder'> & {
+export type PackStep = Omit<LessonStep, 'stepNumber' | 'text' | 'suggestedAnswer' | 'has3DReference' | 'referenceModel' | 'promptQuestion' | 'promptPlaceholder'> & {
   type: NonNullable<LessonStep['type']>;
   prompt: string;
 };
@@ -29,6 +30,8 @@ export type PackLesson = {
   thumbnail?: string;
   title: string;
   objective: string;
+  reviewStatus: LessonReviewStatus;
+  reviewedOn?: string;
   models?: string[];
   steps: PackStep[];
   sequenceNumber?: number;
@@ -62,35 +65,12 @@ const isListed = (lesson: PackLesson) => lesson.listed !== false;
 const linkedDeepDiveIds = (pack: LessonPack) => new Set(pack.lessons.flatMap((lesson) => lesson.steps.flatMap((step) => step.deepDiveLinks || [])));
 const isDeepDive = (lesson: PackLesson, linked: Set<string>) => !isListed(lesson) && linked.has(lesson.id);
 
-const visualFor = (text: string): Lesson['imageType'] => {
-  const value = text.toLowerCase();
-  if (value.includes('wright') || value.includes('aircraft')) return 'wright';
-  if (value.includes('steam') || value.includes('history')) return 'oxen';
-  if (value.includes('maint') || value.includes('inspect')) return 'maintenance';
-  if (value.includes('diagnos') || value.includes('gauge')) return 'gauges';
-  if (value.includes('bore')) return 'borescope';
-  if (value.includes('system')) return 'systems';
-  return 'piston';
-};
-
-const stepVisualFor = (text: string): LessonStep['imageType'] => {
-  const value = text.toLowerCase();
-  if (value.includes('steam')) return 'steam';
-  if (value.includes('wright') || value.includes('flight')) return 'wright';
-  if (value.includes('animal') || value.includes('muscle') || value.includes('labour')) return 'oxen';
-  if (value.includes('gauge') || value.includes('pressure')) return 'gauges';
-  if (value.includes('inspect') || value.includes('bore')) return 'borescope';
-  if (value.includes('system') || value.includes('fadec')) return 'systems';
-  return 'piston';
-};
-
 export function mapStep(step: PackStep, index: number, models: ModelLookup): LessonStep {
   const { prompt, ...passThrough } = step;
   return {
     ...passThrough,
     stepNumber: index + 1,
     text: prompt,
-    imageType: stepVisualFor(`${step.title} ${prompt}`),
     suggestedAnswer: step.note,
     has3DReference: step.type === 'model-pose' && models.has(step.modelId),
     referenceModel: models.label(step.modelId),
@@ -108,13 +88,14 @@ export function mapLesson(lesson: PackLesson, index: number, models: ModelLookup
     description: lesson.objective,
     stepCount: steps.length,
     hasModelBadge: Boolean(lesson.models?.length || steps.some((step) => step.has3DReference)),
-    imageType: visualFor(`${lesson.title} ${lesson.objective}`),
+    reviewStatus: lesson.reviewStatus,
+    reviewedOn: lesson.reviewedOn,
     thumbnail: lesson.thumbnail,
     steps,
   };
 }
 
-export function mapQuestion(check: PackCheck, packId: string): QuizQuestion {
+export function mapQuestion(check: PackCheck): QuizQuestion {
   return {
     id: check.id,
     lessonId: check.lessonId,
@@ -125,7 +106,6 @@ export function mapQuestion(check: PackCheck, packId: string): QuizQuestion {
     items: check.items,
     hint: check.hint,
     explanation: check.rationale,
-    category: packId.includes('cylinder') ? '4stroke' : 'components',
   };
 }
 
@@ -134,7 +114,6 @@ export function mapTrack(pack: LessonPack, index: number, models: ModelLookup): 
   const lessons = pack.lessons.filter(isListed).map((lesson, lessonIndex) => mapLesson(lesson, lessonIndex, models));
   const deepDives = pack.lessons.filter((lesson) => isDeepDive(lesson, linked)).map((lesson, lessonIndex) => mapLesson(lesson, lessonIndex, models, true));
   const stepCount = lessons.reduce((sum, lesson) => sum + lesson.stepCount, 0);
-  const visual = visualFor(`${pack.title} ${pack.description}`);
   return {
     id: pack.id,
     title: pack.title,
@@ -143,7 +122,6 @@ export function mapTrack(pack: LessonPack, index: number, models: ModelLookup): 
     stepCountApprox: `${stepCount} steps`,
     progressPercent: 0,
     isCurrent: index === 0,
-    imageType: visual === 'piston' ? 'radial' : visual as CourseTrack['imageType'],
     thumbnail: pack.thumbnail,
     lessons,
     deepDives,
@@ -153,17 +131,14 @@ export function mapTrack(pack: LessonPack, index: number, models: ModelLookup): 
 export function mapQuizModule(pack: LessonPack): QuizModule {
   const linked = linkedDeepDiveIds(pack);
   const unlisted = new Set(pack.lessons.filter((lesson) => !isListed(lesson) && !isDeepDive(lesson, linked)).map((lesson) => lesson.id));
-  const questions = pack.checks.filter((check) => !unlisted.has(check.lessonId)).map((check) => mapQuestion(check, pack.id));
+  const questions = pack.checks.filter((check) => !unlisted.has(check.lessonId)).map(mapQuestion);
   return {
     id: `${pack.id}-check`,
     title: pack.title,
     subtitle: pack.description,
     description: `Assessment questions from ${pack.title}.`,
-    category: pack.id.includes('cylinder') ? '4stroke' : 'components',
     questionCount: questions.length,
     approxMinutes: `${Math.max(3, Math.ceil(questions.length * 1.5))} min`,
-    badge: pack.id.includes('cylinder') ? 'OPERATING CYCLE' : 'FOUNDATIONS',
-    imageType: pack.id.includes('cylinder') ? 'piston' : 'radial',
     thumbnail: pack.thumbnail,
     questions,
   };
