@@ -90,6 +90,12 @@
       "drive_id": "1qzyRZ0tkt6xRuHlvknFD4r1QRvjy6ExV",
       "bytes": 9565828,
       "sha256": "e626ab347a7f587fee2169f81ac3516185aef033adf32c920533f85293b52daf"
+    },
+    {
+      "path": "web/engine.glb.gz",
+      "drive_id": "1Z8y-Y-GGT50irsGoh6ycQ-iC4NhmuTSY",
+      "bytes": 4228178,
+      "sha256": "cdaa357e0888b5c89ad0a2135b1536b71a6a4099930b67af1993058c430caf0f"
     }
   ],
   "history_policy": "New unpublished accessory commits exclude model binaries. Existing published history retained; native CAD and exported GLBs are no longer tracked going forward.",

@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { getCompletedLessonIds, getLessonProgress, LESSON_PROGRESS_EVENT } from '../data/lessonProgress';
 import { resolveLearn } from '../routes/route.mjs';
+import { preloadCourseModels } from '../viewer/preload';
 import { navigate, useRoute } from '../routes/useRoute';
 
 interface LearnViewProps {
@@ -40,6 +41,12 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
   }, []);
 
   void progressVersion;
+
+  // On a course's lesson list, fetch its lessons' models in the background (not on data saver, mobile data or a slow network).
+  useEffect(() => {
+    if (!activeTrack || activeLesson) return undefined;
+    return preloadCourseModels(activeTrack);
+  }, [activeTrack?.id, activeLesson?.id]);
 
   const openCourse = (track: CourseTrack) => navigate({ view: 'learn', course: track.id });
 
