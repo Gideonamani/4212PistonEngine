@@ -16,6 +16,7 @@ const pack = {
     { id: 'displacement', lessonId: 'fixture-lesson', type: 'numeric', question: 'A cylinder has a 5 in bore and a 4 in stroke. What is its piston displacement?', hint: 'Use pi / 4 x bore squared x stroke.', unit: 'cu in', correctValue: 78.54, tolerance: 0.5, rationale: 'Displacement = pi / 4 x 25 x 4 = 78.54 cu in.' },
     { id: 'horsepower', lessonId: 'fixture-lesson', type: 'numeric', question: 'How many ft-lb per minute is one horsepower?', unit: 'ft-lb/min', correctValue: 33000, rationale: 'One horsepower is 33,000 foot-pounds per minute.' },
     { id: 'drives', lessonId: 'fixture-lesson', type: 'matching', question: 'Match each accessory to the job it does.', pairs: [{ left: 'Magneto', right: 'Makes the spark' }, { left: 'Vacuum pump', right: 'Drives gyro instruments' }, { left: 'Oil pump', right: 'Circulates lubricating oil' }], rationale: 'Each accessory is driven from the accessory gear train to do one job.' },
+    { id: 'order-test', lessonId: 'fixture-lesson', type: 'multiple-choice', question: 'Which of these is the right one?', answers: ['The right one', 'A wrong one', 'Another wrong one'], correct: 0, rationale: 'The first option in the pack is the right one.' },
   ],
 };
 
@@ -30,7 +31,7 @@ async function openFixtureCheck(page: Page) {
   await page.goto('/#/check');
   await appReady(page);
   await page.getByRole('button').filter({ has: page.locator('h4') }).first().click();
-  await expect(page.getByText('Question 1 of 3')).toBeVisible();
+  await expect(page.getByText('Question 1 of 4')).toBeVisible();
 }
 
 test.describe('numeric question', () => {
@@ -56,7 +57,7 @@ test.describe('numeric question', () => {
     await expectAccessibleAndTouchable(page, 'numeric question, answered');
 
     await page.getByRole('button', { name: 'Next question' }).click();
-    await expect(page.getByText('Question 2 of 3')).toBeVisible();
+    await expect(page.getByText('Question 2 of 4')).toBeVisible();
     // 33,000 with a thousands separator is read as 33000; Enter verifies.
     const second = page.getByLabel('Your answer, in ft-lb/min');
     await second.fill('33,000');
@@ -80,7 +81,7 @@ test.describe('matching question', () => {
     await openFixtureCheck(page);
     await page.getByRole('button', { name: /Open the list of questions/ }).click();
     await page.getByRole('dialog').getByRole('button', { name: /^question 3:/i }).click();
-    await expect(page.getByText('Question 3 of 3')).toBeVisible();
+    await expect(page.getByText('Question 3 of 4')).toBeVisible();
   }
 
   test('every term needs a match before it can be verified, and the options do not follow the pairs', async ({ page, problems }) => {
@@ -103,7 +104,7 @@ test.describe('matching question', () => {
     await verify.click();
     await expect(page.getByText('CORRECT — WHY IT MATTERS')).toBeVisible();
     await expect(page.getByLabel('Magneto'), 'the answers lock').toBeDisabled();
-    await expect(page.getByRole('button', { name: 'Finish assessment' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Next question' })).toBeVisible();
     await expectAccessibleAndTouchable(page, 'matching question, answered');
     problems.assertNone();
   });
@@ -118,5 +119,22 @@ test.describe('matching question', () => {
     await expect(page.getByText('Correct match: Makes the spark')).toBeVisible();
     await expect(page.getByText('Correct match: Circulates lubricating oil')).toBeVisible();
     await expect(page.getByText(/Correct match: Drives gyro instruments/), 'the right pairing needs no correction').toHaveCount(0);
+  });
+});
+
+test.describe('multiple-choice question', () => {
+  test('the options are shown in a random order, and the right one is still marked right', async ({ page }) => {
+    // With Math.random fixed at 0 the shuffle is a fixed rotation, so the first option in the pack is shown third.
+    await page.addInitScript(() => { Math.random = () => 0; });
+    await openFixtureCheck(page);
+    await page.getByRole('button', { name: /Open the list of questions/ }).click();
+    await page.getByRole('dialog').getByRole('button', { name: /^question 4:/i }).click();
+    await expect(page.getByText('Question 4 of 4')).toBeVisible();
+    const options = page.getByRole('button', { name: /^[A-C]\s/ });
+    const shown = (await options.allInnerTexts()).map((text) => text.replace(/^[A-C]\s*/, '').trim());
+    expect(shown, 'a fixed rotation of the pack order, not the pack order').toEqual(['A wrong one', 'Another wrong one', 'The right one']);
+    await page.getByRole('button', { name: /The right one/ }).click();
+    await page.getByRole('button', { name: 'Verify answer' }).click();
+    await expect(page.getByText('CORRECT — WHY IT MATTERS')).toBeVisible();
   });
 });
