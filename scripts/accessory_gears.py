@@ -116,6 +116,19 @@ def spring_grip_scale():
     return (SPRING_SURFACE_R + SPRING_WIRE_R + SPRING_GRIP_CLEARANCE) / SPRING_COIL_R
 
 
+# Cross-axis starter worm. A true worm mesh needs a throated wheel and an enveloping thread, which this model does not
+# have, so the worm sits WORM_CLEARANCE off the wheel's tooth tips instead of cutting into them.
+WORM_CORE_R = 6.0             # shaft radius; the motor input bore seats it
+WORM_WIRE_R = 1.0             # thread wire radius: the thread crest is core + wire
+WORM_CLEARANCE = .3
+
+
+def worm_axis_y():
+    """Y of the worm axis: out from the wheel by its tooth-tip radius, the worm's crest radius and the clearance."""
+    wheel = GEARS['WormWheel']
+    return wheel['centre'][1] - (wheel['r'] + ADDENDUM + WORM_CORE_R + WORM_WIRE_R + WORM_CLEARANCE)
+
+
 # Parts splined to a gear turn with it even when a focus animation leaves them out of the displayed path.
 SPLINED_TO = {'OilTachShaft': 'CamGear'}
 

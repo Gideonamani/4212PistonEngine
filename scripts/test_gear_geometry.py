@@ -90,6 +90,21 @@ class MeshingGears(unittest.TestCase):
                 train.solve()
 
 
+class StarterWorm(unittest.TestCase):
+    def gap(self, axis_y):
+        """Clearance between the wheel's tooth tips and the worm's thread crest for a worm axis at `axis_y`."""
+        wheel = train.GEARS['WormWheel']
+        return abs(wheel['centre'][1] - axis_y) - (wheel['r'] + train.ADDENDUM) - (train.WORM_CORE_R + train.WORM_WIRE_R)
+
+    def test_worm_axis_is_derived_so_the_crest_clears_the_wheel_tips(self):
+        self.assertAlmostEqual(self.gap(train.worm_axis_y()), train.WORM_CLEARANCE, places=9)
+        self.assertGreater(train.WORM_CLEARANCE, 0)
+        self.assertLess(train.WORM_CLEARANCE, 1.0)
+
+    def test_the_old_worm_axis_would_cut_into_the_wheel(self):
+        self.assertLess(self.gap(-30.0), 0)       # 30 mm from the wheel axis: crest 1.8 mm inside the tooth tips
+
+
 def held_still_partners(turning):
     """Declared links (mesh, shared shaft, spline) with exactly one side turning: teeth driven through a still part."""
     links = [*train.MESHES, *train.COAXIAL, *train.SPLINED_TO.items()]
