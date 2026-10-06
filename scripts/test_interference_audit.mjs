@@ -18,6 +18,7 @@ const targets = [
   { name: 'reviewed cylinder', dir: 'cad-studies/cylinder', glb: 'web/cylinder-reviewed-20261001.glb.gz' },
   { name: 'hydraulic tappet', dir: 'cad-studies/hydraulic-tappet', glb: 'web/hydraulic-tappet.glb.gz' },
   { name: 'oil pump', dir: 'cad-studies/oil-pump', glb: 'web/oil-pump.glb.gz' },
+  { name: 'Wright revision-2 reconstruction', dir: 'cad-studies/wright-1903/revision-2', glb: 'web/wright-1903-reconstruction.glb.gz', contract: 'web/wright-1903-reconstruction-contract.json' },
 ];
 const pairKey = (a, b) => [a, b].sort().join(' / ');
 
@@ -45,11 +46,13 @@ for (const target of targets) {
   });
 }
 
-test('declared gear meshes are all audited with clearance once the contract carries them', () => {
-  const contract = read('web/accessory-drives-contract.json');
-  const audit = read('cad-studies/accessory-drives/interference-audit.json');
-  if (!contract.gearMeshes) return; // the published model predates the gear-train declaration; its gear overlaps are in the ledger
-  assert.deepEqual(audit.gear_meshes.map((m) => pairKey(m.driver, m.driven)).sort(), contract.gearMeshes.map((m) => pairKey(m.driver, m.driven)).sort());
-  for (const mesh of audit.gear_meshes) assert.ok(mesh.ok && mesh.min_gap_mm >= 0.02, `${mesh.driver} / ${mesh.driven}`);
-  for (const mesh of contract.gearMeshes) assert.ok(mesh.backlash_mm > 0 && mesh.centre_distance_mm > 0);
-});
+for (const [name, dir, contractPath] of [['accessory drives', 'cad-studies/accessory-drives', 'web/accessory-drives-contract.json'], ['Wright reconstruction', 'cad-studies/wright-1903/revision-2', 'web/wright-1903-reconstruction-contract.json']]) {
+  test(`${name}: declared gear meshes are all audited with clearance once the contract carries them`, () => {
+    const contract = read(contractPath);
+    const audit = read(`${dir}/interference-audit.json`);
+    if (!contract.gearMeshes) return; // the published model predates the gear-train declaration; its gear overlaps are in the ledger
+    assert.deepEqual(audit.gear_meshes.map((m) => pairKey(m.driver, m.driven)).sort(), contract.gearMeshes.map((m) => pairKey(m.driver, m.driven)).sort());
+    for (const mesh of audit.gear_meshes) assert.ok(mesh.ok && mesh.min_gap_mm >= 0.02, `${mesh.driver} / ${mesh.driven}`);
+    for (const mesh of contract.gearMeshes) assert.ok(mesh.backlash_mm > 0 && mesh.centre_distance_mm > 0);
+  });
+}

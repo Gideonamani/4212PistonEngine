@@ -46,6 +46,8 @@ jobs:
         run: python3 scripts/test_cylinder_motion_profile.py
       - name: Verify the accessory gear train (standard library only)
         run: python3 scripts/test_gear_geometry.py
+      - name: Verify the Wright reconstruction layout, seats and motion (standard library only)
+        run: python3 scripts/test_wright_layout.py
       - name: Install the interference-audit dependencies
         run: python3 -m pip install -r scripts/requirements-audit.txt
       - name: Self-test the interference audit on gear trains that mesh and gear trains that do not
@@ -58,6 +60,7 @@ jobs:
           python3 scripts/audit_assembly_interference.py web/cylinder-reviewed-20261001.glb.gz --policy cad-studies/cylinder/interference-policy.json
           python3 scripts/audit_assembly_interference.py web/hydraulic-tappet.glb.gz --policy cad-studies/hydraulic-tappet/interference-policy.json
           python3 scripts/audit_assembly_interference.py web/oil-pump.glb.gz --policy cad-studies/oil-pump/interference-policy.json
+          python3 scripts/audit_assembly_interference.py web/wright-1903-reconstruction.glb.gz --contract web/wright-1903-reconstruction-contract.json --policy cad-studies/wright-1903/revision-2/interference-policy.json
       - name: Build the GitHub Pages application
         run: npm run build
       - name: Cache the Playwright browser

@@ -334,6 +334,12 @@
         "credit": "Rendered from the Smithsonian NASM 1903 Wright Flyer engine scan",
         "license": "CC0"
       },
+      "wright-1903-reconstruction": {
+        "kind": "render",
+        "path": "explore-wright-1903-reconstruction.webp",
+        "credit": "Rendered from the app's Wright revision-2 reconstruction (systems exploded view)",
+        "license": "Course material"
+      },
       "hydraulic-tappet": {
         "kind": "render",
         "path": "explore-hydraulic-tappet.webp",

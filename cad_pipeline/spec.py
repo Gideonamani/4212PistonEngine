@@ -67,6 +67,16 @@ def validate_spec(spec):
             if len(axis)!=3 or not any(axis) or not all(math.isfinite(v) for v in axis): raise ValueError('Invalid axis')
     return spec
 
+def deflection_for(spec, part, default=.7):
+    """Linear tessellation deflection (mm) for a part: spec['tessellation'] may set a default and finer values per group.
+
+    Large tight-fitting cylinders (a piston in its liner) need a finer mesh than the 0.7 mm default, or two touching surfaces
+    tessellate into slivers that overlap.
+    """
+    setting = spec.get('tessellation', {})
+    return setting.get('groups', {}).get(part.get('group', 'other'), setting.get('default_mm', default))
+
+
 def freecad_expression(value):
     if not isinstance(value,str): return str(value)
     return re.sub(r'\b([A-Za-z][A-Za-z0-9_]*)\b',r'Parameters.\1',value)

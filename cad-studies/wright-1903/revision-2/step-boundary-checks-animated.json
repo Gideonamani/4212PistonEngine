@@ -1,0 +1,58 @@
+{
+  "parts": [
+    {
+      "id": "ValveBox1",
+      "relative_volume_error": 0.00019563756626660896,
+      "absolute_volume_difference_mm3": 37.607822858175496,
+      "sampled_boundary_error_mm": 1.0785493989055671e-11,
+      "optimal_bounds_error_mm": 9.805489753489383e-13,
+      "native_vertices": 146,
+      "native_faces": 63,
+      "step_vertices": 146,
+      "step_faces": 63,
+      "scope": "All vertices plus closest boundary point to each face centroid, sampled in both directions; not a continuous Hausdorff proof"
+    },
+    {
+      "id": "ValveBox2",
+      "relative_volume_error": 0.00019217960749698233,
+      "absolute_volume_difference_mm3": 37.103908918303205,
+      "sampled_boundary_error_mm": 1.2431046189151992e-11,
+      "optimal_bounds_error_mm": 1.5063505998114124e-12,
+      "native_vertices": 134,
+      "native_faces": 58,
+      "step_vertices": 134,
+      "step_faces": 58,
+      "scope": "All vertices plus closest boundary point to each face centroid, sampled in both directions; not a continuous Hausdorff proof"
+    },
+    {
+      "id": "ValveBox4",
+      "relative_volume_error": 0.00019218268573541317,
+      "absolute_volume_difference_mm3": 37.10450324774138,
+      "sampled_boundary_error_mm": 1.2431046189151992e-11,
+      "optimal_bounds_error_mm": 1.5489831639570184e-12,
+      "native_vertices": 134,
+      "native_faces": 58,
+      "step_vertices": 134,
+      "step_faces": 58,
+      "scope": "All vertices plus closest boundary point to each face centroid, sampled in both directions; not a continuous Hausdorff proof"
+    },
+    {
+      "id": "ValveBox3",
+      "relative_volume_error": 0.00019218376594850792,
+      "absolute_volume_difference_mm3": 37.10471184653579,
+      "sampled_boundary_error_mm": 1.2431046189151992e-11,
+      "optimal_bounds_error_mm": 1.6058265828178264e-12,
+      "native_vertices": 134,
+      "native_faces": 58,
+      "step_vertices": 134,
+      "step_faces": 58,
+      "scope": "All vertices plus closest boundary point to each face centroid, sampled in both directions; not a continuous Hausdorff proof"
+    }
+  ],
+  "source_hashes": {
+    "wright-research-revision-2.FCStd": "09228080bba4f70619d9ed576af19484a53bc4014fadbc7ee3f6792331cdc0af",
+    "wright-research-revision-2.step": "444fd85cf7214a0177951c064621218db27fcd04980c739d9a4638b7cd591e78"
+  },
+  "sampling_method": "all_vertices_and_projected_face_centroids_bidirectional",
+  "scope": "Investigate the original strict volume failure; do not infer manufacturing accuracy"
+}

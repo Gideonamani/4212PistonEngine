@@ -8,6 +8,8 @@ from pathlib import Path
 import FreeCAD as A
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from cad_pipeline.research_gate import review
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
+import gear_geometry as G
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--package',type=Path,required=True);a=p.parse_args();folder=a.package
@@ -22,7 +24,12 @@ def main():
         spec=json.loads(params.SpecificationJSON);root=Path(__file__).resolve().parents[1];inv=json.loads((root/spec['research']['inventory_path']).read_text());coverage=review(inv,objects)
         check('All applicable source callouts have explicit disposition and generated mapping',coverage['passed'],coverage=coverage)
         check('Documented nominal bore/stroke/valve/lift/wall retained',all(abs(getattr(params,n)-v)<1e-8 for n,v in [('bore',101.6),('stroke',101.6),('valve_diameter',50.8),('valve_lift',7.9375),('liner_wall',5.55625)]))
-        check('Six/twelve timing tooth-pocket counts',len(spec['parts'][next(i for i,p in enumerate(spec['parts']) if p['id']=='CrankSprocket')]['features'])-2==6 and len(spec['parts'][next(i for i,p in enumerate(spec['parts']) if p['id']=='CamSprocket')]['features'])-2==12)
+        layout=json.loads((root/'cad-studies/wright-1903/revision-2/chain-layout.json').read_text())
+        def pockets(id,centre,radius):
+            part=next(p for p in spec['parts'] if p['id']==id)    # one roller pocket sits on the pitch circle per tooth; its entry/exit relief circles lie beyond it
+            return sum(1 for f in part['features'] if f.get('label','').startswith('Roller pocket') and abs(math.hypot(f['origin'][0]-centre[0],f['origin'][2]-centre[1])-radius)<1e-4)
+        check('Six/twelve timing tooth-pocket counts',pockets('CrankSprocket',(0,0),layout['pitch_radius_mm']['crank'])==6 and pockets('CamSprocket',(params.cam_x,params.cam_z),layout['pitch_radius_mm']['cam'])==12)
+        check('Chain closes with whole links and the cam sprocket is exactly half the crank sprocket speed',layout['links']==38 and abs(layout['ratio']-2)<1e-9 and abs(layout['links']*layout['arc_pitch_mm']-layout['arc_length_mm'])<1e-6 and abs(2*math.pi*layout['pitch_radius_mm']['crank']/6-layout['arc_pitch_mm'])<1e-6)
         for i in range(1,5):
             y=(i-1)*params.pitch;rs=radii(objects[f'Sleeve{i}'],'x')
             check(f'Liner {i} bore and specified wall',any(abs(r-50.8)<1e-6 for r in rs) and any(abs(r-56.35625)<1e-6 for r in rs))
@@ -38,7 +45,7 @@ def main():
             for valve,sign in [('Intake',1),('Exhaust',-1)]:
                 head=objects[f'{valve}Head{i}'];cage=objects[f'{valve}Cage{i}']
                 check(f'{valve} {i} head is 2 inches',abs(head.Shape.BoundBox.XLength-50.8)<1e-6)
-                check(f'{valve} {i} cage has four open windows and four legs',all(air(f'{valve}Cage{i}',[415+27*math.cos(k*math.pi/2),y+27*math.sin(k*math.pi/2),sign*64]) for k in range(4)) and all(not air(f'{valve}Cage{i}',[415+27*math.cos(math.pi/4+k*math.pi/2),y+27*math.sin(math.pi/4+k*math.pi/2),sign*64]) for k in range(4)))
+                check(f'{valve} {i} cage has four open windows and four legs',all(air(f'{valve}Cage{i}',[415+27*math.cos(k*math.pi/2),y+27*math.sin(k*math.pi/2),sign*56]) for k in range(4)) and all(not air(f'{valve}Cage{i}',[415+27*math.cos(math.pi/4+k*math.pi/2),y+27*math.sin(math.pi/4+k*math.pi/2),sign*56]) for k in range(4)))
                 check(f'{valve} {i} stem clears guide and closed head clears cage',overlap(f'{valve}Stem{i}',f'{valve}Cage{i}')<1e-3 and overlap(f'{valve}Head{i}',f'{valve}Cage{i}')<1e-3)
                 opened=head.Shape.copy();opened.translate(A.Vector(0,0,-sign*params.valve_lift));check(f'{valve} {i} documented lift clears cage',opened.common(cage.Shape).Volume<1e-3)
                 check(f'{valve} {i} spring clears stem',overlap(f'{valve}Spring{i}',f'{valve}Stem{i}')<1e-3)
@@ -56,8 +63,13 @@ def main():
         check('Crankshaft clears cast bearing access',overlap('Crankcase','Crankshaft')<1e-3)
         check('Flywheel generator friction-wheel tangency',objects['MagnetoDriveWheel'].Shape.distToShape(objects['Flywheel'].Shape)[0]<1e-4 and overlap('MagnetoDriveWheel','Flywheel')<1e-3)
         check('Ignition equal gears have tangent pitch circles',abs(2*math.hypot(41,37)/2-math.hypot(params.ignition_x-params.cam_x,params.ignition_z-params.cam_z))<1e-8)
-        chain=json.loads((root/'cad-studies/wright-1903/revision-2/chain-layout.json').read_text());chords=chain['chord_lengths_mm']
-        notes.append(dict(topic='Chain',status='unverified_for_operation',nominal_pitch_mm=25.4,chord_pitch_range_mm=[min(chords),max(chords)],reason='Static arc-length layout; curved-span chord spacing and pocket profiles do not constitute a manufactured chain/sprocket pair.'))
+        pitch_radius=math.hypot(params.ignition_x-params.cam_x,params.ignition_z-params.cam_z)/2;gear_module=G.module(pitch_radius,18)
+        solved=lambda centre,phase:dict(centre=centre,r_pitch=pitch_radius,teeth=18,addendum=gear_module,phase=phase,form=dict(clearance_factor=.25,backlash_factor=.05))
+        phase=G.mesh_phase((params.cam_x,params.cam_z),0.0,18,(params.ignition_x,params.ignition_z),18)
+        gap=G.mesh_clearance(solved((params.cam_x,params.cam_z),0.0),solved((params.ignition_x,params.ignition_z),phase),24)
+        check('Timing gear teeth mesh with positive backlash through a full pitch',gap>=.04 and overlap('ExhaustGear','IgnitionGear')<1e-3,min_gap_mm=gap)
+        chain=layout;chords=chain['chord_lengths_mm']
+        notes.append(dict(topic='Chain',status='unverified_for_operation',arc_pitch_mm=chain['arc_pitch_mm'],chord_pitch_range_mm=[min(chords),max(chords)],reason='Equal arc-pitch layout derived so every wrap roller sits in a pocket and the ratio is exactly 2:1; plates are straight between rollers (no chordal action) and the chain pitch, link plates and tooth relief are teaching geometry, not a manufactured chain/sprocket pair.'))
         # Limited, honest exterior correspondence: radius and centers, not a whole scan match.
         fits=json.loads((root/'cad-studies/wright-1903/primitive-fits.json').read_text())['regions'];alignment=[]
         for i,r in enumerate(fits):

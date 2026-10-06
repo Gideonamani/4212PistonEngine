@@ -2,8 +2,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const registry=JSON.parse(fs.readFileSync(new URL('../src/data/models.json',import.meta.url),'utf8'));
 
-assert.deepEqual(registry.map(model=>model.id),['cylinder','gtsio520-h-v5-teaching-engine','wright-1903-engine','hydraulic-tappet','oil-pump','accessory-drives']);
-assert.deepEqual(registry.map(model=>model.adapter),['operating-cylinder','full-engine','static-gltf','animated-study','animated-study','animated-study']);
+assert.deepEqual(registry.map(model=>model.id),['cylinder','gtsio520-h-v5-teaching-engine','wright-1903-engine','wright-1903-reconstruction','hydraulic-tappet','oil-pump','accessory-drives']);
+assert.deepEqual(registry.map(model=>model.adapter),['operating-cylinder','full-engine','static-gltf','animated-study','animated-study','animated-study','animated-study']);
 assert.equal(new Set(registry.map(model=>model.id)).size,registry.length,'model ids must be unique');
 assert.ok(registry.every(model=>model.label&&model.eyebrow&&model.description));
 assert.ok(registry.every(model=>!('imageType' in model)),'card pictures come from previewUrl, not a guessed illustration type');
@@ -27,6 +27,13 @@ assert.deepEqual(wright.lessonHotspotIds,['magneto','valve','crankcase']);
 assert.equal(wright.hotspots.length,6);
 assert.ok(wright.lessonHotspotIds.every(id=>wright.hotspots.some(hotspot=>hotspot.id===id)));
 assert.ok(fs.statSync(new URL('../web/wright-1903-engine.glb',import.meta.url)).size>1_000_000,'restore the compact reference GLB from Drive before asset validation');
+
+const reconstruction=registry.find(model=>model.id==='wright-1903-reconstruction');
+assert.match(reconstruction.sources[0].localUrl,/^\.\/wright-1903-reconstruction\.glb\.gz\?v=[0-9a-f]{12}$/);
+assert.match(reconstruction.contractUrl,/^\.\/wright-1903-reconstruction-contract\.json\?v=[0-9a-f]{12}$/);
+assert.ok(!('hotspots' in reconstruction),'the second Wright card is the modelled study; the scan card keeps the hotspots');
+assert.notEqual(reconstruction.sources[0].driveId,wright.sources[0].driveId,'the modelled study is its own Drive file');
+assert.ok(fs.statSync(new URL('../web/wright-1903-reconstruction.glb.gz',import.meta.url)).size>1_000_000,'restore the Wright reconstruction from Drive before asset validation');
 
 const driveId=/^[-\w]{20,}$/;
 for (const source of wright.sources) assert.match(source.driveId,driveId);

@@ -18,7 +18,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   const meshes: THREE.Mesh[] = [];
   root.traverse(object => { const mesh = object as THREE.Mesh; if (mesh.isMesh) { mesh.userData.partId = mesh.userData.cad_part_id; meshes.push(mesh); } });
   const paths: any[] = contract.powerPaths || [];
-  const components = contract.parts.map((part: any) => ({ id: part.id, label: part.label, group: part.group, groups: paths.filter(path => path.parts.includes(part.id)).map(path => `path:${path.id}`), description: part.description, source: part.evidence || contract.reference, evidence: part.shape_status || 'Illustrative dimensions' }));
+  const components = contract.parts.map((part: any) => ({ id: part.id, label: part.label, group: part.group, groups: [...paths.filter(path => path.parts.includes(part.id)).map(path => `path:${path.id}`), ...(part.groups || [])], description: part.description, source: part.evidence || contract.reference, evidence: part.shape_status || 'Illustrative dimensions' }));
   if (meshes.length !== components.length || meshes.some(mesh => !components.some((part: any) => part.id === mesh.userData.partId))) throw Error('Mechanism components do not match the contract.');
   const clips = new Map(loaded.gltf.animations.map(clip => [clip.name, clip]));
   for (const motion of contract.motions) if (!clips.has(motion.id)) throw Error(`Saved motion is missing: ${motion.id}`);
@@ -97,7 +97,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
         material.color.copy(materialColors.get(material)!);
         const part = contract.parts.find((part: any) => part.id === id);
         if (paths.length && snapshot.appearance === 'inspection') material.color.set(part?.role === 'teaching-fixture' ? '#46515a' : pathColors[part?.group] || '#84929e');
-        if (snapshot.appearance === 'inspection' && /Spring|Plate|Plunger/.test(id)) material.color.set(0x379e9b);
+        if (paths.length && snapshot.appearance === 'inspection' && /Spring|Plate|Plunger/.test(id)) material.color.set(0x379e9b);
         if (ghost) material.color.set(XRAY_COLOR);
         else if (look === 'pale') material.color.set(PALE_COLOR);
         else if (look === 'highlight') material.color.set(HIGHLIGHT_COLOR);
@@ -169,7 +169,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
         snapshot.powerPathNote = powerPath ? `${powerPath.note} Output direction: ${powerPath.direction}. ${powerPath.ratio === null ? 'Speed ratio unverified.' : `Drive / crank speed = ${powerPath.ratio}:1; at 1000 crank RPM: ${powerPath.ratio * 1000} drive RPM (${powerPath.id === 'starter' ? 'cranking only' : 'speed example'}).`} ${contract.viewpoint} Dashed lines are a conceptual path, not physical shaft geometry.` : '';
         applyAppearance(); onChange();
       }, isolate() { if (!powerPath) return; isolation = new Set(powerPath.parts); snapshot.isolated = true; applyAppearance(); fitVisible(); onChange(); } } } : {}),
-      components: { items: components, groups: [{ id: '', label: 'All groups' }, ...[...new Set<string>(components.map((part: any) => part.group))].map(id => ({ id, label: id.replaceAll('-', ' ') })), ...paths.map(path => ({ id: `path:${path.id}`, label: `Complete path: ${path.label}` }))], select,
+      components: { items: components, groups: [{ id: '', label: 'All groups' }, ...(contract.groups ? contract.groups.map((group: any) => ({ id: group.id, label: `${group.depth ? '– ' : ''}${group.label}` })) : [...new Set<string>(components.map((part: any) => part.group))].map(id => ({ id, label: id.replaceAll('-', ' ') }))), ...paths.map(path => ({ id: `path:${path.id}`, label: `Complete path: ${path.label}` }))], select,
         isolate() { if (!snapshot.selectedId) return; isolation = new Set([snapshot.selectedId]); snapshot.isolated = true; applyAppearance(); fitVisible(); },
         isolateGroup(id) { if (!id) return; const ids = groupComponentIds(components, id); if (!ids.length) return; powerPath = undefined; snapshot.powerPathId = ''; snapshot.powerPathNote = ''; isolation = new Set(ids); snapshot.isolated = true; select(''); fitVisible(); }, showAll },
       savedMotions: { items: contract.motions, select: selectMotion, setProgress(value) { setPlaying(false); sample(value); }, step(direction) {

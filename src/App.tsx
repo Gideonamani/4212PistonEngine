@@ -9,7 +9,7 @@ import { CreditsView } from './components/CreditsView';
 import { EngineInfoModal } from './components/EngineInfoModal';
 import { useShellChrome } from './components/ShellChrome';
 import { loadProductionData } from './data/loadProductionData';
-import { modelRegistry, modelsById } from './data/modelRegistry';
+import { modelRegistry, modelsById, modelsByLabel } from './data/modelRegistry';
 import { resolveLearn } from './routes/route.mjs';
 import { navigate, useRoute } from './routes/useRoute';
 
@@ -71,7 +71,7 @@ export default function App() {
     switch (activeView) {
       case 'explore':
         return isExploreViewerOpen
-          ? activeModelName === '1903 Wright Flyer engine' ? 'WRIGHT FLYER · 1903 REFERENCE' : `GTSIO-520-H · ${activeModelName}`
+          ? modelsByLabel[activeModelName]?.headerLabel ?? `GTSIO-520-H · ${activeModelName}`
           : 'GTSIO-520-H · MODEL LIBRARY';
       case 'learn':
         return 'GTSIO-520-H · GUIDED LESSONS';

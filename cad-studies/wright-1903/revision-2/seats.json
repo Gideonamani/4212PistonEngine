@@ -1,0 +1,1186 @@
+{
+ "schema_version": 1,
+ "clearance_mm": 0.15,
+ "seats": [
+  {
+   "host": "BigCap1",
+   "guest": "BigBoltA1"
+  },
+  {
+   "host": "BigCap1",
+   "guest": "BigBoltB1"
+  },
+  {
+   "host": "BigCap1",
+   "guest": "BigLock1"
+  },
+  {
+   "host": "BigCap1",
+   "guest": "BigShim1"
+  },
+  {
+   "host": "BigCap2",
+   "guest": "BigBoltA2"
+  },
+  {
+   "host": "BigCap2",
+   "guest": "BigBoltB2"
+  },
+  {
+   "host": "BigCap2",
+   "guest": "BigLock2"
+  },
+  {
+   "host": "BigCap2",
+   "guest": "BigShim2"
+  },
+  {
+   "host": "BigCap3",
+   "guest": "BigBoltA3"
+  },
+  {
+   "host": "BigCap3",
+   "guest": "BigBoltB3"
+  },
+  {
+   "host": "BigCap3",
+   "guest": "BigLock3"
+  },
+  {
+   "host": "BigCap3",
+   "guest": "BigShim3"
+  },
+  {
+   "host": "BigCap4",
+   "guest": "BigBoltA4"
+  },
+  {
+   "host": "BigCap4",
+   "guest": "BigBoltB4"
+  },
+  {
+   "host": "BigCap4",
+   "guest": "BigLock4"
+  },
+  {
+   "host": "BigCap4",
+   "guest": "BigShim4"
+  },
+  {
+   "host": "BigEnd1",
+   "guest": "BigBoltA1"
+  },
+  {
+   "host": "BigEnd1",
+   "guest": "BigBoltB1"
+  },
+  {
+   "host": "BigEnd1",
+   "guest": "BigShim1"
+  },
+  {
+   "host": "BigEnd1",
+   "guest": "RodPinA1"
+  },
+  {
+   "host": "BigEnd2",
+   "guest": "BigBoltA2"
+  },
+  {
+   "host": "BigEnd2",
+   "guest": "BigBoltB2"
+  },
+  {
+   "host": "BigEnd2",
+   "guest": "BigShim2"
+  },
+  {
+   "host": "BigEnd2",
+   "guest": "RodPinA2"
+  },
+  {
+   "host": "BigEnd3",
+   "guest": "BigBoltA3"
+  },
+  {
+   "host": "BigEnd3",
+   "guest": "BigBoltB3"
+  },
+  {
+   "host": "BigEnd3",
+   "guest": "BigShim3"
+  },
+  {
+   "host": "BigEnd3",
+   "guest": "RodPinA3"
+  },
+  {
+   "host": "BigEnd4",
+   "guest": "BigBoltA4"
+  },
+  {
+   "host": "BigEnd4",
+   "guest": "BigBoltB4"
+  },
+  {
+   "host": "BigEnd4",
+   "guest": "BigShim4"
+  },
+  {
+   "host": "BigEnd4",
+   "guest": "RodPinA4"
+  },
+  {
+   "host": "BigShim1",
+   "guest": "BigBoltA1"
+  },
+  {
+   "host": "BigShim2",
+   "guest": "BigBoltA2"
+  },
+  {
+   "host": "BigShim3",
+   "guest": "BigBoltA3"
+  },
+  {
+   "host": "BigShim4",
+   "guest": "BigBoltA4"
+  },
+  {
+   "host": "Busbar",
+   "guest": "BusLink1"
+  },
+  {
+   "host": "Busbar",
+   "guest": "BusLink2"
+  },
+  {
+   "host": "Busbar",
+   "guest": "BusLink3"
+  },
+  {
+   "host": "Busbar",
+   "guest": "BusLink4"
+  },
+  {
+   "host": "Busbar",
+   "guest": "GeneratorLead"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "AdvanceCam"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "CamWasherA",
+   "swept": {
+    "axis": [
+     350.0,
+     -105.0
+    ],
+    "bands": [
+     {
+      "radius": 14.5,
+      "y": [
+       -41.5,
+       -39.5
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "Crankcase",
+   "guest": "CamWasherB",
+   "swept": {
+    "axis": [
+     350.0,
+     -105.0
+    ],
+    "bands": [
+     {
+      "radius": 14.5,
+      "y": [
+       -24.5,
+       -22.5
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "Crankcase",
+   "guest": "Camshaft",
+   "swept": {
+    "axis": [
+     350.0,
+     -105.0
+    ],
+    "bands": [
+     {
+      "radius": 9.5,
+      "y": [
+       -80.0,
+       469.07
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ExhaustCage1"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ExhaustCage2"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ExhaustCage3"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ExhaustCage4"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ExhaustCam1",
+   "swept": {
+    "axis": [
+     350.0,
+     -105.0
+    ],
+    "bands": [
+     {
+      "radius": 24.0,
+      "y": [
+       -5.0,
+       5.0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ExhaustCam2",
+   "swept": {
+    "axis": [
+     350.0,
+     -105.0
+    ],
+    "bands": [
+     {
+      "radius": 24.0,
+      "y": [
+       124.69,
+       134.69
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ExhaustCam3",
+   "swept": {
+    "axis": [
+     350.0,
+     -105.0
+    ],
+    "bands": [
+     {
+      "radius": 24.0,
+      "y": [
+       254.38,
+       264.38
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ExhaustCam4",
+   "swept": {
+    "axis": [
+     350.0,
+     -105.0
+    ],
+    "bands": [
+     {
+      "radius": 24.0,
+      "y": [
+       384.07,
+       394.07
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ExhaustGear",
+   "swept": {
+    "axis": [
+     350.0,
+     -105.0
+    ],
+    "bands": [
+     {
+      "radius": 31.0,
+      "y": [
+       -59.5,
+       -52.5
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ExhaustRetainer1"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ExhaustRetainer2"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ExhaustRetainer3"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ExhaustRetainer4"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "Flywheel",
+   "swept": {
+    "axis": [
+     0.0,
+     0.0
+    ],
+    "bands": [
+     {
+      "radius": 28.5,
+      "y": [
+       445.07,
+       454.07
+      ]
+     },
+     {
+      "radius": 190.5,
+      "y": [
+       454.07,
+       472.07
+      ]
+     },
+     {
+      "radius": 28.5,
+      "y": [
+       472.07,
+       480.07
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "Crankcase",
+   "guest": "GroundLead"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "HeadGasket1"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "HeadGasket2"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "HeadGasket3"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "HeadGasket4"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "IgnitionBearing0"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "IgnitionDrivePin",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "bands": [
+     {
+      "radius": 10.0,
+      "y": [
+       -43.0,
+       -38.0
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "Crankcase",
+   "guest": "IgnitionGear",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "bands": [
+     {
+      "radius": 31.0,
+      "y": [
+       -59.5,
+       -52.5
+      ]
+     },
+     {
+      "radius": 10.5,
+      "y": [
+       -52.5,
+       -18.5
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "Crankcase",
+   "guest": "IgnitionGearSpring",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "bands": [
+     {
+      "radius": 9.0,
+      "y": [
+       -18.4475,
+       1.749
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "Crankcase",
+   "guest": "IgnitionShaft",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "bands": [
+     {
+      "radius": 5.5,
+      "y": [
+       -60.0,
+       469.07
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "Crankcase",
+   "guest": "IntakeManifold"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "MagnetoShaft",
+   "swept": {
+    "axis": [
+     217.428149051589,
+     -75.0
+    ],
+    "bands": [
+     {
+      "radius": 4.5,
+      "y": [
+       416.0685,
+       521.0685
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "Crankcase",
+   "guest": "MountBolt1"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "MountBolt2"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "MountBolt3"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "MountBolt4"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "OilDistributor"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "OilFeedHose"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "OilJet1"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "OilJet2"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "OilJet3"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "OilJet4"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "OilReturnGallery"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ValveBox1"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ValveBox2"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ValveBox3"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ValveBox4"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "WaterReturnA"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "WaterReturnB"
+  },
+  {
+   "host": "Crankshaft",
+   "guest": "FlywheelKey"
+  },
+  {
+   "host": "ExhaustCage1",
+   "guest": "IgnitionGear",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "bands": [
+     {
+      "radius": 31.0,
+      "y": [
+       -59.5,
+       -52.5
+      ]
+     },
+     {
+      "radius": 10.5,
+      "y": [
+       -52.5,
+       -18.5
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "ExhaustCage1",
+   "guest": "IgnitionGearSpring",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "bands": [
+     {
+      "radius": 9.0,
+      "y": [
+       -18.4475,
+       1.749
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "ExhaustCage1",
+   "guest": "IgnitionShaft",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "bands": [
+     {
+      "radius": 5.5,
+      "y": [
+       -60.0,
+       469.07
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "ExhaustCage2",
+   "guest": "IgnitionShaft",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "bands": [
+     {
+      "radius": 5.5,
+      "y": [
+       -60.0,
+       469.07
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "ExhaustCage3",
+   "guest": "IgnitionShaft",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "bands": [
+     {
+      "radius": 5.5,
+      "y": [
+       -60.0,
+       469.07
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "ExhaustCage4",
+   "guest": "IgnitionShaft",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "bands": [
+     {
+      "radius": 5.5,
+      "y": [
+       -60.0,
+       469.07
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "ExhaustRetainer1",
+   "guest": "AdvanceCam"
+  },
+  {
+   "host": "FuelMeter",
+   "guest": "FuelLine"
+  },
+  {
+   "host": "FuelShutoff",
+   "guest": "FuelLine"
+  },
+  {
+   "host": "GeneratorLead",
+   "guest": "BusLink4"
+  },
+  {
+   "host": "HotPlateCover",
+   "guest": "WaterReturnA"
+  },
+  {
+   "host": "HotPlateCover",
+   "guest": "WaterReturnB"
+  },
+  {
+   "host": "IgniterBearing1",
+   "guest": "IgniterSeal1"
+  },
+  {
+   "host": "IgniterBearing2",
+   "guest": "IgniterSeal2"
+  },
+  {
+   "host": "IgniterBearing3",
+   "guest": "IgniterSeal3"
+  },
+  {
+   "host": "IgniterBearing4",
+   "guest": "IgniterSeal4"
+  },
+  {
+   "host": "IgnitionBearing0",
+   "guest": "AdvanceCam"
+  },
+  {
+   "host": "IgnitionBearing0",
+   "guest": "ExhaustCage1"
+  },
+  {
+   "host": "IgnitionBearing0",
+   "guest": "ExhaustRetainer1"
+  },
+  {
+   "host": "IgnitionGear",
+   "guest": "IgnitionDrivePin"
+  },
+  {
+   "host": "IgnitionShaft",
+   "guest": "IgnitionDrivePin"
+  },
+  {
+   "host": "LittleEnd1",
+   "guest": "LittleClamp1"
+  },
+  {
+   "host": "LittleEnd1",
+   "guest": "RodPinB1"
+  },
+  {
+   "host": "LittleEnd2",
+   "guest": "LittleClamp2"
+  },
+  {
+   "host": "LittleEnd2",
+   "guest": "RodPinB2"
+  },
+  {
+   "host": "LittleEnd3",
+   "guest": "LittleClamp3"
+  },
+  {
+   "host": "LittleEnd3",
+   "guest": "RodPinB3"
+  },
+  {
+   "host": "LittleEnd4",
+   "guest": "LittleClamp4"
+  },
+  {
+   "host": "LittleEnd4",
+   "guest": "RodPinB4"
+  },
+  {
+   "host": "MagnetoArmature",
+   "guest": "MagnetoShaft"
+  },
+  {
+   "host": "MagnetoBase",
+   "guest": "GroundLead"
+  },
+  {
+   "host": "MagnetoBase",
+   "guest": "MagnetoDriveWheel",
+   "swept": {
+    "axis": [
+     217.428149051589,
+     -75.0
+    ],
+    "bands": [
+     {
+      "radius": 40.5,
+      "y": [
+       456.0685,
+       465.0685
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "MagnetoMagnet",
+   "guest": "GeneratorLead"
+  },
+  {
+   "host": "MagnetoMagnet",
+   "guest": "MagnetoCoil1"
+  },
+  {
+   "host": "MagnetoMagnet",
+   "guest": "MagnetoCoil2"
+  },
+  {
+   "host": "OilDistributor",
+   "guest": "OilFeedHose"
+  },
+  {
+   "host": "OilDistributor",
+   "guest": "OilJet1"
+  },
+  {
+   "host": "OilDistributor",
+   "guest": "OilJet2"
+  },
+  {
+   "host": "OilDistributor",
+   "guest": "OilJet3"
+  },
+  {
+   "host": "OilDistributor",
+   "guest": "OilJet4"
+  },
+  {
+   "host": "Piston1",
+   "guest": "PinLock1"
+  },
+  {
+   "host": "Piston1",
+   "guest": "RingPeg1_0"
+  },
+  {
+   "host": "Piston1",
+   "guest": "RingPeg1_1"
+  },
+  {
+   "host": "Piston1",
+   "guest": "RingPeg1_2"
+  },
+  {
+   "host": "Piston2",
+   "guest": "PinLock2"
+  },
+  {
+   "host": "Piston2",
+   "guest": "RingPeg2_0"
+  },
+  {
+   "host": "Piston2",
+   "guest": "RingPeg2_1"
+  },
+  {
+   "host": "Piston2",
+   "guest": "RingPeg2_2"
+  },
+  {
+   "host": "Piston3",
+   "guest": "PinLock3"
+  },
+  {
+   "host": "Piston3",
+   "guest": "RingPeg3_0"
+  },
+  {
+   "host": "Piston3",
+   "guest": "RingPeg3_1"
+  },
+  {
+   "host": "Piston3",
+   "guest": "RingPeg3_2"
+  },
+  {
+   "host": "Piston4",
+   "guest": "PinLock4"
+  },
+  {
+   "host": "Piston4",
+   "guest": "RingPeg4_0"
+  },
+  {
+   "host": "Piston4",
+   "guest": "RingPeg4_1"
+  },
+  {
+   "host": "Piston4",
+   "guest": "RingPeg4_2"
+  },
+  {
+   "host": "RodTube1",
+   "guest": "RodPinA1"
+  },
+  {
+   "host": "RodTube1",
+   "guest": "RodPinB1"
+  },
+  {
+   "host": "RodTube2",
+   "guest": "RodPinA2"
+  },
+  {
+   "host": "RodTube2",
+   "guest": "RodPinB2"
+  },
+  {
+   "host": "RodTube3",
+   "guest": "RodPinA3"
+  },
+  {
+   "host": "RodTube3",
+   "guest": "RodPinB3"
+  },
+  {
+   "host": "RodTube4",
+   "guest": "RodPinA4"
+  },
+  {
+   "host": "RodTube4",
+   "guest": "RodPinB4"
+  },
+  {
+   "host": "Sleeve1",
+   "guest": "EndPlate"
+  },
+  {
+   "host": "Sleeve1",
+   "guest": "FixedElectrode1"
+  },
+  {
+   "host": "Sleeve1",
+   "guest": "OilFeedHose"
+  },
+  {
+   "host": "Sleeve2",
+   "guest": "FixedElectrode2"
+  },
+  {
+   "host": "Sleeve3",
+   "guest": "FixedElectrode3"
+  },
+  {
+   "host": "Sleeve4",
+   "guest": "FixedElectrode4"
+  },
+  {
+   "host": "ValveBox1",
+   "guest": "BusLink1"
+  },
+  {
+   "host": "ValveBox1",
+   "guest": "ElectrodeInsulator1"
+  },
+  {
+   "host": "ValveBox1",
+   "guest": "FixedElectrode1"
+  },
+  {
+   "host": "ValveBox1",
+   "guest": "IgnitionBearing0"
+  },
+  {
+   "host": "ValveBox1",
+   "guest": "IgnitionGear",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "bands": [
+     {
+      "radius": 31.0,
+      "y": [
+       -59.5,
+       -52.5
+      ]
+     },
+     {
+      "radius": 10.5,
+      "y": [
+       -52.5,
+       -18.5
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "ValveBox1",
+   "guest": "IgnitionGearSpring",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "bands": [
+     {
+      "radius": 9.0,
+      "y": [
+       -18.4475,
+       1.749
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "ValveBox1",
+   "guest": "IgnitionShaft",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "bands": [
+     {
+      "radius": 5.5,
+      "y": [
+       -60.0,
+       469.07
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "ValveBox1",
+   "guest": "Sleeve1"
+  },
+  {
+   "host": "ValveBox2",
+   "guest": "BusLink2"
+  },
+  {
+   "host": "ValveBox2",
+   "guest": "ElectrodeInsulator2"
+  },
+  {
+   "host": "ValveBox2",
+   "guest": "FixedElectrode2"
+  },
+  {
+   "host": "ValveBox2",
+   "guest": "IgnitionShaft",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "bands": [
+     {
+      "radius": 5.5,
+      "y": [
+       -60.0,
+       469.07
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "ValveBox2",
+   "guest": "Sleeve2"
+  },
+  {
+   "host": "ValveBox3",
+   "guest": "BusLink3"
+  },
+  {
+   "host": "ValveBox3",
+   "guest": "ElectrodeInsulator3"
+  },
+  {
+   "host": "ValveBox3",
+   "guest": "FixedElectrode3"
+  },
+  {
+   "host": "ValveBox3",
+   "guest": "IgnitionShaft",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "bands": [
+     {
+      "radius": 5.5,
+      "y": [
+       -60.0,
+       469.07
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "ValveBox3",
+   "guest": "Sleeve3"
+  },
+  {
+   "host": "ValveBox4",
+   "guest": "BusLink4"
+  },
+  {
+   "host": "ValveBox4",
+   "guest": "ElectrodeInsulator4"
+  },
+  {
+   "host": "ValveBox4",
+   "guest": "FixedElectrode4"
+  },
+  {
+   "host": "ValveBox4",
+   "guest": "IgnitionShaft",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "bands": [
+     {
+      "radius": 5.5,
+      "y": [
+       -60.0,
+       469.07
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "host": "ValveBox4",
+   "guest": "Sleeve4"
+  },
+  {
+   "host": "WaterInlet",
+   "guest": "WaterHoseIn"
+  },
+  {
+   "host": "WaterReturnA",
+   "guest": "WaterHoseA"
+  },
+  {
+   "host": "WaterReturnB",
+   "guest": "WaterHoseB"
+  }
+ ]
+}

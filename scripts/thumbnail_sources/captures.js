@@ -19,6 +19,7 @@ const THUMBNAIL_CAPTURES = [
   { model: 'cylinder', name: 'explore-cylinder', view: { initialAngle: 560, initialCycle: true }, options: { ...WIDE, zoom: 0.72 } },
   { model: 'gtsio520-h-v5-teaching-engine', name: 'explore-full-engine', view: {}, options: { ...WIDE, zoom: 0.55 } },
   { model: 'wright-1903-engine', name: 'explore-wright-1903-engine', view: { viewPreset: 'engine-overview' }, options: { ...WIDE, exposure: 0.5, zoom: 0.47, pan: [0, -32] } },
+  { model: 'wright-1903-reconstruction', name: 'explore-wright-1903-reconstruction', view: { savedMotionId: 'Systems exploded view', motionProgress: 100 }, options: { ...WIDE, zoom: 0.4, orbit: [-30, -12], pan: [-10, 0] } },
   { model: 'hydraulic-tappet', name: 'explore-hydraulic-tappet', view: { savedMotionId: 'Exploded overview', motionProgress: 100 }, options: { ...WIDE, zoom: 0.52, roll: 90 } },
   { model: 'oil-pump', name: 'explore-oil-pump', view: { savedMotionId: 'Exploded overview', motionProgress: 100 }, options: { ...WIDE, zoom: 0.54, roll: 90, pan: [45, -5] } },
   { model: 'accessory-drives', name: 'explore-accessory-drives', view: { savedMotionId: 'Operating mechanism', motionProgress: 0 }, options: { ...WIDE, zoom: 0.7, orbit: [-25, -22], pan: [0, -8] } },

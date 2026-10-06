@@ -96,6 +96,12 @@
       "drive_id": "1Z8y-Y-GGT50irsGoh6ycQ-iC4NhmuTSY",
       "bytes": 4228178,
       "sha256": "cdaa357e0888b5c89ad0a2135b1536b71a6a4099930b67af1993058c430caf0f"
+    },
+    {
+      "path": "web/wright-1903-reconstruction.glb.gz",
+      "drive_id": "1UrekBX3HsJecVKka0RM6KCkU_ptU6GIE",
+      "bytes": 6141633,
+      "sha256": "42b0e6f9595d843d86a35db949ae6c261a2445e47424db64cbc6c0c426904487"
     }
   ],
   "history_policy": "New unpublished accessory commits exclude model binaries. Existing published history retained; native CAD and exported GLBs are no longer tracked going forward.",
@@ -283,5 +289,111 @@
       }
     ],
     "cloud_verification": "Connector metadata readback verified both byte counts, expected parent and owner-only permissions. All original payload hashes and local delivery ZIP CRCs verified. Remote content hashes are not exposed by the connector."
+  },
+  "wright_animated_native_archive": {
+    "path": "cad-studies/wright-research-revision-2-animated-20261006.zip",
+    "drive_id": "1xZAJty4Xbra0Dbr6_RsMkOwde57S6KGG",
+    "drive_url": "https://drive.google.com/file/d/1xZAJty4Xbra0Dbr6_RsMkOwde57S6KGG/view?usp=drivesdk",
+    "bytes": 38822929,
+    "sha256": "576dbf7e211b49f8837a237ac9ee9112a86c7614e1882dda0417c971942ac3a6",
+    "file_count": 20,
+    "scope": "Private native sources of the Wright revision-2 animated reconstruction (FCStd, STEP, Blender, GLB, contract, records). Not a student viewer file.",
+    "files": [
+      {
+        "path": "cad/cad-validation.json",
+        "bytes": 276322,
+        "sha256": "0adc5638e4bfb131dbc3c3dcdd7ea28b32801b6ac35a0c391f3bb79cca24b5e0"
+      },
+      {
+        "path": "cad/wright-research-revision-2.FCStd",
+        "bytes": 13452873,
+        "sha256": "09228080bba4f70619d9ed576af19484a53bc4014fadbc7ee3f6792331cdc0af"
+      },
+      {
+        "path": "cad/wright-research-revision-2.step",
+        "bytes": 11572327,
+        "sha256": "444fd85cf7214a0177951c064621218db27fcd04980c739d9a4638b7cd591e78"
+      },
+      {
+        "path": "cad/geometry.json",
+        "bytes": 12723431,
+        "sha256": "ee752069d7aaacfdea15380044b3312dd23a50b97b7ee934b17d490e5a99af12"
+      },
+      {
+        "path": "cad/engineering-checks.json",
+        "bytes": 15014,
+        "sha256": "223e8c56a8e01abdcc7623b513cbea406844bf9fef6e91196688cbc4d13c93b6"
+      },
+      {
+        "path": "cad/reopen-validation.json",
+        "bytes": 1951,
+        "sha256": "edd08b4202eddf42a5cfb5eca780dcb375617a98defdd0decb545ec71cc69bd2"
+      },
+      {
+        "path": "rig/wright-research-revision-2-animated.blend",
+        "bytes": 8141467,
+        "sha256": "536feeaa4e6bf165ff6cfe37ff0665babfea34adb88a8cb0fc81c276b73dad45"
+      },
+      {
+        "path": "rig/wright-research-revision-2-animated.glb",
+        "bytes": 25742128,
+        "sha256": "2111a150c146193978b688d05aac7d0e5bfaab9ab20121585b7cd36af4963746"
+      },
+      {
+        "path": "rig/wright-research-revision-2-animated.glb.gz",
+        "bytes": 6141633,
+        "sha256": "42b0e6f9595d843d86a35db949ae6c261a2445e47424db64cbc6c0c426904487"
+      },
+      {
+        "path": "rig/wright-research-revision-2-animated-contract.json",
+        "bytes": 346822,
+        "sha256": "107feac51edb090e8526295400bc482f6b0c4ec2c8178a34c2aec73232db5738"
+      },
+      {
+        "path": "rig/blender-verification.json",
+        "bytes": 367,
+        "sha256": "b3e7d75bbfdfe7be93a74769c731cb906df850fc39c30139cd0914341bc8b367"
+      },
+      {
+        "path": "study/part-spec.json",
+        "bytes": 954674,
+        "sha256": "3c3dd4a6c2667493f69e741127e90bb67cb9993ba14fd172b0cc96fbba36124e"
+      },
+      {
+        "path": "study/seats.json",
+        "bytes": 17163,
+        "sha256": "d82f416d29888fe1688ac2f5dde3bd73043d5b628fc007e6ab7203f74e1ba080"
+      },
+      {
+        "path": "study/chain-layout.json",
+        "bytes": 4021,
+        "sha256": "2c60f4cee8778a085f438cd7f39ee50a82c8a0b866a648f9afdeb2d3c88a8bf1"
+      },
+      {
+        "path": "study/interference-policy.json",
+        "bytes": 613,
+        "sha256": "dbd4cd083169e865125885fdcf352598883cb82ecb4eeb2233180ebc9f49488d"
+      },
+      {
+        "path": "study/interference-audit.json",
+        "bytes": 1086,
+        "sha256": "0bbbf289cdbc0da1ed6f4670257dcb8cb5d2ba8b5d8ebbfb1c65dffd3baac83f"
+      },
+      {
+        "path": "study/operating-motion.md",
+        "bytes": 5725,
+        "sha256": "47ff0c8baf3b1aa435be54791267517b5bf403504bfc78d059f3a2fb5cfbd37b"
+      },
+      {
+        "path": "study/research.md",
+        "bytes": 20030,
+        "sha256": "ddedf2d33f18e84dea9ffd0a7b88ff5703d821713eaeb024ee1abb28373b027c"
+      },
+      {
+        "path": "study/inventory.json",
+        "bytes": 44416,
+        "sha256": "a331a60ad0e581b7b44ca057432e494391f07340a4453cf676acaa231f9f4583"
+      }
+    ]
   }
 }

@@ -16,6 +16,8 @@ export type ModelDefinition = {
   label: string;
   adapter: ModelAdapterId;
   eyebrow: string;
+  /** Replaces the default `GTSIO-520-H · <label>` header subtitle while the model is open (for a model that is not the teaching engine). */
+  headerLabel?: string;
   description: string;
   previewUrl?: string;
   lessonControls?: boolean;

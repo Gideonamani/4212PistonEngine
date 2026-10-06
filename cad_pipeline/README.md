@@ -4,12 +4,13 @@ Images, text and meshes converge on a reviewed JSON feature specification. These
 
 ## Skills
 
-The seven repo skills are under `.agents/skills/`. Example requests:
+The eight repo skills are under `.agents/skills/`. Example requests:
 
 - “Use $image-to-cad to reconstruct this dimensioned drawing; mark hidden details as estimates.”
 - “Use $text-to-cad to make a 100 × 65 × 50 mm bearing housing with a 30 mm bore.”
 - “Use $mesh-to-cad and $engineering-research to reconstruct this historical engine as editable major parts.”
 - “Use $cad-to-blender to focus on and name each major component.”
+- “Use $mechanism-animation to animate this validated assembly so its parts drive each other without passing through one another.”
 
 Reload/open the repo in a new Codex chat if newly added skills have not been discovered. `AGENTS.md` routes reconstruction tasks to the same instructions.
 
@@ -72,3 +73,28 @@ CAD metadata uses `Shape.optimalBoundingBox(False, False)` so bounds do not depe
 The revision-2 STEP has a documented mass-property exception for four ported valve boxes. The original 0.01% per-solid volume limit failed at about 0.019%, although bounds and face/vertex counts agree and bidirectional sampled boundaries differ by less than 1.4e-11 mm. `inspect_step_difference.py --package ...` records this evidence. The optional verifier flag requires a reviewed policy, matching native/STEP hashes, exact failing-part coverage, volume error at most 0.02%, and bounds/sampled boundary error at most 1e-6 mm. The aggregate limit stays 1e-5. It records `strict_solid_volume_check_passed: false` and the exception; it does not turn the original failure into a strict pass. New geometry needs new evidence and review. See the study's `validation-history.md`. To verify the delivered saved candidate, run `verify.py --package build/wright-reconstruction-v2/cad --step-boundary-exception cad-studies/wright-1903/revision-2/step-exception-policy.json`. A fresh build first uses strict verification and needs a newly reviewed policy if that check fails; the delivered policy cannot apply to different file hashes.
 
 After visual inspection and round-trip checks, use `py -3.14 cad_pipeline/build_review.py --study cad-studies/wright-1903/revision-2 --package build/wright-reconstruction-v2`, then `py -3.14 cad_pipeline/package_reconstruction.py --study cad-studies/wright-1903/revision-2 --package build/wright-reconstruction-v2 --name wright-research-revision-2-20261004.zip`. The review builder needs Python-Markdown; the archive preserves repo-relative paths and excludes probes/backups/caches.
+
+## Wright revision 2 in the Explore gallery: seats, operating motion and exploded view
+
+The revision-2 engine is the second Wright card in the Explore gallery (`wright-1903-reconstruction`, the first is the Smithsonian scan). It is released the same way as the accessory drives: native FreeCAD build, then a Blender rig that bakes the clips, then an exhaustive interference audit of the exported GLB. The rules are in `docs/assembly-interference.md`; the content of the motion is in `cad-studies/wright-1903/revision-2/operating-motion.md`.
+
+Pieces:
+
+- `wright_v2.py` writes `part-spec.json`. Parts that sit in a stationary host are *seated*: `wright_seats.py` derives, from an audit of the unseated build, a cut in the host that is the guest's outline grown by 0.15 mm, so the guest touches the host and does not overlap it (`seats.json`). A fixed-axis rotating body can be seated by its revolution envelope (`swept`). Re-derive the seats after changing any geometry: `python -m cad_pipeline.wright_seats derive --audit <audit.json> --geometry <geometry.json> --seats cad-studies/wright-1903/revision-2/seats.json`. The audit may be a rest audit and/or an `audit_motion.py` output.
+- `wright_bodies.py` says which parts are one rigid unit (crank assembly, each piston with its pin, each rod, each valve with its cage, the cam shaft with its cams, ...). Pairs inside a unit cannot move relative to each other and are covered by the assembled-pose check.
+- `wright_chain.py` derives the chain from the 25.2556 mm arc pitch (38 links, exact 2:1), so every roller sits in its pocket and clear of every tooth at every angle.
+- `wright_motion.py` is the single definition of the illustrative operating motion (slider-crank, 2:1 chain drive, the cam-rocker-valve train, the make-and-break igniters, the generator friction drive). `wright_explode.py` is the systems exploded view. `wright_contract.py` writes the viewer contract (the tree: 18 systems, then the inventory components of `inventory.json`, then parts).
+- `rig_wright.py` (Blender) bakes both clips with per-body tracks and exports the `.blend`, the GLB and the contract: `blender --background --python-exit-code 1 --python cad_pipeline/rig_wright.py -- --package <cad package> --output <folder>`.
+
+Fast loop while changing geometry or motion (about one to three minutes per cycle, not for release):
+
+```powershell
+python -m cad_pipeline.wright_v2 --no-seats --out build/dev/part-spec.json
+& $cadPython cad_pipeline/fast_build.py --spec build/dev/part-spec.json --output build/dev/out --jobs 4
+python -m pip install -r scripts/requirements-audit.txt
+python cad_pipeline/geometry_to_glb.py build/dev/out/geometry.json build/dev/out/model.glb --motion
+python scripts/audit_assembly_interference.py build/dev/out/model.glb --rest-only
+python cad_pipeline/audit_motion.py --geometry build/dev/out/geometry.json --step 30
+```
+
+`fast_build.py` evaluates the same specification with direct Part booleans and per-part caching; it is a development evaluator. A release goes through `generate.py --batch-runs 6` (native feature history; the option applies each run of six or more consecutive same-operation features, such as the casting's seat cuts, as one fused tool in one Boolean, which builds the Crankcase in about ten minutes instead of hours and matches the one-Boolean-per-feature volume to 1e-7; leave it off for `update_native.py` workflows), `verify.py`, `audit_wright_v2.py`, then `rig_wright.py`, then the real audit on the exported GLB. Audit the exported file, not only the CAD: the clips are baked at one key per crank degree and a viewer interpolates linearly between keys, which can move a part whose origin is far from its axis (see `cad-studies/wright-1903/revision-2/operating-motion.md`). `scripts/test_wright_layout.py` (standard library only) checks the chain, the seat rules and the rigid bodies; `scripts/test_wright_reconstruction.mjs` checks the released file's ratios, stroke, valve lift, the exploded stages and the tree.

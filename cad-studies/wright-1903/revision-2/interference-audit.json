@@ -1,0 +1,34 @@
+{
+  "asset_sha256": "2111a150c146193978b688d05aac7d0e5bfaab9ab20121585b7cd36af4963746",
+  "asset_bytes": 25742128,
+  "parts": 413,
+  "tolerance_mm3": 0.001,
+  "max_penetration_mm": 0.05,
+  "method": "All bound-meeting pairs intersected exactly (Manifold boolean) at the rest pose and at sampled times of each baked animation clip. Touching is allowed, overlap is not; an overlap thinner than max_penetration_mm is treated as mesh tessellation noise on a touching face.",
+  "rest_neighbouring_pairs": 1121,
+  "rest_touching_only": 1121,
+  "clips": {
+    "Operating mechanism (illustrative)": {
+      "moving_parts": 288,
+      "poses": 133,
+      "new_overlaps": 0
+    }
+  },
+  "gear_meshes": [
+    {
+      "driver": "ExhaustGear",
+      "driven": "IgnitionGear",
+      "min_gap_mm": 0.07765501608011123,
+      "required_mm": 0.02,
+      "ok": true
+    }
+  ],
+  "unverified_parts": [],
+  "unverified_not_waived": [],
+  "stale_ledger_entries": [],
+  "overlaps_total": 0,
+  "known_defects": [],
+  "new_violations": [],
+  "clean": true,
+  "passed": true
+}
