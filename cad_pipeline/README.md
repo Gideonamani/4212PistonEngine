@@ -4,12 +4,13 @@ Images, text and meshes converge on a reviewed JSON feature specification. These
 
 ## Skills
 
-The seven repo skills are under `.agents/skills/`. Example requests:
+The eight repo skills are under `.agents/skills/`. Example requests:
 
 - “Use $image-to-cad to reconstruct this dimensioned drawing; mark hidden details as estimates.”
 - “Use $text-to-cad to make a 100 × 65 × 50 mm bearing housing with a 30 mm bore.”
 - “Use $mesh-to-cad and $engineering-research to reconstruct this historical engine as editable major parts.”
 - “Use $cad-to-blender to focus on and name each major component.”
+- “Use $mechanism-animation to animate this validated assembly so its parts drive each other without passing through one another.”
 
 Reload/open the repo in a new Codex chat if newly added skills have not been discovered. `AGENTS.md` routes reconstruction tasks to the same instructions.
 

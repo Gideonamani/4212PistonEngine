@@ -55,7 +55,7 @@ ledger entry, or a part it could not check and that is not waived with a reason.
 To add a gear to the accessory train, declare it in `GEARS` and `MESHES` in `scripts/accessory_gears.py`; the builder, the contract and
 the checks follow. Do not type positions, rates or tooth phases into the builder.
 
-## State on 5 October 2026
+## State on 6 October 2026 (Wright added; the other rows are as of 5 October)
 
 | Model | Parts | Overlapping pairs | Notes |
 |---|---|---|---|
@@ -63,7 +63,34 @@ the checks follow. Do not type positions, rates or tooth phases into the builder
 | Reviewed cylinder | 61 | 13 | Not investigated: rocker shafts in their housings, rod bolts through the rod, spark plugs in the head, piston ring three against the pin plugs. Assembled pose only. |
 | Hydraulic tappet | 8 | 4 | Not investigated; all under 0.2 mm thick. |
 | Oil pump | 14 | 3 | The gear pair uses the same square-tooth generator and overlaps; the relief plunger/spring and adjuster do too. |
-| Full engine, Wright 1903 | n/a | n/a | Not audited, see below. |
+| Wright revision-2 reconstruction | 413 | 0 | Clean: rest pose 1,121 neighbouring pairs, all touching only; the illustrative operating clip is clean at 133 poses and the exhaust-to-ignition spur pair keeps at least 0.078 mm. The exploded clip is skipped (see below). |
+| Wright 1903 Smithsonian scan | n/a | n/a | One mesh: no part pairs to test. |
+
+## The Wright revision-2 reconstruction
+
+The 413-part Wright engine started with hundreds of overlapping pairs, nearly all one part passing through another where the layout had
+simply placed them. It was made clean in four moves, each stored as data or derived, none typed into the generator:
+
+- **Seats.** Where a part passes through or rests in another, the stationary host is cut with the guest's outline grown by 0.15 mm, so the two
+  touch with that clearance (`cad-studies/wright-1903/revision-2/seats.json`, `cad_pipeline/wright_seats.py`). Fasteners, springs, hoses and leads
+  are always guests. Two different moving bodies have no host: that is a mechanism fault and is fixed in the layout.
+- **Rigid bodies.** `cad_pipeline/wright_bodies.py` says which parts move together (78 bodies, 125 static parts); parts of one body may share
+  material and the audit skips their pairs.
+- **Swept envelopes.** A part turning about a fixed axis is cleared through its whole revolution by its stepped silhouette (a gear disc, then its
+  narrow sleeve), not one cylinder around all of it. The sleeve of the sliding ignition gear still notches the first exhaust valve cage by about 4 percent;
+  that is a recorded layout conflict, not a pass.
+- **Derived geometry.** The chain comes from its arc pitch (38 links, exactly 2:1) and the spur pair from its centre distance and tooth count, so every
+  roller sits in its pocket and the teeth have positive backlash.
+
+The motion is illustrative and defined once in `cad_pipeline/wright_motion.py` (`cad-studies/wright-1903/revision-2/operating-motion.md`). The audit that
+matters is the one of the **exported file's baked clip sampled between its keys**: development audits that pose the exact motion at 30-degree steps passed
+a model whose baked clip had six overlaps (a friction wheel drifting 0.2 mm between keys because its node origin was 230 mm from its axis, a cam
+follower touching its cam by the nose only, two springs swinging into a valve box). The fixes are in `docs/wright-reconstruction-lessons.md`.
+
+**Exploded view exception.** `Systems exploded view` is skipped by default like the accessory exploded clips: it moves systems along straight lines in three
+stages, so parts pass through neighbours in transit (pistons and rods through the crankcase, liners through the valve boxes) and the held poses at the end of
+stages 2 and 3 leave 14 and 18 overlapping pairs (`python scripts/scan_assembly_pairs.py <glb> --clip "Systems exploded view" --fractions 0.3333 0.6667 1`).
+A removal-order planner that uses the audit as its oracle is the open step.
 
 ## What it does not cover
 
@@ -72,8 +99,8 @@ the checks follow. Do not type positions, rates or tooth phases into the builder
 - The exploded and reassembly clips are skipped by default. Their parts are nested, so transient overlaps are expected, and the
   explosion order is pedagogical. `--include-exploded` sweeps them.
 - The full-engine export (1,595 parts) has about 2,700 overlapping neighbours at the assembled pose, mostly pieces of one rigid unit such
-  as crank journal shoulders inside a main journal. The rule needs a rigid-group concept before it can be applied fairly. The Wright
-  1903 export is a single mesh and has no part pairs to test.
+  as crank journal shoulders inside a main journal. The rule needs a rigid-group concept before it can be applied fairly. The Smithsonian
+  Wright scan is a single mesh and has no part pairs to test.
 - `AlternatorBody` has open seam edges in its exported tessellation, so an exact intersection cannot be built. It is waived with a reason
   and its seats are checked in CAD. The fix belongs in the export.
 - This is geometric validity. Module, tooth counts, backlash and clearances are illustrative; none of it is manufacturer gear or fit data,

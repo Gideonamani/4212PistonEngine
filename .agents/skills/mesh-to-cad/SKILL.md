@@ -12,3 +12,5 @@ Use engineering-research and finish its component/mechanism readiness review bef
 Build a new semantic specification, preserving measured/inferred status and measurement method for each parameter. Deliver a level-3 parametric candidate with meaningful primitives/sketches and Boolean features, not a mesh-facet wrapper. Label repair-only or mesh-derived solids explicitly if those outputs are requested. Validate source alignment separately from internal fit and historical fidelity.
 
 Use `cad-studies/wright-1903/mesh-rois.json` and its fit record as the worked trial. Keep the original scan for overlay review and all reconstruction binaries ignored/local until the established Drive release workflow is run.
+
+Compare silhouettes of the scan and the candidate from identical cameras and record the residual per region; an assembly needs more than a few fitted regions. Packaging relationships (which axes pass where) cannot be read from an exterior scan: take them from the sources and record them as constraints (engineering-research, `references/motion-and-packaging.md`).

@@ -314,7 +314,7 @@ def audit(path, contract=None, policy=None, samples=41, dense=96, include_explod
         log('python-fcl missing: gear clearance (minimum gap) is not measured')
     min_gap = {}
     for name, clip in ({} if rest_only else glb.clips()).items():
-        if not include_exploded and name in ('Exploded overview', 'Reassembly overview'):
+        if not include_exploded and (name in ('Exploded overview', 'Reassembly overview') or 'exploded view' in name.lower()):
             continue
         tracks = glb.clip_tracks(clip)
         moving = moving_ids(glb, tracks)
