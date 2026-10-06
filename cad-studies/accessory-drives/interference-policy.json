@@ -1,5 +1,5 @@
 {
-  "_note": "Interference policy for web/accessory-drives.glb.gz. Touching is always allowed; overlap is not. known_defects is a ratchet: it records what the CURRENTLY PUBLISHED asset still contains, may only shrink, and an entry that is no longer observed fails the audit until it is removed. An empty list is the goal. UNRELEASED: this ledger describes the model rebuilt from source on 6 October 2026, not the asset published today, which still contains the thirteen fixed pairs removed here; the audit of the published asset fails until the rebuilt model is released and its interference-audit.json committed.",
+  "_note": "Interference policy for web/accessory-drives.glb.gz. Touching is always allowed; overlap is not. known_defects is a ratchet: it records what the CURRENTLY PUBLISHED asset still contains, may only shrink, and an entry that is no longer observed fails the audit until it is removed. An empty list is the goal.",
   "volume_tolerance_mm3": 0.001,
   "max_penetration_mm": 0.05,
   "min_gear_clearance_mm": 0.02,
@@ -9,30 +9,5 @@
       "reason": "The exported tessellation has 526 open seam edges, so an exact boolean cannot be built. The FreeCAD solid is valid (cad-verification.json). Its shaft and pad seats are checked in CAD. Fix at export: tessellate with shared edges."
     }
   ],
-  "known_defects": [
-    {
-      "a": "StarterAdapter",
-      "b": "StarterCover",
-      "max_mm3": 1022.4,
-      "status": "open",
-      "reason": "The cross-axis worm tunnel (radius 12 about z=77) reaches z=89 and passes through the cover plate (z 85-90).",
-      "fix": "Relieve the cover and gasket around the tunnel boss, or lower the tunnel so it ends below z=84."
-    },
-    {
-      "a": "StarterAdapter",
-      "b": "StarterCoverGasket",
-      "max_mm3": 157.1,
-      "status": "open",
-      "reason": "Same tunnel boss passes through the cover gasket (z 84-85).",
-      "fix": "Same change as the cover."
-    },
-    {
-      "a": "StarterWorm",
-      "b": "WormWheel",
-      "max_mm3": 26.7,
-      "status": "open",
-      "reason": "Worm axis is 30 mm from the wheel axis; wheel tips (24.8) plus worm core/thread (6/7) reach 31.8, so the worm penetrates the wheel up to 1.8 mm.",
-      "fix": "Move the worm axis, motor and tunnel out to about y=-32.1, or shrink the worm; a true worm-gear mesh needs a throated wheel."
-    }
-  ]
+  "known_defects": []
 }

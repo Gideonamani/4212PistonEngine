@@ -1,40 +1,40 @@
 {
-  "asset_sha256": "dde7e6d7832d65fc73975f494b530e1051c37e8ebc41954e6d704077d80a6be3",
-  "asset_bytes": 55709888,
+  "asset_sha256": "77eb48c1d8ffb3147cc908187eab03d9442021a359751391c6ee5bd06e477f86",
+  "asset_bytes": 56647996,
   "parts": 83,
   "tolerance_mm3": 0.001,
   "max_penetration_mm": 0.05,
   "method": "All bound-meeting pairs intersected exactly (Manifold boolean) at the rest pose and at sampled times of each baked animation clip. Touching is allowed, overlap is not; an overlap thinner than max_penetration_mm is treated as mesh tessellation noise on a touching face.",
-  "rest_neighbouring_pairs": 187,
-  "rest_touching_only": 175,
+  "rest_neighbouring_pairs": 184,
+  "rest_touching_only": 184,
   "clips": {
     "Focus: alternator": {
-      "moving_parts": 6,
+      "moving_parts": 16,
       "poses": 133,
       "new_overlaps": 0
     },
     "Focus: fuel": {
-      "moving_parts": 8,
+      "moving_parts": 15,
       "poses": 133,
-      "new_overlaps": 2
+      "new_overlaps": 0
     },
     "Focus: governor": {
-      "moving_parts": 4,
+      "moving_parts": 13,
       "poses": 133,
       "new_overlaps": 0
     },
     "Focus: magnetos": {
-      "moving_parts": 7,
+      "moving_parts": 14,
       "poses": 133,
       "new_overlaps": 0
     },
     "Focus: oil-tach": {
-      "moving_parts": 9,
+      "moving_parts": 15,
       "poses": 133,
       "new_overlaps": 0
     },
     "Focus: vacuum": {
-      "moving_parts": 5,
+      "moving_parts": 13,
       "poses": 133,
       "new_overlaps": 0
     },
@@ -46,265 +46,68 @@
     "Starter engagement and start": {
       "moving_parts": 33,
       "poses": 133,
-      "new_overlaps": 2
+      "new_overlaps": 0
     }
   },
-  "gear_meshes": [],
+  "gear_meshes": [
+    {
+      "driver": "CamCluster",
+      "driven": "FuelGear",
+      "min_gap_mm": 0.04742063567122869,
+      "required_mm": 0.02,
+      "ok": true
+    },
+    {
+      "driver": "CrankGear",
+      "driven": "CamGear",
+      "min_gap_mm": 0.05876967314517329,
+      "required_mm": 0.02,
+      "ok": true
+    },
+    {
+      "driver": "CrankGear",
+      "driven": "IdlerGear",
+      "min_gap_mm": 0.058844626690376246,
+      "required_mm": 0.02,
+      "ok": true
+    },
+    {
+      "driver": "CrankGear",
+      "driven": "StarterShaftGear",
+      "min_gap_mm": 0.058844626690376246,
+      "required_mm": 0.02,
+      "ok": true
+    },
+    {
+      "driver": "IdlerGear",
+      "driven": "LeftMagGear",
+      "min_gap_mm": 0.059373204238942025,
+      "required_mm": 0.02,
+      "ok": true
+    },
+    {
+      "driver": "IdlerGear",
+      "driven": "RightMagGear",
+      "min_gap_mm": 0.059381424607954265,
+      "required_mm": 0.02,
+      "ok": true
+    },
+    {
+      "driver": "OilDriver",
+      "driven": "OilDriven",
+      "min_gap_mm": 0.047758976069208585,
+      "required_mm": 0.02,
+      "ok": true
+    }
+  ],
   "unverified_parts": [
     "AlternatorBody"
   ],
   "unverified_not_waived": [],
   "stale_ledger_entries": [],
-  "overlaps_total": 16,
-  "known_defects": [
-    {
-      "a": "StarterAdapter",
-      "b": "StarterCover",
-      "max_overlap_mm3": 1022.3854394244208,
-      "max_thickness_mm": 2.0777635272183668,
-      "first_seen": "rest",
-      "poses": [
-        "rest"
-      ],
-      "ledger": "The cross-axis worm tunnel (radius 12 about z=77) reaches z=89 and passes through the cover plate (z 85-90)."
-    },
-    {
-      "a": "CamGear",
-      "b": "CrankGear",
-      "max_overlap_mm3": 185.51132054394265,
-      "max_thickness_mm": 1.1863530366519968,
-      "first_seen": "rest",
-      "poses": [
-        "rest",
-        "Focus: alternator @ 0.000s",
-        "Focus: alternator @ 0.021s",
-        "Focus: alternator @ 0.042s",
-        "Focus: alternator @ 0.062s",
-        "Focus: alternator @ 0.083s"
-      ],
-      "ledger": "Square-tooth gears at exactly r1+r2 centre distance with no solved tooth phase and no backlash."
-    },
-    {
-      "a": "OilDriven",
-      "b": "OilScreenPlug",
-      "max_overlap_mm3": 174.82969194701863,
-      "max_thickness_mm": 1.5007860037854557,
-      "first_seen": "rest",
-      "poses": [
-        "rest",
-        "Focus: oil-tach @ 0.000s",
-        "Focus: oil-tach @ 0.021s",
-        "Focus: oil-tach @ 0.042s",
-        "Focus: oil-tach @ 0.062s",
-        "Focus: oil-tach @ 0.083s"
-      ],
-      "ledger": "Screen-plug shank (11 mm) runs through the pocket wall into the driven-gear teeth."
-    },
-    {
-      "a": "CrankGear",
-      "b": "IdlerGear",
-      "max_overlap_mm3": 164.63824652025377,
-      "max_thickness_mm": 1.3557257655904313,
-      "first_seen": "rest",
-      "poses": [
-        "rest",
-        "Focus: alternator @ 0.000s",
-        "Focus: alternator @ 0.021s",
-        "Focus: alternator @ 0.042s",
-        "Focus: alternator @ 0.062s",
-        "Focus: alternator @ 0.083s"
-      ],
-      "ledger": "Square-tooth gears at exactly r1+r2 centre distance with no solved tooth phase and no backlash."
-    },
-    {
-      "a": "CrankGear",
-      "b": "StarterShaftGear",
-      "max_overlap_mm3": 164.63824652025377,
-      "max_thickness_mm": 1.3557257655904313,
-      "first_seen": "rest",
-      "poses": [
-        "rest",
-        "Focus: alternator @ 0.000s",
-        "Focus: alternator @ 0.021s",
-        "Focus: alternator @ 0.042s",
-        "Focus: alternator @ 0.062s",
-        "Focus: alternator @ 0.083s"
-      ],
-      "ledger": "Square-tooth gears at exactly r1+r2 centre distance with no solved tooth phase and no backlash."
-    },
-    {
-      "a": "StarterAdapter",
-      "b": "StarterCoverGasket",
-      "max_overlap_mm3": 157.05817113129683,
-      "max_thickness_mm": 0.1931213231634643,
-      "first_seen": "rest",
-      "poses": [
-        "rest"
-      ],
-      "ledger": "Same tunnel boss passes through the cover gasket (z 84-85)."
-    },
-    {
-      "a": "IdlerGear",
-      "b": "LeftMagGear",
-      "max_overlap_mm3": 155.81577185810988,
-      "max_thickness_mm": 1.3462162637486046,
-      "first_seen": "rest",
-      "poses": [
-        "rest",
-        "Focus: magnetos @ 0.000s",
-        "Focus: magnetos @ 0.021s",
-        "Focus: magnetos @ 0.042s",
-        "Focus: magnetos @ 0.062s",
-        "Focus: magnetos @ 0.083s"
-      ],
-      "ledger": "Square-tooth gears at exactly r1+r2 centre distance with no solved tooth phase and no backlash."
-    },
-    {
-      "a": "IdlerGear",
-      "b": "RightMagGear",
-      "max_overlap_mm3": 149.0034792294881,
-      "max_thickness_mm": 1.206850441778262,
-      "first_seen": "rest",
-      "poses": [
-        "rest",
-        "Focus: magnetos @ 0.000s",
-        "Focus: magnetos @ 0.021s",
-        "Focus: magnetos @ 0.042s",
-        "Focus: magnetos @ 0.062s",
-        "Focus: magnetos @ 0.083s"
-      ],
-      "ledger": "Square-tooth gears at exactly r1+r2 centre distance with no solved tooth phase and no backlash."
-    },
-    {
-      "a": "CamCluster",
-      "b": "FuelGear",
-      "max_overlap_mm3": 118.15010993764223,
-      "max_thickness_mm": 1.121868008696734,
-      "first_seen": "rest",
-      "poses": [
-        "rest",
-        "Focus: fuel @ 0.000s",
-        "Focus: fuel @ 0.021s",
-        "Focus: fuel @ 0.042s",
-        "Focus: fuel @ 0.062s",
-        "Focus: fuel @ 0.083s"
-      ],
-      "ledger": "Square-tooth gears at exactly r1+r2 centre distance with no solved tooth phase and no backlash."
-    },
-    {
-      "a": "ClutchSpring",
-      "b": "WormWheelHub",
-      "max_overlap_mm3": 97.32764127164312,
-      "max_thickness_mm": 0.2513990417604804,
-      "first_seen": "Starter engagement and start @ 0.417s",
-      "poses": [
-        "Starter engagement and start @ 0.417s",
-        "Starter engagement and start @ 0.438s",
-        "Starter engagement and start @ 0.458s",
-        "Starter engagement and start @ 0.479s",
-        "Starter engagement and start @ 0.500s",
-        "Starter engagement and start @ 0.521s"
-      ],
-      "ledger": "As for the drum: the contracted spring is driven into the wheel hub."
-    },
-    {
-      "a": "OilTachShaft",
-      "b": "TachOutput",
-      "max_overlap_mm3": 95.5304332454906,
-      "max_thickness_mm": 1.6049183667056688,
-      "first_seen": "rest",
-      "poses": [
-        "rest",
-        "Focus: oil-tach @ 0.000s",
-        "Focus: oil-tach @ 0.021s",
-        "Focus: oil-tach @ 0.042s",
-        "Focus: oil-tach @ 0.062s",
-        "Focus: oil-tach @ 0.083s"
-      ],
-      "ledger": "Lateral tach output shaft ends on the vertical shaft axis, 4.8 mm inside it."
-    },
-    {
-      "a": "ClutchSpring",
-      "b": "StarterDrum",
-      "max_overlap_mm3": 68.14916663808489,
-      "max_thickness_mm": 0.2501754974232349,
-      "first_seen": "Starter engagement and start @ 0.417s",
-      "poses": [
-        "Starter engagement and start @ 0.417s",
-        "Starter engagement and start @ 0.438s",
-        "Starter engagement and start @ 0.458s",
-        "Starter engagement and start @ 0.479s",
-        "Starter engagement and start @ 0.500s",
-        "Starter engagement and start @ 0.521s"
-      ],
-      "ledger": "Grip animation contracts the spring 4%, but at scale 1 its inner surface already touches the drum."
-    },
-    {
-      "a": "CamGear",
-      "b": "OilTachShaft",
-      "max_overlap_mm3": 54.936403144056094,
-      "max_thickness_mm": 0.3145943939188415,
-      "first_seen": "Focus: fuel @ 0.042s",
-      "poses": [
-        "Focus: fuel @ 0.042s",
-        "Focus: fuel @ 0.062s",
-        "Focus: fuel @ 0.083s",
-        "Focus: fuel @ 0.104s",
-        "Focus: fuel @ 0.125s",
-        "Focus: fuel @ 0.146s"
-      ],
-      "ledger": "Focus clips leave the oil/tach shaft still while the cam gear it is splined into turns, so the splines collide."
-    },
-    {
-      "a": "CamCluster",
-      "b": "OilTachShaft",
-      "max_overlap_mm3": 36.62428182893764,
-      "max_thickness_mm": 0.31052404459817606,
-      "first_seen": "Focus: fuel @ 0.042s",
-      "poses": [
-        "Focus: fuel @ 0.042s",
-        "Focus: fuel @ 0.062s",
-        "Focus: fuel @ 0.083s",
-        "Focus: fuel @ 0.104s",
-        "Focus: fuel @ 0.125s",
-        "Focus: fuel @ 0.146s"
-      ],
-      "ledger": "As for the cam gear: the cluster gear is splined to the same shaft."
-    },
-    {
-      "a": "OilDriven",
-      "b": "OilDriver",
-      "max_overlap_mm3": 27.05426858182951,
-      "max_thickness_mm": 0.4689798241298998,
-      "first_seen": "rest",
-      "poses": [
-        "rest",
-        "Focus: oil-tach @ 0.000s",
-        "Focus: oil-tach @ 0.021s",
-        "Focus: oil-tach @ 0.042s",
-        "Focus: oil-tach @ 0.062s",
-        "Focus: oil-tach @ 0.083s"
-      ],
-      "ledger": "Square-tooth gears at exactly r1+r2 centre distance with no solved tooth phase and no backlash."
-    },
-    {
-      "a": "StarterWorm",
-      "b": "WormWheel",
-      "max_overlap_mm3": 26.64934325376942,
-      "max_thickness_mm": 0.48136471241975304,
-      "first_seen": "rest",
-      "poses": [
-        "rest",
-        "Starter engagement and start @ 0.000s",
-        "Starter engagement and start @ 0.021s",
-        "Starter engagement and start @ 0.042s",
-        "Starter engagement and start @ 0.062s",
-        "Starter engagement and start @ 0.083s"
-      ],
-      "ledger": "Worm axis is 30 mm from the wheel axis; wheel tips (24.8) plus worm core/thread (6/7) reach 31.8, so the worm penetrates the wheel up to 1.8 mm."
-    }
-  ],
+  "overlaps_total": 0,
+  "known_defects": [],
   "new_violations": [],
-  "clean": false,
+  "clean": true,
   "passed": true
 }

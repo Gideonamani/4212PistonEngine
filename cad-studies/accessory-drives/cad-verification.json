@@ -174,7 +174,7 @@
       "b": "FuelGear",
       "kind": "mount-face",
       "max_gap_mm": 0.02,
-      "distance_mm": 4.263256414560601e-14
+      "distance_mm": 0.0
     },
     {
       "a": "FuelGearShaft",
@@ -279,14 +279,14 @@
       "b": "OilDriver",
       "kind": "shaft-seat",
       "max_gap_mm": 0.45,
-      "distance_mm": 0.39999999999999536
+      "distance_mm": 0.39999999999999714
     },
     {
       "a": "OilDrivenPin",
       "b": "OilDriven",
       "kind": "shaft-seat",
       "max_gap_mm": 0.15,
-      "distance_mm": 0.0999999999999883
+      "distance_mm": 0.09999999999999644
     },
     {
       "a": "OilDrivenPin",
@@ -307,7 +307,7 @@
       "b": "TachDrivenBevel",
       "kind": "shaft-seat",
       "max_gap_mm": 0.25,
-      "distance_mm": 0.19999999999999657
+      "distance_mm": 0.1999999999999994
     },
     {
       "a": "TachOutput",
@@ -377,7 +377,7 @@
       "b": "WormWheel",
       "kind": "mount-face",
       "max_gap_mm": 0.02,
-      "distance_mm": 8.526512829121202e-14
+      "distance_mm": 5.684341886080802e-14
     },
     {
       "a": "StarterDrum",
@@ -412,14 +412,14 @@
       "b": "AlternatorDrivenGear",
       "kind": "mount-face",
       "max_gap_mm": 0.02,
-      "distance_mm": 3.552713678800501e-14
+      "distance_mm": 1.4210854715202004e-14
     },
     {
       "a": "AlternatorThrustWasher",
       "b": "AlternatorDrivenGear",
       "kind": "mount-face",
       "max_gap_mm": 0.02,
-      "distance_mm": 3.552713678800501e-14
+      "distance_mm": 1.7763568394002505e-14
     },
     {
       "a": "AlternatorThrustWasher",
@@ -529,33 +529,763 @@
   ],
   "interference_checks": [
     {
-      "a": "OilHousing",
+      "a": "AccessoryHousing",
+      "b": "CamCluster",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AccessoryHousing",
+      "b": "CamGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AccessoryHousing",
+      "b": "CamShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AccessoryHousing",
+      "b": "CrankGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AccessoryHousing",
+      "b": "CrankShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AccessoryHousing",
+      "b": "Fastener0",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AccessoryHousing",
+      "b": "Fastener2",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AccessoryHousing",
+      "b": "HousingGasket",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AccessoryHousing",
+      "b": "IdlerGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AccessoryHousing",
+      "b": "IdlerPin",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AccessoryHousing",
+      "b": "LeftMagAdapter",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AccessoryHousing",
+      "b": "LeftMagBushing",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AccessoryHousing",
+      "b": "LeftMagGasket",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AccessoryHousing",
+      "b": "LeftMagGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AccessoryHousing",
+      "b": "LeftMagShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AccessoryHousing",
+      "b": "LeftMagneto",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AccessoryHousing",
+      "b": "OilDrivenPin",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AccessoryHousing",
+      "b": "OilTachShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorBody",
+      "b": "AlternatorHub",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorBody",
+      "b": "AlternatorOutput",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorBody",
+      "b": "AlternatorPad",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorBushing",
+      "b": "AlternatorDisplayStand",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorBushing",
+      "b": "AlternatorDrivenGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorBushing",
+      "b": "AlternatorHub",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorBushing",
+      "b": "AlternatorOutput",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorBushing",
+      "b": "AlternatorThrustWasher",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorClutch",
+      "b": "AlternatorDisplayStand",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorClutch",
+      "b": "AlternatorDrivenGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorClutch",
+      "b": "AlternatorHub",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorClutch",
+      "b": "AlternatorOutput",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorDisplayStand",
+      "b": "AlternatorDrivenGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorDisplayStand",
+      "b": "AlternatorHub",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorDisplayStand",
+      "b": "AlternatorOutput",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorDisplayStand",
+      "b": "AlternatorPad",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorDisplayStand",
+      "b": "AlternatorThrustWasher",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorDrivenGear",
+      "b": "AlternatorHub",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorDrivenGear",
+      "b": "AlternatorOutput",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorDrivenGear",
+      "b": "AlternatorThrustWasher",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorHub",
+      "b": "AlternatorOutput",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorHub",
+      "b": "AlternatorPad",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorOutput",
+      "b": "AlternatorPad",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "AlternatorOutput",
+      "b": "AlternatorThrustWasher",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "CamCluster",
+      "b": "CamGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "CamCluster",
+      "b": "FuelGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "CamCluster",
+      "b": "HousingCover",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "CamCluster",
+      "b": "OilTachShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "CamGear",
+      "b": "CamShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "CamGear",
+      "b": "CrankGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "CamGear",
+      "b": "FuelGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "CamGear",
+      "b": "FuelGearShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "CamGear",
+      "b": "HousingCover",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "CamGear",
+      "b": "OilTachShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "CamGear",
+      "b": "StarterShaftGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "CamShaft",
+      "b": "HousingCover",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "CamShaft",
+      "b": "OilTachShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "ClutchSpring",
+      "b": "StarterAdapter",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "ClutchSpring",
+      "b": "StarterDrum",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "ClutchSpring",
+      "b": "StarterWorm",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "ClutchSpring",
+      "b": "WormWheelHub",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "CrankGear",
+      "b": "CrankShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "CrankGear",
+      "b": "HousingCover",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "CrankGear",
+      "b": "IdlerGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "CrankGear",
+      "b": "StarterShaftGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "CrankShaft",
+      "b": "HousingCover",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "Fastener1",
+      "b": "HousingCover",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "Fastener3",
+      "b": "HousingCover",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelCaseGasket",
+      "b": "FuelCoupling",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelCaseGasket",
+      "b": "FuelPad",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelCaseGasket",
+      "b": "FuelPumpInput",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelCaseGasket",
+      "b": "HousingCover",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelCoupling",
+      "b": "FuelGearShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelCoupling",
+      "b": "FuelPad",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelCoupling",
+      "b": "FuelPumpInput",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelCoupling",
+      "b": "HousingCover",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelGear",
+      "b": "FuelGearShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelGear",
+      "b": "HousingCover",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelGearShaft",
+      "b": "HousingCover",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelInputBushing",
       "b": "FuelPump",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelInputBushing",
+      "b": "FuelPumpInput",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelInputBushing",
+      "b": "FuelSeal",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelPad",
+      "b": "FuelPumpInput",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelPad",
+      "b": "FuelSeal",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelPump",
+      "b": "FuelPumpInput",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelPump",
+      "b": "FuelSeal",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelPumpInput",
+      "b": "FuelSeal",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "FuelPumpInput",
+      "b": "HousingCover",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "GovernorBody",
+      "b": "GovernorOutput",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "GovernorBody",
+      "b": "GovernorPad",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "GovernorDisplayStand",
+      "b": "GovernorOutput",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "GovernorDisplayStand",
+      "b": "GovernorPad",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "GovernorOutput",
+      "b": "GovernorPad",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "HousingCover",
+      "b": "HousingGasket",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "HousingCover",
+      "b": "IdlerGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "HousingCover",
+      "b": "IdlerPin",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "HousingCover",
+      "b": "OilTachShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "HousingCover",
+      "b": "RightMagAdapter",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "HousingCover",
+      "b": "RightMagBushing",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "HousingCover",
+      "b": "RightMagGasket",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "HousingCover",
+      "b": "RightMagGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "HousingCover",
+      "b": "RightMagShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "HousingCover",
+      "b": "RightMagneto",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "HousingCover",
+      "b": "StarterCaseBushing",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "HousingCover",
+      "b": "StarterCaseGasket",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "HousingCover",
+      "b": "StarterDrum",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "HousingCover",
+      "b": "StarterShaftGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "HousingGasket",
+      "b": "OilDrivenPin",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "HousingGasket",
+      "b": "OilHousing",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "HousingGasket",
+      "b": "OilTachShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "IdlerGear",
+      "b": "IdlerPin",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "IdlerGear",
+      "b": "LeftMagGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "IdlerGear",
+      "b": "RightMagGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "IdlerGear",
+      "b": "StarterShaftGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "LeftMagAdapter",
+      "b": "LeftMagBushing",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "LeftMagAdapter",
+      "b": "LeftMagGasket",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "LeftMagAdapter",
+      "b": "LeftMagSeal",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "LeftMagAdapter",
+      "b": "LeftMagShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "LeftMagBushing",
+      "b": "LeftMagGasket",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "LeftMagBushing",
+      "b": "LeftMagSeal",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "LeftMagBushing",
+      "b": "LeftMagShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "LeftMagGasket",
+      "b": "LeftMagShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "LeftMagGear",
+      "b": "LeftMagShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "LeftMagSeal",
+      "b": "LeftMagShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "LeftMagShaft",
+      "b": "LeftMagneto",
       "overlap_mm3": 0.0
     },
     {
       "a": "OilCover",
-      "b": "FuelPump",
+      "b": "OilCoverGasket",
       "overlap_mm3": 0.0
     },
     {
-      "a": "ScavengeBody",
-      "b": "FuelPump",
+      "a": "OilCover",
+      "b": "OilTachShaft",
       "overlap_mm3": 0.0
     },
     {
-      "a": "OilHousing",
+      "a": "OilCover",
+      "b": "ScavengeGasket",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "OilCoverGasket",
+      "b": "OilHousing",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "OilCoverGasket",
+      "b": "OilTachShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "OilDriven",
+      "b": "OilDrivenPin",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "OilDriven",
       "b": "OilDriver",
       "overlap_mm3": 0.0
     },
     {
-      "a": "OilHousing",
-      "b": "OilDriven",
+      "a": "OilDriven",
+      "b": "OilHousing",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "OilDrivenPin",
+      "b": "OilHousing",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "OilDriver",
+      "b": "OilHousing",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "OilDriver",
+      "b": "OilTachShaft",
       "overlap_mm3": 0.0
     },
     {
       "a": "OilHousing",
-      "b": "OilDrivenPin",
+      "b": "OilReliefBody",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "OilHousing",
+      "b": "OilScreenPlug",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "OilHousing",
+      "b": "OilTachShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "OilTachShaft",
+      "b": "ScavengeBody",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "OilTachShaft",
+      "b": "ScavengeGasket",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "OilTachShaft",
+      "b": "TachDriveBevel",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "RightMagAdapter",
+      "b": "RightMagBushing",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "RightMagAdapter",
+      "b": "RightMagGasket",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "RightMagAdapter",
+      "b": "RightMagSeal",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "RightMagAdapter",
+      "b": "RightMagShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "RightMagBushing",
+      "b": "RightMagGasket",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "RightMagBushing",
+      "b": "RightMagSeal",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "RightMagBushing",
+      "b": "RightMagShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "RightMagGasket",
+      "b": "RightMagShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "RightMagGear",
+      "b": "RightMagShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "RightMagSeal",
+      "b": "RightMagShaft",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "RightMagShaft",
+      "b": "RightMagneto",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "ScavengeBody",
+      "b": "ScavengeGasket",
       "overlap_mm3": 0.0
     },
     {
@@ -574,8 +1304,48 @@
       "overlap_mm3": 0.0
     },
     {
+      "a": "ScavengeBody",
+      "b": "TachPadGasket",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterAdapter",
+      "b": "StarterCaseBushing",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterAdapter",
+      "b": "StarterCaseGasket",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterAdapter",
+      "b": "StarterCover",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterAdapter",
+      "b": "StarterCoverGasket",
+      "overlap_mm3": 0.0
+    },
+    {
       "a": "StarterAdapter",
       "b": "StarterDrum",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterAdapter",
+      "b": "StarterMotor",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterAdapter",
+      "b": "StarterSeal",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterAdapter",
+      "b": "StarterWorm",
       "overlap_mm3": 0.0
     },
     {
@@ -585,7 +1355,72 @@
     },
     {
       "a": "StarterAdapter",
+      "b": "WormWheelHub",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterCaseBushing",
+      "b": "StarterCaseGasket",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterCaseBushing",
+      "b": "StarterDrum",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterCaseGasket",
+      "b": "StarterDrum",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterCover",
+      "b": "StarterCoverGasket",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterCover",
+      "b": "StarterDrum",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterCover",
+      "b": "StarterSeal",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterCover",
       "b": "StarterWorm",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterCoverGasket",
+      "b": "StarterDrum",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterCoverGasket",
+      "b": "StarterWorm",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterDrum",
+      "b": "StarterSeal",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterDrum",
+      "b": "StarterShaftGear",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterDrum",
+      "b": "WormWheel",
+      "overlap_mm3": 0.0
+    },
+    {
+      "a": "StarterDrum",
+      "b": "WormWheelHub",
       "overlap_mm3": 0.0
     },
     {
@@ -594,98 +1429,106 @@
       "overlap_mm3": 0.0
     },
     {
-      "a": "AlternatorBody",
-      "b": "AlternatorOutput",
+      "a": "StarterWorm",
+      "b": "WormWheel",
       "overlap_mm3": 0.0
     },
     {
-      "a": "CamShaft",
-      "b": "OilTachShaft",
+      "a": "TachDriveBevel",
+      "b": "TachDrivenBevel",
       "overlap_mm3": 0.0
     },
     {
-      "a": "AccessoryHousing",
-      "b": "CrankGear",
+      "a": "TachDrivenBevel",
+      "b": "TachOutput",
       "overlap_mm3": 0.0
     },
     {
-      "a": "AccessoryHousing",
-      "b": "CamGear",
+      "a": "TachOutput",
+      "b": "TachPadCover",
       "overlap_mm3": 0.0
     },
     {
-      "a": "AccessoryHousing",
-      "b": "CamCluster",
+      "a": "TachOutput",
+      "b": "TachPadGasket",
       "overlap_mm3": 0.0
     },
     {
-      "a": "AccessoryHousing",
-      "b": "IdlerGear",
+      "a": "TachPadCover",
+      "b": "TachPadGasket",
       "overlap_mm3": 0.0
     },
     {
-      "a": "AccessoryHousing",
-      "b": "LeftMagGear",
+      "a": "VacuumBody",
+      "b": "VacuumOutput",
       "overlap_mm3": 0.0
     },
     {
-      "a": "AccessoryHousing",
-      "b": "RightMagGear",
+      "a": "VacuumBody",
+      "b": "VacuumPad",
       "overlap_mm3": 0.0
     },
     {
-      "a": "AccessoryHousing",
-      "b": "FuelGear",
+      "a": "VacuumDisplayStand",
+      "b": "VacuumOutput",
       "overlap_mm3": 0.0
     },
     {
-      "a": "AccessoryHousing",
-      "b": "StarterShaftGear",
+      "a": "VacuumDisplayStand",
+      "b": "VacuumPad",
       "overlap_mm3": 0.0
     },
     {
-      "a": "HousingCover",
-      "b": "CrankGear",
+      "a": "VacuumOutput",
+      "b": "VacuumPad",
       "overlap_mm3": 0.0
     },
     {
-      "a": "HousingCover",
-      "b": "CamGear",
-      "overlap_mm3": 0.0
-    },
-    {
-      "a": "HousingCover",
-      "b": "CamCluster",
-      "overlap_mm3": 0.0
-    },
-    {
-      "a": "HousingCover",
-      "b": "IdlerGear",
-      "overlap_mm3": 0.0
-    },
-    {
-      "a": "HousingCover",
-      "b": "LeftMagGear",
-      "overlap_mm3": 0.0
-    },
-    {
-      "a": "HousingCover",
-      "b": "RightMagGear",
-      "overlap_mm3": 0.0
-    },
-    {
-      "a": "HousingCover",
-      "b": "FuelGear",
-      "overlap_mm3": 0.0
-    },
-    {
-      "a": "HousingCover",
-      "b": "StarterShaftGear",
+      "a": "WormWheel",
+      "b": "WormWheelHub",
       "overlap_mm3": 0.0
     }
   ],
-  "step_volume_relative_error": 4.873182000645257e-07,
-  "step_volume_difference_mm3": 0.6450072377920151,
+  "known_overlaps": [],
+  "gear_mesh_checks": [
+    {
+      "driver": "CrankGear",
+      "driven": "CamGear",
+      "min_gap_mm": 0.06081315912251101
+    },
+    {
+      "driver": "CrankGear",
+      "driven": "IdlerGear",
+      "min_gap_mm": 0.06230615223307035
+    },
+    {
+      "driver": "CrankGear",
+      "driven": "StarterShaftGear",
+      "min_gap_mm": 0.062306152233060165
+    },
+    {
+      "driver": "IdlerGear",
+      "driven": "LeftMagGear",
+      "min_gap_mm": 0.06358526347536254
+    },
+    {
+      "driver": "IdlerGear",
+      "driven": "RightMagGear",
+      "min_gap_mm": 0.06358526347537719
+    },
+    {
+      "driver": "CamCluster",
+      "driven": "FuelGear",
+      "min_gap_mm": 0.049625856359008486
+    },
+    {
+      "driver": "OilDriver",
+      "driven": "OilDriven",
+      "min_gap_mm": 0.05051182788399415
+    }
+  ],
+  "step_volume_relative_error": 3.050085576496089e-07,
+  "step_volume_difference_mm3": -0.40434946585446596,
   "freecad_version": [
     "1",
     "1",

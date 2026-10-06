@@ -185,6 +185,10 @@ class DeclarationMatchesPublishedContract(unittest.TestCase):
             self.assertAlmostEqual(parts[gear_id]['rate'], g['rate'], places=9, msg=gear_id)
             self.assertEqual(parts[gear_id]['pivot_mm'], [*g['centre'], train.GEARS[gear_id]['z']], gear_id)
 
+    def test_starter_worm_axis_equals_the_contract(self):
+        parts = {p['id']: p for p in json.loads(self.CONTRACT.read_text(encoding='utf8'))['parts']}
+        self.assertAlmostEqual(parts['StarterWorm']['pivot_mm'][1], train.worm_axis_y(), places=9)
+
     def test_contract_meshes_once_present_equal_the_declaration(self):
         contract = json.loads(self.CONTRACT.read_text(encoding='utf8'))
         if 'gearMeshes' not in contract:
