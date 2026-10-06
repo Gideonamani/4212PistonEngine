@@ -16,16 +16,16 @@ The instructor confirmed a final 18-lesson list, ending with Practicals. It supe
 | 6 | Parts & Construction | Draft built (13 steps, 8 checks; spotlighted 3D parts, FAA figures, GTSIO-520-H vs IO-520 comparison) |
 | 7 | Cooling Methods | Draft built |
 | 8 | Accessories & Drives | Source-backed interactive study implemented; 16 steps, 8 checks, 47 parts, 10 saved motions. Instructor and physical-phone review pending; see accessories-and-drives.md |
-| 9 | Valve Operating | Not started |
-| 10 | Power Generation | Not started |
-| 11 | Induction & Exhaust | Not started; absorbs aspiration |
-| 12 | Performance Calculations | Not started |
-| 13 | Factors Affecting Power | Not started |
-| 14 | Engine Requirements | Not started |
-| 15 | Operation Malfunctions | Not started |
-| 16 | Maintenance & Servicing | Not started |
-| 17 | Light Sport Aircraft (optional) | Not started |
-| 18 | Practicals | Not started |
+| 9 | Valve Operating | Draft built (19 steps, 11 checks), unreviewed |
+| 10 | Power Generation | Draft built (11 steps, 11 checks), unreviewed |
+| 11 | Induction & Exhaust | Draft built (18 steps, 11 checks), unreviewed; absorbs aspiration |
+| 12 | Performance Calculations | Draft built (14 steps, 13 checks), unreviewed |
+| 13 | Factors Affecting Power | Draft built (13 steps, 10 checks), unreviewed |
+| 14 | Engine Requirements | Draft built (11 steps, 10 checks), unreviewed |
+| 15 | Operation Malfunctions | Draft built (13 steps, 11 checks), unreviewed |
+| 16 | Maintenance & Servicing | Draft built (15 steps, 14 checks), unreviewed; absorbs storage and preservation |
+| 17 | Light Sport Aircraft (optional) | Draft built (12 steps, 12 checks), unreviewed |
+| 18 | Practicals | Draft built (17 steps, 15 checks), unreviewed; the first lesson with model-click checks |
 
 ### Repair batch (29 September 2026)
 
@@ -61,6 +61,15 @@ Still noted in the steps: the IO-520 compression ratio is not stated in its over
 - **Bug fixed along the way.** The 3D canvas overflowed its container on any display scaled above 100% (the renderer's pixel ratio scaled the drawing buffer while the CSS size was left unset), so every 3D view was zoomed and cropped there. The canvas now fills its container.
 - **Cylinder numbering and firing order** (outcomes 3.7.3 and 3.7.4) are now in lesson 5 (Classification), as two interactive steps built from the GTSIO-520 manual: numbered from the rear, odd cylinders on the right, firing order 1-4-5-2-3-6 (the IO-520 fires 1-6-3-2-5-4).
 - **Data issue, fixed on 5 October 2026.** `web/engine-contract.json` labelled `cylinder-1` as `left-forward` (and `cylinder-2` as `right-forward`), numbering from the front, which contradicted the GTSIO-520 manual (numbered from the rear, odd cylinders on the right, No. 1 right rear). The station table now reads 1 right-aft, 2 left-aft, 3 right-middle, 4 left-middle, 5 right-forward, 6 left-forward, and `scripts/test_engine_stations.mjs` ties it to the cylinders' real positions in the engine GLB (rear to front along the crank axis; "right" is the side the model itself calls its Right crankcase half). Not checked against a physical engine: whether the model's right side is the pilot's right. The contract's separate `coordinate_system` note (longitudinal axis X, crank axis Y) does not match the GLB, where the crank axis is Z; it was left alone.
+
+### Lesson 18, Practicals (5 October 2026)
+
+**Practicals** (`practicals`, in the Maintenance, LSA & Practicals course) has 17 steps and 15 checks (ten `model-click`, two matching, three multiple choice). It prepares students for the three practical sessions and does not do their worksheets: the steps teach the observe, name, describe, record method (from the student worksheets), safety at the engine (FAA PDF p. 347 propeller warning), a rehearsal on the cylinder and accessory models, the outside parts by system and the items where the engine meets the aircraft, the inspector's defect terms (FAA p. 371), the shop practices before and during inspection (pp. 370-371), a fixed-order external walk-round (deck slide 280, FAA pp. 282 and 151) and a final step where the learner writes one entry in their own words.
+
+- **No answer key, no rubric.** The lesson names the worksheet's parts and groups but gives no worksheet answers, and it cites only the student versions. The instructor version's marking rubric is deliberately not used, because the site is public.
+- **First `model-click` questions.** The ten shipped questions are answered from the part list in `e2e/syllabus-courses.spec.ts` (two of them, one with `alsoAccept`); `scripts/test_model_click_questions.mjs` ties every part and group id to its model's real data.
+- **Source conflicts left in plain view** (not smoothed over): the deck numbers the sessions 1 internal, 2 external, 3 visual inspection, while the worksheet files are Practical 1 External and Practical 2 Internal, so the lesson names each session by what it covers; the external worksheet's Part B header says 10 components, its instructions say 5 and it lists 5 (#16-20), yet the instructor rubric counts 25 items (50 marks); deck slide 279 lists the propeller, starter motor and alternator as external parts, which the worksheet does not; deck slide 280 cites an unnamed FAA advisory circular, which the lesson does not.
+- **Engine-specific limits.** The fin-breakage limits (12 in, 83 sq in) are the handbook's example engine only and the step says so; the handbook also says a crack at the base of a fin is a reason to reject the cylinder at overhaul (PDF p. 372).
 
 ### Additional editable sources
 
