@@ -37,7 +37,7 @@ def main():
                 if f['primitive']=='tube':
                     inner=doc.getObject(prefix+'_Inner');place(inner,f,spec['parameters']);inner.Radius=evaluate(f['inner_radius'],spec['parameters']);inner.setExpression('Radius',freecad_expression(f['inner_radius']));inner.Height=evaluate(f['height'],spec['parameters']);inner.setExpression('Height',freecad_expression(f['height']))
             else:
-                obj=rich_feature(doc,group,prefix,f,spec['parameters']) if f['primitive'] in ('prism','helix') else basic_feature(doc,group,prefix,f,spec['parameters'])
+                obj=rich_feature(doc,group,prefix,f,spec['parameters']) if f['primitive'] in ('prism','helix','revolve') else basic_feature(doc,group,prefix,f,spec['parameters'])
                 boolean=doc.addObject('Part::Fuse' if f['operation']=='add' else 'Part::Cut',prefix+'_Result');boolean.Base=current;boolean.Tool=obj;boolean.Refine=True;group.addObject(boolean);current.Visibility=False;obj.Visibility=False;current=boolean
             if part['id'] not in changed:changed.append(part['id'])
         if current!=tips[part['id']]:

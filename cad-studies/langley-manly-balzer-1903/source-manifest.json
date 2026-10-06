@@ -1,0 +1,69 @@
+{
+  "access_date": "2026-10-06",
+  "sources": {
+    "M1": {
+      "url": "https://archive.org/details/langleymemoironm00langrich",
+      "title": "Manly, Langley Memoir on Mechanical Flight, Part II (1897-1903), Smithsonian Contributions to Knowledge vol. 27 no. 3",
+      "date": "1911",
+      "variant": "large 1901 engine, drawings Plates 78-81, tests 1902-1904",
+      "local_files": {
+        "memoir-1911.djvu.txt": {
+          "bytes": 1121416,
+          "sha256": "f346d5065d5f9a8cfb089626171cbb061f6b138e9f215f8289d42f1876f4eb88"
+        },
+        "memoir-1911.norm.txt": {
+          "bytes": 964182,
+          "sha256": "5a30147b7c853f634ba0ab1952b51a5e9e4e50cb730852a5f66e6497a9efd5f8"
+        },
+        "memoir-1911.pdf": {
+          "bytes": 33625753,
+          "sha256": "9de100ab8e2adc2816e5bc0955e409d9567987707d72f3118ce6613dc080d99f"
+        }
+      }
+    },
+    "A1": {
+      "url": "https://doi.org/10.5479/si.AnnalsFlight.6",
+      "title": "Meyer (ed.), Langley's Aero Engine of 1903, Smithsonian Annals of Flight 6",
+      "date": "1971",
+      "variant": "documentary history of the rotary and radial stages; reprints M1 ch. X; 1933 affidavits are partisan",
+      "local_files": {
+        "annals-of-flight-6-lores.pdf": {
+          "bytes": 5941731,
+          "sha256": "9de70c95170c36e1e83be27f1593bbdb96b032076a46a5a83840d7aa123d054a"
+        },
+        "annals6.txt": {
+          "bytes": 419945,
+          "sha256": "6995037bc75e7b997a959a7e6ab6d870a776ff6e9a360639110b58469cd1ae54"
+        }
+      },
+      "note": "low-resolution PDF supplied by the user; the repository sits behind a bot-verification page that was not bypassed"
+    },
+    "N1": {
+      "url": "https://www.airandspace.si.edu/collection-objects/langley-manly-balzer-radial-5-engine/nasm_A19080003000",
+      "title": "NASM object record A19080003000",
+      "variant": "museum record of the surviving engine",
+      "note": "automated fetch returned HTTP 403; known only from a search-result excerpt"
+    },
+    "W1": {
+      "url": "https://en.wikipedia.org/wiki/Manly%E2%80%93Balzer_engine",
+      "title": "Wikipedia: Manly-Balzer engine",
+      "variant": "secondary; cross-check only"
+    },
+    "E1": {
+      "url": "https://enginehistory.org/Piston/Before1925/EarlyEngines/M/M.shtml",
+      "title": "AAHS Engine History: Selected Early Engines, M",
+      "variant": "secondary; cross-check only"
+    },
+    "U1": {
+      "title": "Commissioning brief (6 October 2026)",
+      "variant": "claims checked in research.md, section Corrections"
+    }
+  },
+  "local_research_root": "build\\langley-research",
+  "unavailable": [
+    "repository.si.edu (Cloudflare bot verification; not bypassed; the user supplied the PDF)",
+    "NASM object page (HTTP 403 to automated fetch)",
+    "Full-resolution Annals PDF (not supplied)",
+    "Smithsonian Archives Langley papers (not requested)"
+  ]
+}

@@ -22,7 +22,11 @@ import MeshPart
 
 def _placement(f, params):
     origin = [evaluate(x, params) for x in f.get('origin', [0, 0, 0])]
-    return A.Placement(A.Vector(*origin), A.Rotation(A.Vector(0, 0, 1), A.Vector(*f.get('axis', [0, 0, 1]))))
+    rotation = A.Rotation(A.Vector(0, 0, 1), A.Vector(*f.get('axis', [0, 0, 1])))
+    roll = evaluate(f.get('roll', 0), params)
+    if roll:
+        rotation = rotation.multiply(A.Rotation(A.Vector(0, 0, 1), roll))
+    return A.Placement(A.Vector(*origin), rotation)
 
 
 def feature_shape(f, params):
@@ -41,6 +45,9 @@ def feature_shape(f, params):
     elif kind == 'prism':
         points = [A.Vector(evaluate(p[0], params), evaluate(p[1], params), 0) for p in f['points']]
         shape = Part.Face(Part.makePolygon(points + [points[0]])).extrude(A.Vector(0, 0, e('height')))
+    elif kind == 'revolve':
+        points = [A.Vector(evaluate(p[0], params), 0, evaluate(p[1], params)) for p in f['points']]
+        shape = Part.Face(Part.makePolygon(points + [points[0]])).revolve(A.Vector(0, 0, 0), A.Vector(0, 0, 1), evaluate(f.get('angle', 360), params))
     elif kind == 'helix':
         radius, wire_radius = e('radius'), e('wire_radius')
         helix = Part.makeHelix(e('pitch'), e('height'), radius)
@@ -52,11 +59,26 @@ def feature_shape(f, params):
     return shape
 
 
+BATCH_RUN = 6        # a run of this many consecutive same-operation features is applied as one multi-tool Boolean (24 sequential spoke-hole cuts take minutes, one multi-tool cut seconds)
+
+
 def build_part(part, params):
     current = None
-    for f in part['features']:
-        shape = feature_shape(f, params)
-        current = shape if current is None else (current.fuse(shape) if f['operation'] == 'add' else current.cut(shape))
+    features = part['features']
+    i = 0
+    while i < len(features):
+        j = i
+        while j + 1 < len(features) and features[j + 1]['operation'] == features[i]['operation']:
+            j += 1
+        run = features[i:j + 1]
+        if current is not None and len(run) >= BATCH_RUN:
+            tools = [feature_shape(f, params) for f in run]
+            current = current.fuse(tools) if run[0]['operation'] == 'add' else current.cut(tools)
+        else:
+            for f in run:
+                shape = feature_shape(f, params)
+                current = shape if current is None else (current.fuse(shape) if f['operation'] == 'add' else current.cut(shape))
+        i = j + 1
     return current
 
 
