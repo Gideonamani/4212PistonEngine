@@ -116,8 +116,41 @@ def spring_grip_scale():
     return (SPRING_SURFACE_R + SPRING_WIRE_R + SPRING_GRIP_CLEARANCE) / SPRING_COIL_R
 
 
+# Cross-axis starter worm. A true worm mesh needs a throated wheel and an enveloping thread, which this model does not
+# have, so the worm sits WORM_CLEARANCE off the wheel's tooth tips instead of cutting into them.
+WORM_CORE_R = 6.0             # shaft radius; the motor input bore seats it
+WORM_WIRE_R = 1.0             # thread wire radius: the thread crest is core + wire
+WORM_CLEARANCE = .3
+
+
+def worm_axis_y():
+    """Y of the worm axis: out from the wheel by its tooth-tip radius, the worm's crest radius and the clearance."""
+    wheel = GEARS['WormWheel']
+    return wheel['centre'][1] - (wheel['r'] + ADDENDUM + WORM_CORE_R + WORM_WIRE_R + WORM_CLEARANCE)
+
+
 # Parts splined to a gear turn with it even when a focus animation leaves them out of the displayed path.
 SPLINED_TO = {'OilTachShaft': 'CamGear'}
+
+
+def turning_with(part_ids):
+    """The part ids that must turn whenever `part_ids` do: `part_ids` plus everything linked to them.
+
+    A focus clip animates one highlighted power path, but a gear driven through a held-still neighbour passes its
+    teeth through it, and so does a shaft spun inside a still spline. So meshing gears (MESHES), gears on one shaft
+    (COAXIAL) and a part splined to its host gear (SPLINED_TO) all turn together, whichever side the path named.
+    The path's own parts, as published in the contract, are left alone; only the motion uses this set.
+    """
+    turning = set(part_ids)
+    links = [*MESHES, *COAXIAL, *SPLINED_TO.items()]
+    grew = True
+    while grew:
+        grew = False
+        for a, b in links:
+            if (a in turning) != (b in turning):
+                turning.update((a, b))
+                grew = True
+    return turning
 
 GEAR_FORM_NOTE = ('Involute spur teeth (20 degree pressure angle) with positive backlash, solved tooth phase and '
                   'tip clearance so meshing gears touch but never overlap. Module, tooth counts and proportions are '

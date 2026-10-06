@@ -17,14 +17,16 @@ pairs, none of them a gear pair, so the overlap was never looked for.
 |---|---|---|
 | Declare the train once | Positions, tooth counts and pitch radii are declared in one place; rates, modules and tooth phases are *derived*. The solver refuses mismatched modules, a wrong centre distance, gears in different planes or a loop. | `scripts/accessory_gears.py` |
 | Build teeth that can mesh | Involute (20 degree) teeth with backlash (0.05 m) and tip clearance (0.25 m), and a driven-gear phase solved so a tooth meets a gap. The profile is polylines on the inside of the true curve, so it never has more material than the ideal tooth. | `scripts/gear_geometry.py` |
+| Turn linked parts together | A focus clip animates one highlighted power path, and holding every other part still drives a path gear's teeth through a neighbour that is not on the path (the alternator path has the crank gear but not the cam, idler or starter gears). Gears that mesh with a turning gear, gears on its shaft and parts splined to it therefore turn with it, whichever side the path named. | `accessory_gears.turning_with()`, used by `scripts/rig_accessory_study.py` |
 | Check in CAD, exhaustively | Every pair of solids whose bounds meet is intersected (not a short list), and every declared gear mesh must keep positive clearance. | `scripts/verify_accessory_sources.py` |
 | Audit the exported file | The GLB students load is audited independently of FreeCAD and Blender: every neighbouring pair at the assembled pose and at sampled times through each baked clip, using the clip's own keys, so a pair that clears at rest but collides while turning is found. Declared gear meshes also report their minimum gap through the sweep. | `scripts/audit_assembly_interference.py` |
 | Ratchet | Each model's `interference-policy.json` lists the overlaps its published asset still contains. A new overlap fails; a fixed one must be removed from the list; the goal is an empty list. CI reruns the audit. | `cad-studies/*/interference-policy.json`, `.github/workflows/pages.yml`, `scripts/test_interference_audit.mjs` |
 
 The audit is itself tested against known answers (`scripts/test_assembly_audit.py`): conjugate gears must pass, and square teeth, a
 wrong tooth phase and a gear 0.5 mm too close must each fail. The gear module is tested without any dependencies
-(`scripts/test_gear_geometry.py`), including the same failure cases and a cross-check that the declaration reproduces the published
-contract's rates and positions.
+(`scripts/test_gear_geometry.py`), including the same failure cases, a cross-check that the declaration reproduces the published
+contract's rates and positions, and a check that for every power path no gear that meshes with a turning gear (or shares its shaft) is
+held still. The rig needs Blender, so that test also checks that the rig takes its turning parts from `turning_with()`.
 
 ## What "touching" means in a mesh
 
@@ -55,11 +57,11 @@ ledger entry, or a part it could not check and that is not waived with a reason.
 To add a gear to the accessory train, declare it in `GEARS` and `MESHES` in `scripts/accessory_gears.py`; the builder, the contract and
 the checks follow. Do not type positions, rates or tooth phases into the builder.
 
-## State on 5 October 2026
+## State on 5 and 6 October 2026
 
 | Model | Parts | Overlapping pairs | Notes |
 |---|---|---|---|
-| Accessory drives | 83 | 16 | Seven are gear meshes and six more pairs (screen plug, tach shaft, clutch spring grip, splined shaft in the focus clips) are fixed in source and wait for the rebuilt model to be released. Three are open: the starter worm tunnel through the cover and its gasket, and the worm penetrating its wheel. |
+| Accessory drives | 83 | 0 | Rebuilt from source on 6 October, audited and bound as the published model; the ledger is empty. No pair overlaps at the assembled pose (184 neighbouring pairs, all touching only) or in any of the eight audited clips, and all seven gear meshes keep at least 0.047 mm clearance. The earlier model had 16 overlaps and fixing them took three separate things. Involute teeth and a solved phase fixed the gear meshes at rest and in the operating and starter clips, with the screen plug, tach shaft and clutch spring grip fixed in the geometry. The focus clips needed the rig to turn linked parts together (see the layers above), because they had held every part outside the highlighted path still: five more overlaps, namely the crank gear with the cam, idler and starter gears, the idler with the right magneto gear, and the cam cluster on the oil/tach shaft. The last three needed the geometry changed: the adapter wall now rises to the worm tunnel's crest so the gasket and cover seat on it, and the worm axis is derived 0.3 mm off the wheel's tooth tips (`worm_axis_y()`). A true worm mesh needs a throated wheel, so the worm sits just clear of the teeth rather than meshing. `AlternatorBody` is still waived: its exported tessellation has open seam edges, so its seats are checked in CAD only. |
 | Reviewed cylinder | 61 | 13 | Not investigated: rocker shafts in their housings, rod bolts through the rod, spark plugs in the head, piston ring three against the pin plugs. Assembled pose only. |
 | Hydraulic tappet | 8 | 4 | Not investigated; all under 0.2 mm thick. |
 | Oil pump | 14 | 3 | The gear pair uses the same square-tooth generator and overlaps; the relief plunger/spring and adjuster do too. |
