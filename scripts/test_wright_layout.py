@@ -9,6 +9,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from cad_pipeline import wright_motion as motion
 from cad_pipeline import wright_seats as seats
 from cad_pipeline.wright_bodies import body
 from cad_pipeline.wright_chain import layout, pocket_angles, relief_centres
@@ -93,6 +94,40 @@ class Bodies(unittest.TestCase):
         self.assertNotEqual(body('Piston1'), body('Piston2'))
         self.assertEqual(body('Crankcase'), 'static')
         self.assertEqual(body('CamSprocket'), body('Camshaft'))
+
+
+class OperatingMotion(unittest.TestCase):
+    def test_the_igniter_springs_are_shown_fixed_and_the_lever_and_contact_swing_together(self):
+        self.assertEqual(body('IgnitionMainSpring2'), 'static')
+        self.assertEqual(body('IgnitionInterSpring3'), 'static')
+        self.assertEqual({body('IgniterLever2'), body('MovingContact2')}, {'igniter2'})
+
+    def test_a_part_that_turns_about_one_fixed_axis_keeps_that_axis_in_place(self):
+        for part in ('Crankshaft', 'CamSprocket', 'IgnitionShaft', 'MagnetoDriveWheel'):
+            x, y, z = motion.pivot(part)
+            for theta in (0.0, 13.0, 181.5, 359.0, 700.25):
+                m = motion.matrix(part, theta)
+                moved = [sum(m[r][c] * v for c, v in enumerate((x, y, z, 1.0))) for r in range(3)]
+                for got, want in zip(moved, (x, y, z)):
+                    self.assertAlmostEqual(got, want, places=9, msg=f'{part} at {theta}')
+        for part in ('Piston1', 'RodTube3', 'RockerLeft2', 'TripLever4', 'IgniterLever1', 'ChainRoller5', 'Crankcase'):
+            self.assertIsNone(motion.pivot(part), part)
+
+    def test_each_trip_lever_stays_clear_of_its_cam_over_the_whole_cycle(self):
+        # The lever's whole underside, not only its nose, must stay NOSE_GAP above the cam strip and hub, and it rests exactly at theta = 0.
+        for cyl in (1, 2, 3, 4):
+            self.assertEqual(motion.trip_angle(cyl, 0.0), 0.0)
+            under = motion._underside(motion.trip_rest(cyl))
+            for k in range(0, 481):
+                theta = k * 1.5
+                turn = motion.ignition_crest_angle(cyl, theta) - math.pi / 2
+                strip = [motion.rotate_point(p, motion.IGNITION_AXIS, turn) for p in motion.STRIP]
+                e = motion.trip_angle(cyl, theta)
+                for point in under:
+                    x, z = motion.rotate_point(point, motion.TRIP_PIVOT, e)
+                    top = motion._cam_top(cyl, theta, x, strip)
+                    if top is not None:
+                        self.assertGreaterEqual(z - top, motion.NOSE_GAP - 1e-3, f'trip lever {cyl} at {theta} degrees, x {x:.2f}')
 
 
 class Seats(unittest.TestCase):

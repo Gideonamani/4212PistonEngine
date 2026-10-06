@@ -35,16 +35,20 @@ def blender_matrix(m):
                    [m[2][0], m[2][1], m[2][2], m[2][3] / 1000], [0, 0, 0, 1]])
 
 
-def tracks(frames, pose):
-    """Per-frame (location, quaternion, scale) lists for pose(frame_index) -> 4x4, or None if the part never moves."""
+def tracks(frames, pose, origin=(0.0, 0.0, 0.0)):
+    """Per-frame (location, quaternion, scale) lists for pose(frame_index) -> 4x4, or None if the part never moves.
+
+    `origin` (metres) is where the part's object origin sits: the pose is applied to the part's geometry in world space, so the keyed
+    local transform is pose @ translation(origin)."""
     loc, quat, scale = [], [], []
     previous, moved = None, False
     identity = Matrix.Identity(4)
+    shift = Matrix.Translation(origin)
     for f in range(frames):
         m = blender_matrix(pose(f))
         if not moved and any(abs(m[i][j] - identity[i][j]) > 1e-9 for i in range(3) for j in range(4)):
             moved = True
-        l, q, s = m.decompose()
+        l, q, s = (m @ shift).decompose()
         if previous is not None and q.dot(previous) < 0:
             q.negate()                                    # keep the quaternion on one hemisphere so interpolation takes the short way
         previous = q
@@ -103,12 +107,15 @@ def main():
         b.inputs['Base Color'].default_value = color
         b.inputs['Metallic'].default_value, b.inputs['Roughness'].default_value = .65, .37
         materials[name] = m
-    objects = {}
+    objects, origins = {}, {}
     for p in parts:
         mesh = bpy.data.meshes.new(p['id'])
-        mesh.from_pydata([[c / 1000 for c in v] for v in p['vertices_mm']], [], p['triangles'])
+        pivot = motion.pivot(p['id']) or (0.0, 0.0, 0.0)     # a part turning about a fixed axis has its origin on it
+        origins[p['id']] = tuple(c / 1000 for c in pivot)
+        mesh.from_pydata([[(c - o) / 1000 for c, o in zip(v, pivot)] for v in p['vertices_mm']], [], p['triangles'])
         mesh.update()
         o = bpy.data.objects.new(p['id'], mesh)
+        o.location = origins[p['id']]
         scene.collection.objects.link(o)
         o.data.materials.append(materials.get(p['material'], materials['steel']))
         o.rotation_mode = 'QUATERNION'
@@ -130,7 +137,7 @@ def main():
         for pid, obj in objects.items():
             key = (body(pid), pid if title == EXPLODED else '')            # all parts of a rigid body share one motion
             if key not in cache:
-                cache[key] = tracks(frames, lambda f, pid=pid: pose(pid, f))
+                cache[key] = tracks(frames, lambda f, pid=pid: pose(pid, f), origins[pid])
             if cache[key] is None:
                 continue
             obj.animation_data_create()

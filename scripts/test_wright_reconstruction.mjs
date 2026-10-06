@@ -17,6 +17,8 @@ const raw = gunzipSync(fs.readFileSync('web/wright-1903-reconstruction.glb.gz'))
 const { scene, animations } = await new GLTFLoader().parseAsync(raw.buffer.slice(raw.byteOffset, raw.byteOffset + raw.byteLength), '');
 const mixer = new THREE.AnimationMixer(scene);
 const parts = new Map(); scene.traverse(mesh => { if (mesh.isMesh) parts.set(mesh.userData.cad_part_id, mesh); });
+const rest = new Map([...parts].map(([id, mesh]) => [id, mesh.position.clone()]));      // the node origin: on the axis for a part that turns about a fixed axis
+const displacement = id => parts.get(id).position.clone().sub(rest.get(id));
 const OPERATING = 'Operating mechanism (illustrative)', EXPLODED = 'Systems exploded view';
 const sample = (name, fraction) => {
   mixer.stopAllAction(); const clip = animations.find(clip => clip.name === name);
@@ -33,7 +35,7 @@ test('the contract, the asset and the registry agree and label the motion illust
   assert.equal(parts.size, 413); assert.equal(contract.parts.length, 413);
   assert.deepEqual(animations.map(clip => clip.name).sort(), [EXPLODED, OPERATING].sort());
   assert.deepEqual(contract.motions.map(motion => motion.id), [OPERATING, EXPLODED]);
-  assert.ok(contract.motions.every(motion => motion.stages.length >= 3 && motion.stages[0].progress === 0 && motion.stages.at(-1).progress === 100));
+  assert.ok(contract.motions.every(motion => motion.stages.length >= 4 && motion.stages[0].progress === 0 && motion.stages.at(-1).progress === 100 && motion.stages.every((stage, i, all) => !i || stage.progress > all[i - 1].progress)));
   assert.match(contract.scope, /illustrative/i); assert.match(contract.scope, /not the 1903 original/i);
   assert.ok(contract.parts.every(part => part.description && part.evidence && part.shape_status && parts.has(part.id)));
   assert.equal(registry.adapter, 'animated-study'); assert.equal(registry.contractUrl.split('?')[0], './wright-1903-reconstruction-contract.json');
@@ -68,16 +70,19 @@ test('the drive ratios hold through the baked cycle: crank 1, cam shaft 1/2 with
 });
 
 test('pistons and rods follow the slider-crank: 101.6 mm stroke, rods swing about 12 degrees, pairs 1/4 and 2/3 mirror each other', () => {
-  sample(OPERATING, 0); const start = new Map(['Piston1', 'Piston2'].map(id => [id, parts.get(id).position.clone()]));
-  sample(OPERATING, crankDegrees(180));
-  assert.ok(Math.abs(parts.get('Piston1').position.x - start.get('Piston1').x + .1016) < 1e-4, 'piston 1 goes from top to bottom dead centre');
-  assert.ok(Math.abs(parts.get('Piston2').position.x - start.get('Piston2').x - .1016) < 1e-4, 'piston 2 goes the other way');
+  const r = .0508, L = .245, fromTopCentre = theta => r * (1 - Math.cos(theta)) + L - Math.sqrt(L * L - (r * Math.sin(theta)) ** 2);
+  sample(OPERATING, 0); const start = new Map(['Piston1', 'Piston2', 'Piston3', 'Piston4'].map(id => [id, parts.get(id).position.clone()]));
+  const travel = (id, degrees) => { sample(OPERATING, crankDegrees(degrees)); return parts.get(id).position.x - start.get(id).x; };
+  assert.ok(Math.abs(travel('Piston1', 180) + 2 * r) < 1e-5, 'piston 1 goes from top to bottom dead centre');
+  assert.ok(Math.abs(travel('Piston2', 180) - 2 * r) < 1e-5, 'piston 2 goes the other way');
+  // The rod is not infinitely long, so the pistons are not at mid-stroke at a quarter turn: compare with the exact slider-crank.
+  assert.ok(Math.abs(travel('Piston1', 90) + fromTopCentre(Math.PI / 2)) < 1e-5, `piston 1 at a quarter turn: ${travel('Piston1', 90)}`);
+  assert.ok(Math.abs(travel('Piston2', 90) - (2 * r - fromTopCentre(Math.PI / 2))) < 1e-5);
+  for (const [a, b] of [['Piston1', 'Piston4'], ['Piston2', 'Piston3']]) for (const d of [37, 90, 251, 600]) assert.ok(Math.abs(travel(a, d) - travel(b, d)) < 1e-9, `${a} and ${b} move together`);
   sample(OPERATING, crankDegrees(90));
   const swing = angle(parts.get('RodTube1').quaternion);
-  assert.ok(Math.abs(swing - Math.asin(.0508 / .245)) < 2e-3, `rod swing ${swing / deg} degrees`);
-  assert.ok(Math.abs(parts.get('Piston1').position.x - parts.get('Piston2').position.x - (start.get('Piston1').x - start.get('Piston2').x)) < 1e-4 || true);
-  sample(OPERATING, crankDegrees(90)); const a = parts.get('Piston1').position.x - start.get('Piston1').x, b = parts.get('Piston2').position.x - start.get('Piston2').x;
-  assert.ok(Math.abs(a - b - (start.get('Piston2').x - start.get('Piston1').x)) < 1e-3 || Math.abs(a - b) < 1e-3, 'at a quarter turn both pistons are at mid-stroke');
+  assert.ok(Math.abs(swing - Math.asin(r / L)) < 2e-3, `rod swing ${swing / deg} degrees`);
+  assert.ok(swing / deg > 11 && swing / deg < 13);
 });
 
 test('exhaust valves lift by the nominal 7.9375 mm inside their own exhaust stroke; inlet valves open by suction; springs compress', () => {
@@ -87,30 +92,39 @@ test('exhaust valves lift by the nominal 7.9375 mm inside their own exhaust stro
   assert.ok(exhaust.at > 180 && exhaust.at < 360, `cylinder 1 exhaust peaks inside its exhaust stroke, at ${exhaust.at}`);
   assert.ok(Math.abs(intake.best + .0079375) < 5e-5, `inlet lift ${intake.best}`);
   assert.ok(intake.at > 360 && intake.at < 540, `cylinder 1 inlet peaks inside its intake stroke, at ${intake.at}`);
-  sample(OPERATING, crankDegrees(0)); assert.ok(Math.abs(parts.get('ExhaustHead2').position.y) < 1e-6 && Math.abs(parts.get('ExhaustHead4').position.y) < 1e-6, 'every valve is seated at the assembled pose');
+  sample(OPERATING, crankDegrees(0)); assert.ok(Math.abs(displacement('ExhaustHead2').y) < 1e-6 && Math.abs(displacement('ExhaustHead4').y) < 1e-6, 'every valve is seated at the assembled pose');
   sample(OPERATING, crankDegrees(exhaust.at)); assert.ok(parts.get('ExhaustSpring1').scale.y < .72, 'the spring compresses with the lift');
   sample(OPERATING, 0); assert.ok(Math.abs(parts.get('ExhaustSpring1').scale.y - 1) < 1e-6);
 });
 
 test('the systems exploded view separates the engine in three stages and leaves the casting where it is', () => {
-  sample(EXPLODED, 0); const rest = new Map([...parts].map(([id, mesh]) => [id, mesh.position.clone()]));
-  assert.ok([...parts.values()].every(mesh => mesh.position.length() < 1e-9), 'assembled at progress 0');
+  sample(EXPLODED, 0);
+  assert.ok([...parts.keys()].every(id => displacement(id).length() < 1e-9), 'assembled at progress 0');
   sample(EXPLODED, .2);
-  assert.ok(parts.get('Cover').position.y > .1, 'stage 1 has begun: the cover lifts');
-  assert.ok(parts.get('Sleeve1').position.length() < 1e-9, 'stage 3 has not begun');
+  assert.ok(displacement('Cover').y > .1, 'stage 1 has begun: the cover lifts');
+  assert.ok(displacement('Sleeve1').length() < 1e-9, 'stage 3 has not begun');
   sample(EXPLODED, 1);
-  assert.ok(parts.get('Crankcase').position.length() < 1e-9, 'the casting is the reference');
-  const moved = [...parts].filter(([id, mesh]) => mesh.position.distanceTo(rest.get(id)) > .05).length;
+  assert.ok(displacement('Crankcase').length() < 1e-9, 'the casting is the reference');
+  const moved = [...parts.keys()].filter(id => displacement(id).length() > .05).length;
   assert.ok(moved > 360, `${moved} of 413 parts have left the assembly`);
-  for (const [id, expected] of [['Cover', [0, .3, 0]], ['Sleeve1', [.47, 0, 0]], ['Flywheel', [-.13, 0, -.31]]]) {
-    const p = parts.get(id).position; assert.ok(new THREE.Vector3(...expected).distanceTo(p) < 1e-6, `${id}: ${p.toArray()}`);
+  for (const [id, expected] of [['Cover', [0, .3, 0]], ['Sleeve1', [.47, 0, 0]], ['Flywheel', [-.13, 0, -.31]], ['MagnetoDriveWheel', [.15, -.06, -.33]]]) {
+    const p = displacement(id); assert.ok(new THREE.Vector3(...expected).distanceTo(p) < 1e-6, `${id}: ${p.toArray()}`);
   }
   sample(EXPLODED, .6); const held = [...parts.values()].map(mesh => mesh.matrixWorld.clone());
   sample(EXPLODED, .6); [...parts.values()].forEach((mesh, index) => assert.deepEqual(mesh.matrixWorld.elements, held[index].elements));
 });
 
+test('a part that turns about a fixed axis has its origin on the axis, so interpolating between keys cannot move the axis', () => {
+  const axes = { Crankshaft: [0, 0], Camshaft: [.35, -.105], IgnitionShaft: [.391, -.068], MagnetoDriveWheel: [.2174, -.075] };     // CAD x, z in metres
+  for (const [id, [x, z]] of Object.entries(axes)) {
+    // glTF is y-up: CAD (x, y, z) -> (x, z, -y); the axis is parallel to the CAD y direction
+    assert.ok(Math.abs(rest.get(id).x - x) < 1e-3 && Math.abs(rest.get(id).y - z) < 1e-3, `${id} origin ${rest.get(id).toArray()}`);
+    for (const d of [0, 7, 100, 333, 719]) { sample(OPERATING, crankDegrees(d)); assert.ok(displacement(id).length() < 1e-7, `${id} drifts at ${d} degrees`); }
+  }
+});
+
 test('switching clips returns the parts that only the other clip moves to their assembled pose', () => {
   sample(OPERATING, .3); sample(EXPLODED, 0);
-  assert.ok([...parts.values()].every(mesh => mesh.position.length() < 1e-9 && Math.abs(mesh.quaternion.w) > 1 - 1e-6 && Math.abs(mesh.scale.y - 1) < 1e-6));
+  assert.ok([...parts.keys()].every(id => displacement(id).length() < 1e-9 && Math.abs(parts.get(id).quaternion.w) > 1 - 1e-6 && Math.abs(parts.get(id).scale.y - 1) < 1e-6));
   mixer.stopAllAction();
 });

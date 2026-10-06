@@ -55,7 +55,17 @@ def rich_feature(doc,group,prefix,f,params):
         spine.Visibility=False;circle.Visibility=False
     o.Label=f.get('label',prefix);doc.recompute();return o
 
-def build(spec, output, only=None):
+def feature_runs(features,batch_runs=0):
+    """Index runs of consecutive features that one Boolean applies together: single features unless `batch_runs` is the shortest run to batch."""
+    runs=[];i=0
+    while i<len(features):
+        j=i
+        while batch_runs and j+1<len(features) and features[j+1]['operation']==features[i]['operation']: j+=1
+        if j-i+1<max(batch_runs,2): j=i
+        runs.append(list(range(i,j+1)));i=j+1
+    return runs
+
+def build(spec, output, only=None, batch_runs=0):
     validate_spec(spec);research=check_spec_research(spec,Path(__file__).resolve().parents[1]); output=Path(output); output.mkdir(parents=True,exist_ok=True)
     for name in ('cad-validation.json','reopen-validation.json'):(output/name).unlink(missing_ok=True)
     doc=A.newDocument('Reconstruction'); params=spec['parameters']; tips=[]; records=[]
@@ -72,13 +82,18 @@ def build(spec, output, only=None):
         print('Building',part['id'],flush=True)
         group=doc.addObject('App::DocumentObjectGroup',part['id']); group.Label=part['label']
         current=None
-        for i,f in enumerate(part['features']):
-            kind=f['primitive']; prefix=part['id']+'_F'+str(i+1)
-            if kind in ('prism','helix'):
-                o=rich_feature(doc,group,prefix,f,params)
-            else:
-                o=basic_feature(doc,group,prefix,f,params)
-            doc.recompute()
+        for run in feature_runs(part['features'],batch_runs):
+            objs=[]
+            for i in run:
+                f=part['features'][i]; kind=f['primitive']; prefix=part['id']+'_F'+str(i+1)
+                objs.append(rich_feature(doc,group,prefix,f,params) if kind in ('prism','helix') else basic_feature(doc,group,prefix,f,params))
+                doc.recompute()
+            if len(objs)>1:                         # a long run of one operation (a casting's seat cuts): fuse the tools once, apply them in one Boolean
+                tool=doc.addObject('Part::MultiFuse',part['id']+'_F'+str(run[0]+1)+'_to_F'+str(run[-1]+1)+'_Tools'); tool.Shapes=objs; tool.Refine=False; group.addObject(tool)
+                for o in objs: o.Visibility=False
+                doc.recompute(); o=tool
+            else: o=objs[0]
+            f=part['features'][run[0]]; prefix=part['id']+'_F'+str(run[-1]+1)
             if current is None: current=o
             else:
                 boolean=doc.addObject('Part::Fuse' if f['operation']=='add' else 'Part::Cut',prefix+'_Result')
@@ -102,7 +117,8 @@ def build(spec, output, only=None):
     with (output/'geometry.json').open('w',encoding='utf-8') as stream:json.dump(data,stream,separators=(',',':'))
     report=dict(schema_version=1,model_id=spec['model_id'],geometric_validation_passed=True,historical_accuracy_verified=False,
                 freecad_version=A.Version(),bounds_method=data['bounds_method'],part_count=len(tips),complete_spec=not bool(only),feature_count=sum(x['feature_count'] for x in records),research_review=research,
-                native_feature_history='Native Part primitives, constrained sketch extrusions, helix sweeps and linked Booleans driven by Parameters expressions',
+                native_feature_history='Native Part primitives, constrained sketch extrusions, helix sweeps and linked Booleans driven by Parameters expressions'+('; runs of '+str(batch_runs)+' or more consecutive same-operation features are fused into one tool and applied in a single Boolean' if batch_runs else ''),
+                batched_boolean_runs=batch_runs,
                 spec_sha256=hashlib.sha256(json.dumps(spec,sort_keys=True).encode()).hexdigest(),
                 files={p.name:dict(bytes=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in (native,step,output/'geometry.json')},
                 parts=[{k:v for k,v in r.items() if k not in ('vertices_mm','triangles')} for r in records])
@@ -130,6 +146,6 @@ def basic_feature(doc,group,prefix,f,params):
             return o
 
 def main():
-    p=argparse.ArgumentParser(); p.add_argument('--spec',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--only',nargs='+',help='Development probe: selected part IDs, never a complete assembly')
-    a=p.parse_args(); report=build(json.loads(a.spec.read_text()),a.output,a.only);print(json.dumps({k:report[k] for k in ('model_id','part_count','feature_count','geometric_validation_passed')},indent=2))
+    p=argparse.ArgumentParser(); p.add_argument('--spec',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--only',nargs='+',help='Development probe: selected part IDs, never a complete assembly');p.add_argument('--batch-runs',type=int,default=0,help='Apply runs of at least this many consecutive same-operation features in one Boolean (a casting with hundreds of seat cuts); 0 keeps one Boolean per feature, which update_native.py expects')
+    a=p.parse_args(); report=build(json.loads(a.spec.read_text()),a.output,a.only,a.batch_runs);print(json.dumps({k:report[k] for k in ('model_id','part_count','feature_count','geometric_validation_passed')},indent=2))
 if __name__=='__main__':main()

@@ -6,8 +6,10 @@ research inventory (cad-studies/wright-1903/revision-2/inventory.json), so what 
 recorded for the component it belongs to: its function, interfaces, the modelling decision and the source locator.
 Standard library only.
 """
-import json
+import json, math
 from pathlib import Path
+
+from cad_pipeline.wright_bodies import AXES
 
 REPO = Path(__file__).resolve().parents[1]
 STUDY = REPO / 'cad-studies/wright-1903/revision-2'
@@ -37,6 +39,14 @@ def operating_stages():
         dict(label='Three half-turns', progress=75, note='The inlet valves open by suction on their intake strokes and the ignition contacts snap open in firing order 1-3-4-2 (illustrative).'),
         dict(label='Two crank turns: one four-stroke cycle', progress=100, note='Every cylinder has fired once. Valve and ignition timing here are teaching choices, not source data.'),
     ]
+
+
+def gear_mesh():
+    """The exhaust-to-ignition spur pair: equal 18-tooth gears tangent at their pitch circles (scripts/gear_geometry.py form, backlash 0.05 module)."""
+    centre = math.dist(AXES['cam'], AXES['ignition'])
+    module = centre / 18
+    return dict(driver='ExhaustGear', driven='IgnitionGear', teeth=[18, 18], ratio=1.0, centre_distance_mm=round(centre, 4),
+                module_mm=round(module, 4), backlash_mm=round(0.05 * module, 4))
 
 
 def build(geometry, asset_sha256, inventory=None, motions=None):
@@ -69,4 +79,4 @@ def build(geometry, asset_sha256, inventory=None, motions=None):
             if any(f"component:{c['id']}" in p['groups'] for p in parts):
                 tree.append(dict(id=f"component:{c['id']}", label=c['name'], depth=1))
     return dict(asset_sha256=asset_sha256, parts=parts, groups=tree, reference=REFERENCE, scope=SCOPE, motions=motions or [], viewpoint=VIEWPOINT,
-                remoteDisplays=[], gearMeshes=[dict(driver='ExhaustGear', driven='IgnitionGear', teeth=[18, 18], ratio=1.0)])
+                remoteDisplays=[], gearMeshes=[gear_mesh()])

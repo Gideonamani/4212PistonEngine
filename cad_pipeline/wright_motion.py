@@ -33,7 +33,7 @@ FLYWHEEL_RADIUS, WHEEL_RADIUS = 190.0, 40.0
 GENERATOR_AXIS = AXES['generator']
 IGNITION_HUB_RADIUS = 7.0
 TRIP_PIVOT = (461.0, -40.0)
-NOSE_GAP = 0.3                                           # the lever nose rides this far off the cam surface
+NOSE_GAP = 0.6                                           # the lever underside rides this far off the cam; covers linear interpolation between 1-degree keys
 CHAIN_PROFILE = dict(c1=CRANK_AXIS, c2=CAM_AXIS, teeth1=6, teeth2=12, links=38)
 SPRING_FREE_LENGTH = 23.5
 SPRING_FIXED_Z = 86.5
@@ -225,35 +225,57 @@ def _strip_top(points, x):
     return best
 
 
-def trip_nose_height(cyl, theta):
-    """Height of the highest cam surface under the trip-lever nose (x 390..398) at crank angle theta."""
-    turn = ignition_crest_angle(cyl, theta) - math.pi / 2
-    strip = [rotate_point(p, IGNITION_AXIS, turn) for p in STRIP]
-    best = None
-    for k in range(17):
-        x = 390.0 + 8.0 * k / 16
-        top = _strip_top(strip, x)
-        hub = IGNITION_AXIS[1] + math.sqrt(max(0.0, IGNITION_HUB_RADIUS ** 2 - (x - IGNITION_AXIS[0]) ** 2)) if abs(x - IGNITION_AXIS[0]) <= IGNITION_HUB_RADIUS else None
-        for z in (top, hub):
-            if z is not None:
-                best = z if best is None else max(best, z)
-    return best
+def _cam_top(cyl, theta, x, strip=None):
+    """Height of the highest igniter-cam surface (strip or hub) at world abscissa x, or None when nothing is under x."""
+    if strip is None:
+        turn = ignition_crest_angle(cyl, theta) - math.pi / 2
+        strip = [rotate_point(p, IGNITION_AXIS, turn) for p in STRIP]
+    top = _strip_top(strip, x)
+    hub = IGNITION_AXIS[1] + math.sqrt(IGNITION_HUB_RADIUS ** 2 - (x - IGNITION_AXIS[0]) ** 2) if abs(x - IGNITION_AXIS[0]) <= IGNITION_HUB_RADIUS else None
+    heights = [z for z in (top, hub) if z is not None]
+    return max(heights) if heights else None
+
+
+def _underside(nose_z):
+    """Points (x, z) along the underside of the trip lever at the assembled pose: the flat nose, then the start of the sloping edge."""
+    slope = (-44.0 - nose_z) / (464.0 - 398.0)
+    return [(390.0 + k, nose_z) for k in range(9)] + [(398.0 + k, nose_z + slope * k) for k in range(1, 5)]
 
 
 def trip_rest(cyl):
-    """Nose height of the trip lever at the assembled pose (resting on the cam surface it sits on at theta = 0)."""
-    return round(trip_nose_height(cyl, 0.0) + NOSE_GAP, 4)
+    """Nose height of the trip lever at the assembled pose: the lowest it can sit with NOSE_GAP clear of the cam it rests on."""
+    strip = None
+    nose = -60.0
+    for _ in range(4):                                           # the sloping edge depends on the nose height; it converges at once
+        need = [_cam_top(cyl, 0.0, x, strip) for x, _ in _underside(nose)]
+        nose = max(top + NOSE_GAP - (z - nose) for top, (_, z) in zip(need, _underside(nose)) if top is not None)
+    return round(nose, 4)
 
 
 def trip_angle(cyl, theta):
-    """Counter-clockwise rotation (radians) of trip lever `cyl` about its pivot so its nose follows the cam surface."""
-    nose0 = (394.0, trip_rest(cyl))
-    target = trip_nose_height(cyl, theta) + NOSE_GAP
-    px, pz = TRIP_PIVOT
-    dx, dz = nose0[0] - px, nose0[1] - pz
-    # nose height after a counter-clockwise rotation e: pz + dx sin e + dz cos e; solve for the target (small angles)
-    f = lambda e: pz + dx * math.sin(e) + dz * math.cos(e) - target
-    return _bisect(f, -0.4, 0.4) if f(-0.4) * f(0.4) < 0 else 0.0
+    """Counter-clockwise rotation (radians) of trip lever `cyl` about its pivot so its whole underside stays NOSE_GAP above the cam."""
+    turn = ignition_crest_angle(cyl, theta) - math.pi / 2
+    strip = [rotate_point(p, IGNITION_AXIS, turn) for p in STRIP]
+    under = _underside(trip_rest(cyl))
+
+    def clearance(e):
+        worst = 1e9
+        for point in under:
+            x, z = rotate_point(point, TRIP_PIVOT, e)
+            top = _cam_top(cyl, theta, x, strip)
+            if top is not None:
+                worst = min(worst, z - top - NOSE_GAP)
+        return worst
+
+    # A counter-clockwise turn lowers the nose (the pivot is to its right), so clearance falls as e rises. The cam surface spans only
+    # about 20 mm, so the bracket is kept to the turns that keep the underside over it (the nose moves at most 12 mm, about 0.18 rad).
+    limit = 0.25
+    if clearance(limit) >= 0:
+        return limit
+    if clearance(-limit) <= 0:
+        return -limit
+    e = _bisect(clearance, -limit, limit)
+    return 0.0 if abs(e) < 1e-5 else e                 # the assembled pose is exact; 1e-5 rad is under a thousandth of a millimetre at the nose
 
 
 def igniter_angle(cyl, theta):
@@ -339,6 +361,16 @@ def matrix(part_id, theta):
         z0 = SPRING_FIXED_Z if kind == 'I' else -SPRING_FIXED_Z
         return scale_z((SPRING_FREE_LENGTH - lift) / SPRING_FREE_LENGTH, z0)
     return I4
+
+
+def pivot(part_id):
+    """A point (CAD mm) on the fixed axis of a part that only turns about one fixed axis (crank, cam, ignition shaft, generator), else None.
+
+    The exported file puts the part's origin there, so the key frames hold a pure rotation about a fixed node origin: linear
+    interpolation between two keys then keeps the axis where it is. With the origin at the model origin, a part turning 4.75 degrees per
+    key about an axis 230 mm away would drift 0.2 mm between keys, enough to move a friction wheel into the flywheel rim."""
+    axis = AXES.get(body(part_id))
+    return None if axis is None else (axis[0], 0.0, axis[1])
 
 
 def lobe_nose_centre(cyl):

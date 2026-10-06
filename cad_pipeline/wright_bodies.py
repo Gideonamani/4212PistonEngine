@@ -20,7 +20,7 @@ BODY_RULES = [
     ('cam', r'^(Camshaft|CamWasher[AB]|ExhaustCam\d|CamSprocket|ExhaustGear)$'),
     ('ignition', r'^(IgnitionShaft|IgnitionCam\d|IgnitionGear|IgnitionDrivePin|IgnitionGearSpring)$'),
     ('trip{n}', r'^(TripLever)(\d)$'),
-    ('igniter{n}', r'^(IgniterLever|MovingContact|IgnitionMainSpring|IgnitionInterSpring)(\d)$'),
+    ('igniter{n}', r'^(IgniterLever|MovingContact)(\d)$'),            # the two springs are shown fixed: they are not stretched as the lever swings
     ('springI{n}', r'^(IntakeSpring)(\d)$'),
     ('springE{n}', r'^(ExhaustSpring)(\d)$'),
     ('chain{n}', r'^Chain(?:Plate|Roller)(\d+)(?:_[AB])?$'),

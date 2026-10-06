@@ -8,6 +8,7 @@ the crankshaft with the flywheel at +y, z up). Standard library only.
 import re
 
 STAGES = [
+    dict(label='Assembled', progress=0, note='The engine as modelled: every part in its assembled position.'),
     dict(label='Covers, induction and pipework', progress=34, note='The steel cover, hot plate, intake manifold, fuel line and water fittings lift off the casting; the oil pump and feed drop away.'),
     dict(label='Valve gear and ignition', progress=67, note='The valve boxes with their valves, the rockers and the make-and-break ignition levers separate from the cylinders.'),
     dict(label='Crank, timing and accessories', progress=100, note='Liners, the piston-and-rod assembly, the crank assembly, camshafts, timing drive, flywheel and generator move apart. Direction and order are pedagogical.'),

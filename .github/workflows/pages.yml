@@ -46,6 +46,8 @@ jobs:
         run: python3 scripts/test_cylinder_motion_profile.py
       - name: Verify the accessory gear train (standard library only)
         run: python3 scripts/test_gear_geometry.py
+      - name: Verify the Wright reconstruction layout, seats and motion (standard library only)
+        run: python3 scripts/test_wright_layout.py
       - name: Install the interference-audit dependencies
         run: python3 -m pip install -r scripts/requirements-audit.txt
       - name: Self-test the interference audit on gear trains that mesh and gear trains that do not
