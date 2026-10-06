@@ -10,7 +10,7 @@ import React, { useMemo, useState } from 'react';
  */
 
 const panel = 'rounded-xl border border-teal-500/20 bg-[#061418] p-3 text-slate-100';
-const button = 'rounded-lg border border-slate-700 bg-slate-900/70 px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-teal-400 aria-pressed:border-teal-400 aria-pressed:bg-teal-500/15 aria-pressed:text-teal-200';
+const button = 'min-h-11 rounded-lg border border-slate-700 bg-slate-900/70 px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-teal-400 aria-pressed:border-teal-400 aria-pressed:bg-teal-500/15 aria-pressed:text-teal-200';
 const caption = 'mt-2 text-[11px] text-slate-400';
 
 // ---------------------------------------------------------------------------------------------------------------
@@ -69,7 +69,7 @@ export function SweptVolumeDiagram() {
         </g>
       </svg>
       <div>
-        <input aria-label="Crank angle" className="w-full accent-teal-400" type="range" min="0" max="360" value={angle} onChange={(event) => setAngle(Number(event.target.value))} />
+        <input aria-label="Crank angle" className="h-11 w-full accent-teal-400" type="range" min="0" max="360" value={angle} onChange={(event) => setAngle(Number(event.target.value))} />
         <div className="mt-1 flex justify-between font-mono text-[11px] text-slate-400"><span>0° TDC</span><span>180° BDC</span><span>360° TDC</span></div>
         <p className="mt-3 text-xs text-slate-300"><strong className="text-white">Crank angle {angle}°.</strong> {readout}</p>
         <p className="mt-2 text-xs leading-relaxed text-slate-300">{viewText[view]}</p>
@@ -209,7 +209,7 @@ export function OttoPVDiagram({ startPractical = false }: { startPractical?: boo
       <div className="hidden justify-self-center sm:block"><PistonStrip v={point[0]} r={r} /></div>
     </div>
     <label className="mt-3 block text-xs font-semibold text-slate-300" htmlFor={`otto-progress-${startPractical ? 'p' : 'i'}`}>Step through the cycle</label>
-    <input id={`otto-progress-${startPractical ? 'p' : 'i'}`} className="mt-1 w-full accent-teal-400" type="range" min="0" max="100" value={progress} onChange={(event) => setProgress(Number(event.target.value))} />
+    <input id={`otto-progress-${startPractical ? 'p' : 'i'}`} className="h-11 w-full accent-teal-400" type="range" min="0" max="100" value={progress} onChange={(event) => setProgress(Number(event.target.value))} />
     <p className="mt-2 text-xs leading-relaxed text-slate-300"><strong className="text-white">{info.label}.</strong> {mode === 'ideal' ? info.ideal : info.practical}</p>
     <p className={caption}>Schematic curves from the ideal-gas relations (compression ratio drawn as 8:1). Practical mode rounds the ideal loop to illustrate real-engine effects; it is not measured data for any engine. The dashed line is the ideal cycle.</p>
   </div>;
@@ -233,7 +233,7 @@ export function DieselOttoCompare() {
     </svg>
     <div className="mt-2 flex flex-wrap gap-3 text-[11px]"><span className="text-teal-300">■ Otto: heat added at constant volume (vertical line)</span><span className="text-amber-300">■ Diesel: heat added at constant pressure (flat line)</span></div>
     <label className="mt-3 block text-xs font-semibold text-slate-300" htmlFor="diesel-cr">Compression ratio (schematic): {r}:1</label>
-    <input id="diesel-cr" className="mt-1 w-full accent-teal-400" type="range" min="6" max="20" value={r} onChange={(event) => setR(Number(event.target.value))} />
+    <input id="diesel-cr" className="h-11 w-full accent-teal-400" type="range" min="6" max="20" value={r} onChange={(event) => setR(Number(event.target.value))} />
     <p className={caption}>Ideal-gas curves for comparing the shapes of the two cycles. Both start with the same compression; only the heat-addition process differs. Diesel engines run a much higher compression ratio than gasoline engines. Not engine performance data.</p>
   </div>;
 }
@@ -273,7 +273,7 @@ export function ValveTimingDiagram() {
       <path d={`M${chartX(angle)} 4V108`} stroke="#f8fafc" strokeWidth="2" />
       <g fontSize="13" fill="#94a3b8" textAnchor="middle"><text x={chartX(0)} y="126" textAnchor="start">TDC</text><text x={chartX(180)} y="126">BDC</text><text x={chartX(360)} y="126">TDC</text><text x={chartX(540)} y="126">BDC</text><text x={chartX(720)} y="126" textAnchor="end">TDC</text></g>
     </svg>
-    <input aria-label="Crank angle" className="mt-3 w-full accent-teal-400" type="range" min="0" max="719" value={angle} onChange={(event) => setAngle(Number(event.target.value))} />
+    <input aria-label="Crank angle" className="h-11 w-full accent-teal-400" type="range" min="0" max="719" value={angle} onChange={(event) => setAngle(Number(event.target.value))} />
     <p className="mt-2 text-xs text-slate-300"><strong className="text-white">{stroke} stroke · crank angle {angle}°.</strong> Intake valve {intake ? 'open' : 'closed'}; exhaust valve {exhaust ? 'open' : 'closed'}{intake && exhaust ? ' - both open: valve overlap.' : '.'}</p>
     <ul className="mt-2 grid gap-1 text-[11px] text-slate-300 sm:grid-cols-2">
       <li><strong className="text-white">A</strong> Intake opens 50° before TDC (valve lead)</li>
@@ -303,7 +303,8 @@ const ENGINE_ROWS: { label: string; gtsio: string; io: string; same?: boolean }[
 
 export function EngineDataComparison() {
   return <div className={panel}>
-    <div className="overflow-x-auto">
+    {/* A scrolling table must be reachable by keyboard, so the region takes focus (arrow keys then scroll it). */}
+    <div role="region" aria-label="Engine data comparison, scrolls sideways on narrow screens" tabIndex={0} className="overflow-x-auto outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-teal-300">
       <table className="w-full min-w-[26rem] border-collapse text-left text-[11px]">
         <thead><tr className="border-b border-slate-700 text-slate-400"><th className="py-1.5 pr-2 font-semibold">Data</th><th className="py-1.5 pr-2 font-semibold text-teal-300">GTSIO-520-H (course engine)</th><th className="py-1.5 font-semibold text-amber-300">IO-520 (comparison)</th></tr></thead>
         <tbody>{ENGINE_ROWS.map((row) => <tr key={row.label} className="border-b border-slate-800/80 align-top"><th scope="row" className="py-1.5 pr-2 font-medium text-slate-300">{row.label}</th><td className="py-1.5 pr-2 text-slate-100">{row.gtsio}</td><td className={`py-1.5 ${row.same ? 'text-slate-100' : 'text-amber-100'}`}>{row.io}</td></tr>)}</tbody>
@@ -330,7 +331,7 @@ const CONSTRUCTION_ROWS: { part: string; gtsio: string; io: string; same?: boole
 
 export function ConstructionComparison() {
   return <div className={panel}>
-    <div className="overflow-x-auto">
+    <div role="region" aria-label="Construction comparison, scrolls sideways on narrow screens" tabIndex={0} className="overflow-x-auto outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-teal-300">
       <table className="w-full min-w-[30rem] border-collapse text-left text-[11px]">
         <thead><tr className="border-b border-slate-700 text-slate-400"><th className="py-1.5 pr-2 font-semibold">Part</th><th className="py-1.5 pr-2 font-semibold text-teal-300">GTSIO-520-H (course engine)</th><th className="py-1.5 font-semibold text-amber-300">IO-520 (comparison)</th></tr></thead>
         <tbody>{CONSTRUCTION_ROWS.map((row) => <tr key={row.part} className="border-b border-slate-800/80 align-top"><th scope="row" className="py-1.5 pr-2 font-medium text-slate-300">{row.part}</th><td className="py-1.5 pr-2 text-slate-100">{row.gtsio}</td><td className={`py-1.5 ${row.same ? 'text-slate-100' : 'text-amber-100'}`}>{row.io}</td></tr>)}</tbody>
@@ -388,7 +389,7 @@ export function CylinderNumberingDiagram({ startFiring = false }: { startFiring?
     {mode === 'numbering'
       ? <p className="mt-2 text-xs leading-relaxed text-slate-300">Numbered from the rear (accessory end): No. 1 is the right rear cylinder, No. 2 the left rear, then forward in pairs. Odd numbers are on the right and even on the left, as seen from the rear. Notice the left bank sits slightly forward of the right, so each connecting rod has its own crankpin.</p>
       : <div>
-        <input aria-label="Crank angle" className="mt-2 w-full accent-teal-400" type="range" min="0" max="719" value={angle} onChange={(event) => setAngle(Number(event.target.value))} />
+        <input aria-label="Crank angle" className="h-11 w-full accent-teal-400" type="range" min="0" max="719" value={angle} onChange={(event) => setAngle(Number(event.target.value))} />
         <p className="mt-2 text-xs text-slate-300"><strong className="text-white">Crank angle {angle}°: cylinder {firing} is in its power event.</strong> Next: cylinder {next} at {((index + 1) % 6) * 120}°.</p>
         <p className="mt-1 font-mono text-[11px] text-slate-400">{GTSIO_FIRING_ORDER.map((id, i) => `${id}${i === index ? '●' : ''}`).join(' – ')}</p>
       </div>}

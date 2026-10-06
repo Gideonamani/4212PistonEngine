@@ -1,4 +1,6 @@
-import { appReady, expect, expectAccessibleAndTouchable, expectNoHorizontalOverflow, test } from './fixtures';
+import fs from 'node:fs';
+import { appReady, expect, expectAccessibleAndTouchable, expectNoHorizontalOverflow, onlyIn, test } from './fixtures';
+import { MODEL_FILES } from './viewer-helpers';
 
 // Native interactives inside lesson steps. They are plain React (no 3D model), so these tests stay light.
 
@@ -100,4 +102,38 @@ test.describe('Performance Calculations: PLANK calculator', () => {
     await expectAccessibleAndTouchable(page, 'PLANK calculator');
     problems.assertNone();
   });
+});
+
+// Every native interactive in the lesson packs, each opened once (on the first step that shows it) at the narrowest phone width, where
+// layouts wrap and controls crowd, and at tablet width, where the header's mode tabs show. The list is read from the packs, so an
+// interactive added later is held to the same line without anyone remembering to add it here.
+test.describe('every native interactive is accessible and touchable', () => {
+  onlyIn('phone-320', 'tablet-768');
+  // A cold dev server and axe's full-page scan take most of the default minute on a loaded machine or a shared CI runner.
+  test.describe.configure({ timeout: 120_000 });
+  const readJson = (path: string) => JSON.parse(fs.readFileSync(path, 'utf8'));
+  const packs = (readJson('web/lessons-manifest.json') as { packs: string[] }).packs.map((path) => readJson(`web/${path.replace(/^\.\//, '')}`));
+  const interactives = new Map<string, { hash: string; title: string }>();
+  for (const pack of packs) for (const lesson of pack.lessons) for (const [index, step] of lesson.steps.entries()) {
+    const id = typeof step.url === 'string' && step.url.startsWith('artifact:') ? step.url.slice('artifact:'.length) : '';
+    if (id && !interactives.has(id)) interactives.set(id, { hash: `#/learn/${pack.id}/${lesson.id}/step/${index + 1}`, title: step.title });
+  }
+
+  test('the packs contain interactives to check', () => {
+    expect(interactives.size, 'no artifact: steps found in web/*-lessons.json').toBeGreaterThan(10);
+  });
+
+  for (const [id, { hash, title }] of interactives) {
+    test(id, async ({ page }) => {
+      // None of these steps shows a model; refuse the downloads the page starts in the background (tens of megabytes each). The refusal
+      // makes the app try Drive, which turns a stranger away, so this test leaves request errors to the tests above.
+      await page.route(MODEL_FILES, (route) => route.abort());
+      await page.goto(`/${hash}`);
+      await appReady(page);
+      await expect(page.getByRole('heading', { name: title, exact: true })).toBeVisible();
+      await expect(page.getByText('This learning activity is not available')).toHaveCount(0);
+      await expectNoHorizontalOverflow(page);
+      await expectAccessibleAndTouchable(page, id);
+    });
+  }
 });
