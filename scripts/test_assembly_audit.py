@@ -97,6 +97,25 @@ def run_audit(variant, tmp):
     return audit.audit(path, contract, dict(min_gear_clearance_mm=.02), samples=5, dense=48, log=lambda *_: None)
 
 
+class RigidBodiesAreRecognised(unittest.TestCase):
+    """Parts with identical animation tracks cannot move relative to each other, so the clip audit skips such pairs (the rest-pose
+    check covers them); a part with its own motion is never skipped against another."""
+
+    def test_identical_tracks_share_a_signature_and_different_tracks_do_not(self):
+        outline = G.profile(16, 20, 1.8, 0.0)
+        gears = {name: dict(centre=(x, 0.0), z=0, rate=rate, outline=outline)
+                 for name, x, rate in (('A', 0.0, 1.0), ('B', 60.0, 1.0), ('C', 120.0, -1.0))}
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'bodies.glb'
+            write_glb(path, gears)
+            glb = audit.Glb(path)
+            tracks = glb.clip_tracks(glb.clips()['Operating mechanism'])
+            signatures = audit.track_signatures(glb, tracks)
+        self.assertEqual(signatures['A'], signatures['B'])
+        self.assertNotEqual(signatures['A'], signatures['C'])
+        self.assertIsNone(signatures.get('Z'))               # a part with no track has no signature, so two of them compare equal
+
+
 class AuditKnownAnswers(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

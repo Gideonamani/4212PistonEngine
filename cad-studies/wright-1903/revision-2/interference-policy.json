@@ -1,0 +1,8 @@
+{
+  "_note": "Interference policy for web/wright-1903-reconstruction.glb.gz (rest pose and the operating clip). Touching is always allowed; overlap is not. known_defects is a ratchet: it records what the CURRENTLY PUBLISHED asset still contains, may only shrink, and an entry that is no longer observed fails the audit until it is removed. An empty list is the goal. The exploded view is not swept: its parts are separated by design and the order is pedagogical.",
+  "volume_tolerance_mm3": 0.001,
+  "max_penetration_mm": 0.05,
+  "min_gear_clearance_mm": 0.02,
+  "unverified_waivers": [],
+  "known_defects": []
+}

@@ -9,6 +9,7 @@ from cad_pipeline.spec import validate_spec
 from cad_pipeline.research_gate import review
 from cad_pipeline.wright_seats import apply_seats, load as load_seats
 from cad_pipeline.wright_chain import layout as chain_layout, relief_centres, pocket_angles
+from cad_pipeline import wright_motion as MO
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 import gear_geometry as G
@@ -44,7 +45,7 @@ def make_spec(seats=True):
     par('pitch',round(pitch,3),('M1',),'Mean exterior housing pitch at inferred scale; inherits scale uncertainty.','measured',method='Four reviewed valve-box circles; adjacent Y centers averaged times 10.')
     par('valve_box_radius',round(radius,3),('M1',),'Exterior valve-box radius; low-resolution scan estimate.','measured',method='Four independent reviewed circle fits; mean radius times 10; residuals in parent study.')
     par('mesh_to_mm',10,('M1',),'Candidate imported cm interpretation; no independent visible dimension yet certifies the transform.',unit='ratio')
-    for n,v in [('rod_length',245),('piston_length',150),('piston_head_offset',65),('piston_clearance',.5),('sleeve_start',175),('sleeve_length',190),('case_wall',7),('case_radius',116),('valve_x',415),('valve_z',48),('journal_radius',14),('pin_radius',10),('cam_radius',9),('cam_x',350),('cam_z',-105),('ignition_x',391),('ignition_z',-68),('flywheel_radius',190),('chain_pitch',25.4),('spring_wire',1.5),('spring_pitch',5),('valve_stem_radius',3),('cam_base_radius',15)]:par(n,v)
+    for n,v in [('rod_length',245),('piston_length',150),('piston_head_offset',65),('piston_clearance',.5),('sleeve_start',175),('sleeve_length',190),('case_wall',7),('case_radius',116),('valve_x',415),('valve_z',48),('journal_radius',14),('pin_radius',10),('cam_radius',9),('cam_x',350),('cam_z',-105),('ignition_x',391),('ignition_z',-68),('flywheel_radius',190),('chain_pitch',25.4),('spring_wire',1.5),('spring_pitch',5),('valve_stem_radius',3),('cam_base_radius',round(MO.CAM['base_radius'],6))]:par(n,v)
     par('chain_pitch',25.4,why='1-inch pitch teaching estimate from sprocket envelope. Source confirms tooth counts, not this pitch; curved-span chord pitch remains approximate.')
     for n,v,refs in [('crank_teeth',6,('L1','N1')),('cam_teeth',12,('L1','N1')),('cylinders',4,('H1','L1'))]:par(n,v,refs,'Source count; geometry does not authenticate tooth flank shape.','specified','count')
     parts=[]
@@ -73,10 +74,10 @@ def make_spec(seats=True):
         case += [bx(24,40,110,[x,y,-168],label='Integral mounting leg'),bx(58,48,10,[x-17,f'({y})-4',-170],label='Mounting foot'),cy(4.4,14,[x+12,f'({y})+20',-172],op='cut',label='Mounting hole')]
         bolt(f'MountBolt{i}',f'Mounting bolt {i}','crankcase',4,20,[x+12,f'({y})+20',-174])
     # Three camshaft support lugs and three ignition support lugs stay on the casting.
-    stations=[-32,'1.5*pitch','3*pitch+48']
+    stations=[-32,'1.5*pitch','3*pitch+60']
     for y in stations:
         case += [bx(32,16,54,[334,f'({y})-8',-119],label='Cam bearing lug'),cy(12.6,20,['cam_x',f'({y})-10','cam_z'],(0,1,0),'cut','Cam bearing seat'),bx(50,16,20,[350,f'({y})-8',-75],label='Ignition lug bridge'),bx(26,16,35,[378,f'({y})-8',-85],label='Ignition bearing lug'),cy(8.5,20,['ignition_x',f'({y})-10','ignition_z'],(0,1,0),'cut','Ignition shaft seat')]
-    for i in range(4):case += [bx(26,8,75,[360,f'{i}*pitch-4',-140],label='Rocker pivot support'),cy(4.2,18,[382,f'{i}*pitch-9',-126],(0,1,0),'cut','Rocker pivot bore')]
+    for i in range(4):case += [bx(33.5,8,80,[363.5,f'{i}*pitch-4',-140],label='Rocker pivot support'),cy(4.2,18,[382,f'{i}*pitch-9',-126],(0,1,0),'cut','Rocker pivot bore')]
     case += [cy(16,30,[270,'pitch/2',-83],(0,0,1),label='Lower water connection boss'),cy(10,38,[270,'pitch/2',-85],op='cut',label='Coolant inlet passage')]
     for y in [0,'3*pitch']:case+=[cy(16,14,[285,y,64],label='Upper water-return boss'),cy(10,30,[285,y,54],op='cut',label='Water return passage')]
     # Bound the baffled induction chamber with integral ribs; sheet lid is separate.
@@ -125,7 +126,7 @@ def make_spec(seats=True):
         for k in range(3):
             x=f'({px})+{41+7*k}';piston.append(tube('bore/2+1','(bore-piston_clearance)/2-2',4,[x,y,0],(1,0,0),'cut','Compression-ring groove'))
             add(f'Ring{i}_{k}',f'Piston {i} compression ring {k+1}','pistons',[tube('bore/2-.05','bore/2-2',3.8,[f'({x})+.1',y,0],(1,0,0)),bx(5,7,1.2,[f'({x})-.5',f'({y})+bore/2-5',-.6],'cut','Pinned split gap')],'cast_iron')
-            add(f'RingPeg{i}_{k}',f'Piston {i} ring peg {k+1}','pistons',[cy(.5,5,[f'({x})+2',f'({y})+bore/2-4',0],(0,1,0))])
+            add(f'RingPeg{i}_{k}',f'Piston {i} ring peg {k+1}','pistons',[cy(.5,3.6,[f'({x})+2',f'({y})+bore/2-4',0],(0,1,0))])
         add(f'Piston{i}',f'Long cast-iron piston {i}','pistons',piston,'cast_iron')
         add(f'WristPin{i}',f'Locked wrist pin {i}','pistons',[cy('pin_radius',90,[px,f'({y})-45',0],(0,1,0))])
         bolt(f'PinLock{i}',f'Wrist-pin setscrew {i}','pistons',2.5,12,[px,f'({y})+35',10],(0,0,1))
@@ -173,29 +174,30 @@ def make_spec(seats=True):
             add(f'{v}Spring{i}',f'{v} valve {i} helical spring','valves',[he(9,'spring_wire','spring_pitch',23.5,[x,y,sg*86.5],axis)])
             add(f'{v}SpringWasher{i}',f'{v} valve {i} spring washer','valves',[tube(12,'valve_stem_radius+.2',2.5,[x,y,sg*112],axis)])
     # Source hollow exhaust shaft, solid breaker shaft, bearings and actual rollers.
-    add('Camshaft','Hollow exhaust camshaft','camshafts',[tube('cam_radius',5,'3*pitch+140',['cam_x',-80,'cam_z'],(0,1,0))])
-    add('IgnitionShaft','Solid make-and-break camshaft','camshafts',[cy(5,length,['ignition_x',y0,'ignition_z'],(0,1,0))])
+    add('Camshaft','Hollow exhaust camshaft','camshafts',[tube('cam_radius',5,'3*pitch+160',['cam_x',-80,'cam_z'],(0,1,0))])
+    add('IgnitionShaft','Solid make-and-break camshaft','camshafts',[cy(5,'3*pitch+140',['ignition_x',y0,'ignition_z'],(0,1,0))])
     for i,y in enumerate(stations):
         add(f'CamBearing{i}',f'Exhaust camshaft plain bearing {i+1}','bearings',[tube(12.5,'cam_radius+.2',15,['cam_x',f'({y})-7.5','cam_z'],(0,1,0))],'babbitt')
         add(f'IgnitionBearing{i}',f'Ignition shaft bearing {i+1}'+(' carrying the sliding gear sleeve' if i==0 else ''),'bearings',[tube(12.5 if i==0 else 8.4,10.2 if i==0 else 5.2,15,['ignition_x',f'({y})-7.5','ignition_z'],(0,1,0))],'babbitt')
     for suffix,y in [('A',-41.5),('B',-24.5)]:add('CamWasher'+suffix,'Camshaft locating washer '+suffix,'camshafts',[tube(14,'cam_radius',2,['cam_x',y,'cam_z'],(0,1,0))])
-    TD=36  # shaft-wise offset of the ignition cams and trip levers into the gap beside each valve box
+    TD=39  # shaft-wise offset of the ignition cams and trip levers into the gap beside each valve box
     for i in range(1,5):
         y=f'{i-1}*pitch'
         # Downward lobe and cam roller meet at z=-120. Local lobe law is estimated.
-        cam=[cy('cam_base_radius',10,['cam_x',f'({y})-5','cam_z'],(0,1,0)),cy(11,10,['cam_x',f'({y})-5',-110],(0,1,0)),cy('cam_radius',12,['cam_x',f'({y})-6','cam_z'],(0,1,0),'cut')]
+        nx,nz=MO.lobe_nose_centre(i)    # lobe turned to its phase in the illustrative firing order; peak lift is the nominal valve lift
+        cam=[cy('cam_base_radius',10,['cam_x',f'({y})-5','cam_z'],(0,1,0)),cy(MO.CAM['nose_radius'],10,[round(nx,5),f'({y})-5',round(nz,5)],(0,1,0)),cy('cam_radius',12,['cam_x',f'({y})-6','cam_z'],(0,1,0),'cut')]
         add(f'ExhaustCam{i}',f'Exhaust cam lobe {i}, illustrative dwell profile','camshafts',cam)
         # Cheeks carry cam roller (350,-131), pivot (382,-126), valve roller (415,-125).
         outline=[(337,-138),(351,-142),(385,-137),(423,-135),(428,-125),(419,-117),(381,-116),(349,-121),(337,-128)]
         for suffix,dy in [('Left',-8),('Right',6)]:
             feats=[xz(outline,2,f'({y})+{dy}')]
-            for xx,zz,rr in [(350,-131,3),(382,-126,4),(415,-125,3)]:feats.append(cy(rr,4,[xx,f'({y})+{dy-1}',zz],(0,1,0),'cut','Axle/pivot hole'))
+            for xx,zz,rr in [(*MO.ROCKER['cam_roller'],3),(*MO.ROCKER['pivot'],4),(*MO.ROCKER['valve_roller'],3)]:feats.append(cy(rr,4,[xx,f'({y})+{dy-1}',zz],(0,1,0),'cut','Axle/pivot hole'))
             add(f'Rocker{suffix}{i}',f'Exhaust rocker {i} sheet-steel {suffix.lower()} cheek','rockers',feats)
-        for stem,xx,zz,rr in [('Cam',350,-131,10),('Valve',415,-125,10)]:
+        for stem,xx,zz,rr in [('Cam',*MO.ROCKER['cam_roller'],MO.ROCKER['roller_radius']),('Valve',*MO.ROCKER['valve_roller'],MO.ROCKER['roller_radius'])]:
             add(f'{stem}Roller{i}',f'Rocker {i} {stem.lower()} roller','rockers',[tube(rr,3.15,12,[xx,f'({y})-6',zz],(0,1,0))])
             add(f'{stem}RollerAxle{i}',f'Rocker {i} {stem.lower()} roller axle','rockers',[cy(3,16,[xx,f'({y})-8',zz],(0,1,0))])
-        add(f'RockerPivot{i}',f'Rocker {i} pivot axle','rockers',[cy(4,23,[382,f'({y})-11.5',-126],(0,1,0))])
-        add(f'IgnitionCam{i}',f'Bent-strip igniter cam {i}','ignition',[xz([(382,-69),(383,-59),(393,-53),(400,-59),(401,-69),(399,-69),(398,-60),(393,-56),(385,-61),(384,-69)],8,f'({y})+{TD-4}'),tube(7,5.1,8,[391,f'({y})+{TD-4}',-68],(0,1,0)),cy(5.2,10,[391,f'({y})+{TD-5}',-68],(0,1,0),'cut')])
+        add(f'RockerPivot{i}',f'Rocker {i} pivot axle','rockers',[cy(4,23,[MO.ROCKER['pivot'][0],f'({y})-11.5',MO.ROCKER['pivot'][1]],(0,1,0))])
+        add(f'IgnitionCam{i}',f'Bent-strip igniter cam {i}','ignition',[xz(MO.ignition_cam_outline(i),8,f'({y})+{TD-4}'),tube(7,5.1,8,[391,f'({y})+{TD-4}',-68],(0,1,0)),cy(5.2,10,[391,f'({y})+{TD-5}',-68],(0,1,0),'cut')])
     # Timing sprockets with roller pockets. Profile is explicitly not a manufactured tooth form.
     # Timing sprockets with roller pockets. Profile is explicitly not a manufactured tooth form.
     def wheel(id,label,group,cx,cz,rad,teeth,y,width,bore,phase=0.0,relief=False):
@@ -234,7 +236,8 @@ def make_spec(seats=True):
     ga,gb=(350,-105),(391,-68);gearrad=math.dist(ga,gb)/2;gearmod=G.module(gearrad,18);gearphase=(0.0,G.mesh_phase(ga,0.0,18,gb,18))
     def spur(id,label,c,phase,bore,y=-59.5,width=7):
         pts=[(round(c[0]+u,5),round(c[1]+v,5)) for u,v in G.profile(18,gearrad,gearmod,phase,flank_points=5,tip_points=1,root_points=1)]
-        add(id,label,'ignition',[xz(pts,width,y),cy(bore,width+2,[c[0],y-1,c[1]],(0,1,0),'cut')])
+        gear=xz(pts,width,y,label='Involute tooth outline (scripts/gear_geometry.py)');gear['derived']=True
+        add(id,label,'ignition',[gear,cy(bore,width+2,[c[0],y-1,c[1]],(0,1,0),'cut')])
     spur('ExhaustGear','Exhaust-to-ignition spur driver',ga,gearphase[0],9.2)
     spur('IgnitionGear','Sliding ignition spur gear and slotted sleeve',gb,gearphase[1],5.2)
     parts[-1]['features'] += [tube(10,5.2,34,[391,-52.5,-68],(0,1,0)),dict(primitive='prism',points=[[385,-48.5],[397,-36.5],[397,-30.5],[385,-42.5]],height=25,origin=[0,0,-81],axis=[0,0,1],operation='cut',label='45-degree sleeve slot')]
@@ -250,14 +253,14 @@ def make_spec(seats=True):
         add(f'ElectrodeInsulator{i}',f'Chamber {i} electrode insulator','ignition',[tube(6,2.7,16,[437,f'({y})+14',8],(1,0,0))],'insulator')
         add(f'IgniterBearing{i}',f'Chamber {i} oscillating igniter bearing','ignition',[tube(5.1,2.6,22,[437,y,0],(1,0,0))],'bronze')
         add(f'IgniterSeal{i}',f'Chamber {i} igniter sealing disc','ignition',[tube(8,2.7,1,[458,y,0],(1,0,0))],'gasket')
-        add(f'MovingContact{i}',f'Chamber {i} moving contact and shaft','ignition',[cy(2.5,56,[402,y,0],(1,0,0)),bx(4,14,3,[400,y,0]),cy(2,2.4,[402,f'({y})+14',3])],'steel')
-        add(f'IgniterLever{i}',f'Chamber {i} external igniter shaft lever','ignition',[bx(4,8,47,[455,f'({y})-4',-44]),bx(4,TD+4,8,[455,f'({y})-4',-44]),cy(7,4,[455,y,0],(1,0,0)),cy(2.6,6,[454,y,0],(1,0,0),'cut')])
-        add(f'TripLever{i}',f'Chamber {i} cam-loaded snap lever','ignition',[xz([(390,-52.9),(398,-52.9),(460,-44),(459,-34)],8,f'({y})+{TD}'),cy(3,10,[456,f'({y})+{TD-1}',-40],(0,1,0),'cut')])
-        add(f'IgnitionMainSpring{i}',f'Chamber {i} igniter mainspring','ignition',[he(4,1,4,TD-8,[448,f'({y})+5',-30],(0,1,0))])
-        add(f'IgnitionInterSpring{i}',f'Chamber {i} lever inter-spring','ignition',[he(3,.8,3.5,TD-8,[446,f'({y})+5',-22],(0,1,0))])
-        add(f'BusLink{i}',f'Busbar branch to igniter {i}','ignition',[cy(1.7,18,[445,f'({y})+14',8],(1,0,0))],'copper')
+        add(f'MovingContact{i}',f'Chamber {i} moving contact and shaft','ignition',[cy(2.5,61,[402,y,0],(1,0,0)),bx(4,14,3,[400,y,0]),cy(2,2.4,[402,f'({y})+14',3])],'steel')
+        add(f'IgniterLever{i}',f'Chamber {i} external igniter shaft lever','ignition',[bx(4,8,47,[459.2,f'({y})-4',-44]),bx(4,TD+4,8,[459.2,f'({y})-4',-44]),cy(7,4,[459.2,y,0],(1,0,0)),cy(2.6,6,[458.2,y,0],(1,0,0),'cut')])
+        add(f'TripLever{i}',f'Chamber {i} cam-loaded snap lever','ignition',[xz([(390,MO.trip_rest(i)),(398,MO.trip_rest(i)),(464,-44),(463,-34)],8,f'({y})+{TD}'),cy(3,10,[MO.TRIP_PIVOT[0],f'({y})+{TD-1}',MO.TRIP_PIVOT[1]],(0,1,0),'cut')])
+        add(f'IgnitionMainSpring{i}',f'Chamber {i} igniter mainspring','ignition',[he(4,1,4,TD-8,[454,f'({y})+5',-30],(0,1,0))])
+        add(f'IgnitionInterSpring{i}',f'Chamber {i} lever inter-spring','ignition',[he(3,.8,3.5,TD-8,[454,f'({y})+5',-19],(0,1,0))])
+        add(f'BusLink{i}',f'Busbar branch to igniter {i}','ignition',[cy(1.7,23,[445,f'({y})+14',8],(1,0,0))],'copper')
     # Bent busbar runs outside the chambers; small round section avoids ghost plate.
-    add('Busbar','Common positive busbar, four parallel branches','ignition',[cy(2, '3*pitch+30',[464,-15,8],(0,1,0))],'copper')
+    add('Busbar','Common positive busbar, four parallel branches','ignition',[cy(2, '3*pitch+30',[468,-15,8],(0,1,0))],'copper')
     # Flywheel web/rim/hub/key. Drive wheels remain at engine-side shaft only.
     fy='3*pitch+70'
     fly=[cy('flywheel_radius',7,[0,fy,0],(0,1,0)),tube('flywheel_radius','flywheel_radius-18',18,[0,f'({fy})-5',0],(0,1,0)),cy(28,35,[0,f'({fy})-14',0],(0,1,0)),cy(14.2,39,[0,f'({fy})-16',0],(0,1,0),'cut'),bx(5,40,3,[-2.5,f'({fy})-16',12],'cut','Keyway')]
@@ -315,9 +318,9 @@ def make_spec(seats=True):
     add('MagnetoArmature','Generator armature envelope','generator',[cy(18,45,[wx,gy+2,wz],(0,1,0))])
     add('MagnetoShaft','Generator armature shaft','generator',[cy(4,105,[wx,gy-50,wz],(0,1,0))])
     add('MagnetoDriveWheel','Generator friction wheel at flywheel rim','generator',[cy(wheelradius,9,[wx,gy-10,wz],(0,1,0)),cy(4.2,11,[wx,gy-11,wz],(0,1,0),'cut')],'rubber')
-    oiler=[cy(4,28,[wx,gy-30,-65]),cy(11,23,[wx,gy-30,-40]),cy(12,3,[wx,gy-30,-17])]
+    oiler=[cy(4,28,[wx,gy+58,-65]),cy(11,23,[wx,gy+58,-40]),cy(12,3,[wx,gy+58,-17])]
     add('SightOiler','Generator sight-feed lubricator','generator',oiler,'bronze')
-    pipe('GeneratorLead','Generator positive lead to busbar','ignition',[(206.5+mdx+68,my,-20),(464,my,-20),(464,my,8),(464,3*pitch,8)],1.8,.4,'copper')
+    pipe('GeneratorLead','Generator positive lead to busbar','ignition',[(206.5+mdx+68,my,-20),(468,my,-20),(468,my,8),(468,3*pitch,8)],1.8,.4,'copper')
     pipe('GroundLead','Generator ground lead to casting foot','ignition',[(214,gy+3,-120),(214,gy-60,-150),(335,3*pitch+40,-150)],1.8,.4,'copper')
     # Final component mapping reflects explicitly reviewed chain link count, not hidden extras.
     for c in inv['components']:

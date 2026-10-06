@@ -4,6 +4,7 @@ Two parts of the same body never move relative to each other, so one may be seat
 moving body is 'static'. The animation, the seats and the interference policy all read this one classification.
 Standard library only.
 """
+import math
 import re
 
 # (body name template, pattern over part ids); the first match wins. {n} is the cylinder number captured by the pattern.
@@ -17,12 +18,16 @@ BODY_RULES = [
     ('exhaust{n}', r'^Exhaust(Head|Stem|SpringWasher)(\d)$'),
     ('rocker{n}', r'^(Rocker(?:Left|Right)|CamRoller|ValveRoller|CamRollerAxle|ValveRollerAxle)(\d)$'),
     ('cam', r'^(Camshaft|CamWasher[AB]|ExhaustCam\d|CamSprocket|ExhaustGear)$'),
-    ('ignition', r'^(IgnitionShaft|IgnitionCam\d|IgnitionGear|IgnitionDrivePin)$'),
+    ('ignition', r'^(IgnitionShaft|IgnitionCam\d|IgnitionGear|IgnitionDrivePin|IgnitionGearSpring)$'),
     ('trip{n}', r'^(TripLever)(\d)$'),
-    ('igniter{n}', r'^(IgniterLever|MovingContact)(\d)$'),
+    ('igniter{n}', r'^(IgniterLever|MovingContact|IgnitionMainSpring|IgnitionInterSpring)(\d)$'),
+    ('springI{n}', r'^(IntakeSpring)(\d)$'),
+    ('springE{n}', r'^(ExhaustSpring)(\d)$'),
     ('chain{n}', r'^Chain(?:Plate|Roller)(\d+)(?:_[AB])?$'),
     ('generator', r'^Magneto(Armature|Shaft|DriveWheel)$'),
 ]
+# (x, z) of the fixed axis (parallel to y) each rotating body turns about.
+AXES = {'crank': (0.0, 0.0), 'cam': (350.0, -105.0), 'ignition': (391.0, -68.0), 'generator': (math.sqrt(230.0 ** 2 - 75.0 ** 2), -75.0)}
 _COMPILED = [(template, re.compile(pattern)) for template, pattern in BODY_RULES]
 
 

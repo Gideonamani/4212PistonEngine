@@ -204,8 +204,11 @@ class Part:
         return self._bvh
 
 
-def overlaps(parts, glb, overrides=None, only_moving=None, static_cache=None, margin_mm=0.0):
-    """Intersection (volume mm^3, thickness mm) for every pair whose bounds meet: {(a, b): (volume, thickness)}."""
+def overlaps(parts, glb, overrides=None, only_moving=None, static_cache=None, margin_mm=0.0, unchanged=None):
+    """Intersection (volume mm^3, thickness mm) for every pair whose bounds meet: {(a, b): (volume, thickness)}.
+
+    `unchanged(a, b)` is true for two parts that cannot move relative to each other (the same animation tracks, or neither moves); the
+    rest-pose check already covers that pair, so it is skipped."""
     posed = {}
     for part in parts:
         if static_cache is not None and part.id in static_cache:
@@ -219,6 +222,8 @@ def overlaps(parts, glb, overrides=None, only_moving=None, static_cache=None, ma
     result = {}
     for a, b in itertools.combinations(sorted(posed), 2):
         if only_moving is not None and a not in only_moving and b not in only_moving:
+            continue
+        if unchanged is not None and unchanged(a, b):
             continue
         (ma, lo_a, hi_a), (mb, lo_b, hi_b) = posed[a], posed[b]
         if np.any(hi_a < lo_b - margin_mm) or np.any(hi_b < lo_a - margin_mm):
@@ -242,6 +247,14 @@ def moving_ids(glb, tracks):
             if np.ptp(values, axis=0).max() > 1e-9:
                 moving.add(glb.part_id(node))
     return moving
+
+
+def track_signatures(glb, tracks):
+    """{part id: signature} where equal signatures mean identical motion (one rigid body); parts with no track are absent."""
+    signatures = {}
+    for node, channels in tracks.items():
+        signatures[glb.part_id(node)] = tuple((path, times.tobytes(), values.tobytes(), mode) for path, (times, values, mode) in sorted(channels.items()))
+    return signatures
 
 
 def clip_span(tracks):
@@ -305,6 +318,8 @@ def audit(path, contract=None, policy=None, samples=41, dense=96, include_explod
             continue
         tracks = glb.clip_tracks(clip)
         moving = moving_ids(glb, tracks)
+        signatures = track_signatures(glb, tracks)
+        unchanged = lambda a, b: signatures.get(a) == signatures.get(b)         # same tracks, or neither animated
         start, end = clip_span(tracks)
         # Uniform samples across the clip, plus a dense window over its first tenth: a gear mesh repeats every
         # tooth pitch of its driver, and that window spans at least one pitch of every declared gear pair.
@@ -313,10 +328,10 @@ def audit(path, contract=None, policy=None, samples=41, dense=96, include_explod
         before, cache = len(findings), {}
         for t in times:
             pose = pose_at(glb, tracks, t)
-            for pair, (volume, thickness) in overlaps(parts, glb, pose, only_moving=moving, static_cache=cache).items():
+            for pair, (volume, thickness) in overlaps(parts, glb, pose, only_moving=moving, static_cache=cache, unchanged=unchanged).items():
                 if interferes(volume, thickness):
                     record(pair, volume, thickness, f'{name} @ {t:.3f}s')
-            if fcl is not None and name == 'Operating mechanism':
+            if fcl is not None and name.startswith('Operating mechanism'):          # also 'Operating mechanism (illustrative)'
                 for mesh in gear_meshes:
                     gap = min_distance(fcl, by_id[mesh['driver']], by_id[mesh['driven']], glb, pose)
                     key = (mesh['driver'], mesh['driven'])

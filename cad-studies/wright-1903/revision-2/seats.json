@@ -172,15 +172,48 @@
   },
   {
    "host": "Crankcase",
-   "guest": "CamWasherA"
+   "guest": "CamWasherA",
+   "swept": {
+    "axis": [
+     350.0,
+     -105.0
+    ],
+    "radius": 14.0,
+    "y": [
+     -41.5,
+     -39.5
+    ]
+   }
   },
   {
    "host": "Crankcase",
-   "guest": "CamWasherB"
+   "guest": "CamWasherB",
+   "swept": {
+    "axis": [
+     350.0,
+     -105.0
+    ],
+    "radius": 14.0,
+    "y": [
+     -24.5,
+     -22.5
+    ]
+   }
   },
   {
    "host": "Crankcase",
-   "guest": "Camshaft"
+   "guest": "Camshaft",
+   "swept": {
+    "axis": [
+     350.0,
+     -105.0
+    ],
+    "radius": 9.0,
+    "y": [
+     -80.0,
+     469.07
+    ]
+   }
   },
   {
    "host": "Crankcase",
@@ -200,23 +233,78 @@
   },
   {
    "host": "Crankcase",
-   "guest": "ExhaustCam1"
+   "guest": "ExhaustCam1",
+   "swept": {
+    "axis": [
+     350.0,
+     -105.0
+    ],
+    "radius": 23.6467,
+    "y": [
+     -5.0,
+     5.0
+    ]
+   }
   },
   {
    "host": "Crankcase",
-   "guest": "ExhaustCam2"
+   "guest": "ExhaustCam2",
+   "swept": {
+    "axis": [
+     350.0,
+     -105.0
+    ],
+    "radius": 23.6447,
+    "y": [
+     124.69,
+     134.69
+    ]
+   }
   },
   {
    "host": "Crankcase",
-   "guest": "ExhaustCam3"
+   "guest": "ExhaustCam3",
+   "swept": {
+    "axis": [
+     350.0,
+     -105.0
+    ],
+    "radius": 23.6467,
+    "y": [
+     254.38,
+     264.38
+    ]
+   }
   },
   {
    "host": "Crankcase",
-   "guest": "ExhaustCam4"
+   "guest": "ExhaustCam4",
+   "swept": {
+    "axis": [
+     350.0,
+     -105.0
+    ],
+    "radius": 23.6467,
+    "y": [
+     384.07,
+     394.07
+    ]
+   }
   },
   {
    "host": "Crankcase",
-   "guest": "ExhaustGear"
+   "guest": "ExhaustGear",
+   "swept": {
+    "axis": [
+     350.0,
+     -105.0
+    ],
+    "radius": 30.6816,
+    "y": [
+     -59.5,
+     -52.5
+    ]
+   }
   },
   {
    "host": "Crankcase",
@@ -236,7 +324,18 @@
   },
   {
    "host": "Crankcase",
-   "guest": "Flywheel"
+   "guest": "Flywheel",
+   "swept": {
+    "axis": [
+     0.0,
+     0.0
+    ],
+    "radius": 190.0,
+    "y": [
+     445.07,
+     480.07
+    ]
+   }
   },
   {
    "host": "Crankcase",
@@ -248,19 +347,79 @@
   },
   {
    "host": "Crankcase",
+   "guest": "HeadGasket2"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "HeadGasket3"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "HeadGasket4"
+  },
+  {
+   "host": "Crankcase",
    "guest": "IgnitionBearing0"
   },
   {
    "host": "Crankcase",
-   "guest": "IgnitionDrivePin"
+   "guest": "IgnitionDrivePin",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "radius": 9.8234,
+    "y": [
+     -43.0,
+     -38.0
+    ]
+   }
   },
   {
    "host": "Crankcase",
-   "guest": "IgnitionGear"
+   "guest": "IgnitionGear",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "radius": 30.6816,
+    "y": [
+     -59.5,
+     -18.5
+    ]
+   }
   },
   {
    "host": "Crankcase",
-   "guest": "IgnitionGearSpring"
+   "guest": "IgnitionGearSpring",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "radius": 8.6,
+    "y": [
+     -18.4475,
+     1.749
+    ]
+   }
+  },
+  {
+   "host": "Crankcase",
+   "guest": "IgnitionShaft",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "radius": 5.0,
+    "y": [
+     -60.0,
+     469.07
+    ]
+   }
   },
   {
    "host": "Crankcase",
@@ -268,7 +427,18 @@
   },
   {
    "host": "Crankcase",
-   "guest": "MagnetoShaft"
+   "guest": "MagnetoShaft",
+   "swept": {
+    "axis": [
+     217.428149051589,
+     -75.0
+    ],
+    "radius": 4.0,
+    "y": [
+     416.0685,
+     521.0685
+    ]
+   }
   },
   {
    "host": "Crankcase",
@@ -316,15 +486,19 @@
   },
   {
    "host": "Crankcase",
-   "guest": "SightOiler"
-  },
-  {
-   "host": "Crankcase",
-   "guest": "TripLever4"
-  },
-  {
-   "host": "Crankcase",
    "guest": "ValveBox1"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ValveBox2"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ValveBox3"
+  },
+  {
+   "host": "Crankcase",
+   "guest": "ValveBox4"
   },
   {
    "host": "Crankcase",
@@ -340,27 +514,93 @@
   },
   {
    "host": "ExhaustCage1",
-   "guest": "IgnitionGear"
+   "guest": "IgnitionGear",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "radius": 30.6816,
+    "y": [
+     -59.5,
+     -18.5
+    ]
+   }
   },
   {
    "host": "ExhaustCage1",
-   "guest": "IgnitionGearSpring"
+   "guest": "IgnitionGearSpring",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "radius": 8.6,
+    "y": [
+     -18.4475,
+     1.749
+    ]
+   }
   },
   {
    "host": "ExhaustCage1",
-   "guest": "IgnitionShaft"
+   "guest": "IgnitionShaft",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "radius": 5.0,
+    "y": [
+     -60.0,
+     469.07
+    ]
+   }
   },
   {
    "host": "ExhaustCage2",
-   "guest": "IgnitionShaft"
+   "guest": "IgnitionShaft",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "radius": 5.0,
+    "y": [
+     -60.0,
+     469.07
+    ]
+   }
   },
   {
    "host": "ExhaustCage3",
-   "guest": "IgnitionShaft"
+   "guest": "IgnitionShaft",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "radius": 5.0,
+    "y": [
+     -60.0,
+     469.07
+    ]
+   }
   },
   {
    "host": "ExhaustCage4",
-   "guest": "IgnitionShaft"
+   "guest": "IgnitionShaft",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "radius": 5.0,
+    "y": [
+     -60.0,
+     469.07
+    ]
+   }
   },
   {
    "host": "ExhaustRetainer1",
@@ -388,15 +628,7 @@
   },
   {
    "host": "IgniterBearing1",
-   "guest": "IgniterLever1"
-  },
-  {
-   "host": "IgniterBearing1",
    "guest": "IgniterSeal1"
-  },
-  {
-   "host": "IgniterBearing2",
-   "guest": "IgniterLever2"
   },
   {
    "host": "IgniterBearing2",
@@ -404,35 +636,11 @@
   },
   {
    "host": "IgniterBearing3",
-   "guest": "IgniterLever3"
-  },
-  {
-   "host": "IgniterBearing3",
    "guest": "IgniterSeal3"
   },
   {
    "host": "IgniterBearing4",
-   "guest": "IgniterLever4"
-  },
-  {
-   "host": "IgniterBearing4",
    "guest": "IgniterSeal4"
-  },
-  {
-   "host": "IgniterSeal1",
-   "guest": "IgniterLever1"
-  },
-  {
-   "host": "IgniterSeal2",
-   "guest": "IgniterLever2"
-  },
-  {
-   "host": "IgniterSeal3",
-   "guest": "IgniterLever3"
-  },
-  {
-   "host": "IgniterSeal4",
-   "guest": "IgniterLever4"
   },
   {
    "host": "IgnitionBearing0",
@@ -449,22 +657,6 @@
   {
    "host": "IgnitionGear",
    "guest": "IgnitionDrivePin"
-  },
-  {
-   "host": "IgnitionMainSpring1",
-   "guest": "IgnitionInterSpring1"
-  },
-  {
-   "host": "IgnitionMainSpring2",
-   "guest": "IgnitionInterSpring2"
-  },
-  {
-   "host": "IgnitionMainSpring3",
-   "guest": "IgnitionInterSpring3"
-  },
-  {
-   "host": "IgnitionMainSpring4",
-   "guest": "IgnitionInterSpring4"
   },
   {
    "host": "IgnitionShaft",
@@ -512,7 +704,18 @@
   },
   {
    "host": "MagnetoBase",
-   "guest": "MagnetoDriveWheel"
+   "guest": "MagnetoDriveWheel",
+   "swept": {
+    "axis": [
+     217.428149051589,
+     -75.0
+    ],
+    "radius": 40.0,
+    "y": [
+     456.0685,
+     465.0685
+    ]
+   }
   },
   {
    "host": "MagnetoMagnet",
@@ -643,10 +846,6 @@
    "guest": "RodPinB4"
   },
   {
-   "host": "SightOiler",
-   "guest": "Piston4"
-  },
-  {
    "host": "Sleeve1",
    "guest": "EndPlate"
   },
@@ -659,68 +858,16 @@
    "guest": "OilFeedHose"
   },
   {
-   "host": "Sleeve1",
-   "guest": "RingPeg1_0"
-  },
-  {
-   "host": "Sleeve1",
-   "guest": "RingPeg1_1"
-  },
-  {
-   "host": "Sleeve1",
-   "guest": "RingPeg1_2"
-  },
-  {
    "host": "Sleeve2",
    "guest": "FixedElectrode2"
-  },
-  {
-   "host": "Sleeve2",
-   "guest": "RingPeg2_0"
-  },
-  {
-   "host": "Sleeve2",
-   "guest": "RingPeg2_1"
-  },
-  {
-   "host": "Sleeve2",
-   "guest": "RingPeg2_2"
   },
   {
    "host": "Sleeve3",
    "guest": "FixedElectrode3"
   },
   {
-   "host": "Sleeve3",
-   "guest": "RingPeg3_0"
-  },
-  {
-   "host": "Sleeve3",
-   "guest": "RingPeg3_1"
-  },
-  {
-   "host": "Sleeve3",
-   "guest": "RingPeg3_2"
-  },
-  {
    "host": "Sleeve4",
    "guest": "FixedElectrode4"
-  },
-  {
-   "host": "Sleeve4",
-   "guest": "RingPeg4_0"
-  },
-  {
-   "host": "Sleeve4",
-   "guest": "RingPeg4_1"
-  },
-  {
-   "host": "Sleeve4",
-   "guest": "RingPeg4_2"
-  },
-  {
-   "host": "Sleeve4",
-   "guest": "SightOiler"
   },
   {
    "host": "ValveBox1",
@@ -736,31 +883,52 @@
   },
   {
    "host": "ValveBox1",
-   "guest": "IgniterLever1"
-  },
-  {
-   "host": "ValveBox1",
    "guest": "IgnitionBearing0"
   },
   {
    "host": "ValveBox1",
-   "guest": "IgnitionGear"
+   "guest": "IgnitionGear",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "radius": 30.6816,
+    "y": [
+     -59.5,
+     -18.5
+    ]
+   }
   },
   {
    "host": "ValveBox1",
-   "guest": "IgnitionGearSpring"
+   "guest": "IgnitionGearSpring",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "radius": 8.6,
+    "y": [
+     -18.4475,
+     1.749
+    ]
+   }
   },
   {
    "host": "ValveBox1",
-   "guest": "IgnitionInterSpring1"
-  },
-  {
-   "host": "ValveBox1",
-   "guest": "IgnitionMainSpring1"
-  },
-  {
-   "host": "ValveBox1",
-   "guest": "IgnitionShaft"
+   "guest": "IgnitionShaft",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "radius": 5.0,
+    "y": [
+     -60.0,
+     469.07
+    ]
+   }
   },
   {
    "host": "ValveBox1",
@@ -780,19 +948,18 @@
   },
   {
    "host": "ValveBox2",
-   "guest": "IgniterLever2"
-  },
-  {
-   "host": "ValveBox2",
-   "guest": "IgnitionInterSpring2"
-  },
-  {
-   "host": "ValveBox2",
-   "guest": "IgnitionMainSpring2"
-  },
-  {
-   "host": "ValveBox2",
-   "guest": "IgnitionShaft"
+   "guest": "IgnitionShaft",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "radius": 5.0,
+    "y": [
+     -60.0,
+     469.07
+    ]
+   }
   },
   {
    "host": "ValveBox2",
@@ -812,19 +979,18 @@
   },
   {
    "host": "ValveBox3",
-   "guest": "IgniterLever3"
-  },
-  {
-   "host": "ValveBox3",
-   "guest": "IgnitionInterSpring3"
-  },
-  {
-   "host": "ValveBox3",
-   "guest": "IgnitionMainSpring3"
-  },
-  {
-   "host": "ValveBox3",
-   "guest": "IgnitionShaft"
+   "guest": "IgnitionShaft",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "radius": 5.0,
+    "y": [
+     -60.0,
+     469.07
+    ]
+   }
   },
   {
    "host": "ValveBox3",
@@ -844,19 +1010,18 @@
   },
   {
    "host": "ValveBox4",
-   "guest": "IgniterLever4"
-  },
-  {
-   "host": "ValveBox4",
-   "guest": "IgnitionInterSpring4"
-  },
-  {
-   "host": "ValveBox4",
-   "guest": "IgnitionMainSpring4"
-  },
-  {
-   "host": "ValveBox4",
-   "guest": "IgnitionShaft"
+   "guest": "IgnitionShaft",
+   "swept": {
+    "axis": [
+     391.0,
+     -68.0
+    ],
+    "radius": 5.0,
+    "y": [
+     -60.0,
+     469.07
+    ]
+   }
   },
   {
    "host": "ValveBox4",

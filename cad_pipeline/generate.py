@@ -16,7 +16,16 @@ def place(obj,f,params):
     obj.Placement=A.Placement(A.Vector(*[evaluate(x,params) for x in origin]),A.Rotation(A.Vector(0,0,1),A.Vector(*axis)))
     for j,c in enumerate('xyz'):obj.setExpression('Placement.Base.'+c,freecad_expression(origin[j]))
 
+def derived_prism(doc,group,prefix,f,params):
+    """A prism whose outline comes from a derivation (involute teeth, a seat offset), not a hand-drawn sketch: a direct extruded solid."""
+    points=[A.Vector(evaluate(p[0],params),evaluate(p[1],params),0) for p in f['points']]
+    solid=Part.Face(Part.makePolygon(points+[points[0]])).extrude(A.Vector(0,0,evaluate(f['height'],params)))
+    origin=f.get('origin',[0,0,0]);axis=f.get('axis',[0,0,1])
+    solid.Placement=A.Placement(A.Vector(*[evaluate(x,params) for x in origin]),A.Rotation(A.Vector(0,0,1),A.Vector(*axis)))
+    o=doc.addObject('Part::Feature',prefix);group.addObject(o);o.Shape=solid;o.Label=f.get('label',prefix);doc.recompute();return o
+
 def rich_feature(doc,group,prefix,f,params):
+    if f['primitive']=='prism' and f.get('derived'):return derived_prism(doc,group,prefix,f,params)
     if f['primitive']=='prism':
         sketch=doc.addObject('Sketcher::SketchObject',prefix+'_Profile');group.addObject(sketch)
         points=f['points'];n=len(points)

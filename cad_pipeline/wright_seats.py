@@ -15,7 +15,7 @@ in the generator. Standard library only.
 import argparse, json, math, re
 from pathlib import Path
 from cad_pipeline.spec import evaluate
-from cad_pipeline.wright_bodies import body
+from cad_pipeline.wright_bodies import AXES, body
 
 CLEARANCE_MM = 0.15
 
@@ -82,7 +82,7 @@ def grow(feature, params, c, label):
         out.update(primitive='sphere', radius=e('radius') + c)
     elif kind == 'prism':
         pts = _offset_polygon([(evaluate(p[0], params), evaluate(p[1], params)) for p in feature['points']], c)
-        out.update(primitive='prism', points=[[round(x, 6), round(y, 6)] for x, y in pts], height=e('height') + 2 * c, origin=_shift(origin, axis, c))
+        out.update(primitive='prism', points=[[round(x, 6), round(y, 6)] for x, y in pts], height=e('height') + 2 * c, origin=_shift(origin, axis, c), derived=True)
     elif kind == 'helix':                         # a spring is cleared as its coil envelope
         out.update(primitive='cylinder', radius=e('radius') + e('wire_radius') + c, height=e('height') + 2 * e('wire_radius') + 2 * c,
                    origin=_shift(origin, axis, c + e('wire_radius')))
@@ -94,10 +94,27 @@ def grow(feature, params, c, label):
     return out
 
 
+def swept_envelope(guest_id, geometry):
+    """Revolution envelope of a part that turns about a fixed axis: {axis (x, z), radius, y: [lo, hi]}, or None."""
+    axis = AXES.get(body(guest_id))
+    if axis is None:
+        return None
+    part = next(p for p in geometry['parts'] if p['id'] == guest_id)
+    radius = max(math.hypot(v[0] - axis[0], v[2] - axis[1]) for v in part['vertices_mm'])
+    ys = [v[1] for v in part['vertices_mm']]
+    return dict(axis=list(axis), radius=round(radius, 4), y=[round(min(ys), 4), round(max(ys), 4)])
+
+
 def apply_seats(parts, params, seats, clearance=CLEARANCE_MM):
     by_id = {p['id']: p for p in parts}
     for seat in seats:
         host, guest = by_id[seat['host']], by_id[seat['guest']]
+        if seat.get('swept'):                       # a part turning about a fixed axis clears the host through its whole revolution
+            s = seat['swept']
+            host['features'].append(dict(primitive='cylinder', operation='cut', radius=round(s['radius'] + clearance, 6), height=round(s['y'][1] - s['y'][0] + 2 * clearance, 6),
+                                         origin=[s['axis'][0], round(s['y'][0] - clearance, 6), s['axis'][1]], axis=[0, 1, 0],
+                                         label=f"Swept clearance for {guest['id']} ({guest['label']}), {clearance} mm"))
+            continue
         for n, feature in enumerate(guest['features'], 1):
             tool = grow(feature, params, clearance, f"Seat for {guest['id']} ({guest['label']}), {clearance} mm clearance")
             if tool:
@@ -139,20 +156,29 @@ def host_of(a, b, group, volume):
 
 
 def derive(audit, geometry, existing, skip=()):
-    """Seats for every overlapping pair in an audit that has a host, plus the pairs that need a generator fix."""
+    """Seats for every overlapping pair in an audit that has a host, plus the pairs that need a generator fix.
+
+    `audit` is an audit report ({'new_violations', 'known_defects'}) or a list of (a, b, volume, thickness) pairs. A guest that turns
+    about a fixed axis, seated in a host outside its own body, is cleared through its whole revolution (`swept`).
+    """
     group = {p['id']: p['group'] for p in geometry['parts']}
     volume = {p['id']: p['volume_mm3'] for p in geometry['parts']}
     known = {(s['host'], s['guest']) for s in existing}
     seats, manual = list(existing), []
-    for item in audit['new_violations'] + audit['known_defects']:
-        a, b = item['a'], item['b']
+    items = audit if isinstance(audit, list) else [(i['a'], i['b'], i['max_overlap_mm3'], i['max_thickness_mm']) for i in audit['new_violations'] + audit['known_defects']]
+    for a, b, vol, thick in items:
         host = None if (a in skip or b in skip) else host_of(a, b, group, volume)
         if host is None:
-            manual.append((a, b, item['max_overlap_mm3'], item['max_thickness_mm']))
+            manual.append((a, b, vol, thick))
             continue
         guest = b if host == a else a
         if (host, guest) not in known:
-            seats.append(dict(host=host, guest=guest))
+            seat = dict(host=host, guest=guest)
+            if body(host) != body(guest):
+                swept = swept_envelope(guest, geometry)
+                if swept:
+                    seat['swept'] = swept
+            seats.append(seat)
             known.add((host, guest))
     return seats, manual
 
@@ -160,13 +186,20 @@ def derive(audit, geometry, existing, skip=()):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('command', choices=['derive'])
-    parser.add_argument('--audit', type=Path, required=True)
+    parser.add_argument('--audit', type=Path, nargs='+', required=True, help='audit report(s) of the rest pose and/or the motion (audit_motion.py output)')
     parser.add_argument('--geometry', type=Path, required=True)
     parser.add_argument('--seats', type=Path, required=True)
     parser.add_argument('--skip', nargs='*', default=[], help='part ids that must be fixed in the generator, not seated')
     args = parser.parse_args()
     data = load(args.seats)
-    seats, manual = derive(json.loads(args.audit.read_text()), json.loads(args.geometry.read_text()), data['seats'], set(args.skip))
+    items = []
+    for path in args.audit:
+        report = json.loads(path.read_text())
+        if 'new_violations' in report:
+            items += [(i['a'], i['b'], i['max_overlap_mm3'], i['max_thickness_mm']) for i in report['new_violations'] + report['known_defects']]
+        else:                                       # audit_motion.py: {'a / b': {...}}
+            items += [(*key.split(' / '), e['max_mm3'], e['max_mm']) for key, e in report.items()]
+    seats, manual = derive(items, json.loads(args.geometry.read_text()), data['seats'], set(args.skip))
     data['seats'] = sorted(seats, key=lambda s: (s['host'], s['guest']))
     args.seats.write_text(json.dumps(data, indent=1) + '\n', encoding='utf-8')
     print(f'{len(data["seats"])} seats; {len(manual)} pairs need a generator fix:')
