@@ -1,5 +1,5 @@
 {
-  "_note": "Interference policy for web/accessory-drives.glb.gz. Touching is always allowed; overlap is not. known_defects is a ratchet: it records what the CURRENTLY PUBLISHED asset still contains, may only shrink, and an entry that is no longer observed fails the audit until it is removed. An empty list is the goal.",
+  "_note": "Interference policy for web/accessory-drives.glb.gz. Touching is always allowed; overlap is not. known_defects is a ratchet: it records what the CURRENTLY PUBLISHED asset still contains, may only shrink, and an entry that is no longer observed fails the audit until it is removed. An empty list is the goal. UNRELEASED: this ledger describes the model rebuilt from source on 6 October 2026, not the asset published today, which still contains the thirteen fixed pairs removed here; the audit of the published asset fails until the rebuilt model is released and its interference-audit.json committed.",
   "volume_tolerance_mm3": 0.001,
   "max_penetration_mm": 0.05,
   "min_gear_clearance_mm": 0.02,
@@ -10,110 +10,6 @@
     }
   ],
   "known_defects": [
-    {
-      "a": "CamGear",
-      "b": "CrankGear",
-      "max_mm3": 185.6,
-      "status": "fixed-in-source-pending-rebuild",
-      "reason": "Square-tooth gears at exactly r1+r2 centre distance with no solved tooth phase and no backlash.",
-      "fix": "Fixed in source: involute teeth, backlash and solved phase from scripts/accessory_gears.py. Remove this entry once the rebuilt model is released."
-    },
-    {
-      "a": "CrankGear",
-      "b": "IdlerGear",
-      "max_mm3": 164.7,
-      "status": "fixed-in-source-pending-rebuild",
-      "reason": "Square-tooth gears at exactly r1+r2 centre distance with no solved tooth phase and no backlash.",
-      "fix": "Fixed in source: involute teeth, backlash and solved phase from scripts/accessory_gears.py. Remove this entry once the rebuilt model is released."
-    },
-    {
-      "a": "CrankGear",
-      "b": "StarterShaftGear",
-      "max_mm3": 164.7,
-      "status": "fixed-in-source-pending-rebuild",
-      "reason": "Square-tooth gears at exactly r1+r2 centre distance with no solved tooth phase and no backlash.",
-      "fix": "Fixed in source: involute teeth, backlash and solved phase from scripts/accessory_gears.py. Remove this entry once the rebuilt model is released."
-    },
-    {
-      "a": "IdlerGear",
-      "b": "LeftMagGear",
-      "max_mm3": 155.9,
-      "status": "fixed-in-source-pending-rebuild",
-      "reason": "Square-tooth gears at exactly r1+r2 centre distance with no solved tooth phase and no backlash.",
-      "fix": "Fixed in source: involute teeth, backlash and solved phase from scripts/accessory_gears.py. Remove this entry once the rebuilt model is released."
-    },
-    {
-      "a": "IdlerGear",
-      "b": "RightMagGear",
-      "max_mm3": 149.1,
-      "status": "fixed-in-source-pending-rebuild",
-      "reason": "Square-tooth gears at exactly r1+r2 centre distance with no solved tooth phase and no backlash.",
-      "fix": "Fixed in source: involute teeth, backlash and solved phase from scripts/accessory_gears.py. Remove this entry once the rebuilt model is released."
-    },
-    {
-      "a": "CamCluster",
-      "b": "FuelGear",
-      "max_mm3": 118.2,
-      "status": "fixed-in-source-pending-rebuild",
-      "reason": "Square-tooth gears at exactly r1+r2 centre distance with no solved tooth phase and no backlash.",
-      "fix": "Fixed in source: involute teeth, backlash and solved phase from scripts/accessory_gears.py. Remove this entry once the rebuilt model is released."
-    },
-    {
-      "a": "OilDriver",
-      "b": "OilDriven",
-      "max_mm3": 27.1,
-      "status": "fixed-in-source-pending-rebuild",
-      "reason": "Square-tooth gears at exactly r1+r2 centre distance with no solved tooth phase and no backlash.",
-      "fix": "Fixed in source: involute teeth, backlash and solved phase from scripts/accessory_gears.py. Remove this entry once the rebuilt model is released."
-    },
-    {
-      "a": "OilDriven",
-      "b": "OilScreenPlug",
-      "max_mm3": 174.9,
-      "status": "fixed-in-source-pending-rebuild",
-      "reason": "Screen-plug shank (11 mm) runs through the pocket wall into the driven-gear teeth.",
-      "fix": "Shank shortened to 4 mm so it stops at the gear-pocket wall."
-    },
-    {
-      "a": "OilTachShaft",
-      "b": "TachOutput",
-      "max_mm3": 95.6,
-      "status": "fixed-in-source-pending-rebuild",
-      "reason": "Lateral tach output shaft ends on the vertical shaft axis, 4.8 mm inside it.",
-      "fix": "Lateral shaft shortened to end 0.2 mm short of the vertical shaft."
-    },
-    {
-      "a": "ClutchSpring",
-      "b": "StarterDrum",
-      "max_mm3": 68.2,
-      "status": "fixed-in-source-pending-rebuild",
-      "reason": "Grip animation contracts the spring 4%, but at scale 1 its inner surface already touches the drum.",
-      "fix": "Released coil radius 11.2 mm; grip scale from accessory_gears.spring_grip_scale() stops 0.1 mm off the surface."
-    },
-    {
-      "a": "ClutchSpring",
-      "b": "WormWheelHub",
-      "max_mm3": 97.4,
-      "status": "fixed-in-source-pending-rebuild",
-      "reason": "As for the drum: the contracted spring is driven into the wheel hub.",
-      "fix": "Same spring change."
-    },
-    {
-      "a": "CamGear",
-      "b": "OilTachShaft",
-      "max_mm3": 55.0,
-      "status": "fixed-in-source-pending-rebuild",
-      "reason": "Focus clips leave the oil/tach shaft still while the cam gear it is splined into turns, so the splines collide.",
-      "fix": "Rig turns parts listed in accessory_gears.SPLINED_TO with their host gear in every clip."
-    },
-    {
-      "a": "CamCluster",
-      "b": "OilTachShaft",
-      "max_mm3": 36.7,
-      "status": "fixed-in-source-pending-rebuild",
-      "reason": "As for the cam gear: the cluster gear is splined to the same shaft.",
-      "fix": "Same rig change."
-    },
     {
       "a": "StarterAdapter",
       "b": "StarterCover",
