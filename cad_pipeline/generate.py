@@ -4,7 +4,7 @@ Run with FreeCAD's Python; no GUI or additional pip dependencies needed.
 import argparse, hashlib, json, sys
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from cad_pipeline.spec import validate_spec, evaluate, freecad_expression
+from cad_pipeline.spec import validate_spec, evaluate, freecad_expression, deflection_for
 import FreeCAD as A
 import Part
 import Sketcher
@@ -80,7 +80,7 @@ def build(spec, output, only=None):
             current.addProperty('App::PropertyString',key,'Reconstruction'); setattr(current,key,val)
         shape=current.Shape
         if shape.isNull() or not shape.isValid() or len(shape.Solids)!=1 or shape.Volume<=0: raise ValueError('Invalid single solid: '+part['id']+'; solids='+str(len(shape.Solids))+'; valid='+str(shape.isValid()))
-        tips.append(current); mesh=MeshPart.meshFromShape(Shape=shape,LinearDeflection=.7,AngularDeflection=.35,Relative=False);vertices,faces=mesh.Topology
+        tips.append(current); mesh=MeshPart.meshFromShape(Shape=shape,LinearDeflection=deflection_for(spec,part),AngularDeflection=.35,Relative=False);vertices,faces=mesh.Topology
         bb=shape.optimalBoundingBox(False,False)
         records.append(dict(id=part['id'],label=part['label'],group=part.get('group','other'),material=part.get('material','steel'),evidence=part['evidence'],
                             volume_mm3=shape.Volume,bounds_mm=[[bb.XMin,bb.YMin,bb.ZMin],[bb.XMax,bb.YMax,bb.ZMax]],

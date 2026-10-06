@@ -7,6 +7,11 @@ import hashlib,json,math
 from pathlib import Path
 from cad_pipeline.spec import validate_spec
 from cad_pipeline.research_gate import review
+from cad_pipeline.wright_seats import apply_seats, load as load_seats
+from cad_pipeline.wright_chain import layout as chain_layout, relief_centres, pocket_angles
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
+import gear_geometry as G
 R=Path(__file__).resolve().parents[1];S=R/'cad-studies/wright-1903/revision-2'
 
 def chain_path(c1,c2,r1,r2,count=38):
@@ -27,7 +32,7 @@ def chain_path(c1,c2,r1,r2,count=38):
             at+=l
     return result,total
 
-def make_spec():
+def make_spec(seats=True):
     inv=json.loads((S/'inventory.json').read_text());review(inv)
     params={}
     def par(n,v,refs=('H1',),why='Teaching dimension estimated from the reviewed construction; not a transcribed production dimension.',status='inferred',unit='mm',method=None):
@@ -39,7 +44,7 @@ def make_spec():
     par('pitch',round(pitch,3),('M1',),'Mean exterior housing pitch at inferred scale; inherits scale uncertainty.','measured',method='Four reviewed valve-box circles; adjacent Y centers averaged times 10.')
     par('valve_box_radius',round(radius,3),('M1',),'Exterior valve-box radius; low-resolution scan estimate.','measured',method='Four independent reviewed circle fits; mean radius times 10; residuals in parent study.')
     par('mesh_to_mm',10,('M1',),'Candidate imported cm interpretation; no independent visible dimension yet certifies the transform.',unit='ratio')
-    for n,v in [('rod_length',245),('piston_length',150),('piston_head_offset',65),('piston_clearance',.3),('sleeve_start',175),('sleeve_length',190),('case_wall',7),('case_radius',116),('valve_x',415),('valve_z',48),('journal_radius',14),('pin_radius',10),('cam_radius',9),('cam_x',350),('cam_z',-105),('ignition_x',391),('ignition_z',-68),('flywheel_radius',190),('chain_pitch',25.4),('spring_wire',1.5),('spring_pitch',5),('valve_stem_radius',3),('cam_base_radius',15)]:par(n,v)
+    for n,v in [('rod_length',245),('piston_length',150),('piston_head_offset',65),('piston_clearance',.5),('sleeve_start',175),('sleeve_length',190),('case_wall',7),('case_radius',116),('valve_x',415),('valve_z',48),('journal_radius',14),('pin_radius',10),('cam_radius',9),('cam_x',350),('cam_z',-105),('ignition_x',391),('ignition_z',-68),('flywheel_radius',190),('chain_pitch',25.4),('spring_wire',1.5),('spring_pitch',5),('valve_stem_radius',3),('cam_base_radius',15)]:par(n,v)
     par('chain_pitch',25.4,why='1-inch pitch teaching estimate from sprocket envelope. Source confirms tooth counts, not this pitch; curved-span chord pitch remains approximate.')
     for n,v,refs in [('crank_teeth',6,('L1','N1')),('cam_teeth',12,('L1','N1')),('cylinders',4,('H1','L1'))]:par(n,v,refs,'Source count; geometry does not authenticate tooth flank shape.','specified','count')
     parts=[]
@@ -68,7 +73,7 @@ def make_spec():
         case += [bx(24,40,110,[x,y,-168],label='Integral mounting leg'),bx(58,48,10,[x-17,f'({y})-4',-170],label='Mounting foot'),cy(4.4,14,[x+12,f'({y})+20',-172],op='cut',label='Mounting hole')]
         bolt(f'MountBolt{i}',f'Mounting bolt {i}','crankcase',4,20,[x+12,f'({y})+20',-174])
     # Three camshaft support lugs and three ignition support lugs stay on the casting.
-    stations=[-48,'1.5*pitch','3*pitch+48']
+    stations=[-32,'1.5*pitch','3*pitch+48']
     for y in stations:
         case += [bx(32,16,54,[334,f'({y})-8',-119],label='Cam bearing lug'),cy(12.6,20,['cam_x',f'({y})-10','cam_z'],(0,1,0),'cut','Cam bearing seat'),bx(50,16,20,[350,f'({y})-8',-75],label='Ignition lug bridge'),bx(26,16,35,[378,f'({y})-8',-85],label='Ignition bearing lug'),cy(8.5,20,['ignition_x',f'({y})-10','ignition_z'],(0,1,0),'cut','Ignition shaft seat')]
     for i in range(4):case += [bx(26,8,75,[360,f'{i}*pitch-4',-140],label='Rocker pivot support'),cy(4.2,18,[382,f'{i}*pitch-9',-126],(0,1,0),'cut','Rocker pivot bore')]
@@ -165,15 +170,16 @@ def make_spec():
                 cage.append(dict(primitive='prism',points=p2,height=19,origin=[0,0,54 if sg==1 else -73],axis=[0,0,1],operation='cut',label='Four-legged cage window'))
             add(f'{v}Cage{i}',f'{v} valve {i} four-legged seat/guide cage','valves',cage,'cast_iron')
             add(f'{v}Retainer{i}',f'{v} cage {i} retaining ring nut','valves',[tube('valve_box_radius','valve_stem_radius+1',5,[x,y,sg*80],axis)],'steel')
-            add(f'{v}Spring{i}',f'{v} valve {i} helical spring','valves',[he(9,'spring_wire','spring_pitch',25.5,[x,y,sg*86.5],axis)])
-            add(f'{v}SpringWasher{i}',f'{v} valve {i} spring washer','valves',[tube(12,'valve_stem_radius+.2',2.5,[x,y,sg*113],axis)])
+            add(f'{v}Spring{i}',f'{v} valve {i} helical spring','valves',[he(9,'spring_wire','spring_pitch',23.5,[x,y,sg*86.5],axis)])
+            add(f'{v}SpringWasher{i}',f'{v} valve {i} spring washer','valves',[tube(12,'valve_stem_radius+.2',2.5,[x,y,sg*112],axis)])
     # Source hollow exhaust shaft, solid breaker shaft, bearings and actual rollers.
-    add('Camshaft','Hollow exhaust camshaft','camshafts',[tube('cam_radius',5,length,['cam_x',y0,'cam_z'],(0,1,0))])
+    add('Camshaft','Hollow exhaust camshaft','camshafts',[tube('cam_radius',5,'3*pitch+140',['cam_x',-80,'cam_z'],(0,1,0))])
     add('IgnitionShaft','Solid make-and-break camshaft','camshafts',[cy(5,length,['ignition_x',y0,'ignition_z'],(0,1,0))])
     for i,y in enumerate(stations):
         add(f'CamBearing{i}',f'Exhaust camshaft plain bearing {i+1}','bearings',[tube(12.5,'cam_radius+.2',15,['cam_x',f'({y})-7.5','cam_z'],(0,1,0))],'babbitt')
-        add(f'IgnitionBearing{i}',f'Ignition shaft bearing {i+1}','bearings',[tube(8.4,5.2,15,['ignition_x',f'({y})-7.5','ignition_z'],(0,1,0))],'babbitt')
-    for suffix,y in [('A',-57),('B',-39)]:add('CamWasher'+suffix,'Camshaft locating washer '+suffix,'camshafts',[tube(14,'cam_radius',2,['cam_x',y,'cam_z'],(0,1,0))])
+        add(f'IgnitionBearing{i}',f'Ignition shaft bearing {i+1}'+(' carrying the sliding gear sleeve' if i==0 else ''),'bearings',[tube(12.5 if i==0 else 8.4,10.2 if i==0 else 5.2,15,['ignition_x',f'({y})-7.5','ignition_z'],(0,1,0))],'babbitt')
+    for suffix,y in [('A',-41.5),('B',-24.5)]:add('CamWasher'+suffix,'Camshaft locating washer '+suffix,'camshafts',[tube(14,'cam_radius',2,['cam_x',y,'cam_z'],(0,1,0))])
+    TD=36  # shaft-wise offset of the ignition cams and trip levers into the gap beside each valve box
     for i in range(1,5):
         y=f'{i-1}*pitch'
         # Downward lobe and cam roller meet at z=-120. Local lobe law is estimated.
@@ -189,39 +195,54 @@ def make_spec():
             add(f'{stem}Roller{i}',f'Rocker {i} {stem.lower()} roller','rockers',[tube(rr,3.15,12,[xx,f'({y})-6',zz],(0,1,0))])
             add(f'{stem}RollerAxle{i}',f'Rocker {i} {stem.lower()} roller axle','rockers',[cy(3,16,[xx,f'({y})-8',zz],(0,1,0))])
         add(f'RockerPivot{i}',f'Rocker {i} pivot axle','rockers',[cy(4,23,[382,f'({y})-11.5',-126],(0,1,0))])
-        add(f'IgnitionCam{i}',f'Bent-strip igniter cam {i}','ignition',[xz([(382,-69),(383,-59),(393,-53),(400,-59),(401,-69),(399,-69),(398,-60),(393,-56),(385,-61),(384,-69)],8,f'({y})-4'),tube(7,5.1,8,[391,f'({y})-4',-68],(0,1,0)),cy(5.2,10,[391,f'({y})-5',-68],(0,1,0),'cut')])
+        add(f'IgnitionCam{i}',f'Bent-strip igniter cam {i}','ignition',[xz([(382,-69),(383,-59),(393,-53),(400,-59),(401,-69),(399,-69),(398,-60),(393,-56),(385,-61),(384,-69)],8,f'({y})+{TD-4}'),tube(7,5.1,8,[391,f'({y})+{TD-4}',-68],(0,1,0)),cy(5.2,10,[391,f'({y})+{TD-5}',-68],(0,1,0),'cut')])
     # Timing sprockets with roller pockets. Profile is explicitly not a manufactured tooth form.
-    sr=25.4;br=25.4/(2*math.sin(math.pi/12))
-    def wheel(id,label,group,cx,cz,rad,teeth,y,width,bore):
+    # Timing sprockets with roller pockets. Profile is explicitly not a manufactured tooth form.
+    def wheel(id,label,group,cx,cz,rad,teeth,y,width,bore,phase=0.0,relief=False):
         features=[cy(rad+3,width,[cx,y,cz],(0,1,0)),cy(bore,width+2,[cx,y-1,cz],(0,1,0),'cut')]
         for k in range(teeth):
-            a=k*2*math.pi/teeth;features.append(cy(4.3,width+2,[cx+rad*math.cos(a),y-1,cz+rad*math.sin(a)],(0,1,0),'cut','Roller pocket / illustrative tooth'))
+            a=phase+k*2*math.pi/teeth
+            if relief:
+                for qx,qz in relief_centres(rad,a,(cx,cz)):features.append(cy(4.3,width+2,[qx,y-1,qz],(0,1,0),'cut','Roller pocket and entry/exit relief'))
+            else:features.append(cy(4.3,width+2,[cx+rad*math.cos(a),y-1,cz+rad*math.sin(a)],(0,1,0),'cut','Roller pocket / illustrative tooth'))
         add(id,label,group,features)
-    wheel('CrankSprocket','6-tooth crank timing sprocket','timing',0,0,sr,6,-80,10,14.2)
-    wheel('CamSprocket','12-tooth exhaust timing sprocket','timing',350,-105,br,12,-80,10,9.2)
-    points,total=chain_path((0,0),(350,-105),sr,br,38)
+    # The chain is derived once (wright_chain.py): both sprockets get the pitch radius whose tooth arc equals the roller spacing, so
+    # every roller on a wrap sits in a pocket and the cam sprocket turns exactly half as fast as the crank sprocket.
+    chain=chain_layout((0,0),(350,-105),6,12,38);sr,br=chain['r1'],chain['r2']
+    wheel('CrankSprocket','6-tooth crank timing sprocket','timing',0,0,sr,6,-80,10,14.2,chain['phase1'],True)
+    wheel('CamSprocket','12-tooth exhaust timing sprocket','timing',350,-105,br,12,-80,10,9.2,chain['phase2'],True)
+    points,total=chain['rollers'],chain['length']
     chainids=[]
     for k,p in enumerate(points):
         q=points[(k+1)%len(points)];dx,dz=q[0]-p[0],q[1]-p[1];l=math.hypot(dx,dz);nx,nz=-dz/l,dx/l
         outline=[(p[0]-dx/l*5+nx*5,p[1]-dz/l*5+nz*5),(q[0]+dx/l*5+nx*5,q[1]+dz/l*5+nz*5),(q[0]+dx/l*5-nx*5,q[1]+dz/l*5-nz*5),(p[0]-dx/l*5-nx*5,p[1]-dz/l*5-nz*5)]
-        for side,y in [('A',-83),('B',-69)]:
+        # Neighbouring links share a pin, so their plates sit in different lanes (inner and outer) and never share space.
+        for side,y in ([('A',-83),('B',-69)] if k%2==0 else [('A',-85),('B',-67)]):
             id=f'ChainPlate{k}_{side}';chainids.append(id)
             features=[xz(outline,2,y)]
             for pt in [p,q]:features.append(cy(2.7,4,[pt[0],y-1,pt[1]],(0,1,0),'cut','Roller pin aperture'))
             add(id,f'Timing chain link {k+1} plate {side}','timing',features)
         id=f'ChainRoller{k}';chainids.append(id);add(id,f'Timing chain roller {k+1}','timing',[tube(4.1,2.6,12,[p[0],-81,p[1]],(0,1,0))])
-    add('ChainTensioner','Hardwood timing-chain tensioner block','timing',[bx(12,16,35,[170,-91,-88])],'wood')
-    add('TensionerBracket','Adjustable chain tensioner bracket','timing',[bx(5,28,42,[166,-97,-94]),cy(3,10,[165,-84,-73],(1,0,0),'cut')])
+    # Hardwood shoe inside the loop, its face parallel to the lower span so the plates slide along it.
+    (bx0,bz0),(bx1,bz1)=chain['bottom_span'];ld=math.hypot(bx1-bx0,bz1-bz0);ddx,ddz=(bx1-bx0)/ld,(bz1-bz0)/ld;nx,nz=(-ddz,ddx) if ddx>0 else (ddz,-ddx)
+    if nz<0:nx,nz=-nx,-nz
+    lam=(176-bx0)/ddx;fx,fz=bx0+ddx*lam,bz0+ddz*lam;off=5.05
+    shoe=lambda lo,hi:[(fx-ddx*18+nx*lo,fz-ddz*18+nz*lo),(fx+ddx*18+nx*lo,fz+ddz*18+nz*lo),(fx+ddx*18+nx*hi,fz+ddz*18+nz*hi),(fx-ddx*18+nx*hi,fz-ddz*18+nz*hi)]
+    add('ChainTensioner','Hardwood timing-chain tensioner shoe','timing',[xz(shoe(off,off+14),16,-91)],'wood')
+    add('TensionerBracket','Adjustable chain tensioner bracket','timing',[xz(shoe(off+14,off+19),28,-97)])
     # Spur gear pair tangent at centers; sleeve includes a physical 45-degree slot.
-    gearrad=math.hypot(41,37)/2
-    wheel('ExhaustGear','Exhaust-to-ignition spur driver','ignition',350,-105,gearrad,18,-58,8,9.2)
-    wheel('IgnitionGear','Sliding ignition spur gear and slotted sleeve','ignition',391,-68,gearrad,18,-58,8,5.2)
-    parts[-1]['features'] += [tube(10,5.2,34,[391,-50,-68],(0,1,0)),dict(primitive='prism',points=[[385,-46],[397,-34],[397,-28],[385,-40]],height=25,origin=[0,0,-81],axis=[0,0,1],operation='cut',label='45-degree sleeve slot')]
-    add('IgnitionDrivePin','Ignition shaft pin in sleeve slot','ignition',[cy(2.5,22,[380,-38,-68],(1,0,0))])
-    add('IgnitionGearSpring','Sliding ignition gear return spring','ignition',[he(7.5,1.1,4,18,[391,-16,-68],(0,1,0))])
-    add('AdvanceCam','Spark timing lever cam','ignition',[cy(12,8,[391,-62,-92],(0,1,0)),cy(3,10,[391,-63,-92],(0,1,0),'cut')])
-    add('AdvanceLever','Spark advance/retard hand lever','ignition',[xz([(386,-94),(396,-94),(401,-156),(397,-178),(383,-178),(380,-170)],6,-65),cy(3,8,[391,-66,-92],(0,1,0),'cut')])
-    add('AdvanceBracket','Spark-control pivot bracket','ignition',[bx(24,10,24,[379,-72,-103]),cy(3.2,12,[391,-73,-92],(0,1,0),'cut')],'aluminium')
+    ga,gb=(350,-105),(391,-68);gearrad=math.dist(ga,gb)/2;gearmod=G.module(gearrad,18);gearphase=(0.0,G.mesh_phase(ga,0.0,18,gb,18))
+    def spur(id,label,c,phase,bore,y=-59.5,width=7):
+        pts=[(round(c[0]+u,5),round(c[1]+v,5)) for u,v in G.profile(18,gearrad,gearmod,phase,flank_points=5,tip_points=1,root_points=1)]
+        add(id,label,'ignition',[xz(pts,width,y),cy(bore,width+2,[c[0],y-1,c[1]],(0,1,0),'cut')])
+    spur('ExhaustGear','Exhaust-to-ignition spur driver',ga,gearphase[0],9.2)
+    spur('IgnitionGear','Sliding ignition spur gear and slotted sleeve',gb,gearphase[1],5.2)
+    parts[-1]['features'] += [tube(10,5.2,34,[391,-52.5,-68],(0,1,0)),dict(primitive='prism',points=[[385,-48.5],[397,-36.5],[397,-30.5],[385,-42.5]],height=25,origin=[0,0,-81],axis=[0,0,1],operation='cut',label='45-degree sleeve slot')]
+    add('IgnitionDrivePin','Ignition shaft pin in sleeve slot','ignition',[cy(2.5,19,[381.5,-40.5,-68],(1,0,0))])
+    add('IgnitionGearSpring','Sliding ignition gear return spring','ignition',[he(7.5,1.1,4,18,[391,-17.35,-68],(0,1,0))])
+    add('AdvanceCam','Spark timing lever cam','ignition',[cy(12,8,[391,-34,-92],(0,1,0)),cy(3,10,[391,-35,-92],(0,1,0),'cut')])
+    add('AdvanceLever','Spark advance/retard hand lever','ignition',[xz([(386,-94),(396,-94),(401,-156),(397,-178),(383,-178),(380,-170)],6,-40),cy(3,8,[391,-41,-92],(0,1,0),'cut')])
+    add('AdvanceBracket','Spark-control pivot bracket','ignition',[bx(24,10,24,[379,-50,-105]),cy(3.2,12,[391,-51,-92],(0,1,0),'cut')],'aluminium')
     # Chamber contacts and paired snap mechanism, insulated feed and parallel busbar.
     for i in range(1,5):
         y=f'{i-1}*pitch'
@@ -229,11 +250,11 @@ def make_spec():
         add(f'ElectrodeInsulator{i}',f'Chamber {i} electrode insulator','ignition',[tube(6,2.7,16,[437,f'({y})+14',8],(1,0,0))],'insulator')
         add(f'IgniterBearing{i}',f'Chamber {i} oscillating igniter bearing','ignition',[tube(5.1,2.6,22,[437,y,0],(1,0,0))],'bronze')
         add(f'IgniterSeal{i}',f'Chamber {i} igniter sealing disc','ignition',[tube(8,2.7,1,[458,y,0],(1,0,0))],'gasket')
-        add(f'MovingContact{i}',f'Chamber {i} moving contact and shaft','ignition',[cy(2.5,56,[402,y,0],(1,0,0)),bx(4,14,3,[400,y,0]),cy(2,6,[400,f'({y})+12',3])],'steel')
-        add(f'IgniterLever{i}',f'Chamber {i} external igniter shaft lever','ignition',[bx(4,8,47,[455,f'({y})-4',-44]),cy(7,4,[455,y,0],(1,0,0)),cy(2.6,6,[454,y,0],(1,0,0),'cut')])
-        add(f'TripLever{i}',f'Chamber {i} cam-loaded snap lever','ignition',[xz([(387,-63),(395,-67),(460,-44),(459,-34),(390,-55)],8,f'({y})-4'),cy(3,10,[456,f'({y})-5',-40],(0,1,0),'cut')])
-        add(f'IgnitionMainSpring{i}',f'Chamber {i} igniter mainspring','ignition',[he(5,1,4,20,[450,f'({y})-16',-34],(0,1,0))])
-        add(f'IgnitionInterSpring{i}',f'Chamber {i} lever inter-spring','ignition',[he(5.2,.8,3.5,14,[450,f'({y})-12',-43],(0,1,0))])
+        add(f'MovingContact{i}',f'Chamber {i} moving contact and shaft','ignition',[cy(2.5,56,[402,y,0],(1,0,0)),bx(4,14,3,[400,y,0]),cy(2,2.4,[402,f'({y})+14',3])],'steel')
+        add(f'IgniterLever{i}',f'Chamber {i} external igniter shaft lever','ignition',[bx(4,8,47,[455,f'({y})-4',-44]),bx(4,TD+4,8,[455,f'({y})-4',-44]),cy(7,4,[455,y,0],(1,0,0)),cy(2.6,6,[454,y,0],(1,0,0),'cut')])
+        add(f'TripLever{i}',f'Chamber {i} cam-loaded snap lever','ignition',[xz([(390,-52.9),(398,-52.9),(460,-44),(459,-34)],8,f'({y})+{TD}'),cy(3,10,[456,f'({y})+{TD-1}',-40],(0,1,0),'cut')])
+        add(f'IgnitionMainSpring{i}',f'Chamber {i} igniter mainspring','ignition',[he(4,1,4,TD-8,[448,f'({y})+5',-30],(0,1,0))])
+        add(f'IgnitionInterSpring{i}',f'Chamber {i} lever inter-spring','ignition',[he(3,.8,3.5,TD-8,[446,f'({y})+5',-22],(0,1,0))])
         add(f'BusLink{i}',f'Busbar branch to igniter {i}','ignition',[cy(1.7,18,[445,f'({y})+14',8],(1,0,0))],'copper')
     # Bent busbar runs outside the chambers; small round section avoids ghost plate.
     add('Busbar','Common positive busbar, four parallel branches','ignition',[cy(2, '3*pitch+30',[464,-15,8],(0,1,0))],'copper')
@@ -264,7 +285,7 @@ def make_spec():
     for name,z in [('FuelShutoff',197),('FuelMeter',177)]:add(name,'Fuel '+('on/off cock' if name=='FuelShutoff' else 'metering cock'),'induction',[cy(6,13,[230,mid,z]),cy(2.5,15,[230,mid,z-1],op='cut'),bx(22,4,3,[219,mid-2,z+12])],'bronze')
     for name,y in [('WaterReturnA',0),('WaterReturnB',3*pitch)]:add(name,'Upper water-return fitting '+name[-1],'cooling',[tube(13,10,24,[285,y,76])],'bronze')
     add('WaterInlet','Lower jacket water-feed fitting','cooling',[tube(13,10,16,[270,'pitch/2',-99])],'bronze')
-    pipe('WaterHoseIn','Lower radiator feed hose stub','cooling',[(270,pitch/2,-98),(270,-45,-98),(270,-45,-160)],14,10,'rubber')
+    pipe('WaterHoseIn','Lower radiator feed hose stub','cooling',[(270,pitch/2,-98),(270,pitch/2,-160)],14,10,'rubber')
     for name,y in [('WaterHoseA',0),('WaterHoseB',3*pitch)]:pipe(name,'Upper radiator return hose '+name[-1],'cooling',[(285,y,95),(285,y,160),(330,y,160)],14,10,'rubber')
     # Rebuilt-engine lubrication accessory: pump chamber, two illustrative spur gears.
     pump=[bx(45,42,28,[235,-64,-142]),cy(11,24,[248,-44,-144],op='cut'),cy(11,24,[269,-44,-144],op='cut')]
@@ -277,30 +298,27 @@ def make_spec():
         add(f'OilPumpGear{i}',f'Oil pump gear {i}, illustrative profile','lubrication',teeth)
     # Do not fabricate the disputed drive route: section/dimensions are unavailable.
     pipe('OilReturnGallery','Sump oil return gallery','lubrication',[(75,-44,-109),(75,3*pitch+20,-109)],4,2)
-    pipe('OilFeedHose','Pump delivery hose','lubrication',[(270,-44,-128),(310,-44,-128),(310,-44,62),(200,-44,62)],4,2,'rubber')
-    add('OilFeedUnion','Oil-pump delivery union','lubrication',[tube(5,2,14,[270,-44,-133])],'bronze')
+    pipe('OilFeedHose','Pump delivery hose','lubrication',[(294,-44,-128),(300,-44,-128),(300,-55,-128),(300,-55,62),(200,-55,62),(200,-44,62)],4,2,'rubber')
+    add('OilFeedUnion','Oil-pump delivery union','lubrication',[tube(5,2,14,[280,-44,-128],(1,0,0))],'bronze')
     pipe('OilDistributor','Four-cylinder oil distributor','lubrication',[(200,-44,62),(200,3*pitch+10,62)],4,2)
     distributor=next(p for p in parts if p['id']=='OilDistributor')
     for i in range(4):distributor['features'].append(cy(1.4,20,[200,f'{i}*pitch',46],op='cut',label='Oil-jet branch opening'))
-    for i in range(1,5):add(f'OilJet{i}',f'Cylinder {i} upper thrust oil jet','lubrication',[tube(2.8,1.4,18,[200,f'{i-1}*pitch',46])],'bronze')
-    # Purchased generator exterior; friction wheel tangent to the flywheel's right rim.
-    gy=3*pitch+77;mx=230
-    add('MagnetoBase','Generator mounting base and feet','generator',[bx(95,65,14,[196,gy-34,-140]),bx(60,48,27,[214,gy-25,-126])],'aluminium')
-    mag=[xz([(202,-65),(202,25),(210,45),(226,54),(245,54),(266,43),(279,25),(279,-65),(270,-65),(270,20),(261,35),(244,43),(228,43),(216,35),(211,20),(211,-65)],32,gy-16)]
-    add('MagnetoMagnet','Generator horseshoe permanent magnet','generator',mag)
-    for i,x in enumerate([207,274],1):add(f'MagnetoCoil{i}',f'Generator coil {i} envelope','generator',[tube(19,6,67,[x,gy,-75])],'copper')
-    add('MagnetoArmature','Generator armature envelope','generator',[cy(18,45,[230,gy-22.5,-75],(0,1,0))])
-    add('MagnetoShaft','Generator armature shaft','generator',[cy(4,80,[230,gy-50,-75],(0,1,0))])
-    # Offset generator wheel is driven via shaft extension; contact x,z chosen radially.
-    wheelcenter=(math.sqrt(230**2-75**2),-75);wheelradius=230-190
-    add('MagnetoDriveWheel','Generator friction wheel at flywheel rim','generator',[cy(wheelradius,9,[wheelcenter[0],gy-10,wheelcenter[1]],(0,1,0)),cy(4.2,11,[wheelcenter[0],gy-11,wheelcenter[1]],(0,1,0),'cut')],'rubber')
-    # Keep shaft and armature centered on the tangent wheel's true axis.
-    for id in ['MagnetoShaft','MagnetoArmature']:
-        for f in next(p for p in parts if p['id']==id)['features']:f['origin'][0]=wheelcenter[0]
-    oiler=[cy(4,28,[wheelcenter[0],gy+18,-65]),cy(11,23,[wheelcenter[0],gy+18,-40]),cy(12,3,[wheelcenter[0],gy+18,-17])]
+    for i in range(1,5):add(f'OilJet{i}',f'Cylinder {i} upper thrust oil jet','lubrication',[tube(2.8,1.4,13,[200,f'{i-1}*pitch',51])],'bronze')
+    # Purchased generator exterior. The friction wheel is tangent to the flywheel's right rim and the armature turns on the wheel's
+    # axis, behind the wheel; the horseshoe magnet straddles the armature and its two coils wrap the legs above it.
+    gy=3*pitch+77;wheelcenter=(math.sqrt(230**2-75**2),-75);wheelradius=230-190;wx,wz=wheelcenter
+    my=gy+24;mdx,mdz=wx-240.5,-30;legs=[178.9+0,246.9+0]
+    add('MagnetoBase','Generator mounting base and feet','generator',[bx(95,65,14,[wx-44,gy-34,-136]),bx(85,70,27,[wx-44,gy-25,-122])],'aluminium')
+    horseshoe=[(202,-65),(202,25),(210,45),(226,54),(245,54),(266,43),(279,25),(279,-65),(270,-65),(270,20),(261,35),(244,43),(228,43),(216,35),(211,20),(211,-65)]
+    add('MagnetoMagnet','Generator horseshoe permanent magnet','generator',[xz([(round(x+mdx,4),round(z+mdz,4)) for x,z in horseshoe],32,my-16)])
+    for i,x in enumerate([206.5+mdx,274.5+mdx],1):add(f'MagnetoCoil{i}',f'Generator coil {i} envelope','generator',[tube(15,6,67,[round(x,4),my,-90])],'copper')
+    add('MagnetoArmature','Generator armature envelope','generator',[cy(18,45,[wx,gy+2,wz],(0,1,0))])
+    add('MagnetoShaft','Generator armature shaft','generator',[cy(4,105,[wx,gy-50,wz],(0,1,0))])
+    add('MagnetoDriveWheel','Generator friction wheel at flywheel rim','generator',[cy(wheelradius,9,[wx,gy-10,wz],(0,1,0)),cy(4.2,11,[wx,gy-11,wz],(0,1,0),'cut')],'rubber')
+    oiler=[cy(4,28,[wx,gy-30,-65]),cy(11,23,[wx,gy-30,-40]),cy(12,3,[wx,gy-30,-17])]
     add('SightOiler','Generator sight-feed lubricator','generator',oiler,'bronze')
-    pipe('GeneratorLead','Generator positive lead to busbar','ignition',[(270,gy,-90),(464,gy,-90),(464,gy,8),(464,3*pitch,8)],1.8,.4,'copper')
-    pipe('GroundLead','Generator ground lead to casting foot','ignition',[(214,gy,-112),(214,gy-60,-150),(335,3*pitch+40,-150)],1.8,.4,'copper')
+    pipe('GeneratorLead','Generator positive lead to busbar','ignition',[(206.5+mdx+68,my,-20),(464,my,-20),(464,my,8),(464,3*pitch,8)],1.8,.4,'copper')
+    pipe('GroundLead','Generator ground lead to casting foot','ignition',[(214,gy+3,-120),(214,gy-60,-150),(335,3*pitch+40,-150)],1.8,.4,'copper')
     # Final component mapping reflects explicitly reviewed chain link count, not hidden extras.
     for c in inv['components']:
         if c['id']=='S06':c['part_ids']=['CrankSprocket','CamSprocket']+chainids
@@ -318,13 +336,21 @@ def make_spec():
            dict(id='rocker-detail',title='Rocker 1: two cheeks and two rollers',parts=[p['id'] for p in parts if p['group']=='rockers' and p['id'].endswith('1')]+['ExhaustCam1','ExhaustStem1'],direction=[1,-1,.55]),
            dict(id='igniter-detail',title='Igniter 1: insulated electrode and snap levers',parts=[p['id'] for p in parts if p['group']=='ignition' and p['id'].endswith('1')]+['IgnitionCam1'],direction=[1,-1,.6]),
            dict(id='timing-control',title='Sliding gear, 45-degree slot and timing lever',parts=['ExhaustGear','IgnitionGear','IgnitionDrivePin','IgnitionGearSpring','AdvanceCam','AdvanceLever','AdvanceBracket'],direction=[1,-1,.6])]
-    spec=dict(schema_version=1,model_id='wright-research-revision-2',units='mm',input_mode='mixed',scope='Source-led detailed static teaching reconstruction of the surviving rebuilt Wright horizontal engine. Manufacturing dimensions, cam laws and exact 1903 authenticity remain unverified.',coordinate_frame='Cylinder +X, shaft +Y, Z up; mesh candidate mm=10*(raw-[-46,1.2,-21]).',sources=inv['sources'],parameters=params,parts=parts,
+    spec=dict(schema_version=1,tessellation=dict(default_mm=.7,groups=dict(cylinders=.1,pistons=.1,flywheel=.15,generator=.15)),model_id='wright-research-revision-2',units='mm',input_mode='mixed',scope='Source-led detailed static teaching reconstruction of the surviving rebuilt Wright horizontal engine. Manufacturing dimensions, cam laws and exact 1903 authenticity remain unverified.',coordinate_frame='Cylinder +X, shaft +Y, Z up; mesh candidate mm=10*(raw-[-46,1.2,-21]).',sources=inv['sources'],parameters=params,parts=parts,
       research=dict(inventory_path=str((S/'inventory.json').relative_to(R)).replace('\\','/'),inventory_sha256=hashlib.sha256((S/'inventory.json').read_bytes()).hexdigest()),
       presentation=dict(header='WRIGHT ENGINE | RESEARCH REVISION 2',footer='Surviving rebuilt configuration | Manufacturing dimensions include estimates',group_titles={'timing':'6/12 sprockets, chain and hardwood tensioner','cylinders':'Short liners, head joints and gaskets','valves':'Open cages, two-piece valves and springs','induction':'Baffled hot-plate mixer and steel intake box'},views=views),
       assumptions=['Science Museum direct-thread rod lineage selected.','Oil pump is disputed for 1903; rebuilt accessory shown, conflicting placed drive geometry deferred.','Chain pitch, curved-span link spacing and tooth flanks illustrative.','Static TDC/BDC pose; ignition/exhaust events not certified.','No modern carburetor, water pump, high-tension plugs, compression release or later barrel exhaust.'])
-    validate_spec(spec);(S/'part-spec.json').write_text(json.dumps(spec,indent=2)+'\n')
-    (S/'chain-layout.json').write_text(json.dumps(dict(points_xz_mm=points,arc_length_mm=total,nominal_pitch_mm=25.4,chord_lengths_mm=[math.dist(p,points[(k+1)%len(points)]) for k,p in enumerate(points)],scope='Equal arc-length static chain layout, not certified uniform roller pitch'),indent=2)+'\n')
+    if seats:
+        # Seats are data derived from the interference audit (see wright_seats.py): parts that share a hole, groove or pocket clear each other.
+        recorded=load_seats(S/'seats.json');apply_seats(spec['parts'],params,recorded['seats'],recorded['clearance_mm'])
+    validate_spec(spec)
+    if seats:(S/'part-spec.json').write_text(json.dumps(spec,indent=2)+'\n')
+    (S/'chain-layout.json').write_text(json.dumps(dict(points_xz_mm=points,arc_length_mm=total,arc_pitch_mm=chain['arc_pitch'],links=chain['links'],pitch_radius_mm=dict(crank=chain['r1'],cam=chain['r2']),ratio=chain['r2']/chain['r1'],chord_lengths_mm=[math.dist(p,points[(k+1)%len(points)]) for k,p in enumerate(points)],scope='Equal arc-pitch layout: sprocket pitch radii are derived from the arc pitch, so every wrap roller sits in a pocket and the shaft ratio is exactly 2:1; plates are straight between rollers (no chordal action), not a certified roller-chain pitch'),indent=2)+'\n')
     return spec
 
 if __name__=='__main__':
-    spec=make_spec();print('Planned',len(spec['parts']),'parts;',sum(len(p['features']) for p in spec['parts']),'features')
+    import argparse
+    parser=argparse.ArgumentParser();parser.add_argument('--no-seats',action='store_true',help='write the unseated spec to --out (for deriving seats from an audit)');parser.add_argument('--out')
+    args=parser.parse_args();spec=make_spec(seats=not args.no_seats)
+    if args.out:Path(args.out).write_text(json.dumps(spec,separators=(',',':')))
+    print('Planned',len(spec['parts']),'parts;',sum(len(p['features']) for p in spec['parts']),'features')
