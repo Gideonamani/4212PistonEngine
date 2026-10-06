@@ -96,6 +96,12 @@
       "drive_id": "1Z8y-Y-GGT50irsGoh6ycQ-iC4NhmuTSY",
       "bytes": 4228178,
       "sha256": "cdaa357e0888b5c89ad0a2135b1536b71a6a4099930b67af1993058c430caf0f"
+    },
+    {
+      "path": "web/wright-1903-reconstruction.glb.gz",
+      "drive_id": "1UrekBX3HsJecVKka0RM6KCkU_ptU6GIE",
+      "bytes": 6141633,
+      "sha256": "42b0e6f9595d843d86a35db949ae6c261a2445e47424db64cbc6c0c426904487"
     }
   ],
   "history_policy": "New unpublished accessory commits exclude model binaries. Existing published history retained; native CAD and exported GLBs are no longer tracked going forward.",

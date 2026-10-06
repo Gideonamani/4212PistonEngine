@@ -44,6 +44,7 @@
     "label": "1903 Wright Flyer engine",
     "adapter": "static-gltf",
     "eyebrow": "HISTORICAL REFERENCE",
+    "headerLabel": "WRIGHT FLYER \u00b7 1903 REFERENCE",
     "description": "Inspect the Smithsonian engine scan with six guided feature hotspots and its original museum source context.",
     "previewUrl": "./model-previews/wright-1903-engine.webp",
     "badges": [
@@ -137,6 +138,31 @@
         ]
       }
     ]
+  },
+  {
+    "id": "wright-1903-reconstruction",
+    "label": "1903 Wright engine, modelled part by part",
+    "adapter": "animated-study",
+    "eyebrow": "HISTORICAL RECONSTRUCTION",
+    "headerLabel": "WRIGHT ENGINE \u00b7 RECONSTRUCTION",
+    "description": "A source-led teaching reconstruction of the rebuilt Wright horizontal engine: 413 separate parts grouped by system and by research component. Explore a systems exploded view and an illustrative operating cycle. It is not the 1903 original, and the motion timing is a teaching choice.",
+    "previewUrl": "./model-previews/wright-1903-reconstruction.webp",
+    "badges": [
+      "413 modelled parts",
+      "Illustrative operating cycle",
+      "Systems exploded view"
+    ],
+    "sources": [
+      {
+        "localUrl": "./wright-1903-reconstruction.glb.gz?v=2111a150c146",
+        "compressed": true,
+        "transferBytes": 6141633,
+        "decodedBytes": 25742128,
+        "driveId": "1UrekBX3HsJecVKka0RM6KCkU_ptU6GIE"
+      }
+    ],
+    "contractUrl": "./wright-1903-reconstruction-contract.json?v=2111a150c146",
+    "lessonControls": true
   },
   {
     "id": "hydraulic-tappet",
