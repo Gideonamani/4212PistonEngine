@@ -2,6 +2,7 @@
 
 Run: python3 scripts/test_gear_geometry.py
 """
+import ast
 import json
 import math
 import unittest
@@ -9,6 +10,7 @@ from pathlib import Path
 from unittest import mock
 
 import accessory_gears as train
+import accessory_paths as paths
 import gear_geometry as G
 
 
@@ -88,6 +90,92 @@ class MeshingGears(unittest.TestCase):
                 train.solve()
 
 
+class StarterWorm(unittest.TestCase):
+    def gap(self, axis_y):
+        """Clearance between the wheel's tooth tips and the worm's thread crest for a worm axis at `axis_y`."""
+        wheel = train.GEARS['WormWheel']
+        return abs(wheel['centre'][1] - axis_y) - (wheel['r'] + train.ADDENDUM) - (train.WORM_CORE_R + train.WORM_WIRE_R)
+
+    def test_worm_axis_is_derived_so_the_crest_clears_the_wheel_tips(self):
+        self.assertAlmostEqual(self.gap(train.worm_axis_y()), train.WORM_CLEARANCE, places=9)
+        self.assertGreater(train.WORM_CLEARANCE, 0)
+        self.assertLess(train.WORM_CLEARANCE, 1.0)
+
+    def test_the_old_worm_axis_would_cut_into_the_wheel(self):
+        self.assertLess(self.gap(-30.0), 0)       # 30 mm from the wheel axis: crest 1.8 mm inside the tooth tips
+
+
+def held_still_partners(turning):
+    """Declared links (mesh, shared shaft, spline) with exactly one side turning: teeth driven through a still part."""
+    links = [*train.MESHES, *train.COAXIAL, *train.SPLINED_TO.items()]
+    return [(a, b) for a, b in links if (a in turning) != (b in turning)]
+
+
+class FocusClipsKeepLinkedPartsTurning(unittest.TestCase):
+    """A focus clip animates one highlighted power path. A turning gear whose neighbour is held still drives its
+    teeth through it (the CamGear/CrankGear, CrankGear/IdlerGear, CrankGear/StarterShaftGear, IdlerGear/RightMagGear
+    and CamCluster/OilTachShaft overlaps the audit found in the 'Focus:' clips). The rig is Blender-only, so this
+    checks the helper it uses and that it uses it."""
+    CONTRACT = Path(__file__).resolve().parents[1] / 'web/accessory-drives-contract.json'
+    RIG = Path(__file__).resolve().parent / 'rig_accessory_study.py'
+
+    @classmethod
+    def path_part_sets(cls):
+        """{(source, path id): parts the path highlights}: its power edges, and the parts the rig publishes for it."""
+        sets = {('edges', pid): {part for edge in edges for part in edge} for pid, edges in paths.EDGES.items()}
+        for path in json.loads(cls.CONTRACT.read_text(encoding='utf8'))['powerPaths']:
+            sets[('contract', path['id'])] = set(path['parts'])
+        return sets
+
+    def test_every_path_turns_the_gears_that_mesh_with_its_turning_gears(self):
+        for (source, pid), parts in self.path_part_sets().items():
+            turning = train.turning_with(parts)
+            for a, b in train.MESHES:
+                self.assertEqual(a in turning, b in turning, f'{source} {pid}: {a} meshes {b}, but only one of them turns')
+
+    def test_every_path_turns_gears_on_one_shaft_and_parts_splined_to_a_turning_gear(self):
+        for (source, pid), parts in self.path_part_sets().items():
+            turning = train.turning_with(parts)
+            for a, b in train.COAXIAL:
+                self.assertEqual(a in turning, b in turning, f'{source} {pid}: {a} and {b} share a shaft, but only one turns')
+            for part, host in train.SPLINED_TO.items():
+                self.assertEqual(part in turning, host in turning, f'{source} {pid}: {part} is splined to {host}, but only one turns')
+
+    def test_the_paths_alone_would_leave_those_gears_still(self):
+        # Guards the test above against passing vacuously: the highlighted parts alone do break the rule.
+        raw = {pid: held_still_partners(parts) for (source, pid), parts in self.path_part_sets().items() if source == 'edges'}
+        for pair in [('CrankGear', 'CamGear'), ('CrankGear', 'IdlerGear'), ('CrankGear', 'StarterShaftGear')]:
+            self.assertIn(pair, raw['alternator'])
+        self.assertIn(('IdlerGear', 'RightMagGear'), raw['vacuum'])
+        self.assertIn(('OilTachShaft', 'CamGear'), raw['governor'])
+        self.assertIn(('CamGear', 'CamCluster'), raw['governor'])
+        self.assertTrue(all(held_still_partners(train.turning_with(parts)) == [] for parts in self.path_part_sets().values()))
+
+    def test_expansion_only_adds_linked_parts_and_is_closed(self):
+        linked = {part for pair in [*train.MESHES, *train.COAXIAL, *train.SPLINED_TO.items()] for part in pair}
+        for key, parts in self.path_part_sets().items():
+            turning = train.turning_with(parts)
+            self.assertTrue(parts <= turning, key)
+            self.assertLessEqual(turning - parts, linked, key)
+            self.assertEqual(train.turning_with(turning), turning, key)
+        self.assertEqual(train.turning_with({'CrankShaft'}), {'CrankShaft'})      # not a gear: nothing meshes with it
+
+    def test_expansion_follows_a_chain_of_links_in_either_direction(self):
+        with mock.patch.object(train, 'MESHES', [('A', 'B'), ('B', 'C')]), mock.patch.object(train, 'COAXIAL', [('C', 'D')]), \
+                mock.patch.object(train, 'SPLINED_TO', {'E': 'D'}):
+            for start in ('A', 'C', 'E'):
+                self.assertEqual(train.turning_with({start}), {'A', 'B', 'C', 'D', 'E'}, start)
+            self.assertEqual(train.turning_with({'Z'}), {'Z'})
+
+    def test_rig_decides_which_parts_turn_with_the_expansion(self):
+        # The rig needs Blender, so check its source: the focus clips must use turning_with, not a path-only rule.
+        tree = ast.parse(self.RIG.read_text(encoding='utf8'))
+        calls = [n for n in ast.walk(tree) if isinstance(n, ast.Call) and getattr(n.func, 'id', None) == 'turning_with']
+        self.assertTrue(calls, 'rig_accessory_study.py must hold only parts outside accessory_gears.turning_with(path parts)')
+        self.assertFalse([n for n in ast.walk(tree) if isinstance(n, ast.Name) and n.id == 'SPLINED_TO'],
+                         'the rig must not re-implement the spline rule; it belongs to accessory_gears.turning_with')
+
+
 class DeclarationMatchesPublishedContract(unittest.TestCase):
     CONTRACT = Path(__file__).resolve().parents[1] / 'web/accessory-drives-contract.json'
 
@@ -96,6 +184,10 @@ class DeclarationMatchesPublishedContract(unittest.TestCase):
         for gear_id, g in train.solve().items():
             self.assertAlmostEqual(parts[gear_id]['rate'], g['rate'], places=9, msg=gear_id)
             self.assertEqual(parts[gear_id]['pivot_mm'], [*g['centre'], train.GEARS[gear_id]['z']], gear_id)
+
+    def test_starter_worm_axis_equals_the_contract(self):
+        parts = {p['id']: p for p in json.loads(self.CONTRACT.read_text(encoding='utf8'))['parts']}
+        self.assertAlmostEqual(parts['StarterWorm']['pivot_mm'][1], train.worm_axis_y(), places=9)
 
     def test_contract_meshes_once_present_equal_the_declaration(self):
         contract = json.loads(self.CONTRACT.read_text(encoding='utf8'))

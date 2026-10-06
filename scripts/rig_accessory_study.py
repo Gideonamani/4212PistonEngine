@@ -3,7 +3,7 @@ from pathlib import Path
 import bpy,json,math,gzip,hashlib,sys,shutil
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from accessory_paths import EDGES
-from accessory_gears import SPLINED_TO, spring_grip_scale
+from accessory_gears import spring_grip_scale, turning_with
 from normalize_glb_motion_time import normalize_motion_time
 from mathutils import Vector,Quaternion
 R=Path(__file__).resolve().parents[1];F=R/'cad-studies/accessory-drives'
@@ -35,6 +35,8 @@ for title in names:
     print('ACCESSORY_BAKING', title, flush=True)
     action=bpy.data.actions.new(title)
     path=next((p for p in paths if title=='Focus: '+p['id']),None)
+    # A focus clip turns its highlighted path plus whatever meshes, shares a shaft or splines with it, so no turning gear passes its teeth through a held-still one.
+    turning=turning_with(path['parts']) if path else None
     for p in d['parts']:
         o=objects[p['id']];o.animation_data_create();o.animation_data.action=action;o.animation_data.action_slot=action.slots.new(id_type='OBJECT',name=o.name)
         for frame in range(1,602):
@@ -42,7 +44,7 @@ for title in names:
             if title in ['Exploded overview','Reassembly overview']:
                 v=1-u if title=='Reassembly overview' else u;amount=max(0,min(1,v*2-p['stage']+1));o.location+=Vector(p['offset_mm'])/1000*amount
             else:
-                rate=p['rate'] if not path or p['id'] in path['parts'] or SPLINED_TO.get(p['id']) in path['parts'] else 0
+                rate=p['rate'] if turning is None or p['id'] in turning else 0
                 angle=4*math.pi*u*rate
                 if title=='Starter engagement and start':
                     # Cranking first; engine takes over at 65%. Temporal profile is illustrative.

@@ -224,14 +224,14 @@
     ],
     "sources": [
       {
-        "localUrl": "./accessory-drives.glb.gz?v=dde7e6d7832d",
+        "localUrl": "./accessory-drives.glb.gz?v=77eb48c1d8ff",
         "compressed": true,
-        "transferBytes": 12394258,
-        "decodedBytes": 55709888,
-        "driveId": "1bi7mtPAAL5GNhLSBZpG5GtmYEPslrl4t"
+        "transferBytes": 12756506,
+        "decodedBytes": 56647996,
+        "driveId": "1XvJEmKlqinF8H8CCPB5GcwUoHXfySQSv"
       }
     ],
-    "contractUrl": "./accessory-drives-contract.json?v=dde7e6d7832d",
+    "contractUrl": "./accessory-drives-contract.json?v=77eb48c1d8ff",
     "lessonControls": true
   }
 ]

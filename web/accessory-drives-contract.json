@@ -1,5 +1,5 @@
 {
-  "asset_sha256": "dde7e6d7832d65fc73975f494b530e1051c37e8ebc41954e6d704077d80a6be3",
+  "asset_sha256": "77eb48c1d8ffb3147cc908187eab03d9442021a359751391c6ee5bd06e477f86",
   "parts": [
     {
       "id": "AccessoryHousing",
@@ -167,7 +167,7 @@
       "id": "CrankGear",
       "label": "Crankshaft gear",
       "group": "core",
-      "description": "Torque input. Rear-frame sign inferred from external meshes and front-facing magneto pads (A-3-3 / C-3-2), not a directly quoted crank-rotation specification. Teeth and web proportions illustrative.",
+      "description": "Torque input. Rear-frame sign inferred from external meshes and front-facing magneto pads (A-3-3 / C-3-2), not a directly quoted crank-rotation specification. Involute spur teeth (20 degree pressure angle) with positive backlash, solved tooth phase and tip clearance so meshing gears touch but never overlap. Module, tooth counts and proportions are illustrative teaching choices, not manufacturer gear data.",
       "evidence": "A-4-8",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
       "role": "engine-study",
@@ -181,14 +181,14 @@
         0,
         1
       ],
-      "rate": 1,
+      "rate": 1.0,
       "stage": 2,
       "offset_mm": [
         0,
         0,
         110
       ],
-      "volume_mm3": 18531.477993744094
+      "volume_mm3": 18091.609394209954
     },
     {
       "id": "CrankShaft",
@@ -221,7 +221,7 @@
       "id": "CamGear",
       "label": "Camshaft gear",
       "group": "core",
-      "description": "Crank-driven cam gear with internal spline seat for the oil/tach shaft. Teeth and web proportions illustrative.",
+      "description": "Crank-driven cam gear with internal spline seat for the oil/tach shaft. Involute spur teeth (20 degree pressure angle) with positive backlash, solved tooth phase and tip clearance so meshing gears touch but never overlap. Module, tooth counts and proportions are illustrative teaching choices, not manufacturer gear data.",
       "evidence": "A-4-8",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
       "role": "engine-study",
@@ -242,13 +242,13 @@
         0,
         110
       ],
-      "volume_mm3": 69082.67946767696
+      "volume_mm3": 68322.92341617533
     },
     {
       "id": "CamCluster",
       "label": "Camshaft fuel-pump cluster gear",
       "group": "fuel",
-      "description": "Cluster drives fuel pump; chosen teeth do not establish manufacturer fuel ratio. Teeth and web proportions illustrative.",
+      "description": "Cluster drives fuel pump; chosen teeth do not establish manufacturer fuel ratio. Involute spur teeth (20 degree pressure angle) with positive backlash, solved tooth phase and tip clearance so meshing gears touch but never overlap. Module, tooth counts and proportions are illustrative teaching choices, not manufacturer gear data.",
       "evidence": "A-4-8",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
       "role": "engine-study",
@@ -269,7 +269,7 @@
         0,
         110
       ],
-      "volume_mm3": 5956.426467627109
+      "volume_mm3": 5703.335571999488
     },
     {
       "id": "CamShaft",
@@ -302,7 +302,7 @@
       "id": "IdlerGear",
       "label": "Idler gear assembly",
       "group": "core",
-      "description": "Crank to both magneto gears; schematic idler speed. Teeth and web proportions illustrative.",
+      "description": "Crank to both magneto gears; schematic idler speed. Involute spur teeth (20 degree pressure angle) with positive backlash, solved tooth phase and tip clearance so meshing gears touch but never overlap. Module, tooth counts and proportions are illustrative teaching choices, not manufacturer gear data.",
       "evidence": "A-4-8",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
       "role": "engine-study",
@@ -316,14 +316,14 @@
         0,
         1
       ],
-      "rate": -1,
+      "rate": -1.0,
       "stage": 2,
       "offset_mm": [
         0,
         0,
         110
       ],
-      "volume_mm3": 18531.477993744094
+      "volume_mm3": 18091.60939420994
     },
     {
       "id": "IdlerPin",
@@ -356,7 +356,7 @@
       "id": "LeftMagGear",
       "label": "Left magneto drive gear",
       "group": "magneto-left",
-      "description": "H 1.5:1 CW facing the FRONT magneto pad. Positive rear-frame spin appears CW from the opposite end. Teeth and web proportions illustrative.",
+      "description": "H 1.5:1 CW facing the FRONT magneto pad. Positive rear-frame spin appears CW from the opposite end. Involute spur teeth (20 degree pressure angle) with positive backlash, solved tooth phase and tip clearance so meshing gears touch but never overlap. Module, tooth counts and proportions are illustrative teaching choices, not manufacturer gear data.",
       "evidence": "A-3-3; A-4-11; C-3-2",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
       "role": "engine-study",
@@ -377,7 +377,7 @@
         0,
         110
       ],
-      "volume_mm3": 9410.169071224802
+      "volume_mm3": 9083.697230916536
     },
     {
       "id": "LeftMagShaft",
@@ -545,7 +545,7 @@
       "id": "RightMagGear",
       "label": "Right magneto drive gear",
       "group": "magneto-right",
-      "description": "H 1.5:1 CW facing the FRONT magneto pad. Positive rear-frame spin appears CW from the opposite end. Teeth and web proportions illustrative.",
+      "description": "H 1.5:1 CW facing the FRONT magneto pad. Positive rear-frame spin appears CW from the opposite end. Involute spur teeth (20 degree pressure angle) with positive backlash, solved tooth phase and tip clearance so meshing gears touch but never overlap. Module, tooth counts and proportions are illustrative teaching choices, not manufacturer gear data.",
       "evidence": "A-3-3; A-4-11; C-3-2",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
       "role": "engine-study",
@@ -566,7 +566,7 @@
         0,
         110
       ],
-      "volume_mm3": 9410.1690712248
+      "volume_mm3": 9083.697230916536
     },
     {
       "id": "RightMagShaft",
@@ -734,7 +734,7 @@
       "id": "FuelGear",
       "label": "Fuel pump drive gear",
       "group": "fuel",
-      "description": "H later installation changed gear and added detachable coupling. Teeth and web proportions illustrative.",
+      "description": "H later installation changed gear and added detachable coupling. Involute spur teeth (20 degree pressure angle) with positive backlash, solved tooth phase and tip clearance so meshing gears touch but never overlap. Module, tooth counts and proportions are illustrative teaching choices, not manufacturer gear data.",
       "evidence": "C-3-1 figure items 75/76; C-3-6",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
       "role": "engine-study",
@@ -755,7 +755,7 @@
         0,
         110
       ],
-      "volume_mm3": 16348.268858276111
+      "volume_mm3": 16002.156647801108
     },
     {
       "id": "FuelGearShaft",
@@ -1004,7 +1004,7 @@
       "id": "OilDriver",
       "label": "Oil pump driver",
       "group": "oil-tach",
-      "description": "Pump driver on cam-connected shaft. Teeth and web proportions illustrative.",
+      "description": "Pump driver on cam-connected shaft. Involute spur teeth (20 degree pressure angle) with positive backlash, solved tooth phase and tip clearance so meshing gears touch but never overlap. Module, tooth counts and proportions are illustrative teaching choices, not manufacturer gear data.",
       "evidence": "A-4-16 item 22",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
       "role": "engine-study",
@@ -1025,13 +1025,13 @@
         -45,
         110
       ],
-      "volume_mm3": 3605.9508369346836
+      "volume_mm3": 3390.121318015172
     },
     {
       "id": "OilDriven",
       "label": "Oil pump driven gear",
       "group": "oil-tach",
-      "description": "Opposite-running pair. Placed left of the driver to keep the separate H fuel mounting bay clear; layout unmeasured. Teeth and web proportions illustrative.",
+      "description": "Opposite-running pair. Placed left of the driver to keep the separate H fuel mounting bay clear; layout unmeasured. Involute spur teeth (20 degree pressure angle) with positive backlash, solved tooth phase and tip clearance so meshing gears touch but never overlap. Module, tooth counts and proportions are illustrative teaching choices, not manufacturer gear data.",
       "evidence": "A-4-16 item 8",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
       "role": "engine-study",
@@ -1052,7 +1052,7 @@
         -45,
         110
       ],
-      "volume_mm3": 3605.9508369346804
+      "volume_mm3": 3390.1213180151735
     },
     {
       "id": "OilHousing",
@@ -1274,7 +1274,7 @@
       "id": "OilScreenPlug",
       "label": "Oil screen plug study",
       "group": "oil-tach",
-      "description": "Representative side plug enters a bore and its head seats on the casting. Screen and oil circuit omitted.",
+      "description": "Representative side plug fills its bore through the wall and stops at the gear pocket; its head seats on the casting. Screen and oil circuit omitted.",
       "evidence": "A-4-16 item 44",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
       "role": "engine-study",
@@ -1295,7 +1295,7 @@
         -65,
         140
       ],
-      "volume_mm3": 1325.7520998148927
+      "volume_mm3": 775.9733854366789
     },
     {
       "id": "TachDriveBevel",
@@ -1355,7 +1355,7 @@
       "id": "TachOutput",
       "label": "Tachometer output shaft",
       "group": "oil-tach",
-      "description": "Lateral shaft passes through the driven bevel and bored tach pad. H 0.5:1 CW facing its engine pad; geometry and layout unmeasured.",
+      "description": "Lateral shaft passes through the driven bevel and bored tach pad; its inner end stops short of the vertical shaft. H 0.5:1 CW facing its engine pad; geometry and layout unmeasured.",
       "evidence": "C-3-2; A-4-16 items 24/45/47",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
       "role": "engine-study",
@@ -1376,7 +1376,7 @@
         -45,
         190
       ],
-      "volume_mm3": 2363.2630736629217
+      "volume_mm3": 2212.309546657932
     },
     {
       "id": "TachPadGasket",
@@ -1436,7 +1436,7 @@
       "id": "StarterShaftGear",
       "label": "Starter shaftgear",
       "group": "starter",
-      "description": "Crank-meshing gear remains engine-driven after clutch release. Teeth and web proportions illustrative.",
+      "description": "Crank-meshing gear remains engine-driven after clutch release. Involute spur teeth (20 degree pressure angle) with positive backlash, solved tooth phase and tip clearance so meshing gears touch but never overlap. Module, tooth counts and proportions are illustrative teaching choices, not manufacturer gear data.",
       "evidence": "A-4-8",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
       "role": "engine-study",
@@ -1450,14 +1450,14 @@
         0,
         1
       ],
-      "rate": -1,
+      "rate": -1.0,
       "stage": 2,
       "offset_mm": [
         0,
         0,
         110
       ],
-      "volume_mm3": 18531.4779937441
+      "volume_mm3": 18091.609394209947
     },
     {
       "id": "StarterDrum",
@@ -1484,13 +1484,13 @@
         0,
         110
       ],
-      "volume_mm3": 9246.335498045477
+      "volume_mm3": 9608.246971739023
     },
     {
       "id": "WormWheel",
       "label": "Starter worm wheel",
       "group": "starter",
-      "description": "Wheel-side hub meets shaftgear drum under wrap spring. Teeth and web proportions illustrative.",
+      "description": "Wheel-side hub meets shaftgear drum under wrap spring. Involute spur teeth (20 degree pressure angle) with positive backlash, solved tooth phase and tip clearance so meshing gears touch but never overlap. Module, tooth counts and proportions are illustrative teaching choices, not manufacturer gear data.",
       "evidence": "A-4-15 item 31",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
       "role": "engine-study",
@@ -1504,14 +1504,14 @@
         0,
         1
       ],
-      "rate": 0,
+      "rate": 0.0,
       "stage": 2,
       "offset_mm": [
         65,
         0,
         130
       ],
-      "volume_mm3": 10762.962674477509
+      "volume_mm3": 10467.60581533991
     },
     {
       "id": "WormWheelHub",
@@ -1544,7 +1544,7 @@
       "id": "ClutchSpring",
       "label": "Starter wrap-spring clutch",
       "group": "starter",
-      "description": "Spans the two touching drum surfaces. Pitch, winding hand and tightening illustrative.",
+      "description": "Spans the drum and hub surfaces: released it sits 0.4 mm off them and the grip animation contracts it to touch, never into them. Pitch, winding hand and tightening illustrative.",
       "evidence": "A-4-15 item 30; A-3-2",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
       "role": "engine-study",
@@ -1565,19 +1565,19 @@
         0,
         120
       ],
-      "volume_mm3": 927.7740920362045
+      "volume_mm3": 962.1360939937815
     },
     {
       "id": "StarterWorm",
       "label": "Starter worm drive shaft",
       "group": "starter",
-      "description": "Cross-axis worm shaft reaches into the motor input. H 32:1 CCW facing pad; thread/fit unmeasured.",
+      "description": "Cross-axis worm shaft reaches into the motor input. H 32:1 CCW facing pad; thread/fit unmeasured. Held 0.3 mm off the wheel teeth: a true worm mesh needs a throated wheel.",
       "evidence": "A-4-15 items 38/42; C-3-2",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
       "role": "engine-study",
       "pivot_mm": [
         40,
-        -30,
+        -32.1,
         77
       ],
       "axis": [
@@ -1646,7 +1646,7 @@
         0,
         160
       ],
-      "volume_mm3": 77989.94855815012
+      "volume_mm3": 84707.38371984834
     },
     {
       "id": "StarterCaseBushing",
@@ -1781,7 +1781,7 @@
         -40,
         160
       ],
-      "volume_mm3": 27667.309977982877
+      "volume_mm3": 27667.309977982866
     },
     {
       "id": "AlternatorPad",
@@ -1814,7 +1814,7 @@
       "id": "AlternatorDrivenGear",
       "label": "Alternator driven gear and clutch cup - remote",
       "group": "alternator",
-      "description": "Driven gear/cup encloses the clutch sleeve and hub; intervening engine transfer unresolved. Teeth and web proportions illustrative.",
+      "description": "Driven gear/cup encloses the clutch sleeve and hub; intervening engine transfer unresolved. Involute spur teeth (20 degree pressure angle) with positive backlash, solved tooth phase and tip clearance so meshing gears touch but never overlap. Module, tooth counts and proportions are illustrative teaching choices, not manufacturer gear data.",
       "evidence": "A-4-13 item 10; C-3-3",
       "shape_status": "Drawing-led form; dimensions and hidden surfaces reconstructed",
       "role": "engine-study",
@@ -1828,14 +1828,14 @@
         0,
         1
       ],
-      "rate": -3,
+      "rate": -3.0,
       "stage": 2,
       "offset_mm": [
         65,
         0,
         85
       ],
-      "volume_mm3": 7247.070126807393
+      "volume_mm3": 7006.010424130734
     },
     {
       "id": "AlternatorOutput",
@@ -3249,6 +3249,100 @@
       "max_gap_mm": 0.35
     }
   ],
+  "gearMeshes": [
+    {
+      "driver": "CrankGear",
+      "driven": "CamGear",
+      "centre_distance_mm": 90.0,
+      "module_mm": 2.5,
+      "teeth": [
+        24,
+        48
+      ],
+      "ratio": 0.5,
+      "backlash_mm": 0.125,
+      "driven_phase_rad": 0.06544984694978737
+    },
+    {
+      "driver": "CrankGear",
+      "driven": "IdlerGear",
+      "centre_distance_mm": 60.0,
+      "module_mm": 2.5,
+      "teeth": [
+        24,
+        24
+      ],
+      "ratio": 1.0,
+      "backlash_mm": 0.125,
+      "driven_phase_rad": 0.1308996938995753
+    },
+    {
+      "driver": "CrankGear",
+      "driven": "StarterShaftGear",
+      "centre_distance_mm": 60.0,
+      "module_mm": 2.5,
+      "teeth": [
+        24,
+        24
+      ],
+      "ratio": 1.0,
+      "backlash_mm": 0.125,
+      "driven_phase_rad": 0.13089969389957462
+    },
+    {
+      "driver": "IdlerGear",
+      "driven": "LeftMagGear",
+      "centre_distance_mm": 50.0,
+      "module_mm": 2.5,
+      "teeth": [
+        24,
+        16
+      ],
+      "ratio": 1.5,
+      "backlash_mm": 0.125,
+      "driven_phase_rad": 0.3547426365104096
+    },
+    {
+      "driver": "IdlerGear",
+      "driven": "RightMagGear",
+      "centre_distance_mm": 50.0,
+      "module_mm": 2.5,
+      "teeth": [
+        24,
+        16
+      ],
+      "ratio": 1.5,
+      "backlash_mm": 0.125,
+      "driven_phase_rad": 0.03795644518831276
+    },
+    {
+      "driver": "CamCluster",
+      "driven": "FuelGear",
+      "centre_distance_mm": 42.0,
+      "module_mm": 2.0,
+      "teeth": [
+        16,
+        26
+      ],
+      "ratio": 0.6153846153846154,
+      "backlash_mm": 0.1,
+      "driven_phase_rad": 0.12083048667653074
+    },
+    {
+      "driver": "OilDriver",
+      "driven": "OilDriven",
+      "centre_distance_mm": 26.0,
+      "module_mm": 2.0,
+      "teeth": [
+        13,
+        13
+      ],
+      "ratio": 1.0,
+      "backlash_mm": 0.1,
+      "driven_phase_rad": 1.4988010832439613e-15
+    }
+  ],
+  "gearForm": "Involute spur teeth (20 degree pressure angle) with positive backlash, solved tooth phase and tip clearance so meshing gears touch but never overlap. Module, tooth counts and proportions are illustrative teaching choices, not manufacturer gear data.",
   "remoteDisplays": [
     {
       "group": "alternator",
