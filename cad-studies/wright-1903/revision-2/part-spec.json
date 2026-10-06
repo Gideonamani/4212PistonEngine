@@ -6,7 +6,8 @@
       "cylinders": 0.1,
       "pistons": 0.1,
       "flywheel": 0.15,
-      "generator": 0.15
+      "generator": 0.15,
+      "valves": 0.2
     }
   },
   "model_id": "wright-research-revision-2",
@@ -2596,7 +2597,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 14.15,
+          "radius": 14.65,
           "height": 2.3,
           "origin": [
             350.0,
@@ -2613,7 +2614,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 14.15,
+          "radius": 14.65,
           "height": 2.3,
           "origin": [
             350.0,
@@ -2630,7 +2631,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 9.15,
+          "radius": 9.65,
           "height": 549.37,
           "origin": [
             350.0,
@@ -2851,7 +2852,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 23.7967,
+          "radius": 24.15,
           "height": 10.3,
           "origin": [
             350.0,
@@ -2868,7 +2869,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 23.7947,
+          "radius": 24.15,
           "height": 10.3,
           "origin": [
             350.0,
@@ -2885,7 +2886,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 23.7967,
+          "radius": 24.15,
           "height": 10.3,
           "origin": [
             350.0,
@@ -2902,7 +2903,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 23.7967,
+          "radius": 24.15,
           "height": 10.3,
           "origin": [
             350.0,
@@ -2919,7 +2920,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 30.8316,
+          "radius": 31.15,
           "height": 7.3,
           "origin": [
             350.0,
@@ -3004,11 +3005,45 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 190.15,
-          "height": 35.3,
+          "radius": 28.65,
+          "height": 9.3,
           "origin": [
             0.0,
             444.92,
+            0.0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Swept clearance for Flywheel (Cast-iron rim/web/hub flywheel), 0.15 mm"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 190.65,
+          "height": 18.3,
+          "origin": [
+            0.0,
+            453.92,
+            0.0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Swept clearance for Flywheel (Cast-iron rim/web/hub flywheel), 0.15 mm"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 28.65,
+          "height": 8.3,
+          "origin": [
+            0.0,
+            471.92,
             0.0
           ],
           "axis": [
@@ -3140,7 +3175,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 9.9734,
+          "radius": 10.15,
           "height": 5.3,
           "origin": [
             391.0,
@@ -3157,8 +3192,8 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 30.8316,
-          "height": 41.3,
+          "radius": 31.15,
+          "height": 7.3,
           "origin": [
             391.0,
             -59.65,
@@ -3174,7 +3209,24 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 8.75,
+          "radius": 10.65,
+          "height": 34.3,
+          "origin": [
+            391.0,
+            -52.65,
+            -68.0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Swept clearance for IgnitionGear (Sliding ignition spur gear and slotted sleeve), 0.15 mm"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 9.15,
           "height": 20.4965,
           "origin": [
             391.0,
@@ -3191,7 +3243,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 5.15,
+          "radius": 5.65,
           "height": 529.37,
           "origin": [
             391.0,
@@ -3226,7 +3278,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 4.15,
+          "radius": 4.65,
           "height": 105.3,
           "origin": [
             217.428149051589,
@@ -12216,8 +12268,8 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 30.8316,
-          "height": 41.3,
+          "radius": 31.15,
+          "height": 7.3,
           "origin": [
             391.0,
             -59.65,
@@ -12233,7 +12285,24 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 8.75,
+          "radius": 10.65,
+          "height": 34.3,
+          "origin": [
+            391.0,
+            -52.65,
+            -68.0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Swept clearance for IgnitionGear (Sliding ignition spur gear and slotted sleeve), 0.15 mm"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 9.15,
           "height": 20.4965,
           "origin": [
             391.0,
@@ -12250,7 +12319,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 5.15,
+          "radius": 5.65,
           "height": 529.37,
           "origin": [
             391.0,
@@ -13038,8 +13107,8 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 30.8316,
-          "height": 41.3,
+          "radius": 31.15,
+          "height": 7.3,
           "origin": [
             391.0,
             -59.65,
@@ -13055,7 +13124,24 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 8.75,
+          "radius": 10.65,
+          "height": 34.3,
+          "origin": [
+            391.0,
+            -52.65,
+            -68.0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "label": "Swept clearance for IgnitionGear (Sliding ignition spur gear and slotted sleeve), 0.15 mm"
+        },
+        {
+          "primitive": "cylinder",
+          "operation": "cut",
+          "radius": 9.15,
           "height": 20.4965,
           "origin": [
             391.0,
@@ -13072,7 +13158,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 5.15,
+          "radius": 5.65,
           "height": 529.37,
           "origin": [
             391.0,
@@ -13793,7 +13879,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 5.15,
+          "radius": 5.65,
           "height": 529.37,
           "origin": [
             391.0,
@@ -14581,7 +14667,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 5.15,
+          "radius": 5.65,
           "height": 529.37,
           "origin": [
             391.0,
@@ -15285,7 +15371,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 5.15,
+          "radius": 5.65,
           "height": 529.37,
           "origin": [
             391.0,
@@ -16073,7 +16159,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 5.15,
+          "radius": 5.65,
           "height": 529.37,
           "origin": [
             391.0,
@@ -16777,7 +16863,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 5.15,
+          "radius": 5.65,
           "height": 529.37,
           "origin": [
             391.0,
@@ -17565,7 +17651,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 5.15,
+          "radius": 5.65,
           "height": 529.37,
           "origin": [
             391.0,
@@ -37402,7 +37488,7 @@
         {
           "primitive": "cylinder",
           "operation": "cut",
-          "radius": 40.15,
+          "radius": 40.65,
           "height": 9.3,
           "origin": [
             217.428149051589,

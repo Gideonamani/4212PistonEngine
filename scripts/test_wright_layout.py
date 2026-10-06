@@ -158,6 +158,45 @@ class Seats(unittest.TestCase):
     def test_cuts_inside_a_guest_are_not_part_of_its_outline(self):
         self.assertIsNone(seats.grow(dict(primitive='cylinder', radius=1, height=1, origin=[0, 0, 0], operation='cut'), {}, .1, 'x'))
 
+    @staticmethod
+    def stepped_part(part_id, steps, sides=36, axis=(391.0, -68.0)):
+        """A closed stack of coaxial cylinders about `axis` (parallel to y): steps = [(radius, y_lo, y_hi), ...]."""
+        vertices, triangles = [], []
+        for radius, lo, hi in steps:
+            base = len(vertices)
+            for y in (lo, hi):
+                vertices += [[axis[0] + radius * math.cos(2 * math.pi * k / sides), y, axis[1] + radius * math.sin(2 * math.pi * k / sides)] for k in range(sides)]
+            for k in range(sides):
+                a, b = base + k, base + (k + 1) % sides
+                triangles += [[a, b, base + sides + b - base], [a, base + sides + b - base, base + sides + k]]
+        return dict(id=part_id, vertices_mm=vertices, triangles=triangles)
+
+    def test_a_sliding_gear_with_a_sleeve_sweeps_a_thin_disc_and_a_narrow_tube_not_one_big_cylinder(self):
+        geometry = dict(parts=[self.stepped_part('IgnitionGear', [(30.0, -59.5, -52.5), (10.0, -52.5, -18.5)])])
+        swept = seats.swept_envelope('IgnitionGear', geometry)
+        self.assertEqual(swept['axis'], [391.0, -68.0])
+        self.assertEqual([(b['radius'], b['y']) for b in swept['bands']], [(30.0, [-59.5, -52.5]), (10.0, [-52.5, -18.5])])
+
+    def test_radii_are_rounded_up_and_slivers_are_folded_into_a_neighbour(self):
+        geometry = dict(parts=[self.stepped_part('IgnitionGear', [(7.8, 0.0, 10.0), (8.0, 10.0, 10.2), (7.6, 10.2, 20.0)])])
+        bands = seats.swept_envelope('IgnitionGear', geometry)['bands']
+        self.assertEqual(len(bands), 1)                                    # the 0.2 mm band is not left to cut a sliver
+        self.assertEqual((bands[0]['radius'], bands[0]['y']), (8.0, [0.0, 20.0]))
+        self.assertGreaterEqual(bands[0]['radius'], 7.8)                   # never smaller than the part
+
+    def test_a_body_with_no_fixed_axis_has_no_revolution_envelope(self):
+        self.assertIsNone(seats.swept_envelope('Piston1', dict(parts=[])))
+
+    def test_each_band_becomes_one_cut_in_the_host_and_an_older_single_band_record_still_applies(self):
+        host = dict(id='H', label='host', features=[])
+        guest = dict(id='G', label='guest', features=[])
+        banded = dict(host='H', guest='G', swept=dict(axis=[1.0, 2.0], bands=[dict(radius=5.0, y=[0.0, 3.0]), dict(radius=2.0, y=[3.0, 9.0])]))
+        seats.apply_seats([host, guest], {}, [banded], 0.15)
+        self.assertEqual([(f['radius'], f['height']) for f in host['features']], [(5.15, 3.3), (2.15, 6.3)])
+        old = dict(id='H2', label='host', features=[])
+        seats.apply_seats([old, guest], {}, [dict(host='H2', guest='G', swept=dict(axis=[1.0, 2.0], radius=5.0, y=[0.0, 3.0]))], 0.15)
+        self.assertEqual([(f['radius'], f['height']) for f in old['features']], [(5.15, 3.3)])
+
     def test_the_static_part_holds_a_moving_one_and_connectors_are_never_hosts(self):
         group = {'Crankcase': 'crankcase', 'Piston1': 'pistons', 'OilFeedHose': 'lubrication', 'Sleeve1': 'cylinders', 'BigBoltA1': 'rods', 'BigCap1': 'rods'}
         volume = {k: 1.0 for k in group}

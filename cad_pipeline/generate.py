@@ -65,6 +65,40 @@ def feature_runs(features,batch_runs=0):
         runs.append(list(range(i,j+1)));i=j+1
     return runs
 
+def single_valid_solid(shape):
+    return not shape.isNull() and shape.isValid() and len(shape.Solids)==1 and shape.Volume>0
+
+def remove_part(doc,group):
+    for o in reversed(list(group.Group)):doc.removeObject(o.Name)
+    doc.removeObject(group.Name)
+
+def build_part(doc,part,params,batch_runs):
+    """Native feature history of one part; returns (group, tip). The tip carries the part's identity properties."""
+    group=doc.addObject('App::DocumentObjectGroup',part['id']); group.Label=part['label']
+    current=None
+    for run in feature_runs(part['features'],batch_runs):
+        objs=[]
+        for i in run:
+            f=part['features'][i]; kind=f['primitive']; prefix=part['id']+'_F'+str(i+1)
+            objs.append(rich_feature(doc,group,prefix,f,params) if kind in ('prism','helix') else basic_feature(doc,group,prefix,f,params))
+            doc.recompute()
+        if len(objs)>1:                         # a long run of one operation (a casting's seat cuts): fuse the tools once, apply them in one Boolean
+            tool=doc.addObject('Part::MultiFuse',part['id']+'_F'+str(run[0]+1)+'_to_F'+str(run[-1]+1)+'_Tools'); tool.Shapes=objs; tool.Refine=False; group.addObject(tool)
+            for o in objs: o.Visibility=False
+            doc.recompute(); o=tool
+        else: o=objs[0]
+        f=part['features'][run[0]]; prefix=part['id']+'_F'+str(run[-1]+1)
+        if current is None: current=o
+        else:
+            boolean=doc.addObject('Part::Fuse' if f['operation']=='add' else 'Part::Cut',prefix+'_Result')
+            boolean.Base=current; boolean.Tool=o; boolean.Refine=True; group.addObject(boolean)
+            current.Visibility=False; o.Visibility=False; current=boolean; doc.recompute()
+    current.Label=part['label']; current.Visibility=True
+    for key,val in [('StablePartID',part['id']),('Evidence',part['evidence']),('MaterialCategory',part.get('material','steel')),('ComponentGroup',part.get('group','other'))]:
+        current.addProperty('App::PropertyString',key,'Reconstruction'); setattr(current,key,val)
+    if not single_valid_solid(current.Shape): raise ValueError('Invalid single solid: '+part['id']+'; solids='+str(len(current.Shape.Solids))+'; valid='+str(current.Shape.isValid()))
+    return group,current
+
 def build(spec, output, only=None, batch_runs=0):
     validate_spec(spec);research=check_spec_research(spec,Path(__file__).resolve().parents[1]); output=Path(output); output.mkdir(parents=True,exist_ok=True)
     for name in ('cad-validation.json','reopen-validation.json'):(output/name).unlink(missing_ok=True)
@@ -77,40 +111,29 @@ def build(spec, output, only=None, batch_runs=0):
         if p['unit'] in ('count','ratio'):controller.setEditorMode(name,1)
     controller.addProperty('App::PropertyString','ProvenanceJSON','Evidence'); controller.ProvenanceJSON=json.dumps(params)
     controller.addProperty('App::PropertyString','SpecificationJSON','Evidence'); controller.SpecificationJSON=json.dumps(spec)
+    built={}
     for part in spec['parts']:
         if only and part['id'] not in only:continue
         print('Building',part['id'],flush=True)
-        group=doc.addObject('App::DocumentObjectGroup',part['id']); group.Label=part['label']
-        current=None
-        for run in feature_runs(part['features'],batch_runs):
-            objs=[]
-            for i in run:
-                f=part['features'][i]; kind=f['primitive']; prefix=part['id']+'_F'+str(i+1)
-                objs.append(rich_feature(doc,group,prefix,f,params) if kind in ('prism','helix') else basic_feature(doc,group,prefix,f,params))
-                doc.recompute()
-            if len(objs)>1:                         # a long run of one operation (a casting's seat cuts): fuse the tools once, apply them in one Boolean
-                tool=doc.addObject('Part::MultiFuse',part['id']+'_F'+str(run[0]+1)+'_to_F'+str(run[-1]+1)+'_Tools'); tool.Shapes=objs; tool.Refine=False; group.addObject(tool)
-                for o in objs: o.Visibility=False
-                doc.recompute(); o=tool
-            else: o=objs[0]
-            f=part['features'][run[0]]; prefix=part['id']+'_F'+str(run[-1]+1)
-            if current is None: current=o
-            else:
-                boolean=doc.addObject('Part::Fuse' if f['operation']=='add' else 'Part::Cut',prefix+'_Result')
-                boolean.Base=current; boolean.Tool=o; boolean.Refine=True; group.addObject(boolean)
-                current.Visibility=False; o.Visibility=False; current=boolean; doc.recompute()
-        current.Label=part['label']; current.Visibility=True
-        for key,val in [('StablePartID',part['id']),('Evidence',part['evidence']),('MaterialCategory',part.get('material','steel')),('ComponentGroup',part.get('group','other'))]:
-            current.addProperty('App::PropertyString',key,'Reconstruction'); setattr(current,key,val)
-        shape=current.Shape
-        if shape.isNull() or not shape.isValid() or len(shape.Solids)!=1 or shape.Volume<=0: raise ValueError('Invalid single solid: '+part['id']+'; solids='+str(len(shape.Solids))+'; valid='+str(shape.isValid()))
+        built[part['id']]=(part,)+build_part(doc,part,params,batch_runs)
+        print('Built',part['id'],flush=True)
+    # The tips are touched by their new properties: this recompute is the state that gets saved, so it is the state that is validated and meshed.
+    doc.recompute()
+    for pid,(part,group,current) in list(built.items()):
+        if not single_valid_solid(current.Shape):
+            if not batch_runs: raise ValueError('Invalid single solid after recompute: '+pid)
+            print('Rebuilding',pid,'with one Boolean per feature: the batched result did not survive a recompute',flush=True)
+            remove_part(doc,group); group,current=build_part(doc,part,params,0); doc.recompute(); built[pid]=(part,group,current)
+            if not single_valid_solid(current.Shape): raise ValueError('Invalid single solid after recompute: '+pid)
+    for part in spec['parts']:
+        if part['id'] not in built:continue
+        current=built[part['id']][2]; shape=current.Shape
         tips.append(current); mesh=MeshPart.meshFromShape(Shape=shape,LinearDeflection=deflection_for(spec,part),AngularDeflection=.35,Relative=False);vertices,faces=mesh.Topology
         bb=shape.optimalBoundingBox(False,False)
         records.append(dict(id=part['id'],label=part['label'],group=part.get('group','other'),material=part.get('material','steel'),evidence=part['evidence'],
                             volume_mm3=shape.Volume,bounds_mm=[[bb.XMin,bb.YMin,bb.ZMin],[bb.XMax,bb.YMax,bb.ZMax]],
                             vertices_mm=[list(v) for v in vertices],triangles=faces,feature_count=len(part['features'])))
-        print('Built',part['id'],flush=True)
-    doc.recompute(); native=output/(spec['model_id']+'.FCStd'); step=output/(spec['model_id']+'.step')
+    native=output/(spec['model_id']+'.FCStd'); step=output/(spec['model_id']+'.step')
     doc.saveAs(str(native)); Part.export(tips,str(step))
     data=dict(schema_version=1,units='mm',coordinates='FreeCAD XYZ; divide by 1000 once in Blender',bounds_method='optimal_without_triangulation_or_shape_tolerance',model_id=spec['model_id'],scope=spec['scope'],parts=records)
     if spec.get('presentation'):data['presentation']=spec['presentation']

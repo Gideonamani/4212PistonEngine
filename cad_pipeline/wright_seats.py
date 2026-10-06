@@ -11,13 +11,16 @@ A pair of two moving parts has no host (cutting one moving part to clear another
 in the generator. Standard library only.
 
     python -m cad_pipeline.wright_seats derive --audit audit.json --geometry geometry.json --seats seats.json
+    python -m cad_pipeline.wright_seats refresh-swept --geometry geometry.json --seats seats.json
 """
-import argparse, json, math, re
+import argparse, bisect, json, math, re
 from pathlib import Path
 from cad_pipeline.spec import evaluate
 from cad_pipeline.wright_bodies import AXES, body
 
 CLEARANCE_MM = 0.15
+ENVELOPE_STEP_MM = 0.5            # radii of a swept envelope are rounded up to this step
+MIN_BAND_MM = 1.0                  # envelope bands thinner than this are folded into a neighbour
 
 # Groups ordered by how much they enclose: a static casting holds everything else.
 GROUP_RANK = ['crankcase', 'cover', 'valve_boxes', 'cylinders', 'bearings', 'induction', 'cooling', 'lubrication', 'camshafts',
@@ -95,14 +98,49 @@ def grow(feature, params, c, label):
 
 
 def swept_envelope(guest_id, geometry):
-    """Revolution envelope of a part that turns about a fixed axis: {axis (x, z), radius, y: [lo, hi]}, or None."""
+    """Stepped revolution envelope of a part that turns about a fixed axis: {axis (x, z), bands: [{radius, y: [lo, hi]}]}, or None.
+
+    The silhouette of the turning part, not a cylinder around all of it: a sliding gear with a narrow sleeve sweeps a wide thin disc
+    and a narrow long tube, and a host must be cleared only where each is."""
     axis = AXES.get(body(guest_id))
     if axis is None:
         return None
     part = next(p for p in geometry['parts'] if p['id'] == guest_id)
-    radius = max(math.hypot(v[0] - axis[0], v[2] - axis[1]) for v in part['vertices_mm'])
-    ys = [v[1] for v in part['vertices_mm']]
-    return dict(axis=list(axis), radius=round(radius, 4), y=[round(min(ys), 4), round(max(ys), 4)])
+    vertices = part['vertices_mm']
+    radius = [math.hypot(v[0] - axis[0], v[2] - axis[1]) for v in vertices]
+    level = lambda y: round(y, 4)
+    levels = sorted({level(v[1]) for v in vertices})
+    reach = [0.0] * max(len(levels) - 1, 1)
+    for tri in part['triangles']:
+        ys = [level(vertices[i][1]) for i in tri]
+        lo, hi = min(ys), max(ys)
+        if hi - lo < 1e-3:
+            continue                                 # a flat face: the walls beside it carry the radius
+        r = max(radius[i] for i in tri)
+        for k in range(bisect.bisect_left(levels, lo), bisect.bisect_left(levels, hi)):
+            reach[k] = max(reach[k], r)
+    bands = []
+    for k, r in enumerate(reach):
+        if r <= 0:
+            continue
+        r = math.ceil(r / ENVELOPE_STEP_MM - 1e-9) * ENVELOPE_STEP_MM         # rounded up, so a helix or a tessellated curve is a few bands, not hundreds
+        if bands and bands[-1]['radius'] == r and abs(bands[-1]['y'][1] - levels[k]) < 1e-3:
+            bands[-1]['y'][1] = levels[k + 1]
+        else:
+            bands.append(dict(radius=r, y=[levels[k], levels[k + 1]]))
+    merged = True
+    while merged and len(bands) > 1:                 # a band thinner than MIN_BAND_MM would leave a sliver in the host: fold it into its neighbour
+        merged = False
+        for k, band in enumerate(bands):
+            if band['y'][1] - band['y'][0] < MIN_BAND_MM:
+                neighbours = [j for j in (k - 1, k + 1) if 0 <= j < len(bands)]
+                j = max(neighbours, key=lambda j: bands[j]['radius'])
+                bands[j]['radius'] = max(bands[j]['radius'], band['radius'])
+                bands[j]['y'] = [min(bands[j]['y'][0], band['y'][0]), max(bands[j]['y'][1], band['y'][1])]
+                del bands[k]
+                merged = True
+                break
+    return dict(axis=list(axis), bands=bands)
 
 
 def apply_seats(parts, params, seats, clearance=CLEARANCE_MM):
@@ -111,9 +149,10 @@ def apply_seats(parts, params, seats, clearance=CLEARANCE_MM):
         host, guest = by_id[seat['host']], by_id[seat['guest']]
         if seat.get('swept'):                       # a part turning about a fixed axis clears the host through its whole revolution
             s = seat['swept']
-            host['features'].append(dict(primitive='cylinder', operation='cut', radius=round(s['radius'] + clearance, 6), height=round(s['y'][1] - s['y'][0] + 2 * clearance, 6),
-                                         origin=[s['axis'][0], round(s['y'][0] - clearance, 6), s['axis'][1]], axis=[0, 1, 0],
-                                         label=f"Swept clearance for {guest['id']} ({guest['label']}), {clearance} mm"))
+            for band in s.get('bands') or [dict(radius=s['radius'], y=s['y'])]:      # an older record is one band around the whole part
+                host['features'].append(dict(primitive='cylinder', operation='cut', radius=round(band['radius'] + clearance, 6), height=round(band['y'][1] - band['y'][0] + 2 * clearance, 6),
+                                             origin=[s['axis'][0], round(band['y'][0] - clearance, 6), s['axis'][1]], axis=[0, 1, 0],
+                                             label=f"Swept clearance for {guest['id']} ({guest['label']}), {clearance} mm"))
             continue
         for n, feature in enumerate(guest['features'], 1):
             tool = grow(feature, params, clearance, f"Seat for {guest['id']} ({guest['label']}), {clearance} mm clearance")
@@ -185,13 +224,23 @@ def derive(audit, geometry, existing, skip=()):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('command', choices=['derive'])
-    parser.add_argument('--audit', type=Path, nargs='+', required=True, help='audit report(s) of the rest pose and/or the motion (audit_motion.py output)')
+    parser.add_argument('command', choices=['derive', 'refresh-swept'])
+    parser.add_argument('--audit', type=Path, nargs='+', help='audit report(s) of the rest pose and/or the motion (audit_motion.py output)')
     parser.add_argument('--geometry', type=Path, required=True)
     parser.add_argument('--seats', type=Path, required=True)
     parser.add_argument('--skip', nargs='*', default=[], help='part ids that must be fixed in the generator, not seated')
     args = parser.parse_args()
     data = load(args.seats)
+    if args.command == 'refresh-swept':          # recompute every swept seat's envelope from the current geometry
+        geometry = json.loads(args.geometry.read_text())
+        for seat in data['seats']:
+            if seat.get('swept'):
+                seat['swept'] = swept_envelope(seat['guest'], geometry)
+        args.seats.write_text(json.dumps(data, indent=1) + '\n', encoding='utf-8')
+        print(sum(1 for s in data['seats'] if s.get('swept')), 'swept seats refreshed')
+        return
+    if not args.audit:
+        parser.error('derive needs --audit')
     items = []
     for path in args.audit:
         report = json.loads(path.read_text())

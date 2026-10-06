@@ -45,7 +45,7 @@ def main():
             for valve,sign in [('Intake',1),('Exhaust',-1)]:
                 head=objects[f'{valve}Head{i}'];cage=objects[f'{valve}Cage{i}']
                 check(f'{valve} {i} head is 2 inches',abs(head.Shape.BoundBox.XLength-50.8)<1e-6)
-                check(f'{valve} {i} cage has four open windows and four legs',all(air(f'{valve}Cage{i}',[415+27*math.cos(k*math.pi/2),y+27*math.sin(k*math.pi/2),sign*64]) for k in range(4)) and all(not air(f'{valve}Cage{i}',[415+27*math.cos(math.pi/4+k*math.pi/2),y+27*math.sin(math.pi/4+k*math.pi/2),sign*64]) for k in range(4)))
+                check(f'{valve} {i} cage has four open windows and four legs',all(air(f'{valve}Cage{i}',[415+27*math.cos(k*math.pi/2),y+27*math.sin(k*math.pi/2),sign*56]) for k in range(4)) and all(not air(f'{valve}Cage{i}',[415+27*math.cos(math.pi/4+k*math.pi/2),y+27*math.sin(math.pi/4+k*math.pi/2),sign*56]) for k in range(4)))
                 check(f'{valve} {i} stem clears guide and closed head clears cage',overlap(f'{valve}Stem{i}',f'{valve}Cage{i}')<1e-3 and overlap(f'{valve}Head{i}',f'{valve}Cage{i}')<1e-3)
                 opened=head.Shape.copy();opened.translate(A.Vector(0,0,-sign*params.valve_lift));check(f'{valve} {i} documented lift clears cage',opened.common(cage.Shape).Volume<1e-3)
                 check(f'{valve} {i} spring clears stem',overlap(f'{valve}Spring{i}',f'{valve}Stem{i}')<1e-3)
