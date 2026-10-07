@@ -143,5 +143,44 @@ class Inventory(unittest.TestCase):
             self.assertIn(token, text, token)
 
 
+class Grouping(unittest.TestCase):
+    """The viewer's tree: seven systems, each with a few assemblies, then the parts (cad_pipeline/langley_contract.py)."""
+
+    @classmethod
+    def setUpClass(cls):
+        from cad_pipeline import langley_contract as lc
+        cls.lc = lc
+        cls.parts = [p['id'] for p in json.loads((STUDY / 'part-spec.json').read_text())['parts']]
+
+    def test_every_part_matches_exactly_one_assembly_rule(self):
+        for part in self.parts:
+            hits = [aid for aid, _, pattern in self.lc._ASSEMBLY_RULES if pattern.match(part)]
+            self.assertEqual(len(hits), 1, f'{part}: {hits}')
+
+    def test_seven_systems_and_no_empty_assembly(self):
+        self.assertEqual([sid for sid, _, _ in self.lc.SYSTEMS], ['structure', 'power', 'gas', 'ignition', 'cooling', 'lubrication', 'output'])
+        used = {self.lc.assembly_of(part)[1] for part in self.parts}
+        self.assertEqual(used, {aid for aid, _, _, _ in self.lc.ASSEMBLIES}, 'every assembly holds a part')
+        self.assertLessEqual(len(self.lc.ASSEMBLIES), 32)
+        self.assertEqual({sid for _, sid, _, _ in self.lc.ASSEMBLIES}, {sid for sid, _, _ in self.lc.SYSTEMS})
+
+    def test_released_contract_tree_is_current(self):
+        released = json.loads((STUDY.parents[1] / 'web/langley-manly-balzer-1903-contract.json').read_text())
+        geometry = json.loads((STUDY / 'part-spec.json').read_text())
+        rebuilt = self.lc.build(geometry, released['asset_sha256'], motions=released['motions'])
+        self.assertEqual(released['groups'], json.loads(json.dumps(rebuilt['groups'])))
+        self.assertEqual([(p['id'], p['group'], p['groups']) for p in released['parts']], [(p['id'], p['group'], p['groups']) for p in rebuilt['parts']])
+
+    def test_the_story_chains_sit_together(self):
+        place = lambda part: self.lc.assembly_of(part)
+        self.assertEqual(place('ExhaustValve3')[0], place('PunchRod3')[0], 'valve and punch rod are in one system')
+        self.assertEqual(place('InletValve1')[0], 'gas')
+        self.assertEqual(place('Crankshaft')[0], 'power')
+        self.assertEqual(place('WaterInletRing')[0], 'cooling')
+        self.assertEqual(place('PumpBevelGear')[0], 'cooling')
+        self.assertEqual(place('WormWheel')[0], 'output')
+        self.assertEqual(place('CrankOilPipe')[0], 'lubrication')
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -50,19 +50,26 @@ test('the contract, the asset and the registry agree and label the motion illust
   assert.equal(contract.gearMeshes.length, 5);
 });
 
-test('every part sits in a system and a research component, and the tree can isolate either', () => {
-  const systems = contract.groups.filter(group => group.depth === 0), components = contract.groups.filter(group => group.depth === 1);
-  assert.equal(systems.length, 12); assert.ok(components.length >= 30);
+test('every part sits in one of seven systems and in an assembly, and the tree can isolate either', () => {
+  const systems = contract.groups.filter(group => group.depth === 0), assemblies = contract.groups.filter(group => group.depth === 1);
+  assert.deepEqual(systems.map(group => group.label), ['Engine Structure', 'Power Mechanism', 'Gas Exchange & Valve Train', 'Ignition', 'Cooling', 'Lubrication (gravity-fed)', 'Power Output & Transmission']);
+  assert.ok(systems.every(group => group.question) && assemblies.length >= 25 && assemblies.length <= 32, `${assemblies.length} assemblies`);
+  assert.ok(contract.groups.every(group => group.depth <= 1), 'two levels in the tree: system, assembly; the parts are the third');
   const ids = new Set(contract.groups.map(group => group.id));
   for (const part of contract.parts) {
     assert.ok(ids.has(part.group), `${part.id}: system ${part.group}`);
-    assert.ok(part.groups.length >= 1 && part.groups.every(id => ids.has(id)), `${part.id}: component group`);
+    assert.equal(part.groups.length, 1, `${part.id}: exactly one assembly`);
+    assert.ok(ids.has(part.groups[0]), `${part.id}: assembly ${part.groups[0]}`);
   }
   assert.equal(new Set(contract.groups.map(group => group.id)).size, contract.groups.length);
   const all = contract.parts.map(part => ({ ...part }));
-  assert.equal(groupComponentIds(all, 'crank').length, 3);
-  assert.deepEqual(groupComponentIds(all, 'timing').sort(), contract.parts.filter(part => part.group === 'timing').map(part => part.id).sort());
-  assert.ok(components.every(group => groupComponentIds(all, group.id).length >= 1));
+  assert.equal(all.length, 358);
+  assert.equal(groupComponentIds(all, 'power').length + groupComponentIds(all, 'structure').length + groupComponentIds(all, 'gas').length + groupComponentIds(all, 'ignition').length
+    + groupComponentIds(all, 'cooling').length + groupComponentIds(all, 'lubrication').length + groupComponentIds(all, 'output').length, 358, 'the seven systems partition the parts');
+  assert.equal(groupComponentIds(all, 'assembly:crankshaft').length, 1);
+  assert.deepEqual(groupComponentIds(all, 'assembly:cam').sort(), ['CamGearLarge', 'CamGearSmall', 'CamIdler', 'CamPinion', 'CamRing', 'CamStud']);
+  assert.ok(assemblies.every(group => groupComponentIds(all, group.id).length >= 1));
+  for (const system of systems) assert.equal(groupComponentIds(all, system.id).length, assemblies.filter(group => all.some(part => part.groups[0] === group.id && part.group === system.id)).reduce((n, group) => n + groupComponentIds(all, group.id).length, 0), `${system.label}: its assemblies hold exactly its parts`);
 });
 
 test('the drive ratios hold through the baked cycle: cam -1/4, ignition gears 0.5 against and 2.5 with the crank', () => {
