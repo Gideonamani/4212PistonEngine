@@ -1,0 +1,374 @@
+{
+  "schema_version": 1,
+  "family": "cam",
+  "summary": "The rotating profile that converts shaft rotation into timed valve motion through a follower, rocker or push rod.",
+  "variants": [
+    {
+      "id": "cam/separate-lobes-on-hollow-shaft",
+      "name": "Separate cam lobes on a hollow chain-driven camshaft",
+      "applies_to": "Four-cylinder engine with rocker-operated exhaust valves (Wright 1903)",
+      "distinguishing_features": [
+        "hollow shaft with locating washers",
+        "one separate lobe per exhaust valve",
+        "three bearing supports",
+        "driven by a chain from a 6-tooth to a 12-tooth sprocket"
+      ],
+      "dimensions": [
+        {
+          "name": "crank sprocket teeth",
+          "value": 6,
+          "unit": "count",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "wright-1903/revision-2",
+              "source": "L1",
+              "locator": "source tooth count (part-spec.json crank_teeth)"
+            },
+            {
+              "study": "wright-1903/revision-2",
+              "source": "N1",
+              "locator": "NASA Glenn Timing System"
+            }
+          ]
+        },
+        {
+          "name": "cam sprocket teeth",
+          "value": 12,
+          "unit": "count",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "wright-1903/revision-2",
+              "source": "L1",
+              "locator": "source tooth count (part-spec.json cam_teeth)"
+            },
+            {
+              "study": "wright-1903/revision-2",
+              "source": "N1",
+              "locator": "NASA Glenn Timing System"
+            }
+          ]
+        },
+        {
+          "name": "speed ratio, cam over crank",
+          "value": 0.5,
+          "unit": "ratio",
+          "status": "derived",
+          "basis": "12 cam teeth over 6 crank teeth gives two crank turns per cam turn."
+        },
+        {
+          "name": "lobe count",
+          "value": 4,
+          "unit": "count",
+          "status": "derived",
+          "basis": "One exhaust lobe per cylinder; inventory 36 lists ExhaustCam1 to ExhaustCam4."
+        },
+        {
+          "name": "bearing supports",
+          "value": 3,
+          "unit": "count",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "wright-1903/revision-2",
+              "source": "H1",
+              "locator": "Figure 5, key 2 (\"Three shaft supports\")"
+            }
+          ]
+        },
+        {
+          "name": "lobe base radius",
+          "value": 16.0,
+          "unit": "mm",
+          "status": "inferred",
+          "basis": "Teaching dimension in part-spec.json (cam_base_radius)."
+        }
+      ],
+      "construction": [
+        {
+          "operation": "add",
+          "primitive": "tube",
+          "note": "Hollow camshaft",
+          "part": "shaft"
+        },
+        {
+          "operation": "add",
+          "primitive": "cylinder",
+          "note": "Base circle boss",
+          "part": "lobe"
+        },
+        {
+          "operation": "add",
+          "primitive": "cylinder",
+          "note": "Lobe boss offset from the axis (illustrative dwell profile, not a cam curve)",
+          "part": "lobe"
+        },
+        {
+          "operation": "cut",
+          "primitive": "cylinder",
+          "note": "Shaft bore",
+          "part": "lobe"
+        }
+      ],
+      "function": {
+        "role": "Open the exhaust valves, once per two crank turns, through the rockers.",
+        "motion": "Turns at half crank speed, driven by the chain; each lobe lifts its rocker once per revolution.",
+        "interfaces": [
+          {
+            "name": "shaft journals",
+            "mates_with": "cam bearings",
+            "kind": "revolute"
+          },
+          {
+            "name": "lobes",
+            "mates_with": "camshaft, located by washers",
+            "kind": "fixed"
+          },
+          {
+            "name": "lobe surface",
+            "mates_with": "rocker roller",
+            "kind": "cam-follower"
+          }
+        ]
+      },
+      "envelope": [
+        {
+          "statement": "Hollow shaft with locating washers and separate cam parts.",
+          "status": "documented",
+          "evidence": [
+            {
+              "study": "wright-1903/revision-2",
+              "source": "H1",
+              "locator": "Figure 5, key 36"
+            }
+          ]
+        },
+        {
+          "statement": "Lobe shape and valve phases are illustrative: the study offers no authenticated running animation.",
+          "status": "illustrative",
+          "basis": "Inventory gaps, \"Cam law and phases\"; the lobes are built from cylinders."
+        }
+      ],
+      "intent": [
+        {
+          "statement": "Separate lobes let each one be located and phased on the shaft by washers.",
+          "status": "inferred",
+          "basis": "Read from inventory 36; no source in the study states the reason."
+        }
+      ],
+      "manufacturing": {
+        "material": "steel",
+        "process": "hollow shaft with separate lobes and washers",
+        "status": "documented",
+        "evidence": [
+          {
+            "study": "wright-1903/revision-2",
+            "source": "H1",
+            "locator": "Figure 5, key 36"
+          }
+        ]
+      },
+      "recipe": {
+        "status": "none"
+      },
+      "instances": [
+        {
+          "study": "wright-1903/revision-2",
+          "components": [
+            "36"
+          ],
+          "part_ids": [
+            "Camshaft",
+            "ExhaustCam1",
+            "ExhaustCam2",
+            "ExhaustCam3",
+            "ExhaustCam4"
+          ],
+          "validation": "Interference audit of the exported file is clean: 1,121 neighbouring pairs at rest, 133 poses of the baked clip, 0 overlaps (interference-audit.json); geometry is valid but historical accuracy is not verified (cad-validation.json)."
+        }
+      ],
+      "gaps": [
+        "Cam law and phases are unknown, so the lobe profile is a placeholder.",
+        "Chain pitch is a teaching estimate; the source confirms tooth counts, not the pitch."
+      ]
+    },
+    {
+      "id": "cam/annular-double-lobe-ring-cam",
+      "name": "Annular double-lobe ring cam with an integral tooth ring",
+      "applies_to": "Five-cylinder radial with five punch-rod exhaust valves (Langley / Manly-Balzer)",
+      "distinguishing_features": [
+        "one ring journalled on the outside of the port hub",
+        "two lobes (double-pointed)",
+        "tooth ring at its outboard end takes the drive",
+        "five rollers ride on one cam track"
+      ],
+      "dimensions": [
+        {
+          "name": "speed ratio, cam over crank",
+          "value": -0.25,
+          "unit": "ratio",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 237 (one quarter speed, reversed)"
+            }
+          ]
+        },
+        {
+          "name": "lobe count",
+          "value": 2,
+          "unit": "count",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 237 (\"double-pointed\")"
+            }
+          ]
+        },
+        {
+          "name": "punch rod gap at rest",
+          "value": 0.397,
+          "unit": "mm",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 237 (1/64 in)"
+            }
+          ]
+        },
+        {
+          "name": "cam rise",
+          "value": 12.4,
+          "unit": "mm",
+          "status": "inferred",
+          "basis": "Valve lift 12.0 mm plus the documented gap; lift and lobe form are illustrative (part-spec.json cam_rise)."
+        },
+        {
+          "name": "lobe half width",
+          "value": 28.0,
+          "unit": "deg",
+          "status": "illustrative",
+          "basis": "Cam degrees; 28 cam degrees is 112 crank degrees (part-spec.json cam_lobe_half_width)."
+        },
+        {
+          "name": "cam-ring tooth count",
+          "value": 36,
+          "unit": "count",
+          "status": "illustrative",
+          "basis": "Chosen with the rest of the train to give net -1/4 exactly (part-spec.json cam_train_module; langley_drive.py)."
+        }
+      ],
+      "construction": [
+        {
+          "operation": "add",
+          "primitive": "prism",
+          "note": "Involute teeth on the ring, from a derived outline"
+        },
+        {
+          "operation": "add",
+          "primitive": "prism",
+          "note": "Double-pointed cam track, from a derived outline"
+        },
+        {
+          "operation": "cut",
+          "primitive": "cylinder",
+          "note": "Lightening pockets in the tooth ring and the cam track",
+          "count": 2
+        },
+        {
+          "operation": "add",
+          "primitive": "tube",
+          "note": "Cam ring sleeve"
+        },
+        {
+          "operation": "cut",
+          "primitive": "cylinder",
+          "note": "Hub bore"
+        }
+      ],
+      "function": {
+        "role": "Lift all five exhaust valves from one component.",
+        "motion": "Journalled on the port hub, turns at one quarter of crank speed in the reverse direction; two lobes pass each of five rollers in turn.",
+        "interfaces": [
+          {
+            "name": "bore",
+            "mates_with": "port hub",
+            "kind": "revolute"
+          },
+          {
+            "name": "tooth ring",
+            "mates_with": "cam-train idler",
+            "kind": "gear-mesh"
+          },
+          {
+            "name": "cam track",
+            "mates_with": "punch rod rollers",
+            "kind": "cam-follower"
+          }
+        ]
+      },
+      "envelope": [
+        {
+          "statement": "A cam at minus one quarter of crank speed with two lobes is the only one that closes with the firing order 1-3-5-2-4; forward or half speed fail.",
+          "status": "derived",
+          "basis": "scripts/test_langley_research.py (firing_closure); research.md."
+        },
+        {
+          "statement": "Hardened rollers on the cam; punch rods stand 1/64 in from the exhaust stems.",
+          "status": "documented",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 237"
+            },
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "A1",
+              "locator": "p. 180"
+            }
+          ]
+        }
+      ],
+      "intent": [
+        {
+          "statement": "One double-lobed ring serves all five exhaust valves, so the engine needs a single cam and no camshaft.",
+          "status": "inferred",
+          "basis": "The arrangement is documented (M1 p. 237; A1 p. 108); its purpose is not stated."
+        }
+      ],
+      "manufacturing": {
+        "material": "steel",
+        "process": "not stated",
+        "status": "inferred",
+        "basis": "The study records steel (part-spec.json) and cites no statement of material or process for the ring cam."
+      },
+      "recipe": {
+        "status": "none"
+      },
+      "instances": [
+        {
+          "study": "langley-manly-balzer-1903",
+          "components": [
+            "L24"
+          ],
+          "part_ids": [
+            "CamRing"
+          ],
+          "validation": "Interference audit of the exported file is clean: 1,492 neighbouring pairs at rest, 133 poses of the baked clip, 0 overlaps (interference-audit.json); mass check against the Memoir weight table in build-notes.md."
+        }
+      ],
+      "gaps": [
+        "Lobe profile is illustrative.",
+        "The form of the teeth is not documented and is drawn external (inventory L24)."
+      ]
+    }
+  ]
+}

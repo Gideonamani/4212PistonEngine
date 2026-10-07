@@ -1,0 +1,372 @@
+{
+  "schema_version": 1,
+  "family": "connecting-rod",
+  "summary": "The link that carries piston force to the crank pin and turns the reciprocating motion into rotation.",
+  "variants": [
+    {
+      "id": "connecting-rod/master-and-link-slipper-shoe",
+      "name": "Master rod with four link rods on slipper shoes",
+      "applies_to": "Five-cylinder radial on a single crank pin (Langley / Manly-Balzer)",
+      "distinguishing_features": [
+        "one master rod with an integral sleeve half carries the crank-pin load",
+        "four link rods end in bronze slipper shoes that slide on the master sleeve",
+        "7/8 in rods, link rods with a 5/8 in hole",
+        "split bronze lining on the crank pin"
+      ],
+      "dimensions": [
+        {
+          "name": "rod diameter",
+          "value": 22.225,
+          "unit": "mm",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 240 (7/8 in)"
+            }
+          ]
+        },
+        {
+          "name": "link rod bore",
+          "value": 15.875,
+          "unit": "mm",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 240 (5/8 in hole)"
+            }
+          ]
+        },
+        {
+          "name": "link rod count",
+          "value": 4,
+          "unit": "count",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "pp. 237-238, 240"
+            }
+          ]
+        },
+        {
+          "name": "crank radius",
+          "value": 69.85,
+          "unit": "mm",
+          "status": "derived",
+          "basis": "Half the documented stroke of 5.5 in (A1 p. 156)."
+        },
+        {
+          "name": "rod length, gudgeon axis to crank pin axis",
+          "value": 288.0,
+          "unit": "mm",
+          "status": "inferred",
+          "basis": "Not documented. Bounded by shoe clearance (about 278 mm for 55 degree shoes) and the 37 in overall diameter (part-spec.json rod_length)."
+        },
+        {
+          "name": "shoe angular width",
+          "value": 50.0,
+          "unit": "deg",
+          "status": "inferred",
+          "basis": "M1 p. 237 says \"slightly less than sixty degrees\"; adjacent rods approach to 55.6 degrees at the modelled proportions (part-spec.json shoe_angular_width)."
+        }
+      ],
+      "construction": [
+        {
+          "operation": "add",
+          "primitive": "revolve",
+          "note": "Upper sleeve half, integral with the rod, from a derived profile",
+          "part": "master rod"
+        },
+        {
+          "operation": "add",
+          "primitive": "cone",
+          "note": "Flare into the sleeve",
+          "part": "master rod"
+        },
+        {
+          "operation": "add",
+          "primitive": "cylinder",
+          "note": "Solid 7/8 in rod",
+          "part": "master rod"
+        },
+        {
+          "operation": "add",
+          "primitive": "tube",
+          "note": "Little end with a cone neck; cut a bore for the gudgeon pin",
+          "part": "master rod"
+        },
+        {
+          "operation": "add",
+          "primitive": "tube",
+          "note": "Link rod: 7/8 in tube with a 5/8 in hole, little end, cone neck",
+          "part": "link rod"
+        },
+        {
+          "operation": "add",
+          "primitive": "revolve",
+          "note": "Bronze slipper shoe as an arc of the sleeve radius, plus a boss",
+          "part": "shoe"
+        }
+      ],
+      "function": {
+        "role": "Carry piston load into one shared crank pin: the master rod directly, the link rods through shoes that slide on the master sleeve.",
+        "motion": "The master rod swings with the crank pin; each link rod swings about its own gudgeon pin while its shoe slides on the master sleeve.",
+        "interfaces": [
+          {
+            "name": "master sleeve bore",
+            "mates_with": "crank pin (with bronze lining)",
+            "kind": "revolute"
+          },
+          {
+            "name": "slipper shoes",
+            "mates_with": "master sleeve outer surface",
+            "kind": "sliding-contact"
+          },
+          {
+            "name": "little end",
+            "mates_with": "gudgeon pin",
+            "kind": "revolute"
+          },
+          {
+            "name": "shoe retention",
+            "mates_with": "cone nuts and jam nuts",
+            "kind": "threaded"
+          }
+        ]
+      },
+      "envelope": [
+        {
+          "statement": "Adjacent link rods are 72 degrees apart and approach each other as they swing, so shoe width and rod length are bounded together.",
+          "status": "derived",
+          "basis": "Closure check in operating-motion.md; scripts/test_langley_research.py (min_rod_separation)."
+        },
+        {
+          "statement": "The 37 in overall engine diameter bounds the rod length from above.",
+          "status": "derived",
+          "basis": "part-spec.json rod_length rationale; A1 p. 156 gives the diameter."
+        }
+      ],
+      "intent": [
+        {
+          "statement": "Master-and-link rods let all five pistons work on one crank pin, which makes a radial engine with a single throw possible.",
+          "status": "inferred",
+          "basis": "Standard function of the arrangement; inventory L05 and L06 record it (M1 pp. 237-238) without stating the purpose."
+        }
+      ],
+      "manufacturing": {
+        "material": "steel rods and sleeve, bronze shoes and lining",
+        "process": "forged rod with integral sleeve half; bronze shoes and split lining",
+        "status": "documented",
+        "evidence": [
+          {
+            "study": "langley-manly-balzer-1903",
+            "source": "M1",
+            "locator": "pp. 237-238 (inventory L05, L06)"
+          }
+        ]
+      },
+      "recipe": {
+        "status": "none"
+      },
+      "instances": [
+        {
+          "study": "langley-manly-balzer-1903",
+          "components": [
+            "L05",
+            "L06"
+          ],
+          "part_ids": [
+            "MasterRod",
+            "LinkRod2",
+            "LinkRod3",
+            "LinkRod4",
+            "LinkRod5",
+            "LinkShoe2",
+            "LinkShoe3",
+            "LinkShoe4",
+            "LinkShoe5"
+          ],
+          "validation": "Interference audit of the exported file is clean: 1,492 neighbouring pairs at rest, 133 poses of the baked clip, 0 overlaps (interference-audit.json); mass check against the Memoir weight table in build-notes.md."
+        }
+      ],
+      "gaps": [
+        "Rod length is not documented: the Plate 78 fold-out hides the strip that would measure it.",
+        "How the halves of the master sleeve are held together is not drawn clearly enough to state (inventory L05).",
+        "Model mass of the rod group is 1.45 times the weight table line W02 (7,366 g against 5,070 g): unresolved (build-notes.md)."
+      ]
+    },
+    {
+      "id": "connecting-rod/three-piece-tube-and-bronze-ends",
+      "name": "Three-piece rod: steel tube with threaded bronze ends",
+      "applies_to": "Four-cylinder water-cooled engine with one crank throw per cylinder (Wright 1903)",
+      "distinguishing_features": [
+        "seamless steel tube",
+        "separate phosphor-bronze big end with a split cap",
+        "separate bronze little end with a clamp",
+        "direct threaded joints held by retaining pins"
+      ],
+      "dimensions": [
+        {
+          "name": "rod length",
+          "value": 245,
+          "unit": "mm",
+          "status": "inferred",
+          "basis": "Teaching dimension in part-spec.json (rod_length); not a transcribed production dimension."
+        },
+        {
+          "name": "tube outer diameter",
+          "value": 16,
+          "unit": "mm",
+          "status": "inferred",
+          "basis": "RodTube1 feature radius 8 mm in part-spec.json."
+        },
+        {
+          "name": "tube bore",
+          "value": 10,
+          "unit": "mm",
+          "status": "inferred",
+          "basis": "RodTube1 feature inner radius 5 mm in part-spec.json."
+        },
+        {
+          "name": "rod count",
+          "value": 4,
+          "unit": "count",
+          "status": "derived",
+          "basis": "One rod per cylinder; the study specifies four cylinders (part-spec.json cylinders, sources H1 and L1)."
+        },
+        {
+          "name": "crank radius",
+          "value": 50.8,
+          "unit": "mm",
+          "status": "derived",
+          "basis": "Half the documented stroke of 4 in (H1 pp. 10-11)."
+        }
+      ],
+      "construction": [
+        {
+          "operation": "add",
+          "primitive": "tube",
+          "note": "Seamless steel tube; cut seats for the two retaining pins",
+          "part": "tube"
+        },
+        {
+          "operation": "add",
+          "primitive": "cylinder",
+          "note": "Big end: bearing boss and block, bored for the journal",
+          "part": "big end"
+        },
+        {
+          "operation": "cut",
+          "primitive": "box",
+          "note": "Big end split cap face; cut a thread engagement socket and seats for bolts and shim",
+          "part": "big end"
+        },
+        {
+          "operation": "add",
+          "primitive": "tube",
+          "note": "Little end: annulus and boss, bored for the wrist pin",
+          "part": "little end"
+        },
+        {
+          "operation": "cut",
+          "primitive": "box",
+          "note": "Little-end clamp split; cut a thread engagement socket",
+          "part": "little end"
+        }
+      ],
+      "function": {
+        "role": "Transmit the reversing load between the wrist pin and the crank journal.",
+        "motion": "Swings with the crank: the big end turns on the journal, the little end oscillates on the wrist pin.",
+        "interfaces": [
+          {
+            "name": "big end bore",
+            "mates_with": "crankshaft journal",
+            "kind": "revolute"
+          },
+          {
+            "name": "little end bore",
+            "mates_with": "wrist pin",
+            "kind": "revolute"
+          },
+          {
+            "name": "tube ends",
+            "mates_with": "bronze big and little ends",
+            "kind": "threaded"
+          }
+        ]
+      },
+      "envelope": [
+        {
+          "statement": "The joints are the Science Museum direct-thread type, steel tube into bronze ends; the Smithsonian adapter and brazed route is excluded.",
+          "status": "documented",
+          "evidence": [
+            {
+              "study": "wright-1903/revision-2",
+              "source": "H1",
+              "locator": "pp. 26-27; Figures 5-7 (inventory S03, conflict \"Rod joints\")"
+            }
+          ]
+        },
+        {
+          "statement": "Rod swing is about 12 degrees either side of the axis.",
+          "status": "derived",
+          "basis": "asin(crank radius 50.8 mm / rod length 245 mm) = 11.97 degrees; rod length is inferred, so the swing is inferred too."
+        }
+      ],
+      "intent": [
+        {
+          "statement": "A thin steel tube with bronze ends puts the bearing metal only where it runs on a shaft or pin and keeps the rod light.",
+          "status": "inferred",
+          "basis": "Read from the construction recorded in inventory S03; no source in the study states the reason."
+        }
+      ],
+      "manufacturing": {
+        "material": "steel tube, phosphor-bronze ends",
+        "process": "threaded tube-to-end joints with retaining pins",
+        "status": "documented",
+        "evidence": [
+          {
+            "study": "wright-1903/revision-2",
+            "source": "H1",
+            "locator": "pp. 26-27; Figures 5-7 (inventory S03)"
+          }
+        ]
+      },
+      "recipe": {
+        "status": "none"
+      },
+      "instances": [
+        {
+          "study": "wright-1903/revision-2",
+          "components": [
+            "S03"
+          ],
+          "part_ids": [
+            "RodTube1",
+            "RodTube2",
+            "RodTube3",
+            "RodTube4",
+            "BigEnd1",
+            "BigEnd2",
+            "BigEnd3",
+            "BigEnd4",
+            "LittleEnd1",
+            "LittleEnd2",
+            "LittleEnd3",
+            "LittleEnd4"
+          ],
+          "validation": "Interference audit of the exported file is clean: 1,121 neighbouring pairs at rest, 133 poses of the baked clip, 0 overlaps (interference-audit.json); geometry is valid but historical accuracy is not verified (cad-validation.json)."
+        }
+      ],
+      "gaps": [
+        "Thread fits and attachment sizes are estimates.",
+        "Rod length is a teaching dimension, so the swing angle is not a documented value."
+      ]
+    }
+  ]
+}

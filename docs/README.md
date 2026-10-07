@@ -29,6 +29,7 @@ publish), then `AGENTS.md` (storage and validation rules), then the guides here.
 | [assembly-interference.md](assembly-interference.md) | guide | Parts touch but never overlap: the gear train, the CAD checks and the swept audit that enforce it. |
 | [galaxy-a16-release-check.md](galaxy-a16-release-check.md) | guide | The release check to run on a Samsung Galaxy A16 in Chrome. |
 | [accessory-shape-review.md](accessory-shape-review.md) | record | Manual illustration and model shape audit, 3 October 2026. |
+| [ai-mechanical-engineer.md](ai-mechanical-engineer.md) | record | AI Mechanical Engineer vision, structure and roadmap, with the fortnightly review log (a living record, updated at each review), 7 October 2026. |
 | [cycle-cues-reference.md](cycle-cues-reference.md) | record | Operating-cycle cue reference, 12 September 2026. |
 | [cycle-preview-verification.md](cycle-preview-verification.md) | record | Operating-cylinder preview verification, 11 September 2026. |
 | [drive-delivery-test.md](drive-delivery-test.md) | record | The Google Drive delivery experiment, 8 September 2026. |
