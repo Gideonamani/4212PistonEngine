@@ -23,3 +23,7 @@ playwright-report/
 cad-studies/*/geometry.json
 *_build.log
 *.FCBak
+# Private native-CAD archives (zips of FCStd, STEP, Blender and records) live in Google Drive, never in Git.
+cad-studies/**/*.zip
+# Google Drive for desktop writes this into every folder it syncs (web/published-models holds only ignored model files).
+desktop.ini
