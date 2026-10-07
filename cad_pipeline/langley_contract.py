@@ -5,21 +5,66 @@ shown with every motion). Descriptions and the component level of the tree come 
 (cad-studies/langley-manly-balzer-1903/inventory.json), so what a student reads for a part is what the research recorded for the component it belongs to: its
 function, interfaces, the modelling decision and the source locator. Standard library only.
 """
-import json, math
+import json, math, re
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 STUDY = REPO / 'cad-studies/langley-manly-balzer-1903'
 
-SYSTEM_TITLES = {
-    'crank': 'Hollow crankshaft with one crank pin', 'rods': 'Master rod, link rods and slipper shoes', 'pistons': 'Cast-iron pistons, rings and gudgeon pins',
-    'cylinders': 'Steel cylinders, liners and water jackets', 'valves': 'Automatic inlet and mechanical exhaust valves', 'timing': 'Ring cam, reversing gear train and punch rods',
-    'ignition': 'Jump-spark ignition: plugs, sparker and distributor', 'lubrication': 'Oil cups', 'frame': 'Crank-chamber drums, bearings and bed plates',
-    'pipework': 'Gas and water manifolds', 'starting': 'Worm starter and pump drive', 'flywheel': 'Balance arms, shaft stubs and flywheels',
-}
-GROUP_SYSTEM = dict(crank='crank', rod='rods', piston='pistons', shell='cylinders', liner='cylinders', cylinder='cylinders', jacket='cylinders', cooling='cylinders',
-                    valve='valves', spring='valves', timing='timing', ignition='ignition', lubrication='lubrication', drum='frame', bearing='frame', bedplate='frame', pipe='pipework',
-                    start='starting', pump='starting', coupling='flywheel', balance='flywheel', flywheel='flywheel')
+# Seven systems, each answering one question a student asks about the engine, then the assemblies that make a system up, then the parts. The first rule that
+# matches a part's id decides its system and assembly, so every part sits in exactly one of each. Functional systems and physical assemblies are not the same
+# thing (a cylinder holds parts of five systems), so the tree follows function; the cylinder number is in each part's label.
+SYSTEMS = [
+    ('structure', 'Engine Structure', 'What holds the engine together?'),
+    ('power', 'Power Mechanism', 'How does combustion turn the shaft?'),
+    ('gas', 'Gas Exchange & Valve Train', 'How does mixture get in and exhaust get out?'),
+    ('ignition', 'Ignition', 'How is combustion started?'),
+    ('cooling', 'Cooling', 'How is heat removed?'),
+    ('lubrication', 'Lubrication (gravity-fed)', 'How are the moving parts protected?'),
+    ('output', 'Power Output & Transmission', 'How does engine power reach the propellers?'),
+]
+# (assembly id, system id, assembly title, pattern over part ids)
+ASSEMBLIES = [
+    ('drums', 'structure', 'Crank-chamber drums and bed plates', r'^(PortDrum|StbdDrum|PortBedPlate|StbdBedPlate|StbdDrumBolts\d)$'),
+    ('bearings', 'structure', 'Main bearings', r'^(PortMainBushing|StbdMainBushing|PortDrumBushingFlange)$'),
+    ('barrels', 'structure', 'Cylinder barrels, heads and liners', r'^(CylShell|Chamber|CylLiner)\d$'),
+    ('flanges', 'structure', 'Cylinder flanges and bolts', r'^(CylFlange\d|CylBolt\d_\d)$'),
+    ('crankshaft', 'power', 'Crankshaft and crank pin', r'^Crankshaft$'),
+    ('pistons', 'power', 'Piston assemblies (piston, rings, gudgeon pin, retainers)', r'^(Piston\d|PistonRing\d_\d|GudgeonPin\d|PinRetainer\d_[ab])$'),
+    ('master', 'power', 'Master rod and sleeve', r'^(MasterRod|MasterSleeveCap|ConeNut(Port|Stbd)|JamNut(Port|Stbd))$'),
+    ('links', 'power', 'Link rods', r'^LinkRod\d$'),
+    ('slippers', 'power', 'Bearings and slipper shoes', r'^(MasterLining(Upper|Lower)|LinkShoe\d|WristBush\d)$'),
+    ('manifold', 'gas', 'Induction: inlet gas manifold', r'^(InletRing[ABC]|InletFlange[ABC]\d|CarbConnection|AirValvePipe|AirValveSleeve)$'),
+    ('inlet', 'gas', 'Induction: automatic inlet valves', r'^(InletValve|InletSeat|InletSeatNut|InletSpring|InletSpringCap)\d$'),
+    ('exhaust', 'gas', 'Exhaust: valves and outlets', r'^(ExhaustValve|ExhaustSeat|ExhaustGuide|ExhaustSpring|ExhaustSpringCollar|ExhaustSpringNut|ExhaustOutlet)\d$'),
+    ('cam', 'gas', 'Exhaust: ring cam and gear train', r'^(CamRing|CamPinion|CamGearLarge|CamGearSmall|CamIdler|CamStud)$'),
+    ('punch', 'gas', 'Exhaust: punch rods', r'^(PunchRod|PunchRoller|PunchGuide)\d$'),
+    ('plugs', 'ignition', 'Spark plugs', r'^Plug(Shell|Insulator|Electrode)\d$'),
+    ('ignition-drive', 'ignition', 'Ignition drive sleeve and gears', r'^(SparkSleeve|SparkSleeveRing|SparkPinion|SparkGearLarge)$'),
+    ('sparker', 'ignition', 'Primary sparker and timing handle', r'^(SparkerCam|SparkerPawl|SparkerSpring|SparkerBracket|SparkerContact|SparkTimingClamp|SparkTimingLever)$'),
+    ('distributor', 'ignition', 'Distributor and wires', r'^(DistributorDisc|DistributorBrush|CommutatorBody|CommutatorSegment\d|SparkWire\d)$'),
+    ('jackets', 'cooling', 'Water jackets and stubs', r'^(Jacket|JacketRing|WaterInletStub|WaterOutletStub)\d$'),
+    ('water-in', 'cooling', 'Water inlet manifold', r'^(WaterInletRing|WaterInletRiser)$'),
+    ('water-out', 'cooling', 'Water outlet manifold', r'^(WaterOutletRing|WaterOutletConnection(Front|Rear))$'),
+    ('pump', 'cooling', 'Pump drive', r'^(PumpBevelGear|PumpBevelPinion|PumpShaftUpper|PumpShaftBearing)$'),
+    ('cups', 'lubrication', 'Oil cups and tubes', r'^(OilCup|OilCupTube)\d$|^(PortOilCup|PortOilCupTube)$'),
+    ('feed', 'lubrication', 'Crankshaft oil feed', r'^(CrankPlug|CrankOilPipe)$'),
+    ('flywheels', 'output', 'Flywheels', r'^Flywheel(Rim|Hub|Spoke)(Port|Stbd)\d*$'),
+    ('balance', 'output', 'Balance arms and braces', r'^Balance(Arm|Brace|BracePlate|BraceCollar)(Port|Stbd)$'),
+    ('couplings', 'output', 'Couplings and shaft stubs', r'^(CouplingFlange|TransShaftStub)(Port|Stbd)$'),
+    ('starting', 'output', 'Starting mechanism', r'^(WormWheel|StartWorm|StartShaft|StartBracketUpper|StartBracketLower|StartPawlPlug)$'),
+]
+_ASSEMBLY_RULES = [(aid, sid, re.compile(pattern)) for aid, sid, _, pattern in ASSEMBLIES]
+
+
+def assembly_of(part_id):
+    """(system id, assembly id) of a part, or raises: every part must be placed."""
+    for aid, sid, pattern in _ASSEMBLY_RULES:
+        if pattern.match(part_id):
+            return sid, aid
+    raise ValueError('Part is in no assembly: ' + part_id)
+
+
 SCOPE = ('Source-led teaching reconstruction of the large 5 x 5.5 in water-cooled radial engine of Langley\'s Aerodrome A (built 1901), drawn from Manly\'s 1911 Memoir '
          '(Plates 78-81) and the 1971 Annals of Flight 6; it is not the museum object, not a manufacturing drawing and not a running model. It covers the engine proper, the '
          'two flywheels and short stubs of the transmission shafts. Dimensions the plates do not give are estimates (the rod length, the cylinder flange height, wall thicknesses '
@@ -64,28 +109,40 @@ def build(geometry, asset_sha256, inventory=None, motions=None):
     for component in inventory['components']:
         for part_id in component.get('part_ids', []):
             by_part.setdefault(part_id, []).append(component)
-    parts, system_of_component = [], {}
+    parts, used = [], set()
     for p in geometry['parts']:
-        system = GROUP_SYSTEM[p['group']]
+        system, assembly = assembly_of(p['id'])
+        used.add(assembly)
         components = by_part.get(p['id'], [])
         if components:
             c = components[0]
             description = f"{c['name']}. {c['function']}. Interfaces: {c['interfaces']}. {c['decision'].rstrip('.')}. Source: {c['locator']}."
             disposition = c.get('disposition', 'simplified')
-            for c in components:
-                system_of_component.setdefault(c['id'], system)
         else:
             description, disposition = p['label'] + '.', 'simplified'
-        parts.append(dict(id=p['id'], label=p['label'], group=system, groups=[f"component:{c['id']}" for c in components],
+        parts.append(dict(id=p['id'], label=p['label'], group=system, groups=[f'assembly:{assembly}'], component=components[0]['id'] if components else None,
                           description=description, evidence=p['evidence'], material=p['material'], disposition=disposition,
                           shape_status='Reconstructed from the 1911 Memoir drawings; dimensions the plates omit are estimated; instructor review pending'))
     tree = []
-    for system, title in SYSTEM_TITLES.items():
-        if not any(p['group'] == system for p in parts):
-            continue
-        tree.append(dict(id=system, label=title, depth=0))
-        for c in sorted((c for c in inventory['components'] if system_of_component.get(c['id']) == system), key=lambda c: (len(str(c['id'])), str(c['id']))):
-            if any(f"component:{c['id']}" in p['groups'] for p in parts):
-                tree.append(dict(id=f"component:{c['id']}", label=c['name'], depth=1))
+    for system, title, question in SYSTEMS:
+        tree.append(dict(id=system, label=title, depth=0, question=question))
+        for aid, sid, atitle, _ in ASSEMBLIES:
+            if sid == system and aid in used:
+                tree.append(dict(id=f'assembly:{aid}', label=atitle, depth=1))
     return dict(asset_sha256=asset_sha256, parts=parts, groups=tree, reference=REFERENCE, scope=SCOPE, motions=motions or [], viewpoint=VIEWPOINT,
                 remoteDisplays=[], gearMeshes=gear_meshes())
+
+
+def main():
+    """Rebuild the tree and part list of a released contract from part-spec.json, keeping its asset hash and motions: python -m cad_pipeline.langley_contract web/langley-manly-balzer-1903-contract.json"""
+    import sys
+    path = Path(sys.argv[1])
+    old = json.loads(path.read_text(encoding='utf-8'))
+    geometry = json.loads((STUDY / 'part-spec.json').read_text(encoding='utf-8'))
+    new = build(geometry, old['asset_sha256'], motions=old['motions'])
+    path.write_text(json.dumps(new, indent=2) + '\n', encoding='utf-8')
+    print(f"{len(new['parts'])} parts, {sum(1 for g in new['groups'] if g['depth'] == 0)} systems, {sum(1 for g in new['groups'] if g['depth'] == 1)} assemblies -> {path}")
+
+
+if __name__ == '__main__':
+    main()
