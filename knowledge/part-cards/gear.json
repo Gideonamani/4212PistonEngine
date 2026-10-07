@@ -1,0 +1,364 @@
+{
+  "schema_version": 1,
+  "family": "gear",
+  "summary": "Toothed wheels that transmit rotation at a fixed ratio, here involute spur gears whose profiles touch but never overlap.",
+  "variants": [
+    {
+      "id": "gear/ignition-spur-pair-sliding-sleeve",
+      "name": "1:1 spur pair with an axially sliding, slotted ignition gear",
+      "applies_to": "Wright 1903 spark-advance mechanism between the exhaust camshaft side and the ignition shaft",
+      "distinguishing_features": [
+        "equal spur gears, 1:1",
+        "driven gear slides on a sleeve with a 45-degree slot",
+        "axial position set by a lever cam",
+        "return spring"
+      ],
+      "dimensions": [
+        {
+          "name": "ratio",
+          "value": 1.0,
+          "unit": "ratio",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "wright-1903/revision-2",
+              "source": "H1",
+              "locator": "Figure 5, key 37 (\"1:1 gear pair\")"
+            }
+          ]
+        },
+        {
+          "name": "sleeve slot angle",
+          "value": 45,
+          "unit": "deg",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "wright-1903/revision-2",
+              "source": "H1",
+              "locator": "Figure 5, key 37 (45-degree sleeve slot)"
+            }
+          ]
+        },
+        {
+          "name": "pressure angle",
+          "value": 20,
+          "unit": "deg",
+          "status": "illustrative",
+          "basis": "PRESSURE_ANGLE in scripts/gear_geometry.py; module, tooth counts and proportions there are teaching choices."
+        },
+        {
+          "name": "tip clearance factor",
+          "value": 0.25,
+          "unit": "ratio",
+          "status": "illustrative",
+          "basis": "Default of tooth_form in scripts/gear_geometry.py."
+        },
+        {
+          "name": "backlash factor",
+          "value": 0.05,
+          "unit": "ratio",
+          "status": "illustrative",
+          "basis": "Default of tooth_form in scripts/gear_geometry.py."
+        }
+      ],
+      "construction": [
+        {
+          "operation": "add",
+          "primitive": "prism",
+          "note": "Involute tooth outline from scripts/gear_geometry.py, derived",
+          "part": "ignition gear"
+        },
+        {
+          "operation": "cut",
+          "primitive": "cylinder",
+          "note": "Bore",
+          "part": "ignition gear"
+        },
+        {
+          "operation": "add",
+          "primitive": "tube",
+          "note": "Sleeve",
+          "part": "ignition gear"
+        },
+        {
+          "operation": "cut",
+          "primitive": "prism",
+          "note": "45-degree sleeve slot",
+          "part": "ignition gear"
+        },
+        {
+          "operation": "add",
+          "primitive": "prism",
+          "note": "Involute tooth outline from scripts/gear_geometry.py, derived",
+          "part": "driver"
+        },
+        {
+          "operation": "cut",
+          "primitive": "cylinder",
+          "note": "Bore",
+          "part": "driver"
+        }
+      ],
+      "function": {
+        "role": "Drive the ignition shaft from the exhaust-side shaft and change breaker phase by sliding along the slot.",
+        "motion": "Both gears turn at the same speed; the ignition gear also moves axially under the advance lever, and the slot turns that movement into a phase shift.",
+        "interfaces": [
+          {
+            "name": "teeth",
+            "mates_with": "driver gear",
+            "kind": "gear-mesh"
+          },
+          {
+            "name": "sleeve slot",
+            "mates_with": "ignition drive pin",
+            "kind": "prismatic"
+          },
+          {
+            "name": "gear face",
+            "mates_with": "return spring",
+            "kind": "spring"
+          }
+        ]
+      },
+      "envelope": [
+        {
+          "statement": "The pair touches but never overlaps through the mesh: minimum gap 0.078 mm against 0.02 mm required.",
+          "status": "derived",
+          "basis": "interference-audit.json, gear_meshes, in the Wright revision-2 study."
+        }
+      ],
+      "intent": [
+        {
+          "statement": "Sliding the gear along the 45-degree slot advances or retards the ignition.",
+          "status": "documented",
+          "evidence": [
+            {
+              "study": "wright-1903/revision-2",
+              "source": "H1",
+              "locator": "Figure 5, keys 37 and 40"
+            }
+          ]
+        }
+      ],
+      "manufacturing": {
+        "material": "steel",
+        "process": "tooth flank form illustrative",
+        "status": "inferred",
+        "basis": "The study records steel (part-spec.json) and states that the tooth flanks are illustrative (inventory 37)."
+      },
+      "recipe": {
+        "status": "extracted",
+        "path": "scripts/gear_geometry.py",
+        "note": "Involute profile with backlash, solved mesh phase and a mesh-clearance check, shared by the accessory gears, the Wright ignition pair and the Langley trains. Declare meshes in scripts/accessory_gears.py (AGENTS.md); never type gear positions, rates or tooth phases into a builder."
+      },
+      "instances": [
+        {
+          "study": "wright-1903/revision-2",
+          "components": [
+            "37"
+          ],
+          "part_ids": [
+            "ExhaustGear",
+            "IgnitionGear"
+          ],
+          "validation": "Interference audit of the exported file is clean: 1,121 neighbouring pairs at rest, 133 poses of the baked clip, 0 overlaps (interference-audit.json); geometry is valid but historical accuracy is not verified (cad-validation.json)."
+        }
+      ],
+      "gaps": [
+        "Tooth counts and module of the pair are not recorded on this card; read them from cad_pipeline/wright_v2.py.",
+        "Tooth flanks are illustrative."
+      ]
+    },
+    {
+      "id": "gear/spur-train-solved-ratio",
+      "name": "Involute spur train with tooth counts solved to a documented ratio",
+      "applies_to": "Langley / Manly-Balzer cam reduction train (-1/4) and ignition train (0.5 and 2.5)",
+      "distinguishing_features": [
+        "three external meshes reverse the cam direction",
+        "a coaxial small gear on the large gear",
+        "an idler on a stud",
+        "teeth read or solved to give exact ratios with no two gears of one plane overlapping"
+      ],
+      "dimensions": [
+        {
+          "name": "cam train net ratio",
+          "value": -0.25,
+          "unit": "ratio",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 237 (cam at one quarter of crank speed, reversed)"
+            }
+          ]
+        },
+        {
+          "name": "cam train teeth (pinion, large, small, idler, cam ring)",
+          "value": null,
+          "unit": "count",
+          "status": "illustrative",
+          "basis": "24, 48, 18, 20 and 36 in cad_pipeline/langley_drive.py line 58 and inventory L25: chosen so the net ratio is exactly -1/4 with no overlap. Value is a list, so it is kept in the basis."
+        },
+        {
+          "name": "cam train module",
+          "value": 3.0,
+          "unit": "mm",
+          "status": "inferred",
+          "basis": "part-spec.json cam_train_module: layout and tooth counts are illustrative, read from a very crowded plate."
+        },
+        {
+          "name": "sparker cam speed over crank speed",
+          "value": 2.5,
+          "unit": "ratio",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 241"
+            }
+          ]
+        },
+        {
+          "name": "distributor speed over crank speed",
+          "value": 0.5,
+          "unit": "ratio",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 241"
+            }
+          ]
+        },
+        {
+          "name": "ignition train teeth (pinion, large gear, sparker cam)",
+          "value": null,
+          "unit": "count",
+          "status": "derived",
+          "basis": "30, 60 and 12 give exactly 0.5 and 2.5 (part-spec.json ignition_gear_ratios rationale). Value is a list, so it is kept in the basis."
+        },
+        {
+          "name": "backlash",
+          "value": 0.15,
+          "unit": "mm",
+          "status": "derived",
+          "basis": "0.05 times the 3 mm module (cad_pipeline/langley_contract.py)."
+        }
+      ],
+      "construction": [
+        {
+          "operation": "add",
+          "primitive": "prism",
+          "note": "Involute outline of each gear from scripts/gear_geometry.py, derived",
+          "count": 7
+        },
+        {
+          "operation": "cut",
+          "primitive": "cylinder",
+          "note": "Lightening pockets in the larger gears"
+        },
+        {
+          "operation": "add",
+          "primitive": "cylinder",
+          "note": "Hub and axle where a gear is coaxial with another"
+        },
+        {
+          "operation": "cut",
+          "primitive": "cylinder",
+          "note": "Bores"
+        }
+      ],
+      "function": {
+        "role": "Drive the ring cam at one quarter of crank speed in reverse, and drive the sparker cam and distributor from the crankshaft.",
+        "motion": "Cam train: pinion to large gear, coaxial small gear to idler, idler to the cam-ring teeth. Ignition train: pinion to large gear to sparker cam.",
+        "interfaces": [
+          {
+            "name": "teeth",
+            "mates_with": "next gear in the train",
+            "kind": "gear-mesh"
+          },
+          {
+            "name": "idler bore",
+            "mates_with": "idler stud",
+            "kind": "revolute"
+          },
+          {
+            "name": "cam-ring teeth",
+            "mates_with": "ring cam",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "envelope": [
+        {
+          "statement": "The three-mesh cam train reverses direction and reduces speed to exactly one quarter.",
+          "status": "derived",
+          "basis": "Net ratio of the tooth counts in cad_pipeline/langley_drive.py; asserted by test_cam_turns_minus_a_quarter_through_three_meshes in scripts/test_langley_motion.py."
+        },
+        {
+          "statement": "All five meshes touch but never overlap: the smallest gap is 0.043 mm (sparker mesh) against 0.02 mm required.",
+          "status": "derived",
+          "basis": "interference-audit.json, gear_meshes, in the Langley study."
+        }
+      ],
+      "intent": [
+        {
+          "statement": "A reversing train drives the cam opposite to the crank at one quarter of its speed.",
+          "status": "documented",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 237 (inventory L25)"
+            }
+          ]
+        }
+      ],
+      "manufacturing": {
+        "material": "steel",
+        "process": "tooth form not documented",
+        "status": "inferred",
+        "basis": "The study records steel (part-spec.json); the Memoir does not document the tooth form and the teeth are drawn as involute for geometric validity."
+      },
+      "recipe": {
+        "status": "extracted",
+        "path": "scripts/gear_geometry.py",
+        "note": "Involute profile with backlash, solved mesh phase and a mesh-clearance check, shared by the accessory gears, the Wright ignition pair and the Langley trains. Declare meshes in scripts/accessory_gears.py (AGENTS.md); never type gear positions, rates or tooth phases into a builder."
+      },
+      "instances": [
+        {
+          "study": "langley-manly-balzer-1903",
+          "components": [
+            "L25"
+          ],
+          "part_ids": [
+            "CamPinion",
+            "CamGearLarge",
+            "CamGearSmall",
+            "CamIdler"
+          ],
+          "validation": "Interference audit of the exported file is clean: 1,492 neighbouring pairs at rest, 133 poses of the baked clip, 0 overlaps (interference-audit.json); mass check against the Memoir weight table in build-notes.md."
+        },
+        {
+          "study": "langley-manly-balzer-1903",
+          "components": [
+            "L28"
+          ],
+          "part_ids": [
+            "SparkPinion",
+            "SparkGearLarge"
+          ],
+          "validation": "Interference audit of the exported file is clean: 1,492 neighbouring pairs at rest, 133 poses of the baked clip, 0 overlaps (interference-audit.json); mass check against the Memoir weight table in build-notes.md."
+        }
+      ],
+      "gaps": [
+        "Tooth counts, module and tooth form are illustrative; the layout is interpreted from a very crowded plate.",
+        "cad-studies/langley-manly-balzer-1903/build-notes.md says the idler has 12 teeth, but cad_pipeline/langley_drive.py and inventory.json say 20; the idler cancels out of the net ratio, and this card follows the code."
+      ]
+    }
+  ]
+}

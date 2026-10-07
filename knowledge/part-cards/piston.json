@@ -1,0 +1,433 @@
+{
+  "schema_version": 1,
+  "family": "piston",
+  "summary": "The reciprocating member that receives gas pressure, carries it to the connecting rod through the gudgeon (wrist) pin and seals the cylinder with rings.",
+  "variants": [
+    {
+      "id": "piston/domed-two-rib-cast-iron",
+      "name": "Domed-crown cast-iron piston with two reinforcing ribs",
+      "applies_to": "Water-cooled four-stroke radial cylinder, 127 mm bore (Langley / Manly-Balzer, 1901 engine)",
+      "distinguishing_features": [
+        "domed crown",
+        "thin walls with two deep reinforcing ribs",
+        "four lap-joint rings",
+        "gudgeon pin held by retaining screws"
+      ],
+      "dimensions": [
+        {
+          "name": "bore",
+          "value": 127.0,
+          "unit": "mm",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "A1",
+              "locator": "p. 156, p. 182"
+            }
+          ]
+        },
+        {
+          "name": "diametral clearance at the middle",
+          "value": 0.127,
+          "unit": "mm",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 239"
+            }
+          ]
+        },
+        {
+          "name": "diametral clearance at the ends",
+          "value": 0.19,
+          "unit": "mm",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "pp. 239-240"
+            }
+          ]
+        },
+        {
+          "name": "crown height above the pin axis",
+          "value": 60.1,
+          "unit": "mm",
+          "status": "measured",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "P78",
+              "locator": "Plate 78A"
+            }
+          ]
+        },
+        {
+          "name": "skirt end below the pin axis",
+          "value": -46.7,
+          "unit": "mm",
+          "status": "measured",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "P78",
+              "locator": "Plate 78A"
+            }
+          ]
+        },
+        {
+          "name": "gudgeon pin diameter",
+          "value": 22.225,
+          "unit": "mm",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 240 (7/8 in, hollow case-hardened)"
+            }
+          ]
+        },
+        {
+          "name": "ring count",
+          "value": 4,
+          "unit": "count",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 240"
+            }
+          ]
+        },
+        {
+          "name": "ring axial clearance, minimum",
+          "value": 0.0508,
+          "unit": "mm",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 240 (rings narrower than their grooves)"
+            }
+          ]
+        },
+        {
+          "name": "ring axial clearance, maximum",
+          "value": 0.0889,
+          "unit": "mm",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 240 (rings narrower than their grooves)"
+            }
+          ]
+        }
+      ],
+      "construction": [
+        {
+          "operation": "add",
+          "primitive": "revolve",
+          "note": "Body of revolution: domed crown and skirt from one derived profile"
+        },
+        {
+          "operation": "cut",
+          "primitive": "tube",
+          "note": "Ring grooves",
+          "count": 4
+        },
+        {
+          "operation": "add",
+          "primitive": "cylinder",
+          "note": "Pin bosses",
+          "count": 2
+        },
+        {
+          "operation": "add",
+          "primitive": "box",
+          "note": "Deep thin reinforcing ribs",
+          "count": 2
+        },
+        {
+          "operation": "cut",
+          "primitive": "cylinder",
+          "note": "Gudgeon pin bore"
+        },
+        {
+          "operation": "cut",
+          "primitive": "cylinder",
+          "note": "Retaining screw holes",
+          "count": 2
+        }
+      ],
+      "function": {
+        "role": "Receive gas pressure, pass it through the gudgeon pin to the link or master rod, and seal the cylinder bore.",
+        "motion": "Reciprocates along the cylinder axis through a stroke of 139.7 mm.",
+        "interfaces": [
+          {
+            "name": "outer surface",
+            "mates_with": "cylinder liner bore",
+            "kind": "sliding-contact"
+          },
+          {
+            "name": "pin bore",
+            "mates_with": "gudgeon pin",
+            "kind": "fixed"
+          },
+          {
+            "name": "ring grooves",
+            "mates_with": "piston rings",
+            "kind": "seat"
+          }
+        ]
+      },
+      "envelope": [
+        {
+          "statement": "Runs in a cast-iron liner of 1/16 in wall shrunk into a seamless steel shell.",
+          "status": "documented",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 235"
+            }
+          ]
+        },
+        {
+          "statement": "Tested at 950 rpm (52.4 hp), three 10-hour runs in August 1904.",
+          "status": "documented",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 249"
+            }
+          ]
+        }
+      ],
+      "intent": [
+        {
+          "statement": "Thin walls with deep ribs keep the reciprocating mass low while stiffening the crown.",
+          "status": "inferred",
+          "basis": "Inventory L09 records the thin walls and the two ribs; no source states the reason."
+        }
+      ],
+      "manufacturing": {
+        "material": "cast iron",
+        "process": "cast",
+        "status": "inferred",
+        "basis": "Material is documented (M1 pp. 239-240); the casting process is inferred from the ribbed thin-wall form. Finishing is not stated."
+      },
+      "recipe": {
+        "status": "none"
+      },
+      "instances": [
+        {
+          "study": "langley-manly-balzer-1903",
+          "components": [
+            "L09"
+          ],
+          "part_ids": [
+            "Piston1",
+            "Piston2",
+            "Piston3",
+            "Piston4",
+            "Piston5"
+          ],
+          "validation": "Interference audit of the exported file is clean: 1,492 neighbouring pairs at rest, 133 poses of the baked clip, 0 overlaps (interference-audit.json); mass check against the Memoir weight table in build-notes.md."
+        }
+      ],
+      "gaps": [
+        "Wall and crown thickness were measured from Plate 78 but a lighter set was drawn; the values are not recorded on this card.",
+        "Ring section is an estimate (inventory L10)."
+      ]
+    },
+    {
+      "id": "piston/long-trunk-three-ring-cast-iron",
+      "name": "Long cast-iron trunk piston with three rings above the pin",
+      "applies_to": "Four-cylinder water-cooled engine, 101.6 mm bore (Wright 1903)",
+      "distinguishing_features": [
+        "long hollow skirt",
+        "three compression rings above the pin",
+        "no bottom scraper ring",
+        "wrist pin locked by setscrews",
+        "ring pegs in the grooves"
+      ],
+      "dimensions": [
+        {
+          "name": "bore",
+          "value": 101.6,
+          "unit": "mm",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "wright-1903/revision-2",
+              "source": "H1",
+              "locator": "pp. 10-11 (4 in)"
+            }
+          ]
+        },
+        {
+          "name": "ring count",
+          "value": 3,
+          "unit": "count",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "wright-1903/revision-2",
+              "source": "H1",
+              "locator": "pp. 19-20; Figure 6"
+            }
+          ]
+        },
+        {
+          "name": "piston length",
+          "value": 150,
+          "unit": "mm",
+          "status": "inferred",
+          "basis": "Teaching dimension in part-spec.json (piston_length); not a transcribed production dimension."
+        },
+        {
+          "name": "crown offset above the pin",
+          "value": 65,
+          "unit": "mm",
+          "status": "inferred",
+          "basis": "Teaching dimension in part-spec.json (piston_head_offset)."
+        },
+        {
+          "name": "diametral clearance",
+          "value": 0.5,
+          "unit": "mm",
+          "status": "inferred",
+          "basis": "Teaching dimension in part-spec.json (piston_clearance)."
+        },
+        {
+          "name": "skirt wall",
+          "value": 5,
+          "unit": "mm",
+          "status": "inferred",
+          "basis": "Radius minus 5 mm in the Piston1 hollow-skirt feature of part-spec.json."
+        },
+        {
+          "name": "crown thickness",
+          "value": 9,
+          "unit": "mm",
+          "status": "inferred",
+          "basis": "Piston length minus 9 mm in the Piston1 hollow-skirt feature of part-spec.json."
+        }
+      ],
+      "construction": [
+        {
+          "operation": "add",
+          "primitive": "cylinder",
+          "note": "Solid cylinder body, length piston_length"
+        },
+        {
+          "operation": "cut",
+          "primitive": "cylinder",
+          "note": "Hollow skirt"
+        },
+        {
+          "operation": "add",
+          "primitive": "cylinder",
+          "note": "Pin bosses",
+          "count": 2
+        },
+        {
+          "operation": "cut",
+          "primitive": "cylinder",
+          "note": "Wrist pin bore"
+        },
+        {
+          "operation": "cut",
+          "primitive": "tube",
+          "note": "Compression-ring grooves",
+          "count": 3
+        },
+        {
+          "operation": "cut",
+          "primitive": "cylinder",
+          "note": "Seats for the pin setscrews and the ring pegs, 0.15 mm clearance",
+          "count": 5
+        }
+      ],
+      "function": {
+        "role": "Receive gas pressure, pass it through the wrist pin to the connecting rod, and seal the cylinder bore.",
+        "motion": "Reciprocates along the cylinder axis through a stroke of 101.6 mm.",
+        "interfaces": [
+          {
+            "name": "outer surface",
+            "mates_with": "cylinder liner bore",
+            "kind": "sliding-contact"
+          },
+          {
+            "name": "pin bore",
+            "mates_with": "wrist pin",
+            "kind": "fixed"
+          },
+          {
+            "name": "ring grooves",
+            "mates_with": "piston rings",
+            "kind": "seat"
+          }
+        ]
+      },
+      "envelope": [
+        {
+          "statement": "Meets the cylinder liner, the bronze little end and the wrist pin.",
+          "status": "documented",
+          "evidence": [
+            {
+              "study": "wright-1903/revision-2",
+              "source": "H1",
+              "locator": "pp. 19-20; Figure 6 (inventory S02)"
+            }
+          ]
+        }
+      ],
+      "intent": [
+        {
+          "statement": "The long skirt gives guiding length against side thrust.",
+          "status": "inferred",
+          "basis": "General function of a trunk piston; the study records the length (150 mm, itself a teaching value) but not the reason."
+        }
+      ],
+      "manufacturing": {
+        "material": "cast iron",
+        "process": "cast",
+        "status": "inferred",
+        "basis": "Cast iron is documented (inventory S02); the casting process is inferred from the material."
+      },
+      "recipe": {
+        "status": "none"
+      },
+      "instances": [
+        {
+          "study": "wright-1903/revision-2",
+          "components": [
+            "S02"
+          ],
+          "part_ids": [
+            "Piston1",
+            "Piston2",
+            "Piston3",
+            "Piston4"
+          ],
+          "validation": "Interference audit of the exported file is clean: 1,121 neighbouring pairs at rest, 133 poses of the baked clip, 0 overlaps (interference-audit.json); geometry is valid but historical accuracy is not verified (cad-validation.json)."
+        }
+      ],
+      "gaps": [
+        "Piston length, crown offset, clearance, skirt wall and crown thickness are teaching dimensions (part-spec.json).",
+        "Ring section and the pinned gap form are simplified."
+      ]
+    }
+  ]
+}

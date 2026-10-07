@@ -1,0 +1,422 @@
+{
+  "schema_version": 1,
+  "family": "valve",
+  "summary": "The poppet that opens and closes a port to admit the charge or release the exhaust, held closed by a spring and opened either by suction or by a drive train.",
+  "variants": [
+    {
+      "id": "valve/open-cage-separate-head-poppet",
+      "name": "Separate-head poppet in an open four-window cage",
+      "applies_to": "Four-cylinder engine with automatic inlet and rocker-operated exhaust valves (Wright 1903)",
+      "distinguishing_features": [
+        "cast-iron head and separate steel stem",
+        "open cage with four windows and a guide bore",
+        "helical spring on a washer",
+        "cage clamped by a ring nut"
+      ],
+      "dimensions": [
+        {
+          "name": "head diameter",
+          "value": 50.8,
+          "unit": "mm",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "wright-1903/revision-2",
+              "source": "H1",
+              "locator": "p. 58 (2 in)"
+            }
+          ]
+        },
+        {
+          "name": "lift",
+          "value": 7.9375,
+          "unit": "mm",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "wright-1903/revision-2",
+              "source": "H1",
+              "locator": "p. 57 (5/16 in)"
+            }
+          ]
+        },
+        {
+          "name": "valve box radius",
+          "value": 34.667,
+          "unit": "mm",
+          "status": "measured",
+          "evidence": [
+            {
+              "study": "wright-1903/revision-2",
+              "source": "M1",
+              "locator": "four reviewed valve-box circles on the Smithsonian scan; scale uncertainty inherited"
+            }
+          ]
+        },
+        {
+          "name": "stem radius",
+          "value": 3,
+          "unit": "mm",
+          "status": "inferred",
+          "basis": "Teaching dimension in part-spec.json (valve_stem_radius)."
+        },
+        {
+          "name": "seat angle",
+          "value": 45,
+          "unit": "deg",
+          "status": "inferred",
+          "basis": "Feature label \"Estimated 45-degree seating face\" in part-spec.json."
+        },
+        {
+          "name": "spring wire diameter",
+          "value": 1.5,
+          "unit": "mm",
+          "status": "inferred",
+          "basis": "Teaching dimension in part-spec.json (spring_wire); no spring rate is claimed."
+        }
+      ],
+      "construction": [
+        {
+          "operation": "add",
+          "primitive": "cylinder",
+          "note": "Head disc",
+          "part": "head"
+        },
+        {
+          "operation": "add",
+          "primitive": "cone",
+          "note": "Seating face",
+          "part": "head"
+        },
+        {
+          "operation": "cut",
+          "primitive": "cylinder",
+          "note": "Socket for the separate stem",
+          "part": "head"
+        },
+        {
+          "operation": "add",
+          "primitive": "cylinder",
+          "note": "Stem",
+          "part": "stem"
+        },
+        {
+          "operation": "add",
+          "primitive": "tube",
+          "note": "Cage body with a seat land and a conical seat",
+          "part": "cage"
+        },
+        {
+          "operation": "cut",
+          "primitive": "prism",
+          "note": "Four-legged cage windows and a guide bore",
+          "part": "cage",
+          "count": 4
+        },
+        {
+          "operation": "add",
+          "primitive": "helix",
+          "note": "Swept spring wire",
+          "part": "spring"
+        }
+      ],
+      "function": {
+        "role": "Admit the charge (inlet) or release the exhaust (exhaust) through a port in the valve box.",
+        "motion": "Inlet valves are automatic: suction opens them against their springs with no positive drive. Exhaust valves are opened by rockers from the camshaft. Lift is 7.9375 mm.",
+        "interfaces": [
+          {
+            "name": "head seating face",
+            "mates_with": "cage seat",
+            "kind": "seat"
+          },
+          {
+            "name": "stem",
+            "mates_with": "guide bore in the cage",
+            "kind": "prismatic"
+          },
+          {
+            "name": "spring",
+            "mates_with": "spring washer",
+            "kind": "spring"
+          },
+          {
+            "name": "exhaust stem tip",
+            "mates_with": "rocker",
+            "kind": "sliding-contact"
+          },
+          {
+            "name": "cage",
+            "mates_with": "valve box, clamped by a ring nut",
+            "kind": "threaded"
+          }
+        ]
+      },
+      "envelope": [
+        {
+          "statement": "Inlet valves open from suction against their springs with no positive drive.",
+          "status": "documented",
+          "evidence": [
+            {
+              "study": "wright-1903/revision-2",
+              "source": "H1",
+              "locator": "per research.md \"Gas path\", summarised in operating-motion.md"
+            }
+          ]
+        },
+        {
+          "statement": "Lift of 7.9375 mm falls inside the exhaust stroke in the baked clip.",
+          "status": "derived",
+          "basis": "Rung 6 test (scripts/test_wright_reconstruction.mjs); the cam law itself is illustrative."
+        }
+      ],
+      "intent": [
+        {
+          "statement": "Open windows pass gas round the seat while the cage guides the stem.",
+          "status": "inferred",
+          "basis": "Read from the cage construction in inventory S05; no source in the study states the reason."
+        }
+      ],
+      "manufacturing": {
+        "material": "cast-iron heads and cages, steel stems and springs",
+        "process": "separate cast head and cage with a separate stem",
+        "status": "documented",
+        "evidence": [
+          {
+            "study": "wright-1903/revision-2",
+            "source": "H1",
+            "locator": "pp. 17-20, 57-58; Figures 5-7 (inventory S05)"
+          }
+        ]
+      },
+      "recipe": {
+        "status": "none"
+      },
+      "instances": [
+        {
+          "study": "wright-1903/revision-2",
+          "components": [
+            "S05"
+          ],
+          "part_ids": [
+            "IntakeHead1",
+            "IntakeStem1",
+            "IntakeCage1",
+            "IntakeSpring1",
+            "ExhaustHead1",
+            "ExhaustStem1",
+            "ExhaustCage1",
+            "ExhaustSpring1",
+            "IntakeHead2",
+            "IntakeStem2",
+            "IntakeCage2",
+            "IntakeSpring2",
+            "ExhaustHead2",
+            "ExhaustStem2",
+            "ExhaustCage2",
+            "ExhaustSpring2",
+            "IntakeHead3",
+            "IntakeStem3",
+            "IntakeCage3",
+            "IntakeSpring3",
+            "ExhaustHead3",
+            "ExhaustStem3",
+            "ExhaustCage3",
+            "ExhaustSpring3",
+            "IntakeHead4",
+            "IntakeStem4",
+            "IntakeCage4",
+            "IntakeSpring4",
+            "ExhaustHead4",
+            "ExhaustStem4",
+            "ExhaustCage4",
+            "ExhaustSpring4"
+          ],
+          "validation": "Interference audit of the exported file is clean: 1,121 neighbouring pairs at rest, 133 poses of the baked clip, 0 overlaps (interference-audit.json); geometry is valid but historical accuracy is not verified (cad-validation.json)."
+        }
+      ],
+      "gaps": [
+        "Cam law and phases are unverified: the lobes are static placeholders and the running motion is illustrative (inventory gaps).",
+        "Spring properties are unknown, so no spring rate is claimed.",
+        "Thread helices on the ring nuts are omitted."
+      ]
+    },
+    {
+      "id": "valve/one-piece-revolved-poppet-automatic-inlet-punch-rod-exhaust",
+      "name": "One-piece revolved poppet: automatic inlet, punch-rod exhaust",
+      "applies_to": "Five-cylinder radial with one inlet and one exhaust valve per cylinder (Langley / Manly-Balzer)",
+      "distinguishing_features": [
+        "inlet and exhaust valves each one profile of revolution (head and stem)",
+        "inlet seat is a separate cast-iron piece held by a nut in the head",
+        "exhaust stem passes through a long coil spring and ends 1/64 in above the punch rod",
+        "valve axis offset toward the port drum"
+      ],
+      "dimensions": [
+        {
+          "name": "head diameter, inlet and exhaust",
+          "value": 54.0,
+          "unit": "mm",
+          "status": "measured",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "P78",
+              "locator": "Plate 78A"
+            }
+          ]
+        },
+        {
+          "name": "stem diameter, inlet",
+          "value": 10.0,
+          "unit": "mm",
+          "status": "measured",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "P78",
+              "locator": "Plate 78A"
+            }
+          ]
+        },
+        {
+          "name": "stem diameter, exhaust",
+          "value": 8.2,
+          "unit": "mm",
+          "status": "measured",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "P78",
+              "locator": "Plate 78A"
+            }
+          ]
+        },
+        {
+          "name": "valve axis offset from the cylinder axis",
+          "value": -112.7,
+          "unit": "mm",
+          "status": "measured",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "P78",
+              "locator": "Plate 78A"
+            }
+          ]
+        },
+        {
+          "name": "punch rod gap at rest",
+          "value": 0.397,
+          "unit": "mm",
+          "status": "specified",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 237 (1/64 in)"
+            }
+          ]
+        },
+        {
+          "name": "exhaust lift",
+          "value": 12.0,
+          "unit": "mm",
+          "status": "illustrative",
+          "basis": "Not documented (part-spec.json cam_rise rationale); the cam rise is the lift plus the documented gap."
+        }
+      ],
+      "construction": [
+        {
+          "operation": "add",
+          "primitive": "revolve",
+          "note": "Valve head and stem as one derived profile of revolution (the inlet and exhaust differ in stem diameter and length)"
+        }
+      ],
+      "function": {
+        "role": "Admit mixture on suction (inlet, no drive) and release exhaust when struck through the punch rod (exhaust).",
+        "motion": "Inlet opens by suction against its spring. Exhaust is lifted by the punch rod from the ring cam, then closed by its spring.",
+        "interfaces": [
+          {
+            "name": "inlet head",
+            "mates_with": "inlet seat (cast iron, held by a nut)",
+            "kind": "seat"
+          },
+          {
+            "name": "stem",
+            "mates_with": "valve guide",
+            "kind": "prismatic"
+          },
+          {
+            "name": "stem",
+            "mates_with": "coil spring and cap",
+            "kind": "spring"
+          },
+          {
+            "name": "exhaust stem tip",
+            "mates_with": "punch rod",
+            "kind": "sliding-contact"
+          }
+        ]
+      },
+      "envelope": [
+        {
+          "statement": "At rest the exhaust stem ends 1/64 in above the punch rod.",
+          "status": "documented",
+          "evidence": [
+            {
+              "study": "langley-manly-balzer-1903",
+              "source": "M1",
+              "locator": "p. 237"
+            }
+          ]
+        },
+        {
+          "statement": "Each exhaust valve is open for about 224 crank degrees.",
+          "status": "illustrative",
+          "basis": "Follows from the illustrative cam lobe half width of 28 cam degrees at a quarter of crank speed (part-spec.json)."
+        }
+      ],
+      "intent": [
+        {
+          "statement": "An automatic inlet needs no drive train, so one cam and five punch rods serve the whole engine.",
+          "status": "inferred",
+          "basis": "The arrangement is documented (M1 pp. 237, 240; A1 p. 186); its purpose is not stated."
+        }
+      ],
+      "manufacturing": {
+        "material": "steel",
+        "process": "not stated",
+        "status": "inferred",
+        "basis": "The study records steel for the valve parts (part-spec.json); it cites no statement of valve material or process."
+      },
+      "recipe": {
+        "status": "none"
+      },
+      "instances": [
+        {
+          "study": "langley-manly-balzer-1903",
+          "components": [
+            "L17",
+            "L18"
+          ],
+          "part_ids": [
+            "InletValve1",
+            "InletValve2",
+            "InletValve3",
+            "InletValve4",
+            "InletValve5",
+            "ExhaustValve1",
+            "ExhaustValve2",
+            "ExhaustValve3",
+            "ExhaustValve4",
+            "ExhaustValve5"
+          ],
+          "validation": "Interference audit of the exported file is clean: 1,492 neighbouring pairs at rest, 133 poses of the baked clip, 0 overlaps (interference-audit.json); mass check against the Memoir weight table in build-notes.md."
+        }
+      ],
+      "gaps": [
+        "Lift and lobe form are illustrative.",
+        "Seats, springs, caps and guides are separate parts in the study (L17, L18) and are not described on this card."
+      ]
+    }
+  ]
+}
