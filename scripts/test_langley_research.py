@@ -128,8 +128,14 @@ class Inventory(unittest.TestCase):
         self.assertEqual(len(ids), len(set(ids)))
 
     def test_committed_inventory_is_current(self):
+        # The hashes of the local source copies (build/langley-research, ignored) exist only on the machine that holds the PDFs.
+        def portable(inventory):
+            inventory = json.loads(json.dumps(inventory))
+            for source in inventory['sources'].values():
+                source.pop('local_files', None)
+            return inventory
         committed = json.loads((STUDY / 'inventory.json').read_text())
-        self.assertEqual(committed, json.loads(json.dumps(self.inv)))
+        self.assertEqual(portable(committed), portable(self.inv))
 
     def test_mechanisms_name_documented_ratios(self):
         text = json.dumps(self.inv['mechanisms'])
