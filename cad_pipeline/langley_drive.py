@@ -11,6 +11,7 @@ from cad_pipeline.langley_frame import Frame
 from cad_pipeline.langley_v1 import cy, tube, cone, bx, rev, prism, helix, circle_profile, R as REPO
 sys.path.insert(0, str(REPO / 'scripts'))
 import gear_geometry as G
+from cad_pipeline.langley_cam import BASE, ROLLER_R, ROLLER_GAP, EXHAUST_GAP, FIRING_ORDER, spark_theta
 
 
 def gear_points(teeth, pitch_r, module, phase, centre_yz):
@@ -54,7 +55,7 @@ def port(sp, c):
     par = sp.par
     hx, ht = c.head_x, 3.0
     m = 3.0
-    z1, z2, zb, zi, z4 = 24, 48, 18, 12, 36              # pinion, large gear, its coaxial small gear, idler, cam-ring teeth
+    z1, z2, zb, zi, z4 = 24, 48, 18, 20, 36              # pinion, large gear, its coaxial small gear, idler, cam-ring teeth (the idler stud stands outside the cam lobes' sweep)
     rp = lambda z: m * z / 2.0
     par('cam_train_module', m, 'inferred', ['M1'], 'Module of the cam gear train; layout and tooth counts are illustrative and chosen to give net -1/4 exactly with three external meshes and no two gears of one plane overlapping.')
     par('cam_gear_ratio', -(z1 / z2) * (zb / z4), 'specified', ['M1'], 'Cam turns at one quarter crank speed in the reverse direction (M1 p. 237).', unit='ratio')
@@ -86,24 +87,21 @@ def port(sp, c):
            [x_prism(gear_points(zi, rp(zi), m, ph_i, i_c), x_c0, gear_t, 'Involute idler'), x_cyl(6.05, x_c0 - 1.0, x_c0 + gear_t + 1.0, i_c, op='cut', label='Stud bore')], 'steel', 'M1 p. 237', None)
     # cam ring: thin sleeve journalled on the hub, tooth ring at the outboard end, double-pointed cam track at the inboard end; web and rims lightened to the weight table
     cam_x_out, cam_x_in = x_c0, x_head - 6.0
-    base, rise = 60.0, c.cam_rise
-    c.cam = dict(base=base, rise=rise, x0=x_head - 22.0, x1=x_head - 8.0)
-    lobe = lambda a: c.lobe_h(a - 90.0)              # the polygon is written directly in (Y, Z): a point at polygon angle a lies in the direction phi = a - 90 degrees (from +Z, toward crank rotation)
-    cam_pts = [((base + lobe(2.0 * n)) * math.cos(math.radians(2.0 * n)), (base + lobe(2.0 * n)) * math.sin(math.radians(2.0 * n))) for n in range(180)]
+    vx = c.valve_x
+    cam_x0, cam_x1 = vx - 5.2, vx + 5.2                    # the cam track is only as wide as the rollers: the roller cheeks stand outside it
     sleeve_r = c.hub_ro_port + 6.0
     ring = [x_prism(gear_points(z4, rp(z4), m, ph_c, (0.0, 0.0)), cam_x_out, gear_t, 'Involute teeth on the cam ring'),
-            x_prism(cam_pts, c.cam['x0'], c.cam['x1'] - c.cam['x0'], 'Double-pointed cam track'),
+            x_prism(c.cam.polygon(), cam_x0, cam_x1 - cam_x0, 'Double-pointed cam track'),
             x_cyl(44.0, cam_x_out + 2.5, cam_x_out + gear_t + 1.0, (0, 0), 'cut', 'Lightening pocket in the tooth ring'),
-            x_cyl(55.0, c.cam['x0'] + 3.0, c.cam['x1'] + 1.0, (0, 0), 'cut', 'Lightening pocket in the cam track'),
+            x_cyl(55.0, cam_x0 + 3.0, cam_x1 + 1.0, (0, 0), 'cut', 'Lightening pocket in the cam track'),
             x_tube(sleeve_r, c.hub_ro_port + 0.1, cam_x_out, cam_x_in, (0, 0), 'Cam ring sleeve'),
             x_cyl(c.hub_ro_port + 0.1, cam_x_out - 1.0, cam_x_in + 1.0, (0, 0), op='cut', label='Hub bore')]
     sp.add('CamRing', 'Double-pointed ring cam with tooth ring', 'timing', ring, 'steel', 'M1 p. 237: double-pointed cam on the exterior of the hub; profile illustrative', None)
     # punch rods, rollers and guides: one under each exhaust stem, radial, at the valve axis X
-    vx = c.valve_x
-    roller_r, roller_w = 8.0, 10.0
-    par('punch_rod_gap', 0.397, 'specified', ['M1'], 'Punch rods stand within 1/64 in of the exhaust stems (M1 p. 237).')
-    top = c.ex_stem_end - 0.397
-    roller_c = base + roller_r + 0.1
+    roller_r, roller_w = ROLLER_R, 10.0
+    par('punch_rod_gap', EXHAUST_GAP, 'specified', ['M1'], 'Punch rods stand within 1/64 in of the exhaust stems (M1 p. 237).')
+    top = c.ex_stem_end - EXHAUST_GAP
+    roller_c = BASE + ROLLER_R + ROLLER_GAP
     for k in range(5):
         i = k + 1
         fr = Frame(0.0, (0.0, 0.0, c.cam_h[k])).then(Frame(c.alphas[k]))           # the rod rides the lobe height under its roller
@@ -147,12 +145,14 @@ def starboard(sp, c):
            [x_prism(gear_points(z1, rp(z1), m, ph1, (0.0, 0.0)), gx0, 7.0, 'Involute gear'), x_cyl(sleeve_ro + 0.05, gx0 - 1.0, gx1 + 1.0, (0, 0), op='cut', label='Sleeve bore')], 'steel', 'M1 p. 237: gear formed on the sleeve; read from Plate 81, tooth counts derived', Frame(c.theta))
     sp.add('SparkGearLarge', 'Ignition large gear with distributor axle', 'ignition',
            [x_prism(gear_points(z2, rp(z2), m, ph2, L_c), gx0, 7.0, 'Involute gear')] + lighten(gx0, 7.0, 68.0, L_c, web=2.0) + [x_cyl(14.0, gx0, gx1, L_c, label='Hub'), x_cyl(8.0, x_web - 2.0, gx1 + 16.0, L_c, label='Axle')], 'steel', 'Plate 81: large spur gear; 0.5x crank speed; web and rim lightened to the weight table', None)
+    crest_0 = (270.0 - 2.5 * spark_theta(1)) % 360.0         # the sparker cam turns +2.5 x crank: its lobe crest is straight under the axle (270 degrees) at every spark
     cam_pts = []
     for n in range(72):
         a = 5.0 * n
-        d = abs(((a + 180.0) % 360.0) - 180.0)
+        d = abs(((a - crest_0 + 180.0) % 360.0) - 180.0)
         r_ = 9.0 + (7.0 * (0.5 + 0.5 * math.cos(math.pi * d / 50.0)) if d < 50.0 else 0.0)
         cam_pts.append((S_c[0] + r_ * math.cos(math.radians(a)), S_c[1] + r_ * math.sin(math.radians(a))))
+    c.sparker = dict(centre=S_c, crest_0=crest_0, base_r=9.0, lobe_r=7.0, lobe_half=50.0)
     sp.add('SparkerCam', 'Primary sparker cam and gear', 'ignition',
            [x_prism(gear_points(z3, rp(z3), m, ph3, S_c), gx0, 7.0, 'Involute pinion'), x_cyl(6.0, x_web - 2.0, gx1 + 12.0, S_c, label='Axle'), x_prism(cam_pts, gx1 + 2.0, 6.0, 'One-lobe cam')], 'steel', 'M1 p. 241: one-lobe cam at 2.5x acting on a pawl', None)
     # distributor: disc on the large-gear axle, brush, five-section commutator on a fixed rail
@@ -162,18 +162,18 @@ def starboard(sp, c):
     cx0, cx1 = dx1 + 3.05, dx1 + 6.05
     body = [x_tube(28.0, 8.2, cx1, cx1 + 4.0, L_c, 'Commutator ring')]
     sp.add('CommutatorBody', 'Five-section commutator body (hard rubber)', 'ignition', body, 'rubber', 'M1 pp. 241-242: hard rubber after red fibre failed; its support to the bed plate is not drawn and is omitted', None)
-    order = [0, 2, 4, 1, 3]                               # firing order 1-3-5-2-4, segment j serves cylinder order[j]+1 and sits 72 degrees on from the last
-    for j in range(5):
-        pos = (L_c[0] + 14.0 * math.cos(math.radians(72.0 * j)), L_c[1] + 14.0 * math.sin(math.radians(72.0 * j)))
-        sp.add(f'CommutatorSegment{order[j] + 1}', f'Commutator segment for cylinder {order[j] + 1}', 'ignition', [x_cyl(3.5, cx0, cx1, pos, label='Segment')], 'brass', 'M1 p. 241: five-section commutator, one section per plug; order of the firing sequence', None)
-        sp.add(f'SparkWire{order[j] + 1}', f'High-tension lead stub for cylinder {order[j] + 1}', 'ignition', [x_cyl(1.6, cx1 + 4.0, cx1 + 28.0, (L_c[0] + 22.0 * math.cos(math.radians(72.0 * j)), L_c[1] + 22.0 * math.sin(math.radians(72.0 * j))), label='Lead stub')], 'rubber', 'M1 p. 242: rubber-tube insulated leads; routing to the plug is not drawn, only the stub is modelled', None)
+    for j, cyl in enumerate(FIRING_ORDER):                # the brush turns -1/2 x crank: it reaches cylinder `cyl`'s segment at its spark, so segments run clockwise in firing order
+        sigma = math.radians((-spark_theta(cyl) / 2.0) % 360.0)
+        pos = (L_c[0] + 14.0 * math.cos(sigma), L_c[1] + 14.0 * math.sin(sigma))
+        sp.add(f'CommutatorSegment{cyl}', f'Commutator segment for cylinder {cyl}', 'ignition', [x_cyl(3.5, cx0, cx1, pos, label='Segment')], 'brass', 'M1 p. 241: five-section commutator, one section per plug; order of the firing sequence', None)
+        sp.add(f'SparkWire{cyl}', f'High-tension lead stub for cylinder {cyl}', 'ignition', [x_cyl(1.6, cx1 + 4.0, cx1 + 28.0, (L_c[0] + 22.0 * math.cos(sigma), L_c[1] + 22.0 * math.sin(sigma)), label='Lead stub')], 'rubber', 'M1 p. 242: rubber-tube insulated leads; routing to the plug is not drawn, only the stub is modelled', None)
     # pawl, spring, bracket, contact on the sparker cam
     bx_y = S_c[0] + 30.0
     px0, px1 = gx1 + 2.0, gx1 + 8.0
     sp.add('SparkerBracket', 'Sparker bracket', 'ignition', [bx(px1 + 6.0 - x_web, 10.0, 12.0, [x_web, bx_y - 5.0, S_c[1] - 36.0], label='Bracket arm')], 'steel', 'Plate 81: bracket on the bed plate carrying the pawl and contact', None)
     sp.add('SparkerPawl', 'Sparker pawl', 'ignition', [dict(primitive='box', length=px1 - px0, width=40.0, height=4.0, origin=[px0, S_c[0] - 8.0, S_c[1] - 14.0], axis=[0, 0, 1], operation='add', label='Pawl arm')], 'steel', 'M1 p. 241: pawl on the end of a spring; form estimated', None)
     sp.add('SparkerSpring', 'Sparker pawl spring', 'ignition', [helix(3.0, 0.5, 2.0, 14.0, [px0 + 3.0, S_c[0] + 24.0, S_c[1] - 9.4], (0, 0, 1), label='Spring wire')], 'steel', 'M1 p. 241', None)
-    sp.add('SparkerContact', 'Primary contact', 'ignition', [x_cyl(2.0, px0, px1, (S_c[0] - 6.0, S_c[1] - 22.0), label='Contact')], 'steel', 'M1 p. 241; contact form estimated', None)
+    sp.add('SparkerContact', 'Primary contact', 'ignition', [x_cyl(2.0, px0, px1, (S_c[0] - 6.0, S_c[1] - 25.0), label='Contact')], 'steel', 'M1 p. 241; contact form estimated', None)
     # timing handle (Plate 81, role interpreted)
     sp.add('SparkTimingClamp', 'Spark timing handle clamp', 'ignition', [bx(14.0, 14.0, 14.0, [px1 + 8.0, bx_y - 7.0, S_c[1] - 36.0], label='Clamp block'), dict(primitive='cylinder', radius=4.2, height=40.0, origin=[px1 + 15.05, bx_y, S_c[1] - 29.0], axis=[0, math.cos(math.radians(22.0)), math.sin(math.radians(22.0))], operation='cut', label='Lever bore')], 'steel', 'Plate 81 (role interpreted): clamp on the bracket for the timing handle', None)
     sp.add('SparkTimingLever', 'Spark timing handle', 'ignition', [dict(primitive='tube', radius=4.0, inner_radius=2.6, height=320.0, origin=[px1 + 15.05, bx_y, S_c[1] - 29.0], axis=[0, math.cos(math.radians(22.0)), math.sin(math.radians(22.0))], operation='add', label='Handle rod')], 'steel', 'Plate 81: long handle with a wing nut; shortened to the engine boundary', None)

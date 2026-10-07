@@ -52,7 +52,7 @@ def add(sp, c):
         head = [tube(17.5, 14.0, 60.0, [-30.0, 0, head_z], (1, 0, 0), label='Little end'), cone(13.5, 17.5, 20.0, [0, 0, head_z - 26.0], label='Neck to little end'), cy(14.0, 62.0, [-31.0, 0, head_z], (1, 0, 0), op='cut', label='Little-end bore')]
         if k == 0:
             feats = [about_x(sleeve_ri, sleeve_ro, -sx, sx, 180.0, 0.0, label='Upper sleeve half, integral with the rod'),
-                     cone(sleeve_ro - 6.0, rod_r, 36.0, [0, 0, sleeve_ro - 4.0], label='Flare into the sleeve'),
+                     cone(15.5, rod_r, 36.0, [0, 0, sleeve_ro - 4.0], label='Flare into the sleeve'),
                      cy(rod_r, head_z - 25.0 - (sleeve_ro + 31.0), [0, 0, sleeve_ro + 31.0], label='Master rod, 7/8 in solid')] + head
             sp.add('MasterRod', 'Master connecting rod', 'rod', feats, 'steel', 'M1 pp. 237-238, 240; Plate 78 (7/8 in solid rod, integral upper sleeve half)', rf)
             sp.add('MasterSleeveCap', 'Master sleeve cap (lower half)', 'rod', [about_x(sleeve_ri, sleeve_ro, -sx, sx, 180.0, 180.0, label='Lower sleeve half')], 'steel', 'M1 p. 238: split steel sleeve', rf)

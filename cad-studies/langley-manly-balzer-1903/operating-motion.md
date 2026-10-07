@@ -61,7 +61,7 @@ Water and gas flow; oil-cup feed; the starting worm (shown engaged and disengage
 
 ## 6. Packaging record
 
-Frame (modelling): origin on the crankshaft axis at the mid-plane of the cylinders; X along the crankshaft toward the starboard drum; Y up, Z completing a right-handed frame; cylinder 1 at +Y; crank rotation clockwise as viewed from the starboard side. Cylinder k is at 72 (k-1) degrees from +Y in the direction of crank rotation. Positions marked "to do" are measured from the plates in the modelling step and recorded in `measurements.json` with the plate, the half, the scale used and the spread.
+Frame (modelling): origin on the crankshaft axis at the mid-plane of the cylinders; X along the crankshaft toward the starboard drum (the ignition side; the cam side is port, -X); Z up, Y completing a right-handed frame; cylinder 1 at +Z at the assembled pose; crank rotation positive about +X (from +Y toward +Z), which is clockwise seen from the port side. Cylinder k is at 72 (k-1) degrees from +Z in the direction of crank rotation. Positions marked "to do" are measured from the plates in the modelling step and recorded in `measurements.json` with the plate, the half, the scale used and the spread.
 
 | Part or axis | Position | Must clear | Must meet | Locator | Status |
 |---|---|---|---|---|---|
@@ -84,3 +84,24 @@ Frame (modelling): origin on the crankshaft axis at the mid-plane of the cylinde
 Sits in a hole or pocket (these become seats): liner in shell; plug in its dome boss; inlet seat in the chamber with its nut; exhaust seat and guide; bushings in the drum hubs, in the rod heads and in the master sleeve; gudgeon pins in the piston bosses; rings in grooves; shoes on the sleeve; springs on stems; punch rods in their guides. Fasteners and connectors are guests of the part they pass through, never hosts. Rigid bodies: the crank assembly (shaft, pin, plug, coupling flanges, balance arms, worm wheel and bevel gear, the pinion and the ignition ring); each piston with its rings and pin; the master rod with its sleeve and lining; each link rod with its shoe; each cylinder with liner, chamber, jacket, seats, plug and oil cup; each valve with its collar; each punch rod (the roller turns); the ring cam; the gears; the sparker cam; the distributor disc.
 
 Known conflicts to resolve in measurement, not in the audit: a manifold ring must clear five jackets and still be assembled in the frame (the source itself says it was cut in three places for that reason); the exhaust punch rod sits outside the port drum face and the cam ring sits in the gap between drum and bed plate (so the gap is a documented dimension, M1 p. 237); the water manifolds, the manifold ring and the balance arms share the volume near the heads and the couplings.
+
+## 7. Operating motion as built (7 October 2026)
+
+One source for the geometry and the motion: `cad_pipeline/langley_cam.py` (cycle timing and the ring cam), `langley_motion.py` (a transform per part and crank angle), `langley_bodies.py` (which parts move together), `langley_explode.py` (the systems exploded view). `scripts/test_langley_motion.py` checks it (23 tests: rest pose, kinematic closure, stroke, firing order, ratios, exhaust and inlet timing, brush and sparker phase, continuity between one-degree keys, exploded rules).
+
+| Quantity | Value as built | Status |
+|---|---|---|
+| Rest pose, theta = 0 | cylinder 1 at top dead centre at the end of its exhaust stroke; its exhaust valve is closing (1.4 mm), cylinder 3's is 7.2 mm open, the other three are shut; every inlet valve is shut | derived from the timing choices below |
+| Power top dead centre of cylinders 1, 3, 5, 2, 4 | 360, 504, 648, 72 and 216 degrees (144 degrees apart, each a real top dead centre of that cylinder) | derived from the documented firing order |
+| Exhaust timing | peak lift 270 degrees after power top dead centre, valve open about 206 degrees, starting some 20 degrees before bottom dead centre | illustrative |
+| Cam phase | lobe centres at 157.5 and 337.5 degrees at theta = 0 (cylinder 1's lobe passes at theta = 630); the cam turns -1/4 | derived from the exhaust timing and the documented ratio |
+| Cam lobe | raised cosine, half width 28 cam degrees (112 crank degrees), rise 12.4 mm over a 60 mm base circle; the punch-rod roller (8 mm radius) rides the polygon outline with 0.1 mm clearance, found by exact contact | illustrative |
+| Exhaust valve | rises with the rod after the documented 0.397 mm gap is taken up; maximum lift 12.0 mm; the spring is compressed between the guide boss and the collar | illustrative lift, documented gap |
+| Inlet valve | opens by suction: raised cosine, 6 mm, within 50 degrees of the middle of the intake stroke; the spring is compressed between the chamber and the cap | documented principle, illustrative window and lift |
+| Cam train | pinion 24 on the crankshaft, large gear 48 with its coaxial small gear 18, idler 20, tooth ring 36 on the cam: three external meshes, net exactly -1/4 | documented ratio, derived teeth |
+| Ignition | pinion 30 on the sleeve turns the 60-tooth gear (-0.5x, with the distributor disc and brush) which turns the 12-tooth sparker pinion and cam (+2.5x) | documented ratios, derived teeth |
+| Spark | 20 degrees before power top dead centre; the brush reaches each segment at its spark; the sparker cam's lobe crest is under its axle at every spark and presses the pawl down about 6 mm, the pawl spring stretching with it | illustrative advance, derived phases |
+| Rods | all five axes pass through the crank-pin centre, so the five strokes are identical; the link shoes slide on the master sleeve as the relative angle between a link rod and the master rod changes by up to about 28 degrees | documented, derived |
+| Not animated | worm and its shaft, worm wheel teeth against the worm (the thread is omitted), the pump bevel pair and shaft (axisymmetric as drawn), pipes, drums, bed plates | held poses or invisible rotations |
+
+The audit of this motion over two turns found two collisions at 30 degree steps (the master rod's root flare against two link shoes at their closest approach, and a cam lobe tip against the idler stud); both were removed by changing the design, not a threshold (the flare is narrower; the idler has 20 teeth so its stud stands outside the lobe sweep). The re-run at 15 degree steps over 720 degrees (48 poses, 1,486-1,541 neighbouring pairs each) is clean. The exported file's baked clip is audited separately, between its keys.

@@ -213,7 +213,7 @@
         "CrankPlug",
         "CrankOilPipe"
       ],
-      "decision": "One steel forging: hollow shaft, one crank arm, one hollow crank pin carrying the cone-nut threads that were left from the pure-slipper design; oil path drilled through shaft, arm and pin; arm and pin proportions measured from Plate 78",
+      "decision": "One steel forging: hollow shaft in two halves, a crank arm each side of the pin (the shaft runs in a bearing in each drum head), one hollow crank pin carrying the cone-nut threads that were left from the pure-slipper design; oil path drilled through shaft, arm and pin; arm and pin proportions measured from Plate 78",
       "disposition": "modelled",
       "source_ids": [
         "M1",
@@ -846,7 +846,7 @@
       "part_ids": [
         "CamRing"
       ],
-      "decision": "Annular cam journalled on the port hub, two lobes, internal teeth for the reversing drive; profile illustrative (slant was reduced on 8 January 1902)",
+      "decision": "Annular cam journalled on the exterior of the port hub, two lobes, driven by a train of gears on studs on the drum; a tooth ring at its outboard end takes the drive (the form of the teeth is not documented and is drawn external); profile illustrative (slant was reduced on 8 January 1902)",
       "disposition": "modelled",
       "source_ids": [
         "M1",
@@ -869,7 +869,7 @@
         "CamIdler",
         "CamStud"
       ],
-      "decision": "Reversing train of three external meshes (pinion to large gear, small gear to idler, idler to cam-ring teeth), net 1:4 reverse; tooth counts 24/48/18/12/36 (pinion, large gear, small gear, idler, cam-ring teeth) derived to give exactly 1:4 with no two gears of a plane overlapping, layout interpreted from a very crowded plate",
+      "decision": "Reversing train of three external meshes (pinion to large gear, small gear to idler, idler to cam-ring teeth), net 1:4 reverse; tooth counts 24/48/18/20/36 (pinion, large gear, small gear, idler, cam-ring teeth) derived to give exactly 1:4 with no two gears of a plane overlapping, layout interpreted from a very crowded plate",
       "disposition": "modelled",
       "source_ids": [
         "M1"

@@ -13,6 +13,7 @@ import json, math, sys
 from pathlib import Path
 from types import SimpleNamespace
 from cad_pipeline.langley_frame import Frame, slider_position, rod_swing, pin_centre
+from cad_pipeline.langley_cam import Cam, lobe_phase, exhaust_lift
 R = Path(__file__).resolve().parents[1]
 S = R / 'cad-studies/langley-manly-balzer-1903'
 IN = 25.4
@@ -54,7 +55,7 @@ class Spec:
         return dict(schema_version=1, model_id='langley-manly-balzer-1903', units='mm', input_mode='mixed',
                     scope='Large 5 x 5.5 in water-cooled stationary radial of Langley Aerodrome A (built 1901): engine proper, flywheels and shaft stubs. Teaching reconstruction from the 1911 Memoir drawings; not a manufacturing drawing, not an authenticated running model.',
                     sources=self.sources, parameters=self.params, parts=self.parts,
-                    tessellation=dict(default_mm=0.4, groups={'piston': 0.02, 'liner': 0.02, 'crank': 0.03, 'bearing': 0.03, 'cylinder': 0.2, 'shell': 0.04, 'jacket': 0.04, 'rod': 0.1, 'valve': 0.05, 'pipe': 0.3, 'ignition': 0.1}))
+                    tessellation=dict(default_mm=0.4, groups={'piston': 0.02, 'liner': 0.02, 'crank': 0.03, 'bearing': 0.03, 'cylinder': 0.2, 'shell': 0.04, 'jacket': 0.04, 'rod': 0.1, 'valve': 0.05, 'spring': 0.1, 'pipe': 0.3, 'ignition': 0.1}))
 
 
 # ---- feature constructors (local frame, numbers in mm)
@@ -123,14 +124,11 @@ def context(theta=0.0):
     c.valve_x = par('valve_axis_x', -112.7, 'measured', ['P78'], 'Offset of the inlet and exhaust valve axis from the cylinder axis, toward the port drum.', method='Plate 78A, stem at x = 1075 px, cylinder axis 1739 px, 149.6 px/in.')
     c.theta = theta
     c.cam_rise = par('cam_rise', 12.4, 'inferred', ['M1'], 'Rise of a cam lobe: valve lift 12.0 mm plus the documented 1/64 in (0.397 mm) gap. Lift and lobe form are not documented and are illustrative.')
-    c.lobe_half = par('cam_lobe_half_width', 15.0, 'inferred', ['M1'], 'Half width of a cam lobe in cam degrees (illustrative).', unit='deg')
-
-    def lobe_h(phi):
-        d = abs(((phi + 90.0) % 180.0) - 90.0)                  # distance from the nearest lobe centre; lobes sit at 0 and 180 degrees at the rest pose
-        return c.cam_rise * (0.5 + 0.5 * math.cos(math.pi * d / c.lobe_half)) if d < c.lobe_half else 0.0
-    c.lobe_h = lobe_h
-    c.cam_h = [lobe_h(72.0 * k) for k in range(5)]              # lobe height under each punch-rod roller at the rest pose
-    c.ex_lift = [max(0.0, h - 0.397) for h in c.cam_h]          # exhaust valve lift at the rest pose
+    c.lobe_half = par('cam_lobe_half_width', 28.0, 'inferred', ['M1'], 'Half width of a cam lobe in cam degrees (illustrative): 28 degrees of cam is 112 degrees of crank, so each exhaust valve is open for 224 degrees.', unit='deg')
+    c.cam_phase = par('cam_lobe_phase', lobe_phase(), 'inferred', ['M1'], 'Direction of a cam lobe centre at the rest pose, from the exhaust timing: peak lift 270 degrees after power top dead centre (illustrative), cylinder 1 at the top of its exhaust stroke at theta = 0, cam at -1/4 crank speed.', unit='deg')
+    c.cam = Cam(c.cam_rise, c.lobe_half, c.cam_phase)
+    c.cam_h = [c.cam.roller_rise(72.0 * k) for k in range(5)]   # punch-rod rise under each exhaust stem at the rest pose
+    c.ex_lift = [exhaust_lift(h) for h in c.cam_h]                # exhaust valve lift at the rest pose
     c.alphas = [72.0 * k * D2R for k in range(5)]
     c.crank = pin_centre(theta, c.r)                  # (Y, Z) of the crank-pin centre
     c.pins = [slider_position(theta, a, c.r, c.L) for a in c.alphas]
@@ -151,6 +149,7 @@ def build(theta=0.0, subsystems=None):
     for module in (langley_crank, langley_cylinder, langley_drum, langley_drive, langley_pipes, langley_flywheel):
         if subsystems is None or module.__name__.rsplit('.', 1)[-1] in subsystems:
             module.add(sp, c)
+    sp.c = c                                                  # the context after every module has added its parts: the motion reads its kinematics and train layouts from here
     return sp
 
 

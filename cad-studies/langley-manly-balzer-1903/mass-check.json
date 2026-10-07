@@ -8,9 +8,9 @@
   },
   {
    "line": "W02",
-   "model_g": 7568.4,
+   "model_g": 7365.5,
    "table_g": 5070,
-   "ratio": 1.493
+   "ratio": 1.453
   },
   {
    "line": "W03",
@@ -20,15 +20,15 @@
   },
   {
    "line": "W04",
-   "model_g": 26233.0,
+   "model_g": 26215.6,
    "table_g": 23524,
-   "ratio": 1.115
+   "ratio": 1.114
   },
   {
    "line": "W05",
-   "model_g": 6353.0,
+   "model_g": 6417.7,
    "table_g": 5225,
-   "ratio": 1.216
+   "ratio": 1.228
   },
   {
    "line": "W06",
@@ -56,9 +56,9 @@
   },
   {
    "line": "W10",
-   "model_g": 1835.2,
+   "model_g": 1798.6,
    "table_g": 1700,
-   "ratio": 1.08
+   "ratio": 1.058
   },
   {
    "line": "W11",
@@ -85,7 +85,7 @@
    "ratio": 1.003
   }
  ],
- "engine_g": 63737.9,
+ "engine_g": 63545.7,
  "unassigned_g": {
   "CylBolt1_1": 14.4,
   "CylBolt1_2": 14.4,

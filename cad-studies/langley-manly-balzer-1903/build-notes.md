@@ -1,6 +1,6 @@
 # Langley / Manly-Balzer 1903: build and audit notes
 
-Status (7 October 2026): the 358-part specification builds as 358 single valid solids and the **rest-pose interference audit is clean** (1,487 neighbouring pairs, every one touching only, 0 overlaps, 0 parts that cannot be intersected exactly). Motion, exploded view, rig, contract and Explore card are not done yet.
+Status (7 October 2026): the 358-part specification builds natively (787 features, 13 minutes with `--batch-runs 6`) as 358 single valid solids, `verify.py` passes under a reviewed STEP exception for three parts (`step-exception-policy.json`), and the **exported file's interference audit is clean**: 1,492 neighbouring pairs at rest, 133 poses of the baked operating clip, 0 overlaps, five gear meshes with at least 0.043 mm of clearance. Operating motion, exploded view, rig, contract and the Explore card are done; the Drive release binds a file id once the user has shared the file.
 
 ## How to rebuild
 
@@ -16,19 +16,19 @@ python scripts/langley_mass_check.py build/dev/out/geometry.json
 
 ## Mass against Manly's weight table (M1 p. 250)
 
-The table is a shape test that does not depend on a drawing. The model is 63.7 kg against 56.3 kg for lines W01-W13 (+13 percent); items the table does not list (bed-plate webs, coupling flanges, transmission stubs, starter, pump drive) are 14.2 kg more and are reported separately in `mass-check.json`.
+The table is a shape test that does not depend on a drawing. The model is 63.5 kg against 56.3 kg for lines W01-W13 (+13 percent); items the table does not list (bed-plate webs, coupling flanges, transmission stubs, starter, pump drive) are 14.2 kg more and are reported separately in `mass-check.json`.
 
 | Line | Model g | Table g | Ratio | Remark |
 |---|---:|---:|---:|---|
 | W01 crank shaft | 6,208 | 5,225 | 1.19 | bore 36 mm (top of the measured 27-36 mm), webs 24 mm |
-| W02 connecting rods | 7,568 | 5,070 | 1.49 | **unresolved**: the drawn sleeve (8.3 mm wall), shoes, cone and jam nuts alone are 3.7 kg; either the table leaves the sleeve hardware out of this line or the sleeve is lighter than the plate bands suggest |
+| W02 connecting rods | 7,366 | 5,070 | 1.45 | **unresolved**: the drawn sleeve (8.3 mm wall), shoes, cone and jam nuts alone are 3.7 kg; either the table leaves the sleeve hardware out of this line or the sleeve is lighter than the plate bands suggest |
 | W03 pistons | 8,162 | 8,260 | 0.99 | |
-| W04 cylinders | 26,233 | 23,524 | 1.12 | |
-| W05 port drum, cam, gears, punch rods | 6,353 | 5,225 | 1.22 | gears and cam ring webbed to get here |
+| W04 cylinders | 26,216 | 23,524 | 1.11 | |
+| W05 port drum, cam, gears, punch rods | 6,418 | 5,225 | 1.23 | gears and cam ring webbed to get here |
 | W06 starboard drum | 3,015 | 3,440 | 0.88 | |
 | W07 spark plugs | 548 | 450 | 1.22 | |
 | W08, W09 water pipes | 515, 349 | 450, 360 | 1.14, 0.97 | wall 0.3 mm |
-| W10 inlet manifold | 1,835 | 1,700 | 1.08 | wall 0.24 mm |
+| W10 inlet manifold | 1,799 | 1,700 | 1.06 | wall 0.24 mm |
 | W11 sparkers and wires | 896 | 512 | 1.75 | the 60-tooth gear alone is about 0.4 kg even webbed to 2 mm |
 | W12 + W13 balance arms and braces | 2,055 | 2,107 | 0.98 | arm 8.5 mm |
 | W14, W15 flywheels | 3,955, 3,243 | 3,946, 3,234 | 1.00 | rim thickness solved (4.65 mm starboard, 3.15 mm port) |
@@ -48,6 +48,5 @@ Fixed in the geometry (no threshold was relaxed):
 
 ## Open before release
 
-- Rest pose is verified. The audit between the keys of the baked clip still has to run once the motion exists.
 - Overlay checks of the drums and crank on Plate 78B and of the end elevation on Plate 79 are not done.
 - W02, W11 and W05 stay above the table; see the remarks above.

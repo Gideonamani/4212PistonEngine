@@ -30,6 +30,8 @@ def add(sp, c):
     stem_r_in, stem_r_ex = 5.0, 4.1
     out_y = 45.0                                                # the water outlet stub leaves the jacket beside the chamber, 45 mm off the cylinder plane
     out_z = math.sqrt(u(76.0) ** 2 - out_y ** 2)                # on the outlet ring of radius u(76), so it meets the ring tube
+    c.ex_spring = dict(top=u(0.5), free=u(0.5) - u(-39.3))      # exhaust spring: its top end is fixed against the guide boss, its free length (valve closed)
+    c.in_spring = dict(bottom=u(98.4), free=u(122.8) - u(98.4))   # inlet spring: its bottom end is fixed, the cap moves down with the valve
     ex_end = c.c_flange + 86.0                                  # lower end of the exhaust stem (a punch rod gap above the cam train)
     c.ex_stem_end = ex_end
 
@@ -76,7 +78,7 @@ def add(sp, c):
         sp.add(f'InletSeat{i}', f'Cylinder {i} inlet valve seat', 'valve', [tube(ch_ri - 0.4, 24.5, u(90.0) - u(80.0), [vx, 0, u(80.0)], label='Removable cast-iron seat')], 'cast iron', 'M1 p. 240: removable cast-iron seat fastened by a nut', fr)
         sp.add(f'InletSeatNut{i}', f'Cylinder {i} inlet seat nut', 'valve', [tube(ch_ri - 0.4, 24.5, 7.0, [vx, 0, u(90.3)], label='Seat nut')], 'steel', 'M1 p. 240', fr)
         sp.add(f'InletValve{i}', f'Cylinder {i} automatic inlet valve', 'valve', [rev([(0, u(76.45)), (27.0, u(76.45)), (27.0, u(79.95)), (stem_r_in, u(79.95)), (stem_r_in, u(130.0)), (0, u(130.0))], o=[vx, 0, 0], label='Valve head and stem')], 'steel', 'M1 p. 240; Plate 78A (head diameter 54 mm, stem 10 mm)', fr)
-        sp.add(f'InletSpring{i}', f'Cylinder {i} inlet valve spring', 'valve', [helix(11.0, 1.2, 4.6, u(122.8) - u(98.4), [vx, 0, u(98.4)], label='Spring wire')], 'steel', 'Plate 78A: coil above the seat; pitch and wire estimated', fr)
+        sp.add(f'InletSpring{i}', f'Cylinder {i} inlet valve spring', 'spring', [helix(11.0, 1.2, 4.6, u(122.8) - u(98.4), [vx, 0, u(98.4)], label='Spring wire')], 'steel', 'Plate 78A: coil above the seat; pitch and wire estimated', fr)
         sp.add(f'InletSpringCap{i}', f'Cylinder {i} inlet spring cap', 'valve', [tube(14.0, stem_r_in + 0.05, 6.0, [vx, 0, u(124.0)], label='Spring cap')], 'steel', 'Plate 78A', fr)
         # ---- exhaust valve, seat, guide, spring, collar, nut
         sp.add(f'ExhaustSeat{i}', f'Cylinder {i} exhaust valve seat', 'valve', [tube(ch_ri - 0.4, 23.5, 5.0, [vx, 0, u(36.0)], label='Exhaust seat ring')], 'cast iron', 'Plate 78A', fr)
@@ -84,7 +86,7 @@ def add(sp, c):
         vf = Frame(0.0, (0.0, 0.0, lift)).then(fr) if lift else fr         # an open valve (the rest pose has cylinder 1's exhaust valve at the cam peak) moves with its stem
         sp.add(f'ExhaustValve{i}', f'Cylinder {i} exhaust valve', 'valve', [rev([(0, ex_end), (stem_r_ex, ex_end), (stem_r_ex, u(41.05)), (27.0, u(41.05)), (27.0, u(45.0)), (0, u(45.0))], o=[vx, 0, 0], label='Valve head and stem')], 'steel', 'M1 pp. 237, 240; Plate 78A (head diameter 54 mm, stem 8.2 mm)', vf)
         sp.add(f'ExhaustGuide{i}', f'Cylinder {i} exhaust valve guide', 'valve', [tube(8.65, stem_r_ex + 0.25, u(13.0) - u(2.0), [vx, 0, u(2.0)], label='Bronze guide')], 'bronze', 'Plate 78A', fr)
-        sp.add(f'ExhaustSpring{i}', f'Cylinder {i} exhaust valve spring', 'valve', [helix(7.95, 1.2, 4.0 * (u(0.5) - u(-39.3) - lift) / (u(0.5) - u(-39.3)), u(0.5) - u(-39.3) - lift, [vx, 0, u(-39.3) + lift], label='Spring wire')], 'steel', 'Plate 78A: 15 coils, outside diameter 18 mm, from the guide boss to the collar', fr)
+        sp.add(f'ExhaustSpring{i}', f'Cylinder {i} exhaust valve spring', 'spring', [helix(7.95, 1.2, 4.0 * (u(0.5) - u(-39.3) - lift) / (u(0.5) - u(-39.3)), u(0.5) - u(-39.3) - lift, [vx, 0, u(-39.3) + lift], label='Spring wire')], 'steel', 'Plate 78A: 15 coils, outside diameter 18 mm, from the guide boss to the collar', fr)
         sp.add(f'ExhaustSpringCollar{i}', f'Cylinder {i} exhaust spring collar', 'valve', [tube(11.5, stem_r_ex + 0.05, 3.8, [vx, 0, u(-44.5)], label='Spring collar')], 'steel', 'Plate 78A', vf)
         sp.add(f'ExhaustSpringNut{i}', f'Cylinder {i} exhaust spring nut', 'valve', [tube(7.0, stem_r_ex + 0.05, 6.5, [vx, 0, u(-51.05)], label='Spring nut')], 'steel', 'Plate 78A', vf)
 

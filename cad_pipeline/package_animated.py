@@ -12,7 +12,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 STUDY_FILES = ('part-spec.json', 'seats.json', 'chain-layout.json', 'interference-policy.json', 'interference-audit.json', 'operating-motion.md',
-               'research.md', 'inventory.json')
+               'research.md', 'inventory.json', 'build-notes.md', 'mass-check.json', 'step-exception-policy.json', 'step-boundary-checks.json', 'source-manifest.json')
 sha256 = lambda data: hashlib.sha256(data).hexdigest()
 
 
@@ -50,7 +50,7 @@ def main():
         raise ValueError('the interference audit describes a different GLB')
     geometry_hash = report['files']['geometry.json']['sha256']
 
-    files = [args.cad / n for n in ('cad-validation.json', 'wright-research-revision-2.FCStd', 'wright-research-revision-2.step', 'geometry.json')]
+    files = [args.cad / n for n in ('cad-validation.json', report['model_id'] + '.FCStd', report['model_id'] + '.step', 'geometry.json')]
     files += [p for p in (args.cad / 'engineering-checks.json', args.cad / 'reopen-validation.json') if p.exists()]
     files += [args.rig / (args.name + ext) for ext in ('.blend', '.glb', '.glb.gz', '-contract.json')] + [args.rig / 'blender-verification.json']
     files += [args.study / n for n in STUDY_FILES if (args.study / n).exists()]
@@ -65,7 +65,7 @@ def main():
             z.writestr(arcname, data)
         manifest = dict(model_id=report['model_id'], parts=report['part_count'], native_features=report['feature_count'], geometry_sha256=geometry_hash,
                         glb_sha256=contract['asset_sha256'], batched_boolean_runs=report.get('batched_boolean_runs', 0),
-                        scope='Private native sources of the Wright revision-2 animated reconstruction. The public file is the .glb.gz; editable CAD stays here.', files=entries)
+                        scope=f"Private native sources of the {report['model_id']} animated reconstruction. The public file is the .glb.gz; editable CAD stays here.", files=entries)
         z.writestr('package-manifest.json', json.dumps(manifest, indent=2) + '\n')
     with zipfile.ZipFile(archive) as z:
         bad = z.testzip()

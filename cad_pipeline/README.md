@@ -98,3 +98,32 @@ python cad_pipeline/audit_motion.py --geometry build/dev/out/geometry.json --ste
 ```
 
 `fast_build.py` evaluates the same specification with direct Part booleans and per-part caching; it is a development evaluator. A release goes through `generate.py --batch-runs 6` (native feature history; the option applies each run of six or more consecutive same-operation features, such as the casting's seat cuts, as one fused tool in one Boolean, which builds the Crankcase in about ten minutes instead of hours and matches the one-Boolean-per-feature volume to 1e-7; leave it off for `update_native.py` workflows), `verify.py`, `audit_wright_v2.py`, then `rig_wright.py`, then the real audit on the exported GLB. Audit the exported file, not only the CAD: the clips are baked at one key per crank degree and a viewer interpolates linearly between keys, which can move a part whose origin is far from its axis (see `cad-studies/wright-1903/revision-2/operating-motion.md`). `scripts/test_wright_layout.py` (standard library only) checks the chain, the seat rules and the rigid bodies; `scripts/test_wright_reconstruction.mjs` checks the released file's ratios, stroke, valve lift, the exploded stages and the tree.
+
+## Langley / Manly-Balzer 1903 radial in the Explore gallery
+
+The five-cylinder water-cooled radial of Langley's Aerodrome A is the third reconstruction card (`langley-manly-balzer-1903`). It follows the Wright route (native FreeCAD build, Blender rig that bakes two clips, exhaustive audit of the exported GLB) with a research dossier in `cad-studies/langley-manly-balzer-1903/` (`research.md`, `operating-motion.md`, `build-notes.md`, `inventory.json`). Its notes are in `docs/langley-reconstruction-notes.md`.
+
+- `langley_v1.py` writes `part-spec.json` (358 parts, every parameter with provenance) from the subsystems `langley_crank`, `langley_cylinder`, `langley_drum`, `langley_drive`, `langley_pipes` and `langley_flywheel`; every part is written in a local frame and placed by `langley_frame.Frame` (a rotation about the shaft axis). The spec uses two primitives added for this model: `revolve` (a profile (r, z) turned about local Z, optionally through `angle`) and a per-feature `roll`.
+- `langley_cam.py` is the one definition of the cycle timing and the ring cam, imported by the geometry and the motion; `langley_motion.py` is the single definition of the illustrative operating motion (transforms per part and crank angle), `langley_bodies.py` says which parts move together, `langley_explode.py` is the systems exploded view and `langley_contract.py` writes the viewer contract (12 systems, then the inventory components, then parts). `rig_langley.py` bakes both clips.
+- `langley_research.py` generates `inventory.json`, `research-readiness.json` and `source-manifest.json`; `scripts/langley_mass_check.py` compares the model with Manly's weight table; `overlay_plate.py` overlays a section of the model on a plate render.
+
+```powershell
+python -m cad_pipeline.langley_research
+python -m cad_pipeline.langley_v1                       # writes cad-studies/langley-manly-balzer-1903/part-spec.json
+py -3.14 -m cad_pipeline.research_gate --inventory cad-studies/langley-manly-balzer-1903/inventory.json --spec cad-studies/langley-manly-balzer-1903/part-spec.json
+# fast loop (one build at a time; about two minutes)
+python -m cad_pipeline.langley_v1 --out build/dev/langley-spec.json
+& $cadPython cad_pipeline/fast_build.py --spec build/dev/langley-spec.json --output build/dev/out --jobs 2
+python cad_pipeline/geometry_to_glb.py build/dev/out/geometry.json build/dev/out/model.glb
+python scripts/audit_assembly_interference.py build/dev/out/model.glb --rest-only
+python cad_pipeline/audit_motion.py --geometry build/dev/out/geometry.json --motion cad_pipeline.langley_motion --step 15 --jobs 2
+python scripts/langley_mass_check.py build/dev/out/geometry.json
+# release
+& $cadPython cad_pipeline/generate.py --spec cad-studies/langley-manly-balzer-1903/part-spec.json --output build/langley/cad --batch-runs 6
+& $cadPython cad_pipeline/verify.py --package build/langley/cad --step-boundary-exception cad-studies/langley-manly-balzer-1903/step-exception-policy.json
+blender --background --python-exit-code 1 --python cad_pipeline/rig_langley.py -- --package build/langley/cad --output build/langley/rig
+python scripts/audit_assembly_interference.py build/langley/rig/langley-manly-balzer-1903-animated.glb --contract build/langley/rig/langley-manly-balzer-1903-animated-contract.json --policy cad-studies/langley-manly-balzer-1903/interference-policy.json
+```
+
+`scripts/test_langley_research.py` and `scripts/test_langley_motion.py` (standard library only) check the dossier, the kinematics and the exploded rules; `scripts/test_langley_reconstruction.mjs` checks the released file's ratios, stroke, valve lift, exploded stages and tree.
+
