@@ -61,7 +61,7 @@ Water and gas flow; oil-cup feed; the starting worm (shown engaged and disengage
 
 ## 6. Packaging record
 
-Frame (modelling): origin on the crankshaft axis at the mid-plane of the cylinders; X along the crankshaft toward the starboard drum (the ignition side; the cam side is port, -X); Z up, Y completing a right-handed frame; cylinder 1 at +Z at the assembled pose; crank rotation positive about +X (from +Y toward +Z), which is clockwise seen from the port side. Cylinder k is at 72 (k-1) degrees from +Z in the direction of crank rotation. Positions marked "to do" are measured from the plates in the modelling step and recorded in `measurements.json` with the plate, the half, the scale used and the spread.
+Frame (modelling): origin on the crankshaft axis at the mid-plane of the cylinders; X along the crankshaft toward the starboard drum (the ignition side; the cam side is port, -X); Z up, Y completing a right-handed frame; cylinder 1 at +Z at the assembled pose; crank rotation positive about +X (from +Y toward +Z), which is clockwise seen from the port side. Cylinder k is at 72 (k-1) degrees from +Z in the direction of crank rotation. Positions marked "to do" were measured from the plates in the modelling step; the values, with their method (plate, half, scale) and status `measured`, `inferred` or `specified`, are the `parameters` of `part-spec.json`. The tables in sections 2 and 6 are the pre-CAD record and keep their original statuses; section 7 records the motion as built.
 
 | Part or axis | Position | Must clear | Must meet | Locator | Status |
 |---|---|---|---|---|---|
