@@ -104,6 +104,8 @@ jobs:
         run: |
           python3 scripts/test_langley_research.py
           python3 scripts/test_langley_motion.py
+      - name: Verify the knowledge store, part cards and metrics against the studies (standard library only)
+        run: python3 scripts/test_knowledge_store.py
 
   # Parts may touch but not overlap, at the assembled pose and through every baked motion. Each model's interference-policy.json
   # is a ratchet: new overlaps fail, and a fixed overlap must be removed from the ledger. This is the longest check apart from the
