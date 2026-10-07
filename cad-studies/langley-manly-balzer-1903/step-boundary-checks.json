@@ -1,0 +1,46 @@
+{
+  "parts": [
+    {
+      "id": "InletRingC",
+      "relative_volume_error": 0.00011747720335446417,
+      "absolute_volume_difference_mm3": 4.283182980136189,
+      "sampled_boundary_error_mm": 6.081917976805688e-10,
+      "optimal_bounds_error_mm": 2.8819613362429664e-11,
+      "native_vertices": 200,
+      "native_faces": 98,
+      "step_vertices": 200,
+      "step_faces": 98,
+      "scope": "All vertices plus closest boundary point to each face centroid, sampled in both directions; not a continuous Hausdorff proof"
+    },
+    {
+      "id": "FlywheelHubPort",
+      "relative_volume_error": 0.00011172457745545771,
+      "absolute_volume_difference_mm3": 11.668709387013223,
+      "sampled_boundary_error_mm": 9.19060626047045e-11,
+      "optimal_bounds_error_mm": 3.161915174132446e-12,
+      "native_vertices": 110,
+      "native_faces": 60,
+      "step_vertices": 110,
+      "step_faces": 60,
+      "scope": "All vertices plus closest boundary point to each face centroid, sampled in both directions; not a continuous Hausdorff proof"
+    },
+    {
+      "id": "FlywheelHubStbd",
+      "relative_volume_error": 0.00011172459601454564,
+      "absolute_volume_difference_mm3": 11.668711325357435,
+      "sampled_boundary_error_mm": 1.1976741613858616e-11,
+      "optimal_bounds_error_mm": 3.161915174132446e-12,
+      "native_vertices": 110,
+      "native_faces": 60,
+      "step_vertices": 110,
+      "step_faces": 60,
+      "scope": "All vertices plus closest boundary point to each face centroid, sampled in both directions; not a continuous Hausdorff proof"
+    }
+  ],
+  "source_hashes": {
+    "langley-manly-balzer-1903.FCStd": "1fd0240744b1c9f2f731f0a917b36a52f86a8dfa4754a02ed0cc265f8aea1c55",
+    "langley-manly-balzer-1903.step": "a64a65c25953bba054b6a505122d38a126bbff467b4192bdd32661b87249628a"
+  },
+  "sampling_method": "all_vertices_and_projected_face_centroids_bidirectional",
+  "scope": "Investigate the original strict volume failure; do not infer manufacturing accuracy"
+}

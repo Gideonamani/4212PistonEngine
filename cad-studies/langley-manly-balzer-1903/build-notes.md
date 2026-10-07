@@ -48,5 +48,5 @@ Fixed in the geometry (no threshold was relaxed):
 
 ## Open before release
 
-- Overlay checks of the drums and crank on Plate 78B and of the end elevation on Plate 79 are not done.
+- Overlay of the final section on Plate 78B (`python cad_pipeline/overlay_plate.py --plate 78B`): above the shaft the hollow shaft, crank webs (|X| 70-94 mm), crank pin, drum head (|X| 96-106 mm with the bed-plate web) and flange pad heights agree with the plate within the line width; below the shaft the plate shows web legs with lightening holes at |X| 67-78 mm that are not modelled (the bed-plate webs are drawn as flat diamonds against the head faces). The end elevation on Plate 79 has not been overlaid.
 - W02, W11 and W05 stay above the table; see the remarks above.

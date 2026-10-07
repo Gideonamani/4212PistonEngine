@@ -54,5 +54,5 @@ less than its printed total (a misprint). The Smithsonian repository sits behind
 
 - The exported file is large (about 42 MB decoded, 12 MB gzipped) because the clearances need fine tessellation; valve springs and pistons dominate.
 - The rod and ignition mass lines (W02, W11) stay above the table; the sleeve hardware of the rods is the likely cause.
-- Overlays of the drums and crank on Plate 78B and of the end elevation on Plate 79 are not done; the crank and the drum geometry rest on measurements from Plate 78A.
+- The final section was overlaid on Plate 78B: the crank, hub and head agree above the shaft; web legs with lightening holes below it are not modelled. Plate 79's end elevation has not been overlaid.
 - The STEP exception awaits instructor review. The Drive release needs the user's sharing step.

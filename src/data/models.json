@@ -165,6 +165,31 @@
     "lessonControls": true
   },
   {
+    "id": "langley-manly-balzer-1903",
+    "label": "1903 Langley radial engine, modelled part by part",
+    "adapter": "animated-study",
+    "eyebrow": "HISTORICAL RECONSTRUCTION",
+    "headerLabel": "LANGLEY ENGINE \u00b7 RECONSTRUCTION",
+    "description": "A source-led teaching reconstruction of Langley's five-cylinder water-cooled radial, the contemporary rival of the Wright engine: 358 separate parts grouped by system and by research component. Explore a systems exploded view and an illustrative operating cycle. It is drawn from the 1911 Memoir plates, not from the museum object, and the motion timing is a teaching choice.",
+    "previewUrl": "./model-previews/langley-manly-balzer-1903.webp",
+    "badges": [
+      "358 modelled parts",
+      "Illustrative operating cycle",
+      "Systems exploded view"
+    ],
+    "sources": [
+      {
+        "localUrl": "./langley-manly-balzer-1903.glb.gz?v=78ae601dd1e9",
+        "compressed": true,
+        "transferBytes": 12452028,
+        "decodedBytes": 41751592,
+        "driveId": "PENDING-DRIVE-UPLOAD-LANGLEY"
+      }
+    ],
+    "contractUrl": "./langley-manly-balzer-1903-contract.json?v=78ae601dd1e9",
+    "lessonControls": true
+  },
+  {
     "id": "hydraulic-tappet",
     "label": "Hydraulic tappet internals",
     "adapter": "animated-study",

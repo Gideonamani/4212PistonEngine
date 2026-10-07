@@ -19,6 +19,7 @@ const targets = [
   { name: 'hydraulic tappet', dir: 'cad-studies/hydraulic-tappet', glb: 'web/hydraulic-tappet.glb.gz' },
   { name: 'oil pump', dir: 'cad-studies/oil-pump', glb: 'web/oil-pump.glb.gz' },
   { name: 'Wright revision-2 reconstruction', dir: 'cad-studies/wright-1903/revision-2', glb: 'web/wright-1903-reconstruction.glb.gz', contract: 'web/wright-1903-reconstruction-contract.json' },
+  { name: 'Langley / Manly-Balzer reconstruction', dir: 'cad-studies/langley-manly-balzer-1903', glb: 'web/langley-manly-balzer-1903.glb.gz', contract: 'web/langley-manly-balzer-1903-contract.json' },
 ];
 const pairKey = (a, b) => [a, b].sort().join(' / ');
 
@@ -46,7 +47,7 @@ for (const target of targets) {
   });
 }
 
-for (const [name, dir, contractPath] of [['accessory drives', 'cad-studies/accessory-drives', 'web/accessory-drives-contract.json'], ['Wright reconstruction', 'cad-studies/wright-1903/revision-2', 'web/wright-1903-reconstruction-contract.json']]) {
+for (const [name, dir, contractPath] of [['accessory drives', 'cad-studies/accessory-drives', 'web/accessory-drives-contract.json'], ['Wright reconstruction', 'cad-studies/wright-1903/revision-2', 'web/wright-1903-reconstruction-contract.json'], ['Langley reconstruction', 'cad-studies/langley-manly-balzer-1903', 'web/langley-manly-balzer-1903-contract.json']]) {
   test(`${name}: declared gear meshes are all audited with clearance once the contract carries them`, () => {
     const contract = read(contractPath);
     const audit = read(`${dir}/interference-audit.json`);
