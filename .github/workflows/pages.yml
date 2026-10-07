@@ -55,42 +55,18 @@ jobs:
       - name: Check that the guides point only at things that exist
         run: node --test scripts/test_docs_fresh.mjs
 
-  # The one check branch protection requires ("verify"). It passes when the run it needed has passed: the full run, or the
-  # documentation test for a light pull request. A failed, cancelled or missing run fails it.
-  verify:
-    needs: [scope, full, docs]
-    if: always()
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Require the run that applied
-        env:
-          SCOPE: ${{ needs.scope.result }}
-          FULL: ${{ needs.full.result }}
-          DOCS: ${{ needs.docs.result }}
-        run: |
-          echo "scope=$SCOPE full=$FULL docs=$DOCS"
-          [ "$SCOPE" = "success" ] || { echo "The scope job did not succeed"; exit 1; }
-          for result in "$FULL" "$DOCS"; do
-            case "$result" in success|skipped) ;; *) echo "A required run ended as: $result"; exit 1;; esac
-          done
-          [ "$FULL" = "success" ] || [ "$DOCS" = "success" ] || { echo "Neither the full run nor the documentation test ran"; exit 1; }
-
-  # Everything a change must pass. Pull requests stop here; a push to main also publishes what this job built.
-  full:
+  # The full run is the jobs below, side by side: assets first, then checks, audit and e2e (one job per viewport) together, and on
+  # a push to main the Pages artifact. Each job is much shorter than the one job this replaced, which took up to 30 minutes.
+  #
+  # The Drive-hosted test models (ignored by Git) are restored here once and saved to the cache, so the jobs that need them find
+  # them there. Without this step, a changed manifest would send every one of them to Drive at the same moment.
+  assets:
     needs: scope
     if: needs.scope.outputs.full == 'true'
     runs-on: ubuntu-latest
-    # Runs take 12 to 30 minutes depending on the runner; a run on main finished 10 seconds short of the old 30-minute limit.
-    timeout-minutes: 45
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-      - name: Install web application dependencies
-        run: npm ci
       - name: Cache Drive-hosted model assets
         uses: actions/cache@v4
         with:
@@ -100,6 +76,15 @@ jobs:
           key: drive-models-${{ hashFiles('docs/drive-asset-manifest.json') }}
       - name: Restore and verify Drive-hosted model assets for tests
         run: python3 scripts/fetch_drive_assets.py
+
+  # Type checks, the JavaScript tests and the Python checks that need no CAD tooling.
+  checks:
+    needs: assets
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/prepare
       - name: Type-check the React application and the browser tests
         run: npm run lint
       - name: Run every JavaScript test
@@ -119,13 +104,24 @@ jobs:
         run: |
           python3 scripts/test_langley_research.py
           python3 scripts/test_langley_motion.py
+
+  # Parts may touch but not overlap, at the assembled pose and through every baked motion. Each model's interference-policy.json
+  # is a ratchet: new overlaps fail, and a fixed overlap must be removed from the ledger. This is the longest check apart from the
+  # browser tests (about 4 to 7 minutes), and it needs no Node.
+  audit:
+    needs: assets
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/prepare
+        with:
+          node: 'false'
       - name: Install the interference-audit dependencies
         run: python3 -m pip install -r scripts/requirements-audit.txt
       - name: Self-test the interference audit on gear trains that mesh and gear trains that do not
         run: python3 scripts/test_assembly_audit.py
       - name: Audit the published models for part interference
-        # Parts may touch but not overlap, at the assembled pose and through every baked motion. Each model's
-        # interference-policy.json is a ratchet: new overlaps fail, and a fixed overlap must be removed from the ledger.
         run: |
           python3 scripts/audit_assembly_interference.py web/accessory-drives.glb.gz --contract web/accessory-drives-contract.json --policy cad-studies/accessory-drives/interference-policy.json
           python3 scripts/audit_assembly_interference.py web/cylinder-reviewed-20261001.glb.gz --policy cad-studies/cylinder/interference-policy.json
@@ -133,6 +129,21 @@ jobs:
           python3 scripts/audit_assembly_interference.py web/oil-pump.glb.gz --policy cad-studies/oil-pump/interference-policy.json
           python3 scripts/audit_assembly_interference.py web/wright-1903-reconstruction.glb.gz --contract web/wright-1903-reconstruction-contract.json --policy cad-studies/wright-1903/revision-2/interference-policy.json
           python3 scripts/audit_assembly_interference.py web/langley-manly-balzer-1903.glb.gz --contract web/langley-manly-balzer-1903-contract.json --policy cad-studies/langley-manly-balzer-1903/interference-policy.json
+
+  # The browser tests, one job for each project in playwright.config.ts (a phone width or the tablet width). Each job builds the
+  # site because some tests run against the production bundle on port 4174, and all of them reach the models restored into web/.
+  e2e:
+    needs: assets
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      # Let every viewport report, so one failure does not hide another.
+      fail-fast: false
+      matrix:
+        project: [phone-320, phone-360, phone-390, tablet-768]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/prepare
       - name: Build the GitHub Pages application
         run: npm run build
       - name: Cache the Playwright browser
@@ -142,29 +153,76 @@ jobs:
           key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - name: Install the Playwright browser
         run: npx playwright install --with-deps chromium
-      - name: Run the browser tests at phone and tablet widths
-        run: npm run e2e
+      - name: Run the browser tests at ${{ matrix.project }}
+        run: npm run e2e -- --project=${{ matrix.project }}
       - name: Keep the browser test traces when a test fails
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-traces
+          name: playwright-traces-${{ matrix.project }}
           path: test-results/
           retention-days: 7
+
+  # What a push to main publishes: the production build, as a Pages artifact for the deploy job. A pull request does not build it
+  # here (the browser tests build it themselves).
+  site:
+    needs: assets
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/prepare
+      - name: Build the GitHub Pages application
+        run: npm run build
       - uses: actions/configure-pages@v5
-        if: github.event_name != 'pull_request'
       - uses: actions/upload-pages-artifact@v3
-        if: github.event_name != 'pull_request'
         with:
           path: dist
 
-  deploy:
-    # Publishes what the full run built, on a push to main or a manual run. It depends on the full run alone and names that run's
-    # result: by default a job is skipped when any job upstream of it was skipped, and the documentation test (upstream of "verify")
-    # is always skipped on a full run, which silently stopped every deploy after the light path was added.
-    if: ${{ always() && github.event_name != 'pull_request' && needs.full.result == 'success' }}
-    needs: full
+  # The one check branch protection requires ("verify"). It passes when everything that applied has passed: for a full run the
+  # assets, checks, audit and every browser-test job (and, on a push to main, the site build); for a light pull request the
+  # documentation test. A failed, cancelled or missing job fails it.
+  verify:
+    needs: [scope, assets, checks, audit, e2e, site, docs]
+    if: always()
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require every job that applied
+        env:
+          EVENT: ${{ github.event_name }}
+          FULL_SCOPE: ${{ needs.scope.outputs.full }}
+          SCOPE: ${{ needs.scope.result }}
+          ASSETS: ${{ needs.assets.result }}
+          CHECKS: ${{ needs.checks.result }}
+          AUDIT: ${{ needs.audit.result }}
+          E2E: ${{ needs.e2e.result }}
+          SITE: ${{ needs.site.result }}
+          DOCS: ${{ needs.docs.result }}
+        run: |
+          echo "scope=$SCOPE (full run: $FULL_SCOPE) assets=$ASSETS checks=$CHECKS audit=$AUDIT e2e=$E2E site=$SITE docs=$DOCS"
+          [ "$SCOPE" = "success" ] || { echo "The scope job did not succeed"; exit 1; }
+          if [ "$FULL_SCOPE" = "true" ]; then
+            required="assets=$ASSETS checks=$CHECKS audit=$AUDIT e2e=$E2E"
+            # Only a push to main or a manual run builds the Pages artifact.
+            [ "$EVENT" = "pull_request" ] || required="$required site=$SITE"
+            for job in $required; do
+              [ "${job#*=}" = "success" ] || { echo "Did not succeed: ${job%%=*} (${job#*=})"; exit 1; }
+            done
+          else
+            [ "$DOCS" = "success" ] || { echo "The documentation test did not succeed ($DOCS)"; exit 1; }
+          fi
+          echo "Everything that applied has passed"
+
+  deploy:
+    # Publishes what the site job built, on a push to main or a manual run. The condition names the results it needs: by default a
+    # job is skipped when any job upstream of it was skipped, and the documentation test (upstream of "verify") is always skipped on
+    # a full run, which once silently stopped every deploy.
+    if: ${{ always() && github.event_name != 'pull_request' && needs.verify.result == 'success' && needs.site.result == 'success' }}
+    needs: [verify, site]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       pages: write
       id-token: write

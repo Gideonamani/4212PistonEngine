@@ -1,0 +1,30 @@
+name: Prepare the checkout
+description: Install the Node dependencies and restore the Drive-hosted test models, which Git ignores. Run after actions/checkout.
+inputs:
+  node:
+    description: 'Also install Node and the npm dependencies. Pass "false" for a job that needs only the models.'
+    default: 'true'
+runs:
+  using: composite
+  steps:
+    - name: Set up Node
+      if: inputs.node == 'true'
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+        cache: npm
+    - name: Install web application dependencies
+      if: inputs.node == 'true'
+      shell: bash
+      run: npm ci
+    # The "assets" job has already saved this cache, so it is a hit; if it was evicted meanwhile the script below fetches from Drive.
+    - name: Restore Drive-hosted model assets from the cache
+      uses: actions/cache/restore@v4
+      with:
+        path: |
+          web/*.glb
+          web/*.glb.gz
+        key: drive-models-${{ hashFiles('docs/drive-asset-manifest.json') }}
+    - name: Verify the Drive-hosted model assets (fetches any that are missing)
+      shell: bash
+      run: python3 scripts/fetch_drive_assets.py
