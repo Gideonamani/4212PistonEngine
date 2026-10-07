@@ -340,6 +340,12 @@
         "credit": "Rendered from the app's Wright revision-2 reconstruction (systems exploded view)",
         "license": "Course material"
       },
+      "langley-manly-balzer-1903": {
+        "kind": "render",
+        "path": "explore-langley-manly-balzer-1903.webp",
+        "credit": "Rendered from the app's Langley / Manly-Balzer 1903 reconstruction (systems exploded view)",
+        "license": "Course material"
+      },
       "hydraulic-tappet": {
         "kind": "render",
         "path": "explore-hydraulic-tappet.webp",

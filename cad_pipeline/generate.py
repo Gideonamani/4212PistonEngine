@@ -11,9 +11,14 @@ import Sketcher
 import MeshPart
 from cad_pipeline.research_gate import check_spec_research
 
+def feature_rotation(f,params):
+    """Rotation of a feature: local Z onto its axis by the shortest arc, then `roll` degrees about that axis (orients boxes and prisms)."""
+    rotation=A.Rotation(A.Vector(0,0,1),A.Vector(*f.get('axis',[0,0,1])));roll=evaluate(f.get('roll',0),params)
+    return rotation.multiply(A.Rotation(A.Vector(0,0,1),roll)) if roll else rotation
+
 def place(obj,f,params):
     origin=f.get('origin',[0,0,0]);axis=f.get('axis',[0,0,1])
-    obj.Placement=A.Placement(A.Vector(*[evaluate(x,params) for x in origin]),A.Rotation(A.Vector(0,0,1),A.Vector(*axis)))
+    obj.Placement=A.Placement(A.Vector(*[evaluate(x,params) for x in origin]),feature_rotation(f,params))
     for j,c in enumerate('xyz'):obj.setExpression('Placement.Base.'+c,freecad_expression(origin[j]))
 
 def derived_prism(doc,group,prefix,f,params):
@@ -21,10 +26,19 @@ def derived_prism(doc,group,prefix,f,params):
     points=[A.Vector(evaluate(p[0],params),evaluate(p[1],params),0) for p in f['points']]
     solid=Part.Face(Part.makePolygon(points+[points[0]])).extrude(A.Vector(0,0,evaluate(f['height'],params)))
     origin=f.get('origin',[0,0,0]);axis=f.get('axis',[0,0,1])
-    solid.Placement=A.Placement(A.Vector(*[evaluate(x,params) for x in origin]),A.Rotation(A.Vector(0,0,1),A.Vector(*axis)))
+    solid.Placement=A.Placement(A.Vector(*[evaluate(x,params) for x in origin]),feature_rotation(f,params))
+    o=doc.addObject('Part::Feature',prefix);group.addObject(o);o.Shape=solid;o.Label=f.get('label',prefix);doc.recompute();return o
+
+def derived_revolve(doc,group,prefix,f,params):
+    """A solid of revolution about the feature's local Z axis from a (radius, axial position) profile: a direct solid, like a derived prism."""
+    points=[A.Vector(evaluate(p[0],params),0,evaluate(p[1],params)) for p in f['points']]
+    solid=Part.Face(Part.makePolygon(points+[points[0]])).revolve(A.Vector(0,0,0),A.Vector(0,0,1),evaluate(f.get('angle',360),params))
+    origin=f.get('origin',[0,0,0]);axis=f.get('axis',[0,0,1])
+    solid.Placement=A.Placement(A.Vector(*[evaluate(x,params) for x in origin]),feature_rotation(f,params))
     o=doc.addObject('Part::Feature',prefix);group.addObject(o);o.Shape=solid;o.Label=f.get('label',prefix);doc.recompute();return o
 
 def rich_feature(doc,group,prefix,f,params):
+    if f['primitive']=='revolve':return derived_revolve(doc,group,prefix,f,params)
     if f['primitive']=='prism' and f.get('derived'):return derived_prism(doc,group,prefix,f,params)
     if f['primitive']=='prism':
         sketch=doc.addObject('Sketcher::SketchObject',prefix+'_Profile');group.addObject(sketch)
@@ -80,7 +94,7 @@ def build_part(doc,part,params,batch_runs):
         objs=[]
         for i in run:
             f=part['features'][i]; kind=f['primitive']; prefix=part['id']+'_F'+str(i+1)
-            objs.append(rich_feature(doc,group,prefix,f,params) if kind in ('prism','helix') else basic_feature(doc,group,prefix,f,params))
+            objs.append(rich_feature(doc,group,prefix,f,params) if kind in ('prism','helix','revolve') else basic_feature(doc,group,prefix,f,params))
             doc.recompute()
         if len(objs)>1:                         # a long run of one operation (a casting's seat cuts): fuse the tools once, apply them in one Boolean
             tool=doc.addObject('Part::MultiFuse',part['id']+'_F'+str(run[0]+1)+'_to_F'+str(run[-1]+1)+'_Tools'); tool.Shapes=objs; tool.Refine=False; group.addObject(tool)
@@ -156,7 +170,7 @@ def basic_feature(doc,group,prefix,f,params):
             for key,prop in keys.items():
                 setattr(o,prop,evaluate(f[key],params)); o.setExpression(prop,freecad_expression(f[key]))
             origin=f.get('origin',[0,0,0]); axis=f.get('axis',[0,0,1])
-            o.Placement=A.Placement(A.Vector(*[evaluate(x,params) for x in origin]),A.Rotation(A.Vector(0,0,1),A.Vector(*axis)))
+            o.Placement=A.Placement(A.Vector(*[evaluate(x,params) for x in origin]),feature_rotation(f,params))
             for j,axisname in enumerate('xyz'): o.setExpression('Placement.Base.'+axisname,freecad_expression(origin[j]))
             doc.recompute()
             if kind=='tube':

@@ -255,7 +255,8 @@
             "sphere",
             "tube",
             "prism",
-            "helix"
+            "helix",
+            "revolve"
           ]
         },
         "operation": {
@@ -315,6 +316,10 @@
         {
           "if": {"properties": {"primitive": {"const": "prism"}}},
           "then": {"required": ["points", "height"]}
+        },
+        {
+          "if": {"properties": {"primitive": {"const": "revolve"}}},
+          "then": {"required": ["points"]}
         },
         {
           "if": {"properties": {"primitive": {"const": "helix"}}},

@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "components": 45,
+  "source_callouts": 0,
+  "dispositions": {
+    "modelled": 30,
+    "simplified": 9,
+    "deferred": 0,
+    "outside_scope": 6
+  },
+  "coverage_checked": false,
+  "mechanisms": 9,
+  "historical_accuracy_verified": false,
+  "scope": "Ready for a detailed teaching reconstruction of the engine proper and its flywheels with measured and illustrative values explicitly labelled; not a manufacturing reproduction, not an authenticated operating animation, and not checked against the surviving object.",
+  "weight_table": {
+    "engine_lines_sum": 56258,
+    "printed_engine_total": 56323,
+    "misprint_grams": 65
+  },
+  "planned_parts": 358,
+  "parts_listed_in_more_than_one_component": false
+}

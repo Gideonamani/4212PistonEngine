@@ -1,0 +1,62 @@
+{
+  "asset_sha256": "78ae601dd1e9feb3330b96ee77978b772c50f9544c7e19836e1957a272c33f2e",
+  "asset_bytes": 41751592,
+  "parts": 358,
+  "tolerance_mm3": 0.001,
+  "max_penetration_mm": 0.05,
+  "method": "All bound-meeting pairs intersected exactly (Manifold boolean) at the rest pose and at sampled times of each baked animation clip. Touching is allowed, overlap is not; an overlap thinner than max_penetration_mm is treated as mesh tessellation noise on a touching face.",
+  "rest_neighbouring_pairs": 1492,
+  "rest_touching_only": 1492,
+  "clips": {
+    "Operating mechanism (illustrative)": {
+      "moving_parts": 189,
+      "poses": 133,
+      "new_overlaps": 0
+    }
+  },
+  "gear_meshes": [
+    {
+      "driver": "CamGearSmall",
+      "driven": "CamIdler",
+      "min_gap_mm": 0.07052105786995874,
+      "required_mm": 0.02,
+      "ok": true
+    },
+    {
+      "driver": "CamIdler",
+      "driven": "CamRing",
+      "min_gap_mm": 0.07676342627252535,
+      "required_mm": 0.02,
+      "ok": true
+    },
+    {
+      "driver": "CamPinion",
+      "driven": "CamGearLarge",
+      "min_gap_mm": 0.07205602987040932,
+      "required_mm": 0.02,
+      "ok": true
+    },
+    {
+      "driver": "SparkGearLarge",
+      "driven": "SparkerCam",
+      "min_gap_mm": 0.04324552600035063,
+      "required_mm": 0.02,
+      "ok": true
+    },
+    {
+      "driver": "SparkPinion",
+      "driven": "SparkGearLarge",
+      "min_gap_mm": 0.06276741451342899,
+      "required_mm": 0.02,
+      "ok": true
+    }
+  ],
+  "unverified_parts": [],
+  "unverified_not_waived": [],
+  "stale_ledger_entries": [],
+  "overlaps_total": 0,
+  "known_defects": [],
+  "new_violations": [],
+  "clean": true,
+  "passed": true
+}

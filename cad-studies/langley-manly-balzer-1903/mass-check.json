@@ -1,0 +1,131 @@
+{
+ "lines": [
+  {
+   "line": "W01",
+   "model_g": 6208.1,
+   "table_g": 5225,
+   "ratio": 1.188
+  },
+  {
+   "line": "W02",
+   "model_g": 7365.5,
+   "table_g": 5070,
+   "ratio": 1.453
+  },
+  {
+   "line": "W03",
+   "model_g": 8161.9,
+   "table_g": 8260,
+   "ratio": 0.988
+  },
+  {
+   "line": "W04",
+   "model_g": 26215.6,
+   "table_g": 23524,
+   "ratio": 1.114
+  },
+  {
+   "line": "W05",
+   "model_g": 6417.7,
+   "table_g": 5225,
+   "ratio": 1.228
+  },
+  {
+   "line": "W06",
+   "model_g": 3015.4,
+   "table_g": 3440,
+   "ratio": 0.877
+  },
+  {
+   "line": "W07",
+   "model_g": 547.9,
+   "table_g": 450,
+   "ratio": 1.217
+  },
+  {
+   "line": "W08",
+   "model_g": 515.1,
+   "table_g": 450,
+   "ratio": 1.145
+  },
+  {
+   "line": "W09",
+   "model_g": 349.4,
+   "table_g": 360,
+   "ratio": 0.971
+  },
+  {
+   "line": "W10",
+   "model_g": 1798.6,
+   "table_g": 1700,
+   "ratio": 1.058
+  },
+  {
+   "line": "W11",
+   "model_g": 895.8,
+   "table_g": 512,
+   "ratio": 1.75
+  },
+  {
+   "line": "W12+W13",
+   "model_g": 2054.8,
+   "table_g": 2107,
+   "ratio": 0.975
+  },
+  {
+   "line": "W14",
+   "model_g": 3955.1,
+   "table_g": 3946,
+   "ratio": 1.002
+  },
+  {
+   "line": "W15",
+   "model_g": 3243.3,
+   "table_g": 3234,
+   "ratio": 1.003
+  }
+ ],
+ "engine_g": 63545.7,
+ "unassigned_g": {
+  "CylBolt1_1": 14.4,
+  "CylBolt1_2": 14.4,
+  "CylBolt1_3": 14.4,
+  "CylBolt1_4": 14.4,
+  "CylBolt2_1": 14.4,
+  "CylBolt2_2": 14.4,
+  "CylBolt2_3": 14.4,
+  "CylBolt2_4": 14.4,
+  "CylBolt3_1": 14.4,
+  "CylBolt3_2": 14.4,
+  "CylBolt3_3": 14.4,
+  "CylBolt3_4": 14.4,
+  "CylBolt4_1": 14.4,
+  "CylBolt4_2": 14.4,
+  "CylBolt4_3": 14.4,
+  "CylBolt4_4": 14.4,
+  "CylBolt5_1": 14.4,
+  "CylBolt5_2": 14.4,
+  "CylBolt5_3": 14.4,
+  "CylBolt5_4": 14.4,
+  "StbdBedPlate": 2576.3,
+  "StbdDrumBolts1": 6.9,
+  "StbdDrumBolts2": 6.9,
+  "StbdDrumBolts3": 6.9,
+  "StbdDrumBolts4": 6.9,
+  "PortBedPlate": 2779.9,
+  "WormWheel": 810.7,
+  "StartWorm": 110.2,
+  "StartShaft": 198.9,
+  "StartBracketUpper": 664.3,
+  "StartBracketLower": 664.3,
+  "StartPawlPlug": 6.2,
+  "PumpBevelGear": 163.7,
+  "PumpBevelPinion": 30.6,
+  "PumpShaftUpper": 63.1,
+  "PumpShaftBearing": 93.1,
+  "CouplingFlangePort": 1554.4,
+  "TransShaftStubPort": 1311.9,
+  "CouplingFlangeStbd": 1554.4,
+  "TransShaftStubStbd": 1311.9
+ }
+}

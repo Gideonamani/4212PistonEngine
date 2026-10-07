@@ -102,6 +102,12 @@
       "drive_id": "1UrekBX3HsJecVKka0RM6KCkU_ptU6GIE",
       "bytes": 6141633,
       "sha256": "42b0e6f9595d843d86a35db949ae6c261a2445e47424db64cbc6c0c426904487"
+    },
+    {
+      "path": "web/langley-manly-balzer-1903.glb.gz",
+      "drive_id": "1tf0GcP5rRQt5Z0N8AikKZEuTbIfQAETR",
+      "bytes": 12452028,
+      "sha256": "3b20b0050a0af9acd0a535204b9e57c3680c40e3b9c0363b9550f8e0a7d4016a"
     }
   ],
   "history_policy": "New unpublished accessory commits exclude model binaries. Existing published history retained; native CAD and exported GLBs are no longer tracked going forward.",
@@ -393,6 +399,122 @@
         "path": "study/inventory.json",
         "bytes": 44416,
         "sha256": "a331a60ad0e581b7b44ca057432e494391f07340a4453cf676acaa231f9f4583"
+      }
+    ]
+  },
+  "langley_animated_native_archive": {
+    "path": "cad-studies/langley-manly-balzer-1903-animated-20261007.zip",
+    "drive_id": "1RBHEreh8W5cZX9K9RBbGL_eU4fJp_ED0",
+    "drive_url": "https://drive.google.com/file/d/1RBHEreh8W5cZX9K9RBbGL_eU4fJp_ED0/view?usp=drivesdk",
+    "bytes": 59488729,
+    "sha256": "8374ff07a95297ff60d1a96ef4e8c8e3f0ffaff85e7dfd6027c33b23d8747080",
+    "file_count": 22,
+    "scope": "Private native sources of the Langley / Manly-Balzer 1903 reconstruction (FCStd, STEP, Blender, GLB, contract, records, reviewed STEP exception). Not a student viewer file.",
+    "files": [
+      {
+        "path": "cad/cad-validation.json",
+        "bytes": 192499,
+        "sha256": "8fce1b7dc62df4ced6918fd54f0659e5915cf4246d171966b1a7fb30598fd8e1"
+      },
+      {
+        "path": "cad/langley-manly-balzer-1903.FCStd",
+        "bytes": 11881849,
+        "sha256": "1fd0240744b1c9f2f731f0a917b36a52f86a8dfa4754a02ed0cc265f8aea1c55"
+      },
+      {
+        "path": "cad/langley-manly-balzer-1903.step",
+        "bytes": 16079003,
+        "sha256": "a64a65c25953bba054b6a505122d38a126bbff467b4192bdd32661b87249628a"
+      },
+      {
+        "path": "cad/geometry.json",
+        "bytes": 25648749,
+        "sha256": "8c91f63f71289bb2773e690a1dd38a460e61f2faadd768379bb6f600229fd18a"
+      },
+      {
+        "path": "cad/reopen-validation.json",
+        "bytes": 1940,
+        "sha256": "a113606dde8d38e00e16a6536cb554f1dafffa1bac8e0240dbf9eaf9a4f04797"
+      },
+      {
+        "path": "rig/langley-manly-balzer-1903-animated.blend",
+        "bytes": 12401448,
+        "sha256": "f55b0b45b28b08d42152eb8966a9c1e8d33fac816dc3f6227d5eca6407028f69"
+      },
+      {
+        "path": "rig/langley-manly-balzer-1903-animated.glb",
+        "bytes": 41751592,
+        "sha256": "78ae601dd1e9feb3330b96ee77978b772c50f9544c7e19836e1957a272c33f2e"
+      },
+      {
+        "path": "rig/langley-manly-balzer-1903-animated.glb.gz",
+        "bytes": 12452028,
+        "sha256": "3b20b0050a0af9acd0a535204b9e57c3680c40e3b9c0363b9550f8e0a7d4016a"
+      },
+      {
+        "path": "rig/langley-manly-balzer-1903-animated-contract.json",
+        "bytes": 315928,
+        "sha256": "af1ca110255966ff24c657f615d7d95f571844b1caee1185d9f1a059e3d7891b"
+      },
+      {
+        "path": "rig/blender-verification.json",
+        "bytes": 367,
+        "sha256": "1e4e56e32268d15b3d917ccc8a935ba17eeccdb11f5f2b1212577118dc48549c"
+      },
+      {
+        "path": "study/part-spec.json",
+        "bytes": 616926,
+        "sha256": "10af1987a701cf80d25e55c773a42f4032e24b1570404deac0a406ca8dd62189"
+      },
+      {
+        "path": "study/interference-policy.json",
+        "bytes": 621,
+        "sha256": "8e26c162f764c5b8a19e5b6fbdfcfbe031113e5033e41dac0370e55fa4d50f71"
+      },
+      {
+        "path": "study/interference-audit.json",
+        "bytes": 1748,
+        "sha256": "6ca51f933db8eaac3adc2e5b07808a089c0c53f57663d8a0ca0fa258554a8b1a"
+      },
+      {
+        "path": "study/operating-motion.md",
+        "bytes": 19725,
+        "sha256": "1bb7ddec36e7546d7518c165f36f29ad584c354a87ea22110b9435dbf55013ac"
+      },
+      {
+        "path": "study/research.md",
+        "bytes": 21718,
+        "sha256": "d2530f30d2e20ff44177d5cf283ecb2edda0a2386a15fbdf2fd13d2819a685a1"
+      },
+      {
+        "path": "study/inventory.json",
+        "bytes": 51284,
+        "sha256": "a67eb9c4c0a7022a1c81d50d2c92c62164cd1240f1a68211cdeda7ae4f2f0d2b"
+      },
+      {
+        "path": "study/build-notes.md",
+        "bytes": 4960,
+        "sha256": "aa749c74cad2eb0129c7992da887e586c73ed27582de8233c0c8671a095dda75"
+      },
+      {
+        "path": "study/mass-check.json",
+        "bytes": 2385,
+        "sha256": "99ff21f6cbbd21161a04fac121c0b0664e81ba00babc34c06ef237ff5dd0122a"
+      },
+      {
+        "path": "study/step-exception-policy.json",
+        "bytes": 1095,
+        "sha256": "c0f76d5a7fbc1dfd2f487e0d65359cc7655568daef69469f232fa7752ec17f2b"
+      },
+      {
+        "path": "study/step-boundary-checks.json",
+        "bytes": 2046,
+        "sha256": "97af196f71ae4b54558c7d4bb67b042bd24a01c969e9725f82ed39164a6d55e2"
+      },
+      {
+        "path": "study/source-manifest.json",
+        "bytes": 2964,
+        "sha256": "ad6066608f05c43a1effe279c784c73f5f48e3eecbba4147cee0db35fd4b219a"
       }
     ]
   }

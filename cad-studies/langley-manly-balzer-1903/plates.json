@@ -1,0 +1,19 @@
+{
+ "_note": "Per-half calibration of the Memoir Plate 78 page renders (rotated 90 degrees clockwise, 4.17x). x0: pixel column of the cylinder-1 plane (X=0); z0_px: pixel row of z_ref_mm. 78A: cylinder half, scale from the 5 in bore (748 px) and 7/8 in rod (131 px), which agree to 0.1 percent; z_ref is the gudgeon-pin height at TDC (crank radius + rod length). 78B: drum half, scale from the same bore (755 px between the outer walls), shaft axis row 648 and crank-pin axis row 250 (69.4 mm from the axis, against 69.85 documented).",
+ "plates": {
+  "78A": {
+   "px_per_mm": 5.889763779527559,
+   "x0": 1739,
+   "x_sign": 1,
+   "z0_px": 1650,
+   "z_ref_mm": 357.85
+  },
+  "78B": {
+   "px_per_mm": 5.7362204724409445,
+   "x0": 1714,
+   "x_sign": 1,
+   "z0_px": 648,
+   "z_ref_mm": 0.0
+  }
+ }
+}

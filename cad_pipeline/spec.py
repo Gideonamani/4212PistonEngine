@@ -47,10 +47,10 @@ def validate_spec(spec):
         ids.add(part['id'])
         if not part.get('label') or not part.get('group') or not part.get('evidence') or not part.get('features'): raise ValueError('Part identity/group/evidence/features required')
         for f in part['features']:
-            if f.get('primitive') not in ('box','cylinder','tube','cone','sphere','prism','helix'): raise ValueError('Unsupported primitive')
+            if f.get('primitive') not in ('box','cylinder','tube','cone','sphere','prism','helix','revolve'): raise ValueError('Unsupported primitive')
             if f.get('operation') not in ('add','cut'): raise ValueError('Unsupported operation')
             if f is part['features'][0] and f['operation'] != 'add': raise ValueError('First feature must add material')
-            for key in {'box':['length','width','height'],'cylinder':['radius','height'],'tube':['radius','inner_radius','height'],'cone':['radius1','radius2','height'],'sphere':['radius'],'prism':['height'],'helix':['radius','wire_radius','pitch','height']}[f['primitive']]:
+            for key in {'box':['length','width','height'],'cylinder':['radius','height'],'tube':['radius','inner_radius','height'],'cone':['radius1','radius2','height'],'sphere':['radius'],'prism':['height'],'helix':['radius','wire_radius','pitch','height'],'revolve':[]}[f['primitive']]:
                 v=evaluate(f[key],params)
                 if v<0 or (v==0 and not key.startswith('radius')): raise ValueError('Invalid primitive size')
                 if v==0 and f['primitive']!='cone': raise ValueError('Zero radius')
@@ -61,8 +61,16 @@ def validate_spec(spec):
                 for point in f['points']:
                     if len(point)!=2:raise ValueError('Prism point must be XY')
                     for v in point:evaluate(v,params)
+            if f['primitive']=='revolve':
+                if len(f.get('points',[]))<3:raise ValueError('Revolve needs at least three profile points')
+                for point in f['points']:
+                    if len(point)!=2:raise ValueError('Revolve point must be (radius, axial position)')
+                    if evaluate(point[0],params)<0:raise ValueError('Revolve radius must not be negative')
+                angle=evaluate(f.get('angle',360),params)
+                if not 0<angle<=360:raise ValueError('Revolve angle must be in (0, 360]')
             if len(f.get('origin',[0,0,0]))!=3: raise ValueError('XYZ origin required')
             for v in f.get('origin',[0,0,0]): evaluate(v,params)
+            evaluate(f.get('roll',0),params)
             axis=f.get('axis',[0,0,1])
             if len(axis)!=3 or not any(axis) or not all(math.isfinite(v) for v in axis): raise ValueError('Invalid axis')
     return spec

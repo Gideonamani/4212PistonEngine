@@ -1,0 +1,1602 @@
+{
+  "schema_version": 1,
+  "target": "Large five-cylinder 5 x 5.5 in water-cooled stationary radial built 1901 for Langley Aerodrome A, engine proper per Manly's weight table, as drawn in Plates 78-81",
+  "decision": "Ready for a detailed teaching reconstruction of the engine proper and its flywheels with measured and illustrative values explicitly labelled; not a manufacturing reproduction, not an authenticated operating animation, and not checked against the surviving object.",
+  "reviewed_at": "2026-10-06",
+  "sources": {
+    "M1": {
+      "url": "https://archive.org/details/langleymemoironm00langrich",
+      "title": "Manly, Langley Memoir on Mechanical Flight, Part II (1897-1903), Smithsonian Contributions to Knowledge vol. 27 no. 3",
+      "date": "1911",
+      "variant": "large 1901 engine, drawings Plates 78-81, tests 1902-1904",
+      "local_files": {
+        "memoir-1911.djvu.txt": {
+          "bytes": 1121416,
+          "sha256": "f346d5065d5f9a8cfb089626171cbb061f6b138e9f215f8289d42f1876f4eb88"
+        },
+        "memoir-1911.norm.txt": {
+          "bytes": 964182,
+          "sha256": "5a30147b7c853f634ba0ab1952b51a5e9e4e50cb730852a5f66e6497a9efd5f8"
+        },
+        "memoir-1911.pdf": {
+          "bytes": 33625753,
+          "sha256": "9de100ab8e2adc2816e5bc0955e409d9567987707d72f3118ce6613dc080d99f"
+        }
+      }
+    },
+    "A1": {
+      "url": "https://doi.org/10.5479/si.AnnalsFlight.6",
+      "title": "Meyer (ed.), Langley's Aero Engine of 1903, Smithsonian Annals of Flight 6",
+      "date": "1971",
+      "variant": "documentary history of the rotary and radial stages; reprints M1 ch. X; 1933 affidavits are partisan",
+      "local_files": {
+        "annals-of-flight-6-lores.pdf": {
+          "bytes": 5941731,
+          "sha256": "9de70c95170c36e1e83be27f1593bbdb96b032076a46a5a83840d7aa123d054a"
+        },
+        "annals6.txt": {
+          "bytes": 419945,
+          "sha256": "6995037bc75e7b997a959a7e6ab6d870a776ff6e9a360639110b58469cd1ae54"
+        }
+      },
+      "note": "low-resolution PDF supplied by the user; the repository sits behind a bot-verification page that was not bypassed"
+    },
+    "N1": {
+      "url": "https://www.airandspace.si.edu/collection-objects/langley-manly-balzer-radial-5-engine/nasm_A19080003000",
+      "title": "NASM object record A19080003000",
+      "variant": "museum record of the surviving engine",
+      "note": "automated fetch returned HTTP 403; known only from a search-result excerpt"
+    },
+    "W1": {
+      "url": "https://en.wikipedia.org/wiki/Manly%E2%80%93Balzer_engine",
+      "title": "Wikipedia: Manly-Balzer engine",
+      "variant": "secondary; cross-check only"
+    },
+    "E1": {
+      "url": "https://enginehistory.org/Piston/Before1925/EarlyEngines/M/M.shtml",
+      "title": "AAHS Engine History: Selected Early Engines, M",
+      "variant": "secondary; cross-check only"
+    },
+    "U1": {
+      "title": "Commissioning brief (6 October 2026)",
+      "variant": "claims checked in research.md, section Corrections"
+    }
+  },
+  "expected_callouts": [],
+  "weight_table": [
+    {
+      "id": "W01",
+      "name": "Crank shaft",
+      "grams": 5225,
+      "engine_proper": true
+    },
+    {
+      "id": "W02",
+      "name": "Connecting rods (total)",
+      "grams": 5005,
+      "engine_proper": true
+    },
+    {
+      "id": "W03",
+      "name": "Pistons (five)",
+      "grams": 8260,
+      "engine_proper": true
+    },
+    {
+      "id": "W04",
+      "name": "Cylinders (five, including exhaust and inlet valves, oil cups, etc.)",
+      "grams": 23524,
+      "engine_proper": true
+    },
+    {
+      "id": "W05",
+      "name": "Port crank chamber drum, including cam, cam gears, punch rods, etc.",
+      "grams": 5225,
+      "engine_proper": true
+    },
+    {
+      "id": "W06",
+      "name": "Starboard crank chamber drum",
+      "grams": 3440,
+      "engine_proper": true
+    },
+    {
+      "id": "W07",
+      "name": "Spark plugs (5)",
+      "grams": 450,
+      "engine_proper": true
+    },
+    {
+      "id": "W08",
+      "name": "Outlet water pipe",
+      "grams": 450,
+      "engine_proper": true
+    },
+    {
+      "id": "W09",
+      "name": "Inlet water pipe",
+      "grams": 360,
+      "engine_proper": true
+    },
+    {
+      "id": "W10",
+      "name": "Inlet gas manifold",
+      "grams": 1700,
+      "engine_proper": true
+    },
+    {
+      "id": "W11",
+      "name": "Primary and secondary sparkers and wires",
+      "grams": 512,
+      "engine_proper": true
+    },
+    {
+      "id": "W12",
+      "name": "Balance arm with braces, starboard",
+      "grams": 1040,
+      "engine_proper": true
+    },
+    {
+      "id": "W13",
+      "name": "Balance arm with braces, port",
+      "grams": 1067,
+      "engine_proper": true
+    },
+    {
+      "id": "W14",
+      "name": "Starboard fly wheel",
+      "grams": 3946,
+      "engine_proper": false
+    },
+    {
+      "id": "W15",
+      "name": "Port fly wheel",
+      "grams": 3234,
+      "engine_proper": false
+    },
+    {
+      "id": "W16",
+      "name": "Spark coil and batteries",
+      "grams": 6800,
+      "engine_proper": false
+    },
+    {
+      "id": "W17",
+      "name": "Carburetor",
+      "grams": 3751,
+      "engine_proper": false
+    },
+    {
+      "id": "W18",
+      "name": "Inlet gas pipe from carburetor to manifold",
+      "grams": 756,
+      "engine_proper": false
+    },
+    {
+      "id": "W19",
+      "name": "Gasoline tank",
+      "grams": 1004,
+      "engine_proper": false
+    },
+    {
+      "id": "W20",
+      "name": "Water tank",
+      "grams": 717,
+      "engine_proper": false
+    },
+    {
+      "id": "W21",
+      "name": "Water circulating pump and shaft",
+      "grams": 807,
+      "engine_proper": false
+    },
+    {
+      "id": "W22",
+      "name": "Radiator",
+      "grams": 7700,
+      "engine_proper": false
+    }
+  ],
+  "printed_totals": {
+    "engine": 56323,
+    "engine_and_flywheels": 63503,
+    "power_plant": 85038
+  },
+  "components": [
+    {
+      "id": "L01",
+      "name": "Hollow crankshaft and single crank pin",
+      "function": "Carry the load of five rods and deliver torque and oil",
+      "interfaces": "Two bronze main bushings, master sleeve, balance-arm flanges, worm wheel, cam pinion, ignition ring",
+      "part_ids": [
+        "Crankshaft",
+        "CrankPlug",
+        "CrankOilPipe"
+      ],
+      "decision": "One steel forging: hollow shaft in two halves, a crank arm each side of the pin (the shaft runs in a bearing in each drum head), one hollow crank pin carrying the cone-nut threads that were left from the pure-slipper design; oil path drilled through shaft, arm and pin; arm and pin proportions measured from Plate 78",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1",
+        "A1"
+      ],
+      "locator": "M1 pp. 237-239, 245-246; Plate 78",
+      "covers": [
+        "W01"
+      ]
+    },
+    {
+      "id": "L02",
+      "name": "Main bearing bushings",
+      "function": "Carry the shaft in each drum hub",
+      "interfaces": "Drum hubs, shaft journals, oil grooves",
+      "part_ids": [
+        "PortMainBushing",
+        "StbdMainBushing"
+      ],
+      "decision": "Bronze bushings with the circular oil groove on the port side",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 239; Plate 78",
+      "covers": [
+        "W01",
+        "W05",
+        "W06"
+      ]
+    },
+    {
+      "id": "L03",
+      "name": "Coupling flanges",
+      "function": "Join the transmission shafts to the crankshaft and clamp the balance arms",
+      "interfaces": "Crankshaft ends, balance arms, transmission shafts (outside)",
+      "part_ids": [
+        "CouplingFlangePort",
+        "CouplingFlangeStbd"
+      ],
+      "decision": "Flange pair at each shaft end; bolt circle estimated; transmission shafts excluded",
+      "disposition": "simplified",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 247; Plates 78, 80",
+      "covers": [
+        "W12",
+        "W13"
+      ]
+    },
+    {
+      "id": "L04",
+      "name": "Balance arms with braces",
+      "function": "Balance the reciprocating masses at a large radius for little weight",
+      "interfaces": "Coupling flanges, braces",
+      "part_ids": [
+        "BalanceArmPort",
+        "BalanceArmStbd",
+        "BalanceBracePort",
+        "BalanceBraceStbd",
+        "BalanceBracePlatePort",
+        "BalanceBracePlateStbd",
+        "BalanceBraceCollarPort",
+        "BalanceBraceCollarStbd"
+      ],
+      "decision": "Flat arm bolted between the flanges ending in a lozenge lug, inclined tube brace at about 30 degrees to a plate on the lug and a collar on the shaft; sizes measured from Plates 79 and 80",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 pp. 246-247; Plates 78-80",
+      "covers": [
+        "W12",
+        "W13"
+      ]
+    },
+    {
+      "id": "L05",
+      "name": "Master connecting rod, split sleeve and bronze lining",
+      "function": "Carry load directly to the crank pin and carry the four slipper shoes on its sleeve",
+      "interfaces": "Crank pin, gudgeon pin, link shoes, cone nuts",
+      "part_ids": [
+        "MasterRod",
+        "MasterSleeveCap",
+        "MasterLiningUpper",
+        "MasterLiningLower"
+      ],
+      "decision": "7/8 in solid steel rod whose forged upper sleeve half is integral; cap half; bronze lining split at right angles to the sleeve; sleeve turned round except where the rod joins it; threads for the cone nuts; how the halves are held together is not drawn clearly enough to state",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1",
+        "A1"
+      ],
+      "locator": "M1 pp. 237-238; A1 pp. 113, 186; Plate 78",
+      "covers": [
+        "W02"
+      ]
+    },
+    {
+      "id": "L06",
+      "name": "Link rods with bronze slipper shoes",
+      "function": "Carry piston load into the master sleeve while sliding on it",
+      "interfaces": "Gudgeon pins, master sleeve, cone nuts",
+      "part_ids": [
+        "LinkRod2",
+        "LinkRod3",
+        "LinkRod4",
+        "LinkRod5",
+        "LinkShoe2",
+        "LinkShoe3",
+        "LinkShoe4",
+        "LinkShoe5"
+      ],
+      "decision": "7/8 in rods with a 5/8 in hole; bronze shoe about 55 to 60 degrees wide, width and rod length measured together from Plate 78 (closure check in operating-motion.md)",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 pp. 237-238, 240; Plate 78",
+      "covers": [
+        "W02"
+      ]
+    },
+    {
+      "id": "L07",
+      "name": "Little-end bushings",
+      "function": "Bear the gudgeon pins",
+      "interfaces": "Rod heads, gudgeon pins",
+      "part_ids": [
+        "WristBush1",
+        "WristBush2",
+        "WristBush3",
+        "WristBush4",
+        "WristBush5"
+      ],
+      "decision": "Bronze bushings with oil grooves in all five rod heads",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 240",
+      "covers": [
+        "W02"
+      ]
+    },
+    {
+      "id": "L08",
+      "name": "Sleeve cone nuts and jam nuts",
+      "function": "Hold the four shoes on the sleeve and allow wear adjustment",
+      "interfaces": "Sleeve threads, shoe flanks",
+      "part_ids": [
+        "ConeNutPort",
+        "ConeNutStbd",
+        "JamNutPort",
+        "JamNutStbd"
+      ],
+      "decision": "One tapered nut at each end of the sleeve locked by a jam nut; thread detail not modelled",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 238; Plate 78",
+      "covers": [
+        "W02"
+      ]
+    },
+    {
+      "id": "L09",
+      "name": "Pistons",
+      "function": "Transmit gas load; cast iron, domed two-rib crown, thin walls",
+      "interfaces": "Liner, rings, gudgeon pin",
+      "part_ids": [
+        "Piston1",
+        "Piston2",
+        "Piston3",
+        "Piston4",
+        "Piston5"
+      ],
+      "decision": "Cast-iron piston with domed crown and two deep thin reinforcing ribs; clearance 0.127 mm at the middle and 0.19 mm at the ends; wall and crown thickness measured, the lighter set drawn",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 pp. 239-240; Plate 78",
+      "covers": [
+        "W03"
+      ]
+    },
+    {
+      "id": "L10",
+      "name": "Piston rings",
+      "function": "Seal the piston",
+      "interfaces": "Piston grooves, liner",
+      "part_ids": [
+        "PistonRing1_1",
+        "PistonRing1_2",
+        "PistonRing1_3",
+        "PistonRing1_4",
+        "PistonRing2_1",
+        "PistonRing2_2",
+        "PistonRing2_3",
+        "PistonRing2_4",
+        "PistonRing3_1",
+        "PistonRing3_2",
+        "PistonRing3_3",
+        "PistonRing3_4",
+        "PistonRing4_1",
+        "PistonRing4_2",
+        "PistonRing4_3",
+        "PistonRing4_4",
+        "PistonRing5_1",
+        "PistonRing5_2",
+        "PistonRing5_3",
+        "PistonRing5_4"
+      ],
+      "decision": "Four lap-joint rings narrower than their grooves by 0.0508 to 0.0889 mm (documented), 1/64 in lap clearance; ring section estimated",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 240",
+      "covers": [
+        "W03"
+      ]
+    },
+    {
+      "id": "L11",
+      "name": "Gudgeon pins and retainers",
+      "function": "Join piston to rod",
+      "interfaces": "Piston bosses, bushings, rod head",
+      "part_ids": [
+        "GudgeonPin1",
+        "GudgeonPin2",
+        "GudgeonPin3",
+        "GudgeonPin4",
+        "GudgeonPin5",
+        "PinRetainer1_a",
+        "PinRetainer1_b",
+        "PinRetainer2_a",
+        "PinRetainer2_b",
+        "PinRetainer3_a",
+        "PinRetainer3_b",
+        "PinRetainer4_a",
+        "PinRetainer4_b",
+        "PinRetainer5_a",
+        "PinRetainer5_b"
+      ],
+      "decision": "Hollow case-hardened steel tubes 7/8 in outside diameter (bore not given); retaining screws shown at both ends in Plate 78, count and form read from the plate",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 240; Plate 78",
+      "covers": [
+        "W03"
+      ]
+    },
+    {
+      "id": "L12",
+      "name": "Cylinder shells with integral heads",
+      "function": "Contain the pressure",
+      "interfaces": "Liner, flange, combustion chamber, jacket, spark plug",
+      "part_ids": [
+        "CylShell1",
+        "CylShell2",
+        "CylShell3",
+        "CylShell4",
+        "CylShell5"
+      ],
+      "decision": "Seamless 1/16 in steel shell with domed head formed integral (cold-drawn closed-end tube, M1 and A1); plug boss in the dome",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1",
+        "A1"
+      ],
+      "locator": "M1 p. 235; A1 pp. 102, 104; Plate 78",
+      "covers": [
+        "W04"
+      ]
+    },
+    {
+      "id": "L13",
+      "name": "Cylinder mounting flanges",
+      "function": "Bolt each cylinder to the drum rings",
+      "interfaces": "Shell, drum rings, bolts",
+      "part_ids": [
+        "CylFlange1",
+        "CylFlange2",
+        "CylFlange3",
+        "CylFlange4",
+        "CylFlange5"
+      ],
+      "decision": "Flange screwed and brazed on near the shell bottom; drilled with a jig to fit the drum rings (A1 p. 180)",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1",
+        "A1"
+      ],
+      "locator": "M1 p. 235; A1 p. 180; Plates 78, 79",
+      "covers": [
+        "W04"
+      ]
+    },
+    {
+      "id": "L14",
+      "name": "Cast-iron liners",
+      "function": "Wearing surface for the piston",
+      "interfaces": "Shell bore, piston",
+      "part_ids": [
+        "CylLiner1",
+        "CylLiner2",
+        "CylLiner3",
+        "CylLiner4",
+        "CylLiner5"
+      ],
+      "decision": "1/16 in wall, shrunk into the shell and bored in place",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1",
+        "A1"
+      ],
+      "locator": "M1 pp. 234-235; A1 p. 180",
+      "covers": [
+        "W04"
+      ]
+    },
+    {
+      "id": "L15",
+      "name": "Forged combustion chambers with exhaust chamber and outlet",
+      "function": "Carry the valves and the side port into the cylinder; keep exhaust off the port bearing",
+      "interfaces": "Shell (brazed), jacket, inlet seat, exhaust seat, guide",
+      "part_ids": [
+        "Chamber1",
+        "Chamber2",
+        "Chamber3",
+        "Chamber4",
+        "Chamber5",
+        "ExhaustOutlet1",
+        "ExhaustOutlet2",
+        "ExhaustOutlet3",
+        "ExhaustOutlet4",
+        "ExhaustOutlet5"
+      ],
+      "decision": "Machined from a solid steel forging and brazed to the shell near the top; chamber below the exhaust seat with a side outlet; internal passages read from Plate 78",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 pp. 235, 240; Plate 78",
+      "covers": [
+        "W04"
+      ]
+    },
+    {
+      "id": "L16",
+      "name": "Sheet-steel water jackets",
+      "function": "Contain coolant around shell and chamber",
+      "interfaces": "Shell, chamber, jacket ring, water stubs",
+      "part_ids": [
+        "Jacket1",
+        "Jacket2",
+        "Jacket3",
+        "Jacket4",
+        "Jacket5",
+        "JacketRing1",
+        "JacketRing2",
+        "JacketRing3",
+        "JacketRing4",
+        "JacketRing5",
+        "WaterInletStub1",
+        "WaterInletStub2",
+        "WaterInletStub3",
+        "WaterInletStub4",
+        "WaterInletStub5",
+        "WaterOutletStub1",
+        "WaterOutletStub2",
+        "WaterOutletStub3",
+        "WaterOutletStub4",
+        "WaterOutletStub5"
+      ],
+      "decision": "0.020 in sheet steel brazed on, ending in a ring that encircles the cylinder near mid-length; inlet and outlet stubs read from Plate 78",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1",
+        "A1"
+      ],
+      "locator": "M1 pp. 235-236; Plate 78",
+      "covers": [
+        "W04",
+        "W08",
+        "W09"
+      ]
+    },
+    {
+      "id": "L17",
+      "name": "Automatic inlet valves, seats and springs",
+      "function": "Admit mixture on suction with no drive",
+      "interfaces": "Chamber, removable cast-iron seat, nut, manifold branch",
+      "part_ids": [
+        "InletValve1",
+        "InletValve2",
+        "InletValve3",
+        "InletValve4",
+        "InletValve5",
+        "InletSeat1",
+        "InletSeat2",
+        "InletSeat3",
+        "InletSeat4",
+        "InletSeat5",
+        "InletSeatNut1",
+        "InletSeatNut2",
+        "InletSeatNut3",
+        "InletSeatNut4",
+        "InletSeatNut5",
+        "InletSpring1",
+        "InletSpring2",
+        "InletSpring3",
+        "InletSpring4",
+        "InletSpring5",
+        "InletSpringCap1",
+        "InletSpringCap2",
+        "InletSpringCap3",
+        "InletSpringCap4",
+        "InletSpringCap5"
+      ],
+      "decision": "Cast-iron seat held by a nut in the upper part of each chamber; valve with a stem, a spring and a cap; lift illustrative",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1",
+        "A1"
+      ],
+      "locator": "M1 p. 240; A1 p. 186; Plate 78",
+      "covers": [
+        "W04"
+      ]
+    },
+    {
+      "id": "L18",
+      "name": "Exhaust valves, guides and springs",
+      "function": "Release exhaust when struck by the punch rod",
+      "interfaces": "Chamber, seat, guide, punch rod",
+      "part_ids": [
+        "ExhaustValve1",
+        "ExhaustValve2",
+        "ExhaustValve3",
+        "ExhaustValve4",
+        "ExhaustValve5",
+        "ExhaustSeat1",
+        "ExhaustSeat2",
+        "ExhaustSeat3",
+        "ExhaustSeat4",
+        "ExhaustSeat5",
+        "ExhaustGuide1",
+        "ExhaustGuide2",
+        "ExhaustGuide3",
+        "ExhaustGuide4",
+        "ExhaustGuide5",
+        "ExhaustSpring1",
+        "ExhaustSpring2",
+        "ExhaustSpring3",
+        "ExhaustSpring4",
+        "ExhaustSpring5",
+        "ExhaustSpringCollar1",
+        "ExhaustSpringCollar2",
+        "ExhaustSpringCollar3",
+        "ExhaustSpringCollar4",
+        "ExhaustSpringCollar5",
+        "ExhaustSpringNut1",
+        "ExhaustSpringNut2",
+        "ExhaustSpringNut3",
+        "ExhaustSpringNut4",
+        "ExhaustSpringNut5"
+      ],
+      "decision": "Stem passes through a long coil spring and ends 1/64 in above the punch rod; lift illustrative; seat angle and head diameter measured",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 pp. 237, 240; Plate 78",
+      "covers": [
+        "W04"
+      ]
+    },
+    {
+      "id": "L19",
+      "name": "Spark plugs",
+      "function": "Ignite each charge",
+      "interfaces": "Shell dome boss, wire",
+      "part_ids": [
+        "PlugShell1",
+        "PlugShell2",
+        "PlugShell3",
+        "PlugShell4",
+        "PlugShell5",
+        "PlugInsulator1",
+        "PlugInsulator2",
+        "PlugInsulator3",
+        "PlugInsulator4",
+        "PlugInsulator5",
+        "PlugElectrode1",
+        "PlugElectrode2",
+        "PlugElectrode3",
+        "PlugElectrode4",
+        "PlugElectrode5"
+      ],
+      "decision": "Central plug in each dome with the metal part extended about 3/4 in beyond the porcelain and a platinum wire counter-electrode (M1 pp. 221-222); form read from Plate 78",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 pp. 221-222; Plate 78",
+      "covers": [
+        "W07"
+      ]
+    },
+    {
+      "id": "L20",
+      "name": "Piston oil cups and tubes",
+      "function": "Gravity-feed oil to each piston",
+      "interfaces": "Cylinder wall, tube through wall",
+      "part_ids": [
+        "OilCup1",
+        "OilCup2",
+        "OilCup3",
+        "OilCup4",
+        "OilCup5",
+        "OilCupTube1",
+        "OilCupTube2",
+        "OilCupTube3",
+        "OilCupTube4",
+        "OilCupTube5"
+      ],
+      "decision": "Crescent-shaped cups of 0.003 in sheet steel, riveted and soldered, holding about an hour of oil; tubes through the wall at equal intervals",
+      "disposition": "simplified",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 239",
+      "covers": [
+        "W04"
+      ]
+    },
+    {
+      "id": "L21",
+      "name": "Cylinder-to-drum bolts",
+      "function": "Clamp the flanges to the drum rings",
+      "interfaces": "Flanges, drum rings",
+      "part_ids": [
+        "CylBolt1_1",
+        "CylBolt1_2",
+        "CylBolt1_3",
+        "CylBolt1_4",
+        "CylBolt2_1",
+        "CylBolt2_2",
+        "CylBolt2_3",
+        "CylBolt2_4",
+        "CylBolt3_1",
+        "CylBolt3_2",
+        "CylBolt3_3",
+        "CylBolt3_4",
+        "CylBolt4_1",
+        "CylBolt4_2",
+        "CylBolt4_3",
+        "CylBolt4_4",
+        "CylBolt5_1",
+        "CylBolt5_2",
+        "CylBolt5_3",
+        "CylBolt5_4"
+      ],
+      "decision": "Four bolts per flange; count and circle are an estimate from Plates 78 and 79",
+      "disposition": "simplified",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "Plates 78, 79",
+      "covers": [
+        "W04",
+        "W05",
+        "W06"
+      ]
+    },
+    {
+      "id": "L22",
+      "name": "Port crank-chamber drum (head, hub and knee brackets)",
+      "function": "Support the shaft and the cylinders on the exhaust side and carry the valve gear",
+      "interfaces": "Port bushing, flanges, port bed plate, cam ring, punch-rod guides",
+      "part_ids": [
+        "PortDrum",
+        "PortDrumBushingFlange"
+      ],
+      "decision": "Built-up steel drum with symmetric hub, two cylinder rings and knee brackets; flanged bushing with tongues and grooves joins the hub to the bed plate with a gap for the cam and punch rods",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1",
+        "A1"
+      ],
+      "locator": "M1 p. 237; A1 p. 180; Plate 78",
+      "covers": [
+        "W05"
+      ]
+    },
+    {
+      "id": "L23",
+      "name": "Starboard crank-chamber drum",
+      "function": "Support the shaft on the ignition side",
+      "interfaces": "Starboard bushing, flanges, bed plate",
+      "part_ids": [
+        "StbdDrum",
+        "StbdDrumBolts1",
+        "StbdDrumBolts2",
+        "StbdDrumBolts3",
+        "StbdDrumBolts4"
+      ],
+      "decision": "Drum like the port one; the starboard bed plate web is drawn against its face by bolts",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 237; Plate 78",
+      "covers": [
+        "W06"
+      ]
+    },
+    {
+      "id": "L24",
+      "name": "Double-pointed ring cam",
+      "function": "Lift all five exhaust valves",
+      "interfaces": "Port hub, rollers, gear train",
+      "part_ids": [
+        "CamRing"
+      ],
+      "decision": "Annular cam journalled on the exterior of the port hub, two lobes, driven by a train of gears on studs on the drum; a tooth ring at its outboard end takes the drive (the form of the teeth is not documented and is drawn external); profile illustrative (slant was reduced on 8 January 1902)",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1",
+        "A1"
+      ],
+      "locator": "M1 p. 237; A1 p. 108; Plates 78, 79",
+      "covers": [
+        "W05"
+      ]
+    },
+    {
+      "id": "L25",
+      "name": "Cam reduction gear train",
+      "function": "Drive the cam at one quarter crank speed in reverse",
+      "interfaces": "Crankshaft pinion, studs on the drum, cam ring teeth",
+      "part_ids": [
+        "CamPinion",
+        "CamGearLarge",
+        "CamGearSmall",
+        "CamIdler",
+        "CamStud"
+      ],
+      "decision": "Reversing train of three external meshes (pinion to large gear, small gear to idler, idler to cam-ring teeth), net 1:4 reverse; tooth counts 24/48/18/20/36 (pinion, large gear, small gear, idler, cam-ring teeth) derived to give exactly 1:4 with no two gears of a plane overlapping, layout interpreted from a very crowded plate",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 pp. 237, 246; Plate 79",
+      "covers": [
+        "W05"
+      ]
+    },
+    {
+      "id": "L26",
+      "name": "Punch rods, rollers and guides",
+      "function": "Transmit cam lift to the exhaust stems",
+      "interfaces": "Cam ring, guide, exhaust stem 1/64 in above",
+      "part_ids": [
+        "PunchRod1",
+        "PunchRod2",
+        "PunchRod3",
+        "PunchRod4",
+        "PunchRod5",
+        "PunchRoller1",
+        "PunchRoller2",
+        "PunchRoller3",
+        "PunchRoller4",
+        "PunchRoller5",
+        "PunchGuide1",
+        "PunchGuide2",
+        "PunchGuide3",
+        "PunchGuide4",
+        "PunchGuide5"
+      ],
+      "decision": "Hardened rollers on the cam; rods slide in guides on the port drum; 1/64 in gap documented",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1",
+        "A1"
+      ],
+      "locator": "M1 p. 237; A1 p. 180; Plates 78, 79",
+      "covers": [
+        "W05"
+      ]
+    },
+    {
+      "id": "L27",
+      "name": "Port lubrication",
+      "function": "Feed the port bearing, hollow shaft and crank pin",
+      "interfaces": "Port hub groove, crankshaft",
+      "part_ids": [
+        "PortOilCup",
+        "PortOilCupTube"
+      ],
+      "decision": "Small oil cup on the port bed plate feeding the hub groove",
+      "disposition": "simplified",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 239; Plate 78",
+      "covers": [
+        "W05"
+      ]
+    },
+    {
+      "id": "L28",
+      "name": "Ignition drive sleeve and gears",
+      "function": "Drive the sparker cam and distributor from the crankshaft",
+      "interfaces": "Starboard hub, ring on the crankshaft, sparker gear, distributor gear",
+      "part_ids": [
+        "SparkSleeve",
+        "SparkSleeveRing",
+        "SparkGearLarge",
+        "SparkPinion"
+      ],
+      "decision": "Gear formed on a sleeve that telescopes over the starboard hub and ends in a ring fixed to the crankshaft; gear train read from Plate 81, tooth counts to be read or derived to give 2.5x and 0.5x",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 pp. 237, 241; Plate 81",
+      "covers": [
+        "W11"
+      ]
+    },
+    {
+      "id": "L29",
+      "name": "Primary sparker",
+      "function": "Make and break the primary circuit five times in two revolutions",
+      "interfaces": "Sparker cam, pawl and spring, contact, coil (outside)",
+      "part_ids": [
+        "SparkerCam",
+        "SparkerPawl",
+        "SparkerSpring",
+        "SparkerBracket",
+        "SparkerContact"
+      ],
+      "decision": "One-lobe cam at 2.5x acting on a pawl on a spring; wire contact; read from Plate 81",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 241; Plate 81",
+      "covers": [
+        "W11"
+      ]
+    },
+    {
+      "id": "L30",
+      "name": "Secondary distributor and wires",
+      "function": "Distribute the high-tension spark to the five plugs",
+      "interfaces": "Distributor disc, five-section commutator, wires, plugs",
+      "part_ids": [
+        "DistributorDisc",
+        "DistributorBrush",
+        "CommutatorBody",
+        "CommutatorSegment1",
+        "CommutatorSegment2",
+        "CommutatorSegment3",
+        "CommutatorSegment4",
+        "CommutatorSegment5",
+        "SparkWire1",
+        "SparkWire2",
+        "SparkWire3",
+        "SparkWire4",
+        "SparkWire5"
+      ],
+      "decision": "Disc at 0.5x with a brush over a five-section commutator in hard rubber (after red fibre failed); wires insulated by telescoped rubber tubing; routing illustrative",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 pp. 241-242; Plate 81",
+      "covers": [
+        "W11",
+        "W07"
+      ]
+    },
+    {
+      "id": "L31",
+      "name": "Spark timing handle",
+      "function": "Adjust the timing of the spark",
+      "interfaces": "Sparker bracket, bed plate",
+      "part_ids": [
+        "SparkTimingLever",
+        "SparkTimingClamp"
+      ],
+      "decision": "Long handle with a wing nut visible in Plate 81; role interpreted from the plate (not captioned); only the portion inside the assembly is modelled",
+      "disposition": "simplified",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "Plate 81",
+      "covers": [
+        "W11"
+      ]
+    },
+    {
+      "id": "L32",
+      "name": "Bed plates",
+      "function": "Carry each drum and hang the engine on the Aerodrome frame",
+      "interfaces": "Drums, frame tubes (outside)",
+      "part_ids": [
+        "PortBedPlate",
+        "StbdBedPlate"
+      ],
+      "decision": "Elongated-diamond steel tubing with a sheet-steel web brazed to the tubes (A1 p. 179 affidavit, consistent with Plate 81); frame tubes and clamps excluded",
+      "disposition": "simplified",
+      "source_ids": [
+        "M1",
+        "A1"
+      ],
+      "locator": "A1 p. 179; Plates 79-81",
+      "covers": [
+        "W05",
+        "W06"
+      ]
+    },
+    {
+      "id": "L33",
+      "name": "Starting mechanism",
+      "function": "Let the aviator restart the engine in the air",
+      "interfaces": "Worm wheel on the crankshaft, sliding worm, tubular shaft, two brackets",
+      "part_ids": [
+        "WormWheel",
+        "StartWorm",
+        "StartShaft",
+        "StartBracketUpper",
+        "StartBracketLower",
+        "StartPawlPlug"
+      ],
+      "decision": "Sliding worm on a tongued and grooved tubular shaft, spring pawl plug and release wire; shaft ends at the Aerodrome cross-frame where the ratchet crank begins (the crank and ratchet are outside)",
+      "disposition": "simplified",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 244; Plates 79, 80",
+      "covers": [
+        "W05"
+      ]
+    },
+    {
+      "id": "L34",
+      "name": "Pump drive",
+      "function": "Drive the circulating pump at three times engine speed",
+      "interfaces": "Bevel gear on the worm-wheel hub, pinion, vertical splined shaft",
+      "part_ids": [
+        "PumpBevelGear",
+        "PumpBevelPinion",
+        "PumpShaftUpper",
+        "PumpShaftBearing"
+      ],
+      "decision": "Bevel pair and the upper part of the vertical shaft with its telescoping splined joint; the pump and the lower shaft are outside the assembly",
+      "disposition": "simplified",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 pp. 241, 244; Plates 79, 80",
+      "covers": [
+        "W05",
+        "W21"
+      ]
+    },
+    {
+      "id": "L35",
+      "name": "Inlet gas manifold",
+      "function": "Distribute mixture to the five automatic inlet valves",
+      "interfaces": "Five inlet seats, carburetor connection (outside)",
+      "part_ids": [
+        "InletRingA",
+        "InletRingB",
+        "InletRingC",
+        "InletFlangeA1",
+        "InletFlangeA2",
+        "InletFlangeB1",
+        "InletFlangeB2",
+        "InletFlangeC1",
+        "InletFlangeC2",
+        "CarbConnection",
+        "AirValvePipe",
+        "AirValveSleeve"
+      ],
+      "decision": "Tube bent to a circle with five branches (the branch tubes are part of the three segments), cut in three places and joined by flanges; rotating sleeve air valve on the vertical pipe; the connection to the carburetor ends at the assembly boundary",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 240; Plates 79, 80",
+      "covers": [
+        "W10"
+      ]
+    },
+    {
+      "id": "L36",
+      "name": "Water inlet manifold",
+      "function": "Deliver coolant to the five jackets",
+      "interfaces": "Jacket inlet stubs, vertical riser to the pump (outside)",
+      "part_ids": [
+        "WaterInletRing",
+        "WaterInletRiser"
+      ],
+      "decision": "Circular manifold on the starboard side meeting the five inlet stubs (the short rubber connections are omitted); riser stops at the assembly boundary",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 240; Plates 79, 80",
+      "covers": [
+        "W09"
+      ]
+    },
+    {
+      "id": "L37",
+      "name": "Water outlet manifold",
+      "function": "Collect heated water from the jackets and return it to the radiators",
+      "interfaces": "Jacket outlet stubs, two connections to the radiators (outside)",
+      "part_ids": [
+        "WaterOutletRing",
+        "WaterOutletConnectionFront",
+        "WaterOutletConnectionRear"
+      ],
+      "decision": "Circular manifold on the port side with two connections, meeting the five outlet stubs (rubber connections omitted); radiators outside",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 240; Plates 79, 80",
+      "covers": [
+        "W08"
+      ]
+    },
+    {
+      "id": "L40",
+      "name": "Flywheels (two) with tangent wire spokes",
+      "function": "Smooth the torque fluctuations after the transmission shafts overheated without them",
+      "interfaces": "Crankshaft hubs, spokes, rims, balance arms (clear)",
+      "part_ids": [
+        "FlywheelRimPort",
+        "FlywheelRimStbd",
+        "FlywheelHubPort",
+        "FlywheelHubStbd",
+        "FlywheelSpokePort1",
+        "FlywheelSpokePort2",
+        "FlywheelSpokePort3",
+        "FlywheelSpokePort4",
+        "FlywheelSpokePort5",
+        "FlywheelSpokePort6",
+        "FlywheelSpokePort7",
+        "FlywheelSpokePort8",
+        "FlywheelSpokePort9",
+        "FlywheelSpokePort10",
+        "FlywheelSpokePort11",
+        "FlywheelSpokePort12",
+        "FlywheelSpokePort13",
+        "FlywheelSpokePort14",
+        "FlywheelSpokePort15",
+        "FlywheelSpokePort16",
+        "FlywheelSpokePort17",
+        "FlywheelSpokePort18",
+        "FlywheelSpokePort19",
+        "FlywheelSpokePort20",
+        "FlywheelSpokePort21",
+        "FlywheelSpokePort22",
+        "FlywheelSpokePort23",
+        "FlywheelSpokePort24",
+        "FlywheelSpokeStbd1",
+        "FlywheelSpokeStbd2",
+        "FlywheelSpokeStbd3",
+        "FlywheelSpokeStbd4",
+        "FlywheelSpokeStbd5",
+        "FlywheelSpokeStbd6",
+        "FlywheelSpokeStbd7",
+        "FlywheelSpokeStbd8",
+        "FlywheelSpokeStbd9",
+        "FlywheelSpokeStbd10",
+        "FlywheelSpokeStbd11",
+        "FlywheelSpokeStbd12",
+        "FlywheelSpokeStbd13",
+        "FlywheelSpokeStbd14",
+        "FlywheelSpokeStbd15",
+        "FlywheelSpokeStbd16",
+        "FlywheelSpokeStbd17",
+        "FlywheelSpokeStbd18",
+        "FlywheelSpokeStbd19",
+        "FlywheelSpokeStbd20",
+        "FlywheelSpokeStbd21",
+        "FlywheelSpokeStbd22",
+        "FlywheelSpokeStbd23",
+        "FlywheelSpokeStbd24"
+      ],
+      "decision": "Final form: aluminium casting rims of U section, special steel hubs on the crankshaft, 24 tangent wire spokes of No. 10 coppered steel wire (24 documented for the starboard wheel; port assumed equal); 33 in diameter documented for the first steel rims and assumed for the aluminium ones; rim weight inversely proportional to distance from the crank-pin centre (table: starboard 3,946 g, port 3,234 g); spoke crossing pattern read from Plates 83 and 84",
+      "disposition": "modelled",
+      "source_ids": [
+        "M1",
+        "A1"
+      ],
+      "locator": "M1 pp. 242-243, 248; A1 p. 111; Plates 82-84",
+      "covers": [
+        "W14",
+        "W15"
+      ]
+    },
+    {
+      "id": "L47",
+      "name": "Transmission-shaft stubs",
+      "function": "Show where the transmission shafts couple to the engine",
+      "interfaces": "Coupling flanges, Aerodrome frame (outside)",
+      "part_ids": [
+        "TransShaftStubPort",
+        "TransShaftStubStbd"
+      ],
+      "decision": "Short tubular stubs of 1.5 in outside diameter beyond each coupling flange (M1 p. 242); the shafts, gears and propellers are outside",
+      "disposition": "simplified",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 242; Plates 78, 80",
+      "covers": [
+        "W12",
+        "W13"
+      ]
+    },
+    {
+      "id": "L41",
+      "name": "Spark coil and batteries",
+      "function": "Supply primary current",
+      "interfaces": "Assembly boundary",
+      "part_ids": [],
+      "decision": "Separate accessory in the weight table",
+      "disposition": "outside_scope",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 250 weight table",
+      "covers": [
+        "W16"
+      ]
+    },
+    {
+      "id": "L42",
+      "name": "Carburetor and its inlet pipe",
+      "function": "Mix fuel and air (tupelo-wood tank warmed by air from the cylinders)",
+      "interfaces": "Assembly boundary",
+      "part_ids": [],
+      "decision": "Separate accessories; the carburetor is a design study of its own (M1 pp. 224-225)",
+      "disposition": "outside_scope",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 250 weight table",
+      "covers": [
+        "W17",
+        "W18"
+      ]
+    },
+    {
+      "id": "L43",
+      "name": "Gasoline tank and water tank",
+      "function": "Store fuel and coolant",
+      "interfaces": "Assembly boundary",
+      "part_ids": [],
+      "decision": "Separate accessories",
+      "disposition": "outside_scope",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 250 weight table",
+      "covers": [
+        "W19",
+        "W20"
+      ]
+    },
+    {
+      "id": "L44",
+      "name": "Circulating pump and lower shaft",
+      "function": "Circulate coolant",
+      "interfaces": "Assembly boundary",
+      "part_ids": [],
+      "decision": "Pump outside the assembly; upper shaft and bevel gears are inside (L34)",
+      "disposition": "outside_scope",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 250 weight table",
+      "covers": [
+        "W21"
+      ]
+    },
+    {
+      "id": "L45",
+      "name": "Radiator (finned tubes)",
+      "function": "Reject heat",
+      "interfaces": "Assembly boundary",
+      "part_ids": [],
+      "decision": "Separate accessory sized for the Aerodrome frame",
+      "disposition": "outside_scope",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 p. 250 weight table",
+      "covers": [
+        "W22"
+      ]
+    },
+    {
+      "id": "L46",
+      "name": "Aerodrome frame, transmission shafts, gears and propellers",
+      "function": "Carry the engine and deliver thrust",
+      "interfaces": "Assembly boundary",
+      "part_ids": [],
+      "decision": "The bed plates attach to the frame tubes; the frame is not part of the engine",
+      "disposition": "outside_scope",
+      "source_ids": [
+        "M1"
+      ],
+      "locator": "M1 Chapter V",
+      "covers": []
+    }
+  ],
+  "mechanisms": [
+    {
+      "id": "load",
+      "source_ids": [
+        "M1",
+        "A1"
+      ],
+      "components": [
+        "L01",
+        "L02",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L11",
+        "L22",
+        "L23",
+        "L32"
+      ],
+      "path": "piston -> gudgeon pin -> bronze bushing -> rod (master direct; link rod through its slipper shoe on the master sleeve) -> split sleeve and bronze lining -> crank pin -> crank arm -> hollow shaft -> two bronze bushings -> drums -> bed plates",
+      "checks": [
+        "stroke and bore",
+        "rod diameters and hole",
+        "one pin carries five rods",
+        "shoe arcs never overlap at any crank angle (rod length and shoe width together)",
+        "master rod and four link rods give identical piston strokes"
+      ]
+    },
+    {
+      "id": "exhaust_valve_train",
+      "source_ids": [
+        "M1",
+        "A1"
+      ],
+      "components": [
+        "L01",
+        "L18",
+        "L24",
+        "L25",
+        "L26"
+      ],
+      "path": "crank pinion -> compound reversing gear train -> double-lobed ring cam (-1/4 speed) -> five punch-rod rollers and rods -> 1/64 in gap -> exhaust stem -> valve head -> spring return",
+      "checks": [
+        "cam speed -1/4",
+        "two lobes",
+        "firing order 1-3-5-2-4 closure",
+        "gap 0.397 mm",
+        "lift illustrative"
+      ]
+    },
+    {
+      "id": "intake",
+      "source_ids": [
+        "M1",
+        "A1"
+      ],
+      "components": [
+        "L17",
+        "L35",
+        "L15"
+      ],
+      "path": "carburetor (outside) -> circular manifold in three flanged segments -> five branches -> removable cast-iron seats -> automatic inlet valves (suction, spring) -> chamber -> cylinder",
+      "checks": [
+        "five branches",
+        "three flanges",
+        "seat held by nut",
+        "automatic: no drive"
+      ]
+    },
+    {
+      "id": "exhaust",
+      "source_ids": [
+        "M1"
+      ],
+      "components": [
+        "L15",
+        "L18"
+      ],
+      "path": "cylinder -> exhaust valve -> chamber below the seat -> side outlet away from the port bearing",
+      "checks": [
+        "outlet clear of the port main bearing"
+      ]
+    },
+    {
+      "id": "cooling",
+      "source_ids": [
+        "M1"
+      ],
+      "components": [
+        "L16",
+        "L36",
+        "L37"
+      ],
+      "path": "pump (outside) -> starboard circular manifold -> five jackets -> port circular manifold -> two connections to the radiators (outside)",
+      "checks": [
+        "starboard inlet, port outlet",
+        "sheet-steel jackets 0.020 in"
+      ]
+    },
+    {
+      "id": "ignition",
+      "source_ids": [
+        "M1",
+        "A1"
+      ],
+      "components": [
+        "L19",
+        "L28",
+        "L29",
+        "L30",
+        "L31"
+      ],
+      "path": "crankshaft -> sleeve and ring -> sparker gear -> one-lobe cam (2.5x) lifts pawl and breaks the primary circuit five times per two revolutions -> coil (outside) -> distributor brush (0.5x) on five-section commutator -> wire -> plug",
+      "checks": [
+        "2.5x",
+        "0.5x",
+        "five segments",
+        "144 degree spacing of breaks"
+      ]
+    },
+    {
+      "id": "lubrication",
+      "source_ids": [
+        "M1"
+      ],
+      "components": [
+        "L01",
+        "L05",
+        "L20",
+        "L27"
+      ],
+      "path": "port oil cup -> hub groove -> hole in hollow shaft -> pipe in plug -> hole in crank arm -> hollow pin -> holes -> master bushing -> holes -> under the four shoes; five piston cups -> tubes -> pistons; centrifugal oil along the rods to the gudgeon pins",
+      "checks": [
+        "oil path drilled continuous",
+        "holes under shoes"
+      ]
+    },
+    {
+      "id": "torque_smoothing",
+      "source_ids": [
+        "M1",
+        "A1"
+      ],
+      "components": [
+        "L01",
+        "L03",
+        "L04",
+        "L40",
+        "L47"
+      ],
+      "path": "crankshaft -> hubs -> 24 tangent wire spokes each -> aluminium U-section rims (inertia); balance arms bolted between the coupling flanges at 30 degrees brace",
+      "checks": [
+        "24 spokes per wheel",
+        "rim mass per table (3,946 g starboard, 3,234 g port)",
+        "balance arm clear of rim and spokes at every angle"
+      ]
+    },
+    {
+      "id": "start_and_pump",
+      "source_ids": [
+        "M1"
+      ],
+      "components": [
+        "L33",
+        "L34"
+      ],
+      "path": "crank handle (outside) -> ratchet -> tubular shaft -> sliding worm -> worm wheel on crankshaft; bevel gear on its hub -> pinion -> vertical splined shaft -> pump at 3x (outside)",
+      "checks": [
+        "pump 3x",
+        "worm held out of mesh by pawl"
+      ]
+    }
+  ],
+  "reviewed_locators": [
+    "M1 Ch. VIII pp. 218-225 and Ch. X pp. 234-250 read in full, weight table and rod/pin sentence checked on page images",
+    "M1 Plates 78, 79, 80, 81 inspected at page-render resolution (Plate 78 scale 1/2, Plates 79-81 scale 1/4)",
+    "A1 Introduction, Ch. 1-2, 5, 7 and Summary read; Ch. 6 pp. 104-119 and Ch. 8 pp. 157-166, 179-183 read; Ch. 3-4 only at cited passages",
+    "M1 Plates 82-84 (test-frame photographs) viewed at thumbnail resolution for the flywheel arrangement only",
+    "Not inspected: M1 Ch. IX, A1 Figures 22 and 37-43 at full size"
+  ],
+  "conflicts": [
+    {
+      "topic": "Connecting rod weight",
+      "decision": "Table prints 5,005 g but the printed total needs 5,070 g (page image checked); mass check targets the total 56,323 g"
+    },
+    {
+      "topic": "Engine weight figures (124.17, 125, 130, 136, 207.47, 207.5, 209.6 lb)",
+      "decision": "Different inclusion boundaries; target is Manly's table of the engine proper, 124.17 lb"
+    },
+    {
+      "topic": "Cylinder construction wording",
+      "decision": "Seamless steel shell (M1, A1) over \"spun\" (brief) and \"drawn from steel plates\" (secondary); copper jackets rejected, sheet steel 0.020 in (M1)"
+    },
+    {
+      "topic": "Radial and master-rod priority",
+      "decision": "Model describes the engine as built; priority claims are recorded in research.md as contested (Millet 1889, Corliss 1857, Balzer 1894 rotary radial wagon)"
+    },
+    {
+      "topic": "Slipper bearing versus knuckle-pin master rod",
+      "decision": "Slipper shoes sliding on the master sleeve (M1 p. 238); not a pinned master-and-link rod; all five pistons have identical strokes"
+    },
+    {
+      "topic": "Cylinder numbering and rotation",
+      "decision": "Firing order 1-3-5-2-4 documented; consecutive numbering in the direction of crank rotation adopted as modelling choice; cylinder 1 at the top"
+    },
+    {
+      "topic": "1903 versus 1901",
+      "decision": "Built and drawn 1901, tested 1902-1904, flown (launched) 1903; museum label 1901, NASM record 1903"
+    },
+    {
+      "topic": "Balzer versus Manly credit",
+      "decision": "Affidavits of 1933 used only for construction facts that agree with M1"
+    }
+  ],
+  "gaps": [
+    {
+      "topic": "Connecting rod length, shoe width and cylinder geometry",
+      "blocks_selected_scope": false,
+      "next_evidence": "Plate 78 measured per half with the documented bore, stroke and wall thicknesses as scales (measurements.json)",
+      "modelling_consequence": "Values labelled measured with a stated spread; the shoe-clearance closure check must pass"
+    },
+    {
+      "topic": "Valve lift, timing, cam profile and spring rates",
+      "blocks_selected_scope": false,
+      "next_evidence": "NASM measurements of the surviving engine or Manly notebooks in the NASM Langley papers",
+      "modelling_consequence": "Illustrative, labelled in the contract and the interface"
+    },
+    {
+      "topic": "Gear tooth counts for the cam, ignition and starting drives",
+      "blocks_selected_scope": false,
+      "next_evidence": "Full-resolution Plate 79 and Plate 81 and NASM photographs",
+      "modelling_consequence": "Tooth counts read where legible, otherwise derived to give the documented ratios exactly"
+    },
+    {
+      "topic": "Compression ratio of the final engine",
+      "blocks_selected_scope": false,
+      "next_evidence": "Plate 78 chamber volume measured; Manly memoranda",
+      "modelling_consequence": "Estimated from the drawing, not stated as documented"
+    },
+    {
+      "topic": "Whether the surviving museum engine matches the 1901 drawings in every detail",
+      "blocks_selected_scope": false,
+      "next_evidence": "Examination of the object or its full NASM photograph set",
+      "modelling_consequence": "Model follows the Memoir drawings; no claim about the physical object"
+    },
+    {
+      "topic": "Small parts not drawn clearly (sleeve halves joint, retainer form, bolt counts)",
+      "blocks_selected_scope": false,
+      "next_evidence": "Full-resolution plates, Annals figures at full size",
+      "modelling_consequence": "Estimated or omitted, each named in its component decision"
+    }
+  ]
+}
