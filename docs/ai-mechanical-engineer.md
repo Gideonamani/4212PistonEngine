@@ -167,8 +167,10 @@ disposable reopened copy and require the shape to follow), and its recognition c
 A **recipe** is a named part built only from grammar operations (`piston`, `conrod`, `poppet_valve`, `cam_lobe`, `compression_spring`,
 `spur_gear`, `bolt_circle_flange`). Recipes are created by extraction: when a part appears a second time across studies, lift it out of the
 engine builder, parameterise it, test it, and replace both uses. How much `wright_*.py` and `langley_*.py` share beyond the spec
-vocabulary and the gear module has not been audited; the five part cards (section 4a) now record how each study built each family, which is
-where that audit, the first task of Phase B, starts.
+vocabulary and the gear module was audited on 8 October 2026 (`docs/builder-overlap-audit.md`): nothing else is shared, and the five part
+families are 29 to 33 percent of each model's features. The audit also set the order of the first extractions (gear, piston, valve, rod
+sub-recipes, cam lobe) and four design constraints for recipes: they must carry expression strings as well as numbers, work in a local
+frame, compose the existing primitives, and be checked against golden `part-spec.json` files.
 
 ## 7. Estimation and expertise
 
@@ -308,7 +310,7 @@ Ordered by dependency. Effort is relative (S small, M medium, L large), not a ti
 | Phase | Deliver | Exit test | Effort |
 |---|---|---|---|
 | A. Foundations (done 7 Oct 2026) | `knowledge/` skeleton, part-card schema and validator, metrics file with Wright and Langley baseline rows, retrospective template, this document agreed | Part cards for five existing parts (piston, rod, valve, cam, gear) validate; baseline rows exist | S |
-| B. Grammar levels 1-5 and first recipes | Audit of builder overlap; `grammar/` with tests; recipes for the five parts; one engine builder switched to them | The same part regenerates identically from its recipe; reuse ratio measured | L |
+| B. Grammar levels 1-5 and first recipes (audit done 8 Oct 2026) | Audit of builder overlap (`docs/builder-overlap-audit.md`, done); golden-file test and one primitive table; `grammar/` with tests; recipes for the five parts in the audit's order; Langley switched to them first, then Wright | The same part regenerates identically from its recipe; reuse ratio measured | L |
 | C. Fit loop (rung 9) | Render matching view, comparison, residual report, bounded refinement; run on Langley Plate 79 | Residual report per system on Plate 79; a deliberately wrong dimension is detected (mutation test) | M |
 | D. Estimation and plausibility | `closure.py` lifted from the Langley research generator; priors loader; rungs 11 and 12 first versions | Closure checks run in the research gate; one prior promoted from candidate to sourced | M |
 | E. Motion tier 2, then slider-crank tier 3 | Constraint-solved motion for one assembly; torque curve with gas pressure and reciprocating mass | A mechanism that should lock is detected; torque curve matches the analytic check | L |
