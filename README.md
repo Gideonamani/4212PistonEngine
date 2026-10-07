@@ -36,7 +36,7 @@ npm test
 npm run build
 ```
 
-The Vite build uses relative URLs (`base: './'`) and copies the static viewer/data files from `web/` into `dist/`, so the result works under a GitHub Pages repository subpath. The Pages workflow validates both the curriculum/model contracts and the React build before publishing `dist/`. It runs on every pull request as well as on pushes to `main`; only a push to `main` deploys.
+The Vite build uses relative URLs (`base: './'`) and copies the static viewer/data files from `web/` into `dist/`, so the result works under a GitHub Pages repository subpath. The Pages workflow validates both the curriculum/model contracts and the React build before publishing `dist/`. It runs on every pull request as well as on pushes to `main`; only a push to `main` deploys. A first job (`scope`) decides how much a pull request needs: when every changed file is Markdown (under `docs/`, `cad-studies/`, `cad_pipeline/`, `.agents/` or at the top level) or `.gitignore`/`.gitattributes`, only the documentation test (`scripts/test_docs_fresh.mjs`) runs, in about a minute; anything else, and every push to `main`, takes the full run. The required check is the `verify` job, which passes when the run that applied has passed.
 
 ### Testing
 

@@ -11,9 +11,75 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
-  # Everything a change must pass. Pull requests stop here; a push to main also publishes what this job built.
-  # Branch protection should require this job ("verify") before a pull request can merge.
+  # Decides how much a pull request needs. A push to main and a manual run always take the full run, because they publish.
+  # A pull request whose changes are all Markdown or ignore files (the light set below) takes only the documentation test: the
+  # model audits, the application build and the browser tests cannot be affected by it.
+  scope:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      full: ${{ steps.scope.outputs.full }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: scope
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          full=true
+          if [ "$EVENT" = "pull_request" ]; then
+            git diff --name-only "$BASE...$HEAD" | tee changed.txt
+            # The light set: Markdown under docs, cad-studies, cad_pipeline and .agents or at the top level, and the ignore and attribute files.
+            # Anything else (code, data, models, tests, the workflow itself, web/) takes the full run.
+            if [ -s changed.txt ] && ! grep -v -E '^((docs|cad-studies|cad_pipeline|\.agents)/.*|[^/]+)\.md$|^\.gitignore$|^\.gitattributes$' changed.txt | grep -q .; then
+              full=false
+            fi
+          fi
+          echo "Full run: $full"
+          echo "full=$full" >> "$GITHUB_OUTPUT"
+
+  # The documentation test is the only check that reads Markdown, so a light pull request still has to pass it.
+  docs:
+    needs: scope
+    if: needs.scope.outputs.full != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check that the guides point only at things that exist
+        run: node --test scripts/test_docs_fresh.mjs
+
+  # The one check branch protection requires ("verify"). It passes when the run it needed has passed: the full run, or the
+  # documentation test for a light pull request. A failed, cancelled or missing run fails it.
   verify:
+    needs: [scope, full, docs]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require the run that applied
+        env:
+          SCOPE: ${{ needs.scope.result }}
+          FULL: ${{ needs.full.result }}
+          DOCS: ${{ needs.docs.result }}
+        run: |
+          echo "scope=$SCOPE full=$FULL docs=$DOCS"
+          [ "$SCOPE" = "success" ] || { echo "The scope job did not succeed"; exit 1; }
+          for result in "$FULL" "$DOCS"; do
+            case "$result" in success|skipped) ;; *) echo "A required run ended as: $result"; exit 1;; esac
+          done
+          [ "$FULL" = "success" ] || [ "$DOCS" = "success" ] || { echo "Neither the full run nor the documentation test ran"; exit 1; }
+
+  # Everything a change must pass. Pull requests stop here; a push to main also publishes what this job built.
+  full:
+    needs: scope
+    if: needs.scope.outputs.full == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -93,7 +159,7 @@ jobs:
 
   deploy:
     if: github.event_name != 'pull_request'
-    needs: verify
+    needs: [full, verify]
     runs-on: ubuntu-latest
     permissions:
       pages: write
