@@ -114,6 +114,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
   let playing = false;
   let cycleEnabled = Boolean(context.initialCycle);
   const section = createSectionController(meshes, bounds, runtime.render, onChange, runtime.scene);
+  section.startStep(context.sectionPlane);
 
   const applyAppearance = () => {
     const spotlight = focusSet.size > 0;
@@ -287,6 +288,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
       selectMotion(view.savedMotionId || 'operating');
       if (view.savedMotionId && view.savedMotionId !== 'operating') applyMotionProgress(view.motionProgress ?? 0);
       applyFocus(view.focusParts, focusModeOrDefault(view.focusMode));
+      section.startStep(view.sectionPlane);
       onChange();
     },
     features: {

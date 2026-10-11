@@ -172,3 +172,17 @@ A `model-pose` step can point the learner at some parts with `focusParts` (compo
 | `isolate` | as they normally look | hidden | inspecting one part or group on its own |
 
 Choose by what the learner can see: highlight only reads for parts visible from the camera, so use `xray` or `isolate` for internal parts. `focusMode` needs `focusParts`, and the schema test rejects it without them. The viewer reports whether a spotlight is active and its mode, and offers `features.focus.setMode()` so a student-facing switch can change the look for the current step; the next step starts again from its own `focusMode`. The rules live in `src/viewer/core/focus-style.mjs`.
+
+### Cutting the model open: `sectionPlane`
+
+On a spotlight step (or any step with `sectionPlane`) the same bar offers a **Cross section** checkbox and a plane picker. The picker always lists the standard X, Y and Z planes. A step can add a plane chosen for seeing its component best:
+
+```json
+"sectionPlane": { "label": "Valve axis", "normal": [0, 1, 0], "offset": 0.5 }
+```
+
+- `label` is the name in the picker (24 characters at most). The plane is preselected and marked "Recommended for this step".
+- `normal` is the plane's normal in the model's own axes (it need not be a unit vector). It points toward the half that is **cut away**.
+- `offset` (0 to 1, default 0.5) is where the plane sits across the model along that normal; the learner can slide it with the picker's slider.
+
+Every step starts uncut, with its own recommended plane (or none), so a cut never carries into a step about something else. To pick values, read the part's world bounds from the model: a plane that holds a part's axis shows it lengthwise. Mind the pose: a saved motion such as `exploded` moves parts out of the plane (the springs in lesson 09 step 4 leave the valve axis, so that step names none). The schema test validates the shape; the controller is `src/viewer/core/section-controller.mjs` and the picker is `src/viewer/SectionControls.tsx`. Explore's Inside panel is separate and unchanged.

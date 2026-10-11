@@ -95,20 +95,26 @@ export function ToolbarButton({ label, title, active, onClick, children }: { lab
 }
 
 /**
- * Lets the learner choose how the highlighted part is drawn: coloured with the rest pale, solid with the rest as a faint ghost, or on its
- * own. It appears only while a step is spotlighting something, and shows what is actually drawn (the step's own mode until they choose).
+ * The spotlight bar. Lets the learner choose how the highlighted part is drawn: coloured with the rest pale, solid with the rest as a faint
+ * ghost, or on its own. That part appears only while a step is spotlighting something, and shows what is actually drawn (the step's own
+ * mode until they choose). `leading` goes in front of it, on the same row where there is room: the lesson viewer puts the cross-section
+ * controls there, so the bar shows whenever either has something to offer.
  */
-export function FocusModeSwitch({ viewer, onChoose }: { viewer: ModelViewerState; onChoose: (mode: FocusMode) => void }) {
-  if (!viewer.features?.focus || !viewer.snapshot.focusActive) return null;
+export function FocusModeSwitch({ viewer, onChoose, leading }: { viewer: ModelViewerState; onChoose: (mode: FocusMode) => void; leading?: React.ReactNode }) {
+  const spotlight = Boolean(viewer.features?.focus && viewer.snapshot.focusActive);
+  if (!spotlight && !leading) return null;
   const current: FocusMode = viewer.snapshot.focusMode ?? DEFAULT_FOCUS_MODE;
   return <div>
-    <div role="group" aria-label="How the highlighted part is shown" className="flex items-center gap-2">
-      <span aria-hidden="true" className="shrink-0 font-mono text-[11px] font-bold tracking-wider text-slate-400">SHOW</span>
-      <div className="flex min-w-0 flex-1 rounded-xl border border-slate-700 bg-slate-900/70 p-0.5">
-        {(FOCUS_MODES as FocusMode[]).map((mode) => <button key={mode} type="button" aria-pressed={mode === current} onClick={() => onChoose(mode)} className={`min-h-11 min-w-0 flex-1 rounded-[0.65rem] px-1 text-[11px] font-semibold outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${mode === current ? 'bg-teal-400/20 text-teal-100 ring-1 ring-teal-300/70' : 'text-slate-300 hover:text-white'}`}>{FOCUS_MODE_LABELS[mode as FocusMode]}</button>)}
-      </div>
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+      {leading}
+      {spotlight && <div role="group" aria-label="How the highlighted part is shown" className="flex min-w-0 flex-1 basis-64 items-center gap-2">
+        <span aria-hidden="true" className="shrink-0 font-mono text-[11px] font-bold tracking-wider text-slate-400">SHOW</span>
+        <div className="flex min-w-0 flex-1 rounded-xl border border-slate-700 bg-slate-900/70 p-0.5">
+          {(FOCUS_MODES as FocusMode[]).map((mode) => <button key={mode} type="button" aria-pressed={mode === current} onClick={() => onChoose(mode)} className={`min-h-11 min-w-0 flex-1 rounded-[0.65rem] px-1 text-[11px] font-semibold outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${mode === current ? 'bg-teal-400/20 text-teal-100 ring-1 ring-teal-300/70' : 'text-slate-300 hover:text-white'}`}>{FOCUS_MODE_LABELS[mode as FocusMode]}</button>)}
+        </div>
+      </div>}
     </div>
-    <p className="mt-1 px-0.5 text-[11px] leading-snug text-slate-400">{FOCUS_MODE_HINTS[current]}</p>
+    {spotlight && <p className="mt-1 px-0.5 text-[11px] leading-snug text-slate-400">{FOCUS_MODE_HINTS[current]}</p>}
   </div>;
 }
 

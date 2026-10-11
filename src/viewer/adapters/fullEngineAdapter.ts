@@ -92,6 +92,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
   let isolatedGroupIds: string[] = [];
   let playing = false;
   const section = createSectionController(items.map((item) => item.mesh), bounds, runtime.render, onChange, runtime.scene);
+  section.startStep(context.sectionPlane);
 
   // A lesson step can spotlight teaching components, drawn as its focus mode says, and the camera frames the spotlit parts.
   const focusComponents: any[] = [];
@@ -231,6 +232,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
       setPlaying(false);
       setAngle(view.initialAngle ?? 0);
       applyFocus(view.focusParts, focusModeOrDefault(view.focusMode));
+      section.startStep(view.sectionPlane);
       onChange();
     },
     features: {

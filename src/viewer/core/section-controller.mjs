@@ -35,6 +35,11 @@ export function createSectionController(meshes, bounds, render, onChange, scene)
   let enabled = false, position = 50, flipped = true;
   /** @type {'x' | 'y' | 'z'} */
   let axis = 'z';
+  // A lesson step can name a plane chosen for seeing its component best (see sectionPlaneSpec). It is offered next to X, Y and Z, and
+  // while it is the one in force the cut slides along its own normal instead of along an axis.
+  /** @type {{ label: string, normal: [number, number, number], offset: number } | null} */
+  let recommended = null;
+  let onRecommended = false;
   const sync = () => {
     helpers.visible = enabled;
     if (!enabled) return;
@@ -57,8 +62,16 @@ export function createSectionController(meshes, bounds, render, onChange, scene)
   };
   const apply = () => {
     const point = bounds.getCenter(new THREE.Vector3());
-    point[axis] += bounds.getSize(new THREE.Vector3())[axis] * (position - 50) / 100;
-    const normal = new THREE.Vector3(axis === 'x' ? 1 : 0, axis === 'y' ? 1 : 0, axis === 'z' ? 1 : 0);
+    const size = bounds.getSize(new THREE.Vector3());
+    const normal = new THREE.Vector3();
+    if (onRecommended && recommended) {
+      normal.fromArray(recommended.normal).normalize();
+      // How far the box reaches along the normal, so 0 to 100 per cent sweeps the plane from one side of the model to the other.
+      point.addScaledVector(normal, (Math.abs(normal.x) * size.x + Math.abs(normal.y) * size.y + Math.abs(normal.z) * size.z) * (position - 50) / 100);
+    } else {
+      point[axis] += size[axis] * (position - 50) / 100;
+      normal.setComponent(['x', 'y', 'z'].indexOf(axis), 1);
+    }
     if (flipped) normal.negate();
     plane.setFromNormalAndCoplanarPoint(normal, point);
     for (const mesh of meshes) for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) {
@@ -69,13 +82,28 @@ export function createSectionController(meshes, bounds, render, onChange, scene)
     sync(); render(); onChange();
   };
   return {
-    snapshot: () => ({ sectionEnabled: enabled, sectionAxis: axis, sectionPosition: position, sectionFlipped: flipped }),
+    snapshot: () => ({ sectionEnabled: enabled, sectionAxis: axis, sectionPosition: position, sectionFlipped: flipped, sectionRecommended: recommended?.label, sectionOnRecommended: onRecommended }),
     feature: {
       setEnabled(value) { enabled = value; apply(); },
-      setAxis(value) { axis = value; apply(); },
+      setAxis(value) { axis = value; onRecommended = false; apply(); },
       setPosition(value) { position = Math.max(0, Math.min(100, value)); apply(); },
       flip() { flipped = !flipped; apply(); },
-      reset() { enabled = false; axis = 'z'; position = 50; flipped = true; apply(); },
+      reset() { enabled = false; axis = 'z'; position = 50; flipped = true; onRecommended = false; apply(); },
+      /** Switch to the step's recommended plane, if it named one, at the position it asks for. */
+      useRecommended() { if (!recommended) return; onRecommended = true; position = Math.round(recommended.offset * 100); apply(); },
+    },
+    /**
+     * A lesson step has begun: the cut starts off, and the step's recommended plane (if any) is the plane that comes up when the learner
+     * turns it on. A step without one starts from the plane Explore starts from.
+     * @param {{ label: string, normal: [number, number, number], offset?: number } | undefined} spec
+     */
+    startStep(spec) {
+      enabled = false; flipped = true;
+      recommended = spec ? { label: spec.label, normal: spec.normal, offset: spec.offset ?? 0.5 } : null;
+      onRecommended = Boolean(recommended);
+      axis = 'z';
+      position = recommended ? Math.round(recommended.offset * 100) : 50;
+      apply();
     },
     sync, refresh: apply,
     updateBounds(value) { bounds.copy(value); apply(); },

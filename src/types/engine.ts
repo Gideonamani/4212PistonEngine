@@ -41,6 +41,11 @@ export interface LessonStep {
   focusParts?: string[];
   /** How the spotlight looks: 'highlight' colours the parts and greys the rest, 'xray' (the default) ghosts the rest, 'isolate' hides the rest. */
   focusMode?: 'highlight' | 'xray' | 'isolate';
+  /**
+   * A plane chosen for cutting the model open to see this step's component best; the section controls offer it beside X, Y and Z.
+   * `normal` points toward the half that is cut away, in the model's own axes; `offset` is 0 to 1 across the model along it (default 0.5).
+   */
+  sectionPlane?: { label: string; normal: [number, number, number]; offset?: number };
   /** Ids of unlisted deep-dive lessons this step links to (optional, never required to progress). */
   deepDiveLinks?: string[];
   note?: string;

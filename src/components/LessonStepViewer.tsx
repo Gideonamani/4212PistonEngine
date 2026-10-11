@@ -6,11 +6,11 @@ import { ChevronLeft, ChevronRight, Columns2, Info, Maximize2, Minimize2 } from 
 import confetti from 'canvas-confetti';
 import { completeLesson, getLessonProgress, saveLessonStep } from '../data/lessonProgress';
 import { BackLink, IconButton, ReviewChip } from './ui';
-import { ProgressNavigator, type ProgressItem } from './ProgressNavigator';
+import { ProgressNavigator, ProgressSheet, type ProgressItem } from './ProgressNavigator';
 import { EvidenceDialog, stepHasEvidence } from './lesson/EvidenceDialog';
 import { GuidedPrompt } from './lesson/GuidedPrompt';
 import { LessonComplete } from './lesson/LessonComplete';
-import { LessonDock } from './lesson/LessonDock';
+import { LessonFooter } from './lesson/LessonFooter';
 import { useLessonFullscreen } from './lesson/useLessonFullscreen';
 import { useLessonLayout } from './lesson/useLessonLayout';
 import { useScrollArea } from './lesson/useScrollArea';
@@ -47,7 +47,9 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
   const [showAnswerFeedback, setShowAnswerFeedback] = useState<Record<number, boolean>>({});
   const [isEvidenceOpen, setIsEvidenceOpen] = useState(false);
   const [isComplete, setIsComplete] = useState(initialComplete);
+  const [stepsOpen, setStepsOpen] = useState(false);
   const evidenceButtonRef = useRef<HTMLButtonElement>(null);
+  const footerTriggerRef = useRef<HTMLButtonElement>(null);
   const viewerRef = useRef<HTMLDivElement>(null);
   const { isImmersive, coversPage, toggleImmersive } = useLessonFullscreen(viewerRef);
   const { layout, canChoose: canChooseLayout, choose: chooseLayout } = useLessonLayout();
@@ -89,6 +91,14 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
     setIsEvidenceOpen(false);
     evidenceButtonRef.current?.focus();
   };
+
+  const closeSteps = () => {
+    setStepsOpen(false);
+    footerTriggerRef.current?.focus();
+  };
+
+  // One entry per step for the list of steps, whichever layout opens it.
+  const stepItems = lesson.steps.map((step, index): ProgressItem => ({ id: String(index), title: step.title || `Step ${index + 1}`, state: index < currentStepIndex ? 'done' : 'todo', hasModel: isModelStep(step) }));
 
   const handleNextStep = () => {
     if (currentStepIndex < totalSteps - 1) {
@@ -134,24 +144,26 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
           </div>
         </div>
 
-        {/* Where you are in the lesson; tap it for the list of steps. */}
-        <div className={side ? `pt-3 pb-2 ${twoColumns ? 'col-start-2 row-start-2' : ''}` : 'px-5 pt-3 pb-2'}>
-          <ProgressNavigator
-            noun="step"
-            heading="Steps in this lesson"
-            currentIndex={currentStepIndex}
-            onSelect={setCurrentStepIndex}
-            items={lesson.steps.map((step, index): ProgressItem => ({ id: String(index), title: step.title || `Step ${index + 1}`, state: index < currentStepIndex ? 'done' : 'todo' }))}
-            summary={<>
-              <span className="flex items-center gap-2">
-                <span className="text-slate-300 font-semibold">{lesson.lessonNumber}</span>
-                <span className="text-slate-600">|</span>
-                <span className="text-white">Step {currentStepIndex + 1} of {totalSteps}</span>
-              </span>
-              <span className="ml-auto text-teal-400 font-mono text-[11px] font-bold">{percentComplete}% complete</span>
-            </>}
-          />
-        </div>
+        {/* Side by side, where you are in the lesson sits above the text; tap it for the list of steps. Stacked, it lives in the footer. */}
+        {side && (
+          <div className={`pt-3 pb-2 ${twoColumns ? 'col-start-2 row-start-2' : ''}`}>
+            <ProgressNavigator
+              noun="step"
+              heading="Steps in this lesson"
+              currentIndex={currentStepIndex}
+              onSelect={setCurrentStepIndex}
+              items={stepItems}
+              summary={<>
+                <span className="flex items-center gap-2">
+                  <span className="text-slate-300 font-semibold">{lesson.lessonNumber}</span>
+                  <span className="text-slate-600">|</span>
+                  <span className="text-white">Step {currentStepIndex + 1} of {totalSteps}</span>
+                </span>
+                <span className="ml-auto text-teal-400 font-mono text-[11px] font-bold">{percentComplete}% complete</span>
+              </>}
+            />
+          </div>
+        )}
 
         {/* Main Step Content Card (Matching Screenshot 5) */}
         <div className={side ? 'contents' : `mx-auto flex w-full flex-1 flex-col gap-4 px-4 py-2 pb-20 ${isImmersive ? 'max-w-5xl' : 'max-w-xl'}`}>
@@ -221,8 +233,27 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
 
       {isEvidenceOpen && <EvidenceDialog step={currentStep} stepNumber={currentStepIndex + 1} onClose={closeEvidence} />}
 
-      {/* Side by side there is no height to spare for the dock: the back link and the step list already sit beside the text. */}
-      {!side && <LessonDock thumbnail={lesson.thumbnail} stepNumber={currentStepIndex + 1} totalSteps={totalSteps} percentComplete={percentComplete} onBackToLessons={onBackToLessons} />}
+      {/* Side by side there is no height to spare for a footer: the back link and the step list already sit beside the text. */}
+      {!side && <LessonFooter ref={footerTriggerRef} thumbnail={lesson.thumbnail} lessonNumber={lesson.lessonNumber} stepNumber={currentStepIndex + 1} totalSteps={totalSteps} percentComplete={percentComplete} expanded={stepsOpen} onOpenSteps={() => setStepsOpen(true)} />}
+      {!side && stepsOpen && (
+        <ProgressSheet
+          noun="step"
+          heading="Steps in this lesson"
+          currentIndex={currentStepIndex}
+          onSelect={setCurrentStepIndex}
+          onClose={closeSteps}
+          items={stepItems}
+          identity={{
+            thumbnail: lesson.thumbnail,
+            eyebrow: lesson.lessonNumber,
+            title: lesson.title,
+            summary: <>
+              <span className="text-white">Step {currentStepIndex + 1} of {totalSteps}</span>
+              <span className="font-mono text-[11px] font-bold text-teal-300">{percentComplete}% complete</span>
+            </>,
+          }}
+        />
+      )}
     </div>
   );
 };

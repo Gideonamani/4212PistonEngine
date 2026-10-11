@@ -3,6 +3,11 @@ import type * as THREE from 'three';
 export type ViewerProfile = 'explore' | 'lesson-dynamic' | 'lesson-reference';
 export type InteractionMode = 'orbit' | 'pan';
 export type SectionAxis = 'x' | 'y' | 'z';
+/**
+ * A section plane a lesson step recommends. `normal` points toward the half that is cut away, in the model's own axes; `offset` (0 to 1,
+ * default 0.5) is where the plane sits across the model along that normal, 0.5 being the middle. See web/schema/content-schema.mjs.
+ */
+export type SectionPlaneSpec = { label: string; normal: [number, number, number]; offset?: number };
 export type AppearanceMode = 'inspection' | 'cad';
 /** How a spotlight (a step's focusParts) draws attention: colour the parts, x-ray the rest, or isolate the parts. See core/focus-style.mjs. */
 export type FocusMode = 'highlight' | 'xray' | 'isolate';
@@ -47,6 +52,9 @@ export type ViewerSnapshot = {
   sectionAxis?: SectionAxis;
   sectionPosition?: number;
   sectionFlipped?: boolean;
+  /** The label of the plane this lesson step recommends for cutting, if it names one, and whether it is the plane in force. */
+  sectionRecommended?: string;
+  sectionOnRecommended?: boolean;
   activeHotspotId?: string;
   savedMotionId?: string;
   motionProgress?: number;
@@ -92,6 +100,8 @@ export type ViewerFeatures = {
     setPosition: (position: number) => void;
     flip: () => void;
     reset: () => void;
+    /** Switch to the plane the current lesson step recommends. Does nothing when it names none. */
+    useRecommended: () => void;
   };
   appearance?: {
     setMode: (mode: AppearanceMode) => void;
@@ -117,6 +127,8 @@ export type ViewUpdate = {
   focusParts?: string[];
   /** How focusParts is drawn; omitted means x-ray. */
   focusMode?: FocusMode;
+  /** A plane chosen for seeing this step's component best, offered beside X, Y and Z in the section controls. */
+  sectionPlane?: SectionPlaneSpec;
 };
 
 export type ViewerSession = {
