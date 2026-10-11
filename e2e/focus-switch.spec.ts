@@ -63,3 +63,63 @@ test('a choice made on an earlier visit is already in force when the model appea
   await expect(group.getByRole('button', { name: 'X-ray' })).toHaveAttribute('aria-pressed', 'false');
   problems.assertNone();
 });
+
+// The cross-section controls that join the spotlight bar: a checkbox that cuts the model, and a picker of the three standard planes plus
+// the plane a step recommends (its `sectionPlane`). Lesson 09 step 2 recommends "Valve axis"; step 4 spotlights springs and names none.
+const SECTION_STEP = '#/learn/valve-train-and-power/valve-operating/step/2';
+
+test('a spotlight step offers a cross section: a checkbox, and a picker with the plane the step recommends', async ({ page, problems }) => {
+  test.setTimeout(240_000);
+  const { viewer } = await openViewerStep(page, SECTION_STEP, { loadModel: true });
+  await expect(viewer.getByRole('status')).toHaveCount(0, { timeout: 150_000 });
+
+  const checkbox = viewer.getByRole('checkbox', { name: 'Cross section' });
+  const plane = viewer.getByRole('button', { name: /^Section plane:/ });
+  await expect(checkbox).toHaveAttribute('aria-checked', 'false');
+  await expect(plane).toHaveAccessibleName('Section plane: Valve axis');
+
+  const canvas = viewer.locator('canvas');
+  const whole = await canvas.screenshot();
+  await checkbox.click();
+  await expect(checkbox).toHaveAttribute('aria-checked', 'true');
+  await expect.poll(async () => (await canvas.screenshot()).equals(whole), { message: 'ticking the box should cut the model' }).toBe(false);
+
+  await plane.click();
+  const menu = page.getByRole('dialog', { name: 'Section plane' });
+  await expect(menu).toBeVisible();
+  await expect(menu.getByRole('option')).toHaveText([/Valve axis/, /X plane/, /Y plane/, /Z plane/]);
+  await expect(menu.getByRole('option', { name: /Valve axis/ })).toHaveAttribute('aria-selected', 'true');
+  await expect(menu.getByRole('option', { name: /Valve axis/ })).toContainText('Recommended for this step');
+  const slider = menu.getByRole('slider', { name: /Plane position/ });
+  await expect(slider).toHaveValue('50');
+
+  // Choosing a standard plane swaps the label and starts the slider in the middle again; the slider then moves the cut.
+  await menu.getByRole('option', { name: /X plane/ }).click();
+  await expect(plane).toHaveAccessibleName('Section plane: X plane');
+  await expect(menu.getByRole('option', { name: /X plane/ })).toHaveAttribute('aria-selected', 'true');
+  await slider.press('End');
+  await expect(slider).toHaveValue('100');
+  await expect(menu).toContainText('100%');
+
+  // Escape closes the picker and puts focus back on its button.
+  await page.keyboard.press('Escape');
+  await expect(menu).toBeHidden();
+  await expect(plane).toBeFocused();
+
+  // The recommended plane can be chosen again.
+  await plane.click();
+  await menu.getByRole('option', { name: /Valve axis/ }).click();
+  await expect(plane).toHaveAccessibleName('Section plane: Valve axis');
+  await expect(slider).toHaveValue('50');
+  await page.keyboard.press('Escape');
+
+  // Step 4 names no plane: the cut starts off again and only the three standard planes are offered. Step 3 is text, so the viewer rests.
+  await page.getByRole('button', { name: /Next Step/ }).click();
+  await page.getByRole('button', { name: /Next Step/ }).click();
+  await expect(viewer.getByRole('status')).toHaveCount(0);
+  await expect(checkbox).toHaveAttribute('aria-checked', 'false');
+  await expect(plane).toHaveAccessibleName('Section plane: Z plane');
+  await plane.click();
+  await expect(menu.getByRole('option')).toHaveText([/X plane/, /Y plane/, /Z plane/]);
+  problems.assertNone();
+});

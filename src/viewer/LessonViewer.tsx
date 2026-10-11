@@ -5,6 +5,7 @@ import { FOCUS_MODES } from './core/focus-style.mjs';
 import { lessonProfile } from './core/view-state.mjs';
 import { useStoredChoice } from '../data/localChoice';
 import { FocusModeSwitch, HotspotChips, HotspotNote, ModelCanvas, MotionStrip, PanToggle, ToolbarButton, UnknownModel, WheelZoomHint, useViewerHint } from './ViewerParts';
+import { SectionControls } from './SectionControls';
 import { hasControlPanels, useControlsPanel } from './useControlsPanel';
 import { useModelViewer } from './useModelViewer';
 import type { FocusMode, ViewUpdate } from './types';
@@ -39,6 +40,8 @@ export default function LessonViewer({ modelId, view, immersive = false, layout 
   const withControls = definition.lessonControls === true && hasControlPanels(viewer);
   const interactiveMotion = definition.lessonControls === true && Boolean(features?.motion);
   const side = layout === 'side';
+  // The cross-section controls join the spotlight bar on steps that spotlight a part or recommend a plane to cut along.
+  const showSection = Boolean(features?.section) && (Boolean(snapshot.focusActive) || Boolean(snapshot.sectionRecommended));
   // Stacked, the height is a share of the lesson's scroll area (index.css); side by side the canvas takes what the strip leaves.
   const canvasSize = side ? 'min-h-40 flex-1' : immersive ? 'lesson-viewer-stacked-immersive' : 'lesson-viewer-stacked';
   const credit = definition.sourceLabel ? `${definition.sourceLabel} · ${definition.license}` : definition.label;
@@ -58,7 +61,7 @@ export default function LessonViewer({ modelId, view, immersive = false, layout 
     {/* Side by side the strip and the controls panel take only the height they need, up to a share of the column, and scroll beyond it. */}
     <div className={side ? `shrink-0 overflow-y-auto ${controlsOpen && withControls ? 'max-h-[70%]' : 'max-h-[42%]'}` : ''}>
       <div className="space-y-2 border-t border-slate-800/80 px-3 py-2.5">
-        <FocusModeSwitch viewer={viewer} onChoose={chooseFocusMode} />
+        <FocusModeSwitch viewer={viewer} onChoose={chooseFocusMode} leading={showSection ? <SectionControls viewer={viewer} /> : undefined} />
         {snapshot.assemblyNotice && <p className="rounded-lg border border-amber-300/20 bg-amber-300/5 px-2.5 py-1.5 text-[11px] leading-snug text-amber-100">{snapshot.assemblyNotice}</p>}
         {interactiveMotion
           ? <MotionStrip viewer={viewer} />

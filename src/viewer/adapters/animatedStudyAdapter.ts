@@ -158,6 +158,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     focusMode = focusModeOrDefault(view.focusMode);
     isolation = undefined; snapshot.isolated = false;
     selectMotion(view.savedMotionId || contract.motions[0].id); sample(view.motionProgress || 0); applyAppearance();
+    section.startStep(view.sectionPlane);
   };
   update(context);
   return {

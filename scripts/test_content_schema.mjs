@@ -122,6 +122,18 @@ assert.deepEqual(validateLessonPack(withStep({ focusParts: ['CrankThrow'] })), [
 assert.match(validateLessonPack(withStep({ focusParts: ['CrankThrow'], focusMode: 'ghost' })).join('\n'), /focusMode must be one of highlight, xray, isolate/);
 assert.match(validateLessonPack(withStep({ focusMode: 'isolate' })).join('\n'), /focusMode needs focusParts/);
 
+// A step's recommended section plane: a short label, a normal that points somewhere, and an optional offset across the model.
+const plane = { label: 'Valve axis', normal: [0, 1, 0], offset: 0.5 };
+assert.deepEqual(validateLessonPack(withStep({ sectionPlane: plane })), [], 'a recommended plane is valid');
+assert.deepEqual(validateLessonPack(withStep({ sectionPlane: { label: 'Valve axis', normal: [1, 1, 0] } })), [], 'offset is optional, and the normal need not be a unit vector');
+assert.match(validateLessonPack(withStep({ sectionPlane: { ...plane, label: '' } })).join('\n'), /sectionPlane\.label/);
+assert.match(validateLessonPack(withStep({ sectionPlane: { ...plane, label: 'A plane with far too long a name' } })).join('\n'), /sectionPlane\.label/);
+assert.match(validateLessonPack(withStep({ sectionPlane: { ...plane, normal: [0, 0, 0] } })).join('\n'), /sectionPlane\.normal/);
+assert.match(validateLessonPack(withStep({ sectionPlane: { ...plane, normal: [0, 1] } })).join('\n'), /sectionPlane\.normal/);
+assert.match(validateLessonPack(withStep({ sectionPlane: { ...plane, normal: [0, 'y', 0] } })).join('\n'), /sectionPlane\.normal/);
+assert.match(validateLessonPack(withStep({ sectionPlane: { ...plane, offset: 1.2 } })).join('\n'), /sectionPlane\.offset/);
+assert.match(validateLessonPack(withStep({ sectionPlane: 'valve axis' })).join('\n'), /sectionPlane must be an object/);
+
 // Check questions: each type's own rules, so a mistake in a pack is caught here and not by a student.
 const withCheck = (check) => ({ ...samplePack, checks: [{ id: 'x', lessonId: 'lesson-a', question: 'q', ...check }] });
 const errorsFor = (check) => validateLessonPack(withCheck(check)).join('\n');

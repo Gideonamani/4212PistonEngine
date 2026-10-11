@@ -82,6 +82,13 @@ export const MODEL_CAPABILITY_FLAGS = Object.freeze([
  */
 
 /**
+ * @typedef {Object} SectionPlane
+ * @property {string} label - short name shown in the plane picker, for example "Valve axis" (24 characters at most)
+ * @property {[number, number, number]} normal - the plane's normal in the model's own axes; it points toward the half that is cut away
+ * @property {number} [offset] - 0 to 1: where the plane sits across the model along its normal, 0.5 (the default) being the middle
+ */
+
+/**
  * @typedef {Object} Step
  * @property {'model-pose'|'image'|'text'|'external-link'|'web-embed'} type
  * @property {string} [title] - short (2-4 word) label for Learn's step rail; falls back to "Step N" when absent
@@ -93,6 +100,7 @@ export const MODEL_CAPABILITY_FLAGS = Object.freeze([
  * @property {string[]} [focusHotspots] - optional guided hotspot ids for a static reference view
  * @property {string[]} [focusParts] - model-pose only: component ids to spotlight; the rest of the model is de-emphasised
  * @property {'highlight'|'xray'|'isolate'} [focusMode] - model-pose only, needs focusParts: how the spotlight looks (default 'xray')
+ * @property {SectionPlane} [sectionPlane] - model-pose only: a plane chosen for cutting the model open to see this step's component best, offered beside X, Y and Z in the section controls
  * @property {string} [focusNodeId] - model-pose only: scopes Learn's viewer to one Explore ContentNode (component or group)
  * @property {string[]} [deepDiveLinks] - ids of related deep-dive lessons (lessons with listed: false)
  * @property {string} [url] - image / external-link / web-embed source
@@ -190,6 +198,17 @@ export function validateModelRegistry(registry) {
   }
   return errors;
 }
+/** The mistakes a step's recommended section plane can make; empty when it is fine. */
+function sectionPlaneErrors(plane, where) {
+  if (!plane || typeof plane !== 'object' || Array.isArray(plane)) return [`${where}: sectionPlane must be an object with a label and a normal`];
+  const errors = [];
+  if (typeof plane.label !== 'string' || !plane.label.trim() || plane.label.length > 24) errors.push(`${where}: sectionPlane.label must be a short name of 1 to 24 characters`);
+  const normal = plane.normal;
+  if (!Array.isArray(normal) || normal.length !== 3 || normal.some((value) => !Number.isFinite(value)) || normal.every((value) => value === 0)) errors.push(`${where}: sectionPlane.normal must be three numbers that are not all zero`);
+  if (plane.offset !== undefined && (!Number.isFinite(plane.offset) || plane.offset < 0 || plane.offset > 1)) errors.push(`${where}: sectionPlane.offset must be a number from 0 to 1`);
+  return errors;
+}
+
 function validateStep(step, lessonModels, lessonIndex, stepIndex, knownSourceIds) {
   const errors = [];
   const where = `lessons[${lessonIndex}].steps[${stepIndex}]`;
@@ -209,6 +228,7 @@ function validateStep(step, lessonModels, lessonIndex, stepIndex, knownSourceIds
     if (step.focusParts !== undefined && (!Array.isArray(step.focusParts) || step.focusParts.length === 0 || step.focusParts.some(id => typeof id !== 'string' || !id))) {
       errors.push(`${where}: focusParts must be a non-empty array of component ids`);
     }
+    if (step.sectionPlane !== undefined) errors.push(...sectionPlaneErrors(step.sectionPlane, where));
     if (step.focusMode !== undefined) {
       if (!FOCUS_MODES.includes(step.focusMode)) errors.push(`${where}: focusMode must be one of ${FOCUS_MODES.join(', ')}`);
       else if (step.focusParts === undefined) errors.push(`${where}: focusMode needs focusParts, which it styles`);

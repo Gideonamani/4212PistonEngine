@@ -84,6 +84,11 @@
             "IntakeValveGuide",
             "ExhaustValveGuide"
           ],
+          "sectionPlane": {
+            "label": "Valve axis",
+            "normal": [0, 1, 0],
+            "offset": 0.5
+          },
           "note": "Documented from FAA-H-8083-32B (2023), PDF p. 38 (the ground valve face seals on the valve seat; the stem acts as a pilot in the valve guide) and the Continental GTSIO-520 overhaul manual, PDF p. 16 (seats and guides are installed in the heated head before it is screwed and shrunk onto the barrel; the exhaust valves are faced with a heat- and corrosion-resistant material and the solid stem tips are hardened). The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
           "sourceRefs": [
             "faa-powerplant-2023",
