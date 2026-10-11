@@ -103,9 +103,10 @@ test.describe('landscape phone', () => {
     expect(await page.locator('canvas').count()).toBe(1);
   });
 
-  test('the Back link and the step list are within reach without the bottom dock', async ({ page }) => {
+  test('the Back link and the step list are within reach without the bottom footer', async ({ page }) => {
     await openViewerStep(page, MODEL_STEP);
     await expect(page.getByRole('button', { name: 'Back to lessons' })).toHaveCount(1);
     await expect(page.getByRole('button', { name: /Open the list of steps/ })).toBeVisible();
+    await expect(page.getByRole('button', { name: /Switch between percent and steps left/ }), 'side by side has no footer').toHaveCount(0);
   });
 });

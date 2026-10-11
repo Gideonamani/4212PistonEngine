@@ -100,6 +100,69 @@ test.describe('lesson step list', () => {
   });
 });
 
+test.describe('lesson footer', () => {
+  const READOUT = /Switch between percent and steps left/;
+
+  test('progress lives in a footer docked to the bottom edge, not in a header', async ({ page, problems }) => {
+    await page.goto(`/${LESSON}`);
+    await appReady(page);
+    const viewport = page.viewportSize()!;
+    const opener = page.getByRole('button', { name: /Open the list of steps/ });
+    await expect(opener).toContainText('Lesson 01');
+    const box = (await opener.boundingBox())!;
+    expect(box.y + box.height, 'the footer should sit at the bottom edge').toBeGreaterThan(viewport.height - 40);
+    // The header keeps only the way back; the old "Step x of y" strip and its percentage are gone from the top.
+    await expect(page.getByText(/% complete/), 'no progress strip at the top').toHaveCount(0);
+    await expect(page.getByRole('button', { name: 'Back to lessons' })).toHaveCount(1);
+    problems.assertNone();
+  });
+
+  test('the step count sits over the percentage, and every target is a full-size one', async ({ page }) => {
+    await page.goto(`/${LESSON}`);
+    await appReady(page);
+    const readout = page.getByRole('button', { name: READOUT });
+    const [count, percent] = [readout.locator('span').nth(0), readout.locator('span').nth(1)];
+    await expect(count).toHaveText(/^1\/\d+$/);
+    await expect(percent).toHaveText(/^\d+%$/);
+    const [top, bottom] = [(await count.boundingBox())!, (await percent.boundingBox())!];
+    expect(top.y + top.height, 'the count should be above the percentage').toBeLessThanOrEqual(bottom.y + 1);
+    expect(Math.abs(top.x + top.width - (bottom.x + bottom.width)), 'the two should line up on the right').toBeLessThan(2);
+    for (const button of [page.getByRole('button', { name: /Open the list of steps/ }), readout, page.locator('button[aria-hidden="true"][tabindex="-1"]')]) {
+      const size = (await button.boundingBox())!;
+      expect(Math.min(size.width, size.height), 'footer targets are at least 44 px').toBeGreaterThanOrEqual(44);
+    }
+  });
+
+  test('tapping the count and percentage flips the readout between percent and steps left, and it is remembered', async ({ page }) => {
+    await page.goto(`/${LESSON}`);
+    await appReady(page);
+    const readout = page.getByRole('button', { name: READOUT });
+    const total = Number((await readout.locator('span').nth(0).innerText()).split('/')[1]);
+    await readout.click();
+    await expect(readout.locator('span').nth(1)).toHaveText(`${total - 1} left`);
+    await page.reload();
+    await appReady(page);
+    await expect(readout.locator('span').nth(1)).toHaveText(`${total - 1} left`);
+    await readout.click();
+    await expect(readout.locator('span').nth(1)).toHaveText(/^\d+%$/);
+  });
+
+  test('tapping the footer opens the step list over the lesson instead of leaving it', async ({ page }) => {
+    await page.goto(`/${LESSON}`);
+    await appReady(page);
+    const { dialog } = await openList(page, 'steps');
+    await expect(page).toHaveURL(/\/step\/1$/);
+    await expect(dialog.getByText('History of Mechanical Engines')).toBeVisible();
+    await expect(dialog.getByText('NOW')).toHaveCount(1);
+    await page.keyboard.press('Escape');
+    await expect(dialog).toBeHidden();
+    // The chevron is the same button for a finger that goes looking for it.
+    await page.locator('button[aria-hidden="true"][tabindex="-1"]').click();
+    await expect(page.getByRole('dialog')).toBeVisible();
+    await expect(page).toHaveURL(/\/step\/1$/);
+  });
+});
+
 test.describe('Check question list', () => {
   test('it shows which questions are answered and how, and jumps to one', async ({ page, problems }) => {
     await page.goto('/#/check');
