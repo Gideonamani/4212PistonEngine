@@ -28,10 +28,10 @@ The order in which the instructor wants the module to read as one story (`data/c
 | 3 | Language | How we describe them | Terminologies | Lesson 03 |
 | 4 | Thermodynamics | Why they can produce work | Thermodynamic Cycles | Lesson 04 |
 | 5 | Classification | What forms they take | Classification | Lesson 05 |
-| 6 | Cooling | How we keep them cool | Cooling Methods | Lesson 07 (differs) |
-| 7 | Construction | What they are made of | Parts and Construction | Lesson 06 (differs) |
-| 8 | Valve control | How their mechanisms are coordinated | Valve Operating | Lesson 09 (differs) |
-| 9 | Accessory power | What else they drive | Accessories & Drives | Lesson 08 (differs) |
+| 6 | Cooling | How we keep them cool | Cooling Methods | Lesson 06 |
+| 7 | Construction | What they are made of | Parts and Construction | Lesson 07 |
+| 8 | Valve control | How their mechanisms are coordinated | Valve Operating | Lesson 08 |
+| 9 | Accessory power | What else they drive | Accessories & Drives | Lesson 09 |
 | 10 | Power generation | How fuel ultimately becomes useful propulsive power | Power Generation | Lesson 10 |
 | 11 | Breathing | How they breathe | Induction & Exhaust | Lesson 11 |
 | 12 | Measurement | How we measure what they do | Performance Calculations | Lesson 12 |
@@ -42,7 +42,7 @@ The order in which the instructor wants the module to read as one story (`data/c
 | 17 | Wider aviation | Where else piston aviation can take us | Light Sport Aircraft | Lesson 17 |
 | 18 | Practical demonstration | Demonstrate that understanding on a real engine | Practicals | Lesson 18 |
 
-The app's lesson order differs from the storyline for: Cooling Methods (storyline 6, app 7); Parts and Construction (storyline 7, app 6); Valve Operating (storyline 8, app 9); Accessories & Drives (storyline 9, app 8).
+The app's lesson order matches the storyline.
 
 ## The lessons
 
@@ -158,7 +158,31 @@ Learners should be able to:
 
 _Syllabus note: Cylinder arrangement, general classification and cylinder numbering are explicitly required in the source curriculum._
 
-### Lesson 06 · Parts and Construction
+### Lesson 06 · Cooling Methods
+
+`cooling-methods` · Fundamentals & Classification
+
+**Purpose.** Explain the apparent paradox that although heat produces engine power, excessive heat must be removed.
+
+Learners should be able to:
+
+- Explain why only part of the energy released by combustion becomes useful mechanical work.
+- Explain why an operating piston engine requires continuous heat rejection.
+- Describe the consequences of excessive engine temperature.
+- Describe the principle of air cooling.
+- Identify cooling fins, baffles, cowling and airflow passages.
+- Explain how airflow is directed around an air-cooled engine.
+- Describe the principle of liquid cooling.
+- Identify the principal components of a typical liquid-cooling system.
+- Describe the purpose and desirable characteristics of engine coolants.
+- Explain why water may be combined with additives or other coolant fluids.
+- Compare air and liquid cooling in terms of weight, complexity, temperature control, reliability, drag and maintenance.
+- Identify examples of engines that use each cooling method.
+- Explain why one cooling method may be selected over another for a particular aircraft application.
+
+_Syllabus note: Cooling methods and design are explicitly required under engine construction._
+
+### Lesson 07 · Parts and Construction
 
 `parts-construction` · Fundamentals & Classification
 
@@ -184,57 +208,9 @@ Learners should be able to:
 
 _Syllabus note: This lesson directly covers the construction elements identified in the official syllabus._
 
-### Lesson 07 · Cooling Methods
+### Lesson 08 · Valve Operating
 
-`cooling-methods` · Fundamentals & Classification
-
-**Purpose.** Explain the apparent paradox that although heat produces engine power, excessive heat must be removed.
-
-Learners should be able to:
-
-- Explain why only part of the energy released by combustion becomes useful mechanical work.
-- Explain why an operating piston engine requires continuous heat rejection.
-- Describe the consequences of excessive engine temperature.
-- Describe the principle of air cooling.
-- Identify cooling fins, baffles, cowling and airflow passages.
-- Explain how airflow is directed around an air-cooled engine.
-- Describe the principle of liquid cooling.
-- Identify the principal components of a typical liquid-cooling system.
-- Describe the purpose and desirable characteristics of engine coolants.
-- Explain why water may be combined with additives or other coolant fluids.
-- Compare air and liquid cooling in terms of weight, complexity, temperature control, reliability, drag and maintenance.
-- Identify examples of engines that use each cooling method.
-- Explain why one cooling method may be selected over another for a particular aircraft application.
-
-_Syllabus note: Cooling methods and design are explicitly required under engine construction._
-
-### Lesson 08 · Accessories & Drives
-
-`accessories-and-drives` · Accessories & Drives
-
-**Purpose.** Show that the crankshaft does much more than simply turn the propeller.
-
-Learners should be able to:
-
-- Explain why an operating aircraft engine requires a range of mechanically driven accessories.
-- Trace mechanical power from the crankshaft to the accessory section.
-- Identify common engine-driven accessories.
-- State the functions of common accessories including magnetos, oil pumps, fuel pumps, tachometer drives and propeller-governor drives.
-- Recognise alternators/generators, vacuum pumps and other possible accessory loads.
-- Identify components commonly mounted on the accessory housing.
-- Explain how an accessory gearbox distributes mechanical power.
-- Describe the operation and application of spur gears.
-- Describe the operation and application of bevel gears.
-- Explain the purpose of a propeller reduction gear and shaft.
-- Explain why some engines use reduction gearing while others drive the propeller directly.
-- Distinguish wet-sump and dry-sump arrangements.
-- Recognise how accessory-drive failure could affect continued engine operation.
-
-_Syllabus note: The formal module explicitly requires propeller reduction gearing, bevel gears, spur gears, wet/dry sump arrangements and accessory-housing components._
-
-### Lesson 09 · Valve Operating
-
-`valve-operating` · Valve Train & Power Generation
+`valve-operating` · Valve Train, Accessories & Power Generation
 
 **Purpose.** Explain how crankshaft rotation is mechanically coordinated with the opening and closing of the engine valves.
 
@@ -257,9 +233,33 @@ Learners should be able to:
 
 _Syllabus note: Valve action, mechanism arrangement, lead, lag, overlap, valve timing and hydraulic-tappet operation are specifically required._
 
+### Lesson 09 · Accessories & Drives
+
+`accessories-and-drives` · Valve Train, Accessories & Power Generation
+
+**Purpose.** Show that the crankshaft does much more than simply turn the propeller.
+
+Learners should be able to:
+
+- Explain why an operating aircraft engine requires a range of mechanically driven accessories.
+- Trace mechanical power from the crankshaft to the accessory section.
+- Identify common engine-driven accessories.
+- State the functions of common accessories including magnetos, oil pumps, fuel pumps, tachometer drives and propeller-governor drives.
+- Recognise alternators/generators, vacuum pumps and other possible accessory loads.
+- Identify components commonly mounted on the accessory housing.
+- Explain how an accessory gearbox distributes mechanical power.
+- Describe the operation and application of spur gears.
+- Describe the operation and application of bevel gears.
+- Explain the purpose of a propeller reduction gear and shaft.
+- Explain why some engines use reduction gearing while others drive the propeller directly.
+- Distinguish wet-sump and dry-sump arrangements.
+- Recognise how accessory-drive failure could affect continued engine operation.
+
+_Syllabus note: The formal module explicitly requires propeller reduction gearing, bevel gears, spur gears, wet/dry sump arrangements and accessory-housing components._
+
 ### Lesson 10 · Power Generation
 
-`power-generation` · Valve Train & Power Generation
+`power-generation` · Valve Train, Accessories & Power Generation
 
 **Purpose.** Connect the entire energy-conversion chain from fuel to useful aircraft propulsion.
 

@@ -5,7 +5,7 @@
   "thumbnail": "./thumbnails/course-fundamentals-and-classification.webp",
   "banner": "./banners/fundamentals-and-classification.webp",
   "title": "Fundamentals & Classification",
-  "description": "Operating cycles, engine classification (cylinder arrangement and ignition), parts and construction, and cooling, with the GTSIO-520-H used as the continuing aircraft-engine example.",
+  "description": "Operating cycles, engine classification (cylinder arrangement and ignition), cooling, and parts and construction, with the GTSIO-520-H used as the continuing aircraft-engine example.",
   "sources": [
     {
       "id": "faa-powerplant-2023",
@@ -370,9 +370,107 @@
       ]
     },
     {
+      "id": "cooling-methods",
+      "thumbnail": "./thumbnails/lesson-cooling-methods.webp",
+      "sequenceNumber": 6,
+      "title": "Cooling Methods",
+      "objective": "Trace heat from the cylinder to the surrounding air in air-cooled, liquid-cooled and combined systems, identify the roles of fins, baffles, coolant, pump and radiator, and recognise why cooling condition and airflow path matter.",
+      "purpose": "Explain the apparent paradox that although heat produces engine power, excessive heat must be removed.",
+      "outcomes": [
+        "Explain why only part of the energy released by combustion becomes useful mechanical work.",
+        "Explain why an operating piston engine requires continuous heat rejection.",
+        "Describe the consequences of excessive engine temperature.",
+        "Describe the principle of air cooling.",
+        "Identify cooling fins, baffles, cowling and airflow passages.",
+        "Explain how airflow is directed around an air-cooled engine.",
+        "Describe the principle of liquid cooling.",
+        "Identify the principal components of a typical liquid-cooling system.",
+        "Describe the purpose and desirable characteristics of engine coolants.",
+        "Explain why water may be combined with additives or other coolant fluids.",
+        "Compare air and liquid cooling in terms of weight, complexity, temperature control, reliability, drag and maintenance.",
+        "Identify examples of engines that use each cooling method.",
+        "Explain why one cooling method may be selected over another for a particular aircraft application."
+      ],
+      "syllabusNote": "Cooling methods and design are explicitly required under engine construction.",
+      "reviewStatus": "unreviewed",
+      "models": ["gtsio520-h-v5-teaching-engine"],
+      "listed": true,
+      "scheduledDay": 2,
+      "completionCriteria": "Draw or explain the heat path for an air-cooled and liquid-cooled engine, identify two airflow-control features on an air-cooled installation, and state that the GTSIO-520 course engine is air cooled.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "Where heat goes",
+          "prompt": "Combustion releases more heat than the engine can convert to useful work. Predict the path that unwanted heat must take from the cylinder metal to the atmosphere in an air-cooled engine and in a liquid-cooled engine.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 24 and 278-282, cross-checked against EASA Module 16, PDF pp. 23 and 201.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The heat-path prediction prepares learners to interpret the system diagrams."}
+        },
+        {
+          "type": "image",
+          "title": "Air-cooled path",
+          "prompt": "Trace heat from the cylinder wall and head into the fins, then into air directed through the cowling and baffles. Identify how added fin area supports convection.",
+          "url": "./lesson-media/air-cooling-path.webp",
+          "alt": "FAA cylinder baffle and deflector airflow diagram",
+          "credit": "FAA-H-8083-32B, Figure 6-50",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 24 and 278-282. Use the FAA cylinder-head/fin and cowling/baffle figures as the primary image source.",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "source-image", "status": "available", "rationale": "A labelled source schematic clearly establishes the directed airflow path around the cylinder."}
+        },
+        {
+          "type": "model-pose",
+          "title": "GTSIO cooling fins",
+          "modelId": "gtsio520-h-v5-teaching-engine",
+          "prompt": "Inspect the GTSIO-520-H cylinder banks and locate the finned surfaces exposed to the installation airflow. Use the model to understand location and access, not to infer an exact heat-transfer rate.",
+          "action": {"type": "angle", "value": 0},
+          "note": "The GTSIO-520 overhaul manual identifies the basic engine as air cooled (PDF p. 13). The model is suitable for spatial inspection but is not a thermal simulation.",
+          "sourceRefs": ["gtsio520-overhaul"],
+          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "The whole-engine model shows where the finned cylinders sit relative to the crankcase and installation airflow."}
+        },
+        {
+          "type": "text",
+          "title": "Liquid-cooled path",
+          "prompt": "In a liquid-cooled engine, heat moves from the cylinder into coolant, then through tubing to a radiator in the airstream. A pump circulates the coolant. This adds coolant, radiator, pump and tubing mass, but it can support high power and closer control of component temperature.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 24, and EASA Module 16, PDF p. 23. The sources identify added system weight as the principal disadvantage and note that some light-aircraft engines combine air and liquid cooling.",
+          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The system path is short enough to establish in text before a comparison graphic."}
+        },
+        {
+          "type": "image",
+          "title": "Combined cooling",
+          "prompt": "Study an example in which liquid cools the cylinder heads while air cools the cylinder barrels. Follow each heat path separately rather than labelling the whole engine as only air cooled or only liquid cooled.",
+          "url": "./lesson-media/faa-rotax-914-cooling.webp",
+          "alt": "Rotax 914 cooling system diagram: coolant circulates through the cylinder heads, expansion tank, radiator and overflow bottle, while the cylinders are cooled by ram air",
+          "credit": "FAA-H-8083-32B, Figure 11-7 (Rotax 914 cooling system)",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 440 (Figure 11-7 and its text): the Rotax 914 uses liquid cooling of the cylinder heads and ram-air cooling of the cylinders. The figure draws the liquid circuit only; the air path is in the text. Use it as an example, not as a claim about the GTSIO-520.",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "source-image", "status": "available", "rationale": "A real combined-system schematic prevents the false assumption that cooling methods are always all-or-nothing."}
+        },
+        {
+          "type": "web-embed",
+          "title": "Airflow condition",
+          "prompt": "Change the qualitative inputs: low or high cooling airflow, fins clear or obstructed, baffles sealed or leaking. Observe how each condition changes the intended airflow path and relative cooling margin.",
+          "url": "artifact:air-cooling-path-explorer",
+          "note": "Documented relationships from FAA-H-8083-32B (2023), PDF pp. 278-282. The planned output will use relative labels only; it will not calculate cylinder-head temperature or declare an engine airworthy.",
+          "sourceRefs": ["faa-powerplant-2023"],
+          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Learner-selected airflow and obstruction states make the role of fins and baffles causal rather than merely labelled."}
+        },
+        {
+          "type": "text",
+          "title": "Inspection connection",
+          "prompt": "Cooling fins and baffles work as a system. Damaged or obstructed fins reduce heat-transfer area; missing or poor-fitting baffles let cooling air bypass the surfaces that need it. Actual acceptance limits and corrective action come from the applicable maintenance data.",
+          "note": "Documented general inspection relationship from FAA-H-8083-32B (2023), PDF p. 282. This is a recognition lesson, not an approval-to-service procedure.",
+          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
+          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The final step connects theory to maintenance judgment while preserving the manual boundary."}
+        }
+      ]
+    },
+    {
       "id": "parts-construction",
       "thumbnail": "./thumbnails/lesson-parts-construction.webp",
-      "sequenceNumber": 6,
+      "sequenceNumber": 7,
       "title": "Parts and Construction",
       "objective": "Name the major structural and power-section parts of a piston engine - crankcase sections, crankshaft, connecting rods, pistons, rings and pins, cylinders, bearings, propeller shaft and mounts - state what each does and what it is made of, and recognise how the GTSIO-520-H's construction differs from a direct-drive engine such as the IO-520.",
       "purpose": "Build a physical understanding of what the piston engine is made from and why its components take the forms they do.",
@@ -614,104 +712,6 @@
           "note": "Advantages and disadvantages are the course deck, slide 71 (tier 4); they are not in the FAA or EASA text.",
           "sourceRefs": ["course-deck-2026-05"],
           "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A short comparison list needs no visual."}
-        }
-      ]
-    },
-    {
-      "id": "cooling-methods",
-      "thumbnail": "./thumbnails/lesson-cooling-methods.webp",
-      "sequenceNumber": 7,
-      "title": "Cooling Methods",
-      "objective": "Trace heat from the cylinder to the surrounding air in air-cooled, liquid-cooled and combined systems, identify the roles of fins, baffles, coolant, pump and radiator, and recognise why cooling condition and airflow path matter.",
-      "purpose": "Explain the apparent paradox that although heat produces engine power, excessive heat must be removed.",
-      "outcomes": [
-        "Explain why only part of the energy released by combustion becomes useful mechanical work.",
-        "Explain why an operating piston engine requires continuous heat rejection.",
-        "Describe the consequences of excessive engine temperature.",
-        "Describe the principle of air cooling.",
-        "Identify cooling fins, baffles, cowling and airflow passages.",
-        "Explain how airflow is directed around an air-cooled engine.",
-        "Describe the principle of liquid cooling.",
-        "Identify the principal components of a typical liquid-cooling system.",
-        "Describe the purpose and desirable characteristics of engine coolants.",
-        "Explain why water may be combined with additives or other coolant fluids.",
-        "Compare air and liquid cooling in terms of weight, complexity, temperature control, reliability, drag and maintenance.",
-        "Identify examples of engines that use each cooling method.",
-        "Explain why one cooling method may be selected over another for a particular aircraft application."
-      ],
-      "syllabusNote": "Cooling methods and design are explicitly required under engine construction.",
-      "reviewStatus": "unreviewed",
-      "models": ["gtsio520-h-v5-teaching-engine"],
-      "listed": true,
-      "scheduledDay": 2,
-      "completionCriteria": "Draw or explain the heat path for an air-cooled and liquid-cooled engine, identify two airflow-control features on an air-cooled installation, and state that the GTSIO-520 course engine is air cooled.",
-      "steps": [
-        {
-          "type": "text",
-          "title": "Where heat goes",
-          "prompt": "Combustion releases more heat than the engine can convert to useful work. Predict the path that unwanted heat must take from the cylinder metal to the atmosphere in an air-cooled engine and in a liquid-cooled engine.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 24 and 278-282, cross-checked against EASA Module 16, PDF pp. 23 and 201.",
-          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The heat-path prediction prepares learners to interpret the system diagrams."}
-        },
-        {
-          "type": "image",
-          "title": "Air-cooled path",
-          "prompt": "Trace heat from the cylinder wall and head into the fins, then into air directed through the cowling and baffles. Identify how added fin area supports convection.",
-          "url": "./lesson-media/air-cooling-path.webp",
-          "alt": "FAA cylinder baffle and deflector airflow diagram",
-          "credit": "FAA-H-8083-32B, Figure 6-50",
-          "license": "U.S. Government work",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 24 and 278-282. Use the FAA cylinder-head/fin and cowling/baffle figures as the primary image source.",
-          "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "source-image", "status": "available", "rationale": "A labelled source schematic clearly establishes the directed airflow path around the cylinder."}
-        },
-        {
-          "type": "model-pose",
-          "title": "GTSIO cooling fins",
-          "modelId": "gtsio520-h-v5-teaching-engine",
-          "prompt": "Inspect the GTSIO-520-H cylinder banks and locate the finned surfaces exposed to the installation airflow. Use the model to understand location and access, not to infer an exact heat-transfer rate.",
-          "action": {"type": "angle", "value": 0},
-          "note": "The GTSIO-520 overhaul manual identifies the basic engine as air cooled (PDF p. 13). The model is suitable for spatial inspection but is not a thermal simulation.",
-          "sourceRefs": ["gtsio520-overhaul"],
-          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "The whole-engine model shows where the finned cylinders sit relative to the crankcase and installation airflow."}
-        },
-        {
-          "type": "text",
-          "title": "Liquid-cooled path",
-          "prompt": "In a liquid-cooled engine, heat moves from the cylinder into coolant, then through tubing to a radiator in the airstream. A pump circulates the coolant. This adds coolant, radiator, pump and tubing mass, but it can support high power and closer control of component temperature.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 24, and EASA Module 16, PDF p. 23. The sources identify added system weight as the principal disadvantage and note that some light-aircraft engines combine air and liquid cooling.",
-          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The system path is short enough to establish in text before a comparison graphic."}
-        },
-        {
-          "type": "image",
-          "title": "Combined cooling",
-          "prompt": "Study an example in which liquid cools the cylinder heads while air cools the cylinder barrels. Follow each heat path separately rather than labelling the whole engine as only air cooled or only liquid cooled.",
-          "url": "./lesson-media/faa-rotax-914-cooling.webp",
-          "alt": "Rotax 914 cooling system diagram: coolant circulates through the cylinder heads, expansion tank, radiator and overflow bottle, while the cylinders are cooled by ram air",
-          "credit": "FAA-H-8083-32B, Figure 11-7 (Rotax 914 cooling system)",
-          "license": "U.S. Government work",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 440 (Figure 11-7 and its text): the Rotax 914 uses liquid cooling of the cylinder heads and ram-air cooling of the cylinders. The figure draws the liquid circuit only; the air path is in the text. Use it as an example, not as a claim about the GTSIO-520.",
-          "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "source-image", "status": "available", "rationale": "A real combined-system schematic prevents the false assumption that cooling methods are always all-or-nothing."}
-        },
-        {
-          "type": "web-embed",
-          "title": "Airflow condition",
-          "prompt": "Change the qualitative inputs: low or high cooling airflow, fins clear or obstructed, baffles sealed or leaking. Observe how each condition changes the intended airflow path and relative cooling margin.",
-          "url": "artifact:air-cooling-path-explorer",
-          "note": "Documented relationships from FAA-H-8083-32B (2023), PDF pp. 278-282. The planned output will use relative labels only; it will not calculate cylinder-head temperature or declare an engine airworthy.",
-          "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Learner-selected airflow and obstruction states make the role of fins and baffles causal rather than merely labelled."}
-        },
-        {
-          "type": "text",
-          "title": "Inspection connection",
-          "prompt": "Cooling fins and baffles work as a system. Damaged or obstructed fins reduce heat-transfer area; missing or poor-fitting baffles let cooling air bypass the surfaces that need it. Actual acceptance limits and corrective action come from the applicable maintenance data.",
-          "note": "Documented general inspection relationship from FAA-H-8083-32B (2023), PDF p. 282. This is a recognition lesson, not an approval-to-service procedure.",
-          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The final step connects theory to maintenance judgment while preserving the manual boundary."}
         }
       ]
     }

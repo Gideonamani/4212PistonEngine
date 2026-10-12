@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import { appReady, expect, expectNoHorizontalOverflow, onlyIn, test } from './fixtures';
 
-// The courses written for the second half of the syllabus (lessons 9 to 18): each course page shows its banner and lessons, and every
+// The courses written for the second half of the syllabus (lessons 8 to 18): each course page shows its banner and lessons, and every
 // picture and interactive step of every lesson actually appears. 3D steps are left to the viewer tests because each one starts a
 // model download.
 

@@ -4,8 +4,8 @@
   "id": "valve-train-and-power",
   "thumbnail": "./thumbnails/course-valve-train-and-power.webp",
   "banner": "./banners/valve-train-and-power.webp",
-  "title": "Valve Train & Power Generation",
-  "description": "How the valves are opened and closed, from the camshaft to the valve spring, and how the power section turns burning gas into shaft power and is taken apart and put back together.",
+  "title": "Valve Train, Accessories & Power Generation",
+  "description": "How the valves are opened and closed, from the camshaft to the valve spring; how the crankshaft drives the accessories and the propeller; and how the power section turns burning gas into shaft power and is taken apart and put back together.",
   "sources": [
     {
       "id": "faa-powerplant-2023",
@@ -34,13 +34,27 @@
       "title": "Aircraft Piston Engine Slides - 21 May 2026 (instructor course deck)",
       "path": "Notes/Aircraft Piston Engine Slides - 21May2026.pptx",
       "applicability": "Instructor-authored course slides. Used only where the handbook, EASA text and manuals are silent. Carries no independent evidence; claims here need the instructor's confirmation."
+    },
+    {
+      "id": "gtsio-reviewed",
+      "tier": 3,
+      "title": "Continental GTSIO-520 reviewed overhaul manual, H difference data",
+      "path": "C:/Users/user/KeonGeraldo/CodeProjects/DigiMan/work/deliverables/gtsio520/GTSIO520_full_reviewed.pdf",
+      "applicability": "H section C-3-1 (PDF 151) applies basic procedures except stated differences; H fuel/induction fully replaced by C-3. Historical manual, not current service authority."
+    },
+    {
+      "id": "faa-powerplant",
+      "tier": 1,
+      "title": "FAA-H-8083-32B (2023), Powerplant",
+      "path": "../Notes/amt_powerplant_handbook 2023.pdf",
+      "applicability": "General teaching principles; no configuration dimensions or H-specific values."
     }
   ],
   "lessons": [
     {
       "id": "valve-operating",
       "thumbnail": "./thumbnails/lesson-valve-operating.webp",
-      "sequenceNumber": 9,
+      "sequenceNumber": 8,
       "title": "Valve Operating",
       "objective": "Follow the motion from the camshaft to the valve: name the parts of the valve train, explain how the cam lobe sets valve lift and duration and why the camshaft turns at half crankshaft speed, describe how a hydraulic tappet keeps zero clearance, and recognise what to inspect on valves, springs, the camshaft and tappets.",
       "purpose": "Explain how crankshaft rotation is mechanically coordinated with the opening and closing of the engine valves.",
@@ -448,6 +462,231 @@
       ]
     },
     {
+      "id": "accessories-and-drives",
+      "thumbnail": "./thumbnails/lesson-accessories-and-drives.webp",
+      "sequenceNumber": 9,
+      "title": "Accessories & Drives",
+      "objective": "Identify accessories and interfaces, trace power paths, predict rotation, operate saved motions and explain useful functions and illustrative faults.",
+      "purpose": "Show that the crankshaft does much more than simply turn the propeller.",
+      "outcomes": [
+        "Explain why an operating aircraft engine requires a range of mechanically driven accessories.",
+        "Trace mechanical power from the crankshaft to the accessory section.",
+        "Identify common engine-driven accessories.",
+        "State the functions of common accessories including magnetos, oil pumps, fuel pumps, tachometer drives and propeller-governor drives.",
+        "Recognise alternators/generators, vacuum pumps and other possible accessory loads.",
+        "Identify components commonly mounted on the accessory housing.",
+        "Explain how an accessory gearbox distributes mechanical power.",
+        "Describe the operation and application of spur gears.",
+        "Describe the operation and application of bevel gears.",
+        "Explain the purpose of a propeller reduction gear and shaft.",
+        "Explain why some engines use reduction gearing while others drive the propeller directly.",
+        "Distinguish wet-sump and dry-sump arrangements.",
+        "Recognise how accessory-drive failure could affect continued engine operation."
+      ],
+      "syllabusNote": "The formal module explicitly requires propeller reduction gearing, bevel gears, spur gears, wet/dry sump arrangements and accessory-housing components.",
+      "reviewStatus": "unreviewed",
+      "models": [
+        "accessory-drives"
+      ],
+      "listed": true,
+      "completionCriteria": "Explain one full drive path, calculate a verified ratio with the correct viewpoint, inspect a section and distinguish evidence from illustration.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "Where power goes",
+          "prompt": "A turning crankshaft must supply ignition, lubrication, fuel delivery and aircraft equipment. Predict which devices need shaft power, and which device must put power into the engine before it can run.",
+          "note": "FAA PDF p. 28, printed 1-7: accessory case, mounting pads and geared shafts. Lesson 8 follows the final 18-lesson curriculum; the older Day 8 plan is a practical/review day, not this lesson number.",
+          "sourceRefs": [
+            "faa-powerplant"
+          ]
+        },
+        {
+          "type": "model-pose",
+          "title": "Identify the section",
+          "prompt": "Rotate the assembled study. Select the housing, crank gear, cam gear and idler. Open Inside and move a section plane through the chamber; distinguish solid wall from empty cavity.",
+          "note": "FAA 1-7; GTSIO A-3-2 and A-4-8 (PDF 17,25). A-4-18 (PDF 35-36) identifies the split crankcase. Compare its rear region with the cropped case halves here. Adapter, starter and pump forms follow the parts drawings, while rear contour, proportions and pad positions remain inferred. Ring markers are not accessory bodies.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Operating mechanism",
+          "motionProgress": 0
+        },
+        {
+          "type": "model-pose",
+          "title": "Expose interfaces",
+          "prompt": "Scrub from assembled to exploded. Pause at any stage, rotate and select a seal, splined shaft, bored adapter and coupling. Compare the adapter with A-4-11 and starter with A-4-15; identify one visible feature and one reconstructed surface. Explain which part carries torque and which contains oil or locates the accessory.",
+          "note": "GTSIO A-4-11 (PDF 28), A-4-15 (32), A-4-16 (33). Separation order and distances teach relationships; they are not maintenance instructions.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Exploded overview",
+          "motionProgress": 100
+        },
+        {
+          "type": "model-pose",
+          "title": "Trace magneto power",
+          "prompt": "Choose Magnetos under Trace power path, then isolate the complete path. Follow crank → idler → both drive gears → splined shafts → magnetos. Predict the idler direction before playing.",
+          "note": "A-3-2; A-4-8; H C-3-2 (PDF 152): both magneto drives 1.5:1, CW facing engine drive pad. The mesh tooth counts are illustrative; the 1.5 output ratio is verified.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Focus: magnetos",
+          "motionProgress": 25
+        },
+        {
+          "type": "image",
+          "title": "Mechanical to ignition",
+          "prompt": "Follow each magneto to the upper and lower spark plugs. Explain how shaft rotation becomes timed spark energy and why the engine has two separate magnetos and two plugs per cylinder.",
+          "url": "./lesson-media/gtsio-dual-ignition.webp",
+          "alt": "Manufacturer GTSIO-520 dual ignition wiring figure",
+          "credit": "Continental GTSIO-520 Figure A4-43; existing course extract",
+          "license": "Course reference extract",
+          "note": "FAA PDF 160-162 (4-1 to 4-3): magnet, primary and secondary circuits. H C-3-2 lists two magnetos and twelve plugs. This is two magnetos, not a single dual-magneto housing.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ]
+        },
+        {
+          "type": "text",
+          "title": "Timing and viewpoint",
+          "prompt": "The H table gives 20° BTC for both magnetos. A drive speed ratio alone does not set ignition timing. Explain why a drive described as clockwise will appear counterclockwise when you view it from the opposite end.",
+          "note": "H C-3-2 to C-3-3 (PDF 152-153). Accessory CW/CCW is facing the engine drive pad. Propeller CW is looking forward, with 0.667:1 propeller/crank ratio; do not use propeller RPM as crank RPM. No timing adjustment procedure is prescribed.",
+          "sourceRefs": [
+            "gtsio-reviewed"
+          ]
+        },
+        {
+          "type": "model-pose",
+          "title": "Fuel delivery",
+          "prompt": "Select the Fuel path. Find the cluster gear, pump drive gear and detachable coupling. Scrub the focused motion. Explain how loss of torque at the coupling could interrupt engine-driven fuel delivery.",
+          "note": "A-3-2; H C-3-6 (PDF 156): later pump replacement needs a changed drive gear and coupling; older installation differs. Fuel-drive ratio and rotation are unverified here; tooth sizes and motion are illustrative. Fuel pump internals are omitted. FAA PDF 84 (2-2) explains reciprocating fuel delivery.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Focus: fuel",
+          "motionProgress": 50
+        },
+        {
+          "type": "model-pose",
+          "title": "Oil and speed indication",
+          "prompt": "Trace the Oil and tachometer path. Section the pump housing and find the empty gear pockets. Follow the male spline into the cam-gear socket, then trace the pump driver and the 90-degree bevel pair to the lateral tach output.",
+          "note": "A-3-2; A-4-16 items 24/45/47; H C-3-2: tach output 0.5:1 CW facing its pad. The bevels are smooth pitch-form studies; teeth and spatial layout remain illustrative. The housing is placed left of the cam axis to clear the separate fuel bay. Figure A-4-8 items 10/11 are scavenge gears, not interchangeable tach labels. The IO-520 permold pump is a separate comparison study.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Focus: oil-tach",
+          "motionProgress": 50
+        },
+        {
+          "type": "model-pose",
+          "title": "Electrical supply",
+          "prompt": "Select Alternator and explain the conversion from shaft power to aircraft electrical supply. Compare the marked remote endpoint with the documented shaft train.",
+          "note": "H C-3-3: 3:1 CW. A-4-13 supports the nested driven-gear cup, bushing, clutch sleeve and keyed hub represented here. Item 5 is the mounting gasket; the four-lug flange belongs to body item 4. The H photograph A-4-4 places the alternator toward the front; this module is relocated onto a grey teaching stand. These supports are not engine hardware. Rotor/stator and detailed clutch spring are omitted. The basic narrative mentions a generator pulley; its transfer geometry is not used as an H alternator claim. Dashed path is conceptual; transfer geometry remains unresolved.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Focus: alternator",
+          "motionProgress": 50
+        },
+        {
+          "type": "model-pose",
+          "title": "Optional aircraft loads",
+          "prompt": "Select the Vacuum path. Read the speed and viewpoint. Explain why a listed drive pad does not prove that a particular aircraft has the pump or that vacuum powers every aircraft instrument.",
+          "note": "A-3-2 describes optional upper-rear accessories through magneto gear splines. H C-3-3 lists vacuum, deice and autopilot drives at 1.14:1 CCW. Useful pneumatic function and equipment are installation dependent; exact adapter transfer geometry and accessory internals are omitted.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Focus: vacuum",
+          "motionProgress": 50
+        },
+        {
+          "type": "model-pose",
+          "title": "Governor remote drive",
+          "prompt": "Select Governor. Trace crank → camshaft → front bevel drive → governor. Explain how mechanical speed sensing and oil control can change propeller blade angle.",
+          "note": "A-3-2 documents the front camshaft bevel pair. H C-3-3: 0.809:1 CW. Governor is a front remote output, relocated into this study; bevel shapes omitted. FAA PDF 27 and 294 explain blade-angle/speed and oil-control functions.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Focus: governor",
+          "motionProgress": 50
+        },
+        {
+          "type": "model-pose",
+          "title": "Starting reverses power",
+          "prompt": "Before playing, predict the torque direction. Run Starter engagement and start. Pause during cranking, at engine takeover, and afterwards. Identify the worm, worm wheel, spring, drum and shaftgear.",
+          "note": "A-3-2; A-4-15; FAA PDF 236 (5-6): spring tightens around drum during starting and releases after start. H starter drive 32:1 CCW facing pad applies during cranking. Clutch tightening, transition time and speed ramp are illustrative. No sliding Bendix pinion is added.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Starter engagement and start",
+          "motionProgress": 10
+        },
+        {
+          "type": "model-pose",
+          "title": "Engine takes over",
+          "prompt": "Scrub past the engine-takeover stage. Observe that worm drive and worm wheel stop while the shaftgear continues to turn with the crank gear. Explain why the clutch must separate these functions.",
+          "note": "A-3-2 supports clutch release and continued crank-driven shaftgear. Model times and motor stop are a staged illustration, not measured dynamics or an aircraft starting checklist.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Starter engagement and start",
+          "motionProgress": 80
+        },
+        {
+          "type": "model-pose",
+          "title": "Reassemble relationships",
+          "prompt": "Reverse the exploded view. Pause halfway, isolate a complete path and inspect its seal and mounting interface. Return to assembled, then switch to normal operation and explain what must transmit torque.",
+          "note": "Manufacturer exploded figures support part relationships. This staged reassembly is pedagogical; fastener torques, clearances, service limits and actual maintenance sequence are not represented.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Reassembly overview",
+          "motionProgress": 50
+        },
+        {
+          "type": "text",
+          "title": "Illustrative faults",
+          "prompt": "Discuss three hypothetical faults: (1) the fuel coupling transmits no torque, (2) the starter spring remains gripping after engine takeover, (3) a mounting seal leaks. For each, identify the first affected mechanical connection, its useful function and evidence needed before diagnosing the real engine.",
+          "note": "ILLUSTRATIVE FAULT SCENARIOS: hypothetical reasoning from A-3-2, A-4-11, A-4-15 and C-3-6; no measured wear, pressure, seizure, failure probability or approved troubleshooting procedure is simulated.",
+          "sourceRefs": [
+            "gtsio-reviewed"
+          ]
+        },
+        {
+          "type": "text",
+          "title": "Explain the complete path",
+          "prompt": "Choose an accessory and give a short explanation: source of energy → gears → shaft/coupling → interface → useful function. State one verified ratio, its viewpoint and one model limitation. Complete the knowledge checks.",
+          "note": "Verified endpoints are in H C-3-2/C-3-3. Unresolved fuel ratio and optional transfer geometry must remain unknown. This assembly does not borrow IO-520 permold configuration.",
+          "sourceRefs": [
+            "gtsio-reviewed"
+          ]
+        }
+      ]
+    },
+    {
       "id": "power-generation",
       "thumbnail": "./thumbnails/lesson-power-generation.webp",
       "sequenceNumber": 10,
@@ -838,6 +1077,157 @@
       ],
       "correct": 0,
       "rationale": "A spring must push back with at least the serviceable limit at the test height. 70 lb is below 73 lb, so it is not reused. A new inner spring gives 78 to 88 lb at that height."
+    },
+    {
+      "id": "accessory-mag-path",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "Which path drives the GTSIO-520 magnetos?",
+      "answers": [
+        "Crank gear → idler → magneto gears",
+        "Cam cluster → fuel coupling → magnetos",
+        "Propeller flange → starter motor"
+      ],
+      "correct": 0,
+      "rationale": "A-3-2 and A-4-8: crank gear drives idler, which drives both magneto gears.",
+      "sourceRefs": [
+        "gtsio-reviewed",
+        "faa-powerplant"
+      ]
+    },
+    {
+      "id": "accessory-ratio",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "At 1000 crank RPM, what is the H magneto drive speed?",
+      "answers": [
+        "500 RPM",
+        "1000 RPM",
+        "1500 RPM"
+      ],
+      "correct": 2,
+      "rationale": "H C-3-2: 1.5 × 1000 = 1500 RPM. This is shaft drive speed, not a count of sparks.",
+      "sourceRefs": [
+        "gtsio-reviewed",
+        "faa-powerplant"
+      ]
+    },
+    {
+      "id": "accessory-view",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "The H accessory table states CW facing the engine drive pad. From the opposite end it appears:",
+      "answers": [
+        "CW",
+        "CCW",
+        "Stopped"
+      ],
+      "correct": 1,
+      "rationale": "C-3-3 footnote defines the viewpoint. Apparent rotation reverses with viewpoint; the actual rotation has not changed.",
+      "sourceRefs": [
+        "gtsio-reviewed",
+        "faa-powerplant"
+      ]
+    },
+    {
+      "id": "accessory-unknown",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "Which value remains unverified in this study?",
+      "answers": [
+        "H alternator 3:1",
+        "H tachometer 0.5:1",
+        "H fuel-pump drive ratio"
+      ],
+      "correct": 2,
+      "rationale": "C-3-2/C-3-3 verify alternator and tach ratios; no fuel-drive numerical value was established from the reviewed passages.",
+      "sourceRefs": [
+        "gtsio-reviewed",
+        "faa-powerplant"
+      ]
+    },
+    {
+      "id": "accessory-start-path",
+      "lessonId": "accessories-and-drives",
+      "type": "ordering",
+      "question": "Arrange the GTSIO starting torque path.",
+      "items": [
+        "Starter motor",
+        "Worm drive",
+        "Worm wheel",
+        "Clutch spring grips shaftgear drum",
+        "Shaftgear drives crankshaft gear"
+      ],
+      "rationale": "A-3-2 and FAA 5-6 describe this torque path. The spring disengages after starting.",
+      "sourceRefs": [
+        "gtsio-reviewed",
+        "faa-powerplant"
+      ]
+    },
+    {
+      "id": "accessory-takeover",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "After the engine starts, what does the manual say happens?",
+      "answers": [
+        "Clutch spring releases; shaftgear remains engine-driven",
+        "Starter motor must continuously drive crankshaft",
+        "A sliding ring-gear pinion is proved by A-4-15"
+      ],
+      "correct": 0,
+      "rationale": "A-3-2 describes the spring returning and disengaging the starter; shaftgear then carries engine torque. This is a worm/spring adapter.",
+      "sourceRefs": [
+        "gtsio-reviewed",
+        "faa-powerplant"
+      ]
+    },
+    {
+      "id": "accessory-function",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "The governor mechanical drive supports which useful function?",
+      "answers": [
+        "Propeller speed/blade-angle control using oil",
+        "Spark-plug voltage distribution",
+        "Fuel tank selection"
+      ],
+      "correct": 0,
+      "rationale": "FAA PDF 27,294: governor controls propeller speed and blade angle; H C-3-3 specifies its drive ratio.",
+      "sourceRefs": [
+        "gtsio-reviewed",
+        "faa-powerplant"
+      ]
+    },
+    {
+      "id": "accessory-evidence",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "Which statement accurately describes this 3D model?",
+      "answers": [
+        "Manufacturer dimensions and exact pad positions",
+        "Drawing-led unscaled forms and documented drive relationships",
+        "IO-520 permold parts automatically apply to GTSIO-520-H"
+      ],
+      "correct": 1,
+      "rationale": "H effectivity is established by C-3-1. Visible part forms follow manufacturer drawings; dimensions, hidden surfaces, teeth, locations and travel remain reconstructed; the IO-520 pump is not used as GTSIO geometry.",
+      "sourceRefs": [
+        "gtsio-reviewed",
+        "faa-powerplant"
+      ]
+    },
+    {
+      "id": "accessories-timing-data-source",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "Where should a technician get the ignition timing for a particular engine?",
+      "hint": "A general handbook explains the principle but not every engine's approved setting.",
+      "answers": [
+        "From any engine with the same number of cylinders",
+        "From the manufacturer's data for that engine",
+        "From the animation in a lesson"
+      ],
+      "correct": 1,
+      "rationale": "The handbook gives a broad range for the spark before top dead centre across engines and says the ignition must be timed to the engine manufacturer's recommendations. A model or animation cannot authorise a setting."
     },
     {
       "id": "power-force-path",

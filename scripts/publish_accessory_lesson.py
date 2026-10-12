@@ -1,4 +1,9 @@
-"""Publish lesson, source ledger and registry without altering existing lesson content."""
+"""Publish lesson, source ledger and registry without altering existing lesson content.
+
+SUPERSEDED for the lesson itself (12 Oct 2026): the lesson now lives in web/valve-train-and-power-lessons.json (lesson 9, between Valve Operating and
+Power Generation) and is edited there. Running this script would recreate a separate web/accessories-lessons.json pack, put it back in the manifest and
+overwrite those edits, so do not run it for the lesson. It is kept as the record of how the registry entries and the source ledger were first produced.
+"""
 from pathlib import Path
 import json,hashlib
 R=Path(__file__).resolve().parents[1]
@@ -46,7 +51,7 @@ if url not in manifest['packs']:manifest['packs'].append(url)
 write('web/lessons-manifest.json',manifest)
 models=json.loads((R/'src/data/models.json').read_text(encoding='utf-8'))
 if not any(m['id']=='accessory-drives' for m in models):
-    models.append(dict(id='accessory-drives',label='GTSIO-520-H accessories and drives',adapter='animated-study',lessonControls=True,eyebrow='LESSON 8 / ACCESSORIES & DRIVES',description='Trace seven selectable power paths through a 64-part drawing-led teaching assembly; operate, explode, reassemble and inspect the spring-clutch starting sequence. Dimensions are illustrative.',badges=['64 components','10 saved motions','Verified H output ratios'],sources=[dict(localUrl='./accessory-drives.glb.gz',compressed=True)],contractUrl='./accessory-drives-contract.json'))
+    models.append(dict(id='accessory-drives',label='GTSIO-520-H accessories and drives',adapter='animated-study',lessonControls=True,eyebrow='LESSON 9 / ACCESSORIES & DRIVES',description='Trace seven selectable power paths through a 64-part drawing-led teaching assembly; operate, explode, reassemble and inspect the spring-clutch starting sequence. Dimensions are illustrative.',badges=['64 components','10 saved motions','Verified H output ratios'],sources=[dict(localUrl='./accessory-drives.glb.gz',compressed=True)],contractUrl='./accessory-drives-contract.json'))
 model=next(m for m in models if m['id']=='accessory-drives')
 model['description']=f'Inspect seated flanges, continuous shaft paths and a lateral tach bevel drive across {part_count} unscaled part studies and {fixture_count} grey display fixtures. Unknown front/optional transfers remain labelled as omitted.'
 model['badges']=[f'{part_count} part studies + {fixture_count} fixtures','10 saved motions','Seated mounting interfaces']

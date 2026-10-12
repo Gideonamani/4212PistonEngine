@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { camLift, openingWindow, PEAK_CRANK, type LobeProfile } from './valveTrain.mjs';
 
 /**
- * Native lesson interactives for lesson 9 (Valve Operating). Schematic: the lobe shapes are drawn to teach what a cam does, not taken
+ * Native lesson interactives for lesson 8 (Valve Operating). Schematic: the lobe shapes are drawn to teach what a cam does, not taken
  * from any engine's cam data. The "standard" duration is the intake valve of the FAA handbook's example timing chart (Figure 1-37).
  */
 

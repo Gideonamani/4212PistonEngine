@@ -4,7 +4,6 @@
   "packs": [
     "./history-lessons.json",
     "./fundamentals-lessons.json",
-    "./accessories-lessons.json",
     "./valve-train-and-power-lessons.json",
     "./breathing-and-performance-lessons.json",
     "./requirements-and-malfunctions-lessons.json",

@@ -65,7 +65,7 @@ test('a choice made on an earlier visit is already in force when the model appea
 });
 
 // The cross-section controls that join the spotlight bar: a checkbox that cuts the model, and a picker of the three standard planes plus
-// the plane a step recommends (its `sectionPlane`). Lesson 09 step 2 recommends "Valve axis"; step 4 spotlights springs and names none.
+// the plane a step recommends (its `sectionPlane`). Lesson 08 step 2 recommends "Valve axis"; step 4 spotlights springs and names none.
 const SECTION_STEP = '#/learn/valve-train-and-power/valve-operating/step/2';
 
 test('a spotlight step offers a cross section: a checkbox, and a picker with the plane the step recommends', async ({ page, problems }) => {

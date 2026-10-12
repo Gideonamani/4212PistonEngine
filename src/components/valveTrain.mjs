@@ -1,4 +1,4 @@
-// The cam-lobe model behind the valve-lift interactive in lesson 9. Pure, so it is tested without a browser.
+// The cam-lobe model behind the valve-lift interactive in lesson 8. Pure, so it is tested without a browser.
 //
 // One cam lobe lifts a valve once per four-stroke cycle. The cam turns at half the crankshaft's speed, so one full turn of the cam spans
 // the cycle's 720 degrees of crank rotation, and everything here is measured in crank degrees. The lobe is drawn symmetrical about its
