@@ -6,16 +6,16 @@ What each of the 18 lessons is for, and what a learner should be able to do at t
 
 | Field | What it holds | Shown to learners |
 |---|---|---|
-| `purpose` | One sentence: what the lesson is for. | Yes, at the top of the end-of-lesson self-check |
-| `coreIdea` | The single thought to leave with, where there is one. | Yes, in the self-check |
-| `outcomes` | What a learner should be able to do, one sentence each (a heading and its sentences for a lesson with parts). | Yes: the self-check ticks them off |
+| `purpose` | One sentence: what the lesson is for. | Yes: opens step 1, and heads the end-of-lesson self-check |
+| `coreIdea` | The single thought to leave with, where there is one. | Yes: inside the folded objectives on step 1, and in the self-check |
+| `outcomes` | What a learner should be able to do, one sentence each (a heading and its sentences for a lesson with parts). | Yes: folded away on step 1 ("What you will be able to do"), ticked off in the self-check at the end |
 | `syllabusNote` | Why the lesson is in the syllabus, in the instructor's words. | No: for authors and reviewers |
 
 ## How to use them
 
 - **Writing or reworking a lesson:** read its purpose and outcomes first. Every outcome should be taught in a step, and where it can be tested, asked in one of the lesson's checks. An outcome no step teaches is a gap in the lesson, not in the list.
 - **Changing an outcome:** edit it in the pack. A learner's ticks are kept per sentence, so a reworded outcome starts unticked.
-- **For learners:** the last screen of each lesson lists the outcomes as a "Check yourself" tick-list. The ticks are saved on the learner's own device and nowhere else.
+- **For learners:** step 1 of each lesson opens with its purpose and a folded list of the outcomes, the way a chapter opens with its learning objectives, and the last screen lists the same outcomes as a "Check yourself" tick-list. The ticks are saved on the learner's own device and nowhere else.
 
 ## The storyline
 

@@ -25,12 +25,13 @@ test('Learn: the chip also shows inside the lesson', async ({ page, problems }) 
   problems.assertNone();
 });
 
+// Step 2, not step 1: the first step of a lesson opens with the lesson's purpose, which legitimately sits between the label and the heading.
 test('Learn: a text step has no empty picture panel above its heading', async ({ page, problems }) => {
-  await page.goto('/#/learn/history-and-fundamentals/history-mechanical-engines/step/1');
+  await page.goto('/#/learn/history-and-fundamentals/history-mechanical-engines/step/2');
   await appReady(page);
   const heading = page.getByRole('heading', { level: 2 }).first();
   await expect(heading).toBeVisible();
-  const label = await page.getByText(/^STEP 1/).boundingBox();
+  const label = await page.getByText(/^STEP 2/).boundingBox();
   const title = await heading.boundingBox();
   // A blank media slot used to put 176-208 px between the step label and the heading; a gap is a few pixels.
   expect(title!.y - (label!.y + label!.height), 'something sits between the step label and the heading').toBeLessThan(40);

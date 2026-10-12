@@ -11,6 +11,7 @@ import { EvidenceDialog, stepHasEvidence } from './lesson/EvidenceDialog';
 import { GuidedPrompt } from './lesson/GuidedPrompt';
 import { LessonComplete } from './lesson/LessonComplete';
 import { LessonFooter } from './lesson/LessonFooter';
+import { LessonOpener } from './lesson/LessonOpener';
 import { useLessonFullscreen } from './lesson/useLessonFullscreen';
 import { useLessonLayout } from './lesson/useLessonLayout';
 import { TextSizeControl, useLessonTextSize } from './lesson/TextSize';
@@ -182,6 +183,9 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
 
             <div className={side ? `flex flex-col gap-3.5 p-4 ${CARD_LOOK} ${twoColumns ? 'col-start-2 row-start-3' : 'mx-auto w-full max-w-2xl'}` : 'flex flex-col gap-3.5'}>
               {side && stepLabel}
+
+              {/* The first step opens the lesson: what it is for, and (folded away) what the learner will be able to do. */}
+              {currentStepIndex === 0 && <LessonOpener lesson={lesson} />}
 
               {/* Heading */}
               <h2 className="lesson-heading font-bold tracking-tight text-white mt-1">
