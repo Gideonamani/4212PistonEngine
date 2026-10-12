@@ -121,6 +121,10 @@ export const MODEL_CAPABILITY_FLAGS = Object.freeze([
  * @property {number} [sequenceNumber] - lesson number in the authoritative cross-pack curriculum order
  * @property {number} [scheduledDay] - non-ordering classroom-scheduling hint carried over from the day-based report
  * @property {string} [completionCriteria] - narrative completion evidence, separate from any checks this lesson owns
+ * @property {string} [purpose] - the instructor's one sentence on what the lesson is for; every numbered syllabus lesson has one (docs/lesson-objectives.md)
+ * @property {string} [coreIdea] - the single thought to leave with, where the lesson has one
+ * @property {Array<string | {heading: string, note?: string, items: string[]}>} [outcomes] - what a learner should be able to do at the end: sentences, or headed groups for a lesson with parts (the practicals). Learners tick them off in the end-of-lesson self-check; no two may read the same, because ticks are kept per sentence
+ * @property {string} [syllabusNote] - the instructor's note on why the lesson is in the syllabus; for authors and reviewers, never shown to learners
  * @property {Step[]} steps
  */
 
@@ -256,9 +260,41 @@ const isThumbnailPath = (value) => typeof value === 'string' && /^\.\/thumbnails
 const isBannerPath = (value) => typeof value === 'string' && /^\.\/banners\/[\w-]+\.webp$/.test(value);
 const isIsoDate = (value) => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value));
 
+const isText = (value) => typeof value === 'string' && value.trim().length > 0;
+
+/** purpose, coreIdea, outcomes and syllabusNote: all optional, but when present they must be well formed. */
+function validateObjectives(lesson, where) {
+  const errors = [];
+  for (const field of ['purpose', 'coreIdea', 'syllabusNote']) {
+    if (lesson[field] !== undefined && !isText(lesson[field])) errors.push(`${where}: ${field} must be a non-empty string`);
+  }
+  if (lesson.outcomes === undefined) return errors;
+  if (!Array.isArray(lesson.outcomes) || lesson.outcomes.length === 0) return [...errors, `${where}: outcomes must be an array of sentences or headed groups`];
+  const seen = new Set();
+  lesson.outcomes.forEach((entry, index) => {
+    const at = `${where}: outcomes[${index}]`;
+    let sentences = [];
+    if (typeof entry === 'string') {
+      if (isText(entry)) sentences = [entry];
+      else errors.push(`${at} must be a non-empty sentence`);
+    } else if (entry && typeof entry === 'object' && isText(entry.heading) && Array.isArray(entry.items) && entry.items.length > 0 && entry.items.every(isText) && (entry.note === undefined || isText(entry.note))) {
+      sentences = entry.items;
+    } else {
+      errors.push(`${at} must be a sentence, or a group with a heading, an optional note and a non-empty list of sentences`);
+    }
+    for (const sentence of sentences) {
+      const key = sentence.trim().replace(/\s+/g, ' ');
+      if (seen.has(key)) errors.push(`${where}: the same outcome twice: "${key.slice(0, 50)}"`);
+      seen.add(key);
+    }
+  });
+  return errors;
+}
+
 function validateLesson(lesson, lessonIndex, knownSourceIds) {
   const errors = [];
   const where = `lessons[${lessonIndex}]`;
+  errors.push(...validateObjectives(lesson, where));
   if (!lesson.id) errors.push(`${where}: missing id`);
   if (lesson.thumbnail !== undefined && !isThumbnailPath(lesson.thumbnail)) errors.push(`${where}: thumbnail must be a ./thumbnails/*.webp path`);
   if (lesson.sequenceNumber !== undefined && !(Number.isInteger(lesson.sequenceNumber) && lesson.sequenceNumber > 0)) errors.push(`${where}: sequenceNumber must be a positive integer`);

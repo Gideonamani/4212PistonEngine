@@ -96,6 +96,24 @@ test('checks of parked lessons are hidden, those of deep dives stay', () => {
   assert.equal(quiz.questions[0].explanation, 'because');
 });
 
+test('the objectives the instructor wrote reach the lesson, and the note meant for authors does not', () => {
+  const step = { type: 'text', title: 't', prompt: 'p', mediaPlan: { mode: 'none', status: 'not-needed', rationale: 'r' } };
+  const outcomes = ['Explain it.', { heading: 'Practical A', items: ['Do it.'] }];
+  const pack = {
+    id: 'p', title: 'P', description: 'd', checks: [],
+    lessons: [
+      { id: 'a', title: 'A', objective: 'o', reviewStatus: 'unreviewed', purpose: 'What it is for.', coreIdea: 'One thought.', outcomes, syllabusNote: 'Why it is in the syllabus.', steps: [step] },
+      { id: 'b', title: 'B', objective: 'o', reviewStatus: 'unreviewed', steps: [step] },
+    ],
+  };
+  const [withObjectives, without] = mapTrack(pack, 0, models).lessons;
+  assert.equal(withObjectives.purpose, 'What it is for.');
+  assert.equal(withObjectives.coreIdea, 'One thought.');
+  assert.deepEqual(withObjectives.outcomes, outcomes);
+  assert.ok(!('syllabusNote' in withObjectives), 'the syllabus note is for authors and reviewers, not for the screens');
+  assert.deepEqual([without.purpose, without.coreIdea, without.outcomes], [undefined, undefined, undefined], 'a lesson with none written has none');
+});
+
 test('review status reaches the lesson card, and nothing about a card is guessed from its words', () => {
   const lesson = (id, reviewStatus, reviewedOn) => ({ id, title: 'Steam and Wright aircraft gauges', objective: 'inspect the borescope system', reviewStatus, reviewedOn, steps: [{ type: 'text', title: 'Steam', prompt: 'Muscle, labour and flight.' }] });
   const pack = {

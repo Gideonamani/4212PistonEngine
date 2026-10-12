@@ -50,6 +50,27 @@
       "sequenceNumber": 16,
       "title": "Maintenance & Servicing",
       "objective": "Describe scheduled and unscheduled maintenance; test compression and find where a cylinder leaks; list the steps of an overhaul and the care taken in taking an engine apart and putting a cylinder back; and set out how an engine is preserved, stored and returned to service.",
+      "purpose": "Explain how engineers preserve the engine's performance, reliability and airworthiness.",
+      "outcomes": [
+        "Explain the purpose of aircraft piston-engine maintenance.",
+        "Distinguish servicing, inspection, maintenance, troubleshooting, repair and overhaul.",
+        "Distinguish scheduled from unscheduled maintenance.",
+        "Explain why aircraft maintenance must follow appropriate manufacturer and approved maintenance data.",
+        "Explain the importance of prescribed limits and tolerances.",
+        "Describe common external engine inspection activities.",
+        "Identify evidence of leaks, corrosion, wear, overheating, looseness and physical damage.",
+        "Explain the purpose of engine compression testing.",
+        "Explain the maintenance importance of engine oil, oil filters and screens.",
+        "Describe introductory principles of spark-plug servicing.",
+        "Explain the purpose of valve-train inspection.",
+        "Explain why hydraulic tappets require correct condition and servicing.",
+        "Explain the importance of valve-spring condition.",
+        "Explain why exhaust systems require regular inspection and maintenance.",
+        "Explain the importance of correct fluid servicing.",
+        "Explain why maintenance actions must be correctly recorded.",
+        "Relate preventive maintenance to continued engine reliability and airworthiness."
+      ],
+      "syllabusNote": "The corresponding practical competencies are completed in Lesson 18 rather than treated as theory only.",
       "reviewStatus": "unreviewed",
       "models": [],
       "listed": true,
@@ -298,6 +319,19 @@
       "sequenceNumber": 17,
       "title": "Light Sport Aircraft",
       "objective": "Describe what makes an aircraft light-sport and why its engine must be light and reliable, name who may maintain and inspect these engines, recognise the common two-stroke and four-stroke light-sport engines, and carry out the basic checks and troubleshooting the handbook describes.",
+      "purpose": "Give students a glimpse of the wider world of piston-powered aviation and introduce regulatory awareness.",
+      "outcomes": [
+        "Explain broadly what is meant by light-sport and recreational aircraft.",
+        "Recognise that light aircraft may employ engines and installation philosophies different from conventional certified training aircraft.",
+        "Identify representative engines used in light and recreational aircraft.",
+        "Compare broad characteristics such as engine mass, cooling method, operating RPM, gearing and installation.",
+        "Explain why some light-aircraft engines operate at significantly different RPM ranges from conventional direct-drive aircraft engines.",
+        "Appreciate the role of piston engines in recreational flying, sport aviation, experimental aircraft and aircraft ownership.",
+        "Recognise that aircraft category and regulatory status can affect permissible maintenance activity.",
+        "Explain why an engineer must determine the applicable regulatory framework and maintenance privileges before carrying out maintenance.",
+        "Recognise that maintenance privileges may differ between conventional certified aircraft and some recreational/light-aircraft categories."
+      ],
+      "syllabusNote": "This is enrichment rather than a requirement explicitly stated in the supplied AMT 4212G description, so the regulatory material should ultimately be anchored to the applicable Tanzanian/TCAA framework rather than assumed from another jurisdiction.",
       "reviewStatus": "unreviewed",
       "models": [],
       "listed": true,
@@ -499,6 +533,59 @@
       "sequenceNumber": 18,
       "title": "Practicals",
       "objective": "Prepare for the three practical sessions: follow the observe, name, describe method, work safely around an engine and its propeller, name the main internal and external parts of a reciprocating engine and the items where it meets the aircraft, and inspect the outside of an engine in a fixed order.",
+      "purpose": "Demonstrate whether the conceptual knowledge from Lessons 1–17 can actually be recognised and applied physically.",
+      "outcomes": [
+        {
+          "heading": "Practical A — Demonstration of Piston-Engine Operation",
+          "note": "Using the motorised cutaway engine.",
+          "items": [
+            "Identify TDC and BDC.",
+            "Demonstrate intake, compression, power and exhaust strokes.",
+            "Relate piston movement to crankshaft rotation.",
+            "Explain crankshaft-to-camshaft speed relationship.",
+            "Observe and explain valve opening and closing.",
+            "Demonstrate valve timing.",
+            "Identify lead, lag and overlap where visible on the trainer.",
+            "Explain the sequence of energy conversion from combustion pressure to crankshaft rotation.",
+            "Explain how firing events in multiple cylinders combine to produce smoother engine rotation.",
+            "Explain the complete operation of a four-stroke reciprocating engine while manipulating or observing the training engine."
+          ]
+        },
+        {
+          "heading": "Practical B — External & Internal Component Identification and Condition",
+          "note": "The emphasis: identify it → state its function → describe its construction → recognise abnormal condition.",
+          "items": [
+            "Identify principal externally visible engine components.",
+            "State the function of each identified component.",
+            "Identify the crankcase, accessory case and sump.",
+            "Identify engine mounts and shock mounts.",
+            "Locate induction, exhaust, ignition, lubrication and accessory interfaces.",
+            "Identify representative internal components from dismantled or sectioned assemblies.",
+            "Identify pistons, rings, piston pins, connecting rods, crankshaft, bearings, cylinders and valves.",
+            "Identify representative valve-train components.",
+            "Distinguish major materials and construction features where visible.",
+            "Recognise obvious leakage, corrosion, cracks, wear, scoring, overheating, deposits and physical damage.",
+            "Relate an observed defect to the likely function of the affected component."
+          ]
+        },
+        {
+          "heading": "Practical C — Engine Maintenance Procedures",
+          "items": [
+            "Safely dismantle/disassemble a selected piston-engine power-generation assembly.",
+            "Identify components as they are removed.",
+            "Inspect representative components for obvious condition and serviceability.",
+            "Reassemble the selected power-generation assembly in the correct relationship.",
+            "Demonstrate or perform appropriate hydraulic-tappet servicing.",
+            "Inspect valve-train components for corrosion and wear.",
+            "Perform or demonstrate a valve-spring compression check using appropriate training equipment.",
+            "Inspect representative exhaust-system components.",
+            "Identify cracks, leakage, deterioration and attachment problems in an exhaust system.",
+            "Demonstrate appropriate periodic exhaust-system maintenance/inspection.",
+            "Follow appropriate workshop practices, tools and maintenance information while performing practical tasks."
+          ]
+        }
+      ],
+      "syllabusNote": "The module itself states that workshop practices should be used to develop understanding and specifically identifies engine parts and a piston-engine trainer among the intended learning materials; the lesson is formalised as three practical exercises. They are particularly important because the official module does not stop at theoretical understanding: it explicitly requires students to dismantle and reassemble power-generation assemblies, service hydraulic tappets, inspect valve-train components and check valve-spring compression. It also requires periodic exhaust-system maintenance.",
       "reviewStatus": "unreviewed",
       "models": [
         "cylinder",

@@ -29,6 +29,23 @@
       "sequenceNumber": 8,
       "title": "Accessories & Drives",
       "objective": "Identify accessories and interfaces, trace power paths, predict rotation, operate saved motions and explain useful functions and illustrative faults.",
+      "purpose": "Show that the crankshaft does much more than simply turn the propeller.",
+      "outcomes": [
+        "Explain why an operating aircraft engine requires a range of mechanically driven accessories.",
+        "Trace mechanical power from the crankshaft to the accessory section.",
+        "Identify common engine-driven accessories.",
+        "State the functions of common accessories including magnetos, oil pumps, fuel pumps, tachometer drives and propeller-governor drives.",
+        "Recognise alternators/generators, vacuum pumps and other possible accessory loads.",
+        "Identify components commonly mounted on the accessory housing.",
+        "Explain how an accessory gearbox distributes mechanical power.",
+        "Describe the operation and application of spur gears.",
+        "Describe the operation and application of bevel gears.",
+        "Explain the purpose of a propeller reduction gear and shaft.",
+        "Explain why some engines use reduction gearing while others drive the propeller directly.",
+        "Distinguish wet-sump and dry-sump arrangements.",
+        "Recognise how accessory-drive failure could affect continued engine operation."
+      ],
+      "syllabusNote": "The formal module explicitly requires propeller reduction gearing, bevel gears, spur gears, wet/dry sump arrangements and accessory-housing components.",
       "reviewStatus": "unreviewed",
       "models": [
         "accessory-drives"

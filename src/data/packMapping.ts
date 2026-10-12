@@ -1,6 +1,7 @@
 import type {
   CourseTrack,
   Lesson,
+  LessonOutcome,
   LessonReviewStatus,
   LessonStep,
   QuizModule,
@@ -30,6 +31,11 @@ export type PackLesson = {
   thumbnail?: string;
   title: string;
   objective: string;
+  purpose?: string;
+  coreIdea?: string;
+  outcomes?: LessonOutcome[];
+  /** The instructor's note on why the lesson is in the syllabus: for authors and reviewers, so it is read here but never passed to a screen. */
+  syllabusNote?: string;
   reviewStatus: LessonReviewStatus;
   reviewedOn?: string;
   models?: string[];
@@ -95,6 +101,9 @@ export function mapLesson(lesson: PackLesson, index: number, models: ModelLookup
     title: lesson.title,
     subtitle: lesson.objective,
     description: lesson.objective,
+    purpose: lesson.purpose,
+    coreIdea: lesson.coreIdea,
+    outcomes: lesson.outcomes,
     stepCount: steps.length,
     hasModelBadge: Boolean(lesson.models?.length || steps.some((step) => step.has3DReference)),
     reviewStatus: lesson.reviewStatus,

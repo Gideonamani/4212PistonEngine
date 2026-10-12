@@ -1,0 +1,25 @@
+{
+  "written": "2026-10-12",
+  "writtenBy": "the instructor",
+  "note": "The order in which the instructor wants the module to read as one story, each step with the question it answers. Lessons are named by id, so this stays true if lesson numbers change. docs/lesson-objectives.md compares it with the order the app uses.",
+  "steps": [
+    { "lessonId": "history-mechanical-engines", "label": "History", "question": "Why engines exist" },
+    { "lessonId": "history-aircraft-engines", "label": "Aviation context", "question": "How aircraft engines evolved" },
+    { "lessonId": "terminologies", "label": "Language", "question": "How we describe them" },
+    { "lessonId": "thermodynamic-cycles", "label": "Thermodynamics", "question": "Why they can produce work" },
+    { "lessonId": "classification", "label": "Classification", "question": "What forms they take" },
+    { "lessonId": "cooling-methods", "label": "Cooling", "question": "How we keep them cool" },
+    { "lessonId": "parts-construction", "label": "Construction", "question": "What they are made of" },
+    { "lessonId": "valve-operating", "label": "Valve control", "question": "How their mechanisms are coordinated" },
+    { "lessonId": "accessories-and-drives", "label": "Accessory power", "question": "What else they drive" },
+    { "lessonId": "power-generation", "label": "Power generation", "question": "How fuel ultimately becomes useful propulsive power" },
+    { "lessonId": "induction-exhaust", "label": "Breathing", "question": "How they breathe" },
+    { "lessonId": "performance-calculations", "label": "Measurement", "question": "How we measure what they do" },
+    { "lessonId": "factors-affecting-power", "label": "Performance", "question": "Why performance varies" },
+    { "lessonId": "engine-requirements", "label": "Design requirements", "question": "What makes a good aircraft engine" },
+    { "lessonId": "operation-malfunctions", "label": "Malfunctions", "question": "How things go wrong" },
+    { "lessonId": "maintenance-servicing", "label": "Maintenance", "question": "How AMEs keep them healthy" },
+    { "lessonId": "light-sport-aircraft", "label": "Wider aviation", "question": "Where else piston aviation can take us" },
+    { "lessonId": "practicals", "label": "Practical demonstration", "question": "Demonstrate that understanding on a real engine" }
+  ]
+}

@@ -70,6 +70,9 @@ export interface LessonStep {
 /** Where a lesson stands with the instructor: students see a pending chip until it is 'reviewed'. */
 export type LessonReviewStatus = 'unreviewed' | 'reviewed';
 
+/** One thing a learner should be able to do at the end of a lesson: a sentence, or a heading with its own sentences (the practicals). */
+export type LessonOutcome = string | { heading: string; note?: string; items: string[] };
+
 export interface Lesson {
   id: string;
   lessonNumber: string;
@@ -81,6 +84,12 @@ export interface Lesson {
   reviewStatus: LessonReviewStatus;
   /** YYYY-MM-DD, present only when reviewStatus is 'reviewed'. */
   reviewedOn?: string;
+  /** The instructor's one sentence on what the lesson is for; shown in the end-of-lesson self-check. */
+  purpose?: string;
+  /** The single thought to leave with, where the lesson has one. */
+  coreIdea?: string;
+  /** What a learner should be able to do at the end; the self-check lists these for the learner to tick. Absent on a lesson that has none written. */
+  outcomes?: LessonOutcome[];
   /** Card image from the lesson pack; a neutral placeholder stands in when it is absent. */
   thumbnail?: string;
   /** True for an unlisted lesson reached only through a step's deepDiveLinks. */

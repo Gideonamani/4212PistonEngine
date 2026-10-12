@@ -2,6 +2,8 @@ export type LessonProgress = {
   completedAt?: string;
   currentStep?: number;
   reflection?: string;
+  /** Keys (see outcomeKey in outcomes.mjs) of the outcomes the learner has ticked in the end-of-lesson self-check. */
+  outcomesChecked?: string[];
 };
 
 type ProgressStore = Record<string, LessonProgress>;
@@ -44,3 +46,5 @@ export const completeLesson = (lessonId: string, finalStep: number) => writeLess
 });
 
 export const saveLessonReflection = (lessonId: string, reflection: string) => writeLessonProgress(lessonId, { reflection });
+
+export const saveOutcomeChecks = (lessonId: string, outcomesChecked: string[]) => writeLessonProgress(lessonId, { outcomesChecked });

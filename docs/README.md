@@ -13,6 +13,7 @@ publish), then `AGENTS.md` (storage and validation rules), then the guides here.
 | [README.md](README.md) | index | This index. |
 | [ROADMAP.md](ROADMAP.md) | guide | Milestones, what is done and what is next. |
 | [lesson-and-assessment-architecture.md](lesson-and-assessment-architecture.md) | guide | How lesson packs, steps, checks and progress are structured, with the decisions behind them. |
+| [lesson-objectives.md](lesson-objectives.md) | guide | What each of the 18 lessons is for and what a learner should be able to do at its end, in the instructor's words, generated from the lesson packs by `scripts/build_objectives_guide.mjs`. |
 | [explore-mode-content-architecture.md](explore-mode-content-architecture.md) | guide | The component and group tree behind Explore mode. |
 | [explore-section-isolation.md](explore-section-isolation.md) | guide | Section faces and sub-assembly isolation in Explore. |
 | [mode-shell-viewer-separation.md](mode-shell-viewer-separation.md) | guide | The shared 3D viewer and how the app shell uses it. |
