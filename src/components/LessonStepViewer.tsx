@@ -13,6 +13,8 @@ import { LessonComplete } from './lesson/LessonComplete';
 import { LessonFooter } from './lesson/LessonFooter';
 import { useLessonFullscreen } from './lesson/useLessonFullscreen';
 import { useLessonLayout } from './lesson/useLessonLayout';
+import { TextSizeControl, useLessonTextSize } from './lesson/TextSize';
+import { toParagraphs } from './lesson/paragraphs.mjs';
 import { useScrollArea } from './lesson/useScrollArea';
 
 interface LessonStepViewerProps {
@@ -54,6 +56,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
   const { isImmersive, coversPage, toggleImmersive } = useLessonFullscreen(viewerRef);
   const { layout, canChoose: canChooseLayout, choose: chooseLayout } = useLessonLayout();
   useScrollArea(viewerRef);
+  const { size: textSize, choose: chooseTextSize } = useLessonTextSize();
 
   const totalSteps = lesson.steps.length || 10;
   const currentStep: LessonStep = lesson.steps[currentStepIndex] || {
@@ -132,12 +135,13 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
   // switches. Stacked, the wrappers marked `contents` vanish and the page is the single column it always was. Side by side, the page
   // becomes a grid: the viewer in the left column (pinned while you scroll), the back bar, progress bar and text in the right.
   return (
-    <div ref={viewerRef} className={`relative flex h-full w-full flex-col overflow-y-auto bg-canvas text-slate-100 ${coversPage ? 'fixed inset-0 z-[100] h-[100dvh]' : ''}`}>
+    <div ref={viewerRef} style={{ '--lesson-text-scale': textSize.scale } as React.CSSProperties} className={`relative flex h-full w-full flex-col overflow-y-auto bg-canvas text-slate-100 ${coversPage ? 'fixed inset-0 z-[100] h-[100dvh]' : ''}`}>
       <div className={side ? `mx-auto grid w-full max-w-6xl flex-1 content-start items-start gap-x-4 px-4 pb-4 ${twoColumns ? 'grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] grid-rows-[auto_auto_1fr]' : 'grid-cols-1'}` : 'contents'}>
         {/* Top Navigation Bar */}
         <div className={`flex items-center justify-between ${side ? `pt-3 pb-1 ${twoColumns ? 'col-start-2 row-start-1' : ''}` : 'px-5 pt-3 pb-1'}`}>
           <BackLink label="Back to Lessons" ariaLabel="Back to lessons" onClick={onBackToLessons} />
           <div className="-my-1.5 -mr-1.5 flex items-center">
+            <TextSizeControl value={textSize.id} onChange={chooseTextSize} />
             {canChooseLayout && <IconButton size="sm" label="Side-by-side layout" title="Show the model beside the text" active={side} onClick={() => chooseLayout(side ? 'stacked' : 'side')}><Columns2 className="h-4 w-4" /></IconButton>}
             {stepHasEvidence(currentStep) && <IconButton ref={evidenceButtonRef} size="sm" label="Open evidence and scope note" aria-haspopup="dialog" aria-controls="lesson-evidence-dialog" onClick={() => setIsEvidenceOpen(true)}><Info className="h-4 w-4" /></IconButton>}
             <IconButton size="sm" label={isImmersive ? 'Exit full-screen lesson' : 'Open full-screen lesson'} active={isImmersive} onClick={toggleImmersive}>{isImmersive ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}</IconButton>
@@ -180,14 +184,14 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
               {side && stepLabel}
 
               {/* Heading */}
-              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white mt-1">
+              <h2 className="lesson-heading font-bold tracking-tight text-white mt-1">
                 {currentStep.title}
               </h2>
 
-              {/* Body Prose */}
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                {currentStep.text}
-              </p>
+              {/* Body prose, as short paragraphs: the author's own breaks, or sentence ends where the text has none (see paragraphs.mjs). */}
+              <div className="lesson-prose flex flex-col gap-[0.85em] text-slate-200">
+                {toParagraphs(currentStep.text).map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+              </div>
 
               {/* Optional deep dives: unlisted lessons, never required to progress. */}
               {currentStep.deepDiveLinks?.map((linkId) => {

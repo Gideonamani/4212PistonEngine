@@ -180,3 +180,18 @@
 @media (min-width: 640px) {
   .lesson-viewer-stacked { height: min(22rem, calc(var(--lesson-area, 100svh) * 0.75)); }
 }
+
+/*
+ * Reading text in a lesson. Sizes are in rem, so they also follow the browser's own text-size setting. --lesson-text-scale is the learner's
+ * own choice from the "Aa" menu (1 is Standard) and is set on the lesson; text that should follow it takes one of these classes.
+ *   lesson-prose     the step's words: 16 px, 17 px from the sm breakpoint, with generous line spacing
+ *   lesson-prose-sm  secondary reading text (the guided prompt, notes): 14 px
+ *   lesson-heading   the step's title
+ */
+.lesson-prose { font-size: calc(1rem * var(--lesson-text-scale, 1)); line-height: 1.7; }
+.lesson-prose-sm { font-size: calc(0.875rem * var(--lesson-text-scale, 1)); line-height: 1.6; }
+.lesson-heading { font-size: calc(1.25rem * var(--lesson-text-scale, 1)); line-height: 1.25; }
+@media (min-width: 640px) {
+  .lesson-prose { font-size: calc(1.0625rem * var(--lesson-text-scale, 1)); }
+  .lesson-heading { font-size: calc(1.5rem * var(--lesson-text-scale, 1)); }
+}
