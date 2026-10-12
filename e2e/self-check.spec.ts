@@ -6,7 +6,7 @@ import { appReady, expect, expectAccessibleAndTouchable, expectNoHorizontalOverf
 onlyIn('phone-320', 'phone-390');
 
 type Outcome = string | { heading: string; note?: string; items: string[] };
-type PackLesson = { id: string; purpose?: string; coreIdea?: string; outcomes?: Outcome[] };
+type PackLesson = { id: string; purpose?: string; coreIdea?: string; outcomes?: Outcome[]; steps: unknown[] };
 const lessonOf = (file: string, id: string) => (JSON.parse(fs.readFileSync(`web/${file}`, 'utf8')).lessons as PackLesson[]).find((lesson) => lesson.id === id)!;
 const sentences = (outcomes: Outcome[]) => outcomes.flatMap((entry) => (typeof entry === 'string' ? [entry] : entry.items));
 
@@ -85,7 +85,7 @@ test('the self-check is accessible, with full-size targets, in dark and in light
 });
 
 test('finishing a lesson leads to the self-check', async ({ page }) => {
-  await page.goto('/#/learn/history-and-fundamentals/history-mechanical-engines/step/10');
+  await page.goto(`/#/learn/history-and-fundamentals/history-mechanical-engines/step/${history.steps.length}`);
   await appReady(page);
   await page.getByRole('button', { name: 'Complete Lesson' }).click();
   await expect(selfCheck(page)).toBeVisible();

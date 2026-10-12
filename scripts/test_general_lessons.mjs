@@ -42,7 +42,8 @@ assert.equal(modelPoseStep.viewPreset, 'engine-overview');
 assert.deepEqual(modelPoseStep.focusHotspots, ['magneto', 'valve', 'crankcase']);
 assert.equal(modelPoseStep.action, undefined);
 
-assert.equal(pack.checks.length, 8);
+// Every lesson has some checks. Reworked lessons are held to a stricter count by test_syllabus_lessons.mjs, so this only guards the floor.
+for (const lesson of pack.lessons) assert.ok(pack.checks.filter(item => item.lessonId === lesson.id).length >= 2, `${lesson.id}: at least two checks`);
 for (const item of pack.checks) {
   assert.ok(CHECK_TYPES.includes(item.type));
   assert.ok(pack.lessons.some(lesson => lesson.id === item.lessonId));
@@ -50,4 +51,4 @@ for (const item of pack.checks) {
 }
 
 assert.deepEqual(validateLessonPack(pack), []);
-console.log('General/history lesson pack is valid (3 lessons, 8 checks)');
+console.log(`General/history lesson pack is valid (${pack.lessons.length} lessons, ${pack.checks.length} checks)`);

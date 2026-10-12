@@ -6,6 +6,134 @@
   "banner": "./banners/history-and-fundamentals.webp",
   "title": "History & Fundamentals",
   "description": "General engine history and core terminology. Mostly text and image steps; one lesson references the Wright 1903 reference model.",
+  "sources": [
+    {
+      "id": "instructor-outcomes",
+      "tier": 4,
+      "title": "Instructor's learning outcomes for the module (12 October 2026)",
+      "path": "docs/lesson-objectives.md",
+      "applicability": "Frames the lesson: what it is for and what a learner should be able to do. It carries no claim about the history itself."
+    },
+    {
+      "id": "human-power",
+      "tier": 5,
+      "title": "Human power - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Human_power",
+      "applicability": "Sustained human mechanical output of roughly 75 to 100 W over a working period. Licence: CC BY-SA 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "britannica-watt",
+      "tier": 5,
+      "title": "Watt steam engine - Encyclopaedia Britannica",
+      "url": "https://www.britannica.com/technology/Watt-steam-engine",
+      "applicability": "Watt's separate condenser (conceived 1765, patented 1769). Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "newcomen-wikipedia",
+      "tier": 5,
+      "title": "Newcomen Memorial Engine - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Newcomen_Memorial_Engine",
+      "applicability": "Newcomen's first working engine near Dudley Castle in 1712, pumping water from a mine, and how the atmospheric cycle worked. Licence: CC BY-SA 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "stockton-darlington",
+      "tier": 5,
+      "title": "Railways: the Stockton and Darlington Railway - The Victorian Web",
+      "url": "https://victorianweb.org/technology/railways/railway1.html",
+      "applicability": "The Stockton and Darlington Railway opened on 27 September 1825. Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "rocket-worldhistory",
+      "tier": 5,
+      "title": "Stephenson's Rocket - World History Encyclopedia",
+      "url": "https://www.worldhistory.org/Stephenson%27s_Rocket/",
+      "applicability": "Rocket and the Rainhill Trials, 1829. Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "north-river-steamboat",
+      "tier": 5,
+      "title": "North River Steamboat - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/North_River_Steamboat",
+      "applicability": "Fulton's steamboat on the Hudson, August 1807: the first commercially successful steamboat, not the first steamboat. Licence: CC BY-SA 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "great-western",
+      "tier": 5,
+      "title": "SS Great Western - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/SS_Great_Western",
+      "applicability": "Left Bristol on 8 April 1838 and reached New York in 15 days, about half the usual time under sail; the Sirius arrived a day earlier, so \"first\" is contested. Licence: CC BY-SA 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "lenoir-wikipedia",
+      "tier": 5,
+      "title": "Etienne Lenoir - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/%C3%89tienne_Lenoir",
+      "applicability": "Lenoir's gas engine, patented 1860. Licence: CC BY-SA 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "britannica-otto",
+      "tier": 5,
+      "title": "Nikolaus Otto - Encyclopaedia Britannica",
+      "url": "https://www.britannica.com/biography/Nikolaus-Otto",
+      "applicability": "Otto's four-stroke engine, 1876 (the cycle was patented by Beau de Rochas in 1862; Otto built the engine). Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "benz-mercedes",
+      "tier": 5,
+      "title": "Mercedes-Benz Group: Benz and the first motor car, 1885-1886",
+      "url": "https://group.mercedes-benz.com/unternehmen/tradition/geschichte/1885-1886.html",
+      "applicability": "Benz applied for his patent on 29 January 1886. Licence: manufacturer's history page, facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "diesel-patent",
+      "tier": 5,
+      "title": "Diesel Engine: Patent (February 23, 1893) - German History in Documents and Images",
+      "url": "https://germanhistory-intersections.org/en/knowledge-and-education/ghis:image-8",
+      "applicability": "Diesel filed in 1892 and his patent was granted on 23 February 1893. Licence: facts only, no text or image copied; accessed 12 October 2026."
+    },
+    {
+      "id": "jebel-irhoud",
+      "tier": 5,
+      "title": "The first of our kind - Max Planck Society",
+      "url": "https://www.mpg.de/11322481/oldest-homo-sapiens-fossils-at-jebel-irhoud-morocco",
+      "applicability": "The oldest securely dated Homo sapiens fossils, about 300,000 years old. Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "cradle-of-civilization",
+      "tier": 5,
+      "title": "Cradle of civilization - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Cradle_of_civilization",
+      "applicability": "Approximate dates: settled farming in the Near East from about 12,000 years ago, and the earliest writing in Egypt and Mesopotamia about 3400 to 3100 BC. Licence: CC BY-SA 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "farm-jobs",
+      "tier": 5,
+      "title": "US Farms Still Feed the World But Farm Jobs Dwindle - strategy+business",
+      "url": "https://www.strategy-business.com/blog/US-Farms-Still-Feed-the-World-But-Farm-Jobs-Dwindle",
+      "applicability": "The share of the US labour force in agriculture: 41% in 1900 (USDA), 1.9% in 2000. Other estimates for 1900 run down to about 36%. Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "watermill-commons",
+      "tier": 5,
+      "title": "Watermill in operation.jpg - Wikimedia Commons",
+      "url": "https://commons.wikimedia.org/wiki/File:Watermill_in_operation.jpg",
+      "applicability": "Photograph of a working watermill wheel, by Jonathan Wilkins. Licence: CC BY-SA 3.0; used with credit; accessed 12 October 2026."
+    },
+    {
+      "id": "course-deck-2026-05",
+      "tier": 4,
+      "title": "Aircraft Piston Engine Slides - 21 May 2026 (instructor course deck)",
+      "path": "Notes/Aircraft Piston Engine Slides - 21May2026.pptx",
+      "applicability": "Instructor-authored course slides. Slide 27 gives the first jet-powered flight (Heinkel He 178, 1939) and slide 37 the arrival of FADEC. Carries no independent evidence; claims here need the instructor's confirmation."
+    },
+    {
+      "id": "gtsio520-overhaul",
+      "tier": 3,
+      "title": "Continental GTSIO-520 Series Overhaul Manual X30045A",
+      "path": "Notes/gtsio520_series.pdf",
+      "applicability": "The course reference engine: rated 375 hp, standard dry weight 550.39 lb (detail specifications, as used in the Engine Requirements lesson). Always use the data for the engine in front of you."
+    }
+  ],
   "lessons": [
     {
       "id": "history-mechanical-engines",
@@ -31,14 +159,58 @@
         {
           "type": "text",
           "title": "Muscle power's limit",
-          "prompt": "Before anything we would call an 'engine' existed, work got done by muscle. Raising a heavy stone, grinding grain, lifting water out of a mine - all by hand or animal power, hour after hour. What do you think was the single biggest limitation of muscle as your only power source?",
-          "note": "General historical orientation, not a documented/assessed claim - a way in to the topic, not a fact to memorise."
+          "prompt": "Before anything we would call an 'engine' existed, work got done by muscle. Raising a heavy stone, grinding grain, lifting water out of a mine: all by hand or animal power, hour after hour. What do you think was the single biggest limitation of muscle as your only power source?",
+          "note": "A way in to the topic, not a fact to memorise. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "What is an engine?",
+          "prompt": "An engine is a machine that converts an available form of energy into useful mechanical work: force that moves something through a distance.\n\nThe energy can be the chemical energy stored in fuel, heat, or the motion of wind or water. The word to notice is 'converts'. An engine does not make energy. It takes energy that is already there and puts it to work.\n\nThe rest of this lesson is the story of finding better ways to do that, and of what each new way made possible. For any engine in it, you can ask two questions: what energy goes in, and what work comes out?",
+          "note": "A working definition for this lesson; lesson 3 (Terminologies) builds the precise vocabulary. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "How much is a person worth?",
+          "prompt": "A person doing steady manual work delivers about 75 to 100 watts of mechanical power through a working day: about what a 100-watt light bulb uses. (Power is how fast work is done, and the watt is its unit.)\n\nJames Watt rated a working horse at 33,000 foot-pounds of work a minute and called that one horsepower. In modern units one horsepower is 746 watts, so a horse was worth seven to ten people.\n\nKeep these numbers in mind. At the end of this lesson you will weigh them against an aircraft engine.",
+          "note": "Sustained human output varies with fitness and how long the effort lasts; 75 to 100 W is the working range used here. The 1 hp = 746 W conversion is a definition (lesson 12 returns to horsepower and watts).",
+          "sourceRefs": [
+            "human-power"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Redirecting natural power",
-          "prompt": "The first way people got past muscle's limits wasn't a machine that made its own power - it was a machine that redirected power already available in nature. Waterwheels turned the flow of a river into continuous rotary motion; windmills did the same with moving air. Treadmills and animal-driven capstans stretched muscle power further by converting it, through gearing, into steady rotary work. None of these created energy - they converted and multiplied what was already moving.",
-          "note": "General historical narrative (illustrative, not EASA/FAA-sourced): the underlying idea - converting an existing motion into useful rotary work - is the same idea a crankshaft uses later, just with a different power source."
+          "prompt": "The first way people got past muscle's limits was not a machine that made its own power. It was a machine that redirected power already available in nature. Waterwheels turned the flow of a river into continuous rotary motion; windmills did the same with moving air. Treadmills and animal-driven capstans stretched muscle power further by converting it, through gearing, into steady rotary work.\n\nNone of these created energy. They converted and multiplied what was already moving.",
+          "note": "General historical narrative (illustrative, not an assessed claim): the idea of converting an existing motion into useful rotary work is the idea a crankshaft uses later, with a different source of power.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "image",
@@ -50,13 +222,29 @@
           "license": "CC BY-SA 3.0",
           "sourceUrl": "https://commons.wikimedia.org/wiki/File:Watermill_in_operation.jpg",
           "note": "Licensed documentary image of a working watermill.",
-          "mediaPlan": {"mode": "web-media", "status": "available", "rationale": "A documentary photograph grounds the transition from muscle power to natural-flow machinery."}
+          "mediaPlan": {
+            "mode": "web-media",
+            "status": "available",
+            "rationale": "A documentary photograph grounds the transition from muscle power to natural-flow machinery."
+          },
+          "sourceRefs": [
+            "watermill-commons"
+          ]
         },
         {
           "type": "text",
           "title": "The steam engine",
-          "prompt": "Natural flow is free, but it is also fixed - a mill only turns as fast as the river runs. The next leap was a machine that made its own motion on demand, by burning fuel outside a working cylinder and using the resulting heat to push a piston: the steam engine. Thomas Newcomen's atmospheric engine (from 1712) pumped water out of mines using steam condensed to pull a piston down. James Watt's improvements from the 1760s-70s, most importantly a separate condenser, made steam engines far more fuel-efficient and, once fitted with a crank, able to deliver smooth rotary output - powering the factories, and later the locomotives and ships, of the Industrial Revolution.",
-          "note": "General historical narrative (illustrative, not EASA/FAA-sourced) - Newcomen and Watt dates are well-established general history, included for narrative context rather than as an assessed course claim."
+          "prompt": "Natural flow is free, but it is also fixed: a mill only turns where and as fast as the river runs. The next leap was a machine that made its own motion on demand, by burning fuel outside a working cylinder and using the heat to push a piston: the steam engine.\n\nThomas Newcomen's engine, first at work near Dudley in 1712, pumped water out of a mine. Steam filled the cylinder and was then condensed, and the pressure of the air pushed the piston down into the vacuum.\n\nJames Watt's separate condenser (conceived in 1765, patented in 1769) saved so much fuel that steam power paid its way far beyond the coal mines. Later Watt engines turned a shaft, and factories, locomotives and ships followed.",
+          "note": "Newcomen's first engine (1712, near Dudley Castle) and Watt's condenser (1765, patent 1769) checked against Britannica and Wikipedia on 12 October 2026. The Newcomen cycle is given in its standard simplified form; early engines varied.",
+          "sourceRefs": [
+            "newcomen-wikipedia",
+            "britannica-watt"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "image",
@@ -65,19 +253,76 @@
           "url": "artifact:steam-engine-schematic",
           "alt": "Interactive simplified steam engine schematic",
           "note": "Purpose-built teaching schematic showing external combustion, steam delivery, piston and flywheel.",
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "A clean authored schematic isolates the external-combustion relationship without adding period-specific machinery detail."}
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "A clean authored schematic isolates the external-combustion relationship without adding period-specific machinery detail."
+          },
+          "sourceRefs": [
+            "instructor-outcomes"
+          ]
+        },
+        {
+          "type": "text",
+          "title": "Power wherever it was needed",
+          "prompt": "A waterwheel had to stand beside a river. A steam engine could stand wherever coal could be carried, so factories moved to towns and ports, and the machines in a mill were driven from one engine by shafts and belts.\n\nFarms changed too. Steam threshing machines and traction engines took over work that had needed many hands, and in the twentieth century petrol and diesel tractors replaced horses and oxen. In the United States roughly four in ten workers farmed in 1900; by 2000 it was fewer than two in a hundred.\n\nMore power from fewer people meant more of a society could build, make and trade instead of growing food.",
+          "note": "The 1900 share of US workers in agriculture is given as about 41% by USDA and as low as about 36% by other estimates, depending on how farm work is counted; the 2000 figure is 1.9%. The move of factories from rivers to towns, and the replacement of animals by tractors, are the standard account.",
+          "sourceRefs": [
+            "farm-jobs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Rails and sea lanes",
+          "prompt": "The Stockton and Darlington Railway opened in 1825, and Stephenson's Rocket won the Rainhill Trials in 1829 for the Liverpool and Manchester line. A locomotive could pull what dozens of horses could not, and land transport stopped depending on animals.\n\nAt sea, Robert Fulton's steamboat began regular service on the Hudson in 1807, and in 1838 the Great Western crossed the Atlantic under steam in about fifteen days, roughly half the usual time under sail.\n\nEach time, a better engine did more than do the old job faster. It changed where people could live, what they could make and how far they could trade.",
+          "note": "Dates checked on 12 October 2026. Fulton's boat was the first commercially successful steamboat, not the first steamboat; the Sirius reached New York a day before the Great Western, so the lesson does not call the Great Western the first.",
+          "sourceRefs": [
+            "stockton-darlington",
+            "rocket-worldhistory",
+            "north-river-steamboat",
+            "great-western"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "A compact engine?",
-          "prompt": "A steam engine still needs a separate boiler and furnace nearby - heavy, slow to bring up to pressure, and awkward to fit inside a self-propelled vehicle. What kind of machine would you need instead, if you wanted an engine compact and responsive enough to carry itself around?",
-          "note": "Reflective prompt, no reveal required - an invitation to predict, not a graded question."
+          "prompt": "A steam engine still needs a separate boiler and furnace nearby: heavy, slow to bring up to pressure, and awkward to fit inside a self-propelled vehicle. What kind of machine would you need instead, if you wanted an engine compact and responsive enough to carry itself around?",
+          "note": "A prediction prompt that sets up the next step. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Internal combustion arrives",
-          "prompt": "The answer was to move the combustion inside the working cylinder itself, rather than in a separate boiler: the internal combustion engine. Etienne Lenoir built an early gas-fuelled version around 1860. Nicolaus Otto's four-stroke cycle engine (1876) - intake, compression, power, exhaust in one repeating sequence - became the layout nearly every piston engine since has followed in some form, including the engines this course studies. Karl Benz used a version of this idea to build the first practical motor vehicle in the mid-1880s. Rudolf Diesel patented a different way to ignite the fuel-compression alone, no spark-in 1893, giving a second combustion strategy still in use today.",
-          "note": "General historical narrative (illustrative, not EASA/FAA-sourced). The Otto/Diesel cycle THEORY itself (PV diagrams, thermodynamic comparison, Diesel's specific limitations in aero application) is course-assessed content covered in the dedicated Thermodynamic Cycles lesson, sourced there from EASA/FAA material rather than here - this lesson only needs the historical sequencing, not the cycle analysis."
+          "prompt": "The answer was to move the combustion inside the working cylinder itself, rather than in a separate boiler: the internal combustion engine.\n\nEtienne Lenoir patented a gas-fuelled engine in 1860. Nicolaus Otto built a four-stroke engine in 1876: intake, compression, power and exhaust in one repeating sequence. It became the layout nearly every piston engine since has followed in some form, including the engines this course studies.\n\nKarl Benz applied for a patent on his motor car in January 1886. Rudolf Diesel's patent, granted in 1893, described a different way to ignite the fuel, by compression alone and with no spark: a second combustion strategy still in use today.",
+          "note": "Lenoir 1860; Otto 1876 (the four-stroke cycle itself had been patented by Alphonse Beau de Rochas in 1862, and Otto built the engine); Benz applied on 29 January 1886; Diesel's patent was granted on 23 February 1893 (the first working Diesel engine was tested in 1897). Checked on 12 October 2026.",
+          "sourceRefs": [
+            "lenoir-wikipedia",
+            "britannica-otto",
+            "benz-mercedes",
+            "diesel-patent"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "image",
@@ -86,19 +331,101 @@
           "url": "artifact:otto-cycle-overview",
           "alt": "Interactive four-stroke Otto-cycle sequence",
           "note": "Shared with the operating-cycles lesson so the same 720-degree teaching model is used consistently.",
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "The shared scrubber makes the repeating intake, compression, power and exhaust sequence directly observable."}
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "The shared scrubber makes the repeating intake, compression, power and exhaust sequence directly observable."
+          },
+          "sourceRefs": [
+            "britannica-otto"
+          ]
+        },
+        {
+          "type": "text",
+          "title": "Road, rail, sea and air",
+          "prompt": "Road. Cars and trucks need a compact engine that starts at once, runs at changing speeds and fits under a bonnet. Petrol and diesel piston engines suit that, and mass production made cars cheap enough for ordinary families.\n\nRail. A train needs long, heavy pulling and can carry a heavy engine. Steam gave way to diesel and electric traction.\n\nSea. A ship can carry almost any weight, so what matters most is efficiency over long voyages: very large, slow diesels and steam turbines.\n\nAir. An aircraft engine must be light for the power it makes, and it cannot pull over to be repaired. That is why aviation asks more of an engine than any other kind of transport, and why lesson 2 follows its story.",
+          "note": "Broad generalisations to compare the four modes, not engineering data; the details come in later lessons. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Later powerplants",
+          "prompt": "Not every engine is a piston engine. Steam turbines, which spin a bladed wheel instead of pushing a piston, drive many ships and generate much of the world's electricity. Gas turbines burn fuel in a continuous flow and power jet aircraft: the first jet-powered flight was the Heinkel He 178 in 1939, with an engine designed by Hans von Ohain. Electric motors burn nothing themselves, but the electricity they use has to be made somewhere else.\n\nThe piston engine did not disappear. It remains the standard in light aircraft, flight training and many other jobs, and the rest of this course is about it.",
+          "note": "The He 178 date is from course slide 27. The statements about steam turbines and electric motors are general background, not assessed claims.",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Toward electronic control",
-          "prompt": "Through the 20th century the internal combustion engine kept getting more precisely controlled, without changing its basic four-stroke idea: carburettors gave way to fuel injection for metering fuel, and fixed mechanical ignition timing gave way to electronic ignition. The end point of that trend is the engine this platform's controls hint at whenever you see 'ECU' or 'FADEC' - a Full Authority Digital Engine Control computer that continuously adjusts fuel and timing itself, rather than relying on a fixed mechanical setting the way early engines did.",
-          "note": "General historical narrative, framed at the level of general knowledge; the specific claim that FADEC entered general-aviation piston engines in the 2000s is documented and covered with its aviation-specific detail in lesson 2, not asserted with that precision here."
+          "prompt": "Through the 20th century the internal combustion engine kept getting more precisely controlled, without changing its basic four-stroke idea: carburettors gave way to fuel injection for metering fuel, and fixed mechanical ignition timing gave way to electronic ignition.\n\nThe end point of that trend is the engine this platform's controls hint at whenever you see 'ECU' or 'FADEC': a Full Authority Digital Engine Control computer that continuously adjusts fuel and timing itself, rather than relying on a fixed mechanical setting the way early engines did.",
+          "note": "General trend; FADEC on piston aircraft engines is documented on course slide 37 and returns in lesson 2.",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Why so late?",
+          "prompt": "Picture the whole of modern human history as one day, with the first Homo sapiens at midnight. The oldest securely dated fossils are about 300,000 years old. On that scale, farming began about an hour before the next midnight, writing about 25 minutes before it, and the first practical engine, Newcomen's of 1712, only about a minute and a half before.\n\nWhy so late? Several things had to arrive together: an understanding of air pressure and vacuum, metalworking good enough to cast and bore a cylinder, cheap coal to burn, and a pressing need, such as mines flooding with water.",
+          "note": "Time-scale arithmetic: 314 years (1712 to 2026) is 0.1% of 300,000 years, which is 90 seconds of a 24-hour day; farming 12,000 years ago is about 58 minutes; writing about 5,000 years ago is about 24 minutes. Dates are approximate and differ by region. The list of preconditions is a synthesis of standard histories, not a single source's claim.",
+          "sourceRefs": [
+            "jebel-irhoud",
+            "cradle-of-civilization",
+            "newcomen-wikipedia"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "What one engine is worth",
+          "prompt": "The engine this course studies, the GTSIO-520-H, is rated at 375 horsepower. At 746 watts to the horsepower that is about 280,000 watts, or 280 kilowatts.\n\nAt 100 watts a person, that is the work of about 2,800 people working flat out, all day. At 75 watts it is nearly 3,700. Yet the engine weighs about 550 pounds, the weight of three or four people.\n\nPower that once needed thousands of people now fits in one machine. That is what changed what people could move, make and build. What would you build with that much power in one place?",
+          "note": "375 hp x 746 W = 279,750 W. 279,750 / 100 = 2,798 and 279,750 / 75 = 3,730 people. Rated power and the 550.39 lb standard dry weight are from the GTSIO-520 overhaul manual's detail specifications; always use the data for the engine in front of you.",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "human-power"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Ready to fly",
-          "prompt": "By the turn of the 20th century, the internal combustion engine had become exactly what a handful of inventors needed once they turned their attention to a problem no steam engine could solve: an engine light and self-contained enough to lift itself off the ground. That is where lesson 2 picks up the story.",
-          "note": "Bridges directly into History of Aircraft Engines - deliberately leaves the aviation-specific story untold here."
+          "prompt": "By the turn of the 20th century, the internal combustion engine had become exactly what a handful of inventors needed for a problem no steam engine could solve: an engine light and self-contained enough to lift itself off the ground. Lesson 2 picks up the story there.",
+          "note": "Bridges directly into History of Aircraft Engines; deliberately leaves the aviation story untold here. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         }
       ],
       "completionCriteria": "In your own words, explain the sequence manual/animal labour -> mechanical work (waterwheel, windmill, treadmill) -> steam engine -> internal combustion engine -> electronically managed (ECU/FADEC) engines, and give at least one reason each transition happened (for example: needing power on demand rather than a fixed natural flow; needing a compact self-contained engine a steam plant could not provide; needing more precise, repeatable control of fuel and ignition than a fixed mechanical setting allows)."
@@ -351,6 +678,143 @@
       ],
       "correct": 1,
       "rationale": "Moving combustion inside the cylinder (internal combustion) removed the bulky, slow-to-heat external boiler and furnace a steam engine needs, making a compact, self-contained, quick-starting engine practical."
+    },
+    {
+      "id": "history-mech-what-is-engine",
+      "lessonId": "history-mechanical-engines",
+      "type": "multiple-choice",
+      "question": "Which statement best describes what an engine does?",
+      "hint": "Think about what goes in and what comes out. Does anything new get created?",
+      "answers": [
+        "It converts an available form of energy into useful mechanical work",
+        "It creates energy that was not there before",
+        "It stores energy so that it can be used later",
+        "It makes fuel burn faster"
+      ],
+      "correct": 0,
+      "rationale": "An engine takes energy that already exists (in fuel, heat, wind or water) and converts it into useful mechanical work; it never creates energy."
+    },
+    {
+      "id": "history-mech-people-equivalent",
+      "lessonId": "history-mechanical-engines",
+      "type": "numeric",
+      "question": "A person can sustain about 100 watts of mechanical power. An engine produces 280 kilowatts. About how many people does that equal?",
+      "hint": "280 kilowatts is 280,000 watts. Divide by the power of one person.",
+      "unit": "people",
+      "correctValue": 2800,
+      "tolerance": 100,
+      "rationale": "280,000 W / 100 W = 2,800 people (nearly 3,700 at 75 W). One engine of modest size stands for the sustained work of thousands of people."
+    },
+    {
+      "id": "history-mech-transport-demands",
+      "lessonId": "history-mechanical-engines",
+      "type": "matching",
+      "question": "Match each kind of transport to what it asks most of its engine.",
+      "hint": "Ask what each vehicle can and cannot afford to carry, and whether it can stop for repairs.",
+      "pairs": [
+        {
+          "left": "Road",
+          "right": "Compact, quick to start, happy at changing speeds"
+        },
+        {
+          "left": "Rail",
+          "right": "Long, heavy pulling (a heavy engine is acceptable)"
+        },
+        {
+          "left": "Sea",
+          "right": "Efficiency over long voyages (weight matters little)"
+        },
+        {
+          "left": "Air",
+          "right": "Light for its power, and extremely reliable"
+        }
+      ],
+      "rationale": "Each mode puts a different demand first. Aviation puts weight and reliability above everything else, which is why aircraft engines are a special case."
+    },
+    {
+      "id": "history-mech-steam-factory",
+      "lessonId": "history-mechanical-engines",
+      "type": "multiple-choice",
+      "question": "What could a steam engine do for a factory owner that a waterwheel could not?",
+      "hint": "A waterwheel needs moving water. What did a steam engine need instead?",
+      "answers": [
+        "Stand anywhere fuel could be delivered, not only beside a river",
+        "Make more power than any river could",
+        "Run without any fuel",
+        "Drive machines without shafts or belts"
+      ],
+      "correct": 0,
+      "rationale": "A steam engine needs coal and water, which can be carried, so factories could be built in towns and ports instead of only beside a river with a fall of water."
+    },
+    {
+      "id": "history-mech-scale-order",
+      "lessonId": "history-mechanical-engines",
+      "type": "ordering",
+      "question": "Put these in order, from the longest ago to the most recent.",
+      "hint": "Think of the scale: the first practical engine is very recent indeed.",
+      "items": [
+        "The oldest securely dated Homo sapiens fossils (about 300,000 years ago)",
+        "Farming begins in the Near East (about 12,000 years ago)",
+        "Writing appears (about 5,000 years ago)",
+        "Newcomen's first practical engine (1712)"
+      ],
+      "rationale": "If modern human history were one day, farming would begin about an hour before midnight, writing about 25 minutes before and the first practical engine only about a minute and a half before midnight."
+    },
+    {
+      "id": "history-mech-why-so-late",
+      "lessonId": "history-mechanical-engines",
+      "type": "multiple-choice",
+      "question": "Which best explains why practical engines appeared so late in human history?",
+      "hint": "Was it one missing idea, or several things that all had to be in place?",
+      "answers": [
+        "Several things had to exist together: knowledge of air pressure, metalworking able to make cylinders, cheap fuel and a need such as draining mines",
+        "People before 1700 were not interested in making work easier",
+        "Fuel had not yet been discovered",
+        "Only one inventor was clever enough to build one"
+      ],
+      "correct": 0,
+      "rationale": "Newcomen's engine needed an understanding of air pressure and vacuum, cylinders that could be cast and bored, cheap coal and a pressing need (mines flooding). Until they met, no practical engine was possible."
+    },
+    {
+      "id": "history-mech-inventors",
+      "lessonId": "history-mechanical-engines",
+      "type": "matching",
+      "question": "Match each engineer to what they gave to engines.",
+      "hint": "Go in order of date: pumping mines, saving fuel, burning fuel inside the cylinder, igniting it by compression.",
+      "pairs": [
+        {
+          "left": "Newcomen (1712)",
+          "right": "The first practical steam engine, pumping water out of mines"
+        },
+        {
+          "left": "Watt (1765, patented 1769)",
+          "right": "The separate condenser, which saved fuel"
+        },
+        {
+          "left": "Otto (1876)",
+          "right": "The four-stroke internal combustion engine"
+        },
+        {
+          "left": "Diesel (patent granted 1893)",
+          "right": "Igniting the fuel by compression alone, with no spark"
+        }
+      ],
+      "rationale": "Each of them solved a limit of the one before: Newcomen made an engine at all, Watt made it economical, Otto put the fire inside the cylinder, and Diesel found a second way to ignite it."
+    },
+    {
+      "id": "history-mech-gas-turbine",
+      "lessonId": "history-mechanical-engines",
+      "type": "multiple-choice",
+      "question": "How does a gas turbine differ from a piston engine?",
+      "hint": "Compare how each one turns burning fuel into motion.",
+      "answers": [
+        "It burns fuel in a continuous flow and spins a bladed wheel, instead of pushing pistons",
+        "It uses no fuel and runs on electricity",
+        "It has more pistons than a piston engine",
+        "It burns its fuel outside the engine, like a steam engine"
+      ],
+      "correct": 0,
+      "rationale": "A gas turbine burns fuel in a continuous flow and spins a bladed wheel; a piston engine burns it in repeated bursts in a cylinder and pushes a piston."
     },
     {
       "id": "history-aircraft-era-sequence",
