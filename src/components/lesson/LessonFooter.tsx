@@ -31,7 +31,7 @@ export const LessonFooter = React.forwardRef<HTMLButtonElement, LessonFooterProp
   const readoutText = readout === 'percent' ? `${percentComplete}%` : stepsLeft === 0 ? 'last step' : `${stepsLeft} left`;
 
   return (
-    <div className="sticky bottom-0 left-0 right-0 z-20 flex shrink-0 items-center gap-2 border-t border-teal-500/20 bg-[#061014]/95 px-3 pb-[max(0.875rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur-md">
+    <div className="sticky bottom-0 left-0 right-0 z-20 flex shrink-0 items-center gap-2 border-t border-teal-500/20 bg-canvas/95 px-3 pb-[max(0.875rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur-md">
       <button
         ref={ref}
         type="button"

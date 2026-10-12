@@ -1,7 +1,8 @@
+import fs from 'node:fs';
 import AxeBuilder from '@axe-core/playwright';
 import type { Page } from '@playwright/test';
 import { appReady, checkBaseline, checkCountBaseline, expect, onlyIn, test } from './fixtures';
-import { SPOTLIGHT_STEP } from './viewer-helpers';
+import { MODEL_FILES, SPOTLIGHT_STEP } from './viewer-helpers';
 
 // Two checks that hold the line. e2e/baselines/ records known problems, and the tests fail on anything not recorded there. Both baselines
 // are empty since the shared-components phase (44 px targets, readable text), so any accessibility problem or small target on these
@@ -43,15 +44,46 @@ async function open(page: Page, [, hash, prepare]: Screen) {
   await page.waitForTimeout(500);
 }
 
-test('axe finds no new accessibility problems on the main screens', async ({ page }, testInfo) => {
+/** Run axe over each screen and count what it finds, as "screen | rule" keys. */
+async function sweep(page: Page, screens: Screen[]) {
   const found: Record<string, number> = {};
-  for (const screen of screensFor(testInfo.project.name)) {
+  for (const screen of screens) {
     const [name] = screen;
     await open(page, screen);
     const { violations } = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
     for (const rule of violations) found[`${name} | ${rule.id}`] = rule.nodes.length;
   }
-  checkCountBaseline('axe', found);
+  return found;
+}
+
+test('axe finds no new accessibility problems on the main screens', async ({ page }, testInfo) => {
+  checkCountBaseline('axe', await sweep(page, screensFor(testInfo.project.name)));
+});
+
+/**
+ * Every lesson step that shows a native diagram (`url: "artifact:<id>"`), read from the packs so a new diagram is covered without anyone
+ * remembering to add it. The diagrams draw in theme colours, so each one has to be checked in light as well as dark.
+ */
+function diagramScreens(): Screen[] {
+  const packs: string[] = JSON.parse(fs.readFileSync('web/lessons-manifest.json', 'utf8')).packs;
+  return packs.flatMap((file) => {
+    const pack = JSON.parse(fs.readFileSync(`web/${file.replace('./', '')}`, 'utf8'));
+    return (pack.lessons as { id: string; listed?: boolean; steps: { url?: string }[] }[])
+      .filter((lesson) => lesson.listed !== false)
+      .flatMap((lesson) => lesson.steps.flatMap((step, index): Screen[] => (step.url?.startsWith('artifact:') ? [[`diagram ${step.url.slice(9)}`, `#/learn/${pack.id}/${lesson.id}/step/${index + 1}`]] : [])));
+  });
+}
+
+// Light mode is the same app in a second palette (src/index.css), so it gets the same zero-problems bar as dark: contrast is the thing a
+// palette can get wrong. The 3D stage stays dark in both and its models are covered above, so they are not downloaded here.
+test.describe('light mode', () => {
+  test.use({ colorScheme: 'light' });
+
+  test('axe finds no accessibility problems on the main screens or the lesson diagrams', async ({ page }, testInfo) => {
+    await page.route(MODEL_FILES, (route) => route.abort());
+    const screens = [...screensFor(testInfo.project.name).filter(([name]) => name !== 'lesson spotlight step'), ...(testInfo.project.name === 'tablet-768' ? [] : diagramScreens())];
+    checkCountBaseline('axe-light', await sweep(page, screens));
+  });
 });
 
 test('no new touch target is smaller than 44 px (and none below the 24 px WCAG 2.2 minimum)', async ({ page }, testInfo) => {

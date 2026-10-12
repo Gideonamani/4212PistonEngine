@@ -40,7 +40,7 @@ export const LessonModelStage: React.FC<{ step: LessonStep; active: boolean; imm
   const definition = modelsById[step.modelId!];
   const view = viewFromStep(step);
   const side = layout === 'side';
-  return <div hidden={!active} className={side ? 'h-full' : ''}><Suspense fallback={<div className={`flex items-center justify-center rounded-xl border border-teal-400/20 bg-[#071418] text-xs text-teal-300 ${side ? 'h-full' : 'h-80'}`}>Preparing interactive 3D viewer…</div>}>
+  return <div hidden={!active} className={side ? 'h-full' : ''}><Suspense fallback={<div className={`flex items-center justify-center rounded-xl border border-teal-400/20 stay-dark bg-[#071418] text-xs text-teal-300 ${side ? 'h-full' : 'h-80'}`}>Preparing interactive 3D viewer…</div>}>
     <LessonViewer modelId={step.modelId!} view={view} immersive={immersive} layout={layout} onOpenExplore={() => onSwitchTo3DModel?.(definition.label)} />
   </Suspense></div>;
 };
@@ -58,7 +58,7 @@ export const LessonMedia: React.FC<LessonMediaProps> = ({ step, immersive = fals
 
   if (step.mediaPlan?.mode === 'none') return null;
 
-  if (isPlanned) return <div className="flex min-h-44 w-full flex-col items-center justify-center rounded-xl border border-white/5 bg-gradient-to-br from-[#0b2429] to-[#071317] px-6 text-center shadow-inner">
+  if (isPlanned) return <div className="flex min-h-44 w-full flex-col items-center justify-center rounded-xl border border-white/5 bg-gradient-to-br from-raised to-inset px-6 text-center shadow-inner">
     <Construction className="h-7 w-7 text-teal-400" />
     <span className="mt-2 font-mono text-[11px] font-bold tracking-widest text-teal-300">PLANNED LEARNING MEDIA</span>
     <p className="mt-2 max-w-sm text-xs leading-relaxed text-slate-300">{step.mediaPlan?.assetBrief || step.mediaPlan?.rationale || 'This activity is awaiting its published media asset.'}</p>

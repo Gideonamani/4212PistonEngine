@@ -6,12 +6,13 @@ import { BrandMark } from './shell/BrandMark';
 import { ModelPicker } from './shell/ModelPicker';
 import { BottomTabs, HeaderTabs } from './shell/ViewTabs';
 import { Sun, Moon, Info } from 'lucide-react';
+import type { Theme } from '../theme/useTheme';
 
 interface AppShellProps {
   children: React.ReactNode;
   activeView: AppScreen;
   onViewChange: (view: ViewMode) => void;
-  isDarkMode: boolean;
+  theme: Theme;
   onToggleTheme: () => void;
   subtitle?: string;
   onOpenInfoModal?: () => void;
@@ -26,7 +27,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   children,
   activeView,
   onViewChange,
-  isDarkMode,
+  theme,
   onToggleTheme,
   subtitle = 'GTSIO-520-H · Cylinder study',
   onOpenInfoModal,
@@ -43,10 +44,10 @@ export const AppShell: React.FC<AppShellProps> = ({
   const { exploreFullPage: isExploreFullPage, lessonImmersive: isLessonImmersive } = useShellChrome();
 
   return (
-    <div className="w-full h-[100dvh] min-h-[100dvh] bg-[#051116] text-slate-100 flex flex-col relative overflow-hidden">
+    <div className="w-full h-[100dvh] min-h-[100dvh] bg-canvas text-slate-100 flex flex-col relative overflow-hidden">
       {/* Full-Width Aerospace Header (hidden in the Explore full-page layout and in a full-screen lesson) */}
       {!isExploreFullPage && !isLessonImmersive && (
-        <header className="w-full px-4 sm:px-6 py-2.5 border-b border-teal-500/20 flex items-center justify-between z-30 bg-[#06141a]/95 backdrop-blur-md shrink-0 shadow-lg">
+        <header className="w-full px-4 sm:px-6 py-2.5 border-b border-teal-500/20 flex items-center justify-between z-30 bg-panel/95 backdrop-blur-md shrink-0 shadow-lg">
           {/* Left: Brand & Model Dropdown */}
           <div className="flex min-w-0 flex-1 items-center gap-3">
             <BrandMark />
@@ -63,7 +64,7 @@ export const AppShell: React.FC<AppShellProps> = ({
               {/* The model picker belongs only to Explore; Learn and Check show their mode context. */}
               {activeView === 'explore'
                 ? <ModelPicker active={activeModelName} models={availableModels} onSelect={onSelectModel} />
-                : <span className="mt-0.5 max-w-[280px] truncate font-mono text-[11px] font-semibold uppercase tracking-wider text-teal-400/80">{subtitle}</span>}
+                : <span className="mt-0.5 max-w-[280px] truncate font-mono text-[11px] font-semibold uppercase tracking-wider text-teal-400">{subtitle}</span>}
             </div>
           </div>
 
@@ -72,9 +73,9 @@ export const AppShell: React.FC<AppShellProps> = ({
 
           {/* Right: Tool Controls */}
           <div className="ml-2 flex shrink-0 items-center gap-2">
-            {/* Dark / Light Mode Toggle */}
-            <IconButton size="sm" shape="soft" label="Toggle Theme" title="Toggle Theme" onClick={onToggleTheme} className="-my-1.5">
-              {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            {/* Dark / light mode: shows the mode a press switches to. */}
+            <IconButton size="sm" shape="soft" label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'} title="Toggle theme" onClick={onToggleTheme} className="-my-1.5">
+              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </IconButton>
 
             {/* Info Modal Button */}

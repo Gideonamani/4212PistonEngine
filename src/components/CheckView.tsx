@@ -68,9 +68,9 @@ export const CheckView: React.FC<CheckViewProps> = ({ modules, focusLessonId }) 
   };
 
   if (!activeModule) {
-    return <div className="relative h-full w-full overflow-y-auto bg-[#061014] pb-24 text-slate-100">
+    return <div className="relative h-full w-full overflow-y-auto bg-canvas pb-24 text-slate-100">
       <div className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 pb-4 pt-4">
-        <section className="relative overflow-hidden rounded-2xl border border-teal-500/35 bg-gradient-to-br from-[#081a20] via-[#07171d] to-[#040e13] p-4 shadow-xl shadow-black/40 sm:p-5">
+        <section className="relative overflow-hidden rounded-2xl border border-teal-500/35 bg-gradient-to-br from-raised via-panel to-inset p-4 shadow-xl shadow-black/40 sm:p-5">
           <div className="flex items-center gap-2 text-teal-300"><Award className="h-4 w-4" /><span className="font-mono text-[11px] font-bold tracking-wider">CHECK MODE · PUBLISHED ASSESSMENTS</span></div>
           <div className="mt-2 flex items-start justify-between gap-3">
             <div><h2 className="text-2xl font-bold text-white">Knowledge checks</h2><p className="mt-1 text-xs leading-relaxed text-slate-300">Work through the checks shipped with each lesson pack. Answers and rationales come from the same validated curriculum files as Learn mode.</p>
@@ -86,7 +86,7 @@ export const CheckView: React.FC<CheckViewProps> = ({ modules, focusLessonId }) 
 
   if (!current) return null;
 
-  return <div className="relative h-full w-full overflow-y-auto bg-[#061014] pb-24 text-slate-100">
+  return <div className="relative h-full w-full overflow-y-auto bg-canvas pb-24 text-slate-100">
     <div className="mx-auto w-full max-w-xl px-4 pt-3"><div className="flex items-center justify-between"><button onClick={() => setActiveModule(null)} className="-my-2 -ml-2 inline-flex min-h-11 items-center gap-1 rounded-lg px-2 text-xs font-medium text-teal-400 hover:bg-slate-800/60"><ChevronLeft className="h-4 w-4" />Assessments</button><span className="rounded-full border border-teal-500/30 bg-teal-950/40 px-3 py-1 font-mono text-xs font-semibold text-teal-300">{score} / {total}</span></div><h2 className="mt-3 truncate text-xl font-bold text-white">{activeModule.title}</h2></div>
     <div className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-3">
       <ProgressNavigator

@@ -11,7 +11,7 @@ export const GuidedPrompt: React.FC<{
   onToggleInsight: () => void;
 }> = ({ step, answer, onAnswerChange, showInsight, onToggleInsight }) => {
   if (!step.promptQuestion) return null;
-  return <div className="p-3.5 rounded-xl bg-[#061418] border border-teal-500/30 flex flex-col gap-2.5">
+  return <div className="p-3.5 rounded-xl bg-inset border border-teal-500/30 flex flex-col gap-2.5">
     <div className="flex items-center gap-2 text-teal-400">
       <MessageSquare className="w-4 h-4 shrink-0" />
       <span className="text-[11px] font-mono tracking-wider font-semibold uppercase">GUIDED PROMPT</span>

@@ -6,7 +6,7 @@ import { camLift, openingWindow, PEAK_CRANK, type LobeProfile } from './valveTra
  * from any engine's cam data. The "standard" duration is the intake valve of the FAA handbook's example timing chart (Figure 1-37).
  */
 
-const panel = 'rounded-xl border border-teal-500/20 bg-[#061418] p-3 text-slate-100';
+const panel = 'rounded-xl border border-teal-500/20 bg-inset p-3 text-slate-100';
 const button = 'rounded-lg border border-slate-700 bg-slate-900/70 px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-teal-400 aria-pressed:border-teal-400 aria-pressed:bg-teal-500/15 aria-pressed:text-teal-200';
 const caption = 'mt-2 text-[11px] text-slate-400';
 
@@ -63,25 +63,25 @@ export function CamLiftDiagram() {
       {PROFILES.map((item) => <button key={item.id} type="button" aria-pressed={item.id === profileId} onClick={() => setProfileId(item.id)} className={`${button} min-h-11`}>{item.label}</button>)}
     </div>
     <svg viewBox="0 0 640 224" role="img" aria-label={`A cam lobe turning under a tappet beside a graph of valve lift against crank angle. The valve is ${open ? 'open' : 'closed'} at ${crank} degrees.`} className="w-full rounded-lg bg-slate-950/50">
-      <path d={lobePath(profile, camAngle)} fill="#0f3a44" stroke="#2dd4bf" strokeWidth="2" />
-      <circle cx={CAM_CENTRE.x} cy={CAM_CENTRE.y} r="5" fill="#94a3b8" />
-      <circle cx={CAM_CENTRE.x} cy={CAM_CENTRE.y} r={BASE_RADIUS} fill="none" stroke="#475569" strokeDasharray="3 4" />
-      <rect x={CAM_CENTRE.x - 11} y={tappetY - 16} width="22" height="16" rx="3" fill={open ? '#f59e0b' : '#94a3b8'} stroke="#e2e8f0" />
-      <path d={`M${CAM_CENTRE.x} ${tappetY - 16}V10`} stroke="#94a3b8" strokeWidth="5" strokeLinecap="round" />
-      <text x={CAM_CENTRE.x + 18} y="22" fontSize="12" fill="#cbd5e1">to pushrod</text>
-      <text x={CAM_CENTRE.x} y="218" fontSize="12" fill="#94a3b8" textAnchor="middle">cam turns at half crank speed</text>
+      <path d={lobePath(profile, camAngle)} fill="var(--color-raised)" stroke="var(--color-teal-400)" strokeWidth="2" />
+      <circle cx={CAM_CENTRE.x} cy={CAM_CENTRE.y} r="5" fill="var(--color-slate-400)" />
+      <circle cx={CAM_CENTRE.x} cy={CAM_CENTRE.y} r={BASE_RADIUS} fill="none" stroke="var(--color-slate-600)" strokeDasharray="3 4" />
+      <rect x={CAM_CENTRE.x - 11} y={tappetY - 16} width="22" height="16" rx="3" fill={open ? 'var(--color-amber-500)' : 'var(--color-slate-400)'} stroke="var(--color-slate-200)" />
+      <path d={`M${CAM_CENTRE.x} ${tappetY - 16}V10`} stroke="var(--color-slate-400)" strokeWidth="5" strokeLinecap="round" />
+      <text x={CAM_CENTRE.x + 18} y="22" fontSize="12" fill="var(--color-slate-300)">to pushrod</text>
+      <text x={CAM_CENTRE.x} y="218" fontSize="12" fill="var(--color-slate-400)" textAnchor="middle">cam turns at half crank speed</text>
 
       <g>
-        {strokes.map((stroke, index) => <g key={stroke.name}><rect x={graphX(stroke.from)} y={GRAPH.bottom + 6} width={graphX(180) - graphX(0)} height="20" fill={index % 2 ? '#132b31' : '#0e2228'} stroke="#1e3a42" /><text x={graphX(stroke.from + 90)} y={GRAPH.bottom + 20} fontSize="11" fill="#94a3b8" textAnchor="middle">{stroke.name}</text></g>)}
-        {windows.map(([from, to]) => <rect key={from} x={graphX(from)} y={GRAPH.top - 6} width={graphX(to) - graphX(from)} height={GRAPH.bottom - GRAPH.top + 6} fill="#2dd4bf" opacity=".12" />)}
-        <path d={`M${GRAPH.left} ${GRAPH.bottom}H${GRAPH.right}`} stroke="#64748b" />
-        <polyline points={curve} fill="none" stroke="#2dd4bf" strokeWidth="2.5" />
-        <path d={`M${graphX(crank)} ${GRAPH.top - 8}V${GRAPH.bottom}`} stroke="#f8fafc" strokeWidth="2" />
-        <circle cx={graphX(crank)} cy={graphY(lift)} r="5" fill={open ? '#f59e0b' : '#94a3b8'} stroke="#f8fafc" />
-        <text x={GRAPH.left - 8} y={graphY(profile.lift) + 4} fontSize="11" fill="#94a3b8" textAnchor="end">lift</text>
-        <text x={graphX(PEAK_CRANK)} y={GRAPH.top - 12} fontSize="11" fill="#99f6e4" textAnchor="middle">valve open: {profile.durationCrank}° of crank</text>
-        <text x={GRAPH.left} y={GRAPH.bottom + 38} fontSize="11" fill="#94a3b8">0°</text>
-        <text x={GRAPH.right} y={GRAPH.bottom + 38} fontSize="11" fill="#94a3b8" textAnchor="end">720°</text>
+        {strokes.map((stroke, index) => <g key={stroke.name}><rect x={graphX(stroke.from)} y={GRAPH.bottom + 6} width={graphX(180) - graphX(0)} height="20" fill={index % 2 ? 'var(--color-raised)' : 'var(--color-inset)'} stroke="var(--color-outline-soft)" /><text x={graphX(stroke.from + 90)} y={GRAPH.bottom + 20} fontSize="11" fill="var(--color-slate-400)" textAnchor="middle">{stroke.name}</text></g>)}
+        {windows.map(([from, to]) => <rect key={from} x={graphX(from)} y={GRAPH.top - 6} width={graphX(to) - graphX(from)} height={GRAPH.bottom - GRAPH.top + 6} fill="var(--color-teal-400)" opacity=".12" />)}
+        <path d={`M${GRAPH.left} ${GRAPH.bottom}H${GRAPH.right}`} stroke="var(--color-slate-500)" />
+        <polyline points={curve} fill="none" stroke="var(--color-teal-400)" strokeWidth="2.5" />
+        <path d={`M${graphX(crank)} ${GRAPH.top - 8}V${GRAPH.bottom}`} stroke="var(--color-slate-50)" strokeWidth="2" />
+        <circle cx={graphX(crank)} cy={graphY(lift)} r="5" fill={open ? 'var(--color-amber-500)' : 'var(--color-slate-400)'} stroke="var(--color-slate-50)" />
+        <text x={GRAPH.left - 8} y={graphY(profile.lift) + 4} fontSize="11" fill="var(--color-slate-400)" textAnchor="end">lift</text>
+        <text x={graphX(PEAK_CRANK)} y={GRAPH.top - 12} fontSize="11" fill="var(--color-teal-200)" textAnchor="middle">valve open: {profile.durationCrank}° of crank</text>
+        <text x={GRAPH.left} y={GRAPH.bottom + 38} fontSize="11" fill="var(--color-slate-400)">0°</text>
+        <text x={GRAPH.right} y={GRAPH.bottom + 38} fontSize="11" fill="var(--color-slate-400)" textAnchor="end">720°</text>
       </g>
     </svg>
     <input aria-label="Crank angle" className="mt-1 h-11 w-full accent-teal-400" type="range" min="0" max="719" value={crank} onChange={(event) => setCrank(Number(event.target.value))} />

@@ -12,13 +12,14 @@ import { loadProductionData } from './data/loadProductionData';
 import { modelRegistry, modelsById, modelsByLabel } from './data/modelRegistry';
 import { resolveLearn } from './routes/route.mjs';
 import { navigate, useRoute } from './routes/useRoute';
+import { useTheme } from './theme/useTheme';
 
 const requestedModelName = () => modelsById[new URLSearchParams(location.search).get('model') || '']?.label;
 
 export default function App() {
   const route = useRoute();
   const activeView: AppScreen = route.view;
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
+  const { theme, toggle: toggleTheme } = useTheme();
   const [isInfoModalOpen, setIsInfoModalOpen] = useState<boolean>(false);
   const [activeModelName, setActiveModelName] = useState<string>(() => requestedModelName() || 'Detailed operating cylinder');
   const [isExploreViewerOpen, setIsExploreViewerOpen] = useState<boolean>(() => Boolean(requestedModelName()));
@@ -45,15 +46,6 @@ export default function App() {
       });
     return () => { current = false; };
   }, [loadAttempt]);
-
-  // Sync dark class on document element
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
 
   // Escape exits the in-app full-page layout. Browser fullscreen has its own native Escape handling.
   useEffect(() => {
@@ -95,7 +87,7 @@ export default function App() {
   const isLessonStepOpen = Boolean(resolveLearn(tracks, route).lesson);
 
   const curriculumState = loadError ? (
-    <div className="flex h-full items-center justify-center bg-[#061014] p-6 text-slate-200">
+    <div className="flex h-full items-center justify-center bg-canvas p-6 text-slate-200">
       <div className="max-w-sm rounded-2xl border border-rose-500/30 bg-rose-950/20 p-5 text-center">
         <AlertTriangle className="mx-auto h-7 w-7 text-rose-300" />
         <h2 className="mt-3 font-bold text-white">Curriculum unavailable</h2>
@@ -104,7 +96,7 @@ export default function App() {
       </div>
     </div>
   ) : (
-    <div className="flex h-full items-center justify-center bg-[#061014] text-teal-300"><LoaderCircle className="mr-2 h-5 w-5 animate-spin" /><span className="text-sm">Loading published curriculum…</span></div>
+    <div className="flex h-full items-center justify-center bg-canvas text-teal-300"><LoaderCircle className="mr-2 h-5 w-5 animate-spin" /><span className="text-sm">Loading published curriculum…</span></div>
   );
 
   return (
@@ -112,8 +104,8 @@ export default function App() {
       <AppShell
         activeView={activeView}
         onViewChange={handleViewChange}
-        isDarkMode={isDarkMode}
-        onToggleTheme={() => setIsDarkMode(!isDarkMode)}
+        theme={theme}
+        onToggleTheme={toggleTheme}
         subtitle={getHeaderSubtitle()}
         onOpenInfoModal={() => setIsInfoModalOpen(true)}
         activeModelName={activeView === 'explore' && !isExploreViewerOpen ? 'Choose a 3D study' : activeModelName}

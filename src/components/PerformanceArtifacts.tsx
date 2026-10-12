@@ -8,7 +8,7 @@ import { cylinderDisplacement, frictionHorsepower, indicatedHorsepower, pistonAr
  * "air available" figure is a teaching quantity, not a prediction of any engine's power.
  */
 
-const panel = 'rounded-xl border border-teal-500/20 bg-[#061418] p-3 text-slate-100';
+const panel = 'rounded-xl border border-teal-500/20 bg-inset p-3 text-slate-100';
 const button = 'min-h-11 rounded-lg border border-slate-700 bg-slate-900/70 px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-teal-400';
 
 type Conditions = { altitudeFt: number; temperatureOffsetC: number; relativeHumidityPct: number };

@@ -25,6 +25,9 @@ export default defineConfig({
   use: {
     baseURL: 'http://localhost:4173',
     channel,
+    // The app follows the device's colour scheme, and Playwright's own default is light. Most of this suite was written against the dark
+    // look, so it runs dark; the light look is covered by the sweep in accessibility.spec.ts and by theme.spec.ts.
+    colorScheme: 'dark',
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     launchOptions: {

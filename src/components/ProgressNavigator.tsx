@@ -105,7 +105,7 @@ export const ProgressSheet: React.FC<ProgressSheetProps> = ({ noun, heading, ite
         aria-modal="true"
         aria-labelledby={headingId}
         onKeyDown={onKeyDown}
-        className="flex max-h-[75dvh] w-full max-w-md flex-col overflow-hidden rounded-2xl border border-teal-500/30 bg-[#09191f] text-slate-200 shadow-2xl"
+        className="flex max-h-[75dvh] w-full max-w-md flex-col overflow-hidden rounded-2xl border border-teal-500/30 bg-panel text-slate-200 shadow-2xl"
       >
         {identity ? (
           <div className="border-b border-slate-800 pb-3 pl-4 pr-1 pt-3">

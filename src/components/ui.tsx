@@ -46,7 +46,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>((
     ? 'border-transparent bg-teal-400 text-slate-950'
     : active
       ? 'border-teal-300 bg-teal-400/20 text-teal-200'
-      : 'border-slate-600/70 bg-[#07161b]/90 text-slate-200 group-hover:border-teal-400';
+      : 'border-slate-600/70 bg-panel/90 text-slate-200 group-hover:border-teal-400';
   return (
     <button ref={ref} type="button" aria-label={label} aria-pressed={active} {...rest} className={`group flex h-11 w-11 shrink-0 items-center justify-center outline-none ${className}`}>
       <span className={`flex ${circleSize[size]} items-center justify-center border shadow-lg transition-colors group-focus-visible:ring-2 group-focus-visible:ring-teal-300 ${shape === 'round' ? 'rounded-full' : 'rounded-xl'} ${look}`}>{children}</span>
@@ -96,7 +96,7 @@ export const CardRow: React.FC<{ onClick: () => void; image: React.ReactNode; im
   <button
     type="button"
     onClick={onClick}
-    className={`group w-full p-3.5 rounded-2xl bg-[#09181e]/90 border border-white/5 hover:border-teal-500/40 shadow-md cursor-pointer text-left transition-all hover:scale-[1.005] active:scale-[0.99] flex flex-wrap ${align === 'start' ? 'items-start' : 'items-center'} justify-between gap-x-3 gap-y-2`}
+    className={`group w-full p-3.5 rounded-2xl bg-panel/90 border border-white/5 hover:border-teal-500/40 shadow-md cursor-pointer text-left transition-all hover:scale-[1.005] active:scale-[0.99] flex flex-wrap ${align === 'start' ? 'items-start' : 'items-center'} justify-between gap-x-3 gap-y-2`}
   >
     {imageSide === 'start' && image}
     <div className="flex-1 min-w-0">{children}</div>

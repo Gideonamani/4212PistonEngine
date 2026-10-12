@@ -28,7 +28,7 @@ interface LessonStepViewerProps {
   onComplete?: () => void;
 }
 
-const CARD_LOOK = 'rounded-2xl border border-teal-500/20 bg-[#09191f]/90 shadow-xl';
+const CARD_LOOK = 'rounded-2xl border border-teal-500/20 bg-panel/90 shadow-xl';
 
 export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
   lesson,
@@ -132,7 +132,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
   // switches. Stacked, the wrappers marked `contents` vanish and the page is the single column it always was. Side by side, the page
   // becomes a grid: the viewer in the left column (pinned while you scroll), the back bar, progress bar and text in the right.
   return (
-    <div ref={viewerRef} className={`relative flex h-full w-full flex-col overflow-y-auto bg-[#061014] text-slate-100 ${coversPage ? 'fixed inset-0 z-[100] h-[100dvh]' : ''}`}>
+    <div ref={viewerRef} className={`relative flex h-full w-full flex-col overflow-y-auto bg-canvas text-slate-100 ${coversPage ? 'fixed inset-0 z-[100] h-[100dvh]' : ''}`}>
       <div className={side ? `mx-auto grid w-full max-w-6xl flex-1 content-start items-start gap-x-4 px-4 pb-4 ${twoColumns ? 'grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] grid-rows-[auto_auto_1fr]' : 'grid-cols-1'}` : 'contents'}>
         {/* Top Navigation Bar */}
         <div className={`flex items-center justify-between ${side ? `pt-3 pb-1 ${twoColumns ? 'col-start-2 row-start-1' : ''}` : 'px-5 pt-3 pb-1'}`}>
