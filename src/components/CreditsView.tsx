@@ -17,7 +17,7 @@ const goBack = () => {
 
 /** Who made the pictures in the app and under what licence. Reached from the About dialog and the foot of the course list. */
 export const CreditsView: React.FC = () => (
-  <div className="relative h-full w-full overflow-y-auto bg-[#061014] pb-24 text-slate-100">
+  <div className="relative h-full w-full overflow-y-auto bg-canvas pb-24 text-slate-100">
     <div className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 pb-4 pt-3">
       <div><BackLink label="Back" ariaLabel="Back" onClick={goBack} /></div>
 
@@ -31,7 +31,7 @@ export const CreditsView: React.FC = () => (
       </section>
 
       {credits.groups.map((group) => (
-        <section key={group.license} aria-labelledby={`licence-${group.license.replace(/\W+/g, '-')}`} className="rounded-2xl border border-white/5 bg-[#09181e]/90 p-3.5 shadow-md">
+        <section key={group.license} aria-labelledby={`licence-${group.license.replace(/\W+/g, '-')}`} className="rounded-2xl border border-white/5 bg-panel/90 p-3.5 shadow-md">
           <h3 id={`licence-${group.license.replace(/\W+/g, '-')}`} className="text-sm font-bold text-white">{group.license}</h3>
           {group.licenseLink && <p className="mt-0.5 text-[11px]"><a href={group.licenseLink} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 font-medium text-teal-300 hover:text-teal-200">Licence terms<ExternalLink className="h-3 w-3" aria-hidden="true" /></a></p>}
           <ul className="mt-2 flex flex-col divide-y divide-white/5">

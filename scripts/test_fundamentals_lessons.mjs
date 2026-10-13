@@ -8,16 +8,19 @@ const pack = JSON.parse(fs.readFileSync(new URL('../web/fundamentals-lessons.jso
 assert.equal(pack.schema, LESSON_PACK_SCHEMA);
 assert.equal(pack.draftStatus, undefined, 'draftStatus is retired: review state lives on each lesson');
 assert.ok(pack.lessons.every(lesson => lesson.reviewStatus === 'unreviewed'), 'every lesson waits for instructor review');
-assert.deepEqual(pack.sources.map(source => source.tier), [1, 2, 3, 4, 5, 5, 3, 4, 5, 5]);
+// The first ten sources are the original registry; each reworked lesson has since added its own at the end.
+assert.deepEqual(pack.sources.slice(0, 10).map(source => source.tier), [1, 2, 3, 4, 5, 5, 3, 4, 5, 5]);
+assert.ok(pack.sources.every(source => Number.isInteger(source.tier) && source.tier >= 1 && source.tier <= 6), 'every source has a tier from 1 to 6');
+assert.equal(new Set(pack.sources.map(source => source.id)).size, pack.sources.length, 'source ids are unique');
 for (const source of pack.sources.filter(source => source.tier === 5)) {
   assert.match(source.applicability, /Licence: .*accessed \d+ \w+ 2026/, `${source.id}: tier 5 sources record licence and access date`);
   assert.match(source.url, /^https:\/\//);
 }
-// The parked ignition and aspiration drafts were folded into lessons 8, 10 and 11 and retired; the unlisted lessons left are the two deep dives. Only listed lessons carry a curriculum number.
+// The parked ignition and aspiration drafts were folded into lessons 9, 10 and 11 and retired; the unlisted lessons left are the two deep dives. Only listed lessons carry a curriculum number.
 const listed = pack.lessons.filter(lesson => lesson.listed !== false);
 const parked = pack.lessons.filter(lesson => lesson.listed === false);
 assert.deepEqual(listed.map(lesson => lesson.sequenceNumber), [4, 5, 6, 7]);
-assert.deepEqual(listed.map(lesson => lesson.id), ['thermodynamic-cycles', 'classification', 'parts-construction', 'cooling-methods']);
+assert.deepEqual(listed.map(lesson => lesson.id), ['thermodynamic-cycles', 'classification', 'cooling-methods', 'parts-construction']);
 assert.deepEqual(parked.map(lesson => lesson.id), ['two-stroke-cycle', 'rotary-cycle']);
 // Unlisted lessons are either deep dives (linked from a step's deepDiveLinks) or parked drafts waiting for a later lesson.
 const linked = new Set(pack.lessons.flatMap(lesson => lesson.steps.flatMap(step => step.deepDiveLinks || [])));
@@ -49,12 +52,13 @@ for (const lesson of pack.lessons) {
   }
 }
 
-assert.equal(pack.checks.length, 25);
-const expectedChecks = { 'thermodynamic-cycles': 7, classification: 5, 'parts-construction': 8, 'two-stroke-cycle': 2, 'rotary-cycle': 1, 'cooling-methods': 2 };
+// Lessons 4 to 7 were reworked against their outcomes (docs/lesson-coverage-audit-2026-10-12.md), which is why they have many more checks.
+const expectedChecks = { 'thermodynamic-cycles': 17, classification: 14, 'parts-construction': 18, 'two-stroke-cycle': 2, 'rotary-cycle': 1, 'cooling-methods': 11 };
+assert.equal(pack.checks.length, Object.values(expectedChecks).reduce((sum, count) => sum + count, 0));
 for (const lesson of pack.lessons) {
   assert.equal(pack.checks.filter(check => check.lessonId === lesson.id).length, expectedChecks[lesson.id], lesson.id);
 }
 
 assert.deepEqual(validateLessonPack(pack), []);
-console.log('Fundamentals lesson pack is valid (lessons 4, 5, 6, 7 listed; two deep dives; 25 checks; deep dives linked; sourced media plans)');
+console.log('Fundamentals lesson pack is valid (lessons 4, 5, 6, 7 listed; two deep dives; 63 checks; deep dives linked; sourced media plans)');
 

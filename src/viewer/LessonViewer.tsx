@@ -46,7 +46,7 @@ export default function LessonViewer({ modelId, view, immersive = false, layout 
   const canvasSize = side ? 'min-h-40 flex-1' : immersive ? 'lesson-viewer-stacked-immersive' : 'lesson-viewer-stacked';
   const credit = definition.sourceLabel ? `${definition.sourceLabel} · ${definition.license}` : definition.label;
 
-  return <section className={`overflow-hidden rounded-xl border border-teal-400/20 bg-[#071418] text-slate-100 shadow-inner ${side ? 'flex h-full flex-col' : ''}`} aria-label={`Interactive 3D model of the ${definition.label}`}>
+  return <section className={`overflow-hidden rounded-xl border border-teal-400/20 stay-dark bg-[#071418] text-slate-100 shadow-inner ${side ? 'flex h-full flex-col' : ''}`} aria-label={`Interactive 3D model of the ${definition.label}`}>
     <div className={`relative ${canvasSize}`}>
       <ModelCanvas viewer={viewer} />
       <div className="absolute right-1 top-1 z-10 flex items-center">

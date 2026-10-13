@@ -12,7 +12,7 @@
       "tier": 1,
       "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
       "path": "Notes/amt_powerplant_handbook 2023.pdf",
-      "applicability": "Primary source for the general principles in this course. PDF page locators are used in step notes."
+      "applicability": "Primary source for valve construction, the valve-operating mechanism, hydraulic tappets, valve clearance and valve inspection. PDF page locators are used in step notes. Used in lesson 17 for: reduction gearing and propeller tip speed (PDF p. 44); general aviation engines (PDF p. 22); and the light-sport aircraft and engines chapter (PDF pp. 434 to 458), including the HKS 700T, Jabiru and Continental O-200 data (PDF pp. 442 to 445). Used in lesson 18 for: the four-stroke cycle and valve timing (PDF pp. 46 and 47); the crankshaft, materials and valve train (PDF pp. 26 to 42); exhaust-system inspection (PDF pp. 151 and 152); disassembly practice and the defect terms (PDF pp. 370 and 371); valve and valve-spring inspection (PDF pp. 379 to 381); and cylinder removal and installation (PDF pp. 409 to 411)."
     },
     {
       "id": "easa-module16",
@@ -26,7 +26,7 @@
       "tier": 3,
       "title": "Continental GTSIO-520 Series Overhaul Manual X30045A",
       "path": "Notes/gtsio520_series.pdf",
-      "applicability": "Configuration-specific source for the course reference engine. Chapter B (table of limits, March 1981) covers the series; Chapter C-3 is the difference data for the -H. Variant applicability must be checked before using a limit, dimension or maintenance instruction; always use the current data for the engine in front of you."
+      "applicability": "Configuration-specific source for the course reference engine: its valve mechanism, camshaft, hydraulic tappets, inspection, overhaul replacement list and spring test data. The Chapter B table of limits is dated March 1981 and covers the series; Chapter C-3 (the -H) lists no different valve spring. Always use the current data for the engine in front of you. Used in lesson 16 for: the table of limits for spring tests and torque values (PDF pp. 95 and 100) and the -H spark plug gap, oil grades, sump capacity and fuel grade (PDF pp. 152 to 153). Used in lesson 18 for: the repair and testing of hydraulic valve tappets (Section XIII, PDF pp. 84 and 85), the special tools (PDF p. 51) and the valve spring test data (PDF p. 95). It is the only maintenance manual the course holds; the O-360 and the other engines have their own manuals, which the lesson does not reproduce."
     },
     {
       "id": "course-deck-2026-05",
@@ -41,6 +41,34 @@
       "title": "AMT 04212 practical worksheets, 2025-2026 (student versions): Practical 1 External Component Identification and Practical 2 Internal Component Identification",
       "path": "Assessments/AMT04212 - 2025-2026 - Practical 1 - External Component ID [Students].docx; Assessments/AMT04212 - 2025-2026 - Practical 2 - Internal Component ID Worksheet [Students].docx",
       "applicability": "The instructor's own worksheets. They say what each practical session asks the student to do and record; they carry no technical evidence and no answers, and the lesson does not supply any."
+    },
+    {
+      "id": "tcaa-airworthiness-regs",
+      "tier": 1,
+      "title": "The Civil Aviation (Airworthiness) Regulations, GN 57 of 2017, Revised Edition 2026 (Tanzania Civil Aviation Authority)",
+      "url": "https://www.tcaa.go.tz/uploads/documents/en-1789480894-GP%20GN.%2057%20of%202017%20CIVIL%20AVIATION%20(AIRWORTHINESS)%20REGULATIONS%202017-TGPA.pdf",
+      "applicability": "The Tanzanian regulation of airworthiness, revised up to 31 July 2026. Regulation 2 defines inspection, maintenance, overhaul, repair, preventive maintenance and powerplant; 21 puts the duty to maintain on the owner or operator and describes the certificate of release to service; 22(2) makes an aircraft not maintained airworthy ineligible for operation; 26 says who may perform maintenance; 29 limits preventive maintenance and lists replacing or cleaning spark plugs and setting the gap and cleaning fuel and oil strainers; 30 sets the performance rules for maintenance (the current manufacturer's manual or instructions for continued airworthiness); 41 and 42 require the engine log book and the maintenance record entries. Read from the TCAA website, accessed 13 October 2026. The TCAA states that its published copy is not authoritative; the Government Printer's version is."
+    },
+    {
+      "id": "tcaa-licensing-regs",
+      "tier": 1,
+      "title": "The Civil Aviation (Personnel Licensing) Regulations, GN 71 of 2017, Revised Edition 2026 (Tanzania Civil Aviation Authority)",
+      "url": "https://www.tcaa.go.tz/uploads/documents/en-1789483203-GP.%20GN.%2071%20of%202017%20CIVIL%20AVIATION%20(PERSONNEL%20LICENSING)%20REGULATIONS,%202017-TGPA.pdf",
+      "applicability": "Revised up to 31 July 2026. Regulation 127 limits the exercise of the privileges of an aircraft maintenance engineer licence to what is entered on the licence, to a holder familiar with the relevant maintenance and airworthiness information, and to a holder with at least six months of experience in the preceding 24 months; regulation 128 sets the privileges and limitations of the holder, including that an engine rating allows engine and propeller inspection and approval for return to service. Read from the TCAA website, accessed 13 October 2026. The TCAA states that its published copy is not authoritative; the Government Printer's version is."
+    },
+    {
+      "id": "tcaa-ga-operations-regs",
+      "tier": 1,
+      "title": "The Civil Aviation (Operation of Aircraft - General Aviation) Regulations, GN 9 of 2024 (Tanzania Civil Aviation Authority)",
+      "url": "https://www.tcaa.go.tz/uploads/documents/en-1789477836-GP%20GN.%209%20of%202024%20CIVIL%20AVIATION%20(OPERATION%20OF%20AIRCRAFT-GENERAL%20AVIATION)%20REGULATIONS,%202024.pdf",
+      "applicability": "Regulation 36 makes the owner or lessee of an aeroplane responsible for keeping it airworthy and requires its maintenance, with its engine and propeller, to be done by an approved maintenance organisation or by a qualified person under authorised procedures with a maintenance release; regulation 39 says who issues the maintenance release. The regulations contain no wording on light-sport or recreational aircraft. Read from the TCAA website, accessed 13 October 2026. The TCAA states that its published copy is not authoritative."
+    },
+    {
+      "id": "instructor-practical-rigs",
+      "tier": 4,
+      "title": "The course instructor's list of the four practical working areas and which practical belongs to each, 13 October 2026, with the instructor's teaching notes (Observation from teaching AMT04212 in 20252026)",
+      "path": "Supplied in chat by the course instructor on 13 October 2026; Notes/Observation from teaching AMT04212 in 20252026.txt",
+      "applicability": "The instructor's own statement of what equipment the course has and where each practical takes place: I, the motorised engine mechanism, in the HighTech Powerplant Lab (a cut-away O-360); II, the internal disassembled components, in the Hangar (two disassembled engines in the Engine Room, one with a four-throw and one with a six-throw crankshaft); III, the external assembled components, in the Aviation Complex Powerplant Room (four assembled GTSIO-520 engines) and the assembled O-360 in the Hangar; IV, the engine mounted on an aircraft, a Cessna 182 outside the Hangar. It carries no technical evidence. It does not say where the Practical C maintenance tasks are done, or what the assessor looks for."
     }
   ],
   "lessons": [
@@ -50,11 +78,32 @@
       "sequenceNumber": 16,
       "title": "Maintenance & Servicing",
       "objective": "Describe scheduled and unscheduled maintenance; test compression and find where a cylinder leaks; list the steps of an overhaul and the care taken in taking an engine apart and putting a cylinder back; and set out how an engine is preserved, stored and returned to service.",
+      "purpose": "Explain how engineers preserve the engine's performance, reliability and airworthiness.",
+      "outcomes": [
+        "Explain the purpose of aircraft piston-engine maintenance.",
+        "Distinguish servicing, inspection, maintenance, troubleshooting, repair and overhaul.",
+        "Distinguish scheduled from unscheduled maintenance.",
+        "Explain why aircraft maintenance must follow appropriate manufacturer and approved maintenance data.",
+        "Explain the importance of prescribed limits and tolerances.",
+        "Describe common external engine inspection activities.",
+        "Identify evidence of leaks, corrosion, wear, overheating, looseness and physical damage.",
+        "Explain the purpose of engine compression testing.",
+        "Explain the maintenance importance of engine oil, oil filters and screens.",
+        "Describe introductory principles of spark-plug servicing.",
+        "Explain the purpose of valve-train inspection.",
+        "Explain why hydraulic tappets require correct condition and servicing.",
+        "Explain the importance of valve-spring condition.",
+        "Explain why exhaust systems require regular inspection and maintenance.",
+        "Explain the importance of correct fluid servicing.",
+        "Explain why maintenance actions must be correctly recorded.",
+        "Relate preventive maintenance to continued engine reliability and airworthiness."
+      ],
+      "syllabusNote": "The corresponding practical competencies are completed in Lesson 18 rather than treated as theory only.",
       "reviewStatus": "unreviewed",
       "models": [],
       "listed": true,
       "scheduledDay": 6,
-      "completionCriteria": "Explain what scheduled and unscheduled maintenance are, run and read a differential compression test, put the ten overhaul steps in order, say how a cylinder is removed and refitted, and plan the storage, preservation and return to service of an engine.",
+      "completionCriteria": "Explain why an engine is maintained and who is responsible, tell inspection, maintenance, repair, overhaul, preventive maintenance and servicing apart, say why approved data and limits must be used and where to find them, and describe an outside inspection and the evidence it shows; run and read a differential compression test; explain the servicing of oil and filters, spark plugs and other fluids, and point to where the valve-train and exhaust inspections are taught; put the ten overhaul steps in order, say how a cylinder is removed and refitted, and plan the storage, preservation and return to service of an engine; and say what must be written in the engine record after the work.",
       "steps": [
         {
           "type": "text",
@@ -68,6 +117,95 @@
             "mode": "none",
             "status": "not-needed",
             "rationale": "A framing step: two kinds of maintenance and the usual causes of defects."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Why an engine is maintained",
+          "prompt": "Maintenance keeps an engine safe to fly and able to give the power it was certified to give. Its aims are airworthiness, reliability and performance.\n\nAn engine is not reliable by design alone. The manufacturer builds in reliability and durability and recommends a time between overhauls, but the handbook says continued reliability is determined by the maintenance, overhaul and operating personnel.\n\nPreventive maintenance is the cheapest way to keep it. Regular checks, lubrication, cleaning and replacement on schedule find the oil leak, the worn plug or the low compression before they become a failure in flight.\n\nThe Tanzanian regulations put the duty on the owner or operator: they must maintain the aircraft in an airworthy condition, and an aircraft that is not may not be operated until it is restored.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 23 to 24 (reliability and durability; continued reliability is determined by maintenance, overhaul and operating personnel; the manufacturer specifies a recommended TBO) and the Tanzania Civil Aviation (Airworthiness) Regulations, GN 57 of 2017, Revised Edition 2026, regulation 21(1) (an owner or operator of an aircraft shall maintain the aircraft in an airworthy condition) and 22(2) (a failure to maintain an aircraft in an airworthy condition renders it ineligible for operation until restored). The three aims are the lesson's summary of the instructor's outcomes 1 and 17.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "tcaa-airworthiness-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Six words, six jobs",
+          "prompt": "Technicians use these words exactly, and the records depend on them.\n\nInspection: examining an aircraft or component to establish that it conforms to a standard approved by the Authority.\n\nMaintenance: the tasks needed to ensure continuing airworthiness, including overhaul, inspection, replacement, rectifying defects, and modifications or repairs.\n\nRepair: restoring to an airworthy condition after damage or wear.\n\nOverhaul: restoring using acceptable methods, including disassembly, cleaning, inspection, repair as necessary and reassembly.\n\nPreventive maintenance: simple or minor preservation and replacing small standard parts.\n\nServicing is supplying the engine with oil, fuel and filters. Troubleshooting is working back from a symptom to its cause, as in the last lesson.\n\nChoose the word that fits the job.",
+          "note": "Inspection, maintenance, repair, overhaul and preventive maintenance as the Tanzania Civil Aviation (Airworthiness) Regulations, GN 57 of 2017, Revised Edition 2026 define them, regulation 2. Servicing and troubleshooting are the course's working definitions: servicing from the Terminologies lesson, troubleshooting from FAA-H-8083-32B (2023), PDF p. 403 (a systematic analysis of the symptoms that indicate engine malfunction). The wording above is shortened from the regulation.",
+          "sourceRefs": [
+            "tcaa-airworthiness-regs",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Follow the approved data",
+          "prompt": "An engine is not maintained from memory or from a general book. The person doing the work must use the methods, techniques and practices in the current manufacturer's maintenance manual or instructions for continued airworthiness. If those are not available, they use methods the Authority has approved.\n\nIf the manufacturer recommends special tools or test equipment, they must be used, or an equivalent the Authority accepts.\n\nThe work must leave the engine at least equal to its original condition: in strength, resistance to vibration and deterioration, and the other qualities that affect airworthiness.\n\nThe handbook and this course teach the principles. The data for the engine in front of you gives the figures. A slide, an old manual or the manual of another variant is not approved data.",
+          "note": "Documented from the Tanzania Civil Aviation (Airworthiness) Regulations, GN 57 of 2017, Revised Edition 2026, regulation 30(1) to (3) (a person who performs maintenance shall use the methods, techniques and practices prescribed in the current manufacturer's maintenance manual or instructions for continued airworthiness, or methods approved by the Authority where the manufacturer's documents were not available; the special equipment the manufacturer recommends, or its equivalent; the work to be at least equal to the original or properly altered condition) and FAA-H-8083-32B (2023), PDF p. 369 (the technician should follow the manufacturer's manuals and information). The remark about slides and other variants is the lesson's, consistent with the Terminologies lesson on the -H variant.",
+          "sourceRefs": [
+            "tcaa-airworthiness-regs",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Limits and tolerances",
+          "prompt": "Every engine manual gives numbers that a part must stay within. A tolerance is the variation allowed from a nominal figure. A service limit is the most wear a part may have, or the least strength, and still be used.\n\nExamples from the GTSIO-520 manuals: a new inner valve spring pushes back 78 to 88 lb at 1.329 in, and it is not reused if it gives less than 73 lb. The spark plug gap is 0.017 to 0.018 in. The cylinder hold-down nuts are torqued to 490 to 510 inch-pounds.\n\nA part inside its limits goes back on. A part outside them is repaired, if the manual allows, or replaced.\n\nMeasure with the tools the manual names.\n\nA reading that is only just inside a limit is worth noting, because the trend over several checks shows wear building up.",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 95 (page B-4, spring test data: inner spring 78 to 88 lb new and 73 lb serviceable limit at 1.329 in), PDF p. 100 (the torque table: cylinder hold-down nuts, 7/16-20, 490 to 510 inch-pounds, 40.8 to 42.5 foot-pounds) and PDF p. 153 (page C-3-3, spark plug gap 0.017 to 0.018 in) and FAA-H-8083-32B (2023), PDF p. 369 (each manufacturer provides very specific tolerances to which the parts must conform; the manufacturer publishes a new minimum and serviceable dimension for critical parts). The figures are teaching data from a 1980/1981 manual edition, not a maintenance instruction. The tools named by the manual: the Tanzanian regulation 30(1)(d) requires the tools, equipment and test apparatus necessary to complete the work to accepted industry practice.",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "faa-powerplant-2023",
+            "tcaa-airworthiness-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "The outside inspection",
+          "prompt": "A great deal of an engine's health can be read from outside, with the cowling off and a good light. An external inspection looks at:\n\nLeaks: oil, fuel and coolant at joints, hoses, gaskets and fittings.\n\nSecurity: nuts, bolts, clamps and hoses, the engine mount, the propeller, and the safety wire and cotter pins.\n\nInduction and exhaust: connections, clamps, gaskets and cracks.\n\nControls: throttle, mixture and carburettor heat, with free and full travel.\n\nThe propeller: splits and chips.\n\nBaffles, cowling and fins: damage, blockage and missing parts.\n\nThe ignition harness and wiring: chafing, cracks and loose terminals.\n\nAlways work through the engine in the same order, so that nothing is skipped.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 455 (a light-sport engine preflight list: inspect the engine and gearbox for oil leaks; loose or missing nuts, bolts and screws; security of the engine mounting; the air filter and intake silencer; the spark plug connectors; the propeller for splits and chips) and the opening step of this lesson (the daily and preflight checks: oil level, leaks, visible damage, propeller security, induction and exhaust connections, and linkages). Exhaust leaks and inspection: PDF p. 150. The list is a general example; the aircraft's own maintenance manual gives the actual list.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Reading the evidence",
+          "prompt": "The handbook has exact words for what an inspector sees. Use them, because the record must.\n\nCorrosion: loss of metal by chemical action. Rust is an example.\n\nChafing: wear from two parts rubbing under light pressure.\n\nBurning: surface damage from excessive heat, from a poor fit, poor lubrication or running too hot. It shows as discoloured or blistered metal and paint.\n\nCrack: a partial separation of material, from vibration, overloading or fatigue.\n\nDent, nick and gouge: damage from blows or careless handling.\n\nFretting and scoring: wear from small movements, or from particles between parts.\n\nA leak shows as a wet streak, or a flat grey or sooty black one at an exhaust joint. Looseness shows as movement or a fastener out of its safety wire.\n\nEach sign is evidence to record and follow up.",
+          "note": "Defect terms (corrosion, chafing, burning, crack, dent, nick, gouge, fretting and scoring) from FAA-H-8083-32B (2023), PDF p. 371 (terms used to describe defects detected during inspection). Exhaust leaks showing as flat grey or sooty black streaks and black soot around a failed gasket: PDF p. 150 and the Induction and Exhaust lesson. The description of looseness and wet streaks is the lesson's wording.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -101,6 +239,67 @@
             "mode": "none",
             "status": "not-needed",
             "rationale": "Three leak paths and the three places to listen; the learner matches them in a check."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Oil, filters and screens",
+          "prompt": "Engine oil lubricates, cools, seals and cleans, and it carries away evidence of wear. So it is changed on a schedule and read as a record.\n\nThe oil filter removes solid particles before they reach the bearings. Aircraft filters are of four types: screen, Cuno, canister and spin-on, and the full-flow spin-on is the most widely used. A screen is cleaned at regular intervals, and a paper element is replaced. A bypass valve lets unfiltered oil through if the filter clogs, since dirty oil is better than no lubrication.\n\nAt an oil change: drain the oil, strain it or look at it for metal, examine the filter element and screens for metal particles, then refill with the right oil to the right level.\n\nMetal in the oil or on the filter is a warning, and if it is found an overhaul may be indicated.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 252 to 253 (the engine oil pump and filter; the four filter types: screen, Cuno, canister and spin-on; full-flow spin-on filters are the most widely used; the bypass valve; dirty oil in an engine is better than no lubrication; screens cleaned at regular intervals), PDF p. 370 (drain the oil, strain it through a clean cloth and check the cloth and the filter for metal particles) and PDF pp. 404 to 405 (metal particles in the sump: overhaul indicated). Cleaning fuel and oil strainers is preventive maintenance under the Tanzania Civil Aviation (Airworthiness) Regulations, GN 57 of 2017, Revised Edition 2026, regulation 29(w).",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "tcaa-airworthiness-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Servicing spark plugs",
+          "prompt": "Spark plugs are removed for servicing at the manufacturer's intervals, and sooner if a fault is traced to one.\n\nHandle each plug alone, and keep it in a tray labelled by cylinder. A plug dropped on a hard floor is discarded: the insulator may be cracked where it cannot be seen.\n\nInspect first: the threads, the lead barrel for corrosion and cracks, and the firing end for cracked or chipped insulator and worn electrodes. Clean the plugs that pass, with a vibrator cleaner and an abrasive blast, never by soaking. Set the gap with a round wire gauge, since a flat gauge misreads, and test the plug under pressure. On the GTSIO-520-H the gap is 0.017 to 0.018 in.\n\nBefore fitting, clean the bushing and the seat. Use anti-seize sparingly, since graphite on the electrodes shorts the plug. Fit by hand, then torque as the manual says.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 194 to 197 (plugs removed at the manufacturer's intervals; handle individually; the tray; a dropped plug is discarded; visual inspection first; cleaning by vibrator cleaner and abrasive blast; do not soak in solvent; the plug tested under pressure; the gap checked with a round wire-thickness gauge, because a flat gauge gives an incorrect indication; graphite antiseize compound must not touch the electrodes; start the plug by hand, then torque to the specified value) and the GTSIO-520 overhaul manual, PDF p. 153 (spark plug gap 0.017 to 0.018 in). Under the Tanzania Civil Aviation (Airworthiness) Regulations, GN 57 of 2017, Revised Edition 2026, regulation 29(t), replacing or cleaning spark plugs and setting the gap is preventive maintenance.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul",
+            "tcaa-airworthiness-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "The right fluid, the right amount",
+          "prompt": "Servicing means giving the engine the right fluids, in the right amount, with nothing in them that should not be there.\n\nOil: use the grade the manufacturer gives. For the GTSIO-520-H that is SAE 50 above 40 °F, and 10W30 multigrade or SAE 30 below, with a sump capacity of 13 quarts. Check the level on the dipstick, a bayonet gauge, before flight. A new engine may carry a preservative oil that is removed at the first 25 hours, and until then only the oils the manufacturer allows may be added.\n\nFuel: use the grade the manual gives. The GTSIO-520-H takes 100LL (blue) or 100 (green) aviation gasoline, and a lower grade can cause detonation.\n\nA wrong fluid, a wrong amount or a contaminated one can ruin an engine, so note what was added.",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 152 (the -H: oil SAE No. 50 above 40 degrees F and 10W30 multi-viscosity or SAE No. 30 below; oil sump capacity 13 quarts; fuel, aviation grade, 100LL (blue) or 100 (green)) and FAA-H-8083-32B (2023), PDF p. 250 (preservative oil removed at the end of the first 25 hours of operation; use only the oils allowed while it is in the engine) and PDF p. 252 (the dipstick-type quantity gauge, often called a bayonet gauge). That a lower grade can cause detonation: the High compression and fuel step of Power Generation.",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Where the other inspections live",
+          "prompt": "Four more inspections belong to the lessons that taught the parts.\n\nThe valve train (lesson 8): valves are checked for a worn face and tip, stretch, burning and a thin margin. A spring that pushes back with less than its limit is not reused, and hydraulic tappets are checked for damaged faces and for a plunger that does not kick back.\n\nThe exhaust (lesson 11): clamps, welds and gaskets are checked for leaks and cracks, because an exhaust failure can mean carbon monoxide, power loss or fire.\n\nThe reasons are simple. A worn valve or weak spring loses compression. A failed tappet spoils the valve timing. A cracked exhaust is a safety hazard.\n\nThe practical sessions repeat these checks on real engines.",
+          "note": "Pointers to the Valve Operating lesson (inspecting a valve, checking a valve spring, the camshaft and tappets: FAA-H-8083-32B (2023), PDF pp. 379 to 384, and the GTSIO-520 overhaul manual, PDF pp. 66 to 67 and 95) and the Induction and Exhaust lesson (inspecting the exhaust: PDF pp. 149 to 151). The instructor's outcomes 11 to 14 for this lesson are taught there; this step only places them in the maintenance round.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -277,8 +476,23 @@
         },
         {
           "type": "text",
+          "title": "Write it down",
+          "prompt": "A job is not finished until it is recorded. The record is how the next technician, the owner and the Authority know the true condition of the engine.\n\nIn Tanzania each engine has its own log book, separate from the aircraft's. When the work has been done properly, the person who did it makes an entry saying what was done, or referring to the data they used; the engine's total time in service and its time since overhaul; the state of compliance with mandatory continuing airworthiness information such as airworthiness directives; and any modifications and repairs. The signature is the approval for return to service, for the work done and no more.\n\nEntries are made promptly, and log books are kept for two years after the engine is destroyed or withdrawn.\n\nIf it was not recorded, it cannot be shown to have been done.",
+          "note": "Documented from the Tanzania Civil Aviation (Airworthiness) Regulations, GN 57 of 2017, Revised Edition 2026, regulation 41 (a separate log book for each engine; entries made as soon as practicable after the occurrence, and not more than seven days after the expiry of the certificate of release to service; an entry on each occasion of maintenance, overhaul, repair, replacement, modification or inspection of the engine; kept for two years after the engine is destroyed or permanently withdrawn; a clear record of continued compliance with mandatory airworthiness requirements), regulation 42 (the maintenance record entry: a description of the work or a reference to data acceptable to the Authority; total time in service and time since overhaul; status of compliance with mandatory continuing airworthiness information; details of modifications and repairs; the signature approves return to service only for the work performed; a major repair is recorded on a prescribed form) and regulation 21(1)(c) to (d) (the certificate of release to service; open discrepancies listed). FAA-H-8083-32B (2023), PDF p. 369: complete records of the inspection process are kept with the engine records. The last sentence is the lesson's.",
+          "sourceRefs": [
+            "tcaa-airworthiness-regs",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
           "title": "Plan a job",
-          "prompt": "A six-cylinder engine is going to sit for four months while the aircraft is repaired, and you are told to make sure it comes out as good as it went in. Say in your own words which level of storage it needs, and why. Then list, in order, what you would do to the engine to preserve it, what you would do to the plugs and ports, what you would check and how often while it sits, and what you would do when it returns to service. Finish by naming the one thing you must never do to the crankshaft in storage, and why.",
+          "prompt": "A six-cylinder engine is going to sit for four months while the aircraft is repaired, and you are told to make sure it comes out as good as it went in. Say in your own words which level of storage it needs, and why.\n\nThen list, in order, what you would do to the engine to preserve it, what you would do to the plugs and ports, what you would check and how often while it sits, and what you would do when it returns to service. Say what you would write in the engine's log book, and whose data you would work to.\n\nFinish by naming the one thing you must never do to the crankshaft in storage, and why.",
           "note": "Completion step: the learner applies the storage and preservation sequence (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 345-348, and EASA Module 16, PDF pp. 323-327. A four-month storage is temporary or indefinite storage depending on whether it passes 90 days; the deck would call it medium term.",
           "sourceRefs": [
             "faa-powerplant-2023",
@@ -298,26 +512,55 @@
       "sequenceNumber": 17,
       "title": "Light Sport Aircraft",
       "objective": "Describe what makes an aircraft light-sport and why its engine must be light and reliable, name who may maintain and inspect these engines, recognise the common two-stroke and four-stroke light-sport engines, and carry out the basic checks and troubleshooting the handbook describes.",
+      "purpose": "Give students a glimpse of the wider world of piston-powered aviation and introduce regulatory awareness.",
+      "outcomes": [
+        "Explain broadly what is meant by light-sport and recreational aircraft.",
+        "Recognise that light aircraft may employ engines and installation philosophies different from conventional certified training aircraft.",
+        "Identify representative engines used in light and recreational aircraft.",
+        "Compare broad characteristics such as engine mass, cooling method, operating RPM, gearing and installation.",
+        "Explain why some light-aircraft engines operate at significantly different RPM ranges from conventional direct-drive aircraft engines.",
+        "Appreciate the role of piston engines in recreational flying, sport aviation, experimental aircraft and aircraft ownership.",
+        "Recognise that aircraft category and regulatory status can affect permissible maintenance activity.",
+        "Explain why an engineer must determine the applicable regulatory framework and maintenance privileges before carrying out maintenance.",
+        "Recognise that maintenance privileges may differ between conventional certified aircraft and some recreational/light-aircraft categories."
+      ],
+      "syllabusNote": "This is enrichment rather than a requirement explicitly stated in the supplied AMT 4212G description, so the regulatory material should ultimately be anchored to the applicable Tanzanian/TCAA framework rather than assumed from another jurisdiction.",
       "reviewStatus": "unreviewed",
       "models": [],
       "listed": true,
       "scheduledDay": 6,
-      "completionCriteria": "State the main limits of a light-sport aircraft, say who may work on its engine, tell the common engines apart, work out an overhaul limit and a leak-down loss, read a spark plug tip and a magnetic plug, and describe the first action for an over-temperature or a knocking engine.",
+      "completionCriteria": "Say what light-sport and recreational aircraft are, where the Tanzanian regulations place microlight and amateur-built aircraft, and why piston engines suit them; tell the common engines apart and say why some turn far faster than a conventional engine and use a gearbox; explain how the category and certificate of an aircraft, and the licence a person holds, decide what maintenance may be done and signed for, and say what to find out before working on one; work out an overhaul limit and a leak-down loss, read a spark plug tip and a magnetic plug, and describe the first action for an over-temperature or a knocking engine.",
       "steps": [
         {
           "type": "text",
           "title": "What makes an aircraft light-sport",
-          "prompt": "A light-sport aircraft has to stay within limits. Its maximum takeoff weight is 1,320 lb (600 kg), or 1,430 lb (650 kg) if it is meant for water. Its top speed in level flight at maximum continuous power is 120 knots, and its stall speed with no lift devices is at most 45 knots. It seats two at most, has one reciprocating engine if it is powered, a fixed or ground-adjustable propeller, an unpressurized cabin, and fixed landing gear, except on water and glider types. The handbook warns that regulations change, so always check the current rules. Why do you think engine weight and simplicity matter so much for an aircraft like this?",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 434 (the thirteen requirements of a light-sport aircraft: maximum takeoff weight 1,320 lb or 1,430 lb for water, VH not more than 120 knots CAS, stall speed VS1 not more than 45 knots CAS, no more than two seats, a single reciprocating engine if powered, a fixed or ground-adjustable propeller, a non-pressurized cabin, fixed landing gear; the note that regulations are subject to change) and EASA Module 16, PDF p. 333 (the same list). The course deck (slide 268) gives the stall limit as Vs0; the handbook says VS1, and the lesson follows the handbook.",
+          "prompt": "'Light-sport' is a category with limits. In the FAA handbook an aircraft qualifies by thirteen limits, among them a maximum takeoff weight of 1,320 lb (600 kg), a top speed of 120 knots at maximum continuous power, a stall speed of 45 knots or less, two seats at most, one reciprocating engine if powered, a fixed or ground-adjustable propeller, an unpressurized cabin and fixed landing gear. The handbook warns that regulations change.\n\nOther words cover the same ground: ultralight, microlight, recreational, sport, kit-built, amateur-built and experimental. The words and the limits differ from state to state.\n\nTanzania's airworthiness regulations name microlight, experimental amateur-built and kit-built aircraft among those that may not qualify for a normal certificate. Why do you think engine weight and simplicity matter so much for them?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 434 (the thirteen requirements of a light-sport aircraft: maximum takeoff weight 1,320 lb or 1,430 lb for water, VH not more than 120 knots CAS, stall speed VS1 not more than 45 knots CAS, no more than two seats, a single reciprocating engine if powered, a fixed or ground-adjustable propeller, a non-pressurized cabin, fixed landing gear; the note that regulations are subject to change) and EASA Module 16, PDF p. 333 (the same list). The course deck (slide 268) gives the stall limit as Vs0; the handbook says VS1, and the lesson follows the handbook. The Tanzanian airworthiness regulations, regulation 16, name microlight, experimental amateur and kit built aircraft (read 13 October 2026). No separate Tanzanian light-sport definition was found in the regulations, advisory circulars and rules read from the TCAA website; the instructor should confirm whether TCAA has a current circular on light-sport or recreational aircraft.",
           "sourceRefs": [
             "faa-powerplant-2023",
             "easa-module16",
-            "course-deck-2026-05"
+            "course-deck-2026-05",
+            "tcaa-airworthiness-regs"
           ],
           "mediaPlan": {
             "mode": "none",
             "status": "not-needed",
             "rationale": "The list of limits is the content; the numeric checks test the key figures."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Who flies them, and why",
+          "prompt": "Piston engines power almost all recreational aviation. People fly for pleasure, for sport and racing, to build an aircraft from a kit or from plans, and to own and look after an aircraft of their own.\n\nThe handbook says small general aviation aircraft use mostly horizontally opposed piston engines. For the lightest aircraft the engines are smaller still, and the aim is low weight, simplicity and low running cost.\n\nTanzania's regulations make room for this flying. A microlight, an experimental amateur-built or kit-built aircraft, an air-race or exhibition aircraft and a kite can be given a restricted certificate of airworthiness, with operating limitations.\n\nOwners also take an interest in the engine itself, which is why the rules say what an owner or pilot may and may not do.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 22 (small general aviation aircraft use mostly horizontally opposed reciprocating piston engines) and PDF p. 434 (light-sport aircraft and their engines) and the Tanzanian Civil Aviation (Airworthiness) Regulations, regulation 16 (the Authority may issue a restricted certificate of airworthiness to an aircraft that does not qualify for a certificate of airworthiness including microlight, experimental amateur and kit built aircraft, an aircraft used for air races, aircraft flying for exhibition purpose and a kite; subject to operating limitations within the United Republic). The reasons people fly and the engineering aims (low weight, simplicity, low running cost) are the lesson's summary of the instructor's outcome 6, with the handbook's emphasis on weight and reliability in the next step.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "tcaa-airworthiness-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -357,17 +600,16 @@
         },
         {
           "type": "text",
-          "title": "Who may work on them",
-          "prompt": "The holder of a powerplant certificate can maintain and inspect light-sport engines. A sport pilot may do preventive maintenance on a light-sport aircraft that the pilot owns or operates. A light-sport repairman can hold two ratings. With an inspection rating, which needs a 16-hour course, the holder may do the annual condition inspection on an experimental light-sport aircraft that they own. With a maintenance rating, which needs at least 120 hours of training for airplanes, the holder may approve for return to service after maintenance, the annual condition inspection and the 100-hour inspection of an aircraft with a special airworthiness certificate. Training for a class can be 104 hours or 80 hours.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 435-436 (a powerplant certificate holder can perform maintenance and inspection; a sport pilot may perform preventive maintenance on an aircraft the pilot owns or operates with a special light-sport airworthiness certificate; the repairman certificate (light-sport aircraft) with an inspection rating, a 16-hour course, annual condition inspection of an owned experimental aircraft; with a maintenance rating, training of 120 hours for airplanes, 104 for weight-shift control and powered parachutes, 80 for lighter-than-air and gliders; return to service after maintenance, the annual condition inspection and the 100-hour inspection under 14 CFR 91.327; major repairs need more training). The course deck (slides 269 and 270) gives the same roles and adds the EASA side (B1.2 or B3 licence holders), which the handbook does not cover and the instructor should confirm.",
+          "title": "Why some engines turn so fast",
+          "prompt": "Small engines make their power by turning fast. The HKS 700T, a flat twin of 709 cc, makes 80 hp at 5,300 rpm and weighs 126 lb.\n\nA propeller cannot follow. When its blade tips approach the speed of sound its efficiency falls rapidly. So an engine that turns fast drives the propeller through a reduction gearbox. The HKS 700T's gearbox has a ratio of 2.13 to 1, so the propeller turns at 5,300 ÷ 2.13, about 2,490 rpm.\n\nEngines that run slower can drive the propeller directly. The Jabiru 2200 makes 85 hp at 3,300 rpm and the Continental O-200 100 hp at 2,750 rpm, both with direct drive. The handbook says the direct drive keeps the Jabiru light and its maintenance costs low.\n\nThe gearbox is the trade: more weight and more parts for a faster, lighter engine.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 442 (the HKS 700T: four-stroke, two cylinder, turbocharged, intercooled, 709 cc, a reduction gearbox driving the propeller flange at a speed reduction ratio of 2.13 to 1, rated at 77 horsepower continuous and 80 horsepower takeoff (3 minutes) at 4,900 rpm and 5,300 rpm, total engine weight 126 pounds), PDF p. 44 (reduction gearing limits the propeller rotation speed; when blade tips approach the speed of sound the efficiency decreases rapidly), PDF p. 443 (the Jabiru: direct crankshaft drive without a reduction gearbox facilitates its lightweight design and keeps maintenance costs to a minimum) and PDF pp. 443 to 445 (Jabiru 2200: 85 hp at 3,300 rpm; Continental O-200: 100 bhp at 2,750 rpm). The propeller speed is the quotient; see also Accessories and Drives.",
           "sourceRefs": [
-            "faa-powerplant-2023",
-            "course-deck-2026-05"
+            "faa-powerplant-2023"
           ],
           "mediaPlan": {
             "mode": "none",
             "status": "not-needed",
-            "rationale": "Roles and privileges as a list; a matching check tests them."
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -413,6 +655,81 @@
             "mode": "none",
             "status": "not-needed",
             "rationale": "A set of engines to recognise; the matching check tests a few of them."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Engines side by side",
+          "prompt": "Compare the engines on what the sources give.\n\nJabiru 2200: four-stroke flat four, air-cooled, direct drive, 85 hp at 3,300 rpm, 132 lb installed.\n\nJabiru 3300: four-stroke flat six, air-cooled, direct drive, 120 hp at 3,300 rpm, 178 lb.\n\nHKS 700T: four-stroke flat twin, turbocharged and intercooled, geared 2.13 to 1, 80 hp at 5,300 rpm, 126 lb.\n\nRotax 914: four-stroke flat four, liquid-cooled heads, turbocharged, dry sump.\n\nRotax 582: two-stroke twin, liquid-cooled, with a gearbox and shock absorber.\n\nPower for each pound: 0.64 hp/lb (Jabiru 2200), 0.67 (Jabiru 3300) and 0.63 (HKS 700T). The GTSIO-520-H gives 375 ÷ 550 = 0.68. Different engines, much the same ratio. What differs is the rpm, the gearing, the cooling and the cycle.",
+          "note": "Data from FAA-H-8083-32B (2023), PDF pp. 436 to 445 (the Rotax two-stroke and four-stroke engines, including the 914's liquid-cooled heads, dry sump and turbocharger; the Jabiru 2200 (85 hp at 3,300 rpm, 132 lb) and 3300 (120 hp at 3,300 rpm, 178 lb); the HKS 700T (80 hp takeoff at 5,300 rpm, 126 lb total engine weight)) and the GTSIO-520 overhaul manual, PDF pp. 152 to 153 (375 hp; dry weight 550.39 lb). The weights are as the handbook gives them (installed for the Jabiru, total engine for the HKS) and are not strictly comparable; the hp-per-pound figures are the lesson's quotients. No weight or output is given in the pages read for the Rotax engines.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "The category sets the rules",
+          "prompt": "A certificate of airworthiness states the category the aircraft may be flown in: commercial air transport (passenger), commercial air transport (cargo), general aviation or aerial work. The aircraft may be flown only for that kind of purpose.\n\nSome aircraft do not qualify for a certificate of airworthiness. For them the regulations allow a restricted certificate: microlight, experimental amateur-built and kit-built aircraft, aircraft used for air races or exhibitions, and kites. The Authority issues specific operating limitations for each one, and the aircraft may not make international flights.\n\nSo the category and the certificate of an aircraft decide what it may do, and with that, which maintenance programme and limits apply to it.\n\nThe first thing to learn about a light aircraft is which certificate it holds and what limitations are written on it.",
+          "note": "Documented from the Tanzanian Civil Aviation (Airworthiness) Regulations, regulation 9(4) and (5) (the categories of a certificate of airworthiness: commercial air transport (passenger), commercial air transport (cargo), general aviation, aerial work; the purposes for which the aircraft may be flown), regulation 16 (restricted certificate of airworthiness for aircraft that do not qualify for a certificate of airworthiness, including microlight, experimental amateur and kit built aircraft, air races, exhibition and kites; subject to operating limitations within the United Republic and not to make international flights; the Authority shall issue specific operating limitations for each restricted certificate) and regulation 17 (special flight permits), revised edition 2026, read from the TCAA website on 13 October 2026. The statement that the category decides which maintenance programme and limits apply is the lesson's inference from these.",
+          "sourceRefs": [
+            "tcaa-airworthiness-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Who may work on an aircraft in Tanzania",
+          "prompt": "The Tanzanian airworthiness regulations list who may maintain an aircraft: a licensed aircraft maintenance engineer, a person working under that engineer's supervision, an approved maintenance organisation, and a pilot licensed by the Authority.\n\nThe pilot may do preventive maintenance only, and only on an aircraft of 5,700 kg or less that the pilot owns or operates, that is not used by an air operator, and when the pilot has attended a maintenance course on the type. Preventive maintenance is a short list, which includes replacing or cleaning spark plugs and setting the gap.\n\nAn engineer may sign only for what is entered on the licence, only when familiar with the airworthiness information for the aircraft, and only with six months of recent experience in the last 24.\n\nWork not done by an organisation needs a maintenance release signed by a properly licensed person.",
+          "note": "Documented from the Tanzanian Civil Aviation (Airworthiness) Regulations, revised edition 2026, regulation 26(2) to (5) (the persons authorised to perform maintenance, preventive maintenance and modification: a licensed pilot, a person under the supervision of a licensed aircraft maintenance engineer, a LAME, an AMO; a pilot may perform preventive maintenance on an aircraft of maximum certificated take-off mass of 5,700 kg or less owned or operated by that pilot, not listed for use by an AOC holder, when the pilot has attended a maintenance course on the type) and regulation 29(t) (replacing or cleaning spark plugs and setting of spark plug gap clearance); the Civil Aviation (Personnel Licensing) Regulations, revised edition 2026, regulations 127 and 128 (privileges exercised only for what is entered on the licence, with familiarity with the relevant information and at least six months' experience within the preceding 24 months); and the Civil Aviation (Operation of Aircraft - General Aviation) Regulations, 2024, regulations 36 and 39 (maintenance by an approved maintenance organisation or by a qualified person under authorised procedures with a maintenance release signed by a person licensed under the Personnel Licensing Regulations). All read from the TCAA website on 13 October 2026.",
+          "sourceRefs": [
+            "tcaa-airworthiness-regs",
+            "tcaa-licensing-regs",
+            "tcaa-ga-operations-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "How another state does it",
+          "prompt": "Other states set the privileges differently, and the FAA handbook shows the US way as an example.\n\nIn the United States the holder of a powerplant certificate can maintain and inspect light-sport engines. A sport pilot may do preventive maintenance on a light-sport aircraft that the pilot owns or operates. A light-sport repairman can hold two ratings. With an inspection rating, which needs a 16-hour course, the holder may do the annual condition inspection on an experimental light-sport aircraft that they own. With a maintenance rating, which needs at least 120 hours of training for airplanes, the holder may approve for return to service after maintenance, the annual condition inspection and the 100-hour inspection of an aircraft with a special airworthiness certificate.\n\nThe pattern is the same as in Tanzania: privileges follow the certificate and the person's authorisation.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 435-436 (a powerplant certificate holder can perform maintenance and inspection; a sport pilot may perform preventive maintenance on an aircraft the pilot owns or operates with a special light-sport airworthiness certificate; the repairman certificate (light-sport aircraft) with an inspection rating, a 16-hour course, annual condition inspection of an owned experimental aircraft; with a maintenance rating, training of 120 hours for airplanes; return to service after maintenance, the annual condition inspection and the 100-hour inspection under 14 CFR 91.327). This is the US framework, kept as an example of how another state arranges the same ideas; it does not apply in Tanzania. The course deck (slides 269 and 270) gives the same roles and adds the EASA side (B1.2 or B3 licence holders), which the handbook does not cover and the instructor should confirm.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Roles and privileges as a list; a matching check tests them."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Find the rules first",
+          "prompt": "Before you touch the engine of a light aircraft, find out five things.\n\nWhere is it registered, and what does that State's authority require?\n\nWhat certificate does it hold, in what category, and what limitations are written on it?\n\nWhose data applies? The current manufacturer's instructions, and any mandatory airworthiness directives and service bulletins, which must be complied with.\n\nWhat does your own licence let you sign for, and are you current?\n\nIs the job preventive maintenance, a repair or an overhaul, and who must inspect and sign it?\n\nIf you cannot answer one of them, stop and ask. Work done without the right privilege is unauthorised work, and it can leave an aircraft that looks airworthy and is not.",
+          "note": "Documented from the Tanzanian Civil Aviation (Airworthiness) Regulations, regulation 15 (a person shall not operate an aircraft to which an airworthiness directive applies except in accordance with it; mandatory service bulletins apply; the Authority may prescribe inspections, procedures and limitations for mandatory compliance), regulation 16, regulation 26 and regulation 30 (the manufacturer's maintenance manual or instructions for continued airworthiness) and the Personnel Licensing Regulations, regulation 127 (privileges). The five questions are the lesson's way of putting the instructor's outcome 8 (an engineer must determine the applicable regulatory framework and maintenance privileges before carrying out maintenance).",
+          "sourceRefs": [
+            "tcaa-airworthiness-regs",
+            "tcaa-licensing-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -479,7 +796,7 @@
         {
           "type": "text",
           "title": "Plan an inspection",
-          "prompt": "A customer brings in a two-seat light-sport aircraft with a four-cylinder opposed engine. The engine is rough at idle and runs hot in the climb. The owner holds a sport pilot certificate and asks what they may do themselves. Say in your own words what you would check first, in what order, and why; which test you would use to judge the cylinders and what reading would worry you; what the plug tips and the magnetic plug could tell you; and which of the work the owner could do under a sport pilot certificate, and which must be done by a repairman or a mechanic.",
+          "prompt": "A customer brings in a two-seat light aircraft with a four-cylinder opposed engine. The engine is rough at idle and runs hot in the climb. The owner is a licensed pilot and asks what they may do themselves.\n\nSay in your own words what you would find out about the aircraft's certificate and the rules before you start. Then say what you would check first, in what order, and why; which test you would use to judge the cylinders and what reading would worry you; what the plug tips and the magnetic plug could tell you; and which of the work the owner could do as preventive maintenance, and which must be done and signed by a licensed engineer or an approved organisation.",
           "note": "Completion step: the learner applies the lesson (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 434-458, with the course deck (slide 274, rough engine at idle and an engine that runs hot among its symptoms). The learner works with the handbook's limits for the engines described and is reminded that the current manufacturer's instructions apply.",
           "sourceRefs": [
             "faa-powerplant-2023",
@@ -499,6 +816,59 @@
       "sequenceNumber": 18,
       "title": "Practicals",
       "objective": "Prepare for the three practical sessions: follow the observe, name, describe method, work safely around an engine and its propeller, name the main internal and external parts of a reciprocating engine and the items where it meets the aircraft, and inspect the outside of an engine in a fixed order.",
+      "purpose": "Demonstrate whether the conceptual knowledge from Lessons 1–17 can actually be recognised and applied physically.",
+      "outcomes": [
+        {
+          "heading": "Practical A — Demonstration of Piston-Engine Operation",
+          "note": "Using the motorised cutaway engine.",
+          "items": [
+            "Identify TDC and BDC.",
+            "Demonstrate intake, compression, power and exhaust strokes.",
+            "Relate piston movement to crankshaft rotation.",
+            "Explain crankshaft-to-camshaft speed relationship.",
+            "Observe and explain valve opening and closing.",
+            "Demonstrate valve timing.",
+            "Identify lead, lag and overlap where visible on the trainer.",
+            "Explain the sequence of energy conversion from combustion pressure to crankshaft rotation.",
+            "Explain how firing events in multiple cylinders combine to produce smoother engine rotation.",
+            "Explain the complete operation of a four-stroke reciprocating engine while manipulating or observing the training engine."
+          ]
+        },
+        {
+          "heading": "Practical B — External & Internal Component Identification and Condition",
+          "note": "The emphasis: identify it → state its function → describe its construction → recognise abnormal condition.",
+          "items": [
+            "Identify principal externally visible engine components.",
+            "State the function of each identified component.",
+            "Identify the crankcase, accessory case and sump.",
+            "Identify engine mounts and shock mounts.",
+            "Locate induction, exhaust, ignition, lubrication and accessory interfaces.",
+            "Identify representative internal components from dismantled or sectioned assemblies.",
+            "Identify pistons, rings, piston pins, connecting rods, crankshaft, bearings, cylinders and valves.",
+            "Identify representative valve-train components.",
+            "Distinguish major materials and construction features where visible.",
+            "Recognise obvious leakage, corrosion, cracks, wear, scoring, overheating, deposits and physical damage.",
+            "Relate an observed defect to the likely function of the affected component."
+          ]
+        },
+        {
+          "heading": "Practical C — Engine Maintenance Procedures",
+          "items": [
+            "Safely dismantle/disassemble a selected piston-engine power-generation assembly.",
+            "Identify components as they are removed.",
+            "Inspect representative components for obvious condition and serviceability.",
+            "Reassemble the selected power-generation assembly in the correct relationship.",
+            "Demonstrate or perform appropriate hydraulic-tappet servicing.",
+            "Inspect valve-train components for corrosion and wear.",
+            "Perform or demonstrate a valve-spring compression check using appropriate training equipment.",
+            "Inspect representative exhaust-system components.",
+            "Identify cracks, leakage, deterioration and attachment problems in an exhaust system.",
+            "Demonstrate appropriate periodic exhaust-system maintenance/inspection.",
+            "Follow appropriate workshop practices, tools and maintenance information while performing practical tasks."
+          ]
+        }
+      ],
+      "syllabusNote": "The module itself states that workshop practices should be used to develop understanding and specifically identifies engine parts and a piston-engine trainer among the intended learning materials; the lesson is formalised as three practical exercises. They are particularly important because the official module does not stop at theoretical understanding: it explicitly requires students to dismantle and reassemble power-generation assemblies, service hydraulic tappets, inspect valve-train components and check valve-spring compression. It also requires periodic exhaust-system maintenance.",
       "reviewStatus": "unreviewed",
       "models": [
         "cylinder",
@@ -506,21 +876,21 @@
       ],
       "listed": true,
       "scheduledDay": 7,
-      "completionCriteria": "Tap the main internal and external parts on the 3D models, state the safety actions before a propeller is moved, match common defect terms to their meanings, recognise the sign of an exhaust leak, and write one component entry in your own words.",
+      "completionCriteria": "Say which working area and which practical each session belongs to; explain the four strokes, TDC and BDC, the camshaft's half speed, valve lead, lag and overlap, and how firing events in several cylinders smooth the turning; identify and describe the main internal and external parts, their materials and the signs of a defect, and relate a defect to what the part does; describe in order how a cylinder is taken off and put back, how a hydraulic tappet is serviced and tested, how a valve and its spring are checked and how an exhaust system is inspected at intervals; and say why the manufacturer's manual, the right tools and the regulations come first.",
       "steps": [
         {
           "type": "text",
-          "title": "Three practical sessions",
-          "prompt": "You will work on real engines in three practical sessions. In one, you look at the parts of a disassembled engine and name and describe each one. In another, you walk round an assembled engine on a display stand, and then the engine installed in an aircraft, and do the same for the parts you can see from the outside. In the third, you inspect the outside of the engine for signs that it is, or is not, fit to fly. The external worksheet is a continuous-assessment item that you keep in your Practical Logbook. This lesson prepares you for all three: the method, the safety rules, and a rehearsal on the 3D models. It does not do the worksheets for you.",
-          "note": "Documented from the student practical worksheets (Practical 1 External Component Identification, whose instructions say it is a continuous-assessment item kept in the Practical Logbook, and Practical 2 Internal Component Identification, at the disassembled engine display) and the course deck, slides 278 to 280 (internal parts, external parts, visual inspection of external components). The deck numbers the sessions 1 internal parts, 2 external parts and 3 visual inspection, while the worksheet files are named Practical 1 External and Practical 2 Internal, so the lesson names each session by what it covers.",
+          "title": "Four sessions, three practicals",
+          "prompt": "You will work in four places, on real engines.\n\nSession I, in the HighTech Powerplant Lab: the cut-away O-360, with its mechanism moving. This is Practical A.\n\nSession II, in the Hangar: two disassembled engines, one with a four-throw crankshaft and one with six. You name and describe their parts.\n\nSession III, in the Aviation Complex Powerplant Room and the Hangar: the assembled GTSIO-520 engines and the assembled O-360, seen from outside.\n\nSession IV, outside the Hangar: the engine mounted in the Cessna 182.\n\nSessions II to IV together are Practical B. Practical C is the set of maintenance tasks, and your instructor says where each is done.\n\nThis lesson prepares you. It does not do the worksheets for you.",
+          "note": "Documented from the instructor's list of the four working areas and which practical belongs to each (13 October 2026) and the instructor's teaching notes, which name the four practicals as I motorised engine mechanism, II internal disassembled components, III external assembled components and IV mounted engine on an aircraft; and from the instructor's three outcome lists (Practicals A, B and C, shown at the top of the lesson). The instructor's list does not say where the Practical C tasks are done, so the step leaves that to the instructor, who should confirm it. The external and internal worksheets are the instructor's Practical 1 and Practical 2 documents.",
           "sourceRefs": [
-            "practical-worksheets",
-            "course-deck-2026-05"
+            "instructor-practical-rigs",
+            "practical-worksheets"
           ],
           "mediaPlan": {
             "mode": "none",
             "status": "not-needed",
-            "rationale": "The overview is plain text; the rehearsal comes in the 3D steps and the checks."
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -550,6 +920,145 @@
             "mode": "none",
             "status": "not-needed",
             "rationale": "The warning is the content; the check asks which actions belong to it."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Safety in each working area",
+          "prompt": "Each area has its own hazards, and your instructor's briefing comes first.\n\nAt the cutaway, the mechanism moves, and the casing is cut away so the moving parts are exposed. Keep hands, hair, sleeves and anything that hangs well clear of every moving part, and leave starting and stopping to your instructor.\n\nAt the disassembled engines, parts are heavy and edges are sharp. Lift with care, ask for help with a heavy part, and keep tools and parts off the floor.\n\nAround the Cessna, the propeller rules in the last step apply, and you stay off the aircraft unless you are told.\n\nIf you are not sure something is safe, stop and ask. Which hazard here could hurt you even when nothing is running?",
+          "note": "Written for this lesson from general workshop practice, to go with the instructor's list of the four working areas. It is not taken from a manual or a regulation, and the instructor should replace or confirm it with each area's own rules. The rules for the aircraft are the FAA propeller warning in the previous step and the external worksheet's notice (no climbing on the aircraft or opening inspection panels without the instructor's permission; stay clear of the propeller arc).",
+          "sourceRefs": [
+            "instructor-practical-rigs",
+            "practical-worksheets"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "TDC, BDC and the four strokes",
+          "modelId": "cylinder",
+          "prompt": "The piston slides up and down in the cylinder. The top of its travel is top dead centre, TDC. The bottom is bottom dead centre, BDC. The distance between them is the stroke.\n\nThe four strokes are intake, compression, power and exhaust. They take two complete turns of the crankshaft, 720 degrees, so each cylinder fires once in every two turns.\n\nIn this model the piston is at BDC, where the intake stroke ends and compression begins.\n\nAt the cutaway, find the piston at the top and at the bottom of its travel. Say which strokes carry the piston up and which carry it down. Then say where the piston is at the end of the compression stroke.",
+          "action": {
+            "type": "cycle-angle",
+            "value": 180
+          },
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 46 (the four-stroke cycle: four strokes to complete the operating cycle of each cylinder; two complete revolutions of the crankshaft, 720 degrees, so each cylinder fires once in every two revolutions; the stroke is the distance the piston moves from TDC to BDC; Figure 1-35, components and terminology) and PDF p. 47 (the intake, compression, power and exhaust strokes, Figure 1-36). The cycle angle of 180 degrees is the bottom of the intake stroke, where compression begins (the model caption names the stroke that follows). The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The cylinder model shows the piston at one end of its travel so the learner can name the position before watching it move on the cutaway."
+          },
+          "focusParts": [
+            "PistonBody",
+            "CrankThrow"
+          ]
+        },
+        {
+          "type": "text",
+          "title": "The camshaft turns at half speed",
+          "prompt": "A cycle takes two turns of the crankshaft, and each valve opens only once in a cycle. So the camshaft turns once while the crankshaft turns twice. It runs at half the crankshaft speed.\n\nIn an opposed engine a gear on the camshaft meshes with a gear on the crankshaft. The camshaft gear is twice the size, which gives the ratio of 2 to 1.\n\nAt the cutaway, find the crankshaft, the camshaft and the gears that join them. Watch both for a few turns: the crankshaft should turn twice for each turn of the camshaft. As the cam lobe passes under its tappet, watch which valve opens.\n\nWhich gear has more teeth, the camshaft gear or the crankshaft gear?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 41 (the valve mechanism of an opposed engine is operated by a camshaft driven by a gear that mates with another gear attached to the crankshaft; the camshaft always rotates at one-half the crankshaft speed; Figure 1-28: the cam gear is twice the size of the crankshaft gear and operates at half speed) and the Valve Operating lesson. The handbook describes opposed engines in general; the lesson does not state how the cut-away O-360 is built, and the instructor should confirm that its gears are as the handbook describes.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Lead, lag and overlap",
+          "prompt": "The camshaft opens each valve early and closes it late.\n\nThe intake valve opens before TDC, while the exhaust stroke is still finishing: that is valve lead. The exhaust valve closes after TDC, once the intake stroke has begun: that is valve lag. For a short time both valves are off their seats. That is valve overlap. It helps to cool the cylinder from inside, to draw in more charge and to clear out the burned gas.\n\nFind the overlap on the handbook's chart. The angles are in degrees of crankshaft travel, and each marks where a valve starts to open, not where it is fully open.\n\nOn the cutaway, look for the moment near TDC when both valves are open, if you can see it.",
+          "url": "./lesson-media/faa-valve-timing-chart.webp",
+          "alt": "Valve timing chart drawn as a spiral of coloured dots for one complete four-stroke cycle: intake in orange starting 50 degrees before top centre where the intake valve opens, compression in green with ignition just before top centre, power in red with the exhaust valve opening 30 degrees before bottom centre, and exhaust in blue ending 25 degrees after top centre where the exhaust valve closes; a blue arc across the top marks the 75 degree valve overlap with both valves open.",
+          "credit": "FAA-H-8083-32B, Figure 1-37",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 39 (valve overlap: both valves open at the end of the exhaust stroke and the beginning of the intake stroke; better volumetric efficiency and lower cylinder operating temperature) and PDF p. 47 (the intake valve opens before TDC on the exhaust stroke, valve lead; the exhaust valve closes well after TDC, valve lag; the overlap helps to cool the cylinder internally, to increase the charge and to scavenge the byproducts of combustion; the timing is in degrees of crankshaft travel and marks the start of opening; Figure 1-37). The chart's angles are the handbook's example, not the cut-away engine's: the cylinder model in this course uses illustrative ideal timing with no overlap, so only the real engine or the manufacturer's data gives its timing.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The handbook chart is a real timing diagram; the learner finds the overlap on it before looking for the moment on the engine."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "From pressure to crankshaft",
+          "modelId": "cylinder",
+          "prompt": "Energy changes form in a fixed order. Burning mixture raises the pressure in the cylinder. The pressure pushes the piston down. The piston pushes on the connecting rod through the piston pin. The rod pushes on the crankpin, which sits off the centre line of the crankshaft, so the push becomes a turning effort. The crankshaft turns the propeller. Heat energy has become mechanical energy.\n\nIn this model the piston is a short way past TDC on the power stroke.\n\nAt the cutaway, follow the path from the piston to the crankshaft and name each part in turn. Which part changes the up-and-down motion into rotation?",
+          "action": {
+            "type": "cycle-angle",
+            "value": 400
+          },
+          "focusParts": [
+            "PistonBody",
+            "FloatingPin",
+            "ConnectingRodBody",
+            "ConnectingRodCap",
+            "CrankThrow"
+          ],
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 46 (an internal combustion engine converts heat energy into mechanical energy; the downward motion of the piston, acting on the crankshaft through the connecting rod, is converted to rotary motion by the crankshaft) and PDF p. 29 (the crankpin is off-center from the main journals and is called the throw; a force on the crankpin that is not through the centre line causes the crankshaft to rotate). The sequence is the same as in the Power Generation lesson. The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The cylinder model isolates the piston, pin, rod and crank throw just after TDC on the power stroke, so the path of the force can be named."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Many cylinders, smoother turning",
+          "prompt": "One cylinder pushes on the crankshaft only once in two turns. The momentum of the crankshaft and propeller carries it through the other strokes. More cylinders fill the gaps.\n\nA four-cylinder engine such as the O-360 fires one cylinder every 720 ÷ 4 = 180 degrees of crankshaft turn. The six-cylinder GTSIO-520 fires every 720 ÷ 6 = 120 degrees. A power stroke lasts 180 degrees, so on the six-cylinder engine the next cylinder fires while the last is still pushing, and the turning is smoother.\n\nThe firing order is chosen for balance, and it is not simply 1, 2, 3, 4.\n\nWatch the cutaway through two turns of the crankshaft. How many power strokes do you expect to count?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 46 (the momentum of the crankshaft and the propeller forces the piston back up; two revolutions, 720 degrees, for the four strokes) and PDF p. 37 (the firing order is the sequence in which the power event occurs in the different cylinders, designed for balance and to eliminate vibration; one four-cylinder opposed model fires 1-4-2-3 and another 1-3-2-4). The intervals 720 divided by the number of cylinders, and the 180-degree length of a stroke, are the lesson's arithmetic, as in the Power Generation lesson. The lesson does not state the cut-away O-360's firing order, because the handbook says it differs between models.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Explain it at the cutaway",
+          "prompt": "The outcome for this practical is that you can explain the complete operation of a four-stroke engine while you watch or handle the training engine.\n\nPrepare for it. Choose one cylinder. For each of the four strokes say, in order, where the piston is and which way it moves; whether each valve is open or shut; what is happening to the gas; and what the crankshaft and the camshaft are doing.\n\nThen say how the cylinders together keep the crankshaft turning, and how the chemical energy of the fuel ends up as the turning of the propeller.\n\nIf you cannot say one stroke, go back to its step. Which stroke do you find hardest to put into words?",
+          "note": "Documented from the instructor's Practical A outcomes (explain the complete operation of a four-stroke reciprocating engine while manipulating or observing the training engine; explain the sequence of energy conversion; explain how firing events in multiple cylinders combine to produce smoother rotation). The step is a self-explanation prompt: the lesson sets out no model answer beyond the earlier steps, and what the assessor looks for is the instructor's to say.",
+          "sourceRefs": [
+            "instructor-practical-rigs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Session II: count the throws",
+          "prompt": "The two disassembled engines in the Hangar Engine Room are in pieces, and every part is within reach. Start by counting.\n\nA crankshaft is made of main journals, crank cheeks and crankpins. A crankpin is also called a throw: it is where a connecting rod fits. The handbook says the number of throws must match the cylinder arrangement, and that a four-throw crankshaft suits a four-cylinder opposed engine, and a six-throw one a six-cylinder opposed engine.\n\nCount the throws on each engine. Then count the pistons and rods laid out beside it. Do the numbers agree? If a part is missing from the set, say so.\n\nThen confirm with your instructor what each engine is.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 29 (the crankshaft has a journal, crankpin and crank cheek; two crank cheeks and a crankpin make a throw; the four-throw construction may be used on four-cylinder horizontal opposed or four-cylinder inline engines, and the six-throw shaft on six-cylinder inline engines, 12-cylinder V-type engines and six-cylinder opposed engines; the number of crankpins must correspond with the cylinder arrangement of the engine) and the instructor's list (one disassembled engine with four crankshaft throws and one with six). The lesson does not say which engines they are; the instructor does.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "instructor-practical-rigs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -656,7 +1165,46 @@
         },
         {
           "type": "model-pose",
-          "title": "What is fitted at the rear",
+          "title": "Valve-train parts in order",
+          "modelId": "cylinder",
+          "prompt": "Lay the valve-train parts out in the order the motion passes through them. The cam lobe lifts the tappet, or lifter body. The tappet moves the pushrod, which runs inside its housing. The pushrod tips the rocker arm on its shaft. The rocker arm presses down on the valve stem. The valve spring closes the valve again.\n\nOn a disassembled engine, keep the pushrods in order and mark them: the ball ends wear to fit their sockets, and the rods are not always the same length.\n\nFind each part on the model and then on the engine. Which part do the springs push against at the top?",
+          "savedMotionId": "exploded",
+          "motionProgress": 50,
+          "focusParts": [
+            "IntakeHydraulicLifterBody",
+            "IntakePushrod",
+            "IntakePushrodHousing",
+            "IntakeRockerArm",
+            "IntakeRockerShaft",
+            "IntakeValve"
+          ],
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 38 to 42 (the valve-operating mechanism: cam, cam follower, push rod, rocker arm, valve, the springs held by the retaining washer and stem keys; the push rod's hardened-steel ball ends) and PDF p. 410 (mark the push rods so they are replaced in the same location; the ball ends are worn to fit their sockets; push rods are not all of the same length on some engines). The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The exploded stage of the cylinder model separates the lifter, pushrod, rocker arm and valve so the order can be named."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Materials and construction",
+          "prompt": "Where a part is visible, its material tells you something about its job.\n\nA cylinder head is aluminium alloy: a good conductor of heat, and light. It is joined to a steel barrel, and the cooling fins are machined as part of the barrel.\n\nMost pistons are machined from aluminium alloy forgings. Piston rings are most often gray cast iron, and chrome rings must be used with steel cylinder walls, never chrome ones.\n\nA crankshaft is forged from strong alloy steel, and the bearing surfaces are hardened by nitriding.\n\nA crankcase is cast aluminium alloy, and sometimes magnesium.\n\nAn exhaust valve is made of a heat-resistant alloy, because it runs hotter than an intake valve.\n\nFind one example of each, and say which parts you cannot check without taking them apart.",
+          "note": "Documented from FAA-H-8083-32B (2023): PDF p. 26 (cast or forged aluminum alloy generally used for crankcases because it is light and strong), PDF p. 27 and p. 28 (crankcase sections of aluminum alloy or magnesium), PDF p. 29 (crankshafts forged from a very strong alloy such as chromium-nickel-molybdenum steel; the crankpin outer surface hardened by nitriding), PDF pp. 33 and 34 (pistons machined from aluminum alloy forgings; gray cast iron most often used for piston rings; chrome rings must be used with steel cylinder walls), PDF pp. 35 and 36 (aluminum alloy cylinder head, a good conductor of heat and light; steel barrel; cooling fins machined as an integral part of the barrel) and PDF p. 38 (exhaust valves made of heat-resistant alloys because intake valves operate at lower temperatures).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Session III: what is fitted at the rear",
           "prompt": "The accessory section at the rear is where gears turned by the crankshaft drive the parts that keep the engine going: two magnetos for ignition, an engine-driven fuel pump, an oil pump and a tachometer drive, and a starter and an alternator. Where each one sits depends on the engine, and this teaching model moves some of them onto display stands, so always check the engine in front of you. Name each accessory, and say which one turns the engine instead of being turned by it.",
           "note": "Documented from FAA-H-8083-32B (2023), PDF p. 28 (accessory case, mounting pads and geared shafts) and PDF p. 236 (the starter clutch), and the GTSIO-520 overhaul manual, A-3-2 and Figure A-4-8 (PDF pp. 17 and 25), with the -H difference data in C-3-2 and C-3-3 (PDF pp. 152-153) and C-3-6 (PDF p. 156), as in the Accessories and Drives lesson, where starting reverses the flow of power. The accessory model is a teaching reconstruction; its scope note says the front and optional modules are relocated on display stands and omitted transfers are not physical shafts.",
           "sourceRefs": [
@@ -671,6 +1219,21 @@
           "modelId": "accessory-drives",
           "savedMotionId": "Operating mechanism",
           "motionProgress": 0
+        },
+        {
+          "type": "text",
+          "title": "Read the engine's name",
+          "prompt": "Every engine is named by its features. An opposed engine is named with the letter O and its displacement in cubic inches. Prefixes add features: I for fuel injection, T or TS for a turbo-supercharging system, G for a geared engine, and L for left-hand rotation.\n\nSo the O-360 in the Hangar is an opposed engine of 360 cubic inches, with none of the other letters. The GTSIO-520 in the Powerplant Room is geared, turbo-supercharged, fuel-injected and opposed, of 520 cubic inches.\n\nRead the name from the engine's plate, or ask your instructor, before you touch anything. Then see whether what you can see agrees with it: is there a turbocharger, an injection system, a reduction gear at the front?",
+          "note": "Documented from EASA Module 16 (core text), PDF p. 6 (opposed engines are designated with the letter O and the piston displacement; the prefix I is fuel injected, T or TS a turbo-supercharging system, G a geared engine; an O-360 is an opposed engine of 360 cubic inches) and the Classification lesson, which reads GTSIO-520 letter by letter. The reading that the O-360 has none of the other letters follows from the key, not from a manual for the Hangar engine. The location of an engine's plate is not stated in the handbook; the instructor can say where to look on each engine.",
+          "sourceRefs": [
+            "easa-module16",
+            "instructor-practical-rigs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
@@ -689,7 +1252,7 @@
         },
         {
           "type": "image",
-          "title": "Where the engine meets the aircraft",
+          "title": "Session IV: engine meets aircraft",
           "prompt": "On the aircraft the question changes. You are no longer asking only what a part is, but how the airframe holds the engine and protects the aircraft from it. The engine mount holds the engine to the airframe, often through shock mounts that absorb vibration. The firewall is the foremost bulkhead of the engine compartment, made of stainless steel or another fire-resistant material, so that an engine fire is confined to the nacelle. It is also where the lines, linkages and wiring between engine and aircraft are disconnected. For each part you find, ask: what does it connect, and what happens if it fails?",
           "url": "./lesson-media/faa-engine-mounting-ring.webp",
           "alt": "Photograph of an engine mounting ring on a light aircraft firewall with four dynamic mount fittings",
@@ -739,16 +1302,16 @@
         },
         {
           "type": "text",
-          "title": "Look before you clean",
-          "prompt": "When parts come off an engine, how you treat them matters. The handbook's practices: lay the parts out in order on a bench, and keep small parts in containers. Drain the oil into a container, strain it through a clean cloth, and check the oil and the cloth for metal particles. Throw away safety wire and cotter pins as they come off, and never use them a second time. Tag any loose or damaged studs and fittings. Use the proper tool for the job, not an improvised one. Above all, look first: a part should not be cleaned before a preliminary visual inspection, because deposits left in recesses may show how it failed.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 370-371 (disassembly practices: parts laid out in an orderly manner, containers for small parts, drain and strain the oil through a clean cloth and check for metal particles, dispose of safety devices and never reuse them, tag loose or damaged studs and fittings, use the proper tool; visual inspection should precede all other inspection, and parts should not be cleaned before a preliminary visual inspection). The disassembled-engine session is supervised; the lesson does not describe a procedure to follow without the instructor.",
+          "title": "More words: scoring, burning, pitting",
+          "prompt": "Inside the engine, three more words matter.\n\nScoring is a series of deep scratches, caused by foreign particles between moving parts or by careless assembly or disassembly.\n\nBurning is surface damage from excessive heat. It is usually caused by an improper fit, defective lubrication or over-temperature operation.\n\nPitting is small hollows of irregular shape, usually caused by corrosion or minute chipping.\n\nNow link the defect to the job. Think of a cylinder wall that is scored, so the rings cannot seal against it. What would you expect the engine to lose? And a valve with a burned face: the handbook says do not reuse it. What could that valve no longer do?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 371 (the defect terms: burning, pitting and scoring, among twenty-six), PDF p. 380 (examine the valve for damage from burning or corrosion; do not re-use valves that indicate damage of this nature) and PDF p. 409 (excessive leakage past the piston is a frequent cause of compression leakage). The links from the defect to what the part does (a scored wall cannot seal, a burned valve face cannot close) are the lesson's own reasoning, drawn from the part's job as the handbook describes it.",
           "sourceRefs": [
             "faa-powerplant-2023"
           ],
           "mediaPlan": {
             "mode": "none",
             "status": "not-needed",
-            "rationale": "A short list of habits from the overhaul chapter."
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -764,6 +1327,20 @@
             "mode": "none",
             "status": "not-needed",
             "rationale": "The six areas are a list to follow; the next steps show two of them in detail."
+          }
+        },
+        {
+          "type": "text",
+          "title": "What the regulations list",
+          "prompt": "The Tanzanian airworthiness regulations list what a person performing an inspection must look at on the engine and nacelle. They include: the engine section for excessive oil, fuel or hydraulic leaks, and the source of each; studs and nuts for improper torquing; the engine mount for cracks and looseness, and the engine for looseness on its mount; the flexible vibration dampers for poor condition; engine controls for improper travel and safetying; lines, hoses and clamps for leaks and looseness; exhaust stacks for cracks and improper attachment; accessories for security of mounting; the cowling for cracks.\n\nThe inspector works from a checklist. Which of these have you not yet looked for on your walk-round?",
+          "note": "Documented from the Tanzanian Civil Aviation (Airworthiness) Regulations, revised edition 2026, regulation 31(3) (a person who performs an inspection shall use a checklist, which shall include the scope and detail of the items prescribed or approved by the Authority) and regulation 31(6)(c) (the engine and nacelle group: leaks, studs and nuts, internal engine and metal particles on screens and sump drain plugs, engine mount, flexible vibration dampeners, engine controls, lines, hoses and clamps, exhaust stacks, accessories, systems, cowling), read from the TCAA website on 13 October 2026; the TCAA says its published copy is not authoritative. Regulation 31(5) also requires the aircraft and engine to be thoroughly cleaned and the necessary panels, doors and cowlings opened before an inspection; that is the inspection of a complete aircraft, and differs from the handbook's rule to look at disassembled parts before they are cleaned.",
+          "sourceRefs": [
+            "tcaa-airworthiness-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -796,6 +1373,170 @@
             "mode": "none",
             "status": "not-needed",
             "rationale": "The example limits are in the text with the handbook's own warning that they are engine-specific."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Practical C: the maintenance tasks",
+          "prompt": "Practical C moves from naming parts to working on them, under instruction. In plain words, the tasks are:\n\ntake a power assembly apart safely, naming each part as it comes off;\njudge each part for condition;\nput it back in the right relationship;\nservice a hydraulic tappet;\ninspect the valve train for corrosion and wear;\ncheck a valve spring with the test equipment;\ninspect the exhaust system and say how it is maintained at intervals.\n\nAll of it is done in the workshop way: the manual open, the right tools, parts laid out in order.\n\nYour instructor chooses the engine and the order, and stays with you. The next steps give the ideas behind each task. They are not a procedure for your engine.",
+          "note": "Documented from the instructor's Practical C outcomes (dismantle and reassemble a power-generation assembly; identify components as they are removed; inspect for condition; hydraulic-tappet servicing; valve-train inspection for corrosion and wear; valve-spring compression check; exhaust-system inspection and periodic maintenance; workshop practices, tools and maintenance information) and the module description's statement that students dismantle and reassemble power-generation assemblies, service hydraulic tappets, inspect valve-train components and check valve-spring compression. The instructor's list does not say where these tasks are done, so the step leaves it to the instructor.",
+          "sourceRefs": [
+            "instructor-practical-rigs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Look before you clean",
+          "prompt": "When parts come off an engine, how you treat them matters. The handbook's practices: lay the parts out in order on a bench, and keep small parts in containers. Drain the oil into a container, strain it through a clean cloth, and check the oil and the cloth for metal particles. Throw away safety wire and cotter pins as they come off, and never use them a second time. Tag any loose or damaged studs and fittings. Use the proper tool for the job, not an improvised one. Above all, look first: a part should not be cleaned before a preliminary visual inspection, because deposits left in recesses may show how it failed.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 370-371 (disassembly practices: parts laid out in an orderly manner, containers for small parts, drain and strain the oil through a clean cloth and check for metal particles, dispose of safety devices and never reuse them, tag loose or damaged studs and fittings, use the proper tool; visual inspection should precede all other inspection, and parts should not be cleaned before a preliminary visual inspection). The disassembled-engine session is supervised; the lesson does not describe a procedure to follow without the instructor.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A short list of habits from the overhaul chapter."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Taking a cylinder off",
+          "prompt": "A power assembly is a cylinder with its piston and rod. The handbook gives a general order for taking one off; the manufacturer's manual has the torque values and special precautions for your engine.\n\nProtect every opening so that nuts, washers and tools cannot fall in. Take off the intake and exhaust pipes and the rocker covers. Loosen the spark plugs but leave them in until you are ready to pull the cylinder.\n\nTurn the crankshaft to TDC on the compression stroke, so both rocker arms are free, then take out the pushrods and mark them. Remove all the hold-down nuts but two opposite each other. Support the cylinder, remove those two, and draw it off straight, with a partner. Catch any broken ring pieces with a shop cloth, and support the connecting rod.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 409 and 410 (cylinder removal: the instructions are very general and the applicable manufacturer's manual should be consulted for torque values and special precautions; protect openings so that nuts, washers and tools do not enter the engine; remove the intake and exhaust pipes, loosen the spark plugs and do not remove them until ready to pull the cylinder off; turn the crankshaft to TDC on the compression stroke before removing the push rods, which relieves the pressure on both rocker arms; mark the push rods; remove all but two nuts 180 degrees apart; two technicians working together; a cloth to stop pieces of broken rings falling into the crankcase; support the connecting rod). The step is a description of ideas, not a procedure to follow without the instructor.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Putting a cylinder back",
+          "prompt": "Reassembly puts every part back where it came from, the right way round.\n\nClean the piston and cylinder and check them. Fit the piston to the rod with the number stamped on the piston head toward the front of the engine, and lubricate the pin. Oil the piston and rings well, stagger the ring gaps around the piston, and check that each ring is in its own groove and the right way up. Check that only one cylinder oil-seal ring is in place.\n\nWith the piston at TDC, compress the rings with a ring compressor and ease the cylinder on straight and even, without rocking. Fit two nuts opposite each other, then the rest, and torque them slowly and steadily to the value in the manual. Then safety them. Push rods go back in their own places, not turned end for end.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 410 and 411 (cylinder installation: the piston number stamped on the bottom of the piston head faces the front of the engine; lubricate the pin; oil the piston and rings; stagger the ring gaps and check the rings are in the correct grooves and positioned correctly; only one cylinder oil-seal ring; with the piston at TDC, use a ring compressor, and do not rock the cylinder; two nuts 180 degrees apart, then the remaining nuts snug; torque to the value in the manufacturer's manual with a slow, steady motion; safety them; push rods installed in their original locations and not turned end to end; the ball end seated in the tappet; valve clearance set). The step is a description of ideas, not a procedure to follow without the instructor.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Hydraulic tappets: keep the set together",
+          "prompt": "A hydraulic tappet holds the valve clearance at zero. Servicing one is clean, careful bench work.\n\nUse a clean bench and unused solvent. Keep the parts of each tappet together in a row, never mixed with another's: the body, socket and plunger are selectively fitted to give the right leak-down rate, which is the rate at which oil escapes past the plunger.\n\nTake the tappet apart in order: the snap ring, the socket, the plunger, then the spring and the check-valve parts. Clean each part and inspect it. Nicks, scores and pitting are not allowed, and a plunger seized or scored means the whole tappet is discarded.\n\nWhy must the parts of one tappet never be swapped with those of another?",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual (1980), Section XIII, paragraphs 13-1 to 13-3 (PDF pp. 84 and 85: a clean bench; unused solvent; each tappet's parts kept in a row so as not to interchange them, because bodies, sockets and plungers are selectively fitted to obtain the specified leak-down rate, the rate at which oil escapes past the plunger; disassembly order; inspection for nicks, scores, pitting and groove wear, none of which may be allowed; an entire assembly with a seized or scored plunger discarded) and FAA-H-8083-32B (2023), PDF p. 42 (a hydraulic tappet, Figure 1-30; normally adjusted at overhaul). The details belong to this manual; another engine's manual governs its own tappets.",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "The tappet kick-back test",
+          "prompt": "A first check needs no special machine. Put together the plunger, the check-valve plate, the check-valve spring and the cage, without the large spring. Stand the dry body on its flat end and start the dry plunger into its bore.\n\nWith a screwdriver, push down on the bottom of the plunger with a short tap, and let go at once. The plunger should kick back promptly, because the air trapped under it is compressed. By repeated taps it can be pushed to the bottom as the air escapes.\n\nA good kick-back means good compression: the tappet is acceptable, if nothing else is wrong. Rapid leakage may mean dirt on the check valve or its seat, or a worn plunger. Clean it again, and discard the tappet if it will not seat.\n\nAfter the test, how should the inside of the body be coated when it is reassembled?",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual (1980), Section XIII, paragraphs 13-4 and 13-5 (PDF p. 85: a quick check without special equipment, made immediately after cleaning; the dry plunger and valve assembly started into the dry body; the plunger pushed down with a screwdriver in a tapping motion and should kick back promptly because of the compression of trapped air; rapid leakage may be due to dirt on the check valve or seat, irregularities, or wear of the plunger; a tappet that cannot be made to seat is discarded; reassembly with only a film of clean engine oil in the body) and the special tools list, paragraph 5-10 (PDF p. 51: a valve lifter bleed-down tester to test the performance of hydraulic lifters accurately). The test is this manual's own; it is not a general rule for every engine.",
+          "sourceRefs": [
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Valves and springs: corrosion and wear",
+          "prompt": "Look at each valve before you decide anything.\n\nExamine the face and the tip for pitting and excessive wear. Minor pitting on a valve face can sometimes be removed by grinding.\n\nCheck for stretch. It shows as a smaller diameter of the stem near the neck, found with a micrometer or a valve radius gauge, and then check the stem's fit in its guide.\n\nUse a magnifying glass on the stem area and the tip for cracks and nicks.\n\nLook at the whole valve for damage from burning or corrosion, and do not reuse a valve that shows it.\n\nCheck each valve spring for cracks, rust, broken ends and compression.\n\nWhich of these could you find by eye alone?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 379 (using a magnifying glass, examine the valve in the stem area and the tip for cracks, nicks and other damage; examine the valve springs for cracks, rust, broken ends and compression) and PDF p. 380 (the face and tip should be examined for pitting and excessive wear, and minor pitting can sometimes be removed by grinding; inspect for stretch with a micrometer or a valve radius gauge, where stretch is a smaller diameter near the neck; measure the stem and check its fit in the guide; examine the valve for damage from burning or corrosion and do not re-use valves that indicate damage of this nature). The limits belong to the manufacturer's manual.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Checking a valve spring",
+          "prompt": "A weak spring cannot close its valve firmly or hold it on its seat. A valve spring compression tester checks it.\n\nThe spring is compressed until its total height is the height the manufacturer specifies. The dial then shows, in pounds, the pressure needed to hold it there. That reading must lie within the manufacturer's limits.\n\nFor example, the GTSIO-520 manual's table of limits gives the outer valve spring, compressed to 1.275 inch, a serviceable limit of 118 lb, and 126 to 140 lb for a new one.\n\nIn the picture, find the spring, the dial and the height scale. What would you do with a spring that reads below its serviceable limit?",
+          "url": "./lesson-media/faa-valve-spring-tester.webp",
+          "alt": "Photograph of a valve spring compression tester: a heavy cast base with a round dial at the front, a coil spring held between two plates in a vertical fixture above the dial, a small ruled scale beside the spring for reading its compressed height, and a long lever arm at the right.",
+          "credit": "FAA-H-8083-32B, Figure 10-15",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 380 and 381 (compression is tested with a valve spring compression tester, Figure 10-15; the spring is compressed until its total height is that specified by the manufacturer; the dial indicates the pressure, in pounds, required to compress the spring to the specified height; this must be within the pressure limits established by the manufacturer). The example is from the Continental GTSIO-520 overhaul manual, Chapter B table of limits, March 1981, Spring Test Data (PDF p. 95: outer valve spring 637837 compressed to 1.275 inch, load 118 lb serviceable limit, 126 lb to 140 lb new parts); its own note says always to use the current data for the engine in front of you. The handbook does not say what to do with a spring below its limit; the lesson's answer, that it fails the test and is replaced, follows from the limit being a requirement.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The handbook photograph shows a real tester, so the learner can name its parts before seeing the one in the workshop."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Periodic exhaust checks",
+          "prompt": "At each regular inspection, with the cowling off, look at every clamped connection and every port connection for leakage. Daily, check the exposed exhaust for cracks, scaling, excessive leakage and loose clamps.\n\nA leak is usually two mated parts out of line. Loosen the clamps, reposition the parts, and tighten the nuts to no more than the specified torque. If that does not take up the looseness, the bolts and nuts have probably stretched: replace them, and safety the nuts.\n\nCeramic-coated stacks are cleaned by degreasing only. Parts hidden from view can be removed, plugged, pressurised to about 2 psi and put under water: bubbles show a leak. Never reuse an old gasket.\n\nWhy does a crack in a heat exchanger matter more than a crack in a stack?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 151 (the daily inspection of the exposed exhaust system for cracks, scaling, excessive leakage and loose clamps; each clamped and port connection inspected for leakage; an exhaust leak is usually poor alignment of two mated members; clamps loosened and parts repositioned; nuts retightened to no more than the specified torque, replaced if they do not tighten, since they have probably stretched, and safetied; ceramic-coated stacks cleaned by degreasing only; a component hidden or inaccessible removed, plugged, pressurised to about 2 psi and submerged in water) and PDF p. 152 (old gaskets never re-used; heat exchanger cracks let exhaust gas into the cabin heat system, a carbon monoxide hazard). The Tanzanian regulation 31(6)(c) also lists exhaust stacks for cracks, defects and improper attachment.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "tcaa-airworthiness-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "The manual, the tools, the standard",
+          "prompt": "Every task starts from the manufacturer's data. The maintenance or overhaul manual gives the order of work, the limits, the torque values and the special tools. The engine parts catalogue names the parts and gives their numbers.\n\nThe Tanzanian airworthiness regulations require the person doing maintenance to use the methods in the current manufacturer's maintenance manual or instructions for continued airworthiness, with the tools, equipment and test apparatus the work needs, and any special equipment the manufacturer recommends. The work must leave the aircraft or part at least equal to its original condition.\n\nKeep the work clean and neat, protect openings, and use the proper tool. Why is a torque wrench specified for a cylinder hold-down nut, and not a spanner and a guess?",
+          "note": "Documented from the Tanzanian Civil Aviation (Airworthiness) Regulations, revised edition 2026, regulation 30(1) (maintenance by the methods, techniques and practices in the current manufacturer's maintenance manual or instructions for continued airworthiness, or others approved by the Authority; the tools, equipment and test apparatus necessary), 30(2) (special equipment recommended by the manufacturer) and 30(3) (the work must leave the aircraft or component at least equal to its original or properly altered condition), read from the TCAA website on 13 October 2026; the TCAA says its published copy is not authoritative; FAA-H-8083-32B (2023), PDF p. 409 (the engine parts catalog and its part numbers; neatness and cleanliness; improper torque on cylinder hold-down nuts can cause a cylinder malfunction and engine failure) and the GTSIO-520 overhaul manual, paragraphs 5-1 to 5-2 (PDF p. 51, special tools).",
+          "sourceRefs": [
+            "tcaa-airworthiness-regs",
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "What each practical asks of you",
+          "prompt": "Practical A asks you to explain how the engine works, in order, while you watch or handle the training engine.\n\nPractical B follows one pattern for every part: identify it, state its function, describe how it is built, and recognise a sign that it is not in good condition, relating that sign to the job the part does.\n\nPractical C asks you to take part in the maintenance tasks safely, in the correct order and relationship, with the right tools and the maintenance information in front of you.\n\nThese are the outcomes your instructor wrote for the three practicals. Your instructor will tell you how the work is marked.\n\nWhich of the three do you feel least ready for?",
+          "note": "Documented from the instructor's three outcome lists for Practicals A, B and C and the Practical B note (identify it, state its function, describe its construction, recognise abnormal condition). The lesson states no marking scheme: the instructor has not supplied what the assessor looks for, and the instructor should confirm or add it.",
+          "sourceRefs": [
+            "instructor-practical-rigs",
+            "practical-worksheets"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -1036,6 +1777,200 @@
       "rationale": "The manual's notes in paragraph 7-15 recommend replacing all exhaust valves and rotocaps, and all hydraulic lifters, at each major overhaul regardless of condition. Always read the current instructions for the engine in front of you."
     },
     {
+      "id": "maint-responsible",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "Under the Tanzanian airworthiness regulations, who must maintain an aircraft in an airworthy condition?",
+      "hint": "The duty is on the person who owns or uses the aircraft.",
+      "answers": [
+        "The owner or operator of the aircraft",
+        "Only the engine manufacturer",
+        "Only the pilot, on each flight",
+        "Only the Authority"
+      ],
+      "correct": 0,
+      "rationale": "Regulation 21 puts the duty on the owner or operator. An aircraft that is not maintained in an airworthy condition may not be operated until it is restored."
+    },
+    {
+      "id": "maint-words",
+      "lessonId": "maintenance-servicing",
+      "type": "matching",
+      "question": "Match each maintenance word to its meaning.",
+      "hint": "Two of them are about restoring, one is about examining and one is a small job.",
+      "pairs": [
+        {
+          "left": "Inspection",
+          "right": "Examining to establish that it conforms to an approved standard"
+        },
+        {
+          "left": "Repair",
+          "right": "Restoring to an airworthy condition after damage or wear"
+        },
+        {
+          "left": "Overhaul",
+          "right": "Restoring by disassembly, cleaning, inspection, repair as necessary and reassembly"
+        },
+        {
+          "left": "Preventive maintenance",
+          "right": "Simple or minor preservation and replacing small standard parts"
+        }
+      ],
+      "rationale": "These are the regulation's own meanings. Maintenance is the general word that includes overhaul, inspection, replacement, defect rectification and modifications or repairs."
+    },
+    {
+      "id": "maint-approved-data",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "What must a person use when doing maintenance on an engine?",
+      "hint": "There is one first choice and one fallback.",
+      "answers": [
+        "The current manufacturer's maintenance manual or instructions for continued airworthiness, or methods the Authority has approved if they are not available",
+        "Whatever method they remember from training",
+        "A general textbook",
+        "The course slides"
+      ],
+      "correct": 0,
+      "rationale": "Regulation 30 requires the methods in the current manufacturer's maintenance manual or instructions for continued airworthiness, or Authority-approved methods where those are not available, with the special tools the manufacturer recommends."
+    },
+    {
+      "id": "maint-service-limit",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "What does a service limit tell you about a part?",
+      "hint": "It is a limit on wear, not a nominal size.",
+      "answers": [
+        "The most wear the part may have, or the least strength, and still be used",
+        "The size the part was when new",
+        "The number of hours the part has flown",
+        "The price of replacing the part"
+      ],
+      "correct": 0,
+      "rationale": "A new part is made to a nominal size within a tolerance. A service limit is the point at which it must be repaired or replaced, as with the valve spring that is not reused below 73 lb."
+    },
+    {
+      "id": "maint-plug-gap",
+      "lessonId": "maintenance-servicing",
+      "type": "numeric",
+      "question": "The manual allows a spark plug gap of 0.017 to 0.018 in. A plug measures 0.022 in. By how much is it over the largest allowed gap? Give the answer in inches.",
+      "hint": "Subtract the largest allowed gap from the measured gap.",
+      "unit": "in",
+      "correctValue": 0.004,
+      "tolerance": 0.0005,
+      "rationale": "0.022 - 0.018 = 0.004 in over the limit. A plug whose gap has eroded wider than the limit is not installed as it is: it is serviced and the gap set again, or replaced."
+    },
+    {
+      "id": "maint-dropped-plug",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "A technician drops a spark plug on the hangar floor. What should be done?",
+      "hint": "Think about damage that cannot be seen.",
+      "answers": [
+        "Discard it, because the shock can crack the insulator where it cannot be seen",
+        "Wipe it and fit it",
+        "Re-gap it and fit it",
+        "Fit it only on the lower side of the cylinder"
+      ],
+      "correct": 0,
+      "rationale": "A plug that has been dropped on a hard surface should not be installed, because the shock usually causes small, invisible cracks in the insulator."
+    },
+    {
+      "id": "maint-evidence-words",
+      "lessonId": "maintenance-servicing",
+      "type": "matching",
+      "question": "Match each defect word to its meaning.",
+      "hint": "Each word names a different way for metal to be damaged.",
+      "pairs": [
+        {
+          "left": "Corrosion",
+          "right": "Loss of metal by chemical action"
+        },
+        {
+          "left": "Chafing",
+          "right": "Wear from two parts rubbing under light pressure"
+        },
+        {
+          "left": "Burning",
+          "right": "Surface damage from excessive heat"
+        },
+        {
+          "left": "Crack",
+          "right": "A partial separation of material, from vibration, overload or fatigue"
+        }
+      ],
+      "rationale": "These are the handbook's definitions. Using the exact word in the record tells the next person what to look for."
+    },
+    {
+      "id": "maint-filter-metal",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "Metal particles are found on the oil filter element at an oil change. What does that suggest?",
+      "hint": "The metal came from inside the engine.",
+      "answers": [
+        "Internal wear or a failing part, so the cause must be investigated and an overhaul may be indicated",
+        "Nothing, because oil always carries metal",
+        "That the filter is the wrong type",
+        "That the oil can simply be topped up"
+      ],
+      "correct": 0,
+      "rationale": "The handbook says to check the oil and the filter for metal, and that when metal particles are found in the sump an overhaul of the engine is indicated."
+    },
+    {
+      "id": "maint-preventive",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "Which of these is preventive maintenance under the Tanzanian airworthiness regulations?",
+      "hint": "Preventive maintenance is simple or minor work.",
+      "answers": [
+        "Replacing or cleaning spark plugs and setting the gap",
+        "Replacing a cylinder",
+        "A major overhaul",
+        "Replacing a crankshaft"
+      ],
+      "correct": 0,
+      "rationale": "Regulation 29 lists replacing or cleaning spark plugs and setting the plug gap, and cleaning fuel and oil strainers, among the preventive maintenance. Who may do it is limited by regulation 26."
+    },
+    {
+      "id": "maint-record-signature",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "What does the signature on a maintenance record entry approve?",
+      "hint": "It is limited to what was done.",
+      "answers": [
+        "The return to service of the work performed, and no more",
+        "The return to service of the whole aircraft whatever else is wrong",
+        "The airworthiness of every engine of that type",
+        "The choice of a new overhaul period"
+      ],
+      "correct": 0,
+      "rationale": "Regulation 42 says the signature constitutes the approval for return to service only for the work performed."
+    },
+    {
+      "id": "maint-logbook-years",
+      "lessonId": "maintenance-servicing",
+      "type": "numeric",
+      "question": "For how many years after an engine is destroyed or permanently withdrawn from use must its log book be kept?",
+      "hint": "The regulation gives a number of years.",
+      "unit": "years",
+      "correctValue": 2,
+      "tolerance": 0,
+      "rationale": "Regulation 41 says every log book shall be preserved by the operator until two years after the aircraft, the engine or the propeller has been destroyed or permanently withdrawn from use."
+    },
+    {
+      "id": "maint-fuel-grade",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "Which fuel grades does the GTSIO-520-H data page give?",
+      "hint": "Look at the first specification page.",
+      "answers": [
+        "100LL (blue) or 100 (green) aviation gasoline",
+        "Any automotive gasoline",
+        "80 octane aviation gasoline only",
+        "Jet fuel"
+      ],
+      "correct": 0,
+      "rationale": "Page C-3-2 gives aviation grade fuel, 100LL (blue) or 100 (green). A lower grade in an engine that needs a high one can cause detonation."
+    },
+    {
       "id": "lsa-max-speed",
       "lessonId": "light-sport-aircraft",
       "type": "numeric",
@@ -1222,6 +2157,144 @@
       ],
       "correct": 2,
       "rationale": "The magnetic plug reveals the internal condition of the gearbox and engine. A significant amount of chips means the engine must be inspected, repaired or overhauled. Only a few steel chips under about 3 mm can be tolerated."
+    },
+    {
+      "id": "lsa-restricted-certificate",
+      "lessonId": "light-sport-aircraft",
+      "type": "multiple-choice",
+      "question": "What kind of certificate of airworthiness may the Tanzanian Authority issue to a microlight or a kit-built aircraft that does not qualify for a normal one?",
+      "hint": "The certificate carries limits for each aircraft.",
+      "answers": [
+        "A restricted certificate of airworthiness, with operating limitations and no international flights",
+        "A normal certificate with no limitations",
+        "No certificate at all: such aircraft cannot fly",
+        "A certificate for commercial air transport only"
+      ],
+      "correct": 0,
+      "rationale": "Regulation 16 allows a restricted certificate of airworthiness for aircraft that do not qualify for one, including microlight, experimental amateur and kit built aircraft. It is subject to operating limitations in Tanzania, specific limits for each aircraft, and no international flights."
+    },
+    {
+      "id": "lsa-pilot-maintenance",
+      "lessonId": "light-sport-aircraft",
+      "type": "multiple-choice",
+      "question": "Under the Tanzanian airworthiness regulations, when may a licensed pilot perform preventive maintenance on an aircraft?",
+      "hint": "There are three conditions: the aircraft, its use and the pilot's training.",
+      "answers": [
+        "On an aircraft of 5,700 kg or less that the pilot owns or operates, that is not used by an air operator, and after a maintenance course on the type",
+        "On any aircraft, at any time",
+        "Only when no engineer is available",
+        "Only on an aircraft that is on an air operator's certificate"
+      ],
+      "correct": 0,
+      "rationale": "Regulation 26(3) lets a licensed pilot perform preventive maintenance on an aircraft of 5,700 kg or less that the pilot owns or operates, not listed for use by an air operator, if the pilot has attended a maintenance course on the type."
+    },
+    {
+      "id": "lsa-licence-privileges",
+      "lessonId": "light-sport-aircraft",
+      "type": "multiple-choice",
+      "question": "A licensed engineer is asked to sign for work on an engine type that is not entered on their licence. What do the licensing regulations say?",
+      "hint": "Privileges follow what is entered on the licence.",
+      "answers": [
+        "The privileges may be exercised only for what is entered on the licence, so the engineer should not sign",
+        "Any licensed engineer may sign for any engine",
+        "The engineer may sign if the owner agrees",
+        "The engineer may sign if the work looks simple"
+      ],
+      "correct": 0,
+      "rationale": "Regulation 127 allows the privileges to be exercised only in respect of the aircraft, powerplants and systems entered on the licence, with familiarity with the relevant information and recent experience."
+    },
+    {
+      "id": "lsa-recency",
+      "lessonId": "light-sport-aircraft",
+      "type": "numeric",
+      "question": "A licence holder must have at least how many months of experience in the preceding 24 months to exercise the privileges of an aircraft maintenance engineer licence?",
+      "hint": "The regulation gives a number of months.",
+      "unit": "months",
+      "correctValue": 6,
+      "tolerance": 0,
+      "rationale": "Regulation 127 requires that within the preceding 24 months the holder has had at least six months of experience in the inspection, servicing or maintenance of aircraft in accordance with the privileges, or has met the provisions for the issue of a licence."
+    },
+    {
+      "id": "lsa-find-rules",
+      "lessonId": "light-sport-aircraft",
+      "type": "ordering",
+      "question": "Put these in a sensible order for what to find out before working on a light aircraft.",
+      "hint": "Start with where the aircraft belongs and end with the job itself.",
+      "items": [
+        "Where the aircraft is registered, and its authority",
+        "The certificate it holds, its category and limitations",
+        "The current manufacturer's data, directives and bulletins",
+        "What your licence allows you to sign",
+        "Whether the job is preventive maintenance, repair or overhaul"
+      ],
+      "rationale": "The registration decides which authority's rules apply. The certificate and its limitations say what the aircraft may do. The data says how the work is done. Your licence says what you may sign, and the type of job decides who must inspect and sign."
+    },
+    {
+      "id": "lsa-why-rules-first",
+      "lessonId": "light-sport-aircraft",
+      "type": "multiple-choice",
+      "question": "Why must an engineer find out the regulatory framework before doing maintenance on a recreational aircraft?",
+      "hint": "Think about what differs between categories and states.",
+      "answers": [
+        "Maintenance privileges and permitted work can differ between categories of aircraft and between states",
+        "The rules are always the same everywhere",
+        "Recreational aircraft have no rules",
+        "Only the owner needs to know the rules"
+      ],
+      "correct": 0,
+      "rationale": "Privileges follow the certificate, the category and the person's authorisation, and they differ between conventional certified aircraft and some recreational categories, and from state to state."
+    },
+    {
+      "id": "lsa-propeller-speed",
+      "lessonId": "light-sport-aircraft",
+      "type": "numeric",
+      "question": "The HKS 700T turns at 5,300 rpm and its reduction gearbox has a ratio of 2.13 to 1. How fast does the propeller turn, to the nearest 10 rpm?",
+      "hint": "Divide the engine speed by the reduction ratio.",
+      "unit": "rpm",
+      "correctValue": 2490,
+      "tolerance": 10,
+      "rationale": "5,300 ÷ 2.13 = 2,488 rpm, about 2,490. The engine makes its power at a high speed and the gearbox slows the propeller to a speed at which it is efficient."
+    },
+    {
+      "id": "lsa-why-gearbox",
+      "lessonId": "light-sport-aircraft",
+      "type": "multiple-choice",
+      "question": "Why does a small engine that makes its power at about 5,000 rpm drive its propeller through a reduction gearbox?",
+      "hint": "Think about the propeller blade tips.",
+      "answers": [
+        "The propeller would lose efficiency as its tips approached the speed of sound, so it has to turn slower than the engine",
+        "The gearbox makes the engine run faster",
+        "A propeller cannot be fitted to a direct-drive engine",
+        "The gearbox cools the engine"
+      ],
+      "correct": 0,
+      "rationale": "Whenever the blade tips approach the speed of sound the efficiency of a propeller decreases rapidly. A reduction gearbox lets the engine turn fast, for power from a small, light engine, while the propeller turns slowly enough."
+    },
+    {
+      "id": "lsa-engine-drives",
+      "lessonId": "light-sport-aircraft",
+      "type": "matching",
+      "question": "Match each engine to how it drives its propeller.",
+      "hint": "Think about which engines turn fastest.",
+      "pairs": [
+        {
+          "left": "Jabiru 2200",
+          "right": "Directly, at 3,300 rpm"
+        },
+        {
+          "left": "HKS 700T",
+          "right": "Through a reduction gearbox of 2.13 to 1"
+        },
+        {
+          "left": "Continental O-200",
+          "right": "Directly, at 2,750 rpm"
+        },
+        {
+          "left": "GTSIO-520-H",
+          "right": "Through a reduction gear of 0.667 to 1"
+        }
+      ],
+      "rationale": "The Jabiru and the O-200 are direct-drive. The HKS 700T runs at about 5,300 rpm and uses a 2.13:1 reduction. The GTSIO-520-H runs near 3,400 rpm and uses a 0.667:1 reduction gear."
     },
     {
       "id": "practicals-click-piston",
@@ -1431,6 +2504,414 @@
       ],
       "correct": 0,
       "rationale": "Without the firewall an engine fire would have ready access to the inside of the aircraft. It is also a mounting surface for units and the point where lines, linkages and wiring between engine and aircraft are disconnected."
+    },
+    {
+      "id": "practicals-end-compression",
+      "lessonId": "practicals",
+      "type": "multiple-choice",
+      "question": "At the end of the compression stroke, where is the piston?",
+      "hint": "Compression squeezes the charge into the smallest space.",
+      "answers": [
+        "At top dead centre",
+        "At bottom dead centre",
+        "Halfway down the cylinder",
+        "Moving fastest, at the middle of its travel"
+      ],
+      "correct": 0,
+      "rationale": "Compression pushes the piston up to the top of its travel, where the charge is in its smallest volume and ignition is about to start the power stroke."
+    },
+    {
+      "id": "practicals-cycle-degrees",
+      "lessonId": "practicals",
+      "type": "numeric",
+      "question": "How many degrees of crankshaft rotation does one complete four-stroke cycle take?",
+      "hint": "Two complete turns of the crankshaft.",
+      "unit": "degrees",
+      "correctValue": 720,
+      "tolerance": 0,
+      "rationale": "The four strokes need two complete revolutions of the crankshaft, 2 × 360 = 720 degrees, so each cylinder fires once in every two revolutions."
+    },
+    {
+      "id": "practicals-cam-turns",
+      "lessonId": "practicals",
+      "type": "numeric",
+      "question": "The crankshaft turns 1,200 times. How many times does the camshaft turn in that time?",
+      "hint": "The camshaft turns at half the crankshaft speed.",
+      "unit": "turns",
+      "correctValue": 600,
+      "tolerance": 0,
+      "rationale": "The camshaft always turns at half the crankshaft speed, so 1,200 turns of the crankshaft are 600 turns of the camshaft. Each valve opens once in every two crankshaft turns."
+    },
+    {
+      "id": "practicals-cam-gear",
+      "lessonId": "practicals",
+      "type": "multiple-choice",
+      "question": "On an opposed engine, how do the camshaft gear and the crankshaft gear compare?",
+      "hint": "The camshaft turns slower, so its gear is larger.",
+      "answers": [
+        "The camshaft gear has twice as many teeth, so the camshaft turns at half speed",
+        "The camshaft gear has half as many teeth, so the camshaft turns at half speed",
+        "The two gears are the same size, so both turn at the same speed",
+        "The camshaft gear has twice as many teeth, so the camshaft turns at twice the speed"
+      ],
+      "correct": 0,
+      "rationale": "The cam gear is twice the size of the crankshaft gear and turns at half its speed, because each valve opens only once in the two turns of a cycle."
+    },
+    {
+      "id": "practicals-valve-terms",
+      "lessonId": "practicals",
+      "type": "matching",
+      "question": "Match each term to its meaning.",
+      "hint": "Think about what happens near TDC.",
+      "pairs": [
+        {
+          "left": "Valve lead",
+          "right": "The intake valve opens before TDC"
+        },
+        {
+          "left": "Valve lag",
+          "right": "The exhaust valve closes after TDC"
+        },
+        {
+          "left": "Valve overlap",
+          "right": "Both valves are off their seats at the same time"
+        },
+        {
+          "left": "Stroke",
+          "right": "The distance the piston travels from TDC to BDC"
+        }
+      ],
+      "rationale": "Lead is early opening, lag is late closing, and overlap is the short time near TDC when both are open. The stroke is the piston travel between the two dead centres."
+    },
+    {
+      "id": "practicals-force-path",
+      "lessonId": "practicals",
+      "type": "ordering",
+      "question": "Put these parts in the order the force of combustion passes through them.",
+      "hint": "Start at the piston and end at the part that turns.",
+      "items": [
+        "Piston",
+        "Piston pin",
+        "Connecting rod",
+        "Crankpin (throw)",
+        "Crankshaft"
+      ],
+      "rationale": "The pressure acts on the piston, which pushes on the connecting rod through the piston pin. The rod pushes on the crankpin, which is off the centre line, and that turns the crankshaft."
+    },
+    {
+      "id": "practicals-firing-interval",
+      "lessonId": "practicals",
+      "type": "numeric",
+      "question": "A four-cylinder, four-stroke engine fires one cylinder every how many degrees of crankshaft rotation?",
+      "hint": "Divide the 720 degrees of a cycle by the number of cylinders.",
+      "unit": "degrees",
+      "correctValue": 180,
+      "tolerance": 0,
+      "rationale": "720 ÷ 4 = 180 degrees. Each power stroke lasts 180 degrees, so on a four-cylinder engine one power stroke follows the other without overlap."
+    },
+    {
+      "id": "practicals-six-throw",
+      "lessonId": "practicals",
+      "type": "multiple-choice",
+      "question": "A crankshaft has six throws. Which engine does the handbook link it to?",
+      "hint": "The number of crankpins must match the cylinder arrangement.",
+      "answers": [
+        "A six-cylinder opposed engine",
+        "A four-cylinder opposed engine",
+        "A single-row radial engine",
+        "A two-cylinder opposed engine"
+      ],
+      "correct": 0,
+      "rationale": "The handbook says the six-throw shaft is used on six-cylinder inline engines, 12-cylinder V-type engines and six-cylinder opposed engines, and the four-throw shaft on four-cylinder opposed or inline engines. A single-row radial has a single throw."
+    },
+    {
+      "id": "practicals-materials",
+      "lessonId": "practicals",
+      "type": "matching",
+      "question": "Match each part to the material the handbook gives for it.",
+      "hint": "Think about heat and strength.",
+      "pairs": [
+        {
+          "left": "Cylinder head",
+          "right": "Aluminium alloy, light and a good conductor of heat"
+        },
+        {
+          "left": "Cylinder barrel",
+          "right": "Steel, with the cooling fins machined on it"
+        },
+        {
+          "left": "Piston rings",
+          "right": "Most often gray cast iron"
+        },
+        {
+          "left": "Crankshaft",
+          "right": "Forged alloy steel with hardened (nitrided) surfaces"
+        },
+        {
+          "left": "Crankcase",
+          "right": "Cast aluminium alloy, sometimes magnesium"
+        }
+      ],
+      "rationale": "The head is aluminium alloy for lightness and heat conduction, and the barrel is steel. Rings are most often gray cast iron. The crankshaft is forged from a strong alloy steel and nitrided for wear, and the crankcase is cast aluminium alloy or magnesium."
+    },
+    {
+      "id": "practicals-hotter-valve",
+      "lessonId": "practicals",
+      "type": "multiple-choice",
+      "question": "Which valve is made of the more heat-resistant alloy, and why?",
+      "hint": "One valve passes the burned gas.",
+      "answers": [
+        "The exhaust valve, because it runs hotter than the intake valve",
+        "The intake valve, because it runs hotter than the exhaust valve",
+        "Neither: both are made of the same alloy",
+        "The intake valve, because it is larger"
+      ],
+      "correct": 0,
+      "rationale": "Intake valves run at lower temperatures than exhaust valves, so exhaust valves are made of more heat-resistant alloys such as nichrome, silchrome or cobalt-chromium steel."
+    },
+    {
+      "id": "practicals-model-letters",
+      "lessonId": "practicals",
+      "type": "multiple-choice",
+      "question": "In the engine model GTSIO-520, what does the letter G stand for?",
+      "hint": "The prefixes describe features of the engine.",
+      "answers": [
+        "A geared engine",
+        "A gasoline engine",
+        "A generator drive",
+        "A ground-running engine"
+      ],
+      "correct": 0,
+      "rationale": "In the course text, G is the prefix for a geared engine. GTSIO-520 reads: geared, turbo-supercharged, fuel-injected, opposed, 520 cubic inches."
+    },
+    {
+      "id": "practicals-more-defects",
+      "lessonId": "practicals",
+      "type": "matching",
+      "question": "Match each defect term to its meaning.",
+      "hint": "Think about the cause of each.",
+      "pairs": [
+        {
+          "left": "Burning",
+          "right": "Surface damage from excessive heat"
+        },
+        {
+          "left": "Scoring",
+          "right": "Deep scratches from foreign particles between moving parts"
+        },
+        {
+          "left": "Pitting",
+          "right": "Small hollows, usually from corrosion"
+        },
+        {
+          "left": "Galling",
+          "right": "Severe chafing or fretting, with metal moved from one part to the other"
+        }
+      ],
+      "rationale": "The handbook defines burning as damage from excessive heat, scoring as a series of deep scratches, pitting as small hollows of irregular shape, and galling as a severe condition of chafing or fretting with transfer of metal."
+    },
+    {
+      "id": "practicals-defect-function",
+      "lessonId": "practicals",
+      "type": "multiple-choice",
+      "question": "A cylinder wall is scored and the piston rings can no longer seal against it. What would you expect to find?",
+      "hint": "Think about what the rings are for.",
+      "answers": [
+        "Low compression, because gas leaks past the piston",
+        "High compression, because the rings grip harder",
+        "Better cooling, because oil reaches the wall",
+        "No effect on the engine"
+      ],
+      "correct": 0,
+      "rationale": "The rings seal the gap between piston and cylinder wall. Leakage past the piston is a frequent cause of loss of compression, so a wall that rings cannot seal against shows up as low compression."
+    },
+    {
+      "id": "practicals-click-pushrod",
+      "lessonId": "practicals",
+      "type": "model-click",
+      "question": "Tap a pushrod.",
+      "hint": "It carries the lift from the tappet to the rocker arm.",
+      "modelId": "cylinder",
+      "correctNodeId": "IntakePushrod",
+      "alsoAccept": [
+        "ExhaustPushrod"
+      ],
+      "rationale": "The pushrod is the tubular rod between the tappet and the rocker arm. It lies inside its housing and carries the lift from the cam to the rocker arm."
+    },
+    {
+      "id": "practicals-click-spring",
+      "lessonId": "practicals",
+      "type": "model-click",
+      "question": "Tap a valve spring.",
+      "hint": "It closes the valve and holds it on its seat.",
+      "modelId": "cylinder",
+      "correctNodeId": "IntakeOuterSpring",
+      "alsoAccept": [
+        "IntakeInnerSpring",
+        "ExhaustOuterSpring",
+        "ExhaustInnerSpring"
+      ],
+      "rationale": "Each valve is closed by two or three helical springs, one inside the other. The springs close the valve and hold it on its seat."
+    },
+    {
+      "id": "practicals-cylinder-off",
+      "lessonId": "practicals",
+      "type": "ordering",
+      "question": "Put these steps for taking a cylinder off in the order the handbook gives them.",
+      "hint": "Pipes and covers first, the cylinder itself last.",
+      "items": [
+        "Remove the intake and exhaust pipes and the rocker covers",
+        "Turn the crankshaft to TDC on the compression stroke and remove and mark the pushrods",
+        "Remove all the hold-down nuts except two opposite each other",
+        "Support the cylinder, remove the last two nuts and draw it off straight",
+        "Remove the piston from the connecting rod, then support the rod"
+      ],
+      "rationale": "Openings are protected and the obstructions come off first. The pushrods come out with the piston at TDC on compression, when both rocker arms are free. The cylinder is held by two nuts until it is supported. Once the cylinder is off, the piston comes off the rod, and the rod must then be supported so it is not damaged."
+    },
+    {
+      "id": "practicals-tdc-compression",
+      "lessonId": "practicals",
+      "type": "multiple-choice",
+      "question": "Why turn the crankshaft to TDC on the compression stroke before you remove the pushrods?",
+      "hint": "Think about the two rocker arms.",
+      "answers": [
+        "It relieves the pressure on both the intake and the exhaust rocker arms",
+        "It puts the exhaust valve fully open",
+        "It locks the crankshaft so it cannot turn",
+        "It drains the oil from the cylinder"
+      ],
+      "correct": 0,
+      "rationale": "With the piston at TDC on the compression stroke both valves are shut, so neither rocker arm is loaded by its valve spring and the pushrods can be taken out."
+    },
+    {
+      "id": "practicals-ring-gaps",
+      "lessonId": "practicals",
+      "type": "multiple-choice",
+      "question": "When you fit a piston with its rings into a cylinder, what do you do with the ring gaps?",
+      "hint": "Gaps in line would give gas a straight path.",
+      "answers": [
+        "Stagger them around the piston and check each ring is in its own groove",
+        "Line them up on the thrust side of the piston",
+        "Line them up with the piston pin",
+        "Leave them as they come out of the box"
+      ],
+      "correct": 0,
+      "rationale": "The handbook says to stagger the ring gaps around the piston and to check that the rings are in the correct grooves and positioned correctly, because some are oil scrapers and others are pumper rings."
+    },
+    {
+      "id": "practicals-tappet-parts",
+      "lessonId": "practicals",
+      "type": "multiple-choice",
+      "question": "Why are the body, socket and plunger of a hydraulic tappet kept together as a set?",
+      "hint": "Think about the leak-down rate.",
+      "answers": [
+        "They are selectively fitted to give the specified leak-down rate",
+        "They are painted the same colour",
+        "They are always interchangeable",
+        "They must be cleaned in the same solvent"
+      ],
+      "correct": 0,
+      "rationale": "The body, socket and plunger of each tappet are selectively fitted to obtain the specified leak-down rate, so parts from different tappets must not be mixed."
+    },
+    {
+      "id": "practicals-tappet-kickback",
+      "lessonId": "practicals",
+      "type": "multiple-choice",
+      "question": "In the quick test of a hydraulic tappet, the plunger kicks back promptly when it is tapped down. What does that show?",
+      "hint": "Trapped air is being compressed.",
+      "answers": [
+        "Good compression: the tappet is acceptable if nothing else is wrong",
+        "The tappet must be discarded",
+        "The check valve is leaking badly",
+        "The oil holes are blocked"
+      ],
+      "correct": 0,
+      "rationale": "A prompt kick-back, from the compression of trapped air, shows good compression. Rapid leakage would point to dirt on the check valve or seat or a worn plunger."
+    },
+    {
+      "id": "practicals-spring-low",
+      "lessonId": "practicals",
+      "type": "numeric",
+      "question": "The GTSIO-520 manual gives the outer valve spring, compressed to 1.275 inch, a serviceable limit of 118 pounds. A spring reads 109 pounds at that length. By how many pounds is it below the serviceable limit?",
+      "hint": "Subtract the reading from the limit.",
+      "unit": "pounds",
+      "correctValue": 9,
+      "tolerance": 0,
+      "rationale": "118 − 109 = 9 pounds below the serviceable limit, so the spring fails the test. The limit is from the manual's table of limits (March 1981); for any engine, use the current data for that engine. The reading of 109 pounds is made up for practice."
+    },
+    {
+      "id": "practicals-exhaust-nuts",
+      "lessonId": "practicals",
+      "type": "multiple-choice",
+      "question": "After you reposition a leaking exhaust joint and tighten the nuts to the specified torque, the joint is still loose. What do you do?",
+      "hint": "Think about what a stretched nut does.",
+      "answers": [
+        "Replace the bolts and nuts, because they have probably stretched",
+        "Tighten them beyond the specified torque",
+        "Leave them, since the joint was repositioned",
+        "Fit a larger washer"
+      ],
+      "correct": 0,
+      "rationale": "If tightening to the specified torque does not take up the looseness, the bolts and nuts should be replaced, since they have probably stretched. The torque must not be exceeded."
+    },
+    {
+      "id": "practicals-exhaust-marking",
+      "lessonId": "practicals",
+      "type": "multiple-choice",
+      "question": "What must you never use to mark exhaust parts?",
+      "hint": "The mark is absorbed by the hot metal.",
+      "answers": [
+        "A lead pencil",
+        "A felt-tip pen",
+        "A paper tag",
+        "A tie-on label"
+      ],
+      "correct": 0,
+      "rationale": "The lead from a pencil, like zinc from zinc-plated tools, is absorbed by the metal when it is heated. It softens the metal around the mark and leads to cracks."
+    },
+    {
+      "id": "practicals-practical-b-pattern",
+      "lessonId": "practicals",
+      "type": "ordering",
+      "question": "Put the four things Practical B asks of every part in order.",
+      "hint": "Start with what it is.",
+      "items": [
+        "Identify the part",
+        "State its function",
+        "Describe how it is built",
+        "Recognise a sign that it is not in good condition"
+      ],
+      "rationale": "The practical follows one pattern for each part: identify it, state its function, describe its construction, and recognise an abnormal condition, relating it to what the part does."
+    },
+    {
+      "id": "practicals-manual-first",
+      "lessonId": "practicals",
+      "type": "multiple-choice",
+      "question": "Under the Tanzanian airworthiness regulations, which methods must a person doing maintenance use?",
+      "hint": "Think about whose data applies.",
+      "answers": [
+        "Those in the current manufacturer's maintenance manual or instructions for continued airworthiness, or others approved by the Authority",
+        "Whatever method the engineer remembers",
+        "Only the methods in the engineer's own notes",
+        "The cheapest method that completes the job"
+      ],
+      "correct": 0,
+      "rationale": "Regulation 30 requires the methods, techniques and practices prescribed in the current manufacturer's maintenance manual or instructions for continued airworthiness, or methods the Authority approves where those documents are not available."
+    },
+    {
+      "id": "practicals-inspector-list",
+      "lessonId": "practicals",
+      "type": "multiple-choice",
+      "question": "Which item is on the Tanzanian regulation's list for the engine and nacelle group of an inspection?",
+      "hint": "It is a part that holds the engine to the airframe.",
+      "answers": [
+        "The engine mount, for cracks and looseness of mounting",
+        "The seat belts, for poor condition",
+        "The tyres, for wear and cuts",
+        "The wing fabric, for deterioration"
+      ],
+      "correct": 0,
+      "rationale": "Regulation 31(6)(c) lists the engine mount for cracks, looseness of mounting and looseness of the engine to the mount. Seat belts belong to the cabin group, tyres to the landing-gear group and wing fabric to the wing group."
     }
   ]
 }

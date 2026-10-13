@@ -38,7 +38,7 @@ export function ExploreControls({
   showPlayerOnViewer,
   onShowPlayerOnViewerChange,
 }: ExploreControlsProps) {
-  return <aside className="order-2 flex max-h-[44%] min-h-60 w-full shrink-0 flex-col border-t border-teal-500/25 bg-[#07161b] text-slate-100 shadow-2xl lg:order-none lg:h-full lg:max-h-none lg:min-h-0 lg:w-80 lg:border-l lg:border-t-0" aria-label="Explore controls">
+  return <aside className="order-2 flex max-h-[44%] min-h-60 w-full shrink-0 flex-col border-t border-teal-500/25 bg-panel text-slate-100 shadow-2xl lg:order-none lg:h-full lg:max-h-none lg:min-h-0 lg:w-80 lg:border-l lg:border-t-0" aria-label="Explore controls">
     <div className="flex items-center justify-between border-b border-slate-800 px-3 py-2.5">
       <div><span className="font-mono text-[11px] font-bold tracking-[0.18em] text-teal-400">EXPLORE CONTROLS</span><strong className="mt-0.5 block truncate text-xs text-white">{definitionLabel}</strong></div>
       <button type="button" onClick={onClose} className="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 hover:bg-slate-800 hover:text-white" aria-label="Hide Explore controls"><X className="h-4 w-4" /></button>
@@ -93,7 +93,7 @@ export function ExploreControls({
 }
 
 export function CompactMotionPlayer({ motion, snapshot }: { motion: NonNullable<ViewerFeatures['motion']>; snapshot: ViewerSnapshot }) {
-  return <div className="absolute inset-x-3 bottom-3 z-20 rounded-xl border border-teal-500/30 bg-[#07161b]/95 p-2.5 shadow-2xl backdrop-blur sm:left-3 sm:right-auto sm:w-[28rem] sm:max-w-[calc(100%-1.5rem)]" aria-label="Crank angle player">
+  return <div className="absolute inset-x-3 bottom-3 z-20 rounded-xl border border-teal-500/30 bg-panel/95 p-2.5 shadow-2xl backdrop-blur sm:left-3 sm:right-auto sm:w-[28rem] sm:max-w-[calc(100%-1.5rem)]" aria-label="Crank angle player">
     <div className="flex items-center gap-2.5">
       <button type="button" onClick={() => motion.setPlaying(!snapshot.playing)} className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-teal-400 text-slate-950" aria-label={snapshot.playing ? 'Pause mechanism' : 'Play mechanism'} aria-pressed={Boolean(snapshot.playing)}>{snapshot.playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}</button>
       <div className="min-w-0 flex-1"><div className="mb-1 flex items-center justify-between font-mono text-[11px] font-bold tracking-wider text-slate-400"><span>CRANK ANGLE</span><output className="text-xs text-teal-300">{Math.round(snapshot.angle ?? 0)}°</output></div><input aria-label="Crank angle" type="range" min="0" max="720" step="1" value={snapshot.angle ?? 0} onChange={(event) => motion.setAngle(Number(event.target.value))} className="block w-full accent-teal-400" /></div>

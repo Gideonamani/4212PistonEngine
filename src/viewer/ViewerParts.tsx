@@ -85,7 +85,7 @@ export function PanToggle({ viewer }: { viewer: ModelViewerState }) {
 export function WheelZoomHint({ viewer }: { viewer: ModelViewerState }) {
   if (!viewer.wheelHint) return null;
   return <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-3 z-20 flex justify-center px-3">
-    <span className="rounded-full border border-teal-400/40 bg-[#07161b]/90 px-3 py-1.5 text-[11px] font-semibold text-teal-100 shadow-lg">{WHEEL_ZOOM_HINT}</span>
+    <span className="rounded-full border border-teal-400/40 bg-panel/90 px-3 py-1.5 text-[11px] font-semibold text-teal-100 shadow-lg">{WHEEL_ZOOM_HINT}</span>
   </div>;
 }
 

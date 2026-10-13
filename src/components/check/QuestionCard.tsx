@@ -97,7 +97,7 @@ const NumericAnswer: React.FC<AnswerProps<Extract<QuizQuestion, { type: 'numeric
 export const QuestionCard: React.FC<QuestionCardProps> = ({ question, optionOrder, answer, onAnswer, revealed, onVerify, onNext, isLast }) => {
   const correct = isCorrect(question, answer);
   const props = { answer, onAnswer, revealed, onVerify };
-  return <section className="flex flex-col gap-4 rounded-2xl border border-teal-500/30 bg-[#08181e] p-5 shadow-xl">
+  return <section className="flex flex-col gap-4 rounded-2xl border border-teal-500/30 bg-panel p-5 shadow-xl">
     <div className="flex items-center justify-between font-mono text-xs"><span className="font-bold tracking-wider text-teal-400">{typeLabel[question.type]}</span></div>
     <h3 className="text-base font-bold leading-snug text-white sm:text-lg">{question.question}</h3>
     {question.hint && <div className="flex gap-2 rounded-xl border border-amber-500/25 bg-amber-950/20 p-3 text-xs leading-relaxed text-amber-100"><Lightbulb className="h-4 w-4 shrink-0 text-amber-300" />{question.hint}</div>}
@@ -105,7 +105,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, optionOrde
     {question.type === 'ordering' && <OrderingAnswer question={question} {...props} />}
     {question.type === 'matching' && <MatchingAnswer question={question} {...props} />}
     {question.type === 'numeric' && <NumericAnswer question={question} {...props} />}
-    {question.type === 'model-click' && <Suspense fallback={<div className="flex h-56 items-center justify-center rounded-xl border border-teal-400/20 bg-[#071418] text-xs text-teal-300">Preparing interactive 3D viewer…</div>}><PartPicker question={question} answer={Array.isArray(answer) ? answer : undefined} onAnswer={onAnswer} revealed={revealed} /></Suspense>}
+    {question.type === 'model-click' && <Suspense fallback={<div className="flex h-56 items-center justify-center rounded-xl border border-teal-400/20 stay-dark bg-[#071418] text-xs text-teal-300">Preparing interactive 3D viewer…</div>}><PartPicker question={question} answer={Array.isArray(answer) ? answer : undefined} onAnswer={onAnswer} revealed={revealed} /></Suspense>}
     {!revealed
       ? <button disabled={!isAnswered(question, answer)} onClick={onVerify} className="min-h-11 w-full rounded-xl bg-teal-400 py-3 text-xs font-bold text-slate-950 shadow-lg shadow-teal-400/20 disabled:cursor-not-allowed disabled:bg-slate-800 disabled:text-slate-400">Verify answer</button>
       : <div className="flex flex-col gap-3 border-t border-slate-800 pt-3">

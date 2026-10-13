@@ -6,6 +6,267 @@
   "banner": "./banners/history-and-fundamentals.webp",
   "title": "History & Fundamentals",
   "description": "General engine history and core terminology. Mostly text and image steps; one lesson references the Wright 1903 reference model.",
+  "sources": [
+    {
+      "id": "instructor-outcomes",
+      "tier": 4,
+      "title": "Instructor's learning outcomes for the module (12 October 2026)",
+      "path": "docs/lesson-objectives.md",
+      "applicability": "Frames the lesson: what it is for and what a learner should be able to do. It carries no claim about the history itself."
+    },
+    {
+      "id": "human-power",
+      "tier": 5,
+      "title": "Human power - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Human_power",
+      "applicability": "Sustained human mechanical output of roughly 75 to 100 W over a working period. Licence: CC BY-SA 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "britannica-watt",
+      "tier": 5,
+      "title": "Watt steam engine - Encyclopaedia Britannica",
+      "url": "https://www.britannica.com/technology/Watt-steam-engine",
+      "applicability": "Watt's separate condenser (conceived 1765, patented 1769). Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "newcomen-wikipedia",
+      "tier": 5,
+      "title": "Newcomen Memorial Engine - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Newcomen_Memorial_Engine",
+      "applicability": "Newcomen's first working engine near Dudley Castle in 1712, pumping water from a mine, and how the atmospheric cycle worked. Licence: CC BY-SA 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "stockton-darlington",
+      "tier": 5,
+      "title": "Railways: the Stockton and Darlington Railway - The Victorian Web",
+      "url": "https://victorianweb.org/technology/railways/railway1.html",
+      "applicability": "The Stockton and Darlington Railway opened on 27 September 1825. Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "rocket-worldhistory",
+      "tier": 5,
+      "title": "Stephenson's Rocket - World History Encyclopedia",
+      "url": "https://www.worldhistory.org/Stephenson%27s_Rocket/",
+      "applicability": "Rocket and the Rainhill Trials, 1829. Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "north-river-steamboat",
+      "tier": 5,
+      "title": "North River Steamboat - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/North_River_Steamboat",
+      "applicability": "Fulton's steamboat on the Hudson, August 1807: the first commercially successful steamboat, not the first steamboat. Licence: CC BY-SA 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "great-western",
+      "tier": 5,
+      "title": "SS Great Western - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/SS_Great_Western",
+      "applicability": "Left Bristol on 8 April 1838 and reached New York in 15 days, about half the usual time under sail; the Sirius arrived a day earlier, so \"first\" is contested. Licence: CC BY-SA 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "lenoir-wikipedia",
+      "tier": 5,
+      "title": "Etienne Lenoir - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/%C3%89tienne_Lenoir",
+      "applicability": "Lenoir's gas engine, patented 1860. Licence: CC BY-SA 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "britannica-otto",
+      "tier": 5,
+      "title": "Nikolaus Otto - Encyclopaedia Britannica",
+      "url": "https://www.britannica.com/biography/Nikolaus-Otto",
+      "applicability": "Otto's four-stroke engine, 1876 (the cycle was patented by Beau de Rochas in 1862; Otto built the engine). Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "benz-mercedes",
+      "tier": 5,
+      "title": "Mercedes-Benz Group: Benz and the first motor car, 1885-1886",
+      "url": "https://group.mercedes-benz.com/unternehmen/tradition/geschichte/1885-1886.html",
+      "applicability": "Benz applied for his patent on 29 January 1886. Licence: manufacturer's history page, facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "diesel-patent",
+      "tier": 5,
+      "title": "Diesel Engine: Patent (February 23, 1893) - German History in Documents and Images",
+      "url": "https://germanhistory-intersections.org/en/knowledge-and-education/ghis:image-8",
+      "applicability": "Diesel filed in 1892 and his patent was granted on 23 February 1893. Licence: facts only, no text or image copied; accessed 12 October 2026."
+    },
+    {
+      "id": "jebel-irhoud",
+      "tier": 5,
+      "title": "The first of our kind - Max Planck Society",
+      "url": "https://www.mpg.de/11322481/oldest-homo-sapiens-fossils-at-jebel-irhoud-morocco",
+      "applicability": "The oldest securely dated Homo sapiens fossils, about 300,000 years old. Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "cradle-of-civilization",
+      "tier": 5,
+      "title": "Cradle of civilization - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Cradle_of_civilization",
+      "applicability": "Approximate dates: settled farming in the Near East from about 12,000 years ago, and the earliest writing in Egypt and Mesopotamia about 3400 to 3100 BC. Licence: CC BY-SA 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "farm-jobs",
+      "tier": 5,
+      "title": "US Farms Still Feed the World But Farm Jobs Dwindle - strategy+business",
+      "url": "https://www.strategy-business.com/blog/US-Farms-Still-Feed-the-World-But-Farm-Jobs-Dwindle",
+      "applicability": "The share of the US labour force in agriculture: 41% in 1900 (USDA), 1.9% in 2000. Other estimates for 1900 run down to about 36%. Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "watermill-commons",
+      "tier": 5,
+      "title": "Watermill in operation.jpg - Wikimedia Commons",
+      "url": "https://commons.wikimedia.org/wiki/File:Watermill_in_operation.jpg",
+      "applicability": "Photograph of a working watermill wheel, by Jonathan Wilkins. Licence: CC BY-SA 3.0; used with credit; accessed 12 October 2026."
+    },
+    {
+      "id": "course-deck-2026-05",
+      "tier": 4,
+      "title": "Aircraft Piston Engine Slides - 21 May 2026 (instructor course deck)",
+      "path": "Notes/Aircraft Piston Engine Slides - 21May2026.pptx",
+      "applicability": "Instructor-authored course slides. Used for the history of aircraft engines (slides 7 to 40: balloons and gliders, the Wright breakthrough, the engine tables, the wars, the jet beginnings, general aviation and FADEC) and, in lesson 1, for the first jet flight (slide 27) and FADEC (slide 37). Carries no independent evidence; claims here need the instructor's confirmation. Slide 17 calls the 1913 Renault V8 water-cooled; the Aircraft Engine Historical Society and the Smithsonian say it was air-cooled, and this lesson follows them."
+    },
+    {
+      "id": "gtsio520-overhaul",
+      "tier": 3,
+      "title": "Continental GTSIO-520 Series Overhaul Manual X30045A",
+      "path": "Notes/gtsio520_series.pdf",
+      "applicability": "The course reference engine: rated 375 hp, standard dry weight 550.39 lb (detail specifications, as used in the Engine Requirements lesson). Always use the data for the engine in front of you."
+    },
+    {
+      "id": "nasa-airships-101",
+      "tier": 5,
+      "title": "Airships 101 - NASA Ames (NTRS 20120010650)",
+      "url": "https://ntrs.nasa.gov/api/citations/20120010650/downloads/20120010650.pdf",
+      "applicability": "NASA's taxonomy of aircraft: lighter-than-air (balloons, airships) and heavier-than-air. Licence: US Government work, public domain; facts only; accessed 12 October 2026."
+    },
+    {
+      "id": "nps-charles-taylor",
+      "tier": 5,
+      "title": "Charles E. Taylor - National Park Service",
+      "url": "https://nps.gov/people/charles-e-taylor.htm",
+      "applicability": "The Wrights asked engine makers in December 1902 for a 180 lb engine giving 8 to 9 horsepower; none was interested; Charlie Taylor built one in about six weeks, and it made 12 hp. Licence: US Government work, public domain; facts only; accessed 12 October 2026."
+    },
+    {
+      "id": "wright-flyer-facts",
+      "tier": 5,
+      "title": "Wright Flyer I: Just the Facts - Wright Brothers Aeroplane Company and Museum of Pioneer Aviation",
+      "url": "https://wright-brothers.org/Information_Desk/Just_the_Facts/Airplanes/Flyer_I.htm",
+      "applicability": "Flyer I specifications (605 lb empty, a 170 lb four-cylinder engine of 12 hp) and the four flights of 17 December 1903 (the first 12 s and about 120 ft; the last 59 s and 852 ft). Other sources give 150 to 180 lb for the engine, depending on what is counted. Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "nasm-manly-balzer",
+      "tier": 5,
+      "title": "Langley-Manly-Balzer Radial 5 Engine - Smithsonian National Air and Space Museum",
+      "url": "https://avpreservation.si.edu/object/nasm_A19080003000",
+      "applicability": "52.4 hp at 950 rpm, 209.6 lb wet; Manly himself gave 120 lb for \"the engine proper\". Licence: museum catalogue record, facts only; accessed 12 October 2026."
+    },
+    {
+      "id": "nasm-gnome-omega",
+      "tier": 5,
+      "title": "Gnome Omega No. 1 Rotary Engine - Smithsonian National Air and Space Museum",
+      "url": "https://dashboard.si.edu/object/gnome-omega-no-1-rotary-engine%3Anasm_A19990069000",
+      "applicability": "Seven cylinders, 50 hp at 1,200 rpm, 166.5 lb; generally regarded as the first rotary aero engine built in quantity. Licence: museum catalogue record, facts only; accessed 12 October 2026."
+    },
+    {
+      "id": "enginehistory-renault",
+      "tier": 5,
+      "title": "Selected Early Engines: Renault - Aircraft Engine Historical Society",
+      "url": "https://enginehistory.org/Piston/Before1925/EarlyEngines/R/Re.shtml",
+      "applicability": "Renault's V8 aero engines of 1907 onward were air-cooled (the 80 hp was rated 88 hp at 1,800 rpm). The Smithsonian's Renault 80 hp V-8 record agrees. Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "gnome-commons",
+      "tier": 5,
+      "title": "Gnome Omega Rotary Engine Running - Valder137, Wikimedia Commons",
+      "url": "https://commons.wikimedia.org/wiki/File:Gnome_Omega_Rotary_Engine_Running_02_Dawn_Patrol_NMUSAF_26Sept09_(14619976863).jpg",
+      "applicability": "Photograph of a running Gnome Omega. Licence: CC BY 2.0; used with credit; accessed 12 October 2026."
+    },
+    {
+      "id": "spirit-of-st-louis",
+      "tier": 5,
+      "title": "Charles A. Lindbergh's Ryan NYP, NX211, \"Spirit of St. Louis\" - This Day in Aviation",
+      "url": "https://www.thisdayinaviation.com/ryan-nyp-nx211-spirit-st-louis/",
+      "applicability": "The Spirit of St. Louis flew with an air-cooled, nine-cylinder Wright J-5C Whirlwind radial rated 200 hp at 1,800 rpm, 508 lb. Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "merlin-variants",
+      "tier": 5,
+      "title": "List of Rolls-Royce Merlin variants - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/List_of_Rolls-Royce_Merlin_variants",
+      "applicability": "The Merlin II delivered 1,030 hp from 1938. Licence: CC BY-SA 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "faa-powerplant-2023",
+      "tier": 1,
+      "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
+      "path": "Notes/amt_powerplant_handbook 2023.pdf",
+      "applicability": "Primary source for power and weight (specific weight) and powerplant selection by cruising speed (PDF pp. 23 to 24), and for the glossary definitions used in lesson 3 (PDF pp. 459 to 485): powerplant (p. 479), power (p. 479), pressure (p. 479), compression ratio (p. 465), heat engine (p. 472), reciprocating engine (p. 481), stroke (p. 485), bore (p. 462), RPM (p. 482) and major overhaul (p. 475). Propeller losses limit reciprocating and turboprop engines above about 400 mph; the turboprop develops more power per pound; gas turbines operate most economically at high altitude; reciprocating engines are the usual choice up to about 250 mph."
+    },
+    {
+      "id": "cfr-14-1-1",
+      "tier": 1,
+      "title": "14 CFR 1.1 General definitions - Legal Information Institute, Cornell Law School",
+      "url": "https://www.law.cornell.edu/cfr/text/14/1.1",
+      "applicability": "Definitions of aircraft, airplane, airframe, aircraft engine, maintenance and preventive maintenance (the regulation does not define \"powerplant\"). Licence: US Government regulation, public domain; accessed 12 October 2026."
+    },
+    {
+      "id": "cfr-14-25-901",
+      "tier": 1,
+      "title": "14 CFR 25.901 Powerplant installation - Legal Information Institute, Cornell Law School",
+      "url": "https://www.law.cornell.edu/cfr/text/14/25.901",
+      "applicability": "The airplane powerplant installation includes each component that is necessary for propulsion, affects the control of the major propulsive units, or affects their safety between normal inspections or overhauls. Licence: US Government regulation, public domain; accessed 12 October 2026."
+    },
+    {
+      "id": "easa-cs23-2400",
+      "tier": 2,
+      "title": "CS 23.2400 Powerplant installation - EASA Easy Access Rules, Normal-Category Aeroplanes",
+      "url": "https://www.easa.europa.eu/en/document-library/easy-access-rules/online-publications/easy-access-rules-normal-category-0?page=14",
+      "applicability": "EASA's scope for the powerplant installation: each component necessary for propulsion, affecting propulsion safety, or providing auxiliary power. Licence: EASA publication, facts only; accessed 12 October 2026."
+    },
+    {
+      "id": "cfr-14-43-2",
+      "tier": 1,
+      "title": "14 CFR 43.2 Records of overhaul and rebuilding - Legal Information Institute, Cornell Law School",
+      "url": "https://www.law.cornell.edu/cfr/text/14/43.2",
+      "applicability": "An item may be described as overhauled only if it has been disassembled, cleaned, inspected, repaired as necessary, reassembled and tested to approved standards. Licence: US Government regulation, public domain; accessed 12 October 2026."
+    },
+    {
+      "id": "openstax-work-power",
+      "tier": 5,
+      "title": "University Physics Volume 1, 7.4 Power - OpenStax",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/7-4-power",
+      "applicability": "Power as the rate of doing work, measured in watts (joules per second), and the conversion 1 hp = 746 W (also in Appendix B, with 550 ft-lb/s). Licence: CC BY 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "openstax-work-energy",
+      "tier": 5,
+      "title": "College Physics for AP Courses, 7.1 Work: The Scientific Definition - OpenStax",
+      "url": "https://openstax.org/books/college-physics-ap-courses/pages/7-1-work-the-scientific-definition",
+      "applicability": "Work as force times distance in the direction of motion; work and energy have the same units; whenever work is done, energy is transferred. Licence: CC BY 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "openstax-torque",
+      "tier": 5,
+      "title": "University Physics Volume 1, Chapter 10 key terms - OpenStax",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/10-key-terms",
+      "applicability": "Torque as the product of a force and its lever arm about an axis. Licence: CC BY 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "openstax-heat",
+      "tier": 5,
+      "title": "College Physics for AP Courses, 14.1 Heat - OpenStax",
+      "url": "https://openstax.org/books/college-physics-ap-courses/pages/14-1-heat",
+      "applicability": "Heat as the spontaneous transfer of energy due to a temperature difference; heat is a form of energy whereas temperature is not. Licence: CC BY 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "tcaa-airworthiness-regs",
+      "tier": 1,
+      "title": "The Civil Aviation (Airworthiness) Regulations, GN 57 of 2017, Revised Edition 2026 (Tanzania Civil Aviation Authority)",
+      "url": "https://www.tcaa.go.tz/uploads/documents/en-1789480894-GP%20GN.%2057%20of%202017%20CIVIL%20AVIATION%20(AIRWORTHINESS)%20REGULATIONS%202017-TGPA.pdf",
+      "applicability": "Regulation 2 defines inspection, maintenance, overhaul, repair, preventive maintenance and powerplant (the system of all the engines, drive system components, propellers, their accessories, ancillary parts, and fuel and oil systems installed on an aircraft). Read from the TCAA website, accessed 13 October 2026. The TCAA states that its published copy is not authoritative; the Government Printer's version is."
+    }
+  ],
   "lessons": [
     {
       "id": "history-mechanical-engines",
@@ -13,6 +274,17 @@
       "sequenceNumber": 1,
       "title": "History of Mechanical Engines",
       "objective": "Trace the broad arc from manual and animal labour, through mechanical work and the steam engine, to the internal combustion engine and today's electronically managed engines - so the reason aircraft needed a purpose-built engine (lesson 2) has a foundation.",
+      "purpose": "Establish the bigger human story into which aircraft piston engines fit.",
+      "coreIdea": "Human effort → mechanical power → industrial capability → mobility.",
+      "outcomes": [
+        "Explain the general purpose of an engine as a machine for converting available energy into useful mechanical work.",
+        "Describe how humans historically relied on human effort, animal power, wind and water before widespread mechanical engines.",
+        "Outline the broad development of steam engines, internal-combustion engines and later mechanical powerplants.",
+        "Explain how engines transformed agriculture, manufacturing, transport and other industries.",
+        "Compare broadly the use of engines in road, rail, marine and aviation transport.",
+        "Explain why mechanical engines are relatively recent inventions in the longer history of civilisation.",
+        "Appreciate how increasing access to mechanical power changed what human beings could move, manufacture and build."
+      ],
       "reviewStatus": "unreviewed",
       "models": [],
       "listed": true,
@@ -20,14 +292,58 @@
         {
           "type": "text",
           "title": "Muscle power's limit",
-          "prompt": "Before anything we would call an 'engine' existed, work got done by muscle. Raising a heavy stone, grinding grain, lifting water out of a mine - all by hand or animal power, hour after hour. What do you think was the single biggest limitation of muscle as your only power source?",
-          "note": "General historical orientation, not a documented/assessed claim - a way in to the topic, not a fact to memorise."
+          "prompt": "Before anything we would call an 'engine' existed, work got done by muscle. Raising a heavy stone, grinding grain, lifting water out of a mine: all by hand or animal power, hour after hour. What do you think was the single biggest limitation of muscle as your only power source?",
+          "note": "A way in to the topic, not a fact to memorise. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "What is an engine?",
+          "prompt": "An engine is a machine that converts an available form of energy into useful mechanical work: force that moves something through a distance.\n\nThe energy can be the chemical energy stored in fuel, heat, or the motion of wind or water. The word to notice is 'converts'. An engine does not make energy. It takes energy that is already there and puts it to work.\n\nThe rest of this lesson is the story of finding better ways to do that, and of what each new way made possible. For any engine in it, you can ask two questions: what energy goes in, and what work comes out?",
+          "note": "A working definition for this lesson; lesson 3 (Terminologies) builds the precise vocabulary. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "How much is a person worth?",
+          "prompt": "A person doing steady manual work delivers about 75 to 100 watts of mechanical power through a working day: about what a 100-watt light bulb uses. (Power is how fast work is done, and the watt is its unit.)\n\nJames Watt rated a working horse at 33,000 foot-pounds of work a minute and called that one horsepower. In modern units one horsepower is 746 watts, so a horse was worth seven to ten people.\n\nKeep these numbers in mind. At the end of this lesson you will weigh them against an aircraft engine.",
+          "note": "Sustained human output varies with fitness and how long the effort lasts; 75 to 100 W is the working range used here. The 1 hp = 746 W conversion is a definition (lesson 12 returns to horsepower and watts).",
+          "sourceRefs": [
+            "human-power"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Redirecting natural power",
-          "prompt": "The first way people got past muscle's limits wasn't a machine that made its own power - it was a machine that redirected power already available in nature. Waterwheels turned the flow of a river into continuous rotary motion; windmills did the same with moving air. Treadmills and animal-driven capstans stretched muscle power further by converting it, through gearing, into steady rotary work. None of these created energy - they converted and multiplied what was already moving.",
-          "note": "General historical narrative (illustrative, not EASA/FAA-sourced): the underlying idea - converting an existing motion into useful rotary work - is the same idea a crankshaft uses later, just with a different power source."
+          "prompt": "The first way people got past muscle's limits was not a machine that made its own power. It was a machine that redirected power already available in nature. Waterwheels turned the flow of a river into continuous rotary motion; windmills did the same with moving air. Treadmills and animal-driven capstans stretched muscle power further by converting it, through gearing, into steady rotary work.\n\nNone of these created energy. They converted and multiplied what was already moving.",
+          "note": "General historical narrative (illustrative, not an assessed claim): the idea of converting an existing motion into useful rotary work is the idea a crankshaft uses later, with a different source of power.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "image",
@@ -39,13 +355,29 @@
           "license": "CC BY-SA 3.0",
           "sourceUrl": "https://commons.wikimedia.org/wiki/File:Watermill_in_operation.jpg",
           "note": "Licensed documentary image of a working watermill.",
-          "mediaPlan": {"mode": "web-media", "status": "available", "rationale": "A documentary photograph grounds the transition from muscle power to natural-flow machinery."}
+          "mediaPlan": {
+            "mode": "web-media",
+            "status": "available",
+            "rationale": "A documentary photograph grounds the transition from muscle power to natural-flow machinery."
+          },
+          "sourceRefs": [
+            "watermill-commons"
+          ]
         },
         {
           "type": "text",
           "title": "The steam engine",
-          "prompt": "Natural flow is free, but it is also fixed - a mill only turns as fast as the river runs. The next leap was a machine that made its own motion on demand, by burning fuel outside a working cylinder and using the resulting heat to push a piston: the steam engine. Thomas Newcomen's atmospheric engine (from 1712) pumped water out of mines using steam condensed to pull a piston down. James Watt's improvements from the 1760s-70s, most importantly a separate condenser, made steam engines far more fuel-efficient and, once fitted with a crank, able to deliver smooth rotary output - powering the factories, and later the locomotives and ships, of the Industrial Revolution.",
-          "note": "General historical narrative (illustrative, not EASA/FAA-sourced) - Newcomen and Watt dates are well-established general history, included for narrative context rather than as an assessed course claim."
+          "prompt": "Natural flow is free, but it is also fixed: a mill only turns where and as fast as the river runs. The next leap was a machine that made its own motion on demand, by burning fuel outside a working cylinder and using the heat to push a piston: the steam engine.\n\nThomas Newcomen's engine, first at work near Dudley in 1712, pumped water out of a mine. Steam filled the cylinder and was then condensed, and the pressure of the air pushed the piston down into the vacuum.\n\nJames Watt's separate condenser (conceived in 1765, patented in 1769) saved so much fuel that steam power paid its way far beyond the coal mines. Later Watt engines turned a shaft, and factories, locomotives and ships followed.",
+          "note": "Newcomen's first engine (1712, near Dudley Castle) and Watt's condenser (1765, patent 1769) checked against Britannica and Wikipedia on 12 October 2026. The Newcomen cycle is given in its standard simplified form; early engines varied.",
+          "sourceRefs": [
+            "newcomen-wikipedia",
+            "britannica-watt"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "image",
@@ -54,19 +386,76 @@
           "url": "artifact:steam-engine-schematic",
           "alt": "Interactive simplified steam engine schematic",
           "note": "Purpose-built teaching schematic showing external combustion, steam delivery, piston and flywheel.",
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "A clean authored schematic isolates the external-combustion relationship without adding period-specific machinery detail."}
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "A clean authored schematic isolates the external-combustion relationship without adding period-specific machinery detail."
+          },
+          "sourceRefs": [
+            "instructor-outcomes"
+          ]
+        },
+        {
+          "type": "text",
+          "title": "Power wherever it was needed",
+          "prompt": "A waterwheel had to stand beside a river. A steam engine could stand wherever coal could be carried, so factories moved to towns and ports, and the machines in a mill were driven from one engine by shafts and belts.\n\nFarms changed too. Steam threshing machines and traction engines took over work that had needed many hands, and in the twentieth century petrol and diesel tractors replaced horses and oxen. In the United States roughly four in ten workers farmed in 1900; by 2000 it was fewer than two in a hundred.\n\nMore power from fewer people meant more of a society could build, make and trade instead of growing food.",
+          "note": "The 1900 share of US workers in agriculture is given as about 41% by USDA and as low as about 36% by other estimates, depending on how farm work is counted; the 2000 figure is 1.9%. The move of factories from rivers to towns, and the replacement of animals by tractors, are the standard account.",
+          "sourceRefs": [
+            "farm-jobs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Rails and sea lanes",
+          "prompt": "The Stockton and Darlington Railway opened in 1825, and Stephenson's Rocket won the Rainhill Trials in 1829 for the Liverpool and Manchester line. A locomotive could pull what dozens of horses could not, and land transport stopped depending on animals.\n\nAt sea, Robert Fulton's steamboat began regular service on the Hudson in 1807, and in 1838 the Great Western crossed the Atlantic under steam in about fifteen days, roughly half the usual time under sail.\n\nEach time, a better engine did more than do the old job faster. It changed where people could live, what they could make and how far they could trade.",
+          "note": "Dates checked on 12 October 2026. Fulton's boat was the first commercially successful steamboat, not the first steamboat; the Sirius reached New York a day before the Great Western, so the lesson does not call the Great Western the first.",
+          "sourceRefs": [
+            "stockton-darlington",
+            "rocket-worldhistory",
+            "north-river-steamboat",
+            "great-western"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "A compact engine?",
-          "prompt": "A steam engine still needs a separate boiler and furnace nearby - heavy, slow to bring up to pressure, and awkward to fit inside a self-propelled vehicle. What kind of machine would you need instead, if you wanted an engine compact and responsive enough to carry itself around?",
-          "note": "Reflective prompt, no reveal required - an invitation to predict, not a graded question."
+          "prompt": "A steam engine still needs a separate boiler and furnace nearby: heavy, slow to bring up to pressure, and awkward to fit inside a self-propelled vehicle. What kind of machine would you need instead, if you wanted an engine compact and responsive enough to carry itself around?",
+          "note": "A prediction prompt that sets up the next step. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Internal combustion arrives",
-          "prompt": "The answer was to move the combustion inside the working cylinder itself, rather than in a separate boiler: the internal combustion engine. Etienne Lenoir built an early gas-fuelled version around 1860. Nicolaus Otto's four-stroke cycle engine (1876) - intake, compression, power, exhaust in one repeating sequence - became the layout nearly every piston engine since has followed in some form, including the engines this course studies. Karl Benz used a version of this idea to build the first practical motor vehicle in the mid-1880s. Rudolf Diesel patented a different way to ignite the fuel-compression alone, no spark-in 1893, giving a second combustion strategy still in use today.",
-          "note": "General historical narrative (illustrative, not EASA/FAA-sourced). The Otto/Diesel cycle THEORY itself (PV diagrams, thermodynamic comparison, Diesel's specific limitations in aero application) is course-assessed content covered in the dedicated Thermodynamic Cycles lesson, sourced there from EASA/FAA material rather than here - this lesson only needs the historical sequencing, not the cycle analysis."
+          "prompt": "The answer was to move the combustion inside the working cylinder itself, rather than in a separate boiler: the internal combustion engine.\n\nEtienne Lenoir patented a gas-fuelled engine in 1860. Nicolaus Otto built a four-stroke engine in 1876: intake, compression, power and exhaust in one repeating sequence. It became the layout nearly every piston engine since has followed in some form, including the engines this course studies.\n\nKarl Benz applied for a patent on his motor car in January 1886. Rudolf Diesel's patent, granted in 1893, described a different way to ignite the fuel, by compression alone and with no spark: a second combustion strategy still in use today.",
+          "note": "Lenoir 1860; Otto 1876 (the four-stroke cycle itself had been patented by Alphonse Beau de Rochas in 1862, and Otto built the engine); Benz applied on 29 January 1886; Diesel's patent was granted on 23 February 1893 (the first working Diesel engine was tested in 1897). Checked on 12 October 2026.",
+          "sourceRefs": [
+            "lenoir-wikipedia",
+            "britannica-otto",
+            "benz-mercedes",
+            "diesel-patent"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "image",
@@ -75,19 +464,101 @@
           "url": "artifact:otto-cycle-overview",
           "alt": "Interactive four-stroke Otto-cycle sequence",
           "note": "Shared with the operating-cycles lesson so the same 720-degree teaching model is used consistently.",
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "The shared scrubber makes the repeating intake, compression, power and exhaust sequence directly observable."}
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "The shared scrubber makes the repeating intake, compression, power and exhaust sequence directly observable."
+          },
+          "sourceRefs": [
+            "britannica-otto"
+          ]
+        },
+        {
+          "type": "text",
+          "title": "Road, rail, sea and air",
+          "prompt": "Road. Cars and trucks need a compact engine that starts at once, runs at changing speeds and fits under a bonnet. Petrol and diesel piston engines suit that, and mass production made cars cheap enough for ordinary families.\n\nRail. A train needs long, heavy pulling and can carry a heavy engine. Steam gave way to diesel and electric traction.\n\nSea. A ship can carry almost any weight, so what matters most is efficiency over long voyages: very large, slow diesels and steam turbines.\n\nAir. An aircraft engine must be light for the power it makes, and it cannot pull over to be repaired. That is why aviation asks more of an engine than any other kind of transport, and why lesson 2 follows its story.",
+          "note": "Broad generalisations to compare the four modes, not engineering data; the details come in later lessons. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Later powerplants",
+          "prompt": "Not every engine is a piston engine. Steam turbines, which spin a bladed wheel instead of pushing a piston, drive many ships and generate much of the world's electricity. Gas turbines burn fuel in a continuous flow and power jet aircraft: the first jet-powered flight was the Heinkel He 178 in 1939, with an engine designed by Hans von Ohain. Electric motors burn nothing themselves, but the electricity they use has to be made somewhere else.\n\nThe piston engine did not disappear. It remains the standard in light aircraft, flight training and many other jobs, and the rest of this course is about it.",
+          "note": "The He 178 date is from course slide 27. The statements about steam turbines and electric motors are general background, not assessed claims.",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Toward electronic control",
-          "prompt": "Through the 20th century the internal combustion engine kept getting more precisely controlled, without changing its basic four-stroke idea: carburettors gave way to fuel injection for metering fuel, and fixed mechanical ignition timing gave way to electronic ignition. The end point of that trend is the engine this platform's controls hint at whenever you see 'ECU' or 'FADEC' - a Full Authority Digital Engine Control computer that continuously adjusts fuel and timing itself, rather than relying on a fixed mechanical setting the way early engines did.",
-          "note": "General historical narrative, framed at the level of general knowledge; the specific claim that FADEC entered general-aviation piston engines in the 2000s is documented and covered with its aviation-specific detail in lesson 2, not asserted with that precision here."
+          "prompt": "Through the 20th century the internal combustion engine kept getting more precisely controlled, without changing its basic four-stroke idea: carburettors gave way to fuel injection for metering fuel, and fixed mechanical ignition timing gave way to electronic ignition.\n\nThe end point of that trend is the engine this platform's controls hint at whenever you see 'ECU' or 'FADEC': a Full Authority Digital Engine Control computer that continuously adjusts fuel and timing itself, rather than relying on a fixed mechanical setting the way early engines did.",
+          "note": "General trend; FADEC on piston aircraft engines is documented on course slide 37 and returns in lesson 2.",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Why so late?",
+          "prompt": "Picture the whole of modern human history as one day, with the first Homo sapiens at midnight. The oldest securely dated fossils are about 300,000 years old. On that scale, farming began about an hour before the next midnight, writing about 25 minutes before it, and the first practical engine, Newcomen's of 1712, only about a minute and a half before.\n\nWhy so late? Several things had to arrive together: an understanding of air pressure and vacuum, metalworking good enough to cast and bore a cylinder, cheap coal to burn, and a pressing need, such as mines flooding with water.",
+          "note": "Time-scale arithmetic: 314 years (1712 to 2026) is 0.1% of 300,000 years, which is 90 seconds of a 24-hour day; farming 12,000 years ago is about 58 minutes; writing about 5,000 years ago is about 24 minutes. Dates are approximate and differ by region. The list of preconditions is a synthesis of standard histories, not a single source's claim.",
+          "sourceRefs": [
+            "jebel-irhoud",
+            "cradle-of-civilization",
+            "newcomen-wikipedia"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "What one engine is worth",
+          "prompt": "The engine this course studies, the GTSIO-520-H, is rated at 375 horsepower. At 746 watts to the horsepower that is about 280,000 watts, or 280 kilowatts.\n\nAt 100 watts a person, that is the work of about 2,800 people working flat out, all day. At 75 watts it is nearly 3,700. Yet the engine weighs about 550 pounds, the weight of three or four people.\n\nPower that once needed thousands of people now fits in one machine. That is what changed what people could move, make and build. What would you build with that much power in one place?",
+          "note": "375 hp x 746 W = 279,750 W. 279,750 / 100 = 2,798 and 279,750 / 75 = 3,730 people. Rated power and the 550.39 lb standard dry weight are from the GTSIO-520 overhaul manual's detail specifications; always use the data for the engine in front of you.",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "human-power"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Ready to fly",
-          "prompt": "By the turn of the 20th century, the internal combustion engine had become exactly what a handful of inventors needed once they turned their attention to a problem no steam engine could solve: an engine light and self-contained enough to lift itself off the ground. That is where lesson 2 picks up the story.",
-          "note": "Bridges directly into History of Aircraft Engines - deliberately leaves the aviation-specific story untold here."
+          "prompt": "By the turn of the 20th century, the internal combustion engine had become exactly what a handful of inventors needed for a problem no steam engine could solve: an engine light and self-contained enough to lift itself off the ground. Lesson 2 picks up the story there.",
+          "note": "Bridges directly into History of Aircraft Engines; deliberately leaves the aviation story untold here. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         }
       ],
       "completionCriteria": "In your own words, explain the sequence manual/animal labour -> mechanical work (waterwheel, windmill, treadmill) -> steam engine -> internal combustion engine -> electronically managed (ECU/FADEC) engines, and give at least one reason each transition happened (for example: needing power on demand rather than a fixed natural flow; needing a compact self-contained engine a steam plant could not provide; needing more precise, repeatable control of fuel and ignition than a fixed mechanical setting allows)."
@@ -98,6 +569,21 @@
       "sequenceNumber": 2,
       "title": "History of Aircraft Engines",
       "objective": "Follow how the internal combustion engine from lesson 1 was adapted and refined specifically to power flight, from the Wright brothers' hand-built 1903 engine through the wartime power race, to today's FADEC-managed general-aviation engines.",
+      "purpose": "Show why aviation required a particular kind of engine and how aircraft-engine architecture evolved.",
+      "outcomes": [
+        "Outline important attempts at human flight before powered heavier-than-air aircraft.",
+        "Distinguish lighter-than-air and heavier-than-air flight.",
+        "Explain why power-to-weight ratio was one of the critical barriers to early powered flight.",
+        "Describe the significance of sustained, controlled powered flight.",
+        "Outline the historical development of aircraft piston engines.",
+        "Recognise early inline, V-type, rotary, radial and horizontally opposed configurations.",
+        "Explain why different engine arrangements suited different aircraft and periods.",
+        "Explain why radial engines became important in one era of aviation.",
+        "Explain broadly why horizontally opposed engines became common in modern light aircraft.",
+        "Explain why gas-turbine engines eventually replaced very large piston engines in many high-power applications.",
+        "Relate aircraft-engine evolution to changing requirements for power, weight, reliability, cooling, drag and maintainability."
+      ],
+      "syllabusNote": "This provides historical context for the formal requirement to understand radial, V-type, inline, flat and opposed engine arrangements.",
       "reviewStatus": "unreviewed",
       "models": ["wright-1903-engine"],
       "listed": true,
@@ -105,41 +591,146 @@
         {
           "type": "text",
           "title": "What flight needs",
-          "prompt": "Lesson 1 traced engines from muscle to steam to the internal combustion engine. Building a good ground engine and building an engine that could fly are not the same problem. What do you think a flying machine needs from its engine that a factory, a ship, or an early motor car does not?",
-          "note": "Reflective opening prompt - invites prediction (weight, power-to-weight ratio, reliability, vibration) before the lesson reveals the documented history."
+          "prompt": "Lesson 1 traced engines from muscle to steam to the internal combustion engine. Building a good ground engine and building an engine that could fly are not the same problem. What do you think a flying machine needs from its engine that a factory, a ship or an early motor car does not?",
+          "note": "A prediction prompt: it invites a guess (weight, power for its weight, reliability, vibration) before the history answers it. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Lighter or heavier than air",
+          "prompt": "Aircraft fall into two families.\n\nLighter-than-air craft float, because they are filled with a gas lighter than the air around them. A balloon has no propulsion and drifts with the wind. An airship, or dirigible, carries an engine and can be steered. Neither needs an engine to stay up.\n\nHeavier-than-air craft are heavier than the air they push aside, so they must keep making lift by moving through the air, with a wing or a rotor. If the motion stops, the lift stops. That makes the engine part of the answer, and it is why this lesson follows the engine's story, not the balloon's.",
+          "note": "Balloon, airship and heavier-than-air craft as classified in NASA Ames's 'Airships 101' aircraft taxonomy. A helicopter is heavier than air too; this lesson follows the fixed-wing story.",
+          "sourceRefs": [
+            "nasa-airships-101"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Lift before control",
-          "prompt": "Before a powered aeroplane existed, two separate problems were being worked on: lift, and control. The Montgolfier brothers flew the first free hot-air balloon in 1783 - no steering at all. La France, an 1884 French Army dirigible, was electrically powered and the first fully controlled free flight, but still slow and unwieldy. Meanwhile George Cayley, then Otto Lilienthal (some 2,000 controlled glides between 1891 and 1896), then Octave Chanute developed fixed-wing gliders that proved a wing could lift a person - but none of them had a working answer for pitch, roll and yaw together.",
-          "note": "Documented: sourced from the course slide deck, 'History and Introduction' section (slides 7-10)."
+          "prompt": "Before a powered aeroplane existed, two problems were being worked on: lift, and control.\n\nIn 1783 the Montgolfier brothers' hot-air balloon carried the first people on an untethered flight, with no steering at all. In 1884 the French Army's airship La France, driven by an electric motor, made the first fully controlled free flight, but it was slow and unwieldy.\n\nMeanwhile George Cayley, then Otto Lilienthal (some 2,000 glides between 1891 and 1896), then Octave Chanute developed fixed-wing gliders that proved a wing could lift a person. None had a working answer for pitch, roll and yaw together.",
+          "note": "Documented from the course slide deck (slides 7 to 11). The first untethered balloon flight with people was on 21 November 1783.",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
-          "title": "Power without control",
-          "prompt": "Powered flight attempts by Hiram Maxim and Samuel Langley in this period had engines strong enough to fly, but still no stable control - proving that thrust alone was never the missing piece. Flight needed pitch, roll and yaw managed together, all at once, in the air.",
-          "note": "Documented: sourced from the course slide deck (slide 11)."
+          "title": "Two barriers, not one",
+          "prompt": "Powered attempts by Hiram Maxim and Samuel Langley had engines but still no stable control. Flight needed pitch, roll and yaw managed together, all at once, in the air.\n\nIt also needed an engine that was light for the power it made. A wing can lift only so much, and every pound of engine is a pound the wing must lift. In December 1902 the Wrights asked engine makers for an engine of about 180 lb that would give 8 to 9 horsepower. Ten companies replied. None would build one.\n\nTwo barriers stood in the way of powered flight: control, and an engine with enough power for its weight.",
+          "note": "Maxim and Langley: course slide deck, slide 11. The Wrights' request and the ten replies: National Park Service, 'Charles E. Taylor' (checked 12 October 2026). 'Two barriers' is this lesson's synthesis of those sources.",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "nps-charles-taylor"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "The Wright Flyer",
-          "prompt": "The Wright brothers spent 1900-1902 almost entirely on unpowered gliders, deliberately mastering three-axis control - wing-warping for roll, an elevator for pitch, a rudder for yaw - before they ever added an engine. On 17 December 1903 at Kitty Hawk, their Flyer I combined all three controls with a custom-built engine of roughly 12 hp for the first sustained, controlled, powered flight: 12 seconds, 120 feet. The lesson worth carrying forward: they treated control, not raw power, as the hard problem to solve first.",
-          "note": "Documented: sourced from the course slide deck (slide 12), including the 12 hp / 12 second / 120 foot figures."
+          "prompt": "The Wright brothers spent 1900 to 1902 almost entirely on unpowered gliders, deliberately mastering three-axis control: wing-warping for roll, an elevator for pitch, a rudder for yaw. Only then did they add an engine. With no maker willing to build one, their mechanic Charlie Taylor built a four-cylinder engine in about six weeks, with an aluminium crankcase to keep the weight down. It made about 12 horsepower.\n\nOn 17 December 1903 at Kitty Hawk the Flyer made four flights. The first lasted 12 seconds and covered about 120 feet; the last, flown by Wilbur, lasted 59 seconds and covered 852 feet.",
+          "note": "Documented from the National Park Service (Taylor, six weeks, 12 hp) and the Wright Brothers Aeroplane Company and Museum of Pioneer Aviation (the four flights), checked 12 October 2026; the glider years from course slide 12.",
+          "sourceRefs": [
+            "nps-charles-taylor",
+            "wright-flyer-facts",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Why that flight mattered",
+          "prompt": "It was the first time a machine heavier than air took off under its own power, flew under its pilot's control, and kept flying. Those three together are what 'sustained, controlled, powered flight' means. Before 1903, machines had managed one or two of them, never all three.\n\nFor engines it mattered because it showed the problem could be solved by method rather than luck: master control first, then build an engine just good enough. From then on the engine's job was to get better, and within ten years it did, from one hand-built 12 horsepower engine to a small industry.",
+          "note": "The significance is the instructor's own framing (course slides 12 and 13: control first, then an engine; the process engineers still use). The 'within ten years' claim is developed in the next steps.",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "model-pose",
           "title": "Inspect the 1903 engine",
           "modelId": "wright-1903-engine",
-          "prompt": "This is the actual engine from that flight, shown as a reference model. Orbit and zoom to inspect it, and compare what you see with the documented description: a cast-aluminium body, bored on a lathe for four independent cylinders in an inline arrangement; cast-iron pistons, turned and grooved to take piston rings. The complete engine weighed about 180 lb and produced 12 hp at 1,025 rpm - though it reportedly made closer to 16 hp when first started cold, settling to 12 hp as it warmed up.",
+          "prompt": "This is the actual engine from that flight, shown as a reference model. Orbit and zoom to inspect it, and compare what you see with the documented description: a cast-aluminium body, bored on a lathe for four independent cylinders in an inline arrangement; cast-iron pistons, turned and grooved to take piston rings. The complete engine weighed roughly 150 to 180 lb (sources differ on what is counted) and produced about 12 hp at around 1,000 rpm, though it reportedly made closer to 16 hp when first started cold, settling to 12 hp as it warmed up.",
           "viewPreset": "engine-overview",
-          "focusHotspots": ["magneto", "valve", "crankcase"],
-          "note": "Interactive CC0 reference model from the Smithsonian National Air and Space Museum. The embedded lesson view supports orbit, zoom, reset and guided hotspots; section view, isolation and operating animation remain unavailable for this static historical scan. Engine description documented from the course slide deck (slide 16)."
+          "focusHotspots": [
+            "magneto",
+            "valve",
+            "crankcase"
+          ],
+          "note": "Interactive CC0 reference model from the Smithsonian National Air and Space Museum; orbit, zoom, reset and guided hotspots only (no section, isolation or operating animation for this static scan). Engine description from course slide 16; weights from the National Park Service, the Wright Brothers Aeroplane Company (170 lb) and the Smithsonian (150 lb) differ by what is counted.",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "wright-flyer-facts"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The Smithsonian scan lets the learner look at the real 1903 engine: four inline cylinders, the crankcase and the magneto."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Power to weight",
+          "prompt": "Engine power divided by engine weight is its power-to-weight ratio. A flying machine has to lift its own engine, so a better ratio leaves more of the lift for everything else.\n\nThe 1903 Wright engine made about 12 hp from about 170 lb: 0.07 horsepower per pound. The Langley-Manly engine of the same year made 52 hp from between 120 and 210 lb, depending on what is counted: 0.25 to 0.43. The Gnome Omega of 1908 made 50 hp from 166 lb: 0.30. The GTSIO-520-H, rated at 375 hp, weighs 550 lb: 0.68.\n\nTurn the ratio over and it is pounds per horsepower: about 14 for the Wright engine, about 1.5 for the GTSIO-520-H.",
+          "note": "12 / 170 = 0.071; 52 / 210 = 0.25 and 52 / 120 = 0.43; 50 / 166.5 = 0.30; 375 / 550.39 = 0.68; 170 / 12 = 14.2 and 550.39 / 375 = 1.47. Weights are as the museums and the manual list them and are not all measured the same way, so read the ratios as orders of magnitude.",
+          "sourceRefs": [
+            "wright-flyer-facts",
+            "nasm-manly-balzer",
+            "nasm-gnome-omega",
+            "gtsio520-overhaul",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Engines diversify fast",
-          "prompt": "The Wright engine did not stay unique for long. Within a decade, aircraft engines diversified fast: the water-cooled Manly-Balzer radial (1903, ~52 hp) was more powerful but crashed with its aircraft; the Gnome Omega (1908) became the first mass-produced rotary engine at ~50 hp; a 3-cylinder Anzani (1909, ~25-30 hp) powered Bleriot's Channel crossing; and by 1913 the water-cooled Renault V8 was reaching 70-100 hp. In ten years, aircraft engines went from one hand-built example to a small industry.",
-          "note": "Documented: sourced from the course slide deck's Pre-WW1 Engines table (slide 17)."
+          "prompt": "The Wright engine did not stay unique for long. Within a decade aircraft engines diversified fast.\n\nThe water-cooled Manly-Balzer radial (1903, 52 hp) was far stronger for its weight, but it crashed with its aircraft. The Gnome Omega (1908, 50 hp) became the first rotary engine built in quantity. A three-cylinder Anzani of about 25 hp powered Bleriot's Channel crossing in 1909. By 1913 Renault's air-cooled V8s were making 70 to 100 hp.\n\nIn ten years, aircraft engines went from one hand-built example to a small industry.",
+          "note": "Documented from the course slide deck (slide 17), corrected where it conflicts with the sources: slide 17 calls the 1913 Renault V8 water-cooled, but Renault's V8 aero engines were air-cooled (Aircraft Engine Historical Society; Smithsonian). Manly-Balzer and Gnome figures from the Smithsonian records.",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "enginehistory-renault",
+            "nasm-manly-balzer",
+            "nasm-gnome-omega"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "image",
@@ -151,46 +742,150 @@
           "license": "CC BY 2.0",
           "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gnome_Omega_Rotary_Engine_Running_02_Dawn_Patrol_NMUSAF_26Sept09_(14619976863).jpg",
           "note": "Licensed documentary image of a running Gnome Omega rotary engine.",
-          "mediaPlan": {"mode": "web-media", "status": "available", "rationale": "The running engine photograph makes the unusual rotating-cylinder arrangement visible in context."}
+          "mediaPlan": {
+            "mode": "web-media",
+            "status": "available",
+            "rationale": "The running engine photograph makes the unusual rotating-cylinder arrangement visible in context."
+          },
+          "sourceRefs": [
+            "gnome-commons",
+            "nasm-gnome-omega"
+          ]
+        },
+        {
+          "type": "web-embed",
+          "title": "Recognise the layouts",
+          "prompt": "By now you have met five ways of arranging cylinders. Inline: one row, like the Wright engine. V-type: two rows sharing a crankshaft, like the Renault and Hispano-Suiza V8s. Rotary: the cylinders spin with the propeller around a fixed crankshaft, like the Gnome. Radial: cylinders in a ring around a fixed crankcase, like the Wasp. Horizontally opposed: two rows flat on either side of the crankshaft, like the GTSIO-520-H.\n\nUse the comparator to see four of them side by side. The rotary is the odd one out, because there the whole engine turns.",
+          "url": "artifact:arrangement-comparator",
+          "alt": "Interactive comparison of inline, V-type, radial and opposed cylinder arrangements",
+          "note": "The comparator from the Classification lesson, reused here for recognition; it shows the four fixed layouts (the rotary spins the whole engine and is described in words and in the Gnome picture). Classification (lesson 5) goes deeper.",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "An authored outline comparison lets the learner see the layouts side by side without period-specific machinery."
+          }
         },
         {
           "type": "text",
           "title": "WWI: two engine paths",
-          "prompt": "World War I pushed aircraft from observation duty into combat, and engine power roughly quadrupled - from about 50 hp in 1914 to about 200 hp by 1918 - along two diverging paths. Rotary engines (the whole cylinder block spinning with the propeller, as in the Sopwith Camel) were light with an excellent power-to-weight ratio and cooled naturally as they spun, but suffered heavy oil loss and strong gyroscopic effects from all that spinning mass. Inline and V-type water-cooled engines (Fokker D.VII, SPAD XIII) gave more stable handling and more power for larger aircraft, and made it practical to synchronise a machine gun to fire through the spinning propeller.",
-          "note": "Documented: sourced from the course slide deck (slides 19-21)."
+          "prompt": "The First World War pushed aircraft from observation into combat, and engine power roughly quadrupled, from about 50 hp in 1914 to about 200 hp by 1918, along two diverging paths.\n\nRotary engines, with the whole cylinder block spinning with the propeller as in the Sopwith Camel, were light, with an excellent power-to-weight ratio, and cooled naturally as they spun, but they lost a lot of oil and had strong gyroscopic effects from all that spinning mass.\n\nInline and V-type water-cooled engines, as in the Fokker D.VII and the SPAD XIII, gave steadier handling and more power for larger aircraft, and made it practical to synchronise a machine gun to fire through the propeller.",
+          "note": "Documented from the course slide deck (slides 19 to 21).",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Interwar reliability and racing",
-          "prompt": "After the war, surplus engines flooded the civilian market and the priority shifted from raw power to reliability. Air-cooled radial engines - the Pratt & Whitney Wasp, the Wright Cyclone - dominated for their simple cooling and ruggedness, powering mail planes, airliners and record flights like the Spirit of St Louis (1927). Air racing through the 1930s then pushed power back up again: superchargers became essential for high-altitude performance, and by the late 1930s engines such as the Rolls-Royce Kestrel, Bristol Mercury and Allison V-1710 were passing 1,000 hp. In this same stretch, Frank Whittle, and separately Hans von Ohain, began the work that would lead to the first jet-powered flight - a parallel technology, not yet a replacement.",
-          "note": "Documented: sourced from the course slide deck (slides 23, 24, 26, 27)."
+          "prompt": "After the war, surplus engines flooded the civilian market and the priority shifted from raw power to reliability. Air-cooled radial engines such as the Pratt & Whitney Wasp and the Wright Cyclone dominated for their simple cooling and ruggedness, powering mail planes, airliners and record flights. A Wright Whirlwind radial carried Lindbergh's Spirit of St Louis across the Atlantic in 1927.\n\nAir racing in the 1930s then pushed power back up: superchargers became essential for high-altitude performance, and the Rolls-Royce Merlin was delivering 1,030 hp from 1938. In the same years Frank Whittle and, separately, Hans von Ohain began the work that led to the first jet-powered flight: a parallel technology, not yet a replacement.",
+          "note": "Documented from the course slide deck (slides 23 to 27). Corrections: the Spirit of St Louis flew a Wright J-5C Whirlwind, not a Wasp or Cyclone; the deck's list of 1930s engines passing 1,000 hp is replaced by the one engine whose 1,030 hp is confirmed (Merlin II, 1938), because other outputs vary by variant and fuel.",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "spirit-of-st-louis",
+            "merlin-variants"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "WWII peak power",
-          "prompt": "World War II was the peak of piston-engine power: 1,000-2,000+ hp aircraft engines, built with superchargers, turbochargers and intercoolers layered on top of the basic four-stroke design. On the Allied side, the Rolls-Royce Merlin V-12 powered the Spitfire, Mustang and Lancaster, while the Pratt & Whitney R-2800 radial powered the Corsair and Thunderbolt, with turbocharged engines driving high-altitude bombers like the B-17 and B-29. On the Axis side, the fuel-injected Daimler-Benz DB 601/605 V-12 powered the Bf 109 and Me 110, prioritising altitude and fuel efficiency, while the BMW 801 radial powered the Fw 190 with notably clever engine-cooling design. The Me 262 captures the era's turning point in one airframe: it first flew on a piston engine (a Junkers Jumo 210) in April 1941, then on jet engines (Junkers Jumo 004) by July 1942.",
-          "note": "Documented: sourced from the course slide deck (slides 28, 29, 31, 33)."
+          "prompt": "The Second World War was the peak of piston-engine power: 1,000 to 2,000 hp and more, with superchargers, turbochargers and intercoolers layered on top of the basic four-stroke design.\n\nOn the Allied side the Rolls-Royce Merlin V-12 powered the Spitfire, the Mustang and the Lancaster, and the Pratt & Whitney R-2800 radial powered the Corsair and the Thunderbolt, while turbocharged engines drove high-altitude bombers such as the B-17 and the B-29. On the Axis side the fuel-injected Daimler-Benz DB 601 and 605 V-12s powered the Bf 109 and the Me 110, and the BMW 801 radial powered the Fw 190 with clever cooling.\n\nThe Me 262 shows the turning point in one airframe: it first flew on a piston engine (a Junkers Jumo 210) in April 1941, and on jet engines (Junkers Jumo 004) by July 1942.",
+          "note": "Documented from the course slide deck (slides 28 to 33).",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Why jets replaced the biggest pistons",
+          "prompt": "After 1945, jet engines took over front-line military and airline flying almost completely. The FAA handbook explains why in terms of speed and weight.\n\nA piston engine drives a propeller, and above about 400 miles an hour propeller losses limit its efficiency to less than a turbofan's. A turboprop develops more power per pound of weight than a piston engine. And gas turbines operate most economically at high altitude, where fast aircraft cruise.\n\nThe same handbook still gives the piston engine the job for aircraft that cruise at no more than about 250 miles an hour, where its efficiency and low cost win. That is where the piston engine stayed.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 23 and 24 (propeller losses limit reciprocating and turboprop efficiency above about 400 mph; the turboprop develops more power per pound than the reciprocating engine; gas turbines operate most economically at high altitude; reciprocating engines are the usual choice up to about 250 mph) and course slide 34.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Flat engines take over",
-          "prompt": "After the war, jets took over front-line military and commercial aviation almost entirely, and a flood of surplus WWII piston engines fed a boom in private, sport and training flying. Horizontally-opposed flat-four and flat-six engines became the general-aviation standard - compact, low-drag, easy to maintain - and powered the Cessnas, Pipers, Beechcraft and Mooneys that still define general aviation today.",
-          "note": "Documented: sourced from the course slide deck (slides 34, 35)."
+          "prompt": "After the war, surplus engines and a boom in private, sport and training flying turned general aviation toward simple, affordable power. Horizontally opposed flat-four and flat-six engines became the standard: compact, with a low frontal area and so low drag, well balanced, and easy to reach for maintenance.\n\nThey power the Cessnas, Pipers, Beechcrafts and Mooneys that still define general aviation today.",
+          "note": "Documented from the course slide deck (slides 34 and 35).",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Refinement and FADEC",
-          "prompt": "From the 1970s onward, general-aviation piston engines shifted from reinvention to refinement: legacy Lycoming and Continental designs stayed dominant, while Rotax grew in the light-sport segment and diesel/Jet-A piston experiments began (Thielert, late 1990s). By the 2000s, FADEC - Full Authority Digital Engine Control - brought fully electronic fuel and ignition management to piston aircraft engines (Continental's CD series, the Austro AE300), and fuel injection increasingly replaced carburettors. This is the same steam-to-internal-combustion-to-electronically-managed arc from lesson 1, now completed inside aviation specifically. Piston engines remain the standard for training, bush flying and recreational flight today, even as hybrid-electric and alternative-fuel concepts are being explored for their next step.",
-          "note": "Documented: sourced from the course slide deck (slides 36-38)."
+          "prompt": "From the 1970s on, general-aviation piston engines shifted from reinvention to refinement. Legacy Lycoming and Continental designs stayed dominant, Rotax grew in the light-sport segment, and diesel and Jet-A piston experiments began (Thielert, late 1990s).\n\nBy the 2000s, FADEC, Full Authority Digital Engine Control, brought fully electronic fuel and ignition management to piston aircraft engines (Continental's CD series, the Austro AE300), and fuel injection increasingly replaced carburettors. This is the same arc from lesson 1, from steam to internal combustion to electronic management, now completed inside aviation. Piston engines remain the standard for training, bush flying and recreational flight, even as hybrid-electric and alternative-fuel concepts are explored.",
+          "note": "Documented from the course slide deck (slides 36 to 38).",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Needs change, engines change",
+          "prompt": "Every engine in this lesson answered the demands of its time.\n\nPower for weight: the first flights, and the rotaries of the First World War. Cooling: a radiator adds weight and drag, a spinning cylinder block cools itself, and a radial puts air past every cylinder. Reliability: the interwar radials. Altitude: the superchargers and turbochargers of the 1930s and 1940s. Drag: slim inline and V engines for fast fighters, flat engines for light aircraft. Maintainability and cost: the simple air-cooled flat engines after 1945. Efficiency and control: fuel injection and FADEC.\n\nWhen you meet a layout in the next lessons, ask which of these demands it answers best, and what it gives up.",
+          "note": "A synthesis of the previous steps, not a new claim. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "One constraint: lift off",
-          "prompt": "From a hand-built 12 hp engine at Kitty Hawk to 2,000 hp wartime radials to today's electronically managed flat-fours and flat-sixes, the piston aircraft engine's history is really the history of solving one problem after another under a single constraint no ground vehicle shares as strictly: it has to lift its own weight off the ground. The next lesson, Terminologies, gives you the vocabulary to describe precisely how the engine you'll study in this course - the GTSIO-520-H - does that.",
-          "note": "Documented closing synthesis, drawing on the course slide deck's own historical summary (slide 40); bridges into lesson 3."
+          "prompt": "From a hand-built 12 hp engine at Kitty Hawk to 2,000 hp wartime radials to today's electronically managed flat-fours and flat-sixes, the piston aircraft engine's history is the history of solving one problem after another under a single constraint no ground vehicle shares so strictly: it has to lift its own weight off the ground.\n\nThe next lesson, Terminologies, gives you the vocabulary to describe precisely how the engine you will study in this course, the GTSIO-520-H, does that.",
+          "note": "Bridges to Terminologies. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         }
       ],
-      "completionCriteria": "Identify at least one engine, design feature or configuration associated with each era covered (pre-WW1, WW1, interwar, WW2, post-WW2, and 1970s-present), and explain in your own words why the Wright brothers' 1903 engine - despite producing only about 12 hp - is considered the breakthrough that made powered flight possible, rather than simply the most powerful engine available at the time."
+      "completionCriteria": "Name one engine, design feature or configuration for each era (before the First World War, the First World War, between the wars, the Second World War, after it, and from the 1970s), and explain in your own words why power-to-weight ratio was a barrier to early flight, and why the Wright brothers' 1903 engine, though it made only about 12 hp, is the breakthrough: it was light enough for its power and was paired with a machine that could already be controlled."
     },
     {
       "id": "terminologies",
@@ -198,39 +893,200 @@
       "sequenceNumber": 3,
       "title": "Terminologies",
       "objective": "Build the core vocabulary for describing a reciprocating aircraft engine - engine, powerplant, reciprocating engine, top and bottom dead centre, bore, stroke, swept and clearance volume, compression ratio - and connect it to the basic oscillating-piston-to-rotating-crankshaft operating principle every later lesson assumes you already know.",
+      "purpose": "Establish the language needed to reason accurately throughout the rest of the module.",
+      "outcomes": [
+        "Distinguish aircraft, aeroplane/airplane, airframe, engine and powerplant.",
+        "Distinguish part, component, assembly, mechanism, system and subsystem.",
+        "Define and relate force, work, energy, torque, power and efficiency.",
+        "Distinguish heat from temperature.",
+        "Use basic pressure, volume and temperature terminology correctly.",
+        "Define bore, stroke, swept volume/displacement, TDC, BDC and compression ratio.",
+        "Explain terms such as cycle, stroke, RPM and firing order at an introductory level.",
+        "Distinguish maintenance, servicing, inspection, check, repair and overhaul.",
+        "Use aviation-engine terminology precisely when describing systems and engine operation."
+      ],
+      "syllabusNote": "This vocabulary prepares students for the module's later requirements involving fuel consumption, engine particulars, power calculations, compression ratio and cylinder volume.",
       "reviewStatus": "unreviewed",
       "models": ["cylinder"],
       "listed": true,
       "steps": [
         {
           "type": "text",
-          "title": "Engine or powerplant?",
-          "prompt": "The last two lessons traced where engines came from, in general and then specifically for aircraft. Before going further, this course needs you fluent in a small set of words it will use constantly. What do you think is the difference between calling something an 'engine' and calling it a 'powerplant'? Take a guess before reading on.",
-          "note": "Reflective opening prompt - invites prediction before the definitions are revealed."
+          "title": "Words that sound alike",
+          "prompt": "Aircraft, aeroplane, airframe, engine, powerplant: in everyday speech these blur together. In an engineer's mouth they mean different things, and a manual, a maintenance record or a licensing exam expects the right one.\n\nBefore reading on, say in your own words what you think each word covers. Which two do you think people confuse most?",
+          "note": "A prediction prompt that sets up the next steps. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
-          "title": "Three key definitions",
-          "prompt": "Three working definitions. An engine (or motor) is a machine designed to convert one or more forms of energy into mechanical energy. A powerplant is an aircraft engine, or the whole system that produces thrust to propel an aircraft - broader than the engine alone. A reciprocating engine, more commonly called a piston engine, is typically a heat engine that uses one or more reciprocating pistons to convert high temperature and high pressure into rotating motion.",
-          "note": "Documented: sourced from the course slide deck (slide 45)."
+          "title": "Aircraft, aeroplane, airframe",
+          "prompt": "An aircraft is any device used or intended to be used for flight in the air: a balloon, a glider, a helicopter and an aeroplane are all aircraft.\n\nAn aeroplane (spelled airplane in the United States) is more specific: an engine-driven, fixed-wing aircraft, heavier than air, supported in flight by the dynamic reaction of the air against its wings.\n\nThe airframe is the structure of the aircraft without its propulsion: the fuselage, booms, nacelles, cowlings, fairings, airfoil surfaces and landing gear, with their accessories and controls. In the US regulation it leaves out the propellers.",
+          "note": "Documented from 14 CFR 1.1 (aircraft, airplane, airframe), checked 12 October 2026. \"Aeroplane\" is the British and ICAO spelling of the same word.",
+          "sourceRefs": [
+            "cfr-14-1-1"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
-          "title": "Powerplant: the broader term",
-          "prompt": "So 'powerplant' is the broader term: it covers the engine itself plus everything installed around it to make it work in the airframe - mounts, induction and exhaust ductwork, cooling, the propeller and its governor. And notice that 'reciprocating' describes the piston's back-and-forth motion, not the type of combustion - lesson 1's steam engine was reciprocating too, just fired from an external boiler rather than inside its own cylinder. Every engine this course studies is specifically an internal combustion reciprocating engine.",
-          "note": "General/illustrative synthesis connecting the slide-45 definitions to lesson 1's steam-engine distinction - a logical inference from those definitions, not itself a direct slide quote."
+          "title": "Engine and powerplant",
+          "prompt": "An aircraft engine is the machine that propels the aircraft. The US regulation counts its turbosuperchargers and the accessories it needs to function, and leaves out the propeller.\n\nThe powerplant is bigger. The FAA handbook defines it as the complete installation of an aircraft engine, propeller and all the accessories needed for its proper function. The Tanzanian airworthiness regulations say the same: all the engines, drive components, propellers, their accessories and ancillary parts, and the fuel and oil systems installed on an aircraft.\n\nSo the engine is one component of the powerplant, beside the propeller, the mounts, induction and exhaust, cooling, fuel feed and the controls.",
+          "note": "Documented from the FAA handbook glossary (FAA-H-8083-32B, PDF p. 479), 14 CFR 1.1 (aircraft engine) and 14 CFR 25.901, with EASA CS 23.2400 in the same spirit. This corrects the course slide deck's slide 45, which defines the powerplant as 'an aircraft engine, or the system that produces thrust': the engine alone is not the powerplant. The Tanzanian definition of the powerplant is in the Civil Aviation (Airworthiness) Regulations, regulation 2 (revised edition 2026).",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "cfr-14-1-1",
+            "cfr-14-25-901",
+            "easa-cs23-2400",
+            "tcaa-airworthiness-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Reciprocating engine",
+          "prompt": "A reciprocating engine, more often called a piston engine, is a heat engine that changes the back-and-forth (reciprocating) motion of pistons in cylinders into the rotary motion of a crankshaft.\n\nNotice what the word describes: the piston's back-and-forth motion, not the way the fuel burns. The steam engine of lesson 1 was reciprocating too, with its fire in a boiler outside. Every engine in this course is an internal combustion reciprocating engine: the fuel burns inside the cylinder it pushes.",
+          "note": "Documented from the FAA handbook glossary (PDF pp. 472 and 481: heat engine, reciprocating engine) and course slide 45. The note about the steam engine connects to lesson 1.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Part, component, assembly",
+          "prompt": "Engineers use a ladder of words, from the smallest thing to the biggest. They are working definitions for this course.\n\nA part is a single piece that is not taken apart: a piston ring, a bolt.\n\nA component does one job and is replaced as a unit: a spark plug, a piston.\n\nAn assembly is parts fitted together: the piston, its pin and its rings make the piston assembly.",
+          "note": "A working definition for this course, consistent with common engineering usage; other documents define these words for their own purposes. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Mechanism, system, subsystem",
+          "prompt": "A mechanism is a set of parts arranged to pass on motion and force. The piston, connecting rod and crankshaft form the crank mechanism, which turns straight-line motion into rotation. The cam, tappet, pushrod, rocker arm and valve form the valve-operating mechanism.\n\nA system is a group of components that work together for one purpose: the lubrication system, the fuel system, the ignition system.\n\nA subsystem is a system inside a larger one: the oil filter circuit inside the lubrication system, or the lubrication system inside the powerplant. The same thing can be a component of one thing and a system in its own right.",
+          "note": "A working definition for this course, consistent with common engineering usage; other documents define these words for their own purposes. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Force, work and energy",
+          "prompt": "Force is a push or a pull, measured in newtons (N) or pounds (lb).\n\nWork is done when a force moves something through a distance. It is the force times the distance moved in the direction of the force: lift 1 lb through 1 ft and you have done 1 foot-pound (ft-lb). In SI units a newton moving through a metre is one joule (J).\n\nEnergy is what is transferred when work is done. It has the same units as work, and it comes in forms: the chemical energy stored in fuel, heat, the energy of motion. An engine is a machine that converts energy into work.",
+          "note": "Work and energy: OpenStax College Physics (work as force times distance in the direction of motion; work and energy have the same units; whenever work is done, energy is transferred) and University Physics Volume 1, checked 12 October 2026. The foot-pound is the unit the FAA handbook uses.",
+          "sourceRefs": [
+            "openstax-work-energy",
+            "openstax-work-power"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Torque, power and efficiency",
+          "prompt": "Torque is the turning effect of a force: the force times its distance from the axis it turns about. A 50 lb push on a wrench 2 ft from the nut gives 100 lb-ft of torque. An engine's crankshaft delivers torque to the propeller.\n\nPower is the rate of doing work: work divided by time. One horsepower is 33,000 ft-lb of work in a minute. One watt is one joule a second, and a horsepower is 746 watts.\n\nEfficiency is the share of the energy put in that comes out as useful work: output divided by input, usually as a percentage. A piston engine turns only part of the fuel's energy into work; the rest leaves as heat.\n\nSo: a force through a distance is work; torque turning at a speed delivers power; efficiency says how much of the energy was worth having.",
+          "note": "Torque (force times lever arm) and power (rate of doing work) from OpenStax University Physics Volume 1; the horsepower as 33,000 ft-lb of work in a minute from the FAA handbook glossary (power, PDF p. 479), and the conversion 1 hp = 746 W from OpenStax University Physics Volume 1, section 7.4. Efficiency is defined as useful output over input energy; lesson 12 returns to all of these with calculations.",
+          "sourceRefs": [
+            "openstax-torque",
+            "openstax-work-power",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Heat is not temperature",
+          "prompt": "Heat and temperature are different things.\n\nTemperature tells you how hot something is. It reflects how fast, on average, the particles of a substance are moving. It is measured in degrees Celsius or Fahrenheit, or on the absolute scales, kelvin and rankine.\n\nHeat is energy that moves from a hotter thing to a colder one because of the difference in temperature. It is measured in energy units such as joules or BTU.\n\nA spark is very hot but carries almost no heat. A bath of warm water is far cooler, yet holds far more heat, because there is so much more of it. In an engine, burning fuel gives the gas a high temperature, and heat flows from it into the piston, the cylinder walls and the exhaust.",
+          "note": "Heat as the spontaneous transfer of energy due to a temperature difference, and heat as a form of energy whereas temperature is not: OpenStax College Physics 14.1, checked 12 October 2026. The spark-and-bath comparison is an illustration of the difference, not a measurement.",
+          "sourceRefs": [
+            "openstax-heat"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Pressure, volume, temperature",
+          "prompt": "Pressure is force spread over an area: pounds on each square inch (psi), or pascals. The atmosphere at sea level presses with about 14.7 psi, which a barometer reads as 29.92 inches of mercury. Gauge pressure is measured above the atmosphere; absolute pressure is counted from zero.\n\nVolume is the space a gas fills, in cubic inches or litres. For calculations with gases, temperature is counted from absolute zero.\n\nIn a cylinder the three change together. Squeeze the gas into a smaller volume and its pressure and temperature rise. Burn fuel in it while the volume stays almost still and both rise sharply. Let it expand and they fall. That interplay is how an engine turns heat into work.",
+          "note": "Pressure defined in the FAA handbook glossary (PDF p. 479); standard sea-level pressure of 14.7 psi and 29.92 inHg is the usual standard atmosphere. The qualitative statements about gas behaviour are the ones course slide 46 makes; their quantitative forms return in lessons 4 and 13.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "How heat becomes power",
           "prompt": "So how does that heat actually turn into a turning propeller? An aircraft reciprocating engine, a type of internal combustion engine, works as a heat engine: it converts the thermal energy released by burning fuel into mechanical work, producing thrust and powering the aircraft's other systems. Inside the cylinder, a continuous interplay of pressure, volume and temperature keeps the engine running and delivers that mechanical power.",
-          "note": "Documented: sourced from the course slide deck (slide 46)."
+          "note": "Documented from the course slide deck (slide 46) and the FAA handbook glossary (heat engine, PDF p. 472).",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Piston to crankshaft",
-          "prompt": "That mechanical power starts as oscillating motion. Burning fuel expands hot gas, which pushes the piston in a straight line, back and forth inside the cylinder - reciprocating motion. A connecting rod transmits that push to a crankshaft, which turns the piston's straight-line motion into the rotating motion the propeller actually needs. The piston is the engine's key energy-converting component: everything else in the engine exists to let the piston do that conversion repeatedly, reliably, and under control.",
-          "note": "Documented: sourced from the course slide deck (slide 46, including 'the piston is the key engine energy converting component')."
+          "prompt": "That mechanical power starts as oscillating motion. Burning fuel expands hot gas, which pushes the piston in a straight line, back and forth inside the cylinder: reciprocating motion. A connecting rod transmits that push to a crankshaft, which turns the piston's straight-line motion into the rotating motion the propeller actually needs.\n\nThe piston is the engine's key energy-converting component: everything else in the engine exists to let the piston do that conversion repeatedly, reliably and under control.",
+          "note": "Documented from the course slide deck (slide 46).",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "image",
@@ -239,23 +1095,53 @@
           "url": "artifact:piston-crank-converter",
           "alt": "Interactive piston, connecting rod and crankshaft motion diagram",
           "note": "Purpose-built teaching diagram; dimensions and kinematics are schematic rather than engine-specific.",
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Dragging the crank makes the conversion between rotary and reciprocating motion visible."}
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "Dragging the crank makes the conversion between rotary and reciprocating motion visible."
+          },
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ]
         },
         {
           "type": "model-pose",
           "title": "Top dead centre",
           "modelId": "cylinder",
           "prompt": "At a crank angle of 0 degrees the piston has risen as far as it goes. This is top dead centre (TDC): for an instant the piston stops and reverses direction while the crankshaft keeps turning. Where do you predict the piston will be after half a turn?",
-          "action": {"type": "angle", "value": 0},
-          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 46 (Figure 1-35 and text): stroke is measured between top dead center and bottom dead center. Pose from the profile-checked operating-cylinder model; in the shared teaching profile 0 degrees is TDC at the start of the intake stroke."
+          "action": {
+            "type": "angle",
+            "value": 0
+          },
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 46 (Figure 1-35 and text): stroke is measured between top dead center and bottom dead center. Pose from the profile-checked operating-cylinder model; in the shared teaching profile 0 degrees is TDC at the start of the intake stroke.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The operating-cylinder model shows the piston stopping at the top of its travel."
+          }
         },
         {
           "type": "model-pose",
           "title": "Bottom dead centre",
           "modelId": "cylinder",
           "prompt": "At 180 degrees the piston has fallen as far as it goes: bottom dead centre (BDC). The distance it travels between TDC and BDC is the stroke, and the cylinder's inside diameter is the bore. The readout shows the piston pin 219.1 mm from the crank axis at TDC and 117.5 mm here. Subtract them: how many inches is the stroke?",
-          "action": {"type": "angle", "value": 180},
-          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 46: the bore is the cylinder's inside diameter; the stroke is the distance the piston moves from TDC to BDC or vice versa. Pose from the profile-checked operating-cylinder model. Its readout gives the piston pin 219.1 mm from the crank axis at 0 degrees and 117.5 mm at 180 degrees; the 101.6 mm difference equals the 4.000 in stroke in the GTSIO-520-H manual (Chapter C-3, PDF p. 152)."
+          "action": {
+            "type": "angle",
+            "value": 180
+          },
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 46: the bore is the cylinder's inside diameter; the stroke is the distance the piston moves from TDC to BDC or vice versa. Pose from the profile-checked operating-cylinder model. Its readout gives the piston pin 219.1 mm from the crank axis at 0 degrees and 117.5 mm at 180 degrees; the 101.6 mm difference equals the 4.000 in stroke in the GTSIO-520-H manual (Chapter C-3, PDF p. 152).",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The operating-cylinder model shows the piston at the bottom of its travel, so the stroke can be read from the two poses."
+          }
         },
         {
           "type": "web-embed",
@@ -263,24 +1149,107 @@
           "prompt": "Switch between swept, clearance and total volume, then move the piston. Swept volume (piston displacement) is what the piston sweeps between TDC and BDC; clearance volume is what is left above it at TDC. Compression ratio compares the volume at BDC with the volume at TDC.",
           "url": "artifact:swept-volume-diagram",
           "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 49-51 (piston displacement, compression ratio, Figure 1-38) and EASA Module 16, PDF pp. 24-26 (Figure 1-9); the deck's slides 211-212 give the same definitions. Definitions only here - the calculations belong to lesson 12. The diagram is drawn at the GTSIO-520-H's 7.5:1 ratio so volumes are to scale.",
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Moving the piston between marked dead centres makes swept and clearance volume visible."}
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "Moving the piston between marked dead centres makes swept and clearance volume visible."
+          },
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ]
+        },
+        {
+          "type": "text",
+          "title": "Displacement and compression ratio",
+          "prompt": "Swept volume, or piston displacement, is the volume one piston sweeps between TDC and BDC: the area of the bore times the stroke. The engine's displacement is the swept volume of one cylinder times the number of cylinders.\n\nThe GTSIO-520-H has a bore of 5.250 in, a stroke of 4.000 in and six cylinders: a displacement of 520 cubic inches, which is where the 520 in its name comes from.\n\nThe compression ratio is the volume of the cylinder with the piston at the bottom of its stroke divided by the volume with the piston at the top. The GTSIO-520-H's is 7.5 to 1. Lesson 10 builds the ratio from the volumes, and lesson 12 does the calculations.",
+          "note": "Compression ratio as defined in the FAA handbook glossary (PDF p. 465); the GTSIO-520-H values (bore 5.250 in, stroke 4.000 in, 520 cu in, 7.5:1) are from the overhaul manual, Chapter C-3 (PDF pp. 152 to 153). Definitions only here; the calculations are in lessons 10 and 12.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Cycle, stroke, RPM, firing order",
+          "prompt": "A cycle is the full series of events an engine goes through before it starts them again. In a four-stroke engine it is intake, compression, power and exhaust, and it takes two turns of the crankshaft: 720 degrees.\n\nA stroke is one trip of the piston from one dead centre to the other: half a turn of the crankshaft, 180 degrees. Four strokes make one four-stroke cycle.\n\nRPM is revolutions per minute, how fast the crankshaft turns. The tachometer shows it.\n\nThe firing order is the sequence in which the cylinders deliver their power strokes. The GTSIO-520-H fires 1-4-5-2-3-6. With six cylinders and 720 degrees to a cycle, a power stroke begins every 120 degrees.",
+          "note": "Stroke and RPM from the FAA handbook glossary (PDF pp. 485 and 482); the GTSIO-520-H firing order from its overhaul manual, Chapter C-3 (PDF pp. 152 to 153); 720 / 6 = 120. An introduction only: lesson 4 builds the cycle, lesson 5 the numbering and firing order, and lesson 10 explains why the order is chosen.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Maintenance words",
+          "prompt": "Six words technicians use precisely, and that maintenance records depend on.\n\nMaintenance, in the US regulation, is inspection, overhaul, repair, preservation and the replacement of parts. It excludes preventive maintenance: simple or minor preservation and the replacement of small standard parts.\n\nThe Tanzanian airworthiness regulations define maintenance and the other words in much the same way, and lesson 16 uses them.\n\nServicing is keeping an aircraft supplied: refuelling, adding oil, lubricating, cleaning. An inspection is an examination to find the condition of something. A check is a particular, limited inspection or test, such as the magneto check before takeoff. A repair restores something to a serviceable condition using approved data. An overhaul is more thorough: the item is disassembled, cleaned, inspected, repaired as necessary, reassembled and tested to approved standards before it may be called overhauled.",
+          "note": "Maintenance and preventive maintenance are quoted from 14 CFR 1.1, and the steps of an overhaul from 14 CFR 43.2, checked 12 October 2026. Servicing, inspection, check and repair are a working definition for this course, consistent with common engineering usage; other documents define these words for their own purposes. Lesson 16 returns to each. Tanzanian definitions of inspection, maintenance, overhaul, repair and preventive maintenance: Civil Aviation (Airworthiness) Regulations, regulation 2 (revised edition 2026), read 13 October 2026.",
+          "sourceRefs": [
+            "cfr-14-1-1",
+            "cfr-14-43-2",
+            "instructor-outcomes",
+            "tcaa-airworthiness-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "web-embed",
-          "title": "Two engines, same cylinder",
+          "title": "Same words, two engines",
           "prompt": "Compare the course engine with the IO-520. Find the data that is identical and the data that differs. Which differences would matter to a technician setting up ignition timing?",
           "url": "artifact:engine-data-comparison",
           "note": "GTSIO-520-H values read from the scanned overhaul manual, Chapter C-3 (PDF pp. 152-153): bore 5.250 in, stroke 4.000 in, 520 cu in, 7.5:1, firing order 1-4-5-2-3-6, spark 20 degrees BTC. IO-520 values from its overhaul manual (editable copy): Tables II and III and the model test data. The IO-520 is a different engine, shown for comparison only. Manual values carry more weight (instructor decision, 29 September 2026): the lesson uses the -H manual's 20 degrees BTC. Deck slide 207 shows 22 degrees BTDC for its GTSIO-520-H example and should be corrected to match.",
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "A side-by-side table makes identical and differing data obvious at a glance."}
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "A side-by-side table makes identical and differing data obvious at a glance."
+          },
+          "sourceRefs": [
+            "gtsio520-overhaul"
+          ]
+        },
+        {
+          "type": "text",
+          "title": "Say it precisely",
+          "prompt": "Here is a loose sentence from a hangar: 'The engine on the front has a problem with a part in the fuel system, so we are doing an overhaul.'\n\nRewrite it with the words from this lesson. Is it the engine or the powerplant that has the problem? Is the fuel system part of the engine, or of the powerplant? Is the faulty thing a part, a component, an assembly or a system? And is 'overhaul' the right word for the job, or is it servicing, a repair or an inspection?\n\nThen say why a maintenance record needs the exact word.",
+          "note": "A precision exercise that uses every group of words in the lesson. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Vocabulary set, cycle next",
-          "prompt": "Every lesson from here on assumes you can use these words precisely: engine vs. powerplant, reciprocating vs. rotating, the piston as the component that converts one into the other, top and bottom dead centre, bore and stroke, swept and clearance volume, and compression ratio. You will calculate with them in Performance Calculations. The next lesson, Thermodynamic Cycles, gives the piston's motion a repeating shape - the events every reciprocating engine cycles through.",
-          "note": "Documented closing synthesis, drawing on the deck's own Terminologies/Working Principle framing (slides 45-46) and the FAA vocabulary (PDF pp. 46-51); bridges into lesson 4."
+          "prompt": "Every lesson from here on assumes you can use these words precisely: engine and powerplant, reciprocating, the ladder from part to system, force, work, energy, torque, power and efficiency, heat and temperature, pressure and volume, top and bottom dead centre, bore and stroke, swept volume and compression ratio, and the six maintenance words. You will calculate with many of them in Performance Calculations.\n\nThe next lesson, Thermodynamic Cycles, gives the piston's motion a repeating shape: the events every reciprocating engine cycles through.",
+          "note": "Bridges to Thermodynamic Cycles. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         }
       ],
-      "completionCriteria": "In your own words, define 'engine', 'powerplant' and 'reciprocating engine', explain why powerplant is the broader term, describe the path energy takes from burning fuel to a turning propeller shaft (heat -> expanding gas -> the piston's reciprocating motion -> the crankshaft's rotating motion), naming the piston as the key energy-converting component, and define TDC, BDC, bore, stroke, swept volume, clearance volume and compression ratio."
+      "completionCriteria": "In your own words, tell aircraft, aeroplane, airframe, engine and powerplant apart (and say why the powerplant is more than the engine); sort part, component, assembly, mechanism, system and subsystem; define force, work, energy, torque, power and efficiency and say how they connect; say how heat differs from temperature; describe how pressure, volume and temperature change together in a cylinder; define bore, stroke, swept volume, displacement, TDC, BDC and compression ratio; explain cycle, stroke, RPM and firing order; and use maintenance, servicing, inspection, check, repair and overhaul correctly."
     }
   ],
   "checks": [
@@ -314,6 +1283,143 @@
       "rationale": "Moving combustion inside the cylinder (internal combustion) removed the bulky, slow-to-heat external boiler and furnace a steam engine needs, making a compact, self-contained, quick-starting engine practical."
     },
     {
+      "id": "history-mech-what-is-engine",
+      "lessonId": "history-mechanical-engines",
+      "type": "multiple-choice",
+      "question": "Which statement best describes what an engine does?",
+      "hint": "Think about what goes in and what comes out. Does anything new get created?",
+      "answers": [
+        "It converts an available form of energy into useful mechanical work",
+        "It creates energy that was not there before",
+        "It stores energy so that it can be used later",
+        "It makes fuel burn faster"
+      ],
+      "correct": 0,
+      "rationale": "An engine takes energy that already exists (in fuel, heat, wind or water) and converts it into useful mechanical work; it never creates energy."
+    },
+    {
+      "id": "history-mech-people-equivalent",
+      "lessonId": "history-mechanical-engines",
+      "type": "numeric",
+      "question": "A person can sustain about 100 watts of mechanical power. An engine produces 280 kilowatts. About how many people does that equal?",
+      "hint": "280 kilowatts is 280,000 watts. Divide by the power of one person.",
+      "unit": "people",
+      "correctValue": 2800,
+      "tolerance": 100,
+      "rationale": "280,000 W / 100 W = 2,800 people (nearly 3,700 at 75 W). One engine of modest size stands for the sustained work of thousands of people."
+    },
+    {
+      "id": "history-mech-transport-demands",
+      "lessonId": "history-mechanical-engines",
+      "type": "matching",
+      "question": "Match each kind of transport to what it asks most of its engine.",
+      "hint": "Ask what each vehicle can and cannot afford to carry, and whether it can stop for repairs.",
+      "pairs": [
+        {
+          "left": "Road",
+          "right": "Compact, quick to start, happy at changing speeds"
+        },
+        {
+          "left": "Rail",
+          "right": "Long, heavy pulling (a heavy engine is acceptable)"
+        },
+        {
+          "left": "Sea",
+          "right": "Efficiency over long voyages (weight matters little)"
+        },
+        {
+          "left": "Air",
+          "right": "Light for its power, and extremely reliable"
+        }
+      ],
+      "rationale": "Each mode puts a different demand first. Aviation puts weight and reliability above everything else, which is why aircraft engines are a special case."
+    },
+    {
+      "id": "history-mech-steam-factory",
+      "lessonId": "history-mechanical-engines",
+      "type": "multiple-choice",
+      "question": "What could a steam engine do for a factory owner that a waterwheel could not?",
+      "hint": "A waterwheel needs moving water. What did a steam engine need instead?",
+      "answers": [
+        "Stand anywhere fuel could be delivered, not only beside a river",
+        "Make more power than any river could",
+        "Run without any fuel",
+        "Drive machines without shafts or belts"
+      ],
+      "correct": 0,
+      "rationale": "A steam engine needs coal and water, which can be carried, so factories could be built in towns and ports instead of only beside a river with a fall of water."
+    },
+    {
+      "id": "history-mech-scale-order",
+      "lessonId": "history-mechanical-engines",
+      "type": "ordering",
+      "question": "Put these in order, from the longest ago to the most recent.",
+      "hint": "Think of the scale: the first practical engine is very recent indeed.",
+      "items": [
+        "The oldest securely dated Homo sapiens fossils (about 300,000 years ago)",
+        "Farming begins in the Near East (about 12,000 years ago)",
+        "Writing appears (about 5,000 years ago)",
+        "Newcomen's first practical engine (1712)"
+      ],
+      "rationale": "If modern human history were one day, farming would begin about an hour before midnight, writing about 25 minutes before and the first practical engine only about a minute and a half before midnight."
+    },
+    {
+      "id": "history-mech-why-so-late",
+      "lessonId": "history-mechanical-engines",
+      "type": "multiple-choice",
+      "question": "Which best explains why practical engines appeared so late in human history?",
+      "hint": "Was it one missing idea, or several things that all had to be in place?",
+      "answers": [
+        "Several things had to exist together: knowledge of air pressure, metalworking able to make cylinders, cheap fuel and a need such as draining mines",
+        "People before 1700 were not interested in making work easier",
+        "Fuel had not yet been discovered",
+        "Only one inventor was clever enough to build one"
+      ],
+      "correct": 0,
+      "rationale": "Newcomen's engine needed an understanding of air pressure and vacuum, cylinders that could be cast and bored, cheap coal and a pressing need (mines flooding). Until they met, no practical engine was possible."
+    },
+    {
+      "id": "history-mech-inventors",
+      "lessonId": "history-mechanical-engines",
+      "type": "matching",
+      "question": "Match each engineer to what they gave to engines.",
+      "hint": "Go in order of date: pumping mines, saving fuel, burning fuel inside the cylinder, igniting it by compression.",
+      "pairs": [
+        {
+          "left": "Newcomen (1712)",
+          "right": "The first practical steam engine, pumping water out of mines"
+        },
+        {
+          "left": "Watt (1765, patented 1769)",
+          "right": "The separate condenser, which saved fuel"
+        },
+        {
+          "left": "Otto (1876)",
+          "right": "The four-stroke internal combustion engine"
+        },
+        {
+          "left": "Diesel (patent granted 1893)",
+          "right": "Igniting the fuel by compression alone, with no spark"
+        }
+      ],
+      "rationale": "Each of them solved a limit of the one before: Newcomen made an engine at all, Watt made it economical, Otto put the fire inside the cylinder, and Diesel found a second way to ignite it."
+    },
+    {
+      "id": "history-mech-gas-turbine",
+      "lessonId": "history-mechanical-engines",
+      "type": "multiple-choice",
+      "question": "How does a gas turbine differ from a piston engine?",
+      "hint": "Compare how each one turns burning fuel into motion.",
+      "answers": [
+        "It burns fuel in a continuous flow and spins a bladed wheel, instead of pushing pistons",
+        "It uses no fuel and runs on electricity",
+        "It has more pistons than a piston engine",
+        "It burns its fuel outside the engine, like a steam engine"
+      ],
+      "correct": 0,
+      "rationale": "A gas turbine burns fuel in a continuous flow and spins a bladed wheel; a piston engine burns it in repeated bursts in a cylinder and pushes a piston."
+    },
+    {
       "id": "history-aircraft-era-sequence",
       "lessonId": "history-aircraft-engines",
       "type": "ordering",
@@ -342,6 +1448,182 @@
       ],
       "correct": 2,
       "rationale": "Maxim and Langley had adequately powerful engines but no stable control; the Wrights spent 1900-1902 mastering pitch, roll and yaw in gliders first, so their comparatively modest 12 hp engine only had to supply sustained thrust to an already-controllable aircraft."
+    },
+    {
+      "id": "history-aircraft-heavier-than-air",
+      "lessonId": "history-aircraft-engines",
+      "type": "multiple-choice",
+      "question": "Which statement describes a heavier-than-air aircraft?",
+      "hint": "Think about what keeps each kind of aircraft up, and what happens if it stops moving.",
+      "answers": [
+        "It must keep moving through the air to make lift, with a wing or a rotor",
+        "It floats because it is filled with a gas lighter than air",
+        "It cannot be steered",
+        "It never needs an engine"
+      ],
+      "correct": 0,
+      "rationale": "A heavier-than-air craft is held up only by the lift its wings or rotors make as it moves through the air, so it needs continuous power. A balloon or airship floats by buoyancy."
+    },
+    {
+      "id": "history-aircraft-power-to-weight",
+      "lessonId": "history-aircraft-engines",
+      "type": "numeric",
+      "question": "The 1903 Wright engine made about 12 hp and weighed about 170 lb. What is its power-to-weight ratio, in horsepower per pound, to two decimal places?",
+      "hint": "Divide the power by the weight.",
+      "unit": "hp per lb",
+      "correctValue": 0.07,
+      "tolerance": 0.005,
+      "rationale": "12 hp / 170 lb = 0.07 hp per lb, about 14 lb for each horsepower. The GTSIO-520-H, at 375 hp for 550 lb, makes 0.68 hp per lb, about ten times as much."
+    },
+    {
+      "id": "history-aircraft-why-weight",
+      "lessonId": "history-aircraft-engines",
+      "type": "multiple-choice",
+      "question": "Why does a heavy engine make powered flight harder?",
+      "hint": "A wing has to lift everything the aircraft carries. What does lifting more require?",
+      "answers": [
+        "The wing must lift the engine too, which needs more power, which needs a bigger engine, and so on",
+        "A heavy engine always vibrates too much to fly",
+        "A heavy engine cannot be cooled by the air",
+        "A heavy engine uses more fuel than a light one at any speed"
+      ],
+      "correct": 0,
+      "rationale": "Every pound of engine is a pound the wing must lift. More lift needs more thrust, and more thrust needs a more powerful, usually heavier, engine, so only an engine light for its power breaks the loop."
+    },
+    {
+      "id": "history-aircraft-layouts",
+      "lessonId": "history-aircraft-engines",
+      "type": "matching",
+      "question": "Match each engine layout to its description.",
+      "hint": "Picture the engine from the front: how are the cylinders arranged around the crankshaft?",
+      "pairs": [
+        {
+          "left": "Inline",
+          "right": "One row of cylinders, like the 1903 Wright engine"
+        },
+        {
+          "left": "V-type",
+          "right": "Two rows sharing one crankshaft, like the WWI Hispano-Suiza V8"
+        },
+        {
+          "left": "Rotary",
+          "right": "Cylinders spin with the propeller around a fixed crankshaft"
+        },
+        {
+          "left": "Radial",
+          "right": "Cylinders in a ring around a fixed crankcase"
+        },
+        {
+          "left": "Horizontally opposed",
+          "right": "Two rows lying flat on either side of the crankshaft"
+        }
+      ],
+      "rationale": "Each layout is named for where its cylinders sit around the crankshaft. The rotary is the odd one out because the engine itself turns while the crankshaft stays fixed."
+    },
+    {
+      "id": "history-aircraft-rotary-cooling",
+      "lessonId": "history-aircraft-engines",
+      "type": "multiple-choice",
+      "question": "How did a rotary engine such as the Gnome keep its cylinders cool?",
+      "hint": "The whole cylinder block turned with the propeller. What does a spinning block do to the air around it?",
+      "answers": [
+        "By spinning through the air, which blew past the cylinders",
+        "With a radiator and a water pump",
+        "With an oil cooler only",
+        "It did not need cooling"
+      ],
+      "correct": 0,
+      "rationale": "The spinning cylinders passed through the air and cooled themselves, which kept rotaries light, but the spinning mass brought heavy oil loss and strong gyroscopic effects."
+    },
+    {
+      "id": "history-aircraft-why-radial",
+      "lessonId": "history-aircraft-engines",
+      "type": "multiple-choice",
+      "question": "Why did air-cooled radial engines become important between the wars?",
+      "hint": "Between the wars the priority moved from raw power to something else.",
+      "answers": [
+        "Simple cooling and ruggedness gave reliability for mail, airline and record flights",
+        "They were the only engines that could be supercharged",
+        "They were lighter than any other engine for their power",
+        "They were quieter than other engines"
+      ],
+      "correct": 0,
+      "rationale": "With no radiator, coolant or pump to fail, air-cooled radials ran for hours without trouble, which is what airlines and record flights needed."
+    },
+    {
+      "id": "history-aircraft-why-flat",
+      "lessonId": "history-aircraft-engines",
+      "type": "multiple-choice",
+      "question": "Why did horizontally opposed engines become the standard in light aircraft after the Second World War?",
+      "hint": "Think about frontal area, balance and the person who has to look after the engine.",
+      "answers": [
+        "They are compact and low-drag, well balanced, and easy to maintain",
+        "They produce more power than any other layout",
+        "They are the only layout that can be air-cooled",
+        "They were left over in large numbers from the war"
+      ],
+      "correct": 0,
+      "rationale": "A flat engine has a small frontal area for low drag, is well balanced, and its cylinders are easy to reach. Those qualities suit small, affordable aircraft."
+    },
+    {
+      "id": "history-aircraft-why-turbines",
+      "lessonId": "history-aircraft-engines",
+      "type": "multiple-choice",
+      "question": "Why did gas turbines replace large piston engines in front-line and airline aircraft?",
+      "hint": "Think about speed, altitude, and power for weight.",
+      "answers": [
+        "At high speed and altitude propeller losses limit piston engines, while turbines give more power per pound and run most economically high up",
+        "Piston engines could not be made more powerful than 500 hp",
+        "Turbines are cheaper to build than piston engines",
+        "Piston engines cannot burn jet fuel"
+      ],
+      "correct": 0,
+      "rationale": "The FAA handbook gives the reasons: propeller losses limit efficiency above about 400 mph, the turboprop develops more power per pound, and gas turbines operate most economically at high altitude."
+    },
+    {
+      "id": "history-aircraft-demands",
+      "lessonId": "history-aircraft-engines",
+      "type": "matching",
+      "question": "Match each demand to an engine development that answered it.",
+      "hint": "Go era by era: the first flights, the interwar years, the 1930s racers, after 1945, and the 2000s.",
+      "pairs": [
+        {
+          "left": "Power for its weight",
+          "right": "The light rotary engines of the First World War"
+        },
+        {
+          "left": "Reliability",
+          "right": "Air-cooled radials between the wars"
+        },
+        {
+          "left": "Power at altitude",
+          "right": "Superchargers and turbochargers"
+        },
+        {
+          "left": "Low drag and easy maintenance",
+          "right": "Horizontally opposed flat engines"
+        },
+        {
+          "left": "Precise control and efficiency",
+          "right": "Fuel injection and FADEC"
+        }
+      ],
+      "rationale": "Each development answered the demand that mattered most in its time, and each gave something up: rotaries lost oil, radials were draggy, flat engines are modest in power."
+    },
+    {
+      "id": "history-aircraft-significance",
+      "lessonId": "history-aircraft-engines",
+      "type": "multiple-choice",
+      "question": "What does 'sustained, controlled, powered flight' mean, and why was 1903 the first time?",
+      "hint": "Three things had to come together in one machine.",
+      "answers": [
+        "A heavier-than-air machine took off under its own power, flew under its pilot's control, and kept flying",
+        "An aeroplane carried a passenger across an ocean",
+        "An engine ran for 12 hours without stopping",
+        "A glider was launched from a hill"
+      ],
+      "correct": 0,
+      "rationale": "Earlier machines had managed one or two of power, control and sustained flight. The Flyer was the first to do all three."
     },
     {
       "id": "terminologies-powerplant-vs-engine",
@@ -377,7 +1659,11 @@
       "type": "multiple-choice",
       "question": "What is the stroke of an engine?",
       "hint": "Think of the two dead-centre positions.",
-      "answers": ["The distance the piston moves between top and bottom dead centre", "The inside diameter of the cylinder", "The volume left above the piston at TDC"],
+      "answers": [
+        "The distance the piston moves between top and bottom dead centre",
+        "The inside diameter of the cylinder",
+        "The volume left above the piston at TDC"
+      ],
       "correct": 0,
       "rationale": "Stroke is the distance the piston travels between TDC and BDC; the bore is the cylinder's inside diameter."
     },
@@ -387,9 +1673,237 @@
       "type": "multiple-choice",
       "question": "Compression ratio compares which two volumes?",
       "hint": "One is measured with the piston at the bottom of its stroke, one at the top.",
-      "answers": ["The volume with the piston at BDC and the volume with the piston at TDC", "The volume of the intake port and the exhaust port", "The swept volume of one cylinder and of the whole engine"],
+      "answers": [
+        "The volume with the piston at BDC and the volume with the piston at TDC",
+        "The volume of the intake port and the exhaust port",
+        "The swept volume of one cylinder and of the whole engine"
+      ],
       "correct": 0,
       "rationale": "Compression ratio is the total volume with the piston at the bottom of the stroke divided by the clearance volume with the piston at the top."
+    },
+    {
+      "id": "terminologies-aircraft-not-aeroplane",
+      "lessonId": "terminologies",
+      "type": "multiple-choice",
+      "question": "Which of these is an aircraft but not an aeroplane?",
+      "hint": "An aeroplane is an engine-driven, fixed-wing aircraft heavier than air. Which of these has no wings at all?",
+      "answers": [
+        "A hot-air balloon",
+        "A Cessna 172",
+        "A Boeing 737",
+        "A Piper Cub"
+      ],
+      "correct": 0,
+      "rationale": "An aircraft is any device for flight in the air. An aeroplane is the specific kind with engine-driven, fixed wings. A hot-air balloon is an aircraft but not an aeroplane."
+    },
+    {
+      "id": "terminologies-powerplant-not-airframe",
+      "lessonId": "terminologies",
+      "type": "multiple-choice",
+      "question": "Which of these belongs to the powerplant rather than the airframe?",
+      "hint": "The airframe is the structure without its propulsion. Which item exists to make thrust?",
+      "answers": [
+        "The propeller and its governor",
+        "The fuselage",
+        "The landing gear",
+        "The wing flaps"
+      ],
+      "correct": 0,
+      "rationale": "The powerplant is the engine, propeller and all the accessories needed for its proper function. The fuselage, landing gear and flaps are airframe."
+    },
+    {
+      "id": "terminologies-ladder",
+      "lessonId": "terminologies",
+      "type": "matching",
+      "question": "Match each word to its example.",
+      "hint": "Go from the smallest to the largest: a single piece, a unit that does one job, parts fitted together, parts that pass on motion, a group working for one purpose, a system inside a system.",
+      "pairs": [
+        {
+          "left": "Part",
+          "right": "A piston ring"
+        },
+        {
+          "left": "Component",
+          "right": "A spark plug"
+        },
+        {
+          "left": "Assembly",
+          "right": "A piston with its pin and rings"
+        },
+        {
+          "left": "Mechanism",
+          "right": "The piston, rod and crankshaft that turn straight-line motion into rotation"
+        },
+        {
+          "left": "System",
+          "right": "The lubrication system"
+        },
+        {
+          "left": "Subsystem",
+          "right": "The oil filter circuit inside the lubrication system"
+        }
+      ],
+      "rationale": "These are working definitions that run from the smallest to the largest. The same item can belong at more than one level: a spark plug is a component of the engine and a system of its own parts."
+    },
+    {
+      "id": "terminologies-work",
+      "lessonId": "terminologies",
+      "type": "numeric",
+      "question": "A force of 200 lb moves a load 15 ft in the direction of the force. How much work is done, in foot-pounds?",
+      "hint": "Work is the force times the distance moved in the direction of the force.",
+      "unit": "ft-lb",
+      "correctValue": 3000,
+      "tolerance": 1,
+      "rationale": "200 lb x 15 ft = 3,000 ft-lb. The same arithmetic, with the force in newtons and the distance in metres, gives joules."
+    },
+    {
+      "id": "terminologies-torque",
+      "lessonId": "terminologies",
+      "type": "numeric",
+      "question": "A 50 lb force is applied to a wrench 2 ft from the nut. What torque is applied, in lb-ft?",
+      "hint": "Torque is the force times its distance from the axis.",
+      "unit": "lb-ft",
+      "correctValue": 100,
+      "tolerance": 0.5,
+      "rationale": "50 lb x 2 ft = 100 lb-ft. The same force on a wrench twice as long would give twice the torque."
+    },
+    {
+      "id": "terminologies-efficiency",
+      "lessonId": "terminologies",
+      "type": "numeric",
+      "question": "An engine takes in 100 units of fuel energy and delivers 30 units of useful work. What is its efficiency, as a percentage?",
+      "hint": "Efficiency is useful output divided by the energy put in.",
+      "unit": "%",
+      "correctValue": 30,
+      "tolerance": 0.5,
+      "rationale": "30 / 100 = 0.30, or 30 percent. The other 70 units leave as heat, mostly with the exhaust and through the cooling."
+    },
+    {
+      "id": "terminologies-heat-temperature",
+      "lessonId": "terminologies",
+      "type": "multiple-choice",
+      "question": "A spark is very hot, but it cannot warm a room, while a bath of warm water can. Why?",
+      "hint": "One of these words names how hot something is. The other names energy that moves.",
+      "answers": [
+        "Temperature says how hot something is, but heat is energy transferred, and the bath holds far more of it",
+        "The spark is not really hot",
+        "Heat and temperature are the same thing measured in different units",
+        "Water cannot have a temperature"
+      ],
+      "correct": 0,
+      "rationale": "Temperature reflects how fast the particles move. Heat is the energy that flows because of a temperature difference. A tiny spark is at a very high temperature but has little energy to give."
+    },
+    {
+      "id": "terminologies-squeeze-gas",
+      "lessonId": "terminologies",
+      "type": "multiple-choice",
+      "question": "A gas in a cylinder is squeezed into a smaller volume. What happens to its pressure and temperature?",
+      "hint": "Think of a bicycle pump getting hot as you pump.",
+      "answers": [
+        "Both rise",
+        "Both fall",
+        "Pressure rises and temperature falls",
+        "Neither changes"
+      ],
+      "correct": 0,
+      "rationale": "Squeezing a gas raises both its pressure and its temperature. That is what the compression stroke does to the charge."
+    },
+    {
+      "id": "terminologies-four-words",
+      "lessonId": "terminologies",
+      "type": "matching",
+      "question": "Match each term to its meaning.",
+      "hint": "Which one is about repetition, which about distance, which about speed, which about sequence?",
+      "pairs": [
+        {
+          "left": "Cycle",
+          "right": "The full series of events an engine repeats"
+        },
+        {
+          "left": "Stroke",
+          "right": "One trip of the piston from one dead centre to the other"
+        },
+        {
+          "left": "RPM",
+          "right": "How many turns the crankshaft makes in a minute"
+        },
+        {
+          "left": "Firing order",
+          "right": "The sequence in which the cylinders deliver their power strokes"
+        }
+      ],
+      "rationale": "Each term answers a different question about a running engine: what repeats, how far the piston moves, how fast the crankshaft turns, and in what order the cylinders fire."
+    },
+    {
+      "id": "terminologies-firing-interval",
+      "lessonId": "terminologies",
+      "type": "numeric",
+      "question": "A four-stroke engine completes its cycle in 720 degrees of crankshaft rotation. It has six cylinders that fire at equal intervals. How many degrees of rotation are there between one power stroke and the next?",
+      "hint": "Share the 720 degrees among the six power strokes.",
+      "unit": "degrees",
+      "correctValue": 120,
+      "tolerance": 0.5,
+      "rationale": "720 / 6 = 120 degrees. One cylinder reaches its power stroke every 120 degrees of crankshaft rotation."
+    },
+    {
+      "id": "terminologies-maintenance-words",
+      "lessonId": "terminologies",
+      "type": "matching",
+      "question": "Match each maintenance word to its meaning.",
+      "hint": "Think of what is done to the item: supplied, examined, tested, restored, taken apart and rebuilt.",
+      "pairs": [
+        {
+          "left": "Servicing",
+          "right": "Keeping the aircraft supplied: fuel, oil, lubrication, cleaning"
+        },
+        {
+          "left": "Inspection",
+          "right": "An examination to find the condition of something"
+        },
+        {
+          "left": "Check",
+          "right": "A particular, limited inspection or test, such as the magneto check"
+        },
+        {
+          "left": "Repair",
+          "right": "Restoring something to a serviceable condition using approved data"
+        },
+        {
+          "left": "Overhaul",
+          "right": "Disassembled, cleaned, inspected, repaired as necessary, reassembled and tested to approved standards"
+        }
+      ],
+      "rationale": "Each word names a different kind of work, and a maintenance record is only as good as the word chosen. Maintenance is the general word that covers inspection, overhaul, repair, preservation and the replacement of parts."
+    },
+    {
+      "id": "terminologies-overhaul",
+      "lessonId": "terminologies",
+      "type": "multiple-choice",
+      "question": "Under the US regulation, when may an engine be described as overhauled?",
+      "hint": "Which steps does the regulation require, and how is the result judged?",
+      "answers": [
+        "When it has been disassembled, cleaned, inspected, repaired as necessary, reassembled and tested to approved standards",
+        "When it has had its oil changed",
+        "When it has been inspected from outside",
+        "When any part has been replaced"
+      ],
+      "correct": 0,
+      "rationale": "14 CFR 43.2 says an item may be called overhauled only if it has been disassembled, cleaned, inspected, repaired as necessary, reassembled and tested to approved standards and technical data."
+    },
+    {
+      "id": "terminologies-precise-record",
+      "lessonId": "terminologies",
+      "type": "multiple-choice",
+      "question": "A technician writes 'replaced engine' in the record, but the part replaced was a spark plug. What is wrong with the entry?",
+      "hint": "Which is bigger, a spark plug or an engine? What would a reader assume from the entry?",
+      "answers": [
+        "A spark plug is a component of the engine, so the entry says far more than was done and must name the component",
+        "Nothing: a spark plug is part of the engine, so the entry is correct",
+        "The entry should say powerplant instead of engine",
+        "The entry should say airframe"
+      ],
+      "correct": 0,
+      "rationale": "A record has to say exactly what was done. Naming the engine claims the whole machine was replaced, and the next person to read it would be misled about what was changed."
     }
   ]
 }

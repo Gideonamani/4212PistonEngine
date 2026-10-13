@@ -166,7 +166,7 @@ export function SectionControls({ viewer }: { viewer: ModelViewerState }) {
           aria-label="Section plane"
           onKeyDown={onMenuKeyDown}
           style={position}
-          className="absolute overflow-y-auto rounded-[1.4rem] border border-white/15 bg-[#09161c]/97 p-2 shadow-2xl shadow-black/60 backdrop-blur-xl"
+          className="absolute overflow-y-auto rounded-[1.4rem] border border-white/15 bg-panel/97 p-2 shadow-2xl shadow-black/60 backdrop-blur-xl"
         >
           <p className="px-2.5 pb-1 pt-1.5 font-mono text-[10px] font-bold tracking-[0.14em] text-slate-400">SECTION PLANE</p>
           <div role="listbox" aria-label="Section plane">

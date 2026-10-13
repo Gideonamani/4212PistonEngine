@@ -1,9 +1,133 @@
 @import "tailwindcss";
 
+/*
+ * Colour themes. The app was drawn dark, so the dark values are the defaults and light mode redefines them.
+ *
+ * Surfaces are semantic tokens (bg-canvas, bg-panel, bg-inset, bg-raised, border-outline) instead of hex codes. The Tailwind palette the
+ * screens already use (slate, teal, amber, rose ...) is mirrored in light mode, so a dark-mode "slate-300 text on slate-900" becomes
+ * "slate-700 text on slate-100" with no change to the class names. `white` is the heading ink in dark mode, so it flips to dark ink.
+ *
+ * The theme is the data-theme attribute on <html>: index.html sets it before first paint from the saved choice or the system preference,
+ * and src/theme/theme.ts keeps it current. Something that must stay dark in a light page, such as the 3D stage, takes `.stay-dark`.
+ */
+@theme {
+  --color-canvas: #061014;
+  --color-panel: #09181e;
+  --color-inset: #061418;
+  --color-raised: #0c2026;
+  --color-outline: #55707a;
+  --color-outline-soft: #1e3a42;
+  --color-on-image: #ffffff;
+}
+
 @layer base {
   :root {
     --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+    color-scheme: dark;
+  }
+
+  :root[data-theme='light'] {
+    color-scheme: light;
+    --color-canvas: #eef4f6;
+    --color-panel: #ffffff;
+    --color-inset: #e8f0f3;
+    --color-raised: #d9e6ea;
+    --color-outline: #5b7782;
+    --color-outline-soft: #bfd0d7;
+
+    --color-white: #0b1a21;
+    --color-slate-50: #0b1220;
+    --color-slate-100: #0f172a;
+    --color-slate-200: #1e293b;
+    --color-slate-300: #334155;
+    --color-slate-400: #475569;
+    --color-slate-500: #64748b;
+    --color-slate-600: #94a3b8;
+    --color-slate-700: #cbd5e1;
+    --color-slate-800: #e2e8f0;
+    --color-slate-900: #f1f5f9;
+    --color-slate-950: #f8fafc;
+
+    --color-teal-100: #042f2e;
+    --color-teal-200: #134e4a;
+    --color-teal-300: #115e59;
+    --color-teal-400: #0f766e;
+    --color-teal-500: #0f766e;
+    --color-teal-950: #c5ede7;
+
+    --color-cyan-200: #164e63;
+    --color-cyan-300: #0e7490;
+    --color-sky-400: #0369a1;
+    --color-emerald-400: #047857;
+    --color-orange-300: #9a3412;
+    --color-orange-400: #c2410c;
+
+    --color-amber-100: #451a03;
+    --color-amber-200: #78350f;
+    --color-amber-300: #92400e;
+    --color-amber-400: #b45309;
+    --color-amber-500: #d97706;
+    --color-amber-950: #fde68a;
+
+    --color-rose-100: #4c0519;
+    --color-rose-200: #881337;
+    --color-rose-300: #9f1239;
+    --color-rose-400: #be123c;
+    --color-rose-500: #e11d48;
+    --color-rose-950: #fecdd3;
+  }
+
+  /* A region that stays dark inside a light page (the 3D stage and its controls): put the dark values back, for this element and everything in it. */
+  .stay-dark {
+    color-scheme: dark;
+    --color-canvas: #061014;
+    --color-panel: #09181e;
+    --color-inset: #061418;
+    --color-raised: #0c2026;
+    --color-outline: #55707a;
+    --color-outline-soft: #1e3a42;
+
+    --color-white: #fff;
+    --color-slate-50: oklch(98.4% 0.003 247.858);
+    --color-slate-100: oklch(96.8% 0.007 247.896);
+    --color-slate-200: oklch(92.9% 0.013 255.508);
+    --color-slate-300: oklch(86.9% 0.022 252.894);
+    --color-slate-400: oklch(70.4% 0.04 256.788);
+    --color-slate-500: oklch(55.4% 0.046 257.417);
+    --color-slate-600: oklch(44.6% 0.043 257.281);
+    --color-slate-700: oklch(37.2% 0.044 257.287);
+    --color-slate-800: oklch(27.9% 0.041 260.031);
+    --color-slate-900: oklch(20.8% 0.042 265.755);
+    --color-slate-950: oklch(12.9% 0.042 264.695);
+
+    --color-teal-100: oklch(95.3% 0.051 180.801);
+    --color-teal-200: oklch(91% 0.096 180.426);
+    --color-teal-300: oklch(85.5% 0.138 181.071);
+    --color-teal-400: oklch(77.7% 0.152 181.912);
+    --color-teal-500: oklch(70.4% 0.14 182.503);
+    --color-teal-950: oklch(27.7% 0.046 192.524);
+
+    --color-cyan-200: oklch(91.7% 0.08 205.041);
+    --color-cyan-300: oklch(86.5% 0.127 207.078);
+    --color-sky-400: oklch(74.6% 0.16 232.661);
+    --color-emerald-400: oklch(76.5% 0.177 163.223);
+    --color-orange-300: oklch(83.7% 0.128 66.29);
+    --color-orange-400: oklch(75% 0.183 55.934);
+
+    --color-amber-100: oklch(96.2% 0.059 95.617);
+    --color-amber-200: oklch(92.4% 0.12 95.746);
+    --color-amber-300: oklch(87.9% 0.169 91.605);
+    --color-amber-400: oklch(82.8% 0.189 84.429);
+    --color-amber-500: oklch(76.9% 0.188 70.08);
+    --color-amber-950: oklch(27.9% 0.077 45.635);
+
+    --color-rose-100: oklch(94.1% 0.03 12.58);
+    --color-rose-200: oklch(89.2% 0.058 10.001);
+    --color-rose-300: oklch(81% 0.117 11.638);
+    --color-rose-400: oklch(71.2% 0.194 13.428);
+    --color-rose-500: oklch(64.5% 0.246 16.439);
+    --color-rose-950: oklch(27.1% 0.105 12.094);
   }
 
   body {
@@ -11,7 +135,7 @@
     -webkit-tap-highlight-color: transparent;
     min-height: 100dvh;
     margin: 0;
-    background: #061014;
+    background: var(--color-canvas);
   }
 
   button, a, input, select, textarea { touch-action: manipulation; }
@@ -55,4 +179,19 @@
 .lesson-media-side { height: calc(var(--lesson-area, 100svh) - 1rem); }
 @media (min-width: 640px) {
   .lesson-viewer-stacked { height: min(22rem, calc(var(--lesson-area, 100svh) * 0.75)); }
+}
+
+/*
+ * Reading text in a lesson. Sizes are in rem, so they also follow the browser's own text-size setting. --lesson-text-scale is the learner's
+ * own choice from the "Aa" menu (1 is Standard) and is set on the lesson; text that should follow it takes one of these classes.
+ *   lesson-prose     the step's words: 16 px, 17 px from the sm breakpoint, with generous line spacing
+ *   lesson-prose-sm  secondary reading text (the guided prompt, notes): 14 px
+ *   lesson-heading   the step's title
+ */
+.lesson-prose { font-size: calc(1rem * var(--lesson-text-scale, 1)); line-height: 1.7; }
+.lesson-prose-sm { font-size: calc(0.875rem * var(--lesson-text-scale, 1)); line-height: 1.6; }
+.lesson-heading { font-size: calc(1.25rem * var(--lesson-text-scale, 1)); line-height: 1.25; }
+@media (min-width: 640px) {
+  .lesson-prose { font-size: calc(1.0625rem * var(--lesson-text-scale, 1)); }
+  .lesson-heading { font-size: calc(1.5rem * var(--lesson-text-scale, 1)); }
 }

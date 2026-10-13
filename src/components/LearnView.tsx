@@ -90,7 +90,7 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
   // LEVEL 1: course menu.
   if (!activeTrack) {
     return (
-      <div className="relative w-full h-full flex flex-col bg-[#061014] text-slate-100 overflow-y-auto select-none pb-24">
+      <div className="relative w-full h-full flex flex-col bg-canvas text-slate-100 overflow-y-auto select-none pb-24">
         <div className="px-4 pt-4 pb-2 max-w-xl mx-auto w-full">
           <div className="flex items-center gap-1.5 text-teal-300">
             <BookOpen className="w-4 h-4 text-teal-400" />
@@ -141,7 +141,7 @@ export const LearnView: React.FC<LearnViewProps> = ({ tracks, onSwitchToExploreM
     ? { label: 'Continue', run: () => navigate({ view: 'learn', course: activeTrack.id, lesson: nextLesson.id, step: Math.min((getLessonProgress(nextLesson.id).currentStep ?? 0) + 1, nextLesson.stepCount) }) }
     : { label: nextLesson ? 'Start course' : 'Review course', run: () => activeTrack.lessons[0] && openLesson(activeTrack.lessons[0]) };
   return (
-    <div className="relative w-full h-full flex flex-col bg-[#061014] text-slate-100 overflow-y-auto select-none pb-24">
+    <div className="relative w-full h-full flex flex-col bg-canvas text-slate-100 overflow-y-auto select-none pb-24">
       <div className="px-4 pt-3 pb-2 flex flex-col gap-4 max-w-xl mx-auto w-full">
         <div>
           <BackLink label="All Courses" ariaLabel="Back to courses" onClick={backToCourses} />

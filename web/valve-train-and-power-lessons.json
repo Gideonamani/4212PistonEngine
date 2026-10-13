@@ -4,15 +4,15 @@
   "id": "valve-train-and-power",
   "thumbnail": "./thumbnails/course-valve-train-and-power.webp",
   "banner": "./banners/valve-train-and-power.webp",
-  "title": "Valve Train & Power Generation",
-  "description": "How the valves are opened and closed, from the camshaft to the valve spring, and how the power section turns burning gas into shaft power and is taken apart and put back together.",
+  "title": "Valve Train, Accessories & Power Generation",
+  "description": "How the valves are opened and closed, from the camshaft to the valve spring; how the crankshaft drives the accessories and the propeller; and how the power section turns burning gas into shaft power and is taken apart and put back together.",
   "sources": [
     {
       "id": "faa-powerplant-2023",
       "tier": 1,
       "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
       "path": "Notes/amt_powerplant_handbook 2023.pdf",
-      "applicability": "Primary source for valve construction, the valve-operating mechanism, hydraulic tappets, valve clearance and valve inspection. PDF page locators are used in step notes."
+      "applicability": "Primary source for valve construction, the valve-operating mechanism, hydraulic tappets, valve clearance and valve inspection. PDF page locators are used in step notes. Used in lesson 10 for: the basic major components (PDF p. 26); the output of an aircraft powerplant, thrust (PDF p. 23); cylinder numbering and firing order (PDF pp. 36 to 37); the four events and the force on the piston (PDF pp. 46 to 48); work, horsepower, piston displacement and compression ratio (PDF pp. 49 to 51); indicated, brake and friction horsepower, torque and thrust horsepower (PDF pp. 51 to 54); and the heat of combustion and where it goes (PDF p. 55)."
     },
     {
       "id": "easa-module16",
@@ -26,7 +26,7 @@
       "tier": 3,
       "title": "Continental GTSIO-520 Series Overhaul Manual X30045A",
       "path": "Notes/gtsio520_series.pdf",
-      "applicability": "Configuration-specific source for the course reference engine: its valve mechanism, camshaft, hydraulic tappets, inspection, overhaul replacement list and spring test data. The Chapter B table of limits is dated March 1981 and covers the series; Chapter C-3 (the -H) lists no different valve spring. Always use the current data for the engine in front of you."
+      "applicability": "Configuration-specific source for the course reference engine: its valve mechanism, camshaft, hydraulic tappets, inspection, overhaul replacement list and spring test data. The Chapter B table of limits is dated March 1981 and covers the series; Chapter C-3 (the -H) lists no different valve spring. Always use the current data for the engine in front of you. Used in lesson 9 for: the gear train from the crankshaft gear to the accessories, the starter drive and the oil system (PDF pp. 17 to 18), and the -H specifications, 0.667:1 propeller drive ratio and 13-quart oil sump (PDF p. 152)."
     },
     {
       "id": "course-deck-2026-05",
@@ -34,15 +34,54 @@
       "title": "Aircraft Piston Engine Slides - 21 May 2026 (instructor course deck)",
       "path": "Notes/Aircraft Piston Engine Slides - 21May2026.pptx",
       "applicability": "Instructor-authored course slides. Used only where the handbook, EASA text and manuals are silent. Carries no independent evidence; claims here need the instructor's confirmation."
+    },
+    {
+      "id": "gtsio-reviewed",
+      "tier": 3,
+      "title": "Continental GTSIO-520 reviewed overhaul manual, H difference data",
+      "path": "C:/Users/user/KeonGeraldo/CodeProjects/DigiMan/work/deliverables/gtsio520/GTSIO520_full_reviewed.pdf",
+      "applicability": "H section C-3-1 (PDF 151) applies basic procedures except stated differences; H fuel/induction fully replaced by C-3. Historical manual, not current service authority."
+    },
+    {
+      "id": "faa-powerplant",
+      "tier": 1,
+      "title": "FAA-H-8083-32B (2023), Powerplant",
+      "path": "../Notes/amt_powerplant_handbook 2023.pdf",
+      "applicability": "General teaching principles; no configuration dimensions or H-specific values."
+    },
+    {
+      "id": "easa-module16-core",
+      "tier": 2,
+      "title": "EASA Module 16, Piston Engines - core text (course copy)",
+      "path": "Notes/Piston Engines EASA Module 16 All CORE Text.pdf",
+      "applicability": "Secondary source for the module-level structure and terminology. PDF p. 12 gives the firing orders of Lycoming (1-4-5-2-3-6) and Continental (normally 1-6-3-2-5-4) six-cylinder opposed engines and says the manufacturers number their cylinders differently: Lycoming has No. 1 on the right side closest to the propeller, Continental at the right rear."
     }
   ],
   "lessons": [
     {
       "id": "valve-operating",
       "thumbnail": "./thumbnails/lesson-valve-operating.webp",
-      "sequenceNumber": 9,
+      "sequenceNumber": 8,
       "title": "Valve Operating",
       "objective": "Follow the motion from the camshaft to the valve: name the parts of the valve train, explain how the cam lobe sets valve lift and duration and why the camshaft turns at half crankshaft speed, describe how a hydraulic tappet keeps zero clearance, and recognise what to inspect on valves, springs, the camshaft and tappets.",
+      "purpose": "Explain how crankshaft rotation is mechanically coordinated with the opening and closing of the engine valves.",
+      "outcomes": [
+        "Explain the purpose of the intake and exhaust valves.",
+        "Explain engine valve action.",
+        "Identify the principal components of the valve-operating mechanism.",
+        "Trace mechanical motion from the crankshaft through the valve train to the valve.",
+        "Explain the relationship between crankshaft and camshaft speed in a four-stroke engine.",
+        "Explain why the camshaft rotates once for every two crankshaft revolutions.",
+        "Explain how gears maintain correct crankshaft-to-camshaft timing.",
+        "Describe the functions of cam lobes, tappets/lifters, pushrods, rocker arms and valve springs.",
+        "Explain valve lead, valve lag and valve overlap.",
+        "Explain why valve lead, lag and overlap can improve engine breathing rather than harm engine performance.",
+        "Interpret a basic valve-timing diagram.",
+        "Describe the operating principle of a hydraulic tappet.",
+        "Compare conventional camshaft arrangements with the cam-ring arrangement used in radial engines.",
+        "Explain why radial-engine geometry requires a different valve-driving arrangement."
+      ],
+      "syllabusNote": "Valve action, mechanism arrangement, lead, lag, overlap, valve timing and hydraulic-tappet operation are specifically required.",
       "reviewStatus": "unreviewed",
       "models": [
         "cylinder",
@@ -51,13 +90,13 @@
       ],
       "listed": true,
       "scheduledDay": 4,
-      "completionCriteria": "Name the parts that carry motion from the camshaft to the valve in order, say why the camshaft turns at half the crankshaft speed, explain how a hydraulic tappet keeps the valve clearance at zero, and name three things to inspect on a valve and its spring.",
+      "completionCriteria": "Name the parts that carry motion from the camshaft to the valve in order, say why the camshaft turns at half the crankshaft speed, and explain why a radial engine uses a cam ring; define valve lead, lag and overlap, say why they help the engine breathe, and read them from a valve timing chart; explain how a hydraulic tappet keeps the valve clearance at zero; and name three things to inspect on a valve and its spring.",
       "steps": [
         {
           "type": "text",
           "title": "Valves open and close the cylinder",
-          "prompt": "Every cylinder breathes through two valves. The intake valve lets the fuel-air mixture in and the exhaust valve lets the burned gas out. Each valve has three jobs: open at the right moment, stay open for the right length of time, and close at the right moment. Before you open the model, predict what pushes a valve open and what shuts it again.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 37 and 39: conventional poppet valves in the cylinder head, and the three requirements of the valve-operating mechanism (open at the proper time, stay open for the required length of time, close at the proper time). The prediction is answered in the steps that follow.",
+          "prompt": "Every cylinder breathes through two valves. The intake valve lets the fuel-air mixture in and the exhaust valve lets the burned gas out.\n\nOver the four strokes each valve opens once. During compression and during the power stroke both valves stay shut, so the cylinder is sealed while the charge is squeezed and burned.\n\nEach valve has three jobs: open at the right moment, stay open for the right length of time, and close at the right moment. Before you open the model, predict what pushes a valve open and what shuts it again.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 37 and 39: conventional poppet valves in the cylinder head, and the three requirements of the valve-operating mechanism (open at the proper time, stay open for the required length of time, close at the proper time). Both valves closed during the compression and power strokes: Figure 1-36, PDF p. 47. The prediction is answered in the steps that follow.",
           "sourceRefs": [
             "faa-powerplant-2023"
           ],
@@ -86,7 +125,11 @@
           ],
           "sectionPlane": {
             "label": "Valve axis",
-            "normal": [0, 1, 0],
+            "normal": [
+              0,
+              1,
+              0
+            ],
             "offset": 0.5
           },
           "note": "Documented from FAA-H-8083-32B (2023), PDF p. 38 (the ground valve face seals on the valve seat; the stem acts as a pilot in the valve guide) and the Continental GTSIO-520 overhaul manual, PDF p. 16 (seats and guides are installed in the heated head before it is screwed and shrunk onto the barrel; the exhaust valves are faced with a heat- and corrosion-resistant material and the solid stem tips are hardened). The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
@@ -292,6 +335,25 @@
         },
         {
           "type": "image",
+          "title": "Why a ring, and why it turns slowly",
+          "prompt": "A radial engine's cylinders spread like spokes around the crankshaft, in one plane. A straight camshaft would run alongside only some of them. A cam ring turns around the crankshaft itself, so it passes the same distance from every cylinder, and each cylinder's tappet can ride on it.\n\nThe ring turns slowly. A valve must open once in every two crankshaft turns, and a ring with L lobes on a track lifts each valve L times per turn. So the ring turns at 1 / (2 × L) of crankshaft speed: with four lobes, one eighth.\n\nThe handbook table agrees in all six entries. A nine-cylinder engine with a four-lobe ring runs it at 1/8 speed, against the crankshaft; with five lobes, at 1/10, with the crankshaft.\n\nOne lobe serves several cylinders in turn, so the ring needs fewer lobes than there are cylinders.",
+          "url": "./lesson-media/faa-cam-ring-table.webp",
+          "alt": "Table of radial-engine cam rings for 5, 7 and 9 cylinders, giving the number of lobes and the ring speed as a fraction of crankshaft speed. Turning with the crankshaft: 3 lobes at 1/6, 4 lobes at 1/8 and 5 lobes at 1/10. Turning opposite the crankshaft: 2 lobes at 1/4, 3 lobes at 1/6 and 4 lobes at 1/8.",
+          "credit": "FAA-H-8083-32B, Figure 1-27",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 39 to 41: the ring is mounted concentrically with the crankshaft and driven by it at a reduced speed; one ring with a double track in a single-row radial; a four-lobe ring on a nine-cylinder engine turns opposite to the crankshaft; Figure 1-27, the cam ring table (PDF p. 41). The rule speed = 1 / (2 × lobes) is the lesson's explanation, from the four-stroke cycle (one valve opening per two crankshaft turns); it fits every entry of Figure 1-27. The reason a straight camshaft will not do is also the lesson's reasoning from the arrangement; the handbook describes the ring and does not argue the point. Twin-row radials use a second ring.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The handbook table makes the lobes-to-speed relationship visible, and the reader can test the rule against every entry."
+          }
+        },
+        {
+          "type": "image",
           "title": "The zero-lash tappet",
           "prompt": "A solid tappet leaves a small gap in the valve train, the valve clearance, which must be adjusted by hand. A hydraulic tappet takes up the gap by itself. Engine oil from the lubrication system fills a chamber under the plunger. When the cam pushes the tappet body, a check valve closes and traps the oil, and the trapped oil carries the load to the pushrod almost like a solid link. Find the plunger, the plunger spring, the check valve and the two oil chambers. The figure shows a ball check valve; the GTSIO-520 tappet uses a spring-loaded check-valve plate instead.",
           "url": "./lesson-media/faa-hydraulic-tappet.webp",
@@ -353,8 +415,8 @@
         {
           "type": "text",
           "title": "Timing the cam to the crank",
-          "prompt": "Valve timing is the relationship between the camshaft and the crankshaft: at which crank angles each lobe lifts its valve. It is set when the engine is built, by meshing the camshaft gear with the crankshaft gear so that their timing marks line up. Lead, lag and overlap, which you met in Thermodynamic Cycles, come from where the lobes sit on the cam and where the cam gear sits on the camshaft. Real timing values come from the engine manufacturer. The FAA chart you used earlier is an example, not GTSIO-520-H timing.",
-          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 77 (section 12-4: mesh the camshaft spur gear with the crankshaft gear so that the timing marks align, Figure A4-35) and PDF p. 17 (the camshaft gear is bolted on to locate its timing mark relative to the lobes). The manual searched here gives no valve timing figures; the FAA example chart is in Thermodynamic Cycles (FAA-H-8083-32B, PDF p. 47, Figure 1-37).",
+          "prompt": "Valve timing is the relationship between the camshaft and the crankshaft: at which crank angles each lobe lifts its valve.\n\nIt is set when the engine is built, by meshing the camshaft gear with the crankshaft gear so that their timing marks line up. The timing itself, the lead, lag and overlap you will meet next, comes from where the lobes sit on the cam and where the cam gear sits on the camshaft.\n\nReal timing values come from the engine manufacturer. The FAA chart in the next steps is an example, not GTSIO-520-H timing.",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 77 (section 12-4: mesh the camshaft spur gear with the crankshaft gear so that the timing marks align, Figure A4-35) and PDF p. 17 (the camshaft gear is bolted on to locate its timing mark relative to the lobes). The manual searched here gives no valve timing figures; the FAA example chart is in FAA-H-8083-32B (2023), PDF p. 47, Figure 1-37.",
           "sourceRefs": [
             "gtsio520-overhaul",
             "faa-powerplant-2023"
@@ -363,6 +425,71 @@
             "mode": "none",
             "status": "not-needed",
             "rationale": "A short linking step: valve timing is a gear-timing relationship, shown earlier by the timing chart."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Valve lead, lag and overlap",
+          "prompt": "Valve timing is given in degrees of crankshaft travel. It marks when a valve starts to open or finishes closing, not when it is fully open.\n\nValve lead: a valve opens before the piston reaches the end of its stroke. The intake valve opens before TDC, near the end of the exhaust stroke. The exhaust valve opens before BDC, near the end of the power stroke.\n\nValve lag: a valve closes after the piston has passed the end of its stroke. The exhaust valve closes after TDC. The intake valve closes after BDC, on the compression stroke.\n\nValve overlap: around TDC, at the start of the intake stroke, the intake valve has opened and the exhaust valve has not yet closed, so both are off their seats at once.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 46 to 48: timing is specified in degrees of crankshaft travel and gives the start of opening, not the full-open position (p. 47); the intake valve opens before TDC on the exhaust stroke (valve lead); the exhaust valve closes after TDC (valve lag); both valves are off their seats at TDC at the start of the intake stroke (valve overlap); the intake valve closes after BDC on the compression stroke; the exhaust valve opens before BDC on the power stroke (p. 48). The terms lead and lag for the exhaust opening and the intake closing follow the same sense (early and late) and are the lesson's wording.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Why open early and close late",
+          "prompt": "Opening early and closing late looks wasteful. It pays because moving gas has momentum and a cylinder has very little time.\n\nIntake lead: the exhaust gas leaving the cylinder leaves a low pressure behind, which speeds the fresh charge in as the valve starts to open. It opens 8° to 55° before TDC on various engines.\n\nIntake lag: near BDC the piston hardly moves, so the charge keeps flowing in after BDC. The valve closes about 50° to 75° after BDC.\n\nExhaust lead: opening well before BDC lets the pressure left in the cylinder push the gas out and carry waste heat away.\n\nOverlap cools the cylinder with cool incoming charge, draws in more mixture and clears the burned gas.\n\nToo much lead lets hot gas flash back; too much lag forces gas back out.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 47 (the intake valve is opened before TDC to induce more charge; the limit is hot gas flashing back; overlap aids internal cooling, charge and scavenging; the intake valve closes about 50 to 75 degrees past BDC so that the momentum of the incoming gas charges the cylinder, and too late forces gas back through the valve) and PDF p. 48 (the speed of the leaving exhaust gas creates a low pressure that speeds the fresh charge in; intake opening at 8 to 55 degrees before TDC on various engines; the exhaust valve opens considerably before BDC, on some engines at 50 or 75 degrees, so that pressure forces the gases out and frees the cylinder of waste heat). Why the piston barely moves near BDC: the lesson's wording of the handbook's remark that the slight upward travel near BDC has little effect on the incoming flow.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Reading the timing chart",
+          "prompt": "The FAA chart draws one whole cycle, two turns of the crankshaft, as a spiral. Start at the inner dot just before the top of the circle, which is TDC, and go clockwise. Each half turn is one stroke: intake (orange), compression (green), power (red), exhaust (blue).\n\nRead four events, each in degrees from TDC or BDC:\nintake opens 50° before TDC;\nintake closes 30° after BDC;\nexhaust opens 30° before BDC;\nexhaust closes 25° after TDC.\n\nDuration is the angles added. The intake valve is open for 50 + 180 + 30 = 260°. The exhaust valve is open for 30 + 180 + 25 = 235°.\n\nOverlap is the blue arc at the top: 50 + 25 = 75°, with both valves open.\n\nThis is an example. Real values vary from engine to engine.",
+          "url": "./lesson-media/faa-valve-timing-chart.webp",
+          "alt": "Valve timing chart drawn as a spiral of coloured dots for one complete four-stroke cycle: intake in orange starting 50 degrees before top centre where the intake valve opens, compression in green with ignition just before top centre, power in red with the exhaust valve opening 30 degrees before bottom centre, and exhaust in blue ending 25 degrees after top centre where the exhaust valve closes; a blue arc across the top marks the 75 degree valve overlap with both valves open.",
+          "credit": "FAA-H-8083-32B, Figure 1-37",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 47, Figure 1-37 (valve timing chart: start of the cycle 50 degrees BTC with the intake valve opening; intake valve closes 30 degrees ABC; exhaust valve opens 30 degrees BBC; finish of the cycle 25 degrees ATC with the exhaust valve closed; valve overlap 75 degrees, both valves open) and its text: the valve events vary considerably in different engines and the manufacturer's recommendations must be followed. The chart values are an FAA example, not GTSIO-520-H timing; the GTSIO-520 manual searched here gives no valve timing figures. The sums are the lesson's reading of the chart: 180 degrees is one stroke.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The handbook chart is a real timing diagram; reading its four events and adding the angles is the skill this lesson asks for."
+          }
+        },
+        {
+          "type": "web-embed",
+          "title": "Try the chart yourself",
+          "url": "artifact:valve-timing-diagram",
+          "prompt": "Now check the reading on the moving chart. Drag the crank angle through the whole 720°.\n\nFind the four events A to D. At what angle does the overlap begin, and at what angle does it end? During which two strokes does the chart show both valves shut for the whole stroke?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 47, Figure 1-37 (example valve timing chart) and its text: valve events vary considerably in different engines, and the manufacturer's recommendations must be followed. The chart values are an FAA example, not GTSIO-520-H timing; the GTSIO-520 manual searched here gives no valve timing figures. The same interactive appears in Thermodynamic Cycles; here it checks the reading made in the previous step.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "A crank-angle marker over a two-revolution timeline shows valve state and overlap at any angle, so the sums from the chart can be checked."
           }
         },
         {
@@ -415,8 +542,8 @@
         {
           "type": "text",
           "title": "Trace the whole path",
-          "prompt": "Explain the whole path in your own words, starting at the crankshaft gear and ending with the valve closing again. Which parts move, and how fast does the camshaft turn? What does the tappet do about clearance? Which parts would you inspect, and what would you look for? Then take the lesson's quiz.",
-          "note": "Completion step: the learner pulls the lesson together (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 37-42 and 379-384, and the GTSIO-520 overhaul manual, PDF pp. 16-17 and 66-67.",
+          "prompt": "Explain the whole path in your own words, starting at the crankshaft gear and ending with the valve closing again. Which parts move, and how fast does the camshaft turn? Why does a radial use a ring?\n\nThen explain the timing. What do valve lead, lag and overlap mean, and why do they help the engine breathe? What does a hydraulic tappet do about clearance? Which parts would you inspect, and what would you look for?\n\nThen take the lesson's quiz.",
+          "note": "Completion step: the learner pulls the lesson together (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 37 to 42, 47 to 48 and 379 to 384, and the GTSIO-520 overhaul manual, PDF pp. 16 to 17 and 66 to 67.",
           "sourceRefs": [
             "faa-powerplant-2023",
             "gtsio520-overhaul"
@@ -430,31 +557,561 @@
       ]
     },
     {
+      "id": "accessories-and-drives",
+      "thumbnail": "./thumbnails/lesson-accessories-and-drives.webp",
+      "sequenceNumber": 9,
+      "title": "Accessories & Drives",
+      "objective": "Identify accessories and interfaces, trace power paths, predict rotation, operate saved motions and explain useful functions and illustrative faults.",
+      "purpose": "Show that the crankshaft does much more than simply turn the propeller.",
+      "outcomes": [
+        "Explain why an operating aircraft engine requires a range of mechanically driven accessories.",
+        "Trace mechanical power from the crankshaft to the accessory section.",
+        "Identify common engine-driven accessories.",
+        "State the functions of common accessories including magnetos, oil pumps, fuel pumps, tachometer drives and propeller-governor drives.",
+        "Recognise alternators/generators, vacuum pumps and other possible accessory loads.",
+        "Identify components commonly mounted on the accessory housing.",
+        "Explain how an accessory gearbox distributes mechanical power.",
+        "Describe the operation and application of spur gears.",
+        "Describe the operation and application of bevel gears.",
+        "Explain the purpose of a propeller reduction gear and shaft.",
+        "Explain why some engines use reduction gearing while others drive the propeller directly.",
+        "Distinguish wet-sump and dry-sump arrangements.",
+        "Recognise how accessory-drive failure could affect continued engine operation."
+      ],
+      "syllabusNote": "The formal module explicitly requires propeller reduction gearing, bevel gears, spur gears, wet/dry sump arrangements and accessory-housing components.",
+      "reviewStatus": "unreviewed",
+      "models": [
+        "accessory-drives"
+      ],
+      "listed": true,
+      "completionCriteria": "Explain why an engine needs mechanically driven accessories, name the common ones and say what each does, and trace one full drive path from the crankshaft gear to the accessory; use the tooth counts of a spur gear pair to find a speed and a direction, and say what bevel gears and an idler are for; explain why some engines use reduction gearing and others drive the propeller directly; tell a wet-sump system from a dry-sump system; say what follows when an accessory drive fails; and calculate a verified ratio with the correct viewpoint, inspect a section and tell evidence from illustration on the model.",
+      "steps": [
+        {
+          "type": "text",
+          "title": "Where power goes",
+          "prompt": "A turning crankshaft does more than turn the propeller. Some of its power keeps the engine itself alive: the magnetos that make the spark, and the pumps that move oil and fuel. Some of it serves the aircraft: electricity, suction for instruments and propeller control.\n\nThese engine-driven devices are the accessories, and almost all of them take their power mechanically, through gears.\n\nBefore you read on, predict: which devices need shaft power? And one device must put power into the engine before it can run. Which one?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 28 (the accessory section carries mounting pads for magnetos, fuel, oil and vacuum pumps, starter, generator and tachometer drive; gear trains drive the engine's accessories at the proper speeds) and the Continental GTSIO-520 overhaul manual, PDF pp. 17 to 18 (the gear train from the crankshaft gear to the accessories, and the starter drive). The prediction is answered in the steps that follow.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A prediction prompt frames the lesson; the model steps that follow answer it."
+          }
+        },
+        {
+          "type": "text",
+          "title": "The accessories and what they do",
+          "prompt": "Magnetos make the spark, one for each of the two ignition systems.\n\nThe oil pump pushes oil to the bearings under pressure. The fuel pump delivers fuel under pressure to the fuel system.\n\nThe tachometer drive turns the tachometer, which shows crankshaft rpm.\n\nThe propeller governor drive spins the governor, which uses engine oil to change the blade angle and hold the propeller speed.\n\nThe alternator or generator makes electricity for the aircraft. A vacuum pump makes suction for instruments, on aircraft that have one.\n\nThe starter works the other way: it puts torque into the crankshaft until the engine runs.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 28 (accessories mounted on the accessory section: magnetos, fuel, oil and vacuum pumps, starter, generator and tachometer drive), PDF p. 84 (the engine fuel system includes the engine-driven pumps), PDF p. 391 (the tachometer for reciprocating engines shows crankshaft rpm), PDF pp. 27 and 294 (the propeller governor controls speed and blade angle with oil) and PDF p. 468 (dual ignition: two spark plugs in each cylinder, with two of every critical unit). The vacuum pump's use for gyro instruments, on older systems, is from the course deck (slide 'Various Aircraft Engine Accessories'); the GTSIO-520-H lists vacuum, de-icing and autopilot drives as options (reviewed manual, H section C-3-3).",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio-reviewed",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "image",
+          "title": "The accessory section",
+          "prompt": "Everything above bolts onto the accessory section, the rear part of the crankcase assembly. It is usually an aluminium alloy casting, sometimes magnesium, and it carries the mounting pads where the accessories fit. Find the magneto, generator, starter, oil pump and tachometer generator in the figure.\n\nDrive shafts carry power out to the pads. A gear train inside the accessory case takes the power from the crankshaft and hands it to each shaft at its own speed: one source, many outputs. The gear ratios are chosen to give each accessory the right speed, for example the speed at which the magnetos give correct spark timing.\n\nThe accessory section is a small gearbox.",
+          "url": "./lesson-media/faa-opposed-engine-exploded.webp",
+          "alt": "FAA exploded view of a typical opposed engine broken into its component assemblies: the two crankcase halves, crankshaft, camshaft, connecting rod and cylinder, with the accessory case assembly at the rear carrying the generator, magneto, tachometer generator, starter and oil pump, and the oil sump below.",
+          "credit": "FAA-H-8083-32B, Figure 1-6",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 28 and Figure 1-6: the accessory (rear) section, usually cast aluminium alloy or sometimes magnesium, provided with means for mounting the accessories; accessory drive shafts carried out to the mounting pads; various gear ratios arranged to give the proper drive speed to magnetos, pumps and other accessories to obtain correct timing or functioning. The same figure is used in Parts and Construction.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The exploded figure names the accessories and shows the accessory case at the rear of the engine."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Identify the section",
+          "prompt": "Rotate the assembled study. Select the housing, crank gear, cam gear and idler. Open Inside and move a section plane through the chamber; distinguish solid wall from empty cavity.",
+          "note": "FAA 1-7; GTSIO A-3-2 and A-4-8 (PDF 17,25). A-4-18 (PDF 35-36) identifies the split crankcase. Compare its rear region with the cropped case halves here. Adapter, starter and pump forms follow the parts drawings, while rear contour, proportions and pad positions remain inferred. Ring markers are not accessory bodies.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Operating mechanism",
+          "motionProgress": 0,
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The assembled study lets the learner find the housing, crank gear, cam gear and idler, and see inside the case with the section plane."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Spur gears",
+          "prompt": "A spur gear has straight teeth cut parallel to its shaft. Two spur gears mesh on parallel shafts, and their teeth roll against each other like two wheels that cannot slip. So the rims move at the same speed, and the gear with fewer teeth turns faster.\n\nSpeed of the driven gear = speed of the driver × driver teeth ÷ driven teeth.\n\nThe 14-tooth gear in the picture must turn twice to turn the 28-tooth gear once: the speed ratio is 1 : 2, and the big gear runs at half speed. The two gears turn in opposite directions.\n\nThe handbook says spur gears generally drive the heavier loaded accessories, and those that need the least play, called backlash, in the gear train.",
+          "url": "./lesson-media/spur-gears-1-to-2.webp",
+          "alt": "Two meshing spur gears: a smaller red gear with 14 teeth on the left drives a larger green gear with 28 teeth on the right, each with a round hub.",
+          "credit": "Jahobr, Two spur gears 1 2.svg, Wikimedia Commons",
+          "license": "CC0",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 28: gear trains containing both spur and bevel gears drive the engine's accessories; spur-type gears are generally used to drive the heavier loaded accessories or those requiring the least play or backlash in the gear train. The speed rule (rim speeds equal, so speed is inversely proportional to teeth) is standard gear kinematics and is the lesson's explanation. Picture: 'Two spur gears 1:2' by Jahobr, released under CC0 (Wikimedia Commons, File:Two spur gears 1 2.svg; checked 13 October 2026): 14 teeth and 28 teeth.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "web-media",
+            "status": "available",
+            "rationale": "A labelled pair of meshing gears makes the tooth-ratio rule visible before the learner tries it."
+          }
+        },
+        {
+          "type": "web-embed",
+          "title": "Try the gear explorer",
+          "url": "artifact:gear-pair-explorer",
+          "prompt": "Choose a driver and a driven gear, then turn the driver. Which gear turns faster, and by how much?\n\nTry a 12-tooth driver and a 36-tooth driven gear: how many turns of the driver make one turn of the driven gear?\n\nNow add the idler. Which way does the driven gear turn, and does its speed change?",
+          "note": "Schematic interactive made for this lesson. The speed rule (driven speed = driver speed × driver teeth ÷ driven teeth) is standard gear kinematics; each external mesh reverses the direction of rotation, so one idler restores the driver's direction without changing the ratio. The gear sizes and tooth shapes are drawn to show the rule, not taken from any engine's gear train. The idler is the idea behind the GTSIO-520 gear train, in which the crankshaft gear drives an idler gear that drives the magneto drive gears (overhaul manual, PDF p. 17).",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "Choosing tooth counts and turning the driver shows the ratio, the speeds and the direction change at once, and the idler toggle shows why an idler does not change the ratio."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Bevel gears",
+          "prompt": "A bevel gear has its teeth cut on a cone instead of a cylinder. Two bevel gears can drive each other with their shafts meeting at an angle, usually 90°. The picture shows a pair with curved teeth, called spiral bevel gears.\n\nOn an engine this lets a drive turn a corner. The handbook says bevel gears permit angular location of short stub shafts leading to the accessory mounting pads.\n\nIn the GTSIO-520 the propeller governor is driven this way: a bevel gear on the front of the camshaft turns a driven bevel gear that drives the governor. The course slides add the mechanical tachometer drive, which also turns through 90°.\n\nSpur gears keep a drive on parallel shafts. Bevel gears turn it.",
+          "url": "./lesson-media/bevel-gear-pair.webp",
+          "alt": "A pair of spiral bevel gears: a small conical pinion on a splined shaft meshes at a right angle with a large ring gear, both with curved teeth.",
+          "credit": "Myriam Thyes, Gear-kegelzahnrad.svg, Wikimedia Commons",
+          "license": "Public domain",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 28: bevel gears permit angular location of short stub shafts leading to the various accessory mounting pads. The governor drive bevel gear on the front of the camshaft driving the governor driven bevel gear: Continental GTSIO-520 overhaul manual, PDF p. 17 (section A-3-2 a). Bevel gears for the propeller governor and mechanical tachometer drives, through 90 degrees: course deck, slide 'Accessory Gear Trains' (tier 4, not found in the manual pages read here). Picture: 'Bevel gear (toothed wheels)' by Myriam Thyes, in the public domain (Wikimedia Commons, File:Gear-kegelzahnrad.svg; checked 13 October 2026); the pair shown has spiral teeth.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "web-media",
+            "status": "available",
+            "rationale": "A picture of a bevel pair shows the cone-shaped teeth and the right-angle meeting of the shafts."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Expose interfaces",
+          "prompt": "Scrub from assembled to exploded. Pause at any stage, rotate and select a seal, splined shaft, bored adapter and coupling. Compare the adapter with A-4-11 and starter with A-4-15; identify one visible feature and one reconstructed surface. Explain which part carries torque and which contains oil or locates the accessory.",
+          "note": "GTSIO A-4-11 (PDF 28), A-4-15 (32), A-4-16 (33). Separation order and distances teach relationships; they are not maintenance instructions.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Exploded overview",
+          "motionProgress": 100,
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The exploded stages let the learner see which part carries torque and which seals or locates the accessory."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Trace magneto power",
+          "prompt": "Choose Magnetos under Trace power path, then isolate the complete path. Follow crank → idler → both drive gears → splined shafts → magnetos. Predict the idler direction before playing.",
+          "note": "A-3-2; A-4-8; H C-3-2 (PDF 152): both magneto drives 1.5:1, CW facing engine drive pad. The mesh tooth counts are illustrative; the 1.5 output ratio is verified.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Focus: magnetos",
+          "motionProgress": 25,
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The magneto power path is isolated on the model so the learner can follow crank gear, idler, drive gears and splined shafts."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Mechanical to ignition",
+          "prompt": "Follow each magneto to the upper and lower spark plugs. Explain how shaft rotation becomes timed spark energy.\n\nWhy two magnetos and two plugs per cylinder? Dual ignition has two of every critical unit. It gives safety if one system fails, and, more important, lighting the charge in two places burns it more efficiently.",
+          "url": "./lesson-media/gtsio-dual-ignition.webp",
+          "alt": "Manufacturer GTSIO-520 dual ignition wiring figure",
+          "credit": "Continental GTSIO-520 Figure A4-43; existing course extract",
+          "license": "Course reference extract",
+          "note": "FAA PDF 160-162 (4-1 to 4-3): magnet, primary and secondary circuits. H C-3-2 lists two magnetos and twelve plugs. This is two magnetos, not a single dual-magneto housing. Dual ignition: two of every critical unit, including two spark plugs in each cylinder; safety if one system fails and, more important, more efficient combustion from igniting the charge at two locations: FAA-H-8083-32B (2023), glossary, PDF p. 468.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The GTSIO-520 ignition wiring diagram shows the two magnetos and the upper and lower spark plugs."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Timing and viewpoint",
+          "prompt": "The H table gives 20° BTC for both magnetos. A drive speed ratio alone does not set ignition timing. Explain why a drive described as clockwise will appear counterclockwise when you view it from the opposite end.",
+          "note": "H C-3-2 to C-3-3 (PDF 152-153). Accessory CW/CCW is facing the engine drive pad. Propeller CW is looking forward, with 0.667:1 propeller/crank ratio; do not use propeller RPM as crank RPM. No timing adjustment procedure is prescribed.",
+          "sourceRefs": [
+            "gtsio-reviewed"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A written reasoning prompt about timing data and viewpoint."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Fuel delivery",
+          "prompt": "Select the Fuel path. Find the cluster gear, pump drive gear and detachable coupling. Scrub the focused motion. Explain how loss of torque at the coupling could interrupt engine-driven fuel delivery.",
+          "note": "A-3-2; H C-3-6 (PDF 156): later pump replacement needs a changed drive gear and coupling; older installation differs. Fuel-drive ratio and rotation are unverified here; tooth sizes and motion are illustrative. Fuel pump internals are omitted. FAA PDF 84 (2-2) explains reciprocating fuel delivery.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Focus: fuel",
+          "motionProgress": 50,
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The fuel path is isolated on the model so the cluster gear, pump drive gear and coupling can be found."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Oil and speed indication",
+          "prompt": "Trace the Oil and tachometer path. Section the pump housing and find the empty gear pockets. Follow the male spline into the cam-gear socket, then trace the pump driver and the 90-degree bevel pair to the lateral tach output.",
+          "note": "A-3-2; A-4-16 items 24/45/47; H C-3-2: tach output 0.5:1 CW facing its pad. The bevels are smooth pitch-form studies; teeth and spatial layout remain illustrative. The housing is placed left of the cam axis to clear the separate fuel bay. Figure A-4-8 items 10/11 are scavenge gears, not interchangeable tach labels. The IO-520 permold pump is a separate comparison study.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Focus: oil-tach",
+          "motionProgress": 50,
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The oil and tachometer path, with the sectioned pump housing and the bevel pair, is shown on the model."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Electrical supply",
+          "prompt": "Select Alternator and explain the conversion from shaft power to aircraft electrical supply. Compare the marked remote endpoint with the documented shaft train.",
+          "note": "H C-3-3: 3:1 CW. A-4-13 supports the nested driven-gear cup, bushing, clutch sleeve and keyed hub represented here. Item 5 is the mounting gasket; the four-lug flange belongs to body item 4. The H photograph A-4-4 places the alternator toward the front; this module is relocated onto a grey teaching stand. These supports are not engine hardware. Rotor/stator and detailed clutch spring are omitted. The basic narrative mentions a generator pulley; its transfer geometry is not used as an H alternator claim. Dashed path is conceptual; transfer geometry remains unresolved.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Focus: alternator",
+          "motionProgress": 50,
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The alternator is selected on the model to follow the shaft train from the crankshaft."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Optional aircraft loads",
+          "prompt": "Select the Vacuum path. Read the speed and viewpoint. Explain why a listed drive pad does not prove that a particular aircraft has the pump or that vacuum powers every aircraft instrument.",
+          "note": "A-3-2 describes optional upper-rear accessories through magneto gear splines. H C-3-3 lists vacuum, deice and autopilot drives at 1.14:1 CCW. Useful pneumatic function and equipment are installation dependent; exact adapter transfer geometry and accessory internals are omitted.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Focus: vacuum",
+          "motionProgress": 50,
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The vacuum path is selected on the model to read its speed and viewpoint."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Governor remote drive",
+          "prompt": "Select Governor. Trace crank → camshaft → front bevel drive → governor. Explain how mechanical speed sensing and oil control can change propeller blade angle.",
+          "note": "A-3-2 documents the front camshaft bevel pair. H C-3-3: 0.809:1 CW. Governor is a front remote output, relocated into this study; bevel shapes omitted. FAA PDF 27 and 294 explain blade-angle/speed and oil-control functions.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Focus: governor",
+          "motionProgress": 50,
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The governor path is traced through the camshaft and the front bevel drive on the model."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Why the propeller is geared down",
+          "prompt": "Engines make more power by turning faster, but a propeller cannot follow. When the blade tips approach the speed of sound the propeller's efficiency falls rapidly.\n\nReduction gearing lets the engine run at a higher rpm and develop more power while the propeller turns slower, so its efficiency does not fall.\n\nThe GTSIO-520-H is geared. Its propeller drive ratio is 0.667:1, so the propeller turns at two-thirds of crankshaft speed. Its rating of 375 horsepower at 2,275 propeller rpm means the crankshaft runs at about 3,400 rpm (2,275 ÷ 0.667).\n\nThe gears carry the full engine torque, so they are machined from steel forgings.\n\nEngines of low power turn the propeller directly: the propeller shaft is part of the crankshaft.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 44 (reduction gearing limits the propeller rotation speed; whenever the blade tips approach the speed of sound the propeller efficiency decreases rapidly; the engine runs at a higher rpm and develops more power while the propeller slows; gears machined from steel forgings; the propeller shaft of most low-power engines is forged as part of the crankshaft) and the Continental GTSIO-520 overhaul manual, PDF p. 152 (the -H: geared, 375 horsepower at 2275 propeller rpm, propeller drive ratio 0.667:1). The crankshaft speed of about 3,400 rpm is the quotient; the course deck quotes the same figures (slide 'Recap Discussion').",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "image",
+          "title": "How a reduction gear is built",
+          "prompt": "The figure shows three arrangements. In a spur planetary set, a sun gear splined to the crankshaft drives small planet gears on a carrier fixed to the propeller shaft, and the planets also mesh with a stationary bell gear. They roll round it and carry the propeller shaft in the same direction as the crankshaft, but slower. The bevel planetary set is more compact and suits a smaller step-down. The spur and pinion set suits lower-powered engines.\n\nIn the GTSIO-520-H, the splined front end of the crankshaft turns a quill shaft. The quill shaft turns a propeller shaft drive gear, and that drives the propeller shaft gear: a plain gear pair of the kind you tried in the explorer.",
+          "url": "./lesson-media/faa-reduction-gears.webp",
+          "alt": "FAA diagram of propeller reduction gears: spur planetary, bevel planetary, and spur and pinion",
+          "credit": "FAA-H-8083-32B, Figure 1-34",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 44 (the three types most commonly used, spur planetary, bevel planetary, and spur and pinion; the spur planetary gearing: sun gear splined to the crankshaft, stationary bell gear, planetary pinions on a carrier ring fastened to the propeller shaft, the planets walking round the stationary gear so that the shaft turns in the crankshaft direction at a reduced speed; the bevel planetary type is more compact and used where a smaller step-down is desired; several lower-powered engines use the spur and pinion arrangement) and the Continental GTSIO-520 overhaul manual, PDF p. 17 (section A-3-2 a 4: the splined front end of the crankshaft transmits torque to the propeller shaft drive gear through an externally splined quill shaft, which drives the propeller shaft gear). The same figure is used in Parts and Construction.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The FAA figure names the parts of the three reduction arrangements."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Starting reverses power",
+          "prompt": "Before playing, predict the torque direction. Run Starter engagement and start. Pause during cranking, at engine takeover, and afterwards. Identify the worm, worm wheel, spring, drum and shaftgear.",
+          "note": "A-3-2; A-4-15; FAA PDF 236 (5-6): spring tightens around drum during starting and releases after start. H starter drive 32:1 CCW facing pad applies during cranking. Clutch tightening, transition time and speed ramp are illustrative. No sliding Bendix pinion is added.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Starter engagement and start",
+          "motionProgress": 10,
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The starter engagement clip is run on the model so the worm, worm wheel, spring, drum and shaftgear can be named at each stage."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Engine takes over",
+          "prompt": "Scrub past the engine-takeover stage. Observe that worm drive and worm wheel stop while the shaftgear continues to turn with the crank gear. Explain why the clutch must separate these functions.",
+          "note": "A-3-2 supports clutch release and continued crank-driven shaftgear. Model times and motor stop are a staged illustration, not measured dynamics or an aircraft starting checklist.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Starter engagement and start",
+          "motionProgress": 80,
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The model is scrubbed past engine takeover to see the worm drive stop while the shaftgear keeps turning."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Reassemble relationships",
+          "prompt": "Reverse the exploded view. Pause halfway, isolate a complete path and inspect its seal and mounting interface. Return to assembled, then switch to normal operation and explain what must transmit torque.",
+          "note": "Manufacturer exploded figures support part relationships. This staged reassembly is pedagogical; fastener torques, clearances, service limits and actual maintenance sequence are not represented.",
+          "sourceRefs": [
+            "gtsio-reviewed",
+            "faa-powerplant"
+          ],
+          "modelId": "accessory-drives",
+          "savedMotionId": "Reassembly overview",
+          "motionProgress": 50,
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "Reversing the exploded view lets the learner isolate a complete path and inspect its seal and mounting interface."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Wet sump and dry sump",
+          "prompt": "The engine's oil must be stored somewhere. In a wet-sump system the oil is kept inside the engine, in the crankcase or the sump under it. One pump draws it from there and circulates it, and it drains back.\n\nIn a dry-sump system the oil is kept in an external tank. A scavenge pump pulls the oil out of the engine's shallow sump as it collects and returns it to the tank, and a pressure pump sends it back to the engine. Follow the loop in the picture: sump (1), scavenge pump (2), tank (3), pressure pump (4), and oil to the engine (5).\n\nA dry-sump system has all the parts of a wet-sump one, plus the scavenge pump, tubing and tank.\n\nThe GTSIO-520-H holds its 13 quarts in a sump under the crankcase: a wet-sump engine.",
+          "url": "./lesson-media/dry-sump-schematic.webp",
+          "alt": "Schematic of a dry-sump oil system: an engine block with a small sump at the bottom, a scavenge pump taking oil from the sump to an external oil tank, and a pressure pump returning oil from the tank to the engine, with numbered flow arrows.",
+          "credit": "Arnero, Dry sump.svg, Wikimedia Commons",
+          "license": "Public domain",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 250 (the two basic classifications of reciprocating-engine lubrication: wet sump stores the oil in a reservoir inside the engine, returned to a crankcase-based reservoir; dry sump pumps the oil from the crankcase to an external tank, with a scavenge pump, external tubing and tank; the dry sump system contains all the components of the wet sump system) and the Continental GTSIO-520 overhaul manual, PDF p. 17 (the engine oil supply is contained in the sump; oil is drawn from the sump through the suction tube to the oil pump) and PDF p. 152 (oil sump capacity 13 quarts). Picture: 'Dry sump' by Arnero, in the public domain (Wikimedia Commons, File:Dry sump.svg; checked 13 October 2026); the numbers follow the legend of the English Wikipedia article Dry sump (1 sump, 2 scavenge pump, 3 oil tank, 4 pressure pump, 5 conditioned oil to the engine).",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "web-media",
+            "status": "available",
+            "rationale": "A simple loop diagram shows where the oil is stored and which pump moves it where."
+          }
+        },
+        {
+          "type": "text",
+          "title": "When a drive fails",
+          "prompt": "Each accessory depends on its drive. If the drive fails, the accessory stops. What follows depends on the accessory.\n\nMagneto drive: that ignition system is lost. The other keeps firing its plugs, so the engine runs, with less efficient burning.\n\nOil pump drive: no oil pressure, and the engine is quickly damaged.\n\nFuel pump drive: engine-driven fuel flow stops.\n\nGovernor drive: propeller speed control is lost. Alternator drive: electrical output is lost. Vacuum or tachometer drive: suction or rpm indication is lost.\n\nSome drives have a shear section, a deliberately weak shaft. If the pump seizes, that shaft breaks and the rest of the gear train is protected.",
+          "note": "The consequences are the lesson's reasoning from what each accessory does (see the earlier steps and FAA-H-8083-32B (2023), PDF pp. 28, 84, 294 and 391). Dual ignition and its safety if one system fails: PDF p. 468 (glossary). The shear section that causes the shaft to shear if the pump gears seize, shown for a turbine engine's oil pump: PDF pp. 268 to 269. The course slides describe the same protection for a seized vacuum pump on piston engines ('Accessory Drive Failsafe Design', slides 'Accessory Gear Trains' and 'Recap Discussion'), which this step does not rely on alone: the GTSIO-520 manual pages read here do not describe it, so check the manual for the engine in front of you. Hypothetical reasoning, not an approved troubleshooting procedure.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Illustrative faults",
+          "prompt": "Discuss three hypothetical faults: (1) the fuel coupling transmits no torque, (2) the starter spring remains gripping after engine takeover, (3) a mounting seal leaks. For each, identify the first affected mechanical connection, its useful function and evidence needed before diagnosing the real engine.",
+          "note": "ILLUSTRATIVE FAULT SCENARIOS: hypothetical reasoning from A-3-2, A-4-11, A-4-15 and C-3-6; no measured wear, pressure, seizure, failure probability or approved troubleshooting procedure is simulated.",
+          "sourceRefs": [
+            "gtsio-reviewed"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A written reasoning prompt about hypothetical faults; the model and the earlier steps carry the evidence."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Explain the complete path",
+          "prompt": "Choose an accessory and give a short explanation: source of energy → gears → shaft or coupling → interface → useful function. State one verified ratio, its viewpoint and one model limitation.\n\nThen say, in your own words: what a spur gear and a bevel gear are each for, why the propeller is geared down, how a wet sump differs from a dry sump, and what happens if a drive fails. Complete the knowledge checks.",
+          "note": "Verified endpoints are in H C-3-2/C-3-3. Unresolved fuel ratio and optional transfer geometry must remain unknown. This assembly does not borrow IO-520 permold configuration.",
+          "sourceRefs": [
+            "gtsio-reviewed"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The completion step asks the learner to explain in words."
+          }
+        }
+      ]
+    },
+    {
       "id": "power-generation",
       "thumbnail": "./thumbnails/lesson-power-generation.webp",
       "sequenceNumber": 10,
       "title": "Power Generation",
       "objective": "Follow the push from burning gas to the propeller shaft: explain why the spark comes before top dead centre, define compression ratio and calculate cylinder volumes, and recognise the order and the care needed to take the power section apart and put it back together.",
+      "purpose": "Connect the entire energy-conversion chain from fuel to useful aircraft propulsion.",
+      "coreIdea": "Chemical energy in fuel → combustion → thermal energy → pressure → piston force → reciprocating movement → crankshaft torque → shaft power → propeller power → thrust.",
+      "outcomes": [
+        "Explain the sequence from chemical energy in fuel to thrust, one conversion at a time (see the core idea).",
+        "Explain that hydrocarbon fuel contains stored chemical energy.",
+        "Explain the role of fuel, air and ignition in releasing that energy through combustion.",
+        "Explain how combustion increases gas pressure and temperature inside the cylinder.",
+        "Explain how expanding gases exert force on the piston.",
+        "Explain how the connecting rod and crankshaft convert reciprocating motion into rotation.",
+        "Distinguish force, torque, rotational speed and shaft power.",
+        "Explain that the engine primarily produces shaft power while the propeller converts shaft power into thrust.",
+        "Explain how part of engine output is also consumed in driving engine accessories.",
+        "Recognise how engine mechanical power may indirectly support electrical, hydraulic and pneumatic aircraft services.",
+        "Identify the components forming the piston-engine power-generating assembly.",
+        "State the function of each major power-generation component.",
+        "Define compression ratio and explain its significance to engine operation.",
+        "Explain why combustion events must be correctly distributed among cylinders.",
+        "Define engine firing order.",
+        "Explain why multi-cylinder engines use an arranged firing sequence.",
+        "Explain how firing order contributes to smoother torque delivery, vibration control, cooling distribution and engine operation.",
+        "Relate firing order to cylinder numbering."
+      ],
+      "syllabusNote": "The official module explicitly requires power-generation assembly components/functions and compression ratio. It also explicitly requires firing order.",
       "reviewStatus": "unreviewed",
       "models": [
         "cylinder"
       ],
       "listed": true,
       "scheduledDay": 5,
-      "completionCriteria": "Explain why the spark fires before top dead centre, calculate the compression ratio and the swept and clearance volume of a cylinder, trace the push from the piston to the propeller shaft, and state three things that must be kept in order when the power section is assembled.",
+      "completionCriteria": "Follow the energy from the fuel to thrust one conversion at a time; explain what fuel, air and ignition each do; name the parts of the power-generating assembly and what each does; tell force, torque, rotational speed and shaft power apart and use torque and rpm to find power; explain why the spark fires before top dead centre and calculate the compression ratio and the swept and clearance volume of a cylinder; say how shaft power becomes thrust and where some of the power goes before the propeller; trace the push from the piston to the propeller shaft and state three things that must be kept in order when the power section is assembled; and explain why the power events are spread evenly around the cycle, what the firing order is and why it is not the numbering order.",
       "steps": [
         {
           "type": "text",
-          "title": "From burning gas to shaft power",
-          "prompt": "Everything the engine does for the aircraft starts as burning gas pushing on a piston. At full power the push can be more than 15 tons, and the gas is between 3,000 and 4,000 °F. Before you open the model, predict the path: what carries that push from the piston to the propeller, and what has to be strong enough to survive it?",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48 (the piston is pushed down by the burning gases with a force that can be greater than 15 tons at maximum power; the gas temperature may be between 3,000 and 4,000 °F; the connecting rod movement is changed to rotary movement by the crankshaft and transmitted to the propeller shaft). The handbook writes the force as \"(30,000 psi)\"; 15 tons is about 30,000 pounds of force, so the lesson gives the force and not a pressure.",
+          "title": "From fuel to thrust",
+          "prompt": "The engine does not make power from nothing. It changes energy from one form to another, one conversion at a time, until the aircraft is pushed forward.\n\nThe fuel holds chemical energy, and burning turns it into heat. The heat raises the pressure of the gas in the cylinder. The pressure pushes on the piston, and the piston and connecting rod carry the push to the crankshaft. The crankshaft turns, so the push becomes torque, and torque at a speed is shaft power. The propeller turns shaft power into thrust.\n\nThe whole chain: fuel, heat, pressure, force, motion, torque, shaft power, propeller, thrust. Walk along it in the next step, then keep it in mind through the lesson.",
+          "note": "The chain is the lesson's core idea (the instructor's outcomes, objective 1). Documented from FAA-H-8083-32B (2023), glossary, PDF p. 472 (a heat engine converts the chemical energy in a fuel into heat energy and then into mechanical energy) and PDF pp. 46 to 48 and 52 to 54 (the burning gases push the piston down, the connecting rod movement is changed to rotary movement by the crankshaft and transmitted to the propeller shaft; torque and brake horsepower; thrust horsepower).",
           "sourceRefs": [
             "faa-powerplant-2023"
           ],
           "mediaPlan": {
             "mode": "none",
             "status": "not-needed",
-            "rationale": "A prediction prompt that sets up the force path traced in the model."
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "web-embed",
+          "title": "Walk the energy chain",
+          "url": "artifact:energy-chain",
+          "prompt": "Step along the nine stages from fuel to thrust. At each one, say what form the energy has and what turns it into the next stage.\n\nAt the heat stage, look at where the heat goes. How much of it is used for power, and how much is lost?",
+          "note": "Schematic interactive made for this lesson. Every figure is the FAA handbook's, with its page: about 20,000 BTU per pound of fuel (PDF p. 55); 25 to 30 percent of the heat used for power output, 15 to 20 percent lost in cooling, 5 to 10 percent in friction and 40 to 45 percent through the exhaust (PDF p. 55); gas at 3,000 to 4,000 degrees F and a force greater than 15 tons on the piston (PDF p. 48); torque as force times distance (PDF p. 52); friction horsepower as much as 10 to 15 percent (PDF p. 53); an 85 percent efficient propeller turning 1,000 bhp into 850 thrust horsepower (PDF p. 54). The handbook gives the heat split as ranges, drawn as bands, and elsewhere (PDF p. 56) puts the thermal efficiency of a reciprocating engine at about 34 percent; real engines differ.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "Stepping along the chain, with the heat split drawn at the heat stage, makes each conversion and each loss visible in turn."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Fuel, air and a spark",
+          "prompt": "Fuel is the engine's stored energy. A pound of petroleum fuel, burned with enough air to consume it completely, gives up about 20,000 BTU: the equivalent of 15,560,000 ft-lb of mechanical work. That chemical energy stays locked in the fuel until it burns.\n\nBurning needs three things together. The fuel supplies the energy. The air supplies the oxygen the fuel burns in. The ignition starts the burn at the right moment: in this engine the spark plugs fire as the piston approaches TDC.\n\nTake any one away and no energy is released. Too little air, or a weak or badly timed spark, and the burn is poor and the energy is wasted. How much fuel for how much air is the mixture, which lesson 13 explains.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 55 (a pound of petroleum fuel, burned with enough air to consume it completely, gives up about 20,000 BTU, the equivalent of 15,560,000 ft-lb of mechanical work) and PDF p. 48 (the charge is fired by an electric spark as the piston approaches TDC). The three requirements for burning (fuel, air for its oxygen, and ignition) are the lesson's explanation of the handbook's account of the four events.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Burning gas pushes the piston",
+          "prompt": "Burning raises the temperature and pressure of the gas trapped in the cylinder. Both valves are shut, so the gas cannot escape, and it reaches between 3,000 and 4,000 °F.\n\nThat pressure pushes on the piston crown. Force is pressure times area, and at full power the push can be more than 15 tons.\n\nEverything the engine does for the aircraft starts with this push. Before you open the model, predict the path: what carries the push from the piston to the propeller, and what has to be strong enough to survive it?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48 (the piston is pushed down by the burning gases with a force that can be greater than 15 tons at maximum power; the gas temperature may be between 3,000 and 4,000 °F; the connecting rod movement is changed to rotary movement by the crankshaft and transmitted to the propeller shaft) and PDF p. 51 (the area of the piston multiplied by the pressure gives the force acting on the piston in pounds). The handbook writes the force as \"(30,000 psi)\"; 15 tons is about 30,000 pounds of force, so the lesson gives the force and not a pressure. That both valves are closed during the power stroke: Figure 1-36, PDF p. 47.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A prediction prompt frames the model step that follows."
           }
         },
         {
@@ -569,6 +1226,20 @@
         },
         {
           "type": "text",
+          "title": "The power-generating assembly",
+          "prompt": "The parts that turn burning gas into rotation form the power-generating assembly.\n\nThe cylinder holds the burning gas, and its head carries the valves and spark plugs. The piston takes the push of the gas, and its rings seal the gas in and control the oil. The piston pin joins the piston to the connecting rod, and the rod carries the push to the crankpin. The crankshaft changes the back-and-forth motion into rotation and passes it to the propeller shaft. The crankcase holds the crankshaft in its main bearings, and the cylinders are fastened to it.\n\nThe valves, and the cams that work them, let the gas in and out at the right moments (lesson 8).\n\nName them on the model. Which part receives the push, and which part turns?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 26 (the basic major components of a reciprocating engine: crankcase, cylinders, pistons, connecting rods, valves and valve-operating mechanism, and crankshaft), PDF pp. 28 to 30 (the crankshaft transforms the reciprocating motion of the piston and connecting rod into rotary motion; the connecting rod) and PDF p. 48. The functions are those of Parts and Construction, where each part is taken in turn.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
           "title": "Piston rings and ring gaps",
           "prompt": "The rings seal the gas above the piston and control the oil on the cylinder wall. Each ring is split, so it has a gap. When a piston is assembled the gaps are not lined up: on the GTSIO-520 pistons the first, third and fifth ring gaps go one side of the piston and the second and fourth go on the opposite side, 180° away. With the gaps staggered, gas that gets past one ring meets a solid part of the next. If the gaps line up, a straight path opens for gas to leak past the piston into the crankcase and for oil to be burned.",
           "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 75 (11-8: five-ring pistons have the first, third and fifth gaps toward the top of the piston and the second and fourth 180° apart from them; four-ring pistons have the first and third gaps on top and the second and fourth 180° away; do not intermix piston types in any one engine). The reason for staggering (less blow-by and oil burning) is from the course deck (slides 168-169) and the daily quiz; the manual gives the positions.",
@@ -612,9 +1283,100 @@
         },
         {
           "type": "text",
+          "title": "Force, torque, speed and power",
+          "prompt": "Four words are easy to mix up.\n\nForce is a push or pull, in pounds. Gas pressure times piston area gives the force on a piston.\n\nTorque is a force turning something: the force times its distance from the axis, at right angles to the force. It is measured in pound-feet. A push of 200 lb on an arm 3.18 ft long gives 636 lb-ft.\n\nRotational speed is how fast the shaft turns, in rpm.\n\nPower is the rate of doing work. Torque and speed together make shaft power: bhp = 2π × torque × rpm ÷ 33,000, with torque in lb-ft. That torque at 3,000 rpm is 363 hp.\n\nThe same power can be a high torque at a low speed or a low torque at a high speed.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 51 (the area of the piston multiplied by the pressure gives the force acting on the piston in pounds), PDF p. 49 (work is force times distance; one horsepower is 33,000 ft-lb per minute) and PDF pp. 52 to 53 (torque is the product of a force and the distance of the force from the axis about which it acts, in lb-ft; a Prony brake with a 200 lb scale reading on a 3.18 ft arm gives 636 lb-ft; work per revolution is 2π times the torque; bhp = 2π × force × arm × rpm ÷ 33,000, 363 hp at 3,000 rpm; horsepower is a function of both torque and rpm).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Shaft power to thrust",
+          "prompt": "The piston engine's output is shaft power, rated in brake horsepower. It does not make thrust itself. The propeller does, by turning shaft power into thrust.\n\nThe useful output of every aircraft powerplant is thrust, the force that propels the aircraft. Since the piston engine is rated in brake horsepower, the useful output of engine and propeller together is measured as thrust horsepower.\n\nThe propeller is never 100 percent efficient, and its efficiency varies with engine speed, altitude, temperature and airspeed. With a propeller of 85 percent efficiency, an engine of 1,000 bhp gives 850 thrust horsepower.\n\nOf the horsepowers the handbook discusses, thrust horsepower decides the performance of the engine and propeller together.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 23 (the useful output of all aircraft powerplants is thrust, the force which propels the aircraft; the reciprocating engine is rated in brake horsepower) and PDF p. 54 (thrust horsepower is the result of the engine and propeller working together; the efficiency of the propeller varies with engine speed, attitude, altitude, temperature and airspeed; an engine developing 1,000 bhp with an 85 percent efficient propeller gives 850 thrust hp; of the four types of horsepower, thrust horsepower determines the performance of the engine-propeller combination).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Power the engine keeps for itself",
+          "prompt": "Not all the power the burning gas makes reaches the propeller. The power developed in the cylinders is the indicated horsepower. Part of it, the friction horsepower, goes in overcoming friction, drawing in fuel, expelling exhaust, and driving the oil and fuel pumps and other accessories: as much as 10 to 15 percent in modern aircraft engines. What is left at the propeller shaft is the brake horsepower.\n\nSome accessory power goes on to serve the aircraft. The alternator or generator supplies the electrical system. A vacuum pump supplies suction, which is a pneumatic service. On aircraft with a hydraulic system an engine-driven pump supplies it. The GTSIO-520-H lists vacuum, de-icing and autopilot drives as options.\n\nThese services take engine power indirectly: the engine turns the accessory, and the accessory serves the aircraft.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 52 to 53 (the power delivered to the propeller is brake horsepower; friction horsepower is the indicated minus the brake horsepower and is the power used in overcoming the friction of moving parts, drawing in fuel, expelling exhaust, driving oil and fuel pumps and other engine accessories; on modern aircraft engines the loss may be as high as 10 to 15 percent of the indicated horsepower) and Figure 1-41 (PDF p. 55), which draws accessories as part of the friction power. Generator, vacuum pump and starter on the accessory section: PDF p. 28. The vacuum, de-icing and autopilot drives listed as options: GTSIO-520 reviewed manual, H section C-3-3. The engine-driven hydraulic pump is from the course slides (hydraulic pumps among the accessories driven through spur gears) and general practice, not from the manual pages read here: check the aircraft's own documents.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio-reviewed",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Why spread the power events",
+          "prompt": "One cylinder gets a power stroke once in every two turns of the crankshaft. If every cylinder fired at the same moment, the shaft would get one hard push every two turns and nothing in between.\n\nSo the power events are spread over the 720° of the cycle. Divide 720° by the number of cylinders: a four-cylinder engine has a power event every 180° of crankshaft rotation, a six-cylinder engine every 120°, and a nine-cylinder radial every 80°.\n\nEven spacing gives steadier torque and less vibration. It also spreads the heat and the loads in time, instead of piling them into one moment. That is why the combustion events must be correctly distributed among the cylinders.",
+          "note": "The four-stroke cycle takes 720 degrees of crankshaft rotation: FAA-H-8083-32B (2023), PDF p. 46. The spacing (720 divided by the number of cylinders) is arithmetic, and the nine-cylinder figure of 80 degrees is in the course slides (slide 'Firing Order - Radial') and in the handbook's spacing of 40 degrees between cylinders with 80 degrees between firing impulses (PDF p. 40). The handbook says the firing order is designed to provide for balance and to eliminate vibration to the greatest extent possible (PDF p. 37). Steadier torque and the spreading of heat and loads: the course slides (slide 'Firing Order': reduce vibration, ensure smooth power delivery, optimize engine cooling, prevent mechanical stress), which the handbook pages read here do not state in these words. The course slide 'Firing Order - H.O.' gives the interval as 120 degrees for four cylinders and 60 degrees for six; the arithmetic gives 180 and 120, and this lesson follows the arithmetic.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Firing order and a smooth engine",
+          "prompt": "The firing order is the sequence in which the power events occur in the cylinders. It is not simply 1, 2, 3, 4, because neighbouring cylinders firing one after another would load one part of the engine and one part of the crankshaft at a time.\n\nThe order is designed to give balance and to eliminate vibration as far as possible. In inline engines the firing is spread evenly along the crankshaft. In opposed engines the order can be listed in pairs, because each pair fires across the centre main bearing.\n\nOn a six-cylinder opposed engine the order 1-4-5-2-3-6 alternates between the two banks. A four-cylinder one is 1-3-2-4 on the Lycoming O-360, though another model is 1-4-2-3.\n\nA good order also helps the cooling, since the heat is not added to the same part twice in a row.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 37 (the firing order is the sequence in which the power event occurs in the different cylinders; designed to provide for balance and to eliminate vibration to the greatest extent possible; in inline engines, evenly distributed along the crankshaft; in opposed engines listed in pairs, as each pair fires across the center main bearing; six-cylinder opposed 1-4-5-2-3-6; one four-cylinder model 1-4-2-3 and another 1-3-2-4) and the GTSIO-520 overhaul manual, PDF p. 153 (the -H: 1-4-5-2-3-6). The O-360 as 1-3-2-4: course slides (slide 'Firing Order - H.O.'). The benefit to cooling is from the course slides only (slide 'Firing Order'); the sentence on alternating banks is read from the order itself, with odd cylinders on the right and even on the left.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Firing order is not numbering order",
+          "prompt": "Firing order and cylinder numbering are different things. The numbers only name the cylinders. On the GTSIO-520-H they run from the rear, odd on the right and even on the left, as seen from the accessory end. The firing order says in what sequence the named cylinders fire.\n\nRead a firing order as a list of names. In 1-4-5-2-3-6, No. 1 fires, then No. 4, then No. 5. After No. 6 the sequence starts again with No. 1.\n\nMakers number differently. Lycoming has No. 1 on the right side closest to the propeller; Continental has it at the right rear. A six-cylinder Lycoming is typically 1-4-5-2-3-6 and a Continental normally 1-6-3-2-5-4, though this engine's manual gives 1-4-5-2-3-6.\n\nSo use the manual for the engine in front of you.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 36 (the numbering of opposed engine cylinders is by no means standard; some manufacturers number from the rear and others from the front; refer to the engine manual), the GTSIO-520 overhaul manual (PDF pp. 13 to 14: cylinders numbered from the rear, odd on the right and even on the left, as seen from the accessory end; PDF p. 153: the -H firing order 1-4-5-2-3-6) and EASA Module 16 core text, PDF p. 12 (Lycoming and Continental firing orders and numbering systems). The Continental order 1-6-3-2-5-4 is the one in the IO-520 manual; the GTSIO-520-H manual lists a different order, as the Classification lesson shows.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul",
+            "easa-module16-core"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
           "title": "Name the whole path",
-          "prompt": "Explain the power section in your own words: how the spark timing, the compression ratio and the fuel work together to make the push, how the push travels from the piston to the propeller shaft, and what you would check and keep in order when the power section is taken apart and put back together. Then take the lesson's quiz.",
-          "note": "Completion step: the learner pulls the lesson together (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 48-51, and the GTSIO-520 overhaul manual, PDF pp. 57-58, 75-76 and 79-80.",
+          "prompt": "Explain the whole story in your own words. How does the energy in the fuel become thrust, one conversion at a time? How do the spark timing, the compression ratio and the fuel work together to make the push, and how does the push reach the propeller shaft?\n\nHow do torque and speed make power, and where does some of the power go before the propeller? Why do the cylinders fire in a sequence, and is that the same as the numbering?\n\nThen take the lesson's quiz.",
+          "note": "Completion step: the learner pulls the lesson together (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 36 to 37 and 46 to 55, and the GTSIO-520 overhaul manual, PDF pp. 57 to 58, 75 to 76, 79 to 80 and 153.",
           "sourceRefs": [
             "faa-powerplant-2023",
             "gtsio520-overhaul"
@@ -799,6 +1561,465 @@
       "rationale": "A spring must push back with at least the serviceable limit at the test height. 70 lb is below 73 lb, so it is not reused. A new inner spring gives 78 to 88 lb at that height."
     },
     {
+      "id": "valve-closed-strokes",
+      "lessonId": "valve-operating",
+      "type": "multiple-choice",
+      "question": "During which two strokes are both valves closed?",
+      "hint": "Gas has to be trapped to be squeezed and then burned.",
+      "answers": [
+        "Compression and power",
+        "Intake and exhaust",
+        "Intake and compression",
+        "Power and exhaust"
+      ],
+      "correct": 0,
+      "rationale": "Both valves stay on their seats for the compression stroke and the power stroke, which seals the cylinder. The intake valve is open for the intake stroke and the exhaust valve for the exhaust stroke, and both are open together for a short while in the overlap."
+    },
+    {
+      "id": "valve-lead-lag-terms",
+      "lessonId": "valve-operating",
+      "type": "matching",
+      "question": "Match each timing term to its meaning.",
+      "hint": "Lead is early. Lag is late.",
+      "pairs": [
+        {
+          "left": "Valve lead",
+          "right": "A valve opens before the piston reaches the end of its stroke"
+        },
+        {
+          "left": "Valve lag",
+          "right": "A valve closes after the piston has passed the end of its stroke"
+        },
+        {
+          "left": "Valve overlap",
+          "right": "Both valves are off their seats at once around TDC"
+        },
+        {
+          "left": "Valve duration",
+          "right": "How long a valve is held open, set by the shape of the cam lobe"
+        }
+      ],
+      "rationale": "Lead opens a valve early, lag closes it late, and overlap is the interval around TDC when the intake valve has opened and the exhaust valve has not yet closed. Duration is set by the cam lobe, as the lift is."
+    },
+    {
+      "id": "valve-early-exhaust",
+      "lessonId": "valve-operating",
+      "type": "multiple-choice",
+      "question": "Why does the exhaust valve start to open before BDC, while the cylinder still holds pressure?",
+      "hint": "What is left in the cylinder that can push the gas out?",
+      "answers": [
+        "The pressure left in the cylinder pushes the gas out quickly and frees the cylinder of waste heat",
+        "It lets fresh mixture in sooner",
+        "It raises the compression ratio",
+        "The cam lobe is worn and opens it too early"
+      ],
+      "correct": 0,
+      "rationale": "The valve opens considerably before BDC so that the remaining pressure forces the gas out as soon as possible. That frees the cylinder of waste heat and avoids overheating the cylinder and the piston."
+    },
+    {
+      "id": "valve-late-intake",
+      "lessonId": "valve-operating",
+      "type": "multiple-choice",
+      "question": "Why is the intake valve held open for a while after BDC?",
+      "hint": "Think of gas already moving through the intake pipe.",
+      "answers": [
+        "The incoming charge has momentum and keeps filling the cylinder while the piston starts to rise",
+        "It lets the burned gas escape",
+        "It lowers the compression ratio",
+        "It reduces the valve lift"
+      ],
+      "correct": 0,
+      "rationale": "Near BDC the piston moves very little, so the moving charge keeps flowing in and fills the cylinder more completely. Close it too late and the gas is forced back out through the intake valve."
+    },
+    {
+      "id": "valve-timing-marks",
+      "lessonId": "valve-operating",
+      "type": "multiple-choice",
+      "question": "What is lined up when the camshaft gear is meshed with the crankshaft gear?",
+      "hint": "Each gear carries a mark for this job.",
+      "answers": [
+        "The timing marks on the two gears",
+        "The spark plug gaps",
+        "The oil holes in the pushrods",
+        "The fins of the cylinders"
+      ],
+      "correct": 0,
+      "rationale": "Meshing the gears with their timing marks aligned sets the camshaft to the crankshaft, so each lobe lifts its valve at the right crank angle."
+    },
+    {
+      "id": "valve-intake-open",
+      "lessonId": "valve-operating",
+      "type": "numeric",
+      "question": "A valve timing chart shows the intake valve opening 20° before TDC and closing 60° after BDC. For how many degrees of crank angle is it open?",
+      "hint": "Add the angle before TDC, the 180° of the intake stroke and the angle after BDC.",
+      "unit": "degrees",
+      "correctValue": 260,
+      "tolerance": 0,
+      "rationale": "The valve is open for 20° before TDC, then through the whole 180° intake stroke, then 60° after BDC: 20 + 180 + 60 = 260°."
+    },
+    {
+      "id": "valve-overlap-angle",
+      "lessonId": "valve-operating",
+      "type": "numeric",
+      "question": "The intake valve opens 35° before TDC and the exhaust valve closes 20° after TDC. How many degrees of valve overlap is that?",
+      "hint": "Overlap runs from the intake valve opening to the exhaust valve closing, across TDC.",
+      "unit": "degrees",
+      "correctValue": 55,
+      "tolerance": 0,
+      "rationale": "Both valves are open from 35° before TDC to 20° after it: 35 + 20 = 55°."
+    },
+    {
+      "id": "valve-ring-speed",
+      "lessonId": "valve-operating",
+      "type": "numeric",
+      "question": "A radial engine's cam ring has four lobes on each track. The crankshaft turns at 2,000 rpm. How fast does the ring turn?",
+      "hint": "Each valve opens once in two crankshaft turns, and each ring lobe opens it once per ring turn. The ring speed is the crankshaft speed divided by twice the number of lobes.",
+      "unit": "rpm",
+      "correctValue": 250,
+      "tolerance": 0,
+      "rationale": "Ring speed = crankshaft speed ÷ (2 × lobes) = 2,000 ÷ (2 × 4) = 250 rpm, one eighth of crankshaft speed, as in the handbook table."
+    },
+    {
+      "id": "valve-ring-why",
+      "lessonId": "valve-operating",
+      "type": "multiple-choice",
+      "question": "Why does a radial engine use a cam ring and not a straight camshaft?",
+      "hint": "Think about where the cylinders of a radial are.",
+      "answers": [
+        "The cylinders spread around the crankshaft, and a ring around the crankshaft is the same distance from every cylinder",
+        "A ring makes the valves open twice as often",
+        "A radial engine has no valves to operate",
+        "A ring needs no gear to drive it"
+      ],
+      "correct": 0,
+      "rationale": "The cylinders of a radial are arranged around the crankshaft, so a ring concentric with the crankshaft can work the tappet of every cylinder through its pushrod. The ring is driven by the crankshaft through gearing, at a much lower speed."
+    },
+    {
+      "id": "valve-click-pushrod-housing",
+      "lessonId": "valve-operating",
+      "type": "model-click",
+      "question": "Tap a pushrod housing.",
+      "hint": "It is the tube that carries each pushrod from the crankcase up to the cylinder head.",
+      "modelId": "cylinder",
+      "correctNodeId": "IntakePushrodHousing",
+      "alsoAccept": [
+        "ExhaustPushrodHousing"
+      ],
+      "rationale": "The pushrod runs inside its housing, a tube between the crankcase and the cylinder head. The housing also returns oil from the rocker arm to the crankcase."
+    },
+    {
+      "id": "valve-click-camshaft",
+      "lessonId": "valve-operating",
+      "type": "model-click",
+      "question": "Tap the camshaft and its drive.",
+      "hint": "It lies inside the crankcase and is turned by a gear from the crankshaft.",
+      "modelId": "gtsio520-h-v5-teaching-engine",
+      "correctNodeId": "camshaft-and-timing-drive",
+      "rationale": "The camshaft lies in the crankcase, driven at half crankshaft speed by a gear that meshes with the crankshaft gear. Its lobes lift the tappets."
+    },
+    {
+      "id": "acc-functions",
+      "lessonId": "accessories-and-drives",
+      "type": "matching",
+      "question": "Match each accessory to its job.",
+      "hint": "Think about what the aircraft or the engine would lose without it.",
+      "pairs": [
+        {
+          "left": "Magneto",
+          "right": "Makes the spark for the spark plugs"
+        },
+        {
+          "left": "Oil pump",
+          "right": "Pushes oil to the bearings under pressure"
+        },
+        {
+          "left": "Tachometer drive",
+          "right": "Turns the tachometer that shows crankshaft rpm"
+        },
+        {
+          "left": "Governor drive",
+          "right": "Spins the propeller governor that holds propeller speed"
+        },
+        {
+          "left": "Alternator",
+          "right": "Makes electricity for the aircraft"
+        }
+      ],
+      "rationale": "The magnetos make the spark, the oil pump keeps the bearings supplied with pressurised oil, the tachometer drive shows crankshaft rpm, the governor drive lets the governor hold propeller speed by changing blade angle with oil, and the alternator supplies the aircraft electrical system."
+    },
+    {
+      "id": "acc-mag-path",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "Which path drives the GTSIO-520 magnetos?",
+      "hint": "Start at the crankshaft gear and follow the gears in order.",
+      "answers": [
+        "Crankshaft gear → idler gear → the two magneto drive gears",
+        "Camshaft cluster gear → fuel coupling → magnetos",
+        "Propeller flange → starter motor → magnetos"
+      ],
+      "correct": 0,
+      "rationale": "In the manual the crankshaft gear drives the idler gear, and the idler gear drives the magneto drive gears. The fuel pump and the oil pump are driven from the camshaft gear instead."
+    },
+    {
+      "id": "acc-magneto-speed",
+      "lessonId": "accessories-and-drives",
+      "type": "numeric",
+      "question": "The GTSIO-520-H magneto drive ratio to the crankshaft is 1.5:1. The crankshaft turns at 2,000 rpm. How fast does a magneto drive shaft turn?",
+      "hint": "Multiply the crankshaft speed by the ratio.",
+      "unit": "rpm",
+      "correctValue": 3000,
+      "tolerance": 0,
+      "rationale": "The drive turns 1.5 times for every crankshaft turn: 1.5 × 2,000 = 3,000 rpm. This is the speed of the drive shaft, not a count of sparks."
+    },
+    {
+      "id": "acc-view",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "The H accessory table states a drive turns clockwise facing the engine drive pad. From the opposite end it appears:",
+      "hint": "Imagine walking round to the other side of the shaft.",
+      "answers": [
+        "Counterclockwise",
+        "Clockwise",
+        "Stopped"
+      ],
+      "correct": 0,
+      "rationale": "Apparent rotation reverses with the viewpoint, so the table states the viewpoint. The actual rotation has not changed."
+    },
+    {
+      "id": "acc-spur-speed",
+      "lessonId": "accessories-and-drives",
+      "type": "numeric",
+      "question": "A 14-tooth gear drives a 28-tooth gear. The driver turns at 2,400 rpm. How fast does the 28-tooth gear turn?",
+      "hint": "The driven speed is the driver speed times driver teeth over driven teeth.",
+      "unit": "rpm",
+      "correctValue": 1200,
+      "tolerance": 0,
+      "rationale": "Speed ratio = 14 ÷ 28 = 0.5, so the big gear turns at half speed: 2,400 × 0.5 = 1,200 rpm."
+    },
+    {
+      "id": "acc-driven-teeth",
+      "lessonId": "accessories-and-drives",
+      "type": "numeric",
+      "question": "A 12-tooth driver turns at 3,000 rpm and must drive a gear at 1,000 rpm. How many teeth must the driven gear have?",
+      "hint": "The speed ratio is 1,000 ÷ 3,000. Driver teeth ÷ driven teeth equals that ratio.",
+      "unit": "teeth",
+      "correctValue": 36,
+      "tolerance": 0,
+      "rationale": "The speed ratio is 1,000 ÷ 3,000 = 1/3, so the driven gear needs three times the driver's teeth: 12 × 3 = 36."
+    },
+    {
+      "id": "acc-idler",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "An idler gear is put between a driver and a driven gear. What does it do?",
+      "hint": "Count the meshes. Each one reverses the direction.",
+      "answers": [
+        "It makes the driven gear turn the same way as the driver and leaves the speed ratio unchanged",
+        "It doubles the speed of the driven gear",
+        "It makes the driven gear turn slower than the ratio of the teeth says",
+        "It stops the driven gear turning"
+      ],
+      "correct": 0,
+      "rationale": "Each mesh reverses the direction, so two meshes give the driver's direction again. The speed ratio depends only on the driver and driven teeth, so the idler does not change it."
+    },
+    {
+      "id": "acc-gear-types",
+      "lessonId": "accessories-and-drives",
+      "type": "matching",
+      "question": "Match each gear type to its use.",
+      "hint": "Think about the angle between the shafts.",
+      "pairs": [
+        {
+          "left": "Spur gears",
+          "right": "Parallel shafts; heavier loaded drives and those needing least backlash"
+        },
+        {
+          "left": "Bevel gears",
+          "right": "Shafts meeting at an angle, such as the stub shafts to angled accessory pads"
+        },
+        {
+          "left": "Planetary reduction gear",
+          "right": "A sun gear, planet gears on a carrier and a stationary ring that slow the propeller"
+        }
+      ],
+      "rationale": "Spur gears serve parallel shafts, and the handbook gives them the heavier loaded accessories and those that need the least backlash. Bevel gears let a drive turn through an angle. A planetary set is one way to build a propeller reduction gear."
+    },
+    {
+      "id": "acc-reduction-why",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "Why do some powerful engines drive the propeller through reduction gears?",
+      "hint": "Think about what happens to a propeller whose blade tips approach the speed of sound.",
+      "answers": [
+        "The engine can run fast to make more power while the propeller turns slower and stays efficient",
+        "The gears make the propeller turn faster than the crankshaft",
+        "The gears remove the need for a propeller governor",
+        "Direct drive is not allowed on large engines"
+      ],
+      "correct": 0,
+      "rationale": "Blade tips approaching the speed of sound lose efficiency rapidly. Reduction gearing lets the engine run at a higher rpm for more power while the propeller turns at a speed at which it works efficiently."
+    },
+    {
+      "id": "acc-prop-speed",
+      "lessonId": "accessories-and-drives",
+      "type": "numeric",
+      "question": "A geared engine has a propeller drive ratio of 0.667:1. The crankshaft turns at 3,000 rpm. How fast does the propeller turn?",
+      "hint": "Multiply the crankshaft speed by the drive ratio.",
+      "unit": "rpm",
+      "correctValue": 2001,
+      "tolerance": 5,
+      "rationale": "0.667 × 3,000 = 2,001 rpm: the propeller turns at about two-thirds of crankshaft speed."
+    },
+    {
+      "id": "acc-sump",
+      "lessonId": "accessories-and-drives",
+      "type": "matching",
+      "question": "Match each term to its meaning in an oil system.",
+      "hint": "One system keeps its oil inside the engine and one keeps it in a tank outside.",
+      "pairs": [
+        {
+          "left": "Wet sump",
+          "right": "Oil is stored inside the engine, in the crankcase or the sump under it"
+        },
+        {
+          "left": "Dry sump",
+          "right": "Oil is stored in an external tank"
+        },
+        {
+          "left": "Scavenge pump",
+          "right": "Returns oil from the engine to the tank"
+        },
+        {
+          "left": "Pressure pump",
+          "right": "Sends oil to the engine's bearings"
+        }
+      ],
+      "rationale": "A wet-sump engine stores its oil inside itself; a dry-sump engine carries the oil in a tank. The dry-sump system needs a scavenge pump to return the oil as it collects, and a pressure pump to send it round the engine."
+    },
+    {
+      "id": "acc-start-path",
+      "lessonId": "accessories-and-drives",
+      "type": "ordering",
+      "question": "Arrange the GTSIO-520 starting torque path.",
+      "hint": "Torque starts at the starter motor and ends at the crankshaft.",
+      "items": [
+        "Starter motor",
+        "Worm drive",
+        "Worm wheel",
+        "Clutch spring grips the shaftgear drum",
+        "Shaftgear drives the crankshaft gear"
+      ],
+      "rationale": "The starter turns the worm, the worm turns the worm wheel, the clutch spring tightens onto the wheel hub and grips the shaftgear drum, and the shaftgear drives the crankshaft gear. After the engine starts the spring releases."
+    },
+    {
+      "id": "acc-takeover",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "After the engine starts, what happens to the starter drive?",
+      "hint": "The starter must not be dragged round by the running engine.",
+      "answers": [
+        "The clutch spring releases, and the shaftgear stays engine-driven",
+        "The starter motor must keep driving the crankshaft",
+        "A sliding ring-gear pinion disengages from the flywheel"
+      ],
+      "correct": 0,
+      "rationale": "The spring returns to its normal position and disengages the starter. The shaftgear is then driven by the crankshaft gear. This is a worm and spring adapter, not a sliding pinion."
+    },
+    {
+      "id": "acc-unknown",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "Which value remains unverified in this study?",
+      "hint": "Two ratios were read from the manual tables. One was not found.",
+      "answers": [
+        "The H fuel-pump drive ratio",
+        "The H alternator drive ratio, 3:1",
+        "The H tachometer drive ratio, 0.5:1"
+      ],
+      "correct": 0,
+      "rationale": "The manual tables verify the alternator and tachometer ratios. No numerical fuel-pump drive ratio was established from the passages read, so the model does not state one."
+    },
+    {
+      "id": "acc-evidence",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "Which statement correctly describes the accessory-drives 3D model?",
+      "hint": "Think about what the model can show and what it cannot.",
+      "answers": [
+        "Drawing-led forms with unscaled sizes and documented drive relationships",
+        "Manufacturer dimensions and exact pad positions",
+        "IO-520 pump parts that apply automatically to the GTSIO-520-H"
+      ],
+      "correct": 0,
+      "rationale": "The part forms follow the manufacturer's drawings and the drive relationships are documented, but dimensions, hidden surfaces, teeth, locations and travel are reconstructed, and the IO-520 pump is not used as GTSIO-520-H geometry."
+    },
+    {
+      "id": "acc-timing-source",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "Where should a technician get the ignition timing for a particular engine?",
+      "hint": "A general handbook explains the principle but not every engine's approved setting.",
+      "answers": [
+        "From the manufacturer's data for that engine",
+        "From any engine with the same number of cylinders",
+        "From the animation in a lesson"
+      ],
+      "correct": 0,
+      "rationale": "The handbook gives a broad range for the spark before top dead centre across engines and says the ignition must be timed to the engine manufacturer's recommendations. A model or animation cannot authorise a setting."
+    },
+    {
+      "id": "acc-failure-magneto",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "The drive of one magneto fails in flight. What follows?",
+      "hint": "Remember there are two of every critical ignition unit.",
+      "answers": [
+        "The other ignition system keeps the engine running, with less efficient burning",
+        "The engine stops at once because the ignition is shared",
+        "Nothing changes, because the two plugs fire together"
+      ],
+      "correct": 0,
+      "rationale": "Dual ignition has two of every critical unit, so one system can fail without stopping the engine. Lighting the charge at two points burns it more efficiently, so the engine loses some performance when only one system works."
+    },
+    {
+      "id": "acc-shear",
+      "lessonId": "accessories-and-drives",
+      "type": "multiple-choice",
+      "question": "Why might an accessory drive shaft include a shear section?",
+      "hint": "Think about what should break if a pump seizes.",
+      "answers": [
+        "If the accessory seizes, the weak shaft breaks and the rest of the gear train is protected",
+        "It lets the accessory run faster than the engine",
+        "It reverses the direction of the drive"
+      ],
+      "correct": 0,
+      "rationale": "A shear section is a deliberately weak shaft. If the pump gears seize, it shears and the rest of the gear train is spared, although the accessory stops working."
+    },
+    {
+      "id": "acc-click-alternator",
+      "lessonId": "accessories-and-drives",
+      "type": "model-click",
+      "question": "Tap the alternator.",
+      "hint": "It makes the aircraft's electricity and sits on its own grey teaching stand in this model.",
+      "modelId": "accessory-drives",
+      "correctNodeId": "alternator",
+      "rationale": "The alternator converts shaft power to electrical power. In this study it is shown on a grey teaching stand, and its transfer path is conceptual."
+    },
+    {
+      "id": "acc-click-magneto",
+      "lessonId": "accessories-and-drives",
+      "type": "model-click",
+      "question": "Tap a magneto.",
+      "hint": "There are two of them. Either is a correct answer.",
+      "modelId": "accessory-drives",
+      "correctNodeId": "magneto-left",
+      "alsoAccept": [
+        "magneto-right"
+      ],
+      "rationale": "The engine has two magnetos, each driven through the idler by its own drive gear, one for each of the two ignition systems."
+    },
+    {
       "id": "power-force-path",
       "lessonId": "power-generation",
       "type": "ordering",
@@ -955,6 +2176,240 @@
       ],
       "correct": 0,
       "rationale": "The crankshaft is positioned so the lifters rest on the heels (base circles) of the lobes and both valves are closed, so nothing is under spring load when the rocker assemblies and pushrods come off."
+    },
+    {
+      "id": "power-chain-order",
+      "lessonId": "power-generation",
+      "type": "ordering",
+      "question": "Put these stages of the energy chain in order, from the fuel to the end.",
+      "hint": "Start with the chemical energy in the fuel and end with the force that moves the aircraft.",
+      "items": [
+        "Chemical energy in the fuel",
+        "Heat from combustion",
+        "Pressure of the hot gas",
+        "Force on the piston",
+        "Torque at the crankshaft",
+        "Shaft power at the propeller shaft",
+        "Thrust"
+      ],
+      "rationale": "The fuel burns to make heat, the heat raises the gas pressure, the pressure pushes on the piston, the crankshaft turns the push into torque, torque at a speed is shaft power, and the propeller turns shaft power into thrust."
+    },
+    {
+      "id": "power-fuel-air-spark",
+      "lessonId": "power-generation",
+      "type": "multiple-choice",
+      "question": "What three things must come together for the fuel's energy to be released?",
+      "hint": "One supplies the energy, one the oxygen and one starts the burn.",
+      "answers": [
+        "Fuel, air and ignition",
+        "Fuel, oil and ignition",
+        "Air, oil and compression",
+        "Fuel, air and cooling"
+      ],
+      "correct": 0,
+      "rationale": "The fuel supplies the energy, the air supplies the oxygen it burns in, and the ignition starts the burn at the right moment. Without any one of them, no energy is released."
+    },
+    {
+      "id": "power-force-calc",
+      "lessonId": "power-generation",
+      "type": "numeric",
+      "question": "The gas pressure on a piston is 500 psi and the piston has an area of 20 square inches. What force pushes on the piston?",
+      "hint": "Force is pressure times area.",
+      "unit": "lb",
+      "correctValue": 10000,
+      "tolerance": 0,
+      "rationale": "500 psi × 20 in² = 10,000 lb. A larger piston or a higher pressure gives a larger force."
+    },
+    {
+      "id": "power-torque-calc",
+      "lessonId": "power-generation",
+      "type": "numeric",
+      "question": "A push of 150 lb acts at right angles on an arm 2 ft long. What torque does it give?",
+      "hint": "Torque is the force times its distance from the axis.",
+      "unit": "lb-ft",
+      "correctValue": 300,
+      "tolerance": 0,
+      "rationale": "150 lb × 2 ft = 300 lb-ft. Torque is measured in pound-feet, which should not be confused with work in foot-pounds."
+    },
+    {
+      "id": "power-bhp-calc",
+      "lessonId": "power-generation",
+      "type": "numeric",
+      "question": "An engine delivers a torque of 500 lb-ft at 2,500 rpm. What brake horsepower is that? Use bhp = 2π × torque × rpm ÷ 33,000 and give the answer to the nearest whole number.",
+      "hint": "Multiply 2π (6.2832) by the torque and the rpm, then divide by 33,000.",
+      "unit": "hp",
+      "correctValue": 238,
+      "tolerance": 1,
+      "rationale": "6.2832 × 500 × 2,500 ÷ 33,000 = 238 hp. The same power would come from a lower torque at a higher speed."
+    },
+    {
+      "id": "power-thp-calc",
+      "lessonId": "power-generation",
+      "type": "numeric",
+      "question": "An engine delivers 300 brake horsepower to a propeller that is 80 percent efficient. How much thrust horsepower does the combination give?",
+      "hint": "Thrust horsepower is the brake horsepower times the propeller efficiency.",
+      "unit": "hp",
+      "correctValue": 240,
+      "tolerance": 0,
+      "rationale": "300 × 0.80 = 240 thrust horsepower. The propeller never converts all of the shaft power into thrust power."
+    },
+    {
+      "id": "power-friction",
+      "lessonId": "power-generation",
+      "type": "multiple-choice",
+      "question": "What is the difference between indicated horsepower and brake horsepower?",
+      "hint": "One is measured in the cylinders and the other at the propeller shaft.",
+      "answers": [
+        "The friction horsepower: the power used to overcome friction and to drive the pumps and other accessories",
+        "The power lost in the propeller",
+        "The power lost in the exhaust only",
+        "There is no difference in a modern engine"
+      ],
+      "correct": 0,
+      "rationale": "Indicated horsepower is developed in the cylinders. Friction, drawing in fuel, expelling exhaust and driving the oil and fuel pumps and other accessories take some of it, as much as 10 to 15 percent, and the rest is the brake horsepower delivered to the propeller."
+    },
+    {
+      "id": "power-services",
+      "lessonId": "power-generation",
+      "type": "matching",
+      "question": "Match each aircraft service to the kind of power it uses.",
+      "hint": "Think about what the accessory moves: electrons, air or fluid.",
+      "pairs": [
+        {
+          "left": "Alternator or generator",
+          "right": "Electrical"
+        },
+        {
+          "left": "Vacuum pump",
+          "right": "Pneumatic"
+        },
+        {
+          "left": "Engine-driven hydraulic pump",
+          "right": "Hydraulic"
+        }
+      ],
+      "rationale": "The alternator makes electrical power, the vacuum pump makes a pneumatic supply (suction), and an engine-driven pump supplies a hydraulic system. In each case the engine turns the accessory, so the service takes engine power indirectly."
+    },
+    {
+      "id": "power-components",
+      "lessonId": "power-generation",
+      "type": "matching",
+      "question": "Match each part of the power-generating assembly to its job.",
+      "hint": "Follow the push from the gas to the propeller shaft.",
+      "pairs": [
+        {
+          "left": "Piston",
+          "right": "Takes the push of the burning gas"
+        },
+        {
+          "left": "Piston rings",
+          "right": "Seal the gas and control the oil"
+        },
+        {
+          "left": "Connecting rod",
+          "right": "Carries the push to the crankpin"
+        },
+        {
+          "left": "Crankshaft",
+          "right": "Changes the back-and-forth motion into rotation"
+        },
+        {
+          "left": "Cylinder head",
+          "right": "Carries the valves and the spark plugs"
+        }
+      ],
+      "rationale": "The piston takes the gas force, its rings seal the gas, the connecting rod passes the push to the off-centre crankpin, the crankshaft turns it into rotation, and the cylinder head carries the valves and spark plugs."
+    },
+    {
+      "id": "power-click-rod",
+      "lessonId": "power-generation",
+      "type": "model-click",
+      "question": "Tap the connecting rod.",
+      "hint": "It links the piston pin to the crankpin.",
+      "modelId": "cylinder",
+      "correctNodeId": "ConnectingRodBody",
+      "alsoAccept": [
+        "ConnectingRodCap"
+      ],
+      "rationale": "The connecting rod carries the push from the piston, through the piston pin, to the crankpin. Its cap, bolts and bearing halves are separate parts."
+    },
+    {
+      "id": "power-click-piston",
+      "lessonId": "power-generation",
+      "type": "model-click",
+      "question": "Tap the piston.",
+      "hint": "It is the part that slides in the cylinder and receives the push of the gas.",
+      "modelId": "cylinder",
+      "correctNodeId": "PistonBody",
+      "rationale": "The piston takes the force of the burning gas on its crown. Its rings and pin are separate parts."
+    },
+    {
+      "id": "power-interval-6",
+      "lessonId": "power-generation",
+      "type": "numeric",
+      "question": "A six-cylinder four-stroke engine has its power events evenly spaced through the cycle. How many degrees of crankshaft rotation are there between one power event and the next?",
+      "hint": "The cycle takes 720° of crankshaft rotation. Share it among the cylinders.",
+      "unit": "degrees",
+      "correctValue": 120,
+      "tolerance": 0,
+      "rationale": "720° ÷ 6 cylinders = 120° between power events."
+    },
+    {
+      "id": "power-interval-4",
+      "lessonId": "power-generation",
+      "type": "numeric",
+      "question": "A four-cylinder four-stroke engine has its power events evenly spaced through the cycle. How many degrees of crankshaft rotation are there between one power event and the next?",
+      "hint": "The cycle takes 720° of crankshaft rotation. Share it among the cylinders.",
+      "unit": "degrees",
+      "correctValue": 180,
+      "tolerance": 0,
+      "rationale": "720° ÷ 4 cylinders = 180° between power events."
+    },
+    {
+      "id": "power-spread-why",
+      "lessonId": "power-generation",
+      "type": "multiple-choice",
+      "question": "Why must the power events be spread evenly through the cycle?",
+      "hint": "Think about what a single hard push every two turns would do to the shaft.",
+      "answers": [
+        "It gives steadier torque and less vibration, and spreads the heat and loads in time",
+        "It lets the engine run without a crankshaft",
+        "It makes each cylinder produce more power",
+        "It reduces the number of cylinders needed"
+      ],
+      "correct": 0,
+      "rationale": "If the power events were bunched, the crankshaft would get hard pushes with gaps between them. Spreading them evenly gives steadier torque and less vibration, and spreads the heat and the loads."
+    },
+    {
+      "id": "power-firing-next",
+      "lessonId": "power-generation",
+      "type": "multiple-choice",
+      "question": "A six-cylinder opposed engine has the firing order 1-4-5-2-3-6. Which cylinder fires after No. 1?",
+      "hint": "Read the order as a list of cylinder numbers.",
+      "answers": [
+        "No. 4",
+        "No. 2",
+        "No. 6",
+        "No. 3"
+      ],
+      "correct": 0,
+      "rationale": "The firing order lists the cylinders in the order they fire. After No. 1 comes No. 4, then No. 5, 2, 3 and 6, and then the sequence starts again with No. 1. It is not the numbering order."
+    },
+    {
+      "id": "power-firing-sequence",
+      "lessonId": "power-generation",
+      "type": "ordering",
+      "question": "Put the cylinders in firing order, from No. 1, for the GTSIO-520-H.",
+      "hint": "The order is 1-4-5-2-3-6. Start with No. 1.",
+      "items": [
+        "No. 1",
+        "No. 4",
+        "No. 5",
+        "No. 2",
+        "No. 3",
+        "No. 6"
+      ],
+      "rationale": "The GTSIO-520-H fires 1-4-5-2-3-6. The cylinders alternate between the right bank (odd numbers) and the left bank (even numbers), and the cycle repeats from No. 1."
     }
   ]
 }

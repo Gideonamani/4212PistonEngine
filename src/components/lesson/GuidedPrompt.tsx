@@ -11,13 +11,13 @@ export const GuidedPrompt: React.FC<{
   onToggleInsight: () => void;
 }> = ({ step, answer, onAnswerChange, showInsight, onToggleInsight }) => {
   if (!step.promptQuestion) return null;
-  return <div className="p-3.5 rounded-xl bg-[#061418] border border-teal-500/30 flex flex-col gap-2.5">
+  return <div className="p-3.5 rounded-xl bg-inset border border-teal-500/30 flex flex-col gap-2.5">
     <div className="flex items-center gap-2 text-teal-400">
       <MessageSquare className="w-4 h-4 shrink-0" />
       <span className="text-[11px] font-mono tracking-wider font-semibold uppercase">GUIDED PROMPT</span>
     </div>
 
-    <p className="text-xs font-medium text-slate-200 leading-snug">{step.promptQuestion}</p>
+    <p className="lesson-prose-sm font-medium text-slate-200">{step.promptQuestion}</p>
 
     <div className="relative">
       <textarea
@@ -25,7 +25,7 @@ export const GuidedPrompt: React.FC<{
         value={answer}
         onChange={(event) => onAnswerChange(event.target.value)}
         placeholder={step.promptPlaceholder || 'Write your thoughts here...'}
-        className="w-full p-2.5 rounded-lg bg-slate-900/60 border border-slate-700/60 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-teal-400 transition-colors resize-none leading-relaxed"
+        className="w-full p-2.5 rounded-lg bg-slate-900/60 border border-slate-700/60 lesson-prose-sm text-white placeholder-slate-500 focus:outline-none focus:border-teal-400 transition-colors resize-none"
       />
 
       <div className="flex items-center justify-between text-[11px] text-slate-400 mt-1">
@@ -40,7 +40,7 @@ export const GuidedPrompt: React.FC<{
     </div>
 
     {showInsight && step.suggestedAnswer && (
-      <div className="p-2.5 rounded-lg bg-teal-950/30 border border-teal-500/30 text-xs text-teal-100 leading-relaxed animate-in fade-in duration-200">
+      <div className="p-2.5 rounded-lg bg-teal-950/30 border border-teal-500/30 lesson-prose-sm text-teal-100 animate-in fade-in duration-200">
         <div className="text-[11px] font-mono font-semibold text-teal-300 mb-0.5">AEROSPACE ENGINEERING CONTEXT:</div>
         {step.suggestedAnswer}
       </div>

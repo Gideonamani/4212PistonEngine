@@ -9,7 +9,7 @@ import React, { useMemo, useState } from 'react';
  * measured data for a real engine.
  */
 
-const panel = 'rounded-xl border border-teal-500/20 bg-[#061418] p-3 text-slate-100';
+const panel = 'rounded-xl border border-teal-500/20 bg-inset p-3 text-slate-100';
 const button = 'min-h-11 rounded-lg border border-slate-700 bg-slate-900/70 px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-teal-400 aria-pressed:border-teal-400 aria-pressed:bg-teal-500/15 aria-pressed:text-teal-200';
 const caption = 'mt-2 text-[11px] text-slate-400';
 
@@ -52,17 +52,17 @@ export function SweptVolumeDiagram() {
     </div>
     <div className="grid items-center gap-3 sm:grid-cols-[13rem_minmax(0,1fr)]">
       <svg viewBox="0 0 190 190" role="img" aria-label="Cylinder showing swept volume, clearance volume, bore and stroke" className="mx-auto h-56 w-full max-w-56 rounded-lg bg-slate-950/50">
-        <rect x={left} y={top} width={width} height={clearance + swept + 10} fill="#0c2026" stroke="#55707a" strokeWidth="3" />
-        {(view === 'clearance' || view === 'total') && <rect x={left + 1.5} y={top} width={width - 3} height={clearance} fill="#f59e0b" opacity=".45" />}
-        {(view === 'swept' || view === 'total') && <rect x={left + 1.5} y={tdcCrownY} width={width - 3} height={swept} fill="#2dd4bf" opacity=".28" />}
-        <path d={`M${left - 4} ${tdcCrownY}h${width + 8}M${left - 4} ${bdcCrownY}h${width + 8}`} stroke="#94a3b8" strokeDasharray="4 3" strokeWidth="1.5" />
-        <rect x={left + 3} y={crownY} width={width - 6} height={pistonH} rx="3" fill="#94a3b8" stroke="#e2e8f0" />
-        <path d={`M${left + width / 2} ${crownY + pistonH}v${Math.max(6, bdcCrownY + pistonH + 8 - crownY - pistonH)}`} stroke="#64748b" strokeWidth="6" strokeLinecap="round" />
-        <path d={`M${left} ${top - 10}h${width}`} stroke="#67e8f9" strokeWidth="1.5" />
-        <path d={`M${left} ${top - 14}v8M${left + width} ${top - 14}v8`} stroke="#67e8f9" strokeWidth="1.5" />
-        <path d={`M${left + width + 14} ${tdcCrownY}v${swept}`} stroke="#67e8f9" strokeWidth="1.5" />
-        <path d={`M${left + width + 10} ${tdcCrownY}h8M${left + width + 10} ${bdcCrownY}h8`} stroke="#67e8f9" strokeWidth="1.5" />
-        <g fontSize="9" fill="#cbd5e1">
+        <rect x={left} y={top} width={width} height={clearance + swept + 10} fill="var(--color-raised)" stroke="var(--color-outline)" strokeWidth="3" />
+        {(view === 'clearance' || view === 'total') && <rect x={left + 1.5} y={top} width={width - 3} height={clearance} fill="var(--color-amber-500)" opacity=".45" />}
+        {(view === 'swept' || view === 'total') && <rect x={left + 1.5} y={tdcCrownY} width={width - 3} height={swept} fill="var(--color-teal-400)" opacity=".28" />}
+        <path d={`M${left - 4} ${tdcCrownY}h${width + 8}M${left - 4} ${bdcCrownY}h${width + 8}`} stroke="var(--color-slate-400)" strokeDasharray="4 3" strokeWidth="1.5" />
+        <rect x={left + 3} y={crownY} width={width - 6} height={pistonH} rx="3" fill="var(--color-slate-400)" stroke="var(--color-slate-200)" />
+        <path d={`M${left + width / 2} ${crownY + pistonH}v${Math.max(6, bdcCrownY + pistonH + 8 - crownY - pistonH)}`} stroke="var(--color-slate-500)" strokeWidth="6" strokeLinecap="round" />
+        <path d={`M${left} ${top - 10}h${width}`} stroke="var(--color-cyan-300)" strokeWidth="1.5" />
+        <path d={`M${left} ${top - 14}v8M${left + width} ${top - 14}v8`} stroke="var(--color-cyan-300)" strokeWidth="1.5" />
+        <path d={`M${left + width + 14} ${tdcCrownY}v${swept}`} stroke="var(--color-cyan-300)" strokeWidth="1.5" />
+        <path d={`M${left + width + 10} ${tdcCrownY}h8M${left + width + 10} ${bdcCrownY}h8`} stroke="var(--color-cyan-300)" strokeWidth="1.5" />
+        <g fontSize="9" fill="var(--color-slate-300)">
           <text x={left + width / 2} y={top - 15} textAnchor="middle">bore</text>
           <text x={left + width + 22} y={tdcCrownY + swept / 2 + 3}>stroke</text>
           <text x="4" y={tdcCrownY + 3}>TDC</text><text x="4" y={bdcCrownY + 3}>BDC</text>
@@ -143,9 +143,9 @@ const loopPath = (loop: Loop, scales: ReturnType<typeof makeScales>) => `${loop.
 
 function PVAxes({ scales, r }: { scales: ReturnType<typeof makeScales>; r: number }) {
   return <g>
-    <path d={`M${PLOT.left} ${PLOT.top}V${PLOT.h - PLOT.bottom}H${PLOT.w - PLOT.right}`} stroke="#64748b" strokeWidth="1.5" fill="none" />
-    <path d={`M${scales.x(1)} ${PLOT.h - PLOT.bottom}v4M${scales.x(r)} ${PLOT.h - PLOT.bottom}v4`} stroke="#94a3b8" />
-    <g fontSize="9" fill="#94a3b8" textAnchor="middle">
+    <path d={`M${PLOT.left} ${PLOT.top}V${PLOT.h - PLOT.bottom}H${PLOT.w - PLOT.right}`} stroke="var(--color-slate-500)" strokeWidth="1.5" fill="none" />
+    <path d={`M${scales.x(1)} ${PLOT.h - PLOT.bottom}v4M${scales.x(r)} ${PLOT.h - PLOT.bottom}v4`} stroke="var(--color-slate-400)" />
+    <g fontSize="9" fill="var(--color-slate-400)" textAnchor="middle">
       <text x={scales.x(1)} y={PLOT.h - 9}>TDC</text><text x={scales.x(r)} y={PLOT.h - 9}>BDC</text>
       <text x={(PLOT.left + PLOT.w) / 2} y={PLOT.h - 0}>Volume →</text>
       <text transform={`translate(9 ${PLOT.h / 2}) rotate(-90)`}>Pressure →</text>
@@ -170,10 +170,10 @@ function PistonStrip({ v, r }: { v: number; r: number }) {
   const frac = (v - 1) / (r - 1);
   const y = 20 + frac * 60;
   return <svg viewBox="0 0 60 130" role="img" aria-label="Piston position" className="h-40 w-16 rounded-lg bg-slate-950/50">
-    <rect x="10" y="6" width="40" height="100" fill="#0c2026" stroke="#55707a" strokeWidth="2" />
-    <rect x="12" y={y} width="36" height="10" rx="2" fill="#94a3b8" stroke="#e2e8f0" />
-    <path d={`M30 ${y + 10}v${106 - y - 4}`} stroke="#64748b" strokeWidth="4" />
-    <text x="30" y="122" fontSize="8" fill="#94a3b8" textAnchor="middle">piston</text>
+    <rect x="10" y="6" width="40" height="100" fill="var(--color-raised)" stroke="var(--color-outline)" strokeWidth="2" />
+    <rect x="12" y={y} width="36" height="10" rx="2" fill="var(--color-slate-400)" stroke="var(--color-slate-200)" />
+    <path d={`M30 ${y + 10}v${106 - y - 4}`} stroke="var(--color-slate-500)" strokeWidth="4" />
+    <text x="30" y="122" fontSize="8" fill="var(--color-slate-400)" textAnchor="middle">piston</text>
   </svg>;
 }
 
@@ -195,11 +195,11 @@ export function OttoPVDiagram({ startPractical = false }: { startPractical?: boo
     <div className="grid items-start gap-3 sm:grid-cols-[minmax(0,1fr)_4rem]">
       <svg viewBox={`0 0 ${PLOT.w} ${PLOT.h}`} role="img" aria-label={`${mode} Otto cycle pressure-volume diagram`} className="mx-auto max-h-64 w-full rounded-lg bg-slate-950/50">
         <PVAxes scales={scales} r={r} />
-        {mode === 'practical' && <path d={loopPath(ideal, scales)} fill="none" stroke="#64748b" strokeWidth="1.5" strokeDasharray="4 3" />}
-        <path d={loopPath(active, scales)} fill="rgba(45,212,191,.10)" stroke="#2dd4bf" strokeWidth="2" />
-        <path d={pathOf(active[process], scales)} fill="none" stroke="#f59e0b" strokeWidth="3.5" />
-        <circle cx={scales.x(point[0])} cy={scales.y(point[1])} r="5" fill="#f59e0b" stroke="#fff" strokeWidth="1.5" />
-        <g fontSize="10" fill="#e2e8f0" fontWeight="700">
+        {mode === 'practical' && <path d={loopPath(ideal, scales)} fill="none" stroke="var(--color-slate-500)" strokeWidth="1.5" strokeDasharray="4 3" />}
+        <path d={loopPath(active, scales)} fill="var(--color-teal-400)" fillOpacity=".1" stroke="var(--color-teal-400)" strokeWidth="2" />
+        <path d={pathOf(active[process], scales)} fill="none" stroke="var(--color-amber-500)" strokeWidth="3.5" />
+        <circle cx={scales.x(point[0])} cy={scales.y(point[1])} r="5" fill="var(--color-amber-500)" stroke="#fff" strokeWidth="1.5" />
+        <g fontSize="10" fill="var(--color-slate-200)" fontWeight="700">
           <text x={scales.x(ideal[0][0][0]) - 12} y={scales.y(1) + 3}>1</text>
           <text x={scales.x(1) + 6} y={scales.y(ideal[1][0][1]) - 2}>2</text>
           <text x={scales.x(1) + 6} y={scales.y(ideal[1][SAMPLES][1]) + 8}>3</text>
@@ -226,10 +226,10 @@ export function DieselOttoCompare() {
     <div className="mb-3 flex gap-1.5">{items.map((item) => <button key={item.key} type="button" className={button} aria-pressed={show === item.key} onClick={() => setShow(item.key)}>{item.label}</button>)}</div>
     <svg viewBox={`0 0 ${PLOT.w} ${PLOT.h}`} role="img" aria-label="Otto and Diesel cycle pressure-volume diagrams" className="mx-auto max-h-64 w-full rounded-lg bg-slate-950/50">
       <PVAxes scales={scales} r={r} />
-      {(show === 'both' || show === 'otto') && <path d={loopPath(otto, scales)} fill="rgba(45,212,191,.08)" stroke="#2dd4bf" strokeWidth="2" />}
-      {(show === 'both' || show === 'diesel') && <path d={loopPath(diesel, scales)} fill="rgba(245,158,11,.08)" stroke="#f59e0b" strokeWidth="2" />}
-      {(show === 'both' || show === 'otto') && <path d={pathOf(otto[1], scales)} fill="none" stroke="#5eead4" strokeWidth="4" />}
-      {(show === 'both' || show === 'diesel') && <path d={pathOf(diesel[1], scales)} fill="none" stroke="#fbbf24" strokeWidth="4" />}
+      {(show === 'both' || show === 'otto') && <path d={loopPath(otto, scales)} fill="var(--color-teal-400)" fillOpacity=".08" stroke="var(--color-teal-400)" strokeWidth="2" />}
+      {(show === 'both' || show === 'diesel') && <path d={loopPath(diesel, scales)} fill="var(--color-amber-500)" fillOpacity=".08" stroke="var(--color-amber-500)" strokeWidth="2" />}
+      {(show === 'both' || show === 'otto') && <path d={pathOf(otto[1], scales)} fill="none" stroke="var(--color-teal-300)" strokeWidth="4" />}
+      {(show === 'both' || show === 'diesel') && <path d={pathOf(diesel[1], scales)} fill="none" stroke="var(--color-amber-400)" strokeWidth="4" />}
     </svg>
     <div className="mt-2 flex flex-wrap gap-3 text-[11px]"><span className="text-teal-300">■ Otto: heat added at constant volume (vertical line)</span><span className="text-amber-300">■ Diesel: heat added at constant pressure (flat line)</span></div>
     <label className="mt-3 block text-xs font-semibold text-slate-300" htmlFor="diesel-cr">Compression ratio (schematic): {r}:1</label>
@@ -263,15 +263,15 @@ export function ValveTimingDiagram() {
   const marks: { id: string; a: number; y: number }[] = [{ id: 'A', a: INTAKE_OPENS, y: 62 }, { id: 'B', a: INTAKE_CLOSES, y: 62 }, { id: 'C', a: EXHAUST_OPENS, y: 90 }, { id: 'D', a: EXHAUST_CLOSES, y: 90 }];
   return <div className={panel}>
     <svg viewBox="0 0 600 136" role="img" aria-label="Valve timing chart for one four-stroke cycle" className="w-full rounded-lg bg-slate-950/50">
-      {bands.map((band, i) => <g key={band.name}><rect x={chartX(band.from)} y="6" width={chartX(180) - chartX(0)} height="20" fill={i % 2 ? '#132b31' : '#0e2228'} stroke="#1e3a42" /><text x={chartX(band.from + 90)} y="21" fontSize="14" fill={band.name === stroke ? '#5eead4' : '#94a3b8'} textAnchor="middle" fontWeight={band.name === stroke ? 700 : 400}>{band.name}</text></g>)}
-      {segments([[0, INTAKE_CLOSES], [INTAKE_OPENS, 720]], 48, '#2dd4bf')}
-      {segments([[0, EXHAUST_CLOSES], [EXHAUST_OPENS, 720]], 76, '#fb923c')}
-      <rect x={chartX(INTAKE_OPENS)} y="46" width={chartX(720) - chartX(INTAKE_OPENS)} height="52" fill="#fde68a" opacity=".22" />
-      <rect x={chartX(0)} y="46" width={chartX(EXHAUST_CLOSES) - chartX(0)} height="52" fill="#fde68a" opacity=".22" />
-      <g fontSize="14" fill="#e2e8f0" stroke="#061418" strokeWidth="3" paintOrder="stroke" fontWeight="600"><text x={chartX(240)} y="62">Intake valve</text><text x={chartX(240)} y="90">Exhaust valve</text></g>
-      {marks.map((mark) => <g key={mark.id}><circle cx={chartX(mark.a)} cy={mark.y - 4} r="8" fill="#0f172a" stroke="#f8fafc" /><text x={chartX(mark.a)} y={mark.y - 0.5} fontSize="11" fill="#f8fafc" textAnchor="middle" fontWeight="700">{mark.id}</text></g>)}
-      <path d={`M${chartX(angle)} 4V108`} stroke="#f8fafc" strokeWidth="2" />
-      <g fontSize="13" fill="#94a3b8" textAnchor="middle"><text x={chartX(0)} y="126" textAnchor="start">TDC</text><text x={chartX(180)} y="126">BDC</text><text x={chartX(360)} y="126">TDC</text><text x={chartX(540)} y="126">BDC</text><text x={chartX(720)} y="126" textAnchor="end">TDC</text></g>
+      {bands.map((band, i) => <g key={band.name}><rect x={chartX(band.from)} y="6" width={chartX(180) - chartX(0)} height="20" fill={i % 2 ? 'var(--color-raised)' : 'var(--color-inset)'} stroke="var(--color-outline-soft)" /><text x={chartX(band.from + 90)} y="21" fontSize="14" fill={band.name === stroke ? 'var(--color-teal-300)' : 'var(--color-slate-400)'} textAnchor="middle" fontWeight={band.name === stroke ? 700 : 400}>{band.name}</text></g>)}
+      {segments([[0, INTAKE_CLOSES], [INTAKE_OPENS, 720]], 48, 'var(--color-teal-400)')}
+      {segments([[0, EXHAUST_CLOSES], [EXHAUST_OPENS, 720]], 76, 'var(--color-orange-400)')}
+      <rect x={chartX(INTAKE_OPENS)} y="46" width={chartX(720) - chartX(INTAKE_OPENS)} height="52" fill="var(--color-amber-200)" opacity=".22" />
+      <rect x={chartX(0)} y="46" width={chartX(EXHAUST_CLOSES) - chartX(0)} height="52" fill="var(--color-amber-200)" opacity=".22" />
+      <g fontSize="14" fill="var(--color-slate-200)" stroke="var(--color-inset)" strokeWidth="3" paintOrder="stroke" fontWeight="600"><text x={chartX(240)} y="62">Intake valve</text><text x={chartX(240)} y="90">Exhaust valve</text></g>
+      {marks.map((mark) => <g key={mark.id}><circle cx={chartX(mark.a)} cy={mark.y - 4} r="8" fill="var(--color-slate-900)" stroke="var(--color-slate-50)" /><text x={chartX(mark.a)} y={mark.y - 0.5} fontSize="11" fill="var(--color-slate-50)" textAnchor="middle" fontWeight="700">{mark.id}</text></g>)}
+      <path d={`M${chartX(angle)} 4V108`} stroke="var(--color-slate-50)" strokeWidth="2" />
+      <g fontSize="13" fill="var(--color-slate-400)" textAnchor="middle"><text x={chartX(0)} y="126" textAnchor="start">TDC</text><text x={chartX(180)} y="126">BDC</text><text x={chartX(360)} y="126">TDC</text><text x={chartX(540)} y="126">BDC</text><text x={chartX(720)} y="126" textAnchor="end">TDC</text></g>
     </svg>
     <input aria-label="Crank angle" className="h-11 w-full accent-teal-400" type="range" min="0" max="719" value={angle} onChange={(event) => setAngle(Number(event.target.value))} />
     <p className="mt-2 text-xs text-slate-300"><strong className="text-white">{stroke} stroke · crank angle {angle}°.</strong> Intake valve {intake ? 'open' : 'closed'}; exhaust valve {exhaust ? 'open' : 'closed'}{intake && exhaust ? ' - both open: valve overlap.' : '.'}</p>
@@ -367,24 +367,24 @@ export function CylinderNumberingDiagram({ startFiring = false }: { startFiring?
       <button type="button" className={button} aria-pressed={mode === 'firing'} onClick={() => setMode('firing')}>Firing order</button>
     </div>
     <svg viewBox="0 0 320 200" role="img" aria-label="Top view of the six-cylinder opposed engine showing cylinder numbers" className="mx-auto max-h-64 w-full rounded-lg bg-slate-950/50">
-      <path d="M30 100H290" stroke="#64748b" strokeWidth="6" strokeLinecap="round" />
-      <rect x="50" y="88" width="216" height="24" rx="6" fill="#132b31" stroke="#55707a" />
+      <path d="M30 100H290" stroke="var(--color-slate-500)" strokeWidth="6" strokeLinecap="round" />
+      <rect x="50" y="88" width="216" height="24" rx="6" fill="var(--color-raised)" stroke="var(--color-outline)" />
       {Object.entries(CYLINDER_PLACES).map(([key, place]) => {
         const id = Number(key);
         const active = mode === 'firing' && id === firing;
         const upcoming = mode === 'firing' && id === next;
         return <g key={id}>
-          <rect x={place.x} y={place.y} width="30" height="56" rx="5" fill={active ? '#f59e0b' : '#1e3a42'} stroke={active ? '#fde68a' : upcoming ? '#5eead4' : '#94a3b8'} strokeWidth={active || upcoming ? 3 : 1.5} />
-          <text x={place.x + 15} y={place.y + (id % 2 ? 36 : 24)} textAnchor="middle" fontSize="20" fontWeight="700" fill={active ? '#111827' : '#e2e8f0'}>{id}</text>
+          <rect x={place.x} y={place.y} width="30" height="56" rx="5" fill={active ? 'var(--color-amber-500)' : 'var(--color-outline-soft)'} stroke={active ? 'var(--color-amber-200)' : upcoming ? 'var(--color-teal-300)' : 'var(--color-slate-400)'} strokeWidth={active || upcoming ? 3 : 1.5} />
+          <text x={place.x + 15} y={place.y + (id % 2 ? 36 : 24)} textAnchor="middle" fontSize="20" fontWeight="700" fill={active ? '#111827' : 'var(--color-slate-200)'}>{id}</text>
         </g>;
       })}
-      <g fontSize="12" fill="#94a3b8">
+      <g fontSize="12" fill="var(--color-slate-400)">
         <text x="8" y="14">Right bank (odd)</text>
         <text x="8" y="196">Left bank (even)</text>
         <text x="8" y="100" fontSize="10">FRONT</text>
         <text x="292" y="100" fontSize="10">REAR</text>
       </g>
-      <text x="160" y="103" textAnchor="middle" fontSize="10" fill="#94a3b8">crankshaft</text>
+      <text x="160" y="103" textAnchor="middle" fontSize="10" fill="var(--color-slate-400)">crankshaft</text>
     </svg>
     {mode === 'numbering'
       ? <p className="mt-2 text-xs leading-relaxed text-slate-300">Numbered from the rear (accessory end): No. 1 is the right rear cylinder, No. 2 the left rear, then forward in pairs. Odd numbers are on the right and even on the left, as seen from the rear. Notice the left bank sits slightly forward of the right, so each connecting rod has its own crankpin.</p>

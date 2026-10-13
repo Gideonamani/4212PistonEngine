@@ -19,7 +19,7 @@ export const ModelPicker: React.FC<{ active: string; models: string[]; onSelect?
       {open && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
-          <div className="absolute left-0 top-full mt-2 w-72 rounded-2xl bg-[#091b22]/98 backdrop-blur-xl border border-teal-500/40 shadow-2xl p-1.5 z-50 flex flex-col gap-1">
+          <div className="absolute left-0 top-full mt-2 w-72 rounded-2xl bg-panel/98 backdrop-blur-xl border border-teal-500/40 shadow-2xl p-1.5 z-50 flex flex-col gap-1">
             <div className="px-3 py-1.5 text-[11px] font-mono text-teal-400 font-bold uppercase tracking-wider border-b border-teal-500/20">Select 3D Engine Assembly</div>
             {models.map((model) => (
               <button

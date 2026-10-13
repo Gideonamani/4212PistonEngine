@@ -10,6 +10,10 @@ test.describe.configure({ mode: 'serial' });
 
 const STORAGE_KEY = '4212-lesson-focus-mode';
 const SWITCH = 'How the highlighted part is shown';
+// The steps after the spotlight step are counted from its own position, so the test follows the lesson when a step is added before it.
+// In the lesson the next step spotlights other parts of the same model, the one after is a picture, and the one after that is a spotlight again.
+const FIRST = Number(SPOTLIGHT_STEP.split('/').pop());
+const stepOf = (n: number) => new RegExp(`Step ${n} of \\d+`);
 
 test('a spotlight step offers three ways to show the part, and the choice carries to the next steps', async ({ page, problems }) => {
   test.setTimeout(240_000);
@@ -30,18 +34,18 @@ test('a spotlight step offers three ways to show the part, and the choice carrie
   await expect(viewer.getByText(/Colours the part/)).toBeVisible();
   await expect.poll(async () => (await canvas.screenshot()).equals(asXray), { message: 'choosing Highlight should redraw the model' }).toBe(false);
 
-  // Step 5 spotlights other parts of the same model: the choice holds, and the model is not reloaded.
+  // The next step spotlights other parts of the same model: the choice holds, and the model is not reloaded.
   await page.getByRole('button', { name: /Next Step/ }).click();
-  await expect(page.getByText(/Step 5 of \d+/)).toBeVisible();
+  await expect(page.getByText(stepOf(FIRST + 1))).toBeVisible();
   await expect(viewer.getByRole('status')).toHaveCount(0);
   await expect(group.getByRole('button', { name: 'Highlight' })).toHaveAttribute('aria-pressed', 'true');
 
-  // Step 6 is a picture: the viewer is tucked away, then comes back at step 7 still on Highlight.
+  // Then a picture: the viewer is tucked away, then comes back at the step after it, still on Highlight.
   await page.getByRole('button', { name: /Next Step/ }).click();
-  await expect(page.getByText(/Step 6 of \d+/)).toBeVisible();
+  await expect(page.getByText(stepOf(FIRST + 2))).toBeVisible();
   await expect(viewer).toBeHidden();
   await page.getByRole('button', { name: /Next Step/ }).click();
-  await expect(page.getByText(/Step 7 of \d+/)).toBeVisible();
+  await expect(page.getByText(stepOf(FIRST + 3))).toBeVisible();
   await expect(viewer.getByRole('status')).toHaveCount(0);
   await expect(group.getByRole('button', { name: 'Highlight' })).toHaveAttribute('aria-pressed', 'true');
   expect(await page.locator('canvas').count(), 'one canvas, not one per step').toBe(1);
@@ -65,7 +69,7 @@ test('a choice made on an earlier visit is already in force when the model appea
 });
 
 // The cross-section controls that join the spotlight bar: a checkbox that cuts the model, and a picker of the three standard planes plus
-// the plane a step recommends (its `sectionPlane`). Lesson 09 step 2 recommends "Valve axis"; step 4 spotlights springs and names none.
+// the plane a step recommends (its `sectionPlane`). Lesson 08 step 2 recommends "Valve axis"; step 4 spotlights springs and names none.
 const SECTION_STEP = '#/learn/valve-train-and-power/valve-operating/step/2';
 
 test('a spotlight step offers a cross section: a checkbox, and a picker with the plane the step recommends', async ({ page, problems }) => {

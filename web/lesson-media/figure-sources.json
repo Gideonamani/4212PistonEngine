@@ -118,5 +118,35 @@
     "page": 435,
     "box": [0.04, 0.683, 0.96, 0.905],
     "width": 1100
+  },
+  "faa-cylinder-cutaway": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 35,
+    "box": [0.515, 0.452, 0.915, 0.89],
+    "width": 900
+  },
+  "faa-finned-cylinder": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 35,
+    "box": [0.083, 0.523, 0.475, 0.89],
+    "width": 900
+  },
+  "faa-valve-timing-chart": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 47,
+    "box": [0.512, 0.056, 0.918, 0.392],
+    "width": 1000
+  },
+  "faa-cam-ring-table": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 41,
+    "box": [0.09, 0.055, 0.5, 0.172],
+    "width": 1000
+  },
+  "faa-valve-spring-tester": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 380,
+    "box": [0.505, 0.372, 0.915, 0.878],
+    "width": 700
   }
 }

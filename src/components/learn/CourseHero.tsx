@@ -58,11 +58,12 @@ const Description: React.FC<{ text: string }> = ({ text }) => {
 
 /** The top of a course page: the banner with the title on it, the description, a few facts, and the button that starts or resumes the course. */
 export const CourseHero: React.FC<CourseHeroProps> = ({ track, progress, actionLabel, onAction }) => (
-  <section aria-labelledby="course-title" className="relative overflow-hidden rounded-2xl border border-teal-500/35 bg-gradient-to-br from-[#081a20] via-[#07171d] to-[#040e13] shadow-xl shadow-black/50">
+  <section aria-labelledby="course-title" className="relative overflow-hidden rounded-2xl border border-teal-500/35 bg-gradient-to-br from-raised via-panel to-inset shadow-xl shadow-black/50">
     {track.banner && (
       <div className="relative aspect-[2/1] w-full bg-slate-950">
         <CardThumbnail src={track.banner} />
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#040e13]/95 via-[#040e13]/55 to-transparent px-4 pb-2.5 pt-10">
+        {/* The title sits on a photo, so this scrim and its white title stay dark-themed whatever the page theme. */}
+        <div className="stay-dark absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#040e13]/95 via-[#040e13]/55 to-transparent px-4 pb-2.5 pt-10">
           <CourseTitle title={track.title} onImage />
         </div>
       </div>

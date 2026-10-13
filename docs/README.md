@@ -13,6 +13,7 @@ publish), then `AGENTS.md` (storage and validation rules), then the guides here.
 | [README.md](README.md) | index | This index. |
 | [ROADMAP.md](ROADMAP.md) | guide | Milestones, what is done and what is next. |
 | [lesson-and-assessment-architecture.md](lesson-and-assessment-architecture.md) | guide | How lesson packs, steps, checks and progress are structured, with the decisions behind them. |
+| [lesson-objectives.md](lesson-objectives.md) | guide | What each of the 18 lessons is for and what a learner should be able to do at its end, in the instructor's words, generated from the lesson packs by `scripts/build_objectives_guide.mjs`. |
 | [explore-mode-content-architecture.md](explore-mode-content-architecture.md) | guide | The component and group tree behind Explore mode. |
 | [explore-section-isolation.md](explore-section-isolation.md) | guide | Section faces and sub-assembly isolation in Explore. |
 | [mode-shell-viewer-separation.md](mode-shell-viewer-separation.md) | guide | The shared 3D viewer and how the app shell uses it. |
@@ -48,6 +49,7 @@ publish), then `AGENTS.md` (storage and validation rules), then the guides here.
 | [valve-train-review.md](valve-train-review.md) | record | Valve-train motion preparation, 10 September 2026. |
 | [wright-reconstruction-lessons.md](wright-reconstruction-lessons.md) | record | Adding the 413-part Wright engine to Explore: what went wrong, what we built, what the engineering skills now ask for, 6 October 2026. |
 | [langley-reconstruction-notes.md](langley-reconstruction-notes.md) | record | Adding the 358-part Langley / Manly-Balzer radial to Explore: what the sources contradicted, what broke, what the next engine should start from, 7 October 2026. |
+| [lesson-coverage-audit-2026-10-12.md](lesson-coverage-audit-2026-10-12.md) | record | Each lesson read against the instructor's outcomes: what is covered, partial and missing, and the order for the rework, 12 October 2026. |
 
 Other folders: `docs/decisions/` holds numbered decision records, `docs/operations/` operating notes, `docs/paper-mockups/` and
 `docs/ui-concepts/` design references.

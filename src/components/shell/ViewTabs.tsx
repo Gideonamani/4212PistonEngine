@@ -34,7 +34,7 @@ export const HeaderTabs: React.FC<TabsProps> = ({ activeView, onViewChange }) =>
 
 /** The bottom bar of three modes, for screens narrower than the md breakpoint. */
 export const BottomTabs: React.FC<TabsProps> = ({ activeView, onViewChange }) => (
-  <nav className="md:hidden relative z-40 bg-[#061014]/95 backdrop-blur-md border-t border-teal-500/20 py-2 px-6 shrink-0">
+  <nav className="md:hidden relative z-40 bg-canvas/95 backdrop-blur-md border-t border-teal-500/20 py-2 px-6 shrink-0">
     <div className="grid grid-cols-3 items-center">
       {VIEW_TABS.map(({ view, icon: Icon, shortLabel }) => (
         <button

@@ -1,4 +1,4 @@
-# Accessories & Drives — Lesson 8
+# Accessories & Drives — Lesson 9
 
 This release adds an independent GTSIO-520-H accessory teaching study. The shape-review revision replaces the initial schematic with 80 drawing-led engine/interface studies, explicitly labelled function markers and three grey teaching fixtures; see [the feature audit](accessory-shape-review.md). Existing engine masters, cylinder geometry, hydraulic tappet and IO-520 permold pump remain separate assets. The working tree was clean before the revision; applicable project AGENTS.md storage/validation instructions were read and local originals backed up.
 
@@ -6,7 +6,7 @@ This release adds an independent GTSIO-520-H accessory teaching study. The shape
 
 The byte-hashed source record and claim locators are in `accessory-reference-ledger.json`. The reviewed PDF is the DigiMan deliverable, not the earlier editable draft. Its H difference-data introduction (PDF 151, C-3-1) applies the basic procedures except stated differences, and specifically replaces the fuel/induction coverage. Figures A-4-8, A-4-11, A-4-13, A-4-15 and A-4-16 were visually inspected alongside their captions. The H drive tables (PDF 152–153) were checked against page images, including the rotation footnote.
 
-The final curriculum plan identifies Lesson 8 as Accessories & Drives, absorbing ignition. The older **Day 8** Word plan is a practical/group-presentation/review day; its inspection and explanation outcomes inform the activities, but it does not define this lesson number. Existing parked ignition material was studied and the source-backed wiring figure reused without removing the parked lesson.
+The final curriculum plan identifies Lesson 9 as Accessories & Drives, absorbing ignition. It follows Valve Operating (lesson 8), which introduced the camshaft drive, and is part of the Valve Train, Accessories & Power Generation course (`web/valve-train-and-power-lessons.json`); the lesson text is edited there. The older **Day 8** Word plan is a practical/group-presentation/review day; its inspection and explanation outcomes inform the activities, but it does not define this lesson number. Existing parked ignition material was studied and the source-backed wiring figure reused without removing the parked lesson.
 
 | Drive | Source path | H drive/crank ratio | Direction and boundary |
 |---|---|---|---|
@@ -42,7 +42,6 @@ Rebuild from the repository directory:
 ```powershell
 & 'C:\Program Files\FreeCAD 1.1\bin\python.exe' scripts/build_accessory_study.py
 & 'C:\Program Files\Blender Foundation\Blender 5.0\blender.exe' --background --python-exit-code 1 --python scripts/rig_accessory_study.py
-python scripts/publish_accessory_lesson.py
 python scripts/publish_study_metadata.py
 npm run lint
 npm test
@@ -59,7 +58,7 @@ Run `python scripts/fetch_drive_assets.py` before asset-dependent tests on a fre
 
 ## Teaching and viewer integration
 
-Lesson 8 has 16 steps and eight knowledge checks: identification, power tracing, prediction, operation, interface inspection and explaining consequences. Existing dual-ignition wiring is reused; H 20° BTC is distinguished from illustrative cylinder poses. Three fault questions are explicitly hypothetical and do not claim a measured fault response.
+Lesson 9 has 16 steps and eight knowledge checks: identification, power tracing, prediction, operation, interface inspection and explaining consequences. Existing dual-ignition wiring is reused; H 20° BTC is distinguished from illustrative cylinder poses. Three fault questions are explicitly hypothetical and do not claim a measured fault response.
 
 The existing animated-study adapter owns pause/scrub, selection, isolation, clipping, appearance and disposal. Lesson Steps exposes the same controls for this model. Complete-path groups overlap intentionally so shared crank/cam parts are included with each accessory. Search filters never truncate group isolation. Path highlights and output rotation arrows follow moving parts, including exploded states; dashed lines identify conceptual connectivity, not physical shafts. Verified ratios and a 1000-crank-RPM example appear in a wrapping, scrollable panel for phones. A visible notice names the alternator, optional vacuum and governor as separate relocated displays with omitted engine connections; it disappears when none of those modules is visible.
 

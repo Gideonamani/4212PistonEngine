@@ -53,6 +53,78 @@ test.describe('Valve Operating: lift and duration', () => {
   });
 });
 
+test.describe('Accessories and Drives: the gear explorer', () => {
+  const GEAR_STEP = '#/learn/valve-train-and-power/accessories-and-drives/step/6';
+
+  test('the driven speed follows the teeth, and an idler turns it the same way without changing the ratio', async ({ page, problems }) => {
+    await page.goto(`/${GEAR_STEP}`);
+    await appReady(page);
+    await expect(page.getByRole('heading', { name: 'Try the gear explorer' })).toBeVisible();
+    const driver = page.getByRole('slider', { name: 'Turn the driver gear' });
+    const summary = page.getByText(/^Driver [\d.]+ turns? · driven/);
+
+    // A 12-tooth driver and a 24-tooth driven gear: one turn of the driver is half a turn of the driven gear, the other way.
+    await driver.fill('360');
+    await expect(summary).toContainText('Driver 1 turn · driven 0.5 turns, the opposite way');
+    await expect(page.getByText('12 ÷ 24 = 0.5')).toBeVisible();
+    await expect(page.getByText('1,200 rpm')).toBeVisible();
+
+    // A 36-tooth driven gear takes three turns of the driver to turn once.
+    await page.getByRole('group', { name: 'Driven teeth' }).getByRole('button', { name: '36 teeth' }).click();
+    await driver.fill('1080');
+    await expect(summary).toContainText('Driver 3 turns · driven 1 turn, the opposite way');
+    await expect(page.getByText('The driven gear turns slower than the driver.')).toBeVisible();
+
+    // The idler brings the direction back and leaves the ratio alone.
+    await page.getByRole('button', { name: 'Add an idler' }).click();
+    await expect(page.getByRole('button', { name: '18-tooth idler in place' })).toHaveAttribute('aria-pressed', 'true');
+    await expect(summary).toContainText('Driver 3 turns · driven 1 turn, the same way');
+    await expect(page.getByText('12 ÷ 36 = 0.333')).toBeVisible();
+    await expect(page.getByText('does not change the ratio')).toBeVisible();
+
+    // A bigger driver makes the driven gear faster.
+    await page.getByRole('group', { name: 'Driver teeth' }).getByRole('button', { name: '36 teeth' }).click();
+    await page.getByRole('group', { name: 'Driven teeth' }).getByRole('button', { name: '12 teeth' }).click();
+    await expect(page.getByText('The driven gear turns faster than the driver.')).toBeVisible();
+    await expectNoHorizontalOverflow(page);
+    await expectAccessibleAndTouchable(page, 'gear explorer');
+    problems.assertNone();
+  });
+});
+
+test.describe('Power Generation: the energy chain', () => {
+  const CHAIN_STEP = '#/learn/valve-train-and-power/power-generation/step/2';
+
+  test('the walk goes from the fuel to thrust and shows where the heat goes', async ({ page, problems }) => {
+    await page.goto(`/${CHAIN_STEP}`);
+    await appReady(page);
+    await expect(page.getByRole('heading', { name: 'Walk the energy chain', level: 2 })).toBeVisible();
+    const stages = page.getByRole('list', { name: 'The stages of the energy chain' });
+    await expect(stages.getByRole('button')).toHaveCount(9);
+    await expect(page.getByText('Stage 1 of 9')).toBeVisible();
+    await expect(page.getByText('15,560,000 ft-lb')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Previous stage' })).toBeDisabled();
+
+    await page.getByRole('button', { name: 'Next stage' }).click();
+    await expect(page.getByText('Stage 2 of 9')).toBeVisible();
+    await expect(page.getByText('Where the heat goes, in percent of the heat produced')).toBeVisible();
+    await expect(page.getByText('40 to 45')).toBeVisible();
+
+    await stages.getByRole('button', { name: /Shaft power/ }).click();
+    await expect(page.getByText('Stage 7 of 9')).toBeVisible();
+    await expect(page.getByText('as much as 10 to 15 percent')).toBeVisible();
+    await expect(page.getByText('Where the heat goes, in percent of the heat produced')).toHaveCount(0);
+
+    await stages.getByRole('button', { name: /Thrust/ }).click();
+    await expect(page.getByText('Stage 9 of 9')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Next stage' })).toBeDisabled();
+    await expect(page.getByText('Becomes the next stage through')).toHaveCount(0);
+    await expectNoHorizontalOverflow(page);
+    await expectAccessibleAndTouchable(page, 'energy chain');
+    problems.assertNone();
+  });
+});
+
 test.describe('Factors Affecting Power: air available', () => {
   const AIR_STEP = '#/learn/breathing-and-performance/factors-affecting-power/step/2';
 
@@ -62,9 +134,11 @@ test.describe('Factors Affecting Power: air available', () => {
     await expect(page.getByRole('heading', { name: 'Air available' })).toBeVisible();
     const bar = page.getByRole('img', { name: /Air available to burn: [\d.]+ percent/ });
     await expect(bar).toHaveAccessibleName('Air available to burn: 100 percent of a standard sea-level day');
+    await expect(page.getByText('Density altitude: about 0 ft.')).toBeVisible();
 
     await page.getByRole('button', { name: 'Hot, humid day at sea level' }).click();
     await expect(bar).toHaveAccessibleName('Air available to burn: 89.4 percent of a standard sea-level day');
+    await expect(page.getByText(/Density altitude: about [1-9][\d,]* ft\./)).toBeVisible();
 
     await page.getByRole('button', { name: 'Standard day, sea level' }).click();
     await page.getByLabel(/^Altitude/).fill('5000');

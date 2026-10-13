@@ -12,7 +12,7 @@
       "tier": 1,
       "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
       "path": "Notes/amt_powerplant_handbook 2023.pdf",
-      "applicability": "Primary source for the general principles in this course. PDF page locators are used in step notes."
+      "applicability": "Primary source for valve construction, the valve-operating mechanism, hydraulic tappets, valve clearance and valve inspection. PDF page locators are used in step notes. Used in lesson 13 for: the air-fuel mixture, best power and best economy mixtures and the effect of altitude on the carburettor mixture (PDF pp. 84 to 86 and 401); manifold pressure, rpm and engine air consumption (PDF pp. 50 and 403); the harm of excess engine heat and of running too cold (PDF pp. 278 to 279); and the glossary entry for density altitude (PDF p. 467)."
     },
     {
       "id": "easa-module16",
@@ -26,7 +26,7 @@
       "tier": 3,
       "title": "Continental GTSIO-520 Series Overhaul Manual X30045A",
       "path": "Notes/gtsio520_series.pdf",
-      "applicability": "Configuration-specific source for the course reference engine. Chapter B (table of limits, March 1981) covers the series; Chapter C-3 is the difference data for the -H. Variant applicability must be checked before using a limit, dimension or maintenance instruction; always use the current data for the engine in front of you."
+      "applicability": "Configuration-specific source for the course reference engine: its valve mechanism, camshaft, hydraulic tappets, inspection, overhaul replacement list and spring test data. The Chapter B table of limits is dated March 1981 and covers the series; Chapter C-3 (the -H) lists no different valve spring. Always use the current data for the engine in front of you. Used in lesson 12 for the -H leading particulars: the detail engine specifications on PDF pp. 152 and 153 (page C-3-2 and C-3-3)."
     },
     {
       "id": "course-deck-2026-05",
@@ -34,6 +34,27 @@
       "title": "Aircraft Piston Engine Slides - 21 May 2026 (instructor course deck)",
       "path": "Notes/Aircraft Piston Engine Slides - 21May2026.pptx",
       "applicability": "Instructor-authored course slides. Used only where the handbook, EASA text and manuals are silent. Carries no independent evidence; claims here need the instructor's confirmation."
+    },
+    {
+      "id": "openstax-work-power",
+      "tier": 5,
+      "title": "University Physics Volume 1, 7.4 Power - OpenStax",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/7-4-power",
+      "applicability": "Power as the rate of doing work, measured in watts (joules per second), and the conversion 1 hp = 746 W (also in Appendix B, with 550 ft-lb/s). Licence: CC BY 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "nist-sp811-appendix-b",
+      "tier": 5,
+      "title": "NIST Guide for the Use of the International System of Units (SP 811), Appendix B.8: factors for units listed by kind of quantity",
+      "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8",
+      "applicability": "Conversion factors: 1 in = 0.0254 m exactly; 1 lb = 0.4535924 kg; 1 cu in = 1.638706 x 10^-5 m3; 1 hp (550 ft-lbf/s) = 745.6999 W, and 1 electric hp = 746 W exactly; 1 psi = 6.894757 kPa; 1 inch of mercury at 32 F = 3.38638 kPa. Facts only, no text copied; accessed 13 October 2026."
+    },
+    {
+      "id": "tcm-io520-maintenance",
+      "tier": 3,
+      "title": "IO-520 Permold Series Engine Maintenance Manual, Publication M-11, Continental Motors (August 2011)",
+      "path": "Notes/TCM-IO520-MaintManual.pdf",
+      "applicability": "Comparison engine only, a different engine from the GTSIO-520-H. PDF p. 13 (printed 1-9) gives the specifications of the IO-520-B, -BA, -BB, -C, -CB, -M and -MB: six cylinders, bore 5.25 in, stroke 4.00 in, 520 cubic inches, compression ratio 8.5:1, firing order 1-6-3-2-5-4, rated maximum continuous operation 285 brake horsepower at 2700 rpm, oil sump 12 quarts, ignition 22 degrees BTC. Confirm applicability before using any value."
     }
   ],
   "lessons": [
@@ -43,13 +64,35 @@
       "sequenceNumber": 11,
       "title": "Induction & Exhaust",
       "objective": "Follow the air through the induction system and the burned gas through the exhaust: compare natural aspiration with supercharging and turbocharging, trace the GTSIO-520-H induction path, name the kinds of exhaust system, and recognise the hazards and inspections that go with them.",
+      "purpose": "Explain how the engine breathes before combustion and disposes of combustion products afterward.",
+      "outcomes": [
+        "Trace induction air from the atmosphere to the engine cylinder.",
+        "Explain the purpose of induction filters, ducts and manifolds.",
+        "Explain how induction air is distributed between cylinders.",
+        "Explain why air quantity and air density affect combustion and power.",
+        "Distinguish naturally aspirated and boosted induction systems.",
+        "Explain the basic principle of supercharging.",
+        "Explain the basic principle of turbocharging.",
+        "Explain how exhaust-gas energy can be used to drive a turbocharger.",
+        "Identify the turbine, compressor, wastegate and intercooler where fitted.",
+        "Trace exhaust gases from the cylinder to atmosphere.",
+        "Describe the purpose of an exhaust manifold.",
+        "Explain the general arrangement of an opposed-engine exhaust system.",
+        "Explain the arrangement of a radial-engine exhaust system.",
+        "Describe the functions of exhaust mufflers and heat exchangers.",
+        "Explain how exhaust-system heat may be used for cabin heating.",
+        "Explain exhaust back pressure and its influence on engine operation.",
+        "Recognise the relationship between exhaust and induction behaviour.",
+        "Explain the dangers of exhaust leakage and carbon-monoxide contamination."
+      ],
+      "syllabusNote": "The source specifically requires exhaust manifolds, radial-engine exhaust arrangements, mufflers/heat exchangers and exhaust back pressure.",
       "reviewStatus": "unreviewed",
       "models": [
         "cylinder"
       ],
       "listed": true,
       "scheduledDay": 5,
-      "completionCriteria": "Trace the air from the scoop to the cylinder and the gas from the cylinder to the tailpipe, say what drives a turbocharger and what a waste gate does, explain normalizing and critical altitude, and name three things to check on an exhaust system and why.",
+      "completionCriteria": "Trace the air from the scoop to the cylinder and the gas from the cylinder to the tailpipe, and say why the weight of the air that reaches the cylinder sets the power and how the manifold shares it; say what drives a turbocharger and what a waste gate does, and explain normalizing and critical altitude; say what an exhaust system and its manifold are for, describe how an opposed engine's exhaust is arranged and what back pressure does; explain how exhaust and induction act on each other during valve overlap; and name three things to check on an exhaust system and why.",
       "steps": [
         {
           "type": "text",
@@ -64,6 +107,20 @@
             "mode": "none",
             "status": "not-needed",
             "rationale": "A prediction prompt that sets up the whole lesson: charge mass depends on pressure."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Air mass sets the power",
+          "prompt": "Fuel can burn only in the oxygen the cylinder gets. So the weight of the air that reaches the cylinder sets how much fuel can burn, and how much power the engine makes.\n\nEvery intake stroke draws in the same volume, but a volume of thin air holds less oxygen than the same volume of dense air. What counts is the weight of the charge. Thin air at altitude, hot air, humid air, a restriction in the intake or warm carburettor heat air lower it, and so lower the power. A supercharger or turbocharger raises it.\n\nVolumetric efficiency compares the volume of charge the engine draws in, corrected for temperature and pressure, with its piston displacement. Lesson 13 shows how altitude, temperature and humidity change the charge.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 56 (volumetric efficiency is a comparison of the volume of air-fuel charge, corrected for temperature and pressure, inducted into the cylinders to the total piston displacement of the engine; a naturally aspirated engine's pistons displace the same volume each time) and PDF p. 131 (carburettor heat makes the air expand and decrease in density, which reduces the weight of the charge delivered to the cylinder and causes a noticeable loss of power because of decreased volumetric efficiency). That the oxygen sets how much fuel can burn is the lesson's explanation.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -83,6 +140,20 @@
             "mode": "source-image",
             "status": "available",
             "rationale": "The labelled drawing shows the parts of a balanced intake manifold that the text names."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Sharing the air",
+          "prompt": "The induction manifold shares the air, or the air-fuel mixture, between the cylinders. On an engine with a carburettor the manifold carries the mixture. On a fuel-injected engine like the GTSIO-520-H it carries air only, and the fuel is injected at the inlet port of each cylinder.\n\nThe shares must be equal. If they are not, some cylinders run lean and others rich. A carburettor setting must be rich enough to burn in the leanest cylinder, so poor distribution makes the whole engine run richer than it needs to.\n\nA leak at the cylinder end of an intake pipe leans out that cylinder, which may overheat, fire intermittently or cut out.\n\nThe long curved pipes and the balance tube in the figure of the last step are there to give every cylinder its fair share.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 401 (the induction manifold provides the means of distributing air, or the air-fuel mixture, to the cylinders; on a fuel-injection engine the manifold handles only air and the fuel is delivered to a nozzle in each cylinder; a carburettor setting must be rich enough to supply a combustible mixture for the leanest cylinder, so if fuel distribution is poor the overall mixture must be richer; a leak at the cylinder end of an intake pipe leans out the mixture, and the affected cylinder may overheat, fire intermittently or cut out) and PDF p. 129 (the balance tube).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -253,6 +324,20 @@
           }
         },
         {
+          "type": "text",
+          "title": "What the exhaust system does",
+          "prompt": "The reciprocating engine exhaust system is fundamentally a scavenging system: it collects the hot, noxious gases the engine discharges and disposes of them. Its first duty is to protect the airframe and the people on board from them.\n\nThe exhaust manifold, or the stacks on a simple system, takes the gas from the exhaust port of each cylinder and gathers it. From there it goes on to a tailpipe or ejector, or on a turbocharged engine to the turbine.\n\nThe system can do useful work as well. It can drive a turbocharger, heat the cabin and the carburettor air, and draw cooling air through the engine compartment with its ejectors.\n\nIt has to resist high temperature, corrosion and vibration while it does all this.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 149 (the reciprocating engine exhaust system is fundamentally a scavenging system that collects and disposes of the high-temperature, noxious gases being discharged by the engine; its main function is to dispose of the gases with complete safety to the airframe and the occupants; it can perform many useful functions, but its first duty is to provide protection against the destructive action of the exhaust gases; modern systems resist high temperatures, corrosion and vibration; on turbosupercharged engines the exhaust gases are collected to drive the turbine; ejectors induce a flow of cooling air through the engine compartment) and PDF p. 150.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
           "type": "image",
           "title": "Short stack or collector",
           "prompt": "There are two kinds of exhaust system. A short stack (open) system lets each cylinder blow out through its own short pipe; it suits non-supercharged and low-power engines where noise does not matter. A collector system gathers the gas from the cylinders into collector tubes. It is used on most large non-supercharged engines and on all turbosupercharged engines, because on those the gas must be collected to drive the turbine. A collector raises the back pressure, the pressure the exhaust has to push against, but on a turbocharged engine the power gained is more than the power lost. The tapered ends of the collectors work as ejectors, drawing cooling air through the engine compartment.",
@@ -269,6 +354,20 @@
             "mode": "source-image",
             "status": "available",
             "rationale": "The cutaway shows the stacks, collectors and ejectors in place in a nacelle."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Exhaust on an opposed engine",
+          "prompt": "On a horizontally opposed engine the exhaust runs along each side. A down-stack leaves each cylinder. The stacks join an exhaust collector tube on each side of the engine, held by ring clamps, and each collector tube ends in an exhaust ejector at the firewall, pointing aft and down. The tapered ends of the collector tubes deliver the gas at the speed that pulls cooling air through the engine compartment.\n\nA cabin heater shroud is fitted around each collector tube.\n\nOn a turbosupercharged engine all the gas is collected and sent on to the turbine instead.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 149 and Figures 3-38 and 3-39 (the exhaust system components of a horizontally opposed engine: a down-stack from each cylinder, an exhaust collector tube on each side of the engine, and an exhaust ejector assembly protruding aft and down from each side of the firewall; the down-stacks are connected to the cylinders with high-temperature locknuts and to the collector tube by ring clamps; a cabin heater exhaust shroud is installed around each collector tube; the collector tubes are tapered to deliver the exhaust gases at the proper velocity to induce airflow; on turbosupercharged engines the gases are collected to drive the turbine).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -305,6 +404,20 @@
           }
         },
         {
+          "type": "text",
+          "title": "Back pressure",
+          "prompt": "Back pressure is the pressure the exhaust gas has to push against as it leaves the cylinder. With an open exhaust it is about the pressure of the air outside. Anything that restricts the flow raises it.\n\nA higher back pressure leaves more burned gas in the cylinder and makes the engine work harder to push it out, so it costs power.\n\nA collector system raises the back pressure compared with short stacks. A turbocharged engine accepts that, because the gain from turbocharging is greater than the loss. A bayonet stack is shaped to reduce both the back pressure and the noise.\n\nA blocked or restricted exhaust, such as a muffler with broken baffles, raises the back pressure in a way nobody wants, and takes power away.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 149 (the collector system raises the back pressure of the exhaust system; on a turbosupercharged engine the gain in horsepower from turbosupercharging more than offsets the loss from increased back pressure), PDF p. 401 (barometric pressure is the exhaust back pressure on an engine with an open exhaust, 29 inches of mercury in the handbook's example) and the glossary, PDF p. 461 (bayonet stacks decrease both exhaust back pressure and noise). That a higher back pressure leaves more burned gas in the cylinder and costs power is the lesson's explanation, consistent with the handbook's account of partial or complete loss of power from a restricted exhaust (PDF p. 150).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
           "type": "image",
           "title": "Inspecting the exhaust",
           "prompt": "Any exhaust failure is a severe hazard: carbon monoxide in the cabin, loss of power, or fire. Inspect the clamped joints and port connections for leaks, which show as a flat grey or sooty black streak. Look at every weld, bend, clamp, support and gasket for cracks, dents and missing parts. A part that cannot be inspected where it is can be plugged, pressurised to about 2 psi and dipped in water, and any leak shows as bubbles. Never use galvanised or zinc-plated tools on an exhaust system and never mark its parts with a lead pencil: the lead or zinc enters the hot metal, softens it, and causes cracks.",
@@ -338,6 +451,20 @@
         },
         {
           "type": "text",
+          "title": "Exhaust and induction together",
+          "prompt": "Induction and exhaust are one breathing path, and each acts on the other. During valve overlap both valves are open, and the pressures on the two sides of the cylinder decide which way the gas goes.\n\nWhen the manifold pressure is above the back pressure, for example 35 inches of mercury against 29, the difference of 6 inches (3 psi) pushes fresh charge across the cylinder towards the open exhaust and drives the burned gas ahead of it. The cylinder is completely scavenged and fills with fresh charge: overlap gives more power.\n\nWhen the manifold pressure is below the back pressure, as at idle with 20 inches against 29, the difference runs the other way. Burned gas, or on an open stack fresh air, is drawn back into the cylinder.\n\nThe turbocharger links them too: the exhaust drives the compressor that raises the induction pressure.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 401 to 402 and Figure 10-49 (all aircraft reciprocating engines of current design use valve overlap; at a manifold pressure of 35 inches of mercury and a back pressure of 29 inches there is a differential of 6 inches (3 psi), which forces the air-fuel mixture across the combustion chamber toward the open exhaust and forces the remaining exhaust gases ahead of it, giving complete scavenging and increased power; at 20 inches there is a differential of 9 inches (4.5 psi) in the opposite direction, drawing air or exhaust gases into the cylinder through the exhaust port; with collector rings the inflow is inert burned gas, with open stacks it is fresh air that leans out the mixture). The turbocharger link: PDF p. 149 and the earlier steps.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
           "title": "Breathing sets the power",
           "prompt": "Trace the whole path in your own words: the scoop, filter and throttle, the intake manifold, the open intake valve, then the exhaust valve, collector and tailpipe, and where a turbocharger takes energy from the exhaust to raise the pressure of the induction air. How well an engine fills its cylinders is called volumetric efficiency, which the next lessons use. Then take the lesson's quiz.",
           "note": "Completion step: the learner pulls the lesson together (opening prompt, action, feedback, completion evidence). Volumetric efficiency is defined in FAA-H-8083-32B (2023), PDF p. 56, and used in the performance lessons.",
@@ -358,11 +485,33 @@
       "sequenceNumber": 12,
       "title": "Performance Calculations",
       "objective": "Calculate an engine's displacement, compression ratio, indicated, brake, friction and thrust horsepower and mean effective pressure from its data, and explain the thermal, mechanical, volumetric and propulsive efficiencies and where the fuel's heat goes.",
+      "purpose": "Move from qualitative engine understanding to quantitative description.",
+      "outcomes": [
+        "Define and distinguish work, torque and power mathematically.",
+        "Perform simple work calculations.",
+        "Relate torque, rotational speed and shaft power.",
+        "Explain the meaning and historical origin of horsepower.",
+        "Convert between horsepower, watts and kilowatts.",
+        "Calculate swept volume from bore and stroke.",
+        "Calculate individual cylinder volume and total engine displacement.",
+        "Calculate or determine compression ratio from cylinder volumes.",
+        "Explain specific fuel consumption.",
+        "Perform introductory fuel-consumption and efficiency calculations.",
+        "Explain engine efficiency as the relationship between useful output and energy input.",
+        "Convert relevant engineering units correctly.",
+        "Check calculated answers for correct units and reasonable magnitude.",
+        "Define engine leading particulars.",
+        "Extract and interpret important data from an engine specification or data sheet.",
+        "Identify leading particulars such as model designation, cylinder arrangement, number of cylinders, bore, stroke, displacement, compression ratio, rated horsepower, rated RPM and firing order.",
+        "Recognise additional specifications such as rotation direction, fuel requirements, oil capacity and other manufacturer data where available.",
+        "Use engine data to compare two different piston engines."
+      ],
+      "syllabusNote": "The formal module specifically requires specific fuel consumption, leading particulars/data, power calculations, efficiency, compression ratio and cylinder-volume calculation.",
       "reviewStatus": "unreviewed",
       "models": [],
       "listed": true,
       "scheduledDay": 5,
-      "completionCriteria": "Work a displacement, compression ratio, PLANK and brake horsepower calculation without help, state the relationships between indicated, brake, friction and thrust horsepower, and name the four efficiencies and what each compares.",
+      "completionCriteria": "Work a displacement, compression ratio, PLANK and brake horsepower calculation without help, convert the answer between horsepower, watts and kilowatts and between the units engine data is quoted in, and check that it has the right units and a sensible size; state the relationships between indicated, brake, friction and thrust horsepower, name the four efficiencies and what each compares, and work a brake-specific fuel consumption, a fuel flow and an efficiency from fuel data; and find the leading particulars on an engine data sheet, say what condition each figure is quoted for, and compare two engines from their data.",
       "steps": [
         {
           "type": "text",
@@ -497,6 +646,39 @@
           }
         },
         {
+          "type": "text",
+          "title": "Watts and kilowatts",
+          "prompt": "Horsepower is not the only unit of power. The SI unit is the watt: one joule of work every second. Engine power is often quoted in kilowatts, and 1 kW is 1,000 W.\n\nThe horsepower of 550 ft-lb every second is 745.7 W. The electrical horsepower is exactly 746 W, and the two are close enough for most work.\n\nkilowatts = horsepower × 0.7457\nhorsepower = kilowatts × 1.341\n\nThe GTSIO-520-H's 375 hp is 375 × 0.7457 = 279.6 kW. A 100 kW motor is 100 ÷ 0.7457 = 134 hp.\n\nCheck which horsepower a data sheet means before you convert. Some data give a metric horsepower, which is a little smaller than the one in this course.",
+          "note": "Documented from OpenStax University Physics Volume 1, section 7.4 Power (the watt as one joule per second and 1 hp = 746 W) and NIST SP 811 Appendix B.8 (1 hp of 550 ft-lbf/s = 745.6999 W; electric horsepower = 746 W exactly). The 550 ft-lb per second horsepower: FAA-H-8083-32B (2023), PDF p. 49. The GTSIO-520-H's 375 hp: overhaul manual, PDF p. 152. The remark on a metric horsepower is a caution only; its value is not used in this course.",
+          "sourceRefs": [
+            "openstax-work-power",
+            "nist-sp811-appendix-b",
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Converting units",
+          "prompt": "Engine data mixes units, and a calculation goes wrong if they are not converted first. Keep a few factors to hand.\n\nLength: 1 in = 25.4 mm. The 5.25 in bore is 133.35 mm.\nMass: 1 lb = 0.4536 kg. The 550.39 lb dry weight is 249.7 kg.\nVolume: 1 cu in = 16.387 cm³. 520 cu in is 8,521 cm³, or 8.52 litres.\nPressure: 1 psi = 6.895 kPa. 1 inch of mercury = 3.386 kPa = 0.491 psi.\nPower: 1 hp = 0.7457 kW.\n\nInside a formula, make the units match its terms. In PLANK the stroke must be in feet, so divide inches by 12, and the speed must be power strokes a minute, so halve the rpm. Gas-law temperatures must be absolute, in kelvin or degrees Rankine.",
+          "note": "Conversion factors from NIST SP 811 Appendix B.8 (1 in = 25.4 mm exactly; 1 lb = 0.4535924 kg; 1 cu in = 16.387064 cm3 from 1.638706 x 10^-5 m3; 1 psi = 6.894757 kPa; 1 inch of mercury = 3.38638 kPa at 32 degrees F; 1 hp = 745.6999 W). The inch of mercury in psi is the quotient (3.386 / 6.895 = 0.491), which agrees with the handbook's 6 inches of mercury being about 3 psi (FAA-H-8083-32B (2023), PDF p. 401). The PLANK units (stroke in feet, N = rpm / 2): PDF p. 51. The -H's bore, displacement and dry weight: overhaul manual, PDF pp. 152 to 153. Absolute temperatures: the Factors Affecting Power lesson.",
+          "sourceRefs": [
+            "nist-sp811-appendix-b",
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
           "type": "image",
           "title": "Where the heat goes",
           "prompt": "Burning fuel releases heat, and only part of it becomes power. In this figure about 25 to 30 percent is converted into useful power, 40 to 45 percent leaves with the exhaust, 15 to 20 percent is removed by the cooling fins, and 5 to 10 percent is removed by the oil. The biggest loss is out of the exhaust pipe. Anything that puts more of the heat into work on the piston, or reduces friction, pumping loss, unburned fuel or heat lost to the engine parts, raises the thermal efficiency.",
@@ -560,8 +742,148 @@
         },
         {
           "type": "text",
+          "title": "Specific fuel consumption",
+          "prompt": "Specific fuel consumption says how much fuel an engine burns for each unit of power in each hour. For a piston engine it is the brake-specific fuel consumption, BSFC:\n\nBSFC = fuel flow in lb/hr ÷ brake horsepower\n\nAn engine burning 108 lb of fuel an hour at 240 bhp has a BSFC of 108 ÷ 240 = 0.45 lb per horsepower per hour. A lower figure is better.\n\nIt is a rate for each unit of power, so engines of different sizes can be compared: the one with the lower BSFC gets more power from each pound of fuel.\n\nIf the BSFC and the power are known, the fuel flow follows: 250 bhp at 0.45 burns 250 × 0.45 = 112.5 lb of fuel every hour.\n\nGas turbines use thrust-specific fuel consumption, fuel flow for each pound of thrust.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 23 (the basic parameter for describing the fuel economy of aircraft engines is specific fuel consumption; for reciprocating engines it is the fuel flow in lb/hr divided by brake horsepower, called brake-specific fuel consumption; for gas turbines the fuel flow divided by thrust; comparisons can be made between various engines on a specific fuel consumption basis). The numbers (108 lb/hr, 240 bhp, 250 bhp) are invented for the example, with a BSFC of the order a piston engine has.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Fuel and efficiency calculations",
+          "prompt": "Fuel flow gives endurance. An engine at 250 bhp with a BSFC of 0.45 burns 112.5 lb an hour. With 450 lb of fuel on board it runs for 450 ÷ 112.5 = 4 hours.\n\nEfficiency is useful output divided by the energy put in. One horsepower for one hour is 1,980,000 ft-lb. A pound of fuel of 18,800 BTU gives 18,800 × 778 = 14,626,400 ft-lb of heat energy.\n\nAt a BSFC of 0.45 the engine burns 0.45 lb for each horsepower-hour:\n\nefficiency = 1,980,000 ÷ (0.45 × 14,626,400) = 0.30, or 30 percent.\n\nThis is the brake thermal efficiency. A lower BSFC means a higher efficiency, because the same work uses less fuel.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 23 (1 hp = 33,000 ft-lb per minute = 1,980,000 ft-lb per hour), PDF p. 55 (each BTU is equivalent to 778 ft-lb; the thermal efficiency formula) and PDF p. 56 (the brake thermal efficiency example with a heat content of 18,800 BTU per pound). The BSFC route to the efficiency is the lesson's rearrangement of the handbook's formula. The numbers (250 bhp, 0.45, 450 lb) are invented for the example.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Does the answer make sense?",
+          "prompt": "Before you trust a calculation, check the units and the size of the answer.\n\nUnits: write the unit beside every number and let the units cancel. Pressure in psi times area in square inches gives pounds. Times a stroke in feet gives ft-lb. Ft-lb a minute divided by 33,000 gives horsepower. If you end up with horsepower per minute, something is wrong.\n\nSize: estimate first with rounded numbers. A 5.25 in bore is about 5, so the area is about 0.8 × 25 = 20 sq in. Times a 4 in stroke is about 80 cu in, and six cylinders about 480. The exact answer, 519.5, is close, so the sum is probably right.\n\nCompare with what you know: 375 hp from 520 cu in is 0.72 hp per cubic inch. An answer of 3,750 or 37 hp for that engine is out by a factor of ten.",
+          "note": "The method of checking units and estimating the size of an answer is the lesson's own teaching. The numbers are from the GTSIO-520-H overhaul manual, PDF pp. 152 to 153 (bore 5.250 in, stroke 4.000 in, 520 cu in, 375 hp) and the PLANK units from FAA-H-8083-32B (2023), PDF p. 51.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "What leading particulars are",
+          "prompt": "An engine's leading particulars are the main facts that identify it and describe its size, its ratings and its limits. They are what you look up first on a data sheet.\n\nThey include the model designation, the arrangement of the cylinders and their number, the bore and stroke, the displacement, the compression ratio, the rated horsepower and the rated rpm, and the firing order.\n\nThere are more: the direction the propeller shaft turns, the fuel grade, the oil grade and the oil capacity, the drive ratios, the spark timing, and the temperature and pressure limits.\n\nThe legal source for an approved engine is its type certificate data sheet. The maker's manual gives the same figures for the engine in your hands.",
+          "note": "The term 'leading particulars' and the list are from the instructor's learning outcomes for this lesson (objectives 14 to 17) and the course deck (slide 'Engine Data Plate & Leading Particulars Interpretation', which names the type certificate data sheet as the legal specification); the handbook and manuals read here do not use the phrase. The particulars listed are those on the GTSIO-520-H detail specification pages, overhaul manual PDF pp. 152 to 153.",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "The data plate and the engine's name",
+          "prompt": "Every certified engine carries a permanent, fireproof data plate. It identifies the engine with at least its maker, its model and its serial number. The serial number lets you track its total time, its time since overhaul and any airworthiness directives.\n\nThe model name is a code, which lesson 5 decoded. In GTSIO-520-H the manual's general information says the engine is geared, turbocharged, fuel injected and horizontally opposed, and 520 is its displacement in cubic inches.\n\nThe H marks the variant. A limit that belongs to another variant does not apply to this one, so always check the variant before you read a figure.",
+          "note": "The regulatory content of the data plate (14 CFR 45.13 and EASA Part 21) and the use of the serial number are from the course deck (slide 207); the handbook pages read here do not describe the engine data plate, so the instructor should confirm the wording against the regulation. The engine's description is from the Continental GTSIO-520 overhaul manual, PDF p. 152 (C-3-2: geared, turbocharged, six-cylinder, fuel injected, horizontally opposed, 520 cubic inches). The deck reads the letters as G for geared, TS for turbosupercharged, I for fuel injected and O for opposed.",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The naming rule is the content; the next steps show the real data."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Leading particulars",
+          "prompt": "Here is the first page of the GTSIO-520-H's detail specifications from its overhaul manual. Find these: the power it develops and at what propeller speed; the propeller drive ratio; the bore, stroke and displacement; the compression ratio; the fuel grade; and the drive ratios of the magnetos, the tachometer and the starter. The numbers are the engine's leading particulars.",
+          "url": "./lesson-media/gtsio-h-specifications-1.webp",
+          "alt": "GTSIO-520-H general information and detail engine specifications, page C-3-2: it is geared, turbocharged, six-cylinder, fuel injected and horizontally opposed, and develops 375 horsepower at 2275 propeller rpm; propeller drive ratio 0.667:1; bore 5.250 in; stroke 4.000 in; displacement 520 cu in; compression ratio 7.5:1; turbosupercharger maximum 75,000 rpm; oil sump 13 quarts; fuel 100LL or 100; magneto drive 1.5:1; tachometer 0.5:1; starter drive 32:1.",
+          "credit": "Continental GTSIO-520 overhaul manual, page C-3-2",
+          "license": "Course reference extract",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 152 (page C-3-2, general information and detail engine specifications for the GTSIO-520-H). Teaching extract of a manufacturer manual dated June 1980; always use the current data for the engine in front of you.",
+          "sourceRefs": [
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The manufacturer's own specification page is the real \"leading particulars\" the module asks the learner to identify."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Operating particulars",
+          "prompt": "The second page continues with the other drive ratios, the spark timing and plug gap, the firing order, the fuel pressures, and the limits for oil pressure, oil temperature and cylinder head temperature. It ends with the dry weight. Find the spark timing, the firing order, the maximum cylinder head temperature and the normal and maximum oil temperature.",
+          "url": "./lesson-media/gtsio-h-specifications-2.webp",
+          "alt": "GTSIO-520-H detail engine specifications, continued, page C-3-3: alternator drive 3:1; vacuum pump drive 1.14:1; propeller governor drive 0.809:1; spark 20 degrees before top centre on both magnetos; spark plug gap 0.017 to 0.018 in; firing order 1-4-5-2-3-6; unmetered fuel pressure 6.0 psi at 450 propeller rpm; maximum metered fuel pressure 16.0 to 17.0 psi at 39.5 inches of mercury manifold pressure and 2275 propeller rpm; oil pressure 100 psi maximum and 10 psi minimum at idle; oil temperature 170 normal and 240 maximum degrees Fahrenheit; cylinder head temperature 460 maximum and 200 minimum for takeoff; standard dry weight 550.39 lb.",
+          "credit": "Continental GTSIO-520 overhaul manual, page C-3-3",
+          "license": "Course reference extract",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 153 (page C-3-3, detail engine specifications continued; dated June 1980). The limits are for teaching reading of a data sheet and are not an operating instruction.",
+          "sourceRefs": [
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The second page of the manufacturer specification gives the timing, firing order and limits."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Reading the numbers",
+          "prompt": "The data are linked, so you can check them against each other.\n\nThe 0.667:1 propeller drive means the propeller turns at 0.667 of the crankshaft speed. At 2275 propeller rpm the crankshaft turns at 2275 ÷ 0.667 = about 3,411 rpm. The engine runs fast, and the reduction gear slows the propeller.\n\nA six-cylinder four-stroke engine fires six times in two turns, which is once every 720° ÷ 6 = 120° of the crankshaft, in the order 1-4-5-2-3-6.\n\nFuel pressure is quoted at a stated manifold pressure and propeller speed, 39.5 inches of mercury and 2275 rpm. A number means something only with its conditions.",
+          "note": "Calculations from the Continental GTSIO-520 overhaul manual, PDF pp. 152-153 (propeller drive ratio 0.667:1; 375 horsepower at 2275 propeller rpm; firing order 1-4-5-2-3-6; maximum metered fuel pressure at 39.5 inches of mercury manifold pressure and 2275 propeller rpm) and the 720° cycle from FAA-H-8083-32B (2023), PDF pp. 46-48. The firing order also appears in the FAA handbook as the usual six-cylinder opposed order (PDF p. 37).",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Worked checks that the learner can repeat on the manual page."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Comparing two engines",
+          "prompt": "Use the data to compare two engines of the same size. The GTSIO-520-H and the IO-520 both have six cylinders, a 5.25 in bore, a 4.00 in stroke and 520 cu in.\n\nGTSIO-520-H: 375 hp at 2275 propeller rpm (about 3,411 crankshaft rpm), compression ratio 7.5:1, geared and turbocharged, 13 quart sump.\n\nIO-520 (the -B and similar models): 285 hp at 2700 rpm, compression ratio 8.5:1, direct drive, 12 quart sump.\n\nPower for each cubic inch: 375 ÷ 520 = 0.72 against 285 ÷ 520 = 0.55. The geared engine gets more from the same displacement, mainly by running faster and by boosting the air.\n\nThe brake mean effective pressures are close: about 168 psi and 161 psi.",
+          "note": "The GTSIO-520-H figures: Continental GTSIO-520 overhaul manual, PDF pp. 152 to 153 (375 horsepower at 2275 propeller rpm, 0.667:1, 7.5:1, 13 quarts). The IO-520 figures: IO-520 Permold Series maintenance manual, Publication M-11, PDF p. 13 (printed 1-9) for the -B, -BA, -BB, -C, -CB, -M and -MB (rated maximum continuous operation 285 brake horsepower at 2700 rpm, 8.5:1, 12 quarts, six cylinders, 5.25 in by 4.00 in, 520 cu in); the manual's design features (PDF p. 12, printed 1-8) describe a propeller flange and a wet sump and no reduction gear, and the model code has no G, so the engine is direct drive. The IO-520 is a different engine, shown for comparison only. The BMEP values are the lesson's calculation by the handbook's formula, BMEP = bhp x 33,000 / (L x A x N x K): 168 psi at 3,411 rpm and 161 psi at 2,700 rpm. The two engines also differ in firing order and spark timing (Terminologies lesson).",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "tcm-io520-maintenance",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
           "title": "Calculate and explain",
-          "prompt": "Take one engine, such as the GTSIO-520-H, and work out in your own words and numbers: its displacement, its compression ratio and clearance volume, its crankshaft speed at rated power, and its BMEP. Then say what each kind of horsepower means, which is bigger than which, and where the rest of the fuel's energy goes. Then take the lesson's quiz.",
+          "prompt": "Take one engine, such as the GTSIO-520-H, and work out in your own words and numbers: its displacement, its compression ratio and clearance volume, its crankshaft speed at rated power, its power in kilowatts and its BMEP. Check each answer for units and size.\n\nThen say what each kind of horsepower means, which is bigger than which, and where the rest of the fuel's energy goes. Find three leading particulars on its data sheet and the condition each is quoted for.\n\nThen take the lesson's quiz.",
           "note": "Completion step: the learner applies the formulas to the course engine (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 48-56, and the GTSIO-520 overhaul manual, PDF pp. 152-153.",
           "sourceRefs": [
             "faa-powerplant-2023",
@@ -581,13 +903,32 @@
       "sequenceNumber": 13,
       "title": "Factors Affecting Power",
       "objective": "Explain why a piston engine's power changes: how altitude, temperature and humidity thin the air it breathes, and how ignition timing, spark plugs, fuel metering, induction and exhaust leaks, and low compression take power away.",
+      "purpose": "Explain why actual engine output changes even when the engine itself has not fundamentally changed.",
+      "outcomes": [
+        "Explain how available oxygen affects combustion and engine output.",
+        "Explain the effect of altitude on air density and naturally aspirated engine power.",
+        "Explain the effect of ambient temperature on engine performance.",
+        "Explain the effect of humidity.",
+        "Explain the concept of density altitude.",
+        "Predict the effect of a hot, high-altitude operating environment on available power.",
+        "Explain how mixture strength affects combustion and engine power.",
+        "Explain why mixture adjustment may be required as altitude changes.",
+        "Explain the influence of manifold pressure.",
+        "Explain the influence of RPM.",
+        "Explain how induction restrictions reduce power.",
+        "Explain the effect of carburettor heat on induction-air density and available power.",
+        "Explain how engine temperature and cooling condition can influence performance.",
+        "Explain how supercharging or turbocharging can compensate for altitude-related loss of induction pressure.",
+        "Predict qualitatively whether a given operating or atmospheric change will increase or reduce engine performance."
+      ],
+      "syllabusNote": "The official description explicitly requires identification of factors affecting power output and performance.",
       "reviewStatus": "unreviewed",
       "models": [
         "cylinder"
       ],
       "listed": true,
       "scheduledDay": 5,
-      "completionCriteria": "Sort the causes of a power loss into natural and mechanical factors, explain the effect of altitude, temperature and humidity on the oxygen each intake stroke draws in, and say what early or late ignition, a fouled plug, an induction or exhaust leak and a compression leak each do to the engine.",
+      "completionCriteria": "Sort the causes of a power loss into natural and mechanical factors; explain the effect of altitude, temperature and humidity on the oxygen each intake stroke draws in, and say what density altitude is and what a hot, high airfield does to the power; explain mixture strength and why the mixture is leaned as the aircraft climbs; explain what manifold pressure and rpm each do to the power, and how a hot or a cold engine and a boosted induction change it; and say what early or late ignition, a fouled plug, an induction or exhaust leak and a compression leak each do to the engine.",
       "steps": [
         {
           "type": "text",
@@ -661,6 +1002,77 @@
             "mode": "none",
             "status": "not-needed",
             "rationale": "The effect and its size are stated once; the interactive shows how it combines with heat."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Density altitude",
+          "prompt": "Pressure tells you how high you are. The engine needs density, and density also depends on temperature and humidity. Density altitude combines them: it is the altitude, in a standard atmosphere, at which the air has the same density as the air you are in.\n\nOn a standard day the density altitude is the altitude itself. A hot day raises it by roughly 120 ft for each degree Celsius above standard. A humid day raises it a little more.\n\nTake an airfield at 5,000 ft on a day 20 °C above standard. Its density altitude is about 7,300 ft. The engine breathes about 80 percent of the air of a standard sea-level day, so it loses about a fifth of its power.\n\nThat is 'hot and high': the power falls once for the height and again for the heat. The explorer now shows it.",
+          "note": "Density altitude: FAA-H-8083-32B (2023), glossary, PDF p. 467 (the altitude in standard air at which the density is the same as that of the existing air). That a hot day raises it by roughly 120 ft per degree Celsius is a common rule of thumb; the interactive's own model (standard atmosphere and ideal-gas law) gives about 116 ft, and an airfield at 5,000 ft on a day 20 degrees above standard comes out at about 7,300 ft and 80 percent air available. The 3 percent per 1,000 ft loss is the course rule of thumb used in Altitude and pressure. The density altitude readout in the interactive was added with this lesson.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Mixture strength",
+          "prompt": "The mixture ratio is the proportion of fuel to air by weight. Only about a fifth of the air is oxygen, and the fuel burns in that oxygen, so the proportion matters a great deal.\n\nThe chemically perfect mixture, with just enough air to burn all the fuel, is about 0.067 lb of fuel to 1 lb of air. It burns hottest.\n\nBest power comes from a somewhat richer mixture, from about 0.0725 to 0.080. The extra fuel speeds the burn, adds working mass and cools the cylinder.\n\nBest economy comes from a leaner one, about 0.060 to 0.065, which gives the power for the least fuel.\n\nMixtures far from these still burn, but beyond roughly 8 to 1 or 16 to 1 air to fuel the engine stops. Too lean at high power and the cylinder overheats and can backfire.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 85 to 86 (the mixture ratio is the proportion of fuel and air by weight; the stoichiometric mixture is 0.067 lb of fuel to 1 lb of air, 15:1, and produces the highest combustion temperature; from 0.0725 to 0.080 the mixtures are best power; best economy is about 0.060 to 0.065 where manual leaning is practised; mixtures as rich as 8:1 and as lean as 16:1 will burn; the engine's leanest cylinder may backfire if the mixture is too lean; cylinder-head temperature would exceed its limit and detonation would occur on a lean mixture at high power). The handbook calls the decimal the air-fuel ratio although it is pounds of fuel per pound of air; this step calls it the proportion of fuel to air.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Mixture and altitude",
+          "prompt": "A carburettor meters fuel in proportion to the air flowing through it. As altitude increases the air gets thinner, and thin air flowing through the carburettor throat tends to make the mixture richer than at the ground.\n\nSo a mixture control is provided to lean the mixture and compensate for this natural enrichment. On some aircraft the pilot leans it by hand, and on others the carburettor leans the mixture automatically at altitude.\n\nIf the mixture is not leaned the engine runs richer than it needs to, which wastes fuel and, once the mixture is richer than best power, loses power. If it is leaned too far for the power in use, the cylinders run hot.\n\nAt takeoff power the mixture must be rich enough to keep the hottest cylinder cool, and it is leaned for cruise.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 84 (less air tends to make carburettors run richer at altitude than at ground level, because of the decreased density of the airflow through the carburettor throat for a given volume of air; a mixture control is provided to lean the mixture and compensate for this natural enrichment; manual and automatic systems), PDF pp. 85 to 86 (above best power the power is lost; fuel must be added in the power range to keep cylinder-head temperatures safe) and PDF p. 401 (at takeoff power the mixture must be rich enough to supply sufficient fuel to keep the hottest cylinder cool).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Manifold pressure and rpm",
+          "prompt": "The cylinders and any supercharger form an air pump, and the power developed varies directly with the rate at which the engine consumes air. So manifold pressure and rpm together measure how much air the engine is using.\n\nManifold pressure is the average absolute pressure of the charge in the intake manifold, in inches of mercury. It depends on the throttle setting and on any supercharging. At a given rpm, a higher manifold pressure puts more air into each cylinder and gives more power.\n\nRpm sets how often the cylinders draw in air. At a given manifold pressure, a higher rpm means more air each minute and more power, up to the engine's limits.\n\nA restriction in the induction, such as a clogged filter or a throttle that does not open fully, lowers the manifold pressure and so the power.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 403 (the cylinders of an engine, with any type of supercharging, form an air pump; the power developed varies directly with the rate that air can be consumed; ignoring humidity and exhaust back pressure the manifold pressure gauge and the tachometer provide a measure of engine air consumption; for a given rpm any change in power input is reflected by a corresponding change in manifold pressure) and PDF p. 50 (manifold pressure is the average absolute pressure of the charge in the intake manifold, in inches of mercury; it depends on engine speed, the throttle setting, and the degree of supercharging). That a restriction lowers the manifold pressure and so the power is the lesson's reasoning from these.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Engine temperature and cooling",
+          "prompt": "An engine has a best operating temperature. Run too hot, and the charge is preheated and can burn before the planned moment, which causes detonation. Excess heat also weakens the parts and impairs lubrication, and a hot charge is thinner, so each stroke draws in less air.\n\nRun too cold, and fuel does not evaporate and spread well and the oil does not circulate well, so the engine runs badly.\n\nHow well the engine is cooled changes its power. Baffles that leak, fins broken or clogged, and cowl flaps closed in a climb all raise the temperature. The mixture does too: lean at high power runs hot, and rich runs cool.\n\nThe cylinder head temperature gauge shows the result, so it is read as part of the power setting.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 278 (three reasons why excessive heat is undesirable: preheating of the charge and detonation, weakening of parts, impaired lubrication), PDF p. 279 (an engine can run too cold; fuel evaporation and distribution and oil circulation depend on the best operating temperature; cowl flaps) and PDF p. 283 (baffles and deflectors direct the cooling air); the cylinder-head temperature gauge and the mixture's cooling effect: PDF pp. 85, 86 and 391 to 392. That a hotter charge is thinner follows from the Temperature step of this lesson.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -786,8 +1198,23 @@
         },
         {
           "type": "text",
+          "title": "Boost makes up for altitude",
+          "prompt": "A naturally aspirated engine can only take in what the outside pressure pushes in, so its power falls as the pressure falls. A supercharger or turbocharger puts the pressure back.\n\nA normalizing system holds the sea-level manifold pressure up to its critical altitude. Above that altitude the waste gate is fully closed and the pressure falls as it would without the turbocharger. A ground-boosted system holds more pressure than the outside air even at sea level.\n\nFor example, an engine allowed 30 inches of mercury of manifold pressure meets only about 20.6 inches outside at 10,000 ft. A turbocharger that makes up the difference holds 30 inches there, and the engine keeps its power.\n\nBoost has a cost. Compressing air heats it, so it may need cooling, and the extra pressure raises the risk of detonation.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 131 to 135 and the Induction and Exhaust lesson (a supercharger raises the pressure of the charge; a normalizing turbocharger makes up the pressure lost with altitude up to its critical altitude; a ground-boosted system raises it above ambient; compression heats the air, and an intercooler or aftercooler takes out the heat; detonation risk, PDF p. 50). The outside pressure of 20.58 inches of mercury at 10,000 ft is the standard atmosphere (the interactive's model). The 30 inches is an example, not an engine limit.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
           "title": "Sort the causes",
-          "prompt": "A naturally aspirated engine that is delivering less power than it should: take each of these in turn and decide whether nature or the engine is the cause, what you would check first, and why. High altitude on a hot day. A rough run on one magneto at the check. A big rpm drop when the carburettor heat is applied. A cylinder with air hissing from its exhaust pipe during a compression test. Then take the lesson's quiz.",
+          "prompt": "A naturally aspirated engine is delivering less power than it should. For each of these, say whether nature or the engine is the cause, what you would check first, and why, and predict whether the power goes up or down: high altitude on a hot day; a mixture that is not leaned on a climb; a low manifold pressure at the same rpm; a cylinder head that runs too hot; a rough run on one magneto at the check; a big rpm drop when the carburettor heat is applied; a cylinder with air hissing from its exhaust pipe during a compression test.\n\nThen take the lesson's quiz.",
           "note": "Completion step: the learner applies the factors to cases (opening prompt, action, feedback, completion evidence) from EASA Module 16, PDF pp. 37-41.",
           "sourceRefs": [
             "easa-module16"
@@ -970,6 +1397,106 @@
       "rationale": "Overboost means exceeding the manifold pressure limit for the engine. The slow drift in the controls is bootstrapping, which is not harmful to engine life."
     },
     {
+      "id": "breathing-air-mass",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "Why does thin air reduce the power of a naturally aspirated engine?",
+      "hint": "Each intake stroke draws in the same volume. Think about what that volume holds.",
+      "answers": [
+        "Each intake stroke draws in the same volume, but it holds less oxygen, so less fuel can be burned",
+        "The pistons move more slowly in thin air",
+        "The spark is weaker in thin air",
+        "Thin air makes the exhaust back pressure rise"
+      ],
+      "correct": 0,
+      "rationale": "The engine draws in the same volume of air on every intake stroke, but thin air holds less oxygen in that volume. The weight of the charge falls, less fuel can burn and the power falls."
+    },
+    {
+      "id": "breathing-distribution",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "What does poor distribution of the mixture between the cylinders force the engine to do?",
+      "hint": "The setting must suit the leanest cylinder.",
+      "answers": [
+        "Run richer overall, because the setting must be rich enough to burn in the leanest cylinder",
+        "Run leaner overall to save fuel",
+        "Run at a lower compression ratio",
+        "Run without a throttle"
+      ],
+      "correct": 0,
+      "rationale": "A carburettor setting must supply a combustible mixture for the leanest cylinder. If the shares are uneven the whole engine must be set richer than it would otherwise need to be."
+    },
+    {
+      "id": "breathing-exhaust-duty",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "What is the first duty of the exhaust system?",
+      "hint": "Think about what the gases are and who is near them.",
+      "answers": [
+        "To protect the airframe and its occupants from the hot, noxious gases by disposing of them safely",
+        "To heat the cabin",
+        "To raise the manifold pressure",
+        "To make the engine quieter"
+      ],
+      "correct": 0,
+      "rationale": "The exhaust system can do many useful things, such as driving a turbocharger or heating the cabin, but its first duty is protection against the destructive action of the exhaust gases."
+    },
+    {
+      "id": "breathing-opposed-exhaust-order",
+      "lessonId": "induction-exhaust",
+      "type": "ordering",
+      "question": "Put these parts of an opposed engine's exhaust in the order the gas passes through them.",
+      "hint": "Start at the cylinder and end at the firewall.",
+      "items": [
+        "Exhaust port of the cylinder",
+        "Down-stack",
+        "Exhaust collector tube",
+        "Exhaust ejector at the firewall"
+      ],
+      "rationale": "The gas leaves the cylinder through its exhaust port and the down-stack, enters the collector tube on that side of the engine, and leaves through the tapered exhaust ejector at the firewall, which also draws cooling air through the engine compartment."
+    },
+    {
+      "id": "breathing-back-pressure",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "What does a higher exhaust back pressure do to a naturally aspirated engine?",
+      "hint": "Think about the work of pushing the gas out.",
+      "answers": [
+        "It makes the engine work harder to push the gas out, so it costs power",
+        "It raises the power, because the gas is held in the cylinder",
+        "It lowers the cylinder head temperature",
+        "It has no effect on a four-stroke engine"
+      ],
+      "correct": 0,
+      "rationale": "The burned gas has to push against the back pressure to leave the cylinder. A higher pressure leaves more gas behind and takes more work to expel it, so power is lost. A turbocharged engine accepts a higher back pressure because the turbocharger gains more than the back pressure costs."
+    },
+    {
+      "id": "breathing-overlap-differential",
+      "lessonId": "induction-exhaust",
+      "type": "numeric",
+      "question": "During valve overlap the manifold pressure is 35 inches of mercury and the exhaust back pressure is 29 inches. What is the pressure difference, in inches of mercury?",
+      "hint": "Subtract the smaller pressure from the larger.",
+      "unit": "inHg",
+      "correctValue": 6,
+      "tolerance": 0,
+      "rationale": "35 - 29 = 6 inches of mercury (about 3 psi), in the direction from the intake towards the exhaust. It pushes fresh charge through the cylinder and scavenges the burned gas."
+    },
+    {
+      "id": "breathing-overlap-idle",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "At idle the manifold pressure is 20 inches of mercury and the back pressure is 29 inches. Which way does the gas move during valve overlap on an engine with a collector exhaust?",
+      "hint": "The gas moves from the higher pressure to the lower.",
+      "answers": [
+        "Burned gas is drawn back into the cylinder through the exhaust port",
+        "Fresh charge is blown straight out of the exhaust",
+        "Nothing moves, because both valves are open",
+        "Fresh air is drawn in through the intake pipe"
+      ],
+      "correct": 0,
+      "rationale": "The manifold pressure is below the back pressure, so the pressure difference points the other way. With a collector exhaust the gas drawn back is burned gas, which contains no oxygen, so the mixture is not affected much. With an open stack it would be fresh air that leans out the mixture."
+    },
+    {
       "id": "factors-altitude-chain",
       "lessonId": "factors-affecting-power",
       "type": "ordering",
@@ -1114,6 +1641,144 @@
       ],
       "correct": 0,
       "rationale": "A zero-lash lifter that leaks cannot hold the correct valve lash, so the valve opens less far and for less time than the cam intends, and the engine breathes less well."
+    },
+    {
+      "id": "factors-density-altitude",
+      "lessonId": "factors-affecting-power",
+      "type": "multiple-choice",
+      "question": "What is density altitude?",
+      "hint": "It is not the height above the ground.",
+      "answers": [
+        "The altitude in a standard atmosphere at which the air has the same density as the air you are in",
+        "The height of the aircraft above the ground",
+        "The altitude shown on the altimeter when it is set to 29.92",
+        "The altitude at which the air temperature is standard"
+      ],
+      "correct": 0,
+      "rationale": "Density altitude combines pressure, temperature and humidity into one number: the height at which a standard atmosphere would have the same density. The engine, the propeller and the wings respond to that density."
+    },
+    {
+      "id": "factors-hot-high",
+      "lessonId": "factors-affecting-power",
+      "type": "multiple-choice",
+      "question": "An airfield is 5,000 ft above sea level and the day is much hotter than standard. What does a naturally aspirated engine feel?",
+      "hint": "Heat raises density altitude.",
+      "answers": [
+        "A density altitude well above 5,000 ft, so less power than at 5,000 ft on a standard day",
+        "A density altitude of exactly 5,000 ft",
+        "A density altitude below 5,000 ft, so more power",
+        "No change, because only pressure matters"
+      ],
+      "correct": 0,
+      "rationale": "Hot air is thinner, so the density altitude is higher than the airfield's height. The engine breathes less oxygen with each stroke and makes less power: the power falls once for the height and again for the heat."
+    },
+    {
+      "id": "factors-da-power",
+      "lessonId": "factors-affecting-power",
+      "type": "numeric",
+      "question": "The density altitude at an airfield is 6,000 ft. Using the course rule of thumb of 3 percent of the sea-level power lost for each 1,000 ft, what percentage of its sea-level power can a naturally aspirated engine make there?",
+      "hint": "Six thousand feet is six lots of 3 percent.",
+      "unit": "percent",
+      "correctValue": 82,
+      "tolerance": 0,
+      "rationale": "Six lots of 3 percent is 18 percent lost, so the engine makes 82 percent of its sea-level power. It is a rule of thumb: real engines differ."
+    },
+    {
+      "id": "factors-mixture-terms",
+      "lessonId": "factors-affecting-power",
+      "type": "matching",
+      "question": "Match each mixture to its description.",
+      "hint": "Think about which one burns hottest, which gives most power and which saves fuel.",
+      "pairs": [
+        {
+          "left": "Chemically perfect (stoichiometric)",
+          "right": "Just enough air to burn all the fuel, about 0.067 lb of fuel to 1 lb of air; it burns hottest"
+        },
+        {
+          "left": "Best power",
+          "right": "A richer mixture, about 0.0725 to 0.080, giving the most power for the airflow"
+        },
+        {
+          "left": "Best economy",
+          "right": "A leaner mixture, about 0.060 to 0.065, giving the power for the least fuel"
+        },
+        {
+          "left": "Too lean at high power",
+          "right": "The cylinder overheats and the engine can detonate or backfire"
+        }
+      ],
+      "rationale": "The perfect mixture releases the most heat. A slightly richer mixture gives the most power and runs cooler; a slightly leaner one saves fuel; and a lean mixture at high power is dangerous to the engine."
+    },
+    {
+      "id": "factors-altitude-mixture",
+      "lessonId": "factors-affecting-power",
+      "type": "multiple-choice",
+      "question": "Why must the mixture be leaned as an aircraft with a carburettor climbs?",
+      "hint": "Think about what happens to the air flowing through the carburettor throat.",
+      "answers": [
+        "Thinner air tends to make the mixture richer, so the mixture control leans it to compensate",
+        "The fuel becomes thicker at altitude",
+        "The engine needs less fuel because it is cooler",
+        "The throttle opens further at altitude"
+      ],
+      "correct": 0,
+      "rationale": "Less dense air flowing through the carburettor throat makes the carburettor run richer at altitude than at ground level. The mixture control compensates for this natural enrichment."
+    },
+    {
+      "id": "factors-air-consumption",
+      "lessonId": "factors-affecting-power",
+      "type": "multiple-choice",
+      "question": "Ignoring humidity and exhaust back pressure, what do the manifold pressure gauge and the tachometer together measure?",
+      "hint": "The cylinders and supercharger form an air pump.",
+      "answers": [
+        "How much air the engine is consuming, which is a measure of its power input",
+        "The temperature of the cylinders",
+        "The fuel flow to the engine",
+        "The pressure of the engine oil"
+      ],
+      "correct": 0,
+      "rationale": "The power developed in the cylinders varies directly with the rate at which air can be consumed, so manifold pressure and rpm together measure the engine's air consumption and hence its power input."
+    },
+    {
+      "id": "factors-mp-effect",
+      "lessonId": "factors-affecting-power",
+      "type": "multiple-choice",
+      "question": "At a constant rpm, what does a higher manifold pressure do?",
+      "hint": "Think about how much air each cylinder takes in.",
+      "answers": [
+        "More air goes into each cylinder, so the power rises",
+        "Less air goes into each cylinder, so the power falls",
+        "The cylinders fire more often",
+        "The compression ratio rises"
+      ],
+      "correct": 0,
+      "rationale": "Manifold pressure is the pressure of the charge in the intake manifold. At the same rpm a higher pressure means a denser charge in each cylinder, more fuel can burn, and the power rises."
+    },
+    {
+      "id": "factors-too-hot",
+      "lessonId": "factors-affecting-power",
+      "type": "multiple-choice",
+      "question": "Why does a cylinder that runs too hot risk damage and lose power?",
+      "hint": "Think about the charge being heated before the spark.",
+      "answers": [
+        "The charge is preheated and can burn before the planned moment, causing detonation, and the hot parts and oil are harmed",
+        "The cylinder gets more oxygen when it is hot",
+        "The spark plug works better when hot",
+        "The valves open earlier"
+      ],
+      "correct": 0,
+      "rationale": "Excess heat preheats the charge so that it burns prematurely (detonation), weakens the engine's parts and impairs lubrication. A hot charge is also thinner, so each stroke takes in less air."
+    },
+    {
+      "id": "factors-boost-gain",
+      "lessonId": "factors-affecting-power",
+      "type": "numeric",
+      "question": "At 10,000 ft the outside pressure is about 20.6 inches of mercury. A turbocharger holds 30 inches of manifold pressure there. By how many inches of mercury does it raise the pressure?",
+      "hint": "Subtract the outside pressure from the manifold pressure.",
+      "unit": "inHg",
+      "correctValue": 9.4,
+      "tolerance": 0.1,
+      "rationale": "30 - 20.6 = 9.4 inches of mercury. Without the turbocharger the engine would breathe the outside pressure; with it, the engine keeps the power it has at the higher pressure."
     },
     {
       "id": "calc-total-displacement",
@@ -1283,6 +1948,169 @@
       ],
       "correct": 0,
       "rationale": "A naturally aspirated engine draws in less than its displacement at standard conditions, so it is below 100 percent. True supercharging forces in more charge than that, so it can exceed 100 percent."
+    },
+    {
+      "id": "calc-kilowatts",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "The GTSIO-520-H develops 375 hp. What is that in kilowatts, to the nearest whole number? Use 1 hp = 0.7457 kW.",
+      "hint": "Multiply the horsepower by 0.7457.",
+      "unit": "kW",
+      "correctValue": 280,
+      "tolerance": 1,
+      "rationale": "375 × 0.7457 = 279.6, so 280 kW to the nearest whole number."
+    },
+    {
+      "id": "calc-litres",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "The GTSIO-520-H has a displacement of 520 cu in. What is that in litres, to two decimal places? Use 1 cu in = 16.387 cm³ and 1 litre = 1,000 cm³.",
+      "hint": "Convert to cubic centimetres first, then to litres.",
+      "unit": "litres",
+      "correctValue": 8.52,
+      "tolerance": 0.01,
+      "rationale": "520 × 16.387 = 8,521 cm³, which is 8.52 litres."
+    },
+    {
+      "id": "calc-bsfc",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "An engine burns 108 lb of fuel an hour while developing 240 brake horsepower. What is its brake-specific fuel consumption?",
+      "hint": "Fuel flow in lb/hr divided by brake horsepower.",
+      "unit": "lb/hp/hr",
+      "correctValue": 0.45,
+      "tolerance": 0,
+      "rationale": "108 ÷ 240 = 0.45 lb of fuel per brake horsepower per hour. A lower figure means better economy."
+    },
+    {
+      "id": "calc-fuel-flow",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "An engine developing 200 brake horsepower has a BSFC of 0.46 lb per horsepower per hour. How much fuel does it burn in an hour?",
+      "hint": "Multiply the BSFC by the brake horsepower.",
+      "unit": "lb/hr",
+      "correctValue": 92,
+      "tolerance": 0,
+      "rationale": "200 × 0.46 = 92 lb of fuel an hour."
+    },
+    {
+      "id": "calc-endurance",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "The engine in the last question (92 lb of fuel an hour) has 276 lb of fuel on board. How many hours can it run at that power?",
+      "hint": "Divide the fuel on board by the fuel flow.",
+      "unit": "hours",
+      "correctValue": 3,
+      "tolerance": 0,
+      "rationale": "276 ÷ 92 = 3 hours, ignoring any fuel that cannot be used."
+    },
+    {
+      "id": "calc-efficiency",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "An engine has a BSFC of 0.45 lb per horsepower per hour and the fuel has a heat value of 18,800 BTU per lb (1 BTU = 778 ft-lb; 1 hp for an hour = 1,980,000 ft-lb). What is its brake thermal efficiency, as a whole percentage?",
+      "hint": "Efficiency is the work done in a horsepower-hour divided by the heat energy in the fuel burned in that hour.",
+      "unit": "percent",
+      "correctValue": 30,
+      "tolerance": 1,
+      "rationale": "The fuel burned per horsepower-hour is 0.45 lb, which holds 0.45 × 18,800 × 778 = 6,581,880 ft-lb. The work done is 1,980,000 ft-lb, so the efficiency is 1,980,000 ÷ 6,581,880 = 0.30, or 30 percent."
+    },
+    {
+      "id": "calc-sanity",
+      "lessonId": "performance-calculations",
+      "type": "multiple-choice",
+      "question": "A student works out the indicated horsepower of a small four-cylinder engine as 14,460 hp. The correct answer is 144.6 hp. What is the most likely cause?",
+      "hint": "The answer is exactly 100 times too big.",
+      "answers": [
+        "A slip with a unit or a decimal point",
+        "The engine really is that powerful",
+        "Friction was added instead of taken away",
+        "The compression ratio was too low"
+      ],
+      "correct": 0,
+      "rationale": "An answer 100 times too big for a small piston engine is a warning. Check the units and the decimal places: a stroke left in inches, an unconverted pressure or a misplaced decimal point are the usual errors. Sense-checking the size catches them."
+    },
+    {
+      "id": "calc-particulars",
+      "lessonId": "performance-calculations",
+      "type": "matching",
+      "question": "Match each leading particular to its value for the GTSIO-520-H.",
+      "hint": "Look at the two specification pages in the lesson.",
+      "pairs": [
+        {
+          "left": "Propeller drive ratio",
+          "right": "0.667:1"
+        },
+        {
+          "left": "Compression ratio",
+          "right": "7.5:1"
+        },
+        {
+          "left": "Bore and stroke",
+          "right": "5.250 in and 4.000 in"
+        },
+        {
+          "left": "Firing order",
+          "right": "1-4-5-2-3-6"
+        },
+        {
+          "left": "Spark timing",
+          "right": "20 degrees before top centre, on both magnetos"
+        }
+      ],
+      "rationale": "These are leading particulars from pages C-3-2 and C-3-3 of the overhaul manual. They describe the engine's drive, its geometry, its ratings and its timing."
+    },
+    {
+      "id": "calc-crank-speed",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "The GTSIO-520-H develops its rated 375 horsepower at 2275 propeller rpm, and its propeller drive ratio is 0.667:1. At what crankshaft speed does it do so? Give the nearest whole number.",
+      "hint": "The propeller turns at 0.667 of the crankshaft speed.",
+      "unit": "rpm",
+      "correctValue": 3411,
+      "tolerance": 2,
+      "rationale": "Crankshaft speed = propeller speed ÷ drive ratio = 2275 ÷ 0.667 = 3,411 rpm. The reduction gear lets the engine run fast while the propeller turns slowly enough to be efficient."
+    },
+    {
+      "id": "calc-spark-timing",
+      "lessonId": "performance-calculations",
+      "type": "multiple-choice",
+      "question": "According to the GTSIO-520-H data page, when does the spark occur?",
+      "hint": "Look at the second specification page.",
+      "answers": [
+        "20 degrees before top centre, on both magnetos",
+        "20 degrees after top centre, on one magneto",
+        "At top centre, on both magnetos",
+        "22 degrees before top centre, on the left magneto only"
+      ],
+      "correct": 0,
+      "rationale": "Page C-3-3 lists the spark at 20° BTC on both magnetos. A general handbook gives a range of 20° to 35° across engines; the manufacturer's value is the one that applies. The IO-520 manual gives 22°, a different engine."
+    },
+    {
+      "id": "calc-conditions",
+      "lessonId": "performance-calculations",
+      "type": "multiple-choice",
+      "question": "The data page gives the maximum metered fuel pressure at \"39.5 inches of mercury manifold pressure and 2275 propeller rpm\". Why does it say that?",
+      "hint": "Think about what changes with power setting.",
+      "answers": [
+        "A figure only means something with the conditions it is quoted for",
+        "Because the pressure never changes with power",
+        "Because the pressure is measured only in flight",
+        "Because the pressure is the same for every engine"
+      ],
+      "correct": 0,
+      "rationale": "Fuel pressure depends on the power setting, so the data gives the manifold pressure and propeller speed at which the limit applies. Reading a number without its condition leads to mistakes."
+    },
+    {
+      "id": "calc-power-per-cubic-inch",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "The IO-520 develops 285 hp from 520 cu in. How many horsepower is that for each cubic inch of displacement, to two decimal places?",
+      "hint": "Divide the power by the displacement.",
+      "unit": "hp per cu in",
+      "correctValue": 0.55,
+      "tolerance": 0.01,
+      "rationale": "285 ÷ 520 = 0.548, so 0.55 hp per cubic inch. The GTSIO-520-H gets 375 ÷ 520 = 0.72 from the same displacement."
     }
   ]
 }

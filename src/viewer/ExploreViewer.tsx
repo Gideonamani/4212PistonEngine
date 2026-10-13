@@ -32,7 +32,7 @@ export default function ExploreViewer({ modelId, isFullPage = false, isFullscree
   const panelOpen = controlsOpen && hasControlPanels(viewer);
   const setPlayerPreference = (value: boolean) => { setShowPlayerOnViewer(value); writePlayerPreference(value); };
 
-  return <section className="relative isolate flex h-full min-h-[22rem] flex-col overflow-hidden bg-[#071418] text-slate-100 shadow-inner lg:flex-row" aria-label={`Interactive 3D model of the ${definition.label}`}>
+  return <section className="relative isolate flex h-full min-h-[22rem] flex-col overflow-hidden stay-dark bg-[#071418] text-slate-100 shadow-inner lg:flex-row" aria-label={`Interactive 3D model of the ${definition.label}`}>
     <div className={`relative min-h-0 min-w-0 flex-1 overflow-hidden ${panelOpen ? 'min-h-[18rem]' : ''}`}>
       <ModelCanvas viewer={viewer} />
       <ViewerHeader viewer={viewer}>
@@ -41,15 +41,15 @@ export default function ExploreViewer({ modelId, isFullPage = false, isFullscree
         {hasControlPanels(viewer) && <ToolbarButton label={controlsOpen ? 'Hide Explore controls' : 'Show Explore controls'} active={controlsOpen} onClick={() => setControlsOpen((open) => !open)}><SlidersHorizontal className="h-4 w-4" /></ToolbarButton>}
       </ViewerHeader>
 
-      {features?.hotspots && <div className="absolute inset-x-3 bottom-3 z-20 rounded-xl border border-slate-700/80 bg-[#07161b]/94 p-2 shadow-xl backdrop-blur sm:inset-x-auto sm:left-3 sm:max-w-[calc(100%-1.5rem)]">
+      {features?.hotspots && <div className="absolute inset-x-3 bottom-3 z-20 rounded-xl border border-slate-700/80 bg-panel/94 p-2 shadow-xl backdrop-blur sm:inset-x-auto sm:left-3 sm:max-w-[calc(100%-1.5rem)]">
         <HotspotChips viewer={viewer} />
         <HotspotNote viewer={viewer} className="px-1 pt-1.5" />
       </div>}
 
-      {snapshot.assemblyNotice && <p className="pointer-events-none absolute inset-x-3 top-20 z-10 max-w-sm rounded-lg bg-[#07161b]/90 px-3 py-2 text-xs leading-relaxed text-amber-100">{snapshot.assemblyNotice}</p>}
+      {snapshot.assemblyNotice && <p className="pointer-events-none absolute inset-x-3 top-20 z-10 max-w-sm rounded-lg bg-panel/90 px-3 py-2 text-xs leading-relaxed text-amber-100">{snapshot.assemblyNotice}</p>}
 
       {features?.motion && !controlsOpen && showPlayerOnViewer && (features.savedMotions && snapshot.savedMotionId !== 'operating'
-        ? <div className="absolute inset-x-3 bottom-3 z-20 max-h-[45%] overflow-y-auto rounded-xl border border-slate-700 bg-[#07161b]/95 p-3 sm:w-80"><SavedMotionControls features={features} snapshot={snapshot} /></div>
+        ? <div className="absolute inset-x-3 bottom-3 z-20 max-h-[45%] overflow-y-auto rounded-xl border border-slate-700 bg-panel/95 p-3 sm:w-80"><SavedMotionControls features={features} snapshot={snapshot} /></div>
         : <CompactMotionPlayer motion={features.motion} snapshot={snapshot} />)}
     </div>
 

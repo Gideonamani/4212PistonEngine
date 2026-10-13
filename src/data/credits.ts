@@ -53,10 +53,11 @@ const LICENSE_LINKS: Record<string, string> = {
   'CC BY 2.0': 'https://creativecommons.org/licenses/by/2.0/',
   'CC BY-SA 3.0': 'https://creativecommons.org/licenses/by-sa/3.0/',
   'CC0': 'https://creativecommons.org/publicdomain/zero/1.0/',
+  'Public domain': 'https://creativecommons.org/publicdomain/mark/1.0/',
 };
 
 // The order the page lists licences in: open licences first, then public-domain government work, then licensed course material.
-const LICENSE_ORDER = ['CC BY 2.0', 'CC BY-SA 3.0', 'CC0', 'U.S. Government work', 'Course reference extract'];
+const LICENSE_ORDER = ['CC BY 2.0', 'CC BY-SA 3.0', 'CC0', 'Public domain', 'U.S. Government work', 'Course reference extract'];
 
 const isWebAddress = (value?: string) => Boolean(value && /^https?:\/\//i.test(value));
 

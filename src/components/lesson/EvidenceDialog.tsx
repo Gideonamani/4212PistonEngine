@@ -29,7 +29,7 @@ export const EvidenceDialog: React.FC<{ step: LessonStep; stepNumber: number; on
   }, []);
 
   return <div className="fixed inset-0 z-[80] flex items-end justify-center bg-black/65 p-3 backdrop-blur-sm sm:items-center" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>
-    <section id="lesson-evidence-dialog" role="dialog" aria-modal="true" aria-labelledby="lesson-evidence-title" className="max-h-[75dvh] w-full max-w-lg overflow-y-auto rounded-2xl border border-teal-500/30 bg-[#09191f] p-4 text-slate-200 shadow-2xl sm:p-5">
+    <section id="lesson-evidence-dialog" role="dialog" aria-modal="true" aria-labelledby="lesson-evidence-title" className="max-h-[75dvh] w-full max-w-lg overflow-y-auto rounded-2xl border border-teal-500/30 bg-panel p-4 text-slate-200 shadow-2xl sm:p-5">
       <div className="flex items-start justify-between gap-4"><div><span className="font-mono text-[11px] font-bold tracking-widest text-teal-400">STEP {stepNumber}</span><h2 id="lesson-evidence-title" className="mt-1 text-base font-bold text-white">Evidence &amp; scope note</h2></div><button ref={closeRef} type="button" onClick={onClose} aria-label="Close evidence and scope note" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-700 text-slate-300 hover:border-teal-400 hover:text-teal-300"><X className="h-4 w-4" /></button></div>
       {step.note && <p className="mt-4 text-sm leading-relaxed text-slate-300">{step.note}</p>}
       {(step.credit || step.license) && <p className="mt-3 text-xs leading-relaxed text-slate-400"><span className="font-semibold text-slate-300">Media:</span> {[step.credit, step.license].filter(Boolean).join(' · ')}</p>}
