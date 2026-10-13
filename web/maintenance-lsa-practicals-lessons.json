@@ -12,7 +12,7 @@
       "tier": 1,
       "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
       "path": "Notes/amt_powerplant_handbook 2023.pdf",
-      "applicability": "Primary source for the general principles in this course. PDF page locators are used in step notes."
+      "applicability": "Primary source for valve construction, the valve-operating mechanism, hydraulic tappets, valve clearance and valve inspection. PDF page locators are used in step notes. Used in lesson 16 for: overhaul and inspection (PDF pp. 369 to 372), spark plug servicing (PDF pp. 194 to 197), oil filters (PDF pp. 252 to 253) and oil systems, the reliability and maintenance of an engine (PDF pp. 23 to 24), the troubleshooting charts (PDF pp. 404 to 405) and the light-sport engine preflight checklist (PDF p. 455)."
     },
     {
       "id": "easa-module16",
@@ -26,7 +26,7 @@
       "tier": 3,
       "title": "Continental GTSIO-520 Series Overhaul Manual X30045A",
       "path": "Notes/gtsio520_series.pdf",
-      "applicability": "Configuration-specific source for the course reference engine. Chapter B (table of limits, March 1981) covers the series; Chapter C-3 is the difference data for the -H. Variant applicability must be checked before using a limit, dimension or maintenance instruction; always use the current data for the engine in front of you."
+      "applicability": "Configuration-specific source for the course reference engine: its valve mechanism, camshaft, hydraulic tappets, inspection, overhaul replacement list and spring test data. The Chapter B table of limits is dated March 1981 and covers the series; Chapter C-3 (the -H) lists no different valve spring. Always use the current data for the engine in front of you. Used in lesson 16 for: the table of limits for spring tests and torque values (PDF pp. 95 and 100) and the -H spark plug gap, oil grades, sump capacity and fuel grade (PDF pp. 152 to 153)."
     },
     {
       "id": "course-deck-2026-05",
@@ -41,6 +41,13 @@
       "title": "AMT 04212 practical worksheets, 2025-2026 (student versions): Practical 1 External Component Identification and Practical 2 Internal Component Identification",
       "path": "Assessments/AMT04212 - 2025-2026 - Practical 1 - External Component ID [Students].docx; Assessments/AMT04212 - 2025-2026 - Practical 2 - Internal Component ID Worksheet [Students].docx",
       "applicability": "The instructor's own worksheets. They say what each practical session asks the student to do and record; they carry no technical evidence and no answers, and the lesson does not supply any."
+    },
+    {
+      "id": "tcaa-airworthiness-regs",
+      "tier": 1,
+      "title": "The Civil Aviation (Airworthiness) Regulations, GN 57 of 2017, Revised Edition 2026 (Tanzania Civil Aviation Authority)",
+      "url": "https://www.tcaa.go.tz/uploads/documents/en-1789480894-GP%20GN.%2057%20of%202017%20CIVIL%20AVIATION%20(AIRWORTHINESS)%20REGULATIONS%202017-TGPA.pdf",
+      "applicability": "The Tanzanian regulation of airworthiness, revised up to 31 July 2026. Regulation 2 defines inspection, maintenance, overhaul, repair, preventive maintenance and powerplant; 21 puts the duty to maintain on the owner or operator and describes the certificate of release to service; 22(2) makes an aircraft not maintained airworthy ineligible for operation; 26 says who may perform maintenance; 29 limits preventive maintenance and lists replacing or cleaning spark plugs and setting the gap and cleaning fuel and oil strainers; 30 sets the performance rules for maintenance (the current manufacturer's manual or instructions for continued airworthiness); 41 and 42 require the engine log book and the maintenance record entries. Read from the TCAA website, accessed 13 October 2026. The TCAA states that its published copy is not authoritative; the Government Printer's version is."
     }
   ],
   "lessons": [
@@ -75,7 +82,7 @@
       "models": [],
       "listed": true,
       "scheduledDay": 6,
-      "completionCriteria": "Explain what scheduled and unscheduled maintenance are, run and read a differential compression test, put the ten overhaul steps in order, say how a cylinder is removed and refitted, and plan the storage, preservation and return to service of an engine.",
+      "completionCriteria": "Explain why an engine is maintained and who is responsible, tell inspection, maintenance, repair, overhaul, preventive maintenance and servicing apart, say why approved data and limits must be used and where to find them, and describe an outside inspection and the evidence it shows; run and read a differential compression test; explain the servicing of oil and filters, spark plugs and other fluids, and point to where the valve-train and exhaust inspections are taught; put the ten overhaul steps in order, say how a cylinder is removed and refitted, and plan the storage, preservation and return to service of an engine; and say what must be written in the engine record after the work.",
       "steps": [
         {
           "type": "text",
@@ -89,6 +96,95 @@
             "mode": "none",
             "status": "not-needed",
             "rationale": "A framing step: two kinds of maintenance and the usual causes of defects."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Why an engine is maintained",
+          "prompt": "Maintenance keeps an engine safe to fly and able to give the power it was certified to give. Its aims are airworthiness, reliability and performance.\n\nAn engine is not reliable by design alone. The manufacturer builds in reliability and durability and recommends a time between overhauls, but the handbook says continued reliability is determined by the maintenance, overhaul and operating personnel.\n\nPreventive maintenance is the cheapest way to keep it. Regular checks, lubrication, cleaning and replacement on schedule find the oil leak, the worn plug or the low compression before they become a failure in flight.\n\nThe Tanzanian regulations put the duty on the owner or operator: they must maintain the aircraft in an airworthy condition, and an aircraft that is not may not be operated until it is restored.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 23 to 24 (reliability and durability; continued reliability is determined by maintenance, overhaul and operating personnel; the manufacturer specifies a recommended TBO) and the Tanzania Civil Aviation (Airworthiness) Regulations, GN 57 of 2017, Revised Edition 2026, regulation 21(1) (an owner or operator of an aircraft shall maintain the aircraft in an airworthy condition) and 22(2) (a failure to maintain an aircraft in an airworthy condition renders it ineligible for operation until restored). The three aims are the lesson's summary of the instructor's outcomes 1 and 17.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "tcaa-airworthiness-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Six words, six jobs",
+          "prompt": "Technicians use these words exactly, and the records depend on them.\n\nInspection: examining an aircraft or component to establish that it conforms to a standard approved by the Authority.\n\nMaintenance: the tasks needed to ensure continuing airworthiness, including overhaul, inspection, replacement, rectifying defects, and modifications or repairs.\n\nRepair: restoring to an airworthy condition after damage or wear.\n\nOverhaul: restoring using acceptable methods, including disassembly, cleaning, inspection, repair as necessary and reassembly.\n\nPreventive maintenance: simple or minor preservation and replacing small standard parts.\n\nServicing is supplying the engine with oil, fuel and filters. Troubleshooting is working back from a symptom to its cause, as in the last lesson.\n\nChoose the word that fits the job.",
+          "note": "Inspection, maintenance, repair, overhaul and preventive maintenance as the Tanzania Civil Aviation (Airworthiness) Regulations, GN 57 of 2017, Revised Edition 2026 define them, regulation 2. Servicing and troubleshooting are the course's working definitions: servicing from the Terminologies lesson, troubleshooting from FAA-H-8083-32B (2023), PDF p. 403 (a systematic analysis of the symptoms that indicate engine malfunction). The wording above is shortened from the regulation.",
+          "sourceRefs": [
+            "tcaa-airworthiness-regs",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Follow the approved data",
+          "prompt": "An engine is not maintained from memory or from a general book. The person doing the work must use the methods, techniques and practices in the current manufacturer's maintenance manual or instructions for continued airworthiness. If those are not available, they use methods the Authority has approved.\n\nIf the manufacturer recommends special tools or test equipment, they must be used, or an equivalent the Authority accepts.\n\nThe work must leave the engine at least equal to its original condition: in strength, resistance to vibration and deterioration, and the other qualities that affect airworthiness.\n\nThe handbook and this course teach the principles. The data for the engine in front of you gives the figures. A slide, an old manual or the manual of another variant is not approved data.",
+          "note": "Documented from the Tanzania Civil Aviation (Airworthiness) Regulations, GN 57 of 2017, Revised Edition 2026, regulation 30(1) to (3) (a person who performs maintenance shall use the methods, techniques and practices prescribed in the current manufacturer's maintenance manual or instructions for continued airworthiness, or methods approved by the Authority where the manufacturer's documents were not available; the special equipment the manufacturer recommends, or its equivalent; the work to be at least equal to the original or properly altered condition) and FAA-H-8083-32B (2023), PDF p. 369 (the technician should follow the manufacturer's manuals and information). The remark about slides and other variants is the lesson's, consistent with the Terminologies lesson on the -H variant.",
+          "sourceRefs": [
+            "tcaa-airworthiness-regs",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Limits and tolerances",
+          "prompt": "Every engine manual gives numbers that a part must stay within. A tolerance is the variation allowed from a nominal figure. A service limit is the most wear a part may have, or the least strength, and still be used.\n\nExamples from the GTSIO-520 manuals: a new inner valve spring pushes back 78 to 88 lb at 1.329 in, and it is not reused if it gives less than 73 lb. The spark plug gap is 0.017 to 0.018 in. The cylinder hold-down nuts are torqued to 490 to 510 inch-pounds.\n\nA part inside its limits goes back on. A part outside them is repaired, if the manual allows, or replaced.\n\nMeasure with the tools the manual names.\n\nA reading that is only just inside a limit is worth noting, because the trend over several checks shows wear building up.",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 95 (page B-4, spring test data: inner spring 78 to 88 lb new and 73 lb serviceable limit at 1.329 in), PDF p. 100 (the torque table: cylinder hold-down nuts, 7/16-20, 490 to 510 inch-pounds, 40.8 to 42.5 foot-pounds) and PDF p. 153 (page C-3-3, spark plug gap 0.017 to 0.018 in) and FAA-H-8083-32B (2023), PDF p. 369 (each manufacturer provides very specific tolerances to which the parts must conform; the manufacturer publishes a new minimum and serviceable dimension for critical parts). The figures are teaching data from a 1980/1981 manual edition, not a maintenance instruction. The tools named by the manual: the Tanzanian regulation 30(1)(d) requires the tools, equipment and test apparatus necessary to complete the work to accepted industry practice.",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "faa-powerplant-2023",
+            "tcaa-airworthiness-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "The outside inspection",
+          "prompt": "A great deal of an engine's health can be read from outside, with the cowling off and a good light. An external inspection looks at:\n\nLeaks: oil, fuel and coolant at joints, hoses, gaskets and fittings.\n\nSecurity: nuts, bolts, clamps and hoses, the engine mount, the propeller, and the safety wire and cotter pins.\n\nInduction and exhaust: connections, clamps, gaskets and cracks.\n\nControls: throttle, mixture and carburettor heat, with free and full travel.\n\nThe propeller: splits and chips.\n\nBaffles, cowling and fins: damage, blockage and missing parts.\n\nThe ignition harness and wiring: chafing, cracks and loose terminals.\n\nAlways work through the engine in the same order, so that nothing is skipped.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 455 (a light-sport engine preflight list: inspect the engine and gearbox for oil leaks; loose or missing nuts, bolts and screws; security of the engine mounting; the air filter and intake silencer; the spark plug connectors; the propeller for splits and chips) and the opening step of this lesson (the daily and preflight checks: oil level, leaks, visible damage, propeller security, induction and exhaust connections, and linkages). Exhaust leaks and inspection: PDF p. 150. The list is a general example; the aircraft's own maintenance manual gives the actual list.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Reading the evidence",
+          "prompt": "The handbook has exact words for what an inspector sees. Use them, because the record must.\n\nCorrosion: loss of metal by chemical action. Rust is an example.\n\nChafing: wear from two parts rubbing under light pressure.\n\nBurning: surface damage from excessive heat, from a poor fit, poor lubrication or running too hot. It shows as discoloured or blistered metal and paint.\n\nCrack: a partial separation of material, from vibration, overloading or fatigue.\n\nDent, nick and gouge: damage from blows or careless handling.\n\nFretting and scoring: wear from small movements, or from particles between parts.\n\nA leak shows as a wet streak, or a flat grey or sooty black one at an exhaust joint. Looseness shows as movement or a fastener out of its safety wire.\n\nEach sign is evidence to record and follow up.",
+          "note": "Defect terms (corrosion, chafing, burning, crack, dent, nick, gouge, fretting and scoring) from FAA-H-8083-32B (2023), PDF p. 371 (terms used to describe defects detected during inspection). Exhaust leaks showing as flat grey or sooty black streaks and black soot around a failed gasket: PDF p. 150 and the Induction and Exhaust lesson. The description of looseness and wet streaks is the lesson's wording.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -122,6 +218,67 @@
             "mode": "none",
             "status": "not-needed",
             "rationale": "Three leak paths and the three places to listen; the learner matches them in a check."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Oil, filters and screens",
+          "prompt": "Engine oil lubricates, cools, seals and cleans, and it carries away evidence of wear. So it is changed on a schedule and read as a record.\n\nThe oil filter removes solid particles before they reach the bearings. Aircraft filters are of four types: screen, Cuno, canister and spin-on, and the full-flow spin-on is the most widely used. A screen is cleaned at regular intervals, and a paper element is replaced. A bypass valve lets unfiltered oil through if the filter clogs, since dirty oil is better than no lubrication.\n\nAt an oil change: drain the oil, strain it or look at it for metal, examine the filter element and screens for metal particles, then refill with the right oil to the right level.\n\nMetal in the oil or on the filter is a warning, and if it is found an overhaul may be indicated.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 252 to 253 (the engine oil pump and filter; the four filter types: screen, Cuno, canister and spin-on; full-flow spin-on filters are the most widely used; the bypass valve; dirty oil in an engine is better than no lubrication; screens cleaned at regular intervals), PDF p. 370 (drain the oil, strain it through a clean cloth and check the cloth and the filter for metal particles) and PDF pp. 404 to 405 (metal particles in the sump: overhaul indicated). Cleaning fuel and oil strainers is preventive maintenance under the Tanzania Civil Aviation (Airworthiness) Regulations, GN 57 of 2017, Revised Edition 2026, regulation 29(w).",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "tcaa-airworthiness-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Servicing spark plugs",
+          "prompt": "Spark plugs are removed for servicing at the manufacturer's intervals, and sooner if a fault is traced to one.\n\nHandle each plug alone, and keep it in a tray labelled by cylinder. A plug dropped on a hard floor is discarded: the insulator may be cracked where it cannot be seen.\n\nInspect first: the threads, the lead barrel for corrosion and cracks, and the firing end for cracked or chipped insulator and worn electrodes. Clean the plugs that pass, with a vibrator cleaner and an abrasive blast, never by soaking. Set the gap with a round wire gauge, since a flat gauge misreads, and test the plug under pressure. On the GTSIO-520-H the gap is 0.017 to 0.018 in.\n\nBefore fitting, clean the bushing and the seat. Use anti-seize sparingly, since graphite on the electrodes shorts the plug. Fit by hand, then torque as the manual says.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 194 to 197 (plugs removed at the manufacturer's intervals; handle individually; the tray; a dropped plug is discarded; visual inspection first; cleaning by vibrator cleaner and abrasive blast; do not soak in solvent; the plug tested under pressure; the gap checked with a round wire-thickness gauge, because a flat gauge gives an incorrect indication; graphite antiseize compound must not touch the electrodes; start the plug by hand, then torque to the specified value) and the GTSIO-520 overhaul manual, PDF p. 153 (spark plug gap 0.017 to 0.018 in). Under the Tanzania Civil Aviation (Airworthiness) Regulations, GN 57 of 2017, Revised Edition 2026, regulation 29(t), replacing or cleaning spark plugs and setting the gap is preventive maintenance.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul",
+            "tcaa-airworthiness-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "The right fluid, the right amount",
+          "prompt": "Servicing means giving the engine the right fluids, in the right amount, with nothing in them that should not be there.\n\nOil: use the grade the manufacturer gives. For the GTSIO-520-H that is SAE 50 above 40 °F, and 10W30 multigrade or SAE 30 below, with a sump capacity of 13 quarts. Check the level on the dipstick, a bayonet gauge, before flight. A new engine may carry a preservative oil that is removed at the first 25 hours, and until then only the oils the manufacturer allows may be added.\n\nFuel: use the grade the manual gives. The GTSIO-520-H takes 100LL (blue) or 100 (green) aviation gasoline, and a lower grade can cause detonation.\n\nA wrong fluid, a wrong amount or a contaminated one can ruin an engine, so note what was added.",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 152 (the -H: oil SAE No. 50 above 40 degrees F and 10W30 multi-viscosity or SAE No. 30 below; oil sump capacity 13 quarts; fuel, aviation grade, 100LL (blue) or 100 (green)) and FAA-H-8083-32B (2023), PDF p. 250 (preservative oil removed at the end of the first 25 hours of operation; use only the oils allowed while it is in the engine) and PDF p. 252 (the dipstick-type quantity gauge, often called a bayonet gauge). That a lower grade can cause detonation: the High compression and fuel step of Power Generation.",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Where the other inspections live",
+          "prompt": "Four more inspections belong to the lessons that taught the parts.\n\nThe valve train (lesson 8): valves are checked for a worn face and tip, stretch, burning and a thin margin. A spring that pushes back with less than its limit is not reused, and hydraulic tappets are checked for damaged faces and for a plunger that does not kick back.\n\nThe exhaust (lesson 11): clamps, welds and gaskets are checked for leaks and cracks, because an exhaust failure can mean carbon monoxide, power loss or fire.\n\nThe reasons are simple. A worn valve or weak spring loses compression. A failed tappet spoils the valve timing. A cracked exhaust is a safety hazard.\n\nThe practical sessions repeat these checks on real engines.",
+          "note": "Pointers to the Valve Operating lesson (inspecting a valve, checking a valve spring, the camshaft and tappets: FAA-H-8083-32B (2023), PDF pp. 379 to 384, and the GTSIO-520 overhaul manual, PDF pp. 66 to 67 and 95) and the Induction and Exhaust lesson (inspecting the exhaust: PDF pp. 149 to 151). The instructor's outcomes 11 to 14 for this lesson are taught there; this step only places them in the maintenance round.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -298,8 +455,23 @@
         },
         {
           "type": "text",
+          "title": "Write it down",
+          "prompt": "A job is not finished until it is recorded. The record is how the next technician, the owner and the Authority know the true condition of the engine.\n\nIn Tanzania each engine has its own log book, separate from the aircraft's. When the work has been done properly, the person who did it makes an entry saying what was done, or referring to the data they used; the engine's total time in service and its time since overhaul; the state of compliance with mandatory continuing airworthiness information such as airworthiness directives; and any modifications and repairs. The signature is the approval for return to service, for the work done and no more.\n\nEntries are made promptly, and log books are kept for two years after the engine is destroyed or withdrawn.\n\nIf it was not recorded, it cannot be shown to have been done.",
+          "note": "Documented from the Tanzania Civil Aviation (Airworthiness) Regulations, GN 57 of 2017, Revised Edition 2026, regulation 41 (a separate log book for each engine; entries made as soon as practicable after the occurrence, and not more than seven days after the expiry of the certificate of release to service; an entry on each occasion of maintenance, overhaul, repair, replacement, modification or inspection of the engine; kept for two years after the engine is destroyed or permanently withdrawn; a clear record of continued compliance with mandatory airworthiness requirements), regulation 42 (the maintenance record entry: a description of the work or a reference to data acceptable to the Authority; total time in service and time since overhaul; status of compliance with mandatory continuing airworthiness information; details of modifications and repairs; the signature approves return to service only for the work performed; a major repair is recorded on a prescribed form) and regulation 21(1)(c) to (d) (the certificate of release to service; open discrepancies listed). FAA-H-8083-32B (2023), PDF p. 369: complete records of the inspection process are kept with the engine records. The last sentence is the lesson's.",
+          "sourceRefs": [
+            "tcaa-airworthiness-regs",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
           "title": "Plan a job",
-          "prompt": "A six-cylinder engine is going to sit for four months while the aircraft is repaired, and you are told to make sure it comes out as good as it went in. Say in your own words which level of storage it needs, and why. Then list, in order, what you would do to the engine to preserve it, what you would do to the plugs and ports, what you would check and how often while it sits, and what you would do when it returns to service. Finish by naming the one thing you must never do to the crankshaft in storage, and why.",
+          "prompt": "A six-cylinder engine is going to sit for four months while the aircraft is repaired, and you are told to make sure it comes out as good as it went in. Say in your own words which level of storage it needs, and why.\n\nThen list, in order, what you would do to the engine to preserve it, what you would do to the plugs and ports, what you would check and how often while it sits, and what you would do when it returns to service. Say what you would write in the engine's log book, and whose data you would work to.\n\nFinish by naming the one thing you must never do to the crankshaft in storage, and why.",
           "note": "Completion step: the learner applies the storage and preservation sequence (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 345-348, and EASA Module 16, PDF pp. 323-327. A four-month storage is temporary or indefinite storage depending on whether it passes 90 days; the deck would call it medium term.",
           "sourceRefs": [
             "faa-powerplant-2023",
@@ -1121,6 +1293,200 @@
       ],
       "correct": 1,
       "rationale": "The manual's notes in paragraph 7-15 recommend replacing all exhaust valves and rotocaps, and all hydraulic lifters, at each major overhaul regardless of condition. Always read the current instructions for the engine in front of you."
+    },
+    {
+      "id": "maint-responsible",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "Under the Tanzanian airworthiness regulations, who must maintain an aircraft in an airworthy condition?",
+      "hint": "The duty is on the person who owns or uses the aircraft.",
+      "answers": [
+        "The owner or operator of the aircraft",
+        "Only the engine manufacturer",
+        "Only the pilot, on each flight",
+        "Only the Authority"
+      ],
+      "correct": 0,
+      "rationale": "Regulation 21 puts the duty on the owner or operator. An aircraft that is not maintained in an airworthy condition may not be operated until it is restored."
+    },
+    {
+      "id": "maint-words",
+      "lessonId": "maintenance-servicing",
+      "type": "matching",
+      "question": "Match each maintenance word to its meaning.",
+      "hint": "Two of them are about restoring, one is about examining and one is a small job.",
+      "pairs": [
+        {
+          "left": "Inspection",
+          "right": "Examining to establish that it conforms to an approved standard"
+        },
+        {
+          "left": "Repair",
+          "right": "Restoring to an airworthy condition after damage or wear"
+        },
+        {
+          "left": "Overhaul",
+          "right": "Restoring by disassembly, cleaning, inspection, repair as necessary and reassembly"
+        },
+        {
+          "left": "Preventive maintenance",
+          "right": "Simple or minor preservation and replacing small standard parts"
+        }
+      ],
+      "rationale": "These are the regulation's own meanings. Maintenance is the general word that includes overhaul, inspection, replacement, defect rectification and modifications or repairs."
+    },
+    {
+      "id": "maint-approved-data",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "What must a person use when doing maintenance on an engine?",
+      "hint": "There is one first choice and one fallback.",
+      "answers": [
+        "The current manufacturer's maintenance manual or instructions for continued airworthiness, or methods the Authority has approved if they are not available",
+        "Whatever method they remember from training",
+        "A general textbook",
+        "The course slides"
+      ],
+      "correct": 0,
+      "rationale": "Regulation 30 requires the methods in the current manufacturer's maintenance manual or instructions for continued airworthiness, or Authority-approved methods where those are not available, with the special tools the manufacturer recommends."
+    },
+    {
+      "id": "maint-service-limit",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "What does a service limit tell you about a part?",
+      "hint": "It is a limit on wear, not a nominal size.",
+      "answers": [
+        "The most wear the part may have, or the least strength, and still be used",
+        "The size the part was when new",
+        "The number of hours the part has flown",
+        "The price of replacing the part"
+      ],
+      "correct": 0,
+      "rationale": "A new part is made to a nominal size within a tolerance. A service limit is the point at which it must be repaired or replaced, as with the valve spring that is not reused below 73 lb."
+    },
+    {
+      "id": "maint-plug-gap",
+      "lessonId": "maintenance-servicing",
+      "type": "numeric",
+      "question": "The manual allows a spark plug gap of 0.017 to 0.018 in. A plug measures 0.022 in. By how much is it over the largest allowed gap? Give the answer in inches.",
+      "hint": "Subtract the largest allowed gap from the measured gap.",
+      "unit": "in",
+      "correctValue": 0.004,
+      "tolerance": 0.0005,
+      "rationale": "0.022 - 0.018 = 0.004 in over the limit. A plug whose gap has eroded wider than the limit is not installed as it is: it is serviced and the gap set again, or replaced."
+    },
+    {
+      "id": "maint-dropped-plug",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "A technician drops a spark plug on the hangar floor. What should be done?",
+      "hint": "Think about damage that cannot be seen.",
+      "answers": [
+        "Discard it, because the shock can crack the insulator where it cannot be seen",
+        "Wipe it and fit it",
+        "Re-gap it and fit it",
+        "Fit it only on the lower side of the cylinder"
+      ],
+      "correct": 0,
+      "rationale": "A plug that has been dropped on a hard surface should not be installed, because the shock usually causes small, invisible cracks in the insulator."
+    },
+    {
+      "id": "maint-evidence-words",
+      "lessonId": "maintenance-servicing",
+      "type": "matching",
+      "question": "Match each defect word to its meaning.",
+      "hint": "Each word names a different way for metal to be damaged.",
+      "pairs": [
+        {
+          "left": "Corrosion",
+          "right": "Loss of metal by chemical action"
+        },
+        {
+          "left": "Chafing",
+          "right": "Wear from two parts rubbing under light pressure"
+        },
+        {
+          "left": "Burning",
+          "right": "Surface damage from excessive heat"
+        },
+        {
+          "left": "Crack",
+          "right": "A partial separation of material, from vibration, overload or fatigue"
+        }
+      ],
+      "rationale": "These are the handbook's definitions. Using the exact word in the record tells the next person what to look for."
+    },
+    {
+      "id": "maint-filter-metal",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "Metal particles are found on the oil filter element at an oil change. What does that suggest?",
+      "hint": "The metal came from inside the engine.",
+      "answers": [
+        "Internal wear or a failing part, so the cause must be investigated and an overhaul may be indicated",
+        "Nothing, because oil always carries metal",
+        "That the filter is the wrong type",
+        "That the oil can simply be topped up"
+      ],
+      "correct": 0,
+      "rationale": "The handbook says to check the oil and the filter for metal, and that when metal particles are found in the sump an overhaul of the engine is indicated."
+    },
+    {
+      "id": "maint-preventive",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "Which of these is preventive maintenance under the Tanzanian airworthiness regulations?",
+      "hint": "Preventive maintenance is simple or minor work.",
+      "answers": [
+        "Replacing or cleaning spark plugs and setting the gap",
+        "Replacing a cylinder",
+        "A major overhaul",
+        "Replacing a crankshaft"
+      ],
+      "correct": 0,
+      "rationale": "Regulation 29 lists replacing or cleaning spark plugs and setting the plug gap, and cleaning fuel and oil strainers, among the preventive maintenance. Who may do it is limited by regulation 26."
+    },
+    {
+      "id": "maint-record-signature",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "What does the signature on a maintenance record entry approve?",
+      "hint": "It is limited to what was done.",
+      "answers": [
+        "The return to service of the work performed, and no more",
+        "The return to service of the whole aircraft whatever else is wrong",
+        "The airworthiness of every engine of that type",
+        "The choice of a new overhaul period"
+      ],
+      "correct": 0,
+      "rationale": "Regulation 42 says the signature constitutes the approval for return to service only for the work performed."
+    },
+    {
+      "id": "maint-logbook-years",
+      "lessonId": "maintenance-servicing",
+      "type": "numeric",
+      "question": "For how many years after an engine is destroyed or permanently withdrawn from use must its log book be kept?",
+      "hint": "The regulation gives a number of years.",
+      "unit": "years",
+      "correctValue": 2,
+      "tolerance": 0,
+      "rationale": "Regulation 41 says every log book shall be preserved by the operator until two years after the aircraft, the engine or the propeller has been destroyed or permanently withdrawn from use."
+    },
+    {
+      "id": "maint-fuel-grade",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "Which fuel grades does the GTSIO-520-H data page give?",
+      "hint": "Look at the first specification page.",
+      "answers": [
+        "100LL (blue) or 100 (green) aviation gasoline",
+        "Any automotive gasoline",
+        "80 octane aviation gasoline only",
+        "Jet fuel"
+      ],
+      "correct": 0,
+      "rationale": "Page C-3-2 gives aviation grade fuel, 100LL (blue) or 100 (green). A lower grade in an engine that needs a high one can cause detonation."
     },
     {
       "id": "lsa-max-speed",
