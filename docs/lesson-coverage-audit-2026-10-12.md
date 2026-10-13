@@ -90,3 +90,34 @@ Take the lessons in the order a learner meets them, one commit each, because eve
 4. Lessons 11 to 16, and 17 and 18 once the instructor's source material for the TCAA rules and the practical rigs is to hand.
 
 Each reworked lesson is held to the same rules as lessons 8 to 18: every step names its source, steps stay short, at least eight checks of at least three kinds with hints, and the lesson stays marked as awaiting the instructor's review until the instructor says otherwise.
+
+## Progress: lessons 1 to 7 reworked (13 October 2026)
+
+Lessons 1 to 7 have been reworked, one commit each, in the order above. Every outcome of each now has a step that teaches it, every step names its sources, and each lesson is held to the full rules by the syllabus test (`REWORKED` in `scripts/test_syllabus_lessons.mjs`). All seven stay marked as awaiting the instructor's review.
+
+| Lesson | Steps before → after | Checks before → after |
+|---|---|---|
+| 01 History of Mechanical Engines | 10 → 18 | 2 → 10 |
+| 02 History of Aircraft Engines | 13 → 19 | 2 → 12 |
+| 03 Terminologies | 11 → 22 | 4 → 17 |
+| 04 Thermodynamic Cycles | 14 → 21 | 7 → 17 |
+| 05 Classification | 11 → 21 | 5 → 14 |
+| 06 Cooling Methods | 7 → 16 | 2 → 11 |
+| 07 Parts and Construction | 13 → 18 | 8 → 18 |
+
+### Where the course slides disagree with the sources
+
+The reworked lessons follow the sources. Each affected step says so in its note, so the slides can be corrected.
+
+1. Slide 17 calls the 1913 Renault V8 water-cooled. Renault's V8 aero engines were air-cooled (Smithsonian; Aircraft Engine Historical Society).
+2. Slide 45 defines the powerplant as "an aircraft engine, or the system that produces thrust". The FAA handbook glossary (PDF p. 479) defines it as the complete installation of an aircraft engine, propeller and all accessories needed for its proper function, and 14 CFR 25.901 and EASA CS 23.2400 define the powerplant installation by what its components do.
+3. Slide 26 lists the Kestrel and the V-1710 among the 1,000 hp engines of the 1930s. Their outputs varied by variant; only the Merlin II's 1,030 hp in 1938 could be confirmed.
+4. The notes of slide 24 name the Wasp and the Cyclone beside the Spirit of St Louis, which flew a Wright J-5C Whirlwind.
+
+The FAA handbook also disagrees with itself on how much of the fuel's heat becomes power: about one-fourth in the cooling chapter (PDF p. 278), about 34 percent in the power chapter (PDF p. 56). Lesson 6 says "roughly a quarter to a third" and cites both pages.
+
+### Things the instructor may want to confirm or supply
+
+- **The prefix of "GTSIO-520-H".** Continental's own IO-520 manual reads I (fuel injection), O (horizontally opposed) and 520 (cubic inches). Neither manual spells out G and TS; lesson 5 reads them as geared and turbosupercharged, the two features the GTSIO manual lists, and its note says this is a reading.
+- **Planned pictures.** Six steps carry a brief for a picture that does not exist yet: heat engine flow, the pressure-volume diagram, the Carnot slider and the Brayton schematic (lesson 4), the coolant comparison (lesson 6) and the materials table (lesson 7).
+- **Lessons 17 and 18** wait on the Tanzanian (TCAA) rule sources and the details of the practical rigs.
