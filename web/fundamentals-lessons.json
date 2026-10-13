@@ -12,7 +12,7 @@
       "tier": 1,
       "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
       "path": "Notes/amt_powerplant_handbook 2023.pdf",
-      "applicability": "Primary source for general reciprocating-engine cycles, configurations, cooling, ignition timing principles and supercharging/turbocharging. PDF page locators are used in step notes. Used in lesson 5 for: classification by operating cycle, cylinder arrangement and cooling, the inline, opposed, V-type and radial descriptions and liquid versus air cooling (PDF pp. 24 to 25); cylinder numbering and firing order (PDF pp. 36 to 37); propeller reduction gearing (PDF p. 44); carburetor types (PDF p. 90); fuel-injection systems (PDF p. 103); internally driven superchargers and turbosuperchargers (PDF pp. 134 to 135); and the glossary entries for rotary radial engine, naturally aspirated engine, supercharger, turbocharger and turbosupercharger (PDF pp. 455 to 490)."
+      "applicability": "Primary source for general reciprocating-engine cycles, configurations, cooling, ignition timing principles and supercharging/turbocharging. PDF page locators are used in step notes. Used in lesson 6 for: air and liquid cooling (PDF p. 24); cooling fins and the fin taper (PDF p. 36); thermal efficiency of about 34 percent (PDF p. 56); the engine cooling systems chapter, covering heat released and wasted, the three reasons excessive heat is undesirable, fins, cowling, baffles, blast tubes, cowl flaps and the lower limit on temperature (PDF pp. 278 to 280); the Rotax 914 liquid and ram-air cooling system (PDF p. 439); and the glossary entry for ethylene glycol (PDF p. 469)."
     },
     {
       "id": "easa-module16",
@@ -132,6 +132,34 @@
       "title": "Gnome Omega Rotary 7 Engine - Smithsonian National Air and Space Museum",
       "url": "https://si.edu/object/gnome-omega-rotary-7-engine:nasm_A19660001000",
       "applicability": "Catalogue record read through a search result on 13 October 2026 (a direct fetch was refused): rotary type, seven cylinders, monosoupape, air cooled, 50 hp at 1,200 rpm. Licence: museum catalogue record, facts only; accessed 13 October 2026."
+    },
+    {
+      "id": "rotax-si-912-016",
+      "tier": 3,
+      "title": "Service Instruction SI-912 i-001R4 / SI-912-016R9 / SI-914-019R9, Selection of suitable operating fluids for ROTAX engine types 912 i, 912 and 914 (Series), BRP-Rotax, 27 March 2017",
+      "url": "https://www.foxbat.com.au/s/Rotax-recommended-fluids-for-912-series-engines.pdf",
+      "applicability": "Manufacturer's service instruction (a copy hosted by an Australian dealer). Section 4: 912 and 914 engines have liquid-cooled cylinder heads and ram-air-cooled cylinders; the coolant protects the heads from over-temperature by heat dissipation, and additives protect against corrosion and freezing; conventional coolant (ethylene glycol with about 50 percent water) has the higher specific thermal capacity and excellent corrosion protection, but 50/50 mixtures can boil as low as 120 C; waterless coolant (propylene glycol) has a high boiling point and a lower thermal capacity, so slightly higher running temperatures; the aircraft manufacturer chooses the coolant. Copyright BRP-Rotax; facts only, no text copied; accessed 13 October 2026."
+    },
+    {
+      "id": "wikipedia-antifreeze",
+      "tier": 5,
+      "title": "Antifreeze - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Antifreeze",
+      "applicability": "Publisher: Wikimedia Foundation. Licence: CC BY-SA 4.0. Used for: why water is mixed with glycol (lower freezing point, higher boiling point), the faults of pure water (freezing, boiling, galvanic corrosion), the lower heat capacity of the antifreeze additives, and the corrosion inhibitors that are gradually depleted; accessed 13 October 2026."
+    },
+    {
+      "id": "nasm-merlin-v1650",
+      "tier": 5,
+      "title": "Packard (Rolls-Royce) Merlin V-1650-7, V-12 Engine - Smithsonian National Air and Space Museum",
+      "url": "https://airandspace.si.edu/es/collection-objects/packard-rolls-royce-merlin-v-1650-7-v-12-engine/nasm_A19520106000",
+      "applicability": "Reciprocating, V-type, 12 cylinders, liquid cooled; 1,490 hp at 3,000 rpm. Licence: museum catalogue record, facts only; accessed 13 October 2026."
+    },
+    {
+      "id": "spirit-of-st-louis",
+      "tier": 5,
+      "title": "Charles A. Lindbergh's Ryan NYP, NX211, \"Spirit of St. Louis\" - This Day in Aviation",
+      "url": "https://www.thisdayinaviation.com/ryan-nyp-nx211-spirit-st-louis/",
+      "applicability": "The Spirit of St. Louis flew with an air-cooled, nine-cylinder Wright J-5C Whirlwind radial rated 200 hp at 1,800 rpm, 508 lb. Licence: facts only, no text copied; accessed 12 October 2026."
     }
   ],
   "lessons": [
@@ -917,45 +945,194 @@
       "models": ["gtsio520-h-v5-teaching-engine"],
       "listed": true,
       "scheduledDay": 2,
-      "completionCriteria": "Draw or explain the heat path for an air-cooled and liquid-cooled engine, identify two airflow-control features on an air-cooled installation, and state that the GTSIO-520 course engine is air cooled.",
+      "completionCriteria": "Explain why only part of the fuel's energy becomes work and why the rest must be removed continuously; describe what too much heat does to combustion, to the parts and to lubrication, and why an engine can also run too cold; describe air cooling (fins, cowling, baffles, cowl flaps and the airflow path) and liquid cooling (jackets, pump, radiator, expansion tank); say what a coolant must do and why it is a mixture of water, glycol and additives; compare the two methods for weight, complexity, temperature control, drag and maintenance; name engines that use each; and argue which method suits a given aircraft - without treating a typical trait as universal.",
       "steps": [
         {
           "type": "text",
-          "title": "Where heat goes",
-          "prompt": "Combustion releases more heat than the engine can convert to useful work. Predict the path that unwanted heat must take from the cylinder metal to the atmosphere in an air-cooled engine and in a liquid-cooled engine.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 24 and 278-282, cross-checked against EASA Module 16, PDF pp. 23 and 201.",
-          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The heat-path prediction prepares learners to interpret the system diagrams."}
+          "title": "Where the energy goes",
+          "prompt": "Burning fuel in a cylinder releases a great deal of heat, and the engine turns only part of it into work. The handbook puts the share that becomes power at roughly a quarter to a third. The rest has to go somewhere.\n\nIn a typical aircraft powerplant about half of the heat leaves with the exhaust, and the engine itself absorbs the other half. The circulating oil carries off part of that through the oil cooler, and the cooling system takes care of the rest.\n\nHere is the paradox of this lesson: heat makes the power, yet heat must be removed continuously, for as long as the engine runs. One gallon of aviation gasoline holds enough heat to boil 75 gallons of water.\n\nPredict the path unwanted heat takes from the cylinder metal to the air.",
+          "note": "About one-fourth of the heat released is changed into useful power, half goes out with the exhaust and the other half is absorbed by the engine, and a gallon of avgas could boil 75 gallons of water: FAA-H-8083-32B (2023), PDF p. 278. Reciprocating engines about 34 percent thermally efficient: PDF p. 56 (the two figures are the handbook's own and differ by chapter, hence 'a quarter to a third'). This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A short prediction prompt prepares learners to read the system diagrams that follow."
+          }
+        },
+        {
+          "type": "text",
+          "title": "When it gets too hot",
+          "prompt": "The handbook gives three principal reasons why excessive heat is undesirable.\n\nFirst, it changes how the charge burns. If the cylinder is too hot, the air-fuel mixture is preheated and burns before the planned moment. That premature combustion causes detonation and knocking.\n\nSecond, it weakens the engine's parts and shortens their lives.\n\nThird, it impairs lubrication.\n\nUnless most of the waste heat is rapidly removed, the cylinders can become hot enough to cause complete engine failure.\n\nAn engine can also run too cold. Fuel evaporation and distribution, and oil circulation, depend on the engine being kept at its best operating temperature. So the cooling system has to regulate heat as well as remove it.",
+          "note": "The three principal reasons excessive heat is undesirable, premature combustion and detonation, and the risk of engine failure: FAA-H-8083-32B (2023), PDF p. 278. The risk of running too cold, and temperature control: PDF p. 279.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "image",
           "title": "Air-cooled path",
-          "prompt": "Trace heat from the cylinder wall and head into the fins, then into air directed through the cowling and baffles. Identify how added fin area supports convection.",
+          "prompt": "Trace heat from the cylinder wall and head into the fins, then into air directed through the cowling and baffles.\n\nIdentify how added fin area supports convection.",
           "url": "./lesson-media/air-cooling-path.webp",
           "alt": "FAA cylinder baffle and deflector airflow diagram",
           "credit": "FAA-H-8083-32B, Figure 6-50",
           "license": "U.S. Government work",
           "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 24 and 278-282. Use the FAA cylinder-head/fin and cowling/baffle figures as the primary image source.",
-          "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "source-image", "status": "available", "rationale": "A labelled source schematic clearly establishes the directed airflow path around the cylinder."}
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "A labelled source schematic clearly establishes the directed airflow path around the cylinder."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Fins: more surface for the air",
+          "prompt": "A cylinder on a large engine is roughly the size of a gallon jug. Its cooling fins increase its outer surface so that it presents a barrel-sized exterior to the cooling air. That increases the heat transfer by convection.\n\nThe fins are thin metal ribs on the cylinder barrel and head. The greatest improvement in air cooling came from making them thinner and deeper: modern fins taper from 0.090 inch at the base to 0.060 inch at the tip. More fin area is given where the metal is hottest, around the exhaust valve.\n\nThe head is cast aluminium alloy, which conducts heat rapidly and can be cast with deep, closely spaced fins.\n\nIf too much fin is broken off, the cylinder cannot cool properly and a hot spot develops. Cylinders are normally replaced if a specified number of square inches of fin is missing.",
+          "note": "Fin area and the gallon-jug comparison, and the effect of broken fins: FAA-H-8083-32B (2023), PDF p. 278. Fin taper from 0.090 to 0.060 inch, extra fin area at the exhaust valve, aluminium alloy heads cast with deep, closely spaced fins: PDF p. 36.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "model-pose",
           "title": "GTSIO cooling fins",
           "modelId": "gtsio520-h-v5-teaching-engine",
           "prompt": "Inspect the GTSIO-520-H cylinder banks and locate the finned surfaces exposed to the installation airflow. Use the model to understand location and access, not to infer an exact heat-transfer rate.",
-          "action": {"type": "angle", "value": 0},
+          "action": {
+            "type": "angle",
+            "value": 0
+          },
           "note": "The GTSIO-520 overhaul manual identifies the basic engine as air cooled (PDF p. 13). The model is suitable for spatial inspection but is not a thermal simulation.",
-          "sourceRefs": ["gtsio520-overhaul"],
-          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "The whole-engine model shows where the finned cylinders sit relative to the crankcase and installation airflow."}
+          "sourceRefs": [
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The whole-engine model shows where the finned cylinders sit relative to the crankcase and installation airflow."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Cowling, baffles and cowl flaps",
+          "prompt": "Fins alone are not enough: the air must be made to go where the heat is.\n\nThe cowling streamlines the bulky engine, and it forms an envelope that forces air to pass around and between the cylinders. Baffles direct the air close around each cylinder so it cannot form hot pools of stagnant air while the main streams rush by unused. Blast tubes in the baffles aim jets of air at the rear spark plug elbows, to protect the ignition leads, and at accessories such as the alternator and starter.\n\nOnly about 15 to 30 percent of the air approaching the nacelle enters the cowling; the rest flows over the outside.\n\nCowl flaps at the exit control the flow. Opened, they let more air through and the engine cools; closed, it warms. Opened, they also add drag.",
+          "note": "Cowling, baffles, blast tubes and the 15 to 30 percent of ram air that enters the cowling: FAA-H-8083-32B (2023), PDF pp. 278 and 280. Cowl flaps change the exit area and so the temperature, and add drag when extended: PDF pp. 279 and 280.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "web-embed",
+          "title": "Airflow condition",
+          "prompt": "Change the qualitative inputs: low or high cooling airflow, fins clear or obstructed, baffles sealed or leaking. Observe how each condition changes the intended airflow path and relative cooling margin.",
+          "url": "artifact:air-cooling-path-explorer",
+          "note": "Documented relationships from FAA-H-8083-32B (2023), PDF pp. 278-282. The planned output will use relative labels only; it will not calculate cylinder-head temperature or declare an engine airworthy.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "Learner-selected airflow and obstruction states make the role of fins and baffles causal rather than merely labelled."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Inspection connection",
+          "prompt": "Cooling fins and baffles work as a system.\n\nDamaged or obstructed fins reduce heat-transfer area. Missing or poor-fitting baffles let cooling air bypass the surfaces that need it.\n\nActual acceptance limits and corrective action come from the applicable maintenance data.",
+          "note": "Documented general inspection relationship from FAA-H-8083-32B (2023), PDF p. 282. This is a recognition lesson, not an approval-to-service procedure.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The final step connects theory to maintenance judgment while preserving the manual boundary."
+          }
         },
         {
           "type": "text",
           "title": "Liquid-cooled path",
-          "prompt": "In a liquid-cooled engine, heat moves from the cylinder into coolant, then through tubing to a radiator in the airstream. A pump circulates the coolant. This adds coolant, radiator, pump and tubing mass, but it can support high power and closer control of component temperature.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 24, and EASA Module 16, PDF p. 23. The sources identify added system weight as the principal disadvantage and note that some light-aircraft engines combine air and liquid cooling.",
-          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The system path is short enough to establish in text before a comparison graphic."}
+          "prompt": "In a liquid-cooled engine, passages called water jackets surround the cylinders. A liquid coolant circulates through them and carries the excess heat away. The coolant then passes through a radiator, a heat exchanger in the airstream, which gives the heat to the air.\n\nSo the heat takes one more step than in an air-cooled engine: cylinder metal, coolant, radiator, air. A pump keeps the coolant moving.\n\nThe price is weight: the coolant, radiator, pump and tubing all have to be carried. In return, liquid cooling allows high power to be obtained safely, and it cools more evenly.\n\nMost piston aircraft engines are air cooled. Liquid cooling appears in a few high-power engines and some diesels.",
+          "note": "Water jackets, coolant and radiator, and that some diesel liquid-cooled engines are available for light aircraft: FAA-H-8083-32B (2023), PDF p. 278. Added weight of coolant, radiator and tubing, and that liquid cooling allows high power safely: PDF p. 24, and EASA Module 16, PDF p. 23. More uniform, controlled cooling is the course slides' claim (slide 106).",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The system path is short enough to establish in text before a comparison graphic."
+          }
+        },
+        {
+          "type": "text",
+          "title": "The parts of a liquid system",
+          "prompt": "Take the Rotax 914 as an example. Its cooling system for the cylinder heads is a closed circuit.\n\nA water pump, driven from the camshaft, pushes coolant from the radiator to the cylinder heads. From the top of the heads it passes to an expansion tank. The radiator sits below engine level, so the tank on top of the engine gives the coolant room to expand.\n\nThe tank has a pressure cap with an excess-pressure valve and a return valve. As the coolant warms, the valve opens and coolant flows to a transparent overflow bottle. When it cools, the coolant is sucked back. Temperature probes in the cylinder heads read the hottest point.\n\nSo the parts are: jackets or head passages, pump, radiator, expansion tank and cap, overflow bottle, hoses and temperature sensors.",
+          "note": "The Rotax 914 cooling circuit (pump driven from the camshaft, radiator, cylinder heads, expansion tank with pressure cap, overflow bottle, temperature probes): FAA-H-8083-32B (2023), PDF p. 439 and Figure 11-7. This is an example of one system, not a claim about every liquid-cooled engine.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "What a coolant must do",
+          "prompt": "A coolant has one job: to carry heat from the hot metal to the radiator. To do that in an engine it must meet several demands at once.\n\nIt must carry a lot of heat for its volume, which favours a liquid with a high specific heat. It must stay liquid across the whole range of temperatures the engine meets, neither freezing on a cold night nor boiling in a hot cylinder head. And it must protect the metals it touches, aluminium among them, from corrosion.\n\nNo single liquid does all of this. Water carries heat very well but freezes, boils and corrodes. So engine coolants are mixtures.",
+          "note": "The coolant's function (protecting the cylinder heads from over-temperature by heat dissipation, with additives against corrosion and freezing): Rotax SI-912-016R9, section 4.1. The requirements of range of temperature, heat capacity and corrosion protection are drawn from Rotax section 4 and the Wikipedia Antifreeze article. Checked 13 October 2026.",
+          "sourceRefs": [
+            "rotax-si-912-016",
+            "wikipedia-antifreeze"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "planned",
+            "rationale": "A simple three-row table of demands (carry heat, stay liquid, protect metal) against water, glycol and a mixture makes the compromise visible.",
+            "assetBrief": "A labelled comparison with three demands (carry heat, stay liquid, resist corrosion) and three columns: water, ethylene glycol, a 50/50 mixture. Qualitative marks only, no invented numbers."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Why water, glycol and additives",
+          "prompt": "Water is the base of a coolant: cheap, harmless and good at carrying heat. On its own it has three faults. It freezes, and the expanding ice can burst an engine. It boils, and steam pockets in the jackets make hot spots. And it promotes corrosion between the different metals in the system.\n\nEthylene glycol cures the first two: it lowers the freezing point and raises the boiling point. But it carries less heat than water, so the mix is a compromise. Rotax allows ethylene glycol with about 50 percent water, which keeps the higher heat capacity but can boil as low as 120 degrees C, so it sets a temperature limit.\n\nAdditives protect the metals from corrosion. They are used up, so the coolant is replaced on schedule.\n\nRotax also allows a waterless coolant: it will not boil, but its lower heat capacity means slightly higher running temperatures.",
+          "note": "The faults of pure water, the effect of glycol on freezing and boiling points, its lower heat capacity, and the depletion of corrosion inhibitors: Wikipedia, Antifreeze. The 50 percent mix, the 120 degrees C boiling warning, the waterless coolant and its trade-off: Rotax SI-912-016R9, section 4. The FAA glossary calls ethylene glycol a permanent antifreeze (PDF p. 469). Checked 13 October 2026.",
+          "sourceRefs": [
+            "wikipedia-antifreeze",
+            "rotax-si-912-016",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "image",
@@ -966,25 +1143,66 @@
           "credit": "FAA-H-8083-32B, Figure 11-7 (Rotax 914 cooling system)",
           "license": "U.S. Government work",
           "note": "Documented from FAA-H-8083-32B (2023), PDF p. 440 (Figure 11-7 and its text): the Rotax 914 uses liquid cooling of the cylinder heads and ram-air cooling of the cylinders. The figure draws the liquid circuit only; the air path is in the text. Use it as an example, not as a claim about the GTSIO-520.",
-          "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "source-image", "status": "available", "rationale": "A real combined-system schematic prevents the false assumption that cooling methods are always all-or-nothing."}
-        },
-        {
-          "type": "web-embed",
-          "title": "Airflow condition",
-          "prompt": "Change the qualitative inputs: low or high cooling airflow, fins clear or obstructed, baffles sealed or leaking. Observe how each condition changes the intended airflow path and relative cooling margin.",
-          "url": "artifact:air-cooling-path-explorer",
-          "note": "Documented relationships from FAA-H-8083-32B (2023), PDF pp. 278-282. The planned output will use relative labels only; it will not calculate cylinder-head temperature or declare an engine airworthy.",
-          "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Learner-selected airflow and obstruction states make the role of fins and baffles causal rather than merely labelled."}
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "A real combined-system schematic prevents the false assumption that cooling methods are always all-or-nothing."
+          }
         },
         {
           "type": "text",
-          "title": "Inspection connection",
-          "prompt": "Cooling fins and baffles work as a system. Damaged or obstructed fins reduce heat-transfer area; missing or poor-fitting baffles let cooling air bypass the surfaces that need it. Actual acceptance limits and corrective action come from the applicable maintenance data.",
-          "note": "Documented general inspection relationship from FAA-H-8083-32B (2023), PDF p. 282. This is a recognition lesson, not an approval-to-service procedure.",
-          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The final step connects theory to maintenance judgment while preserving the manual boundary."}
+          "title": "Air or liquid: the comparison",
+          "prompt": "Compare the two methods point by point. These are typical differences, not rules.\n\nWeight: liquid cooling adds coolant, radiator, pump and tubing. Air cooling needs only fins, cowling and baffles.\n\nComplexity and reliability: a liquid system has more parts and more places to fail, such as leaks and pump problems. An air-cooled engine is simpler.\n\nTemperature control: liquid cooling is more uniform and controlled. Air cooling is less even and depends on airflow, which obstruction or extreme ambient temperature can upset.\n\nDrag: both put something in the airstream. Opened cowl flaps add drag to an air-cooled engine; a liquid-cooled one needs a radiator in the airstream.\n\nMaintenance: air cooling needs less. Liquid cooling means coolant to check, change and keep free of leaks.",
+          "note": "Weight, complexity, temperature control and maintenance as the course slides give them (slides 106 and 107, the instructor's deck: these are generalisations, not measured data); added weight of coolant, radiator and tubing, and a radiator placed in the airstream: FAA-H-8083-32B (2023), PDF p. 24; cowl flaps adding drag: PDF p. 279.",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Engines and their cooling",
+          "prompt": "Air cooled: the GTSIO-520-H and IO-520 of this course; the Lycoming O-320 and Continental O-200 of the flight schools; the radials, such as the Wright Whirlwind that carried the Spirit of St. Louis across the Atlantic.\n\nLiquid cooled: the Rolls-Royce Merlin, in its Packard-built form a V-12 of 1,490 hp, and some modern diesels.\n\nBoth: the Rotax 912 and 914, with liquid-cooled cylinder heads and ram-air-cooled cylinders.\n\nSo the method follows the job. Engines of very different eras and powers are found in each group.",
+          "note": "GTSIO-520 and IO-520 air cooled: the manufacturers' manuals; Lycoming O-320 and Continental O-200: course slide 107; Spirit of St. Louis air-cooled Wright J-5C Whirlwind: This Day in Aviation; Packard Merlin V-1650-7 liquid cooled, V-12, 1,490 hp: Smithsonian record; some diesel engines liquid cooled: FAA-H-8083-32B (2023), PDF p. 278; Rotax 912/914: Rotax SI-912-016R9 and FAA PDF p. 439.",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "tcm-io520-maintenance",
+            "course-deck-2026-05",
+            "spirit-of-st-louis",
+            "nasm-merlin-v1650",
+            "rotax-si-912-016",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Choosing a cooling method",
+          "prompt": "There is no best cooling method, only the best for the job. Ask what the aircraft needs.\n\nA flight-school trainer or a bush plane wants light weight, few parts and cheap upkeep, and its engine sits out in the airstream anyway. Air cooling suits it, which is why most general aviation engines are air cooled.\n\nAn engine pushed to high power, where air cooling would struggle to hold temperatures in check, may justify the weight and complexity of liquid cooling. The wartime V-12s are the classic case.\n\nMany designs compromise. The Rotax 914 liquid cools only the hot cylinder heads and lets ram air cool the rest.\n\nEngineers weigh power, weight, complexity, maintenance and the installation, and the answer differs from aircraft to aircraft.",
+          "note": "That the cooling method depends on the application and aircraft type, and that most general aviation engines are air cooled, with liquid cooling supporting higher power: course slides 106 to 108 (instructor deck) and FAA-H-8083-32B (2023), PDF p. 24. The Rotax 914 compromise: FAA PDF p. 439 and Rotax SI-912-016R9. The wartime V-12 is illustrated by the Merlin record.",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "faa-powerplant-2023",
+            "rotax-si-912-016",
+            "nasm-merlin-v1650"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         }
       ]
     },
@@ -1711,7 +1929,12 @@
       "type": "ordering",
       "question": "Put the air-cooled heat-transfer path in order.",
       "hint": "Begin inside the cylinder structure and end in the atmosphere.",
-      "items": ["Hot cylinder metal", "Cooling fins", "Directed cooling air", "Surrounding atmosphere"],
+      "items": [
+        "Hot cylinder metal",
+        "Cooling fins",
+        "Directed cooling air",
+        "Surrounding atmosphere"
+      ],
       "rationale": "Fins increase surface area so heat in the cylinder metal can transfer to cooling air and then to the atmosphere."
     },
     {
@@ -1720,9 +1943,169 @@
       "type": "multiple-choice",
       "question": "Why are baffles important in an air-cooled engine installation?",
       "hint": "Cooling air must pass across the surfaces that need it.",
-      "answers": ["They direct cooling air across the cylinders and fins", "They ignite the fuel-air mixture", "They drive the coolant pump"],
+      "answers": [
+        "They direct cooling air across the cylinders and fins",
+        "They ignite the fuel-air mixture",
+        "They drive the coolant pump"
+      ],
       "correct": 0,
       "rationale": "Baffles control the airflow path so air does useful cooling work instead of bypassing the finned surfaces."
+    },
+    {
+      "id": "cooling-heat-to-lose",
+      "lessonId": "cooling-methods",
+      "type": "numeric",
+      "question": "An engine burns 4 gallons of aviation gasoline a minute. One gallon holds enough heat to boil 75 gallons of water, and about one-quarter of the heat becomes power. How many gallons of water could the heat that must be removed each minute boil?",
+      "hint": "First find the heat in all the fuel burned in a minute, then take away the quarter that becomes power.",
+      "unit": "gallons",
+      "correctValue": 225,
+      "tolerance": 1,
+      "rationale": "4 x 75 = 300 gallons for all the fuel. A quarter becomes power, so three-quarters, 225 gallons' worth, must be dissipated every minute."
+    },
+    {
+      "id": "cooling-hot-charge",
+      "lessonId": "cooling-methods",
+      "type": "multiple-choice",
+      "question": "What happens to the air-fuel mixture in a cylinder that is too hot?",
+      "hint": "Think about when the charge is supposed to start burning.",
+      "answers": [
+        "It is preheated and burns before the planned moment, causing detonation and knocking",
+        "It stops burning altogether",
+        "It burns more slowly and more cleanly",
+        "It turns to liquid"
+      ],
+      "correct": 0,
+      "rationale": "An overheated cylinder preheats the mixture so combustion starts too early. The handbook names premature combustion, with detonation and knocking, as one of three reasons excessive heat is undesirable. The others are weaker parts and poor lubrication."
+    },
+    {
+      "id": "cooling-flaps-closed",
+      "lessonId": "cooling-methods",
+      "type": "multiple-choice",
+      "question": "In flight, a pilot closes the cowl flaps. What tends to happen to the engine temperature?",
+      "hint": "The flaps change the exit area at the rear of the cowling. What does a smaller exit do to the airflow?",
+      "answers": [
+        "It tends to rise, because less air flows over the cylinders",
+        "It tends to fall, because the air is trapped",
+        "It does not change",
+        "It falls because the flaps add drag"
+      ],
+      "correct": 0,
+      "rationale": "Closing the flaps shrinks the exit area, so less air flows over the fins and carries away less heat. Opening them does the opposite, at the price of extra drag."
+    },
+    {
+      "id": "cooling-liquid-path",
+      "lessonId": "cooling-methods",
+      "type": "ordering",
+      "question": "Put the liquid-cooled heat path in order.",
+      "hint": "Begin inside the cylinder structure and end in the atmosphere.",
+      "items": [
+        "Hot cylinder metal",
+        "Coolant in the jackets",
+        "Radiator",
+        "Surrounding air"
+      ],
+      "rationale": "Heat passes from the metal into the coolant, the pump carries the coolant to the radiator, and the radiator gives the heat to the air. A liquid system adds the coolant and radiator steps to the air-cooled path."
+    },
+    {
+      "id": "cooling-components",
+      "lessonId": "cooling-methods",
+      "type": "matching",
+      "question": "Match each cooling part to its job.",
+      "hint": "Some parts belong to air cooling and some to liquid cooling. What does each one do to the heat or the flow?",
+      "pairs": [
+        {
+          "left": "Fins",
+          "right": "Increase the surface that touches the cooling air"
+        },
+        {
+          "left": "Baffles",
+          "right": "Direct the air close around each cylinder"
+        },
+        {
+          "left": "Cowl flaps",
+          "right": "Change the exit area to control the airflow"
+        },
+        {
+          "left": "Radiator",
+          "right": "Passes heat from the coolant to the air"
+        },
+        {
+          "left": "Expansion tank and cap",
+          "right": "Give the warm coolant room to expand"
+        }
+      ],
+      "rationale": "Fins add surface, baffles steer the air, and cowl flaps meter it. In a liquid system the radiator passes heat to the air and the expansion tank with its pressure cap lets the coolant expand safely."
+    },
+    {
+      "id": "cooling-water-faults",
+      "lessonId": "cooling-methods",
+      "type": "multiple-choice",
+      "question": "Why is pure water not used as an engine coolant, even though it carries heat so well?",
+      "hint": "Think of a cold night and of a very hot cylinder head.",
+      "answers": [
+        "It freezes, boils and promotes corrosion",
+        "It carries too little heat",
+        "It is too expensive",
+        "It is flammable"
+      ],
+      "correct": 0,
+      "rationale": "Water is cheap and carries heat well, but it freezes and expands, it boils and forms steam pockets, and it promotes corrosion. Glycol and additives answer those faults, at the cost of some heat capacity."
+    },
+    {
+      "id": "cooling-waterless",
+      "lessonId": "cooling-methods",
+      "type": "multiple-choice",
+      "question": "What is the trade-off of a waterless coolant compared with a conventional glycol and water mix?",
+      "hint": "It will not boil. What does it give up?",
+      "answers": [
+        "A high boiling point, but a lower heat capacity and so slightly higher running temperatures",
+        "A lower boiling point and better heat capacity",
+        "It is cheaper but corrodes the engine",
+        "It needs no pump"
+      ],
+      "correct": 0,
+      "rationale": "Rotax says a waterless coolant prevents boiling because of its high boiling point, but its lower specific thermal capacity gives slightly higher running temperatures."
+    },
+    {
+      "id": "cooling-engine-cooling",
+      "lessonId": "cooling-methods",
+      "type": "matching",
+      "question": "Match each engine to its cooling method.",
+      "hint": "Think of each engine by name: a trainer engine, a wartime V-12, a light-sport engine with two kinds of cooling, a 1927 Atlantic flier.",
+      "pairs": [
+        {
+          "left": "GTSIO-520-H",
+          "right": "Air cooled"
+        },
+        {
+          "left": "Packard Merlin V-1650",
+          "right": "Liquid cooled"
+        },
+        {
+          "left": "Rotax 914",
+          "right": "Liquid-cooled heads, air-cooled cylinders"
+        },
+        {
+          "left": "Wright J-5C Whirlwind",
+          "right": "Air-cooled radial"
+        }
+      ],
+      "rationale": "The GTSIO-520 is air cooled, the Merlin is a liquid-cooled V-12, the Rotax 914 combines liquid cooling of its heads with ram air on the cylinders, and the Whirlwind that flew the Spirit of St. Louis is an air-cooled radial."
+    },
+    {
+      "id": "cooling-choose-trainer",
+      "lessonId": "cooling-methods",
+      "type": "multiple-choice",
+      "question": "A flying club wants an engine for a trainer that is light, simple and cheap to maintain. Which cooling method suits best, and why?",
+      "hint": "Which method has fewer parts to carry and look after?",
+      "answers": [
+        "Air cooling: no coolant, pump or radiator to carry or maintain",
+        "Liquid cooling: it always gives more power",
+        "Liquid cooling: it never needs maintenance",
+        "Neither: trainers do not need cooling"
+      ],
+      "correct": 0,
+      "rationale": "Air cooling needs only fins, cowling and baffles, so it is lighter and simpler with less maintenance. Liquid cooling is chosen when the extra power or temperature control is worth its weight and complexity."
     },
     {
       "id": "twostroke-revolutions",
