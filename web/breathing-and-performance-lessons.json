@@ -12,7 +12,7 @@
       "tier": 1,
       "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
       "path": "Notes/amt_powerplant_handbook 2023.pdf",
-      "applicability": "Primary source for valve construction, the valve-operating mechanism, hydraulic tappets, valve clearance and valve inspection. PDF page locators are used in step notes. Used in lesson 11 for: induction and exhaust systems, the induction manifold, back pressure and valve overlap (PDF pp. 129 to 134, 149 to 153 and 401 to 402)."
+      "applicability": "Primary source for valve construction, the valve-operating mechanism, hydraulic tappets, valve clearance and valve inspection. PDF page locators are used in step notes. Used in lesson 12 for: work and horsepower, piston displacement, compression ratio and the PLANK formula (PDF pp. 49 to 52); brake, friction and thrust horsepower and efficiencies (PDF pp. 52 to 56); specific fuel consumption (PDF p. 23); and the thermal efficiency example (PDF pp. 55 to 56)."
     },
     {
       "id": "easa-module16",
@@ -26,7 +26,7 @@
       "tier": 3,
       "title": "Continental GTSIO-520 Series Overhaul Manual X30045A",
       "path": "Notes/gtsio520_series.pdf",
-      "applicability": "Configuration-specific source for the course reference engine. Chapter B (table of limits, March 1981) covers the series; Chapter C-3 is the difference data for the -H. Variant applicability must be checked before using a limit, dimension or maintenance instruction; always use the current data for the engine in front of you."
+      "applicability": "Configuration-specific source for the course reference engine: its valve mechanism, camshaft, hydraulic tappets, inspection, overhaul replacement list and spring test data. The Chapter B table of limits is dated March 1981 and covers the series; Chapter C-3 (the -H) lists no different valve spring. Always use the current data for the engine in front of you. Used in lesson 12 for the -H leading particulars: the detail engine specifications on PDF pp. 152 and 153 (page C-3-2 and C-3-3)."
     },
     {
       "id": "course-deck-2026-05",
@@ -34,6 +34,27 @@
       "title": "Aircraft Piston Engine Slides - 21 May 2026 (instructor course deck)",
       "path": "Notes/Aircraft Piston Engine Slides - 21May2026.pptx",
       "applicability": "Instructor-authored course slides. Used only where the handbook, EASA text and manuals are silent. Carries no independent evidence; claims here need the instructor's confirmation."
+    },
+    {
+      "id": "openstax-work-power",
+      "tier": 5,
+      "title": "University Physics Volume 1, 7.4 Power - OpenStax",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/7-4-power",
+      "applicability": "Power as the rate of doing work, measured in watts (joules per second), and the conversion 1 hp = 746 W (also in Appendix B, with 550 ft-lb/s). Licence: CC BY 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "nist-sp811-appendix-b",
+      "tier": 5,
+      "title": "NIST Guide for the Use of the International System of Units (SP 811), Appendix B.8: factors for units listed by kind of quantity",
+      "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8",
+      "applicability": "Conversion factors: 1 in = 0.0254 m exactly; 1 lb = 0.4535924 kg; 1 cu in = 1.638706 x 10^-5 m3; 1 hp (550 ft-lbf/s) = 745.6999 W, and 1 electric hp = 746 W exactly; 1 psi = 6.894757 kPa; 1 inch of mercury at 32 F = 3.38638 kPa. Facts only, no text copied; accessed 13 October 2026."
+    },
+    {
+      "id": "tcm-io520-maintenance",
+      "tier": 3,
+      "title": "IO-520 Permold Series Engine Maintenance Manual, Publication M-11, Continental Motors (August 2011)",
+      "path": "Notes/TCM-IO520-MaintManual.pdf",
+      "applicability": "Comparison engine only, a different engine from the GTSIO-520-H. PDF p. 13 (printed 1-9) gives the specifications of the IO-520-B, -BA, -BB, -C, -CB, -M and -MB: six cylinders, bore 5.25 in, stroke 4.00 in, 520 cubic inches, compression ratio 8.5:1, firing order 1-6-3-2-5-4, rated maximum continuous operation 285 brake horsepower at 2700 rpm, oil sump 12 quarts, ignition 22 degrees BTC. Confirm applicability before using any value."
     }
   ],
   "lessons": [
@@ -490,7 +511,7 @@
       "models": [],
       "listed": true,
       "scheduledDay": 5,
-      "completionCriteria": "Work a displacement, compression ratio, PLANK and brake horsepower calculation without help, state the relationships between indicated, brake, friction and thrust horsepower, and name the four efficiencies and what each compares.",
+      "completionCriteria": "Work a displacement, compression ratio, PLANK and brake horsepower calculation without help, convert the answer between horsepower, watts and kilowatts and between the units engine data is quoted in, and check that it has the right units and a sensible size; state the relationships between indicated, brake, friction and thrust horsepower, name the four efficiencies and what each compares, and work a brake-specific fuel consumption, a fuel flow and an efficiency from fuel data; and find the leading particulars on an engine data sheet, say what condition each figure is quoted for, and compare two engines from their data.",
       "steps": [
         {
           "type": "text",
@@ -625,6 +646,39 @@
           }
         },
         {
+          "type": "text",
+          "title": "Watts and kilowatts",
+          "prompt": "Horsepower is not the only unit of power. The SI unit is the watt: one joule of work every second. Engine power is often quoted in kilowatts, and 1 kW is 1,000 W.\n\nThe horsepower of 550 ft-lb every second is 745.7 W. The electrical horsepower is exactly 746 W, and the two are close enough for most work.\n\nkilowatts = horsepower × 0.7457\nhorsepower = kilowatts × 1.341\n\nThe GTSIO-520-H's 375 hp is 375 × 0.7457 = 279.6 kW. A 100 kW motor is 100 ÷ 0.7457 = 134 hp.\n\nCheck which horsepower a data sheet means before you convert. Some data give a metric horsepower, which is a little smaller than the one in this course.",
+          "note": "Documented from OpenStax University Physics Volume 1, section 7.4 Power (the watt as one joule per second and 1 hp = 746 W) and NIST SP 811 Appendix B.8 (1 hp of 550 ft-lbf/s = 745.6999 W; electric horsepower = 746 W exactly). The 550 ft-lb per second horsepower: FAA-H-8083-32B (2023), PDF p. 49. The GTSIO-520-H's 375 hp: overhaul manual, PDF p. 152. The remark on a metric horsepower is a caution only; its value is not used in this course.",
+          "sourceRefs": [
+            "openstax-work-power",
+            "nist-sp811-appendix-b",
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Converting units",
+          "prompt": "Engine data mixes units, and a calculation goes wrong if they are not converted first. Keep a few factors to hand.\n\nLength: 1 in = 25.4 mm. The 5.25 in bore is 133.35 mm.\nMass: 1 lb = 0.4536 kg. The 550.39 lb dry weight is 249.7 kg.\nVolume: 1 cu in = 16.387 cm³. 520 cu in is 8,521 cm³, or 8.52 litres.\nPressure: 1 psi = 6.895 kPa. 1 inch of mercury = 3.386 kPa = 0.491 psi.\nPower: 1 hp = 0.7457 kW.\n\nInside a formula, make the units match its terms. In PLANK the stroke must be in feet, so divide inches by 12, and the speed must be power strokes a minute, so halve the rpm. Gas-law temperatures must be absolute, in kelvin or degrees Rankine.",
+          "note": "Conversion factors from NIST SP 811 Appendix B.8 (1 in = 25.4 mm exactly; 1 lb = 0.4535924 kg; 1 cu in = 16.387064 cm3 from 1.638706 x 10^-5 m3; 1 psi = 6.894757 kPa; 1 inch of mercury = 3.38638 kPa at 32 degrees F; 1 hp = 745.6999 W). The inch of mercury in psi is the quotient (3.386 / 6.895 = 0.491), which agrees with the handbook's 6 inches of mercury being about 3 psi (FAA-H-8083-32B (2023), PDF p. 401). The PLANK units (stroke in feet, N = rpm / 2): PDF p. 51. The -H's bore, displacement and dry weight: overhaul manual, PDF pp. 152 to 153. Absolute temperatures: the Factors Affecting Power lesson.",
+          "sourceRefs": [
+            "nist-sp811-appendix-b",
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
           "type": "image",
           "title": "Where the heat goes",
           "prompt": "Burning fuel releases heat, and only part of it becomes power. In this figure about 25 to 30 percent is converted into useful power, 40 to 45 percent leaves with the exhaust, 15 to 20 percent is removed by the cooling fins, and 5 to 10 percent is removed by the oil. The biggest loss is out of the exhaust pipe. Anything that puts more of the heat into work on the piston, or reduces friction, pumping loss, unburned fuel or heat lost to the engine parts, raises the thermal efficiency.",
@@ -688,8 +742,148 @@
         },
         {
           "type": "text",
+          "title": "Specific fuel consumption",
+          "prompt": "Specific fuel consumption says how much fuel an engine burns for each unit of power in each hour. For a piston engine it is the brake-specific fuel consumption, BSFC:\n\nBSFC = fuel flow in lb/hr ÷ brake horsepower\n\nAn engine burning 108 lb of fuel an hour at 240 bhp has a BSFC of 108 ÷ 240 = 0.45 lb per horsepower per hour. A lower figure is better.\n\nIt is a rate for each unit of power, so engines of different sizes can be compared: the one with the lower BSFC gets more power from each pound of fuel.\n\nIf the BSFC and the power are known, the fuel flow follows: 250 bhp at 0.45 burns 250 × 0.45 = 112.5 lb of fuel every hour.\n\nGas turbines use thrust-specific fuel consumption, fuel flow for each pound of thrust.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 23 (the basic parameter for describing the fuel economy of aircraft engines is specific fuel consumption; for reciprocating engines it is the fuel flow in lb/hr divided by brake horsepower, called brake-specific fuel consumption; for gas turbines the fuel flow divided by thrust; comparisons can be made between various engines on a specific fuel consumption basis). The numbers (108 lb/hr, 240 bhp, 250 bhp) are invented for the example, with a BSFC of the order a piston engine has.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Fuel and efficiency calculations",
+          "prompt": "Fuel flow gives endurance. An engine at 250 bhp with a BSFC of 0.45 burns 112.5 lb an hour. With 450 lb of fuel on board it runs for 450 ÷ 112.5 = 4 hours.\n\nEfficiency is useful output divided by the energy put in. One horsepower for one hour is 1,980,000 ft-lb. A pound of fuel of 18,800 BTU gives 18,800 × 778 = 14,626,400 ft-lb of heat energy.\n\nAt a BSFC of 0.45 the engine burns 0.45 lb for each horsepower-hour:\n\nefficiency = 1,980,000 ÷ (0.45 × 14,626,400) = 0.30, or 30 percent.\n\nThis is the brake thermal efficiency. A lower BSFC means a higher efficiency, because the same work uses less fuel.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 23 (1 hp = 33,000 ft-lb per minute = 1,980,000 ft-lb per hour), PDF p. 55 (each BTU is equivalent to 778 ft-lb; the thermal efficiency formula) and PDF p. 56 (the brake thermal efficiency example with a heat content of 18,800 BTU per pound). The BSFC route to the efficiency is the lesson's rearrangement of the handbook's formula. The numbers (250 bhp, 0.45, 450 lb) are invented for the example.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Does the answer make sense?",
+          "prompt": "Before you trust a calculation, check the units and the size of the answer.\n\nUnits: write the unit beside every number and let the units cancel. Pressure in psi times area in square inches gives pounds. Times a stroke in feet gives ft-lb. Ft-lb a minute divided by 33,000 gives horsepower. If you end up with horsepower per minute, something is wrong.\n\nSize: estimate first with rounded numbers. A 5.25 in bore is about 5, so the area is about 0.8 × 25 = 20 sq in. Times a 4 in stroke is about 80 cu in, and six cylinders about 480. The exact answer, 519.5, is close, so the sum is probably right.\n\nCompare with what you know: 375 hp from 520 cu in is 0.72 hp per cubic inch. An answer of 3,750 or 37 hp for that engine is out by a factor of ten.",
+          "note": "The method of checking units and estimating the size of an answer is the lesson's own teaching. The numbers are from the GTSIO-520-H overhaul manual, PDF pp. 152 to 153 (bore 5.250 in, stroke 4.000 in, 520 cu in, 375 hp) and the PLANK units from FAA-H-8083-32B (2023), PDF p. 51.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "What leading particulars are",
+          "prompt": "An engine's leading particulars are the main facts that identify it and describe its size, its ratings and its limits. They are what you look up first on a data sheet.\n\nThey include the model designation, the arrangement of the cylinders and their number, the bore and stroke, the displacement, the compression ratio, the rated horsepower and the rated rpm, and the firing order.\n\nThere are more: the direction the propeller shaft turns, the fuel grade, the oil grade and the oil capacity, the drive ratios, the spark timing, and the temperature and pressure limits.\n\nThe legal source for an approved engine is its type certificate data sheet. The maker's manual gives the same figures for the engine in your hands.",
+          "note": "The term 'leading particulars' and the list are from the instructor's learning outcomes for this lesson (objectives 14 to 17) and the course deck (slide 'Engine Data Plate & Leading Particulars Interpretation', which names the type certificate data sheet as the legal specification); the handbook and manuals read here do not use the phrase. The particulars listed are those on the GTSIO-520-H detail specification pages, overhaul manual PDF pp. 152 to 153.",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "The data plate and the engine's name",
+          "prompt": "Every certified engine carries a permanent, fireproof data plate. It identifies the engine with at least its maker, its model and its serial number. The serial number lets you track its total time, its time since overhaul and any airworthiness directives.\n\nThe model name is a code, which lesson 5 decoded. In GTSIO-520-H the manual's general information says the engine is geared, turbocharged, fuel injected and horizontally opposed, and 520 is its displacement in cubic inches.\n\nThe H marks the variant. A limit that belongs to another variant does not apply to this one, so always check the variant before you read a figure.",
+          "note": "The regulatory content of the data plate (14 CFR 45.13 and EASA Part 21) and the use of the serial number are from the course deck (slide 207); the handbook pages read here do not describe the engine data plate, so the instructor should confirm the wording against the regulation. The engine's description is from the Continental GTSIO-520 overhaul manual, PDF p. 152 (C-3-2: geared, turbocharged, six-cylinder, fuel injected, horizontally opposed, 520 cubic inches). The deck reads the letters as G for geared, TS for turbosupercharged, I for fuel injected and O for opposed.",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The naming rule is the content; the next steps show the real data."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Leading particulars",
+          "prompt": "Here is the first page of the GTSIO-520-H's detail specifications from its overhaul manual. Find these: the power it develops and at what propeller speed; the propeller drive ratio; the bore, stroke and displacement; the compression ratio; the fuel grade; and the drive ratios of the magnetos, the tachometer and the starter. The numbers are the engine's leading particulars.",
+          "url": "./lesson-media/gtsio-h-specifications-1.webp",
+          "alt": "GTSIO-520-H general information and detail engine specifications, page C-3-2: it is geared, turbocharged, six-cylinder, fuel injected and horizontally opposed, and develops 375 horsepower at 2275 propeller rpm; propeller drive ratio 0.667:1; bore 5.250 in; stroke 4.000 in; displacement 520 cu in; compression ratio 7.5:1; turbosupercharger maximum 75,000 rpm; oil sump 13 quarts; fuel 100LL or 100; magneto drive 1.5:1; tachometer 0.5:1; starter drive 32:1.",
+          "credit": "Continental GTSIO-520 overhaul manual, page C-3-2",
+          "license": "Course reference extract",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 152 (page C-3-2, general information and detail engine specifications for the GTSIO-520-H). Teaching extract of a manufacturer manual dated June 1980; always use the current data for the engine in front of you.",
+          "sourceRefs": [
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The manufacturer's own specification page is the real \"leading particulars\" the module asks the learner to identify."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Operating particulars",
+          "prompt": "The second page continues with the other drive ratios, the spark timing and plug gap, the firing order, the fuel pressures, and the limits for oil pressure, oil temperature and cylinder head temperature. It ends with the dry weight. Find the spark timing, the firing order, the maximum cylinder head temperature and the normal and maximum oil temperature.",
+          "url": "./lesson-media/gtsio-h-specifications-2.webp",
+          "alt": "GTSIO-520-H detail engine specifications, continued, page C-3-3: alternator drive 3:1; vacuum pump drive 1.14:1; propeller governor drive 0.809:1; spark 20 degrees before top centre on both magnetos; spark plug gap 0.017 to 0.018 in; firing order 1-4-5-2-3-6; unmetered fuel pressure 6.0 psi at 450 propeller rpm; maximum metered fuel pressure 16.0 to 17.0 psi at 39.5 inches of mercury manifold pressure and 2275 propeller rpm; oil pressure 100 psi maximum and 10 psi minimum at idle; oil temperature 170 normal and 240 maximum degrees Fahrenheit; cylinder head temperature 460 maximum and 200 minimum for takeoff; standard dry weight 550.39 lb.",
+          "credit": "Continental GTSIO-520 overhaul manual, page C-3-3",
+          "license": "Course reference extract",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 153 (page C-3-3, detail engine specifications continued; dated June 1980). The limits are for teaching reading of a data sheet and are not an operating instruction.",
+          "sourceRefs": [
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The second page of the manufacturer specification gives the timing, firing order and limits."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Reading the numbers",
+          "prompt": "The data are linked, so you can check them against each other.\n\nThe 0.667:1 propeller drive means the propeller turns at 0.667 of the crankshaft speed. At 2275 propeller rpm the crankshaft turns at 2275 ÷ 0.667 = about 3,411 rpm. The engine runs fast, and the reduction gear slows the propeller.\n\nA six-cylinder four-stroke engine fires six times in two turns, which is once every 720° ÷ 6 = 120° of the crankshaft, in the order 1-4-5-2-3-6.\n\nFuel pressure is quoted at a stated manifold pressure and propeller speed, 39.5 inches of mercury and 2275 rpm. A number means something only with its conditions.",
+          "note": "Calculations from the Continental GTSIO-520 overhaul manual, PDF pp. 152-153 (propeller drive ratio 0.667:1; 375 horsepower at 2275 propeller rpm; firing order 1-4-5-2-3-6; maximum metered fuel pressure at 39.5 inches of mercury manifold pressure and 2275 propeller rpm) and the 720° cycle from FAA-H-8083-32B (2023), PDF pp. 46-48. The firing order also appears in the FAA handbook as the usual six-cylinder opposed order (PDF p. 37).",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Worked checks that the learner can repeat on the manual page."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Comparing two engines",
+          "prompt": "Use the data to compare two engines of the same size. The GTSIO-520-H and the IO-520 both have six cylinders, a 5.25 in bore, a 4.00 in stroke and 520 cu in.\n\nGTSIO-520-H: 375 hp at 2275 propeller rpm (about 3,411 crankshaft rpm), compression ratio 7.5:1, geared and turbocharged, 13 quart sump.\n\nIO-520 (the -B and similar models): 285 hp at 2700 rpm, compression ratio 8.5:1, direct drive, 12 quart sump.\n\nPower for each cubic inch: 375 ÷ 520 = 0.72 against 285 ÷ 520 = 0.55. The geared engine gets more from the same displacement, mainly by running faster and by boosting the air.\n\nThe brake mean effective pressures are close: about 168 psi and 161 psi.",
+          "note": "The GTSIO-520-H figures: Continental GTSIO-520 overhaul manual, PDF pp. 152 to 153 (375 horsepower at 2275 propeller rpm, 0.667:1, 7.5:1, 13 quarts). The IO-520 figures: IO-520 Permold Series maintenance manual, Publication M-11, PDF p. 13 (printed 1-9) for the -B, -BA, -BB, -C, -CB, -M and -MB (rated maximum continuous operation 285 brake horsepower at 2700 rpm, 8.5:1, 12 quarts, six cylinders, 5.25 in by 4.00 in, 520 cu in); the manual's design features (PDF p. 12, printed 1-8) describe a propeller flange and a wet sump and no reduction gear, and the model code has no G, so the engine is direct drive. The IO-520 is a different engine, shown for comparison only. The BMEP values are the lesson's calculation by the handbook's formula, BMEP = bhp x 33,000 / (L x A x N x K): 168 psi at 3,411 rpm and 161 psi at 2,700 rpm. The two engines also differ in firing order and spark timing (Terminologies lesson).",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "tcm-io520-maintenance",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
           "title": "Calculate and explain",
-          "prompt": "Take one engine, such as the GTSIO-520-H, and work out in your own words and numbers: its displacement, its compression ratio and clearance volume, its crankshaft speed at rated power, and its BMEP. Then say what each kind of horsepower means, which is bigger than which, and where the rest of the fuel's energy goes. Then take the lesson's quiz.",
+          "prompt": "Take one engine, such as the GTSIO-520-H, and work out in your own words and numbers: its displacement, its compression ratio and clearance volume, its crankshaft speed at rated power, its power in kilowatts and its BMEP. Check each answer for units and size.\n\nThen say what each kind of horsepower means, which is bigger than which, and where the rest of the fuel's energy goes. Find three leading particulars on its data sheet and the condition each is quoted for.\n\nThen take the lesson's quiz.",
           "note": "Completion step: the learner applies the formulas to the course engine (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 48-56, and the GTSIO-520 overhaul manual, PDF pp. 152-153.",
           "sourceRefs": [
             "faa-powerplant-2023",
@@ -1530,6 +1724,169 @@
       ],
       "correct": 0,
       "rationale": "A naturally aspirated engine draws in less than its displacement at standard conditions, so it is below 100 percent. True supercharging forces in more charge than that, so it can exceed 100 percent."
+    },
+    {
+      "id": "calc-kilowatts",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "The GTSIO-520-H develops 375 hp. What is that in kilowatts, to the nearest whole number? Use 1 hp = 0.7457 kW.",
+      "hint": "Multiply the horsepower by 0.7457.",
+      "unit": "kW",
+      "correctValue": 280,
+      "tolerance": 1,
+      "rationale": "375 × 0.7457 = 279.6, so 280 kW to the nearest whole number."
+    },
+    {
+      "id": "calc-litres",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "The GTSIO-520-H has a displacement of 520 cu in. What is that in litres, to two decimal places? Use 1 cu in = 16.387 cm³ and 1 litre = 1,000 cm³.",
+      "hint": "Convert to cubic centimetres first, then to litres.",
+      "unit": "litres",
+      "correctValue": 8.52,
+      "tolerance": 0.01,
+      "rationale": "520 × 16.387 = 8,521 cm³, which is 8.52 litres."
+    },
+    {
+      "id": "calc-bsfc",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "An engine burns 108 lb of fuel an hour while developing 240 brake horsepower. What is its brake-specific fuel consumption?",
+      "hint": "Fuel flow in lb/hr divided by brake horsepower.",
+      "unit": "lb/hp/hr",
+      "correctValue": 0.45,
+      "tolerance": 0,
+      "rationale": "108 ÷ 240 = 0.45 lb of fuel per brake horsepower per hour. A lower figure means better economy."
+    },
+    {
+      "id": "calc-fuel-flow",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "An engine developing 200 brake horsepower has a BSFC of 0.46 lb per horsepower per hour. How much fuel does it burn in an hour?",
+      "hint": "Multiply the BSFC by the brake horsepower.",
+      "unit": "lb/hr",
+      "correctValue": 92,
+      "tolerance": 0,
+      "rationale": "200 × 0.46 = 92 lb of fuel an hour."
+    },
+    {
+      "id": "calc-endurance",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "The engine in the last question (92 lb of fuel an hour) has 276 lb of fuel on board. How many hours can it run at that power?",
+      "hint": "Divide the fuel on board by the fuel flow.",
+      "unit": "hours",
+      "correctValue": 3,
+      "tolerance": 0,
+      "rationale": "276 ÷ 92 = 3 hours, ignoring any fuel that cannot be used."
+    },
+    {
+      "id": "calc-efficiency",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "An engine has a BSFC of 0.45 lb per horsepower per hour and the fuel has a heat value of 18,800 BTU per lb (1 BTU = 778 ft-lb; 1 hp for an hour = 1,980,000 ft-lb). What is its brake thermal efficiency, as a whole percentage?",
+      "hint": "Efficiency is the work done in a horsepower-hour divided by the heat energy in the fuel burned in that hour.",
+      "unit": "percent",
+      "correctValue": 30,
+      "tolerance": 1,
+      "rationale": "The fuel burned per horsepower-hour is 0.45 lb, which holds 0.45 × 18,800 × 778 = 6,581,880 ft-lb. The work done is 1,980,000 ft-lb, so the efficiency is 1,980,000 ÷ 6,581,880 = 0.30, or 30 percent."
+    },
+    {
+      "id": "calc-sanity",
+      "lessonId": "performance-calculations",
+      "type": "multiple-choice",
+      "question": "A student works out the indicated horsepower of a small four-cylinder engine as 14,460 hp. The correct answer is 144.6 hp. What is the most likely cause?",
+      "hint": "The answer is exactly 100 times too big.",
+      "answers": [
+        "A slip with a unit or a decimal point",
+        "The engine really is that powerful",
+        "Friction was added instead of taken away",
+        "The compression ratio was too low"
+      ],
+      "correct": 0,
+      "rationale": "An answer 100 times too big for a small piston engine is a warning. Check the units and the decimal places: a stroke left in inches, an unconverted pressure or a misplaced decimal point are the usual errors. Sense-checking the size catches them."
+    },
+    {
+      "id": "calc-particulars",
+      "lessonId": "performance-calculations",
+      "type": "matching",
+      "question": "Match each leading particular to its value for the GTSIO-520-H.",
+      "hint": "Look at the two specification pages in the lesson.",
+      "pairs": [
+        {
+          "left": "Propeller drive ratio",
+          "right": "0.667:1"
+        },
+        {
+          "left": "Compression ratio",
+          "right": "7.5:1"
+        },
+        {
+          "left": "Bore and stroke",
+          "right": "5.250 in and 4.000 in"
+        },
+        {
+          "left": "Firing order",
+          "right": "1-4-5-2-3-6"
+        },
+        {
+          "left": "Spark timing",
+          "right": "20 degrees before top centre, on both magnetos"
+        }
+      ],
+      "rationale": "These are leading particulars from pages C-3-2 and C-3-3 of the overhaul manual. They describe the engine's drive, its geometry, its ratings and its timing."
+    },
+    {
+      "id": "calc-crank-speed",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "The GTSIO-520-H develops its rated 375 horsepower at 2275 propeller rpm, and its propeller drive ratio is 0.667:1. At what crankshaft speed does it do so? Give the nearest whole number.",
+      "hint": "The propeller turns at 0.667 of the crankshaft speed.",
+      "unit": "rpm",
+      "correctValue": 3411,
+      "tolerance": 2,
+      "rationale": "Crankshaft speed = propeller speed ÷ drive ratio = 2275 ÷ 0.667 = 3,411 rpm. The reduction gear lets the engine run fast while the propeller turns slowly enough to be efficient."
+    },
+    {
+      "id": "calc-spark-timing",
+      "lessonId": "performance-calculations",
+      "type": "multiple-choice",
+      "question": "According to the GTSIO-520-H data page, when does the spark occur?",
+      "hint": "Look at the second specification page.",
+      "answers": [
+        "20 degrees before top centre, on both magnetos",
+        "20 degrees after top centre, on one magneto",
+        "At top centre, on both magnetos",
+        "22 degrees before top centre, on the left magneto only"
+      ],
+      "correct": 0,
+      "rationale": "Page C-3-3 lists the spark at 20° BTC on both magnetos. A general handbook gives a range of 20° to 35° across engines; the manufacturer's value is the one that applies. The IO-520 manual gives 22°, a different engine."
+    },
+    {
+      "id": "calc-conditions",
+      "lessonId": "performance-calculations",
+      "type": "multiple-choice",
+      "question": "The data page gives the maximum metered fuel pressure at \"39.5 inches of mercury manifold pressure and 2275 propeller rpm\". Why does it say that?",
+      "hint": "Think about what changes with power setting.",
+      "answers": [
+        "A figure only means something with the conditions it is quoted for",
+        "Because the pressure never changes with power",
+        "Because the pressure is measured only in flight",
+        "Because the pressure is the same for every engine"
+      ],
+      "correct": 0,
+      "rationale": "Fuel pressure depends on the power setting, so the data gives the manifold pressure and propeller speed at which the limit applies. Reading a number without its condition leads to mistakes."
+    },
+    {
+      "id": "calc-power-per-cubic-inch",
+      "lessonId": "performance-calculations",
+      "type": "numeric",
+      "question": "The IO-520 develops 285 hp from 520 cu in. How many horsepower is that for each cubic inch of displacement, to two decimal places?",
+      "hint": "Divide the power by the displacement.",
+      "unit": "hp per cu in",
+      "correctValue": 0.55,
+      "tolerance": 0.01,
+      "rationale": "285 ÷ 520 = 0.548, so 0.55 hp per cubic inch. The GTSIO-520-H gets 375 ÷ 520 = 0.72 from the same displacement."
     }
   ]
 }
