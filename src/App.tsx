@@ -108,7 +108,9 @@ export default function App() {
         onToggleTheme={toggleTheme}
         subtitle={getHeaderSubtitle()}
         onOpenInfoModal={() => setIsInfoModalOpen(true)}
-        activeModelName={activeView === 'explore' && !isExploreViewerOpen ? 'Choose a 3D study' : activeModelName}
+        activeModelName={activeModelName}
+        showModelPicker={isExploreViewerOpen}
+        modelDisplayName={(label) => modelsByLabel[label]?.shortLabel ?? label}
         onSelectModel={(model) => {
           setActiveModelName(model);
           setIsExploreViewerOpen(true);

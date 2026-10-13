@@ -122,7 +122,7 @@ test.describe('3D viewer', () => {
     test.setTimeout(180_000);
     await page.goto('/#/explore');
     await appReady(page);
-    await page.getByRole('button').filter({ has: page.getByRole('heading', { name: 'Detailed operating cylinder' }) }).click();
+    await page.getByRole('button', { name: 'Operating cylinder', exact: true }).click();
     await expect(page.getByRole('application')).toBeVisible(VIEWER_APPEARS);
     await expect(page.getByRole('status')).toHaveCount(0, { timeout: 150_000 });
     await expect(page.locator('canvas')).toHaveCount(1);

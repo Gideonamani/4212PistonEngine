@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Focus, LoaderCircle, Move3D, Pause, Play, RotateCcw, TriangleAlert } from 'lucide-react';
+import { Focus, LoaderCircle, Move3D, Pause, Play, RotateCcw, TriangleAlert } from 'lucide-react';
 import { DEFAULT_FOCUS_MODE, FOCUS_MODES, FOCUS_MODE_HINTS, FOCUS_MODE_LABELS } from './core/focus-style.mjs';
 import { WHEEL_ZOOM_HINT, viewerHint } from './core/interaction.mjs';
 import { offsetAfterKey } from './core/keyboard-orbit.mjs';
@@ -59,13 +59,12 @@ export function ModelCanvas({ viewer }: { viewer: ModelViewerState }) {
   </>;
 }
 
-/** The title strip over the canvas: model eyebrow and hint on the left, round tool buttons on the right. */
+/** The strip over the canvas: the how-to-move hint on the left, round tool buttons on the right. The model's name and description live in the controls panel, so full screen shows the model alone. */
 export function ViewerHeader({ viewer, children }: { viewer: ModelViewerState; children?: React.ReactNode }) {
   const hint = useViewerHint(viewer);
   return <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-wrap items-start justify-between gap-x-2 bg-gradient-to-b from-[#061216]/95 via-[#061216]/55 to-transparent p-3 pb-12">
     {/* The title takes what the 44 px buttons leave; on a very narrow screen the buttons drop below it instead of squeezing it. */}
     <div className="min-w-0 flex-1 basis-28 pr-2">
-      <div className="flex items-center gap-1.5 font-mono text-[11px] font-bold tracking-[0.18em] text-teal-300"><Box className="h-3.5 w-3.5 shrink-0" /><span className="truncate">{viewer.definition.eyebrow}</span></div>
       <p className="mt-1 truncate text-[11px] text-slate-300">{hint}</p>
     </div>
     <div className="pointer-events-auto -mr-1 -mt-1 ml-auto flex shrink-0 flex-nowrap justify-end">

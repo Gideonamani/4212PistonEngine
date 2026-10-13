@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useRef, useState } from 'react';
-import { Box, ChevronRight, Gauge, Layers3, Move3D } from 'lucide-react';
 import { CardThumbnail } from './CardThumbnail';
+import { CapabilityIcons, describeCapabilities } from './ModelCapabilities';
 import { useShellChrome } from './ShellChrome';
 import { modelRegistry, modelsByLabel } from '../data/modelRegistry';
 
@@ -37,18 +37,24 @@ export const ExploreView: React.FC<ExploreViewProps> = ({
   };
 
   if (!isViewerOpen) {
+    // Image first: a square render, a short name and what the model offers. Everything else a student needs to know about a model (what it is
+    // and is not) waits in the viewer, so nothing here competes with the pictures.
     return <div className="h-full w-full overflow-y-auto bg-canvas pb-24 text-slate-100">
-      <div className="mx-auto flex w-full max-w-3xl flex-col gap-3 px-4 pb-5 pt-4 sm:px-6">
-        <div><span className="font-mono text-[11px] font-bold tracking-[0.24em] text-teal-400">EXPLORE MODE</span><h1 className="mt-1 text-3xl font-bold tracking-tight text-white sm:text-4xl">Choose a 3D study</h1><p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-300">Select an assembly to inspect its published model, component evidence and available operating controls.</p></div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {modelRegistry.map((model) => <button key={model.id} onClick={() => onSelectModel(model.label)} className="group overflow-hidden rounded-2xl border border-white/10 bg-panel text-left shadow-lg transition hover:-translate-y-0.5 hover:border-teal-400/50">
-            <div className="relative h-28 overflow-hidden border-b border-white/5 bg-slate-950 sm:h-32"><CardThumbnail src={model.previewUrl} className="transition duration-300 group-hover:scale-[1.03]" /><div className="absolute inset-0 bg-gradient-to-t from-panel via-transparent to-transparent" /><span className="absolute bottom-2.5 left-3 rounded-md border border-teal-400/30 bg-inset/90 px-2 py-0.5 font-mono text-[11px] font-bold tracking-wider text-teal-300">{model.eyebrow}</span></div>
-            <div className="p-3"><h2 className="text-base font-bold text-white group-hover:text-teal-300 sm:text-lg">{model.label}</h2><p className="mt-0.5 line-clamp-2 text-[11px] leading-relaxed text-slate-300 sm:text-xs">{model.description}</p>
-              <div className="mt-2.5 flex min-w-0 items-center gap-1.5 max-[370px]:flex-wrap">{model.badges.map((badge, index) => <span key={badge} title={badge} className="inline-flex min-w-0 items-center gap-1 rounded-md border border-slate-700/70 bg-slate-900/70 px-1.5 py-1 font-mono text-[11px] text-slate-300 sm:px-2 sm:text-[11px]">{index === 0 ? <Box className="h-3 w-3 shrink-0 text-teal-400" /> : index === 1 ? <Move3D className="h-3 w-3 shrink-0 text-teal-400" /> : <Layers3 className="h-3 w-3 shrink-0 text-teal-400" />}<span className="truncate">{badge}</span></span>)}<span className="ml-auto flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-slate-600 bg-slate-900 text-slate-300 group-hover:border-teal-400 group-hover:text-teal-300"><ChevronRight className="h-3.5 w-3.5" /></span></div>
-            </div>
+      <div className="mx-auto flex w-full max-w-[70rem] flex-col px-4 pb-5 pt-5 sm:px-6 sm:pt-8">
+        <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">3D studies</h1>
+        <p className="mb-5 mt-1.5 max-w-xl text-balance text-sm leading-relaxed text-slate-300 sm:mb-6 sm:text-[15px]">Select a model to explore it immersively in the 3D viewer.</p>
+        {/* Two columns on a phone (a single one only below about 344 px), as many 232 px columns as fit on a larger screen. */}
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(9.375rem,1fr))] gap-3 sm:grid-cols-[repeat(auto-fill,minmax(14.5rem,1fr))] sm:gap-4">
+          {modelRegistry.map((model) => <button key={model.id} type="button" onClick={() => onSelectModel(model.label)} aria-describedby={`capabilities-${model.id}`} className="group relative flex flex-col rounded-[1.125rem] border border-white/10 bg-inset text-left shadow-lg transition hover:-translate-y-0.5 hover:border-teal-400/50">
+            <span className="relative block aspect-square overflow-hidden rounded-t-[1.0625rem] bg-inset"><CardThumbnail src={model.previewUrl} className="transition duration-300 group-hover:scale-[1.03]" /></span>
+            <span className="flex flex-1 flex-col gap-2 px-3 pb-3 pt-2.5 sm:px-4 sm:pb-4 sm:pt-3">
+              <span className="min-h-9 text-sm font-semibold leading-[1.2] tracking-tight text-white group-hover:text-teal-300 sm:min-h-10 sm:text-[15px]">{model.shortLabel}</span>
+              <CapabilityIcons capabilities={model.capabilities} />
+            </span>
+            {/* Hidden from the name (a tile is called by its title) but still read as its description: aria-describedby may point at hidden text. */}
+            <span id={`capabilities-${model.id}`} hidden>{describeCapabilities(model.capabilities)}</span>
           </button>)}
         </div>
-        <div className="flex items-start gap-3 rounded-2xl border border-teal-500/20 bg-teal-950/15 p-4 text-xs leading-relaxed text-slate-300"><Gauge className="mt-0.5 h-5 w-5 shrink-0 text-teal-400" /><p><strong className="text-slate-100">Real production models.</strong> These studies use published CAD exports and saved motions. Read each study’s scope: manual relationships and checked geometry may include illustrative dimensions and operating travel.</p></div>
       </div>
     </div>;
   }

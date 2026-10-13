@@ -295,7 +295,7 @@
   "previews": {
     "size": [
       640,
-      256
+      640
     ],
     "items": {
       "cylinder": {
@@ -319,13 +319,13 @@
       "wright-1903-reconstruction": {
         "kind": "render",
         "path": "explore-wright-1903-reconstruction.webp",
-        "credit": "Rendered from the app's Wright revision-2 reconstruction (systems exploded view)",
+        "credit": "Rendered from the app's Wright revision-2 reconstruction (assembled)",
         "license": "Course material"
       },
       "langley-manly-balzer-1903": {
         "kind": "render",
         "path": "explore-langley-manly-balzer-1903.webp",
-        "credit": "Rendered from the app's Langley / Manly-Balzer 1903 reconstruction (systems exploded view)",
+        "credit": "Rendered from the app's Langley / Manly-Balzer 1903 reconstruction (assembled)",
         "license": "Course material"
       },
       "hydraulic-tappet": {

@@ -24,7 +24,7 @@ export default function ExploreViewer({ modelId, isFullPage = false, isFullscree
   const viewer = useModelViewer(modelId, 'explore');
   const [controlsOpen, setControlsOpen] = useState(true);
   const [showPlayerOnViewer, setShowPlayerOnViewer] = useState(readPlayerPreference);
-  const renderControls = useControlsPanel(viewer);
+  const renderControls = useControlsPanel(viewer, { introduce: true });
   const { definition, features, snapshot } = viewer;
 
   if (!definition) return <UnknownModel modelId={modelId} />;

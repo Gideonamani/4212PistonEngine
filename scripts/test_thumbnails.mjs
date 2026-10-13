@@ -55,6 +55,7 @@ test('thumbnails are small WebP files with a recorded source', () => {
 const models = JSON.parse(fs.readFileSync('src/data/models.json', 'utf8'));
 
 test('every Explore model has a distinct preview that sources.json can rebuild', () => {
+  assert.equal(sources.previews.size[0], sources.previews.size[1], 'the gallery tiles are square');
   assert.deepEqual(Object.keys(sources.previews.items).sort(), models.map((model) => model.id).sort(), 'previews must cover exactly the registered models');
   const seen = new Map();
   for (const model of models) {
@@ -63,6 +64,7 @@ test('every Explore model has a distinct preview that sources.json can rebuild',
     assert.equal(bytes.toString('ascii', 0, 4), 'RIFF', model.id);
     assert.equal(bytes.toString('ascii', 8, 12), 'WEBP', model.id);
     assert.ok(bytes.length < 60 * 1024, `${model.id} preview is ${bytes.length} bytes`);
+    assert.deepEqual(webpSize(bytes), sources.previews.size, `${model.id} preview is not at the recorded size`);
     const hash = crypto.createHash('sha256').update(bytes).digest('hex');
     assert.ok(!seen.has(hash), `${model.id} repeats the preview of ${seen.get(hash)}`);
     seen.set(hash, model.id);
