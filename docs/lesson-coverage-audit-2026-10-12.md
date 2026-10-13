@@ -118,6 +118,6 @@ The FAA handbook also disagrees with itself on how much of the fuel's heat becom
 
 ### Things the instructor may want to confirm or supply
 
-- **The prefix of "GTSIO-520-H".** Continental's own IO-520 manual reads I (fuel injection), O (horizontally opposed) and 520 (cubic inches). Neither manual spells out G and TS; lesson 5 reads them as geared and turbosupercharged, the two features the GTSIO manual lists, and its note says this is a reading.
+- **Nothing on the model-name letters.** The key (O, I, T or TS, G, L, V) is in the EASA Module 16 core text, PDF p. 6, and on the course slide on engine designation; the FAA handbook PDF (2023) does not carry it. Lesson 5 uses the EASA key.
 - **Planned pictures.** Six steps carry a brief for a picture that does not exist yet: heat engine flow, the pressure-volume diagram, the Carnot slider and the Brayton schematic (lesson 4), the coolant comparison (lesson 6) and the materials table (lesson 7).
 - **Lessons 17 and 18** wait on the Tanzanian (TCAA) rule sources and the details of the practical rigs.

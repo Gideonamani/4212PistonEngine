@@ -160,6 +160,13 @@
       "title": "Charles A. Lindbergh's Ryan NYP, NX211, \"Spirit of St. Louis\" - This Day in Aviation",
       "url": "https://www.thisdayinaviation.com/ryan-nyp-nx211-spirit-st-louis/",
       "applicability": "The Spirit of St. Louis flew with an air-cooled, nine-cylinder Wright J-5C Whirlwind radial rated 200 hp at 1,800 rpm, 508 lb. Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "easa-module16-core",
+      "tier": 2,
+      "title": "EASA Module 16, Piston Engines - core text (course copy)",
+      "path": "Notes/Piston Engines EASA Module 16 All CORE Text.pdf",
+      "applicability": "Secondary source for the module-level structure and terminology. PDF p. 6 gives the engine designation key: opposed engines are named with the letter O and the displacement in cubic inches (an O-360 is an opposed engine of 360 cubic inches); the prefix I means fuel injected, T or TS a turbo-supercharging system, G a geared engine, L left-hand rotation, V a vertical crankshaft; V-type engines are named V and the displacement, as in V-1710."
     }
   ],
   "lessons": [
@@ -888,12 +895,13 @@
         {
           "type": "text",
           "title": "Reading a model name",
-          "prompt": "Manufacturers pack the classification into the model name. Take GTSIO-520-H.\n\nContinental's own maintenance manual reads the code IO-520-X this way: I for fuel injection, O for horizontally opposed cylinders and 520 for the displacement in cubic inches. For this engine the arithmetic fits: six cylinders of 5.25 in bore and 4.00 in stroke displace 520 cubic inches.\n\nThe prefix reads as G for geared and TS for turbosupercharged, the two features the overhaul manual lists. The H marks the model within the series: this one makes 375 hp at 2,275 propeller rpm.\n\nLetter codes differ between manufacturers, so check each in the maker's own key before relying on it.",
-          "note": "The IO-520 model code key is from Continental's IO-520 Permold Series Maintenance Manual, PDF p. 12. The G and TS reading is an interpretation: the GTSIO-520 manual describes the engine as geared and turbocharged (and, in its specification tables, turbosupercharged) but does not spell out the letters, and the handbook says turbosuperchargers are commonly called turbochargers. 375 hp at 2,275 propeller rpm and 520 cubic inches are from the -H difference data section.",
+          "prompt": "Manufacturers pack the classification into the model name. Take GTSIO-520-H, letter by letter.\n\nThe course text gives the key. An opposed engine is named with the letter O and its displacement in cubic inches, so an O-360 is an opposed engine of 360 cubic inches. Prefixes add features: I for fuel injection, T or TS for a turbo-supercharging system, G for a geared engine, and L for left-hand rotation.\n\nSo GTSIO-520 reads: geared, turbo-supercharged, fuel-injected, opposed, 520 cubic inches. The arithmetic fits: six cylinders of 5.25 in bore and 4.00 in stroke displace 520 cubic inches.\n\nThe H marks the model within the series: this one makes 375 hp at 2,275 propeller rpm.\n\nCheck a maker's own manual for letters you do not know.",
+          "note": "The designation key (O, I, T or TS, G, L, V and the displacement) is from the EASA Module 16 core text, PDF p. 6, and is repeated on the course slide on engine designation. Continental's own IO-520 maintenance manual (PDF p. 12) reads I, O and 520 the same way, and the GTSIO-520 overhaul manual describes the engine as geared, turbocharged and fuel injected. The FAA handbook (FAA-H-8083-32B, 2023) does not carry this key. The model suffix, here H, identifies the model in the series; its figures are from the -H difference data section.",
           "sourceRefs": [
+            "easa-module16-core",
             "tcm-io520-maintenance",
             "gtsio520-overhaul",
-            "faa-powerplant-2023"
+            "course-deck-2026-05"
           ],
           "mediaPlan": {
             "mode": "none",
@@ -2088,9 +2096,17 @@
       "id": "classification-model-name",
       "lessonId": "classification",
       "type": "matching",
-      "question": "Match each part of an engine model name to its meaning.",
-      "hint": "Use the manufacturer's own key for IO-520-X, then the features the GTSIO manual lists.",
+      "question": "Match each part of the engine name GTSIO-520 to its meaning.",
+      "hint": "Use the key from the course text: prefix letters add features, then the layout letter, then the displacement.",
       "pairs": [
+        {
+          "left": "G",
+          "right": "Geared (propeller reduction gearing)"
+        },
+        {
+          "left": "TS",
+          "right": "Turbo-supercharging system"
+        },
         {
           "left": "I",
           "right": "Fuel injection"
@@ -2102,13 +2118,9 @@
         {
           "left": "520",
           "right": "Displacement in cubic inches"
-        },
-        {
-          "left": "G",
-          "right": "Geared (propeller reduction gearing)"
         }
       ],
-      "rationale": "Continental's manual reads I as fuel injection, O as horizontally opposed cylinders and 520 as the displacement in cubic inches. The G prefix marks the propeller reduction gearing."
+      "rationale": "The course text names an opposed engine with O and its displacement in cubic inches, and adds prefixes: I for fuel injection, T or TS for a turbo-supercharging system and G for a geared engine."
     },
     {
       "id": "classification-crank-rpm",
