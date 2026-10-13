@@ -2,14 +2,14 @@ import fs from 'node:fs';
 import AxeBuilder from '@axe-core/playwright';
 import type { Locator, Page } from '@playwright/test';
 import { appReady, checkBaseline, checkCountBaseline, expect, onlyIn, test } from './fixtures';
-import { MODEL_FILES, SECTION_STEP, SPOTLIGHT_STEP } from './viewer-helpers';
+import { MODEL_FILES, MODEL_STEP, SECTION_STEP, SPOTLIGHT_STEP } from './viewer-helpers';
 
 // Two checks that hold the line. e2e/baselines/ records known problems, and the tests fail on anything not recorded there. Both baselines
 // are empty since the shared-components phase (44 px targets, readable text), so any accessibility problem or small target on these
 // screens now fails. Run at the most common phone width, and again at tablet width, where the header's mode tabs replace the bottom bar.
 // (The native lesson interactives are audited one by one, at every width, in lesson-interactives.spec.ts.)
 onlyIn('phone-360', 'tablet-768');
-// Each test opens eleven screens, three of them 3D steps that load a large model (the later ones from the saved copy), and CI runs other tests alongside.
+// Each test opens a dozen screens, four of them 3D steps that load a large model (the later ones from the saved copy), and CI runs other tests alongside.
 test.describe.configure({ timeout: 360_000 });
 
 type Screen = readonly [name: string, hash: string, prepare?: (page: Page) => Promise<void>];
@@ -32,6 +32,7 @@ const SCREENS: Screen[] = [
   // The dock's tabs only exist once the model has loaded, so these wait for the whole model, then open the panel they are about.
   ['lesson spotlight step', SPOTLIGHT_STEP, openDockTab(/^Spotlight/, (page) => page.getByRole('group', { name: 'How the highlighted part is shown' }))],
   ['lesson section step', SECTION_STEP, openDockTab(/^Section/, (page) => page.getByRole('radiogroup', { name: 'Section plane' }))],
+  ['lesson motion step', MODEL_STEP, openDockTab(/^Motion/, (page) => page.getByText('This step holds one pose, so there is nothing to play.'))],
   ['lesson step list', '#/learn/history-and-fundamentals/history-mechanical-engines/step/1', async (page) => { await page.getByRole('button', { name: /Open the list of steps/ }).click(); await expect(page.getByRole('dialog')).toBeVisible(); }],
   ['credits', '#/credits'],
   ['check modules', '#/check'],
@@ -40,7 +41,7 @@ const SCREENS: Screen[] = [
 ];
 
 // The 3D steps need the whole model and say nothing more about the shell, so the tablet run leaves them to the phone run.
-const NEEDS_MODEL = ['lesson spotlight step', 'lesson section step'];
+const NEEDS_MODEL = ['lesson spotlight step', 'lesson section step', 'lesson motion step'];
 const MODEL_SCREENS = new Set(['lesson model step', ...NEEDS_MODEL]);
 const screensFor = (project: string) => (project === 'tablet-768' ? SCREENS.filter(([name]) => !MODEL_SCREENS.has(name)) : SCREENS);
 
