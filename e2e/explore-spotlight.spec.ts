@@ -20,7 +20,7 @@ test('Explore offers the five tabs, and its Spotlight follows the part the learn
   const tabs = panel.getByRole('tab');
   await expect(tabs).toHaveCount(5, { timeout: 30_000 });
   await expect(tabs.nth(0)).toHaveAccessibleName('Parts');
-  await expect(tabs.nth(1)).toHaveAccessibleName('Motion');
+  await expect(tabs.nth(1)).toHaveAccessibleName(/^Motion/);
   await expect(tabs.nth(2)).toHaveAccessibleName(/^Spotlight/);
   await expect(tabs.nth(3)).toHaveAccessibleName(/^Section/);
   await expect(tabs.nth(4)).toHaveAccessibleName('Look');

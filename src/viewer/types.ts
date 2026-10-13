@@ -59,6 +59,9 @@ export type ViewerSnapshot = {
   savedMotionId?: string;
   motionProgress?: number;
   motionStage?: string;
+  /** The playback speed (1 is normal) and whether the motion in view repeats when it reaches its end. */
+  motionSpeed?: number;
+  motionLoop?: boolean;
   powerPathId?: string;
   powerPathNote?: string;
   /** Whether a spotlight is active, and how it is drawn. Only models that spotlight parts report them. */
@@ -84,6 +87,12 @@ export type ViewerFeatures = {
     setAngle: (angle: number) => void;
     setPlaying: (playing: boolean) => void;
     reset: () => void;
+    /** Playback speed as a multiple of normal, for the crank and for saved motions alike. */
+    setSpeed?: (speed: number) => void;
+    /** Whether the motion in view starts again when it reaches its end (the crank goes round and round; a saved motion stops). */
+    setLoop?: (loop: boolean) => void;
+    /** The strokes of the cycle over the crank's 720 degrees, in angle order, for naming the scrubber's track. */
+    strokes?: { label: string; start: number; end: number }[];
   };
   savedMotions?: {
     items: { id: string; label: string; stages: { label: string; progress: number; note?: string }[] }[];

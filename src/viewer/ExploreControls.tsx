@@ -28,7 +28,7 @@ export function ExploreControls({ viewer, controls, onClose }: ExploreControlsPr
     </div>
 
     <div className="border-b border-slate-800 p-2">
-      <DockTabs viewer={viewer} panels={controls.panels} open={controls.active} onSelect={controls.select} compact />
+      <DockTabs viewer={viewer} panels={controls.panels} context={controls.context} open={controls.active} onSelect={controls.select} compact />
     </div>
 
     <div className="min-h-0 flex-1 overflow-y-auto p-3">

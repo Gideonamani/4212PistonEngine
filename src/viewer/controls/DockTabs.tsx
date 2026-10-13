@@ -1,10 +1,11 @@
 import React, { useRef } from 'react';
 import type { ModelViewerState } from '../useModelViewer';
-import { PANELS, type PanelDefinition, type PanelId } from './panels';
+import { PANELS, type PanelContext, type PanelDefinition, type PanelId } from './panels';
 
 type DockTabsProps = {
   viewer: ModelViewerState;
   panels: PanelDefinition[];
+  context: PanelContext;
   /** The open panel, or null while they are all closed. */
   open: PanelId | null;
   onSelect: (id: PanelId) => void;
@@ -17,7 +18,7 @@ const VALUE_TONE = { amber: 'text-amber-300', teal: 'text-teal-300', muted: 'tex
 export const panelDomId = (id: PanelId, part: 'tab' | 'panel') => `viewer-${part}-${id}`;
 
 /** The tab row of the controls: one tab per available panel, the open one marked. */
-export function DockTabs({ viewer, panels, open, onSelect, compact = false }: DockTabsProps) {
+export function DockTabs({ viewer, panels, context, open, onSelect, compact = false }: DockTabsProps) {
   const dense = compact || panels.length > 3;
   const listRef = useRef<HTMLDivElement>(null);
   // Arrow keys move between the tabs, as in any tab row; Enter or Space opens the one in focus.
@@ -33,7 +34,7 @@ export function DockTabs({ viewer, panels, open, onSelect, compact = false }: Do
   return <div ref={listRef} role="tablist" aria-label="Model controls" onKeyDown={onKeyDown} style={{ gridTemplateColumns: `repeat(${panels.length}, minmax(0, 1fr))` }} className="grid gap-1 rounded-[1.25rem] border border-white/10 bg-slate-900/70 p-1">
     {panels.map(({ id, label, Icon }, index) => {
       const selected = open === id;
-      const value = PANELS[id].value?.(viewer);
+      const value = PANELS[id].value?.(viewer, context);
       return <button
         key={id}
         type="button"
