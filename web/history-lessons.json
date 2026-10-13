@@ -258,6 +258,13 @@
       "title": "College Physics for AP Courses, 14.1 Heat - OpenStax",
       "url": "https://openstax.org/books/college-physics-ap-courses/pages/14-1-heat",
       "applicability": "Heat as the spontaneous transfer of energy due to a temperature difference; heat is a form of energy whereas temperature is not. Licence: CC BY 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "tcaa-airworthiness-regs",
+      "tier": 1,
+      "title": "The Civil Aviation (Airworthiness) Regulations, GN 57 of 2017, Revised Edition 2026 (Tanzania Civil Aviation Authority)",
+      "url": "https://www.tcaa.go.tz/uploads/documents/en-1789480894-GP%20GN.%2057%20of%202017%20CIVIL%20AVIATION%20(AIRWORTHINESS)%20REGULATIONS%202017-TGPA.pdf",
+      "applicability": "Regulation 2 defines inspection, maintenance, overhaul, repair, preventive maintenance and powerplant (the system of all the engines, drive system components, propellers, their accessories, ancillary parts, and fuel and oil systems installed on an aircraft). Read from the TCAA website, accessed 13 October 2026. The TCAA states that its published copy is not authoritative; the Government Printer's version is."
     }
   ],
   "lessons": [
@@ -934,13 +941,14 @@
         {
           "type": "text",
           "title": "Engine and powerplant",
-          "prompt": "An aircraft engine is the machine that propels the aircraft. The US regulation counts its turbosuperchargers and the accessories it needs to function, and leaves out the propeller.\n\nThe powerplant is bigger. The FAA handbook defines it as the complete installation of an aircraft engine, propeller and all the accessories needed for its proper function. The airworthiness rules say the same thing by test: the powerplant installation includes each component that is necessary for propulsion, affects the control of the propulsive units, or affects their safety.\n\nSo the engine is one component of the powerplant, beside the propeller, the mounts, induction and exhaust, cooling, fuel feed and the controls.",
-          "note": "Documented from the FAA handbook glossary (FAA-H-8083-32B, PDF p. 479), 14 CFR 1.1 (aircraft engine) and 14 CFR 25.901, with EASA CS 23.2400 in the same spirit. This corrects the course slide deck's slide 45, which defines the powerplant as 'an aircraft engine, or the system that produces thrust': the engine alone is not the powerplant.",
+          "prompt": "An aircraft engine is the machine that propels the aircraft. The US regulation counts its turbosuperchargers and the accessories it needs to function, and leaves out the propeller.\n\nThe powerplant is bigger. The FAA handbook defines it as the complete installation of an aircraft engine, propeller and all the accessories needed for its proper function. The Tanzanian airworthiness regulations say the same: all the engines, drive components, propellers, their accessories and ancillary parts, and the fuel and oil systems installed on an aircraft.\n\nSo the engine is one component of the powerplant, beside the propeller, the mounts, induction and exhaust, cooling, fuel feed and the controls.",
+          "note": "Documented from the FAA handbook glossary (FAA-H-8083-32B, PDF p. 479), 14 CFR 1.1 (aircraft engine) and 14 CFR 25.901, with EASA CS 23.2400 in the same spirit. This corrects the course slide deck's slide 45, which defines the powerplant as 'an aircraft engine, or the system that produces thrust': the engine alone is not the powerplant. The Tanzanian definition of the powerplant is in the Civil Aviation (Airworthiness) Regulations, regulation 2 (revised edition 2026).",
           "sourceRefs": [
             "faa-powerplant-2023",
             "cfr-14-1-1",
             "cfr-14-25-901",
-            "easa-cs23-2400"
+            "easa-cs23-2400",
+            "tcaa-airworthiness-regs"
           ],
           "mediaPlan": {
             "mode": "none",
@@ -1183,12 +1191,13 @@
         {
           "type": "text",
           "title": "Maintenance words",
-          "prompt": "Six words technicians use precisely, and that maintenance records depend on.\n\nMaintenance, in the US regulation, is inspection, overhaul, repair, preservation and the replacement of parts. It excludes preventive maintenance: simple or minor preservation and the replacement of small standard parts.\n\nServicing is keeping an aircraft supplied: refuelling, adding oil, lubricating, cleaning. An inspection is an examination to find the condition of something. A check is a particular, limited inspection or test, such as the magneto check before takeoff. A repair restores something to a serviceable condition using approved data. An overhaul is more thorough: the item is disassembled, cleaned, inspected, repaired as necessary, reassembled and tested to approved standards before it may be called overhauled.",
-          "note": "Maintenance and preventive maintenance are quoted from 14 CFR 1.1, and the steps of an overhaul from 14 CFR 43.2, checked 12 October 2026. Servicing, inspection, check and repair are a working definition for this course, consistent with common engineering usage; other documents define these words for their own purposes. Lesson 16 returns to each.",
+          "prompt": "Six words technicians use precisely, and that maintenance records depend on.\n\nMaintenance, in the US regulation, is inspection, overhaul, repair, preservation and the replacement of parts. It excludes preventive maintenance: simple or minor preservation and the replacement of small standard parts.\n\nThe Tanzanian airworthiness regulations define maintenance and the other words in much the same way, and lesson 16 uses them.\n\nServicing is keeping an aircraft supplied: refuelling, adding oil, lubricating, cleaning. An inspection is an examination to find the condition of something. A check is a particular, limited inspection or test, such as the magneto check before takeoff. A repair restores something to a serviceable condition using approved data. An overhaul is more thorough: the item is disassembled, cleaned, inspected, repaired as necessary, reassembled and tested to approved standards before it may be called overhauled.",
+          "note": "Maintenance and preventive maintenance are quoted from 14 CFR 1.1, and the steps of an overhaul from 14 CFR 43.2, checked 12 October 2026. Servicing, inspection, check and repair are a working definition for this course, consistent with common engineering usage; other documents define these words for their own purposes. Lesson 16 returns to each. Tanzanian definitions of inspection, maintenance, overhaul, repair and preventive maintenance: Civil Aviation (Airworthiness) Regulations, regulation 2 (revised edition 2026), read 13 October 2026.",
           "sourceRefs": [
             "cfr-14-1-1",
             "cfr-14-43-2",
-            "instructor-outcomes"
+            "instructor-outcomes",
+            "tcaa-airworthiness-regs"
           ],
           "mediaPlan": {
             "mode": "none",
