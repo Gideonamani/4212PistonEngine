@@ -12,7 +12,7 @@
       "tier": 1,
       "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
       "path": "Notes/amt_powerplant_handbook 2023.pdf",
-      "applicability": "Primary source for general reciprocating-engine cycles, configurations, cooling, ignition timing principles and supercharging/turbocharging. PDF page locators are used in step notes."
+      "applicability": "Primary source for general reciprocating-engine cycles, configurations, cooling, ignition timing principles and supercharging/turbocharging. PDF page locators are used in step notes. Used in lesson 4 for: the heat engine glossary entry (p. 472); the four-stroke cycle, 720 degrees of crankshaft travel and the five events (p. 46); ignition 20 to 35 degrees before TDC, the two-stroke, rotary and diesel cycles (p. 48); reciprocating engines about 34 percent thermally efficient (p. 56); and the Brayton cycle of the gas turbine (p. 79)."
     },
     {
       "id": "easa-module16",
@@ -76,6 +76,48 @@
       "title": "Special Conditions: Aero Propulsion, Inc.; Piper PA28-236 with SMA SR305-230 Aircraft Diesel Engine, Federal Register vol. 71 no. 114 (14 June 2006), proposed rules, 14 CFR Part 23",
       "url": "https://www.govinfo.gov/content/pkg/FR-2006-06-14/pdf/E6-9227.pdf",
       "applicability": "Publisher: Federal Aviation Administration via the Federal Register. Licence: US Government work (public domain). Published 14 June 2006; accessed 29 September 2026. A proposed rule stating the FAA's concerns for one diesel installation; it says the concerns are not universally applicable to all diesel engines."
+    },
+    {
+      "id": "instructor-outcomes",
+      "tier": 4,
+      "title": "Instructor's learning outcomes for the module (12 October 2026)",
+      "path": "docs/lesson-objectives.md",
+      "applicability": "Frames the lesson: what it is for and what a learner should be able to do. It carries no claim about the engines themselves."
+    },
+    {
+      "id": "openstax-heat-engines",
+      "tier": 5,
+      "title": "University Physics Volume 2, 4.2 Heat Engines - OpenStax",
+      "url": "https://openstax.org/books/university-physics-volume-2/pages/4-2-heat-engines",
+      "applicability": "A heat engine absorbs heat from a hot reservoir, converts part of it to work and discards the rest to a cold reservoir; over a cycle W = Qh - Qc and thermal efficiency is W / Qh = 1 - Qc / Qh. Licence: CC BY 4.0; facts only, no text copied; accessed 13 October 2026."
+    },
+    {
+      "id": "openstax-carnot",
+      "tier": 5,
+      "title": "University Physics Volume 2, 4.5 The Carnot Cycle - OpenStax",
+      "url": "https://openstax.org/books/university-physics-volume-2/pages/4-5-the-carnot-cycle",
+      "applicability": "The Carnot cycle (proposed 1824): isothermal expansion, adiabatic expansion, isothermal compression, adiabatic compression; efficiency e = 1 - Tc / Th with the temperatures in kelvin; real engines between the same two reservoirs are less efficient. Licence: CC BY 4.0; facts only, no text copied; accessed 13 October 2026."
+    },
+    {
+      "id": "openstax-thermo-processes",
+      "tier": 5,
+      "title": "University Physics Volume 2, 3.4 Thermodynamic Processes - OpenStax",
+      "url": "https://openstax.org/books/university-physics-volume-2/pages/3-4-thermodynamic-processes",
+      "applicability": "Definitions of the isobaric (constant pressure), isochoric (constant volume), isothermal (constant temperature) and adiabatic (no heat transfer) processes. Licence: CC BY 4.0; facts only, no text copied; accessed 13 October 2026."
+    },
+    {
+      "id": "openstax-first-law-processes",
+      "tier": 5,
+      "title": "College Physics 2e, 15.2 The First Law of Thermodynamics and Some Simple Processes - OpenStax",
+      "url": "https://openstax.org/books/college-physics-2e/pages/15-2-the-first-law-of-thermodynamics-and-some-simple-processes",
+      "applicability": "Work on a pressure-volume diagram is the area under the curve; no work is done in a constant-volume process; the work in a cycle is the area inside the loop, positive when the loop is traversed clockwise. Licence: CC BY 4.0; facts only, no text copied; accessed 13 October 2026."
+    },
+    {
+      "id": "nasa-glenn-brayton",
+      "tier": 5,
+      "title": "Brayton Cycle - NASA Glenn Research Center, Beginner's Guide to Aeronautics",
+      "url": "https://www.grc.nasa.gov/www/k-12/airplane/brayton.html",
+      "applicability": "Publisher: NASA Glenn Research Center. Licence: US Government work (public domain). The Brayton cycle describes all gas turbine engines: compression, combustion at constant pressure, turbine expansion and nozzle expansion; accessed 13 October 2026."
     }
   ],
   "lessons": [
@@ -110,15 +152,39 @@
       "models": ["cylinder"],
       "listed": true,
       "scheduledDay": 2,
-      "completionCriteria": "Describe the four events of a four-stroke cycle in order and why it takes 720 crankshaft degrees, and state how a two-stroke cycle completes the same events in one revolution; label the four processes of the ideal Otto cycle on a pressure-volume diagram and give two reasons the practical diagram differs; explain valve lead, lag and overlap and why overlap helps rather than harms; and state how the Diesel cycle differs from the Otto cycle in heat addition and ignition - without treating an illustrative diagram as measured engine data.",
+      "completionCriteria": "Explain a heat engine and why a cycle is used as a model of one; name the basic processes (constant volume, constant pressure, constant temperature, no heat exchange); read a pressure-volume diagram and say what its loop encloses; describe the Carnot cycle as the efficiency limit; describe the ideal Otto cycle, tell it from the practical one, and say why combustion is treated as constant volume; describe the Diesel cycle, tell it from the Otto cycle, and say what limits diesels in aircraft; recognise the Brayton cycle as the gas turbine's; tell a thermodynamic cycle from a mechanical operating cycle, compare two-stroke and four-stroke operation, relate crankshaft rotation to piston movement, and explain why valve events do not fall exactly at TDC and BDC - without treating an illustrative diagram as measured engine data.",
       "steps": [
         {
           "type": "text",
           "title": "What cycle means",
-          "prompt": "An operating cycle describes how an engine repeats the events needed to turn fuel energy into shaft rotation. Before looking at the four named cycles, predict which features belong to the cycle itself and which belong to another classification, such as cylinder layout or cooling method.",
-          "note": "Documented classification frame from FAA-H-8083-32B (2023), PDF pp. 46-48, cross-checked against EASA Module 16, PDF pp. 20-23.",
-          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A short prediction establishes the classification boundary more clearly than a visual."}
+          "prompt": "An operating cycle describes how an engine repeats the events needed to turn fuel energy into shaft rotation.\n\nBefore looking at the four named cycles, predict which features belong to the cycle itself and which belong to another classification, such as cylinder layout or cooling method.",
+          "note": "Documented classification frame from FAA-H-8083-32B (2023), PDF pp. 46-48, cross-checked against EASA Module 16, PDF pp. 20-23. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A short prediction establishes the classification boundary more clearly than a visual."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Heat engines",
+          "prompt": "An engine takes the energy stored in fuel and turns it into work. The FAA handbook calls a machine that does this through heat a heat engine: it converts the chemical energy in a fuel into heat energy, and that heat is then converted into mechanical energy and useful work.\n\nEvery heat engine follows one pattern. It takes in heat from something hot, converts part of it to work, and must discard the rest as heat to something cooler. In a piston engine the hot source is the burning charge, and the cooler place is the surrounding air that takes the exhaust and the cooling air.\n\nThermal efficiency is the work out divided by the heat in. Because some heat is always rejected, the exhaust is hot and the engine needs cooling.",
+          "note": "Heat engine as defined in the FAA handbook glossary (FAA-H-8083-32B, PDF p. 472); hot source, work and discarded heat, and thermal efficiency W / Qh = 1 - Qc / Qh from OpenStax University Physics Volume 2, 4.2, checked 13 October 2026.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "openstax-heat-engines"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "planned",
+            "rationale": "A simple flow diagram of heat in, work out and heat rejected makes the pattern visible at a glance.",
+            "assetBrief": "A labelled energy-flow diagram: heat from burning fuel goes in, shaft work comes out, and the remaining heat leaves with the exhaust and the cooling air. No invented percentages."
+          }
         },
         {
           "type": "web-embed",
@@ -126,28 +192,135 @@
           "prompt": "Use the crank-angle scrubber to move through intake, compression, power and exhaust. Watch one complete cycle require two crankshaft revolutions while the piston completes four strokes.",
           "url": "artifact:cycle-phase-scrubber",
           "note": "Documented sequence from FAA-H-8083-32B (2023), PDF pp. 46-48. The planned animation will show phase, piston direction and ideal valve state only; it will not display invented pressure, temperature or flow values.",
-          "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Scrubbing a 720-degree state makes the repeated sequence and two-revolution relationship observable."}
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "Scrubbing a 720-degree state makes the repeated sequence and two-revolution relationship observable."
+          }
         },
         {
           "type": "model-pose",
           "title": "Intake pose",
           "modelId": "cylinder",
           "prompt": "At 90 degrees, predict the piston's direction and which ideal-cycle valve should be open. Reveal the GTSIO-520-H teaching-cylinder pose, then separate what the model proves geometrically from what its coloured gas cue only illustrates.",
-          "action": {"type": "cycle-angle", "value": 90},
+          "action": {
+            "type": "cycle-angle",
+            "value": 90
+          },
           "note": "Documented four-stroke sequence from FAA-H-8083-32B (2023), PDF pp. 46-48. The mechanism pose is profile-checked; valve and gas cues remain an ideal teaching profile, not certified GTSIO-520-H timing or CFD.",
-          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
-          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "The existing operating-cylinder model directly shows the crank, rod and piston relationship at a chosen angle."}
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The existing operating-cylinder model directly shows the crank, rod and piston relationship at a chosen angle."
+          }
         },
         {
           "type": "model-pose",
           "title": "Power pose",
           "modelId": "cylinder",
           "prompt": "At 450 degrees the piston is travelling the same direction as at 90 degrees, yet compression has come and gone in between. Compare the two poses: which mechanical motion repeats, and which cycle event has changed?",
-          "action": {"type": "cycle-angle", "value": 450},
+          "action": {
+            "type": "cycle-angle",
+            "value": 450
+          },
           "note": "Documented four-stroke sequence from FAA-H-8083-32B (2023), PDF pp. 46-48. In the shared 720-degree teaching profile 0-180 is intake, 180-360 compression, 360-540 power and 540-720 exhaust, so 450 degrees is mid-power stroke; the profile distinguishes the second crankshaft revolution from the first.",
-          "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "A paired pose comparison (both poses descending) shows why piston direction alone does not identify the stroke."}
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "A paired pose comparison (both poses descending) shows why piston direction alone does not identify the stroke."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Strokes and events",
+          "prompt": "Two different things are called a cycle, and it helps to keep them apart.\n\nThe mechanical cycle is about the hardware. In a four-stroke engine the piston makes four strokes of 180 degrees of crankshaft turn each, so one cycle takes 720 degrees: two turns of the crankshaft, with one power stroke per cylinder.\n\nThe thermodynamic cycle is about the gas: the series of states it passes through, its pressure, volume and temperature at each, and where heat is added and removed.\n\nThey line up, but not exactly. The handbook names five events: intake, compression, ignition, power and exhaust. Strokes are the piston's motion; events are what happens to the charge, and they overlap the strokes. The spark fires before TDC, still in the compression stroke, and the exhaust valve opens before the piston reaches BDC.",
+          "note": "Four strokes, two crankshaft revolutions (720 degrees) and the five events (intake, compression, ignition, power, exhaust) from FAA-H-8083-32B (2023), PDF p. 46; ignition before TDC and the early exhaust-valve opening from PDF p. 48; the strokes-versus-events distinction also appears on course slide 54. The handbook says the four-stroke cycle is 'sometimes called the Otto cycle'; in this lesson the Otto cycle names the ideal model of the gas, not the stroke count.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Why use a model?",
+          "prompt": "A real cylinder is a messy place. The gas is a mixture of air, fuel vapour and leftover exhaust. Burning takes time. Heat leaks into the walls, some gas slips past the rings, and the valves open and close over many degrees of crankshaft turn. No simple equation follows all of that at once.\n\nSo engineers use a simplified model. In the ideal cycles a fixed mass of air stands in for the working gas and behaves as an ideal gas. The burning and exhausting are replaced by heat added and heat removed in a few clean processes.\n\nA model is not a measurement. Its value is that it is simple enough to reason with: it shows what raises or lowers the work, and where the limit lies. Later steps show how far a real engine departs from it.",
+          "note": "The ideal cycle as a model on a fixed mass of air with ideal-gas relations, and the remark that the actual cycle lacks its sharp transitions: MIT Unified Engineering, Thermodynamics and Propulsion, section 3.5. Assumptions of the ideal cycle (no heat exchange in compression and power, no friction, instantaneous combustion) and the real-engine losses: NASA Glenn Otto cycle page and course slides 56 and 57. Valve opening over several degrees and residual exhaust: FAA-H-8083-32B (2023), PDF pp. 47 to 48. Checked 13 October 2026.",
+          "sourceRefs": [
+            "mit-unified-thermo-propulsion",
+            "nasa-glenn-otto-cycle",
+            "course-deck-2026-05",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Four basic processes",
+          "prompt": "Every cycle is built from a few simple processes. Each holds one thing steady while the others change.\n\nConstant volume (isochoric): the piston does not move, so no work is done. Heat added raises the pressure and temperature.\n\nConstant pressure (isobaric): the volume changes while the pressure stays the same.\n\nConstant temperature (isothermal): heat flows in or out so that the temperature does not change.\n\nNo heat exchange (adiabatic): the gas is neither heated nor cooled, so compressing it raises its temperature and expanding it lowers it.\n\nIn any of them heat can be added or rejected, and work can be done on the gas or by it. A cycle is a chain of such processes that ends where it began.",
+          "note": "Definitions of isobaric, isochoric, isothermal and adiabatic processes from OpenStax University Physics Volume 2, 3.4; no work at constant volume from OpenStax College Physics 2e, 15.2; the course slides call the reversible adiabatic compression and expansion isentropic. Checked 13 October 2026.",
+          "sourceRefs": [
+            "openstax-thermo-processes",
+            "openstax-first-law-processes",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Reading a pressure-volume diagram",
+          "prompt": "A pressure-volume (PV) diagram plots the gas's pressure against its volume. Each point is a state of the gas, and the path joining the points shows a process.\n\nRead it like a map. Moving right, the volume grows and the gas is expanding; moving left, it is being compressed. Moving up, the pressure rises. A vertical line is a constant-volume process and a horizontal line is a constant-pressure one.\n\nThe area under a path is the work done. Over a full cycle the loop encloses the net work: what the gas gives on expansion, minus what it takes to compress it. A loop traced clockwise gives net work out, which is what an engine needs.\n\nA bigger loop means more work from every cycle.",
+          "note": "Work as the area under a path, no work at constant volume, and the enclosed loop (positive when clockwise) from OpenStax College Physics 2e, 15.2; the enclosed area as net indicated work per cycle also appears on course slide 58 and on the NASA Glenn Otto cycle page. Checked 13 October 2026.",
+          "sourceRefs": [
+            "openstax-first-law-processes",
+            "course-deck-2026-05",
+            "nasa-glenn-otto-cycle"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "planned",
+            "rationale": "A labelled pair of axes shows how to read direction, steady lines and the enclosed area before the engine diagrams appear.",
+            "assetBrief": "A schematic, unscaled PV diagram: volume on the horizontal axis, pressure on the vertical, a clockwise loop shaded, arrows showing the direction of travel and a note saying that the area inside is the net work. No engine data."
+          }
+        },
+        {
+          "type": "text",
+          "title": "The Carnot limit",
+          "prompt": "In 1824 Sadi Carnot proposed an ideal cycle with the highest efficiency any engine can have between two temperatures. Its four processes are: heat taken in at constant temperature, an expansion with no heat exchange, heat given out at constant temperature, and a compression with no heat exchange.\n\nIts efficiency depends only on the two temperatures, in kelvin:\n\nefficiency = 1 - (cold temperature / hot temperature)\n\nWith a hot source at 1,000 K and a cold sink at 300 K, that is 1 - 0.3 = 70 percent.\n\nThe hotter the source or the colder the sink, the higher the limit. Only a sink at 0 K would give 100 percent, so every heat engine must reject some heat. Real engines fall below their limit: the handbook puts a reciprocating aircraft engine at about 34 percent thermal efficiency, the rest leaving through the exhaust, the cooling and friction.",
+          "note": "The Carnot cycle (proposed 1824), its four processes, e = 1 - Tc / Th and the statement that real engines between the same reservoirs are less efficient: OpenStax University Physics Volume 2, 4.5, checked 13 October 2026. Reciprocating engines about 34 percent thermally efficient: FAA-H-8083-32B (2023), PDF p. 56. The 1,000 K and 300 K figures are an illustration, not engine data.",
+          "sourceRefs": [
+            "openstax-carnot",
+            "openstax-heat-engines",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "planned",
+            "rationale": "A small calculator showing how the limit moves as the two temperatures change gives the formula meaning.",
+            "assetBrief": "A native-HTML slider pair for hot and cold temperature in kelvin that shows the Carnot efficiency, labelled as an illustration of the formula only."
+          }
         },
         {
           "type": "web-embed",
@@ -155,16 +328,35 @@
           "prompt": "A pressure-volume (PV) diagram plots the cylinder's pressure against its volume through one cycle. Step through the ideal Otto cycle and watch the piston beside it. Which two processes hold the volume constant, and which two have no heat exchange?",
           "url": "artifact:otto-pv-diagram",
           "note": "Neither FAA-H-8083-32B nor EASA Module 16 covers pressure-volume diagram theory (both searched 29 September 2026). Ideal Otto processes (two adiabatic, two constant-volume) are from the instructor's course deck, slides 56 and 58 (tier 4), and the Wikipedia Otto cycle article (tier 5, CC BY-SA 4.0, accessed 29 September 2026). The curves are schematic ideal-gas shapes, not data for any engine. Cross-checked against MIT Unified Engineering, 'Thermodynamics and Propulsion' section 3.5 (isentropic compression and expansion; constant-volume combustion and heat rejection; tier 4 textbook-grade source) and NASA Glenn's Otto cycle page (combustion at constant volume; no heat exchange during the compression and power strokes).",
-          "sourceRefs": ["course-deck-2026-05", "wikipedia-otto-cycle", "mit-unified-thermo-propulsion", "nasa-glenn-otto-cycle"],
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Stepping a marker around the loop while the piston moves shows how each process links to a stroke."}
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "wikipedia-otto-cycle",
+            "mit-unified-thermo-propulsion",
+            "nasa-glenn-otto-cycle"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "Stepping a marker around the loop while the piston moves shows how each process links to a stroke."
+          }
         },
         {
           "type": "text",
           "title": "Why constant volume?",
-          "prompt": "The ideal cycle treats combustion as instant heat addition while the piston sits at top dead centre, so the volume cannot change and the pressure jumps straight up. Real burning takes time, which is why the spark fires before TDC and cylinder pressure peaks a little after it. The ideal loop also leaves out the pumping done on the intake and exhaust strokes.",
-          "note": "Ideal-cycle assumptions from the course deck, slide 56 (tier 4), and Wikipedia Otto cycle (tier 5). Spark before TDC and the pressure peak after TDC are documented in FAA-H-8083-32B (2023), PDF pp. 48 and 51.",
-          "sourceRefs": ["faa-powerplant-2023", "course-deck-2026-05", "wikipedia-otto-cycle"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The constant-volume idea is stated once, directly after the diagram that shows it."}
+          "prompt": "The ideal cycle treats combustion as instant heat addition while the piston sits at top dead centre. The volume cannot change, so no work is done during that process: all the heat goes into the gas, and its pressure and temperature jump straight up.\n\nThat is what constant volume means here.\n\nReal burning takes time, which is why the spark fires before TDC (20 to 35 degrees before, on the engines the handbook describes) and cylinder pressure peaks a little after it. The ideal loop also leaves out the pumping done on the intake and exhaust strokes.",
+          "note": "No work at constant volume: OpenStax College Physics 2e, 15.2, and MIT Unified Engineering section 3.5 (heat input equals the change in internal energy during combustion). Ignition timing of 20 to 35 degrees before TDC: FAA-H-8083-32B (2023), PDF p. 48. The ideal Otto assumptions are from course slide 56 and the NASA Glenn Otto cycle page. Checked 13 October 2026.",
+          "sourceRefs": [
+            "openstax-first-law-processes",
+            "mit-unified-thermo-propulsion",
+            "faa-powerplant-2023",
+            "course-deck-2026-05",
+            "nasa-glenn-otto-cycle"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The constant-volume idea is stated once, directly after the diagram that shows it."
+          }
         },
         {
           "type": "web-embed",
@@ -172,8 +364,17 @@
           "prompt": "Switch between the ideal and practical diagrams. Find two differences in shape, then link each to a physical cause: burning takes time, heat is lost to the cylinder walls, and valves open early and close late.",
           "url": "artifact:otto-pv-ideal-vs-practical",
           "note": "FAA-H-8083-32B (2023), PDF pp. 48 and 51 (Figure 1-39) documents the actual cylinder-pressure diagram and its peak after top center. The list of causes follows the course deck, slides 57-58 (tier 4). The practical curve is an illustrative rounding of the ideal loop, not measured data. MIT section 3.5 notes the actual cycle lacks the sharp transitions between processes that the ideal cycle has, and NASA Glenn notes the real cycle's enclosed area (work) is always less than the ideal value.",
-          "sourceRefs": ["faa-powerplant-2023", "course-deck-2026-05", "mit-unified-thermo-propulsion", "nasa-glenn-otto-cycle"],
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Overlaying the ideal loop as a dashed line makes each departure from the ideal visible."}
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05",
+            "mit-unified-thermo-propulsion",
+            "nasa-glenn-otto-cycle"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "Overlaying the ideal loop as a dashed line makes each departure from the ideal visible."
+          }
         },
         {
           "type": "web-embed",
@@ -181,25 +382,49 @@
           "prompt": "Move the crank through the FAA example timing chart. Find where each valve opens and closes relative to TDC and BDC, and locate the interval around TDC when both valves are open.",
           "url": "artifact:valve-timing-diagram",
           "note": "Documented from FAA-H-8083-32B (2023), PDF p. 47, Figure 1-37 (example valve timing chart) and its text: valve events vary considerably in different engines, and the manufacturer's recommendations must be followed. The chart values are an FAA example, not GTSIO-520-H timing; the GTSIO-520 manual searched here gives no valve timing figures. The instructor accepted the FAA example chart for this lesson (29 September 2026).",
-          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "A crank-angle marker over a two-revolution timeline shows valve state and overlap at any angle."}
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "A crank-angle marker over a two-revolution timeline shows valve state and overlap at any angle."
+          }
         },
         {
           "type": "text",
           "title": "Why overlap helps",
-          "prompt": "The intake valve opens before TDC on the exhaust stroke (valve lead), and the exhaust valve closes after TDC (valve lag). The overlap cools the cylinder internally with cool incoming charge, draws in more mixture and helps scavenge burnt gas. It works because moving gas has momentum: the outgoing exhaust leaves the cylinder at low pressure, which speeds the fresh charge in. Timing is limited, though - open the intake too early and hot gas can flash back; close it too late and charge can be pushed back out.",
+          "prompt": "The intake valve opens before TDC on the exhaust stroke (valve lead), and the exhaust valve closes after TDC (valve lag).\n\nThe overlap cools the cylinder internally with cool incoming charge, draws in more mixture and helps scavenge burnt gas. It works because moving gas has momentum: the outgoing exhaust leaves the cylinder at low pressure, which speeds the fresh charge in.\n\nTiming is limited, though. Open the intake too early and hot gas can flash back; close it too late and charge can be pushed back out.",
           "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 47-48 (valve lead, valve lag, valve overlap, scavenging effect and the limits on early opening and late closing).",
-          "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The merits and limits of lead and lag follow the diagram that defines them."}
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The merits and limits of lead and lag follow the diagram that defines them."
+          }
         },
         {
           "type": "text",
-          "title": "Other cycles",
-          "prompt": "The four-stroke Otto cycle spreads intake, compression, power and exhaust over four strokes and two crankshaft revolutions. A two-stroke engine completes the same operating cycle in one revolution by combining intake and exhaust in the same stroke. A rotary engine has no reciprocating piston at all: a three-sided rotor turns inside an elliptical housing. Follow either link for the detail; neither is needed to continue.",
-          "deepDiveLinks": ["two-stroke-cycle", "rotary-cycle"],
-          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 46-48, and EASA Module 16, PDF pp. 19-23. The two-stroke and rotary cycles are standalone deep-dive lessons (instructor decision, 29 September 2026); this step keeps the outcome 'interrelate the 4 and 2 stroke Otto cycle' in the main flow.",
-          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A short orienting step; the detail and visuals sit in the linked deep dives."}
+          "title": "Two-stroke and four-stroke",
+          "prompt": "Most certified aircraft engines are four-stroke. Each cylinder needs two turns of the crankshaft for one power stroke, and valves control the gas.\n\nA two-stroke engine completes the operating cycle in one turn: one upstroke and one downstroke. Intake and exhaust happen during the same stroke, and every revolution brings a power stroke. The handbook notes that two-strokes are used in ultra-light, light sport and experimental aircraft, and generally need a gear reduction between engine and propeller.\n\nThe course slides weigh them like this. The four-stroke burns cleanly and economically and lasts longer between overhauls, but is heavier with more parts. The two-stroke is light and simple, but uses more fuel and wears sooner.\n\nA rotary engine has no reciprocating piston at all: a three-sided rotor turns inside an elliptical housing. Follow either link for the detail; neither is needed to continue.",
+          "deepDiveLinks": [
+            "two-stroke-cycle",
+            "rotary-cycle"
+          ],
+          "note": "Four-stroke cycle (two revolutions) and two-stroke cycle (one revolution, intake and exhaust in the same stroke, gear reduction, ultra-light and light sport use) from FAA-H-8083-32B (2023), PDF pp. 46 and 48; rotary rotor and housing from PDF p. 48; EASA Module 16, PDF pp. 19-23. The comparison of strengths and weaknesses is the instructor's course slides (the four-stroke and two-stroke slides): they are generalisations, not measured data. The two-stroke and rotary cycles are standalone deep-dive lessons.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this comparison; the deep-dive lessons hold the diagrams."
+          }
         },
         {
           "type": "web-embed",
@@ -207,32 +432,82 @@
           "prompt": "Compare the two ideal cycles. Both start with the same compression, so predict which one process differs before you toggle, and what that means for how the fuel burns. Then raise the compression ratio and notice how each loop changes.",
           "url": "artifact:diesel-otto-pv-compare",
           "note": "Diesel cycle description documented from FAA-H-8083-32B (2023), PDF p. 48, and EASA Module 16, PDF p. 23; EASA PDF p. 210 notes the diesel compression ratio is far greater than a gasoline engine's. The constant-pressure heat-addition process is from the course deck, slide 76 (tier 4), and Wikipedia Diesel cycle (tier 5, CC BY-SA 4.0, accessed 29 September 2026). Neither FAA-H-8083-32B nor EASA Module 16 covers pressure-volume diagram theory (both searched 29 September 2026). Curves are schematic. Cross-checked against MIT section 3.6: compression ignition, fuel sprayed in once compression is complete, and a higher compression ratio is possible because only air is compressed with no risk of auto-ignition.",
-          "sourceRefs": ["faa-powerplant-2023", "easa-module16", "course-deck-2026-05", "wikipedia-diesel-cycle", "mit-unified-thermo-propulsion"],
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Overlaying the two loops isolates the single process that differs: constant-volume versus constant-pressure heat addition."}
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "course-deck-2026-05",
+            "wikipedia-diesel-cycle",
+            "mit-unified-thermo-propulsion"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "Overlaying the two loops isolates the single process that differs: constant-volume versus constant-pressure heat addition."
+          }
         },
         {
           "type": "text",
           "title": "Diesel combustion",
-          "prompt": "A diesel-cycle engine first compresses air alone. Near maximum pressure fuel is sprayed in, and the high pressure and temperature make it burn without a spark; the rising pressure drives the piston down. Because the fuel burns as it is injected, the ideal diesel cycle adds heat at roughly constant pressure while the piston moves away from TDC. 'Diesel' names the ignition strategy - two-stroke and four-stroke diesels both exist.",
+          "prompt": "A diesel-cycle engine first compresses air alone. Near maximum pressure, fuel is sprayed in, and the high pressure and temperature make it burn without a spark. The rising pressure drives the piston down.\n\nBecause the fuel burns as it is injected, the ideal diesel cycle adds heat at roughly constant pressure while the piston moves away from TDC.\n\n'Diesel' names the ignition strategy. Two-stroke and four-stroke diesels both exist.",
           "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48, and EASA Module 16, PDF p. 23. Constant-pressure heat addition from the course deck, slide 76 (tier 4). Replaces the earlier single 'Diesel ignition' step; the spark-versus-compression comparison now lives in lesson 5. Cross-checked against MIT section 3.6 (fuel sprayed into the cylinder when compression is complete; ignition without a spark).",
-          "sourceRefs": ["faa-powerplant-2023", "easa-module16", "course-deck-2026-05", "mit-unified-thermo-propulsion"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The combustion sequence is short and follows the diagram just studied."}
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16",
+            "course-deck-2026-05",
+            "mit-unified-thermo-propulsion"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The combustion sequence is short and follows the diagram just studied."
+          }
         },
         {
           "type": "text",
           "title": "Diesel in aviation",
-          "prompt": "Diesel-cycle engines can burn Jet A, but regulators raised specific concerns when they returned to small aeroplanes. Turbine fuel must be accommodated in fuel systems designed for gasoline. A conventional diesel vibrates badly if one cylinder stops firing, which can damage the airframe and propeller. High internal pressures mean cylinder parts could be shed in a failure. The engine needs FADEC control with its own limits and indications. Add heavier construction, complex fuel injection, long cold-weather cranking and the risk of misfuelling.",
+          "prompt": "Diesel-cycle engines can burn Jet A, but regulators raised specific concerns when they returned to small aeroplanes.\n\nTurbine fuel must be accommodated in fuel systems designed for gasoline. A conventional diesel vibrates badly if one cylinder stops firing, which can damage the airframe and propeller. High internal pressures mean cylinder parts could be shed in a failure. The engine needs FADEC control with its own limits and indications.\n\nAdd heavier construction, complex fuel injection, long cold-weather cranking and the risk of misfuelling.",
           "note": "Aero-specific concerns are from the FAA's proposed special conditions for the Piper PA-28-236 with an SMA SR305-230 diesel engine (Federal Register vol. 71 no. 114, 14 June 2006): turbine fuel in gasoline-designed systems, vibration and failure modes with a cylinder inoperative, high-energy fragments from high internal pressures, FADEC control, and limitations and indications. The FAA states these concerns are not universally applicable to all diesel engines. Heavier construction, complex injection and cold cranking are from the course deck, slide 78 (tier 4); misfuelling from EASA Module 16, PDF p. 228. The FAA and EASA handbook texts contain no limitations list, so per the instructor's decision (29 September 2026) this step uses the FAA notice, the deck and common engineering sense.",
-          "sourceRefs": ["faa-diesel-special-conditions-2006", "course-deck-2026-05", "easa-module16"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A short list of concerns needs no visual."}
+          "sourceRefs": [
+            "faa-diesel-special-conditions-2006",
+            "course-deck-2026-05",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A short list of concerns needs no visual."
+          }
+        },
+        {
+          "type": "text",
+          "title": "The Brayton cycle",
+          "prompt": "Gas turbines run on a different cycle, the Brayton cycle. The handbook describes four events that are continuous rather than taking turns: intake, compression, expansion and exhaust, each going on all the time in a different part of the engine.\n\nAir is drawn in and compressed. Fuel burns in the combustion chamber, heating the air so that it expands while the pressure stays about constant, which is why the handbook calls it the constant-pressure cycle, or the continuous combustion cycle. The hot gas then drives the turbine and leaves through the exhaust.\n\nCompare the piston engine, where the same cylinder takes each event in turn. The Otto and Diesel cycles repeat in a cylinder; the Brayton cycle runs as a flow. Lesson 2 met the turbine engine; this is its cycle.",
+          "note": "The Brayton cycle as the thermodynamic cycle of the gas turbine, a variable-volume constant-pressure cycle also called the continuous combustion cycle with four continuous events (intake, compression, expansion, exhaust): FAA-H-8083-32B (2023), PDF p. 79. Compression, combustion at constant pressure, turbine and nozzle expansion, and its use in all gas turbine engines: NASA Glenn Beginner's Guide, Brayton cycle. Checked 13 October 2026.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "nasa-glenn-brayton"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "planned",
+            "rationale": "A schematic gas turbine with the four events labelled along its length shows why the cycle is a flow.",
+            "assetBrief": "A labelled outline of a turbojet or turboprop in section, with intake, compressor, combustion chamber, turbine and exhaust named, and an arrow for airflow. Schematic only; no engine data."
+          }
         },
         {
           "type": "text",
           "title": "Choose the evidence",
           "prompt": "A diagram can establish event order and mechanical relationships. It cannot, by appearance alone, establish a real engine's valve timing, cylinder pressure, gas temperature or efficiency. Those claims need an applicable manual or a validated analytical model.",
           "note": "Documented evidence boundary carried forward from the platform architecture. Manufacturer-specific timing remains controlled by the applicable engine data; FAA-H-8083-32B (2023), PDF p. 48, explicitly directs ignition timing to the engine manufacturer's recommendation.",
-          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "This is an evidence-literacy synthesis step."}
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "This is an evidence-literacy synthesis step."
+          }
         }
       ]
     },
@@ -723,7 +998,12 @@
       "type": "ordering",
       "question": "Put the four strokes in operating order.",
       "hint": "Begin with the stroke that admits the fresh charge.",
-      "items": ["Intake", "Compression", "Power", "Exhaust"],
+      "items": [
+        "Intake",
+        "Compression",
+        "Power",
+        "Exhaust"
+      ],
       "rationale": "A four-stroke cycle repeats intake, compression, power and exhaust over two crankshaft revolutions."
     },
     {
@@ -732,9 +1012,231 @@
       "type": "multiple-choice",
       "question": "What initiates combustion in the diesel cycle described by the FAA and EASA sources?",
       "hint": "Consider what happens to air temperature during high compression.",
-      "answers": ["An electric spark across a plug gap", "High temperature produced by compressing air before fuel injection", "A continuously burning flame in the exhaust"],
+      "answers": [
+        "An electric spark across a plug gap",
+        "High temperature produced by compressing air before fuel injection",
+        "A continuously burning flame in the exhaust"
+      ],
       "correct": 1,
       "rationale": "The cylinder compresses air to high pressure and temperature, then injected fuel ignites in that hot compressed air."
+    },
+    {
+      "id": "cycles-otto-processes",
+      "lessonId": "thermodynamic-cycles",
+      "type": "ordering",
+      "question": "Put the four processes of the ideal Otto cycle in order.",
+      "hint": "Start with the piston moving toward top dead centre.",
+      "items": [
+        "Adiabatic compression",
+        "Heat added at constant volume (combustion)",
+        "Adiabatic expansion (power stroke)",
+        "Heat rejected at constant volume (exhaust)"
+      ],
+      "rationale": "The ideal Otto cycle compresses the charge, adds heat at constant volume, expands it, then rejects heat at constant volume."
+    },
+    {
+      "id": "cycles-diesel-heat-addition",
+      "lessonId": "thermodynamic-cycles",
+      "type": "multiple-choice",
+      "question": "How does heat addition in the ideal Diesel cycle differ from the ideal Otto cycle?",
+      "hint": "Compare the heat-addition line on the two diagrams.",
+      "answers": [
+        "Diesel adds heat at constant pressure; Otto adds it at constant volume",
+        "Diesel adds no heat; Otto adds heat with a spark",
+        "Both add heat at constant volume, but Diesel does it more slowly"
+      ],
+      "correct": 0,
+      "rationale": "Fuel burns as it is injected in the diesel cycle, so heat is added at roughly constant pressure; the ideal Otto cycle adds it instantly at constant volume."
+    },
+    {
+      "id": "cycles-valve-overlap",
+      "lessonId": "thermodynamic-cycles",
+      "type": "multiple-choice",
+      "question": "What is valve overlap?",
+      "hint": "Look for the shaded interval around TDC on the timing chart.",
+      "answers": [
+        "Both valves off their seats at the same time around TDC, between the exhaust and intake strokes",
+        "The intake valve staying open throughout the compression stroke",
+        "The time a valve takes to open fully"
+      ],
+      "correct": 0,
+      "rationale": "The intake valve opens before TDC (lead) and the exhaust valve closes after TDC (lag), so both are open briefly, which aids cooling, charging and scavenging."
+    },
+    {
+      "id": "cycles-valve-lead",
+      "lessonId": "thermodynamic-cycles",
+      "type": "multiple-choice",
+      "question": "The intake valve opening before TDC on the exhaust stroke is called:",
+      "hint": "The valve acts before the piston reaches the end of the stroke.",
+      "answers": [
+        "Valve lead",
+        "Valve lag",
+        "Valve clearance"
+      ],
+      "correct": 0,
+      "rationale": "Opening a valve before its stroke begins is valve lead; closing it after its stroke ends is valve lag."
+    },
+    {
+      "id": "cycles-practical-rounding",
+      "lessonId": "thermodynamic-cycles",
+      "type": "multiple-choice",
+      "question": "Why is the practical pressure-volume diagram rounder than the ideal Otto diagram?",
+      "hint": "Think about what the ideal cycle assumes happens instantly.",
+      "answers": [
+        "Burning takes time and the valves open early and close late",
+        "A real engine has no compression stroke",
+        "The piston stops for a moment at TDC in a real engine"
+      ],
+      "correct": 0,
+      "rationale": "The ideal cycle assumes instant heat addition and instant valve action; real burning and valve events take crank angle, and heat is lost to the walls."
+    },
+    {
+      "id": "cycles-heat-engine",
+      "lessonId": "thermodynamic-cycles",
+      "type": "multiple-choice",
+      "question": "Which statement describes a heat engine?",
+      "hint": "Follow the energy: where does it start, what does it become, and what happens to the part that is not used?",
+      "answers": [
+        "It takes in heat from a hot source, turns part of it into work and rejects the rest to something cooler",
+        "It turns all the heat it receives into work",
+        "It makes heat from nothing",
+        "It moves heat from a cold place to a hot place without any work"
+      ],
+      "correct": 0,
+      "rationale": "A heat engine converts part of the heat it takes in into work and must discard the remainder as heat. A piston engine does this with the burning charge as the hot source."
+    },
+    {
+      "id": "cycles-thermal-efficiency",
+      "lessonId": "thermodynamic-cycles",
+      "type": "numeric",
+      "question": "A heat engine takes in 500 J of heat and rejects 330 J to the surroundings. What is its thermal efficiency, as a percentage?",
+      "hint": "The work is the heat in minus the heat rejected. Efficiency is the work divided by the heat in.",
+      "unit": "%",
+      "correctValue": 34,
+      "tolerance": 0.5,
+      "rationale": "Work = 500 - 330 = 170 J. Efficiency = 170 / 500 = 0.34, or 34 percent. The remaining 330 J leaves as heat, in a piston engine mostly through the exhaust and the cooling."
+    },
+    {
+      "id": "cycles-processes",
+      "lessonId": "thermodynamic-cycles",
+      "type": "matching",
+      "question": "Match each process to what stays fixed.",
+      "hint": "The names come from Greek: iso- means equal, and adiabatic means no passing through.",
+      "pairs": [
+        {
+          "left": "Isochoric",
+          "right": "The volume"
+        },
+        {
+          "left": "Isobaric",
+          "right": "The pressure"
+        },
+        {
+          "left": "Isothermal",
+          "right": "The temperature"
+        },
+        {
+          "left": "Adiabatic",
+          "right": "No heat passes into or out of the gas"
+        }
+      ],
+      "rationale": "Constant volume, constant pressure, constant temperature and no heat exchange are the four basic processes from which the engine cycles are built."
+    },
+    {
+      "id": "cycles-pv-area",
+      "lessonId": "thermodynamic-cycles",
+      "type": "multiple-choice",
+      "question": "On a pressure-volume diagram of an engine cycle, what does the area enclosed by the loop represent?",
+      "hint": "Think of the area under a path as the work done, and subtract the work that must be put back in.",
+      "answers": [
+        "The net work done by the gas in one cycle",
+        "The heat rejected in one cycle",
+        "The highest pressure in the cycle",
+        "The time one cycle takes"
+      ],
+      "correct": 0,
+      "rationale": "The area under each path is work. Around a full loop the work done on expansion exceeds the work needed to compress, and the enclosed area is the difference: the net work of the cycle."
+    },
+    {
+      "id": "cycles-carnot",
+      "lessonId": "thermodynamic-cycles",
+      "type": "numeric",
+      "question": "A Carnot engine works between a hot source at 1,000 K and a cold sink at 300 K. What is its efficiency, as a percentage?",
+      "hint": "Use efficiency = 1 - (cold / hot), with both temperatures in kelvin.",
+      "unit": "%",
+      "correctValue": 70,
+      "tolerance": 0.5,
+      "rationale": "1 - 300 / 1,000 = 1 - 0.3 = 0.7, or 70 percent. No real engine between those two temperatures can do better, and real engines fall below it."
+    },
+    {
+      "id": "cycles-carnot-meaning",
+      "lessonId": "thermodynamic-cycles",
+      "type": "multiple-choice",
+      "question": "What does the Carnot efficiency tell you about a real engine?",
+      "hint": "It is a limit, not a prediction. Which way does a real engine lie from it?",
+      "answers": [
+        "It is the highest efficiency any engine could have between the same two temperatures; a real engine is lower",
+        "It is the efficiency every real engine achieves",
+        "It is the lowest efficiency a real engine can have",
+        "It only applies to gas turbines"
+      ],
+      "correct": 0,
+      "rationale": "Carnot efficiency is an upper bound set by the two temperatures. Friction, heat losses and non-ideal combustion keep real engines below it."
+    },
+    {
+      "id": "cycles-strokes-events",
+      "lessonId": "thermodynamic-cycles",
+      "type": "multiple-choice",
+      "question": "The spark fires before TDC, while the piston is still on its compression stroke. What does this show about strokes and events?",
+      "hint": "A stroke describes the piston. An event describes what happens to the charge. Which one starts early here?",
+      "answers": [
+        "Events (what happens to the charge) can begin before the stroke that is named after them",
+        "The piston has changed direction early",
+        "The cycle has skipped a stroke",
+        "Ignition belongs to the exhaust stroke"
+      ],
+      "correct": 0,
+      "rationale": "Strokes are the piston's motion and events are what happens to the charge. The two overlap: ignition happens before TDC and burning carries on into the power stroke."
+    },
+    {
+      "id": "cycles-crank-degrees",
+      "lessonId": "thermodynamic-cycles",
+      "type": "numeric",
+      "question": "A piston starts the intake stroke at TDC. Through how many degrees of crankshaft rotation has it turned when it finishes the power stroke?",
+      "hint": "Each stroke is 180 degrees. Count the strokes up to the end of the power stroke: intake, compression, power.",
+      "unit": "degrees",
+      "correctValue": 540,
+      "tolerance": 0.5,
+      "rationale": "Intake 0 to 180, compression 180 to 360, power 360 to 540. The exhaust stroke then runs from 540 to 720 degrees, completing two turns of the crankshaft."
+    },
+    {
+      "id": "cycles-two-stroke-power",
+      "lessonId": "thermodynamic-cycles",
+      "type": "multiple-choice",
+      "question": "How often does each cylinder of a two-stroke engine deliver a power stroke?",
+      "hint": "Compare with the four-stroke, which fires once in two revolutions.",
+      "answers": [
+        "Once in every revolution of the crankshaft",
+        "Once in every two revolutions",
+        "Once in every four revolutions",
+        "Twice in every revolution"
+      ],
+      "correct": 0,
+      "rationale": "A two-stroke completes the operating cycle in one revolution, with intake and exhaust in the same stroke, so each cylinder has a power stroke every turn. A four-stroke fires once in two turns."
+    },
+    {
+      "id": "cycles-brayton-events",
+      "lessonId": "thermodynamic-cycles",
+      "type": "ordering",
+      "question": "Put the four events of the Brayton cycle in the order the air meets them.",
+      "hint": "Follow a particle of air through a gas turbine from the front to the back.",
+      "items": [
+        "Intake",
+        "Compression",
+        "Expansion (combustion and turbine)",
+        "Exhaust"
+      ],
+      "rationale": "The handbook lists the four events of the gas turbine as intake, compression, expansion (which includes the power) and exhaust. They go on continuously, each in a different part of the engine."
     },
     {
       "id": "arrangements-radial",
@@ -784,55 +1286,6 @@
       "answers": ["They direct cooling air across the cylinders and fins", "They ignite the fuel-air mixture", "They drive the coolant pump"],
       "correct": 0,
       "rationale": "Baffles control the airflow path so air does useful cooling work instead of bypassing the finned surfaces."
-    },
-    {
-      "id": "cycles-otto-processes",
-      "lessonId": "thermodynamic-cycles",
-      "type": "ordering",
-      "question": "Put the four processes of the ideal Otto cycle in order.",
-      "hint": "Start with the piston moving toward top dead centre.",
-      "items": ["Adiabatic compression", "Heat added at constant volume (combustion)", "Adiabatic expansion (power stroke)", "Heat rejected at constant volume (exhaust)"],
-      "rationale": "The ideal Otto cycle compresses the charge, adds heat at constant volume, expands it, then rejects heat at constant volume."
-    },
-    {
-      "id": "cycles-diesel-heat-addition",
-      "lessonId": "thermodynamic-cycles",
-      "type": "multiple-choice",
-      "question": "How does heat addition in the ideal Diesel cycle differ from the ideal Otto cycle?",
-      "hint": "Compare the heat-addition line on the two diagrams.",
-      "answers": ["Diesel adds heat at constant pressure; Otto adds it at constant volume", "Diesel adds no heat; Otto adds heat with a spark", "Both add heat at constant volume, but Diesel does it more slowly"],
-      "correct": 0,
-      "rationale": "Fuel burns as it is injected in the diesel cycle, so heat is added at roughly constant pressure; the ideal Otto cycle adds it instantly at constant volume."
-    },
-    {
-      "id": "cycles-valve-overlap",
-      "lessonId": "thermodynamic-cycles",
-      "type": "multiple-choice",
-      "question": "What is valve overlap?",
-      "hint": "Look for the shaded interval around TDC on the timing chart.",
-      "answers": ["Both valves off their seats at the same time around TDC, between the exhaust and intake strokes", "The intake valve staying open throughout the compression stroke", "The time a valve takes to open fully"],
-      "correct": 0,
-      "rationale": "The intake valve opens before TDC (lead) and the exhaust valve closes after TDC (lag), so both are open briefly, which aids cooling, charging and scavenging."
-    },
-    {
-      "id": "cycles-valve-lead",
-      "lessonId": "thermodynamic-cycles",
-      "type": "multiple-choice",
-      "question": "The intake valve opening before TDC on the exhaust stroke is called:",
-      "hint": "The valve acts before the piston reaches the end of the stroke.",
-      "answers": ["Valve lead", "Valve lag", "Valve clearance"],
-      "correct": 0,
-      "rationale": "Opening a valve before its stroke begins is valve lead; closing it after its stroke ends is valve lag."
-    },
-    {
-      "id": "cycles-practical-rounding",
-      "lessonId": "thermodynamic-cycles",
-      "type": "multiple-choice",
-      "question": "Why is the practical pressure-volume diagram rounder than the ideal Otto diagram?",
-      "hint": "Think about what the ideal cycle assumes happens instantly.",
-      "answers": ["Burning takes time and the valves open early and close late", "A real engine has no compression stroke", "The piston stops for a moment at TDC in a real engine"],
-      "correct": 0,
-      "rationale": "The ideal cycle assumes instant heat addition and instant valve action; real burning and valve events take crank angle, and heat is lost to the walls."
     },
     {
       "id": "twostroke-revolutions",
