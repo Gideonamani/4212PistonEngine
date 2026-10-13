@@ -228,5 +228,10 @@
     "creator": "Arnero",
     "source": "https://commons.wikimedia.org/wiki/File:Dry_sump.svg",
     "license": "Public domain"
+  },
+  "faa-valve-spring-tester.webp": {
+    "title": "Valve spring compression tester",
+    "source": "FAA-H-8083-32B, Figure 10-15",
+    "license": "U.S. Government work"
   }
 }

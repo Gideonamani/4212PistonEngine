@@ -142,5 +142,11 @@
     "page": 41,
     "box": [0.09, 0.055, 0.5, 0.172],
     "width": 1000
+  },
+  "faa-valve-spring-tester": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 380,
+    "box": [0.505, 0.372, 0.915, 0.878],
+    "width": 700
   }
 }
