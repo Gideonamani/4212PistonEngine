@@ -124,7 +124,7 @@
       "tier": 4,
       "title": "Aircraft Piston Engine Slides - 21 May 2026 (instructor course deck)",
       "path": "Notes/Aircraft Piston Engine Slides - 21May2026.pptx",
-      "applicability": "Instructor-authored course slides. Slide 27 gives the first jet-powered flight (Heinkel He 178, 1939) and slide 37 the arrival of FADEC. Carries no independent evidence; claims here need the instructor's confirmation."
+      "applicability": "Instructor-authored course slides. Used for the history of aircraft engines (slides 7 to 40: balloons and gliders, the Wright breakthrough, the engine tables, the wars, the jet beginnings, general aviation and FADEC) and, in lesson 1, for the first jet flight (slide 27) and FADEC (slide 37). Carries no independent evidence; claims here need the instructor's confirmation. Slide 17 calls the 1913 Renault V8 water-cooled; the Aircraft Engine Historical Society and the Smithsonian say it was air-cooled, and this lesson follows them."
     },
     {
       "id": "gtsio520-overhaul",
@@ -132,6 +132,76 @@
       "title": "Continental GTSIO-520 Series Overhaul Manual X30045A",
       "path": "Notes/gtsio520_series.pdf",
       "applicability": "The course reference engine: rated 375 hp, standard dry weight 550.39 lb (detail specifications, as used in the Engine Requirements lesson). Always use the data for the engine in front of you."
+    },
+    {
+      "id": "nasa-airships-101",
+      "tier": 5,
+      "title": "Airships 101 - NASA Ames (NTRS 20120010650)",
+      "url": "https://ntrs.nasa.gov/api/citations/20120010650/downloads/20120010650.pdf",
+      "applicability": "NASA's taxonomy of aircraft: lighter-than-air (balloons, airships) and heavier-than-air. Licence: US Government work, public domain; facts only; accessed 12 October 2026."
+    },
+    {
+      "id": "nps-charles-taylor",
+      "tier": 5,
+      "title": "Charles E. Taylor - National Park Service",
+      "url": "https://nps.gov/people/charles-e-taylor.htm",
+      "applicability": "The Wrights asked engine makers in December 1902 for a 180 lb engine giving 8 to 9 horsepower; none was interested; Charlie Taylor built one in about six weeks, and it made 12 hp. Licence: US Government work, public domain; facts only; accessed 12 October 2026."
+    },
+    {
+      "id": "wright-flyer-facts",
+      "tier": 5,
+      "title": "Wright Flyer I: Just the Facts - Wright Brothers Aeroplane Company and Museum of Pioneer Aviation",
+      "url": "https://wright-brothers.org/Information_Desk/Just_the_Facts/Airplanes/Flyer_I.htm",
+      "applicability": "Flyer I specifications (605 lb empty, a 170 lb four-cylinder engine of 12 hp) and the four flights of 17 December 1903 (the first 12 s and about 120 ft; the last 59 s and 852 ft). Other sources give 150 to 180 lb for the engine, depending on what is counted. Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "nasm-manly-balzer",
+      "tier": 5,
+      "title": "Langley-Manly-Balzer Radial 5 Engine - Smithsonian National Air and Space Museum",
+      "url": "https://avpreservation.si.edu/object/nasm_A19080003000",
+      "applicability": "52.4 hp at 950 rpm, 209.6 lb wet; Manly himself gave 120 lb for \"the engine proper\". Licence: museum catalogue record, facts only; accessed 12 October 2026."
+    },
+    {
+      "id": "nasm-gnome-omega",
+      "tier": 5,
+      "title": "Gnome Omega No. 1 Rotary Engine - Smithsonian National Air and Space Museum",
+      "url": "https://dashboard.si.edu/object/gnome-omega-no-1-rotary-engine%3Anasm_A19990069000",
+      "applicability": "Seven cylinders, 50 hp at 1,200 rpm, 166.5 lb; generally regarded as the first rotary aero engine built in quantity. Licence: museum catalogue record, facts only; accessed 12 October 2026."
+    },
+    {
+      "id": "enginehistory-renault",
+      "tier": 5,
+      "title": "Selected Early Engines: Renault - Aircraft Engine Historical Society",
+      "url": "https://enginehistory.org/Piston/Before1925/EarlyEngines/R/Re.shtml",
+      "applicability": "Renault's V8 aero engines of 1907 onward were air-cooled (the 80 hp was rated 88 hp at 1,800 rpm). The Smithsonian's Renault 80 hp V-8 record agrees. Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "gnome-commons",
+      "tier": 5,
+      "title": "Gnome Omega Rotary Engine Running - Valder137, Wikimedia Commons",
+      "url": "https://commons.wikimedia.org/wiki/File:Gnome_Omega_Rotary_Engine_Running_02_Dawn_Patrol_NMUSAF_26Sept09_(14619976863).jpg",
+      "applicability": "Photograph of a running Gnome Omega. Licence: CC BY 2.0; used with credit; accessed 12 October 2026."
+    },
+    {
+      "id": "spirit-of-st-louis",
+      "tier": 5,
+      "title": "Charles A. Lindbergh's Ryan NYP, NX211, \"Spirit of St. Louis\" - This Day in Aviation",
+      "url": "https://www.thisdayinaviation.com/ryan-nyp-nx211-spirit-st-louis/",
+      "applicability": "The Spirit of St. Louis flew with an air-cooled, nine-cylinder Wright J-5C Whirlwind radial rated 200 hp at 1,800 rpm, 508 lb. Licence: facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "merlin-variants",
+      "tier": 5,
+      "title": "List of Rolls-Royce Merlin variants - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/List_of_Rolls-Royce_Merlin_variants",
+      "applicability": "The Merlin II delivered 1,030 hp from 1938. Licence: CC BY-SA 4.0; facts only, no text copied; accessed 12 October 2026."
+    },
+    {
+      "id": "faa-powerplant-2023",
+      "tier": 1,
+      "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
+      "path": "Notes/amt_powerplant_handbook 2023.pdf",
+      "applicability": "Primary source for power and weight (specific weight) and for powerplant selection by cruising speed (PDF pp. 23 to 24): propeller losses limit reciprocating and turboprop engines above about 400 mph; the turboprop develops more power per pound; gas turbines operate most economically at high altitude; reciprocating engines are the usual choice up to about 250 mph."
     }
   ],
   "lessons": [
@@ -458,41 +528,146 @@
         {
           "type": "text",
           "title": "What flight needs",
-          "prompt": "Lesson 1 traced engines from muscle to steam to the internal combustion engine. Building a good ground engine and building an engine that could fly are not the same problem. What do you think a flying machine needs from its engine that a factory, a ship, or an early motor car does not?",
-          "note": "Reflective opening prompt - invites prediction (weight, power-to-weight ratio, reliability, vibration) before the lesson reveals the documented history."
+          "prompt": "Lesson 1 traced engines from muscle to steam to the internal combustion engine. Building a good ground engine and building an engine that could fly are not the same problem. What do you think a flying machine needs from its engine that a factory, a ship or an early motor car does not?",
+          "note": "A prediction prompt: it invites a guess (weight, power for its weight, reliability, vibration) before the history answers it. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Lighter or heavier than air",
+          "prompt": "Aircraft fall into two families.\n\nLighter-than-air craft float, because they are filled with a gas lighter than the air around them. A balloon has no propulsion and drifts with the wind. An airship, or dirigible, carries an engine and can be steered. Neither needs an engine to stay up.\n\nHeavier-than-air craft are heavier than the air they push aside, so they must keep making lift by moving through the air, with a wing or a rotor. If the motion stops, the lift stops. That makes the engine part of the answer, and it is why this lesson follows the engine's story, not the balloon's.",
+          "note": "Balloon, airship and heavier-than-air craft as classified in NASA Ames's 'Airships 101' aircraft taxonomy. A helicopter is heavier than air too; this lesson follows the fixed-wing story.",
+          "sourceRefs": [
+            "nasa-airships-101"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Lift before control",
-          "prompt": "Before a powered aeroplane existed, two separate problems were being worked on: lift, and control. The Montgolfier brothers flew the first free hot-air balloon in 1783 - no steering at all. La France, an 1884 French Army dirigible, was electrically powered and the first fully controlled free flight, but still slow and unwieldy. Meanwhile George Cayley, then Otto Lilienthal (some 2,000 controlled glides between 1891 and 1896), then Octave Chanute developed fixed-wing gliders that proved a wing could lift a person - but none of them had a working answer for pitch, roll and yaw together.",
-          "note": "Documented: sourced from the course slide deck, 'History and Introduction' section (slides 7-10)."
+          "prompt": "Before a powered aeroplane existed, two problems were being worked on: lift, and control.\n\nIn 1783 the Montgolfier brothers' hot-air balloon carried the first people on an untethered flight, with no steering at all. In 1884 the French Army's airship La France, driven by an electric motor, made the first fully controlled free flight, but it was slow and unwieldy.\n\nMeanwhile George Cayley, then Otto Lilienthal (some 2,000 glides between 1891 and 1896), then Octave Chanute developed fixed-wing gliders that proved a wing could lift a person. None had a working answer for pitch, roll and yaw together.",
+          "note": "Documented from the course slide deck (slides 7 to 11). The first untethered balloon flight with people was on 21 November 1783.",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
-          "title": "Power without control",
-          "prompt": "Powered flight attempts by Hiram Maxim and Samuel Langley in this period had engines strong enough to fly, but still no stable control - proving that thrust alone was never the missing piece. Flight needed pitch, roll and yaw managed together, all at once, in the air.",
-          "note": "Documented: sourced from the course slide deck (slide 11)."
+          "title": "Two barriers, not one",
+          "prompt": "Powered attempts by Hiram Maxim and Samuel Langley had engines but still no stable control. Flight needed pitch, roll and yaw managed together, all at once, in the air.\n\nIt also needed an engine that was light for the power it made. A wing can lift only so much, and every pound of engine is a pound the wing must lift. In December 1902 the Wrights asked engine makers for an engine of about 180 lb that would give 8 to 9 horsepower. Ten companies replied. None would build one.\n\nTwo barriers stood in the way of powered flight: control, and an engine with enough power for its weight.",
+          "note": "Maxim and Langley: course slide deck, slide 11. The Wrights' request and the ten replies: National Park Service, 'Charles E. Taylor' (checked 12 October 2026). 'Two barriers' is this lesson's synthesis of those sources.",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "nps-charles-taylor"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "The Wright Flyer",
-          "prompt": "The Wright brothers spent 1900-1902 almost entirely on unpowered gliders, deliberately mastering three-axis control - wing-warping for roll, an elevator for pitch, a rudder for yaw - before they ever added an engine. On 17 December 1903 at Kitty Hawk, their Flyer I combined all three controls with a custom-built engine of roughly 12 hp for the first sustained, controlled, powered flight: 12 seconds, 120 feet. The lesson worth carrying forward: they treated control, not raw power, as the hard problem to solve first.",
-          "note": "Documented: sourced from the course slide deck (slide 12), including the 12 hp / 12 second / 120 foot figures."
+          "prompt": "The Wright brothers spent 1900 to 1902 almost entirely on unpowered gliders, deliberately mastering three-axis control: wing-warping for roll, an elevator for pitch, a rudder for yaw. Only then did they add an engine. With no maker willing to build one, their mechanic Charlie Taylor built a four-cylinder engine in about six weeks, with an aluminium crankcase to keep the weight down. It made about 12 horsepower.\n\nOn 17 December 1903 at Kitty Hawk the Flyer made four flights. The first lasted 12 seconds and covered about 120 feet; the last, flown by Wilbur, lasted 59 seconds and covered 852 feet.",
+          "note": "Documented from the National Park Service (Taylor, six weeks, 12 hp) and the Wright Brothers Aeroplane Company and Museum of Pioneer Aviation (the four flights), checked 12 October 2026; the glider years from course slide 12.",
+          "sourceRefs": [
+            "nps-charles-taylor",
+            "wright-flyer-facts",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Why that flight mattered",
+          "prompt": "It was the first time a machine heavier than air took off under its own power, flew under its pilot's control, and kept flying. Those three together are what 'sustained, controlled, powered flight' means. Before 1903, machines had managed one or two of them, never all three.\n\nFor engines it mattered because it showed the problem could be solved by method rather than luck: master control first, then build an engine just good enough. From then on the engine's job was to get better, and within ten years it did, from one hand-built 12 horsepower engine to a small industry.",
+          "note": "The significance is the instructor's own framing (course slides 12 and 13: control first, then an engine; the process engineers still use). The 'within ten years' claim is developed in the next steps.",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "model-pose",
           "title": "Inspect the 1903 engine",
           "modelId": "wright-1903-engine",
-          "prompt": "This is the actual engine from that flight, shown as a reference model. Orbit and zoom to inspect it, and compare what you see with the documented description: a cast-aluminium body, bored on a lathe for four independent cylinders in an inline arrangement; cast-iron pistons, turned and grooved to take piston rings. The complete engine weighed about 180 lb and produced 12 hp at 1,025 rpm - though it reportedly made closer to 16 hp when first started cold, settling to 12 hp as it warmed up.",
+          "prompt": "This is the actual engine from that flight, shown as a reference model. Orbit and zoom to inspect it, and compare what you see with the documented description: a cast-aluminium body, bored on a lathe for four independent cylinders in an inline arrangement; cast-iron pistons, turned and grooved to take piston rings. The complete engine weighed roughly 150 to 180 lb (sources differ on what is counted) and produced about 12 hp at around 1,000 rpm, though it reportedly made closer to 16 hp when first started cold, settling to 12 hp as it warmed up.",
           "viewPreset": "engine-overview",
-          "focusHotspots": ["magneto", "valve", "crankcase"],
-          "note": "Interactive CC0 reference model from the Smithsonian National Air and Space Museum. The embedded lesson view supports orbit, zoom, reset and guided hotspots; section view, isolation and operating animation remain unavailable for this static historical scan. Engine description documented from the course slide deck (slide 16)."
+          "focusHotspots": [
+            "magneto",
+            "valve",
+            "crankcase"
+          ],
+          "note": "Interactive CC0 reference model from the Smithsonian National Air and Space Museum; orbit, zoom, reset and guided hotspots only (no section, isolation or operating animation for this static scan). Engine description from course slide 16; weights from the National Park Service, the Wright Brothers Aeroplane Company (170 lb) and the Smithsonian (150 lb) differ by what is counted.",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "wright-flyer-facts"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The Smithsonian scan lets the learner look at the real 1903 engine: four inline cylinders, the crankcase and the magneto."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Power to weight",
+          "prompt": "Engine power divided by engine weight is its power-to-weight ratio. A flying machine has to lift its own engine, so a better ratio leaves more of the lift for everything else.\n\nThe 1903 Wright engine made about 12 hp from about 170 lb: 0.07 horsepower per pound. The Langley-Manly engine of the same year made 52 hp from between 120 and 210 lb, depending on what is counted: 0.25 to 0.43. The Gnome Omega of 1908 made 50 hp from 166 lb: 0.30. The GTSIO-520-H, rated at 375 hp, weighs 550 lb: 0.68.\n\nTurn the ratio over and it is pounds per horsepower: about 14 for the Wright engine, about 1.5 for the GTSIO-520-H.",
+          "note": "12 / 170 = 0.071; 52 / 210 = 0.25 and 52 / 120 = 0.43; 50 / 166.5 = 0.30; 375 / 550.39 = 0.68; 170 / 12 = 14.2 and 550.39 / 375 = 1.47. Weights are as the museums and the manual list them and are not all measured the same way, so read the ratios as orders of magnitude.",
+          "sourceRefs": [
+            "wright-flyer-facts",
+            "nasm-manly-balzer",
+            "nasm-gnome-omega",
+            "gtsio520-overhaul",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Engines diversify fast",
-          "prompt": "The Wright engine did not stay unique for long. Within a decade, aircraft engines diversified fast: the water-cooled Manly-Balzer radial (1903, ~52 hp) was more powerful but crashed with its aircraft; the Gnome Omega (1908) became the first mass-produced rotary engine at ~50 hp; a 3-cylinder Anzani (1909, ~25-30 hp) powered Bleriot's Channel crossing; and by 1913 the water-cooled Renault V8 was reaching 70-100 hp. In ten years, aircraft engines went from one hand-built example to a small industry.",
-          "note": "Documented: sourced from the course slide deck's Pre-WW1 Engines table (slide 17)."
+          "prompt": "The Wright engine did not stay unique for long. Within a decade aircraft engines diversified fast.\n\nThe water-cooled Manly-Balzer radial (1903, 52 hp) was far stronger for its weight, but it crashed with its aircraft. The Gnome Omega (1908, 50 hp) became the first rotary engine built in quantity. A three-cylinder Anzani of about 25 hp powered Bleriot's Channel crossing in 1909. By 1913 Renault's air-cooled V8s were making 70 to 100 hp.\n\nIn ten years, aircraft engines went from one hand-built example to a small industry.",
+          "note": "Documented from the course slide deck (slide 17), corrected where it conflicts with the sources: slide 17 calls the 1913 Renault V8 water-cooled, but Renault's V8 aero engines were air-cooled (Aircraft Engine Historical Society; Smithsonian). Manly-Balzer and Gnome figures from the Smithsonian records.",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "enginehistory-renault",
+            "nasm-manly-balzer",
+            "nasm-gnome-omega"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "image",
@@ -504,46 +679,150 @@
           "license": "CC BY 2.0",
           "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gnome_Omega_Rotary_Engine_Running_02_Dawn_Patrol_NMUSAF_26Sept09_(14619976863).jpg",
           "note": "Licensed documentary image of a running Gnome Omega rotary engine.",
-          "mediaPlan": {"mode": "web-media", "status": "available", "rationale": "The running engine photograph makes the unusual rotating-cylinder arrangement visible in context."}
+          "mediaPlan": {
+            "mode": "web-media",
+            "status": "available",
+            "rationale": "The running engine photograph makes the unusual rotating-cylinder arrangement visible in context."
+          },
+          "sourceRefs": [
+            "gnome-commons",
+            "nasm-gnome-omega"
+          ]
+        },
+        {
+          "type": "web-embed",
+          "title": "Recognise the layouts",
+          "prompt": "By now you have met five ways of arranging cylinders. Inline: one row, like the Wright engine. V-type: two rows sharing a crankshaft, like the Renault and Hispano-Suiza V8s. Rotary: the cylinders spin with the propeller around a fixed crankshaft, like the Gnome. Radial: cylinders in a ring around a fixed crankcase, like the Wasp. Horizontally opposed: two rows flat on either side of the crankshaft, like the GTSIO-520-H.\n\nUse the comparator to see four of them side by side. The rotary is the odd one out, because there the whole engine turns.",
+          "url": "artifact:arrangement-comparator",
+          "alt": "Interactive comparison of inline, V-type, radial and opposed cylinder arrangements",
+          "note": "The comparator from the Classification lesson, reused here for recognition; it shows the four fixed layouts (the rotary spins the whole engine and is described in words and in the Gnome picture). Classification (lesson 5) goes deeper.",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "An authored outline comparison lets the learner see the layouts side by side without period-specific machinery."
+          }
         },
         {
           "type": "text",
           "title": "WWI: two engine paths",
-          "prompt": "World War I pushed aircraft from observation duty into combat, and engine power roughly quadrupled - from about 50 hp in 1914 to about 200 hp by 1918 - along two diverging paths. Rotary engines (the whole cylinder block spinning with the propeller, as in the Sopwith Camel) were light with an excellent power-to-weight ratio and cooled naturally as they spun, but suffered heavy oil loss and strong gyroscopic effects from all that spinning mass. Inline and V-type water-cooled engines (Fokker D.VII, SPAD XIII) gave more stable handling and more power for larger aircraft, and made it practical to synchronise a machine gun to fire through the spinning propeller.",
-          "note": "Documented: sourced from the course slide deck (slides 19-21)."
+          "prompt": "The First World War pushed aircraft from observation into combat, and engine power roughly quadrupled, from about 50 hp in 1914 to about 200 hp by 1918, along two diverging paths.\n\nRotary engines, with the whole cylinder block spinning with the propeller as in the Sopwith Camel, were light, with an excellent power-to-weight ratio, and cooled naturally as they spun, but they lost a lot of oil and had strong gyroscopic effects from all that spinning mass.\n\nInline and V-type water-cooled engines, as in the Fokker D.VII and the SPAD XIII, gave steadier handling and more power for larger aircraft, and made it practical to synchronise a machine gun to fire through the propeller.",
+          "note": "Documented from the course slide deck (slides 19 to 21).",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Interwar reliability and racing",
-          "prompt": "After the war, surplus engines flooded the civilian market and the priority shifted from raw power to reliability. Air-cooled radial engines - the Pratt & Whitney Wasp, the Wright Cyclone - dominated for their simple cooling and ruggedness, powering mail planes, airliners and record flights like the Spirit of St Louis (1927). Air racing through the 1930s then pushed power back up again: superchargers became essential for high-altitude performance, and by the late 1930s engines such as the Rolls-Royce Kestrel, Bristol Mercury and Allison V-1710 were passing 1,000 hp. In this same stretch, Frank Whittle, and separately Hans von Ohain, began the work that would lead to the first jet-powered flight - a parallel technology, not yet a replacement.",
-          "note": "Documented: sourced from the course slide deck (slides 23, 24, 26, 27)."
+          "prompt": "After the war, surplus engines flooded the civilian market and the priority shifted from raw power to reliability. Air-cooled radial engines such as the Pratt & Whitney Wasp and the Wright Cyclone dominated for their simple cooling and ruggedness, powering mail planes, airliners and record flights. A Wright Whirlwind radial carried Lindbergh's Spirit of St Louis across the Atlantic in 1927.\n\nAir racing in the 1930s then pushed power back up: superchargers became essential for high-altitude performance, and the Rolls-Royce Merlin was delivering 1,030 hp from 1938. In the same years Frank Whittle and, separately, Hans von Ohain began the work that led to the first jet-powered flight: a parallel technology, not yet a replacement.",
+          "note": "Documented from the course slide deck (slides 23 to 27). Corrections: the Spirit of St Louis flew a Wright J-5C Whirlwind, not a Wasp or Cyclone; the deck's list of 1930s engines passing 1,000 hp is replaced by the one engine whose 1,030 hp is confirmed (Merlin II, 1938), because other outputs vary by variant and fuel.",
+          "sourceRefs": [
+            "course-deck-2026-05",
+            "spirit-of-st-louis",
+            "merlin-variants"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "WWII peak power",
-          "prompt": "World War II was the peak of piston-engine power: 1,000-2,000+ hp aircraft engines, built with superchargers, turbochargers and intercoolers layered on top of the basic four-stroke design. On the Allied side, the Rolls-Royce Merlin V-12 powered the Spitfire, Mustang and Lancaster, while the Pratt & Whitney R-2800 radial powered the Corsair and Thunderbolt, with turbocharged engines driving high-altitude bombers like the B-17 and B-29. On the Axis side, the fuel-injected Daimler-Benz DB 601/605 V-12 powered the Bf 109 and Me 110, prioritising altitude and fuel efficiency, while the BMW 801 radial powered the Fw 190 with notably clever engine-cooling design. The Me 262 captures the era's turning point in one airframe: it first flew on a piston engine (a Junkers Jumo 210) in April 1941, then on jet engines (Junkers Jumo 004) by July 1942.",
-          "note": "Documented: sourced from the course slide deck (slides 28, 29, 31, 33)."
+          "prompt": "The Second World War was the peak of piston-engine power: 1,000 to 2,000 hp and more, with superchargers, turbochargers and intercoolers layered on top of the basic four-stroke design.\n\nOn the Allied side the Rolls-Royce Merlin V-12 powered the Spitfire, the Mustang and the Lancaster, and the Pratt & Whitney R-2800 radial powered the Corsair and the Thunderbolt, while turbocharged engines drove high-altitude bombers such as the B-17 and the B-29. On the Axis side the fuel-injected Daimler-Benz DB 601 and 605 V-12s powered the Bf 109 and the Me 110, and the BMW 801 radial powered the Fw 190 with clever cooling.\n\nThe Me 262 shows the turning point in one airframe: it first flew on a piston engine (a Junkers Jumo 210) in April 1941, and on jet engines (Junkers Jumo 004) by July 1942.",
+          "note": "Documented from the course slide deck (slides 28 to 33).",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Why jets replaced the biggest pistons",
+          "prompt": "After 1945, jet engines took over front-line military and airline flying almost completely. The FAA handbook explains why in terms of speed and weight.\n\nA piston engine drives a propeller, and above about 400 miles an hour propeller losses limit its efficiency to less than a turbofan's. A turboprop develops more power per pound of weight than a piston engine. And gas turbines operate most economically at high altitude, where fast aircraft cruise.\n\nThe same handbook still gives the piston engine the job for aircraft that cruise at no more than about 250 miles an hour, where its efficiency and low cost win. That is where the piston engine stayed.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 23 and 24 (propeller losses limit reciprocating and turboprop efficiency above about 400 mph; the turboprop develops more power per pound than the reciprocating engine; gas turbines operate most economically at high altitude; reciprocating engines are the usual choice up to about 250 mph) and course slide 34.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Flat engines take over",
-          "prompt": "After the war, jets took over front-line military and commercial aviation almost entirely, and a flood of surplus WWII piston engines fed a boom in private, sport and training flying. Horizontally-opposed flat-four and flat-six engines became the general-aviation standard - compact, low-drag, easy to maintain - and powered the Cessnas, Pipers, Beechcraft and Mooneys that still define general aviation today.",
-          "note": "Documented: sourced from the course slide deck (slides 34, 35)."
+          "prompt": "After the war, surplus engines and a boom in private, sport and training flying turned general aviation toward simple, affordable power. Horizontally opposed flat-four and flat-six engines became the standard: compact, with a low frontal area and so low drag, well balanced, and easy to reach for maintenance.\n\nThey power the Cessnas, Pipers, Beechcrafts and Mooneys that still define general aviation today.",
+          "note": "Documented from the course slide deck (slides 34 and 35).",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Refinement and FADEC",
-          "prompt": "From the 1970s onward, general-aviation piston engines shifted from reinvention to refinement: legacy Lycoming and Continental designs stayed dominant, while Rotax grew in the light-sport segment and diesel/Jet-A piston experiments began (Thielert, late 1990s). By the 2000s, FADEC - Full Authority Digital Engine Control - brought fully electronic fuel and ignition management to piston aircraft engines (Continental's CD series, the Austro AE300), and fuel injection increasingly replaced carburettors. This is the same steam-to-internal-combustion-to-electronically-managed arc from lesson 1, now completed inside aviation specifically. Piston engines remain the standard for training, bush flying and recreational flight today, even as hybrid-electric and alternative-fuel concepts are being explored for their next step.",
-          "note": "Documented: sourced from the course slide deck (slides 36-38)."
+          "prompt": "From the 1970s on, general-aviation piston engines shifted from reinvention to refinement. Legacy Lycoming and Continental designs stayed dominant, Rotax grew in the light-sport segment, and diesel and Jet-A piston experiments began (Thielert, late 1990s).\n\nBy the 2000s, FADEC, Full Authority Digital Engine Control, brought fully electronic fuel and ignition management to piston aircraft engines (Continental's CD series, the Austro AE300), and fuel injection increasingly replaced carburettors. This is the same arc from lesson 1, from steam to internal combustion to electronic management, now completed inside aviation. Piston engines remain the standard for training, bush flying and recreational flight, even as hybrid-electric and alternative-fuel concepts are explored.",
+          "note": "Documented from the course slide deck (slides 36 to 38).",
+          "sourceRefs": [
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Needs change, engines change",
+          "prompt": "Every engine in this lesson answered the demands of its time.\n\nPower for weight: the first flights, and the rotaries of the First World War. Cooling: a radiator adds weight and drag, a spinning cylinder block cools itself, and a radial puts air past every cylinder. Reliability: the interwar radials. Altitude: the superchargers and turbochargers of the 1930s and 1940s. Drag: slim inline and V engines for fast fighters, flat engines for light aircraft. Maintainability and cost: the simple air-cooled flat engines after 1945. Efficiency and control: fuel injection and FADEC.\n\nWhen you meet a layout in the next lessons, ask which of these demands it answers best, and what it gives up.",
+          "note": "A synthesis of the previous steps, not a new claim. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "One constraint: lift off",
-          "prompt": "From a hand-built 12 hp engine at Kitty Hawk to 2,000 hp wartime radials to today's electronically managed flat-fours and flat-sixes, the piston aircraft engine's history is really the history of solving one problem after another under a single constraint no ground vehicle shares as strictly: it has to lift its own weight off the ground. The next lesson, Terminologies, gives you the vocabulary to describe precisely how the engine you'll study in this course - the GTSIO-520-H - does that.",
-          "note": "Documented closing synthesis, drawing on the course slide deck's own historical summary (slide 40); bridges into lesson 3."
+          "prompt": "From a hand-built 12 hp engine at Kitty Hawk to 2,000 hp wartime radials to today's electronically managed flat-fours and flat-sixes, the piston aircraft engine's history is the history of solving one problem after another under a single constraint no ground vehicle shares so strictly: it has to lift its own weight off the ground.\n\nThe next lesson, Terminologies, gives you the vocabulary to describe precisely how the engine you will study in this course, the GTSIO-520-H, does that.",
+          "note": "Bridges to Terminologies. This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         }
       ],
-      "completionCriteria": "Identify at least one engine, design feature or configuration associated with each era covered (pre-WW1, WW1, interwar, WW2, post-WW2, and 1970s-present), and explain in your own words why the Wright brothers' 1903 engine - despite producing only about 12 hp - is considered the breakthrough that made powered flight possible, rather than simply the most powerful engine available at the time."
+      "completionCriteria": "Name one engine, design feature or configuration for each era (before the First World War, the First World War, between the wars, the Second World War, after it, and from the 1970s), and explain in your own words why power-to-weight ratio was a barrier to early flight, and why the Wright brothers' 1903 engine, though it made only about 12 hp, is the breakthrough: it was light enough for its power and was paired with a machine that could already be controlled."
     },
     {
       "id": "terminologies",
@@ -845,6 +1124,182 @@
       ],
       "correct": 2,
       "rationale": "Maxim and Langley had adequately powerful engines but no stable control; the Wrights spent 1900-1902 mastering pitch, roll and yaw in gliders first, so their comparatively modest 12 hp engine only had to supply sustained thrust to an already-controllable aircraft."
+    },
+    {
+      "id": "history-aircraft-heavier-than-air",
+      "lessonId": "history-aircraft-engines",
+      "type": "multiple-choice",
+      "question": "Which statement describes a heavier-than-air aircraft?",
+      "hint": "Think about what keeps each kind of aircraft up, and what happens if it stops moving.",
+      "answers": [
+        "It must keep moving through the air to make lift, with a wing or a rotor",
+        "It floats because it is filled with a gas lighter than air",
+        "It cannot be steered",
+        "It never needs an engine"
+      ],
+      "correct": 0,
+      "rationale": "A heavier-than-air craft is held up only by the lift its wings or rotors make as it moves through the air, so it needs continuous power. A balloon or airship floats by buoyancy."
+    },
+    {
+      "id": "history-aircraft-power-to-weight",
+      "lessonId": "history-aircraft-engines",
+      "type": "numeric",
+      "question": "The 1903 Wright engine made about 12 hp and weighed about 170 lb. What is its power-to-weight ratio, in horsepower per pound, to two decimal places?",
+      "hint": "Divide the power by the weight.",
+      "unit": "hp per lb",
+      "correctValue": 0.07,
+      "tolerance": 0.005,
+      "rationale": "12 hp / 170 lb = 0.07 hp per lb, about 14 lb for each horsepower. The GTSIO-520-H, at 375 hp for 550 lb, makes 0.68 hp per lb, about ten times as much."
+    },
+    {
+      "id": "history-aircraft-why-weight",
+      "lessonId": "history-aircraft-engines",
+      "type": "multiple-choice",
+      "question": "Why does a heavy engine make powered flight harder?",
+      "hint": "A wing has to lift everything the aircraft carries. What does lifting more require?",
+      "answers": [
+        "The wing must lift the engine too, which needs more power, which needs a bigger engine, and so on",
+        "A heavy engine always vibrates too much to fly",
+        "A heavy engine cannot be cooled by the air",
+        "A heavy engine uses more fuel than a light one at any speed"
+      ],
+      "correct": 0,
+      "rationale": "Every pound of engine is a pound the wing must lift. More lift needs more thrust, and more thrust needs a more powerful, usually heavier, engine, so only an engine light for its power breaks the loop."
+    },
+    {
+      "id": "history-aircraft-layouts",
+      "lessonId": "history-aircraft-engines",
+      "type": "matching",
+      "question": "Match each engine layout to its description.",
+      "hint": "Picture the engine from the front: how are the cylinders arranged around the crankshaft?",
+      "pairs": [
+        {
+          "left": "Inline",
+          "right": "One row of cylinders, like the 1903 Wright engine"
+        },
+        {
+          "left": "V-type",
+          "right": "Two rows sharing one crankshaft, like the WWI Hispano-Suiza V8"
+        },
+        {
+          "left": "Rotary",
+          "right": "Cylinders spin with the propeller around a fixed crankshaft"
+        },
+        {
+          "left": "Radial",
+          "right": "Cylinders in a ring around a fixed crankcase"
+        },
+        {
+          "left": "Horizontally opposed",
+          "right": "Two rows lying flat on either side of the crankshaft"
+        }
+      ],
+      "rationale": "Each layout is named for where its cylinders sit around the crankshaft. The rotary is the odd one out because the engine itself turns while the crankshaft stays fixed."
+    },
+    {
+      "id": "history-aircraft-rotary-cooling",
+      "lessonId": "history-aircraft-engines",
+      "type": "multiple-choice",
+      "question": "How did a rotary engine such as the Gnome keep its cylinders cool?",
+      "hint": "The whole cylinder block turned with the propeller. What does a spinning block do to the air around it?",
+      "answers": [
+        "By spinning through the air, which blew past the cylinders",
+        "With a radiator and a water pump",
+        "With an oil cooler only",
+        "It did not need cooling"
+      ],
+      "correct": 0,
+      "rationale": "The spinning cylinders passed through the air and cooled themselves, which kept rotaries light, but the spinning mass brought heavy oil loss and strong gyroscopic effects."
+    },
+    {
+      "id": "history-aircraft-why-radial",
+      "lessonId": "history-aircraft-engines",
+      "type": "multiple-choice",
+      "question": "Why did air-cooled radial engines become important between the wars?",
+      "hint": "Between the wars the priority moved from raw power to something else.",
+      "answers": [
+        "Simple cooling and ruggedness gave reliability for mail, airline and record flights",
+        "They were the only engines that could be supercharged",
+        "They were lighter than any other engine for their power",
+        "They were quieter than other engines"
+      ],
+      "correct": 0,
+      "rationale": "With no radiator, coolant or pump to fail, air-cooled radials ran for hours without trouble, which is what airlines and record flights needed."
+    },
+    {
+      "id": "history-aircraft-why-flat",
+      "lessonId": "history-aircraft-engines",
+      "type": "multiple-choice",
+      "question": "Why did horizontally opposed engines become the standard in light aircraft after the Second World War?",
+      "hint": "Think about frontal area, balance and the person who has to look after the engine.",
+      "answers": [
+        "They are compact and low-drag, well balanced, and easy to maintain",
+        "They produce more power than any other layout",
+        "They are the only layout that can be air-cooled",
+        "They were left over in large numbers from the war"
+      ],
+      "correct": 0,
+      "rationale": "A flat engine has a small frontal area for low drag, is well balanced, and its cylinders are easy to reach. Those qualities suit small, affordable aircraft."
+    },
+    {
+      "id": "history-aircraft-why-turbines",
+      "lessonId": "history-aircraft-engines",
+      "type": "multiple-choice",
+      "question": "Why did gas turbines replace large piston engines in front-line and airline aircraft?",
+      "hint": "Think about speed, altitude, and power for weight.",
+      "answers": [
+        "At high speed and altitude propeller losses limit piston engines, while turbines give more power per pound and run most economically high up",
+        "Piston engines could not be made more powerful than 500 hp",
+        "Turbines are cheaper to build than piston engines",
+        "Piston engines cannot burn jet fuel"
+      ],
+      "correct": 0,
+      "rationale": "The FAA handbook gives the reasons: propeller losses limit efficiency above about 400 mph, the turboprop develops more power per pound, and gas turbines operate most economically at high altitude."
+    },
+    {
+      "id": "history-aircraft-demands",
+      "lessonId": "history-aircraft-engines",
+      "type": "matching",
+      "question": "Match each demand to an engine development that answered it.",
+      "hint": "Go era by era: the first flights, the interwar years, the 1930s racers, after 1945, and the 2000s.",
+      "pairs": [
+        {
+          "left": "Power for its weight",
+          "right": "The light rotary engines of the First World War"
+        },
+        {
+          "left": "Reliability",
+          "right": "Air-cooled radials between the wars"
+        },
+        {
+          "left": "Power at altitude",
+          "right": "Superchargers and turbochargers"
+        },
+        {
+          "left": "Low drag and easy maintenance",
+          "right": "Horizontally opposed flat engines"
+        },
+        {
+          "left": "Precise control and efficiency",
+          "right": "Fuel injection and FADEC"
+        }
+      ],
+      "rationale": "Each development answered the demand that mattered most in its time, and each gave something up: rotaries lost oil, radials were draggy, flat engines are modest in power."
+    },
+    {
+      "id": "history-aircraft-significance",
+      "lessonId": "history-aircraft-engines",
+      "type": "multiple-choice",
+      "question": "What does 'sustained, controlled, powered flight' mean, and why was 1903 the first time?",
+      "hint": "Three things had to come together in one machine.",
+      "answers": [
+        "A heavier-than-air machine took off under its own power, flew under its pilot's control, and kept flying",
+        "An aeroplane carried a passenger across an ocean",
+        "An engine ran for 12 hours without stopping",
+        "A glider was launched from a hill"
+      ],
+      "correct": 0,
+      "rationale": "Earlier machines had managed one or two of power, control and sustained flight. The Flyer was the first to do all three."
     },
     {
       "id": "terminologies-powerplant-vs-engine",
