@@ -12,7 +12,7 @@
       "tier": 1,
       "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
       "path": "Notes/amt_powerplant_handbook 2023.pdf",
-      "applicability": "Primary source for valve construction, the valve-operating mechanism, hydraulic tappets, valve clearance and valve inspection. PDF page locators are used in step notes. Used in lesson 16 for: overhaul and inspection (PDF pp. 369 to 372), spark plug servicing (PDF pp. 194 to 197), oil filters (PDF pp. 252 to 253) and oil systems, the reliability and maintenance of an engine (PDF pp. 23 to 24), the troubleshooting charts (PDF pp. 404 to 405) and the light-sport engine preflight checklist (PDF p. 455)."
+      "applicability": "Primary source for valve construction, the valve-operating mechanism, hydraulic tappets, valve clearance and valve inspection. PDF page locators are used in step notes. Used in lesson 17 for: reduction gearing and propeller tip speed (PDF p. 44); general aviation engines (PDF p. 22); and the light-sport aircraft and engines chapter (PDF pp. 434 to 458), including the HKS 700T, Jabiru and Continental O-200 data (PDF pp. 442 to 445)."
     },
     {
       "id": "easa-module16",
@@ -48,6 +48,20 @@
       "title": "The Civil Aviation (Airworthiness) Regulations, GN 57 of 2017, Revised Edition 2026 (Tanzania Civil Aviation Authority)",
       "url": "https://www.tcaa.go.tz/uploads/documents/en-1789480894-GP%20GN.%2057%20of%202017%20CIVIL%20AVIATION%20(AIRWORTHINESS)%20REGULATIONS%202017-TGPA.pdf",
       "applicability": "The Tanzanian regulation of airworthiness, revised up to 31 July 2026. Regulation 2 defines inspection, maintenance, overhaul, repair, preventive maintenance and powerplant; 21 puts the duty to maintain on the owner or operator and describes the certificate of release to service; 22(2) makes an aircraft not maintained airworthy ineligible for operation; 26 says who may perform maintenance; 29 limits preventive maintenance and lists replacing or cleaning spark plugs and setting the gap and cleaning fuel and oil strainers; 30 sets the performance rules for maintenance (the current manufacturer's manual or instructions for continued airworthiness); 41 and 42 require the engine log book and the maintenance record entries. Read from the TCAA website, accessed 13 October 2026. The TCAA states that its published copy is not authoritative; the Government Printer's version is."
+    },
+    {
+      "id": "tcaa-licensing-regs",
+      "tier": 1,
+      "title": "The Civil Aviation (Personnel Licensing) Regulations, GN 71 of 2017, Revised Edition 2026 (Tanzania Civil Aviation Authority)",
+      "url": "https://www.tcaa.go.tz/uploads/documents/en-1789483203-GP.%20GN.%2071%20of%202017%20CIVIL%20AVIATION%20(PERSONNEL%20LICENSING)%20REGULATIONS,%202017-TGPA.pdf",
+      "applicability": "Revised up to 31 July 2026. Regulation 127 limits the exercise of the privileges of an aircraft maintenance engineer licence to what is entered on the licence, to a holder familiar with the relevant maintenance and airworthiness information, and to a holder with at least six months of experience in the preceding 24 months; regulation 128 sets the privileges and limitations of the holder, including that an engine rating allows engine and propeller inspection and approval for return to service. Read from the TCAA website, accessed 13 October 2026. The TCAA states that its published copy is not authoritative; the Government Printer's version is."
+    },
+    {
+      "id": "tcaa-ga-operations-regs",
+      "tier": 1,
+      "title": "The Civil Aviation (Operation of Aircraft - General Aviation) Regulations, GN 9 of 2024 (Tanzania Civil Aviation Authority)",
+      "url": "https://www.tcaa.go.tz/uploads/documents/en-1789477836-GP%20GN.%209%20of%202024%20CIVIL%20AVIATION%20(OPERATION%20OF%20AIRCRAFT-GENERAL%20AVIATION)%20REGULATIONS,%202024.pdf",
+      "applicability": "Regulation 36 makes the owner or lessee of an aeroplane responsible for keeping it airworthy and requires its maintenance, with its engine and propeller, to be done by an approved maintenance organisation or by a qualified person under authorised procedures with a maintenance release; regulation 39 says who issues the maintenance release. The regulations contain no wording on light-sport or recreational aircraft. Read from the TCAA website, accessed 13 October 2026. The TCAA states that its published copy is not authoritative."
     }
   ],
   "lessons": [
@@ -508,22 +522,38 @@
       "models": [],
       "listed": true,
       "scheduledDay": 6,
-      "completionCriteria": "State the main limits of a light-sport aircraft, say who may work on its engine, tell the common engines apart, work out an overhaul limit and a leak-down loss, read a spark plug tip and a magnetic plug, and describe the first action for an over-temperature or a knocking engine.",
+      "completionCriteria": "Say what light-sport and recreational aircraft are, where the Tanzanian regulations place microlight and amateur-built aircraft, and why piston engines suit them; tell the common engines apart and say why some turn far faster than a conventional engine and use a gearbox; explain how the category and certificate of an aircraft, and the licence a person holds, decide what maintenance may be done and signed for, and say what to find out before working on one; work out an overhaul limit and a leak-down loss, read a spark plug tip and a magnetic plug, and describe the first action for an over-temperature or a knocking engine.",
       "steps": [
         {
           "type": "text",
           "title": "What makes an aircraft light-sport",
-          "prompt": "A light-sport aircraft has to stay within limits. Its maximum takeoff weight is 1,320 lb (600 kg), or 1,430 lb (650 kg) if it is meant for water. Its top speed in level flight at maximum continuous power is 120 knots, and its stall speed with no lift devices is at most 45 knots. It seats two at most, has one reciprocating engine if it is powered, a fixed or ground-adjustable propeller, an unpressurized cabin, and fixed landing gear, except on water and glider types. The handbook warns that regulations change, so always check the current rules. Why do you think engine weight and simplicity matter so much for an aircraft like this?",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 434 (the thirteen requirements of a light-sport aircraft: maximum takeoff weight 1,320 lb or 1,430 lb for water, VH not more than 120 knots CAS, stall speed VS1 not more than 45 knots CAS, no more than two seats, a single reciprocating engine if powered, a fixed or ground-adjustable propeller, a non-pressurized cabin, fixed landing gear; the note that regulations are subject to change) and EASA Module 16, PDF p. 333 (the same list). The course deck (slide 268) gives the stall limit as Vs0; the handbook says VS1, and the lesson follows the handbook.",
+          "prompt": "'Light-sport' is a category with limits. In the FAA handbook an aircraft qualifies by thirteen limits, among them a maximum takeoff weight of 1,320 lb (600 kg), a top speed of 120 knots at maximum continuous power, a stall speed of 45 knots or less, two seats at most, one reciprocating engine if powered, a fixed or ground-adjustable propeller, an unpressurized cabin and fixed landing gear. The handbook warns that regulations change.\n\nOther words cover the same ground: ultralight, microlight, recreational, sport, kit-built, amateur-built and experimental. The words and the limits differ from state to state.\n\nTanzania's airworthiness regulations name microlight, experimental amateur-built and kit-built aircraft among those that may not qualify for a normal certificate. Why do you think engine weight and simplicity matter so much for them?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 434 (the thirteen requirements of a light-sport aircraft: maximum takeoff weight 1,320 lb or 1,430 lb for water, VH not more than 120 knots CAS, stall speed VS1 not more than 45 knots CAS, no more than two seats, a single reciprocating engine if powered, a fixed or ground-adjustable propeller, a non-pressurized cabin, fixed landing gear; the note that regulations are subject to change) and EASA Module 16, PDF p. 333 (the same list). The course deck (slide 268) gives the stall limit as Vs0; the handbook says VS1, and the lesson follows the handbook. The Tanzanian airworthiness regulations, regulation 16, name microlight, experimental amateur and kit built aircraft (read 13 October 2026). No separate Tanzanian light-sport definition was found in the regulations, advisory circulars and rules read from the TCAA website; the instructor should confirm whether TCAA has a current circular on light-sport or recreational aircraft.",
           "sourceRefs": [
             "faa-powerplant-2023",
             "easa-module16",
-            "course-deck-2026-05"
+            "course-deck-2026-05",
+            "tcaa-airworthiness-regs"
           ],
           "mediaPlan": {
             "mode": "none",
             "status": "not-needed",
             "rationale": "The list of limits is the content; the numeric checks test the key figures."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Who flies them, and why",
+          "prompt": "Piston engines power almost all recreational aviation. People fly for pleasure, for sport and racing, to build an aircraft from a kit or from plans, and to own and look after an aircraft of their own.\n\nThe handbook says small general aviation aircraft use mostly horizontally opposed piston engines. For the lightest aircraft the engines are smaller still, and the aim is low weight, simplicity and low running cost.\n\nTanzania's regulations make room for this flying. A microlight, an experimental amateur-built or kit-built aircraft, an air-race or exhibition aircraft and a kite can be given a restricted certificate of airworthiness, with operating limitations.\n\nOwners also take an interest in the engine itself, which is why the rules say what an owner or pilot may and may not do.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 22 (small general aviation aircraft use mostly horizontally opposed reciprocating piston engines) and PDF p. 434 (light-sport aircraft and their engines) and the Tanzanian Civil Aviation (Airworthiness) Regulations, regulation 16 (the Authority may issue a restricted certificate of airworthiness to an aircraft that does not qualify for a certificate of airworthiness including microlight, experimental amateur and kit built aircraft, an aircraft used for air races, aircraft flying for exhibition purpose and a kite; subject to operating limitations within the United Republic). The reasons people fly and the engineering aims (low weight, simplicity, low running cost) are the lesson's summary of the instructor's outcome 6, with the handbook's emphasis on weight and reliability in the next step.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "tcaa-airworthiness-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -563,17 +593,16 @@
         },
         {
           "type": "text",
-          "title": "Who may work on them",
-          "prompt": "The holder of a powerplant certificate can maintain and inspect light-sport engines. A sport pilot may do preventive maintenance on a light-sport aircraft that the pilot owns or operates. A light-sport repairman can hold two ratings. With an inspection rating, which needs a 16-hour course, the holder may do the annual condition inspection on an experimental light-sport aircraft that they own. With a maintenance rating, which needs at least 120 hours of training for airplanes, the holder may approve for return to service after maintenance, the annual condition inspection and the 100-hour inspection of an aircraft with a special airworthiness certificate. Training for a class can be 104 hours or 80 hours.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 435-436 (a powerplant certificate holder can perform maintenance and inspection; a sport pilot may perform preventive maintenance on an aircraft the pilot owns or operates with a special light-sport airworthiness certificate; the repairman certificate (light-sport aircraft) with an inspection rating, a 16-hour course, annual condition inspection of an owned experimental aircraft; with a maintenance rating, training of 120 hours for airplanes, 104 for weight-shift control and powered parachutes, 80 for lighter-than-air and gliders; return to service after maintenance, the annual condition inspection and the 100-hour inspection under 14 CFR 91.327; major repairs need more training). The course deck (slides 269 and 270) gives the same roles and adds the EASA side (B1.2 or B3 licence holders), which the handbook does not cover and the instructor should confirm.",
+          "title": "Why some engines turn so fast",
+          "prompt": "Small engines make their power by turning fast. The HKS 700T, a flat twin of 709 cc, makes 80 hp at 5,300 rpm and weighs 126 lb.\n\nA propeller cannot follow. When its blade tips approach the speed of sound its efficiency falls rapidly. So an engine that turns fast drives the propeller through a reduction gearbox. The HKS 700T's gearbox has a ratio of 2.13 to 1, so the propeller turns at 5,300 ÷ 2.13, about 2,490 rpm.\n\nEngines that run slower can drive the propeller directly. The Jabiru 2200 makes 85 hp at 3,300 rpm and the Continental O-200 100 hp at 2,750 rpm, both with direct drive. The handbook says the direct drive keeps the Jabiru light and its maintenance costs low.\n\nThe gearbox is the trade: more weight and more parts for a faster, lighter engine.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 442 (the HKS 700T: four-stroke, two cylinder, turbocharged, intercooled, 709 cc, a reduction gearbox driving the propeller flange at a speed reduction ratio of 2.13 to 1, rated at 77 horsepower continuous and 80 horsepower takeoff (3 minutes) at 4,900 rpm and 5,300 rpm, total engine weight 126 pounds), PDF p. 44 (reduction gearing limits the propeller rotation speed; when blade tips approach the speed of sound the efficiency decreases rapidly), PDF p. 443 (the Jabiru: direct crankshaft drive without a reduction gearbox facilitates its lightweight design and keeps maintenance costs to a minimum) and PDF pp. 443 to 445 (Jabiru 2200: 85 hp at 3,300 rpm; Continental O-200: 100 bhp at 2,750 rpm). The propeller speed is the quotient; see also Accessories and Drives.",
           "sourceRefs": [
-            "faa-powerplant-2023",
-            "course-deck-2026-05"
+            "faa-powerplant-2023"
           ],
           "mediaPlan": {
             "mode": "none",
             "status": "not-needed",
-            "rationale": "Roles and privileges as a list; a matching check tests them."
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -619,6 +648,81 @@
             "mode": "none",
             "status": "not-needed",
             "rationale": "A set of engines to recognise; the matching check tests a few of them."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Engines side by side",
+          "prompt": "Compare the engines on what the sources give.\n\nJabiru 2200: four-stroke flat four, air-cooled, direct drive, 85 hp at 3,300 rpm, 132 lb installed.\n\nJabiru 3300: four-stroke flat six, air-cooled, direct drive, 120 hp at 3,300 rpm, 178 lb.\n\nHKS 700T: four-stroke flat twin, turbocharged and intercooled, geared 2.13 to 1, 80 hp at 5,300 rpm, 126 lb.\n\nRotax 914: four-stroke flat four, liquid-cooled heads, turbocharged, dry sump.\n\nRotax 582: two-stroke twin, liquid-cooled, with a gearbox and shock absorber.\n\nPower for each pound: 0.64 hp/lb (Jabiru 2200), 0.67 (Jabiru 3300) and 0.63 (HKS 700T). The GTSIO-520-H gives 375 ÷ 550 = 0.68. Different engines, much the same ratio. What differs is the rpm, the gearing, the cooling and the cycle.",
+          "note": "Data from FAA-H-8083-32B (2023), PDF pp. 436 to 445 (the Rotax two-stroke and four-stroke engines, including the 914's liquid-cooled heads, dry sump and turbocharger; the Jabiru 2200 (85 hp at 3,300 rpm, 132 lb) and 3300 (120 hp at 3,300 rpm, 178 lb); the HKS 700T (80 hp takeoff at 5,300 rpm, 126 lb total engine weight)) and the GTSIO-520 overhaul manual, PDF pp. 152 to 153 (375 hp; dry weight 550.39 lb). The weights are as the handbook gives them (installed for the Jabiru, total engine for the HKS) and are not strictly comparable; the hp-per-pound figures are the lesson's quotients. No weight or output is given in the pages read for the Rotax engines.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "The category sets the rules",
+          "prompt": "A certificate of airworthiness states the category the aircraft may be flown in: commercial air transport (passenger), commercial air transport (cargo), general aviation or aerial work. The aircraft may be flown only for that kind of purpose.\n\nSome aircraft do not qualify for a certificate of airworthiness. For them the regulations allow a restricted certificate: microlight, experimental amateur-built and kit-built aircraft, aircraft used for air races or exhibitions, and kites. The Authority issues specific operating limitations for each one, and the aircraft may not make international flights.\n\nSo the category and the certificate of an aircraft decide what it may do, and with that, which maintenance programme and limits apply to it.\n\nThe first thing to learn about a light aircraft is which certificate it holds and what limitations are written on it.",
+          "note": "Documented from the Tanzanian Civil Aviation (Airworthiness) Regulations, regulation 9(4) and (5) (the categories of a certificate of airworthiness: commercial air transport (passenger), commercial air transport (cargo), general aviation, aerial work; the purposes for which the aircraft may be flown), regulation 16 (restricted certificate of airworthiness for aircraft that do not qualify for a certificate of airworthiness, including microlight, experimental amateur and kit built aircraft, air races, exhibition and kites; subject to operating limitations within the United Republic and not to make international flights; the Authority shall issue specific operating limitations for each restricted certificate) and regulation 17 (special flight permits), revised edition 2026, read from the TCAA website on 13 October 2026. The statement that the category decides which maintenance programme and limits apply is the lesson's inference from these.",
+          "sourceRefs": [
+            "tcaa-airworthiness-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Who may work on an aircraft in Tanzania",
+          "prompt": "The Tanzanian airworthiness regulations list who may maintain an aircraft: a licensed aircraft maintenance engineer, a person working under that engineer's supervision, an approved maintenance organisation, and a pilot licensed by the Authority.\n\nThe pilot may do preventive maintenance only, and only on an aircraft of 5,700 kg or less that the pilot owns or operates, that is not used by an air operator, and when the pilot has attended a maintenance course on the type. Preventive maintenance is a short list, which includes replacing or cleaning spark plugs and setting the gap.\n\nAn engineer may sign only for what is entered on the licence, only when familiar with the airworthiness information for the aircraft, and only with six months of recent experience in the last 24.\n\nWork not done by an organisation needs a maintenance release signed by a properly licensed person.",
+          "note": "Documented from the Tanzanian Civil Aviation (Airworthiness) Regulations, revised edition 2026, regulation 26(2) to (5) (the persons authorised to perform maintenance, preventive maintenance and modification: a licensed pilot, a person under the supervision of a licensed aircraft maintenance engineer, a LAME, an AMO; a pilot may perform preventive maintenance on an aircraft of maximum certificated take-off mass of 5,700 kg or less owned or operated by that pilot, not listed for use by an AOC holder, when the pilot has attended a maintenance course on the type) and regulation 29(t) (replacing or cleaning spark plugs and setting of spark plug gap clearance); the Civil Aviation (Personnel Licensing) Regulations, revised edition 2026, regulations 127 and 128 (privileges exercised only for what is entered on the licence, with familiarity with the relevant information and at least six months' experience within the preceding 24 months); and the Civil Aviation (Operation of Aircraft - General Aviation) Regulations, 2024, regulations 36 and 39 (maintenance by an approved maintenance organisation or by a qualified person under authorised procedures with a maintenance release signed by a person licensed under the Personnel Licensing Regulations). All read from the TCAA website on 13 October 2026.",
+          "sourceRefs": [
+            "tcaa-airworthiness-regs",
+            "tcaa-licensing-regs",
+            "tcaa-ga-operations-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "How another state does it",
+          "prompt": "Other states set the privileges differently, and the FAA handbook shows the US way as an example.\n\nIn the United States the holder of a powerplant certificate can maintain and inspect light-sport engines. A sport pilot may do preventive maintenance on a light-sport aircraft that the pilot owns or operates. A light-sport repairman can hold two ratings. With an inspection rating, which needs a 16-hour course, the holder may do the annual condition inspection on an experimental light-sport aircraft that they own. With a maintenance rating, which needs at least 120 hours of training for airplanes, the holder may approve for return to service after maintenance, the annual condition inspection and the 100-hour inspection of an aircraft with a special airworthiness certificate.\n\nThe pattern is the same as in Tanzania: privileges follow the certificate and the person's authorisation.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 435-436 (a powerplant certificate holder can perform maintenance and inspection; a sport pilot may perform preventive maintenance on an aircraft the pilot owns or operates with a special light-sport airworthiness certificate; the repairman certificate (light-sport aircraft) with an inspection rating, a 16-hour course, annual condition inspection of an owned experimental aircraft; with a maintenance rating, training of 120 hours for airplanes; return to service after maintenance, the annual condition inspection and the 100-hour inspection under 14 CFR 91.327). This is the US framework, kept as an example of how another state arranges the same ideas; it does not apply in Tanzania. The course deck (slides 269 and 270) gives the same roles and adds the EASA side (B1.2 or B3 licence holders), which the handbook does not cover and the instructor should confirm.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Roles and privileges as a list; a matching check tests them."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Find the rules first",
+          "prompt": "Before you touch the engine of a light aircraft, find out five things.\n\nWhere is it registered, and what does that State's authority require?\n\nWhat certificate does it hold, in what category, and what limitations are written on it?\n\nWhose data applies? The current manufacturer's instructions, and any mandatory airworthiness directives and service bulletins, which must be complied with.\n\nWhat does your own licence let you sign for, and are you current?\n\nIs the job preventive maintenance, a repair or an overhaul, and who must inspect and sign it?\n\nIf you cannot answer one of them, stop and ask. Work done without the right privilege is unauthorised work, and it can leave an aircraft that looks airworthy and is not.",
+          "note": "Documented from the Tanzanian Civil Aviation (Airworthiness) Regulations, regulation 15 (a person shall not operate an aircraft to which an airworthiness directive applies except in accordance with it; mandatory service bulletins apply; the Authority may prescribe inspections, procedures and limitations for mandatory compliance), regulation 16, regulation 26 and regulation 30 (the manufacturer's maintenance manual or instructions for continued airworthiness) and the Personnel Licensing Regulations, regulation 127 (privileges). The five questions are the lesson's way of putting the instructor's outcome 8 (an engineer must determine the applicable regulatory framework and maintenance privileges before carrying out maintenance).",
+          "sourceRefs": [
+            "tcaa-airworthiness-regs",
+            "tcaa-licensing-regs"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -685,7 +789,7 @@
         {
           "type": "text",
           "title": "Plan an inspection",
-          "prompt": "A customer brings in a two-seat light-sport aircraft with a four-cylinder opposed engine. The engine is rough at idle and runs hot in the climb. The owner holds a sport pilot certificate and asks what they may do themselves. Say in your own words what you would check first, in what order, and why; which test you would use to judge the cylinders and what reading would worry you; what the plug tips and the magnetic plug could tell you; and which of the work the owner could do under a sport pilot certificate, and which must be done by a repairman or a mechanic.",
+          "prompt": "A customer brings in a two-seat light aircraft with a four-cylinder opposed engine. The engine is rough at idle and runs hot in the climb. The owner is a licensed pilot and asks what they may do themselves.\n\nSay in your own words what you would find out about the aircraft's certificate and the rules before you start. Then say what you would check first, in what order, and why; which test you would use to judge the cylinders and what reading would worry you; what the plug tips and the magnetic plug could tell you; and which of the work the owner could do as preventive maintenance, and which must be done and signed by a licensed engineer or an approved organisation.",
           "note": "Completion step: the learner applies the lesson (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 434-458, with the course deck (slide 274, rough engine at idle and an engine that runs hot among its symptoms). The learner works with the handbook's limits for the engines described and is reminded that the current manufacturer's instructions apply.",
           "sourceRefs": [
             "faa-powerplant-2023",
@@ -1675,6 +1779,144 @@
       ],
       "correct": 2,
       "rationale": "The magnetic plug reveals the internal condition of the gearbox and engine. A significant amount of chips means the engine must be inspected, repaired or overhauled. Only a few steel chips under about 3 mm can be tolerated."
+    },
+    {
+      "id": "lsa-restricted-certificate",
+      "lessonId": "light-sport-aircraft",
+      "type": "multiple-choice",
+      "question": "What kind of certificate of airworthiness may the Tanzanian Authority issue to a microlight or a kit-built aircraft that does not qualify for a normal one?",
+      "hint": "The certificate carries limits for each aircraft.",
+      "answers": [
+        "A restricted certificate of airworthiness, with operating limitations and no international flights",
+        "A normal certificate with no limitations",
+        "No certificate at all: such aircraft cannot fly",
+        "A certificate for commercial air transport only"
+      ],
+      "correct": 0,
+      "rationale": "Regulation 16 allows a restricted certificate of airworthiness for aircraft that do not qualify for one, including microlight, experimental amateur and kit built aircraft. It is subject to operating limitations in Tanzania, specific limits for each aircraft, and no international flights."
+    },
+    {
+      "id": "lsa-pilot-maintenance",
+      "lessonId": "light-sport-aircraft",
+      "type": "multiple-choice",
+      "question": "Under the Tanzanian airworthiness regulations, when may a licensed pilot perform preventive maintenance on an aircraft?",
+      "hint": "There are three conditions: the aircraft, its use and the pilot's training.",
+      "answers": [
+        "On an aircraft of 5,700 kg or less that the pilot owns or operates, that is not used by an air operator, and after a maintenance course on the type",
+        "On any aircraft, at any time",
+        "Only when no engineer is available",
+        "Only on an aircraft that is on an air operator's certificate"
+      ],
+      "correct": 0,
+      "rationale": "Regulation 26(3) lets a licensed pilot perform preventive maintenance on an aircraft of 5,700 kg or less that the pilot owns or operates, not listed for use by an air operator, if the pilot has attended a maintenance course on the type."
+    },
+    {
+      "id": "lsa-licence-privileges",
+      "lessonId": "light-sport-aircraft",
+      "type": "multiple-choice",
+      "question": "A licensed engineer is asked to sign for work on an engine type that is not entered on their licence. What do the licensing regulations say?",
+      "hint": "Privileges follow what is entered on the licence.",
+      "answers": [
+        "The privileges may be exercised only for what is entered on the licence, so the engineer should not sign",
+        "Any licensed engineer may sign for any engine",
+        "The engineer may sign if the owner agrees",
+        "The engineer may sign if the work looks simple"
+      ],
+      "correct": 0,
+      "rationale": "Regulation 127 allows the privileges to be exercised only in respect of the aircraft, powerplants and systems entered on the licence, with familiarity with the relevant information and recent experience."
+    },
+    {
+      "id": "lsa-recency",
+      "lessonId": "light-sport-aircraft",
+      "type": "numeric",
+      "question": "A licence holder must have at least how many months of experience in the preceding 24 months to exercise the privileges of an aircraft maintenance engineer licence?",
+      "hint": "The regulation gives a number of months.",
+      "unit": "months",
+      "correctValue": 6,
+      "tolerance": 0,
+      "rationale": "Regulation 127 requires that within the preceding 24 months the holder has had at least six months of experience in the inspection, servicing or maintenance of aircraft in accordance with the privileges, or has met the provisions for the issue of a licence."
+    },
+    {
+      "id": "lsa-find-rules",
+      "lessonId": "light-sport-aircraft",
+      "type": "ordering",
+      "question": "Put these in a sensible order for what to find out before working on a light aircraft.",
+      "hint": "Start with where the aircraft belongs and end with the job itself.",
+      "items": [
+        "Where the aircraft is registered, and its authority",
+        "The certificate it holds, its category and limitations",
+        "The current manufacturer's data, directives and bulletins",
+        "What your licence allows you to sign",
+        "Whether the job is preventive maintenance, repair or overhaul"
+      ],
+      "rationale": "The registration decides which authority's rules apply. The certificate and its limitations say what the aircraft may do. The data says how the work is done. Your licence says what you may sign, and the type of job decides who must inspect and sign."
+    },
+    {
+      "id": "lsa-why-rules-first",
+      "lessonId": "light-sport-aircraft",
+      "type": "multiple-choice",
+      "question": "Why must an engineer find out the regulatory framework before doing maintenance on a recreational aircraft?",
+      "hint": "Think about what differs between categories and states.",
+      "answers": [
+        "Maintenance privileges and permitted work can differ between categories of aircraft and between states",
+        "The rules are always the same everywhere",
+        "Recreational aircraft have no rules",
+        "Only the owner needs to know the rules"
+      ],
+      "correct": 0,
+      "rationale": "Privileges follow the certificate, the category and the person's authorisation, and they differ between conventional certified aircraft and some recreational categories, and from state to state."
+    },
+    {
+      "id": "lsa-propeller-speed",
+      "lessonId": "light-sport-aircraft",
+      "type": "numeric",
+      "question": "The HKS 700T turns at 5,300 rpm and its reduction gearbox has a ratio of 2.13 to 1. How fast does the propeller turn, to the nearest 10 rpm?",
+      "hint": "Divide the engine speed by the reduction ratio.",
+      "unit": "rpm",
+      "correctValue": 2490,
+      "tolerance": 10,
+      "rationale": "5,300 ÷ 2.13 = 2,488 rpm, about 2,490. The engine makes its power at a high speed and the gearbox slows the propeller to a speed at which it is efficient."
+    },
+    {
+      "id": "lsa-why-gearbox",
+      "lessonId": "light-sport-aircraft",
+      "type": "multiple-choice",
+      "question": "Why does a small engine that makes its power at about 5,000 rpm drive its propeller through a reduction gearbox?",
+      "hint": "Think about the propeller blade tips.",
+      "answers": [
+        "The propeller would lose efficiency as its tips approached the speed of sound, so it has to turn slower than the engine",
+        "The gearbox makes the engine run faster",
+        "A propeller cannot be fitted to a direct-drive engine",
+        "The gearbox cools the engine"
+      ],
+      "correct": 0,
+      "rationale": "Whenever the blade tips approach the speed of sound the efficiency of a propeller decreases rapidly. A reduction gearbox lets the engine turn fast, for power from a small, light engine, while the propeller turns slowly enough."
+    },
+    {
+      "id": "lsa-engine-drives",
+      "lessonId": "light-sport-aircraft",
+      "type": "matching",
+      "question": "Match each engine to how it drives its propeller.",
+      "hint": "Think about which engines turn fastest.",
+      "pairs": [
+        {
+          "left": "Jabiru 2200",
+          "right": "Directly, at 3,300 rpm"
+        },
+        {
+          "left": "HKS 700T",
+          "right": "Through a reduction gearbox of 2.13 to 1"
+        },
+        {
+          "left": "Continental O-200",
+          "right": "Directly, at 2,750 rpm"
+        },
+        {
+          "left": "GTSIO-520-H",
+          "right": "Through a reduction gear of 0.667 to 1"
+        }
+      ],
+      "rationale": "The Jabiru and the O-200 are direct-drive. The HKS 700T runs at about 5,300 rpm and uses a 2.13:1 reduction. The GTSIO-520-H runs near 3,400 rpm and uses a 0.667:1 reduction gear."
     },
     {
       "id": "practicals-click-piston",
