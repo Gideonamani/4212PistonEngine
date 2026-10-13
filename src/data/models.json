@@ -2,16 +2,28 @@
   {
     "id": "cylinder",
     "label": "Detailed operating cylinder",
+    "shortLabel": "Operating cylinder",
     "adapter": "operating-cylinder",
-    "eyebrow": "OPERATING-CYCLE STUDY",
-    "description": "Explore the revised GTSIO-520-H cylinder: 61 components, continuous-flow fuel nozzle, synchronized valve gear and a live section view.",
-    "previewUrl": "./model-previews/cylinder.webp",
-    "badges": [
-      "61 components",
-      "Animated valve gear",
-      "Section view",
-      "Exploded view"
+    "summary": "Revised GTSIO-520-H cylinder with valve gear and a live section. Colours and cycle timing are teaching demonstrations.",
+    "capabilities": [
+      {
+        "kind": "animated",
+        "note": "Animated valve gear"
+      },
+      {
+        "kind": "exploded",
+        "note": "Exploded view"
+      },
+      {
+        "kind": "section",
+        "note": "Live section view"
+      },
+      {
+        "kind": "parts",
+        "note": "61 named components"
+      }
     ],
+    "previewUrl": "./model-previews/cylinder.webp",
     "sources": [
       {
         "localUrl": "./cylinder-reviewed-20261001.glb.gz",
@@ -28,30 +40,36 @@
   {
     "id": "gtsio520-h-v5-teaching-engine",
     "label": "Full six-cylinder engine",
+    "shortLabel": "Six-cylinder engine",
     "adapter": "full-engine",
-    "eyebrow": "WHOLE-ENGINE STUDY",
-    "description": "Explore the developing GTSIO-520-H teaching assembly, its six-cylinder installation and drivetrain structure.",
-    "previewUrl": "./model-previews/gtsio520-h-v5-teaching-engine.webp",
-    "badges": [
-      "6 cylinders",
-      "Animated drivetrain",
-      "Section view"
+    "summary": "Developing GTSIO-520-H teaching assembly with six cylinders and its drivetrain. Work in progress.",
+    "capabilities": [
+      {
+        "kind": "animated",
+        "note": "Animated drivetrain"
+      },
+      {
+        "kind": "section",
+        "note": "Section view"
+      }
     ],
+    "previewUrl": "./model-previews/gtsio520-h-v5-teaching-engine.webp",
     "contractUrl": "./engine-contract.json"
   },
   {
     "id": "wright-1903-engine",
     "label": "1903 Wright Flyer engine",
+    "shortLabel": "Wright Flyer engine",
     "adapter": "static-gltf",
-    "eyebrow": "HISTORICAL REFERENCE",
     "headerLabel": "WRIGHT FLYER \u00b7 1903 REFERENCE",
-    "description": "Inspect the Smithsonian engine scan with six guided feature hotspots and its original museum source context.",
-    "previewUrl": "./model-previews/wright-1903-engine.webp",
-    "badges": [
-      "CC0 museum scan",
-      "6 guided hotspots",
-      "Static reference"
+    "summary": "Smithsonian museum scan of the 1903 Wright Flyer engine, with six guided hotspots. A static reference, not animated.",
+    "capabilities": [
+      {
+        "kind": "tour",
+        "note": "6 guided hotspots"
+      }
     ],
+    "previewUrl": "./model-previews/wright-1903-engine.webp",
     "sources": [
       {
         "localUrl": "./wright-1903-engine.glb?v=20260929-smithsonian-medium",
@@ -142,16 +160,25 @@
   {
     "id": "wright-1903-reconstruction",
     "label": "1903 Wright engine, modelled part by part",
+    "shortLabel": "Wright engine reconstruction",
     "adapter": "animated-study",
-    "eyebrow": "HISTORICAL RECONSTRUCTION",
     "headerLabel": "WRIGHT ENGINE \u00b7 RECONSTRUCTION",
-    "description": "A source-led teaching reconstruction of the rebuilt Wright horizontal engine: 413 separate parts grouped by system and by research component. Explore a systems exploded view and an illustrative operating cycle. It is not the 1903 original, and the motion timing is a teaching choice.",
-    "previewUrl": "./model-previews/wright-1903-reconstruction.webp",
-    "badges": [
-      "413 modelled parts",
-      "Illustrative operating cycle",
-      "Systems exploded view"
+    "summary": "Teaching reconstruction of the rebuilt Wright engine, not the 1903 original. Motion timing is illustrative.",
+    "capabilities": [
+      {
+        "kind": "animated",
+        "note": "Illustrative operating cycle"
+      },
+      {
+        "kind": "exploded",
+        "note": "Systems exploded view"
+      },
+      {
+        "kind": "parts",
+        "note": "413 modelled parts"
+      }
     ],
+    "previewUrl": "./model-previews/wright-1903-reconstruction.webp",
     "sources": [
       {
         "localUrl": "./wright-1903-reconstruction.glb.gz?v=2111a150c146",
@@ -167,16 +194,25 @@
   {
     "id": "langley-manly-balzer-1903",
     "label": "1903 Langley radial engine, modelled part by part",
+    "shortLabel": "Langley engine reconstruction",
     "adapter": "animated-study",
-    "eyebrow": "HISTORICAL RECONSTRUCTION",
     "headerLabel": "LANGLEY ENGINE \u00b7 RECONSTRUCTION",
-    "description": "A source-led teaching reconstruction of Langley's five-cylinder water-cooled radial, the contemporary rival of the Wright engine: 358 separate parts grouped by system and by research component. Explore a systems exploded view and an illustrative operating cycle. It is drawn from the 1911 Memoir plates, not from the museum object, and the motion timing is a teaching choice.",
-    "previewUrl": "./model-previews/langley-manly-balzer-1903.webp",
-    "badges": [
-      "358 modelled parts",
-      "Illustrative operating cycle",
-      "Systems exploded view"
+    "summary": "Teaching reconstruction of Langley's radial from the 1911 Memoir plates, not the museum object. Timing is illustrative.",
+    "capabilities": [
+      {
+        "kind": "animated",
+        "note": "Illustrative operating cycle"
+      },
+      {
+        "kind": "exploded",
+        "note": "Systems exploded view"
+      },
+      {
+        "kind": "parts",
+        "note": "358 modelled parts"
+      }
     ],
+    "previewUrl": "./model-previews/langley-manly-balzer-1903.webp",
     "sources": [
       {
         "localUrl": "./langley-manly-balzer-1903.glb.gz?v=78ae601dd1e9",
@@ -192,14 +228,24 @@
   {
     "id": "hydraulic-tappet",
     "label": "Hydraulic tappet internals",
+    "shortLabel": "Hydraulic tappet",
     "adapter": "animated-study",
-    "eyebrow": "INTERNAL-MECHANISM STUDY",
-    "description": "Inspect the eight manual-identified tappet parts, an illustrative operating motion, and staged exploded/reassembly views. Dimensions are teaching approximations.",
-    "badges": [
-      "8 internal parts",
-      "3 saved motions",
-      "Illustrative dimensions"
+    "summary": "Eight tappet parts from the manual, with illustrative motion and staged views. Dimensions are teaching approximations.",
+    "capabilities": [
+      {
+        "kind": "animated",
+        "note": "3 saved motions"
+      },
+      {
+        "kind": "exploded",
+        "note": "Exploded and reassembly views"
+      },
+      {
+        "kind": "parts",
+        "note": "8 internal parts"
+      }
     ],
+    "previewUrl": "./model-previews/hydraulic-tappet.webp",
     "sources": [
       {
         "localUrl": "./hydraulic-tappet.glb.gz?v=a6c88a23cd42",
@@ -209,20 +255,29 @@
         "driveId": "1u8hplcsX8Au9v9fOGPrEFUkwDouYhn2v"
       }
     ],
-    "contractUrl": "./hydraulic-tappet-contract.json?v=a6c88a23cd42",
-    "previewUrl": "./model-previews/hydraulic-tappet.webp"
+    "contractUrl": "./hydraulic-tappet-contract.json?v=a6c88a23cd42"
   },
   {
     "id": "oil-pump",
     "label": "IO-520 oil pump and relief valve",
+    "shortLabel": "Oil pump and relief valve",
     "adapter": "animated-study",
-    "eyebrow": "INTERNAL-MECHANISM STUDY",
-    "description": "Explore a simplified IO-520 permold pump/relief mechanism with rotating gears, relief opening and staged exploded views. Filter and tachometer drive are omitted.",
-    "badges": [
-      "14 components",
-      "4 saved motions",
-      "IO-520 permold study"
+    "summary": "Simplified IO-520 oil pump and relief valve with rotating gears. Filter and tachometer drive are omitted.",
+    "capabilities": [
+      {
+        "kind": "animated",
+        "note": "4 saved motions"
+      },
+      {
+        "kind": "exploded",
+        "note": "Staged exploded views"
+      },
+      {
+        "kind": "parts",
+        "note": "14 components"
+      }
     ],
+    "previewUrl": "./model-previews/oil-pump.webp",
     "sources": [
       {
         "localUrl": "./oil-pump.glb.gz?v=3622888d4e44",
@@ -232,21 +287,29 @@
         "driveId": "167cbQkDPiIE6nYG1kyhURez_FLnnmVCK"
       }
     ],
-    "contractUrl": "./oil-pump-contract.json?v=3622888d4e44",
-    "previewUrl": "./model-previews/oil-pump.webp"
+    "contractUrl": "./oil-pump-contract.json?v=3622888d4e44"
   },
   {
     "id": "accessory-drives",
     "label": "GTSIO-520-H accessories and drives",
+    "shortLabel": "Accessories and drives",
     "adapter": "animated-study",
-    "eyebrow": "LESSON 9 / ACCESSORIES & DRIVES",
-    "description": "Inspect seated flanges, continuous shaft paths and a lateral tach bevel drive across 80 unscaled part studies and 3 grey display fixtures. Unknown front/optional transfers remain labelled as omitted.",
-    "previewUrl": "./model-previews/accessory-drives.webp",
-    "badges": [
-      "80 part studies + 3 fixtures",
-      "10 saved motions",
-      "Seated mounting interfaces"
+    "summary": "Seated flanges, shaft paths and a lateral tach bevel drive. Unknown front and optional transfers are shown as omitted.",
+    "capabilities": [
+      {
+        "kind": "animated",
+        "note": "10 saved motions"
+      },
+      {
+        "kind": "exploded",
+        "note": "Exploded and reassembly views"
+      },
+      {
+        "kind": "parts",
+        "note": "80 part studies and 3 fixtures"
+      }
     ],
+    "previewUrl": "./model-previews/accessory-drives.webp",
     "sources": [
       {
         "localUrl": "./accessory-drives.glb.gz?v=77eb48c1d8ff",

@@ -19,6 +19,10 @@ interface AppShellProps {
   activeModelName?: string;
   onSelectModel?: (model: string) => void;
   availableModels?: string[];
+  /** What to call a model on screen (the registry's short name); the model strings stay the keys. */
+  modelDisplayName?: (model: string) => string;
+  /** The gallery names itself ("3D studies"), so only an open model gets the picker. */
+  showModelPicker?: boolean;
   isLessonStepOpen?: boolean;
 }
 
@@ -39,6 +43,8 @@ export const AppShell: React.FC<AppShellProps> = ({
     'GTSIO-520 Full Engine',
     'Combustion Chamber Section',
   ],
+  modelDisplayName,
+  showModelPicker = true,
   isLessonStepOpen = false,
 }) => {
   const { exploreFullPage: isExploreFullPage, lessonImmersive: isLessonImmersive } = useShellChrome();
@@ -63,7 +69,7 @@ export const AppShell: React.FC<AppShellProps> = ({
 
               {/* The model picker belongs only to Explore; Learn and Check show their mode context. */}
               {activeView === 'explore'
-                ? <ModelPicker active={activeModelName} models={availableModels} onSelect={onSelectModel} />
+                ? showModelPicker && <ModelPicker active={activeModelName} models={availableModels} onSelect={onSelectModel} display={modelDisplayName} />
                 : <span className="mt-0.5 max-w-[280px] truncate font-mono text-[11px] font-semibold uppercase tracking-wider text-teal-400">{subtitle}</span>}
             </div>
           </div>

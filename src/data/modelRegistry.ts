@@ -3,6 +3,15 @@ import registryData from './models.json';
 
 export type ModelAdapterId = 'static-gltf' | 'operating-cylinder' | 'full-engine' | 'animated-study';
 
+/**
+ * The five things a model can offer, in the order the gallery shows them. The set is closed: a card shows the icon for each one the
+ * model really has, so a new kind needs an icon and a legend entry in src/components/ModelCapabilities.tsx first.
+ */
+export const MODEL_CAPABILITY_KINDS = ['animated', 'exploded', 'section', 'parts', 'tour'] as const;
+export type ModelCapabilityKind = (typeof MODEL_CAPABILITY_KINDS)[number];
+/** `note` is what the icon's tooltip says about this model in particular ("61 named components"). */
+export type ModelCapability = { kind: ModelCapabilityKind; note: string };
+
 export type ModelSource = {
   localUrl?: string;
   driveId?: string;
@@ -13,15 +22,19 @@ export type ModelSource = {
 
 export type ModelDefinition = {
   id: string;
+  /** The full name: the model picker's key, and what the accessible name of the viewer says. */
   label: string;
+  /** The name that fits a gallery tile and the viewer's controls panel. */
+  shortLabel: string;
   adapter: ModelAdapterId;
-  eyebrow: string;
   /** Replaces the default `GTSIO-520-H · <label>` header subtitle while the model is open (for a model that is not the teaching engine). */
   headerLabel?: string;
-  description: string;
+  /** One or two sentences under the title in the viewer: what the model is, and what it is not (a reconstruction, a work in progress, illustrative motion). About 110 characters. */
+  summary: string;
+  /** The icons under the tile, in MODEL_CAPABILITY_KINDS order; each is a claim the model keeps. */
+  capabilities: ModelCapability[];
   previewUrl?: string;
   lessonControls?: boolean;
-  badges: string[];
   sources?: ModelSource[];
   componentCatalogueUrl?: string;
   motionProfileUrl?: string;

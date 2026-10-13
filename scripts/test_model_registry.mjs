@@ -5,9 +5,30 @@ const registry=JSON.parse(fs.readFileSync(new URL('../src/data/models.json',impo
 assert.deepEqual(registry.map(model=>model.id),['cylinder','gtsio520-h-v5-teaching-engine','wright-1903-engine','wright-1903-reconstruction','langley-manly-balzer-1903','hydraulic-tappet','oil-pump','accessory-drives']);
 assert.deepEqual(registry.map(model=>model.adapter),['operating-cylinder','full-engine','static-gltf','animated-study','animated-study','animated-study','animated-study','animated-study']);
 assert.equal(new Set(registry.map(model=>model.id)).size,registry.length,'model ids must be unique');
-assert.ok(registry.every(model=>model.label&&model.eyebrow&&model.description));
+assert.ok(registry.every(model=>model.label&&model.shortLabel&&model.summary));
 assert.ok(registry.every(model=>!('imageType' in model)),'card pictures come from previewUrl, not a guessed illustration type');
-assert.ok(registry.every(model=>Array.isArray(model.badges)&&model.badges.length));
+// The gallery tile and the viewer's controls panel say only this much; the full name stays the picker's key.
+assert.ok(registry.every(model=>!('eyebrow' in model)&&!('description' in model)&&!('badges' in model)),'the gallery no longer prints an eyebrow, a description or badges');
+assert.ok(registry.every(model=>model.shortLabel.length<=30&&model.shortLabel.length<model.label.length+10),'a short label has to fit a two-line tile title');
+assert.equal(new Set(registry.map(model=>model.shortLabel)).size,registry.length,'short labels must be unique');
+assert.ok(registry.every(model=>model.summary.length>=60&&model.summary.length<=130),'a summary is one or two short sentences (about 110 characters)');
+assert.ok(registry.every(model=>/[.]$/.test(model.summary)),'a summary ends in a full stop');
+
+// Capabilities: the five icons, in a fixed order, at most one each, each carrying the note its tooltip shows.
+const KINDS=['animated','exploded','section','parts','tour'];
+for (const model of registry) {
+  assert.ok(Array.isArray(model.capabilities)&&model.capabilities.length>=1&&model.capabilities.length<=5,`${model.id}: one to five capabilities`);
+  const kinds=model.capabilities.map(item=>item.kind);
+  assert.ok(kinds.every(kind=>KINDS.includes(kind)),`${model.id}: unknown capability kind in ${kinds}`);
+  assert.deepEqual(kinds,KINDS.filter(kind=>kinds.includes(kind)),`${model.id}: capabilities must be unique and in the fixed order`);
+  assert.ok(model.capabilities.every(item=>typeof item.note==='string'&&item.note.length>=6&&item.note.length<=40),`${model.id}: a capability note is a short phrase`);
+}
+// Claims the registry can check against the model's own data: a tour needs hotspots, and only the scan has them.
+for (const model of registry) {
+  const claimsTour=model.capabilities.some(item=>item.kind==='tour');
+  assert.equal(claimsTour,Array.isArray(model.hotspots)&&model.hotspots.length>0,`${model.id}: the guided-tour icon must match its hotspots`);
+  if (claimsTour) assert.match(model.capabilities.find(item=>item.kind==='tour').note,new RegExp(`^${model.hotspots.length} `),`${model.id}: the tour note counts the real hotspots`);
+}
 
 const cylinder=registry.find(model=>model.id==='cylinder');
 assert.deepEqual(cylinder.sources.map(source=>source.localUrl),['./cylinder-reviewed-20261001.glb.gz']);

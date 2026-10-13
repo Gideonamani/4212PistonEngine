@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 /** The "which 3D model" dropdown under the app title, shown on the Explore screen only. */
-export const ModelPicker: React.FC<{ active: string; models: string[]; onSelect?: (model: string) => void }> = ({ active, models, onSelect }) => {
+export const ModelPicker: React.FC<{ active: string; models: string[]; onSelect?: (model: string) => void; /** What to call a model on screen; the model strings stay the keys. */ display?: (model: string) => string }> = ({ active, models, onSelect, display = (model) => model }) => {
   const [open, setOpen] = useState(false);
   return (
     <div className="relative">
@@ -11,8 +11,7 @@ export const ModelPicker: React.FC<{ active: string; models: string[]; onSelect?
         className="group -mb-[15px] -mt-[13px] flex max-w-full items-center gap-1.5 py-[15px] text-left font-mono text-[11px] font-semibold uppercase leading-tight tracking-wider text-teal-400 transition-colors hover:text-teal-300"
         aria-label="Select 3D Engine Model"
       >
-        <span className="text-slate-400">MODEL:</span>
-        <span className="truncate text-teal-300 underline decoration-teal-500/40 underline-offset-2">{active}</span>
+        <span className="truncate text-teal-300 underline decoration-teal-500/40 underline-offset-2">{display(active)}</span>
         <ChevronDown className={`w-3.5 h-3.5 text-teal-400 group-hover:text-teal-300 shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
 
@@ -30,7 +29,7 @@ export const ModelPicker: React.FC<{ active: string; models: string[]; onSelect?
                 }}
                 className={`w-full px-3 py-2 rounded-xl text-xs text-left font-medium transition-all flex items-center justify-between group ${active === model ? 'bg-teal-500/20 text-teal-200 font-bold border border-teal-400/40 shadow-xs' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}
               >
-                <span>{model}</span>
+                <span>{display(model)}</span>
                 {active === model && <span className="w-1.5 h-1.5 rounded-full bg-teal-400 shrink-0 shadow-xs shadow-teal-400" />}
               </button>
             ))}

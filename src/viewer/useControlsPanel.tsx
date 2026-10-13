@@ -9,7 +9,7 @@ export type PlayerPreference = { show: boolean; onChange: (value: boolean) => vo
  * The Parts / Motion / Inside / Look panel, with the tab, search text and subassembly filter kept for as long as the viewer lives (so
  * closing and reopening the panel does not lose them). Returns a function that draws the panel; call it only while the panel is open.
  */
-export function useControlsPanel(viewer: ModelViewerState) {
+export function useControlsPanel(viewer: ModelViewerState, { introduce = false }: { introduce?: boolean } = {}) {
   const { definition, features, snapshot } = viewer;
   const [panel, setPanel] = useState<ExplorePanel>('components');
   const [query, setQuery] = useState('');
@@ -24,6 +24,7 @@ export function useControlsPanel(viewer: ModelViewerState) {
 
   return (onClose: () => void, player?: PlayerPreference): React.ReactNode => features ? <ExploreControls
     definitionLabel={definition.label}
+    introduction={introduce ? { title: definition.shortLabel, summary: definition.summary } : undefined}
     features={features}
     snapshot={snapshot}
     panel={panel}

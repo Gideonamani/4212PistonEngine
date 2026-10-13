@@ -6,6 +6,8 @@ export type ExplorePanel = 'components' | 'motion' | 'section' | 'appearance';
 
 type ExploreControlsProps = {
   definitionLabel: string;
+  /** Explore only: the model's short name and its one-line description, shown under the panel's label. A lesson's panel stays plain. */
+  introduction?: { title: string; summary: string };
   features: ViewerFeatures;
   snapshot: ViewerSnapshot;
   panel: ExplorePanel;
@@ -25,6 +27,7 @@ const tabClass = (active: boolean) => `flex min-h-9 items-center justify-center 
 
 export function ExploreControls({
   definitionLabel,
+  introduction,
   features,
   snapshot,
   panel,
@@ -39,9 +42,14 @@ export function ExploreControls({
   onShowPlayerOnViewerChange,
 }: ExploreControlsProps) {
   return <aside className="order-2 flex max-h-[44%] min-h-60 w-full shrink-0 flex-col border-t border-teal-500/25 bg-panel text-slate-100 shadow-2xl lg:order-none lg:h-full lg:max-h-none lg:min-h-0 lg:w-80 lg:border-l lg:border-t-0" aria-label="Explore controls">
-    <div className="flex items-center justify-between border-b border-slate-800 px-3 py-2.5">
-      <div><span className="font-mono text-[11px] font-bold tracking-[0.18em] text-teal-400">EXPLORE CONTROLS</span><strong className="mt-0.5 block truncate text-xs text-white">{definitionLabel}</strong></div>
-      <button type="button" onClick={onClose} className="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 hover:bg-slate-800 hover:text-white" aria-label="Hide Explore controls"><X className="h-4 w-4" /></button>
+    <div className={`flex justify-between gap-2 border-b border-slate-800 px-3 ${introduction ? 'items-start pb-3 pt-2.5' : 'items-center py-2.5'}`}>
+      <div className="min-w-0">
+        <span className="font-mono text-[11px] font-bold tracking-[0.18em] text-teal-400">EXPLORE CONTROLS</span>
+        {introduction
+          ? <><h2 className="mt-1 text-[15px] font-bold leading-snug tracking-tight text-white">{introduction.title}</h2><p className="mt-0.5 text-xs leading-relaxed text-slate-300 lg:text-[12.5px]">{introduction.summary}</p></>
+          : <strong className="mt-0.5 block truncate text-xs text-white">{definitionLabel}</strong>}
+      </div>
+      <button type="button" onClick={onClose} className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-slate-400 hover:bg-slate-800 hover:text-white" aria-label="Hide Explore controls"><X className="h-4 w-4" /></button>
     </div>
 
     <div className="grid grid-cols-4 gap-1 border-b border-slate-800 p-2">
