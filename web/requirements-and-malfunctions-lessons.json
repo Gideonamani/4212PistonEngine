@@ -12,7 +12,7 @@
       "tier": 1,
       "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
       "path": "Notes/amt_powerplant_handbook 2023.pdf",
-      "applicability": "Primary source for the general principles in this course. PDF page locators are used in step notes."
+      "applicability": "Primary source for valve construction, the valve-operating mechanism, hydraulic tappets, valve clearance and valve inspection. PDF page locators are used in step notes. Used in lesson 14 for: the general requirements of an aircraft engine, compactness, durability and powerplant selection (PDF pp. 22 to 24); the opposed engine's narrow silhouette (PDF p. 25); crankshaft balance and vibration (PDF pp. 29 and 37); the thermal efficiency discussion (PDF p. 55); fuel injection (PDF p. 103); cooling control and cowl flaps (PDF pp. 278 to 279); and engine mounts (PDF p. 344)."
     },
     {
       "id": "easa-module16",
@@ -67,7 +67,7 @@
       "models": [],
       "listed": true,
       "scheduledDay": 5,
-      "completionCriteria": "State the general requirements of an aircraft engine, calculate specific weight and brake-specific fuel consumption, and find and interpret the leading particulars on an engine data sheet, including the condition each figure is quoted for.",
+      "completionCriteria": "State the general requirements of an aircraft engine and say why maximum power alone does not decide its suitability; calculate specific weight and brake-specific fuel consumption; explain what cooling, smooth running, easy servicing, simplicity and redundancy each ask of an engine and how its efficiency can be improved; and weigh these requirements for a stated aircraft and job, saying which engine suits it and why.",
       "steps": [
         {
           "type": "text",
@@ -144,6 +144,107 @@
         },
         {
           "type": "text",
+          "title": "Frontal area and the installation",
+          "prompt": "The engine sits in a cowling or nacelle, and its shape becomes part of the aircraft's shape. The area it presents to the airstream, its frontal area, sets how much drag it adds at speed, so a compact engine suits a fast aircraft.\n\nThe handbook gives three reasons for compactness: better streamlining and balance, a better view for the pilot of a single-engine aircraft, and less drag. Weight is closely related, because a long, spread-out engine is hard to keep light.\n\nShape matters as much as size. The inline engine has a small frontal area and is easy to streamline. The opposed engine's narrow silhouette suits a nose or a wing nacelle.\n\nThe installation must also pass cooling air, fit the cowl flaps and exhaust ejectors, and still be easy to reach. Engine and airframe are designed together.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 24 (compactness: streamlining and balancing, the pilot's view, reducing the drag created by a large frontal area; weight limitations are closely related to compactness) and PDF p. 25 (the inline engine has a small frontal area and is better adapted to streamlining; the opposed-type engine has a low weight-to-horsepower ratio and a narrow silhouette suited to installation in the nose or wings). Cowl flaps and exhaust ejectors in the installation: PDF pp. 149 and 279.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Adequate cooling",
+          "prompt": "An engine must be cooled well enough in every condition it meets: takeoff at full power, a slow climb on a hot day, a long descent in cold air.\n\nThe cooling has to be regulated. Unless there are controls, the engine could overheat on takeoff and get too cold in a high-altitude, high-speed, low-power descent.\n\nThe most common control is the cowl flap. Opened wide it cools the engine, but it adds drag and spoils the streamlining. So on takeoff the flaps are opened only enough to keep the temperature below the red line, and on the ground, where drag does not matter, they are opened wide.\n\nCooling is therefore a trade: more air means more drag. A design must give enough cooling at the hardest moment without a drag penalty the rest of the time.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 279 (the engine could overheat on takeoff and get too cold in high altitude, high speed, low power letdowns unless controls are provided; the most common means of controlling cooling is the use of cowl flaps; when extended for increased cooling they produce drag and sacrifice streamlining; on takeoff the cowl flaps are opened only enough to keep the engine below the red-line temperature; during ground operations they should be opened wide since drag does not matter) and PDF p. 278 (why excess heat is harmful). The hardest moment in a hot, slow climb is the lesson's example, consistent with the handbook's focus on takeoff.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Smooth running",
+          "prompt": "An engine must run with as little vibration as possible. The handbook gives the reason: excessive vibration causes fatigue failure of the metal structures and makes the moving parts wear rapidly.\n\nSeveral things hold it down. The firing order is arranged for balance and to eliminate vibration. The crankshaft is balanced, and dynamic dampers, small pendulums fastened to it, reduce its vibration. The engine mount isolates the airframe from what is left: rubber shock mounts damp it before it reaches the structure.\n\nA smooth engine is not only more comfortable. It is also more durable, because the parts and the mount are loaded less, and more reliable, for the same reason.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 29 (excessive vibration results in fatigue failure of the metal structures and causes the moving parts to wear rapidly; crankshaft static and dynamic balance; dynamic dampers are pendulums fastened to the crankshaft), PDF p. 37 (the firing order is designed to provide for balance and to eliminate vibration to the greatest extent possible), PDF p. 23 (a system of damping units is needed to damp out vibrations of the engine) and PDF p. 344 (engine mounts and shock-mount isolation). That a smooth engine is more durable and reliable is the lesson's inference from the first of these.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Easy to inspect and service",
+          "prompt": "An engine that is hard to reach is hard to keep safe. The handbook asks for an engine that is as compact as possible yet easily accessible for maintenance, and that is economical in the cost of maintenance.\n\nAccessibility pays in three ways. Faults are found sooner, at inspection, before they become failures. Work takes less time, so the aircraft spends less time on the ground. And a job that is simple to do is less likely to be done wrongly.\n\nDesigners help in many ways. Spark plugs and accessories are placed where they can be reached. Hydraulic lifters take away the old chore of adjusting the valve clearance by hand. On the GTSIO-520 the hydraulic tappets can be removed and replaced without taking the whole engine apart.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 22 (an aircraft engine must be economical in the cost of maintenance and as compact as possible yet have easy accessibility for maintenance), PDF p. 41 (solid lifters' valve clearance adjustment or inspection was a continuous maintenance item until hydraulic lifters were used) and the Continental GTSIO-520 overhaul manual, PDF p. 17 (the barrel-type hydraulic tappets may be removed and replaced without complete disassembly of the engine). The three benefits of accessibility are the lesson's reasoning.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Keep it simple",
+          "prompt": "Every part is one more thing that can wear, leak or break. So where a simpler engine does the job, simplicity improves reliability and lowers the cost of buying and maintaining it.\n\nCompare two engines. A direct-drive, naturally aspirated engine has a crankshaft, cylinders and accessories. The GTSIO-520-H adds a reduction gear, a turbocharger with its waste gate and oil lines, and an intercooler. Each addition earns its place with more power at altitude, but each is something to inspect and maintain.\n\nAir cooling is simpler than liquid cooling, which adds a pump, a radiator and coolant. Hydraulic lifters add a part but remove a regular adjustment.\n\nSimplicity is a balance, not a rule: the extra parts are worth it only when the job needs what they give.",
+          "note": "The principle that fewer parts mean fewer failures, and the balance with what extra parts give, are the lesson's reasoning and the course slides' (the slides' comparison of air and liquid cooling, slides 106 and 107). The additions on the GTSIO-520-H (reduction gearing, turbocharger and intercooler): overhaul manual, PDF p. 152; reduction gearing: FAA-H-8083-32B (2023), PDF p. 44; the turbocharger and its waste gate: PDF pp. 131 to 135; hydraulic lifters: PDF p. 41.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Duplicate what matters",
+          "prompt": "Some failures cannot be allowed to stop the engine or the aircraft. For these the design provides redundancy: two of the thing, so that if one fails the other carries on.\n\nThe ignition system is the standard example. A dual ignition system has two of every critical unit, including two spark plugs in each cylinder. It gives safety if one system malfunctions and, more important, better burning.\n\nThere are others. The valve springs are doubled, with a spring inside a spring, so that if one breaks the other still closes the valve. On a multi-engine aircraft each engine has its own complete and independent oil system.\n\nRedundancy costs weight and parts, so it is used where a failure would be dangerous. It is the counterpart of simplicity.",
+          "note": "Documented from FAA-H-8083-32B (2023), glossary, PDF p. 468 (dual ignition is an ignition system of a reciprocating engine that has two of every critical unit, including two spark plugs in each cylinder; it provides safety in the event of one system malfunctioning, but more important, igniting the mixture at two locations provides more efficient combustion), PDF p. 40, Figure 1-26 (multiple springs are used to protect against breakage) and PDF p. 250 (on multiengine aircraft each engine is supplied with oil from its own complete and independent system). The cost in weight and parts is the lesson's reasoning.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Getting more from the fuel",
+          "prompt": "The efficiency of a piston engine can be improved in general ways. The handbook says that anything that puts more of the heat into mechanical work on the piston raises the thermal efficiency, as does reducing friction and pumping losses, unburned fuel and the heat lost to the engine parts.\n\nThe main methods:\n\nA higher compression ratio turns more of the heat into work and runs cooler, but it is limited by detonation and the fuel grade.\n\nFuel injection shares the fuel evenly, so no cylinder needs to be richer than necessary, and it improves economy.\n\nLeaning to the best economy mixture gives the power for the least fuel.\n\nTurbocharging uses exhaust energy to hold the manifold pressure.\n\nLess friction, and a cleaner, tighter engine, wastes less power.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 55 (anything that increases the heat going into mechanical work on the piston, reduces friction and pumping losses, or reduces the quantity of unburned fuel or the heat lost to the engine parts increases the thermal efficiency; the higher the compression ratio the larger the proportion of heat turned into useful work, but the cylinder head temperature rises, which is a limiting factor because of detonation), PDF p. 103 (fuel injection improves fuel distribution and gives better fuel economy than a system in which most cylinders must be richer than necessary), PDF p. 85 (best economy setting) and PDF p. 149 (turbosupercharging). A cleaner, tighter engine is the lesson's wording for reducing wear-related losses.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
           "title": "Choosing an engine",
           "prompt": "No single engine is best everywhere, so the choice depends on the mission. The handbook gives a guide by cruising speed. Up to about 250 mph the reciprocating engine is the usual choice, for its efficiency and low cost, and a turbosupercharged one holds its rated power to high altitude. From about 180 to 350 mph the turboprop does very well, because it gives more power per pound. From 350 mph up to Mach 0.8 to 0.9, turbofans are generally used by airlines, and above that, turbojets and low-bypass turbofans. Gas turbines are most economical at high altitude, but cost limits their use.",
           "note": "Documented from FAA-H-8083-32B (2023), PDF p. 24 (powerplant selection: reciprocating engines for aircraft whose cruising speed does not exceed 250 mph; turbosupercharged reciprocating engines for high altitude performance; turboprops perform very well from 180 to 350 mph; turbofans from 350 mph to Mach 0.8-0.9; Mach 1 and above by turbojets, afterburning and low-bypass turbofans; the cost of gas turbines is a limiting factor).",
@@ -158,75 +259,24 @@
         },
         {
           "type": "text",
-          "title": "The data plate and the engine's name",
-          "prompt": "Every certified engine carries a permanent, fireproof data plate that identifies it, with at least its maker, its model and its serial number. The serial number lets you track its total time, time since overhaul and any airworthiness directives. The model name is a code. In GTSIO-520-H the manual's general information says the engine is geared (G), turbocharged (T), fuel injected (I) and horizontally opposed (O), and 520 is its displacement in cubic inches. The H marks the variant, and a limit that belongs to another variant does not apply.",
-          "note": "The regulatory content of the data plate (14 CFR 45.13 and EASA Part 21) and the use of the serial number are from the course deck (slide 207); the handbook pages read here do not describe the engine data plate, so the instructor should confirm the wording against the regulation. The engine's description is from the Continental GTSIO-520 overhaul manual, PDF p. 152 (C-3-2: geared, turbocharged, six-cylinder, fuel injected, horizontally opposed, 520 cubic inches). The deck reads the letters as G for geared, TS for turbosupercharged, I for fuel injected and O for opposed.",
+          "title": "Different jobs, different priorities",
+          "prompt": "The same requirements carry different weights in different aircraft.\n\nA flight-training aircraft wants a low cost to buy and to maintain, and reliability, so a simple reciprocating engine suits it.\n\nAn aircraft on long flights puts fuel economy first, because fuel is most of its running cost and a heavy fuel load cuts its payload.\n\nAn aircraft that must cross high ground wants an engine that holds its power with altitude: a turbosupercharged reciprocating engine, or a turboprop.\n\nAn airliner at high speed needs thrust and efficiency at speed, and so a turbofan.\n\nNo engine wins on every count. Choosing is weighing what the job needs.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 22 (economy in procurement, fuel and maintenance, and reliability), PDF p. 24 (powerplant selection: reciprocating engines up to 250 mph for their efficiency and low cost; turbosupercharged reciprocating engines for high-altitude performance; turboprops from 180 to 350 mph; turbofans from 350 mph to Mach 0.8-0.9) and the course deck, slides 202 to 205 (powerplant selection). That fuel is most of the running cost of a long flight, and that a heavy fuel load cuts the payload, are the lesson's reasoning from FAA PDF p. 55 (a high thermal efficiency means less fuel for a flight of a given distance).",
           "sourceRefs": [
-            "course-deck-2026-05",
-            "gtsio520-overhaul"
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
           ],
           "mediaPlan": {
             "mode": "none",
             "status": "not-needed",
-            "rationale": "The naming rule is the content; the next steps show the real data."
-          }
-        },
-        {
-          "type": "image",
-          "title": "Leading particulars",
-          "prompt": "Here is the first page of the GTSIO-520-H's detail specifications from its overhaul manual. Find these: the power it develops and at what propeller speed; the propeller drive ratio; the bore, stroke and displacement; the compression ratio; the fuel grade; and the drive ratios of the magnetos, the tachometer and the starter. The numbers are the engine's leading particulars.",
-          "url": "./lesson-media/gtsio-h-specifications-1.webp",
-          "alt": "GTSIO-520-H general information and detail engine specifications, page C-3-2: it is geared, turbocharged, six-cylinder, fuel injected and horizontally opposed, and develops 375 horsepower at 2275 propeller rpm; propeller drive ratio 0.667:1; bore 5.250 in; stroke 4.000 in; displacement 520 cu in; compression ratio 7.5:1; turbosupercharger maximum 75,000 rpm; oil sump 13 quarts; fuel 100LL or 100; magneto drive 1.5:1; tachometer 0.5:1; starter drive 32:1.",
-          "credit": "Continental GTSIO-520 overhaul manual, page C-3-2",
-          "license": "Course reference extract",
-          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 152 (page C-3-2, general information and detail engine specifications for the GTSIO-520-H). Teaching extract of a manufacturer manual dated June 1980; always use the current data for the engine in front of you.",
-          "sourceRefs": [
-            "gtsio520-overhaul"
-          ],
-          "mediaPlan": {
-            "mode": "source-image",
-            "status": "available",
-            "rationale": "The manufacturer's own specification page is the real \"leading particulars\" the module asks the learner to identify."
-          }
-        },
-        {
-          "type": "image",
-          "title": "Operating particulars",
-          "prompt": "The second page continues with the other drive ratios, the spark timing and plug gap, the firing order, the fuel pressures, and the limits for oil pressure, oil temperature and cylinder head temperature. It ends with the dry weight. Find the spark timing, the firing order, the maximum cylinder head temperature and the normal and maximum oil temperature.",
-          "url": "./lesson-media/gtsio-h-specifications-2.webp",
-          "alt": "GTSIO-520-H detail engine specifications, continued, page C-3-3: alternator drive 3:1; vacuum pump drive 1.14:1; propeller governor drive 0.809:1; spark 20 degrees before top centre on both magnetos; spark plug gap 0.017 to 0.018 in; firing order 1-4-5-2-3-6; unmetered fuel pressure 6.0 psi at 450 propeller rpm; maximum metered fuel pressure 16.0 to 17.0 psi at 39.5 inches of mercury manifold pressure and 2275 propeller rpm; oil pressure 100 psi maximum and 10 psi minimum at idle; oil temperature 170 normal and 240 maximum degrees Fahrenheit; cylinder head temperature 460 maximum and 200 minimum for takeoff; standard dry weight 550.39 lb.",
-          "credit": "Continental GTSIO-520 overhaul manual, page C-3-3",
-          "license": "Course reference extract",
-          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 153 (page C-3-3, detail engine specifications continued; dated June 1980). The limits are for teaching reading of a data sheet and are not an operating instruction.",
-          "sourceRefs": [
-            "gtsio520-overhaul"
-          ],
-          "mediaPlan": {
-            "mode": "source-image",
-            "status": "available",
-            "rationale": "The second page of the manufacturer specification gives the timing, firing order and limits."
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
           "type": "text",
-          "title": "Reading the numbers",
-          "prompt": "The data are linked, so you can check them against each other. The 0.667:1 propeller drive means the propeller turns at 0.667 of the crankshaft speed, so at 2275 propeller rpm the crankshaft is turning at 2275 ÷ 0.667 = about 3,411 rpm: the engine runs fast, and the reduction gear slows the propeller. A six-cylinder four-stroke engine fires six times in two turns, which is once every 720° ÷ 6 = 120° of the crankshaft, in the order 1-4-5-2-3-6. Fuel pressure is quoted at a stated manifold pressure and propeller speed, 39.5 inches of mercury and 2275 rpm. A number is only meaningful with its conditions.",
-          "note": "Calculations from the Continental GTSIO-520 overhaul manual, PDF pp. 152-153 (propeller drive ratio 0.667:1; 375 horsepower at 2275 propeller rpm; firing order 1-4-5-2-3-6; maximum metered fuel pressure at 39.5 inches of mercury manifold pressure and 2275 propeller rpm) and the 720° cycle from FAA-H-8083-32B (2023), PDF pp. 46-48. The firing order also appears in the FAA handbook as the usual six-cylinder opposed order (PDF p. 37).",
-          "sourceRefs": [
-            "gtsio520-overhaul",
-            "faa-powerplant-2023"
-          ],
-          "mediaPlan": {
-            "mode": "none",
-            "status": "not-needed",
-            "rationale": "Worked checks that the learner can repeat on the manual page."
-          }
-        },
-        {
-          "type": "text",
-          "title": "Read an engine data sheet",
-          "prompt": "You are handed the data sheet of an engine you have not seen before. In your own words: which numbers describe its size and power, which describe its drives, which are limits and what is the condition each is quoted for, and which of the general requirements (power and weight, fuel economy, durability and reliability, flexibility, compactness) can you judge from it and which can you not? Then take the lesson's quiz.",
-          "note": "Completion step: the learner applies the requirements to a data sheet (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 22-24, and the GTSIO-520 overhaul manual, PDF pp. 152-153.",
+          "title": "Evaluate an engine for a job",
+          "prompt": "Practise the weighing. Take two jobs and one engine each.\n\nJob 1: a four-seat trainer that flies short circuits from a sea-level airfield, owned by a school with a tight budget.\n\nJob 2: a single-engine aircraft that must cross mountains with passes at 15,000 ft.\n\nEngine A: a direct-drive, naturally aspirated opposed engine of 285 hp.\n\nEngine B: the GTSIO-520-H, geared and turbocharged, 375 hp, with a specific weight of 1.47 lb per hp.\n\nFor each job, list the three requirements that matter most, say which engine meets them better and why, and say what you give up. Check the facts from the data sheets, not from memory.",
+          "note": "An exercise made for this lesson. Engine A's 285 hp is the IO-520-B and similar models' rated maximum continuous power (IO-520 Permold maintenance manual, PDF p. 13, a comparison engine only; it is a normally aspirated direct-drive engine). Engine B's 375 hp and the specific weight (550.39 lb divided by 375 hp = 1.47 lb per hp): GTSIO-520 overhaul manual, PDF pp. 152 to 153. Turbosupercharged reciprocating engines for high-altitude performance: FAA-H-8083-32B (2023), PDF p. 24. There is no single right answer; the exercise is the reasoning.",
           "sourceRefs": [
             "faa-powerplant-2023",
             "gtsio520-overhaul"
@@ -234,7 +284,7 @@
           "mediaPlan": {
             "mode": "none",
             "status": "not-needed",
-            "rationale": "The learner works with a data sheet in their own words."
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         }
       ]
@@ -537,28 +587,6 @@
       "rationale": "150 ÷ 300 = 0.5 lb of fuel per hour for each brake horsepower. A lower figure means better fuel economy."
     },
     {
-      "id": "requirements-crank-speed",
-      "lessonId": "engine-requirements",
-      "type": "numeric",
-      "question": "The GTSIO-520-H develops its rated 375 horsepower at 2275 propeller rpm, and its propeller drive ratio is 0.667:1. At what crankshaft speed does it do so? Give the nearest whole number.",
-      "hint": "The propeller turns at 0.667 of the crankshaft speed.",
-      "unit": "rpm",
-      "correctValue": 3411,
-      "tolerance": 5,
-      "rationale": "Crankshaft speed = propeller speed ÷ drive ratio = 2275 ÷ 0.667 = 3,411 rpm. The reduction gear lets the engine run fast while the propeller turns slowly enough to be efficient."
-    },
-    {
-      "id": "requirements-firing-interval",
-      "lessonId": "engine-requirements",
-      "type": "numeric",
-      "question": "A six-cylinder four-stroke engine completes its cycle in 720° of crankshaft rotation. How many degrees of rotation are there between one cylinder firing and the next?",
-      "hint": "Six firings are spread evenly over the whole cycle.",
-      "unit": "degrees",
-      "correctValue": 120,
-      "tolerance": 0,
-      "rationale": "720° ÷ 6 cylinders = 120° between firings, which keeps the power pulses even. The GTSIO-520-H fires 1-4-5-2-3-6."
-    },
-    {
       "id": "requirements-selection",
       "lessonId": "engine-requirements",
       "type": "multiple-choice",
@@ -601,32 +629,183 @@
       "rationale": "A small, well-shaped engine helps streamlining and balancing, gives a single-engine pilot a better view and creates less drag. It also makes it easier to keep the specific weight within limits."
     },
     {
-      "id": "requirements-spark-timing",
+      "id": "requirements-cowl-flaps",
       "lessonId": "engine-requirements",
       "type": "multiple-choice",
-      "question": "According to the GTSIO-520-H data page, when does the spark occur?",
-      "hint": "Look at the second specification page.",
+      "question": "Why are cowl flaps opened only as far as needed on takeoff?",
+      "hint": "Think about what opening them does to the airflow around the aircraft.",
       "answers": [
-        "20 degrees before top centre, on both magnetos",
-        "20 degrees after top centre, on one magneto",
-        "At top centre, on both magnetos"
+        "They add drag and spoil the streamlining, so they are opened only enough to keep the temperature below the red line",
+        "They make the engine run too cold",
+        "They block the exhaust",
+        "They reduce the propeller's thrust directly"
       ],
       "correct": 0,
-      "rationale": "Page C-3-3 lists the spark at 20° BTC on both magnetos. A general handbook gives a range of 20° to 35° across engines; the manufacturer's value is the one that applies."
+      "rationale": "Cowl flaps give more cooling but produce drag and sacrifice streamlining. On takeoff they are opened only enough to keep the engine below the red-line temperature; on the ground, where drag does not matter, they are opened wide."
     },
     {
-      "id": "requirements-conditions",
+      "id": "requirements-vibration",
       "lessonId": "engine-requirements",
       "type": "multiple-choice",
-      "question": "The data page gives the maximum metered fuel pressure at \"39.5 inches of mercury manifold pressure and 2275 propeller rpm\". Why does it say that?",
-      "hint": "Think about what changes with power setting.",
+      "question": "Why must an aircraft engine be as free of vibration as possible?",
+      "hint": "Think about what shaking does to metal and to moving parts.",
       "answers": [
-        "A figure only means something with the conditions it is quoted for",
-        "Because the pressure never changes with power",
-        "Because the pressure is measured only in flight"
+        "Excessive vibration causes fatigue failure of the metal structures and makes the moving parts wear rapidly",
+        "Vibration makes the engine produce too much power",
+        "Vibration makes the fuel burn too slowly",
+        "Vibration is only a comfort issue"
       ],
       "correct": 0,
-      "rationale": "Fuel pressure depends on the power setting, so the data gives the manifold pressure and propeller speed at which the limit applies. Reading a number without its condition leads to mistakes."
+      "rationale": "The handbook says excessive vibration results in fatigue failure of the metal structures and causes the moving parts to wear rapidly, so a smooth engine is also a more durable and reliable one."
+    },
+    {
+      "id": "requirements-vibration-means",
+      "lessonId": "engine-requirements",
+      "type": "matching",
+      "question": "Match each way of controlling vibration to what it does.",
+      "hint": "Some work inside the engine and one works between the engine and the aircraft.",
+      "pairs": [
+        {
+          "left": "Firing order",
+          "right": "Spreads the power events for balance"
+        },
+        {
+          "left": "Crankshaft dynamic damper",
+          "right": "A pendulum on the crankshaft that reduces its vibration"
+        },
+        {
+          "left": "Rubber shock mounts",
+          "right": "Isolate the airframe from the engine's vibration"
+        },
+        {
+          "left": "Static and dynamic balancing of the crankshaft",
+          "right": "Makes the rotating parts balance about the axis"
+        }
+      ],
+      "rationale": "The firing order, the balance of the crankshaft and its dampers reduce vibration at its source, and the shock mounts stop what is left from reaching the airframe."
+    },
+    {
+      "id": "requirements-hydraulic-lifters",
+      "lessonId": "engine-requirements",
+      "type": "multiple-choice",
+      "question": "What regular maintenance job did hydraulic lifters remove?",
+      "hint": "Think about the valve train.",
+      "answers": [
+        "Adjusting and checking the valve clearance by hand",
+        "Changing the spark plugs",
+        "Cleaning the air filter",
+        "Draining the oil sump"
+      ],
+      "correct": 0,
+      "rationale": "Solid lifters needed their valve clearance adjusted by hand, a continuous maintenance item until hydraulic lifters, which keep the clearance at zero automatically."
+    },
+    {
+      "id": "requirements-redundancy",
+      "lessonId": "engine-requirements",
+      "type": "multiple-choice",
+      "question": "Which of these is an example of redundancy in a piston engine?",
+      "hint": "Redundancy means having two of a thing that matters.",
+      "answers": [
+        "Two magnetos and two spark plugs in each cylinder",
+        "A single large fuel filter",
+        "A thicker crankcase",
+        "A larger air scoop"
+      ],
+      "correct": 0,
+      "rationale": "Dual ignition has two of every critical unit, including two spark plugs in each cylinder, so that one system can fail without stopping the engine."
+    },
+    {
+      "id": "requirements-simplicity",
+      "lessonId": "engine-requirements",
+      "type": "multiple-choice",
+      "question": "Why can a simpler engine be more reliable?",
+      "hint": "Think about what each extra part can do.",
+      "answers": [
+        "Each part is one more thing that can wear, leak or break, so fewer parts means fewer chances of failure",
+        "Simpler engines always make more power",
+        "Simple engines never need maintenance",
+        "Simple engines have no moving parts"
+      ],
+      "correct": 0,
+      "rationale": "Every part can fail, so an engine with fewer parts has fewer ways to fail. The extra parts of a geared, turbocharged engine are worth it only where the job needs what they give."
+    },
+    {
+      "id": "requirements-efficiency-methods",
+      "lessonId": "engine-requirements",
+      "type": "matching",
+      "question": "Match each way of improving efficiency to what it does.",
+      "hint": "Each one reduces a different loss or puts more heat into work.",
+      "pairs": [
+        {
+          "left": "Higher compression ratio",
+          "right": "Turns more of the heat into work, limited by detonation"
+        },
+        {
+          "left": "Fuel injection",
+          "right": "Shares the fuel evenly so no cylinder needs a richer mixture than necessary"
+        },
+        {
+          "left": "Best economy mixture",
+          "right": "Gives the power for the least fuel"
+        },
+        {
+          "left": "Less friction and pumping loss",
+          "right": "Leaves more of the cylinder power for the propeller shaft"
+        }
+      ],
+      "rationale": "Each method either puts more of the heat into mechanical work on the piston or cuts a loss: unburned fuel, uneven mixture, friction and pumping."
+    },
+    {
+      "id": "requirements-missions",
+      "lessonId": "engine-requirements",
+      "type": "matching",
+      "question": "Match each job to the requirement that matters most for it.",
+      "hint": "Think about what the job asks of the engine.",
+      "pairs": [
+        {
+          "left": "Flight training",
+          "right": "Low cost to buy and maintain, and reliability"
+        },
+        {
+          "left": "Flight over high ground",
+          "right": "Power held with altitude, by turbocharging"
+        },
+        {
+          "left": "High-speed airliner",
+          "right": "Thrust and efficiency at high speed, from a turbofan"
+        },
+        {
+          "left": "Long-range flight",
+          "right": "Low fuel consumption"
+        }
+      ],
+      "rationale": "The same requirements are weighed differently for each job. No engine meets every requirement best."
+    },
+    {
+      "id": "requirements-evaluate",
+      "lessonId": "engine-requirements",
+      "type": "multiple-choice",
+      "question": "A single-engine aircraft must cross mountains with passes at 15,000 ft. Which engine feature matters most for that job?",
+      "hint": "A naturally aspirated engine loses power as the air thins.",
+      "answers": [
+        "A turbocharger that holds the manifold pressure and power to altitude",
+        "The lowest possible compression ratio",
+        "The smallest possible displacement",
+        "A direct-drive propeller shaft"
+      ],
+      "correct": 0,
+      "rationale": "The handbook says turbosupercharged reciprocating engines are used for high-altitude performance. A naturally aspirated engine would lose about 3 percent of its power for each 1,000 ft."
+    },
+    {
+      "id": "requirements-specific-weight-2",
+      "lessonId": "engine-requirements",
+      "type": "numeric",
+      "question": "An engine weighs 400 lb and develops 250 brake horsepower. What is its specific weight, in lb per horsepower?",
+      "hint": "Specific weight is the weight per brake horsepower.",
+      "unit": "lb/hp",
+      "correctValue": 1.6,
+      "tolerance": 0.01,
+      "rationale": "400 ÷ 250 = 1.6 lb per horsepower. The GTSIO-520-H, at 1.47, has the lower specific weight."
     },
     {
       "id": "malf-match-definitions",
