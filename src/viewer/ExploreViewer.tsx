@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Expand, Maximize2, Minimize2, Shrink, SlidersHorizontal } from 'lucide-react';
 import { ExploreControls } from './ExploreControls';
-import { CompactMotionPlayer, SavedMotionControls } from './controls/MotionPanel';
+import { CompactMotionPlayer, SavedMotionControls } from './controls/MotionPlayers';
 import { hasControlPanels } from './controls/panels';
 import { useViewerControls } from './controls/useViewerControls';
 import { HotspotChips, HotspotNote, ModelCanvas, ToolbarButton, UnknownModel, ViewerHeader } from './ViewerParts';

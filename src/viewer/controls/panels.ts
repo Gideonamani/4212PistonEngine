@@ -24,10 +24,13 @@ export type PanelDefinition = {
   Icon: LucideIcon;
   available: (viewer: ModelViewerState, context: PanelContext) => boolean;
   /** The live state shown under the tab's name, so a closed panel still says what it is doing. */
-  value?: (viewer: ModelViewerState) => PanelValue | undefined;
+  value?: (viewer: ModelViewerState, context: PanelContext) => PanelValue | undefined;
 };
 
 const wholeSet = ({ host, lessonControls }: PanelContext) => host === 'explore' || lessonControls;
+
+/** Whether the learner may move the model's motion here. A lesson on a model that does not allow it only reports the pose the step holds. */
+export const motionIsInteractive = wholeSet;
 
 export const PANELS: Record<PanelId, PanelDefinition> = {
   parts: {
@@ -40,7 +43,13 @@ export const PANELS: Record<PanelId, PanelDefinition> = {
     id: 'motion',
     label: 'Motion',
     Icon: Play,
-    available: ({ features }, context) => wholeSet(context) && Boolean(features?.motion),
+    // Every lesson with a motion offers the tab: a model that lets the learner move it gets the player, the rest report the pose the step holds.
+    available: ({ features }) => Boolean(features?.motion),
+    value: ({ features, snapshot }, context) => {
+      const crank = !snapshot.savedMotionId || snapshot.savedMotionId === 'operating' || !features?.savedMotions;
+      const reading = crank ? `${Math.round(snapshot.angle ?? 0)}°` : `${Math.round(snapshot.motionProgress ?? 0)}%`;
+      return { text: `${reading} · ${!motionIsInteractive(context) ? 'pose' : snapshot.playing ? 'playing' : 'paused'}`, tone: 'amber' };
+    },
   },
   spotlight: {
     id: 'spotlight',

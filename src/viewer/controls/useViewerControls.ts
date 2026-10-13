@@ -3,7 +3,7 @@ import { groupComponentIds, inComponentGroup } from '../core/component-groups.mj
 import type { FocusMode, ModelComponent } from '../types';
 import type { ModelViewerState } from '../useModelViewer';
 import type { PlayerPreference } from './MotionPanel';
-import { availablePanels, type PanelDefinition, type PanelHost, type PanelId } from './panels';
+import { availablePanels, motionIsInteractive, type PanelContext, type PanelDefinition, type PanelHost, type PanelId } from './panels';
 
 export type ViewerControlsOptions = {
   host: PanelHost;
@@ -20,6 +20,9 @@ export type SpotlightTarget = { ids: string[]; label: string };
 
 export type ViewerControls = {
   host: PanelHost;
+  context: PanelContext;
+  /** Whether the learner may move the model's motion here (otherwise the Motion tab only reports the pose). */
+  interactiveMotion: boolean;
   panels: PanelDefinition[];
   /** The open panel; null while they are all closed (a lesson's dock starts that way). */
   active: PanelId | null;
@@ -50,8 +53,10 @@ export type ViewerControls = {
  */
 export function useViewerControls(viewer: ModelViewerState, { host, lessonControls = false, chooseFocusMode, player }: ViewerControlsOptions): ViewerControls {
   const { features, snapshot } = viewer;
-  const panels = availablePanels(viewer, { host, lessonControls });
-  const [open, setOpen] = useState<PanelId | null>(host === 'explore' ? 'parts' : null);
+  const context = useMemo<PanelContext>(() => ({ host, lessonControls }), [host, lessonControls]);
+  const panels = availablePanels(viewer, context);
+  // Explore opens on Parts. A lesson's dock starts with every panel closed, except that a model with a player opens it: the player is the point of such a step.
+  const [open, setOpen] = useState<PanelId | null>(host === 'explore' ? 'parts' : lessonControls ? 'motion' : null);
   const [query, setQuery] = useState('');
   const [group, setGroupState] = useState('');
 
@@ -101,6 +106,8 @@ export function useViewerControls(viewer: ModelViewerState, { host, lessonContro
 
   return {
     host,
+    context,
+    interactiveMotion: motionIsInteractive(context),
     panels,
     active,
     select: (id) => setOpen(host === 'lesson' && active === id ? null : id),

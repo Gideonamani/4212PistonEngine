@@ -6,7 +6,7 @@ import { lessonProfile } from './core/view-state.mjs';
 import { useStoredChoice } from '../data/localChoice';
 import { LessonDock } from './controls/LessonDock';
 import { useViewerControls } from './controls/useViewerControls';
-import { HotspotChips, HotspotNote, ModelCanvas, MotionStrip, PanToggle, ToolbarButton, UnknownModel, WheelZoomHint, useViewerHint } from './ViewerParts';
+import { HotspotChips, HotspotNote, ModelCanvas, PanToggle, ToolbarButton, UnknownModel, WheelZoomHint, useViewerHint } from './ViewerParts';
 import { useModelViewer } from './useModelViewer';
 import type { FocusMode, ViewUpdate } from './types';
 
@@ -24,9 +24,9 @@ type LessonViewerProps = {
 
 /**
  * The viewer inside a lesson step. The model gets the whole frame, with only the tools and "Explore" on top of it. Under it sits the
- * dock of tabs (Spotlight and Section on a step that uses them; a model that sets `lessonControls` adds Parts, Motion and Look), which
- * the sliders button shows or hides, and then a strip with everything else the step has to say (pose, hotspots, motion player,
- * notices, source).
+ * dock of tabs (Motion when the model moves; Spotlight and Section on a step that uses them; a model that sets `lessonControls` adds
+ * Parts and Look, and lets the learner move the motion instead of only reading the pose), which the sliders button shows or hides, and
+ * then a strip with everything else the step has to say (hotspots, notices, source).
  */
 export default function LessonViewer({ modelId, view, immersive = false, layout = 'stacked', onOpenExplore }: LessonViewerProps) {
   const definition = modelsById[modelId];
@@ -39,7 +39,6 @@ export default function LessonViewer({ modelId, view, immersive = false, layout 
   if (!definition) return <UnknownModel modelId={modelId} />;
 
   const withDock = controls.panels.length > 0;
-  const interactiveMotion = definition.lessonControls === true && Boolean(features?.motion);
   const side = layout === 'side';
   // Stacked, the height is a share of the lesson's scroll area (index.css); side by side the canvas takes what the strip leaves.
   const canvasSize = side ? 'min-h-40 flex-1' : immersive ? 'lesson-viewer-stacked-immersive' : 'lesson-viewer-stacked';
@@ -62,9 +61,6 @@ export default function LessonViewer({ modelId, view, immersive = false, layout 
       {dockShown && <LessonDock viewer={viewer} controls={controls} />}
       <div className="space-y-2 border-t border-slate-800/80 px-3 py-2.5">
         {snapshot.assemblyNotice && <p className="rounded-lg border border-amber-300/20 bg-amber-300/5 px-2.5 py-1.5 text-[11px] leading-snug text-amber-100">{snapshot.assemblyNotice}</p>}
-        {interactiveMotion
-          ? <MotionStrip viewer={viewer} />
-          : features?.motion && <div className="flex items-center gap-3"><span className="shrink-0 rounded-lg border border-teal-500/30 bg-teal-950/40 px-2.5 py-1.5 font-mono text-[11px] font-bold text-teal-300">POSE {Math.round(snapshot.angle ?? 0)}°</span><p className="line-clamp-2 flex-1 text-[11px] leading-snug text-slate-400">{snapshot.motionNote}</p></div>}
         <HotspotChips viewer={viewer} />
         <HotspotNote viewer={viewer} className="px-0.5" />
         <p className="truncate text-[11px] text-slate-400">{hint} · {credit}</p>
