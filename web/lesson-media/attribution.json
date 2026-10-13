@@ -200,5 +200,15 @@
     "title": "An example of an engine cylinder",
     "source": "FAA-H-8083-32B, Figure 1-16",
     "license": "U.S. Government work"
+  },
+  "faa-valve-timing-chart.webp": {
+    "title": "Valve timing chart for one complete actual cycle of a four-stroke engine",
+    "source": "FAA-H-8083-32B, Figure 1-37",
+    "license": "U.S. Government work"
+  },
+  "faa-cam-ring-table.webp": {
+    "title": "Radial engines, cam ring table",
+    "source": "FAA-H-8083-32B, Figure 1-27",
+    "license": "U.S. Government work"
   }
 }

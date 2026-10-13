@@ -12,7 +12,7 @@
       "tier": 1,
       "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
       "path": "Notes/amt_powerplant_handbook 2023.pdf",
-      "applicability": "Primary source for valve construction, the valve-operating mechanism, hydraulic tappets, valve clearance and valve inspection. PDF page locators are used in step notes."
+      "applicability": "Primary source for valve construction, the valve-operating mechanism, hydraulic tappets, valve clearance and valve inspection. PDF page locators are used in step notes. Used in lesson 8 for: the valve-operating mechanism, cam rings, the camshaft and the tappet (PDF pp. 39 to 42); the cam ring table, Figure 1-27 (PDF p. 41); and valve timing, lead, lag and overlap with the example timing chart, Figure 1-37 (PDF pp. 47 to 48)."
     },
     {
       "id": "easa-module16",
@@ -83,13 +83,13 @@
       ],
       "listed": true,
       "scheduledDay": 4,
-      "completionCriteria": "Name the parts that carry motion from the camshaft to the valve in order, say why the camshaft turns at half the crankshaft speed, explain how a hydraulic tappet keeps the valve clearance at zero, and name three things to inspect on a valve and its spring.",
+      "completionCriteria": "Name the parts that carry motion from the camshaft to the valve in order, say why the camshaft turns at half the crankshaft speed, and explain why a radial engine uses a cam ring; define valve lead, lag and overlap, say why they help the engine breathe, and read them from a valve timing chart; explain how a hydraulic tappet keeps the valve clearance at zero; and name three things to inspect on a valve and its spring.",
       "steps": [
         {
           "type": "text",
           "title": "Valves open and close the cylinder",
-          "prompt": "Every cylinder breathes through two valves. The intake valve lets the fuel-air mixture in and the exhaust valve lets the burned gas out. Each valve has three jobs: open at the right moment, stay open for the right length of time, and close at the right moment. Before you open the model, predict what pushes a valve open and what shuts it again.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 37 and 39: conventional poppet valves in the cylinder head, and the three requirements of the valve-operating mechanism (open at the proper time, stay open for the required length of time, close at the proper time). The prediction is answered in the steps that follow.",
+          "prompt": "Every cylinder breathes through two valves. The intake valve lets the fuel-air mixture in and the exhaust valve lets the burned gas out.\n\nOver the four strokes each valve opens once. During compression and during the power stroke both valves stay shut, so the cylinder is sealed while the charge is squeezed and burned.\n\nEach valve has three jobs: open at the right moment, stay open for the right length of time, and close at the right moment. Before you open the model, predict what pushes a valve open and what shuts it again.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 37 and 39: conventional poppet valves in the cylinder head, and the three requirements of the valve-operating mechanism (open at the proper time, stay open for the required length of time, close at the proper time). Both valves closed during the compression and power strokes: Figure 1-36, PDF p. 47. The prediction is answered in the steps that follow.",
           "sourceRefs": [
             "faa-powerplant-2023"
           ],
@@ -118,7 +118,11 @@
           ],
           "sectionPlane": {
             "label": "Valve axis",
-            "normal": [0, 1, 0],
+            "normal": [
+              0,
+              1,
+              0
+            ],
             "offset": 0.5
           },
           "note": "Documented from FAA-H-8083-32B (2023), PDF p. 38 (the ground valve face seals on the valve seat; the stem acts as a pilot in the valve guide) and the Continental GTSIO-520 overhaul manual, PDF p. 16 (seats and guides are installed in the heated head before it is screwed and shrunk onto the barrel; the exhaust valves are faced with a heat- and corrosion-resistant material and the solid stem tips are hardened). The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
@@ -324,6 +328,25 @@
         },
         {
           "type": "image",
+          "title": "Why a ring, and why it turns slowly",
+          "prompt": "A radial engine's cylinders spread like spokes around the crankshaft, in one plane. A straight camshaft would run alongside only some of them. A cam ring turns around the crankshaft itself, so it passes the same distance from every cylinder, and each cylinder's tappet can ride on it.\n\nThe ring turns slowly. A valve must open once in every two crankshaft turns, and a ring with L lobes on a track lifts each valve L times per turn. So the ring turns at 1 / (2 × L) of crankshaft speed: with four lobes, one eighth.\n\nThe handbook table agrees in all six entries. A nine-cylinder engine with a four-lobe ring runs it at 1/8 speed, against the crankshaft; with five lobes, at 1/10, with the crankshaft.\n\nOne lobe serves several cylinders in turn, so the ring needs fewer lobes than there are cylinders.",
+          "url": "./lesson-media/faa-cam-ring-table.webp",
+          "alt": "Table of radial-engine cam rings for 5, 7 and 9 cylinders, giving the number of lobes and the ring speed as a fraction of crankshaft speed. Turning with the crankshaft: 3 lobes at 1/6, 4 lobes at 1/8 and 5 lobes at 1/10. Turning opposite the crankshaft: 2 lobes at 1/4, 3 lobes at 1/6 and 4 lobes at 1/8.",
+          "credit": "FAA-H-8083-32B, Figure 1-27",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 39 to 41: the ring is mounted concentrically with the crankshaft and driven by it at a reduced speed; one ring with a double track in a single-row radial; a four-lobe ring on a nine-cylinder engine turns opposite to the crankshaft; Figure 1-27, the cam ring table (PDF p. 41). The rule speed = 1 / (2 × lobes) is the lesson's explanation, from the four-stroke cycle (one valve opening per two crankshaft turns); it fits every entry of Figure 1-27. The reason a straight camshaft will not do is also the lesson's reasoning from the arrangement; the handbook describes the ring and does not argue the point. Twin-row radials use a second ring.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The handbook table makes the lobes-to-speed relationship visible, and the reader can test the rule against every entry."
+          }
+        },
+        {
+          "type": "image",
           "title": "The zero-lash tappet",
           "prompt": "A solid tappet leaves a small gap in the valve train, the valve clearance, which must be adjusted by hand. A hydraulic tappet takes up the gap by itself. Engine oil from the lubrication system fills a chamber under the plunger. When the cam pushes the tappet body, a check valve closes and traps the oil, and the trapped oil carries the load to the pushrod almost like a solid link. Find the plunger, the plunger spring, the check valve and the two oil chambers. The figure shows a ball check valve; the GTSIO-520 tappet uses a spring-loaded check-valve plate instead.",
           "url": "./lesson-media/faa-hydraulic-tappet.webp",
@@ -385,8 +408,8 @@
         {
           "type": "text",
           "title": "Timing the cam to the crank",
-          "prompt": "Valve timing is the relationship between the camshaft and the crankshaft: at which crank angles each lobe lifts its valve. It is set when the engine is built, by meshing the camshaft gear with the crankshaft gear so that their timing marks line up. Lead, lag and overlap, which you met in Thermodynamic Cycles, come from where the lobes sit on the cam and where the cam gear sits on the camshaft. Real timing values come from the engine manufacturer. The FAA chart you used earlier is an example, not GTSIO-520-H timing.",
-          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 77 (section 12-4: mesh the camshaft spur gear with the crankshaft gear so that the timing marks align, Figure A4-35) and PDF p. 17 (the camshaft gear is bolted on to locate its timing mark relative to the lobes). The manual searched here gives no valve timing figures; the FAA example chart is in Thermodynamic Cycles (FAA-H-8083-32B, PDF p. 47, Figure 1-37).",
+          "prompt": "Valve timing is the relationship between the camshaft and the crankshaft: at which crank angles each lobe lifts its valve.\n\nIt is set when the engine is built, by meshing the camshaft gear with the crankshaft gear so that their timing marks line up. The timing itself, the lead, lag and overlap you will meet next, comes from where the lobes sit on the cam and where the cam gear sits on the camshaft.\n\nReal timing values come from the engine manufacturer. The FAA chart in the next steps is an example, not GTSIO-520-H timing.",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 77 (section 12-4: mesh the camshaft spur gear with the crankshaft gear so that the timing marks align, Figure A4-35) and PDF p. 17 (the camshaft gear is bolted on to locate its timing mark relative to the lobes). The manual searched here gives no valve timing figures; the FAA example chart is in FAA-H-8083-32B (2023), PDF p. 47, Figure 1-37.",
           "sourceRefs": [
             "gtsio520-overhaul",
             "faa-powerplant-2023"
@@ -395,6 +418,71 @@
             "mode": "none",
             "status": "not-needed",
             "rationale": "A short linking step: valve timing is a gear-timing relationship, shown earlier by the timing chart."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Valve lead, lag and overlap",
+          "prompt": "Valve timing is given in degrees of crankshaft travel. It marks when a valve starts to open or finishes closing, not when it is fully open.\n\nValve lead: a valve opens before the piston reaches the end of its stroke. The intake valve opens before TDC, near the end of the exhaust stroke. The exhaust valve opens before BDC, near the end of the power stroke.\n\nValve lag: a valve closes after the piston has passed the end of its stroke. The exhaust valve closes after TDC. The intake valve closes after BDC, on the compression stroke.\n\nValve overlap: around TDC, at the start of the intake stroke, the intake valve has opened and the exhaust valve has not yet closed, so both are off their seats at once.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 46 to 48: timing is specified in degrees of crankshaft travel and gives the start of opening, not the full-open position (p. 47); the intake valve opens before TDC on the exhaust stroke (valve lead); the exhaust valve closes after TDC (valve lag); both valves are off their seats at TDC at the start of the intake stroke (valve overlap); the intake valve closes after BDC on the compression stroke; the exhaust valve opens before BDC on the power stroke (p. 48). The terms lead and lag for the exhaust opening and the intake closing follow the same sense (early and late) and are the lesson's wording.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Why open early and close late",
+          "prompt": "Opening early and closing late looks wasteful. It pays because moving gas has momentum and a cylinder has very little time.\n\nIntake lead: the exhaust gas leaving the cylinder leaves a low pressure behind, which speeds the fresh charge in as the valve starts to open. It opens 8° to 55° before TDC on various engines.\n\nIntake lag: near BDC the piston hardly moves, so the charge keeps flowing in after BDC. The valve closes about 50° to 75° after BDC.\n\nExhaust lead: opening well before BDC lets the pressure left in the cylinder push the gas out and carry waste heat away.\n\nOverlap cools the cylinder with cool incoming charge, draws in more mixture and clears the burned gas.\n\nToo much lead lets hot gas flash back; too much lag forces gas back out.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 47 (the intake valve is opened before TDC to induce more charge; the limit is hot gas flashing back; overlap aids internal cooling, charge and scavenging; the intake valve closes about 50 to 75 degrees past BDC so that the momentum of the incoming gas charges the cylinder, and too late forces gas back through the valve) and PDF p. 48 (the speed of the leaving exhaust gas creates a low pressure that speeds the fresh charge in; intake opening at 8 to 55 degrees before TDC on various engines; the exhaust valve opens considerably before BDC, on some engines at 50 or 75 degrees, so that pressure forces the gases out and frees the cylinder of waste heat). Why the piston barely moves near BDC: the lesson's wording of the handbook's remark that the slight upward travel near BDC has little effect on the incoming flow.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "image",
+          "title": "Reading the timing chart",
+          "prompt": "The FAA chart draws one whole cycle, two turns of the crankshaft, as a spiral. Start at the inner dot just before the top of the circle, which is TDC, and go clockwise. Each half turn is one stroke: intake (orange), compression (green), power (red), exhaust (blue).\n\nRead four events, each in degrees from TDC or BDC:\nintake opens 50° before TDC;\nintake closes 30° after BDC;\nexhaust opens 30° before BDC;\nexhaust closes 25° after TDC.\n\nDuration is the angles added. The intake valve is open for 50 + 180 + 30 = 260°. The exhaust valve is open for 30 + 180 + 25 = 235°.\n\nOverlap is the blue arc at the top: 50 + 25 = 75°, with both valves open.\n\nThis is an example. Real values vary from engine to engine.",
+          "url": "./lesson-media/faa-valve-timing-chart.webp",
+          "alt": "Valve timing chart drawn as a spiral of coloured dots for one complete four-stroke cycle: intake in orange starting 50 degrees before top centre where the intake valve opens, compression in green with ignition just before top centre, power in red with the exhaust valve opening 30 degrees before bottom centre, and exhaust in blue ending 25 degrees after top centre where the exhaust valve closes; a blue arc across the top marks the 75 degree valve overlap with both valves open.",
+          "credit": "FAA-H-8083-32B, Figure 1-37",
+          "license": "U.S. Government work",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 47, Figure 1-37 (valve timing chart: start of the cycle 50 degrees BTC with the intake valve opening; intake valve closes 30 degrees ABC; exhaust valve opens 30 degrees BBC; finish of the cycle 25 degrees ATC with the exhaust valve closed; valve overlap 75 degrees, both valves open) and its text: the valve events vary considerably in different engines and the manufacturer's recommendations must be followed. The chart values are an FAA example, not GTSIO-520-H timing; the GTSIO-520 manual searched here gives no valve timing figures. The sums are the lesson's reading of the chart: 180 degrees is one stroke.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The handbook chart is a real timing diagram; reading its four events and adding the angles is the skill this lesson asks for."
+          }
+        },
+        {
+          "type": "web-embed",
+          "title": "Try the chart yourself",
+          "url": "artifact:valve-timing-diagram",
+          "prompt": "Now check the reading on the moving chart. Drag the crank angle through the whole 720°.\n\nFind the four events A to D. At what angle does the overlap begin, and at what angle does it end? During which two strokes does the chart show both valves shut for the whole stroke?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 47, Figure 1-37 (example valve timing chart) and its text: valve events vary considerably in different engines, and the manufacturer's recommendations must be followed. The chart values are an FAA example, not GTSIO-520-H timing; the GTSIO-520 manual searched here gives no valve timing figures. The same interactive appears in Thermodynamic Cycles; here it checks the reading made in the previous step.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "A crank-angle marker over a two-revolution timeline shows valve state and overlap at any angle, so the sums from the chart can be checked."
           }
         },
         {
@@ -447,8 +535,8 @@
         {
           "type": "text",
           "title": "Trace the whole path",
-          "prompt": "Explain the whole path in your own words, starting at the crankshaft gear and ending with the valve closing again. Which parts move, and how fast does the camshaft turn? What does the tappet do about clearance? Which parts would you inspect, and what would you look for? Then take the lesson's quiz.",
-          "note": "Completion step: the learner pulls the lesson together (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 37-42 and 379-384, and the GTSIO-520 overhaul manual, PDF pp. 16-17 and 66-67.",
+          "prompt": "Explain the whole path in your own words, starting at the crankshaft gear and ending with the valve closing again. Which parts move, and how fast does the camshaft turn? Why does a radial use a ring?\n\nThen explain the timing. What do valve lead, lag and overlap mean, and why do they help the engine breathe? What does a hydraulic tappet do about clearance? Which parts would you inspect, and what would you look for?\n\nThen take the lesson's quiz.",
+          "note": "Completion step: the learner pulls the lesson together (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 37 to 42, 47 to 48 and 379 to 384, and the GTSIO-520 overhaul manual, PDF pp. 16 to 17 and 66 to 67.",
           "sourceRefs": [
             "faa-powerplant-2023",
             "gtsio520-overhaul"
@@ -1077,6 +1165,163 @@
       ],
       "correct": 0,
       "rationale": "A spring must push back with at least the serviceable limit at the test height. 70 lb is below 73 lb, so it is not reused. A new inner spring gives 78 to 88 lb at that height."
+    },
+    {
+      "id": "valve-closed-strokes",
+      "lessonId": "valve-operating",
+      "type": "multiple-choice",
+      "question": "During which two strokes are both valves closed?",
+      "hint": "Gas has to be trapped to be squeezed and then burned.",
+      "answers": [
+        "Compression and power",
+        "Intake and exhaust",
+        "Intake and compression",
+        "Power and exhaust"
+      ],
+      "correct": 0,
+      "rationale": "Both valves stay on their seats for the compression stroke and the power stroke, which seals the cylinder. The intake valve is open for the intake stroke and the exhaust valve for the exhaust stroke, and both are open together for a short while in the overlap."
+    },
+    {
+      "id": "valve-lead-lag-terms",
+      "lessonId": "valve-operating",
+      "type": "matching",
+      "question": "Match each timing term to its meaning.",
+      "hint": "Lead is early. Lag is late.",
+      "pairs": [
+        {
+          "left": "Valve lead",
+          "right": "A valve opens before the piston reaches the end of its stroke"
+        },
+        {
+          "left": "Valve lag",
+          "right": "A valve closes after the piston has passed the end of its stroke"
+        },
+        {
+          "left": "Valve overlap",
+          "right": "Both valves are off their seats at once around TDC"
+        },
+        {
+          "left": "Valve duration",
+          "right": "How long a valve is held open, set by the shape of the cam lobe"
+        }
+      ],
+      "rationale": "Lead opens a valve early, lag closes it late, and overlap is the interval around TDC when the intake valve has opened and the exhaust valve has not yet closed. Duration is set by the cam lobe, as the lift is."
+    },
+    {
+      "id": "valve-early-exhaust",
+      "lessonId": "valve-operating",
+      "type": "multiple-choice",
+      "question": "Why does the exhaust valve start to open before BDC, while the cylinder still holds pressure?",
+      "hint": "What is left in the cylinder that can push the gas out?",
+      "answers": [
+        "The pressure left in the cylinder pushes the gas out quickly and frees the cylinder of waste heat",
+        "It lets fresh mixture in sooner",
+        "It raises the compression ratio",
+        "The cam lobe is worn and opens it too early"
+      ],
+      "correct": 0,
+      "rationale": "The valve opens considerably before BDC so that the remaining pressure forces the gas out as soon as possible. That frees the cylinder of waste heat and avoids overheating the cylinder and the piston."
+    },
+    {
+      "id": "valve-late-intake",
+      "lessonId": "valve-operating",
+      "type": "multiple-choice",
+      "question": "Why is the intake valve held open for a while after BDC?",
+      "hint": "Think of gas already moving through the intake pipe.",
+      "answers": [
+        "The incoming charge has momentum and keeps filling the cylinder while the piston starts to rise",
+        "It lets the burned gas escape",
+        "It lowers the compression ratio",
+        "It reduces the valve lift"
+      ],
+      "correct": 0,
+      "rationale": "Near BDC the piston moves very little, so the moving charge keeps flowing in and fills the cylinder more completely. Close it too late and the gas is forced back out through the intake valve."
+    },
+    {
+      "id": "valve-timing-marks",
+      "lessonId": "valve-operating",
+      "type": "multiple-choice",
+      "question": "What is lined up when the camshaft gear is meshed with the crankshaft gear?",
+      "hint": "Each gear carries a mark for this job.",
+      "answers": [
+        "The timing marks on the two gears",
+        "The spark plug gaps",
+        "The oil holes in the pushrods",
+        "The fins of the cylinders"
+      ],
+      "correct": 0,
+      "rationale": "Meshing the gears with their timing marks aligned sets the camshaft to the crankshaft, so each lobe lifts its valve at the right crank angle."
+    },
+    {
+      "id": "valve-intake-open",
+      "lessonId": "valve-operating",
+      "type": "numeric",
+      "question": "A valve timing chart shows the intake valve opening 20° before TDC and closing 60° after BDC. For how many degrees of crank angle is it open?",
+      "hint": "Add the angle before TDC, the 180° of the intake stroke and the angle after BDC.",
+      "unit": "degrees",
+      "correctValue": 260,
+      "tolerance": 0,
+      "rationale": "The valve is open for 20° before TDC, then through the whole 180° intake stroke, then 60° after BDC: 20 + 180 + 60 = 260°."
+    },
+    {
+      "id": "valve-overlap-angle",
+      "lessonId": "valve-operating",
+      "type": "numeric",
+      "question": "The intake valve opens 35° before TDC and the exhaust valve closes 20° after TDC. How many degrees of valve overlap is that?",
+      "hint": "Overlap runs from the intake valve opening to the exhaust valve closing, across TDC.",
+      "unit": "degrees",
+      "correctValue": 55,
+      "tolerance": 0,
+      "rationale": "Both valves are open from 35° before TDC to 20° after it: 35 + 20 = 55°."
+    },
+    {
+      "id": "valve-ring-speed",
+      "lessonId": "valve-operating",
+      "type": "numeric",
+      "question": "A radial engine's cam ring has four lobes on each track. The crankshaft turns at 2,000 rpm. How fast does the ring turn?",
+      "hint": "Each valve opens once in two crankshaft turns, and each ring lobe opens it once per ring turn. The ring speed is the crankshaft speed divided by twice the number of lobes.",
+      "unit": "rpm",
+      "correctValue": 250,
+      "tolerance": 0,
+      "rationale": "Ring speed = crankshaft speed ÷ (2 × lobes) = 2,000 ÷ (2 × 4) = 250 rpm, one eighth of crankshaft speed, as in the handbook table."
+    },
+    {
+      "id": "valve-ring-why",
+      "lessonId": "valve-operating",
+      "type": "multiple-choice",
+      "question": "Why does a radial engine use a cam ring and not a straight camshaft?",
+      "hint": "Think about where the cylinders of a radial are.",
+      "answers": [
+        "The cylinders spread around the crankshaft, and a ring around the crankshaft is the same distance from every cylinder",
+        "A ring makes the valves open twice as often",
+        "A radial engine has no valves to operate",
+        "A ring needs no gear to drive it"
+      ],
+      "correct": 0,
+      "rationale": "The cylinders of a radial are arranged around the crankshaft, so a ring concentric with the crankshaft can work the tappet of every cylinder through its pushrod. The ring is driven by the crankshaft through gearing, at a much lower speed."
+    },
+    {
+      "id": "valve-click-pushrod-housing",
+      "lessonId": "valve-operating",
+      "type": "model-click",
+      "question": "Tap a pushrod housing.",
+      "hint": "It is the tube that carries each pushrod from the crankcase up to the cylinder head.",
+      "modelId": "cylinder",
+      "correctNodeId": "IntakePushrodHousing",
+      "alsoAccept": [
+        "ExhaustPushrodHousing"
+      ],
+      "rationale": "The pushrod runs inside its housing, a tube between the crankcase and the cylinder head. The housing also returns oil from the rocker arm to the crankcase."
+    },
+    {
+      "id": "valve-click-camshaft",
+      "lessonId": "valve-operating",
+      "type": "model-click",
+      "question": "Tap the camshaft and its drive.",
+      "hint": "It lies inside the crankcase and is turned by a gear from the crankshaft.",
+      "modelId": "gtsio520-h-v5-teaching-engine",
+      "correctNodeId": "camshaft-and-timing-drive",
+      "rationale": "The camshaft lies in the crankcase, driven at half crankshaft speed by a gear that meshes with the crankshaft gear. Its lobes lift the tappets."
     },
     {
       "id": "accessory-mag-path",
