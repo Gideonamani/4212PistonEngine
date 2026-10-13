@@ -134,9 +134,11 @@ test.describe('Factors Affecting Power: air available', () => {
     await expect(page.getByRole('heading', { name: 'Air available' })).toBeVisible();
     const bar = page.getByRole('img', { name: /Air available to burn: [\d.]+ percent/ });
     await expect(bar).toHaveAccessibleName('Air available to burn: 100 percent of a standard sea-level day');
+    await expect(page.getByText('Density altitude: about 0 ft.')).toBeVisible();
 
     await page.getByRole('button', { name: 'Hot, humid day at sea level' }).click();
     await expect(bar).toHaveAccessibleName('Air available to burn: 89.4 percent of a standard sea-level day');
+    await expect(page.getByText(/Density altitude: about [1-9][\d,]* ft\./)).toBeVisible();
 
     await page.getByRole('button', { name: 'Standard day, sea level' }).click();
     await page.getByLabel(/^Altitude/).fill('5000');

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { airAvailable, MAX_ALTITUDE_FT, saturationVapourPressurePa, SEA_LEVEL, standardAtmosphere } from '../src/components/airDensity.mjs';
+import { airAvailable, densityAltitudeFt, MAX_ALTITUDE_FT, saturationVapourPressurePa, SEA_LEVEL, standardAtmosphere } from '../src/components/airDensity.mjs';
 
 const near = (actual, expected, tolerance, what) => assert.ok(Math.abs(actual - expected) <= tolerance, `${what}: ${actual} is not within ${tolerance} of ${expected}`);
 
@@ -50,4 +50,17 @@ test('altitude outside the model is refused, and conditions never give negative 
   assert.throws(() => standardAtmosphere(MAX_ALTITUDE_FT + 1), RangeError);
   for (const altitudeFt of [0, 12000, MAX_ALTITUDE_FT]) for (const humidity of [0, 100]) assert.ok(airAvailable({ altitudeFt, temperatureOffsetC: 30, relativeHumidityPct: humidity }).airAvailable > 0);
   assert.equal(SEA_LEVEL.pressurePa, 101325);
+});
+
+test('the density altitude is the altitude on a standard day, and heat and humidity raise it', () => {
+  // On a standard dry day the density altitude is the altitude itself.
+  for (const altitudeFt of [0, 2500, 5000, 10000]) near(densityAltitudeFt({ altitudeFt }), altitudeFt, 1, `standard day at ${altitudeFt} ft`);
+  // A hot day: the familiar rule of thumb is about 120 ft of density altitude for each degree above standard.
+  near(densityAltitudeFt({ altitudeFt: 5000, temperatureOffsetC: 20 }) - 5000, 120 * 20, 300, 'hot day at 5,000 ft');
+  assert.ok(densityAltitudeFt({ altitudeFt: 0, temperatureOffsetC: -15 }) < 0, 'a cold day at sea level is below sea-level density altitude');
+  const dry = densityAltitudeFt({ altitudeFt: 0, temperatureOffsetC: 20 });
+  assert.ok(densityAltitudeFt({ altitudeFt: 0, temperatureOffsetC: 20, relativeHumidityPct: 80 }) > dry, 'humidity raises it');
+  // The density altitude gives back the same air available as the real conditions.
+  const conditions = { altitudeFt: 4000, temperatureOffsetC: 15, relativeHumidityPct: 50 };
+  near(airAvailable({ altitudeFt: densityAltitudeFt(conditions) }).airAvailable, airAvailable(conditions).airAvailable, 1e-4, 'same density');
 });

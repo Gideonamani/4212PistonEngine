@@ -12,7 +12,7 @@
       "tier": 1,
       "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
       "path": "Notes/amt_powerplant_handbook 2023.pdf",
-      "applicability": "Primary source for valve construction, the valve-operating mechanism, hydraulic tappets, valve clearance and valve inspection. PDF page locators are used in step notes. Used in lesson 12 for: work and horsepower, piston displacement, compression ratio and the PLANK formula (PDF pp. 49 to 52); brake, friction and thrust horsepower and efficiencies (PDF pp. 52 to 56); specific fuel consumption (PDF p. 23); and the thermal efficiency example (PDF pp. 55 to 56)."
+      "applicability": "Primary source for valve construction, the valve-operating mechanism, hydraulic tappets, valve clearance and valve inspection. PDF page locators are used in step notes. Used in lesson 13 for: the air-fuel mixture, best power and best economy mixtures and the effect of altitude on the carburettor mixture (PDF pp. 84 to 86 and 401); manifold pressure, rpm and engine air consumption (PDF pp. 50 and 403); the harm of excess engine heat and of running too cold (PDF pp. 278 to 279); and the glossary entry for density altitude (PDF p. 467)."
     },
     {
       "id": "easa-module16",
@@ -928,7 +928,7 @@
       ],
       "listed": true,
       "scheduledDay": 5,
-      "completionCriteria": "Sort the causes of a power loss into natural and mechanical factors, explain the effect of altitude, temperature and humidity on the oxygen each intake stroke draws in, and say what early or late ignition, a fouled plug, an induction or exhaust leak and a compression leak each do to the engine.",
+      "completionCriteria": "Sort the causes of a power loss into natural and mechanical factors; explain the effect of altitude, temperature and humidity on the oxygen each intake stroke draws in, and say what density altitude is and what a hot, high airfield does to the power; explain mixture strength and why the mixture is leaned as the aircraft climbs; explain what manifold pressure and rpm each do to the power, and how a hot or a cold engine and a boosted induction change it; and say what early or late ignition, a fouled plug, an induction or exhaust leak and a compression leak each do to the engine.",
       "steps": [
         {
           "type": "text",
@@ -1002,6 +1002,77 @@
             "mode": "none",
             "status": "not-needed",
             "rationale": "The effect and its size are stated once; the interactive shows how it combines with heat."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Density altitude",
+          "prompt": "Pressure tells you how high you are. The engine needs density, and density also depends on temperature and humidity. Density altitude combines them: it is the altitude, in a standard atmosphere, at which the air has the same density as the air you are in.\n\nOn a standard day the density altitude is the altitude itself. A hot day raises it by roughly 120 ft for each degree Celsius above standard. A humid day raises it a little more.\n\nTake an airfield at 5,000 ft on a day 20 °C above standard. Its density altitude is about 7,300 ft. The engine breathes about 80 percent of the air of a standard sea-level day, so it loses about a fifth of its power.\n\nThat is 'hot and high': the power falls once for the height and again for the heat. The explorer now shows it.",
+          "note": "Density altitude: FAA-H-8083-32B (2023), glossary, PDF p. 467 (the altitude in standard air at which the density is the same as that of the existing air). That a hot day raises it by roughly 120 ft per degree Celsius is a common rule of thumb; the interactive's own model (standard atmosphere and ideal-gas law) gives about 116 ft, and an airfield at 5,000 ft on a day 20 degrees above standard comes out at about 7,300 ft and 80 percent air available. The 3 percent per 1,000 ft loss is the course rule of thumb used in Altitude and pressure. The density altitude readout in the interactive was added with this lesson.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Mixture strength",
+          "prompt": "The mixture ratio is the proportion of fuel to air by weight. Only about a fifth of the air is oxygen, and the fuel burns in that oxygen, so the proportion matters a great deal.\n\nThe chemically perfect mixture, with just enough air to burn all the fuel, is about 0.067 lb of fuel to 1 lb of air. It burns hottest.\n\nBest power comes from a somewhat richer mixture, from about 0.0725 to 0.080. The extra fuel speeds the burn, adds working mass and cools the cylinder.\n\nBest economy comes from a leaner one, about 0.060 to 0.065, which gives the power for the least fuel.\n\nMixtures far from these still burn, but beyond roughly 8 to 1 or 16 to 1 air to fuel the engine stops. Too lean at high power and the cylinder overheats and can backfire.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 85 to 86 (the mixture ratio is the proportion of fuel and air by weight; the stoichiometric mixture is 0.067 lb of fuel to 1 lb of air, 15:1, and produces the highest combustion temperature; from 0.0725 to 0.080 the mixtures are best power; best economy is about 0.060 to 0.065 where manual leaning is practised; mixtures as rich as 8:1 and as lean as 16:1 will burn; the engine's leanest cylinder may backfire if the mixture is too lean; cylinder-head temperature would exceed its limit and detonation would occur on a lean mixture at high power). The handbook calls the decimal the air-fuel ratio although it is pounds of fuel per pound of air; this step calls it the proportion of fuel to air.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Mixture and altitude",
+          "prompt": "A carburettor meters fuel in proportion to the air flowing through it. As altitude increases the air gets thinner, and thin air flowing through the carburettor throat tends to make the mixture richer than at the ground.\n\nSo a mixture control is provided to lean the mixture and compensate for this natural enrichment. On some aircraft the pilot leans it by hand, and on others the carburettor leans the mixture automatically at altitude.\n\nIf the mixture is not leaned the engine runs richer than it needs to, which wastes fuel and, once the mixture is richer than best power, loses power. If it is leaned too far for the power in use, the cylinders run hot.\n\nAt takeoff power the mixture must be rich enough to keep the hottest cylinder cool, and it is leaned for cruise.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 84 (less air tends to make carburettors run richer at altitude than at ground level, because of the decreased density of the airflow through the carburettor throat for a given volume of air; a mixture control is provided to lean the mixture and compensate for this natural enrichment; manual and automatic systems), PDF pp. 85 to 86 (above best power the power is lost; fuel must be added in the power range to keep cylinder-head temperatures safe) and PDF p. 401 (at takeoff power the mixture must be rich enough to supply sufficient fuel to keep the hottest cylinder cool).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Manifold pressure and rpm",
+          "prompt": "The cylinders and any supercharger form an air pump, and the power developed varies directly with the rate at which the engine consumes air. So manifold pressure and rpm together measure how much air the engine is using.\n\nManifold pressure is the average absolute pressure of the charge in the intake manifold, in inches of mercury. It depends on the throttle setting and on any supercharging. At a given rpm, a higher manifold pressure puts more air into each cylinder and gives more power.\n\nRpm sets how often the cylinders draw in air. At a given manifold pressure, a higher rpm means more air each minute and more power, up to the engine's limits.\n\nA restriction in the induction, such as a clogged filter or a throttle that does not open fully, lowers the manifold pressure and so the power.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 403 (the cylinders of an engine, with any type of supercharging, form an air pump; the power developed varies directly with the rate that air can be consumed; ignoring humidity and exhaust back pressure the manifold pressure gauge and the tachometer provide a measure of engine air consumption; for a given rpm any change in power input is reflected by a corresponding change in manifold pressure) and PDF p. 50 (manifold pressure is the average absolute pressure of the charge in the intake manifold, in inches of mercury; it depends on engine speed, the throttle setting, and the degree of supercharging). That a restriction lowers the manifold pressure and so the power is the lesson's reasoning from these.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Engine temperature and cooling",
+          "prompt": "An engine has a best operating temperature. Run too hot, and the charge is preheated and can burn before the planned moment, which causes detonation. Excess heat also weakens the parts and impairs lubrication, and a hot charge is thinner, so each stroke draws in less air.\n\nRun too cold, and fuel does not evaporate and spread well and the oil does not circulate well, so the engine runs badly.\n\nHow well the engine is cooled changes its power. Baffles that leak, fins broken or clogged, and cowl flaps closed in a climb all raise the temperature. The mixture does too: lean at high power runs hot, and rich runs cool.\n\nThe cylinder head temperature gauge shows the result, so it is read as part of the power setting.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 278 (three reasons why excessive heat is undesirable: preheating of the charge and detonation, weakening of parts, impaired lubrication), PDF p. 279 (an engine can run too cold; fuel evaporation and distribution and oil circulation depend on the best operating temperature; cowl flaps) and PDF p. 283 (baffles and deflectors direct the cooling air); the cylinder-head temperature gauge and the mixture's cooling effect: PDF pp. 85, 86 and 391 to 392. That a hotter charge is thinner follows from the Temperature step of this lesson.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -1127,8 +1198,23 @@
         },
         {
           "type": "text",
+          "title": "Boost makes up for altitude",
+          "prompt": "A naturally aspirated engine can only take in what the outside pressure pushes in, so its power falls as the pressure falls. A supercharger or turbocharger puts the pressure back.\n\nA normalizing system holds the sea-level manifold pressure up to its critical altitude. Above that altitude the waste gate is fully closed and the pressure falls as it would without the turbocharger. A ground-boosted system holds more pressure than the outside air even at sea level.\n\nFor example, an engine allowed 30 inches of mercury of manifold pressure meets only about 20.6 inches outside at 10,000 ft. A turbocharger that makes up the difference holds 30 inches there, and the engine keeps its power.\n\nBoost has a cost. Compressing air heats it, so it may need cooling, and the extra pressure raises the risk of detonation.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 131 to 135 and the Induction and Exhaust lesson (a supercharger raises the pressure of the charge; a normalizing turbocharger makes up the pressure lost with altitude up to its critical altitude; a ground-boosted system raises it above ambient; compression heats the air, and an intercooler or aftercooler takes out the heat; detonation risk, PDF p. 50). The outside pressure of 20.58 inches of mercury at 10,000 ft is the standard atmosphere (the interactive's model). The 30 inches is an example, not an engine limit.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
           "title": "Sort the causes",
-          "prompt": "A naturally aspirated engine that is delivering less power than it should: take each of these in turn and decide whether nature or the engine is the cause, what you would check first, and why. High altitude on a hot day. A rough run on one magneto at the check. A big rpm drop when the carburettor heat is applied. A cylinder with air hissing from its exhaust pipe during a compression test. Then take the lesson's quiz.",
+          "prompt": "A naturally aspirated engine is delivering less power than it should. For each of these, say whether nature or the engine is the cause, what you would check first, and why, and predict whether the power goes up or down: high altitude on a hot day; a mixture that is not leaned on a climb; a low manifold pressure at the same rpm; a cylinder head that runs too hot; a rough run on one magneto at the check; a big rpm drop when the carburettor heat is applied; a cylinder with air hissing from its exhaust pipe during a compression test.\n\nThen take the lesson's quiz.",
           "note": "Completion step: the learner applies the factors to cases (opening prompt, action, feedback, completion evidence) from EASA Module 16, PDF pp. 37-41.",
           "sourceRefs": [
             "easa-module16"
@@ -1555,6 +1641,144 @@
       ],
       "correct": 0,
       "rationale": "A zero-lash lifter that leaks cannot hold the correct valve lash, so the valve opens less far and for less time than the cam intends, and the engine breathes less well."
+    },
+    {
+      "id": "factors-density-altitude",
+      "lessonId": "factors-affecting-power",
+      "type": "multiple-choice",
+      "question": "What is density altitude?",
+      "hint": "It is not the height above the ground.",
+      "answers": [
+        "The altitude in a standard atmosphere at which the air has the same density as the air you are in",
+        "The height of the aircraft above the ground",
+        "The altitude shown on the altimeter when it is set to 29.92",
+        "The altitude at which the air temperature is standard"
+      ],
+      "correct": 0,
+      "rationale": "Density altitude combines pressure, temperature and humidity into one number: the height at which a standard atmosphere would have the same density. The engine, the propeller and the wings respond to that density."
+    },
+    {
+      "id": "factors-hot-high",
+      "lessonId": "factors-affecting-power",
+      "type": "multiple-choice",
+      "question": "An airfield is 5,000 ft above sea level and the day is much hotter than standard. What does a naturally aspirated engine feel?",
+      "hint": "Heat raises density altitude.",
+      "answers": [
+        "A density altitude well above 5,000 ft, so less power than at 5,000 ft on a standard day",
+        "A density altitude of exactly 5,000 ft",
+        "A density altitude below 5,000 ft, so more power",
+        "No change, because only pressure matters"
+      ],
+      "correct": 0,
+      "rationale": "Hot air is thinner, so the density altitude is higher than the airfield's height. The engine breathes less oxygen with each stroke and makes less power: the power falls once for the height and again for the heat."
+    },
+    {
+      "id": "factors-da-power",
+      "lessonId": "factors-affecting-power",
+      "type": "numeric",
+      "question": "The density altitude at an airfield is 6,000 ft. Using the course rule of thumb of 3 percent of the sea-level power lost for each 1,000 ft, what percentage of its sea-level power can a naturally aspirated engine make there?",
+      "hint": "Six thousand feet is six lots of 3 percent.",
+      "unit": "percent",
+      "correctValue": 82,
+      "tolerance": 0,
+      "rationale": "Six lots of 3 percent is 18 percent lost, so the engine makes 82 percent of its sea-level power. It is a rule of thumb: real engines differ."
+    },
+    {
+      "id": "factors-mixture-terms",
+      "lessonId": "factors-affecting-power",
+      "type": "matching",
+      "question": "Match each mixture to its description.",
+      "hint": "Think about which one burns hottest, which gives most power and which saves fuel.",
+      "pairs": [
+        {
+          "left": "Chemically perfect (stoichiometric)",
+          "right": "Just enough air to burn all the fuel, about 0.067 lb of fuel to 1 lb of air; it burns hottest"
+        },
+        {
+          "left": "Best power",
+          "right": "A richer mixture, about 0.0725 to 0.080, giving the most power for the airflow"
+        },
+        {
+          "left": "Best economy",
+          "right": "A leaner mixture, about 0.060 to 0.065, giving the power for the least fuel"
+        },
+        {
+          "left": "Too lean at high power",
+          "right": "The cylinder overheats and the engine can detonate or backfire"
+        }
+      ],
+      "rationale": "The perfect mixture releases the most heat. A slightly richer mixture gives the most power and runs cooler; a slightly leaner one saves fuel; and a lean mixture at high power is dangerous to the engine."
+    },
+    {
+      "id": "factors-altitude-mixture",
+      "lessonId": "factors-affecting-power",
+      "type": "multiple-choice",
+      "question": "Why must the mixture be leaned as an aircraft with a carburettor climbs?",
+      "hint": "Think about what happens to the air flowing through the carburettor throat.",
+      "answers": [
+        "Thinner air tends to make the mixture richer, so the mixture control leans it to compensate",
+        "The fuel becomes thicker at altitude",
+        "The engine needs less fuel because it is cooler",
+        "The throttle opens further at altitude"
+      ],
+      "correct": 0,
+      "rationale": "Less dense air flowing through the carburettor throat makes the carburettor run richer at altitude than at ground level. The mixture control compensates for this natural enrichment."
+    },
+    {
+      "id": "factors-air-consumption",
+      "lessonId": "factors-affecting-power",
+      "type": "multiple-choice",
+      "question": "Ignoring humidity and exhaust back pressure, what do the manifold pressure gauge and the tachometer together measure?",
+      "hint": "The cylinders and supercharger form an air pump.",
+      "answers": [
+        "How much air the engine is consuming, which is a measure of its power input",
+        "The temperature of the cylinders",
+        "The fuel flow to the engine",
+        "The pressure of the engine oil"
+      ],
+      "correct": 0,
+      "rationale": "The power developed in the cylinders varies directly with the rate at which air can be consumed, so manifold pressure and rpm together measure the engine's air consumption and hence its power input."
+    },
+    {
+      "id": "factors-mp-effect",
+      "lessonId": "factors-affecting-power",
+      "type": "multiple-choice",
+      "question": "At a constant rpm, what does a higher manifold pressure do?",
+      "hint": "Think about how much air each cylinder takes in.",
+      "answers": [
+        "More air goes into each cylinder, so the power rises",
+        "Less air goes into each cylinder, so the power falls",
+        "The cylinders fire more often",
+        "The compression ratio rises"
+      ],
+      "correct": 0,
+      "rationale": "Manifold pressure is the pressure of the charge in the intake manifold. At the same rpm a higher pressure means a denser charge in each cylinder, more fuel can burn, and the power rises."
+    },
+    {
+      "id": "factors-too-hot",
+      "lessonId": "factors-affecting-power",
+      "type": "multiple-choice",
+      "question": "Why does a cylinder that runs too hot risk damage and lose power?",
+      "hint": "Think about the charge being heated before the spark.",
+      "answers": [
+        "The charge is preheated and can burn before the planned moment, causing detonation, and the hot parts and oil are harmed",
+        "The cylinder gets more oxygen when it is hot",
+        "The spark plug works better when hot",
+        "The valves open earlier"
+      ],
+      "correct": 0,
+      "rationale": "Excess heat preheats the charge so that it burns prematurely (detonation), weakens the engine's parts and impairs lubrication. A hot charge is also thinner, so each stroke takes in less air."
+    },
+    {
+      "id": "factors-boost-gain",
+      "lessonId": "factors-affecting-power",
+      "type": "numeric",
+      "question": "At 10,000 ft the outside pressure is about 20.6 inches of mercury. A turbocharger holds 30 inches of manifold pressure there. By how many inches of mercury does it raise the pressure?",
+      "hint": "Subtract the outside pressure from the manifold pressure.",
+      "unit": "inHg",
+      "correctValue": 9.4,
+      "tolerance": 0.1,
+      "rationale": "30 - 20.6 = 9.4 inches of mercury. Without the turbocharger the engine would breathe the outside pressure; with it, the engine keeps the power it has at the higher pressure."
     },
     {
       "id": "calc-total-displacement",

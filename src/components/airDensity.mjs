@@ -45,3 +45,27 @@ export function airAvailable({ altitudeFt, temperatureOffsetC = 0, relativeHumid
     vapourFraction: vapourPa / standard.pressurePa,
   };
 }
+
+/** The standard-atmosphere density as a fraction of the sea-level value, at any altitude from well below sea level up to the top of the troposphere. */
+function standardDensityRatio(altitudeFt) {
+  const temperatureK = SEA_LEVEL.temperatureK - LAPSE_K_PER_M * altitudeFt * FT_TO_M;
+  const pressurePa = SEA_LEVEL.pressurePa * (temperatureK / SEA_LEVEL.temperatureK) ** 5.25588;
+  return pressurePa / (GAS_CONSTANT_DRY * temperatureK) / SEA_LEVEL.densityKgM3;
+}
+
+/**
+ * The density altitude: the altitude in the standard atmosphere at which the air has the same density as the air the engine is breathing.
+ * It is found from the same dry-air density as `airAvailable`, so heat and humidity raise it. It falls below zero on a cold day at sea level.
+ * @param {{ altitudeFt: number, temperatureOffsetC?: number, relativeHumidityPct?: number }} conditions
+ * @returns {number} feet
+ */
+export function densityAltitudeFt(conditions) {
+  const target = airAvailable(conditions).airAvailable;
+  let low = -5000;
+  let high = MAX_ALTITUDE_FT;
+  for (let step = 0; step < 60; step += 1) {
+    const middle = (low + high) / 2;
+    if (standardDensityRatio(middle) > target) low = middle; else high = middle;
+  }
+  return (low + high) / 2;
+}
