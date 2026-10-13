@@ -110,9 +110,16 @@ export type ViewerFeatures = {
     items: ModelHotspot[];
     focus: (id: string) => void;
   };
-  /** Change how the current spotlight is drawn, until the next step sets its own. Does nothing while no spotlight is active. */
+  /** The spotlight: parts drawn apart from the rest, as one of the three modes says. */
   focus?: {
+    /** Change how the current spotlight is drawn, until the next step sets its own. Does nothing while no spotlight is active. */
     setMode: (mode: FocusMode) => void;
+    /**
+     * Explore: spotlight these parts (an empty list clears the spotlight), drawn as `mode`. Unlike a lesson step's focusParts it leaves the
+     * selection where it is, so the learner can keep choosing parts while the spotlight follows, and it moves the camera only to bring an
+     * isolated part into frame.
+     */
+    set: (ids: string[], mode: FocusMode) => void;
   };
 };
 

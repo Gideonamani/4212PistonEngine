@@ -164,7 +164,20 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   return {
     snapshot: () => ({ ...snapshot, ...section.snapshot() }), update,
     features: {
-      focus: { setMode(mode) { focusMode = focusModeOrDefault(mode); applyAppearance(); onChange(); } },
+      focus: {
+        setMode(mode) { focusMode = focusModeOrDefault(mode); applyAppearance(); onChange(); },
+        set(ids, mode) {
+          const unknown = ids.filter(id => !components.some((part: any) => part.id === id));
+          if (unknown.length) throw Error(`Unknown component id in the spotlight: ${unknown.join(', ')}.`);
+          focus.clear(); for (const id of ids) focus.add(id);
+          focusMode = focusModeOrDefault(mode);
+          isolation = undefined; snapshot.isolated = false;
+          applyAppearance();
+          // On its own, a small part would be a speck in the middle of the screen.
+          if (focusMode === 'isolate' && ids.length) fitVisible();
+          onChange();
+        },
+      },
       ...(paths.length ? { powerPaths: { items: paths.map(path => ({ id: path.id, label: path.label })), select(id: string) {
         powerPath = paths.find(path => path.id === id); snapshot.powerPathId = powerPath?.id || '';
         snapshot.powerPathNote = powerPath ? `${powerPath.note} Output direction: ${powerPath.direction}. ${powerPath.ratio === null ? 'Speed ratio unverified.' : `Drive / crank speed = ${powerPath.ratio}:1; at 1000 crank RPM: ${powerPath.ratio * 1000} drive RPM (${powerPath.id === 'starter' ? 'cranking only' : 'speed example'}).`} ${contract.viewpoint} Dashed lines are a conceptual path, not physical shaft geometry.` : '';

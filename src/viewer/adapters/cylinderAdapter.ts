@@ -298,6 +298,26 @@ export async function createCylinderSession(definition: ModelDefinition, context
           applyAppearance();
           onChange();
         },
+        set(ids, mode) {
+          const unknown = ids.filter((id) => !catalogueById.has(id));
+          if (unknown.length) throw Error(`Unknown component id in the spotlight: ${unknown.join(', ')}.`);
+          focusSet.clear();
+          for (const id of ids) focusSet.add(id);
+          focusMode = focusModeOrDefault(mode);
+          isolated = false;
+          snapshot.isolated = false;
+          applyAppearance();
+          // On its own, a small part would be a speck in the middle of the screen.
+          const box = new THREE.Box3();
+          if (focusMode === 'isolate') for (const mesh of meshes) if (focusSet.has(mesh.userData.partId)) box.expandByObject(mesh);
+          if (!box.isEmpty()) {
+            const proxy = new THREE.Mesh(new THREE.BoxGeometry(...box.getSize(new THREE.Vector3()).toArray()));
+            proxy.position.copy(box.getCenter(new THREE.Vector3()));
+            runtime.fit(proxy);
+            proxy.geometry.dispose();
+          }
+          onChange();
+        },
       },
       components: {
         items: parts,

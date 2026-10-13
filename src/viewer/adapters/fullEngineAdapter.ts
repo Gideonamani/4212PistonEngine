@@ -243,6 +243,27 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
           applyAppearance();
           onChange();
         },
+        set(ids, mode) {
+          const unknown = ids.filter((id) => !componentsById.has(id));
+          if (unknown.length) throw Error(`Unknown component id in the spotlight: ${unknown.join(', ')}.`);
+          focusComponents.splice(0, focusComponents.length, ...ids.map((id) => componentsById.get(id)));
+          focusMode = focusModeOrDefault(mode);
+          isolatedId = '';
+          isolatedGroupIds = [];
+          snapshot.isolated = false;
+          applyVisibility();
+          applyAppearance();
+          // On its own, a small part would be a speck in the middle of the screen.
+          const box = new THREE.Box3();
+          if (focusMode === 'isolate') for (const item of items) if (isFocused(item)) box.expandByObject(item.mesh);
+          if (!box.isEmpty()) {
+            const proxy = new THREE.Mesh(new THREE.BoxGeometry(...box.getSize(new THREE.Vector3()).toArray()));
+            proxy.position.copy(box.getCenter(new THREE.Vector3()));
+            runtime.fit(proxy);
+            proxy.geometry.dispose();
+          }
+          onChange();
+        },
       },
       components: {
         items: components,
