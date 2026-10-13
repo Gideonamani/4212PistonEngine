@@ -116,9 +116,9 @@ The reworked lessons follow the sources. Each affected step says so in its note,
 
 The FAA handbook also disagrees with itself on how much of the fuel's heat becomes power: about one-fourth in the cooling chapter (PDF p. 278), about 34 percent in the power chapter (PDF p. 56). Lesson 6 says "roughly a quarter to a third" and cites both pages.
 
-## Progress: lessons 8 to 16 reworked (13 October 2026)
+## Progress: lessons 8 to 17 reworked (13 October 2026)
 
-Lessons 8 to 16 have been reworked in the same way, one commit each. Lesson 9 now comes under the same step and check rules as the rest, so its exemption in the syllabus test is gone. Every outcome of each lesson now has a step that teaches it, and each lesson stays marked as awaiting the instructor's review.
+Lessons 8 to 17 have been reworked in the same way, one commit each. Lesson 9 now comes under the same step and check rules as the rest, so its exemption in the syllabus test is gone. Every outcome of each lesson now has a step that teaches it, and each lesson stays marked as awaiting the instructor's review.
 
 | Lesson | Steps before → after | Checks before → after | What changed |
 |---|---|---|---|
@@ -131,12 +131,13 @@ Lessons 8 to 16 have been reworked in the same way, one commit each. Lesson 9 no
 | 14 Engine Requirements | 11 → 15 | 10 → 16 | Frontal area, cooling, vibration, maintainability, simplicity, redundancy, efficiency, jobs weighed differently, an evaluation exercise |
 | 15 Operation Malfunctions | 13 → 18 | 11 → 18 | Normal against abnormal, rich and lean signs, overheating, lubrication problems, a diagnostic sequence |
 | 16 Maintenance and Servicing | 15 → 26 | 14 → 26 | Why and who, the maintenance words (Tanzanian definitions), approved data, limits, the outside inspection and defect words, oil and filters, spark plugs, fluids, the record |
+| 17 Light Sport Aircraft | 12 → 18 | 12 → 21 | Who flies them and why, why some engines turn so fast, engines side by side; the regulatory outcomes now rest on the Tanzanian rules (certificate category, restricted certificate for microlight and amateur-built aircraft, who may maintain, licence privileges) with the FAA's US privileges kept as an example |
 
 Three interactives were built for the lessons (the gear explorer, the energy chain, and a density altitude readout in the air-density explorer). Their calculations have unit tests, and each has a browser test.
 
 ### The Tanzanian rules
 
-Lesson 16 and the maintenance words in lesson 3 now cite the Tanzanian Civil Aviation (Airworthiness) Regulations, revised edition 2026, read from the TCAA website (regulations 2, 21, 22, 26, 29, 30, 41 and 42). The TCAA states that its published copy is not authoritative; the Government Printer's version is. The same website lists the Approved Maintenance Organisation, Personnel Licensing and General Aviation operating regulations for lessons 17 and 18. No regulation for light-sport or recreational aircraft was found by title on the regulations list; the advisory circulars and the rules and orders pages still have to be searched before lesson 17 says what Tanzania requires.
+Lessons 16 and 17 and the maintenance words in lesson 3 now cite the Tanzanian Civil Aviation (Airworthiness) Regulations, revised edition 2026, read from the TCAA website (regulations 2, 21, 22, 26, 29, 30, 41 and 42). The TCAA states that its published copy is not authoritative; the Government Printer's version is. The same website lists the Approved Maintenance Organisation, Personnel Licensing and General Aviation operating regulations for lessons 17 and 18. No regulation for light-sport or recreational aircraft was found by title on the regulations list, and none in the airworthiness advisory circulars, general advisory circulars and rules pages read (page 1 of each list; page 2 of the two circular lists was not read). Lesson 17 therefore rests on regulation 16 of the Airworthiness Regulations (a restricted certificate for microlight, experimental amateur-built and kit-built aircraft) and says so in its note; please confirm whether TCAA has a current circular on light-sport or recreational aircraft.
 
 ### More places where the course slides disagree with the sources
 
