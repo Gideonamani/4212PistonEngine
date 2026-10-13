@@ -116,8 +116,38 @@ The reworked lessons follow the sources. Each affected step says so in its note,
 
 The FAA handbook also disagrees with itself on how much of the fuel's heat becomes power: about one-fourth in the cooling chapter (PDF p. 278), about 34 percent in the power chapter (PDF p. 56). Lesson 6 says "roughly a quarter to a third" and cites both pages.
 
+## Progress: lessons 8 to 16 reworked (13 October 2026)
+
+Lessons 8 to 16 have been reworked in the same way, one commit each. Lesson 9 now comes under the same step and check rules as the rest, so its exemption in the syllabus test is gone. Every outcome of each lesson now has a step that teaches it, and each lesson stays marked as awaiting the instructor's review.
+
+| Lesson | Steps before → after | Checks before → after | What changed |
+|---|---|---|---|
+| 08 Valve Operating | 19 → 24 | 11 → 22 | Valve lead, lag and overlap explained here; the FAA timing chart read degree by degree; why a radial needs a cam ring (and why it turns at 1 / (2 × lobes) of crankshaft speed) |
+| 09 Accessories and Drives | 16 → 25 | 9 → 20 | Rewritten to explain before it exercises: why accessories, the accessory section, spur and bevel gears, a gear explorer (new interactive), reduction gearing, wet and dry sumps, what a drive failure does |
+| 10 Power Generation | 11 → 21 | 11 → 27 | The energy chain (new walk-through interactive with the handbook's heat split), force, torque and power, shaft power to thrust, power kept for accessories, the whole firing-order group |
+| 11 Induction and Exhaust | 18 → 24 | 11 → 18 | Why air mass sets power, sharing the air, the exhaust system's job, the opposed-engine exhaust, back pressure, exhaust and induction together |
+| 12 Performance Calculations | 14 → 25 | 14 → 25 | Watts and kilowatts, unit conversion, specific fuel consumption, fuel and efficiency calculations, checking answers; the leading-particulars steps moved in from lesson 14 |
+| 13 Factors Affecting Power | 13 → 19 | 10 → 19 | Density altitude (also shown in the air-available explorer), mixture strength and altitude, manifold pressure and rpm, engine temperature, boost against altitude |
+| 14 Engine Requirements | 11 → 15 | 10 → 16 | Frontal area, cooling, vibration, maintainability, simplicity, redundancy, efficiency, jobs weighed differently, an evaluation exercise |
+| 15 Operation Malfunctions | 13 → 18 | 11 → 18 | Normal against abnormal, rich and lean signs, overheating, lubrication problems, a diagnostic sequence |
+| 16 Maintenance and Servicing | 15 → 26 | 14 → 26 | Why and who, the maintenance words (Tanzanian definitions), approved data, limits, the outside inspection and defect words, oil and filters, spark plugs, fluids, the record |
+
+Three interactives were built for the lessons (the gear explorer, the energy chain, and a density altitude readout in the air-density explorer). Their calculations have unit tests, and each has a browser test.
+
+### The Tanzanian rules
+
+Lesson 16 and the maintenance words in lesson 3 now cite the Tanzanian Civil Aviation (Airworthiness) Regulations, revised edition 2026, read from the TCAA website (regulations 2, 21, 22, 26, 29, 30, 41 and 42). The TCAA states that its published copy is not authoritative; the Government Printer's version is. The same website lists the Approved Maintenance Organisation, Personnel Licensing and General Aviation operating regulations for lessons 17 and 18. No regulation for light-sport or recreational aircraft was found by title on the regulations list; the advisory circulars and the rules and orders pages still have to be searched before lesson 17 says what Tanzania requires.
+
+### More places where the course slides disagree with the sources
+
+5. Slide 182 (Firing Order - H.O.) gives the interval between power events as 120 degrees for four cylinders and 60 degrees for six. 720 degrees divided by the number of cylinders gives 180 and 120. Lesson 10 follows the arithmetic.
+6. Slide 207 shows the spark at 22 degrees BTDC for the GTSIO-520-H. The manual's -H page says 20 degrees BTC on both magnetos; 22 degrees is the IO-520's figure (lesson 3 already follows the manual).
+7. Slide 207 reads the S in GTSIO as supercharged. Lesson 5 follows the EASA key (T or TS for a turbo-supercharging system).
+8. The slides say accessory drive shafts have a shear section that protects the gear train if a pump seizes. The GTSIO-520 manual pages read do not describe it; the FAA handbook shows the principle for a turbine engine's oil pump (PDF p. 269). Lesson 9 states it as a general design feature and says to check the manual.
+
 ### Things the instructor may want to confirm or supply
 
 - **Nothing on the model-name letters.** The key (O, I, T or TS, G, L, V) is in the EASA Module 16 core text, PDF p. 6, and on the course slide on engine designation; the FAA handbook PDF (2023) does not carry it. Lesson 5 uses the EASA key.
 - **Pictures added (13 October 2026).** The seven steps that waited for a picture now have one: the heat-engine diagram (Eric Gaba, public domain), the pressure-volume loop (Olivier Cleynen, CC0), the Carnot cycle (Keta, public domain) and the NASA Glenn Brayton diagram (lesson 4); a finned cylinder from the FAA handbook and a coolant photograph (EvelynGiggles, CC BY 2.0) (lesson 6); and the FAA cylinder cutaway (lesson 7). All are credited on the Credits page. Other text-only steps could carry a photograph too (for instance the engines in lessons 1 and 2); say which are wanted.
 - **Lessons 17 and 18.** The practical-rig list has arrived (a cut-away runnable O-360, an assembled O-360 and two disassembled engines in the hangar, a Cessna 182, and four GTSIO-520 engines). Still needed: which practical uses which area, the set-up and safety steps, and what the assessor looks for. The Tanzanian (TCAA) rules are to be taken from TCAA's website.
+- **Lessons 8 to 16 (13 October 2026).** Nothing in them needs the instructor's input to be correct as written, but the new text is unreviewed like the rest. Where a step relies only on the course slides (for example the cooling benefit of a good firing order, or the hydraulic pump among the accessories) its note says so.
