@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Expand, Maximize2, Minimize2, Shrink, SlidersHorizontal } from 'lucide-react';
-import { CompactMotionPlayer, SavedMotionControls } from './ExploreControls';
+import { ExploreControls } from './ExploreControls';
+import { CompactMotionPlayer, SavedMotionControls } from './controls/MotionPlayers';
+import { hasControlPanels } from './controls/panels';
+import { useViewerControls } from './controls/useViewerControls';
 import { HotspotChips, HotspotNote, ModelCanvas, ToolbarButton, UnknownModel, ViewerHeader } from './ViewerParts';
-import { hasControlPanels, useControlsPanel } from './useControlsPanel';
 import { useModelViewer } from './useModelViewer';
 
 const PLAYER_PREFERENCE = '4212-explore-show-player';
@@ -19,18 +21,19 @@ type ExploreViewerProps = {
   onToggleFullscreen?: () => void;
 };
 
-/** The Explore screen's viewer: canvas, hotspots, motion player and the Parts / Motion / Inside / Look panels. */
+/** The Explore screen's viewer: canvas, hotspots, motion player and the Parts / Motion / Spotlight / Section / Look panels. */
 export default function ExploreViewer({ modelId, isFullPage = false, isFullscreen = false, onToggleFullPage, onToggleFullscreen }: ExploreViewerProps) {
   const viewer = useModelViewer(modelId, 'explore');
   const [controlsOpen, setControlsOpen] = useState(true);
   const [showPlayerOnViewer, setShowPlayerOnViewer] = useState(readPlayerPreference);
-  const renderControls = useControlsPanel(viewer, { introduce: true });
+  const setPlayerPreference = (value: boolean) => { setShowPlayerOnViewer(value); writePlayerPreference(value); };
+  const controls = useViewerControls(viewer, { host: 'explore', player: { show: showPlayerOnViewer, onChange: setPlayerPreference } });
   const { definition, features, snapshot } = viewer;
 
   if (!definition) return <UnknownModel modelId={modelId} />;
 
-  const panelOpen = controlsOpen && hasControlPanels(viewer);
-  const setPlayerPreference = (value: boolean) => { setShowPlayerOnViewer(value); writePlayerPreference(value); };
+  const hasPanels = hasControlPanels(viewer, { host: 'explore', lessonControls: true });
+  const panelOpen = controlsOpen && hasPanels;
 
   return <section className="relative isolate flex h-full min-h-[22rem] flex-col overflow-hidden stay-dark bg-[#071418] text-slate-100 shadow-inner lg:flex-row" aria-label={`Interactive 3D model of the ${definition.label}`}>
     <div className={`relative min-h-0 min-w-0 flex-1 overflow-hidden ${panelOpen ? 'min-h-[18rem]' : ''}`}>
@@ -38,7 +41,7 @@ export default function ExploreViewer({ modelId, isFullPage = false, isFullscree
       <ViewerHeader viewer={viewer}>
         {onToggleFullPage && <ToolbarButton label={isFullPage ? 'Exit full-page viewer' : 'Use full-page viewer'} title={isFullPage ? 'Exit full-page viewer' : 'Use full-page viewer'} active={isFullPage} onClick={onToggleFullPage}>{isFullPage ? <Shrink className="h-4 w-4" /> : <Expand className="h-4 w-4" />}</ToolbarButton>}
         {onToggleFullscreen && <ToolbarButton label={isFullscreen ? 'Exit browser fullscreen' : 'Open browser fullscreen'} title={isFullscreen ? 'Exit browser fullscreen' : 'Open browser fullscreen'} active={isFullscreen} onClick={onToggleFullscreen}>{isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}</ToolbarButton>}
-        {hasControlPanels(viewer) && <ToolbarButton label={controlsOpen ? 'Hide Explore controls' : 'Show Explore controls'} active={controlsOpen} onClick={() => setControlsOpen((open) => !open)}><SlidersHorizontal className="h-4 w-4" /></ToolbarButton>}
+        {hasPanels && <ToolbarButton label={controlsOpen ? 'Hide Explore controls' : 'Show Explore controls'} active={controlsOpen} onClick={() => setControlsOpen((open) => !open)}><SlidersHorizontal className="h-4 w-4" /></ToolbarButton>}
       </ViewerHeader>
 
       {features?.hotspots && <div className="absolute inset-x-3 bottom-3 z-20 rounded-xl border border-slate-700/80 bg-panel/94 p-2 shadow-xl backdrop-blur sm:inset-x-auto sm:left-3 sm:max-w-[calc(100%-1.5rem)]">
@@ -53,6 +56,6 @@ export default function ExploreViewer({ modelId, isFullPage = false, isFullscree
         : <CompactMotionPlayer motion={features.motion} snapshot={snapshot} />)}
     </div>
 
-    {panelOpen && renderControls(() => setControlsOpen(false), { show: showPlayerOnViewer, onChange: setPlayerPreference })}
+    {panelOpen && <ExploreControls viewer={viewer} controls={controls} onClose={() => setControlsOpen(false)} />}
   </section>;
 }

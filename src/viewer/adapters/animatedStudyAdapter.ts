@@ -28,6 +28,11 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   const mixer = new THREE.AnimationMixer(root);
   const snapshot: ViewerSnapshot = { status: 'Animated mechanism study ready', appearance: 'inspection', playing: false, motionProgress: 0, motionNote: contract.scope };
   let active: any, action: THREE.AnimationAction, progress = 0, playing = false;
+  // Playback: a speed for everything, and a loop choice for each motion (it starts from what the study's contract says).
+  let speed = 1;
+  const loops = new Map<string, boolean>();
+  const loopOf = () => loops.get(active.id) ?? Boolean(active.loop);
+  const syncPlayback = () => { snapshot.motionSpeed = speed; snapshot.motionLoop = loopOf(); };
   let isolation: Set<string> | undefined;
   const focus = new Set<string>();
   let focusMode: FocusMode = focusModeOrDefault(context.focusMode);
@@ -124,9 +129,9 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     playing = value; snapshot.playing = value;
     if (value && progress >= 100) sample(0);
     runtime.setAnimationCallback(value ? elapsed => {
-      const next = progress + elapsed * 100 / Math.max(clips.get(active.id)!.duration, .1);
-      if (next >= 100 && !active.loop) { sample(100); playing = false; snapshot.playing = false; onChange(); return false; }
-      sample(active.loop ? next % 100 : next); return playing;
+      const next = progress + elapsed * 100 * speed / Math.max(clips.get(active.id)!.duration, .1);
+      if (next >= 100 && !loopOf()) { sample(100); playing = false; snapshot.playing = false; onChange(); return false; }
+      sample(loopOf() ? next % 100 : next); return playing;
     } : undefined); onChange();
   };
   const selectMotion = (id: string) => {
@@ -134,7 +139,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     if (!motion) throw Error(`Unknown saved motion: ${id}`);
     setPlaying(false); mixer.stopAllAction(); active = motion;
     action = mixer.clipAction(clips.get(id)!); action.reset().setLoop(THREE.LoopOnce, 1).play(); action.clampWhenFinished = true; action.paused = true;
-    snapshot.savedMotionId = id;
+    snapshot.savedMotionId = id; syncPlayback();
     // Use the union of both assembly extremes for cuts and framing in either direction.
     sample(0); const motionBounds = new THREE.Box3().setFromObject(root);
     sample(100); motionBounds.union(new THREE.Box3().setFromObject(root)); section.updateBounds(motionBounds);
@@ -164,7 +169,20 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   return {
     snapshot: () => ({ ...snapshot, ...section.snapshot() }), update,
     features: {
-      focus: { setMode(mode) { focusMode = focusModeOrDefault(mode); applyAppearance(); onChange(); } },
+      focus: {
+        setMode(mode) { focusMode = focusModeOrDefault(mode); applyAppearance(); onChange(); },
+        set(ids, mode) {
+          const unknown = ids.filter(id => !components.some((part: any) => part.id === id));
+          if (unknown.length) throw Error(`Unknown component id in the spotlight: ${unknown.join(', ')}.`);
+          focus.clear(); for (const id of ids) focus.add(id);
+          focusMode = focusModeOrDefault(mode);
+          isolation = undefined; snapshot.isolated = false;
+          applyAppearance();
+          // On its own, a small part would be a speck in the middle of the screen.
+          if (focusMode === 'isolate' && ids.length) fitVisible();
+          onChange();
+        },
+      },
       ...(paths.length ? { powerPaths: { items: paths.map(path => ({ id: path.id, label: path.label })), select(id: string) {
         powerPath = paths.find(path => path.id === id); snapshot.powerPathId = powerPath?.id || '';
         snapshot.powerPathNote = powerPath ? `${powerPath.note} Output direction: ${powerPath.direction}. ${powerPath.ratio === null ? 'Speed ratio unverified.' : `Drive / crank speed = ${powerPath.ratio}:1; at 1000 crank RPM: ${powerPath.ratio * 1000} drive RPM (${powerPath.id === 'starter' ? 'cranking only' : 'speed example'}).`} ${contract.viewpoint} Dashed lines are a conceptual path, not physical shaft geometry.` : '';
@@ -177,7 +195,11 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
         const stops = active.stages.map((stage: any) => stage.progress).sort((a: number, b: number) => a - b);
         setPlaying(false); sample(direction > 0 ? stops.find((value: number) => value > progress + .01) ?? 100 : [...stops].reverse().find((value: number) => value < progress - .01) ?? 0);
       } },
-      motion: { setAngle: sample, setPlaying, reset() { setPlaying(false); sample(0); } }, section: section.feature,
+      motion: {
+        setAngle: sample, setPlaying, reset() { setPlaying(false); sample(0); },
+        setSpeed(value) { speed = value; syncPlayback(); onChange(); },
+        setLoop(value) { loops.set(active.id, value); syncPlayback(); onChange(); },
+      }, section: section.feature,
       appearance: { setMode(mode) { snapshot.appearance = mode; applyAppearance(); } },
     },
     dispose() { setPlaying(false); runtime.setPickTargets([]); mixer.stopAllAction(); mixer.uncacheRoot(root); section.dispose(); runtime.scene.remove(root, arrows, route); disposeObject(root); disposeObject(arrows); disposeObject(route); },

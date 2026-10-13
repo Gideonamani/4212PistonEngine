@@ -185,8 +185,8 @@ On a spotlight step (or any step with `sectionPlane`) the same bar offers a **Cr
 "sectionPlane": { "label": "Valve axis", "normal": [0, 1, 0], "offset": 0.5 }
 ```
 
-- `label` is the name in the picker (24 characters at most). The plane is preselected and marked "Recommended for this step".
+- `label` is the plane's name (24 characters at most). The plane is preselected and appears as the chip **R** in the Section tab, with the label in the line under the chips ("R is the plane recommended for this step: Valve axis.").
 - `normal` is the plane's normal in the model's own axes (it need not be a unit vector). It points toward the half that is **cut away**.
-- `offset` (0 to 1, default 0.5) is where the plane sits across the model along that normal; the learner can slide it with the picker's slider.
+- `offset` (0 to 1, default 0.5) is where the plane sits across the model along that normal; the learner can slide it with the Section tab's Plane position slider.
 
-Every step starts uncut, with its own recommended plane (or none), so a cut never carries into a step about something else. To pick values, read the part's world bounds from the model: a plane that holds a part's axis shows it lengthwise. Mind the pose: a saved motion such as `exploded` moves parts out of the plane (the springs in lesson 08 step 4 leave the valve axis, so that step names none). The schema test validates the shape; the controller is `src/viewer/core/section-controller.mjs` and the picker is `src/viewer/SectionControls.tsx`. Explore's Inside panel is separate and unchanged.
+Every step starts uncut, with its own recommended plane (or none), so a cut never carries into a step about something else. To pick values, read the part's world bounds from the model: a plane that holds a part's axis shows it lengthwise. Mind the pose: a saved motion such as `exploded` moves parts out of the plane (the springs in lesson 08 step 4 leave the valve axis, so that step names none). The schema test validates the shape; the controller is `src/viewer/core/section-controller.mjs` and the card is `src/viewer/controls/SectionPanel.tsx`, shared by the lesson dock and Explore's Section tab (Explore adds Reverse cut and Reset).

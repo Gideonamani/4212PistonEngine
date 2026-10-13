@@ -59,6 +59,9 @@ export type ViewerSnapshot = {
   savedMotionId?: string;
   motionProgress?: number;
   motionStage?: string;
+  /** The playback speed (1 is normal) and whether the motion in view repeats when it reaches its end. */
+  motionSpeed?: number;
+  motionLoop?: boolean;
   powerPathId?: string;
   powerPathNote?: string;
   /** Whether a spotlight is active, and how it is drawn. Only models that spotlight parts report them. */
@@ -84,6 +87,12 @@ export type ViewerFeatures = {
     setAngle: (angle: number) => void;
     setPlaying: (playing: boolean) => void;
     reset: () => void;
+    /** Playback speed as a multiple of normal, for the crank and for saved motions alike. */
+    setSpeed?: (speed: number) => void;
+    /** Whether the motion in view starts again when it reaches its end (the crank goes round and round; a saved motion stops). */
+    setLoop?: (loop: boolean) => void;
+    /** The strokes of the cycle over the crank's 720 degrees, in angle order, for naming the scrubber's track. */
+    strokes?: { label: string; start: number; end: number }[];
   };
   savedMotions?: {
     items: { id: string; label: string; stages: { label: string; progress: number; note?: string }[] }[];
@@ -110,9 +119,16 @@ export type ViewerFeatures = {
     items: ModelHotspot[];
     focus: (id: string) => void;
   };
-  /** Change how the current spotlight is drawn, until the next step sets its own. Does nothing while no spotlight is active. */
+  /** The spotlight: parts drawn apart from the rest, as one of the three modes says. */
   focus?: {
+    /** Change how the current spotlight is drawn, until the next step sets its own. Does nothing while no spotlight is active. */
     setMode: (mode: FocusMode) => void;
+    /**
+     * Explore: spotlight these parts (an empty list clears the spotlight), drawn as `mode`. Unlike a lesson step's focusParts it leaves the
+     * selection where it is, so the learner can keep choosing parts while the spotlight follows, and it moves the camera only to bring an
+     * isolated part into frame.
+     */
+    set: (ids: string[], mode: FocusMode) => void;
   };
 };
 

@@ -1,9 +1,11 @@
+import type { Locator } from '@playwright/test';
 import { expect, onlyIn, test } from './fixtures';
-import { SPOTLIGHT_STEP, openViewerStep } from './viewer-helpers';
+import { SECTION_STEP, SPOTLIGHT_STEP, openViewerStep } from './viewer-helpers';
 
-// The student-facing switch between the three ways a spotlight can be drawn (Highlight, X-ray, Isolate). How each mode looks is checked
-// against the real models in scripts/test_focus_modes.mjs; this checks the part a learner touches: the switch, what it reports, and
-// that their choice outlives the step and the visit. Each test downloads the cylinder, so they run once, one after the other.
+// The student-facing controls of a lesson's 3D model: the Spotlight tab (three ways a spotlight can be drawn: Highlight, X-ray, Isolate) and
+// the Section tab (cut the model open along a plane). How each mode looks is checked against the real models in
+// scripts/test_focus_modes.mjs; this checks the part a learner touches: the tabs, what they report, and that a choice outlives the step and
+// the visit. Each test downloads the cylinder, so they run once, one after the other.
 
 onlyIn('phone-390');
 test.describe.configure({ mode: 'serial' });
@@ -15,14 +17,29 @@ const SWITCH = 'How the highlighted part is shown';
 const FIRST = Number(SPOTLIGHT_STEP.split('/').pop());
 const stepOf = (n: number) => new RegExp(`Step ${n} of \\d+`);
 
+/** Opens a dock tab if it is not open already (a tap on an open tab closes it). */
+async function openTab(tab: Locator) {
+  if ((await tab.getAttribute('aria-selected')) !== 'true') await tab.click();
+  await expect(tab).toHaveAttribute('aria-selected', 'true');
+}
+
 test('a spotlight step offers three ways to show the part, and the choice carries to the next steps', async ({ page, problems }) => {
   test.setTimeout(240_000);
   const { viewer } = await openViewerStep(page, SPOTLIGHT_STEP, { loadModel: true });
   await expect(viewer.getByRole('status')).toHaveCount(0, { timeout: 150_000 });
 
+  const tab = viewer.getByRole('tab', { name: /^Spotlight/ });
+  // The step names no mode of its own, so the tab reports the default even before it is opened.
+  await expect(tab).toContainText('X-ray');
+  // The dock starts with every panel closed; a tap opens one and a second tap closes it.
+  await expect(tab).toHaveAttribute('aria-selected', 'false');
+  await expect(viewer.getByRole('group', { name: SWITCH })).toHaveCount(0);
+  await openTab(tab);
+  await tab.click();
+  await expect(viewer.getByRole('group', { name: SWITCH })).toHaveCount(0);
+  await openTab(tab);
   const group = viewer.getByRole('group', { name: SWITCH });
   await expect(group.getByRole('button')).toHaveText(['Highlight', 'X-ray', 'Isolate']);
-  // The step names no mode of its own, so the switch shows the default.
   await expect(group.getByRole('button', { name: 'X-ray' })).toHaveAttribute('aria-pressed', 'true');
   await expect(viewer.getByText(/faint ghost/)).toBeVisible();
 
@@ -31,6 +48,7 @@ test('a spotlight step offers three ways to show the part, and the choice carrie
   await group.getByRole('button', { name: 'Highlight' }).click();
   await expect(group.getByRole('button', { name: 'Highlight' })).toHaveAttribute('aria-pressed', 'true');
   await expect(group.getByRole('button', { name: 'X-ray' })).toHaveAttribute('aria-pressed', 'false');
+  await expect(tab).toContainText('Highlight');
   await expect(viewer.getByText(/Colours the part/)).toBeVisible();
   await expect.poll(async () => (await canvas.screenshot()).equals(asXray), { message: 'choosing Highlight should redraw the model' }).toBe(false);
 
@@ -47,12 +65,15 @@ test('a spotlight step offers three ways to show the part, and the choice carrie
   await page.getByRole('button', { name: /Next Step/ }).click();
   await expect(page.getByText(stepOf(FIRST + 3))).toBeVisible();
   await expect(viewer.getByRole('status')).toHaveCount(0);
+  await expect(tab).toContainText('Highlight');
+  await openTab(tab);
   await expect(group.getByRole('button', { name: 'Highlight' })).toHaveAttribute('aria-pressed', 'true');
   expect(await page.locator('canvas').count(), 'one canvas, not one per step').toBe(1);
 
   // Isolate is the third way, and the hint line describes whichever is on.
   await group.getByRole('button', { name: 'Isolate' }).click();
   await expect(group.getByRole('button', { name: 'Isolate' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(tab).toContainText('Isolate');
   await expect(viewer.getByText(/part on its own/)).toBeVisible();
   problems.assertNone();
 });
@@ -62,68 +83,82 @@ test('a choice made on an earlier visit is already in force when the model appea
   await page.addInitScript((key) => { try { localStorage.setItem(key, 'isolate'); } catch { /* storage blocked */ } }, STORAGE_KEY);
   const { viewer } = await openViewerStep(page, SPOTLIGHT_STEP, { loadModel: true });
   await expect(viewer.getByRole('status')).toHaveCount(0, { timeout: 150_000 });
+  const tab = viewer.getByRole('tab', { name: /^Spotlight/ });
+  await expect(tab).toContainText('Isolate');
+  await openTab(tab);
   const group = viewer.getByRole('group', { name: SWITCH });
   await expect(group.getByRole('button', { name: 'Isolate' })).toHaveAttribute('aria-pressed', 'true');
   await expect(group.getByRole('button', { name: 'X-ray' })).toHaveAttribute('aria-pressed', 'false');
+
+  // The sliders button on the model hides and shows the whole dock.
+  await viewer.getByRole('button', { name: 'Hide model controls' }).click();
+  await expect(viewer.getByRole('tablist', { name: 'Model controls' })).toHaveCount(0);
+  await viewer.getByRole('button', { name: 'Show model controls' }).click();
+  await expect(viewer.getByRole('tablist', { name: 'Model controls' })).toBeVisible();
   problems.assertNone();
 });
 
-// The cross-section controls that join the spotlight bar: a checkbox that cuts the model, and a picker of the three standard planes plus
-// the plane a step recommends (its `sectionPlane`). Lesson 08 step 2 recommends "Valve axis"; step 4 spotlights springs and names none.
-const SECTION_STEP = '#/learn/valve-train-and-power/valve-operating/step/2';
+// The Section tab: a switch that cuts the model, chips for the three standard planes plus R, the plane a step recommends (its
+// `sectionPlane`, named in a line under the chips), and a slider that moves the cut. Lesson 08 step 2 recommends "Valve axis"; step 4
+// spotlights springs and names none.
 
-test('a spotlight step offers a cross section: a checkbox, and a picker with the plane the step recommends', async ({ page, problems }) => {
+test('a spotlight step offers a cross section: a switch, chips for the planes, and R for the plane the step recommends', async ({ page, problems }) => {
   test.setTimeout(240_000);
   const { viewer } = await openViewerStep(page, SECTION_STEP, { loadModel: true });
   await expect(viewer.getByRole('status')).toHaveCount(0, { timeout: 150_000 });
 
-  const checkbox = viewer.getByRole('checkbox', { name: 'Cross section' });
-  const plane = viewer.getByRole('button', { name: /^Section plane:/ });
-  await expect(checkbox).toHaveAttribute('aria-checked', 'false');
-  await expect(plane).toHaveAccessibleName('Section plane: Valve axis');
+  const tab = viewer.getByRole('tab', { name: /^Section/ });
+  await expect(tab).toContainText('Off');
+  await openTab(tab);
+  const cut = viewer.getByRole('switch', { name: 'Cross section' });
+  const planes = viewer.getByRole('radiogroup', { name: 'Section plane' });
+  const chips = planes.getByRole('radio');
+  await expect(cut).toHaveAttribute('aria-checked', 'false');
+  // The step's own name for its plane survives only in the line under the chips: on the chip it is always "R".
+  await expect(chips).toHaveText(['R', 'X', 'Y', 'Z']);
+  await expect(chips.nth(0)).toHaveAccessibleName('R, the recommended plane: Valve axis');
+  await expect(chips.nth(0)).toHaveAttribute('aria-checked', 'true');
+  await expect(viewer.getByText('R is the plane recommended for this step: Valve axis.')).toBeVisible();
+  await expect(viewer.getByText('R plane · 50%')).toBeVisible();
 
   const canvas = viewer.locator('canvas');
   const whole = await canvas.screenshot();
-  await checkbox.click();
-  await expect(checkbox).toHaveAttribute('aria-checked', 'true');
-  await expect.poll(async () => (await canvas.screenshot()).equals(whole), { message: 'ticking the box should cut the model' }).toBe(false);
+  await cut.click();
+  await expect(cut).toHaveAttribute('aria-checked', 'true');
+  await expect(tab).toContainText('On · R plane');
+  await expect.poll(async () => (await canvas.screenshot()).equals(whole), { message: 'switching it on should cut the model' }).toBe(false);
 
-  await plane.click();
-  const menu = page.getByRole('dialog', { name: 'Section plane' });
-  await expect(menu).toBeVisible();
-  await expect(menu.getByRole('option')).toHaveText([/Valve axis/, /X plane/, /Y plane/, /Z plane/]);
-  await expect(menu.getByRole('option', { name: /Valve axis/ })).toHaveAttribute('aria-selected', 'true');
-  await expect(menu.getByRole('option', { name: /Valve axis/ })).toContainText('Recommended for this step');
-  const slider = menu.getByRole('slider', { name: /Plane position/ });
+  const slider = viewer.getByRole('slider', { name: 'Plane position' });
   await expect(slider).toHaveValue('50');
 
-  // Choosing a standard plane swaps the label and starts the slider in the middle again; the slider then moves the cut.
-  await menu.getByRole('option', { name: /X plane/ }).click();
-  await expect(plane).toHaveAccessibleName('Section plane: X plane');
-  await expect(menu.getByRole('option', { name: /X plane/ })).toHaveAttribute('aria-selected', 'true');
+  // Choosing a standard plane starts the slider in the middle again; the slider then moves the cut.
+  await chips.nth(1).click();
+  await expect(chips.nth(1)).toHaveAttribute('aria-checked', 'true');
+  await expect(chips.nth(0)).toHaveAttribute('aria-checked', 'false');
+  await expect(tab).toContainText('On · X plane');
   await slider.press('End');
   await expect(slider).toHaveValue('100');
-  await expect(menu).toContainText('100%');
-
-  // Escape closes the picker and puts focus back on its button.
-  await page.keyboard.press('Escape');
-  await expect(menu).toBeHidden();
-  await expect(plane).toBeFocused();
+  await expect(viewer.getByText('X plane · 100%')).toBeVisible();
 
   // The recommended plane can be chosen again.
-  await plane.click();
-  await menu.getByRole('option', { name: /Valve axis/ }).click();
-  await expect(plane).toHaveAccessibleName('Section plane: Valve axis');
+  await chips.nth(0).click();
+  await expect(chips.nth(0)).toHaveAttribute('aria-checked', 'true');
   await expect(slider).toHaveValue('50');
-  await page.keyboard.press('Escape');
+
+  // Choosing a plane while the cut is off switches it on: the learner wants to see it.
+  await cut.click();
+  await expect(cut).toHaveAttribute('aria-checked', 'false');
+  await chips.nth(3).click();
+  await expect(cut).toHaveAttribute('aria-checked', 'true');
+  await expect(tab).toContainText('On · Z plane');
 
   // Step 4 names no plane: the cut starts off again and only the three standard planes are offered. Step 3 is text, so the viewer rests.
   await page.getByRole('button', { name: /Next Step/ }).click();
   await page.getByRole('button', { name: /Next Step/ }).click();
   await expect(viewer.getByRole('status')).toHaveCount(0);
-  await expect(checkbox).toHaveAttribute('aria-checked', 'false');
-  await expect(plane).toHaveAccessibleName('Section plane: Z plane');
-  await plane.click();
-  await expect(menu.getByRole('option')).toHaveText([/X plane/, /Y plane/, /Z plane/]);
+  await expect(cut).toHaveAttribute('aria-checked', 'false');
+  await expect(chips).toHaveText(['X', 'Y', 'Z']);
+  await expect(chips.nth(2)).toHaveAttribute('aria-checked', 'true');
+  await expect(viewer.getByText(/recommended for this step/)).toHaveCount(0);
   problems.assertNone();
 });

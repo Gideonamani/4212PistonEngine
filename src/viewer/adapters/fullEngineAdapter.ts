@@ -29,6 +29,9 @@ function trackMatchesSelector(track: THREE.KeyframeTrack, selector: any) {
   return Boolean(selector?.any_regex?.some((pattern: string) => new RegExp(pattern, 'i').test(sourceLabel)));
 }
 
+/** The strokes over the 720 degrees of the engine's baked action, in the order that action runs them. */
+const STROKES = ['Power', 'Exhaust', 'Intake', 'Compression'].map((label, index) => ({ label, start: index * 180, end: (index + 1) * 180 }));
+
 export async function createFullEngineSession(definition: ModelDefinition, context: AdapterContext): Promise<ViewerSession> {
   const { runtime, signal, onChange, onProgress } = context;
   const response = await fetch(definition.contractUrl!, { signal });
@@ -91,6 +94,9 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
   let isolatedId = '';
   let isolatedGroupIds: string[] = [];
   let playing = false;
+  // Playback: a speed, and whether the cycle goes round and round (it does until the learner turns Loop off).
+  let speed = 1;
+  let loop = true;
   const section = createSectionController(items.map((item) => item.mesh), bounds, runtime.render, onChange, runtime.scene);
   section.startStep(context.sectionPlane);
 
@@ -182,9 +188,13 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
   const setPlaying = (value: boolean) => {
     playing = value;
     snapshot.playing = value;
+    // A cycle that stopped at the end of its turn (not looping) starts again from the top.
+    if (value && !loop && (snapshot.angle || 0) >= 719) setAngle(0);
     runtime.setAnimationCallback(value ? (elapsed) => {
       if (!playing) return false;
-      setAngle((snapshot.angle || 0) + elapsed * 30);
+      const next = (snapshot.angle || 0) + elapsed * 30 * speed;
+      if (!loop && next >= 720) { setAngle(719.99); playing = false; snapshot.playing = false; onChange(); return false; }
+      setAngle(next);
       return true;
     } : undefined);
     onChange();
@@ -241,6 +251,27 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
           focusMode = focusModeOrDefault(mode);
           applyVisibility();
           applyAppearance();
+          onChange();
+        },
+        set(ids, mode) {
+          const unknown = ids.filter((id) => !componentsById.has(id));
+          if (unknown.length) throw Error(`Unknown component id in the spotlight: ${unknown.join(', ')}.`);
+          focusComponents.splice(0, focusComponents.length, ...ids.map((id) => componentsById.get(id)));
+          focusMode = focusModeOrDefault(mode);
+          isolatedId = '';
+          isolatedGroupIds = [];
+          snapshot.isolated = false;
+          applyVisibility();
+          applyAppearance();
+          // On its own, a small part would be a speck in the middle of the screen.
+          const box = new THREE.Box3();
+          if (focusMode === 'isolate') for (const item of items) if (isFocused(item)) box.expandByObject(item.mesh);
+          if (!box.isEmpty()) {
+            const proxy = new THREE.Mesh(new THREE.BoxGeometry(...box.getSize(new THREE.Vector3()).toArray()));
+            proxy.position.copy(box.getCenter(new THREE.Vector3()));
+            runtime.fit(proxy);
+            proxy.geometry.dispose();
+          }
           onChange();
         },
       },
@@ -303,7 +334,14 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
           onChange();
         },
       },
-      motion: { setAngle: (angle) => { setPlaying(false); setAngle(angle); }, setPlaying, reset: () => { setPlaying(false); setAngle(0); } },
+      motion: {
+        setAngle: (angle) => { setPlaying(false); setAngle(angle); },
+        setPlaying,
+        reset: () => { setPlaying(false); setAngle(0); },
+        setSpeed: (value) => { speed = value; snapshot.motionSpeed = value; onChange(); },
+        setLoop: (value) => { loop = value; snapshot.motionLoop = value; onChange(); },
+        strokes: STROKES,
+      },
       section: section.feature,
       appearance: { setMode(mode: AppearanceMode) { snapshot.appearance = mode; applyAppearance(); onChange(); } },
     },

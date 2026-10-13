@@ -1,10 +1,8 @@
 import React from 'react';
-import { Focus, LoaderCircle, Move3D, Pause, Play, RotateCcw, TriangleAlert } from 'lucide-react';
-import { DEFAULT_FOCUS_MODE, FOCUS_MODES, FOCUS_MODE_HINTS, FOCUS_MODE_LABELS } from './core/focus-style.mjs';
+import { Focus, LoaderCircle, Move3D, RotateCcw, TriangleAlert } from 'lucide-react';
 import { WHEEL_ZOOM_HINT, viewerHint } from './core/interaction.mjs';
 import { offsetAfterKey } from './core/keyboard-orbit.mjs';
 import { IconButton } from '../components/ui';
-import type { FocusMode } from './types';
 import type { ModelViewerState } from './useModelViewer';
 
 /** The pieces ExploreViewer and LessonViewer share: the canvas, its toolbar and the hotspot chips. */
@@ -93,30 +91,6 @@ export function ToolbarButton({ label, title, active, onClick, children }: { lab
   return <IconButton label={label} title={title} active={active} onClick={onClick}>{children}</IconButton>;
 }
 
-/**
- * The spotlight bar. Lets the learner choose how the highlighted part is drawn: coloured with the rest pale, solid with the rest as a faint
- * ghost, or on its own. That part appears only while a step is spotlighting something, and shows what is actually drawn (the step's own
- * mode until they choose). `leading` goes in front of it, on the same row where there is room: the lesson viewer puts the cross-section
- * controls there, so the bar shows whenever either has something to offer.
- */
-export function FocusModeSwitch({ viewer, onChoose, leading }: { viewer: ModelViewerState; onChoose: (mode: FocusMode) => void; leading?: React.ReactNode }) {
-  const spotlight = Boolean(viewer.features?.focus && viewer.snapshot.focusActive);
-  if (!spotlight && !leading) return null;
-  const current: FocusMode = viewer.snapshot.focusMode ?? DEFAULT_FOCUS_MODE;
-  return <div>
-    <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-      {leading}
-      {spotlight && <div role="group" aria-label="How the highlighted part is shown" className="flex min-w-0 flex-1 basis-64 items-center gap-2">
-        <span aria-hidden="true" className="shrink-0 font-mono text-[11px] font-bold tracking-wider text-slate-400">SHOW</span>
-        <div className="flex min-w-0 flex-1 rounded-xl border border-slate-700 bg-slate-900/70 p-0.5">
-          {(FOCUS_MODES as FocusMode[]).map((mode) => <button key={mode} type="button" aria-pressed={mode === current} onClick={() => onChoose(mode)} className={`min-h-11 min-w-0 flex-1 rounded-[0.65rem] px-1 text-[11px] font-semibold outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${mode === current ? 'bg-teal-400/20 text-teal-100 ring-1 ring-teal-300/70' : 'text-slate-300 hover:text-white'}`}>{FOCUS_MODE_LABELS[mode as FocusMode]}</button>)}
-        </div>
-      </div>}
-    </div>
-    {spotlight && <p className="mt-1 px-0.5 text-[11px] leading-snug text-slate-400">{FOCUS_MODE_HINTS[current]}</p>}
-  </div>;
-}
-
 /** The row of guided hotspot buttons, if the model has hotspots. */
 export function HotspotChips({ viewer, className = '' }: { viewer: ModelViewerState; className?: string }) {
   const hotspots = viewer.features?.hotspots;
@@ -133,25 +107,4 @@ export function HotspotChips({ viewer, className = '' }: { viewer: ModelViewerSt
 export function HotspotNote({ viewer, className = '' }: { viewer: ModelViewerState; className?: string }) {
   const active = viewer.features?.hotspots?.items.find((hotspot) => hotspot.id === viewer.snapshot.activeHotspotId);
   return active ? <p className={`text-[11px] leading-relaxed text-slate-300 ${className}`}><strong className="text-white">{active.label}:</strong> {active.description}</p> : null;
-}
-
-/**
- * A play button and scrubber that sit under the model, for a lesson. It drives the crank angle (0 to 720 degrees) for the operating
- * cylinder, or the progress of the chosen saved motion (0 to 100 per cent) for the assembly studies.
- */
-export function MotionStrip({ viewer }: { viewer: ModelViewerState }) {
-  const { features, snapshot } = viewer;
-  const motion = features?.motion;
-  if (!motion) return null;
-  const saved = Boolean(features?.savedMotions) && snapshot.savedMotionId !== 'operating';
-  const value = saved ? snapshot.motionProgress ?? 0 : snapshot.angle ?? 0;
-  const label = saved ? snapshot.motionStage || 'Motion' : 'Crank angle';
-  const readout = saved ? `${Math.round(value)}%` : `${Math.round(value)}°`;
-  return <div className="flex items-center gap-2.5" aria-label="Motion player">
-    <IconButton tone="primary" label={snapshot.playing ? 'Pause motion' : 'Play motion'} active={Boolean(snapshot.playing)} onClick={() => motion.setPlaying(!snapshot.playing)} className="-ml-1">{snapshot.playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}</IconButton>
-    <div className="min-w-0 flex-1">
-      <div className="mb-0.5 flex items-center justify-between gap-2 font-mono text-[11px] font-bold tracking-wider text-slate-400"><span className="truncate uppercase">{label}</span><output className="shrink-0 text-xs text-teal-300">{readout}</output></div>
-      <input aria-label={saved ? 'Motion progress' : 'Crank angle'} type="range" min="0" max={saved ? 100 : 720} step={saved ? 0.1 : 1} value={value} onChange={(event) => saved ? features!.savedMotions!.setProgress(Number(event.target.value)) : motion.setAngle(Number(event.target.value))} className="block w-full accent-teal-400" />
-    </div>
-  </div>;
 }

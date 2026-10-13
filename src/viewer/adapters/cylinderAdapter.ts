@@ -33,6 +33,9 @@ function groupMatrices(degrees: number, profile: any) {
   };
 }
 
+/** The four strokes over the crank's 720 degrees, as the cylinder's valve model counts them (the cycle starts at the intake stroke). */
+const STROKES = ['Intake', 'Compression', 'Power', 'Exhaust'].map((label, index) => ({ label, start: index * 180, end: (index + 1) * 180 }));
+
 export async function createCylinderSession(definition: ModelDefinition, context: AdapterContext): Promise<ViewerSession> {
   const { runtime, signal, onChange, onProgress } = context;
   const [catalogueResponse, motionResponse, loaded, savedResponse] = await Promise.all([
@@ -160,6 +163,12 @@ export async function createCylinderSession(definition: ModelDefinition, context
   const explodedMotion = savedProfile ? createExplodedMotion(meshes, savedProfile) : undefined;
   let savedMotionId = 'operating';
   let motionProgress = 0;
+  // Playback: a speed for everything, and a loop choice for each motion (the crank goes round and round; a saved motion stops at its end).
+  let speed = 1;
+  const loops = new Map<string, boolean>();
+  const loopOf = () => loops.get(savedMotionId) ?? savedMotionId === 'operating';
+  const syncPlayback = () => { snapshot.motionSpeed = speed; snapshot.motionLoop = loopOf(); };
+  syncPlayback();
   const cycleVisuals = motionProfile.cycle_landmarks ? createCycleVisuals(runtime.scene, motionProfile.cycle_landmarks, runtime.camera) : undefined;
   cycleVisuals?.setVisible(cycleEnabled);
 
@@ -194,11 +203,17 @@ export async function createCylinderSession(definition: ModelDefinition, context
     playing = value;
     snapshot.playing = value;
     if (value && savedMotionId !== 'operating' && motionProgress >= 100) applyMotionProgress(0);
+    // A crank that stopped at the end of its turn (not looping) starts again from the top.
+    if (value && savedMotionId === 'operating' && !loopOf() && (snapshot.angle || 0) >= 719) setAngle(0);
     runtime.setAnimationCallback(value ? (elapsed) => {
       if (!playing) return false;
-      if (savedMotionId === 'operating') setAngle((snapshot.angle || 0) + elapsed * 30);
-      else {
-        applyMotionProgress(Math.min(100, motionProgress + elapsed * 100 / savedProfile.duration_seconds));
+      if (savedMotionId === 'operating') {
+        const next = (snapshot.angle || 0) + elapsed * 30 * speed;
+        if (!loopOf() && next >= 720) { setAngle(719.99); playing = false; snapshot.playing = false; onChange(); return false; }
+        setAngle(next);
+      } else {
+        const next = motionProgress + elapsed * 100 * speed / savedProfile.duration_seconds;
+        applyMotionProgress(loopOf() && next >= 100 ? next % 100 : Math.min(100, next));
         if (motionProgress >= 100) { playing = false; snapshot.playing = false; onChange(); return false; }
       }
       return true;
@@ -219,7 +234,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
   };
   const selectMotion = (id: string) => {
     if (!['operating', 'exploded', 'reassembly'].includes(id)) throw Error(`Unknown cylinder motion: ${id}`);
-    setPlaying(false); savedMotionId = id; snapshot.savedMotionId = id;
+    setPlaying(false); savedMotionId = id; snapshot.savedMotionId = id; syncPlayback();
     cycleVisuals?.setVisible(id === 'operating' && cycleEnabled);
     if (id === 'operating') { snapshot.motionStage = undefined; setAngle(snapshot.angle || 0); }
     else { applyMotionProgress(id === 'exploded' ? 100 : 0); }
@@ -298,6 +313,26 @@ export async function createCylinderSession(definition: ModelDefinition, context
           applyAppearance();
           onChange();
         },
+        set(ids, mode) {
+          const unknown = ids.filter((id) => !catalogueById.has(id));
+          if (unknown.length) throw Error(`Unknown component id in the spotlight: ${unknown.join(', ')}.`);
+          focusSet.clear();
+          for (const id of ids) focusSet.add(id);
+          focusMode = focusModeOrDefault(mode);
+          isolated = false;
+          snapshot.isolated = false;
+          applyAppearance();
+          // On its own, a small part would be a speck in the middle of the screen.
+          const box = new THREE.Box3();
+          if (focusMode === 'isolate') for (const mesh of meshes) if (focusSet.has(mesh.userData.partId)) box.expandByObject(mesh);
+          if (!box.isEmpty()) {
+            const proxy = new THREE.Mesh(new THREE.BoxGeometry(...box.getSize(new THREE.Vector3()).toArray()));
+            proxy.position.copy(box.getCenter(new THREE.Vector3()));
+            runtime.fit(proxy);
+            proxy.geometry.dispose();
+          }
+          onChange();
+        },
       },
       components: {
         items: parts,
@@ -357,7 +392,14 @@ export async function createCylinderSession(definition: ModelDefinition, context
           setPlaying(false); applyMotionProgress(target);
         },
       } : undefined,
-      motion: { setAngle: (angle) => { setPlaying(false); if (savedMotionId !== 'operating') selectMotion('operating'); setAngle(angle); }, setPlaying, reset: () => { setPlaying(false); if (savedMotionId === 'operating') setAngle(motionProfile.bind_angle_deg); else applyMotionProgress(0); } },
+      motion: {
+        setAngle: (angle) => { setPlaying(false); if (savedMotionId !== 'operating') selectMotion('operating'); setAngle(angle); },
+        setPlaying,
+        reset: () => { setPlaying(false); if (savedMotionId === 'operating') setAngle(motionProfile.bind_angle_deg); else applyMotionProgress(0); },
+        setSpeed: (value) => { speed = value; syncPlayback(); onChange(); },
+        setLoop: (value) => { loops.set(savedMotionId, value); syncPlayback(); onChange(); },
+        strokes: STROKES,
+      },
       cycleCues: {
         setEnabled(value) {
           cycleEnabled = value;
