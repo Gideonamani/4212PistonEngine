@@ -12,7 +12,7 @@
       "tier": 1,
       "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
       "path": "Notes/amt_powerplant_handbook 2023.pdf",
-      "applicability": "Primary source for the general principles in this course. PDF page locators are used in step notes."
+      "applicability": "Primary source for valve construction, the valve-operating mechanism, hydraulic tappets, valve clearance and valve inspection. PDF page locators are used in step notes. Used in lesson 11 for: induction and exhaust systems, the induction manifold, back pressure and valve overlap (PDF pp. 129 to 134, 149 to 153 and 401 to 402)."
     },
     {
       "id": "easa-module16",
@@ -71,7 +71,7 @@
       ],
       "listed": true,
       "scheduledDay": 5,
-      "completionCriteria": "Trace the air from the scoop to the cylinder and the gas from the cylinder to the tailpipe, say what drives a turbocharger and what a waste gate does, explain normalizing and critical altitude, and name three things to check on an exhaust system and why.",
+      "completionCriteria": "Trace the air from the scoop to the cylinder and the gas from the cylinder to the tailpipe, and say why the weight of the air that reaches the cylinder sets the power and how the manifold shares it; say what drives a turbocharger and what a waste gate does, and explain normalizing and critical altitude; say what an exhaust system and its manifold are for, describe how an opposed engine's exhaust is arranged and what back pressure does; explain how exhaust and induction act on each other during valve overlap; and name three things to check on an exhaust system and why.",
       "steps": [
         {
           "type": "text",
@@ -86,6 +86,20 @@
             "mode": "none",
             "status": "not-needed",
             "rationale": "A prediction prompt that sets up the whole lesson: charge mass depends on pressure."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Air mass sets the power",
+          "prompt": "Fuel can burn only in the oxygen the cylinder gets. So the weight of the air that reaches the cylinder sets how much fuel can burn, and how much power the engine makes.\n\nEvery intake stroke draws in the same volume, but a volume of thin air holds less oxygen than the same volume of dense air. What counts is the weight of the charge. Thin air at altitude, hot air, humid air, a restriction in the intake or warm carburettor heat air lower it, and so lower the power. A supercharger or turbocharger raises it.\n\nVolumetric efficiency compares the volume of charge the engine draws in, corrected for temperature and pressure, with its piston displacement. Lesson 13 shows how altitude, temperature and humidity change the charge.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 56 (volumetric efficiency is a comparison of the volume of air-fuel charge, corrected for temperature and pressure, inducted into the cylinders to the total piston displacement of the engine; a naturally aspirated engine's pistons displace the same volume each time) and PDF p. 131 (carburettor heat makes the air expand and decrease in density, which reduces the weight of the charge delivered to the cylinder and causes a noticeable loss of power because of decreased volumetric efficiency). That the oxygen sets how much fuel can burn is the lesson's explanation.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -105,6 +119,20 @@
             "mode": "source-image",
             "status": "available",
             "rationale": "The labelled drawing shows the parts of a balanced intake manifold that the text names."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Sharing the air",
+          "prompt": "The induction manifold shares the air, or the air-fuel mixture, between the cylinders. On an engine with a carburettor the manifold carries the mixture. On a fuel-injected engine like the GTSIO-520-H it carries air only, and the fuel is injected at the inlet port of each cylinder.\n\nThe shares must be equal. If they are not, some cylinders run lean and others rich. A carburettor setting must be rich enough to burn in the leanest cylinder, so poor distribution makes the whole engine run richer than it needs to.\n\nA leak at the cylinder end of an intake pipe leans out that cylinder, which may overheat, fire intermittently or cut out.\n\nThe long curved pipes and the balance tube in the figure of the last step are there to give every cylinder its fair share.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 401 (the induction manifold provides the means of distributing air, or the air-fuel mixture, to the cylinders; on a fuel-injection engine the manifold handles only air and the fuel is delivered to a nozzle in each cylinder; a carburettor setting must be rich enough to supply a combustible mixture for the leanest cylinder, so if fuel distribution is poor the overall mixture must be richer; a leak at the cylinder end of an intake pipe leans out the mixture, and the affected cylinder may overheat, fire intermittently or cut out) and PDF p. 129 (the balance tube).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -275,6 +303,20 @@
           }
         },
         {
+          "type": "text",
+          "title": "What the exhaust system does",
+          "prompt": "The reciprocating engine exhaust system is fundamentally a scavenging system: it collects the hot, noxious gases the engine discharges and disposes of them. Its first duty is to protect the airframe and the people on board from them.\n\nThe exhaust manifold, or the stacks on a simple system, takes the gas from the exhaust port of each cylinder and gathers it. From there it goes on to a tailpipe or ejector, or on a turbocharged engine to the turbine.\n\nThe system can do useful work as well. It can drive a turbocharger, heat the cabin and the carburettor air, and draw cooling air through the engine compartment with its ejectors.\n\nIt has to resist high temperature, corrosion and vibration while it does all this.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 149 (the reciprocating engine exhaust system is fundamentally a scavenging system that collects and disposes of the high-temperature, noxious gases being discharged by the engine; its main function is to dispose of the gases with complete safety to the airframe and the occupants; it can perform many useful functions, but its first duty is to provide protection against the destructive action of the exhaust gases; modern systems resist high temperatures, corrosion and vibration; on turbosupercharged engines the exhaust gases are collected to drive the turbine; ejectors induce a flow of cooling air through the engine compartment) and PDF p. 150.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
           "type": "image",
           "title": "Short stack or collector",
           "prompt": "There are two kinds of exhaust system. A short stack (open) system lets each cylinder blow out through its own short pipe; it suits non-supercharged and low-power engines where noise does not matter. A collector system gathers the gas from the cylinders into collector tubes. It is used on most large non-supercharged engines and on all turbosupercharged engines, because on those the gas must be collected to drive the turbine. A collector raises the back pressure, the pressure the exhaust has to push against, but on a turbocharged engine the power gained is more than the power lost. The tapered ends of the collectors work as ejectors, drawing cooling air through the engine compartment.",
@@ -291,6 +333,20 @@
             "mode": "source-image",
             "status": "available",
             "rationale": "The cutaway shows the stacks, collectors and ejectors in place in a nacelle."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Exhaust on an opposed engine",
+          "prompt": "On a horizontally opposed engine the exhaust runs along each side. A down-stack leaves each cylinder. The stacks join an exhaust collector tube on each side of the engine, held by ring clamps, and each collector tube ends in an exhaust ejector at the firewall, pointing aft and down. The tapered ends of the collector tubes deliver the gas at the speed that pulls cooling air through the engine compartment.\n\nA cabin heater shroud is fitted around each collector tube.\n\nOn a turbosupercharged engine all the gas is collected and sent on to the turbine instead.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 149 and Figures 3-38 and 3-39 (the exhaust system components of a horizontally opposed engine: a down-stack from each cylinder, an exhaust collector tube on each side of the engine, and an exhaust ejector assembly protruding aft and down from each side of the firewall; the down-stacks are connected to the cylinders with high-temperature locknuts and to the collector tube by ring clamps; a cabin heater exhaust shroud is installed around each collector tube; the collector tubes are tapered to deliver the exhaust gases at the proper velocity to induce airflow; on turbosupercharged engines the gases are collected to drive the turbine).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -327,6 +383,20 @@
           }
         },
         {
+          "type": "text",
+          "title": "Back pressure",
+          "prompt": "Back pressure is the pressure the exhaust gas has to push against as it leaves the cylinder. With an open exhaust it is about the pressure of the air outside. Anything that restricts the flow raises it.\n\nA higher back pressure leaves more burned gas in the cylinder and makes the engine work harder to push it out, so it costs power.\n\nA collector system raises the back pressure compared with short stacks. A turbocharged engine accepts that, because the gain from turbocharging is greater than the loss. A bayonet stack is shaped to reduce both the back pressure and the noise.\n\nA blocked or restricted exhaust, such as a muffler with broken baffles, raises the back pressure in a way nobody wants, and takes power away.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 149 (the collector system raises the back pressure of the exhaust system; on a turbosupercharged engine the gain in horsepower from turbosupercharging more than offsets the loss from increased back pressure), PDF p. 401 (barometric pressure is the exhaust back pressure on an engine with an open exhaust, 29 inches of mercury in the handbook's example) and the glossary, PDF p. 461 (bayonet stacks decrease both exhaust back pressure and noise). That a higher back pressure leaves more burned gas in the cylinder and costs power is the lesson's explanation, consistent with the handbook's account of partial or complete loss of power from a restricted exhaust (PDF p. 150).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
           "type": "image",
           "title": "Inspecting the exhaust",
           "prompt": "Any exhaust failure is a severe hazard: carbon monoxide in the cabin, loss of power, or fire. Inspect the clamped joints and port connections for leaks, which show as a flat grey or sooty black streak. Look at every weld, bend, clamp, support and gasket for cracks, dents and missing parts. A part that cannot be inspected where it is can be plugged, pressurised to about 2 psi and dipped in water, and any leak shows as bubbles. Never use galvanised or zinc-plated tools on an exhaust system and never mark its parts with a lead pencil: the lead or zinc enters the hot metal, softens it, and causes cracks.",
@@ -356,6 +426,20 @@
             "mode": "none",
             "status": "not-needed",
             "rationale": "A short maintenance step that connects the exhaust to the turbocharger control ideas."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Exhaust and induction together",
+          "prompt": "Induction and exhaust are one breathing path, and each acts on the other. During valve overlap both valves are open, and the pressures on the two sides of the cylinder decide which way the gas goes.\n\nWhen the manifold pressure is above the back pressure, for example 35 inches of mercury against 29, the difference of 6 inches (3 psi) pushes fresh charge across the cylinder towards the open exhaust and drives the burned gas ahead of it. The cylinder is completely scavenged and fills with fresh charge: overlap gives more power.\n\nWhen the manifold pressure is below the back pressure, as at idle with 20 inches against 29, the difference runs the other way. Burned gas, or on an open stack fresh air, is drawn back into the cylinder.\n\nThe turbocharger links them too: the exhaust drives the compressor that raises the induction pressure.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 401 to 402 and Figure 10-49 (all aircraft reciprocating engines of current design use valve overlap; at a manifold pressure of 35 inches of mercury and a back pressure of 29 inches there is a differential of 6 inches (3 psi), which forces the air-fuel mixture across the combustion chamber toward the open exhaust and forces the remaining exhaust gases ahead of it, giving complete scavenging and increased power; at 20 inches there is a differential of 9 inches (4.5 psi) in the opposite direction, drawing air or exhaust gases into the cylinder through the exhaust port; with collector rings the inflow is inert burned gas, with open stacks it is fresh air that leans out the mixture). The turbocharger link: PDF p. 149 and the earlier steps.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
           }
         },
         {
@@ -1031,6 +1115,106 @@
       ],
       "correct": 0,
       "rationale": "Overboost means exceeding the manifold pressure limit for the engine. The slow drift in the controls is bootstrapping, which is not harmful to engine life."
+    },
+    {
+      "id": "breathing-air-mass",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "Why does thin air reduce the power of a naturally aspirated engine?",
+      "hint": "Each intake stroke draws in the same volume. Think about what that volume holds.",
+      "answers": [
+        "Each intake stroke draws in the same volume, but it holds less oxygen, so less fuel can be burned",
+        "The pistons move more slowly in thin air",
+        "The spark is weaker in thin air",
+        "Thin air makes the exhaust back pressure rise"
+      ],
+      "correct": 0,
+      "rationale": "The engine draws in the same volume of air on every intake stroke, but thin air holds less oxygen in that volume. The weight of the charge falls, less fuel can burn and the power falls."
+    },
+    {
+      "id": "breathing-distribution",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "What does poor distribution of the mixture between the cylinders force the engine to do?",
+      "hint": "The setting must suit the leanest cylinder.",
+      "answers": [
+        "Run richer overall, because the setting must be rich enough to burn in the leanest cylinder",
+        "Run leaner overall to save fuel",
+        "Run at a lower compression ratio",
+        "Run without a throttle"
+      ],
+      "correct": 0,
+      "rationale": "A carburettor setting must supply a combustible mixture for the leanest cylinder. If the shares are uneven the whole engine must be set richer than it would otherwise need to be."
+    },
+    {
+      "id": "breathing-exhaust-duty",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "What is the first duty of the exhaust system?",
+      "hint": "Think about what the gases are and who is near them.",
+      "answers": [
+        "To protect the airframe and its occupants from the hot, noxious gases by disposing of them safely",
+        "To heat the cabin",
+        "To raise the manifold pressure",
+        "To make the engine quieter"
+      ],
+      "correct": 0,
+      "rationale": "The exhaust system can do many useful things, such as driving a turbocharger or heating the cabin, but its first duty is protection against the destructive action of the exhaust gases."
+    },
+    {
+      "id": "breathing-opposed-exhaust-order",
+      "lessonId": "induction-exhaust",
+      "type": "ordering",
+      "question": "Put these parts of an opposed engine's exhaust in the order the gas passes through them.",
+      "hint": "Start at the cylinder and end at the firewall.",
+      "items": [
+        "Exhaust port of the cylinder",
+        "Down-stack",
+        "Exhaust collector tube",
+        "Exhaust ejector at the firewall"
+      ],
+      "rationale": "The gas leaves the cylinder through its exhaust port and the down-stack, enters the collector tube on that side of the engine, and leaves through the tapered exhaust ejector at the firewall, which also draws cooling air through the engine compartment."
+    },
+    {
+      "id": "breathing-back-pressure",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "What does a higher exhaust back pressure do to a naturally aspirated engine?",
+      "hint": "Think about the work of pushing the gas out.",
+      "answers": [
+        "It makes the engine work harder to push the gas out, so it costs power",
+        "It raises the power, because the gas is held in the cylinder",
+        "It lowers the cylinder head temperature",
+        "It has no effect on a four-stroke engine"
+      ],
+      "correct": 0,
+      "rationale": "The burned gas has to push against the back pressure to leave the cylinder. A higher pressure leaves more gas behind and takes more work to expel it, so power is lost. A turbocharged engine accepts a higher back pressure because the turbocharger gains more than the back pressure costs."
+    },
+    {
+      "id": "breathing-overlap-differential",
+      "lessonId": "induction-exhaust",
+      "type": "numeric",
+      "question": "During valve overlap the manifold pressure is 35 inches of mercury and the exhaust back pressure is 29 inches. What is the pressure difference, in inches of mercury?",
+      "hint": "Subtract the smaller pressure from the larger.",
+      "unit": "inHg",
+      "correctValue": 6,
+      "tolerance": 0,
+      "rationale": "35 - 29 = 6 inches of mercury (about 3 psi), in the direction from the intake towards the exhaust. It pushes fresh charge through the cylinder and scavenges the burned gas."
+    },
+    {
+      "id": "breathing-overlap-idle",
+      "lessonId": "induction-exhaust",
+      "type": "multiple-choice",
+      "question": "At idle the manifold pressure is 20 inches of mercury and the back pressure is 29 inches. Which way does the gas move during valve overlap on an engine with a collector exhaust?",
+      "hint": "The gas moves from the higher pressure to the lower.",
+      "answers": [
+        "Burned gas is drawn back into the cylinder through the exhaust port",
+        "Fresh charge is blown straight out of the exhaust",
+        "Nothing moves, because both valves are open",
+        "Fresh air is drawn in through the intake pipe"
+      ],
+      "correct": 0,
+      "rationale": "The manifold pressure is below the back pressure, so the pressure difference points the other way. With a collector exhaust the gas drawn back is burned gas, which contains no oxygen, so the mixture is not affected much. With an open stack it would be fresh air that leans out the mixture."
     },
     {
       "id": "factors-altitude-chain",
