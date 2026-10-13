@@ -64,6 +64,61 @@ test('the learner can make the lesson text larger, and the choice is remembered'
   await expectNoHorizontalOverflow(page);
 });
 
+test('the learner can make the lesson text smaller for a compact view, and it stays readable', async ({ page }) => {
+  const { hash } = longTextStep();
+  await page.goto(`/${hash}`);
+  await appReady(page);
+  const first = page.locator('.lesson-prose > p').first();
+  const standard = await fontSize(first);
+  const button = page.getByRole('button', { name: 'Text size' });
+
+  await button.click();
+  const group = page.getByRole('group', { name: 'Text size' });
+  const names = await group.getByRole('button').evaluateAll((nodes) => nodes.map((node) => node.textContent?.replace('Aa', '').trim()));
+  expect(names, 'the menu lists the sizes from smallest to largest').toEqual(['Smallest', 'Smaller', 'Small', 'Standard', 'Large', 'Larger', 'Largest']);
+  await group.getByRole('button', { name: 'Small', exact: true }).click();
+  expect(await fontSize(first)).toBeCloseTo(standard * 0.92, 0);
+
+  await button.click();
+  await group.getByRole('button', { name: 'Smaller', exact: true }).click();
+  expect(await fontSize(first)).toBeCloseTo(standard * 0.85, 0);
+
+  await button.click();
+  await group.getByRole('button', { name: 'Smallest', exact: true }).click();
+  expect(await fontSize(first)).toBeCloseTo(standard * 0.78, 0);
+  expect(await page.evaluate((key) => localStorage.getItem(key), SIZE_KEY)).toBe('smallest');
+  await expectNoHorizontalOverflow(page);
+
+  // Secondary reading text keeps a floor of 12 px even at the smallest size.
+  const secondary = await first.evaluate((node) => {
+    const probe = document.createElement('p');
+    probe.className = 'lesson-prose-sm';
+    node.parentElement!.appendChild(probe);
+    const size = parseFloat(getComputedStyle(probe).fontSize);
+    probe.remove();
+    return size;
+  });
+  expect(secondary, 'secondary text is at least 12 px at the smallest size').toBeGreaterThanOrEqual(12);
+
+  // The choice is remembered, and the menu marks it.
+  await page.reload();
+  await appReady(page);
+  expect(await fontSize(page.locator('.lesson-prose > p').first())).toBeCloseTo(standard * 0.78, 0);
+  await button.click();
+  await expect(page.getByRole('group', { name: 'Text size' }).getByRole('button', { name: 'Smallest', exact: true })).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('the seven-size menu fits a short screen by scrolling, not by running off it', async ({ page }) => {
+  const { hash } = longTextStep();
+  await page.setViewportSize({ width: 640, height: 360 });
+  await page.goto(`/${hash}`);
+  await appReady(page);
+  await page.getByRole('button', { name: 'Text size' }).click();
+  const box = await page.getByRole('group', { name: 'Text size' }).boundingBox();
+  expect(box, 'the menu is shown').not.toBeNull();
+  expect(box!.y + box!.height, 'the menu ends inside the screen').toBeLessThanOrEqual(360);
+});
+
 test('the text-size menu closes on Escape and every choice is a full-size target', async ({ page }) => {
   const { hash } = longTextStep();
   await page.goto(`/${hash}`);
