@@ -5,7 +5,7 @@ import { appReady, expect } from './fixtures';
 export const MODEL_STEP = '#/learn/m2-cylinder-study/m2-four-stroke-guided/step/1';
 
 /** A lesson step that spotlights one part of the cylinder (the crank throw), so the focus-mode switch has something to switch. */
-export const SPOTLIGHT_STEP = '#/learn/fundamentals-and-classification/parts-construction/step/4';
+export const SPOTLIGHT_STEP = '#/learn/fundamentals-and-classification/parts-construction/step/5';
 
 /** The model downloads: 16 to 35 MB each, and the page also starts them in the background (preload). */
 export const MODEL_FILES = /\.glb(\.gz)?(\?.*)?$/;
