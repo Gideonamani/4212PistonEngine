@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { lessonArtifactIds } from './lessonArtifactIds';
 import { CamLiftDiagram } from './ValveTrainArtifacts';
+import { GearPairExplorer } from './AccessoryArtifacts';
 import { AirDensityExplorer, EnginePowerCalculator } from './PerformanceArtifacts';
 import { ConstructionComparison, CylinderNumberingDiagram, DieselOttoCompare, EngineDataComparison, OttoPVDiagram, SweptVolumeDiagram, ValveTimingDiagram } from './CycleArtifacts';
 
@@ -194,6 +195,7 @@ export const LessonArtifact: React.FC<ArtifactProps> = ({ id }) => {
     if (id === 'diesel-otto-pv-compare') return <DieselOttoCompare />;
     if (id === 'valve-timing-diagram') return <ValveTimingDiagram />;
     if (id === 'cam-lift-and-duration') return <CamLiftDiagram />;
+    if (id === 'gear-pair-explorer') return <GearPairExplorer />;
     if (id === 'air-density-explorer') return <AirDensityExplorer />;
     if (id === 'engine-power-calculator') return <EnginePowerCalculator />;
     if (id === 'construction-comparison') return <ConstructionComparison />;

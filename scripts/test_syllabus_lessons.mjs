@@ -12,9 +12,6 @@ const SYLLABUS_PACKS = ['valve-train-and-power', 'breathing-and-performance', 'r
 // committed, and from then on is held to the same rules as lessons 8 to 18. The list only grows.
 const REWORKED = new Set(['history-mechanical-engines', 'history-aircraft-engines', 'terminologies', 'thermodynamic-cycles', 'classification', 'cooling-methods', 'parts-construction']);
 const held = (pack, lesson) => SYLLABUS_PACKS.includes(pack.id) || REWORKED.has(lesson.id);
-// The accessories lesson was written before these rules: its steps carry no media plan and its checks are of two kinds. It is held to the
-// rest of this file, but not yet to those two, until its rework (which then removes it from this list).
-const NOT_YET_HELD_TO_STEP_AND_CHECK_RULES = new Set(['accessories-and-drives']);
 const MAX_WORDS_PER_STEP = 150;
 const MIN_CHECKS_PER_LESSON = 8;
 
@@ -38,7 +35,6 @@ test('every lesson and course has its pictures, and every step names its sources
     for (const path of [pack.thumbnail, pack.banner]) assert.ok(path && existsSync(`web/${path.replace(/^\.\//, '')}`), `${pack.id}: course picture ${path}`);
     for (const { lesson } of lessons.filter((item) => item.pack === pack)) {
       const where = `${pack.id}/${lesson.id}`;
-      if (NOT_YET_HELD_TO_STEP_AND_CHECK_RULES.has(lesson.id)) { assert.ok(lesson.thumbnail && existsSync(`web/${lesson.thumbnail.replace(/^\.\//, '')}`), `${where}: card thumbnail`); continue; }
       assert.ok(lesson.thumbnail && existsSync(`web/${lesson.thumbnail.replace(/^\.\//, '')}`), `${where}: card thumbnail`);
       for (const field of ['title', 'objective', 'completionCriteria']) assert.match(lesson[field] || '', /\S/, `${where}: ${field}`);
       assert.ok(lesson.steps.length >= 10, `${where}: a syllabus lesson has at least 10 steps, saw ${lesson.steps.length}`);
@@ -57,7 +53,6 @@ test('every lesson and course has its pictures, and every step names its sources
 
 test('every lesson has enough checks, of more than one kind, with a hint and a reason', () => {
   for (const { pack, lesson } of lessons) {
-    if (NOT_YET_HELD_TO_STEP_AND_CHECK_RULES.has(lesson.id)) continue;
     const checks = pack.checks.filter((check) => check.lessonId === lesson.id);
     assert.ok(checks.length >= MIN_CHECKS_PER_LESSON, `${lesson.id}: ${checks.length} checks, expected at least ${MIN_CHECKS_PER_LESSON}`);
     assert.ok(new Set(checks.map((check) => check.type)).size >= 3, `${lesson.id}: use at least three question types`);

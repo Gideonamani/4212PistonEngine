@@ -53,6 +53,45 @@ test.describe('Valve Operating: lift and duration', () => {
   });
 });
 
+test.describe('Accessories and Drives: the gear explorer', () => {
+  const GEAR_STEP = '#/learn/valve-train-and-power/accessories-and-drives/step/6';
+
+  test('the driven speed follows the teeth, and an idler turns it the same way without changing the ratio', async ({ page, problems }) => {
+    await page.goto(`/${GEAR_STEP}`);
+    await appReady(page);
+    await expect(page.getByRole('heading', { name: 'Try the gear explorer' })).toBeVisible();
+    const driver = page.getByRole('slider', { name: 'Turn the driver gear' });
+    const summary = page.getByText(/^Driver [\d.]+ turns? · driven/);
+
+    // A 12-tooth driver and a 24-tooth driven gear: one turn of the driver is half a turn of the driven gear, the other way.
+    await driver.fill('360');
+    await expect(summary).toContainText('Driver 1 turn · driven 0.5 turns, the opposite way');
+    await expect(page.getByText('12 ÷ 24 = 0.5')).toBeVisible();
+    await expect(page.getByText('1,200 rpm')).toBeVisible();
+
+    // A 36-tooth driven gear takes three turns of the driver to turn once.
+    await page.getByRole('group', { name: 'Driven teeth' }).getByRole('button', { name: '36 teeth' }).click();
+    await driver.fill('1080');
+    await expect(summary).toContainText('Driver 3 turns · driven 1 turn, the opposite way');
+    await expect(page.getByText('The driven gear turns slower than the driver.')).toBeVisible();
+
+    // The idler brings the direction back and leaves the ratio alone.
+    await page.getByRole('button', { name: 'Add an idler' }).click();
+    await expect(page.getByRole('button', { name: '18-tooth idler in place' })).toHaveAttribute('aria-pressed', 'true');
+    await expect(summary).toContainText('Driver 3 turns · driven 1 turn, the same way');
+    await expect(page.getByText('12 ÷ 36 = 0.333')).toBeVisible();
+    await expect(page.getByText('does not change the ratio')).toBeVisible();
+
+    // A bigger driver makes the driven gear faster.
+    await page.getByRole('group', { name: 'Driver teeth' }).getByRole('button', { name: '36 teeth' }).click();
+    await page.getByRole('group', { name: 'Driven teeth' }).getByRole('button', { name: '12 teeth' }).click();
+    await expect(page.getByText('The driven gear turns faster than the driver.')).toBeVisible();
+    await expectNoHorizontalOverflow(page);
+    await expectAccessibleAndTouchable(page, 'gear explorer');
+    problems.assertNone();
+  });
+});
+
 test.describe('Factors Affecting Power: air available', () => {
   const AIR_STEP = '#/learn/breathing-and-performance/factors-affecting-power/step/2';
 

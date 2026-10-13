@@ -27,7 +27,7 @@ test('source ledger, H endpoint ratios and all published lesson bindings agree',
   // The lesson sits in the valve-train course, between Valve Operating (8) and Power Generation (10).
   const pack = read('web/valve-train-and-power-lessons.json'); assert.deepEqual(validateLessonPack(pack), []);
   const lesson = pack.lessons.find(item => item.id === 'accessories-and-drives');
-  assert.equal(lesson.sequenceNumber, 9); assert.equal(pack.checks.filter(check => check.lessonId === lesson.id).length, 9);
+  assert.equal(lesson.sequenceNumber, 9); assert.equal(pack.checks.filter(check => check.lessonId === lesson.id).length, 20);
   for (const step of lesson.steps) {
     assert.ok(step.sourceRefs.every(ref => pack.sources.some(source => source.id === ref)));
     if (step.savedMotionId) assert.ok(animations.some(clip => clip.name === step.savedMotionId));

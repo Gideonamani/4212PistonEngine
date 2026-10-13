@@ -210,5 +210,23 @@
     "title": "Radial engines, cam ring table",
     "source": "FAA-H-8083-32B, Figure 1-27",
     "license": "U.S. Government work"
+  },
+  "spur-gears-1-to-2.webp": {
+    "title": "Two spur gears at a 1:2 ratio",
+    "creator": "Jahobr",
+    "source": "https://commons.wikimedia.org/wiki/File:Two_spur_gears_1_2.svg",
+    "license": "CC0"
+  },
+  "bevel-gear-pair.webp": {
+    "title": "Bevel gear (toothed wheels)",
+    "creator": "Myriam Thyes",
+    "source": "https://commons.wikimedia.org/wiki/File:Gear-kegelzahnrad.svg",
+    "license": "Public domain"
+  },
+  "dry-sump-schematic.webp": {
+    "title": "Schematic diagram of dry sump lubrication for a piston engine",
+    "creator": "Arnero",
+    "source": "https://commons.wikimedia.org/wiki/File:Dry_sump.svg",
+    "license": "Public domain"
   }
 }
