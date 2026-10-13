@@ -92,6 +92,39 @@ test.describe('Accessories and Drives: the gear explorer', () => {
   });
 });
 
+test.describe('Power Generation: the energy chain', () => {
+  const CHAIN_STEP = '#/learn/valve-train-and-power/power-generation/step/2';
+
+  test('the walk goes from the fuel to thrust and shows where the heat goes', async ({ page, problems }) => {
+    await page.goto(`/${CHAIN_STEP}`);
+    await appReady(page);
+    await expect(page.getByRole('heading', { name: 'Walk the energy chain', level: 2 })).toBeVisible();
+    const stages = page.getByRole('list', { name: 'The stages of the energy chain' });
+    await expect(stages.getByRole('button')).toHaveCount(9);
+    await expect(page.getByText('Stage 1 of 9')).toBeVisible();
+    await expect(page.getByText('15,560,000 ft-lb')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Previous stage' })).toBeDisabled();
+
+    await page.getByRole('button', { name: 'Next stage' }).click();
+    await expect(page.getByText('Stage 2 of 9')).toBeVisible();
+    await expect(page.getByText('Where the heat goes, in percent of the heat produced')).toBeVisible();
+    await expect(page.getByText('40 to 45')).toBeVisible();
+
+    await stages.getByRole('button', { name: /Shaft power/ }).click();
+    await expect(page.getByText('Stage 7 of 9')).toBeVisible();
+    await expect(page.getByText('as much as 10 to 15 percent')).toBeVisible();
+    await expect(page.getByText('Where the heat goes, in percent of the heat produced')).toHaveCount(0);
+
+    await stages.getByRole('button', { name: /Thrust/ }).click();
+    await expect(page.getByText('Stage 9 of 9')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Next stage' })).toBeDisabled();
+    await expect(page.getByText('Becomes the next stage through')).toHaveCount(0);
+    await expectNoHorizontalOverflow(page);
+    await expectAccessibleAndTouchable(page, 'energy chain');
+    problems.assertNone();
+  });
+});
+
 test.describe('Factors Affecting Power: air available', () => {
   const AIR_STEP = '#/learn/breathing-and-performance/factors-affecting-power/step/2';
 

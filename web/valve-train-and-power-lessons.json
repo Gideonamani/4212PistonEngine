@@ -12,7 +12,7 @@
       "tier": 1,
       "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
       "path": "Notes/amt_powerplant_handbook 2023.pdf",
-      "applicability": "Primary source for valve construction, the valve-operating mechanism, hydraulic tappets, valve clearance and valve inspection. PDF page locators are used in step notes. Used in lesson 9 for: the accessory section, accessory gear trains with spur and bevel gears (PDF p. 28); propeller reduction gearing and propeller shafts (PDF p. 44); wet-sump and dry-sump lubrication (PDF p. 250); the oil pump shear section (PDF p. 269); the tachometer (PDF p. 391); and the glossary entry for dual ignition (PDF p. 468)."
+      "applicability": "Primary source for valve construction, the valve-operating mechanism, hydraulic tappets, valve clearance and valve inspection. PDF page locators are used in step notes. Used in lesson 10 for: the basic major components (PDF p. 26); the output of an aircraft powerplant, thrust (PDF p. 23); cylinder numbering and firing order (PDF pp. 36 to 37); the four events and the force on the piston (PDF pp. 46 to 48); work, horsepower, piston displacement and compression ratio (PDF pp. 49 to 51); indicated, brake and friction horsepower, torque and thrust horsepower (PDF pp. 51 to 54); and the heat of combustion and where it goes (PDF p. 55)."
     },
     {
       "id": "easa-module16",
@@ -48,6 +48,13 @@
       "title": "FAA-H-8083-32B (2023), Powerplant",
       "path": "../Notes/amt_powerplant_handbook 2023.pdf",
       "applicability": "General teaching principles; no configuration dimensions or H-specific values."
+    },
+    {
+      "id": "easa-module16-core",
+      "tier": 2,
+      "title": "EASA Module 16, Piston Engines - core text (course copy)",
+      "path": "Notes/Piston Engines EASA Module 16 All CORE Text.pdf",
+      "applicability": "Secondary source for the module-level structure and terminology. PDF p. 12 gives the firing orders of Lycoming (1-4-5-2-3-6) and Continental (normally 1-6-3-2-5-4) six-cylinder opposed engines and says the manufacturers number their cylinders differently: Lycoming has No. 1 on the right side closest to the propeller, Continental at the right rear."
     }
   ],
   "lessons": [
@@ -1048,20 +1055,63 @@
       ],
       "listed": true,
       "scheduledDay": 5,
-      "completionCriteria": "Explain why the spark fires before top dead centre, calculate the compression ratio and the swept and clearance volume of a cylinder, trace the push from the piston to the propeller shaft, and state three things that must be kept in order when the power section is assembled.",
+      "completionCriteria": "Follow the energy from the fuel to thrust one conversion at a time; explain what fuel, air and ignition each do; name the parts of the power-generating assembly and what each does; tell force, torque, rotational speed and shaft power apart and use torque and rpm to find power; explain why the spark fires before top dead centre and calculate the compression ratio and the swept and clearance volume of a cylinder; say how shaft power becomes thrust and where some of the power goes before the propeller; trace the push from the piston to the propeller shaft and state three things that must be kept in order when the power section is assembled; and explain why the power events are spread evenly around the cycle, what the firing order is and why it is not the numbering order.",
       "steps": [
         {
           "type": "text",
-          "title": "From burning gas to shaft power",
-          "prompt": "Everything the engine does for the aircraft starts as burning gas pushing on a piston. At full power the push can be more than 15 tons, and the gas is between 3,000 and 4,000 °F. Before you open the model, predict the path: what carries that push from the piston to the propeller, and what has to be strong enough to survive it?",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48 (the piston is pushed down by the burning gases with a force that can be greater than 15 tons at maximum power; the gas temperature may be between 3,000 and 4,000 °F; the connecting rod movement is changed to rotary movement by the crankshaft and transmitted to the propeller shaft). The handbook writes the force as \"(30,000 psi)\"; 15 tons is about 30,000 pounds of force, so the lesson gives the force and not a pressure.",
+          "title": "From fuel to thrust",
+          "prompt": "The engine does not make power from nothing. It changes energy from one form to another, one conversion at a time, until the aircraft is pushed forward.\n\nThe fuel holds chemical energy, and burning turns it into heat. The heat raises the pressure of the gas in the cylinder. The pressure pushes on the piston, and the piston and connecting rod carry the push to the crankshaft. The crankshaft turns, so the push becomes torque, and torque at a speed is shaft power. The propeller turns shaft power into thrust.\n\nThe whole chain: fuel, heat, pressure, force, motion, torque, shaft power, propeller, thrust. Walk along it in the next step, then keep it in mind through the lesson.",
+          "note": "The chain is the lesson's core idea (the instructor's outcomes, objective 1). Documented from FAA-H-8083-32B (2023), glossary, PDF p. 472 (a heat engine converts the chemical energy in a fuel into heat energy and then into mechanical energy) and PDF pp. 46 to 48 and 52 to 54 (the burning gases push the piston down, the connecting rod movement is changed to rotary movement by the crankshaft and transmitted to the propeller shaft; torque and brake horsepower; thrust horsepower).",
           "sourceRefs": [
             "faa-powerplant-2023"
           ],
           "mediaPlan": {
             "mode": "none",
             "status": "not-needed",
-            "rationale": "A prediction prompt that sets up the force path traced in the model."
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "web-embed",
+          "title": "Walk the energy chain",
+          "url": "artifact:energy-chain",
+          "prompt": "Step along the nine stages from fuel to thrust. At each one, say what form the energy has and what turns it into the next stage.\n\nAt the heat stage, look at where the heat goes. How much of it is used for power, and how much is lost?",
+          "note": "Schematic interactive made for this lesson. Every figure is the FAA handbook's, with its page: about 20,000 BTU per pound of fuel (PDF p. 55); 25 to 30 percent of the heat used for power output, 15 to 20 percent lost in cooling, 5 to 10 percent in friction and 40 to 45 percent through the exhaust (PDF p. 55); gas at 3,000 to 4,000 degrees F and a force greater than 15 tons on the piston (PDF p. 48); torque as force times distance (PDF p. 52); friction horsepower as much as 10 to 15 percent (PDF p. 53); an 85 percent efficient propeller turning 1,000 bhp into 850 thrust horsepower (PDF p. 54). The handbook gives the heat split as ranges, drawn as bands, and elsewhere (PDF p. 56) puts the thermal efficiency of a reciprocating engine at about 34 percent; real engines differ.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "Stepping along the chain, with the heat split drawn at the heat stage, makes each conversion and each loss visible in turn."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Fuel, air and a spark",
+          "prompt": "Fuel is the engine's stored energy. A pound of petroleum fuel, burned with enough air to consume it completely, gives up about 20,000 BTU: the equivalent of 15,560,000 ft-lb of mechanical work. That chemical energy stays locked in the fuel until it burns.\n\nBurning needs three things together. The fuel supplies the energy. The air supplies the oxygen the fuel burns in. The ignition starts the burn at the right moment: in this engine the spark plugs fire as the piston approaches TDC.\n\nTake any one away and no energy is released. Too little air, or a weak or badly timed spark, and the burn is poor and the energy is wasted. How much fuel for how much air is the mixture, which lesson 13 explains.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 55 (a pound of petroleum fuel, burned with enough air to consume it completely, gives up about 20,000 BTU, the equivalent of 15,560,000 ft-lb of mechanical work) and PDF p. 48 (the charge is fired by an electric spark as the piston approaches TDC). The three requirements for burning (fuel, air for its oxygen, and ignition) are the lesson's explanation of the handbook's account of the four events.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Burning gas pushes the piston",
+          "prompt": "Burning raises the temperature and pressure of the gas trapped in the cylinder. Both valves are shut, so the gas cannot escape, and it reaches between 3,000 and 4,000 °F.\n\nThat pressure pushes on the piston crown. Force is pressure times area, and at full power the push can be more than 15 tons.\n\nEverything the engine does for the aircraft starts with this push. Before you open the model, predict the path: what carries the push from the piston to the propeller, and what has to be strong enough to survive it?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48 (the piston is pushed down by the burning gases with a force that can be greater than 15 tons at maximum power; the gas temperature may be between 3,000 and 4,000 °F; the connecting rod movement is changed to rotary movement by the crankshaft and transmitted to the propeller shaft) and PDF p. 51 (the area of the piston multiplied by the pressure gives the force acting on the piston in pounds). The handbook writes the force as \"(30,000 psi)\"; 15 tons is about 30,000 pounds of force, so the lesson gives the force and not a pressure. That both valves are closed during the power stroke: Figure 1-36, PDF p. 47.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A prediction prompt frames the model step that follows."
           }
         },
         {
@@ -1176,6 +1226,20 @@
         },
         {
           "type": "text",
+          "title": "The power-generating assembly",
+          "prompt": "The parts that turn burning gas into rotation form the power-generating assembly.\n\nThe cylinder holds the burning gas, and its head carries the valves and spark plugs. The piston takes the push of the gas, and its rings seal the gas in and control the oil. The piston pin joins the piston to the connecting rod, and the rod carries the push to the crankpin. The crankshaft changes the back-and-forth motion into rotation and passes it to the propeller shaft. The crankcase holds the crankshaft in its main bearings, and the cylinders are fastened to it.\n\nThe valves, and the cams that work them, let the gas in and out at the right moments (lesson 8).\n\nName them on the model. Which part receives the push, and which part turns?",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 26 (the basic major components of a reciprocating engine: crankcase, cylinders, pistons, connecting rods, valves and valve-operating mechanism, and crankshaft), PDF pp. 28 to 30 (the crankshaft transforms the reciprocating motion of the piston and connecting rod into rotary motion; the connecting rod) and PDF p. 48. The functions are those of Parts and Construction, where each part is taken in turn.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
           "title": "Piston rings and ring gaps",
           "prompt": "The rings seal the gas above the piston and control the oil on the cylinder wall. Each ring is split, so it has a gap. When a piston is assembled the gaps are not lined up: on the GTSIO-520 pistons the first, third and fifth ring gaps go one side of the piston and the second and fourth go on the opposite side, 180° away. With the gaps staggered, gas that gets past one ring meets a solid part of the next. If the gaps line up, a straight path opens for gas to leak past the piston into the crankcase and for oil to be burned.",
           "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 75 (11-8: five-ring pistons have the first, third and fifth gaps toward the top of the piston and the second and fourth 180° apart from them; four-ring pistons have the first and third gaps on top and the second and fourth 180° away; do not intermix piston types in any one engine). The reason for staggering (less blow-by and oil burning) is from the course deck (slides 168-169) and the daily quiz; the manual gives the positions.",
@@ -1219,9 +1283,100 @@
         },
         {
           "type": "text",
+          "title": "Force, torque, speed and power",
+          "prompt": "Four words are easy to mix up.\n\nForce is a push or pull, in pounds. Gas pressure times piston area gives the force on a piston.\n\nTorque is a force turning something: the force times its distance from the axis, at right angles to the force. It is measured in pound-feet. A push of 200 lb on an arm 3.18 ft long gives 636 lb-ft.\n\nRotational speed is how fast the shaft turns, in rpm.\n\nPower is the rate of doing work. Torque and speed together make shaft power: bhp = 2π × torque × rpm ÷ 33,000, with torque in lb-ft. That torque at 3,000 rpm is 363 hp.\n\nThe same power can be a high torque at a low speed or a low torque at a high speed.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 51 (the area of the piston multiplied by the pressure gives the force acting on the piston in pounds), PDF p. 49 (work is force times distance; one horsepower is 33,000 ft-lb per minute) and PDF pp. 52 to 53 (torque is the product of a force and the distance of the force from the axis about which it acts, in lb-ft; a Prony brake with a 200 lb scale reading on a 3.18 ft arm gives 636 lb-ft; work per revolution is 2π times the torque; bhp = 2π × force × arm × rpm ÷ 33,000, 363 hp at 3,000 rpm; horsepower is a function of both torque and rpm).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Shaft power to thrust",
+          "prompt": "The piston engine's output is shaft power, rated in brake horsepower. It does not make thrust itself. The propeller does, by turning shaft power into thrust.\n\nThe useful output of every aircraft powerplant is thrust, the force that propels the aircraft. Since the piston engine is rated in brake horsepower, the useful output of engine and propeller together is measured as thrust horsepower.\n\nThe propeller is never 100 percent efficient, and its efficiency varies with engine speed, altitude, temperature and airspeed. With a propeller of 85 percent efficiency, an engine of 1,000 bhp gives 850 thrust horsepower.\n\nOf the horsepowers the handbook discusses, thrust horsepower decides the performance of the engine and propeller together.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 23 (the useful output of all aircraft powerplants is thrust, the force which propels the aircraft; the reciprocating engine is rated in brake horsepower) and PDF p. 54 (thrust horsepower is the result of the engine and propeller working together; the efficiency of the propeller varies with engine speed, attitude, altitude, temperature and airspeed; an engine developing 1,000 bhp with an 85 percent efficient propeller gives 850 thrust hp; of the four types of horsepower, thrust horsepower determines the performance of the engine-propeller combination).",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Power the engine keeps for itself",
+          "prompt": "Not all the power the burning gas makes reaches the propeller. The power developed in the cylinders is the indicated horsepower. Part of it, the friction horsepower, goes in overcoming friction, drawing in fuel, expelling exhaust, and driving the oil and fuel pumps and other accessories: as much as 10 to 15 percent in modern aircraft engines. What is left at the propeller shaft is the brake horsepower.\n\nSome accessory power goes on to serve the aircraft. The alternator or generator supplies the electrical system. A vacuum pump supplies suction, which is a pneumatic service. On aircraft with a hydraulic system an engine-driven pump supplies it. The GTSIO-520-H lists vacuum, de-icing and autopilot drives as options.\n\nThese services take engine power indirectly: the engine turns the accessory, and the accessory serves the aircraft.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 52 to 53 (the power delivered to the propeller is brake horsepower; friction horsepower is the indicated minus the brake horsepower and is the power used in overcoming the friction of moving parts, drawing in fuel, expelling exhaust, driving oil and fuel pumps and other engine accessories; on modern aircraft engines the loss may be as high as 10 to 15 percent of the indicated horsepower) and Figure 1-41 (PDF p. 55), which draws accessories as part of the friction power. Generator, vacuum pump and starter on the accessory section: PDF p. 28. The vacuum, de-icing and autopilot drives listed as options: GTSIO-520 reviewed manual, H section C-3-3. The engine-driven hydraulic pump is from the course slides (hydraulic pumps among the accessories driven through spur gears) and general practice, not from the manual pages read here: check the aircraft's own documents.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio-reviewed",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Why spread the power events",
+          "prompt": "One cylinder gets a power stroke once in every two turns of the crankshaft. If every cylinder fired at the same moment, the shaft would get one hard push every two turns and nothing in between.\n\nSo the power events are spread over the 720° of the cycle. Divide 720° by the number of cylinders: a four-cylinder engine has a power event every 180° of crankshaft rotation, a six-cylinder engine every 120°, and a nine-cylinder radial every 80°.\n\nEven spacing gives steadier torque and less vibration. It also spreads the heat and the loads in time, instead of piling them into one moment. That is why the combustion events must be correctly distributed among the cylinders.",
+          "note": "The four-stroke cycle takes 720 degrees of crankshaft rotation: FAA-H-8083-32B (2023), PDF p. 46. The spacing (720 divided by the number of cylinders) is arithmetic, and the nine-cylinder figure of 80 degrees is in the course slides (slide 'Firing Order - Radial') and in the handbook's spacing of 40 degrees between cylinders with 80 degrees between firing impulses (PDF p. 40). The handbook says the firing order is designed to provide for balance and to eliminate vibration to the greatest extent possible (PDF p. 37). Steadier torque and the spreading of heat and loads: the course slides (slide 'Firing Order': reduce vibration, ensure smooth power delivery, optimize engine cooling, prevent mechanical stress), which the handbook pages read here do not state in these words. The course slide 'Firing Order - H.O.' gives the interval as 120 degrees for four cylinders and 60 degrees for six; the arithmetic gives 180 and 120, and this lesson follows the arithmetic.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Firing order and a smooth engine",
+          "prompt": "The firing order is the sequence in which the power events occur in the cylinders. It is not simply 1, 2, 3, 4, because neighbouring cylinders firing one after another would load one part of the engine and one part of the crankshaft at a time.\n\nThe order is designed to give balance and to eliminate vibration as far as possible. In inline engines the firing is spread evenly along the crankshaft. In opposed engines the order can be listed in pairs, because each pair fires across the centre main bearing.\n\nOn a six-cylinder opposed engine the order 1-4-5-2-3-6 alternates between the two banks. A four-cylinder one is 1-3-2-4 on the Lycoming O-360, though another model is 1-4-2-3.\n\nA good order also helps the cooling, since the heat is not added to the same part twice in a row.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 37 (the firing order is the sequence in which the power event occurs in the different cylinders; designed to provide for balance and to eliminate vibration to the greatest extent possible; in inline engines, evenly distributed along the crankshaft; in opposed engines listed in pairs, as each pair fires across the center main bearing; six-cylinder opposed 1-4-5-2-3-6; one four-cylinder model 1-4-2-3 and another 1-3-2-4) and the GTSIO-520 overhaul manual, PDF p. 153 (the -H: 1-4-5-2-3-6). The O-360 as 1-3-2-4: course slides (slide 'Firing Order - H.O.'). The benefit to cooling is from the course slides only (slide 'Firing Order'); the sentence on alternating banks is read from the order itself, with odd cylinders on the right and even on the left.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Firing order is not numbering order",
+          "prompt": "Firing order and cylinder numbering are different things. The numbers only name the cylinders. On the GTSIO-520-H they run from the rear, odd on the right and even on the left, as seen from the accessory end. The firing order says in what sequence the named cylinders fire.\n\nRead a firing order as a list of names. In 1-4-5-2-3-6, No. 1 fires, then No. 4, then No. 5. After No. 6 the sequence starts again with No. 1.\n\nMakers number differently. Lycoming has No. 1 on the right side closest to the propeller; Continental has it at the right rear. A six-cylinder Lycoming is typically 1-4-5-2-3-6 and a Continental normally 1-6-3-2-5-4, though this engine's manual gives 1-4-5-2-3-6.\n\nSo use the manual for the engine in front of you.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 36 (the numbering of opposed engine cylinders is by no means standard; some manufacturers number from the rear and others from the front; refer to the engine manual), the GTSIO-520 overhaul manual (PDF pp. 13 to 14: cylinders numbered from the rear, odd on the right and even on the left, as seen from the accessory end; PDF p. 153: the -H firing order 1-4-5-2-3-6) and EASA Module 16 core text, PDF p. 12 (Lycoming and Continental firing orders and numbering systems). The Continental order 1-6-3-2-5-4 is the one in the IO-520 manual; the GTSIO-520-H manual lists a different order, as the Classification lesson shows.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul",
+            "easa-module16-core"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
           "title": "Name the whole path",
-          "prompt": "Explain the power section in your own words: how the spark timing, the compression ratio and the fuel work together to make the push, how the push travels from the piston to the propeller shaft, and what you would check and keep in order when the power section is taken apart and put back together. Then take the lesson's quiz.",
-          "note": "Completion step: the learner pulls the lesson together (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 48-51, and the GTSIO-520 overhaul manual, PDF pp. 57-58, 75-76 and 79-80.",
+          "prompt": "Explain the whole story in your own words. How does the energy in the fuel become thrust, one conversion at a time? How do the spark timing, the compression ratio and the fuel work together to make the push, and how does the push reach the propeller shaft?\n\nHow do torque and speed make power, and where does some of the power go before the propeller? Why do the cylinders fire in a sequence, and is that the same as the numbering?\n\nThen take the lesson's quiz.",
+          "note": "Completion step: the learner pulls the lesson together (opening prompt, action, feedback, completion evidence) from FAA-H-8083-32B (2023), PDF pp. 36 to 37 and 46 to 55, and the GTSIO-520 overhaul manual, PDF pp. 57 to 58, 75 to 76, 79 to 80 and 153.",
           "sourceRefs": [
             "faa-powerplant-2023",
             "gtsio520-overhaul"
@@ -2021,6 +2176,240 @@
       ],
       "correct": 0,
       "rationale": "The crankshaft is positioned so the lifters rest on the heels (base circles) of the lobes and both valves are closed, so nothing is under spring load when the rocker assemblies and pushrods come off."
+    },
+    {
+      "id": "power-chain-order",
+      "lessonId": "power-generation",
+      "type": "ordering",
+      "question": "Put these stages of the energy chain in order, from the fuel to the end.",
+      "hint": "Start with the chemical energy in the fuel and end with the force that moves the aircraft.",
+      "items": [
+        "Chemical energy in the fuel",
+        "Heat from combustion",
+        "Pressure of the hot gas",
+        "Force on the piston",
+        "Torque at the crankshaft",
+        "Shaft power at the propeller shaft",
+        "Thrust"
+      ],
+      "rationale": "The fuel burns to make heat, the heat raises the gas pressure, the pressure pushes on the piston, the crankshaft turns the push into torque, torque at a speed is shaft power, and the propeller turns shaft power into thrust."
+    },
+    {
+      "id": "power-fuel-air-spark",
+      "lessonId": "power-generation",
+      "type": "multiple-choice",
+      "question": "What three things must come together for the fuel's energy to be released?",
+      "hint": "One supplies the energy, one the oxygen and one starts the burn.",
+      "answers": [
+        "Fuel, air and ignition",
+        "Fuel, oil and ignition",
+        "Air, oil and compression",
+        "Fuel, air and cooling"
+      ],
+      "correct": 0,
+      "rationale": "The fuel supplies the energy, the air supplies the oxygen it burns in, and the ignition starts the burn at the right moment. Without any one of them, no energy is released."
+    },
+    {
+      "id": "power-force-calc",
+      "lessonId": "power-generation",
+      "type": "numeric",
+      "question": "The gas pressure on a piston is 500 psi and the piston has an area of 20 square inches. What force pushes on the piston?",
+      "hint": "Force is pressure times area.",
+      "unit": "lb",
+      "correctValue": 10000,
+      "tolerance": 0,
+      "rationale": "500 psi × 20 in² = 10,000 lb. A larger piston or a higher pressure gives a larger force."
+    },
+    {
+      "id": "power-torque-calc",
+      "lessonId": "power-generation",
+      "type": "numeric",
+      "question": "A push of 150 lb acts at right angles on an arm 2 ft long. What torque does it give?",
+      "hint": "Torque is the force times its distance from the axis.",
+      "unit": "lb-ft",
+      "correctValue": 300,
+      "tolerance": 0,
+      "rationale": "150 lb × 2 ft = 300 lb-ft. Torque is measured in pound-feet, which should not be confused with work in foot-pounds."
+    },
+    {
+      "id": "power-bhp-calc",
+      "lessonId": "power-generation",
+      "type": "numeric",
+      "question": "An engine delivers a torque of 500 lb-ft at 2,500 rpm. What brake horsepower is that? Use bhp = 2π × torque × rpm ÷ 33,000 and give the answer to the nearest whole number.",
+      "hint": "Multiply 2π (6.2832) by the torque and the rpm, then divide by 33,000.",
+      "unit": "hp",
+      "correctValue": 238,
+      "tolerance": 1,
+      "rationale": "6.2832 × 500 × 2,500 ÷ 33,000 = 238 hp. The same power would come from a lower torque at a higher speed."
+    },
+    {
+      "id": "power-thp-calc",
+      "lessonId": "power-generation",
+      "type": "numeric",
+      "question": "An engine delivers 300 brake horsepower to a propeller that is 80 percent efficient. How much thrust horsepower does the combination give?",
+      "hint": "Thrust horsepower is the brake horsepower times the propeller efficiency.",
+      "unit": "hp",
+      "correctValue": 240,
+      "tolerance": 0,
+      "rationale": "300 × 0.80 = 240 thrust horsepower. The propeller never converts all of the shaft power into thrust power."
+    },
+    {
+      "id": "power-friction",
+      "lessonId": "power-generation",
+      "type": "multiple-choice",
+      "question": "What is the difference between indicated horsepower and brake horsepower?",
+      "hint": "One is measured in the cylinders and the other at the propeller shaft.",
+      "answers": [
+        "The friction horsepower: the power used to overcome friction and to drive the pumps and other accessories",
+        "The power lost in the propeller",
+        "The power lost in the exhaust only",
+        "There is no difference in a modern engine"
+      ],
+      "correct": 0,
+      "rationale": "Indicated horsepower is developed in the cylinders. Friction, drawing in fuel, expelling exhaust and driving the oil and fuel pumps and other accessories take some of it, as much as 10 to 15 percent, and the rest is the brake horsepower delivered to the propeller."
+    },
+    {
+      "id": "power-services",
+      "lessonId": "power-generation",
+      "type": "matching",
+      "question": "Match each aircraft service to the kind of power it uses.",
+      "hint": "Think about what the accessory moves: electrons, air or fluid.",
+      "pairs": [
+        {
+          "left": "Alternator or generator",
+          "right": "Electrical"
+        },
+        {
+          "left": "Vacuum pump",
+          "right": "Pneumatic"
+        },
+        {
+          "left": "Engine-driven hydraulic pump",
+          "right": "Hydraulic"
+        }
+      ],
+      "rationale": "The alternator makes electrical power, the vacuum pump makes a pneumatic supply (suction), and an engine-driven pump supplies a hydraulic system. In each case the engine turns the accessory, so the service takes engine power indirectly."
+    },
+    {
+      "id": "power-components",
+      "lessonId": "power-generation",
+      "type": "matching",
+      "question": "Match each part of the power-generating assembly to its job.",
+      "hint": "Follow the push from the gas to the propeller shaft.",
+      "pairs": [
+        {
+          "left": "Piston",
+          "right": "Takes the push of the burning gas"
+        },
+        {
+          "left": "Piston rings",
+          "right": "Seal the gas and control the oil"
+        },
+        {
+          "left": "Connecting rod",
+          "right": "Carries the push to the crankpin"
+        },
+        {
+          "left": "Crankshaft",
+          "right": "Changes the back-and-forth motion into rotation"
+        },
+        {
+          "left": "Cylinder head",
+          "right": "Carries the valves and the spark plugs"
+        }
+      ],
+      "rationale": "The piston takes the gas force, its rings seal the gas, the connecting rod passes the push to the off-centre crankpin, the crankshaft turns it into rotation, and the cylinder head carries the valves and spark plugs."
+    },
+    {
+      "id": "power-click-rod",
+      "lessonId": "power-generation",
+      "type": "model-click",
+      "question": "Tap the connecting rod.",
+      "hint": "It links the piston pin to the crankpin.",
+      "modelId": "cylinder",
+      "correctNodeId": "ConnectingRodBody",
+      "alsoAccept": [
+        "ConnectingRodCap"
+      ],
+      "rationale": "The connecting rod carries the push from the piston, through the piston pin, to the crankpin. Its cap, bolts and bearing halves are separate parts."
+    },
+    {
+      "id": "power-click-piston",
+      "lessonId": "power-generation",
+      "type": "model-click",
+      "question": "Tap the piston.",
+      "hint": "It is the part that slides in the cylinder and receives the push of the gas.",
+      "modelId": "cylinder",
+      "correctNodeId": "PistonBody",
+      "rationale": "The piston takes the force of the burning gas on its crown. Its rings and pin are separate parts."
+    },
+    {
+      "id": "power-interval-6",
+      "lessonId": "power-generation",
+      "type": "numeric",
+      "question": "A six-cylinder four-stroke engine has its power events evenly spaced through the cycle. How many degrees of crankshaft rotation are there between one power event and the next?",
+      "hint": "The cycle takes 720° of crankshaft rotation. Share it among the cylinders.",
+      "unit": "degrees",
+      "correctValue": 120,
+      "tolerance": 0,
+      "rationale": "720° ÷ 6 cylinders = 120° between power events."
+    },
+    {
+      "id": "power-interval-4",
+      "lessonId": "power-generation",
+      "type": "numeric",
+      "question": "A four-cylinder four-stroke engine has its power events evenly spaced through the cycle. How many degrees of crankshaft rotation are there between one power event and the next?",
+      "hint": "The cycle takes 720° of crankshaft rotation. Share it among the cylinders.",
+      "unit": "degrees",
+      "correctValue": 180,
+      "tolerance": 0,
+      "rationale": "720° ÷ 4 cylinders = 180° between power events."
+    },
+    {
+      "id": "power-spread-why",
+      "lessonId": "power-generation",
+      "type": "multiple-choice",
+      "question": "Why must the power events be spread evenly through the cycle?",
+      "hint": "Think about what a single hard push every two turns would do to the shaft.",
+      "answers": [
+        "It gives steadier torque and less vibration, and spreads the heat and loads in time",
+        "It lets the engine run without a crankshaft",
+        "It makes each cylinder produce more power",
+        "It reduces the number of cylinders needed"
+      ],
+      "correct": 0,
+      "rationale": "If the power events were bunched, the crankshaft would get hard pushes with gaps between them. Spreading them evenly gives steadier torque and less vibration, and spreads the heat and the loads."
+    },
+    {
+      "id": "power-firing-next",
+      "lessonId": "power-generation",
+      "type": "multiple-choice",
+      "question": "A six-cylinder opposed engine has the firing order 1-4-5-2-3-6. Which cylinder fires after No. 1?",
+      "hint": "Read the order as a list of cylinder numbers.",
+      "answers": [
+        "No. 4",
+        "No. 2",
+        "No. 6",
+        "No. 3"
+      ],
+      "correct": 0,
+      "rationale": "The firing order lists the cylinders in the order they fire. After No. 1 comes No. 4, then No. 5, 2, 3 and 6, and then the sequence starts again with No. 1. It is not the numbering order."
+    },
+    {
+      "id": "power-firing-sequence",
+      "lessonId": "power-generation",
+      "type": "ordering",
+      "question": "Put the cylinders in firing order, from No. 1, for the GTSIO-520-H.",
+      "hint": "The order is 1-4-5-2-3-6. Start with No. 1.",
+      "items": [
+        "No. 1",
+        "No. 4",
+        "No. 5",
+        "No. 2",
+        "No. 3",
+        "No. 6"
+      ],
+      "rationale": "The GTSIO-520-H fires 1-4-5-2-3-6. The cylinders alternate between the right bank (odd numbers) and the left bank (even numbers), and the cycle repeats from No. 1."
     }
   ]
 }
