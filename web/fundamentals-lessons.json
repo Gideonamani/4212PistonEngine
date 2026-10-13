@@ -12,7 +12,7 @@
       "tier": 1,
       "title": "FAA Aviation Maintenance Technician Handbook - Powerplant, FAA-H-8083-32B (2023)",
       "path": "Notes/amt_powerplant_handbook 2023.pdf",
-      "applicability": "Primary source for general reciprocating-engine cycles, configurations, cooling, ignition timing principles and supercharging/turbocharging. PDF page locators are used in step notes. Used in lesson 4 for: the heat engine glossary entry (p. 472); the four-stroke cycle, 720 degrees of crankshaft travel and the five events (p. 46); ignition 20 to 35 degrees before TDC, the two-stroke, rotary and diesel cycles (p. 48); reciprocating engines about 34 percent thermally efficient (p. 56); and the Brayton cycle of the gas turbine (p. 79)."
+      "applicability": "Primary source for general reciprocating-engine cycles, configurations, cooling, ignition timing principles and supercharging/turbocharging. PDF page locators are used in step notes. Used in lesson 5 for: classification by operating cycle, cylinder arrangement and cooling, the inline, opposed, V-type and radial descriptions and liquid versus air cooling (PDF pp. 24 to 25); cylinder numbering and firing order (PDF pp. 36 to 37); propeller reduction gearing (PDF p. 44); carburetor types (PDF p. 90); fuel-injection systems (PDF p. 103); internally driven superchargers and turbosuperchargers (PDF pp. 134 to 135); and the glossary entries for rotary radial engine, naturally aspirated engine, supercharger, turbocharger and turbosupercharger (PDF pp. 455 to 490)."
     },
     {
       "id": "easa-module16",
@@ -26,7 +26,7 @@
       "tier": 3,
       "title": "Continental GTSIO-520 Series Overhaul Manual X30045A",
       "path": "Notes/gtsio520_series.pdf",
-      "applicability": "Configuration-specific source for the course reference engine. Variant applicability must be checked before using a limit, dimension or maintenance instruction."
+      "applicability": "Manufacturer overhaul manual for the GTSIO-520 series, the course engine. Section I describes the basic engine as six-cylinder, horizontally opposed, geared, turbocharged, fuel injected, air cooled and four-cycle; cylinders are numbered from the rear, odd on the right and even on the left. The -H difference-data section gives 375 hp at 2,275 propeller rpm, a propeller drive ratio of 0.667:1, 5.250 in bore, 4.000 in stroke, 520 cubic inches and a compression ratio of 7.5:1."
     },
     {
       "id": "course-deck-2026-05",
@@ -118,6 +118,20 @@
       "title": "Brayton Cycle - NASA Glenn Research Center, Beginner's Guide to Aeronautics",
       "url": "https://www.grc.nasa.gov/www/k-12/airplane/brayton.html",
       "applicability": "Publisher: NASA Glenn Research Center. Licence: US Government work (public domain). The Brayton cycle describes all gas turbine engines: compression, combustion at constant pressure, turbine expansion and nozzle expansion; accessed 13 October 2026."
+    },
+    {
+      "id": "tcm-io520-maintenance",
+      "tier": 3,
+      "title": "IO-520 Permold Series Engine Maintenance Manual, Publication M-11, Continental Motors (August 2011)",
+      "path": "Notes/TCM-IO520-MaintManual.pdf",
+      "applicability": "Manufacturer's maintenance manual. PDF p. 12 (printed 1-8) reads the model code IO-520-X: I for fuel injection, O for horizontally opposed cylinders, 520 for the displacement in cubic inches. Also states six air-cooled, horizontally opposed cylinders, 5.25 in bore and 4.00 in stroke, 520 cubic inches."
+    },
+    {
+      "id": "nasm-gnome-omega-rotary-7",
+      "tier": 5,
+      "title": "Gnome Omega Rotary 7 Engine - Smithsonian National Air and Space Museum",
+      "url": "https://si.edu/object/gnome-omega-rotary-7-engine:nasm_A19660001000",
+      "applicability": "Catalogue record read through a search result on 13 October 2026 (a direct fetch was refused): rotary type, seven cylinders, monosoupape, air cooled, 50 hp at 1,200 rpm. Licence: museum catalogue record, facts only; accessed 13 October 2026."
     }
   ],
   "lessons": [
@@ -538,15 +552,23 @@
       "models": ["gtsio520-h-v5-teaching-engine"],
       "listed": true,
       "scheduledDay": 2,
-      "completionCriteria": "Correctly identify the four conventional arrangements from a plan/front view and explain at least one source-backed installation consequence for each, identify the GTSIO-520-H as a six-cylinder horizontally opposed engine, state how its cylinders are numbered and what its firing order is, and state what initiates combustion in spark-ignition and compression-ignition engines.",
+      "completionCriteria": "Say why engines are classified and place an engine on each axis: cylinder arrangement (inline, V-type, radial, horizontally opposed, and the historical rotary), number of cylinders, cooling (air or liquid), cycle (two-stroke or four-stroke), ignition (spark or compression), aspiration (naturally aspirated, supercharged or turbocharged), fuelling (carburetted or fuel-injected) and propeller drive (direct or geared); give the typical strengths and limits of each arrangement without treating them as universal; explain why cylinders are numbered, read the numbering and firing order from the manual, and read a model name such as GTSIO-520-H as a classification.",
       "steps": [
         {
           "type": "text",
-          "title": "One new axis",
-          "prompt": "Operating cycle and cylinder arrangement answer different questions. A four-stroke engine may be inline, V-type, radial or opposed. Predict which arrangement would give the narrowest frontal outline and which would place cylinders around a central crankcase.",
-          "note": "Documented classification from FAA-H-8083-32B (2023), PDF pp. 24-25, cross-checked against EASA Module 16, PDF pp. 23-25.",
-          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The prompt activates spatial predictions before the visual comparison."}
+          "title": "One engine, many labels",
+          "prompt": "The manufacturer's overhaul manual describes the GTSIO-520 as a six-cylinder, horizontally opposed, geared, turbocharged, fuel-injected, air-cooled, four-cycle engine. One sentence, seven labels.\n\nClassifying means sorting engines by one characteristic at a time: how the cylinders are arranged, how many there are, how they are cooled, how the propeller is driven. The handbook sorts reciprocating engines by operating cycle, by cylinder arrangement and by cooling, and more axes follow from that.\n\nWhy bother? A label tells you what to expect: what the engine looks like, how it is cooled, what maintenance it needs. The same engine sits in a different group on every axis.\n\nBefore reading on, which of the seven labels describes the arrangement of the cylinders?",
+          "note": "The manual's description of the basic GTSIO-520 (overhaul manual X30045A, section I, paragraph 1-2) and the handbook's classification by operating cycle, cylinder arrangement and cooling (FAA-H-8083-32B, PDF p. 24). This step frames the lesson using the instructor's learning outcomes; it is not an assessed fact.",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "faa-powerplant-2023",
+            "instructor-outcomes"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A short prediction prompt sets up the lesson; the labels themselves are the content."
+          }
         },
         {
           "type": "image",
@@ -555,8 +577,14 @@
           "url": "artifact:arrangement-inline",
           "alt": "Simplified inline cylinder arrangement",
           "note": "Documented from FAA-H-8083-32B (2023), PDF p. 24. Use an FAA source figure or an accuracy-checked redraw; retain the upright/inverted distinction.",
-          "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "An accuracy-checked schematic communicates the single-bank geometry without implying a specific engine."}
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "An accuracy-checked schematic communicates the single-bank geometry without implying a specific engine."
+          }
         },
         {
           "type": "image",
@@ -565,8 +593,14 @@
           "url": "artifact:arrangement-v",
           "alt": "Simplified V-type cylinder arrangement",
           "note": "Documented from FAA-H-8083-32B (2023), PDF p. 25. The handbook describes two inline banks, generally set 60 degrees apart; the lesson should avoid implying that every V engine uses the same angle or cylinder count.",
-          "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "The defining relationship is geometric and reads best in a controlled front-view schematic."}
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "The defining relationship is geometric and reads best in a controlled front-view schematic."
+          }
         },
         {
           "type": "image",
@@ -577,18 +611,50 @@
           "credit": "FAA-H-8083-32B, Figures 1-2 and 1-3",
           "license": "U.S. Government work",
           "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 25-27. Use FAA Figures 1-2 and 1-3 as the first-choice visual source.",
-          "sourceRefs": ["faa-powerplant-2023"],
-          "mediaPlan": {"mode": "source-image", "status": "available", "rationale": "The handbook figures already show the single-row and double-row geometry accurately."}
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The handbook figures already show the single-row and double-row geometry accurately."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Rotary: the engine that spins",
+          "prompt": "In this course \"rotary\" means two different things.\n\nThe rotary radial engine, used in some early aircraft, turns the usual arrangement inside out. The crankshaft is rigidly attached to the airframe, and the propeller, crankcase and cylinders all revolve as a unit around it. The seven-cylinder Gnome rotaries of the First World War are the classic example. The spinning cylinders were cooled by the air rushing over them.\n\nThe other rotary is the rotary-combustion engine: a three-sided rotor turning inside an elliptical housing, with no cylinders at all. That is a different operating cycle, met in lesson 4's deep dive, not a cylinder arrangement.\n\nThe revolving-cylinder rotary is history, but the outcomes ask you to recognise it.",
+          "note": "Rotary radial engine as defined in the FAA handbook glossary (FAA-H-8083-32B, glossary entry in PDF pp. 455 to 490); the Gnome Omega as a seven-cylinder, air-cooled rotary of 50 hp at 1,200 rpm from the Smithsonian record; cooling by the spinning cylinders passing through the air from course slides 19 to 21 (instructor deck, not independently verified). The three-sided rotor and elliptical housing are from the handbook, PDF p. 48.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "nasm-gnome-omega-rotary-7",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "model-pose",
           "title": "Opposed engine",
           "modelId": "gtsio520-h-v5-teaching-engine",
           "prompt": "Orbit the six-cylinder GTSIO-520-H and identify the two banks directly opposite one another with the crankshaft between them. Predict which view makes the opposed layout most obvious before revealing the model.",
-          "action": {"type": "angle", "value": 0},
+          "action": {
+            "type": "angle",
+            "value": 0
+          },
           "note": "Documented general arrangement from FAA-H-8083-32B (2023), PDF pp. 24-25. The GTSIO-520 overhaul manual identifies the basic engine as six-cylinder, horizontally opposed (PDF p. 13). The current whole-engine mesh is a teaching reconstruction and must retain its modelling-status disclosure.",
-          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
-          "mediaPlan": {"mode": "existing-3d", "status": "available", "rationale": "Free orbit makes the two opposed banks and central crankshaft spatially obvious."}
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "Free orbit makes the two opposed banks and central crankshaft spatially obvious."
+          }
         },
         {
           "type": "web-embed",
@@ -596,16 +662,75 @@
           "prompt": "Switch among inline, V-type, radial and opposed outlines. Rotate the same notional engine axis and compare bank count, cylinder direction and frontal outline without changing the operating cycle.",
           "url": "artifact:arrangement-comparator",
           "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 24-25, and EASA Module 16, PDF pp. 23-25. The comparator will use schematic silhouettes, not claim exact dimensions for a real engine.",
-          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "A single controlled comparator prevents scale and viewpoint changes from obscuring the geometry difference."}
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "A single controlled comparator prevents scale and viewpoint changes from obscuring the geometry difference."
+          }
+        },
+        {
+          "type": "text",
+          "title": "What each arrangement offers",
+          "prompt": "Each arrangement is a trade-off. These are the typical traits the FAA handbook gives.\n\nInline: a small frontal area and good streamlining. Mounted inverted, it also allows a shorter landing gear and better pilot visibility. But air-cooled inlines get harder to cool as they grow, so they stayed small and low-powered.\n\nV-type: two inline banks, generally 60 degrees apart, mostly with twelve cylinders, liquid or air cooled. Chiefly a Second World War engine.\n\nRadial: very rugged and dependable. Still found in some older cargo aircraft, war birds and crop sprayers.\n\nOpposed: a low weight for its power, a narrow silhouette that suits wing installation, and low vibration. The air-cooled version is the one used predominantly in aviation.",
+          "note": "Typical advantages and uses of the inline, opposed, V-type and radial arrangements from FAA-H-8083-32B (2023), PDF pp. 24 to 25. The handbook states these as general tendencies, not rules for every engine of a type.",
+          "sourceRefs": [
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "text",
           "title": "Configuration, not verdict",
           "prompt": "Arrangement affects packaging, cooling paths, balance and maintenance access, but it does not decide the whole engine. Cooling, ignition, aspiration, materials and installation still matter. Treat each stated advantage or limitation as typical and source-bounded, not universal.",
           "note": "Documented synthesis of the FAA and EASA configuration sections. This boundary prevents the lesson from turning a layout label into an unsupported claim about every engine of that type.",
-          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "The closing distinction is conceptual."}
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "The closing distinction is conceptual."
+          }
+        },
+        {
+          "type": "text",
+          "title": "How many cylinders?",
+          "prompt": "Engines can also be sorted by how many cylinders they have, and the count follows from the layout.\n\nAn inline engine generally has an even number, although some three-cylinder engines have been built. Opposed engines pair their cylinders across the crankshaft: the handbook shows a four-cylinder opposed engine, and the GTSIO-520-H has six. V-types mostly have twelve.\n\nRadial engines are counted in rows. A row may have three, five, seven or nine cylinders. Double-row radials stack two rows of seven or nine, and one type has four rows of seven, 28 cylinders in all.\n\nThe count alone does not give the size of the engine. Displacement is the swept volume of one cylinder times the number of cylinders.",
+          "note": "Cylinder counts for each arrangement from FAA-H-8083-32B (2023), PDF pp. 24 to 25. Displacement as swept volume times the number of cylinders: the course slide with the worked displacement example for a Continental 520 cylinder, and the manual figures for the GTSIO-520 (bore 5.25 in, stroke 4.00 in, 520 cubic inches).",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul",
+            "course-deck-2026-05"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Why number the cylinders?",
+          "prompt": "The cylinders of a six-cylinder engine look nearly identical, yet a technician has to say which one has the low compression, the fouled plug or the high head temperature.\n\nNumbering gives every cylinder a name that all the manuals, logbooks and gauge readings can share. It also gives the engine a fixed starting point. The overhaul manual times the magnetos from the No. 1 cylinder, and the propeller keyway is indexed to No. 1 cylinder top dead centre.\n\nNumbering needs fixed directions too. The propeller end is always the front and the accessory end the rear, and left and right are always seen from the rear, however the engine sits in the aircraft.",
+          "note": "Engine directions and the reason for numbering from FAA-H-8083-32B (2023), PDF p. 36; propeller keyway indexed to No. 1 cylinder TDC, PDF p. 44; magneto installation from the No. 1 cylinder firing position, GTSIO-520 overhaul manual.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "web-embed",
@@ -613,8 +738,16 @@
           "prompt": "Find cylinder No. 1, then predict where No. 2 goes. On the GTSIO-520-H the cylinders are numbered from the rear, with odd numbers on the right bank and even numbers on the left, as seen from the accessory end. Numbering is not standardised - some manufacturers number from the front - so always check the engine manual.",
           "url": "artifact:cylinder-numbering",
           "note": "Documented from the GTSIO-520 overhaul manual, paragraph 1-7 and the definition of terms (PDF pp. 13-14: cylinders numbered from the rear, odd on the right and even on the left, right and left taken facing the accessory end) and FAA-H-8083-32B (2023), PDF pp. 36-37 (left and right taken from the rear; inline and V engines numbered from the rear; opposed-engine numbering 'is by no means standard'; Figure 1-19). The IO-520 manual gives the same rule (paragraph 1-5). The whole-engine model contract (web/engine-contract.json) labels cylinder-1 as left-forward, a reconstruction that does not match the manual; the manual is followed here.",
-          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul", "io520-overhaul"],
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "A top-view diagram with the numbers on the cylinders shows the rule at a glance."}
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul",
+            "io520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "A top-view diagram with the numbers on the cylinders shows the rule at a glance."
+          }
         },
         {
           "type": "web-embed",
@@ -622,8 +755,46 @@
           "prompt": "The firing order is the sequence in which the cylinders' power events occur, chosen for balance and low vibration. Scrub the crank angle and watch the GTSIO-520-H fire 1-4-5-2-3-6, one cylinder every 120 degrees. The IO-520 has the same layout but fires 1-6-3-2-5-4, so never assume one engine's order from another's.",
           "url": "artifact:cylinder-firing-order",
           "note": "Documented from FAA-H-8083-32B (2023), PDF p. 37 (firing order chosen for balance; opposed engines list in pairs; a six-cylinder opposed example 1-4-5-2-3-6), the GTSIO-520 overhaul manual (PDF p. 15, and PDF p. 153 for the -H: 1-4-5-2-3-6) and the IO-520 overhaul manual Table II (1-6-3-2-5-4). The 120-degree spacing is derived (720 / 6) for teaching; the manuals give the order, not crank-angle timing.",
-          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul", "io520-overhaul"],
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "Scrubbing the crank angle shows the order as a sequence in time on the layout."}
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul",
+            "io520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "Scrubbing the crank angle shows the order as a sequence in time on the layout."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Air or liquid cooled",
+          "prompt": "Every piston engine in the end passes its excess heat to the surrounding air. What differs is how the heat gets there.\n\nIn an air-cooled engine the heat passes straight from the cylinders to the air, so the cylinders carry thin metal fins to give the air more surface to touch. Most reciprocating aircraft engines are air cooled, the GTSIO-520-H among them.\n\nIn a liquid-cooled engine the heat goes first into a coolant, which is piped to a radiator in the airstream. The main problem is the added weight of coolant, radiator and tubing. In return, liquid cooling allows high power to be obtained safely, which is why a few high-power engines use it.\n\nLesson 6 takes cooling apart in detail.",
+          "note": "Air and liquid cooling from FAA-H-8083-32B (2023), PDF p. 24, and the glossary entries for air cooling and liquid cooling. The GTSIO-520 is described as air cooled in the manufacturer's overhaul manual.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Two-stroke or four-stroke",
+          "prompt": "Lesson 4 compared the two cycles. For classification all you need is the count.\n\nA four-stroke engine takes four strokes, two turns of the crankshaft, to finish its cycle in a cylinder. A two-stroke needs two strokes, one turn. The manual's phrase \"4 cycle\" means four-stroke: the GTSIO-520-H is a four-stroke, like the vast majority of certified aircraft engines. Two-strokes appear in ultra-light, light sport and experimental aircraft.\n\nTake care with the word cycle. A manual's \"4 cycle\" counts strokes. The handbook also says the four-stroke cycle is sometimes called the Otto cycle, a loose use of a name that, in lesson 4, belonged to the ideal model of the gas.",
+          "note": "Four-stroke and two-stroke cycles, their use and the loose naming of the Otto cycle from FAA-H-8083-32B (2023), PDF pp. 46 and 48; the GTSIO-520 described as a four-cycle engine in its overhaul manual.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
         },
         {
           "type": "web-embed",
@@ -631,16 +802,91 @@
           "prompt": "Predict what supplies the initiating energy in a spark-ignition engine and in a compression-ignition engine, then toggle between them. Scrub through the end of compression and observe what enters the cylinder, when fuel is present, and what initiates combustion in each case.",
           "url": "artifact:ignition-method-comparator",
           "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 47-48, and EASA Module 16, PDF p. 23. The diesel cycle itself is taught in lesson 4; this step only contrasts the trigger. The animation is qualitative and assigns no unsourced compression ratios, injection pressures or temperatures.",
-          "sourceRefs": ["faa-powerplant-2023", "easa-module16"],
-          "mediaPlan": {"mode": "native-html", "status": "available", "rationale": "A controlled toggle keeps piston position constant while changing only the ignition mechanism."}
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "easa-module16"
+          ],
+          "mediaPlan": {
+            "mode": "native-html",
+            "status": "available",
+            "rationale": "A controlled toggle keeps piston position constant while changing only the ignition mechanism."
+          }
         },
         {
           "type": "text",
-          "title": "Name all three",
-          "prompt": "Operating cycle, cylinder arrangement and ignition method are separate classifications. A diesel engine can use a two-stroke or four-stroke cycle, and a four-stroke engine can use spark ignition or compression ignition. Name all three when describing an engine - the GTSIO-520-H, for example, is a four-stroke, six-cylinder horizontally opposed, spark-ignition engine.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48, which notes both two-stroke and four-stroke diesel cycles. The GTSIO-520-H's spark ignition follows from the overhaul manual's magneto and spark-plug description (PDF pp. 15, 18-19); instructor to confirm this wording.",
-          "sourceRefs": ["faa-powerplant-2023", "gtsio520-overhaul"],
-          "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A verbal classification check prevents a common category error."}
+          "title": "Aspiration: how the air gets in",
+          "prompt": "Aspiration means how the air reaches the cylinders.\n\nA naturally aspirated engine depends on atmospheric pressure to push the air-fuel mixture in. It is neither supercharged nor turbocharged.\n\nA supercharger is an air compressor that raises the pressure of the air going to the cylinders. In an internally driven supercharger the compressor is driven by the engine itself, through a gear train from the crankshaft.\n\nA turbocharger, which the handbook also calls an externally driven supercharger or turbosupercharger, takes its power from the exhaust: a small turbine in the exhaust drives the compressor on the same shaft.\n\nThe GTSIO-520-H is turbocharged and has an intake air intercooler. Lesson 11 explains how boost works.",
+          "note": "Naturally aspirated engine, supercharger, turbocharger and turbosupercharger as defined in the FAA handbook glossary; internally driven (gear train from the crankshaft) and externally driven (exhaust) superchargers, FAA-H-8083-32B (2023), PDF pp. 134 to 135; the GTSIO-520-H intake air intercooler, overhaul manual difference data section C-3.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Carburetted or fuel-injected",
+          "prompt": "A carburetor mixes the fuel into the air flowing through it. The float carburetor, the more common type, discharges fuel at a point of low pressure in the venturi, so the temperature drop from fuel vaporisation happens there and ice can form in the venturi and on the throttle valve. Pressure carburetors have mostly been replaced by fuel injection.\n\nA fuel-injection system delivers metered fuel to the engine near the cylinders. The handbook lists its advantages over a carburetor: less danger of induction icing, because the temperature drop takes place in or near the cylinder; better acceleration; better fuel distribution between the cylinders; and better fuel economy.\n\nThe GTSIO-520-H has a Continental continuous-flow fuel-injection system.",
+          "note": "Carburetor types and icing, FAA-H-8083-32B (2023), PDF p. 90; the advantages of fuel injection over a carburetor system, PDF p. 103; the GTSIO-520-H's Continental continuous-flow fuel injection from the overhaul manual's difference data section C-3.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Direct drive or geared",
+          "prompt": "In a direct-drive engine the propeller is mounted on the crankshaft and turns at engine speed. In a geared engine a reduction gear sits between them, so the propeller turns slower than the crankshaft.\n\nWhy bother? An engine develops more power at higher rpm, but when the blade tips approach the speed of sound the propeller's efficiency falls rapidly. Reduction gearing lets the engine run fast while the propeller turns at a speed where it works well.\n\nThe GTSIO-520-H has a propeller drive ratio of 0.667:1: the propeller turns at two-thirds of crankshaft speed. Its 2,275 propeller rpm therefore means the crankshaft is turning about 3,410 rpm.\n\nThe handbook describes spur planetary, bevel planetary and spur-and-pinion reduction gears.",
+          "note": "Reason for propeller reduction gearing and the three common types: FAA-H-8083-32B (2023), PDF p. 44. The propeller drive ratio of 0.667:1 and 375 hp at 2,275 propeller rpm are from the GTSIO-520-H difference data section of the overhaul manual; 2,275 / 0.667 = 3,411 rpm is a calculation, not a figure in the manual.",
+          "sourceRefs": [
+            "faa-powerplant-2023",
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Reading a model name",
+          "prompt": "Manufacturers pack the classification into the model name. Take GTSIO-520-H.\n\nContinental's own maintenance manual reads the code IO-520-X this way: I for fuel injection, O for horizontally opposed cylinders and 520 for the displacement in cubic inches. For this engine the arithmetic fits: six cylinders of 5.25 in bore and 4.00 in stroke displace 520 cubic inches.\n\nThe prefix reads as G for geared and TS for turbosupercharged, the two features the overhaul manual lists. The H marks the model within the series: this one makes 375 hp at 2,275 propeller rpm.\n\nLetter codes differ between manufacturers, so check each in the maker's own key before relying on it.",
+          "note": "The IO-520 model code key is from Continental's IO-520 Permold Series Maintenance Manual, PDF p. 12. The G and TS reading is an interpretation: the GTSIO-520 manual describes the engine as geared and turbocharged (and, in its specification tables, turbosupercharged) but does not spell out the letters, and the handbook says turbosuperchargers are commonly called turbochargers. 375 hp at 2,275 propeller rpm and 520 cubic inches are from the -H difference data section.",
+          "sourceRefs": [
+            "tcm-io520-maintenance",
+            "gtsio520-overhaul",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+          }
+        },
+        {
+          "type": "text",
+          "title": "Name every axis",
+          "prompt": "Classification works on separate axes, and an engine sits at one point on each. Here is the GTSIO-520-H:\n\nCylinder arrangement: horizontally opposed. Cylinders: six. Cooling: air. Cycle: four-stroke. Ignition: spark. Aspiration: turbocharged. Fuelling: fuel-injected. Propeller drive: geared.\n\nThe axes are independent. A diesel can be two-stroke or four-stroke; a four-stroke can use spark or compression ignition; an opposed engine can be carburetted or injected.\n\nWhen you describe an engine, name every axis that matters, as the manual does.",
+          "note": "Axes and values for the GTSIO-520-H from the manufacturer's overhaul manual (section I paragraph 1-2 and the -H difference data section); two magnetos and twelve spark plugs confirm spark ignition. The independence of the axes follows from the classifications themselves and is illustrated by FAA-H-8083-32B (2023), PDF pp. 24 and 48 (diesels may be two-stroke or four-stroke).",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A verbal classification check prevents a common category error."
+          }
         }
       ]
     },
@@ -1244,7 +1490,11 @@
       "type": "multiple-choice",
       "question": "Which description identifies a radial engine arrangement?",
       "hint": "Think about the view from the propeller end.",
-      "answers": ["One straight cylinder bank", "Two banks directly opposite each other", "One or more rows of cylinders around a central crankcase"],
+      "answers": [
+        "One straight cylinder bank",
+        "Two banks directly opposite each other",
+        "One or more rows of cylinders around a central crankcase"
+      ],
       "correct": 2,
       "rationale": "A radial engine arranges its cylinders in one or more rows around a central crankcase."
     },
@@ -1254,7 +1504,11 @@
       "type": "multiple-choice",
       "question": "How does the GTSIO-520 overhaul manual describe the basic engine's cylinder arrangement?",
       "hint": "The two banks face each other across the crankcase.",
-      "answers": ["Six-cylinder horizontally opposed", "Nine-cylinder radial", "Twelve-cylinder V-type"],
+      "answers": [
+        "Six-cylinder horizontally opposed",
+        "Nine-cylinder radial",
+        "Twelve-cylinder V-type"
+      ],
       "correct": 0,
       "rationale": "The manual describes the basic GTSIO-520 engine as a six-cylinder horizontally opposed engine."
     },
@@ -1264,9 +1518,192 @@
       "type": "multiple-choice",
       "question": "Which statement correctly distinguishes spark ignition from compression ignition?",
       "hint": "Focus on what starts combustion, not the number of strokes.",
-      "answers": ["Spark ignition uses an electric spark; compression ignition relies on the temperature of highly compressed air", "Spark ignition is always two-stroke; compression ignition is always four-stroke", "Spark ignition uses a turbocharger; compression ignition cannot"],
+      "answers": [
+        "Spark ignition uses an electric spark; compression ignition relies on the temperature of highly compressed air",
+        "Spark ignition is always two-stroke; compression ignition is always four-stroke",
+        "Spark ignition uses a turbocharger; compression ignition cannot"
+      ],
       "correct": 0,
       "rationale": "The ignition methods differ in the combustion trigger. Stroke cycle and aspiration are separate classifications."
+    },
+    {
+      "id": "classification-numbering",
+      "lessonId": "classification",
+      "type": "multiple-choice",
+      "question": "How are the GTSIO-520-H's cylinders numbered?",
+      "hint": "Left and right are taken as seen from the accessory end.",
+      "answers": [
+        "From the rear, with odd numbers on the right and even numbers on the left",
+        "From the front, filling one bank before the other",
+        "Clockwise from the top cylinder"
+      ],
+      "correct": 0,
+      "rationale": "The overhaul manual numbers the cylinders starting from the rear, odd on the right and even on the left; other manufacturers may number from the front, so the manual always decides."
+    },
+    {
+      "id": "classification-firing-order",
+      "lessonId": "classification",
+      "type": "ordering",
+      "question": "Put the GTSIO-520-H cylinders in firing order.",
+      "hint": "Cylinder 1 fires first; the order is in the manual's ignition system table.",
+      "items": [
+        "Cylinder 1",
+        "Cylinder 4",
+        "Cylinder 5",
+        "Cylinder 2",
+        "Cylinder 3",
+        "Cylinder 6"
+      ],
+      "rationale": "The GTSIO-520-H fires 1-4-5-2-3-6; the similar IO-520 fires 1-6-3-2-5-4, so the order must come from the engine's own manual."
+    },
+    {
+      "id": "classification-engine-arrangement",
+      "lessonId": "classification",
+      "type": "matching",
+      "question": "Match each engine to its cylinder arrangement.",
+      "hint": "Picture each engine from the front: where are its cylinders?",
+      "pairs": [
+        {
+          "left": "GTSIO-520-H",
+          "right": "Horizontally opposed"
+        },
+        {
+          "left": "V-1710",
+          "right": "V-type"
+        },
+        {
+          "left": "Wright R-3350",
+          "right": "Radial"
+        },
+        {
+          "left": "Gnome Omega",
+          "right": "Rotary (the cylinders revolve with the propeller)"
+        }
+      ],
+      "rationale": "The GTSIO-520 has two banks opposite each other. The V-1710 is the handbook's example of a V-type, the R-3350 a radial, and the Gnome a rotary whose crankshaft is fixed while the cylinders turn."
+    },
+    {
+      "id": "classification-displacement",
+      "lessonId": "classification",
+      "type": "numeric",
+      "question": "Six cylinders each have a 5.25 in bore and a 4.00 in stroke. What is the engine's total displacement, in cubic inches?",
+      "hint": "The swept volume of one cylinder is 0.7854 x bore squared x stroke. Multiply by the number of cylinders.",
+      "unit": "cubic inches",
+      "correctValue": 519.5,
+      "tolerance": 1,
+      "rationale": "0.7854 x 5.25 x 5.25 x 4.00 = 86.6 cubic inches per cylinder, and six cylinders give about 519.5, which the manual rounds to 520."
+    },
+    {
+      "id": "classification-why-number",
+      "lessonId": "classification",
+      "type": "multiple-choice",
+      "question": "Why must the cylinders of an engine be numbered?",
+      "hint": "Think of a technician with a logbook, a gauge reading and a manual.",
+      "answers": [
+        "So that every record, reading and procedure can refer to the same cylinder",
+        "Because the cylinders differ in size",
+        "Because the firing order is always 1-2-3-4-5-6",
+        "Because numbering makes the engine run smoother"
+      ],
+      "correct": 0,
+      "rationale": "The numbering gives each cylinder a name shared by the manuals, logbooks and gauges, and a fixed starting point for procedures such as magneto timing."
+    },
+    {
+      "id": "classification-liquid-drawback",
+      "lessonId": "classification",
+      "type": "multiple-choice",
+      "question": "What is the main problem with liquid cooling in an aircraft engine?",
+      "hint": "Think of everything that has to be carried besides the engine.",
+      "answers": [
+        "The added weight of the coolant, radiator and tubing",
+        "It cannot cool a high-power engine",
+        "It makes the engine overheat",
+        "It needs fins on the cylinders"
+      ],
+      "correct": 0,
+      "rationale": "The handbook names the added weight of coolant, heat exchanger and tubing as the main problem, though liquid cooling does allow high power to be obtained safely."
+    },
+    {
+      "id": "classification-turbo-power",
+      "lessonId": "classification",
+      "type": "multiple-choice",
+      "question": "What drives the compressor of a turbocharger?",
+      "hint": "The name says what it does with the engine's waste.",
+      "answers": [
+        "A turbine turned by the exhaust gases",
+        "A gear train from the crankshaft",
+        "An electric motor",
+        "The ram air in the intake"
+      ],
+      "correct": 0,
+      "rationale": "A turbocharger takes its power from the exhaust. An internally driven supercharger is driven by a gear train from the crankshaft."
+    },
+    {
+      "id": "classification-model-name",
+      "lessonId": "classification",
+      "type": "matching",
+      "question": "Match each part of an engine model name to its meaning.",
+      "hint": "Use the manufacturer's own key for IO-520-X, then the features the GTSIO manual lists.",
+      "pairs": [
+        {
+          "left": "I",
+          "right": "Fuel injection"
+        },
+        {
+          "left": "O",
+          "right": "Horizontally opposed cylinders"
+        },
+        {
+          "left": "520",
+          "right": "Displacement in cubic inches"
+        },
+        {
+          "left": "G",
+          "right": "Geared (propeller reduction gearing)"
+        }
+      ],
+      "rationale": "Continental's manual reads I as fuel injection, O as horizontally opposed cylinders and 520 as the displacement in cubic inches. The G prefix marks the propeller reduction gearing."
+    },
+    {
+      "id": "classification-crank-rpm",
+      "lessonId": "classification",
+      "type": "numeric",
+      "question": "The GTSIO-520-H develops 375 hp at 2,275 propeller rpm, with a propeller drive ratio of 0.667:1. At about what crankshaft rpm is that?",
+      "hint": "The propeller turns at 0.667 times the crankshaft speed, so divide the propeller rpm by the ratio.",
+      "unit": "rpm",
+      "correctValue": 3411,
+      "tolerance": 10,
+      "rationale": "2,275 / 0.667 is about 3,411 rpm. The reduction gear lets the crankshaft turn a third faster than the propeller, where the engine makes more power."
+    },
+    {
+      "id": "classification-why-geared",
+      "lessonId": "classification",
+      "type": "multiple-choice",
+      "question": "Why is a reduction gear fitted between the crankshaft and the propeller of a high-power engine?",
+      "hint": "Think about the propeller blade tips as they spin faster.",
+      "answers": [
+        "It lets the engine run at higher rpm while the propeller turns at a speed where it stays efficient",
+        "It makes the propeller turn faster than the engine",
+        "It reduces the number of cylinders needed",
+        "It removes the need for a propeller governor"
+      ],
+      "correct": 0,
+      "rationale": "Higher engine rpm gives more power, but propeller efficiency falls rapidly when the blade tips approach the speed of sound. The reduction gear separates the two speeds."
+    },
+    {
+      "id": "classification-injection-icing",
+      "lessonId": "classification",
+      "type": "multiple-choice",
+      "question": "Why is induction icing less of a danger with fuel injection than with a float carburetor?",
+      "hint": "Where does the temperature drop from fuel vaporisation happen in each?",
+      "answers": [
+        "The temperature drop from vaporisation takes place in or near the cylinder, not in the venturi and throttle",
+        "Fuel injection uses warmer fuel",
+        "Injected engines have no throttle",
+        "Fuel injection does not vaporise fuel"
+      ],
+      "correct": 0,
+      "rationale": "A float carburetor discharges fuel in the venturi, so the cooling happens there and ice can form. An injection system delivers fuel near the cylinder."
     },
     {
       "id": "cooling-air-path",
@@ -1395,25 +1832,6 @@
       "hint": "Start where the expanding gas meets the engine and finish at the shaft that turns.",
       "items": ["Expanding gas pushes on the piston", "The piston pin passes the load to the connecting rod", "The connecting rod turns the crankpin", "The crankshaft rotates and drives the propeller shaft"],
       "rationale": "Gas pressure on the piston is carried through the pin and rod to the crankpin, and the crankshaft turns the reciprocating force into rotation that drives the propeller."
-    },
-    {
-      "id": "classification-numbering",
-      "lessonId": "classification",
-      "type": "multiple-choice",
-      "question": "How are the GTSIO-520-H's cylinders numbered?",
-      "hint": "Left and right are taken as seen from the accessory end.",
-      "answers": ["From the rear, with odd numbers on the right and even numbers on the left", "From the front, filling one bank before the other", "Clockwise from the top cylinder"],
-      "correct": 0,
-      "rationale": "The overhaul manual numbers the cylinders starting from the rear, odd on the right and even on the left; other manufacturers may number from the front, so the manual always decides."
-    },
-    {
-      "id": "classification-firing-order",
-      "lessonId": "classification",
-      "type": "ordering",
-      "question": "Put the GTSIO-520-H cylinders in firing order.",
-      "hint": "Cylinder 1 fires first; the order is in the manual's ignition system table.",
-      "items": ["Cylinder 1", "Cylinder 4", "Cylinder 5", "Cylinder 2", "Cylinder 3", "Cylinder 6"],
-      "rationale": "The GTSIO-520-H fires 1-4-5-2-3-6; the similar IO-520 fires 1-6-3-2-5-4, so the order must come from the engine's own manual."
     }
   ]
 }
