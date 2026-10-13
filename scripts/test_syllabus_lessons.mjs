@@ -10,7 +10,7 @@ import { validateLessonPack } from '../web/schema/content-schema.mjs';
 const SYLLABUS_PACKS = ['valve-train-and-power', 'breathing-and-performance', 'requirements-and-malfunctions', 'maintenance-lsa-practicals'];
 // Lessons 1 to 7 are being reworked one at a time (docs/lesson-coverage-audit-2026-10-12.md). Each one joins this list when its rework is
 // committed, and from then on is held to the same rules as lessons 8 to 18. The list only grows.
-const REWORKED = new Set(['history-mechanical-engines', 'history-aircraft-engines']);
+const REWORKED = new Set(['history-mechanical-engines', 'history-aircraft-engines', 'terminologies']);
 const held = (pack, lesson) => SYLLABUS_PACKS.includes(pack.id) || REWORKED.has(lesson.id);
 // The accessories lesson was written before these rules: its steps carry no media plan and its checks are of two kinds. It is held to the
 // rest of this file, but not yet to those two, until its rework (which then removes it from this list).
