@@ -160,5 +160,45 @@
     "title": "Examples of TBO and calendar life for engines",
     "source": "FAA-H-8083-32B, Figure 11-1",
     "license": "U.S. Government work"
+  },
+  "heat-engine-diagram.webp": {
+    "title": "Working principle of Carnot's heat engine",
+    "creator": "Eric Gaba (Wikimedia Commons user Sting)",
+    "source": "https://commons.wikimedia.org/wiki/File:Carnot_heat_engine_2.svg",
+    "license": "Public domain"
+  },
+  "pv-diagram-simple-cycle.webp": {
+    "title": "A cyclic process on a pressure-volume diagram",
+    "creator": "Olivier Cleynen",
+    "source": "https://commons.wikimedia.org/wiki/File:P-v_diagram_of_a_simple_cycle.svg",
+    "license": "CC0"
+  },
+  "carnot-cycle-pv-diagram.webp": {
+    "title": "Carnot cycle on a pressure-volume diagram",
+    "creator": "Keta",
+    "source": "https://commons.wikimedia.org/wiki/File:Carnot_cycle_p-V_diagram.svg",
+    "license": "Public domain"
+  },
+  "brayton-cycle-ts-nasa.webp": {
+    "title": "Ideal Brayton cycle, T-s diagram",
+    "creator": "NASA Glenn Research Center",
+    "source": "https://www.grc.nasa.gov/www/k-12/airplane/brayton.html",
+    "license": "U.S. Government work"
+  },
+  "antifreeze-in-radiator.webp": {
+    "title": "Antifreeze in a car radiator",
+    "creator": "EvelynGiggles",
+    "source": "https://commons.wikimedia.org/wiki/File:Antifreeze_in_the_radiator.jpg",
+    "license": "CC BY 2.0"
+  },
+  "faa-cylinder-cutaway.webp": {
+    "title": "Cutaway view of the cylinder assembly",
+    "source": "FAA-H-8083-32B, Figure 1-17",
+    "license": "U.S. Government work"
+  },
+  "faa-finned-cylinder.webp": {
+    "title": "An example of an engine cylinder",
+    "source": "FAA-H-8083-32B, Figure 1-16",
+    "license": "U.S. Government work"
   }
 }

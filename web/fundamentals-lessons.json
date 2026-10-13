@@ -220,19 +220,22 @@
           }
         },
         {
-          "type": "text",
+          "type": "image",
           "title": "Heat engines",
-          "prompt": "An engine takes the energy stored in fuel and turns it into work. The FAA handbook calls a machine that does this through heat a heat engine: it converts the chemical energy in a fuel into heat energy, and that heat is then converted into mechanical energy and useful work.\n\nEvery heat engine follows one pattern. It takes in heat from something hot, converts part of it to work, and must discard the rest as heat to something cooler. In a piston engine the hot source is the burning charge, and the cooler place is the surrounding air that takes the exhaust and the cooling air.\n\nThermal efficiency is the work out divided by the heat in. Because some heat is always rejected, the exhaust is hot and the engine needs cooling.",
-          "note": "Heat engine as defined in the FAA handbook glossary (FAA-H-8083-32B, PDF p. 472); hot source, work and discarded heat, and thermal efficiency W / Qh = 1 - Qc / Qh from OpenStax University Physics Volume 2, 4.2, checked 13 October 2026.",
+          "prompt": "An engine takes the energy stored in fuel and turns it into work. The FAA handbook calls a machine that does this through heat a heat engine: it converts the chemical energy in a fuel into heat energy, and that heat is then converted into mechanical energy and useful work.\n\nEvery heat engine follows one pattern, shown in the diagram. Heat QH flows in from something hot, at temperature TH. Part of it becomes work W. The rest, QC, must be discarded to something cooler, at TC. In a piston engine the hot source is the burning charge, and the cooler place is the surrounding air that takes the exhaust and the cooling air.\n\nThermal efficiency is the work out divided by the heat in. Because some heat is always rejected, the exhaust is hot and the engine needs cooling.",
+          "url": "./lesson-media/heat-engine-diagram.webp",
+          "alt": "Diagram of a heat engine: an arrow QH carries heat from a hot reservoir at temperature TH into a circle, an arrow W leaves downward as work, and an arrow QC carries the rejected heat out to a cold reservoir at temperature TC.",
+          "credit": "Eric Gaba (Wikimedia Commons user Sting), Carnot heat engine 2.svg, Wikimedia Commons",
+          "license": "Public domain",
+          "note": "Heat engine as defined in the FAA handbook glossary (FAA-H-8083-32B, PDF p. 472); hot source, work and discarded heat, and thermal efficiency W / Qh = 1 - Qc / Qh from OpenStax University Physics Volume 2, 4.2, checked 13 October 2026. Picture: 'Working principle of Carnot's heat engine' by Eric Gaba, released into the public domain (Wikimedia Commons, File:Carnot heat engine 2.svg; checked 13 October 2026). The labels QH, QC, TH, TC and W match the textbook form.",
           "sourceRefs": [
             "faa-powerplant-2023",
             "openstax-heat-engines"
           ],
           "mediaPlan": {
-            "mode": "native-html",
-            "status": "planned",
-            "rationale": "A simple flow diagram of heat in, work out and heat rejected makes the pattern visible at a glance.",
-            "assetBrief": "A labelled energy-flow diagram: heat from burning fuel goes in, shaft work comes out, and the remaining heat leaves with the exhaust and the cooling air. No invented percentages."
+            "mode": "web-media",
+            "status": "available",
+            "rationale": "A simple flow diagram of heat in, work out and heat rejected makes the pattern visible at a glance."
           }
         },
         {
@@ -338,37 +341,43 @@
           }
         },
         {
-          "type": "text",
+          "type": "image",
           "title": "Reading a pressure-volume diagram",
-          "prompt": "A pressure-volume (PV) diagram plots the gas's pressure against its volume. Each point is a state of the gas, and the path joining the points shows a process.\n\nRead it like a map. Moving right, the volume grows and the gas is expanding; moving left, it is being compressed. Moving up, the pressure rises. A vertical line is a constant-volume process and a horizontal line is a constant-pressure one.\n\nThe area under a path is the work done. Over a full cycle the loop encloses the net work: what the gas gives on expansion, minus what it takes to compress it. A loop traced clockwise gives net work out, which is what an engine needs.\n\nA bigger loop means more work from every cycle.",
-          "note": "Work as the area under a path, no work at constant volume, and the enclosed loop (positive when clockwise) from OpenStax College Physics 2e, 15.2; the enclosed area as net indicated work per cycle also appears on course slide 58 and on the NASA Glenn Otto cycle page. Checked 13 October 2026.",
+          "prompt": "A pressure-volume (PV) diagram plots the gas's pressure against its volume. Each point is a state of the gas, and the path joining the points shows a process.\n\nRead it like a map. Moving right, the volume grows and the gas is expanding; moving left, it is being compressed. Moving up, the pressure rises. In the diagram, the horizontal legs A and C are constant-pressure processes, and the vertical legs B and D are constant-volume processes.\n\nThe area under a path is the work done. Over a full cycle the loop encloses the net work: what the gas gives on expansion, minus what it takes to compress it. This loop is traced clockwise, through points 1, 2, 3 and 4, which gives net work out, as an engine needs.\n\nA bigger loop means more work from every cycle.",
+          "url": "./lesson-media/pv-diagram-simple-cycle.webp",
+          "alt": "Pressure-volume diagram with pressure p up the side and volume v along the bottom: four points 1 to 4 joined clockwise by two horizontal constant-pressure legs, A and C, and two vertical constant-volume legs, B and D, with arrows showing the direction of travel.",
+          "credit": "Olivier Cleynen, P-v diagram of a simple cycle.svg, Wikimedia Commons",
+          "license": "CC0",
+          "note": "Work as the area under a path, no work at constant volume, and the enclosed loop (positive when clockwise) from OpenStax College Physics 2e, 15.2; the enclosed area as net indicated work per cycle also appears on course slide 58 and on the NASA Glenn Otto cycle page. Checked 13 October 2026. Picture: 'A cyclic thermodynamic process described on a pressure-volume diagram' by Olivier Cleynen, released under CC0 (Wikimedia Commons, File:P-v diagram of a simple cycle.svg; checked 13 October 2026). It is a schematic loop of two constant-pressure and two constant-volume legs, not an engine cycle.",
           "sourceRefs": [
             "openstax-first-law-processes",
             "course-deck-2026-05",
             "nasa-glenn-otto-cycle"
           ],
           "mediaPlan": {
-            "mode": "native-html",
-            "status": "planned",
-            "rationale": "A labelled pair of axes shows how to read direction, steady lines and the enclosed area before the engine diagrams appear.",
-            "assetBrief": "A schematic, unscaled PV diagram: volume on the horizontal axis, pressure on the vertical, a clockwise loop shaded, arrows showing the direction of travel and a note saying that the area inside is the net work. No engine data."
+            "mode": "web-media",
+            "status": "available",
+            "rationale": "A labelled pair of axes shows how to read direction, steady lines and the enclosed loop before the engine diagrams appear."
           }
         },
         {
-          "type": "text",
+          "type": "image",
           "title": "The Carnot limit",
-          "prompt": "In 1824 Sadi Carnot proposed an ideal cycle with the highest efficiency any engine can have between two temperatures. Its four processes are: heat taken in at constant temperature, an expansion with no heat exchange, heat given out at constant temperature, and a compression with no heat exchange.\n\nIts efficiency depends only on the two temperatures, in kelvin:\n\nefficiency = 1 - (cold temperature / hot temperature)\n\nWith a hot source at 1,000 K and a cold sink at 300 K, that is 1 - 0.3 = 70 percent.\n\nThe hotter the source or the colder the sink, the higher the limit. Only a sink at 0 K would give 100 percent, so every heat engine must reject some heat. Real engines fall below their limit: the handbook puts a reciprocating aircraft engine at about 34 percent thermal efficiency, the rest leaving through the exhaust, the cooling and friction.",
-          "note": "The Carnot cycle (proposed 1824), its four processes, e = 1 - Tc / Th and the statement that real engines between the same reservoirs are less efficient: OpenStax University Physics Volume 2, 4.5, checked 13 October 2026. Reciprocating engines about 34 percent thermally efficient: FAA-H-8083-32B (2023), PDF p. 56. The 1,000 K and 300 K figures are an illustration, not engine data.",
+          "prompt": "In 1824 Sadi Carnot proposed an ideal cycle with the highest efficiency any engine can have between two temperatures. The diagram shows it: heat Q1 taken in at constant temperature T1 (1 to 2), an expansion with no heat exchange (2 to 3), heat Q2 given out at the lower constant temperature T2 (3 to 4), and a compression with no heat exchange (4 to 1).\n\nIts efficiency depends only on the two temperatures, in kelvin:\n\nefficiency = 1 - (cold temperature / hot temperature)\n\nWith a hot source at 1,000 K and a cold sink at 300 K, that is 1 - 0.3 = 70 percent.\n\nThe hotter the source or the colder the sink, the higher the limit. Only a sink at 0 K would give 100 percent, so every heat engine must reject some heat. The handbook gives a reciprocating aircraft engine about 34 percent.",
+          "url": "./lesson-media/carnot-cycle-pv-diagram.webp",
+          "alt": "Pressure-volume diagram of the Carnot cycle: two curved constant-temperature lines, T1 above T2, joined by two steeper curves; heat Q1 enters along the upper line and heat Q2 leaves along the lower one, with arrows running clockwise through points 1 to 4.",
+          "credit": "Keta, Carnot cycle p-V diagram.svg, Wikimedia Commons",
+          "license": "Public domain",
+          "note": "The Carnot cycle (proposed 1824), its four processes, e = 1 - Tc / Th and the statement that real engines between the same reservoirs are less efficient: OpenStax University Physics Volume 2, 4.5, checked 13 October 2026. Reciprocating engines about 34 percent thermally efficient: FAA-H-8083-32B (2023), PDF p. 56. The 1,000 K and 300 K figures are an illustration, not engine data. Picture: 'Carnot cycle p-V diagram' by Keta, a chart with no original authorship, in the public domain (Wikimedia Commons, File:Carnot cycle p-V diagram.svg; checked 13 October 2026).",
           "sourceRefs": [
             "openstax-carnot",
             "openstax-heat-engines",
             "faa-powerplant-2023"
           ],
           "mediaPlan": {
-            "mode": "native-html",
-            "status": "planned",
-            "rationale": "A small calculator showing how the limit moves as the two temperatures change gives the formula meaning.",
-            "assetBrief": "A native-HTML slider pair for hot and cold temperature in kelvin that shows the Carnot efficiency, labelled as an illustration of the formula only."
+            "mode": "web-media",
+            "status": "available",
+            "rationale": "The p-V loop of the Carnot cycle shows the two constant-temperature legs and the two legs with no heat exchange that the step describes."
           }
         },
         {
@@ -528,19 +537,22 @@
           }
         },
         {
-          "type": "text",
+          "type": "image",
           "title": "The Brayton cycle",
-          "prompt": "Gas turbines run on a different cycle, the Brayton cycle. The handbook describes four events that are continuous rather than taking turns: intake, compression, expansion and exhaust, each going on all the time in a different part of the engine.\n\nAir is drawn in and compressed. Fuel burns in the combustion chamber, heating the air so that it expands while the pressure stays about constant, which is why the handbook calls it the constant-pressure cycle, or the continuous combustion cycle. The hot gas then drives the turbine and leaves through the exhaust.\n\nCompare the piston engine, where the same cylinder takes each event in turn. The Otto and Diesel cycles repeat in a cylinder; the Brayton cycle runs as a flow. Lesson 2 met the turbine engine; this is its cycle.",
-          "note": "The Brayton cycle as the thermodynamic cycle of the gas turbine, a variable-volume constant-pressure cycle also called the continuous combustion cycle with four continuous events (intake, compression, expansion, exhaust): FAA-H-8083-32B (2023), PDF p. 79. Compression, combustion at constant pressure, turbine and nozzle expansion, and its use in all gas turbine engines: NASA Glenn Beginner's Guide, Brayton cycle. Checked 13 October 2026.",
+          "prompt": "Gas turbines run on a different cycle, the Brayton cycle. The handbook describes four events that are continuous rather than taking turns: intake, compression, expansion and exhaust, each going on all the time in a different part of the engine. It calls this the constant-pressure cycle.\n\nThe NASA diagram follows the air through a turbojet on a temperature-entropy chart. The inlet slows the air, the compressor raises its pressure (2 to 3), and fuel burns in the combustor at constant pressure (3 to 4). The hot gas drives the turbine (4 to 5) and leaves through the nozzle (5 to 8).\n\nThe Otto and Diesel cycles repeat in a cylinder; the Brayton cycle runs as a flow. Lesson 2 met the turbine engine; this is its cycle.",
+          "url": "./lesson-media/brayton-cycle-ts-nasa.webp",
+          "alt": "NASA temperature-entropy diagram of the ideal Brayton cycle: stations 0 to 8 marked, and the inlet, compressor, combustor, turbine and nozzle labelled along the cycle, between a lower constant-pressure curve and an upper one.",
+          "credit": "NASA Glenn Research Center, Beginner's Guide to Aeronautics",
+          "license": "U.S. Government work",
+          "note": "The Brayton cycle as the thermodynamic cycle of the gas turbine, a variable-volume constant-pressure cycle also called the continuous combustion cycle with four continuous events (intake, compression, expansion, exhaust): FAA-H-8083-32B (2023), PDF p. 79. Compression, combustion at constant pressure, turbine and nozzle expansion, and its use in all gas turbine engines: NASA Glenn Beginner's Guide, Brayton cycle. Checked 13 October 2026. Picture: 'Ideal Brayton Cycle, T-s diagram', NASA Glenn Research Center (grc.nasa.gov, Beginner's Guide to Aeronautics, Brayton cycle page), a NASA work in the public domain in the United States; checked 13 October 2026.",
           "sourceRefs": [
             "faa-powerplant-2023",
             "nasa-glenn-brayton"
           ],
           "mediaPlan": {
-            "mode": "native-html",
-            "status": "planned",
-            "rationale": "A schematic gas turbine with the four events labelled along its length shows why the cycle is a flow.",
-            "assetBrief": "A labelled outline of a turbojet or turboprop in section, with intake, compressor, combustion chamber, turbine and exhaust named, and an arrow for airflow. Schematic only; no engine data."
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The NASA diagram labels the inlet, compressor, combustor, turbine and nozzle on the cycle, so the continuous flow can be followed station by station."
           }
         },
         {
@@ -1004,17 +1016,21 @@
           }
         },
         {
-          "type": "text",
+          "type": "image",
           "title": "Fins: more surface for the air",
-          "prompt": "A cylinder on a large engine is roughly the size of a gallon jug. Its cooling fins increase its outer surface so that it presents a barrel-sized exterior to the cooling air. That increases the heat transfer by convection.\n\nThe fins are thin metal ribs on the cylinder barrel and head. The greatest improvement in air cooling came from making them thinner and deeper: modern fins taper from 0.090 inch at the base to 0.060 inch at the tip. More fin area is given where the metal is hottest, around the exhaust valve.\n\nThe head is cast aluminium alloy, which conducts heat rapidly and can be cast with deep, closely spaced fins.\n\nIf too much fin is broken off, the cylinder cannot cool properly and a hot spot develops. Cylinders are normally replaced if a specified number of square inches of fin is missing.",
-          "note": "Fin area and the gallon-jug comparison, and the effect of broken fins: FAA-H-8083-32B (2023), PDF p. 278. Fin taper from 0.090 to 0.060 inch, extra fin area at the exhaust valve, aluminium alloy heads cast with deep, closely spaced fins: PDF p. 36.",
+          "prompt": "A cylinder on a large engine is roughly the size of a gallon jug. Its cooling fins increase its outer surface so that it presents a barrel-sized exterior to the cooling air, which increases the heat transfer by convection. The photograph shows a real cylinder, with its fins in rows around the barrel and the head.\n\nThe greatest improvement in air cooling came from making the fins thinner and deeper: modern fins taper from 0.090 inch at the base to 0.060 inch at the tip. More fin area is given where the metal is hottest, around the exhaust valve. The head is cast aluminium alloy, which conducts heat rapidly.\n\nIf too much fin is broken off, the cylinder cannot cool properly and a hot spot develops. Cylinders are normally replaced if a specified number of square inches of fin is missing.",
+          "url": "./lesson-media/faa-finned-cylinder.webp",
+          "alt": "Photograph of an air-cooled aircraft engine cylinder on a bench, with the cylinder head and its studs at the top and rows of thin cooling fins around the head and the barrel.",
+          "credit": "FAA-H-8083-32B, Figure 1-16",
+          "license": "U.S. Government work",
+          "note": "Fin area and the gallon-jug comparison, and the effect of broken fins: FAA-H-8083-32B (2023), PDF p. 278. Fin taper from 0.090 to 0.060 inch, extra fin area at the exhaust valve, aluminium alloy heads cast with deep, closely spaced fins: PDF p. 36. Picture: FAA-H-8083-32B (2023), Figure 1-16, PDF p. 35 (built from the page by scripts/build_lesson_figures.py).",
           "sourceRefs": [
             "faa-powerplant-2023"
           ],
           "mediaPlan": {
-            "mode": "none",
-            "status": "not-needed",
-            "rationale": "Words carry this step; a picture would add nothing the sentences do not say."
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "A photograph of a real finned cylinder shows what the added surface looks like."
           }
         },
         {
@@ -1111,19 +1127,22 @@
           }
         },
         {
-          "type": "text",
+          "type": "image",
           "title": "What a coolant must do",
-          "prompt": "A coolant has one job: to carry heat from the hot metal to the radiator. To do that in an engine it must meet several demands at once.\n\nIt must carry a lot of heat for its volume, which favours a liquid with a high specific heat. It must stay liquid across the whole range of temperatures the engine meets, neither freezing on a cold night nor boiling in a hot cylinder head. And it must protect the metals it touches, aluminium among them, from corrosion.\n\nNo single liquid does all of this. Water carries heat very well but freezes, boils and corrodes. So engine coolants are mixtures.",
-          "note": "The coolant's function (protecting the cylinder heads from over-temperature by heat dissipation, with additives against corrosion and freezing): Rotax SI-912-016R9, section 4.1. The requirements of range of temperature, heat capacity and corrosion protection are drawn from Rotax section 4 and the Wikipedia Antifreeze article. Checked 13 October 2026.",
+          "prompt": "A coolant has one job: to carry heat from the hot metal to the radiator. To do that in an engine it must meet several demands at once.\n\nIt must carry a lot of heat for its volume, which favours a liquid with a high specific heat. It must stay liquid across the whole range of temperatures the engine meets, neither freezing on a cold night nor boiling in a hot cylinder head. And it must protect the metals it touches, aluminium among them, from corrosion.\n\nNo single liquid does all of this. Water carries heat very well but freezes, boils and corrodes. So engine coolants are mixtures. The photograph shows one in a car's cooling system, dyed green so it can be recognised.",
+          "url": "./lesson-media/antifreeze-in-radiator.webp",
+          "alt": "Photograph of green coolant visible in the filler neck of a car cooling-system tank, with a hose and a hose clamp beside it.",
+          "credit": "EvelynGiggles, Antifreeze in the radiator, Wikimedia Commons",
+          "license": "CC BY 2.0",
+          "note": "The coolant's function (protecting the cylinder heads from over-temperature by heat dissipation, with additives against corrosion and freezing): Rotax SI-912-016R9, section 4.1. The requirements of range of temperature, heat capacity and corrosion protection are drawn from Rotax section 4 and the Wikipedia Antifreeze article. Checked 13 October 2026. Picture: 'Antifreeze in the radiator' by EvelynGiggles, CC BY 2.0 (Wikimedia Commons, File:Antifreeze in the radiator.jpg; checked 13 October 2026). It shows a car, not an aircraft: it is here to show what a dyed glycol coolant looks like.",
           "sourceRefs": [
             "rotax-si-912-016",
             "wikipedia-antifreeze"
           ],
           "mediaPlan": {
-            "mode": "native-html",
-            "status": "planned",
-            "rationale": "A simple three-row table of demands (carry heat, stay liquid, protect metal) against water, glycol and a mixture makes the compromise visible.",
-            "assetBrief": "A labelled comparison with three demands (carry heat, stay liquid, resist corrosion) and three columns: water, ethylene glycol, a 50/50 mixture. Qualitative marks only, no invented numbers."
+            "mode": "web-media",
+            "status": "available",
+            "rationale": "A photograph of a real coolant shows the liquid the step is about; the demands are in words."
           }
         },
         {
@@ -1520,20 +1539,23 @@
           }
         },
         {
-          "type": "text",
+          "type": "image",
           "title": "Materials and why",
-          "prompt": "Each material is a compromise among strength, mass, wear, heat flow and cost.\n\nCrankcase: cast or forged aluminium alloy, light and strong. Cylinder head: aluminium alloy, a good conductor of heat and light. Barrel: forged steel, hardened inside against wear.\n\nPiston: forged aluminium alloy, light to keep inertia low. Rings: gray cast iron.\n\nCrankshaft: forged chromium-nickel-molybdenum steel for strength, with journals and crankpins nitrided against wear.\n\nConnecting rods: forged steel alloy, rigid yet light.\n\nBearings: soft non-ferrous alloys such as bronze, silver and lead-tin, which give way before the shaft does.\n\nValves: chromic-nickel steel for the cooler intake; nichrome, silchrome or cobalt-chromium steel for the exhaust, some with sodium in the stem to carry heat away.",
-          "note": "Crankcase, crankshaft, rods, pistons, cylinder heads, valves (including sodium-filled stems), bearings: FAA-H-8083-32B (2023), PDF pp. 26 to 29, 33, 35, 38 and 43; rings of gray cast iron, the steel barrel and the soft bearing alloys also appear in the GTSIO-520 overhaul manual and EASA Module 16. Typical materials, not rules for every engine.",
+          "prompt": "Each material is a compromise among strength, mass, wear, heat flow and cost. The handbook figure labels two of them: the cast aluminium head and the forged steel barrel.\n\nCrankcase: cast or forged aluminium alloy, light and strong. Cylinder head: aluminium alloy, a good conductor of heat and light. Barrel: forged steel, hardened inside against wear.\n\nPiston: forged aluminium alloy, light to keep inertia low. Rings: gray cast iron.\n\nCrankshaft: forged chromium-nickel-molybdenum steel for strength, with journals and crankpins nitrided against wear.\n\nConnecting rods: forged steel alloy, rigid yet light.\n\nBearings: soft non-ferrous alloys such as bronze, silver and lead-tin, which give way before the shaft does.\n\nValves: chromic-nickel steel for the cooler intake; nichrome, silchrome or cobalt-chromium steel for the exhaust, some with sodium in the stem to carry heat away.",
+          "url": "./lesson-media/faa-cylinder-cutaway.webp",
+          "alt": "FAA cutaway of an engine cylinder with labels for the combustion chamber, intake valve, exhaust valve, cast aluminium head, piston, piston pin, connecting rod, crankshaft and forged steel barrel.",
+          "credit": "FAA-H-8083-32B, Figure 1-17",
+          "license": "U.S. Government work",
+          "note": "Crankcase, crankshaft, rods, pistons, cylinder heads, valves (including sodium-filled stems), bearings: FAA-H-8083-32B (2023), PDF pp. 26 to 29, 33, 35, 38 and 43; rings of gray cast iron, the steel barrel and the soft bearing alloys also appear in the GTSIO-520 overhaul manual and EASA Module 16. Typical materials, not rules for every engine. Picture: FAA-H-8083-32B (2023), Figure 1-17, PDF p. 35 (built from the page by scripts/build_lesson_figures.py).",
           "sourceRefs": [
             "faa-powerplant-2023",
             "gtsio520-overhaul",
             "easa-module16"
           ],
           "mediaPlan": {
-            "mode": "native-html",
-            "status": "planned",
-            "rationale": "A single table of part, material and the reason for choosing it makes the compromise easy to compare.",
-            "assetBrief": "A labelled table: part, typical material, and one reason (strength, mass, wear, heat transfer). Drawn from the handbook; no invented properties."
+            "mode": "source-image",
+            "status": "available",
+            "rationale": "The labelled cutaway shows the aluminium head and steel barrel in place, so the first two materials can be seen as well as read."
           }
         },
         {

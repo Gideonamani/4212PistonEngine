@@ -118,5 +118,17 @@
     "page": 435,
     "box": [0.04, 0.683, 0.96, 0.905],
     "width": 1100
+  },
+  "faa-cylinder-cutaway": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 35,
+    "box": [0.515, 0.452, 0.915, 0.89],
+    "width": 900
+  },
+  "faa-finned-cylinder": {
+    "pdf": "amt_powerplant_handbook 2023.pdf",
+    "page": 35,
+    "box": [0.083, 0.523, 0.475, 0.89],
+    "width": 900
   }
 }
