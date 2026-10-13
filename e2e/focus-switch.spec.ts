@@ -1,6 +1,6 @@
 import type { Locator } from '@playwright/test';
 import { expect, onlyIn, test } from './fixtures';
-import { SPOTLIGHT_STEP, openViewerStep } from './viewer-helpers';
+import { SECTION_STEP, SPOTLIGHT_STEP, openViewerStep } from './viewer-helpers';
 
 // The student-facing controls of a lesson's 3D model: the Spotlight tab (three ways a spotlight can be drawn: Highlight, X-ray, Isolate) and
 // the Section tab (cut the model open along a plane). How each mode looks is checked against the real models in
@@ -101,7 +101,6 @@ test('a choice made on an earlier visit is already in force when the model appea
 // The Section tab: a switch that cuts the model, chips for the three standard planes plus R, the plane a step recommends (its
 // `sectionPlane`, named in a line under the chips), and a slider that moves the cut. Lesson 08 step 2 recommends "Valve axis"; step 4
 // spotlights springs and names none.
-const SECTION_STEP = '#/learn/valve-train-and-power/valve-operating/step/2';
 
 test('a spotlight step offers a cross section: a switch, chips for the planes, and R for the plane the step recommends', async ({ page, problems }) => {
   test.setTimeout(240_000);
