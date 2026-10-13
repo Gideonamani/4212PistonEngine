@@ -1,9 +1,9 @@
 // The captureModel() calls (scripts/capture_model_thumbnail.js) that produced the images in this folder.
 // Paste capture_model_thumbnail.js into the DevTools console of the running dev app, then paste this file and run:
 //   for (const c of THUMBNAIL_CAPTURES) await captureModel(c.model, c.name, c.view, c.options);
-// Squares (720 px) feed the course and lesson card thumbnails; the "explore-" images (1000 x 400) feed the Explore gallery cards.
+// Squares (720 px) feed the course and lesson card thumbnails; the "explore-" images (800 px squares, framed alike) feed the Explore gallery tiles.
 // Each saved PNG becomes a WebP of the same name here; sources.json and build_thumbnails.py take it from there.
-const WIDE = { width: 1000, height: 400 };
+const TILE = { size: 800, frame: { dir: [1, 0.6, 1], fill: 0.8 } };
 // Every part of the intake and exhaust valve trains that sits above the crankcase, for spotlight captures.
 const VALVE_TRAIN = ['IntakeValve', 'ExhaustValve', 'IntakeInnerSpring', 'IntakeOuterSpring', 'ExhaustInnerSpring', 'ExhaustOuterSpring', 'IntakeSpringRetainer', 'ExhaustSpringRetainer', 'IntakeRockerArm', 'ExhaustRockerArm', 'IntakePushrod', 'ExhaustPushrod', 'IntakeHydraulicLifterBody', 'ExhaustHydraulicLifterBody'];
 const THUMBNAIL_CAPTURES = [
@@ -16,14 +16,16 @@ const THUMBNAIL_CAPTURES = [
   { model: 'oil-pump', name: 'oil-pump-square', view: { savedMotionId: 'Exploded overview', motionProgress: 100 }, options: { zoom: 0.82, roll: -25 } },
   { model: 'accessory-drives', name: 'accessory-drives-square', view: { savedMotionId: 'Operating mechanism', motionProgress: 0 }, options: { zoom: 0.8, orbit: [-25, -22] } },
 
-  { model: 'cylinder', name: 'explore-cylinder', view: { initialAngle: 560, initialCycle: true }, options: { ...WIDE, zoom: 0.72 } },
-  { model: 'gtsio520-h-v5-teaching-engine', name: 'explore-full-engine', view: {}, options: { ...WIDE, zoom: 0.55 } },
-  { model: 'wright-1903-engine', name: 'explore-wright-1903-engine', view: { viewPreset: 'engine-overview' }, options: { ...WIDE, exposure: 0.5, zoom: 0.47, pan: [0, -32] } },
-  { model: 'wright-1903-reconstruction', name: 'explore-wright-1903-reconstruction', view: { savedMotionId: 'Systems exploded view', motionProgress: 100 }, options: { ...WIDE, zoom: 0.4, orbit: [-30, -12], pan: [-10, 0] } },
-  { model: 'langley-manly-balzer-1903', name: 'explore-langley-manly-balzer-1903', view: { savedMotionId: 'Systems exploded view', motionProgress: 100 }, options: { ...WIDE, zoom: 0.56, orbit: [-30, -12] } },
-  { model: 'hydraulic-tappet', name: 'explore-hydraulic-tappet', view: { savedMotionId: 'Exploded overview', motionProgress: 100 }, options: { ...WIDE, zoom: 0.52, roll: 90 } },
-  { model: 'oil-pump', name: 'explore-oil-pump', view: { savedMotionId: 'Exploded overview', motionProgress: 100 }, options: { ...WIDE, zoom: 0.54, roll: 90, pan: [45, -5] } },
-  { model: 'accessory-drives', name: 'explore-accessory-drives', view: { savedMotionId: 'Operating mechanism', motionProgress: 0 }, options: { ...WIDE, zoom: 0.7, orbit: [-25, -22], pan: [0, -8] } },
+  // The Explore gallery tiles: every model assembled (not exploded), seen from one direction and scaled to fill the same share of the frame, on the
+  // viewer's own background, so the eight look like a set. `frame` does the centring and scaling; the view is the pose to draw.
+  { model: 'cylinder', name: 'explore-cylinder', view: { initialAngle: 560, initialCycle: true }, options: { ...TILE } },
+  { model: 'gtsio520-h-v5-teaching-engine', name: 'explore-full-engine', view: {}, options: { ...TILE } },
+  { model: 'wright-1903-engine', name: 'explore-wright-1903-engine', view: { viewPreset: 'engine-overview' }, options: { ...TILE, exposure: 0.5 } },
+  { model: 'wright-1903-reconstruction', name: 'explore-wright-1903-reconstruction', view: { savedMotionId: 'Systems exploded view', motionProgress: 0 }, options: { ...TILE } },
+  { model: 'langley-manly-balzer-1903', name: 'explore-langley-manly-balzer-1903', view: { savedMotionId: 'Systems exploded view', motionProgress: 0 }, options: { ...TILE } },
+  { model: 'hydraulic-tappet', name: 'explore-hydraulic-tappet', view: { savedMotionId: 'Exploded overview', motionProgress: 0 }, options: { ...TILE } },
+  { model: 'oil-pump', name: 'explore-oil-pump', view: { savedMotionId: 'Exploded overview', motionProgress: 0 }, options: { ...TILE } },
+  { model: 'accessory-drives', name: 'explore-accessory-drives', view: { savedMotionId: 'Operating mechanism', motionProgress: 0 }, options: { ...TILE } },
   // Lesson 9 (Valve Operating) and its course.
   { model: 'cylinder', name: 'lesson-valve-operating-square', view: { savedMotionId: 'exploded', motionProgress: 50, focusParts: VALVE_TRAIN, focusMode: 'xray' }, options: { zoom: 0.62, pan: [-95, 10] } },
   { model: 'cylinder', name: 'banner-valve-train', view: { savedMotionId: 'exploded', motionProgress: 50, focusParts: VALVE_TRAIN, focusMode: 'xray' }, options: { width: 1000, height: 500, zoom: 0.55, pan: [-75, 5] } },

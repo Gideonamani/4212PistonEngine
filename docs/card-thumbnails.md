@@ -1,6 +1,6 @@
 # Card thumbnails and Explore previews
 
-Every course and listed lesson card shows its own square image, and every 3D study card in Explore shows a wide preview rendered from its current model (`previewUrl` in `src/data/models.json`, files in `web/model-previews/<model id>.webp`). The lesson packs name the file (`"thumbnail": "./thumbnails/lesson-<id>.webp"` on a lesson, `course-<pack id>.webp` on a pack); the Check cards reuse their pack's image. If a file is missing or fails to load, the card falls back to the drawn illustration chosen from its title.
+Every course and listed lesson card shows its own square image, and every 3D study tile in Explore shows a square preview rendered from its current model, assembled and framed the same way as the others (`previewUrl` in `src/data/models.json`, files in `web/model-previews/<model id>.webp`). The lesson packs name the file (`"thumbnail": "./thumbnails/lesson-<id>.webp"` on a lesson, `course-<pack id>.webp` on a pack); the Check cards reuse their pack's image. If a file is missing or fails to load, the card falls back to the drawn illustration chosen from its title.
 
 ## Where each image comes from
 
@@ -13,10 +13,10 @@ python scripts/build_thumbnails.py --notes "../Notes" --only lesson-terminologie
 
 - `pdf` items render the given page and crop a fraction of it (`box`: left, top, right, bottom). `fit: "contain"` pads a tall figure to a square using its own background colour; the default `cover` fills the square.
 - `image` items crop an existing file under `web/`.
-- `render` items use a PNG/WebP captured from the app's own viewer and kept in `scripts/thumbnail_sources/`. `scripts/capture_model_thumbnail.js` is the capture tool and `scripts/thumbnail_sources/captures.js` records the exact call behind every image, so a render can be redone when a model is revised (Explore previews and the internal-mechanism lessons should be recaptured whenever their model changes). `node scripts/capture_renders.mjs <name> ...` runs those recorded calls in a browser against the dev server (`npx vite --port 5173 --strictPort`, models restored into `web/`) and writes the WebP files, so nobody pastes scripts into a DevTools console; `--list` shows the names. A spotlight (`focusParts` with `focusMode`) can be part of the recorded view, which is how the valve-train card images show the valves in colour against a faint cylinder.
+- `render` items use a PNG/WebP captured from the app's own viewer and kept in `scripts/thumbnail_sources/`. `scripts/capture_model_thumbnail.js` is the capture tool and `scripts/thumbnail_sources/captures.js` records the exact call behind every image, so a render can be redone when a model is revised (Explore previews and the internal-mechanism lessons should be recaptured whenever their model changes). The Explore previews use `frame: { dir, fill }` instead of hand-set zoom, pan and orbit: the capture centres the visible geometry and scales it to the same share of the frame from one viewing direction, so the tiles read as a set and a revised model needs no re-tuning. `node scripts/capture_renders.mjs <name> ...` runs those recorded calls in a browser against the dev server (`npx vite --port 5173 --strictPort`, models restored into `web/`) and writes the WebP files, so nobody pastes scripts into a DevTools console; `--list` shows the names. A spotlight (`focusParts` with `focusMode`) can be part of the recorded view, which is how the valve-train card images show the valves in colour against a faint cylinder.
 - `diagonal` items join two parts along a teal seam, for lessons that compare two things (opposed and radial engines; tappet and oil pump).
 
-The Explore previews are the `previews` section of `sources.json` (640 x 256, keyed by model id) and are built by the same script.
+The Explore previews are the `previews` section of `sources.json` (640 x 640, keyed by model id, from the 800 px `explore-*` captures) and are built by the same script.
 
 The Notes folder is not part of the repository, so a source PDF that is not found is skipped with a warning and the committed thumbnail is left alone.
 
