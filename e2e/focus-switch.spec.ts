@@ -8,7 +8,8 @@ import { SECTION_STEP, SPOTLIGHT_STEP, openViewerStep } from './viewer-helpers';
 // the visit. Each test downloads the cylinder, so they run once, one after the other.
 
 onlyIn('phone-390');
-test.describe.configure({ mode: 'serial' });
+// The timeout is the whole test's, from the moment its browser context is made: a slow runner can take a while over that.
+test.describe.configure({ mode: 'serial', timeout: 240_000 });
 
 const STORAGE_KEY = '4212-lesson-focus-mode';
 const SWITCH = 'How the highlighted part is shown';

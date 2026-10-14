@@ -32,7 +32,7 @@ const SCREENS: Screen[] = [
   // The dock's tabs only exist once the model has loaded, so these wait for the whole model, then open the panel they are about.
   ['lesson spotlight step', SPOTLIGHT_STEP, openDockTab(/^Spotlight/, (page) => page.getByRole('group', { name: 'How the highlighted part is shown' }))],
   ['lesson section step', SECTION_STEP, openDockTab(/^Section/, (page) => page.getByRole('radiogroup', { name: 'Section plane' }))],
-  ['lesson motion step', MODEL_STEP, openDockTab(/^Motion/, (page) => page.getByText('This step holds one pose, so there is nothing to play.'))],
+  ['lesson motion step', MODEL_STEP, openDockTab(/^Motion/, (page) => page.getByRole('slider', { name: 'Crank angle' }))],
   ['lesson step list', '#/learn/history-and-fundamentals/history-mechanical-engines/step/1', async (page) => { await page.getByRole('button', { name: /Open the list of steps/ }).click(); await expect(page.getByRole('dialog')).toBeVisible(); }],
   ['credits', '#/credits'],
   ['check modules', '#/check'],

@@ -157,12 +157,15 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   };
   const showAll = () => { isolation = undefined; focus.clear(); powerPath = undefined; snapshot.powerPathId = ''; snapshot.powerPathNote = ''; snapshot.isolated = false; select(''); fitVisible(); };
   runtime.setPickTargets(meshes, object => select(object.userData.partId));
+  // The pose the study opens at (a lesson step's own motion and progress, else the first motion at 0%). Reset returns here.
+  let start = { motionId: '', progress: 0 };
   const update = (view: any) => {
+    start = { motionId: view.savedMotionId || contract.motions[0].id, progress: view.motionProgress || 0 };
     powerPath = undefined; snapshot.powerPathId = ''; snapshot.powerPathNote = '';
     focus.clear(); for (const id of view.focusParts || []) focus.add(id);
     focusMode = focusModeOrDefault(view.focusMode);
     isolation = undefined; snapshot.isolated = false;
-    selectMotion(view.savedMotionId || contract.motions[0].id); sample(view.motionProgress || 0); applyAppearance();
+    selectMotion(start.motionId); sample(start.progress); applyAppearance();
     section.startStep(view.sectionPlane);
   };
   update(context);
@@ -196,7 +199,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
         setPlaying(false); sample(direction > 0 ? stops.find((value: number) => value > progress + .01) ?? 100 : [...stops].reverse().find((value: number) => value < progress - .01) ?? 0);
       } },
       motion: {
-        setAngle: sample, setPlaying, reset() { setPlaying(false); sample(0); },
+        setAngle: sample, setPlaying, reset() { setPlaying(false); sample(active.id === start.motionId ? start.progress : 0); },
         setSpeed(value) { speed = value; syncPlayback(); onChange(); },
         setLoop(value) { loops.set(active.id, value); syncPlayback(); onChange(); },
       }, section: section.feature,

@@ -29,9 +29,6 @@ export type PanelDefinition = {
 
 const wholeSet = ({ host, lessonControls }: PanelContext) => host === 'explore' || lessonControls;
 
-/** Whether the learner may move the model's motion here. A lesson on a model that does not allow it only reports the pose the step holds. */
-export const motionIsInteractive = wholeSet;
-
 export const PANELS: Record<PanelId, PanelDefinition> = {
   parts: {
     id: 'parts',
@@ -43,12 +40,12 @@ export const PANELS: Record<PanelId, PanelDefinition> = {
     id: 'motion',
     label: 'Motion',
     Icon: Play,
-    // Every lesson with a motion offers the tab: a model that lets the learner move it gets the player, the rest report the pose the step holds.
+    // Every lesson with a motion offers the tab. A step opens the model at its own pose; the learner may move it from there, and Reset returns to it.
     available: ({ features }) => Boolean(features?.motion),
-    value: ({ features, snapshot }, context) => {
+    value: ({ features, snapshot }) => {
       const crank = !snapshot.savedMotionId || snapshot.savedMotionId === 'operating' || !features?.savedMotions;
       const reading = crank ? `${Math.round(snapshot.angle ?? 0)}°` : `${Math.round(snapshot.motionProgress ?? 0)}%`;
-      return { text: `${reading} · ${!motionIsInteractive(context) ? 'pose' : snapshot.playing ? 'playing' : 'paused'}`, tone: 'amber' };
+      return { text: `${reading} · ${snapshot.playing ? 'playing' : 'paused'}`, tone: 'amber' };
     },
   },
   spotlight: {

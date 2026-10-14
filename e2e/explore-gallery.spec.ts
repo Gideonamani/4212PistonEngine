@@ -111,8 +111,28 @@ test.describe('Explore gallery', () => {
       await expect(panel).toBeVisible({ timeout: 150_000 });
       await expect(panel.getByRole('heading', { name: model.shortLabel })).toBeVisible();
       await expect(panel.getByText(model.summary)).toBeVisible();
-      // The picture strip keeps only its how-to-move hint: no eyebrow chip, so nothing but the model fills the screen when the panel closes.
+      // How to move the model is in the panel too, and nothing is written over the picture, so the model has the whole screen when the panel closes.
+      await expect(panel.getByText(/Drag to rotate/)).toBeVisible();
+      await expect(page.getByText(/Drag to rotate/)).toHaveCount(1);
       await expect(page.getByText('INTERNAL-MECHANISM STUDY')).toHaveCount(0);
+
+      // The description folds away under the name, to leave the room to the controls, and unfolds again.
+      const about = panel.getByRole('button', { name: model.shortLabel, exact: true });
+      await expect(about).toHaveAttribute('aria-expanded', 'true');
+      await about.click();
+      await expect(about).toHaveAttribute('aria-expanded', 'false');
+      await expect(panel.getByText(model.summary)).toHaveCount(0);
+      await expect(panel.getByText(/Drag to rotate/)).toHaveCount(0);
+      await expect(panel.getByRole('tablist')).toBeVisible();
+      await about.click();
+      await expect(panel.getByText(model.summary)).toBeVisible();
+
+      // The whole panel scrolls, so the last control of a tab can be reached; the tabs stay at its top while it does.
+      expect(await panel.evaluate((element) => getComputedStyle(element).overflowY)).toBe('auto');
+      const scrolls = await panel.evaluate((element) => { element.scrollTop = element.scrollHeight; return element.scrollHeight > element.clientHeight; });
+      expect(scrolls, 'the panel has more in it than fits, so it scrolls').toBe(true);
+      const gap = (await panel.getByRole('tablist').boundingBox())!.y - (await panel.boundingBox())!.y;
+      expect(gap, 'the tabs stay at the top of the panel').toBeLessThan(16);
       await page.getByRole('button', { name: 'Hide Explore controls' }).first().click();
       await expect(page.getByText(model.summary)).toHaveCount(0);
       await expect(page.getByRole('heading', { name: model.shortLabel })).toHaveCount(0);

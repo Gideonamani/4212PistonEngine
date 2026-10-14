@@ -78,6 +78,8 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
   action.play();
 
   const componentsById = new Map<string, any>(contract.teaching_components.map((component: any) => [component.id, component]));
+  // The pose the model opens at (a lesson step's own, else 0°). Reset returns here.
+  let startAngle = context.initialAngle ?? 0;
   const snapshot: ViewerSnapshot = {
     status: 'Full six-cylinder engine ready',
     progress: 100,
@@ -240,7 +242,8 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
     snapshot: () => ({ ...snapshot, ...section.snapshot() }),
     update(view) {
       setPlaying(false);
-      setAngle(view.initialAngle ?? 0);
+      startAngle = view.initialAngle ?? 0;
+      setAngle(startAngle);
       applyFocus(view.focusParts, focusModeOrDefault(view.focusMode));
       section.startStep(view.sectionPlane);
       onChange();
@@ -337,7 +340,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
       motion: {
         setAngle: (angle) => { setPlaying(false); setAngle(angle); },
         setPlaying,
-        reset: () => { setPlaying(false); setAngle(0); },
+        reset: () => { setPlaying(false); setAngle(startAngle); },
         setSpeed: (value) => { speed = value; snapshot.motionSpeed = value; onChange(); },
         setLoop: (value) => { loop = value; snapshot.motionLoop = value; onChange(); },
         strokes: STROKES,

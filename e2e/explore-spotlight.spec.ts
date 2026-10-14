@@ -5,6 +5,8 @@ import { appReady, expect, onlyIn, test } from './fixtures';
 // cylinder, so it runs once.
 
 onlyIn('phone-390');
+// The timeout is the whole test's, from the moment its browser context is made: a slow runner can take a while over that.
+test.describe.configure({ timeout: 240_000 });
 
 test('Explore offers the five tabs, and its Spotlight follows the part the learner picks', async ({ page, problems }) => {
   test.setTimeout(240_000);

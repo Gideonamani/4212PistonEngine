@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Expand, Maximize2, Minimize2, Shrink, SlidersHorizontal } from 'lucide-react';
 import { ExploreControls } from './ExploreControls';
 import { CompactMotionPlayer, SavedMotionControls } from './controls/MotionPlayers';
-import { hasControlPanels } from './controls/panels';
 import { useViewerControls } from './controls/useViewerControls';
 import { HotspotChips, HotspotNote, ModelCanvas, ToolbarButton, UnknownModel, ViewerHeader } from './ViewerParts';
 import { useModelViewer } from './useModelViewer';
@@ -21,7 +20,10 @@ type ExploreViewerProps = {
   onToggleFullscreen?: () => void;
 };
 
-/** The Explore screen's viewer: canvas, hotspots, motion player and the Parts / Motion / Spotlight / Section / Look panels. */
+/**
+ * The Explore screen's viewer: the canvas with its round tool buttons, hotspots and the motion player, and the controls panel (the model's
+ * description and how to move it, then the Parts / Motion / Spotlight / Section / Look tabs). No text sits over the model itself.
+ */
 export default function ExploreViewer({ modelId, isFullPage = false, isFullscreen = false, onToggleFullPage, onToggleFullscreen }: ExploreViewerProps) {
   const viewer = useModelViewer(modelId, 'explore');
   const [controlsOpen, setControlsOpen] = useState(true);
@@ -32,8 +34,9 @@ export default function ExploreViewer({ modelId, isFullPage = false, isFullscree
 
   if (!definition) return <UnknownModel modelId={modelId} />;
 
-  const hasPanels = hasControlPanels(viewer, { host: 'explore', lessonControls: true });
-  const panelOpen = controlsOpen && hasPanels;
+  // The panel appears once the model has loaded, and carries the description even for a model with no tabs (a scan with only a guided tour).
+  const hasPanel = Boolean(features);
+  const panelOpen = controlsOpen && hasPanel;
 
   return <section className="relative isolate flex h-full min-h-[22rem] flex-col overflow-hidden stay-dark bg-[#071418] text-slate-100 shadow-inner lg:flex-row" aria-label={`Interactive 3D model of the ${definition.label}`}>
     <div className={`relative min-h-0 min-w-0 flex-1 overflow-hidden ${panelOpen ? 'min-h-[18rem]' : ''}`}>
@@ -41,15 +44,13 @@ export default function ExploreViewer({ modelId, isFullPage = false, isFullscree
       <ViewerHeader viewer={viewer}>
         {onToggleFullPage && <ToolbarButton label={isFullPage ? 'Exit full-page viewer' : 'Use full-page viewer'} title={isFullPage ? 'Exit full-page viewer' : 'Use full-page viewer'} active={isFullPage} onClick={onToggleFullPage}>{isFullPage ? <Shrink className="h-4 w-4" /> : <Expand className="h-4 w-4" />}</ToolbarButton>}
         {onToggleFullscreen && <ToolbarButton label={isFullscreen ? 'Exit browser fullscreen' : 'Open browser fullscreen'} title={isFullscreen ? 'Exit browser fullscreen' : 'Open browser fullscreen'} active={isFullscreen} onClick={onToggleFullscreen}>{isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}</ToolbarButton>}
-        {hasPanels && <ToolbarButton label={controlsOpen ? 'Hide Explore controls' : 'Show Explore controls'} active={controlsOpen} onClick={() => setControlsOpen((open) => !open)}><SlidersHorizontal className="h-4 w-4" /></ToolbarButton>}
+        {hasPanel && <ToolbarButton label={controlsOpen ? 'Hide Explore controls' : 'Show Explore controls'} active={controlsOpen} onClick={() => setControlsOpen((open) => !open)}><SlidersHorizontal className="h-4 w-4" /></ToolbarButton>}
       </ViewerHeader>
 
       {features?.hotspots && <div className="absolute inset-x-3 bottom-3 z-20 rounded-xl border border-slate-700/80 bg-panel/94 p-2 shadow-xl backdrop-blur sm:inset-x-auto sm:left-3 sm:max-w-[calc(100%-1.5rem)]">
         <HotspotChips viewer={viewer} />
         <HotspotNote viewer={viewer} className="px-1 pt-1.5" />
       </div>}
-
-      {snapshot.assemblyNotice && <p className="pointer-events-none absolute inset-x-3 top-20 z-10 max-w-sm rounded-lg bg-panel/90 px-3 py-2 text-xs leading-relaxed text-amber-100">{snapshot.assemblyNotice}</p>}
 
       {features?.motion && !controlsOpen && showPlayerOnViewer && (features.savedMotions && snapshot.savedMotionId !== 'operating'
         ? <div className="absolute inset-x-3 bottom-3 z-20 max-h-[45%] overflow-y-auto rounded-xl border border-slate-700 bg-panel/95 p-3 sm:w-80"><SavedMotionControls features={features} snapshot={snapshot} /></div>

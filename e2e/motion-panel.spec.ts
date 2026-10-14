@@ -5,9 +5,10 @@ import { MODEL_STEP, openViewerStep } from './viewer-helpers';
 // than one motion. Each test loads a model (16 to 35 MB), so they run once, one after the other.
 
 onlyIn('phone-390');
-test.describe.configure({ mode: 'serial' });
+// The timeout is the whole test's, from the moment its browser context is made: a slow runner can take a while over that.
+test.describe.configure({ mode: 'serial', timeout: 240_000 });
 
-// A lesson step whose model lets the learner move it (the accessory drives set `lessonControls`): the player opens by itself.
+// A lesson step whose model sets `lessonControls` (the accessory drives): the Motion card opens by itself.
 const PLAYER_STEP = '#/learn/valve-train-and-power/accessories-and-drives/step/4';
 
 test('Explore: the crank card reads the angle and the stroke, and plays, loops and slows down on request', async ({ page, problems }) => {
@@ -80,19 +81,35 @@ test('Explore: the crank card reads the angle and the stroke, and plays, loops a
   problems.assertNone();
 });
 
-test('a lesson on a model that holds one pose reports it, in place of the POSE tag', async ({ page, problems }) => {
+test('a lesson step opens the model at its own pose, lets the learner move it, and Reset returns to that pose', async ({ page, problems }) => {
   test.setTimeout(240_000);
   const { viewer } = await openViewerStep(page, MODEL_STEP, { loadModel: true });
   await expect(viewer.getByRole('status')).toHaveCount(0, { timeout: 150_000 });
+  // There is no pose tag and no pose-only card: the tab reads the angle the step starts at (90° here), like any other crank reading.
   const tab = viewer.getByRole('tab', { name: /^Motion/ });
-  await expect(tab).toContainText('· pose');
+  await expect(tab).toHaveAccessibleName(/^Motion, 90° · paused/);
   await expect(viewer.getByText(/^POSE \d/)).toHaveCount(0);
-  await expect(viewer.getByRole('slider')).toHaveCount(0);
   await tab.click();
-  await expect(viewer.getByText('CRANK POSE')).toBeVisible();
-  await expect(viewer.getByText('This step holds one pose, so there is nothing to play.')).toBeVisible();
-  // Nothing to scrub or play; the numbers sit behind Details, in full.
-  await expect(viewer.getByRole('button', { name: 'Play', exact: true })).toHaveCount(0);
+  const crank = viewer.getByRole('slider', { name: 'Crank angle' });
+  await expect(crank).toHaveValue('90');
+  await expect(viewer.getByText('CRANK ANGLE')).toBeVisible();
+  await expect(viewer.getByRole('button', { name: 'Play', exact: true })).toBeVisible();
+
+  // The learner may move it; Reset puts it back where the step began.
+  await crank.fill('300');
+  await expect(tab).toHaveAccessibleName(/^Motion, 300° · paused/);
+  await viewer.getByRole('button', { name: 'Reset motion to the start' }).click();
+  await expect(crank).toHaveValue('90');
+  await expect(tab).toHaveAccessibleName(/^Motion, 90° · paused/);
+
+  // The next step begins at its own pose, wherever the learner left the crank.
+  await crank.fill('180');
+  await page.getByRole('button', { name: /Next Step/ }).click();
+  await expect(crank).toHaveValue('270');
+  await viewer.getByRole('button', { name: 'Reset motion to the start' }).click();
+  await expect(crank).toHaveValue('270');
+
+  // The numbers sit behind Details, in full.
   const details = viewer.getByRole('button', { name: 'Details' });
   await expect(details).toHaveAttribute('aria-expanded', 'false');
   await details.click();
