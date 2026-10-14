@@ -10,7 +10,21 @@ import type { PanelId } from './panels';
 import type { ViewerControls } from './useViewerControls';
 
 /** The body of the open panel, wrapped as the tab panel its tab controls. */
-export function ControlsBody({ id, viewer, controls, className = '' }: { id: PanelId; viewer: ModelViewerState; controls: ViewerControls; className?: string }) {
+export function ControlsBody({
+  id,
+  viewer,
+  controls,
+  className = '',
+  showPartCard,
+  onToggleShowPartCard,
+}: {
+  id: PanelId;
+  viewer: ModelViewerState;
+  controls: ViewerControls;
+  className?: string;
+  showPartCard?: boolean;
+  onToggleShowPartCard?: () => void;
+}) {
   const { definition, features, snapshot } = viewer;
   if (!features) return null;
   const { spotlight, parts } = controls;
@@ -40,6 +54,8 @@ export function ControlsBody({ id, viewer, controls, className = '' }: { id: Pan
           disabled={!spotlight.target.ids.length}
           status={spotlight.target.ids.length ? <>Spotlight on <strong className="text-white">{spotlight.target.label}</strong>.</> : 'Choose a part or a subassembly in Parts, then choose how to show it.'}
           idleHint="Tap a style to spotlight it. Tap the same style again to switch it off."
+          showPartCard={showPartCard}
+          onToggleShowPartCard={onToggleShowPartCard}
         />
       : <SpotlightPanel current={spotlight.current} onChoose={spotlight.choose} />)}
     {id === 'section' && <SectionPanel viewer={viewer} extras={controls.host === 'explore'} />}

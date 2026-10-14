@@ -48,7 +48,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>((
       ? 'border-teal-300 bg-teal-400/20 text-teal-200'
       : 'border-slate-600/70 bg-panel/90 text-slate-200 group-hover:border-teal-400';
   return (
-    <button ref={ref} type="button" aria-label={label} aria-pressed={active} {...rest} className={`group flex h-11 w-11 shrink-0 items-center justify-center outline-none ${className}`}>
+    <button ref={ref} type="button" aria-label={label} aria-pressed={active} title={rest.title ?? label} {...rest} className={`group flex h-11 w-11 shrink-0 items-center justify-center outline-none ${className}`}>
       <span className={`flex ${circleSize[size]} items-center justify-center border shadow-lg transition-colors group-focus-visible:ring-2 group-focus-visible:ring-teal-300 ${shape === 'round' ? 'rounded-full' : 'rounded-xl'} ${look}`}>{children}</span>
     </button>
   );
