@@ -40,7 +40,7 @@ export const LessonFooter = React.forwardRef<HTMLButtonElement, LessonFooterProp
         onClick={onOpenSteps}
         className="flex h-[54px] min-w-0 flex-1 items-center gap-3 rounded-xl text-left outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
       >
-        <span className="h-11 w-11 shrink-0 overflow-hidden rounded-xl border border-white/10"><CardThumbnail src={thumbnail} /></span>
+        <span className="h-11 w-11 shrink-0 overflow-hidden rounded-lg border border-white/10"><CardThumbnail src={thumbnail} /></span>
         <span className="flex min-w-0 flex-1 flex-col gap-1">
           <span className="h-[18px] truncate text-[12.5px] font-semibold leading-[18px] text-white">{lessonNumber}</span>
           <span className="flex h-[18px] items-center" aria-hidden="true">

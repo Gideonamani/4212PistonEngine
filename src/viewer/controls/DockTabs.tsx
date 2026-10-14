@@ -31,7 +31,7 @@ export function DockTabs({ viewer, panels, context, open, onSelect, compact = fa
     event.preventDefault();
     tabs[next].focus();
   };
-  return <div ref={listRef} role="tablist" aria-label="Model controls" onKeyDown={onKeyDown} style={{ gridTemplateColumns: `repeat(${panels.length}, minmax(0, 1fr))` }} className="grid gap-1 rounded-[1.25rem] border border-white/10 bg-slate-900/70 p-1">
+  return <div ref={listRef} role="tablist" aria-label="Model controls" onKeyDown={onKeyDown} style={{ gridTemplateColumns: `repeat(${panels.length}, minmax(0, 1fr))` }} className="grid border-b border-white/10 bg-transparent">
     {panels.map(({ id, label, Icon }, index) => {
       const selected = open === id;
       const value = PANELS[id].value?.(viewer, context);
@@ -46,13 +46,14 @@ export function DockTabs({ viewer, panels, context, open, onSelect, compact = fa
         aria-label={value ? `${label}, ${value.text}` : label}
         tabIndex={selected || (open === null && index === 0) ? 0 : -1}
         onClick={() => onSelect(id)}
-        className={`flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-2xl border px-1 outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${dense ? 'min-h-12 px-0.5' : 'min-h-[3.6rem]'} ${selected ? 'border-teal-400/50 bg-teal-400/10 text-white' : 'border-transparent text-slate-300 hover:bg-white/5'}`}
+        className={`group relative flex min-w-0 flex-col items-center justify-center gap-0.5 px-1 py-1.5 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-teal-300 ${dense ? 'min-h-11' : 'min-h-12'} ${selected ? 'text-teal-300 font-bold' : 'text-slate-400 hover:text-slate-200 hover:bg-white/[0.03]'}`}
       >
-        <span className={`flex items-center font-semibold ${dense ? 'flex-col gap-0.5 text-[11px]' : 'gap-1.5 text-[13px]'} ${selected ? 'font-bold' : ''}`}>
-          <Icon className={`h-4 w-4 ${selected ? 'text-teal-300' : 'text-slate-400'}`} aria-hidden="true" />
-          <span>{label}</span>
+        <span className={`flex items-center ${dense ? 'flex-col gap-0.5 text-xs' : 'gap-1.5 text-[13px]'} ${selected ? 'font-bold' : 'font-semibold'}`}>
+          <Icon className={`h-4 w-4 shrink-0 transition-colors ${selected ? 'text-teal-300' : 'text-slate-400 group-hover:text-slate-300'}`} aria-hidden="true" />
+          <span className="truncate">{label}</span>
         </span>
-        {!dense && value && <span className={`font-mono text-[11px] font-bold ${VALUE_TONE[value.tone]}`}>{value.text}</span>}
+        {!dense && value && <span className={`font-mono text-[11px] font-semibold ${VALUE_TONE[value.tone]}`}>{value.text}</span>}
+        {selected && <span className="absolute bottom-0 inset-x-2 h-0.5 bg-teal-400 rounded-full" aria-hidden="true" />}
       </button>;
     })}
   </div>;

@@ -34,13 +34,13 @@ export function SpotlightPanel({ current, onChoose, disabled = false, status, id
           aria-pressed={selected}
           disabled={disabled}
           onClick={() => onChoose(mode)}
-          className={`flex min-h-[4.25rem] min-w-0 flex-col items-center justify-center gap-1 rounded-2xl border px-1 text-xs font-semibold outline-none focus-visible:ring-2 focus-visible:ring-teal-300 disabled:cursor-not-allowed disabled:opacity-45 ${selected ? 'border-teal-300/70 bg-teal-400/15 text-white' : 'border-white/10 text-slate-300 hover:bg-white/5'}`}
+          className={`flex min-h-12 min-w-0 flex-col items-center justify-center gap-1 rounded-xl px-1 text-xs font-semibold outline-none transition-colors focus-visible:ring-2 focus-visible:ring-teal-300 disabled:cursor-not-allowed disabled:opacity-45 ${selected ? 'bg-teal-400/20 text-teal-200 font-bold border-b-2 border-teal-400' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}
         >
           <Icon className={`h-5 w-5 ${selected ? 'text-teal-300' : 'text-slate-400'}`} aria-hidden="true" />
           {FOCUS_MODE_LABELS[mode]}
         </button>;
       })}
     </div>
-    <p className="px-0.5 text-[11px] leading-snug text-slate-400">{current ? FOCUS_MODE_HINTS[current] : idleHint ?? FOCUS_MODE_HINTS.xray}</p>
+    <p className="px-0.5 text-xs leading-snug text-slate-400">{current ? FOCUS_MODE_HINTS[current] : idleHint ?? FOCUS_MODE_HINTS.xray}</p>
   </div>;
 }

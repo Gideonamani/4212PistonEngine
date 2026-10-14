@@ -49,11 +49,11 @@ export function ExploreControls({ viewer, controls, onClose }: ExploreControlsPr
       </div>}
     </div>
 
-    {withTabs && <div className="sticky top-0 z-10 shrink-0 border-b border-slate-800 bg-panel p-2">
+    {withTabs && <div className="sticky top-0 z-10 shrink-0 bg-panel px-2">
       <DockTabs viewer={viewer} panels={controls.panels} context={controls.context} open={controls.active} onSelect={controls.select} compact />
     </div>}
 
-    {controls.active && <div className="shrink-0 p-3">
+    {controls.active && <div className="shrink-0 px-3 py-3">
       <ControlsBody id={controls.active} viewer={viewer} controls={controls} />
     </div>}
   </aside>;
