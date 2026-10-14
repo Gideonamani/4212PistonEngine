@@ -176,7 +176,7 @@
  */
 .lesson-viewer-stacked { height: min(19rem, calc(var(--lesson-area, 100svh) * 0.75)); }
 .lesson-viewer-stacked-immersive { height: calc(var(--lesson-area, 100svh) * 0.6); }
-.lesson-media-side { height: calc(var(--lesson-area, 100svh) - 1rem); }
+.lesson-media-side { height: calc(var(--lesson-area, 100svh) - 1.5rem); }
 @media (min-width: 640px) {
   .lesson-viewer-stacked { height: min(22rem, calc(var(--lesson-area, 100svh) * 0.75)); }
 }
