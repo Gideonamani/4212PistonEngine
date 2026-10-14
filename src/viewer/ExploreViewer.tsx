@@ -38,7 +38,7 @@ export default function ExploreViewer({ modelId, isFullPage = false, isFullscree
   const hasPanel = Boolean(features);
   const panelOpen = controlsOpen && hasPanel;
 
-  return <section className="relative isolate flex h-full min-h-[22rem] flex-col overflow-hidden stay-dark bg-[#071418] text-slate-100 shadow-inner lg:flex-row" aria-label={`Interactive 3D model of the ${definition.label}`}>
+  return <section className="relative isolate flex h-full min-h-[22rem] flex-col overflow-hidden bg-stage text-slate-100 shadow-inner lg:flex-row" aria-label={`Interactive 3D model of the ${definition.label}`}>
     <div className={`relative min-h-0 min-w-0 flex-1 overflow-hidden ${panelOpen ? 'min-h-[18rem]' : ''}`}>
       <ModelCanvas viewer={viewer} />
       <ViewerHeader viewer={viewer}>

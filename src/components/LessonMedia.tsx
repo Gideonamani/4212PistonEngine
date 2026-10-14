@@ -40,7 +40,7 @@ export const LessonModelStage: React.FC<{ step: LessonStep; active: boolean; imm
   const definition = modelsById[step.modelId!];
   const view = viewFromStep(step);
   const side = layout === 'side';
-  return <div hidden={!active} className={side ? 'h-full' : ''}><Suspense fallback={<div className={`flex items-center justify-center rounded-xl border border-teal-400/20 stay-dark bg-[#071418] text-xs text-teal-300 ${side ? 'h-full' : 'h-80'}`}>Preparing interactive 3D viewer…</div>}>
+  return <div hidden={!active} className={side ? 'h-full' : ''}><Suspense fallback={<div className={`flex items-center justify-center rounded-xl border border-teal-400/20 bg-stage text-xs text-teal-300 ${side ? 'h-full' : 'h-80'}`}>Preparing interactive 3D viewer…</div>}>
     <LessonViewer modelId={step.modelId!} view={view} immersive={immersive} layout={layout} onOpenExplore={() => onSwitchTo3DModel?.(definition.label)} />
   </Suspense></div>;
 };

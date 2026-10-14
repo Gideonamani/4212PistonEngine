@@ -105,7 +105,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, optionOrde
     {question.type === 'ordering' && <OrderingAnswer question={question} {...props} />}
     {question.type === 'matching' && <MatchingAnswer question={question} {...props} />}
     {question.type === 'numeric' && <NumericAnswer question={question} {...props} />}
-    {question.type === 'model-click' && <Suspense fallback={<div className="flex h-56 items-center justify-center rounded-xl border border-teal-400/20 stay-dark bg-[#071418] text-xs text-teal-300">Preparing interactive 3D viewer…</div>}><PartPicker question={question} answer={Array.isArray(answer) ? answer : undefined} onAnswer={onAnswer} revealed={revealed} /></Suspense>}
+    {question.type === 'model-click' && <Suspense fallback={<div className="flex h-56 items-center justify-center rounded-xl border border-teal-400/20 bg-stage text-xs text-teal-300">Preparing interactive 3D viewer…</div>}><PartPicker question={question} answer={Array.isArray(answer) ? answer : undefined} onAnswer={onAnswer} revealed={revealed} /></Suspense>}
     {!revealed
       ? <button disabled={!isAnswered(question, answer)} onClick={onVerify} className="min-h-11 w-full rounded-xl bg-teal-400 py-3 text-xs font-bold text-slate-950 shadow-lg shadow-teal-400/20 disabled:cursor-not-allowed disabled:bg-slate-800 disabled:text-slate-400">Verify answer</button>
       : <div className="flex flex-col gap-3 border-t border-slate-800 pt-3">

@@ -13,6 +13,9 @@ export const DARK_QUERY = '(prefers-color-scheme: dark)';
 /** The browser chrome colour (address bar on phones) for each theme: the page canvas, as in src/index.css. */
 export const THEME_COLOR = { dark: '#061014', light: '#eef4f6' };
 
+/** The 3D viewer studio background colour for each theme: #071418 in dark, #d5dfe3 in light mode (Option 3A). */
+export const STAGE_COLOR = { dark: '#071418', light: '#d5dfe3' };
+
 /** The theme to show. `choice` is the saved choice (or undefined), `systemPrefersDark` what the device asks for. */
 export const resolveTheme = (choice, systemPrefersDark) => (THEMES.includes(choice) ? choice : systemPrefersDark ? 'dark' : 'light');
 

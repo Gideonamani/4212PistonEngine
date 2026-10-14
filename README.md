@@ -40,7 +40,7 @@ The Vite build uses relative URLs (`base: './'`) and copies the static viewer/da
 
 ### Colour theme
 
-The app follows the device's light or dark setting until the learner presses the theme button in the header, and from then on keeps their choice on that device (`4212-theme`). A small script in `index.html` picks the theme before first paint so a light-mode device never flashes dark; `src/theme/useTheme.ts` keeps it current. `src/index.css` holds both palettes: surfaces are tokens (`bg-canvas`, `bg-panel`, `bg-inset`, `bg-raised`), the Tailwind slate, teal, amber and rose scales are mirrored in light mode, and the 3D stage, its controls and the text on a banner photo stay dark in both (`.stay-dark`). Draw with a token or a palette colour, never a hex code: `scripts/test_theme.mjs` fails on a fixed hex in a screen or a lesson diagram.
+The app follows the device's light or dark setting until the learner presses the theme button in the header, and from then on keeps their choice on that device (`4212-theme`). A small script in `index.html` picks the theme before first paint so a light-mode device never flashes dark; `src/theme/useTheme.ts` keeps it current. `src/index.css` holds both palettes: surfaces are tokens (`bg-canvas`, `bg-panel`, `bg-inset`, `bg-raised`, `bg-stage`), the Tailwind slate, teal, amber and rose scales are mirrored in light mode, and the 3D stage uses `--color-stage` (`#071418` dark, `#d5dfe3` light studio) so it blends cleanly with light mode while photo overlays take `.stay-dark`. Draw with a token or a palette colour, never a hex code: `scripts/test_theme.mjs` fails on a fixed hex in a screen or a lesson diagram.
 
 ### Testing
 

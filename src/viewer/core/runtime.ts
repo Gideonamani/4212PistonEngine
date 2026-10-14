@@ -2,7 +2,10 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import type { InteractionMode, ViewerRuntime } from '../types';
+import { STAGE_COLOR } from '../../theme/theme.mjs';
 import { wheelDecision, type WheelZoom } from './interaction.mjs';
+
+const currentStageColor = () => (typeof document !== 'undefined' && document.documentElement.dataset.theme === 'light' ? STAGE_COLOR.light : STAGE_COLOR.dark);
 
 type RuntimeOptions = {
   /** Whether the mouse wheel zooms always, or only with Ctrl or Cmd held so the page can scroll under the pointer. Default: always. */
@@ -13,7 +16,7 @@ type RuntimeOptions = {
 
 export function createViewerRuntime(container: HTMLElement, options: RuntimeOptions = {}): ViewerRuntime {
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color('#071418');
+  scene.background = new THREE.Color(currentStageColor());
   const camera = new THREE.PerspectiveCamera(40, 1, 0.001, 1200);
   const renderer = new THREE.WebGLRenderer({ antialias: true, stencil: true, alpha: false, powerPreference: 'high-performance' });
   renderer.localClippingEnabled = true;
@@ -69,6 +72,20 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
   const render = () => {
     if (!disposed) renderer.render(scene, camera);
   };
+
+  const themeObserver = typeof MutationObserver !== 'undefined' && typeof document !== 'undefined'
+    ? new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+            scene.background = new THREE.Color(currentStageColor());
+            render();
+            break;
+          }
+        }
+      })
+    : null;
+
+  themeObserver?.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
   const animate = (now: number) => {
     animationFrame = 0;
@@ -194,6 +211,7 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
     setAnimationCallback,
     dispose() {
       disposed = true;
+      themeObserver?.disconnect();
       resize.disconnect();
       container.removeEventListener('wheel', passWheelToPage, { capture: true });
       setAnimationCallback(undefined);

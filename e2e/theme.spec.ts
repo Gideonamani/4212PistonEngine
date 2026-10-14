@@ -71,14 +71,14 @@ test('the theme still works when the browser blocks storage', async ({ page }) =
   await expect.poll(() => theme(page)).toBe('dark');
 });
 
-test('the 3D stage stays dark in a light page, and the lesson text around it is light', async ({ page }) => {
+test('the 3D stage uses the light studio tone in a light page, and the lesson text around it is light', async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'light' });
   const { viewer } = await openViewerStep(page);
   expect(await theme(page)).toBe('light');
-  expect(await viewer.evaluate((node) => getComputedStyle(node).backgroundColor)).toBe('rgb(7, 20, 24)');
+  expect(await viewer.evaluate((node) => getComputedStyle(node).backgroundColor)).toBe('rgb(213, 223, 227)');
   expect(await bodyBackground(page)).toBe('rgb(238, 244, 246)');
-  // Text inside the stage keeps its light ink, so the toolbar and the strip beneath the model stay readable.
+  // Text inside the stage adapts to dark ink in light mode, so the toolbar and the strip beneath the model stay readable.
   const stageInk = await viewer.evaluate((node) => getComputedStyle(node).color);
   const lightness = stageInk.startsWith('oklch(') ? Number(stageInk.match(/[\d.]+/)![0]) : Number(stageInk.match(/\d+/)![0]) / 255;
-  expect(lightness, `stage text colour ${stageInk} should be light`).toBeGreaterThan(0.85);
+  expect(lightness, `stage text colour ${stageInk} should be dark in light mode`).toBeLessThan(0.35);
 });

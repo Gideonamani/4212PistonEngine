@@ -52,7 +52,7 @@ export default function PartPicker({ question, answer, onAnswer, revealed }: Par
   const sorted = components ? [...components.items].sort((a, b) => a.label.localeCompare(b.label, 'en')) : [];
 
   return <div className="flex flex-col gap-2.5">
-    <section className="overflow-hidden rounded-xl border border-teal-400/20 stay-dark bg-[#071418]" aria-label={`Interactive 3D model of the ${definition.label}: tap the part`}>
+    <section className="overflow-hidden rounded-xl border border-teal-400/20 bg-stage" aria-label={`Interactive 3D model of the ${definition.label}: tap the part`}>
       <div className="relative h-[min(58vh,22rem)]">
         <ModelCanvas viewer={viewer} />
         <div className="absolute right-1 top-1 z-10 flex items-center">
