@@ -21,7 +21,8 @@ export const motionPages = (features: ViewerFeatures): MotionPage[] => {
 type Stroke = { label: string; start: number; end: number };
 const strokeAt = (strokes: Stroke[] | undefined, angle: number) => strokes?.find((stroke) => angle >= stroke.start && angle < stroke.end) ?? strokes?.[strokes.length - 1];
 
-const iconButton = 'flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/15 text-slate-300 outline-none hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-teal-300';
+// The control row is one line when the card is wide enough for all four (17.5 rem), and otherwise Play on a line of its own over the other three, so no button is squeezed below a finger's width. (Class names are written out: Tailwind reads them as plain text.)
+const iconButton = 'flex h-12 flex-1 items-center @min-[17.5rem]:flex-none justify-center rounded-2xl border border-white/15 text-slate-300 outline-none hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-teal-300';
 const ghostButton = 'min-h-11 rounded-xl border border-white/15 px-3 text-xs font-bold text-slate-200 outline-none hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-teal-300';
 
 type MotionPanelProps = {
@@ -98,14 +99,14 @@ export function MotionPanel({ features, snapshot, host, player }: MotionPanelPro
         </div>}
       </div>
 
-      <div className="mt-3.5 flex items-center gap-2">
-        <button type="button" aria-label="Reset motion to the start" onClick={() => motion.reset()} className={iconButton}><RotateCcw className="h-5 w-5" aria-hidden="true" /></button>
-        <button type="button" onClick={() => motion.setPlaying(!playing)} className="flex h-12 min-w-0 flex-1 items-center justify-center gap-2.5 rounded-2xl bg-teal-400 text-[15px] font-bold text-slate-950 shadow-lg shadow-teal-400/20 outline-none focus-visible:ring-2 focus-visible:ring-white">
+      <div className="@container mt-3.5"><div className="flex flex-wrap items-center gap-2 @min-[17.5rem]:flex-nowrap">
+        <button type="button" aria-label="Reset motion to the start" onClick={() => motion.reset()} className={`${iconButton} min-w-12`}><RotateCcw className="h-5 w-5" aria-hidden="true" /></button>
+        <button type="button" onClick={() => motion.setPlaying(!playing)} className="order-first flex h-12 min-w-0 basis-full items-center justify-center gap-2.5 rounded-2xl bg-teal-400 text-[15px] @min-[17.5rem]:order-none @min-[17.5rem]:flex-1 @min-[17.5rem]:basis-0 font-bold text-slate-950 shadow-lg shadow-teal-400/20 outline-none focus-visible:ring-2 focus-visible:ring-white">
           {playing ? <Pause className="h-[18px] w-[18px]" aria-hidden="true" /> : <Play className="h-[18px] w-[18px]" aria-hidden="true" />}{playLabel}
         </button>
-        {motion.setLoop && <button type="button" role="switch" aria-checked={loop} aria-label="Loop" onClick={() => motion.setLoop!(!loop)} className={`${iconButton} ${loop ? 'border-teal-300/60 bg-teal-400/15 text-teal-200' : ''}`}><Repeat className="h-5 w-5" aria-hidden="true" /></button>}
-        {motion.setSpeed && <button type="button" aria-expanded={speedOpen} aria-label={`Speed ${speedName(speed)}`} onClick={() => setSpeedOpen((open) => !open)} className={`${iconButton} w-auto min-w-16 px-3 text-sm font-bold ${speedOpen ? 'border-teal-300/60 bg-teal-400/15 text-white' : 'text-white'}`}>{speedName(speed)}</button>}
-      </div>
+        {motion.setLoop && <button type="button" role="switch" aria-checked={loop} aria-label="Loop" onClick={() => motion.setLoop!(!loop)} className={`${iconButton} min-w-12 ${loop ? 'border-teal-300/60 bg-teal-400/15 text-teal-200' : ''}`}><Repeat className="h-5 w-5" aria-hidden="true" /></button>}
+        {motion.setSpeed && <button type="button" aria-expanded={speedOpen} aria-label={`Speed ${speedName(speed)}`} onClick={() => setSpeedOpen((open) => !open)} className={`${iconButton} min-w-16 px-3 text-sm font-bold ${speedOpen ? 'border-teal-300/60 bg-teal-400/15 text-white' : 'text-white'}`}>{speedName(speed)}</button>}
+      </div></div>
       {speedOpen && motion.setSpeed && <div role="radiogroup" aria-label="Playback speed" className="mt-2 grid grid-cols-4 gap-1.5">
         {SPEEDS.map((choice) => <button key={choice} type="button" role="radio" aria-checked={choice === speed} onClick={() => { motion.setSpeed!(choice); setSpeedOpen(false); }} className={`h-11 rounded-full text-sm outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${choice === speed ? 'bg-teal-400 font-extrabold text-slate-950' : 'border border-white/15 font-semibold text-slate-300 hover:bg-white/5'}`}>{speedName(choice)}</button>)}
       </div>}
