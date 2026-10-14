@@ -244,7 +244,9 @@ export async function createCylinderSession(definition: ModelDefinition, context
     onChange();
   };
   snapshot.savedMotionId = 'operating';
-  setAngle(context.initialAngle ?? motionProfile.bind_angle_deg);
+  // The pose the model opens at: a lesson step's own (a crank angle, or a saved motion at some progress), else the default. Reset returns here.
+  let start = { angle: context.initialAngle ?? motionProfile.bind_angle_deg, motionId: context.savedMotionId || 'operating', progress: context.motionProgress ?? 0 };
+  setAngle(start.angle);
 
   // A lesson step can spotlight a group of parts, drawn as its focus mode says, and the camera frames the group at the posed angle.
   const applyFocus = (ids: string[] = [], mode: FocusMode = focusMode) => {
@@ -299,7 +301,8 @@ export async function createCylinderSession(definition: ModelDefinition, context
       cycleEnabled = Boolean(view.initialCycle);
       snapshot.cycleEnabled = cycleEnabled;
       cycleVisuals?.setVisible(cycleEnabled);
-      setAngle(view.initialAngle ?? motionProfile.bind_angle_deg);
+      start = { angle: view.initialAngle ?? motionProfile.bind_angle_deg, motionId: view.savedMotionId || 'operating', progress: view.motionProgress ?? 0 };
+      setAngle(start.angle);
       selectMotion(view.savedMotionId || 'operating');
       if (view.savedMotionId && view.savedMotionId !== 'operating') applyMotionProgress(view.motionProgress ?? 0);
       applyFocus(view.focusParts, focusModeOrDefault(view.focusMode));
@@ -395,7 +398,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
       motion: {
         setAngle: (angle) => { setPlaying(false); if (savedMotionId !== 'operating') selectMotion('operating'); setAngle(angle); },
         setPlaying,
-        reset: () => { setPlaying(false); if (savedMotionId === 'operating') setAngle(motionProfile.bind_angle_deg); else applyMotionProgress(0); },
+        reset: () => { setPlaying(false); if (savedMotionId === 'operating') setAngle(start.angle); else applyMotionProgress(savedMotionId === start.motionId ? start.progress : 0); },
         setSpeed: (value) => { speed = value; syncPlayback(); onChange(); },
         setLoop: (value) => { loops.set(savedMotionId, value); syncPlayback(); onChange(); },
         strokes: STROKES,

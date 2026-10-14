@@ -9,7 +9,7 @@ type DockTabsProps = {
   /** The open panel, or null while they are all closed. */
   open: PanelId | null;
   onSelect: (id: PanelId) => void;
-  /** Icon and name only, in a row of small tabs: the Explore side panel, and any row of more than three. Otherwise each tab also shows its live value. */
+  /** Icon over name, in a row of small tabs: the Explore side panel, and any row of more than three. Otherwise each tab also shows its live value. */
   compact?: boolean;
 };
 
@@ -42,15 +42,15 @@ export function DockTabs({ viewer, panels, context, open, onSelect, compact = fa
         id={panelDomId(id, 'tab')}
         aria-selected={selected}
         aria-controls={selected ? panelDomId(id, 'panel') : undefined}
-        // The label is hidden on the narrowest screens, and the value may be hidden in a small tab, so the tab says both itself.
+        // A small tab leaves out the value, so the tab says both itself.
         aria-label={value ? `${label}, ${value.text}` : label}
         tabIndex={selected || (open === null && index === 0) ? 0 : -1}
         onClick={() => onSelect(id)}
-        className={`flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-2xl border px-1 outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${dense ? 'min-h-11' : 'min-h-[3.6rem]'} ${selected ? 'border-teal-400/50 bg-teal-400/10 text-white' : 'border-transparent text-slate-300 hover:bg-white/5'}`}
+        className={`flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-2xl border px-1 outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${dense ? 'min-h-12 px-0.5' : 'min-h-[3.6rem]'} ${selected ? 'border-teal-400/50 bg-teal-400/10 text-white' : 'border-transparent text-slate-300 hover:bg-white/5'}`}
       >
-        <span className={`flex items-center gap-1.5 font-semibold ${dense ? 'text-[11px]' : 'text-[13px]'} ${selected ? 'font-bold' : ''}`}>
-          <Icon className={`${dense ? 'h-3.5 w-3.5' : 'h-4 w-4'} ${selected ? 'text-teal-300' : 'text-slate-400'}`} aria-hidden="true" />
-          <span className={dense ? 'hidden min-[380px]:inline lg:inline' : ''}>{label}</span>
+        <span className={`flex items-center font-semibold ${dense ? 'flex-col gap-0.5 text-[11px]' : 'gap-1.5 text-[13px]'} ${selected ? 'font-bold' : ''}`}>
+          <Icon className={`h-4 w-4 ${selected ? 'text-teal-300' : 'text-slate-400'}`} aria-hidden="true" />
+          <span>{label}</span>
         </span>
         {!dense && value && <span className={`font-mono text-[11px] font-bold ${VALUE_TONE[value.tone]}`}>{value.text}</span>}
       </button>;

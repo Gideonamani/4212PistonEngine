@@ -3,7 +3,7 @@ import { groupComponentIds, inComponentGroup } from '../core/component-groups.mj
 import type { FocusMode, ModelComponent } from '../types';
 import type { ModelViewerState } from '../useModelViewer';
 import type { PlayerPreference } from './MotionPanel';
-import { availablePanels, motionIsInteractive, type PanelContext, type PanelDefinition, type PanelHost, type PanelId } from './panels';
+import { availablePanels, type PanelContext, type PanelDefinition, type PanelHost, type PanelId } from './panels';
 
 export type ViewerControlsOptions = {
   host: PanelHost;
@@ -21,8 +21,6 @@ export type SpotlightTarget = { ids: string[]; label: string };
 export type ViewerControls = {
   host: PanelHost;
   context: PanelContext;
-  /** Whether the learner may move the model's motion here (otherwise the Motion tab only reports the pose). */
-  interactiveMotion: boolean;
   panels: PanelDefinition[];
   /** The open panel; null while they are all closed (a lesson's dock starts that way). */
   active: PanelId | null;
@@ -107,7 +105,6 @@ export function useViewerControls(viewer: ModelViewerState, { host, lessonContro
   return {
     host,
     context,
-    interactiveMotion: motionIsInteractive(context),
     panels,
     active,
     select: (id) => setOpen(host === 'lesson' && active === id ? null : id),

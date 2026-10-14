@@ -57,15 +57,13 @@ export function ModelCanvas({ viewer }: { viewer: ModelViewerState }) {
   </>;
 }
 
-/** The strip over the canvas: the how-to-move hint on the left, round tool buttons on the right. The model's name and description live in the controls panel, so full screen shows the model alone. */
+/**
+ * The round tool buttons over the canvas, top right, and nothing else. The model's name and description, how to move it and any notice about
+ * what is left out are in the controls panel, so the model has the whole picture and full screen shows the model alone.
+ */
 export function ViewerHeader({ viewer, children }: { viewer: ModelViewerState; children?: React.ReactNode }) {
-  const hint = useViewerHint(viewer);
-  return <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-wrap items-start justify-between gap-x-2 bg-gradient-to-b from-[#061216]/95 via-[#061216]/55 to-transparent p-3 pb-12">
-    {/* The title takes what the 44 px buttons leave; on a very narrow screen the buttons drop below it instead of squeezing it. */}
-    <div className="min-w-0 flex-1 basis-28 pr-2">
-      <p className="mt-1 truncate text-[11px] text-slate-300">{hint}</p>
-    </div>
-    <div className="pointer-events-auto -mr-1 -mt-1 ml-auto flex shrink-0 flex-nowrap justify-end">
+  return <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-end p-3">
+    <div className="pointer-events-auto -mr-1 -mt-1 flex shrink-0 flex-nowrap justify-end">
       {children}
       <PanToggle viewer={viewer} />
       <ToolbarButton label="Reset and centre 3D view" onClick={viewer.resetView}><RotateCcw className="h-4 w-4" /></ToolbarButton>
