@@ -15,7 +15,23 @@ export function ControlsBody({ id, viewer, controls, className = '' }: { id: Pan
   if (!features) return null;
   const { spotlight, parts } = controls;
   return <div role="tabpanel" id={panelDomId(id, 'panel')} aria-labelledby={panelDomId(id, 'tab')} className={className}>
-    {id === 'parts' && <PartsPanel definitionLabel={definition.label} features={features} snapshot={snapshot} filteredComponents={parts.filtered} query={parts.query} onQueryChange={parts.setQuery} group={parts.group} onGroupChange={parts.setGroup} />}
+    {id === 'parts' && <PartsPanel
+      definitionLabel={definition.label}
+      features={features}
+      snapshot={snapshot}
+      filteredComponents={parts.filtered}
+      query={parts.query}
+      onQueryChange={parts.setQuery}
+      group={parts.group}
+      onGroupChange={parts.setGroup}
+      selectedIds={parts.selectedIds}
+      onTogglePart={parts.togglePart}
+      onSelectSinglePart={parts.selectSinglePart}
+      onToggleGroup={parts.toggleGroup}
+      onClearSelected={parts.clearSelected}
+      currentFocusMode={spotlight.current}
+      onChooseFocusMode={spotlight.choose}
+    />}
     {id === 'motion' && <MotionPanel features={features} snapshot={snapshot} host={controls.host} player={controls.player} />}
     {id === 'spotlight' && (controls.host === 'explore'
       ? <SpotlightPanel
