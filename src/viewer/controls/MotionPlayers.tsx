@@ -1,13 +1,9 @@
 import React from 'react';
-import { Pause, Play, Repeat, RotateCcw } from 'lucide-react';
+import { ChevronDown, Pause, Play, Repeat, RotateCcw } from 'lucide-react';
 import type { ViewerFeatures, ViewerSnapshot } from '../types';
 
 const SPEEDS = [0.25, 0.5, 1, 2];
 const speedName = (speed: number) => `${speed}×`;
-
-type Stroke = { label: string; start: number; end: number };
-const strokeAt = (strokes: Stroke[] | undefined, angle: number) =>
-  strokes?.find((stroke) => angle >= stroke.start && angle < stroke.end) ?? strokes?.[strokes.length - 1];
 
 type MotionPlayerProps = {
   features: ViewerFeatures;
@@ -16,7 +12,7 @@ type MotionPlayerProps = {
 
 /**
  * The compact 3-row motion player floating over Explore's model while the side controls panel is hidden:
- * Row 1: Motion type header (or switcher if multiple motions) and live stage/angle reading.
+ * Row 1: Motion type header (with dropdown chevron next to title if multiple motions) and progress value.
  * Row 2: Completion status scrubber slider with milestone ticks.
  * Row 3: Action controls on a single line: Reset, Play/Pause hero, Loop toggle, and Speed in-place toggle.
  */
@@ -32,9 +28,9 @@ export function CompactMotionPlayer({ features, snapshot }: MotionPlayerProps) {
   const loop = Boolean(snapshot.motionLoop);
   const speed = snapshot.motionSpeed ?? 1;
 
-  const stroke = strokeAt(motion.strokes, angle);
+  const activeMotion = saved?.items.find((item) => item.id === (snapshot.savedMotionId || 'operating')) ?? saved?.items[0];
+  const motionTitle = isCrank ? 'OPERATING MECHANISM' : (activeMotion?.label.toUpperCase() ?? 'MOTION');
   const reading = isCrank ? `${Math.round(angle)}°` : `${Math.round(progress)}%`;
-  const stageName = isCrank ? stroke?.label : snapshot.motionStage;
 
   const cycleSpeed = () => {
     if (!motion.setSpeed) return;
@@ -53,34 +49,36 @@ export function CompactMotionPlayer({ features, snapshot }: MotionPlayerProps) {
     className="absolute inset-x-3 bottom-3 z-20 rounded-2xl border border-white/10 bg-panel/95 p-3.5 shadow-2xl backdrop-blur-md sm:left-3 sm:right-auto sm:w-[22.5rem] sm:max-w-[calc(100%-1.5rem)]"
     aria-label="Floating motion player"
   >
-    {/* ROW 1: TYPE OF MOTION & STATUS READOUT */}
-    <div className="flex items-center justify-between gap-2 pb-1.5">
-      <div className="flex min-w-0 items-center gap-1.5">
-        <span className="h-2 w-2 shrink-0 rounded-full bg-teal-400" aria-hidden="true" />
+    {/* ROW 1: ANIMATION TITLE & PROGRESS VALUE */}
+    <div className="flex items-center justify-between gap-3 pb-1.5">
+      <div className="min-w-0 flex-1">
         {saved && saved.items.length > 1 ? (
-          <select
-            aria-label="Motion type"
-            value={snapshot.savedMotionId || 'operating'}
-            onChange={(event) => saved.select(event.target.value)}
-            className="cursor-pointer truncate bg-transparent font-mono text-[11px] font-bold tracking-wider text-teal-300 outline-none hover:text-teal-200"
-          >
-            {saved.items.map((item) => (
-              <option key={item.id} value={item.id} className="bg-panel text-white">
-                {item.label.toUpperCase()}
-              </option>
-            ))}
-          </select>
+          <div className="group relative inline-flex max-w-full items-center gap-1 cursor-pointer rounded has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-teal-300">
+            <span className="truncate font-mono text-[11px] font-bold tracking-wider text-teal-300 group-hover:text-teal-200">
+              {motionTitle}
+            </span>
+            <ChevronDown className="h-3.5 w-3.5 shrink-0 text-teal-400 group-hover:text-teal-300 pointer-events-none" aria-hidden="true" />
+            <select
+              aria-label="Motion type"
+              value={snapshot.savedMotionId || 'operating'}
+              onChange={(event) => saved.select(event.target.value)}
+              className="absolute inset-0 w-full cursor-pointer opacity-0"
+            >
+              {saved.items.map((item) => (
+                <option key={item.id} value={item.id} className="bg-panel text-white">
+                  {item.label.toUpperCase()}
+                </option>
+              ))}
+            </select>
+          </div>
         ) : (
-          <span className="truncate font-mono text-[11px] font-bold tracking-wider text-teal-300">
-            {isCrank ? 'OPERATING MECHANISM' : (saved?.items[0]?.label.toUpperCase() ?? 'MOTION')}
+          <span className="block truncate font-mono text-[11px] font-bold tracking-wider text-teal-300">
+            {motionTitle}
           </span>
         )}
       </div>
 
-      <div className="flex shrink-0 items-center gap-1.5 text-xs font-semibold">
-        {stageName && <span className="text-[11px] font-medium text-slate-400">{stageName}</span>}
-        <output className="font-mono font-bold text-teal-300">{reading}</output>
-      </div>
+      <output className="shrink-0 font-mono text-xs font-bold text-teal-300">{reading}</output>
     </div>
 
     {/* ROW 2: SCRUBBER SLIDER */}
