@@ -69,7 +69,7 @@ jobs:
             head_msg=$(git log -1 --pretty=%s)
             echo "Head commit subject: $head_msg"
             # A merge commit on main means the PR branch already ran and passed all tests
-            if echo "$head_msg" | grep -q -E '^(Merge pull request #[0-9]+|Merge branch .+ into main|.+ \(#[0-9]+\))$'; then
+            if echo "$head_msg" | grep -q -E '(^Merge pull request #[0-9]+|^Merge branch .+ into main|\(#[0-9]+\)$)'; then
               echo "PR merge detected on main - fast deploy mode enabled"
               deploy_fast=true
               full=false
