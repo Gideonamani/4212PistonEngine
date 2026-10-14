@@ -1,35 +1,155 @@
 import React from 'react';
-import { Pause, Play } from 'lucide-react';
+import { ChevronDown, Pause, Play, Repeat, RotateCcw } from 'lucide-react';
 import type { ViewerFeatures, ViewerSnapshot } from '../types';
 
-/** The two players that float over Explore's model while its controls panel is closed. */
+const SPEEDS = [0.25, 0.5, 1, 2];
+const speedName = (speed: number) => `${speed}×`;
 
-/** The small player that floats over the Explore model while the panel is closed. */
-export function CompactMotionPlayer({ motion, snapshot }: { motion: NonNullable<ViewerFeatures['motion']>; snapshot: ViewerSnapshot }) {
-  return <div className="absolute inset-x-3 bottom-3 z-20 rounded-xl border border-teal-500/30 bg-panel/95 p-2.5 shadow-2xl backdrop-blur sm:left-3 sm:right-auto sm:w-[28rem] sm:max-w-[calc(100%-1.5rem)]" aria-label="Crank angle player">
-    <div className="flex items-center gap-2.5">
-      <button type="button" onClick={() => motion.setPlaying(!snapshot.playing)} className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-teal-400 text-slate-950" aria-label={snapshot.playing ? 'Pause mechanism' : 'Play mechanism'} aria-pressed={Boolean(snapshot.playing)}>{snapshot.playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}</button>
-      <div className="min-w-0 flex-1"><div className="mb-1 flex items-center justify-between font-mono text-[11px] font-bold tracking-wider text-slate-400"><span>CRANK ANGLE</span><output className="text-xs text-teal-300">{Math.round(snapshot.angle ?? 0)}°</output></div><input aria-label="Crank angle" type="range" min="0" max="720" step="1" value={snapshot.angle ?? 0} onChange={(event) => motion.setAngle(Number(event.target.value))} className="block w-full accent-teal-400" /></div>
+type MotionPlayerProps = {
+  features: ViewerFeatures;
+  snapshot: ViewerSnapshot;
+};
+
+/**
+ * The compact 3-row motion player floating over Explore's model while the side controls panel is hidden:
+ * Row 1: Motion type header (with dropdown chevron next to title if multiple motions) and progress value.
+ * Row 2: Completion status scrubber slider with milestone ticks.
+ * Row 3: Action controls on a single line: Reset, Play/Pause hero, Loop toggle, and Speed in-place toggle.
+ */
+export function CompactMotionPlayer({ features, snapshot }: MotionPlayerProps) {
+  const motion = features.motion;
+  if (!motion) return null;
+
+  const saved = features.savedMotions;
+  const isCrank = !saved || !snapshot.savedMotionId || snapshot.savedMotionId === 'operating';
+  const angle = snapshot.angle ?? 0;
+  const progress = snapshot.motionProgress ?? 0;
+  const playing = Boolean(snapshot.playing);
+  const loop = Boolean(snapshot.motionLoop);
+  const speed = snapshot.motionSpeed ?? 1;
+
+  const activeMotion = saved?.items.find((item) => item.id === (snapshot.savedMotionId || 'operating')) ?? saved?.items[0];
+  const motionTitle = isCrank ? 'OPERATING MECHANISM' : (activeMotion?.label.toUpperCase() ?? 'MOTION');
+  const reading = isCrank ? `${Math.round(angle)}°` : `${Math.round(progress)}%`;
+
+  const cycleSpeed = () => {
+    if (!motion.setSpeed) return;
+    const current = snapshot.motionSpeed ?? 1;
+    const idx = SPEEDS.indexOf(current);
+    const next = SPEEDS[(idx + 1) % SPEEDS.length];
+    motion.setSpeed(next);
+  };
+
+  const reset = () => {
+    motion.reset();
+    if (!isCrank && saved) saved.setProgress(0);
+  };
+
+  return <div
+    className="absolute inset-x-3 bottom-3 z-20 rounded-2xl border border-white/10 bg-panel/95 p-3.5 shadow-2xl backdrop-blur-md sm:left-3 sm:right-auto sm:w-[22.5rem] sm:max-w-[calc(100%-1.5rem)]"
+    aria-label="Floating motion player"
+  >
+    {/* ROW 1: ANIMATION TITLE & PROGRESS VALUE */}
+    <div className="flex items-center justify-between gap-3 pb-1.5">
+      <div className="min-w-0 flex-1">
+        {saved && saved.items.length > 1 ? (
+          <div className="group relative inline-flex max-w-full items-center gap-1 cursor-pointer rounded has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-teal-300">
+            <span className="truncate font-mono text-[11px] font-bold tracking-wider text-teal-300 group-hover:text-teal-200">
+              {motionTitle}
+            </span>
+            <ChevronDown className="h-3.5 w-3.5 shrink-0 text-teal-400 group-hover:text-teal-300 pointer-events-none" aria-hidden="true" />
+            <select
+              aria-label="Motion type"
+              value={snapshot.savedMotionId || 'operating'}
+              onChange={(event) => saved.select(event.target.value)}
+              className="absolute inset-0 w-full cursor-pointer opacity-0"
+            >
+              {saved.items.map((item) => (
+                <option key={item.id} value={item.id} className="bg-panel text-white">
+                  {item.label.toUpperCase()}
+                </option>
+              ))}
+            </select>
+          </div>
+        ) : (
+          <span className="block truncate font-mono text-[11px] font-bold tracking-wider text-teal-300">
+            {motionTitle}
+          </span>
+        )}
+      </div>
+
+      <output className="shrink-0 font-mono text-xs font-bold text-teal-300">{reading}</output>
     </div>
-    <div className="ml-11 mt-0.5 flex justify-between font-mono text-[11px] text-slate-600" aria-hidden="true"><span>0°</span><span>180°</span><span>360°</span><span>540°</span><span>720°</span></div>
-  </div>;
-}
 
-export function SavedMotionControls({ features, snapshot }: { features: ViewerFeatures; snapshot: ViewerSnapshot }) {
-  const saved = features.savedMotions!;
-  const active = snapshot.savedMotionId || 'operating';
-  const reverse = saved.items.find(item => active === 'exploded' ? item.id === 'reassembly' : active === 'reassembly' ? item.id === 'exploded' : active === 'Exploded overview' ? item.id === 'Reassembly overview' : active === 'Reassembly overview' ? item.id === 'Exploded overview' : false);
-  const stages = saved.items.find(item => item.id === active)?.stages || [];
-  return <div className="space-y-2" aria-label="Saved assembly motions">
-    <label className="block text-[11px] font-bold text-slate-400">MOTION<select aria-label="Saved motion" value={active} onChange={event => saved.select(event.target.value)} className="mt-1 h-9 w-full rounded-lg border border-slate-700 bg-slate-950 px-2 text-xs text-white">{saved.items.map(item => <option value={item.id} key={item.id}>{item.label}</option>)}</select></label>
-    {active !== 'operating' && <>
-      <div className="flex justify-between text-xs"><span>{snapshot.motionStage}</span><output>{Math.round(snapshot.motionProgress || 0)}%</output></div>
-      <input aria-label="Assembly motion progress" type="range" min="0" max="100" step="0.1" value={snapshot.motionProgress || 0} onChange={event => saved.setProgress(Number(event.target.value))} className="w-full accent-teal-400" />
-      <div className="grid grid-cols-2 gap-2"><button onClick={() => features.motion!.setPlaying(!snapshot.playing)} className="rounded-lg bg-teal-400 p-2 text-xs font-bold text-slate-950">{snapshot.playing ? 'Pause' : 'Play'}</button><button onClick={() => features.motion!.reset()} className="rounded-lg border border-slate-700 p-2 text-xs">Reset motion</button></div>
-      {reverse && <button onClick={() => { const position = 100 - (snapshot.motionProgress || 0); saved.select(reverse.id); saved.setProgress(position); }} className="w-full rounded-lg border border-slate-700 p-2 text-xs">Reverse this motion</button>}
-      <div className="grid grid-cols-2 gap-2"><button onClick={() => saved.step(-1)} className="rounded-lg border border-slate-700 p-2 text-xs">Previous stage</button><button onClick={() => saved.step(1)} className="rounded-lg border border-slate-700 p-2 text-xs">Next stage</button></div>
-      <div className="flex flex-wrap gap-1">{stages.map(stage => <button key={stage.progress} onClick={() => saved.setProgress(stage.progress)} className="rounded border border-slate-700 px-2 py-1 text-[11px]">{stage.label}</button>)}</div>
-      <p className="text-[11px] text-slate-400">Pause or drag the slider, then rotate, zoom, select or section the assembly.</p>
-    </>}
+    {/* ROW 2: SCRUBBER SLIDER */}
+    <div className="py-1">
+      <input
+        aria-label={isCrank ? 'Crank angle' : 'Assembly motion progress'}
+        type="range"
+        min="0"
+        max={isCrank ? 720 : 100}
+        step={isCrank ? 1 : 0.1}
+        value={isCrank ? angle : progress}
+        onChange={(event) => (isCrank ? motion.setAngle(Number(event.target.value)) : saved?.setProgress(Number(event.target.value)))}
+        className="block h-10 w-full accent-teal-400 cursor-pointer"
+      />
+      <div className="flex justify-between font-mono text-[10px] text-slate-400 select-none px-0.5 -mt-1" aria-hidden="true">
+        {isCrank ? (
+          <><span>0°</span><span>180°</span><span>360°</span><span>540°</span><span>720°</span></>
+        ) : (
+          <><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></>
+        )}
+      </div>
+    </div>
+
+    {/* ROW 3: PLAYER BUTTONS */}
+    <div className="flex items-center justify-between gap-1.5 pt-2 border-t border-white/10">
+      <button
+        type="button"
+        aria-label="Reset motion to start"
+        title="Reset motion to start"
+        onClick={reset}
+        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-slate-300 hover:text-white hover:bg-white/5 active:bg-white/10 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
+      >
+        <RotateCcw className="h-4 w-4" aria-hidden="true" />
+      </button>
+
+      <button
+        type="button"
+        onClick={() => motion.setPlaying(!playing)}
+        aria-label={playing ? 'Pause mechanism' : 'Play mechanism'}
+        aria-pressed={playing}
+        className="flex-1 flex h-11 items-center justify-center gap-2 rounded-xl bg-teal-400 hover:bg-teal-300 active:scale-[0.98] text-xs font-bold text-slate-950 shadow-md shadow-teal-400/20 transition-all outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
+      >
+        {playing ? <Pause className="h-4 w-4 fill-current" aria-hidden="true" /> : <Play className="h-4 w-4 fill-current" aria-hidden="true" />}
+        <span>{playing ? 'Pause' : 'Play'}</span>
+      </button>
+
+      {motion.setLoop && (
+        <button
+          type="button"
+          role="switch"
+          aria-checked={loop}
+          aria-label="Loop playback"
+          title="Loop playback"
+          onClick={() => motion.setLoop!(!loop)}
+          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-colors outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${loop ? 'bg-teal-400/20 text-teal-200 font-bold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
+        >
+          <Repeat className="h-4 w-4" aria-hidden="true" />
+        </button>
+      )}
+
+      {motion.setSpeed && (
+        <button
+          type="button"
+          aria-label={`Playback speed: ${speedName(speed)}. Tap to cycle speed.`}
+          title="Tap to cycle playback speed"
+          onClick={cycleSpeed}
+          className="flex h-11 min-w-[3.25rem] px-2 shrink-0 items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 active:bg-white/15 text-xs font-mono font-bold text-slate-200 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
+        >
+          <span>{speedName(speed)}</span>
+        </button>
+      )}
+    </div>
   </div>;
 }

@@ -176,7 +176,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
             {!side && stepLabel}
 
             {/* Published media or a clearly labelled production placeholder; a step with neither gets no slot. Side by side, the 3D viewer is pinned. */}
-            <div className={twoColumns ? `col-start-1 row-span-3 row-start-1 self-start ${modelStep ? 'lesson-media-side sticky top-2' : 'pt-3'}` : 'contents'}>
+            <div className={twoColumns ? `col-start-1 row-span-3 row-start-1 self-start pt-3 ${modelStep ? 'lesson-media-side sticky top-0' : ''}` : 'contents'}>
               {heldModelStep.current && <LessonModelStage step={heldModelStep.current} active={Boolean(modelStep)} immersive={isImmersive} layout={side ? 'side' : 'stacked'} onSwitchTo3DModel={onSwitchTo3DModel} />}
               {shouldShowMedia && !modelStep && <LessonMedia step={currentStep} immersive={isImmersive} />}
             </div>

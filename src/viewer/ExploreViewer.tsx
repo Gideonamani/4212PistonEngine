@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Expand, Maximize2, Minimize2, Shrink, SlidersHorizontal } from 'lucide-react';
 import { ExploreControls } from './ExploreControls';
-import { CompactMotionPlayer, SavedMotionControls } from './controls/MotionPlayers';
+import { CompactMotionPlayer } from './controls/MotionPlayers';
 import { useViewerControls } from './controls/useViewerControls';
 import { HotspotChips, HotspotNote, ModelCanvas, ToolbarButton, UnknownModel, ViewerHeader } from './ViewerParts';
 import { useModelViewer } from './useModelViewer';
@@ -38,7 +38,7 @@ export default function ExploreViewer({ modelId, isFullPage = false, isFullscree
   const hasPanel = Boolean(features);
   const panelOpen = controlsOpen && hasPanel;
 
-  return <section className="relative isolate flex h-full min-h-[22rem] flex-col overflow-hidden stay-dark bg-[#071418] text-slate-100 shadow-inner lg:flex-row" aria-label={`Interactive 3D model of the ${definition.label}`}>
+  return <section className="relative isolate flex h-full min-h-[22rem] flex-col overflow-hidden bg-stage text-slate-100 shadow-inner lg:flex-row" aria-label={`Interactive 3D model of the ${definition.label}`}>
     <div className={`relative min-h-0 min-w-0 flex-1 overflow-hidden ${panelOpen ? 'min-h-[18rem]' : ''}`}>
       <ModelCanvas viewer={viewer} />
       <ViewerHeader viewer={viewer}>
@@ -52,9 +52,9 @@ export default function ExploreViewer({ modelId, isFullPage = false, isFullscree
         <HotspotNote viewer={viewer} className="px-1 pt-1.5" />
       </div>}
 
-      {features?.motion && !controlsOpen && showPlayerOnViewer && (features.savedMotions && snapshot.savedMotionId !== 'operating'
-        ? <div className="absolute inset-x-3 bottom-3 z-20 max-h-[45%] overflow-y-auto rounded-xl border border-slate-700 bg-panel/95 p-3 sm:w-80"><SavedMotionControls features={features} snapshot={snapshot} /></div>
-        : <CompactMotionPlayer motion={features.motion} snapshot={snapshot} />)}
+      {features?.motion && !controlsOpen && showPlayerOnViewer && (
+        <CompactMotionPlayer features={features} snapshot={snapshot} />
+      )}
     </div>
 
     {panelOpen && <ExploreControls viewer={viewer} controls={controls} onClose={() => setControlsOpen(false)} />}

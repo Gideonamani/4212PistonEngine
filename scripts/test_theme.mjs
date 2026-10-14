@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
 import vm from 'node:vm';
-import { DARK_QUERY, THEMES, THEME_COLOR, THEME_KEY, otherTheme, resolveTheme } from '../src/theme/theme.mjs';
+import { DARK_QUERY, STAGE_COLOR, THEMES, THEME_COLOR, THEME_KEY, otherTheme, resolveTheme } from '../src/theme/theme.mjs';
 
 // The colour theme: which one to show, the script that picks it before first paint, and the stylesheet that draws it.
 
@@ -65,6 +65,11 @@ test('the browser chrome colour is the page canvas in each theme', () => {
   assert.equal(THEME_COLOR.dark, tokenValue(themeTokens, '--color-canvas'));
   assert.equal(THEME_COLOR.light, tokenValue(lightPalette, '--color-canvas'));
   assert.match(html, new RegExp(`<meta name="theme-color" content="${THEME_COLOR.dark}"`), 'the static tag matches the dark default');
+});
+
+test('the 3D stage clear colour matches between theme tokens and Three.js clear colour', () => {
+  assert.equal(STAGE_COLOR.dark, tokenValue(themeTokens, '--color-stage'));
+  assert.equal(STAGE_COLOR.light, tokenValue(lightPalette, '--color-stage'));
 });
 
 test('a region that stays dark restores every colour the light theme changes', () => {

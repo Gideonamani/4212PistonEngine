@@ -8,7 +8,7 @@
  * "slate-700 text on slate-100" with no change to the class names. `white` is the heading ink in dark mode, so it flips to dark ink.
  *
  * The theme is the data-theme attribute on <html>: index.html sets it before first paint from the saved choice or the system preference,
- * and src/theme/theme.ts keeps it current. Something that must stay dark in a light page, such as the 3D stage, takes `.stay-dark`.
+ * and src/theme/theme.ts keeps it current. The 3D stage adapts via --color-stage (#071418 dark, #d5dfe3 light studio), while photo overlays take .stay-dark.
  */
 @theme {
   --color-canvas: #061014;
@@ -18,6 +18,7 @@
   --color-outline: #55707a;
   --color-outline-soft: #1e3a42;
   --color-on-image: #ffffff;
+  --color-stage: #071418;
 }
 
 @layer base {
@@ -33,6 +34,7 @@
     --color-panel: #ffffff;
     --color-inset: #e8f0f3;
     --color-raised: #d9e6ea;
+    --color-stage: #d5dfe3;
     --color-outline: #5b7782;
     --color-outline-soft: #bfd0d7;
 
@@ -85,6 +87,7 @@
     --color-panel: #09181e;
     --color-inset: #061418;
     --color-raised: #0c2026;
+    --color-stage: #071418;
     --color-outline: #55707a;
     --color-outline-soft: #1e3a42;
 
@@ -176,7 +179,7 @@
  */
 .lesson-viewer-stacked { height: min(19rem, calc(var(--lesson-area, 100svh) * 0.75)); }
 .lesson-viewer-stacked-immersive { height: calc(var(--lesson-area, 100svh) * 0.6); }
-.lesson-media-side { height: calc(var(--lesson-area, 100svh) - 1rem); }
+.lesson-media-side { height: calc(var(--lesson-area, 100svh) - 1.5rem); }
 @media (min-width: 640px) {
   .lesson-viewer-stacked { height: min(22rem, calc(var(--lesson-area, 100svh) * 0.75)); }
 }
