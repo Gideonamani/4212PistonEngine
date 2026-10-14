@@ -5,6 +5,7 @@ import { CompactMotionPlayer } from './controls/MotionPlayers';
 import { useViewerControls } from './controls/useViewerControls';
 import { HotspotChips, HotspotNote, ModelCanvas, ToolbarButton, UnknownModel, ViewerHeader } from './ViewerParts';
 import { useModelViewer } from './useModelViewer';
+import { PartCard } from './PartCard';
 
 const PLAYER_PREFERENCE = '4212-explore-show-player';
 
@@ -51,6 +52,39 @@ export default function ExploreViewer({ modelId, isFullPage = false, isFullscree
         <HotspotChips viewer={viewer} />
         <HotspotNote viewer={viewer} className="px-1 pt-1.5" />
       </div>}
+
+      {snapshot.selectedId && (
+        <div
+          className={`absolute z-20 pointer-events-auto transition-all duration-200 sm:top-auto sm:left-auto sm:bottom-3 sm:right-3 sm:w-80 ${
+            features?.motion && !controlsOpen && showPlayerOnViewer
+              ? 'top-14 left-3 right-3 max-h-[48vh] overflow-y-auto'
+              : 'bottom-3 left-3 right-3 max-h-[52vh] overflow-y-auto'
+          }`}
+        >
+          <PartCard
+            partId={snapshot.selectedId}
+            defaultLabel={snapshot.selectedLabel}
+            defaultFunction={snapshot.selectedDescription}
+            onClose={() => features?.components?.select('')}
+            onSelectPart={(id) => features?.components?.select(id)}
+            onIsolatePart={(id) => {
+              features?.focus?.set([id], 'isolate');
+            }}
+            isIsolated={
+              snapshot.focusMode === 'isolate' &&
+              (snapshot.selectedId === snapshot.selectedId ||
+                (controls.parts.selectedIds.length === 1 && controls.parts.selectedIds[0] === snapshot.selectedId))
+            }
+            onUnisolate={() => {
+              features?.components?.showAll();
+              controls.parts.clearSelected();
+            }}
+            isInFocusGroup={controls.parts.selectedIds.includes(snapshot.selectedId)}
+            onToggleFocusGroup={(id) => controls.parts.togglePart(id)}
+            className="w-full sm:w-80"
+          />
+        </div>
+      )}
 
       {features?.motion && !controlsOpen && showPlayerOnViewer && (
         <CompactMotionPlayer features={features} snapshot={snapshot} />
