@@ -95,7 +95,7 @@ export function MotionPanel({ features, snapshot, host, player }: MotionPanelPro
           {motion.strokes.map((item) => <span key={item.label} className={`truncate text-center text-xs ${item === stroke ? 'font-bold text-teal-300' : 'font-medium text-slate-400'}`}>{item.label}</span>)}
         </div>}
         {!page.crank && page.stages.length > 0 && <div className="mt-2 flex flex-wrap gap-1.5">
-          {page.stages.map((stage) => <button key={stage.progress} type="button" onClick={() => saved?.setProgress(stage.progress)} className={`min-h-11 rounded-xl px-3 text-xs font-semibold outline-none transition-colors focus-visible:ring-2 focus-visible:ring-teal-300 ${snapshot.motionStage === stage.label ? 'bg-teal-400/20 text-teal-200 font-bold border-b-2 border-teal-400' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}>{stage.label}</button>)}
+          {page.stages.map((stage) => <button key={stage.progress} type="button" onClick={() => saved?.setProgress(stage.progress)} className={`min-h-11 rounded-xl px-3 text-xs font-semibold outline-none transition-colors focus-visible:ring-2 focus-visible:ring-teal-300 ${snapshot.motionStage === stage.label ? 'bg-teal-400/20 text-teal-200 font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}>{stage.label}</button>)}
         </div>}
       </div>
 

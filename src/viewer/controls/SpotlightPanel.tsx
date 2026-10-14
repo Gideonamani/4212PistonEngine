@@ -34,7 +34,7 @@ export function SpotlightPanel({ current, onChoose, disabled = false, status, id
           aria-pressed={selected}
           disabled={disabled}
           onClick={() => onChoose(mode)}
-          className={`flex min-h-12 min-w-0 flex-col items-center justify-center gap-1 rounded-xl px-1 text-xs font-semibold outline-none transition-colors focus-visible:ring-2 focus-visible:ring-teal-300 disabled:cursor-not-allowed disabled:opacity-45 ${selected ? 'bg-teal-400/20 text-teal-200 font-bold border-b-2 border-teal-400' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}
+          className={`flex min-h-12 min-w-0 flex-col items-center justify-center gap-1 rounded-xl px-1 text-xs font-semibold outline-none transition-colors focus-visible:ring-2 focus-visible:ring-teal-300 disabled:cursor-not-allowed disabled:opacity-45 ${selected ? 'bg-teal-400/20 text-teal-200 font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}
         >
           <Icon className={`h-5 w-5 ${selected ? 'text-teal-300' : 'text-slate-400'}`} aria-hidden="true" />
           {FOCUS_MODE_LABELS[mode]}

@@ -55,7 +55,7 @@ export function SectionPanel({ viewer, extras = false }: { viewer: ModelViewerSt
       aria-checked={selected}
       aria-label={plane === 'recommended' ? `R, the recommended plane: ${recommended}` : `${letter} plane`}
       onClick={() => choose(plane)}
-      className={`inline-flex h-11 min-w-0 items-center justify-center gap-1.5 rounded-xl px-1 text-xs font-semibold outline-none transition-colors focus-visible:ring-2 focus-visible:ring-teal-300 ${selected ? 'bg-teal-400/20 text-teal-200 font-bold border-b-2 border-teal-400' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}
+      className={`inline-flex h-11 min-w-0 items-center justify-center gap-1.5 rounded-xl px-1 text-xs font-semibold outline-none transition-colors focus-visible:ring-2 focus-visible:ring-teal-300 ${selected ? 'bg-teal-400/20 text-teal-200 font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}
     >
       {plane === 'recommended' ? <Sparkles className="h-4 w-4" aria-hidden="true" /> : <PlaneGlyph axis={plane} />}
       {letter}
