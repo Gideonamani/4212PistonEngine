@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Lesson, LessonStep } from '../types/engine';
 import { LessonMedia, LessonModelStage, isModelStep, stepHasMedia } from './LessonMedia';
 import { preloadModels } from '../viewer/preload';
@@ -17,6 +17,7 @@ import { useLessonLayout } from './lesson/useLessonLayout';
 import { TextSizeControl, useLessonTextSize } from './lesson/TextSize';
 import { toParagraphs } from './lesson/paragraphs.mjs';
 import { useScrollArea } from './lesson/useScrollArea';
+import { useStepSwipe, type SwipeDirection } from './lesson/useStepSwipe';
 
 interface LessonStepViewerProps {
   lesson: Lesson;
@@ -51,6 +52,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
   const [isEvidenceOpen, setIsEvidenceOpen] = useState(false);
   const [isComplete, setIsComplete] = useState(initialComplete);
   const [stepsOpen, setStepsOpen] = useState(false);
+  const [slideDirection, setSlideDirection] = useState<SwipeDirection>(null);
   const evidenceButtonRef = useRef<HTMLButtonElement>(null);
   const footerTriggerRef = useRef<HTMLButtonElement>(null);
   const viewerRef = useRef<HTMLDivElement>(null);
@@ -91,6 +93,14 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
     if (!isComplete) onStepChange?.(currentStepIndex);
   }, [currentStepIndex, isComplete, lesson.id]);
 
+  // Synchronously reset scroll position to top before the browser paints the new step (no visible flash)
+  useLayoutEffect(() => {
+    if (viewerRef.current) {
+      viewerRef.current.scrollTop = 0;
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
+  }, [currentStepIndex]);
+
   const closeEvidence = () => {
     setIsEvidenceOpen(false);
     evidenceButtonRef.current?.focus();
@@ -106,6 +116,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
 
   const handleNextStep = () => {
     if (currentStepIndex < totalSteps - 1) {
+      setSlideDirection('forward');
       setCurrentStepIndex((prev) => prev + 1);
     } else {
       completeLesson(lesson.id, currentStepIndex);
@@ -124,9 +135,26 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
 
   const handlePrevStep = () => {
     if (currentStepIndex > 0) {
+      setSlideDirection('backward');
       setCurrentStepIndex((prev) => prev - 1);
     }
   };
+
+  const handleSelectStep = (index: number) => {
+    if (index !== currentStepIndex) {
+      setSlideDirection(index > currentStepIndex ? 'forward' : 'backward');
+      setCurrentStepIndex(index);
+    }
+  };
+
+  // Swipe gesture navigation for touch devices with exclusion zones
+  useStepSwipe(viewerRef, {
+    onSwipeNext: handleNextStep,
+    onSwipePrev: handlePrevStep,
+    canGoNext: currentStepIndex < totalSteps - 1,
+    canGoPrev: currentStepIndex > 0,
+    disabled: isComplete || isEvidenceOpen || stepsOpen,
+  });
 
   if (isComplete) return <LessonComplete lesson={lesson} onTakeQuiz={onTakeQuiz} onBackToLessons={onBackToLessons} />;
 
@@ -156,7 +184,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
               noun="step"
               heading="Steps in this lesson"
               currentIndex={currentStepIndex}
-              onSelect={setCurrentStepIndex}
+              onSelect={handleSelectStep}
               items={stepItems}
               summary={<>
                 <span className="flex items-center gap-2">
@@ -181,7 +209,21 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
               {shouldShowMedia && !modelStep && <LessonMedia step={currentStep} immersive={isImmersive} />}
             </div>
 
-            <div className={side ? `flex flex-col gap-3.5 p-4 ${CARD_LOOK} ${twoColumns ? 'col-start-2 row-start-3' : 'mx-auto w-full max-w-2xl'}` : 'flex flex-col gap-3.5'}>
+            <div
+              key={currentStepIndex}
+              onAnimationEnd={() => setSlideDirection(null)}
+              className={`${
+                side
+                  ? `flex flex-col gap-3.5 p-4 ${CARD_LOOK} ${twoColumns ? 'col-start-2 row-start-3' : 'mx-auto w-full max-w-2xl'}`
+                  : 'flex flex-col gap-3.5'
+              } ${
+                slideDirection === 'forward'
+                  ? 'step-slide-forward'
+                  : slideDirection === 'backward'
+                  ? 'step-slide-backward'
+                  : ''
+              }`}
+            >
               {side && stepLabel}
 
               {/* The first step opens the lesson: what it is for, and (folded away) what the learner will be able to do. */}
@@ -248,7 +290,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
           noun="step"
           heading="Steps in this lesson"
           currentIndex={currentStepIndex}
-          onSelect={setCurrentStepIndex}
+          onSelect={handleSelectStep}
           onClose={closeSteps}
           items={stepItems}
           identity={{

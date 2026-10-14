@@ -11,6 +11,8 @@ type ExploreControlsProps = {
   viewer: ModelViewerState;
   controls: ViewerControls;
   onClose: () => void;
+  showPartCard?: boolean;
+  onToggleShowPartCard?: () => void;
 };
 
 /** Whether the learner has folded the model's description away; remembered on this device, for every model. */
@@ -24,7 +26,7 @@ const ABOUT_CHOICES = ['open', 'closed'] as const;
  * any tab can be reached whatever size the screen is. Then come the same tabs a lesson's dock offers, with the open panel below.
  * A model with no tabs (a scan with only a guided tour) still gets its description here.
  */
-export function ExploreControls({ viewer, controls, onClose }: ExploreControlsProps) {
+export function ExploreControls({ viewer, controls, onClose, showPartCard, onToggleShowPartCard }: ExploreControlsProps) {
   const { definition, snapshot } = viewer;
   const hint = useViewerHint(viewer);
   const [aboutChoice, chooseAbout] = useStoredChoice<(typeof ABOUT_CHOICES)[number]>(ABOUT_KEY, ABOUT_CHOICES);
@@ -54,7 +56,13 @@ export function ExploreControls({ viewer, controls, onClose }: ExploreControlsPr
     </div>}
 
     {controls.active && <div className="shrink-0 px-3 py-3">
-      <ControlsBody id={controls.active} viewer={viewer} controls={controls} />
+      <ControlsBody
+        id={controls.active}
+        viewer={viewer}
+        controls={controls}
+        showPartCard={showPartCard}
+        onToggleShowPartCard={onToggleShowPartCard}
+      />
     </div>}
   </aside>;
 }

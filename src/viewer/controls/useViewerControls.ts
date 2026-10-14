@@ -34,6 +34,12 @@ export type ViewerControls = {
     group: string;
     setGroup: (value: string) => void;
     filtered: ModelComponent[];
+    selectedIds: string[];
+    togglePart: (id: string) => void;
+    selectSinglePart: (id: string) => void;
+    toggleGroup: (groupId: string) => void;
+    clearSelected: () => void;
+    selectAllFiltered: () => void;
   };
   spotlight: {
     /** How it is drawn now; undefined while there is no spotlight. */
@@ -57,6 +63,7 @@ export function useViewerControls(viewer: ModelViewerState, { host, lessonContro
   const [open, setOpen] = useState<PanelId | null>(host === 'explore' ? 'parts' : lessonControls ? 'motion' : null);
   const [query, setQuery] = useState('');
   const [group, setGroupState] = useState('');
+  const [selectedPartIds, setSelectedPartIds] = useState<string[]>([]);
 
   // Explore always has a panel open (the first one the model offers, if the remembered one is not there); a lesson's dock may be all closed.
   const active = panels.some((panel) => panel.id === open) ? open : host === 'explore' ? panels[0]?.id ?? null : null;
@@ -70,15 +77,22 @@ export function useViewerControls(viewer: ModelViewerState, { host, lessonContro
 
   const setGroup = (value: string) => { setGroupState(value); features?.components?.select(''); };
 
-  // Explore's spotlight is aimed by the learner: the part they selected, or else the subassembly they chose.
+  // Explore's spotlight is aimed by the learner: the multi-selected parts, a single selected part, or else the chosen subassembly.
   const target = useMemo<SpotlightTarget>(() => {
     const components = features?.components;
     if (!components) return { ids: [], label: '' };
+    if (selectedPartIds.length > 0) {
+      if (selectedPartIds.length === 1) {
+        const item = components.items.find((component) => component.id === selectedPartIds[0]);
+        return { ids: selectedPartIds, label: item?.label ?? selectedPartIds[0] };
+      }
+      return { ids: selectedPartIds, label: `${selectedPartIds.length} components` };
+    }
     const selected = components.items.find((component) => component.id === snapshot.selectedId);
     if (selected) return { ids: [selected.id], label: selected.label };
     const ids = group && group !== 'all' ? groupComponentIds(components.items, group) as string[] : [];
     return { ids, label: ids.length ? components.groups.find((item) => item.id === group)?.label ?? 'this subassembly' : '' };
-  }, [features?.components, snapshot.selectedId, group]);
+  }, [features?.components, selectedPartIds, snapshot.selectedId, group]);
 
   const current: FocusMode | undefined = snapshot.focusActive ? snapshot.focusMode : undefined;
 
@@ -87,9 +101,51 @@ export function useViewerControls(viewer: ModelViewerState, { host, lessonContro
   useEffect(() => { if (!snapshot.focusActive) followMode.current = undefined; }, [snapshot.focusActive]);
   const targetKey = target.ids.join('|');
   useEffect(() => {
-    if (host !== 'explore' || !followMode.current || !features?.focus) return;
-    features.focus.set(target.ids, followMode.current);
+    if (host !== 'explore' || !features?.focus) return;
+    if (target.ids.length > 0) {
+      // Auto-apply highlight if no mode is currently active
+      if (!followMode.current) followMode.current = 'highlight';
+      features.focus.set(target.ids, followMode.current);
+    } else if (followMode.current) {
+      followMode.current = undefined;
+      features.focus.set([], 'highlight');
+    }
   }, [targetKey]);
+
+  const togglePart = (id: string) => {
+    setSelectedPartIds((prev) => (prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]));
+  };
+
+  const selectSinglePart = (id: string) => {
+    setSelectedPartIds(id ? [id] : []);
+    features?.components?.select(id);
+  };
+
+  const toggleGroup = (groupId: string) => {
+    const components = features?.components;
+    if (!components) return;
+    const groupIds = groupComponentIds(components.items, groupId) as string[];
+    setSelectedPartIds((prev) => {
+      const allIn = groupIds.every((id) => prev.includes(id));
+      if (allIn) return prev.filter((id) => !groupIds.includes(id));
+      const next = new Set([...prev, ...groupIds]);
+      return Array.from(next);
+    });
+  };
+
+  const clearSelected = () => {
+    setSelectedPartIds([]);
+    features?.components?.showAll();
+    features?.focus?.set([], 'highlight');
+    followMode.current = undefined;
+  };
+
+  const selectAllFiltered = () => {
+    setSelectedPartIds((prev) => {
+      const next = new Set([...prev, ...filtered.map((c) => c.id)]);
+      return Array.from(next);
+    });
+  };
 
   const choose = (mode: FocusMode) => {
     const focus = features?.focus;
@@ -110,7 +166,19 @@ export function useViewerControls(viewer: ModelViewerState, { host, lessonContro
     select: (id) => setOpen(host === 'lesson' && active === id ? null : id),
     close: () => setOpen(null),
     player,
-    parts: { query, setQuery, group, setGroup, filtered },
+    parts: {
+      query,
+      setQuery,
+      group,
+      setGroup,
+      filtered,
+      selectedIds: selectedPartIds,
+      togglePart,
+      selectSinglePart,
+      toggleGroup,
+      clearSelected,
+      selectAllFiltered,
+    },
     spotlight: { current, choose, target },
   };
 }
