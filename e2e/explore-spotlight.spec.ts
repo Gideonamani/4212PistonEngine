@@ -8,6 +8,10 @@ onlyIn('phone-390');
 // The timeout is the whole test's, from the moment its browser context is made: a slow runner can take a while over that.
 test.describe.configure({ timeout: 240_000 });
 
+// Leave the model's scene before the browser context is closed. On a busy CI runner, closing a page that still holds a large WebGL scene
+// can take half a minute, and the next test cannot get its context until it has.
+test.afterEach(async ({ page }) => { await page.goto('about:blank').catch(() => undefined); });
+
 test('Explore offers the five tabs, and its Spotlight follows the part the learner picks', async ({ page, problems }) => {
   test.setTimeout(240_000);
   await page.goto('/#/explore');

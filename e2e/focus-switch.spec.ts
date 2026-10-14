@@ -11,6 +11,10 @@ onlyIn('phone-390');
 // The timeout is the whole test's, from the moment its browser context is made: a slow runner can take a while over that.
 test.describe.configure({ mode: 'serial', timeout: 240_000 });
 
+// Leave the model's scene before the browser context is closed. On a busy CI runner, closing a page that still holds a large WebGL scene
+// can take half a minute, and the next test cannot get its context until it has.
+test.afterEach(async ({ page }) => { await page.goto('about:blank').catch(() => undefined); });
+
 const STORAGE_KEY = '4212-lesson-focus-mode';
 const SWITCH = 'How the highlighted part is shown';
 // The steps after the spotlight step are counted from its own position, so the test follows the lesson when a step is added before it.
