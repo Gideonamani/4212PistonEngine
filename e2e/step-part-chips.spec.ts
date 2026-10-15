@@ -12,6 +12,12 @@ test.describe.configure({ mode: 'serial', timeout: 240_000 });
 
 test.afterEach(async ({ page }) => { await page.goto('about:blank').catch(() => undefined); });
 
+// Software-rendered WebGL is slow when the machine is busy (CI, or a laptop with other work going): a screenshot of the canvas has been seen to
+// take 8 s, and one picture needs two or more. Against expect's 10 s default a correct model timed out, so pictures are compared on this clock.
+// The outer wait is longer than the inner one because it may have to take several pictures that each wait for the model to settle.
+const SETTLE_WAIT = 60_000;
+const COMPARE_WAIT = 120_000;
+
 /**
  * The canvas as drawn once it has stopped changing. The page header is pinned over the top of the lesson, so the model is first scrolled
  * clear of it: reaching a chip scrolls the model partly under the header, and a picture of that would differ from one taken before.
@@ -19,9 +25,13 @@ test.afterEach(async ({ page }) => { await page.goto('about:blank').catch(() => 
 async function settledCanvas(canvas: Locator) {
   await canvas.evaluate((element) => element.scrollIntoView({ block: 'center' }));
   let before = await canvas.screenshot();
-  await expect.poll(async () => { const now = await canvas.screenshot(); const same = now.equals(before); before = now; return same; }, { message: 'the model should settle' }).toBe(true);
+  await expect.poll(async () => { const now = await canvas.screenshot(); const same = now.equals(before); before = now; return same; }, { message: 'the model should settle', timeout: SETTLE_WAIT }).toBe(true);
   return before;
 }
+
+/** Wait until the canvas, once settled, is (or is not) the same picture as `reference`. */
+const expectCanvas = (canvas: Locator, reference: Buffer, same: boolean, message: string) =>
+  expect.poll(async () => (await settledCanvas(canvas)).equals(reference), { message, timeout: COMPARE_WAIT }).toBe(same);
 
 const SIX = ['Intake valve', 'Exhaust valve', 'Intake valve seat', 'Exhaust valve seat', 'Intake valve guide', 'Exhaust valve guide'];
 const EIGHT_STEP = '#/learn/valve-train-and-power/valve-operating/step/4';
@@ -44,7 +54,7 @@ test('a step with several spotlit parts offers a chip for each: a tap shows one 
   await expect(chips.nth(1)).toHaveAttribute('aria-pressed', 'true');
   await expect(chips.nth(0)).toHaveAttribute('aria-pressed', 'false');
   await expect(parts.getByRole('status')).toContainText('Showing Exhaust valve alone');
-  await expect.poll(async () => (await settledCanvas(canvas)).equals(together), { message: 'one part alone should look different from all six' }).toBe(false);
+  await expectCanvas(canvas, together, false, 'one part alone should look different from all six');
 
   // Another chip takes over from the first.
   await chips.nth(0).click();
@@ -56,7 +66,7 @@ test('a step with several spotlit parts offers a chip for each: a tap shows one 
   await chips.nth(0).click();
   await expect(chips.nth(0)).toHaveAttribute('aria-pressed', 'false');
   await expect(parts.getByRole('status')).toContainText('tap one to look at it alone');
-  await expect.poll(async () => (await settledCanvas(canvas)).equals(together), { message: 'letting go should restore the step\'s spotlight' }).toBe(true);
+  await expectCanvas(canvas, together, true, 'letting go should restore the step\'s spotlight');
   problems.assertNone();
 });
 
@@ -82,7 +92,7 @@ test('a chosen part does not follow the learner: not to the next step, and not b
   await expect(page.getByText(/Step 2 of \d+/)).toBeVisible();
   await expect(viewer.getByRole('status')).toHaveCount(0);
   await expect(parts.getByRole('button', { pressed: true })).toHaveCount(0);
-  await expect.poll(async () => (await settledCanvas(canvas)).equals(together), { message: 'the step\'s own spotlight should be back' }).toBe(true);
+  await expectCanvas(canvas, together, true, 'the step\'s own spotlight should be back');
 
   // Forward twice, to the next spotlight step: its own chips, none chosen.
   await page.getByRole('button', { name: /Next Step/ }).click();
