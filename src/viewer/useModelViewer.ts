@@ -1,7 +1,9 @@
-import { useEffect, useReducer, useRef, useState } from 'react';
+import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import { modelsById } from '../data/modelRegistry';
 import { createModelSession } from './adapters';
 import { createViewerRuntime } from './core/runtime';
+import { focusModeOrDefault } from './core/focus-style.mjs';
+import { spotlightFor } from './core/step-part-chips.mjs';
 import { viewKey } from './core/view-state.mjs';
 import type { WheelZoom } from './core/interaction.mjs';
 import type { FocusMode, InteractionMode, ViewUpdate, ViewerProfile, ViewerRuntime, ViewerSession, ViewerSnapshot } from './types';
@@ -34,11 +36,14 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
   // The view with the learner's own focus mode laid over the step's, if they have chosen one.
   const effectiveView = (): ViewUpdate => ({ ...viewRef.current, focusMode: preferredFocusRef.current ?? viewRef.current.focusMode });
   const appliedViewKey = useRef('');
+  // Whether the spotlight on show is a preview of some of the step's parts (see previewPart) and not the step's own.
+  const previewing = useRef(false);
 
   const applyView = (target: ViewerSession) => {
     const key = viewKey(viewRef.current);
     if (key === appliedViewKey.current) return;
     appliedViewKey.current = key;
+    previewing.current = false;
     try { target.update?.(effectiveView()); } catch (reason) { console.error(reason); setError(reason instanceof Error ? reason.message : 'The 3D view could not be updated.'); }
   };
 
@@ -61,6 +66,7 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
     setLoadState({ status: 'Preparing 3D viewer…', progress: 0 });
     let disposed = false;
     appliedViewKey.current = viewKey(viewRef.current);
+    previewing.current = false;
     createModelSession(definition, {
       runtime,
       profile,
@@ -101,6 +107,23 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
     if (preferredFocusMode) sessionRef.current?.features.focus?.setMode(preferredFocusMode);
   }, [preferredFocusMode]);
 
+  /**
+   * Spotlight just this part, drawn in the style the learner would see anyway, until the step changes or this is called with nothing,
+   * which goes back to the step's own spotlight. Unlike a view change it leaves the pose and the camera where they are (the camera moves
+   * only to frame an isolated part), so it is for a learner looking at the step's parts one by one.
+   */
+  const previewPart = useCallback((id?: string) => {
+    const focus = sessionRef.current?.features.focus;
+    if (!focus || (!id && !previewing.current)) return;
+    const mode = focusModeOrDefault(effectiveView().focusMode);
+    try {
+      previewing.current = Boolean(id);
+      focus.set(spotlightFor(id, viewRef.current.focusParts), mode);
+    } catch (reason) {
+      console.error(reason);
+    }
+  }, []);
+
   const session = sessionRef.current;
   return {
     definition,
@@ -120,6 +143,7 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
       runtimeRef.current?.setInteractionMode(next);
     },
     resetView() { runtimeRef.current?.resetView(); },
+    previewPart,
   };
 }
 

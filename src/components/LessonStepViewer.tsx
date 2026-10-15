@@ -16,6 +16,7 @@ import { useLessonFullscreen } from './lesson/useLessonFullscreen';
 import { useLessonLayout } from './lesson/useLessonLayout';
 import { TextSizeControl, useLessonTextSize } from './lesson/TextSize';
 import { toParagraphs } from './lesson/paragraphs.mjs';
+import { CHIPS_MIN_PARTS } from '../viewer/core/step-part-chips.mjs';
 import { useScrollArea } from './lesson/useScrollArea';
 import { useStepSwipe, type SwipeDirection } from './lesson/useStepSwipe';
 
@@ -56,6 +57,8 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
   const evidenceButtonRef = useRef<HTMLButtonElement>(null);
   const footerTriggerRef = useRef<HTMLButtonElement>(null);
   const viewerRef = useRef<HTMLDivElement>(null);
+  // Where the 3D viewer draws the step's part chips: just under the step's text (see StepPartChips).
+  const [chipSlot, setChipSlot] = useState<HTMLDivElement | null>(null);
   const { isImmersive, coversPage, toggleImmersive } = useLessonFullscreen(viewerRef);
   const { layout, canChoose: canChooseLayout, choose: chooseLayout } = useLessonLayout();
   useScrollArea(viewerRef);
@@ -205,7 +208,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
 
             {/* Published media or a clearly labelled production placeholder; a step with neither gets no slot. Side by side, the 3D viewer is pinned. */}
             <div className={twoColumns ? `col-start-1 row-span-3 row-start-1 self-start pt-3 ${modelStep ? 'lesson-media-side sticky top-0' : ''}` : 'contents'}>
-              {heldModelStep.current && <LessonModelStage step={heldModelStep.current} active={Boolean(modelStep)} immersive={isImmersive} layout={side ? 'side' : 'stacked'} onSwitchTo3DModel={onSwitchTo3DModel} />}
+              {heldModelStep.current && <LessonModelStage step={heldModelStep.current} active={Boolean(modelStep)} immersive={isImmersive} layout={side ? 'side' : 'stacked'} chipSlot={chipSlot} onSwitchTo3DModel={onSwitchTo3DModel} />}
               {shouldShowMedia && !modelStep && <LessonMedia step={currentStep} immersive={isImmersive} />}
             </div>
 
@@ -238,6 +241,9 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
               <div className="lesson-prose flex flex-col gap-[0.85em] text-slate-200">
                 {toParagraphs(currentStep.text).map((paragraph, index) => <p key={index}>{paragraph}</p>)}
               </div>
+
+              {/* A step that spotlights two or more parts gets a chip for each, drawn here by the viewer (see StepPartChips). */}
+              {modelStep && (modelStep.focusParts?.length ?? 0) >= CHIPS_MIN_PARTS && <div ref={setChipSlot} className="empty:hidden" />}
 
               {/* Optional deep dives: unlisted lessons, never required to progress. */}
               {currentStep.deepDiveLinks?.map((linkId) => {
