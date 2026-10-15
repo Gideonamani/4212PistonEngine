@@ -168,8 +168,8 @@ export type ViewerRuntime = {
   setInteractionMode: (mode: InteractionMode) => void;
   setPickTargets: (objects: THREE.Object3D[], onPick?: (object: THREE.Object3D, point: THREE.Vector3) => void) => void;
   setAnimationCallback: (callback?: (elapsedSeconds: number) => boolean) => void;
-  /** The theme the page is in. Optional because a model can be driven without a page (the Node tests do), and then it is dark. */
-  theme?: () => 'light' | 'dark';
+  /** The theme the page is in ('neutral' for a runtime drawing on a transparent background). Optional because a model can be driven without a page (the Node tests do), and then it is dark. */
+  theme?: () => 'light' | 'dark' | 'neutral';
   /** Call `listener` when the page changes theme, for what a model draws in the theme's colours; the returned function stops it. */
   onThemeChange?: (listener: () => void) => () => void;
   dispose: () => void;

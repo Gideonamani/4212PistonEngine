@@ -67,6 +67,18 @@ test('the x-ray ghost is drawn on the far side of the stage from its background'
   assert.ok(luminance(SPOTLIGHT_PALETTE.light.ghostColor) < luminance(STAGE_COLOR.light), 'dark layers on the light stage (a pale ghost there was 1.07:1 and all but vanished)');
 });
 
+test('a picture on a transparent background gets the neutral palette, which stands clear of both stages', () => {
+  assert.equal(spotlightPalette('neutral'), SPOTLIGHT_PALETTE.neutral);
+  assert.deepEqual(Object.keys(SPOTLIGHT_PALETTE.neutral).sort(), PALETTE_KEYS);
+  const ghost = luminance(SPOTLIGHT_PALETTE.neutral.ghostColor);
+  assert.ok(ghost > luminance(STAGE_COLOR.dark) && ghost < luminance(STAGE_COLOR.light), 'a mid tone: lighter than the dark stage, darker than the light one');
+  for (const theme of THEMES) {
+    assert.ok(contrast(SPOTLIGHT_PALETTE.neutral.ghostColor, STAGE_COLOR[theme]) >= 3, `${theme}: the neutral ghost is at least 3:1 against the stage`);
+    assert.ok(contrast(SPOTLIGHT_PALETTE.neutral.highlightColor, STAGE_COLOR[theme]) >= 3, `${theme}: the neutral highlight is at least 3:1 against the stage`);
+    assert.ok(contrast(SPOTLIGHT_PALETTE.neutral.paleColor, STAGE_COLOR[theme]) >= 1.1, `${theme}: the neutral pale grey is told apart from the stage`);
+  }
+});
+
 test('the colours that carry a spotlight stand clear of the stage in both themes', () => {
   for (const theme of THEMES) {
     const palette = SPOTLIGHT_PALETTE[theme];

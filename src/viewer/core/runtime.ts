@@ -13,13 +13,18 @@ type RuntimeOptions = {
   wheelZoom?: WheelZoom;
   /** Called when a wheel turn was left to the page, so the viewer can say why it did not zoom. */
   onWheelPassed?: () => void;
+  /** Draw on no background at all, for a picture that is laid over the page (a card image, see scripts/capture_model_thumbnail.js): the canvas keeps its alpha, the scene has no stage colour, and the spotlight uses the neutral palette. Default: false. */
+  transparent?: boolean;
 };
 
 export function createViewerRuntime(container: HTMLElement, options: RuntimeOptions = {}): ViewerRuntime {
+  const transparent = options.transparent === true;
+  const theme = (): 'light' | 'dark' | 'neutral' => (transparent ? 'neutral' : currentTheme());
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(currentStageColor());
+  scene.background = transparent ? null : new THREE.Color(currentStageColor());
   const camera = new THREE.PerspectiveCamera(40, 1, 0.001, 1200);
-  const renderer = new THREE.WebGLRenderer({ antialias: true, stencil: true, alpha: false, powerPreference: 'high-performance' });
+  const renderer = new THREE.WebGLRenderer({ antialias: true, stencil: true, alpha: transparent, powerPreference: 'high-performance' });
+  if (transparent) renderer.setClearColor(0x000000, 0);
   renderer.localClippingEnabled = true;
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -84,7 +89,7 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
     ? new MutationObserver((mutations) => {
         for (const mutation of mutations) {
           if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
-            scene.background = new THREE.Color(currentStageColor());
+            if (!transparent) scene.background = new THREE.Color(currentStageColor());
             for (const listener of themeListeners) listener();
             render();
             break;
@@ -217,7 +222,7 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
     setInteractionMode,
     setPickTargets,
     setAnimationCallback,
-    theme: currentTheme,
+    theme,
     onThemeChange,
     dispose() {
       disposed = true;

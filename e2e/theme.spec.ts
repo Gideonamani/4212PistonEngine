@@ -71,6 +71,23 @@ test('the theme still works when the browser blocks storage', async ({ page }) =
   await expect.poll(() => theme(page)).toBe('dark');
 });
 
+test('a card picture lies on the 3D stage colour, so a render with a transparent background follows the theme', async ({ page }) => {
+  // The renders of the 3D models carry no background (docs/card-thumbnails.md); the picture's own box supplies the stage colour behind them.
+  const stage = { light: 'rgb(213, 223, 227)', dark: 'rgb(7, 20, 24)' } as const;
+  for (const scheme of ['light', 'dark'] as const) {
+    await page.emulateMedia({ colorScheme: scheme });
+    await page.goto('about:blank');
+    await page.goto('/#/explore');
+    await appReady(page);
+    const picture = page.locator('button[aria-describedby^="capabilities-"] img').first();
+    await expect(picture).toBeVisible();
+    expect(await picture.evaluate((node) => getComputedStyle(node).backgroundColor), `${scheme} page`).toBe(stage[scheme]);
+  }
+  // A learner who switches theme sees the same card change at once.
+  await page.getByRole('button', { name: 'Switch to light mode' }).click();
+  await expect.poll(() => page.locator('button[aria-describedby^="capabilities-"] img').first().evaluate((node) => getComputedStyle(node).backgroundColor)).toBe(stage.light);
+});
+
 test('the 3D stage uses the light studio tone in a light page, and the lesson text around it is light', async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'light' });
   const { viewer } = await openViewerStep(page);

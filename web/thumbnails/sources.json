@@ -76,13 +76,7 @@
       "kind": "render",
       "path": "wright-1903-engine.webp",
       "credit": "Rendered from the Smithsonian NASM 1903 Wright Flyer engine scan",
-      "license": "CC0",
-      "box": [
-        0.11,
-        0.21,
-        0.876,
-        0.976
-      ]
+      "license": "CC0"
     },
     "lesson-terminologies": {
       "kind": "pdf",

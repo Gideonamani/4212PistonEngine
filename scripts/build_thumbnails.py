@@ -21,6 +21,7 @@ PREVIEWS = WEB / "model-previews"
 BANNERS = WEB / "banners"
 RENDERS = ROOT / "scripts" / "thumbnail_sources"
 ACCENT = (45, 212, 191)  # the app's teal, used for the diagonal seam
+STAGE = {"dark": (7, 20, 24), "light": (213, 223, 227)}  # the 3D stage colour of each theme (STAGE_COLOR in src/theme/theme.mjs), behind a transparent card image
 PAGE_DPI = 200
 
 
@@ -42,16 +43,21 @@ def edge_colour(image: Image.Image) -> tuple[int, int, int]:
     return max(set(pixels), key=pixels.count)
 
 
+def transparent(image: Image.Image) -> bool:
+    """Whether the picture has a see-through background (a render of the 3D models; a page or a photo has none)."""
+    return image.mode in ("RGBA", "LA", "PA") or "transparency" in image.info
+
+
 def fit_to(image: Image.Image, size: tuple[int, int], fit: str, focus: list[float], bg: str | None) -> Image.Image:
-    """Resize to exactly `size`: 'cover' crops the overflow around `focus`, 'contain' pads with the figure's own background."""
-    image = image.convert("RGB")
+    """Resize to exactly `size`: 'cover' crops the overflow around `focus`, 'contain' pads with the figure's own background (or nothing, if it has none)."""
+    image = image.convert("RGBA" if transparent(image) else "RGB")
     w, h = image.size
     target_w, target_h = size
     if fit == "contain":
-        colour = tuple(int(bg.lstrip("#")[i:i + 2], 16) for i in (0, 2, 4)) if bg else edge_colour(image)
+        colour = (0, 0, 0, 0) if image.mode == "RGBA" else tuple(int(bg.lstrip("#")[i:i + 2], 16) for i in (0, 2, 4)) if bg else edge_colour(image)
         scale = min(target_w / w, target_h / h)
         resized = image.resize((max(1, round(w * scale)), max(1, round(h * scale))), Image.LANCZOS)
-        canvas = Image.new("RGB", size, colour)
+        canvas = Image.new(image.mode, size, colour)
         canvas.paste(resized, ((target_w - resized.width) // 2, (target_h - resized.height) // 2))
         return canvas
     scale = max(target_w / w, target_h / h)
@@ -62,8 +68,8 @@ def fit_to(image: Image.Image, size: tuple[int, int], fit: str, focus: list[floa
 
 
 def shifted(image: Image.Image, shift: list[int]) -> Image.Image:
-    """Slide the picture by (dx, dy) pixels, filling the gap with its own background, to place a subject off-centre."""
-    canvas = Image.new("RGB", image.size, edge_colour(image))
+    """Slide the picture by (dx, dy) pixels, filling the gap with its own background (nothing, if it has none), to place a subject off-centre."""
+    canvas = Image.new("RGBA", image.size, (0, 0, 0, 0)) if image.mode == "RGBA" else Image.new("RGB", image.size, edge_colour(image))
     canvas.paste(image, (shift[0], shift[1]))
     return canvas
 
@@ -76,6 +82,8 @@ def load(spec: dict, notes: Path, size: tuple[int, int]) -> Image.Image:
         width, height = size
         top, bottom = spec.get("seam", [1.0, 0.0])
         first, second = (load(part, notes, size) for part in spec["parts"])
+        if "RGBA" in (first.mode, second.mode):
+            first, second = first.convert("RGBA"), second.convert("RGBA")
         start, end = (round(top * width), 0), (round(bottom * width), height)
         mask = Image.new("L", size, 0)
         ImageDraw.Draw(mask).polygon([start, (width, 0), (width, height), end], fill=255)
@@ -107,6 +115,7 @@ def main() -> int:
     parser.add_argument("--notes", type=Path, default=ROOT.parent / "Notes", help="folder holding the manual and book PDFs")
     parser.add_argument("--only", nargs="*", help="build just these item ids")
     parser.add_argument("--sheet", type=Path, help="also write a labelled contact sheet of every built thumbnail")
+    parser.add_argument("--stage", choices=sorted(STAGE), default="dark", help="the theme's stage colour the contact sheet lays the see-through images over")
     args = parser.parse_args()
 
     spec = json.loads(SPEC.read_text(encoding="utf-8"))
@@ -123,9 +132,11 @@ def main() -> int:
         except MissingSource as missing:
             print(f"skip {label}: source not found ({missing})", file=sys.stderr)
             continue
+        if image.mode == "RGBA" and image.getchannel("A").getextrema()[0] == 255:
+            image = image.convert("RGB")  # nothing see-through after all (a diagonal of two pages), so keep the file smaller
         folder.mkdir(exist_ok=True)
         target = folder / f"{item_id}.webp"
-        image.save(target, quality=82, method=6)
+        image.save(target, quality=82, method=6, alpha_quality=80)  # alpha_quality only matters for a see-through image, where the edge mask is the biggest part of the file
         built.append((label, image))
         print(f"{label}: {target.stat().st_size // 1024} KB")
 
@@ -141,7 +152,11 @@ def main() -> int:
         for index, (label, image) in enumerate(built):
             x = gap + (index % columns) * cell
             y = gap + (index // columns) * row_height
-            sheet.paste(image, (x, y))
+            if image.mode == "RGBA":
+                sheet.paste(Image.new("RGB", image.size, STAGE[args.stage]), (x, y))
+                sheet.paste(image, (x, y), image.getchannel("A"))
+            else:
+                sheet.paste(image, (x, y))
             draw.text((x, y + image.height + 4), label, fill=(150, 220, 215))
         sheet.save(args.sheet)
     return 0

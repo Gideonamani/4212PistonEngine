@@ -11,10 +11,11 @@ const ThumbnailPlaceholder: React.FC<{ className?: string }> = ({ className = ''
 /**
  * A course, lesson, check or Explore card image. Cards are small files near the top of the screen, so they load at once rather than
  * lazily (lazy loading left empty frames on first paint). It fills its parent, shows the pack's thumbnail when there is one, and falls back to the
- * neutral placeholder if there is no file or it fails to load.
+ * neutral placeholder if there is no file or it fails to load. A render of a 3D model has a transparent background, so the picture sits on
+ * the theme's stage colour (`bg-stage`, the same one the 3D viewer uses); a page or a photo covers it.
  */
 export const CardThumbnail: React.FC<{ src?: string; className?: string }> = ({ src, className = '' }) => {
   const [failedSrc, setFailedSrc] = useState<string>();
   if (!src || failedSrc === src) return <ThumbnailPlaceholder className={className} />;
-  return <img src={src} alt="" decoding="async" draggable={false} onError={() => setFailedSrc(src)} className={`h-full w-full object-cover ${className}`} />;
+  return <img src={src} alt="" decoding="async" draggable={false} onError={() => setFailedSrc(src)} className={`h-full w-full bg-stage object-cover ${className}`} />;
 };
