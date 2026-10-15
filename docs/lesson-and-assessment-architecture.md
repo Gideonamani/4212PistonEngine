@@ -177,6 +177,14 @@ A `model-pose` step can point the learner at some parts with `focusParts` (compo
 
 Choose by what the learner can see: highlight only reads for parts visible from the camera, so use `xray` or `isolate` for internal parts. `focusMode` needs `focusParts`, and the schema test rejects it without them. The viewer reports whether a spotlight is active and its mode, and offers `features.focus.setMode()` so a student-facing switch can change the look for the current step; the next step starts again from its own `focusMode`. The rules live in `src/viewer/core/focus-style.mjs`.
 
+### Looking at the spotlit parts one by one: part chips
+
+A step that spotlights two or more parts gets a row of chips under its text, one per part, named as the model names it (nothing to author: the row is built from `focusParts`). Tapping a chip spotlights just that part, drawn in whichever style is in force; tapping it again, or moving to another step, goes back to the step's own spotlight. A step with one part, a text or picture step, and a model that cannot spotlight get no row. More than six parts show the first six and a "+N more" button, and the chosen part is never hidden.
+
+The viewer owns the row (`src/viewer/controls/StepPartChips.tsx`) and draws it into a slot under the text by a portal, so the part labels come from the loaded model and the choice stays next to the viewer that shows it. It uses `previewPart()` from `useModelViewer`, which calls `features.focus.set()` and so leaves the pose, the section plane and the camera alone (a view change would reset all three). Which chips there are, when to collapse them and what a tap leaves chosen are in `src/viewer/core/step-part-chips.mjs` (`scripts/test_step_part_chips.mjs`); `e2e/step-part-chips.spec.ts` checks the row against the real cylinder, including that a chosen part is let go when the learner leaves the step and comes back.
+
+Linking words in the step text itself to parts, rather than a row under it, is a possible next step. It would need an authoring format for the links (explicit ids checked by the schema test, not label matching, because a word like "valve" names several parts) and the same `previewPart()`.
+
 ### Cutting the model open: `sectionPlane`
 
 On a spotlight step (or any step with `sectionPlane`) the same bar offers a **Cross section** checkbox and a plane picker. The picker always lists the standard X, Y and Z planes. A step can add a plane chosen for seeing its component best:
