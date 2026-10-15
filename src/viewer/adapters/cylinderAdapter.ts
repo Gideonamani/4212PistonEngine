@@ -7,7 +7,8 @@ import { createSectionController, disposeObject } from '../core/modelUtils';
 import { mechanismPose } from '../engineering/kinematics.mjs';
 import { valveMatrices } from '../engineering/valve-transforms.mjs';
 import { createCycleVisuals } from '../engineering/cycle-visuals.mjs';
-import { PALE_COLOR, XRAY_COLOR, XRAY_OPACITY, focusModeOrDefault, partLook, partRole } from '../core/focus-style.mjs';
+import { focusModeOrDefault, partLook, partRole, spotlightPalette } from '../core/focus-style.mjs';
+import { effectiveFocusMode } from '../core/spotlight-fallback';
 import type { AdapterContext, AppearanceMode, FocusMode, ModelComponent, ModelGroup, ViewerSession, ViewerSnapshot } from '../types';
 
 type MotionEntry = { mesh: THREE.Mesh; group: 'Piston' | 'ConnectingRod' | 'Crank' | 'Cylinder'; localBind: THREE.Matrix4 };
@@ -86,9 +87,11 @@ export async function createCylinderSession(definition: ModelDefinition, context
     originals.set(mesh, mesh.material);
     inspection.set(mesh, inspectionMaterial(mesh.userData.partId));
   }
-  const highlight = new THREE.MeshStandardMaterial({ color: 0x39e4c4, emissive: 0x063e38, emissiveIntensity: 0.7, metalness: 0.45, roughness: 0.3 });
-  const ghost = new THREE.MeshStandardMaterial({ color: XRAY_COLOR, transparent: true, opacity: XRAY_OPACITY, depthWrite: false });
-  const pale = new THREE.MeshStandardMaterial({ color: PALE_COLOR, metalness: 0, roughness: 0.85 });
+  // The spotlight's colours depend on the theme, so applyAppearance sets them each time; these are only where they start.
+  const colours = spotlightPalette(runtime.theme?.());
+  const highlight = new THREE.MeshStandardMaterial({ color: colours.highlightColor, emissive: 0x063e38, emissiveIntensity: 0.7, metalness: 0.45, roughness: 0.3 });
+  const ghost = new THREE.MeshStandardMaterial({ color: colours.ghostColor, transparent: true, opacity: colours.ghostOpacity, depthWrite: false });
+  const pale = new THREE.MeshStandardMaterial({ color: colours.paleColor, metalness: 0, roughness: 0.85 });
 
   runtime.scene.add(root);
   root.updateMatrixWorld(true);
@@ -120,12 +123,21 @@ export async function createCylinderSession(definition: ModelDefinition, context
   section.startStep(context.sectionPlane);
 
   const applyAppearance = () => {
+    const palette = spotlightPalette(runtime.theme?.());
+    highlight.color.set(palette.highlightColor);
+    ghost.color.set(palette.ghostColor); ghost.opacity = palette.ghostOpacity;
+    pale.color.set(palette.paleColor);
     const spotlight = focusSet.size > 0;
+    // Highlight would hide a spotlit part that sits inside another, so it is drawn as X-ray for as long as that is so.
+    const mode = spotlight
+      ? effectiveFocusMode(focusMode, meshes.filter((mesh) => focusSet.has(mesh.userData.partId)), meshes.filter((mesh) => !focusSet.has(mesh.userData.partId) && (!isolated || isolatedParts.has(mesh.userData.partId))))
+      : focusMode;
     snapshot.focusActive = spotlight;
     snapshot.focusMode = focusMode;
+    snapshot.focusFallback = mode !== focusMode;
     for (const mesh of meshes) {
       const id = mesh.userData.partId;
-      const { visible, look } = partLook(focusMode, partRole(spotlight, focusSet.has(id)));
+      const { visible, look } = partLook(mode, partRole(spotlight, focusSet.has(id)));
       mesh.visible = visible && (!isolated || isolatedParts.has(id));
       mesh.material = id === selectedId || look === 'highlight'
         ? highlight
@@ -139,6 +151,9 @@ export async function createCylinderSession(definition: ModelDefinition, context
     }
     section.refresh();
   };
+
+  // The page changing theme repaints the spotlight in the new theme's colours (the runtime repaints the stage and renders).
+  const stopWatchingTheme = runtime.onThemeChange?.(() => { applyAppearance(); onChange(); });
 
   const select = (id: string) => {
     selectedId = id;
@@ -418,6 +433,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
     },
     dispose() {
       playing = false;
+      stopWatchingTheme?.();
       runtime.setAnimationCallback(undefined);
       runtime.setPickTargets([]);
       section.dispose();

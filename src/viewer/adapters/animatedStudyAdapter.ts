@@ -4,7 +4,8 @@ import type { AdapterContext, FocusMode, ViewerSession, ViewerSnapshot } from '.
 import { loadGltf } from '../core/assets';
 import { cloneMaterials, createSectionController, disposeObject, meshMaterials } from '../core/modelUtils';
 import { groupComponentIds } from '../core/component-groups.mjs';
-import { HIGHLIGHT_COLOR, HIGHLIGHT_EMISSIVE, PALE_COLOR, XRAY_COLOR, XRAY_OPACITY, focusModeOrDefault, partLook, partRole } from '../core/focus-style.mjs';
+import { focusModeOrDefault, partLook, partRole, spotlightPalette } from '../core/focus-style.mjs';
+import { effectiveFocusMode } from '../core/spotlight-fallback';
 
 export async function createAnimatedStudySession(definition: ModelDefinition, context: AdapterContext): Promise<ViewerSession> {
   const { runtime, signal, onChange, onProgress } = context;
@@ -88,25 +89,31 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   const applyAppearance = () => {
     const pathColors: Record<string, string> = { housing: '#536878', core: '#84929e', fuel: '#be7b12', 'magneto-left': '#148365', 'magneto-right': '#148365', 'oil-tach': '#1b60bc', starter: '#963f7c', alternator: '#a58b21', vacuum: '#7752a7', governor: '#187f88' };
     // A selected power path ghosts every part outside it; otherwise a lesson step's spotlight is drawn as its focus mode says.
+    const palette = spotlightPalette(runtime.theme?.());
     const spotlight = !powerPath && focus.size > 0;
+    // Highlight would hide a spotlit part that sits inside another, so it is drawn as X-ray for as long as that is so.
+    const mode = spotlight
+      ? effectiveFocusMode(focusMode, meshes.filter((mesh) => focus.has(mesh.userData.partId)), meshes.filter((mesh) => !focus.has(mesh.userData.partId) && (!isolation || isolation.has(mesh.userData.partId))))
+      : focusMode;
     snapshot.focusActive = spotlight;
     snapshot.focusMode = focusMode;
+    snapshot.focusFallback = mode !== focusMode;
     for (const mesh of meshes) {
       const id = mesh.userData.partId;
-      const spot = partLook(focusMode, partRole(spotlight, focus.has(id)));
+      const spot = partLook(mode, partRole(spotlight, focus.has(id)));
       mesh.visible = spot.visible && (!isolation || isolation.has(id));
       const look = powerPath && !powerPath.parts.includes(id) ? 'ghost' : spot.look;
       for (const material of meshMaterials(mesh) as THREE.MeshStandardMaterial[]) {
         const ghost = look === 'ghost';
-        material.opacity = ghost ? XRAY_OPACITY : 1; material.transparent = ghost; material.depthWrite = !ghost;
+        material.opacity = ghost ? palette.ghostOpacity : 1; material.transparent = ghost; material.depthWrite = !ghost;
         material.color.copy(materialColors.get(material)!);
         const part = contract.parts.find((part: any) => part.id === id);
         if (paths.length && snapshot.appearance === 'inspection') material.color.set(part?.role === 'teaching-fixture' ? '#46515a' : pathColors[part?.group] || '#84929e');
         if (paths.length && snapshot.appearance === 'inspection' && /Spring|Plate|Plunger/.test(id)) material.color.set(0x379e9b);
-        if (ghost) material.color.set(XRAY_COLOR);
-        else if (look === 'pale') material.color.set(PALE_COLOR);
-        else if (look === 'highlight') material.color.set(HIGHLIGHT_COLOR);
-        material.emissive.set(id === snapshot.selectedId || look === 'highlight' ? HIGHLIGHT_EMISSIVE : powerPath?.parts.includes(id) ? 0x174638 : 0); material.emissiveIntensity = .6;
+        if (ghost) material.color.set(palette.ghostColor);
+        else if (look === 'pale') material.color.set(palette.paleColor);
+        else if (look === 'highlight') material.color.set(palette.highlightColor);
+        material.emissive.set(id === snapshot.selectedId || look === 'highlight' ? palette.highlightEmissive : powerPath?.parts.includes(id) ? 0x174638 : 0); material.emissiveIntensity = .6;
         material.needsUpdate = true;
       }
     }
@@ -116,6 +123,8 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     section.refresh();
     syncHelpers();
   };
+  // The page changing theme repaints the spotlight in the new theme's colours (the runtime repaints the stage and renders).
+  const stopWatchingTheme = runtime.onThemeChange?.(() => { applyAppearance(); onChange(); });
   const sample = (value: number) => {
     progress = Math.max(0, Math.min(100, value)); snapshot.motionProgress = progress;
     action.time = clips.get(active.id)!.duration * progress / 100;
@@ -205,6 +214,6 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
       }, section: section.feature,
       appearance: { setMode(mode) { snapshot.appearance = mode; applyAppearance(); } },
     },
-    dispose() { setPlaying(false); runtime.setPickTargets([]); mixer.stopAllAction(); mixer.uncacheRoot(root); section.dispose(); runtime.scene.remove(root, arrows, route); disposeObject(root); disposeObject(arrows); disposeObject(route); },
+    dispose() { setPlaying(false); stopWatchingTheme?.(); runtime.setPickTargets([]); mixer.stopAllAction(); mixer.uncacheRoot(root); section.dispose(); runtime.scene.remove(root, arrows, route); disposeObject(root); disposeObject(arrows); disposeObject(route); },
   };
 }

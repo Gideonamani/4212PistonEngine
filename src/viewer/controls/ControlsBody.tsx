@@ -54,10 +54,11 @@ export function ControlsBody({
           disabled={!spotlight.target.ids.length}
           status={spotlight.target.ids.length ? <>Spotlight on <strong className="text-white">{spotlight.target.label}</strong>.</> : 'Choose a part or a subassembly in Parts, then choose how to show it.'}
           idleHint="Tap a style to spotlight it. Tap the same style again to switch it off."
+          highlightFallback={snapshot.focusFallback}
           showPartCard={showPartCard}
           onToggleShowPartCard={onToggleShowPartCard}
         />
-      : <SpotlightPanel current={spotlight.current} onChoose={spotlight.choose} />)}
+      : <SpotlightPanel current={spotlight.current} onChoose={spotlight.choose} highlightFallback={snapshot.focusFallback} />)}
     {id === 'section' && <SectionPanel viewer={viewer} extras={controls.host === 'explore'} />}
     {id === 'look' && <LookPanel features={features} snapshot={snapshot} />}
   </div>;

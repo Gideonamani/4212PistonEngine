@@ -86,13 +86,18 @@ for (const [id, label, create, requires] of models) {
     assert.ok(!xray.includes('hidden') && !xray.includes('pale'), 'x-ray hides nothing');
 
     session.features.focus.setMode('highlight');
-    assert.equal(session.snapshot().focusMode, 'highlight');
+    assert.equal(session.snapshot().focusMode, 'highlight', 'the mode asked for is reported even when it is drawn another way');
     const highlighted = count(looks());
-    assert.ok(highlighted.pale > 0 && highlighted.highlight > 0, `highlight colours some parts and turns the rest pale: ${JSON.stringify(highlighted)}`);
-    assert.equal(highlighted.ghost ?? 0, 0, 'highlight leaves no ghosts');
-    assert.equal(highlighted.hidden ?? 0, 0, 'highlight hides nothing');
-    assert.equal(highlighted.pale, xrayCount.ghost, 'the parts that ghost in x-ray are the ones highlight turns pale');
-    assert.equal(highlighted.highlight, xrayCount.normal, 'the parts that stay solid in x-ray are the ones highlight colours');
+    if (session.snapshot().focusFallback) {
+      // The spotlit part sits inside another, which an opaque pale grey would hide: Highlight is drawn exactly as X-ray (spotlight-enclosure.mjs).
+      assert.deepEqual(looks(), xray, 'a spotlit part inside another makes Highlight draw as X-ray');
+    } else {
+      assert.ok(highlighted.pale > 0 && highlighted.highlight > 0, `highlight colours some parts and turns the rest pale: ${JSON.stringify(highlighted)}`);
+      assert.equal(highlighted.ghost ?? 0, 0, 'highlight leaves no ghosts');
+      assert.equal(highlighted.hidden ?? 0, 0, 'highlight hides nothing');
+      assert.equal(highlighted.pale, xrayCount.ghost, 'the parts that ghost in x-ray are the ones highlight turns pale');
+      assert.equal(highlighted.highlight, xrayCount.normal, 'the parts that stay solid in x-ray are the ones highlight colours');
+    }
 
     session.features.focus.setMode('isolate');
     assert.equal(session.snapshot().focusMode, 'isolate');
@@ -123,6 +128,38 @@ for (const [id, label, create, requires] of models) {
     session.dispose();
   });
 }
+
+// Highlight turns everything else an opaque pale grey, which hides a spotlit part that sits inside another. The real cylinder lessons have both
+// kinds of step: the valves, seats and guides of Valve Operating step 2 are inside the head, the barrel and head of Parts and Construction step 10
+// are the outside of the cylinder.
+test('cylinder: Highlight becomes X-ray for parts inside others, and stays Highlight for the outside of the cylinder', async () => {
+  const runtime = { scene: new THREE.Scene(), camera: new THREE.PerspectiveCamera(), render() {}, fit() {}, setPickTargets() {}, setAnimationCallback() {} };
+  const session = await createCylinderSession(registry.find((model) => model.id === 'cylinder'), { runtime, signal: new AbortController().signal, onProgress() {}, onChange() {}, profile: 'explore' });
+  const meshes = [];
+  runtime.scene.traverse((object) => { if (object.isMesh && object.material && object.userData.partId) meshes.push(object); });
+  const looks = () => meshes.map(lookOf);
+
+  const inside = ['IntakeValve', 'ExhaustValve', 'IntakeSeatInsert', 'ExhaustSeatInsert', 'IntakeValveGuide', 'ExhaustValveGuide'];
+  session.update({ focusParts: inside, focusMode: 'xray' });
+  const xray = looks();
+  session.update({ focusParts: inside, focusMode: 'highlight' });
+  assert.equal(session.snapshot().focusMode, 'highlight');
+  assert.equal(session.snapshot().focusFallback, true, 'valves, seats and guides are inside the head, so Highlight would hide them');
+  assert.deepEqual(looks(), xray, 'and they are drawn as X-ray');
+  session.features.focus.setMode('xray');
+  assert.equal(session.snapshot().focusFallback, false, 'a style that was not Highlight is never a fallback');
+
+  const outside = ['CylinderBarrel', 'CylinderHead'];
+  session.update({ focusParts: outside, focusMode: 'highlight' });
+  assert.equal(session.snapshot().focusFallback, false, 'the barrel and the head are the outside of the cylinder');
+  const highlighted = count(looks());
+  assert.ok(highlighted.highlight > 0 && highlighted.pale > 0 && !highlighted.ghost, `drawn as Highlight: ${JSON.stringify(highlighted)}`);
+
+  // A spotlight that is gone has no fallback to report.
+  session.update({ focusParts: undefined });
+  assert.equal(session.snapshot().focusFallback, false);
+  session.dispose();
+});
 
 // A spotlight that selects nothing ghosts the whole model and looks like a rendering fault, so every teaching component the
 // published engine contract names must really match some of the loaded meshes.

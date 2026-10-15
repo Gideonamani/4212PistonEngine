@@ -5,6 +5,8 @@
 //   highlight  the spotlit parts are coloured, everything else turns a plain pale grey
 //   xray       the spotlit parts stay solid, everything else becomes a faint see-through grey (the original behaviour)
 //   isolate    the spotlit parts stay, everything else is hidden
+// Highlight is drawn as xray while it would hide a spotlit part that sits inside another part (see spotlight-enclosure.mjs); these rules are the
+// modes as drawn, and the adapters pass them the mode that is in force.
 
 /** @typedef {'highlight' | 'xray' | 'isolate'} FocusMode */
 /** @typedef {'plain' | 'focus' | 'context'} PartRole  plain: no spotlight is active; focus: a spotlit part; context: any other part */
@@ -24,12 +26,28 @@ export const FOCUS_MODE_HINTS = Object.freeze({
   isolate: 'Shows the part on its own',
 });
 
-// How the looks are drawn. Opacity is a little stronger than the 0.12 the ghost used to have, which all but vanished on a phone.
-export const XRAY_OPACITY = 0.18;
-export const XRAY_COLOR = 0x9cbdcf;
-export const PALE_COLOR = 0xd7e0e6;
-export const HIGHLIGHT_COLOR = 0x39e4c4;
-export const HIGHLIGHT_EMISSIVE = 0x087567;
+// How the looks are drawn, for each theme's stage (STAGE_COLOR in src/theme/theme.mjs). An X-ray is drawn on the far side of the stage from the
+// background: pale layers on the dark stage, dark layers on the light one. Several thin layers stack up wherever parts overlap, which is what
+// makes the ghost read as depth, so it is judged by eye and not by the flat contrast of one layer (1.4:1 in dark, and a ghost at that contrast
+// is the look that works; the old pale ghost on the light stage was 1.07:1 and nearly vanished). Dark opacity is a little stronger than the
+// 0.12 the ghost used to have, which all but vanished on a phone.
+export const SPOTLIGHT_PALETTE = Object.freeze({
+  dark: Object.freeze({ ghostColor: 0x9cbdcf, ghostOpacity: 0.18, paleColor: 0xd7e0e6, highlightColor: 0x39e4c4, highlightEmissive: 0x087567 }),
+  light: Object.freeze({ ghostColor: 0x2f5266, ghostOpacity: 0.16, paleColor: 0xc3cfd6, highlightColor: 0x0d8577, highlightEmissive: 0x04463f }),
+});
+
+/** The colours for a theme ('light' or 'dark'); anything else gets the dark ones, the viewer's original look. */
+export const spotlightPalette = (theme) => (theme === 'light' ? SPOTLIGHT_PALETTE.light : SPOTLIGHT_PALETTE.dark);
+
+// The dark palette under its old names, for what was written before the palette had themes.
+export const XRAY_OPACITY = SPOTLIGHT_PALETTE.dark.ghostOpacity;
+export const XRAY_COLOR = SPOTLIGHT_PALETTE.dark.ghostColor;
+export const PALE_COLOR = SPOTLIGHT_PALETTE.dark.paleColor;
+export const HIGHLIGHT_COLOR = SPOTLIGHT_PALETTE.dark.highlightColor;
+export const HIGHLIGHT_EMISSIVE = SPOTLIGHT_PALETTE.dark.highlightEmissive;
+
+/** Said under the style tiles while Highlight is being drawn as an X-ray because it would have hidden a spotlit part (see spotlight-enclosure.mjs). */
+export const HIGHLIGHT_FALLBACK_NOTE = 'Some of these parts are inside others, and Highlight would hide them, so they are shown as an X-ray.';
 
 /** @param {unknown} value @returns {value is FocusMode} */
 export const isFocusMode = (value) => FOCUS_MODES.includes(/** @type {never} */ (value));

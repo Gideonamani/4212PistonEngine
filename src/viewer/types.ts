@@ -67,6 +67,8 @@ export type ViewerSnapshot = {
   /** Whether a spotlight is active, and how it is drawn. Only models that spotlight parts report them. */
   focusActive?: boolean;
   focusMode?: FocusMode;
+  /** The spotlight is drawn as X-ray although Highlight was asked for, because Highlight would hide a part that sits inside another. */
+  focusFallback?: boolean;
 };
 
 export type ViewerFeatures = {
@@ -166,6 +168,10 @@ export type ViewerRuntime = {
   setInteractionMode: (mode: InteractionMode) => void;
   setPickTargets: (objects: THREE.Object3D[], onPick?: (object: THREE.Object3D, point: THREE.Vector3) => void) => void;
   setAnimationCallback: (callback?: (elapsedSeconds: number) => boolean) => void;
+  /** The theme the page is in. Optional because a model can be driven without a page (the Node tests do), and then it is dark. */
+  theme?: () => 'light' | 'dark';
+  /** Call `listener` when the page changes theme, for what a model draws in the theme's colours; the returned function stops it. */
+  onThemeChange?: (listener: () => void) => () => void;
   dispose: () => void;
 };
 
