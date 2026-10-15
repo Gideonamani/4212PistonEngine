@@ -181,6 +181,14 @@ Choose by what the learner can see: highlight only reads for parts visible from 
 
 **Highlight never hides a spotlit part.** Highlight turns everything else an opaque pale grey, so a spotlit part that sits inside another (the valves inside the head) could not be seen from any side. When any spotlit part's box lies inside the box of a part that is not spotlit (`src/viewer/core/spotlight-enclosure.mjs`, fed meshes by `spotlight-fallback.ts`), the spotlight is drawn as `xray` while the snapshot still reports `focusMode: 'highlight'` and sets `focusFallback`, and the Spotlight panel says why. The test is on boxes, not the camera, so it does not change as the learner turns the model, and it errs towards X-ray (a plate lying within a casing's box counts as inside it). A section cut does not lift it. `scripts/test_focus_modes.mjs` checks both outcomes on the real cylinder (the six valve parts fall back, the barrel and head do not).
 
+### Looking at the spotlit parts one by one: part chips
+
+A step that spotlights two or more parts gets a row of chips under its text, one per part, named as the model names it (nothing to author: the row is built from `focusParts`). Tapping a chip spotlights just that part, drawn in whichever style is in force; tapping it again, or moving to another step, goes back to the step's own spotlight. A step with one part, a text or picture step, and a model that cannot spotlight get no row. More than six parts show the first six and a "+N more" button, and the chosen part is never hidden.
+
+The viewer owns the row (`src/viewer/controls/StepPartChips.tsx`) and draws it into a slot under the text by a portal, so the part labels come from the loaded model and the choice stays next to the viewer that shows it. It uses `previewPart()` from `useModelViewer`, which calls `features.focus.set()` and so leaves the pose, the section plane and the camera alone (a view change would reset all three). Which chips there are, when to collapse them and what a tap leaves chosen are in `src/viewer/core/step-part-chips.mjs` (`scripts/test_step_part_chips.mjs`); `e2e/step-part-chips.spec.ts` checks the row against the real cylinder, including that a chosen part is let go when the learner leaves the step and comes back.
+
+Linking words in the step text itself to parts, rather than a row under it, is a possible next step. It would need an authoring format for the links (explicit ids checked by the schema test, not label matching, because a word like "valve" names several parts) and the same `previewPart()`.
+
 ### Cutting the model open: `sectionPlane`
 
 On a spotlight step (or any step with `sectionPlane`) the same bar offers a **Cross section** checkbox and a plane picker. The picker always lists the standard X, Y and Z planes. A step can add a plane chosen for seeing its component best:
