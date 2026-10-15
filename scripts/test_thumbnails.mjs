@@ -51,6 +51,27 @@ test('thumbnails are small WebP files with a recorded source', () => {
   }
 });
 
+// A render of the app's own 3D models has no background of its own, so a card lays it over the stage colour of the theme it is in (dark or
+// light) and one file serves both. A page from a manual or a photo is opaque and is left alone.
+const hasAlpha = (bytes) => bytes.toString('ascii', 12, 16) === 'VP8X' && (bytes[20] & 0x10) !== 0;
+const isRender = (item) => item.kind === 'render' || (item.kind === 'diagonal' && item.parts.every(isRender));
+
+test('every picture rendered from the 3D models is transparent, so it follows the theme', () => {
+  const rendered = [
+    ...Object.entries(sources.items).filter(([, item]) => isRender(item)).map(([id]) => `web/thumbnails/${id}.webp`),
+    ...Object.entries(sources.previews.items).filter(([, item]) => isRender(item)).map(([id]) => `web/model-previews/${id}.webp`),
+    ...Object.entries(sources.banners.items).filter(([, item]) => isRender(item)).map(([id]) => `web/banners/${id}.webp`),
+  ];
+  assert.ok(rendered.length >= 30, `expected the renders to be found, got ${rendered.length}`);
+  for (const file of rendered) assert.ok(hasAlpha(fs.readFileSync(file)), `${file} is a render of the 3D models and must have a transparent background`);
+});
+
+test('pages and photos keep their own opaque background', () => {
+  for (const [id, item] of Object.entries(sources.items)) {
+    if (item.kind === 'pdf' || item.kind === 'image') assert.ok(!hasAlpha(fs.readFileSync(`web/thumbnails/${id}.webp`)), `${id} is a page or a photo and has no transparency`);
+  }
+});
+
 // The Explore gallery: every 3D study card has its own preview image, rendered from the current model.
 const models = JSON.parse(fs.readFileSync('src/data/models.json', 'utf8'));
 

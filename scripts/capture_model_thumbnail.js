@@ -13,6 +13,10 @@
  * `frame: { dir: [x, y, z], fill }` replaces zoom, pan and orbit with the same framing for every model (the Explore gallery uses it, so
  * the tiles match): the camera looks along `dir`, and the visible geometry is centred and scaled to fill `fill` (default 0.8) of the
  * frame. `roll` still applies, to lay a tall stack on its side.
+ *
+ * The picture has a transparent background (`transparent: false` paints the dark stage instead): a card draws it over its own stage
+ * colour, so the same file serves both themes. An X-ray spotlight is drawn with the 'neutral' palette (focus-style.mjs), a mid-tone ghost
+ * that shows on either stage.
  */
 
 /**
@@ -66,7 +70,7 @@ function framePicture(THREE, runtime, { dir = [1, 0.6, 1], fill = 0.8, roll = 0 
   controls.target.copy(target);
 }
 
-async function captureModel(modelId, name, view = {}, { exposure = 0.8, zoom = 1, pan = [0, 0], orbit = [0, 0], roll = 0, size = 720, width = size, height = size, frame, setup, onImage } = {}) {
+async function captureModel(modelId, name, view = {}, { exposure = 0.8, zoom = 1, pan = [0, 0], orbit = [0, 0], roll = 0, size = 720, width = size, height = size, frame, setup, onImage, transparent = true } = {}) {
   const THREE = await import('/node_modules/.vite/deps/three.js');
   const { createViewerRuntime } = await import('/src/viewer/core/runtime.ts');
   const { createModelSession } = await import('/src/viewer/adapters/index.ts');
@@ -75,7 +79,7 @@ async function captureModel(modelId, name, view = {}, { exposure = 0.8, zoom = 1
   const mount = document.createElement('div');
   mount.style.cssText = `position:fixed;left:0;top:0;width:${width}px;height:${height}px;z-index:99999;`;
   document.body.appendChild(mount);
-  const runtime = createViewerRuntime(mount);
+  const runtime = createViewerRuntime(mount, { transparent });
   const resize = () => {
     runtime.renderer.setPixelRatio(1);
     runtime.renderer.setSize(width, height, false);

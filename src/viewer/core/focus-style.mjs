@@ -31,13 +31,16 @@ export const FOCUS_MODE_HINTS = Object.freeze({
 // makes the ghost read as depth, so it is judged by eye and not by the flat contrast of one layer (1.4:1 in dark, and a ghost at that contrast
 // is the look that works; the old pale ghost on the light stage was 1.07:1 and nearly vanished). Dark opacity is a little stronger than the
 // 0.12 the ghost used to have, which all but vanished on a phone.
+// `neutral` is for a picture drawn on a transparent background (a card image, see docs/card-thumbnails.md), which is then laid over either
+// stage: its ghost is a mid tone, the one colour that shows on both.
 export const SPOTLIGHT_PALETTE = Object.freeze({
   dark: Object.freeze({ ghostColor: 0x9cbdcf, ghostOpacity: 0.18, paleColor: 0xd7e0e6, highlightColor: 0x39e4c4, highlightEmissive: 0x087567 }),
   light: Object.freeze({ ghostColor: 0x2f5266, ghostOpacity: 0.16, paleColor: 0xc3cfd6, highlightColor: 0x0d8577, highlightEmissive: 0x04463f }),
+  neutral: Object.freeze({ ghostColor: 0x5f8195, ghostOpacity: 0.22, paleColor: 0xa9b8c0, highlightColor: 0x0e8a79, highlightEmissive: 0x055a4f }),
 });
 
-/** The colours for a theme ('light' or 'dark'); anything else gets the dark ones, the viewer's original look. */
-export const spotlightPalette = (theme) => (theme === 'light' ? SPOTLIGHT_PALETTE.light : SPOTLIGHT_PALETTE.dark);
+/** The colours for a theme ('light', 'dark' or, for a picture on no stage, 'neutral'); anything else gets the dark ones, the viewer's original look. */
+export const spotlightPalette = (theme) => (theme === 'light' ? SPOTLIGHT_PALETTE.light : theme === 'neutral' ? SPOTLIGHT_PALETTE.neutral : SPOTLIGHT_PALETTE.dark);
 
 // The dark palette under its old names, for what was written before the palette had themes.
 export const XRAY_OPACITY = SPOTLIGHT_PALETTE.dark.ghostOpacity;
