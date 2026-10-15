@@ -60,7 +60,9 @@ test('Explore: the crank card reads the angle and the stroke, and plays, loops a
   await expect(loop).toHaveAttribute('aria-checked', 'false');
   await crank.fill('715');
   await panel.getByRole('button', { name: 'Play', exact: true }).click();
-  await expect(panel.getByRole('button', { name: 'Replay' })).toBeVisible({ timeout: 10_000 });
+  // The crank advances by the time between frames (at most 0.1 s of motion per frame), so on a CI runner drawing in software the last few degrees
+  // can take far longer than they look: expect's 10 s failed a correct run twice on PR #68.
+  await expect(panel.getByRole('button', { name: 'Replay' })).toBeVisible({ timeout: 90_000 });
   await expect(panel.getByRole('tab', { name: /paused/ })).toBeVisible();
   // Replay starts from the top.
   await panel.getByRole('button', { name: 'Replay' }).click();
