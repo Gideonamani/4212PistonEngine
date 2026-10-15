@@ -3,7 +3,8 @@ import type { ModelDefinition } from '../../data/modelRegistry';
 import { groupComponentIds } from '../core/component-groups.mjs';
 import { loadGltf, sourcesFromEngineContract } from '../core/assets';
 import { cloneMaterials, createSectionController, disposeObject, meshMaterials } from '../core/modelUtils';
-import { HIGHLIGHT_COLOR, HIGHLIGHT_EMISSIVE, PALE_COLOR, XRAY_COLOR, XRAY_OPACITY, focusModeOrDefault, partLook, partRole } from '../core/focus-style.mjs';
+import { focusModeOrDefault, partLook, partRole, spotlightPalette } from '../core/focus-style.mjs';
+import { effectiveFocusMode } from '../core/spotlight-fallback';
 import type { AdapterContext, AppearanceMode, FocusMode, ModelComponent, ModelGroup, ViewerSession, ViewerSnapshot } from '../types';
 
 type EngineItem = {
@@ -116,11 +117,18 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
     }
   };
   const applyAppearance = () => {
+    const palette = spotlightPalette(runtime.theme?.());
     const selected = selectedComponent();
-    snapshot.focusActive = focusComponents.length > 0;
+    const spotlight = focusComponents.length > 0;
+    // Highlight would hide a spotlit part that sits inside another, so it is drawn as X-ray for as long as that is so.
+    const mode = spotlight
+      ? effectiveFocusMode(focusMode, items.filter(isFocused).map((item) => item.mesh), items.filter((item) => !isFocused(item) && item.mesh.visible).map((item) => item.mesh))
+      : focusMode;
+    snapshot.focusActive = spotlight;
     snapshot.focusMode = focusMode;
+    snapshot.focusFallback = mode !== focusMode;
     for (const item of items) {
-      const { look } = lookOf(item);
+      const { look } = partLook(mode, partRole(spotlight, isFocused(item)));
       const highlighted = look === 'highlight' || Boolean(selected && bindingMatches(item, selected));
       const ghosted = look === 'ghost';
       const pale = look === 'pale';
@@ -128,12 +136,12 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
         material.userData.solid ??= { transparent: material.transparent, opacity: material.opacity, depthWrite: material.depthWrite };
         const solid = material.userData.solid;
         material.transparent = ghosted || (!pale && solid.transparent);
-        material.opacity = ghosted ? XRAY_OPACITY : pale ? 1 : solid.opacity;
+        material.opacity = ghosted ? palette.ghostOpacity : pale ? 1 : solid.opacity;
         material.depthWrite = ghosted ? false : solid.depthWrite;
         material.needsUpdate = true;
-        if (ghosted) material.color.set(XRAY_COLOR);
-        else if (pale) material.color.set(PALE_COLOR);
-        else if (look === 'highlight') material.color.set(HIGHLIGHT_COLOR);
+        if (ghosted) material.color.set(palette.ghostColor);
+        else if (pale) material.color.set(palette.paleColor);
+        else if (look === 'highlight') material.color.set(palette.highlightColor);
         else if (snapshot.appearance === 'inspection') {
           material.color.set(
             /Intake/i.test(item.label) ? 0x379e9b
@@ -144,13 +152,16 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
           );
         } else if (material.userData.originalColor) material.color.copy(material.userData.originalColor);
         if (material.emissive) {
-          material.emissive.set(highlighted ? HIGHLIGHT_EMISSIVE : 0x000000);
+          material.emissive.set(highlighted ? palette.highlightEmissive : 0x000000);
           material.emissiveIntensity = highlighted ? 0.72 : 0;
         }
       }
     }
     section.refresh();
   };
+
+  // The page changing theme repaints the spotlight in the new theme's colours (the runtime repaints the stage and renders).
+  const stopWatchingTheme = runtime.onThemeChange?.(() => { applyAppearance(); onChange(); });
 
   const select = (id: string) => {
     selectedId = id;
@@ -350,6 +361,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
     },
     dispose() {
       playing = false;
+      stopWatchingTheme?.();
       runtime.setAnimationCallback(undefined);
       runtime.setPickTargets([]);
       section.dispose();

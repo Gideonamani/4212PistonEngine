@@ -5,7 +5,8 @@ import type { InteractionMode, ViewerRuntime } from '../types';
 import { STAGE_COLOR } from '../../theme/theme.mjs';
 import { wheelDecision, type WheelZoom } from './interaction.mjs';
 
-const currentStageColor = () => (typeof document !== 'undefined' && document.documentElement.dataset.theme === 'light' ? STAGE_COLOR.light : STAGE_COLOR.dark);
+const currentTheme = (): 'light' | 'dark' => (typeof document !== 'undefined' && document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
+const currentStageColor = () => STAGE_COLOR[currentTheme()];
 
 type RuntimeOptions = {
   /** Whether the mouse wheel zooms always, or only with Ctrl or Cmd held so the page can scroll under the pointer. Default: always. */
@@ -73,11 +74,18 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
     if (!disposed) renderer.render(scene, camera);
   };
 
+  // What is drawn in the theme's colours besides the stage (the spotlight's) repaints itself when told the theme changed.
+  const themeListeners = new Set<() => void>();
+  const onThemeChange = (listener: () => void) => {
+    themeListeners.add(listener);
+    return () => { themeListeners.delete(listener); };
+  };
   const themeObserver = typeof MutationObserver !== 'undefined' && typeof document !== 'undefined'
     ? new MutationObserver((mutations) => {
         for (const mutation of mutations) {
           if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
             scene.background = new THREE.Color(currentStageColor());
+            for (const listener of themeListeners) listener();
             render();
             break;
           }
@@ -209,9 +217,12 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
     setInteractionMode,
     setPickTargets,
     setAnimationCallback,
+    theme: currentTheme,
+    onThemeChange,
     dispose() {
       disposed = true;
       themeObserver?.disconnect();
+      themeListeners.clear();
       resize.disconnect();
       container.removeEventListener('wheel', passWheelToPage, { capture: true });
       setAnimationCallback(undefined);

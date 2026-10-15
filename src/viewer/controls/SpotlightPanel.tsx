@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Ghost, Highlighter, type LucideIcon } from 'lucide-react';
-import { FOCUS_MODES, FOCUS_MODE_HINTS, FOCUS_MODE_LABELS } from '../core/focus-style.mjs';
+import { FOCUS_MODES, FOCUS_MODE_HINTS, FOCUS_MODE_LABELS, HIGHLIGHT_FALLBACK_NOTE } from '../core/focus-style.mjs';
 import type { FocusMode } from '../types';
 
 const TILE_ICONS: Record<FocusMode, LucideIcon> = { highlight: Highlighter, xray: Ghost, isolate: Box };
@@ -15,6 +15,8 @@ type SpotlightPanelProps = {
   status?: React.ReactNode;
   /** The line under the tiles while no style is in force. */
   idleHint?: string;
+  /** Highlight is chosen but is being drawn as an X-ray, because it would hide a spotlit part that sits inside another. */
+  highlightFallback?: boolean;
   /** Whether the 3D click part property card is enabled */
   showPartCard?: boolean;
   onToggleShowPartCard?: () => void;
@@ -24,7 +26,7 @@ type SpotlightPanelProps = {
  * How the spotlit part is shown: coloured with the rest pale, solid with the rest as a faint ghost, or on its own. The same three tiles
  * serve a lesson (the step spotlights the part, the learner chooses the style) and Explore (the learner chooses the part as well).
  */
-export function SpotlightPanel({ current, onChoose, disabled = false, status, idleHint, showPartCard = true, onToggleShowPartCard }: SpotlightPanelProps) {
+export function SpotlightPanel({ current, onChoose, disabled = false, status, idleHint, highlightFallback = false, showPartCard = true, onToggleShowPartCard }: SpotlightPanelProps) {
   return <div className="space-y-2.5">
     {status && <p className="text-xs leading-snug text-slate-300">{status}</p>}
     <div role="group" aria-label="How the highlighted part is shown" className="grid grid-cols-3 gap-1.5">
@@ -45,6 +47,7 @@ export function SpotlightPanel({ current, onChoose, disabled = false, status, id
       })}
     </div>
     <p className="px-0.5 text-xs leading-snug text-slate-400">{current ? FOCUS_MODE_HINTS[current] : idleHint ?? FOCUS_MODE_HINTS.xray}</p>
+    {current === 'highlight' && highlightFallback && <p aria-live="polite" className="px-0.5 text-xs leading-snug text-amber-200">{HIGHLIGHT_FALLBACK_NOTE}</p>}
 
     {onToggleShowPartCard !== undefined && (
       <div className="pt-3 border-t border-white/10 flex items-center justify-between gap-3">
