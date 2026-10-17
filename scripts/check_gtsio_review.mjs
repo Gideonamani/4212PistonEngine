@@ -1,32 +1,46 @@
-// Independent file-level checks using the same Three.js loader/mixer as the app.
+// Independent file-level checks using the same Three.js loader/sampler as the app.
 // Run manually: this private candidate is not a production test dependency.
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
-import * as THREE from '../../4212PistonEngine/node_modules/three/build/three.module.js';
-import {GLTFLoader} from '../../4212PistonEngine/node_modules/three/examples/jsm/loaders/GLTFLoader.js';
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
+import {createProceduralStudySampler, indexStudyParts} from '../src/viewer/core/animated-study-motion.mjs';
 
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const out=path.join(repo,'build/gtsio520-animation-review');
-const raw=fs.readFileSync(path.join(out,'gtsio520-r10-animated-review.glb'));
+const out=process.argv[2]?path.resolve(process.argv[2]):path.join(repo,'build/gtsio520-animation-review');
 const contract=JSON.parse(fs.readFileSync(path.join(out,'review-contract.json')));
 const manifest=JSON.parse(fs.readFileSync(path.join(out,'review-manifest.json')));
 const reference=JSON.parse(fs.readFileSync(path.join(out,'reference-poses.json')));
+const assetFile=contract.asset_file || (fs.existsSync(path.join(out,'gtsio520-r10-static.glb')) ? 'gtsio520-r10-static.glb' : 'gtsio520-r10-animated-review.glb');
+const raw=fs.readFileSync(path.join(out,assetFile));
 const gltf=await new GLTFLoader().parseAsync(raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.byteLength),'');
-const root=gltf.scene,mixer=new THREE.AnimationMixer(root),parts=new Map();
-root.traverse(o=>{if(o.isMesh)parts.set(o.userData.cad_part_id,o);});root.updateMatrixWorld(true);
+const root=gltf.scene,mixer=new THREE.AnimationMixer(root);
+const {partsById:parts}=indexStudyParts(root);root.updateMatrixWorld(true);
 const rest=new Map([...parts].map(([id,o])=>[id,o.matrixWorld.clone()]));
+const procedural=createProceduralStudySampler(contract,parts,root);
 const reports=[];
 function check(name,fn){fn();reports.push({name,passed:true});console.log('PASS',name);}
-function sample(index,fraction){mixer.stopAllAction();const clip=gltf.animations.find(c=>c.name===contract.motions[index].id);const a=mixer.clipAction(clip).reset().setLoop(THREE.LoopOnce,1).play();a.paused=true;a.clampWhenFinished=true;a.time=clip.duration*fraction;mixer.update(0);root.updateMatrixWorld(true);}
+function sample(index,fraction){
+  mixer.stopAllAction();
+  const motion=contract.motions[index];
+  const clip=gltf.animations.find(c=>c.name===motion.id);
+  if(clip){
+    const a=mixer.clipAction(clip).reset().setLoop(THREE.LoopOnce,1).play();
+    a.paused=true;a.clampWhenFinished=true;a.time=clip.duration*fraction;
+    mixer.update(0);root.updateMatrixWorld(true);
+  } else {
+    procedural.apply(motion,fraction*100);
+  }
+}
 const err=(a,b)=>Math.max(...a.elements.map((v,i)=>Math.abs(v-b.elements[i])));
-check('Three clips, all 1396 stable IDs, matching hash and explicit draft scope',()=>{
+check('Three motions, all 1396 stable IDs, matching hash and explicit draft scope',()=>{
   assert.equal(parts.size,1396);assert.equal(contract.parts.length,1396);
   assert.equal(createHash('sha256').update(raw).digest('hex'),contract.asset_sha256);
-  assert.deepEqual(gltf.animations.map(c=>c.name).sort(),contract.motions.map(m=>m.id).sort());
-  assert.ok(gltf.animations.every(c=>Math.abs(c.duration-12)<1e-5));
+  assert.equal(contract.motions.length,3);
+  assert.ok(contract.motions.every(m=>gltf.animations.some(c=>c.name===m.id)||procedural.supports(m)));
   assert.ok(contract.parts.every(p=>parts.has(p.id)));assert.equal(contract.release_allowed,false);
   assert.match(contract.scope,/illustrative.*not an approved maintenance/i);
 });
@@ -40,7 +54,7 @@ check('Rest mesh coordinates match frozen tessellation in metres and glTF axes',
   assert.ok(boundsError<3e-7,`source-mesh export bounds error ${boundsError}`);
 });
 let referenceError=0;
-check('Exported motion agrees with the shared definition at saved crank samples',()=>{
+check('Evaluated motion agrees with the shared definition at saved crank samples',()=>{
   const C=new THREE.Matrix4().set(1,0,0,0,0,0,1,0,0,-1,0,0,0,0,0,1),Ci=C.clone().invert();
   for(const angle of [0,137,360,720]){sample(2,angle/720);
     for(const [pid,frames] of Object.entries(reference)){
@@ -82,6 +96,7 @@ check('Cycle closure and clip switching restore the identical assembled pose',()
   }
   assert.ok(switchError<2e-6,`closure/switch error ${switchError}`);
 });
-fs.writeFileSync(path.join(out,'kinematic-export-checks.json'),JSON.stringify({passed:true,asset_sha256:contract.asset_sha256,checks:reports,
+fs.writeFileSync(path.join(out,'kinematic-export-checks.json'),JSON.stringify({passed:true,asset_file:assetFile,asset_sha256:contract.asset_sha256,checks:reports,
   max_errors:{cad_mesh_bounds_m:boundsError,shared_matrix:referenceError,between_key_piston_m:pistonError,between_key_rod_m:rodError,reverse_matrix:reverseError,switch_matrix:switchError},
   scope:'Kinematics and file integrity only. No native/STEP, physical removal-path, contact or swept-clearance acceptance.'},null,2)+'\n');
+

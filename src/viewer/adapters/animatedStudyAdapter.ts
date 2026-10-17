@@ -6,6 +6,12 @@ import { cloneMaterials, createSectionController, disposeObject, meshMaterials }
 import { groupComponentIds } from '../core/component-groups.mjs';
 import { focusModeOrDefault, partLook, partRole, spotlightPalette } from '../core/focus-style.mjs';
 import { effectiveFocusMode } from '../core/spotlight-fallback';
+import {
+  crankAngleForMotion,
+  createProceduralStudySampler,
+  indexStudyParts,
+  resolveMotionDisplay,
+} from '../core/animated-study-motion.mjs';
 
 export async function createAnimatedStudySession(definition: ModelDefinition, context: AdapterContext): Promise<ViewerSession> {
   const { runtime, signal, onChange, onProgress } = context;
@@ -16,23 +22,29 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   if (digest !== contract.asset_sha256) throw Error('The mechanism asset does not match its contract.');
   signal.throwIfAborted();
   const root = loaded.gltf.scene; cloneMaterials(root);
-  const meshes: THREE.Mesh[] = [];
-  root.traverse(object => { const mesh = object as THREE.Mesh; if (mesh.isMesh) { mesh.userData.partId = mesh.userData.cad_part_id; meshes.push(mesh); } });
+  const { meshes, partsById } = indexStudyParts(root) as { meshes: THREE.Mesh[]; partsById: Map<string, THREE.Mesh> };
   const paths: any[] = contract.powerPaths || [];
+  const contractPartsById = new Map<string, any>((contract.parts || []).map((part: any) => [part.id, part]));
   const components = contract.parts.map((part: any) => ({ id: part.id, label: part.label, group: part.group, groups: [...paths.filter(path => path.parts.includes(part.id)).map(path => `path:${path.id}`), ...(part.groups || [])], description: part.description, source: part.evidence || contract.reference, evidence: part.shape_status || 'Illustrative dimensions' }));
-  if (meshes.length !== components.length || meshes.some(mesh => !components.some((part: any) => part.id === mesh.userData.partId))) throw Error('Mechanism components do not match the contract.');
+  const componentsById = new Map<string, any>(components.map((part: any) => [part.id, part]));
+  if (meshes.length !== components.length || meshes.some(mesh => !componentsById.has(mesh.userData.partId))) throw Error('Mechanism components do not match the contract.');
   const clips = new Map(loaded.gltf.animations.map(clip => [clip.name, clip]));
-  for (const motion of contract.motions) if (!clips.has(motion.id)) throw Error(`Saved motion is missing: ${motion.id}`);
   runtime.scene.add(root); root.updateMatrixWorld(true); runtime.fit(root);
+  const procedural = createProceduralStudySampler(contract, partsById, root);
+  for (const motion of contract.motions) {
+    if (!clips.has(motion.id) && !procedural.supports(motion)) throw Error(`Saved motion is missing: ${motion.id}`);
+  }
   const bounds = new THREE.Box3().setFromObject(root);
   const section = createSectionController(meshes, bounds, runtime.render, onChange, runtime.scene);
   const mixer = new THREE.AnimationMixer(root);
   const snapshot: ViewerSnapshot = { status: 'Animated mechanism study ready', appearance: 'inspection', playing: false, motionProgress: 0, motionNote: contract.scope };
-  let active: any, action: THREE.AnimationAction, progress = 0, playing = false;
-  // Playback: a speed for everything, and a loop choice for each motion (it starts from what the study's contract says).
+  let active: any, action: THREE.AnimationAction | undefined, progress = 0, playing = false;
+  // Playback: a speed for everything, and a loop choice + view mode ('core' vs 'assembled') for each motion.
   let speed = 1;
   const loops = new Map<string, boolean>();
+  const motionViewModes = new Map<string, 'core' | 'assembled'>();
   const loopOf = () => loops.get(active.id) ?? Boolean(active.loop);
+  const durationOf = () => clips.get(active?.id)?.duration ?? Number(active?.duration || 12);
   const syncPlayback = () => { snapshot.motionSpeed = speed; snapshot.motionLoop = loopOf(); };
   let isolation: Set<string> | undefined;
   const focus = new Set<string>();
@@ -42,7 +54,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   const arrows = new THREE.Group(); arrows.name = 'Output rotation arrows'; runtime.scene.add(arrows);
   const arrowBindings: { helper: THREE.Group; mesh: THREE.Mesh; offset: THREE.Vector3 }[] = [];
   for (const output of contract.rotationOutputs || []) {
-    const mesh = meshes.find(mesh => mesh.userData.partId === output.id);
+    const mesh = partsById.get(output.id);
     if (!mesh) continue;
     const helper = new THREE.Group(); helper.name = `${output.id} rotation direction`;
     const axis = new THREE.Vector3(...(output.axis || [0, 1, 0]) as [number, number, number]).normalize();
@@ -65,7 +77,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     }
     if (powerPath) {
       const points = (powerPath.edges || []).flatMap(([from, to]: string[]) => {
-        const a = meshes.find(mesh => mesh.userData.partId === from), b = meshes.find(mesh => mesh.userData.partId === to);
+        const a = partsById.get(from), b = partsById.get(to);
         // CAD solids can have an origin at (0,0,0) while their vertices sit at
         // an accessory pad. Anchor paths to visible geometry, not that origin.
         return a?.visible && b?.visible ? [new THREE.Box3().setFromObject(a).getCenter(new THREE.Vector3()), new THREE.Box3().setFromObject(b).getCenter(new THREE.Vector3())] : [];
@@ -91,9 +103,13 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     // A selected power path ghosts every part outside it; otherwise a lesson step's spotlight is drawn as its focus mode says.
     const palette = spotlightPalette(runtime.theme?.());
     const spotlight = !powerPath && focus.size > 0;
+    const motionDisplay = resolveMotionDisplay(active, contract.parts, motionViewModes.get(active?.id) || 'default');
+    snapshot.motionViewMode = motionDisplay.viewMode as 'core' | 'assembled';
+    snapshot.motionAllowAssembled = motionDisplay.allowAssembled;
+    const motionVisible = (id: string) => !motionDisplay.visibleSet || motionDisplay.visibleSet.has(id) || focus.has(id) || Boolean(isolation?.has(id));
     // Highlight would hide a spotlit part that sits inside another, so it is drawn as X-ray for as long as that is so.
     const mode = spotlight
-      ? effectiveFocusMode(focusMode, meshes.filter((mesh) => focus.has(mesh.userData.partId)), meshes.filter((mesh) => !focus.has(mesh.userData.partId) && (!isolation || isolation.has(mesh.userData.partId))))
+      ? effectiveFocusMode(focusMode, meshes.filter((mesh) => focus.has(mesh.userData.partId)), meshes.filter((mesh) => !focus.has(mesh.userData.partId) && (!isolation || isolation.has(mesh.userData.partId)) && motionVisible(mesh.userData.partId)))
       : focusMode;
     snapshot.focusActive = spotlight;
     snapshot.focusMode = focusMode;
@@ -101,13 +117,14 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     for (const mesh of meshes) {
       const id = mesh.userData.partId;
       const spot = partLook(mode, partRole(spotlight, focus.has(id)));
-      mesh.visible = spot.visible && (!isolation || isolation.has(id));
-      const look = powerPath && !powerPath.parts.includes(id) ? 'ghost' : spot.look;
+      mesh.visible = spot.visible && (!isolation || isolation.has(id)) && motionVisible(id);
+      const motionGhost = !powerPath && !spotlight && !isolation && motionDisplay.ghostSet.has(id);
+      const look = powerPath && !powerPath.parts.includes(id) ? 'ghost' : motionGhost ? 'ghost' : spot.look;
+      const part = contractPartsById.get(id);
       for (const material of meshMaterials(mesh) as THREE.MeshStandardMaterial[]) {
         const ghost = look === 'ghost';
         material.opacity = ghost ? palette.ghostOpacity : 1; material.transparent = ghost; material.depthWrite = !ghost;
         material.color.copy(materialColors.get(material)!);
-        const part = contract.parts.find((part: any) => part.id === id);
         if (paths.length && snapshot.appearance === 'inspection') material.color.set(part?.role === 'teaching-fixture' ? '#46515a' : pathColors[part?.group] || '#84929e');
         if (paths.length && snapshot.appearance === 'inspection' && /Spring|Plate|Plunger/.test(id)) material.color.set(0x379e9b);
         if (ghost) material.color.set(palette.ghostColor);
@@ -118,17 +135,29 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
       }
     }
     const separate = (contract.remoteDisplays || []).filter((display: any) =>
-      components.some((part: any) => part.group === display.group && meshes.some(mesh => mesh.userData.partId === part.id && mesh.visible)));
+      components.some((part: any) => part.group === display.group && partsById.get(part.id)?.visible));
     snapshot.assemblyNotice = separate.length ? `${separate.map((display: any) => display.label).join(' · ')}: separate relocated displays. Engine connections omitted.` : undefined;
     section.refresh();
     syncHelpers();
   };
   // The page changing theme repaints the spotlight in the new theme's colours (the runtime repaints the stage and renders).
   const stopWatchingTheme = runtime.onThemeChange?.(() => { applyAppearance(); onChange(); });
+  const applyPose = (value: number) => {
+    const clamped = Math.max(0, Math.min(100, value));
+    const clip = clips.get(active.id);
+    if (clip && action) {
+      action.time = clip.duration * clamped / 100;
+      mixer.update(0);
+      root.updateMatrixWorld(true);
+    } else {
+      procedural.apply(active, clamped);
+    }
+  };
   const sample = (value: number) => {
     progress = Math.max(0, Math.min(100, value)); snapshot.motionProgress = progress;
-    action.time = clips.get(active.id)!.duration * progress / 100;
-    mixer.update(0); root.updateMatrixWorld(true); section.sync(); syncHelpers();
+    snapshot.angle = crankAngleForMotion(active, progress);
+    applyPose(progress);
+    section.sync(); syncHelpers();
     const stage = [...active.stages].reverse().find((stage: any) => progress >= stage.progress);
     snapshot.motionStage = stage?.label || active.label;
     snapshot.motionNote = `${stage?.note || ''} ${contract.scope}`;
@@ -138,7 +167,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     playing = value; snapshot.playing = value;
     if (value && progress >= 100) sample(0);
     runtime.setAnimationCallback(value ? elapsed => {
-      const next = progress + elapsed * 100 * speed / Math.max(clips.get(active.id)!.duration, .1);
+      const next = progress + elapsed * 100 * speed / Math.max(durationOf(), .1);
       if (next >= 100 && !loopOf()) { sample(100); playing = false; snapshot.playing = false; onChange(); return false; }
       sample(loopOf() ? next % 100 : next); return playing;
     } : undefined); onChange();
@@ -147,8 +176,15 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     const motion = contract.motions.find((motion: any) => motion.id === id);
     if (!motion) throw Error(`Unknown saved motion: ${id}`);
     setPlaying(false); mixer.stopAllAction(); active = motion;
-    action = mixer.clipAction(clips.get(id)!); action.reset().setLoop(THREE.LoopOnce, 1).play(); action.clampWhenFinished = true; action.paused = true;
+    const clip = clips.get(id);
+    if (clip) {
+      action = mixer.clipAction(clip); action.reset().setLoop(THREE.LoopOnce, 1).play(); action.clampWhenFinished = true; action.paused = true;
+    } else {
+      action = undefined;
+      procedural.restoreRest();
+    }
     snapshot.savedMotionId = id; syncPlayback();
+    applyAppearance();
     // Use the union of both assembly extremes for cuts and framing in either direction.
     sample(0); const motionBounds = new THREE.Box3().setFromObject(root);
     sample(100); motionBounds.union(new THREE.Box3().setFromObject(root)); section.updateBounds(motionBounds);
@@ -160,7 +196,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     const proxy = new THREE.Mesh(new THREE.BoxGeometry(...box.getSize(new THREE.Vector3()).toArray())); proxy.position.copy(box.getCenter(new THREE.Vector3())); runtime.fit(proxy); proxy.geometry.dispose();
   };
   const select = (id: string) => {
-    const part = components.find((part: any) => part.id === id);
+    const part = componentsById.get(id);
     snapshot.selectedId = part?.id; snapshot.selectedLabel = part?.label; snapshot.selectedDescription = part?.description;
     applyAppearance(); onChange();
   };
@@ -170,6 +206,9 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   let start = { motionId: '', progress: 0 };
   const update = (view: any) => {
     start = { motionId: view.savedMotionId || contract.motions[0].id, progress: view.motionProgress || 0 };
+    if (view.motionViewMode === 'core' || view.motionViewMode === 'assembled') {
+      motionViewModes.set(start.motionId, view.motionViewMode);
+    }
     powerPath = undefined; snapshot.powerPathId = ''; snapshot.powerPathNote = '';
     focus.clear(); for (const id of view.focusParts || []) focus.add(id);
     focusMode = focusModeOrDefault(view.focusMode);
@@ -184,7 +223,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
       focus: {
         setMode(mode) { focusMode = focusModeOrDefault(mode); applyAppearance(); onChange(); },
         set(ids, mode) {
-          const unknown = ids.filter(id => !components.some((part: any) => part.id === id));
+          const unknown = ids.filter(id => !componentsById.has(id));
           if (unknown.length) throw Error(`Unknown component id in the spotlight: ${unknown.join(', ')}.`);
           focus.clear(); for (const id of ids) focus.add(id);
           focusMode = focusModeOrDefault(mode);
@@ -203,10 +242,22 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
       components: { items: components, groups: [{ id: '', label: 'All groups' }, ...(contract.groups ? contract.groups.map((group: any) => ({ id: group.id, label: `${group.depth ? '– ' : ''}${group.label}` })) : [...new Set<string>(components.map((part: any) => part.group))].map(id => ({ id, label: id.replaceAll('-', ' ') }))), ...paths.map(path => ({ id: `path:${path.id}`, label: `Complete path: ${path.label}` }))], select,
         isolate() { if (!snapshot.selectedId) return; isolation = new Set([snapshot.selectedId]); snapshot.isolated = true; applyAppearance(); fitVisible(); },
         isolateGroup(id) { if (!id) return; const ids = groupComponentIds(components, id); if (!ids.length) return; powerPath = undefined; snapshot.powerPathId = ''; snapshot.powerPathNote = ''; isolation = new Set(ids); snapshot.isolated = true; select(''); fitVisible(); }, showAll },
-      savedMotions: { items: contract.motions, select: selectMotion, setProgress(value) { setPlaying(false); sample(value); }, step(direction) {
-        const stops = active.stages.map((stage: any) => stage.progress).sort((a: number, b: number) => a - b);
-        setPlaying(false); sample(direction > 0 ? stops.find((value: number) => value > progress + .01) ?? 100 : [...stops].reverse().find((value: number) => value < progress - .01) ?? 0);
-      } },
+      savedMotions: {
+        items: contract.motions,
+        select: selectMotion,
+        setProgress(value) { setPlaying(false); sample(value); },
+        step(direction) {
+          const stops = active.stages.map((stage: any) => stage.progress).sort((a: number, b: number) => a - b);
+          setPlaying(false); sample(direction > 0 ? stops.find((value: number) => value > progress + .01) ?? 100 : [...stops].reverse().find((value: number) => value < progress - .01) ?? 0);
+        },
+        setViewMode(mode: 'core' | 'assembled') {
+          if (mode !== 'core' && mode !== 'assembled') return;
+          motionViewModes.set(active.id, mode);
+          applyAppearance();
+          runtime.render();
+          onChange();
+        },
+      },
       motion: {
         setAngle: sample, setPlaying, reset() { setPlaying(false); sample(active.id === start.motionId ? start.progress : 0); },
         setSpeed(value) { speed = value; syncPlayback(); onChange(); },
@@ -217,3 +268,4 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     dispose() { setPlaying(false); stopWatchingTheme?.(); runtime.setPickTargets([]); mixer.stopAllAction(); mixer.uncacheRoot(root); section.dispose(); runtime.scene.remove(root, arrows, route); disposeObject(root); disposeObject(arrows); disposeObject(route); },
   };
 }
+
