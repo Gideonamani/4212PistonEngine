@@ -1,4 +1,5 @@
 """Bake the explicitly authorised private illustrative R10 review draft."""
+import argparse
 import gzip
 import hashlib
 import json
@@ -10,7 +11,8 @@ from mathutils import Matrix
 
 REPO=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(REPO))
-from cad_pipeline.gtsio_review_motion import ReviewMotion,EXPLODE,COLLAPSE,CYCLE,STAGES,SCOPE
+from cad_pipeline.gtsio_review_motion import ReviewMotion,EXPLODE,COLLAPSE,CYCLE,STAGES,SCOPE,build_reference_poses,build_review_contract
+from cad_pipeline.look import DEFAULT_SMOOTH_ANGLE_DEG,apply_smooth_by_angle
 from cad_pipeline.rig_wright import blender_matrix,write_tracks
 from scripts.normalize_glb_motion_time import normalize_motion_time
 
@@ -19,11 +21,37 @@ FRAMES=721
 
 
 def main():
-    manifest=json.loads((OUT/'review-manifest.json').read_text())
+    p=argparse.ArgumentParser()
+    p.add_argument('--output',type=Path,default=OUT)
+    p.add_argument('--smooth-angle',type=float,default=DEFAULT_SMOOTH_ANGLE_DEG)
+    p.add_argument('--bake-gltf',action='store_true',help='Opt-in: bake 721-frame glTF animation tracks instead of using Three.js procedural motion')
+    a=p.parse_args(sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else [])
+    out=a.output.resolve()
+    manifest=json.loads((out/'review-manifest.json').read_text())
     handoff=json.loads((REPO/'cad-studies/gtsio520-h-static/crankcase-contours/animation-handoff.json').read_text())
     spec=json.loads((REPO/handoff['selected_spec']['path']).read_text())
     motion=ReviewMotion(spec,manifest['parts'],handoff['rigid_body_seeds'])
-    bpy.ops.wm.open_mainfile(filepath=str(OUT/'gtsio520-r10-review.blend'))
+    if not a.bake_gltf:
+        static_glb=out/'gtsio520-r10-static.glb'
+        raw=static_glb.read_bytes()
+        packed=(out/'gtsio520-r10-static.glb.gz').read_bytes() if (out/'gtsio520-r10-static.glb.gz').exists() else gzip.compress(raw,mtime=0)
+        contract=build_review_contract(
+            motion=motion,
+            handoff=handoff,
+            spec=spec,
+            parts=manifest['parts'],
+            asset_file=static_glb.name,
+            asset_sha256=hashlib.sha256(raw).hexdigest(),
+            asset_bytes=len(raw),
+            gzip_bytes=len(packed),
+            blender_version=manifest.get('blender_version', bpy.app.version_string),
+        )
+        (out/'review-contract.json').write_text(json.dumps(contract,indent=2)+'\n')
+        reference=build_reference_poses(motion,manifest['parts'])
+        (out/'reference-poses.json').write_text(json.dumps(reference)+'\n')
+        print('GTSIO_PROCEDURAL_REVIEW_READY',len(manifest['parts']),len(raw),len(packed),flush=True)
+        return
+    bpy.ops.wm.open_mainfile(filepath=str(out/'gtsio520-r10-review.blend'))
     scene=bpy.context.scene
     scene.render.fps=60
     scene.frame_start=1;scene.frame_end=FRAMES
@@ -37,9 +65,7 @@ def main():
         bases[pid]=base
         obj['review_body']=motion.body(pid)
         obj['cycle_visible']=motion.cycle_visible(pid)
-        # Smooth shared normals keep the export practical without changing the
-        # tessellation, dimensions or part IDs. Original static export retained.
-        for polygon in obj.data.polygons:polygon.use_smooth=True
+        apply_smooth_by_angle(obj.data,a.smooth_angle)
     clips=[EXPLODE,COLLAPSE,CYCLE]
     actions={};slots={};counts={};reference={}
     for title in clips:
@@ -70,37 +96,35 @@ def main():
             slots[(title,pid)]=slot;counts[title]+=1
         actions[title]=action
         print('GTSIO_REVIEW_BAKED',title,counts[title],flush=True)
-    # Save a pristine assembled pose with muted references. The clips use exact
-    # inverse explode/collapse keys, with every node's source rest TRS retained.
     for pid,obj in objects.items():
         obj.matrix_world=bases[pid]
         if obj.animation_data:obj.animation_data.action=None
     scene['review_scope']=SCOPE
     scene['draft_authority']='User selected illustrative review drafts first on 17 October 2026'
     scene.frame_set(1)
-    bpy.ops.wm.save_as_mainfile(filepath=str(OUT/'gtsio520-r10-animated-review.blend'))
-    asset=OUT/'gtsio520-r10-animated-review.glb'
+    bpy.ops.wm.save_as_mainfile(filepath=str(out/'gtsio520-r10-animated-review.blend'))
+    asset=out/'gtsio520-r10-animated-review.glb'
     bpy.ops.export_scene.gltf(filepath=str(asset),export_format='GLB',export_extras=True,
         export_cameras=False,export_animations=True,export_animation_mode='ACTIONS',
         export_merge_animation='ACTION',export_force_sampling=False,export_anim_slide_to_zero=True)
     normalize_motion_time(asset)
-    raw=asset.read_bytes();packed=gzip.compress(raw,mtime=0);(OUT/(asset.name+'.gz')).write_bytes(packed)
-    contract=dict(schema='4212.animated-study/v1',id='gtsio520-r10-private-review',scope=SCOPE,
-        asset_sha256=hashlib.sha256(raw).hexdigest(),complete_engine_acceptance=False,release_allowed=False,
-        geometry=handoff['selected_geometry'],spec=handoff['selected_spec'],reference='Frozen R10 inventory / X-30045A; inferred geometry and cam law retained',
-        parts=[dict(id=p['id'],label=p['label'],group=p['group'],groups=[],description=p['label'],evidence=p['evidence'],
-             shape_status='Reconstruction; direct-only R10 candidate, not OEM accepted',body=motion.body(p['id']),cycle_visible=motion.cycle_visible(p['id'])) for p in manifest['parts']],
-        groups=[dict(id=g,label=g.replace('_',' ').title(),depth=0) for g in handoff['groups']],
-        motions=[dict(id=EXPLODE,label='Exploded layout',loop=False,stages=STAGES),
-            dict(id=COLLAPSE,label='Collapse layout',loop=False,stages=[dict(progress=100-s['progress'],label=s['label']) for s in reversed(STAGES)]),
-            dict(id=CYCLE,label='Core cycle (illustrative)',loop=True,stages=[dict(progress=i*25,label=l) for i,l in enumerate(['Cylinder 1: power','Cylinder 1: exhaust','Cylinder 1: intake','Cylinder 1: compression','720 degrees / repeat'])])],
-        review_visibility=dict(cycle='Only declared core bodies, split main bearings, valve seats/guides/feet and rocker shafts. Other systems hidden.'),
-        exclusions=['Damper oscillation; counterweights hidden in the cycle','Accessory, reduction and propeller motion; connected static systems hidden in the cycle','Hydraulic internal action; lifter internals follow their body','Gas, combustion, pressure and oil flow'],
-        animated_nodes=counts,blender_version=bpy.app.version_string,
-        bytes=len(raw),gzip_bytes=len(packed),pending=handoff['pending_before_animation_acceptance'])
-    (OUT/'review-contract.json').write_text(json.dumps(contract,indent=2)+'\n')
-    (OUT/'reference-poses.json').write_text(json.dumps(reference)+'\n')
+    raw=asset.read_bytes();packed=gzip.compress(raw,mtime=0);(out/(asset.name+'.gz')).write_bytes(packed)
+    contract=build_review_contract(
+        motion=motion,
+        handoff=handoff,
+        spec=spec,
+        parts=manifest['parts'],
+        asset_file=asset.name,
+        asset_sha256=hashlib.sha256(raw).hexdigest(),
+        asset_bytes=len(raw),
+        gzip_bytes=len(packed),
+        blender_version=bpy.app.version_string,
+        animated_nodes=counts,
+    )
+    (out/'review-contract.json').write_text(json.dumps(contract,indent=2)+'\n')
+    (out/'reference-poses.json').write_text(json.dumps(reference)+'\n')
     print('GTSIO_ANIMATED_REVIEW_READY',len(objects),len(raw),len(packed),flush=True)
 
 
 if __name__=='__main__':main()
+

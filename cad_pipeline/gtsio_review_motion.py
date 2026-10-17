@@ -173,3 +173,172 @@ class ReviewMotion:
         ends=[0,.18,.36,.58,.80,1]
         progress=max(0,min(1,(fraction-ends[stage-1])/(ends[stage]-ends[stage-1])))
         return trans(vp.scale(offset,progress))
+
+
+def cad_metre_matrix(m):
+    """Convert a 4x4 CAD millimetre matrix into a 4x4 CAD metre matrix."""
+    return [
+        [float(m[0][0]), float(m[0][1]), float(m[0][2]), float(m[0][3]) / 1000.0],
+        [float(m[1][0]), float(m[1][1]), float(m[1][2]), float(m[1][3]) / 1000.0],
+        [float(m[2][0]), float(m[2][1]), float(m[2][2]), float(m[2][3]) / 1000.0],
+        [0.0, 0.0, 0.0, 1.0],
+    ]
+
+
+def build_reference_poses(motion, parts, sample_angles=(0, 137, 360, 720)):
+    """Compute reference 4x4 CAD-metre matrices at sample crank angles for all moving parts."""
+    reference = {}
+    body_cache = {}
+    for part in parts:
+        pid = part['id']
+        body = motion.body(pid)
+        if body.startswith('fixed:'):
+            continue
+        if body not in body_cache:
+            body_cache[body] = {
+                str(angle): cad_metre_matrix(motion.matrix(pid, float(angle)))
+                for angle in sample_angles
+            }
+        reference[pid] = body_cache[body]
+    return reference
+
+
+def build_review_contract(
+    *,
+    motion,
+    handoff,
+    spec,
+    parts,
+    asset_file,
+    asset_sha256,
+    asset_bytes,
+    gzip_bytes,
+    blender_version,
+    animated_nodes=None,
+):
+    """Build the 4212.animated-study/v1 review contract with procedural Three.js motion & display metadata."""
+    ghost_ids = [
+        'CrankcaseLeft',
+        'CrankcaseRight',
+        *[f'CylinderBarrel{n}' for n in range(1, 7)],
+        *[f'CylinderHead{n}' for n in range(1, 7)],
+    ]
+    ghost_set = set(ghost_ids)
+    core_visible_ids = [
+        p['id'] for p in parts if motion.cycle_visible(p['id']) or p['id'] in ghost_set
+    ]
+    contract_parts = []
+    explode_count = 0
+    cycle_count = 0
+    for p in parts:
+        pid = p['id']
+        stage, offset_mm = motion.explosion(pid)
+        body = motion.body(pid)
+        if any(abs(c) > 1e-9 for c in offset_mm):
+            explode_count += 1
+        if not body.startswith('fixed:'):
+            cycle_count += 1
+        contract_parts.append(dict(
+            id=pid,
+            label=p['label'],
+            group=p['group'],
+            groups=[],
+            description=p['label'],
+            evidence=p['evidence'],
+            shape_status='Reconstruction; direct-only R10 candidate, not OEM accepted',
+            body=body,
+            cycle_visible=motion.cycle_visible(pid),
+            explosion=dict(stage=stage, offset_mm=list(offset_mm)),
+        ))
+    if animated_nodes is None:
+        animated_nodes = {
+            EXPLODE: explode_count,
+            COLLAPSE: explode_count,
+            CYCLE: cycle_count,
+        }
+    params = spec['parameters']
+    return dict(
+        schema='4212.animated-study/v1',
+        id='gtsio520-r10-private-review',
+        scope=SCOPE,
+        asset_file=asset_file,
+        asset_sha256=asset_sha256,
+        complete_engine_acceptance=False,
+        release_allowed=False,
+        geometry=handoff['selected_geometry'],
+        spec=handoff['selected_spec'],
+        reference='Frozen R10 inventory / X-30045A; inferred geometry and cam law retained',
+        procedural=dict(
+            version=1,
+            stageEnds=[0.0, 0.18, 0.36, 0.58, 0.80, 1.0],
+            parameters=dict(
+                case_cam_y=float(params['case_cam_y']['value']),
+                head_seat=float(params['head_seat']['value']),
+                valve_offset=float(params['valve_offset']['value']),
+                intake_angle=float(params['intake_angle']['value']),
+                exhaust_angle=float(params['exhaust_angle']['value']),
+                intake_valve_length=float(params['intake_valve_length']['value']),
+                exhaust_valve_length=float(params['exhaust_valve_length']['value']),
+                cam_rate=float(vp.gtsio_cam_rate()),
+            ),
+        ),
+        parts=contract_parts,
+        groups=[dict(id=g, label=g.replace('_', ' ').title(), depth=0) for g in handoff['groups']],
+        motions=[
+            dict(
+                id=EXPLODE,
+                label='Exploded layout',
+                loop=False,
+                duration=12.0,
+                procedural=dict(type='explode'),
+                stages=STAGES,
+            ),
+            dict(
+                id=COLLAPSE,
+                label='Collapse layout',
+                loop=False,
+                duration=12.0,
+                procedural=dict(type='collapse'),
+                stages=[dict(progress=100 - s['progress'], label=s['label']) for s in reversed(STAGES)],
+            ),
+            dict(
+                id=CYCLE,
+                label='Core cycle (illustrative)',
+                loop=True,
+                duration=12.0,
+                degrees=720,
+                procedural=dict(type='gtsio-core-cycle', degrees=720),
+                display=dict(
+                    defaultViewMode='core',
+                    allowAssembled=True,
+                    visiblePartIds=core_visible_ids,
+                    ghostPartIds=ghost_ids,
+                ),
+                stages=[
+                    dict(progress=i * 25, label=l)
+                    for i, l in enumerate([
+                        'Cylinder 1: power',
+                        'Cylinder 1: exhaust',
+                        'Cylinder 1: intake',
+                        'Cylinder 1: compression',
+                        '720 degrees / repeat',
+                    ])
+                ],
+            ),
+        ],
+        review_visibility=dict(
+            cycle='Core view ghosts crankcase halves, cylinder barrels and heads so internal crank, rod, piston and valvetrain motion is legible; Assembled view shows all 1396 parts.',
+        ),
+        exclusions=[
+            'Damper oscillation; counterweights hidden in the cycle core view',
+            'Accessory, reduction and propeller motion; connected static systems hidden in the cycle core view',
+            'Hydraulic internal action; lifter internals follow their body',
+            'Gas, combustion, pressure and oil flow',
+        ],
+        animated_nodes=animated_nodes,
+        blender_version=blender_version,
+        bytes=asset_bytes,
+        gzip_bytes=gzip_bytes,
+        pending=handoff['pending_before_animation_acceptance'],
+    )
+

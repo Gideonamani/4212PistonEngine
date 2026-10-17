@@ -19,10 +19,9 @@ sys.path.insert(0, str(REPO))
 sys.path.insert(0, str(REPO / 'scripts'))
 from cad_pipeline import langley_contract as contract_builder, langley_explode as explode, langley_motion as motion
 from cad_pipeline.langley_bodies import body
+from cad_pipeline.look import COLORS, blender_material
 from normalize_glb_motion_time import normalize_motion_time
 
-COLORS = {'steel': (.32, .39, .47, 1), 'aluminium': (.64, .69, .74, 1), 'cast_iron': (.21, .24, .27, 1), 'bronze': (.55, .31, .12, 1), 'brass': (.70, .56, .22, 1),
-          'porcelain': (.86, .84, .76, 1), 'rubber': (.055, .065, .075, 1)}
 OPERATING, EXPLODED = 'Operating mechanism (illustrative)', 'Systems exploded view'
 FPS = 24
 OPERATING_FRAMES, EXPLODED_FRAMES = 721, 241          # 1 crank degree per frame; two crank turns are one four-stroke cycle
@@ -98,14 +97,6 @@ def main():
     scene.unit_settings.system, scene.unit_settings.scale_length = 'METRIC', 1
     scene.render.fps = FPS
     materials = {}
-    for name, color in COLORS.items():
-        m = bpy.data.materials.new(name)
-        m.diffuse_color = color
-        m.use_nodes = True
-        b = m.node_tree.nodes.get('Principled BSDF')
-        b.inputs['Base Color'].default_value = color
-        b.inputs['Metallic'].default_value, b.inputs['Roughness'].default_value = .65, .37
-        materials[name] = m
     objects, origins, rests = {}, {}, {}
     for p in parts:
         mesh = bpy.data.meshes.new(p['id'])
@@ -119,7 +110,7 @@ def main():
         o = bpy.data.objects.new(p['id'], mesh)
         o.location = origins[p['id']]
         scene.collection.objects.link(o)
-        o.data.materials.append(materials.get(p['material'].replace(' ', '_'), materials['steel']))
+        o.data.materials.append(blender_material(p['material'], part_id=p['id'], vary=False, cache=materials))
         o.rotation_mode = 'QUATERNION'
         o.rotation_quaternion = Matrix.Rotation(rest, 3, 'X').to_quaternion()
         o['cad_part_id'], o['evidence'], o['group'], o['label'] = p['id'], p['evidence'], p['group'], p['label']

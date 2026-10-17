@@ -6,6 +6,7 @@ from pathlib import Path
 import bpy
 from mathutils import Vector
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+from cad_pipeline.look import COLORS, HIGH_PART_COUNT_THRESHOLD, apply_smooth_by_angle, apply_studio_world, blender_material
 from cad_pipeline.presentation_camera import frame_camera
 
 TITLES={'crankcase':'Crankcase & water jacket','cover':'Sheet-steel crankcase cover','cylinders':'Four cylinder liners',
@@ -14,9 +15,6 @@ TITLES={'crankcase':'Crankcase & water jacket','cover':'Sheet-steel crankcase co
         'camshafts':'Exhaust & ignition camshafts','timing':'Timing sprocket envelopes','flywheel':'Engine flywheel',
         'induction':'Intake & fuel mixing system','cooling':'Water connections','lubrication':'Oil system (rebuilt accessory)',
         'ignition':'Make-and-break ignition & spark control','generator':'Generator & flywheel friction drive','bearings':'Split main bearings & shaft supports','rockers':'Two-cheek exhaust rockers & rollers'}
-COLORS={'steel':(.32,.39,.47,1),'aluminium':(.64,.69,.74,1),'cast_iron':(.21,.24,.27,1),'bronze':(.55,.31,.12,1),
-        'babbitt':(.72,.73,.68,1),'copper':(.62,.28,.12,1),'wood':(.28,.15,.06,1),'rubber':(.055,.065,.075,1),'gasket':(.34,.24,.15,1),'insulator':(.8,.78,.63,1),'platinum':(.84,.86,.89,1)}
-COLORS['aluminum']=COLORS['aluminium']
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--package',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--engine',choices=['workbench','cycles','eevee'],default='workbench');p.add_argument('--config',type=Path,help='Presentation-only labels/views; never geometry')
@@ -40,17 +38,14 @@ def main():
     scene.render.image_settings.file_format='PNG';scene.render.fps=24
     for name in ('view_transform','look','exposure','gamma'):
         if name in config.get('view_settings',{}):setattr(scene.view_settings,name,config['view_settings'][name])
-    world=bpy.data.worlds.new('Workshop');world.color=(.045,.065,.10);world.use_nodes=True;world.node_tree.nodes['Background'].inputs[0].default_value=(.10,.13,.18,1);world.node_tree.nodes['Background'].inputs[1].default_value=.4;scene.world=world
+    apply_studio_world(scene)
     materials={};objects=[];groups={}
-    for name,col in COLORS.items():
-        m=bpy.data.materials.new(name);m.diffuse_color=col;m.use_nodes=True;b=m.node_tree.nodes.get('Principled BSDF');b.inputs['Base Color'].default_value=col;b.inputs['Metallic'].default_value=.65;b.inputs['Roughness'].default_value=.37;materials[name]=m
+    vary_tones=bool(config.get('vary_part_tones',len(data['parts'])>HIGH_PART_COUNT_THRESHOLD))
     for part in data['parts']:
         mesh=bpy.data.meshes.new(part['id']);mesh.from_pydata([[c/1000 for c in v] for v in part['vertices_mm']],[],part['triangles']);mesh.update()
         if 'smooth_angle_deg' in config:
-            angle=float(config['smooth_angle_deg'])
-            if not 0<angle<180:raise ValueError('Surface shading angle must be between 0 and 180 degrees')
-            mesh.polygons.foreach_set('use_smooth',[True]*len(mesh.polygons));mesh.set_sharp_from_angle(angle=math.radians(angle));mesh.update()
-        obj=bpy.data.objects.new(part['id'],mesh);scene.collection.objects.link(obj);obj.data.materials.append(materials.get(part['material'],materials['steel']))
+            apply_smooth_by_angle(mesh,config['smooth_angle_deg'])
+        obj=bpy.data.objects.new(part['id'],mesh);scene.collection.objects.link(obj);obj.data.materials.append(blender_material(part['material'],part_id=part['id'],vary=vary_tones,cache=materials))
         for key in ('id','label','group','evidence'):obj[key]=part[key]
         obj['cad_geometry_sha256']=manifest['files']['geometry.json']['sha256'];objects.append(obj);groups.setdefault(part['group'],[]).append(obj)
     # Blender now owns the copied meshes; do not retain a second full set of
@@ -65,7 +60,9 @@ def main():
         section_objects=[]
         for part in section['parts']:
             mesh=bpy.data.meshes.new(part['id']);mesh.from_pydata([[c/1000 for c in v] for v in part['vertices_mm']],[],part['triangles']);mesh.update()
-            obj=bpy.data.objects.new(part['id'],mesh);scene.collection.objects.link(obj);obj.data.materials.append(materials.get(part['material'],materials['steel']))
+            if 'smooth_angle_deg' in config:
+                apply_smooth_by_angle(mesh,config['smooth_angle_deg'])
+            obj=bpy.data.objects.new(part['id'],mesh);scene.collection.objects.link(obj);obj.data.materials.append(blender_material(part['material'],part_id=part.get('source_part_id',part['id']),vary=vary_tones,cache=materials))
             for key in ('id','label','group','evidence','source_part_id'):obj[key]=part[key]
             obj['presentation_only']=True;objects.append(obj);section_objects.append(obj)
         section_views.append((section['id'],section_objects,section['title'],section['direction']))
