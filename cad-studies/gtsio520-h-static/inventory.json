@@ -1,0 +1,4414 @@
+{
+  "target": "GTSIO-520-H detailed static engine rebuild",
+  "sources": {
+    "manual": {
+      "path": "D:\\KEON\\AE Departmental\\_Teaching Modules\\Piston Engine\\20262025 Sem 1 - AMT GCAME Piston\\Notes\\gtsio520_series.pdf",
+      "bytes": 12619184,
+      "sha256": "c8e7828e978772a55a9271d7bf678cc464ac772987ce7c44cfa3af89c9c21a07",
+      "pages": 236,
+      "title": "Continental GTSIO-520 Series Overhaul Manual",
+      "publication": "X-30045A",
+      "revision": "March 1981; relevant H pages June 1980",
+      "organization": "Teledyne Continental Motors",
+      "accessed": "2026-10-07",
+      "variant": "GTSIO-520-H"
+    }
+  },
+  "decision": "GTSIO-520-H detailed static engine rebuild; current completed modules: dampers, case. Calculated estimates explicit; no operating clip or manufacturing certification.",
+  "reviewed_locators": [
+    "A-3-1/2 PDF16-17",
+    "A-4-17 PDF34",
+    "A-4-20 PDF38",
+    "A-11-2/3/4 PDF74-76",
+    "A-12-1/2/3/4 PDF77-80",
+    "B-2 PDF97",
+    "Table 6 B-12 PDF103",
+    "H C-3-2/3 PDF152-153",
+    "A-4-18 PDF35-36",
+    "A-4-30 PDF43",
+    "B-2 PDF93 rows39,50,51,52",
+    "Table11 PDF117",
+    "Foundation assembly A-12-1/2/3 PDF77-79"
+  ],
+  "conflicts": [
+    {
+      "topic": "Four versus five rings",
+      "decision": "Use four and account for legacy callout 35 outside selected scope."
+    },
+    {
+      "topic": "Old ring gap angles",
+      "decision": "Use alternating opposite gaps per A-11-3."
+    },
+    {
+      "topic": "Axial datum and forging contours",
+      "decision": "Declare estimated packaging; do not inherit V5 positions as measurements."
+    }
+  ],
+  "components": [
+    {
+      "id": "A-4-20:1",
+      "name": "Cotter pin",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 1",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Cotter pin: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:2",
+      "name": "Slotted rod nut",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 2",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Slotted rod nut: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "RodNutA1",
+        "RodNutB1",
+        "RodNutA2",
+        "RodNutB2",
+        "RodNutA3",
+        "RodNutB3",
+        "RodNutA4",
+        "RodNutB4",
+        "RodNutA5",
+        "RodNutB5",
+        "RodNutA6",
+        "RodNutB6"
+      ],
+      "decision": "Built with source-backed critical dimensions and declared contour estimates; inspect part evidence."
+    },
+    {
+      "id": "A-4-20:3",
+      "name": "Rod bolt",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 3",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Rod bolt: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "RodBoltA1",
+        "RodBoltB1",
+        "RodBoltA2",
+        "RodBoltB2",
+        "RodBoltA3",
+        "RodBoltB3",
+        "RodBoltA4",
+        "RodBoltB4",
+        "RodBoltA5",
+        "RodBoltB5",
+        "RodBoltA6",
+        "RodBoltB6"
+      ],
+      "decision": "Built with source-backed critical dimensions and declared contour estimates; inspect part evidence."
+    },
+    {
+      "id": "A-4-20:4",
+      "name": "Rod cap",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 4",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Rod cap: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "RodCap1",
+        "RodCap2",
+        "RodCap3",
+        "RodCap4",
+        "RodCap5",
+        "RodCap6"
+      ],
+      "decision": "Built with source-backed critical dimensions and declared contour estimates; inspect part evidence."
+    },
+    {
+      "id": "A-4-20:5",
+      "name": "Connecting rod",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 5",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Connecting rod: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "ConnectingRod1",
+        "ConnectingRod2",
+        "ConnectingRod3",
+        "ConnectingRod4",
+        "ConnectingRod5",
+        "ConnectingRod6"
+      ],
+      "decision": "Built with source-backed critical dimensions and declared contour estimates; inspect part evidence."
+    },
+    {
+      "id": "A-4-20:6",
+      "name": "Rod bearing",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 6",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Rod bearing: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "RodBearingUpper1",
+        "RodBearingLower1",
+        "RodBearingUpper2",
+        "RodBearingLower2",
+        "RodBearingUpper3",
+        "RodBearingLower3",
+        "RodBearingUpper4",
+        "RodBearingLower4",
+        "RodBearingUpper5",
+        "RodBearingLower5",
+        "RodBearingUpper6",
+        "RodBearingLower6"
+      ],
+      "decision": "Built with source-backed critical dimensions and declared contour estimates; inspect part evidence."
+    },
+    {
+      "id": "A-4-20:7",
+      "name": "Piston pin bushing",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 7",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Piston pin bushing: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "SmallEndBush1",
+        "SmallEndBush2",
+        "SmallEndBush3",
+        "SmallEndBush4",
+        "SmallEndBush5",
+        "SmallEndBush6"
+      ],
+      "decision": "Built with source-backed critical dimensions and declared contour estimates; inspect part evidence."
+    },
+    {
+      "id": "A-4-20:8",
+      "name": "Damper retaining ring",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 8",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Damper retaining ring: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "DamperRing1ALFront",
+        "DamperRing1ALRear",
+        "DamperRing1ARFront",
+        "DamperRing1ARRear",
+        "DamperRing1BLFront",
+        "DamperRing1BLRear",
+        "DamperRing1BRFront",
+        "DamperRing1BRRear",
+        "DamperRing2ALFront",
+        "DamperRing2ALRear",
+        "DamperRing2ARFront",
+        "DamperRing2ARRear",
+        "DamperRing2BLFront",
+        "DamperRing2BLRear",
+        "DamperRing2BRFront",
+        "DamperRing2BRRear",
+        "DamperRing3ALFront",
+        "DamperRing3ALRear",
+        "DamperRing3ARFront",
+        "DamperRing3ARRear",
+        "DamperRing3BLFront",
+        "DamperRing3BLRear",
+        "DamperRing3BRFront",
+        "DamperRing3BRRear"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    },
+    {
+      "id": "A-4-20:9",
+      "name": "Damper retaining plate",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 9",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Damper retaining plate: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "DamperPlate1ALFront",
+        "DamperPlate1ALRear",
+        "DamperPlate1ARFront",
+        "DamperPlate1ARRear",
+        "DamperPlate1BLFront",
+        "DamperPlate1BLRear",
+        "DamperPlate1BRFront",
+        "DamperPlate1BRRear",
+        "DamperPlate2ALFront",
+        "DamperPlate2ALRear",
+        "DamperPlate2ARFront",
+        "DamperPlate2ARRear",
+        "DamperPlate2BLFront",
+        "DamperPlate2BLRear",
+        "DamperPlate2BRFront",
+        "DamperPlate2BRRear",
+        "DamperPlate3ALFront",
+        "DamperPlate3ALRear",
+        "DamperPlate3ARFront",
+        "DamperPlate3ARRear",
+        "DamperPlate3BLFront",
+        "DamperPlate3BLRear",
+        "DamperPlate3BRFront",
+        "DamperPlate3BRRear"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    },
+    {
+      "id": "A-4-20:10",
+      "name": "Damper pin",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 10",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Damper pin: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "DamperPin1AL",
+        "DamperPin1AR",
+        "DamperPin1BL",
+        "DamperPin1BR",
+        "DamperPin2AL",
+        "DamperPin2AR",
+        "DamperPin2BL",
+        "DamperPin2BR",
+        "DamperPin3AL",
+        "DamperPin3AR",
+        "DamperPin3BL",
+        "DamperPin3BR"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    },
+    {
+      "id": "A-4-20:11",
+      "name": "Damper bushing",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 11",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Damper bushing: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "BladeBush1AL",
+        "BladeBush1AR",
+        "BladeBush1BL",
+        "BladeBush1BR",
+        "BladeBush2AL",
+        "BladeBush2AR",
+        "BladeBush2BL",
+        "BladeBush2BR",
+        "BladeBush3AL",
+        "BladeBush3AR",
+        "BladeBush3BL",
+        "BladeBush3BR",
+        "WeightBush1ALFront",
+        "WeightBush1ALRear",
+        "WeightBush1ARFront",
+        "WeightBush1ARRear",
+        "WeightBush1BLFront",
+        "WeightBush1BLRear",
+        "WeightBush1BRFront",
+        "WeightBush1BRRear",
+        "WeightBush2ALFront",
+        "WeightBush2ALRear",
+        "WeightBush2ARFront",
+        "WeightBush2ARRear",
+        "WeightBush2BLFront",
+        "WeightBush2BLRear",
+        "WeightBush2BRFront",
+        "WeightBush2BRRear",
+        "WeightBush3ALFront",
+        "WeightBush3ALRear",
+        "WeightBush3ARFront",
+        "WeightBush3ARRear",
+        "WeightBush3BLFront",
+        "WeightBush3BLRear",
+        "WeightBush3BRFront",
+        "WeightBush3BRRear"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    },
+    {
+      "id": "A-4-20:12",
+      "name": "Counterweight",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 12",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Counterweight: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "Counterweight1A",
+        "Counterweight1B",
+        "Counterweight2A",
+        "Counterweight2B",
+        "Counterweight3A",
+        "Counterweight3B"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    },
+    {
+      "id": "A-4-20:13",
+      "name": "Crank gear screw",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 13",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Crank gear screw: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:14",
+      "name": "Deleted",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 14",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Deleted: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "outside_scope",
+      "part_ids": [],
+      "decision": "Deleted or superseded by the consistently selected four-ring layout."
+    },
+    {
+      "id": "A-4-20:15",
+      "name": "Crankshaft gear",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 15",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Crankshaft gear: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:16",
+      "name": "Quill retaining ring",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 16",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Quill retaining ring: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:17",
+      "name": "Quill plate screw",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 17",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Quill plate screw: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:18",
+      "name": "Quill plate",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 18",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Quill plate: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:19",
+      "name": "Propeller drive gear",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 19",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Propeller drive gear: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:20",
+      "name": "Quill shaft",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 20",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Quill shaft: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:21",
+      "name": "Alternator gear screw",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 21",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Alternator gear screw: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:22",
+      "name": "Tab lock plate",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 22",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Tab lock plate: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:23",
+      "name": "Alternator drive gear",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 23",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Alternator drive gear: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:24",
+      "name": "Shaft oil seal",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 24",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Shaft oil seal: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:25",
+      "name": "Seal reinforcing ring",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 25",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Seal reinforcing ring: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:26",
+      "name": "Seal spring",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 26",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Seal spring: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:27",
+      "name": "Propeller shaft",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 27",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Propeller shaft: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:28",
+      "name": "Oil transfer sleeve",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 28",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Oil transfer sleeve: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:29",
+      "name": "Oil transfer tube",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 29",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Oil transfer tube: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:30",
+      "name": "Sleeve assembly",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 30",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Sleeve assembly: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:31",
+      "name": "O-ring",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 31",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "O-ring: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:32",
+      "name": "Prop shaft bearing",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 32",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Prop shaft bearing: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:33",
+      "name": "Prop shaft thrust washer",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 33",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Prop shaft thrust washer: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:34",
+      "name": "Idler screw",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 34",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Idler screw: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:35",
+      "name": "Accessory idler gear",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 35",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Accessory idler gear: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:36",
+      "name": "Idler bushing",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 36",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Idler bushing: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:37",
+      "name": "Idler gear",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 37",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Idler gear: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:38",
+      "name": "Prop drive bearing",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 38",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Prop drive bearing: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:39",
+      "name": "Main bearing",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 39",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Main bearing: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "MainBearingLeft1",
+        "MainBearingLeft2",
+        "MainBearingLeft3",
+        "MainBearingLeft4",
+        "MainBearingRight1",
+        "MainBearingRight2",
+        "MainBearingRight3",
+        "MainBearingRight4"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    },
+    {
+      "id": "A-4-20:40",
+      "name": "Crank gear dowel",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 40",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Crank gear dowel: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-20:41",
+      "name": "Crankshaft forging",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 41",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Crankshaft forging: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "Crankshaft"
+      ],
+      "decision": "Built with source-backed critical dimensions and declared contour estimates; inspect part evidence."
+    },
+    {
+      "id": "A-4-20:42",
+      "name": "Bushing",
+      "locator": "X-30045A Figure A-4-20, printed A-4-18, PDF38, callout 42",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Bushing: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-20"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:1",
+      "name": "Cover screw",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 1",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Cover screw: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:2",
+      "name": "Lock washer",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 2",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:3",
+      "name": "Plain washer",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 3",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:4",
+      "name": "Rocker cover",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 4",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Rocker cover: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:5",
+      "name": "Cover gasket",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 5",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Cover gasket: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:6",
+      "name": "Screw",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 6",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Screw: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:7",
+      "name": "Tab washer",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 7",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Tab washer: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:8",
+      "name": "Rocker shaft",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 8",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Rocker shaft: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:9",
+      "name": "Drive screw",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 9",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Drive screw: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:10",
+      "name": "Rocker bushing",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 10",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Rocker bushing: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:11",
+      "name": "Valve rocker",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 11",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Valve rocker: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:12",
+      "name": "Rocker shaft retainer",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 12",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Rocker shaft retainer: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:13",
+      "name": "Pushrod",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 13",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Pushrod: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:14",
+      "name": "Pushrod housing",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 14",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Pushrod housing: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:15",
+      "name": "Housing spring",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 15",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Housing spring: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:16",
+      "name": "Housing washer",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 16",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Housing washer: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:17",
+      "name": "O-ring",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 17",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "O-ring: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:18",
+      "name": "Housing packing",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 18",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Housing packing: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:19",
+      "name": "Flanged nut",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 19",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Flanged nut: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "DeckWasher1_1",
+        "DeckWasher1_2",
+        "DeckWasher1_3",
+        "DeckWasher1_4",
+        "DeckWasher1_5",
+        "DeckWasher1_6",
+        "DeckWasher1_7",
+        "DeckWasher1_8",
+        "DeckWasher2_1",
+        "DeckWasher2_2",
+        "DeckWasher2_3",
+        "DeckWasher2_4",
+        "DeckWasher2_5",
+        "DeckWasher2_6",
+        "DeckWasher2_7",
+        "DeckWasher2_8",
+        "DeckWasher3_1",
+        "DeckWasher3_2",
+        "DeckWasher3_3",
+        "DeckWasher3_4",
+        "DeckWasher3_5",
+        "DeckWasher3_6",
+        "DeckWasher3_7",
+        "DeckWasher3_8",
+        "DeckWasher4_1",
+        "DeckWasher4_2",
+        "DeckWasher4_3",
+        "DeckWasher4_4",
+        "DeckWasher4_5",
+        "DeckWasher4_6",
+        "DeckWasher4_7",
+        "DeckWasher4_8",
+        "DeckWasher5_1",
+        "DeckWasher5_2",
+        "DeckWasher5_3",
+        "DeckWasher5_4",
+        "DeckWasher5_5",
+        "DeckWasher5_6",
+        "DeckWasher5_7",
+        "DeckWasher5_8",
+        "DeckWasher6_1",
+        "DeckWasher6_2",
+        "DeckWasher6_3",
+        "DeckWasher6_4",
+        "DeckWasher6_5",
+        "DeckWasher6_6",
+        "DeckWasher6_7",
+        "DeckWasher6_8"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    },
+    {
+      "id": "A-4-17:20",
+      "name": "Flanged nut",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 20",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Flanged nut: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "DeckNut1_1",
+        "DeckNut1_2",
+        "DeckNut1_3",
+        "DeckNut1_4",
+        "DeckNut1_5",
+        "DeckNut1_6",
+        "DeckNut1_7",
+        "DeckNut1_8",
+        "DeckNut2_1",
+        "DeckNut2_2",
+        "DeckNut2_3",
+        "DeckNut2_4",
+        "DeckNut2_5",
+        "DeckNut2_6",
+        "DeckNut2_7",
+        "DeckNut2_8",
+        "DeckNut3_1",
+        "DeckNut3_2",
+        "DeckNut3_3",
+        "DeckNut3_4",
+        "DeckNut3_5",
+        "DeckNut3_6",
+        "DeckNut3_7",
+        "DeckNut3_8",
+        "DeckNut4_1",
+        "DeckNut4_2",
+        "DeckNut4_3",
+        "DeckNut4_4",
+        "DeckNut4_5",
+        "DeckNut4_6",
+        "DeckNut4_7",
+        "DeckNut4_8",
+        "DeckNut5_1",
+        "DeckNut5_2",
+        "DeckNut5_3",
+        "DeckNut5_4",
+        "DeckNut5_5",
+        "DeckNut5_6",
+        "DeckNut5_7",
+        "DeckNut5_8",
+        "DeckNut6_1",
+        "DeckNut6_2",
+        "DeckNut6_3",
+        "DeckNut6_4",
+        "DeckNut6_5",
+        "DeckNut6_6",
+        "DeckNut6_7",
+        "DeckNut6_8"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    },
+    {
+      "id": "A-4-17:21",
+      "name": "Cylinder assembly",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 21",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Cylinder assembly: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:22",
+      "name": "Cylinder base O-ring",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 22",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Cylinder base O-ring: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:23",
+      "name": "Valve keeper",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 23",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Valve keeper: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:24",
+      "name": "Exhaust rotocoil",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 24",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Exhaust rotocoil: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:25",
+      "name": "Intake spring retainer",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 25",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Intake spring retainer: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:26",
+      "name": "Outer valve spring",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 26",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Outer valve spring: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:27",
+      "name": "Inner valve spring",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 27",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Inner valve spring: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:28",
+      "name": "Inner spring retainer",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 28",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Inner spring retainer: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:29",
+      "name": "Exhaust valve",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 29",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Exhaust valve: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:30",
+      "name": "Intake valve",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 30",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Intake valve: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:31",
+      "name": "Piston pin",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 31",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Piston pin: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "PistonPin1",
+        "PinPlugA1",
+        "PinPlugB1",
+        "PistonPin2",
+        "PinPlugA2",
+        "PinPlugB2",
+        "PistonPin3",
+        "PinPlugA3",
+        "PinPlugB3",
+        "PistonPin4",
+        "PinPlugA4",
+        "PinPlugB4",
+        "PistonPin5",
+        "PinPlugA5",
+        "PinPlugB5",
+        "PistonPin6",
+        "PinPlugA6",
+        "PinPlugB6"
+      ],
+      "decision": "Built with source-backed critical dimensions and declared contour estimates; inspect part evidence."
+    },
+    {
+      "id": "A-4-17:32",
+      "name": "Piston",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 32",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Piston: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "Piston1",
+        "Piston2",
+        "Piston3",
+        "Piston4",
+        "Piston5",
+        "Piston6"
+      ],
+      "decision": "Built with source-backed critical dimensions and declared contour estimates; inspect part evidence."
+    },
+    {
+      "id": "A-4-17:33",
+      "name": "Compression ring 1",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 33",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Compression ring 1: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "CompressionRingA1",
+        "CompressionRingA2",
+        "CompressionRingA3",
+        "CompressionRingA4",
+        "CompressionRingA5",
+        "CompressionRingA6"
+      ],
+      "decision": "Built with source-backed critical dimensions and declared contour estimates; inspect part evidence."
+    },
+    {
+      "id": "A-4-17:34",
+      "name": "Compression ring 2",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 34",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Compression ring 2: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "CompressionRingB1",
+        "CompressionRingB2",
+        "CompressionRingB3",
+        "CompressionRingB4",
+        "CompressionRingB5",
+        "CompressionRingB6"
+      ],
+      "decision": "Built with source-backed critical dimensions and declared contour estimates; inspect part evidence."
+    },
+    {
+      "id": "A-4-17:35",
+      "name": "Legacy third compression ring",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 35",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Legacy third compression ring: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "outside_scope",
+      "part_ids": [],
+      "decision": "Deleted or superseded by the consistently selected four-ring layout."
+    },
+    {
+      "id": "A-4-17:36",
+      "name": "Oil ring",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 36",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Oil ring: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "OilRing1",
+        "OilRing2",
+        "OilRing3",
+        "OilRing4",
+        "OilRing5",
+        "OilRing6"
+      ],
+      "decision": "Built with source-backed critical dimensions and declared contour estimates; inspect part evidence."
+    },
+    {
+      "id": "A-4-17:37",
+      "name": "Scraper ring",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 37",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Scraper ring: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "ScraperRing1",
+        "ScraperRing2",
+        "ScraperRing3",
+        "ScraperRing4",
+        "ScraperRing5",
+        "ScraperRing6"
+      ],
+      "decision": "Built with source-backed critical dimensions and declared contour estimates; inspect part evidence."
+    },
+    {
+      "id": "A-4-17:38",
+      "name": "Retaining ring",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 38",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Retaining ring: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:39",
+      "name": "Valve lifter body",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 39",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Valve lifter body: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:40",
+      "name": "Baffle spring",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 40",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Baffle spring: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:41",
+      "name": "Head baffle",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 41",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Head baffle: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:42",
+      "name": "Plug thread insert",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 42",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plug thread insert: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:43",
+      "name": "Plug",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 43",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plug: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:44",
+      "name": "Rocker shaft insert",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 44",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Rocker shaft insert: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:45",
+      "name": "Stud",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 45",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Stud: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:46",
+      "name": "Exhaust gasket",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 46",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Exhaust gasket: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:47",
+      "name": "Exhaust nut",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 47",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Exhaust nut: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:48",
+      "name": "Valve guide",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 48",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Valve guide: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:49",
+      "name": "Exhaust seat",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 49",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Exhaust seat: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:50",
+      "name": "Intake seat",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 50",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Intake seat: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-17:51",
+      "name": "Washer",
+      "locator": "X-30045A Figure A-4-17, printed A-4-14, PDF34, callout 51",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Washer: retained source identity in the engine assembly.",
+      "interfaces": [
+        "See research.md construction and assembly paths; Figure A-4-17"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Deferred to its engine module; not represented or counted in the static core."
+    },
+    {
+      "id": "A-4-18:1",
+      "name": "Oil gauge rod",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 1",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Oil gauge rod within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:2",
+      "name": "O-ring",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 2",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "O-ring within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:3",
+      "name": "Screw",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 3",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Screw within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:4",
+      "name": "Oil gauge tube",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 4",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Oil gauge tube within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:5",
+      "name": "O-ring",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 5",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "O-ring within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:6",
+      "name": "Gauge lock ring",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 6",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Gauge lock ring within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:7",
+      "name": "Oil filler cap and retainer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 7",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Oil filler cap and retainer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:8",
+      "name": "Filler cap gasket",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 8",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Filler cap gasket within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:9",
+      "name": "Oil filler neck",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 9",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Oil filler neck within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:10",
+      "name": "Filler neck gasket",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 10",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Filler neck gasket within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:11",
+      "name": "Hex nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 11",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:12",
+      "name": "Lock washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 12",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:13",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 13",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:14",
+      "name": "Cover",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 14",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Cover within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:15",
+      "name": "Cover gasket",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 15",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Cover gasket within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:16",
+      "name": "Breather hose clamp",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 16",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Breather hose clamp within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:17",
+      "name": "Hose",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 17",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hose within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:18",
+      "name": "Hose",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 18",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hose within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:19",
+      "name": "Breather tee",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 19",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Breather tee within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:20",
+      "name": "Hex nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 20",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:21",
+      "name": "Lock washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 21",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:22",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 22",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:23",
+      "name": "Needle bearing housing",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 23",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Needle bearing housing within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:24",
+      "name": "Needle bearing",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 24",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Needle bearing within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:25",
+      "name": "Housing gasket",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 25",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Housing gasket within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:26",
+      "name": "Hex nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 26",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:27",
+      "name": "Lock washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 27",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:28",
+      "name": "Idler support pin",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 28",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Idler support pin within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:29",
+      "name": "Idler support gasket",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 29",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Idler support gasket within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:30",
+      "name": "Hex bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 30",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:31",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 31",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:32",
+      "name": "O-ring",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 32",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "O-ring within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:33",
+      "name": "Hex bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 33",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:34",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 34",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:35",
+      "name": "Hex bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 35",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:36",
+      "name": "Lock washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 36",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:37",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 37",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:38",
+      "name": "Hex bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 38",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:39",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 39",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:40",
+      "name": "Hex bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 40",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:41",
+      "name": "Lock washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 41",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:42",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 42",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:43",
+      "name": "Hex nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 43",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:44",
+      "name": "Lock washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 44",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:45",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 45",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:46",
+      "name": "Washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 46",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:47",
+      "name": "Governor pad cover",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 47",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Governor pad cover within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:48",
+      "name": "Governor cover gasket",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 48",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Governor cover gasket within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:49",
+      "name": "Hex nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 49",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:50",
+      "name": "Lock washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 50",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:51",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 51",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:52",
+      "name": "Hex bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 52",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:53",
+      "name": "Hex nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 53",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:54",
+      "name": "Lock washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 54",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:55",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 55",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:56",
+      "name": "Hex bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 56",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:57",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 57",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:58",
+      "name": "Nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 58",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:59",
+      "name": "Lock washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 59",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:60",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 60",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:61",
+      "name": "Hex bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 61",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:62",
+      "name": "Hex bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 62",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:63",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 63",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:64",
+      "name": "Front lifting eye",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 64",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Front lifting eye within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:65",
+      "name": "Hex nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 65",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:66",
+      "name": "Lock washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 66",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:67",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 67",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:68",
+      "name": "Hex bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 68",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:69",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 69",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:70",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 70",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:71",
+      "name": "Flanged nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 71",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Flanged nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:72",
+      "name": "Spacer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 72",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Spacer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:73",
+      "name": "Hex nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 73",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:74",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 74",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:75",
+      "name": "Hex nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 75",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:76",
+      "name": "Lock washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 76",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:77",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 77",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:78",
+      "name": "Hex screw",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 78",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex screw within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:79",
+      "name": "Lifting eye",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 79",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lifting eye within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:80",
+      "name": "Spacer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 80",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Spacer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:81",
+      "name": "Hex nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 81",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "CaseThruNut1",
+        "CaseThruNut2",
+        "CaseThruNut3",
+        "CaseThruNut4",
+        "CaseThruNut5",
+        "CaseThruNut6",
+        "CaseThruNut7"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    },
+    {
+      "id": "A-4-18:82",
+      "name": "Lock washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 82",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:83",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 83",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "CaseThruWasher1",
+        "CaseThruWasher2",
+        "CaseThruWasher3",
+        "CaseThruWasher4",
+        "CaseThruWasher5",
+        "CaseThruWasher6",
+        "CaseThruWasher7"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    },
+    {
+      "id": "A-4-18:84",
+      "name": "Hex bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 84",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "CaseThruBolt1",
+        "CaseThruBolt2",
+        "CaseThruBolt3",
+        "CaseThruBolt4",
+        "CaseThruBolt5",
+        "CaseThruBolt6",
+        "CaseThruBolt7"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    },
+    {
+      "id": "A-4-18:85",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 85",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:86",
+      "name": "Hex nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 86",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:87",
+      "name": "Lock washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 87",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:88",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 88",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:89",
+      "name": "Hex screw",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 89",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex screw within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:90",
+      "name": "Manifold valve and bracket",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 90",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Manifold valve and bracket within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:91",
+      "name": "Hex nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 91",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:92",
+      "name": "Lock washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 92",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:93",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 93",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:94",
+      "name": "Hex bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 94",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:95",
+      "name": "Rear lifting eye",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 95",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Rear lifting eye within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:96",
+      "name": "Spacer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 96",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Spacer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:97",
+      "name": "Hex bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 97",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:98",
+      "name": "Stud",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 98",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Stud within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "DeckStud1_1",
+        "DeckStud1_2",
+        "DeckStud1_3",
+        "DeckStud1_4",
+        "DeckStud1_5",
+        "DeckStud1_6",
+        "DeckStud2_1",
+        "DeckStud2_2",
+        "DeckStud2_3",
+        "DeckStud2_4",
+        "DeckStud2_5",
+        "DeckStud2_6",
+        "DeckStud3_1",
+        "DeckStud3_2",
+        "DeckStud3_3",
+        "DeckStud3_4",
+        "DeckStud3_5",
+        "DeckStud3_6",
+        "DeckStud4_1",
+        "DeckStud4_2",
+        "DeckStud4_3",
+        "DeckStud4_4",
+        "DeckStud4_5",
+        "DeckStud4_6",
+        "DeckStud5_1",
+        "DeckStud5_2",
+        "DeckStud5_3",
+        "DeckStud5_4",
+        "DeckStud5_5",
+        "DeckStud5_6",
+        "DeckStud6_1",
+        "DeckStud6_2",
+        "DeckStud6_3",
+        "DeckStud6_4",
+        "DeckStud6_5",
+        "DeckStud6_6"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    },
+    {
+      "id": "A-4-18:99",
+      "name": "Right lifting eye",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 99",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Right lifting eye within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:100",
+      "name": "Left lifting eye",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 100",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Left lifting eye within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:101",
+      "name": "Flanged nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 101",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Flanged nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:102",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 102",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:103",
+      "name": "Flanged nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 103",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Flanged nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:104",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 104",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:105",
+      "name": "Hex nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 105",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:106",
+      "name": "Lock washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 106",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:107",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 107",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:108",
+      "name": "Engine mount bracket",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 108",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Engine mount bracket within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:109",
+      "name": "Thread insert",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 109",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Thread insert within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:110",
+      "name": "Hex nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 110",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:111",
+      "name": "Lock washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 111",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:112",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 112",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:113",
+      "name": "Flanged nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 113",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Flanged nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:114",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 114",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:115",
+      "name": "Engine mount bracket",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 115",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Engine mount bracket within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:116",
+      "name": "Thread insert",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 116",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Thread insert within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:117",
+      "name": "Timing plug",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 117",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Timing plug within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:118",
+      "name": "Timing plug valve",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 118",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Timing plug valve within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:119",
+      "name": "Timing indicator pin",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 119",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Timing indicator pin within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:120",
+      "name": "Through bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 120",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Through bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:121",
+      "name": "Through bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 121",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Through bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:122",
+      "name": "Through bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 122",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Through bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:123",
+      "name": "Through bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 123",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Through bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "DeckStud1_7",
+        "DeckStud1_8",
+        "DeckStud2_7",
+        "DeckStud2_8",
+        "DeckStud3_7",
+        "DeckStud3_8",
+        "DeckStud4_7",
+        "DeckStud4_8",
+        "DeckStud5_7",
+        "DeckStud5_8",
+        "DeckStud6_7",
+        "DeckStud6_8"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    },
+    {
+      "id": "A-4-18:124",
+      "name": "Through bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 124",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Through bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:125",
+      "name": "Through bolt",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 125",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Through bolt within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:126",
+      "name": "Left crankcase",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 126",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Left crankcase within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "CrankcaseLeft"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    },
+    {
+      "id": "A-4-18:127",
+      "name": "Right crankcase",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 127",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Right crankcase within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "CrankcaseRight"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    },
+    {
+      "id": "A-4-18:128",
+      "name": "Hex nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 128",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:129",
+      "name": "Lock washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 129",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:130",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 130",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:131",
+      "name": "Engine mount bracket",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 131",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Engine mount bracket within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:132",
+      "name": "Thread insert",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 132",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Thread insert within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:133",
+      "name": "Hex nut",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 133",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Hex nut within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:134",
+      "name": "Lock washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 134",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Lock washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:135",
+      "name": "Plain washer",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 135",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Plain washer within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:136",
+      "name": "Engine mount bracket",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 136",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Engine mount bracket within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:137",
+      "name": "Thread insert",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 137",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Thread insert within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:138",
+      "name": "Breather tube",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 138",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Breather tube within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:139",
+      "name": "Drive screw",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 139",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Drive screw within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:140",
+      "name": "Identification plate",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 140",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Identification plate within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:141",
+      "name": "Needle bearing",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 141",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Needle bearing within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:142",
+      "name": "Squirt nozzle",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 142",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Squirt nozzle within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-18:143",
+      "name": "O-ring",
+      "locator": "X-30045A A-4-18 PDF35-36 callout 143",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "O-ring within the split crankcase/attachment construction.",
+      "interfaces": [
+        "See foundation-research.md and source figure/key"
+      ],
+      "disposition": "deferred",
+      "part_ids": [],
+      "decision": "Unbuilt identity retained in the static-engine backlog."
+    },
+    {
+      "id": "A-4-12:6",
+      "name": "A-4-12:6",
+      "locator": "X-30045A A-4-12:6",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Static-engine supporting component",
+      "interfaces": [
+        "foundation-research.md"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "OilSump"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    },
+    {
+      "id": "A-4-12:7",
+      "name": "A-4-12:7",
+      "locator": "X-30045A A-4-12:7",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Static-engine supporting component",
+      "interfaces": [
+        "foundation-research.md"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "SumpGasket"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    },
+    {
+      "id": "A-4-12:2",
+      "name": "A-4-12:2",
+      "locator": "X-30045A A-4-12:2",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Static-engine supporting component",
+      "interfaces": [
+        "foundation-research.md"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "SumpDrainPlug"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    },
+    {
+      "id": "A-4-12:3",
+      "name": "A-4-12:3",
+      "locator": "X-30045A A-4-12:3",
+      "source_ids": [
+        "manual"
+      ],
+      "function": "Static-engine supporting component",
+      "interfaces": [
+        "foundation-research.md"
+      ],
+      "disposition": "simplified",
+      "part_ids": [
+        "SumpScrew113L",
+        "SumpScrew113R",
+        "SumpScrew204L",
+        "SumpScrew204R",
+        "SumpScrew295L",
+        "SumpScrew295R",
+        "SumpScrew32L",
+        "SumpScrew32R",
+        "SumpScrew386L",
+        "SumpScrew386R",
+        "SumpScrew528L",
+        "SumpScrew528R"
+      ],
+      "decision": "Source construction represented; selected geometry/contours/positions remain calculated estimates. Native part evidence identifies scope."
+    }
+  ],
+  "expected_callouts": [
+    "A-4-20:1",
+    "A-4-20:2",
+    "A-4-20:3",
+    "A-4-20:4",
+    "A-4-20:5",
+    "A-4-20:6",
+    "A-4-20:7",
+    "A-4-20:8",
+    "A-4-20:9",
+    "A-4-20:10",
+    "A-4-20:11",
+    "A-4-20:12",
+    "A-4-20:13",
+    "A-4-20:14",
+    "A-4-20:15",
+    "A-4-20:16",
+    "A-4-20:17",
+    "A-4-20:18",
+    "A-4-20:19",
+    "A-4-20:20",
+    "A-4-20:21",
+    "A-4-20:22",
+    "A-4-20:23",
+    "A-4-20:24",
+    "A-4-20:25",
+    "A-4-20:26",
+    "A-4-20:27",
+    "A-4-20:28",
+    "A-4-20:29",
+    "A-4-20:30",
+    "A-4-20:31",
+    "A-4-20:32",
+    "A-4-20:33",
+    "A-4-20:34",
+    "A-4-20:35",
+    "A-4-20:36",
+    "A-4-20:37",
+    "A-4-20:38",
+    "A-4-20:39",
+    "A-4-20:40",
+    "A-4-20:41",
+    "A-4-20:42",
+    "A-4-17:1",
+    "A-4-17:2",
+    "A-4-17:3",
+    "A-4-17:4",
+    "A-4-17:5",
+    "A-4-17:6",
+    "A-4-17:7",
+    "A-4-17:8",
+    "A-4-17:9",
+    "A-4-17:10",
+    "A-4-17:11",
+    "A-4-17:12",
+    "A-4-17:13",
+    "A-4-17:14",
+    "A-4-17:15",
+    "A-4-17:16",
+    "A-4-17:17",
+    "A-4-17:18",
+    "A-4-17:19",
+    "A-4-17:20",
+    "A-4-17:21",
+    "A-4-17:22",
+    "A-4-17:23",
+    "A-4-17:24",
+    "A-4-17:25",
+    "A-4-17:26",
+    "A-4-17:27",
+    "A-4-17:28",
+    "A-4-17:29",
+    "A-4-17:30",
+    "A-4-17:31",
+    "A-4-17:32",
+    "A-4-17:33",
+    "A-4-17:34",
+    "A-4-17:35",
+    "A-4-17:36",
+    "A-4-17:37",
+    "A-4-17:38",
+    "A-4-17:39",
+    "A-4-17:40",
+    "A-4-17:41",
+    "A-4-17:42",
+    "A-4-17:43",
+    "A-4-17:44",
+    "A-4-17:45",
+    "A-4-17:46",
+    "A-4-17:47",
+    "A-4-17:48",
+    "A-4-17:49",
+    "A-4-17:50",
+    "A-4-17:51",
+    "A-4-18:1",
+    "A-4-18:2",
+    "A-4-18:3",
+    "A-4-18:4",
+    "A-4-18:5",
+    "A-4-18:6",
+    "A-4-18:7",
+    "A-4-18:8",
+    "A-4-18:9",
+    "A-4-18:10",
+    "A-4-18:11",
+    "A-4-18:12",
+    "A-4-18:13",
+    "A-4-18:14",
+    "A-4-18:15",
+    "A-4-18:16",
+    "A-4-18:17",
+    "A-4-18:18",
+    "A-4-18:19",
+    "A-4-18:20",
+    "A-4-18:21",
+    "A-4-18:22",
+    "A-4-18:23",
+    "A-4-18:24",
+    "A-4-18:25",
+    "A-4-18:26",
+    "A-4-18:27",
+    "A-4-18:28",
+    "A-4-18:29",
+    "A-4-18:30",
+    "A-4-18:31",
+    "A-4-18:32",
+    "A-4-18:33",
+    "A-4-18:34",
+    "A-4-18:35",
+    "A-4-18:36",
+    "A-4-18:37",
+    "A-4-18:38",
+    "A-4-18:39",
+    "A-4-18:40",
+    "A-4-18:41",
+    "A-4-18:42",
+    "A-4-18:43",
+    "A-4-18:44",
+    "A-4-18:45",
+    "A-4-18:46",
+    "A-4-18:47",
+    "A-4-18:48",
+    "A-4-18:49",
+    "A-4-18:50",
+    "A-4-18:51",
+    "A-4-18:52",
+    "A-4-18:53",
+    "A-4-18:54",
+    "A-4-18:55",
+    "A-4-18:56",
+    "A-4-18:57",
+    "A-4-18:58",
+    "A-4-18:59",
+    "A-4-18:60",
+    "A-4-18:61",
+    "A-4-18:62",
+    "A-4-18:63",
+    "A-4-18:64",
+    "A-4-18:65",
+    "A-4-18:66",
+    "A-4-18:67",
+    "A-4-18:68",
+    "A-4-18:69",
+    "A-4-18:70",
+    "A-4-18:71",
+    "A-4-18:72",
+    "A-4-18:73",
+    "A-4-18:74",
+    "A-4-18:75",
+    "A-4-18:76",
+    "A-4-18:77",
+    "A-4-18:78",
+    "A-4-18:79",
+    "A-4-18:80",
+    "A-4-18:81",
+    "A-4-18:82",
+    "A-4-18:83",
+    "A-4-18:84",
+    "A-4-18:85",
+    "A-4-18:86",
+    "A-4-18:87",
+    "A-4-18:88",
+    "A-4-18:89",
+    "A-4-18:90",
+    "A-4-18:91",
+    "A-4-18:92",
+    "A-4-18:93",
+    "A-4-18:94",
+    "A-4-18:95",
+    "A-4-18:96",
+    "A-4-18:97",
+    "A-4-18:98",
+    "A-4-18:99",
+    "A-4-18:100",
+    "A-4-18:101",
+    "A-4-18:102",
+    "A-4-18:103",
+    "A-4-18:104",
+    "A-4-18:105",
+    "A-4-18:106",
+    "A-4-18:107",
+    "A-4-18:108",
+    "A-4-18:109",
+    "A-4-18:110",
+    "A-4-18:111",
+    "A-4-18:112",
+    "A-4-18:113",
+    "A-4-18:114",
+    "A-4-18:115",
+    "A-4-18:116",
+    "A-4-18:117",
+    "A-4-18:118",
+    "A-4-18:119",
+    "A-4-18:120",
+    "A-4-18:121",
+    "A-4-18:122",
+    "A-4-18:123",
+    "A-4-18:124",
+    "A-4-18:125",
+    "A-4-18:126",
+    "A-4-18:127",
+    "A-4-18:128",
+    "A-4-18:129",
+    "A-4-18:130",
+    "A-4-18:131",
+    "A-4-18:132",
+    "A-4-18:133",
+    "A-4-18:134",
+    "A-4-18:135",
+    "A-4-18:136",
+    "A-4-18:137",
+    "A-4-18:138",
+    "A-4-18:139",
+    "A-4-18:140",
+    "A-4-18:141",
+    "A-4-18:142",
+    "A-4-18:143",
+    "A-4-12:6",
+    "A-4-12:7",
+    "A-4-12:2",
+    "A-4-12:3"
+  ],
+  "mechanisms": [
+    {
+      "id": "load",
+      "path": "piston > floating pin and plugs > bronze bushing > I-section rod > split lined bearings > crankpin > crankshaft",
+      "components": [
+        "A-4-17:31",
+        "A-4-17:32",
+        "A-4-20:4",
+        "A-4-20:5",
+        "A-4-20:6",
+        "A-4-20:7",
+        "A-4-20:41"
+      ],
+      "source_ids": [
+        "manual"
+      ],
+      "checks": [
+        "saved pin fits",
+        "rod center distance",
+        "bearing seat closure",
+        "all pair intersections"
+      ]
+    },
+    {
+      "id": "seal",
+      "path": "alternating ring gaps > separate grooves > cylinder bore interface (barrel deferred)",
+      "components": [
+        "A-4-17:32",
+        "A-4-17:33",
+        "A-4-17:34",
+        "A-4-17:36",
+        "A-4-17:37"
+      ],
+      "source_ids": [
+        "manual"
+      ],
+      "checks": [
+        "A-11-3 alternating gaps",
+        "groove side/root clearance",
+        "fitted bore target"
+      ]
+    },
+    {
+      "id": "phase",
+      "path": "H firing order > separate opposed pins in three bays > six slider-crank positions",
+      "components": [
+        "A-4-20:41",
+        "A-4-20:5",
+        "A-4-17:32"
+      ],
+      "source_ids": [
+        "manual"
+      ],
+      "checks": [
+        "120 degree events",
+        "opposite throws in each bay",
+        "101.6 mm travel",
+        "constant 168.275 mm rod centers"
+      ]
+    },
+    {
+      "id": "damper",
+      "path": "Crank blade race > tangent roller > fork races > crescent mass > retaining plates/rings",
+      "components": [
+        "A-4-20:8",
+        "A-4-20:9",
+        "A-4-20:10",
+        "A-4-20:11",
+        "A-4-20:12"
+      ],
+      "source_ids": [
+        "manual"
+      ],
+      "checks": [
+        "two race contacts",
+        "fork clearance",
+        "pin end clearance",
+        "closed retaining grooves",
+        "all pair intersections"
+      ]
+    }
+  ],
+  "gaps": [
+    {
+      "topic": "Remaining static modules",
+      "blocks_selected_scope": false,
+      "modelling_consequence": "Only generated modules count as completed; animation follows full static completion.",
+      "next_evidence": "Continue reviewed cylinder, reduction, accessory and H-specific subsystem figures."
+    },
+    {
+      "topic": "Estimated dimensions and hidden routes",
+      "blocks_selected_scope": false,
+      "modelling_consequence": "No manufacturing/dynamics claim; keep unverified routing explicit.",
+      "next_evidence": "Applicable manufacturing drawings or workshop measurements."
+    }
+  ]
+}

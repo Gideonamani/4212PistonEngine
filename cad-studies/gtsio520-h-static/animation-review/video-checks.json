@@ -1,0 +1,88 @@
+{
+  "passed": true,
+  "scope": "Review video format and visual inspection; no engineering acceptance",
+  "videos": [
+    {
+      "path": "build/gtsio520-animation-review/exploded-layout.mp4",
+      "sha256": "1aa0afda357917980f6ac2fe4fe0c1be09e5ccef4e24a859726f17955c38bca4",
+      "bytes": 1638528,
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 720,
+            "r_frame_rate": "30/1",
+            "avg_frame_rate": "30/1",
+            "nb_frames": "396"
+          }
+        ],
+        "format": {
+          "duration": "13.200000"
+        }
+      },
+      "retained": false,
+      "disposition": "Deleted at user request; hash and format evidence are historical"
+    },
+    {
+      "path": "build/gtsio520-animation-review/collapse-layout.mp4",
+      "sha256": "70b556033a1f673944de437840a5f9b8d33e7c591b1f010a88d1c482f91b3b43",
+      "bytes": 1755768,
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 720,
+            "r_frame_rate": "30/1",
+            "avg_frame_rate": "30/1",
+            "nb_frames": "404"
+          }
+        ],
+        "format": {
+          "duration": "13.466667"
+        }
+      },
+      "retained": false,
+      "disposition": "Deleted at user request; hash and format evidence are historical"
+    },
+    {
+      "path": "build/gtsio520-animation-review/core-cycle.mp4",
+      "sha256": "32b325a07730f9c0a5e0ca62a0ae5c9a0b2e7a4277d79e3537d4262777b65dd5",
+      "bytes": 1626021,
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 720,
+            "r_frame_rate": "30/1",
+            "avg_frame_rate": "30/1",
+            "nb_frames": "403"
+          }
+        ],
+        "format": {
+          "duration": "13.433333"
+        }
+      },
+      "retained": false,
+      "disposition": "Deleted at user request; hash and format evidence are historical"
+    }
+  ],
+  "visual_qa": [
+    "Representative exploded and core-cycle frames inspected",
+    "Captions retain illustrative scope and engineering limits"
+  ],
+  "artifact_disposition": {
+    "status": "discarded",
+    "local_date": "2026-10-17",
+    "authority": "Direct user request: Discard any video animation files. Commit progress and let us call it a day.",
+    "scope": "All six generated MP4/WebM copies in build/gtsio520-animation-review were deleted. Editable models, motion sources and historical validation evidence retained."
+  }
+}

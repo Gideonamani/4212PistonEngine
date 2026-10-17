@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "asset_sha256": "27054c1c7d0714537462dafca2f3ab870e603cd6c50808227622e60add0c7281",
+  "checks": [
+    {
+      "name": "Three clips, all 1396 stable IDs, matching hash and explicit draft scope",
+      "passed": true
+    },
+    {
+      "name": "Rest mesh coordinates match frozen tessellation in metres and glTF axes",
+      "passed": true
+    },
+    {
+      "name": "Exported motion agrees with the shared definition at saved crank samples",
+      "passed": true
+    },
+    {
+      "name": "Between-key slider-crank stroke and both ends of all six rods",
+      "passed": true
+    },
+    {
+      "name": "Collapse is the exact inverse at held and between-key layout poses",
+      "passed": true
+    },
+    {
+      "name": "Cycle closure and clip switching restore the identical assembled pose",
+      "passed": true
+    }
+  ],
+  "max_errors": {
+    "cad_mesh_bounds_m": 5.1528119104915504e-8,
+    "shared_matrix": 1.8379048993821812e-7,
+    "between_key_piston_m": 0.0000025223449473255055,
+    "between_key_rod_m": 0.000001939085538149312,
+    "reverse_matrix": 9.492439989600143e-8,
+    "switch_matrix": 2.9395253120512166e-7
+  },
+  "scope": "Kinematics and file integrity only. No native/STEP, physical removal-path, contact or swept-clearance acceptance."
+}

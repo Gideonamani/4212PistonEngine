@@ -14,6 +14,8 @@ from cad_pipeline.research_gate import check_spec_research
 def main():
     p=argparse.ArgumentParser();p.add_argument('--package',type=Path,required=True);p.add_argument('--spec',type=Path,required=True);a=p.parse_args();folder=a.package
     spec=json.loads(a.spec.read_text());validate_spec(spec);research=check_spec_research(spec,Path(__file__).resolve().parents[1])
+    if any(p.get('dressups') for p in spec['parts']):raise ValueError('Geometric dressups require full regeneration; this updater only reconciles primitive histories')
+    if any(p.get('placement') for p in spec['parts']):raise ValueError('Placed local histories require full regeneration; this updater cannot reconcile their final compound')
     report=json.loads((folder/'cad-validation.json').read_text());native=folder/(report['model_id']+'.FCStd');doc=A.openDocument(str(native));old=json.loads(doc.Parameters.SpecificationJSON)
     if spec['parameters']!=old['parameters'] or {p['id'] for p in spec['parts']}!={p['id'] for p in old['parts']}:raise ValueError('Parameter/part identity changes require regeneration')
     oldparts={p['id']:p for p in old['parts']};tips={o.StablePartID:o for o in doc.Objects if hasattr(o,'StablePartID')};data=json.loads((folder/'geometry.json').read_text());records={p['id']:p for p in data['parts']};changed=[]
@@ -37,8 +39,8 @@ def main():
                 if f['primitive']=='tube':
                     inner=doc.getObject(prefix+'_Inner');place(inner,f,spec['parameters']);inner.Radius=evaluate(f['inner_radius'],spec['parameters']);inner.setExpression('Radius',freecad_expression(f['inner_radius']));inner.Height=evaluate(f['height'],spec['parameters']);inner.setExpression('Height',freecad_expression(f['height']))
             else:
-                obj=rich_feature(doc,group,prefix,f,spec['parameters']) if f['primitive'] in ('prism','helix','revolve') else basic_feature(doc,group,prefix,f,spec['parameters'])
-                boolean=doc.addObject('Part::Fuse' if f['operation']=='add' else 'Part::Cut',prefix+'_Result');boolean.Base=current;boolean.Tool=obj;boolean.Refine=True;group.addObject(boolean);current.Visibility=False;obj.Visibility=False;current=boolean
+                obj=rich_feature(doc,group,prefix,f,spec['parameters']) if f['primitive'] in ('prism','helix','revolve','loft','polar_pattern') else basic_feature(doc,group,prefix,f,spec['parameters'])
+                boolean=doc.addObject('Part::Fuse' if f['operation']=='add' else 'Part::Cut',prefix+'_Result');boolean.Base=current;boolean.Tool=obj;boolean.Refine=part.get('boolean_refine',True);group.addObject(boolean);current.Visibility=False;obj.Visibility=False;current=boolean
             if part['id'] not in changed:changed.append(part['id'])
         if current!=tips[part['id']]:
             original=tips[part['id']]

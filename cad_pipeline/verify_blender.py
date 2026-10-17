@@ -18,8 +18,13 @@ def main():
         frames.append(dict(group=entry['group'],frame=entry['frame'],visible_parts=len(visible),title=entry['title']))
     bpy.context.scene.frame_set(1)
     def bounds(objs):
-        vertices=[o.matrix_world @ v.co for o in objs for v in o.data.vertices]
-        return [[min(v[i] for v in vertices) for i in range(3)],[max(v[i] for v in vertices) for i in range(3)]]
+        lo=[float('inf')]*3;hi=[-float('inf')]*3
+        for o in objs:
+            matrix=o.matrix_world
+            for vertex in o.data.vertices:
+                v=matrix @ vertex.co
+                for i in range(3):lo[i]=min(lo[i],v[i]);hi[i]=max(hi[i],v[i])
+        return [lo,hi]
     original=bounds(engineering.values());ids=set(engineering)
     bpy.ops.wm.read_factory_settings(use_empty=True);bpy.ops.import_scene.gltf(filepath=str(glb));exported=[o for o in bpy.context.scene.objects if o.type=='MESH']
     if {o.get('id') for o in exported}!=ids:raise ValueError('GLB IDs missing/changed')

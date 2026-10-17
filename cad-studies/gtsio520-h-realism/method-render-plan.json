@@ -1,0 +1,11 @@
+{
+  "scope": "Isolated native Revolution/Fillet method fixture; not engine geometry",
+  "part_ids": ["ShoulderRootFillet"],
+  "width": 700,
+  "height": 700,
+  "center_mm": [0, 0, 25],
+  "direction": [1, -1, 0.6],
+  "ortho_scale_mm": 70,
+  "landmarks_mm": {"shoulder_axis": [0, 0, 20], "upper_end_axis": [0, 0, 50]},
+  "view_settings": {"view_transform": "Standard", "look": "None", "exposure": 0, "gamma": 1}
+}

@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "parts": 103,
+  "blender_reopened": true,
+  "glb_id_roundtrip": true,
+  "bounds_roundtrip_error_m": 0.0,
+  "tour": [
+    {
+      "group": "overview",
+      "frame": 1,
+      "visible_parts": 103,
+      "title": "Major components - assembly"
+    },
+    {
+      "group": "crankshaft",
+      "frame": 73,
+      "visible_parts": 1,
+      "title": "Six-throw forging / four main journals"
+    },
+    {
+      "group": "rods",
+      "frame": 145,
+      "visible_parts": 54,
+      "title": "Six split I-section rods and lined bearings"
+    },
+    {
+      "group": "rings",
+      "frame": 217,
+      "visible_parts": 24,
+      "title": "Four rings per piston / alternating end gaps"
+    },
+    {
+      "group": "pistons",
+      "frame": 289,
+      "visible_parts": 24,
+      "title": "Six hollow pistons and floating pins"
+    },
+    {
+      "group": "structure",
+      "frame": 361,
+      "visible_parts": 55,
+      "title": "Crankshaft, rods and bearing interfaces"
+    },
+    {
+      "group": "core-side",
+      "frame": 433,
+      "visible_parts": 103,
+      "title": "Opposed banks / separate crankpins"
+    }
+  ]
+}

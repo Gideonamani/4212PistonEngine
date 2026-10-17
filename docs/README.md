@@ -50,6 +50,7 @@ publish), then `AGENTS.md` (storage and validation rules), then the guides here.
 | [wright-reconstruction-lessons.md](wright-reconstruction-lessons.md) | record | Adding the 413-part Wright engine to Explore: what went wrong, what we built, what the engineering skills now ask for, 6 October 2026. |
 | [langley-reconstruction-notes.md](langley-reconstruction-notes.md) | record | Adding the 358-part Langley / Manly-Balzer radial to Explore: what the sources contradicted, what broke, what the next engine should start from, 7 October 2026. |
 | [lesson-coverage-audit-2026-10-12.md](lesson-coverage-audit-2026-10-12.md) | record | Each lesson read against the instructor's outcomes: what is covered, partial and missing, and the order for the rework, 12 October 2026. |
+| [static-audit-reuse.md](static-audit-reuse.md) | record | Fingerprinted static pair-audit cache and unchanged-pair reuse across GTSIO-520-H milestones, 12 October 2026. |
 
 Other folders: `docs/decisions/` holds numbered decision records, `docs/operations/` operating notes, `docs/paper-mockups/` and
 `docs/ui-concepts/` design references.

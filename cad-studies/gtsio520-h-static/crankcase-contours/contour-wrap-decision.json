@@ -1,0 +1,14 @@
+{
+  "recorded_at": "2026-10-16T21:07:15.890301+00:00",
+  "local_date": "2026-10-17",
+  "authority": "Direct user instruction in this chat",
+  "instruction": "For now, let us call this a wrap, and get ready to animate exploded and collapsed view and then operating cycle animation",
+  "selected_candidate": "build/gtsio520-case-contours-r10",
+  "further_contour_construction": "deferred at user request",
+  "next_phases": [
+    "Exploded and collapsed view",
+    "Operating-cycle animation"
+  ],
+  "acceptance": "Wrap is a scope decision, not a pass of incomplete geometry, source-fidelity or motion gates",
+  "publication": "No new authorization to publish, upload to Drive or replace the student release"
+}

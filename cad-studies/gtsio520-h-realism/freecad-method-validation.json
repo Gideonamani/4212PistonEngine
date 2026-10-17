@@ -1,0 +1,101 @@
+{
+  "passed": true,
+  "freecad_version": [
+    "1",
+    "1",
+    "1",
+    "20260414 (Git shallow)",
+    "Unknown",
+    "2026/04/14 22:09:59",
+    "(HEAD detached at 0108fd4b4)",
+    "0108fd4b4850cc46e625b60e53cea7a7bbe69f8d"
+  ],
+  "source_script": "probe_freecad_methods.py",
+  "source_script_sha256_lf": "c18ce1c947e629264d1448bb29698289c4b4ea4b30a6b07142c1c96e317a1366",
+  "scope": "Isolated method probes; no engine acceptance or inferred radius adoption",
+  "native_features": [
+    "Part::Polygon",
+    "Part::Revolution",
+    "Part::Fillet"
+  ],
+  "reopened_links_and_expressions": true,
+  "analytic_volume_passed": true,
+  "revolution_original": {
+    "volume_mm3": 9676.105373056562,
+    "bounds_mm": [
+      -10.0,
+      -10.0,
+      0.0,
+      10.0,
+      10.0,
+      50.0
+    ]
+  },
+  "fillet_original": {
+    "volume_mm3": 9684.49685725181,
+    "bounds_mm": [
+      -10.0,
+      -10.0,
+      0.0,
+      10.0,
+      10.0,
+      50.0
+    ]
+  },
+  "reopened_fillet": {
+    "volume_mm3": 9684.49685725181,
+    "bounds_mm": [
+      -10.0,
+      -10.0,
+      0.0,
+      10.0,
+      10.0,
+      50.0
+    ]
+  },
+  "journal_radius_6_to_7": {
+    "volume_mm3": 10901.32650795658,
+    "bounds_mm": [
+      -10.0,
+      -10.0,
+      0.0,
+      10.0,
+      10.0,
+      50.0
+    ]
+  },
+  "fillet_radius_1_to_1_5": {
+    "before": {
+      "volume_mm3": 10911.066375258464,
+      "bounds_mm": [
+        -10.0,
+        -10.0,
+        0.0,
+        10.0,
+        10.0,
+        50.0
+      ]
+    },
+    "after": {
+      "volume_mm3": 10923.580043135686,
+      "bounds_mm": [
+        -10.0,
+        -10.0,
+        0.0,
+        10.0,
+        10.0,
+        50.0
+      ]
+    }
+  },
+  "edge_selection": "Unique circle radius, centre and axis; resolve again after source edits",
+  "step_relative_volume_error": 0.0,
+  "step_solids": 2,
+  "files_sha256": {
+    "native-method-probes.FCStd": "83e336397aaef1ebc97bed3960783616caf4e51054a9f834bd4c47c4f25ad3f3",
+    "native-method-probes.step": "7125e7b8877f953d11f66bcd6d0bd237c282528e76a0f8dca502930ac936557f",
+    "fixture-geometry.json": "a3f9530b89429088239252ad85996010acf1dd6a9e05755a3d0d7f34ccda490c"
+  },
+  "recorded_date": "2026-10-08",
+  "artifact_directory": "build/gtsio-method-research/freecad"
+}

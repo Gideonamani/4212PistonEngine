@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "components": 93,
+  "source_callouts": 93,
+  "dispositions": {
+    "modelled": 0,
+    "simplified": 13,
+    "deferred": 78,
+    "outside_scope": 2
+  },
+  "coverage_checked": true,
+  "mechanisms": 3,
+  "historical_accuracy_verified": false,
+  "scope": "Ready only for the static forging/piston/rod candidate described in research.md; whole engine and operating animation remain incomplete.",
+  "whole_engine_ready": false,
+  "operating_motion_ready": false
+}

@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "components": 240,
+  "source_callouts": 240,
+  "dispositions": {
+    "modelled": 0,
+    "simplified": 32,
+    "deferred": 206,
+    "outside_scope": 2
+  },
+  "coverage_checked": true,
+  "mechanisms": 4,
+  "historical_accuracy_verified": false,
+  "scope": "GTSIO-520-H detailed static engine rebuild; current completed modules: dampers, case. Calculated estimates explicit; no operating clip or manufacturing certification."
+}
