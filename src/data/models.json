@@ -57,6 +57,44 @@
     "contractUrl": "./engine-contract.json"
   },
   {
+    "id": "gtsio520-h-r10-mechanism-study",
+    "label": "GTSIO-520-H complete engine assembly (1,396 parts)",
+    "shortLabel": "GTSIO-520-H mechanism study",
+    "adapter": "animated-study",
+    "headerLabel": "GTSIO-520-H · MECHANISM STUDY",
+    "summary": "Full 1,396-part R10 candidate with Three.js-coordinated exploded layout and 720 deg operating cycle. Illustrative review draft.",
+    "capabilities": [
+      {
+        "kind": "animated",
+        "note": "Three.js 720° operating cycle"
+      },
+      {
+        "kind": "exploded",
+        "note": "Staged exploded layout"
+      },
+      {
+        "kind": "section",
+        "note": "Interactive section planes"
+      },
+      {
+        "kind": "parts",
+        "note": "1,396 modelled components"
+      }
+    ],
+    "previewUrl": "./model-previews/gtsio520-h-r10-mechanism-study.webp",
+    "sources": [
+      {
+        "localUrl": "./gtsio520-r10-static.glb.gz",
+        "compressed": true,
+        "transferBytes": 25327875,
+        "decodedBytes": 51199204,
+        "driveId": "1F8B93sONX8mT93GSxRWaRmRuDk0DJCIW"
+      }
+    ],
+    "contractUrl": "./gtsio520-r10-contract.json",
+    "lessonControls": true
+  },
+  {
     "id": "wright-1903-engine",
     "label": "1903 Wright Flyer engine",
     "shortLabel": "Wright Flyer engine",
