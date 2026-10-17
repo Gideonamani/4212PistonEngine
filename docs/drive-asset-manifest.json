@@ -108,6 +108,12 @@
       "drive_id": "1tf0GcP5rRQt5Z0N8AikKZEuTbIfQAETR",
       "bytes": 12452028,
       "sha256": "3b20b0050a0af9acd0a535204b9e57c3680c40e3b9c0363b9550f8e0a7d4016a"
+    },
+    {
+      "path": "web/gtsio520-r10-static.glb.gz",
+      "drive_id": "1F8B93sONX8mT93GSxRWaRmRuDk0DJCIW",
+      "bytes": 25327875,
+      "sha256": "df420184b1a7289b106dd3638dc3e591c9d41366d7a9914038afd1cd16382e36"
     }
   ],
   "history_policy": "New unpublished accessory commits exclude model binaries. Existing published history retained; native CAD and exported GLBs are no longer tracked going forward.",

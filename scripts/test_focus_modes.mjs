@@ -178,3 +178,23 @@ test('full engine: every teaching component spotlights at least one part', { ski
   assert.deepEqual(matchesNothing, [], 'these components select no mesh');
   session.dispose();
 });
+
+test('animated-study-motion: display mode filter and 720-degree crank angle helper', async () => {
+  const { crankAngleForMotion, resolveMotionDisplay } = await import('../src/viewer/core/animated-study-motion.mjs');
+  const cycle = {
+    id: 'Core cycle - illustrative',
+    degrees: 720,
+    display: { defaultViewMode: 'core', allowAssembled: true, visiblePartIds: ['Crankshaft'], ghostPartIds: ['CrankcaseLeft'] },
+  };
+  assert.equal(crankAngleForMotion(cycle, 25), 180);
+  const core = resolveMotionDisplay(cycle, [], 'default');
+  assert.equal(core.viewMode, 'core');
+  assert.ok(core.visibleSet.has('Crankshaft') && core.visibleSet.has('CrankcaseLeft'));
+  assert.ok(core.ghostSet.has('CrankcaseLeft'));
+  const assembled = resolveMotionDisplay(cycle, [], 'assembled');
+  assert.equal(assembled.viewMode, 'assembled');
+  assert.equal(assembled.visibleSet, null);
+});
+
+
+

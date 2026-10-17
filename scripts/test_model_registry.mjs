@@ -2,8 +2,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const registry=JSON.parse(fs.readFileSync(new URL('../src/data/models.json',import.meta.url),'utf8'));
 
-assert.deepEqual(registry.map(model=>model.id),['cylinder','gtsio520-h-v5-teaching-engine','wright-1903-engine','wright-1903-reconstruction','langley-manly-balzer-1903','hydraulic-tappet','oil-pump','accessory-drives']);
-assert.deepEqual(registry.map(model=>model.adapter),['operating-cylinder','full-engine','static-gltf','animated-study','animated-study','animated-study','animated-study','animated-study']);
+assert.deepEqual(registry.map(model=>model.id),['cylinder','gtsio520-h-v5-teaching-engine','gtsio520-h-r10-mechanism-study','wright-1903-engine','wright-1903-reconstruction','langley-manly-balzer-1903','hydraulic-tappet','oil-pump','accessory-drives']);
+assert.deepEqual(registry.map(model=>model.adapter),['operating-cylinder','full-engine','animated-study','static-gltf','animated-study','animated-study','animated-study','animated-study','animated-study']);
 assert.equal(new Set(registry.map(model=>model.id)).size,registry.length,'model ids must be unique');
 assert.ok(registry.every(model=>model.label&&model.shortLabel&&model.summary));
 assert.ok(registry.every(model=>!('imageType' in model)),'card pictures come from previewUrl, not a guessed illustration type');

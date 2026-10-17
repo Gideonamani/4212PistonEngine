@@ -62,6 +62,9 @@ export type ViewerSnapshot = {
   /** The playback speed (1 is normal) and whether the motion in view repeats when it reaches its end. */
   motionSpeed?: number;
   motionLoop?: boolean;
+  /** Whether a cycle motion shows the core mechanism with ghosted housing ('core') or the full assembly ('assembled'). */
+  motionViewMode?: 'core' | 'assembled';
+  motionAllowAssembled?: boolean;
   powerPathId?: string;
   powerPathNote?: string;
   /** Whether a spotlight is active, and how it is drawn. Only models that spotlight parts report them. */
@@ -101,6 +104,7 @@ export type ViewerFeatures = {
     select: (id: string) => void;
     setProgress: (value: number) => void;
     step: (direction: number) => void;
+    setViewMode?: (mode: 'core' | 'assembled') => void;
   };
   cycleCues?: {
     setEnabled: (enabled: boolean) => void;
@@ -138,6 +142,7 @@ export type ViewerFeatures = {
 export type ViewUpdate = {
   savedMotionId?: string;
   motionProgress?: number;
+  motionViewMode?: 'core' | 'assembled';
   initialAngle?: number;
   initialCycle?: boolean;
   viewPreset?: string;
