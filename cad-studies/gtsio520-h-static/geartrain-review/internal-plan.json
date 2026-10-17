@@ -1,0 +1,194 @@
+{
+  "width": 1800,
+  "height": 1200,
+  "part_ids": [
+    "Crankshaft",
+    "Camshaft",
+    "CrankshaftGear",
+    "CamshaftGear",
+    "CamClusterGear",
+    "QuillShaft",
+    "ReductionPinion",
+    "PropellerShaft",
+    "CrankGearScrew1",
+    "CrankGearScrew2",
+    "CrankGearScrew3",
+    "CrankGearScrew4",
+    "CrankGearScrew5",
+    "CrankGearScrew6",
+    "CamGearScrew1",
+    "CamGearScrew2",
+    "CamGearScrew3",
+    "CamGearScrew4",
+    "CrankGearDowel",
+    "LifterBodyExhaust3",
+    "LifterPlungerExhaust3",
+    "LifterPlungerSpringExhaust3",
+    "LifterCheckHousingExhaust3",
+    "LifterCheckSpringExhaust3",
+    "LifterCheckPlateExhaust3",
+    "LifterSocketExhaust3",
+    "LifterRingExhaust3",
+    "QuillPlate",
+    "QuillPlateScrew1",
+    "QuillPlateScrew2",
+    "QuillRetainingRing"
+  ],
+  "center_mm": [
+    0,
+    -10,
+    365
+  ],
+  "direction": [
+    0.85,
+    0.58,
+    -1
+  ],
+  "up": [
+    0,
+    1,
+    0
+  ],
+  "ortho_scale_mm": 1400,
+  "landmarks_mm": {
+    "1": [
+      15.100000381469727,
+      20.784608840942383,
+      -36.0
+    ],
+    "2": [
+      56.04856872558594,
+      37.04943084716797,
+      338.0
+    ],
+    "3a": [
+      78.04757690429688,
+      -145.7186737060547,
+      -36.0
+    ],
+    "3b": [
+      26.068927764892578,
+      -141.0472869873047,
+      -46.0
+    ],
+    "4": [
+      9.5,
+      -126.0,
+      347.0
+    ],
+    "5": [
+      74.84549713134766,
+      -127.44127655029297,
+      258.17388916015625
+    ],
+    "23": [
+      8.800000190734863,
+      -2.0000000072549875e-15,
+      590.0
+    ],
+    "24": [
+      26.12140464782715,
+      20.703569412231445,
+      592.0
+    ],
+    "25": [
+      44.75439453125,
+      181.6327667236328,
+      636.0
+    ]
+  },
+  "view_settings": {
+    "view_transform": "Standard",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1
+  },
+  "diagram_annotations": {
+    "labels": [
+      {
+        "key": "1",
+        "position": [
+          0.88,
+          0.55
+        ],
+        "landmarks": [
+          "1"
+        ]
+      },
+      {
+        "key": "2",
+        "position": [
+          0.6,
+          0.25
+        ],
+        "landmarks": [
+          "2"
+        ]
+      },
+      {
+        "key": "3",
+        "position": [
+          0.84,
+          0.86
+        ],
+        "landmarks": [
+          "3a",
+          "3b"
+        ]
+      },
+      {
+        "key": "4",
+        "position": [
+          0.57,
+          0.87
+        ],
+        "landmarks": [
+          "4"
+        ]
+      },
+      {
+        "key": "5",
+        "position": [
+          0.4,
+          0.84
+        ],
+        "landmarks": [
+          "5"
+        ]
+      },
+      {
+        "key": "23",
+        "position": [
+          0.31,
+          0.6
+        ],
+        "landmarks": [
+          "23"
+        ]
+      },
+      {
+        "key": "24",
+        "position": [
+          0.15,
+          0.48
+        ],
+        "landmarks": [
+          "24"
+        ]
+      },
+      {
+        "key": "25",
+        "position": [
+          0.2,
+          0.19
+        ],
+        "landmarks": [
+          "25"
+        ]
+      }
+    ],
+    "title": "OUR CURRENT INTERNAL GEAR TRAIN",
+    "subtitle": "OEM callout numbers | cases, cylinders and rods hidden | assembled geometry",
+    "footer": "23 is enclosed inside the crank nose/pinion; see isolated quill inset. 5 shows one of twelve lifters."
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "status": "calculated teaching estimates, not manufacturer dimensions",
+  "anchors": {
+    "main_diameter_mm": 66.66229999999999,
+    "crankpin_diameter_mm": 57.13729999999999,
+    "stroke_mm": 101.6,
+    "damper_bushing_id_range_mm": [
+      19.1516,
+      19.2024
+    ]
+  },
+  "rules": [
+    {
+      "parameter": "damper_bushing_wall",
+      "expression": "0.08*damper_bushing_id",
+      "value_mm": 1.53416,
+      "rationale": "Selected wall/ID ratio 0.08; plausible section range 0.06-0.12, not a parts drawing"
+    },
+    {
+      "parameter": "blade_bore_radius",
+      "expression": "(damper_bushing_id+2*damper_bushing_wall)/2",
+      "value_mm": 11.12266,
+      "rationale": "Bare host radius from documented bushing ID plus estimated wall; final press-fit not established"
+    },
+    {
+      "parameter": "web_main_margin",
+      "expression": "0.06*main_diameter/2",
+      "value_mm": 1.9998689999999995,
+      "rationale": "Selected radial land margin 6% of main radius (working range 4-8%)"
+    },
+    {
+      "parameter": "web_pin_margin",
+      "expression": "0.10*crankpin_diameter/2",
+      "value_mm": 2.8568649999999995,
+      "rationale": "Selected radial land margin 10% of pin radius (working range 7-13%)"
+    },
+    {
+      "parameter": "middle_web_radius",
+      "expression": "crankpin_diameter/2+web_pin_margin",
+      "value_mm": 31.425514999999994,
+      "rationale": "Middle-cheek end radius follows pin and support land"
+    },
+    {
+      "parameter": "blade_edge_ligament",
+      "expression": "0.25*blade_bore_radius*2",
+      "value_mm": 5.56133,
+      "rationale": "Selected minimum outer edge ligament one quarter of host diameter; not strength certification"
+    },
+    {
+      "parameter": "blade_bore_offset",
+      "expression": "1.05*blade_bore_radius*2",
+      "value_mm": 23.357586,
+      "rationale": "Two-hole pitch selected at 2.1 host diameters; each offset is half the pitch"
+    },
+    {
+      "parameter": "blade_half_width",
+      "expression": "blade_bore_offset+blade_bore_radius+blade_edge_ligament",
+      "value_mm": 40.041576,
+      "rationale": "Preserve the selected outer edge ligament around both bores"
+    },
+    {
+      "parameter": "blade_bore_row",
+      "expression": "middle_web_radius+0.60*blade_bore_radius*2",
+      "value_mm": 44.772707,
+      "rationale": "Bore row outside the middle-web waist; selected 0.6 host diameter offset"
+    },
+    {
+      "parameter": "blade_root",
+      "expression": "middle_web_radius-blade_edge_ligament",
+      "value_mm": 25.864184999999992,
+      "rationale": "Integral blade root overlaps the middle web"
+    },
+    {
+      "parameter": "blade_tip",
+      "expression": "blade_bore_row+blade_bore_radius+blade_edge_ligament",
+      "value_mm": 61.45669699999999,
+      "rationale": "Tip follows bore row and remaining wall"
+    },
+    {
+      "parameter": "blade_width",
+      "expression": "0.60*cheek_width",
+      "value_mm": 8.4,
+      "rationale": "Thinner centred blade, selected 60% of cheek width (working range 50-65%); fork fit pending"
+    },
+    {
+      "parameter": "cheek_taper_delta",
+      "expression": "0.15*cheek_width",
+      "value_mm": 2.1,
+      "rationale": "Selected 15% reduction scale, working range 10-20%; slight inclined surfaces"
+    },
+    {
+      "parameter": "main_root_radius",
+      "expression": "0.75*web_main_margin",
+      "value_mm": 1.4999017499999996,
+      "rationale": "Root radius limited to 75% of the radial support margin"
+    },
+    {
+      "parameter": "pin_root_radius",
+      "expression": "0.60*web_pin_margin",
+      "value_mm": 1.7141189999999997,
+      "rationale": "Root radius limited to 60% of support margin and less than the current bearing wall"
+    },
+    {
+      "parameter": "bearing_edge_relief",
+      "expression": "pin_root_radius-rod_side_clearance/2+0.05",
+      "value_mm": 1.6625189999999999,
+      "rationale": "45-degree liner relief derived from root radius and side gap, plus 0.05 mm modelling margin"
+    },
+    {
+      "parameter": "pin_end_recess_radius",
+      "expression": "0.16*crankpin_diameter",
+      "value_mm": 9.141967999999999,
+      "rationale": "Selected visible recess diameter 32% of pin diameter (working range 25-40%); hidden drilling unverified"
+    },
+    {
+      "parameter": "pin_end_recess_depth",
+      "expression": "0.25*cheek_width",
+      "value_mm": 3.5,
+      "rationale": "Selected blind depth one quarter of cheek; preserve a closed web, no invented oil route"
+    }
+  ],
+  "retained_axial_estimates": {
+    "main_width_mm": 44.0,
+    "pin_width_mm": 30.0,
+    "cheek_width_mm": 14.0,
+    "rationale": "Existing scoped datum retained; roughly 0.66 main diameter, 0.525 pin diameter and 0.245 pin diameter respectively; no dimensional calibration claimed"
+  },
+  "limits": [
+    "Ratio ranges express chosen sensitivity intervals, not statistical confidence or manufacturer tolerances",
+    "No stress, fatigue, balance or operating clearance certification",
+    "Blind visible recesses are an explicit topology assumption; hidden drilling remains unverified"
+  ]
+}

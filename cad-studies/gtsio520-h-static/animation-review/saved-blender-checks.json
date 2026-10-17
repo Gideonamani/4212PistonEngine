@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "scope": "Saved editable presentation master only; no whole-engine native CAD/edit/STEP acceptance",
+  "blender_version": "5.0.1",
+  "parts": 1396,
+  "saved_actions": {
+    "Collapse - illustrative layout": 1191,
+    "Core cycle - illustrative": 328,
+    "Explode - illustrative layout": 1191
+  },
+  "master_sha256": "90c4015b65427eaf0f506784cd94a9615743edc2abbab6e3b3a0993e689af637",
+  "asset_sha256": "27054c1c7d0714537462dafca2f3ab870e603cd6c50808227622e60add0c7281"
+}

@@ -161,6 +161,10 @@
         "method": {
           "type": "string",
           "minLength": 1
+        },
+        "expression": {
+          "type": "string",
+          "minLength": 1
         }
       },
       "allOf": [
@@ -213,6 +217,22 @@
         "features"
       ],
       "properties": {
+        "boolean_refine": {
+          "type": "boolean",
+          "default": true
+        },
+        "boolean_batch_runs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "geometry_instance_of": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*$"
+        },
+        "mesh_refine": {
+          "type": "boolean",
+          "default": false
+        },
         "id": {
           "type": "string",
           "pattern": "^[A-Za-z][A-Za-z0-9_]*$"
@@ -237,6 +257,47 @@
           "items": {
             "$ref": "#/$defs/feature"
           }
+        },
+        "dressups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/dressup"
+          }
+        },
+        "placement": {
+          "type": "object",
+          "description": "Place an already valid local solid once; preserved as a linked native compound",
+          "properties": {
+            "origin": {
+              "$ref": "#/$defs/vector"
+            },
+            "rotation_quaternion": {
+              "type": "array",
+              "minItems": 4,
+              "maxItems": 4,
+              "items": {
+                "type": "number"
+              },
+              "description": "Explicit unit quaternion in x,y,z,w order"
+            },
+            "axis": {
+              "$ref": "#/$defs/vector"
+            },
+            "roll": {
+              "$ref": "#/$defs/dimension"
+            },
+            "mirror_normal": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "items": {
+                "type": "number"
+              }
+            },
+            "mirror_base": {
+              "$ref": "#/$defs/vector"
+            }
+          }
         }
       }
     },
@@ -256,7 +317,9 @@
             "tube",
             "prism",
             "helix",
-            "revolve"
+            "revolve",
+            "loft",
+            "polar_pattern"
           ]
         },
         "operation": {
@@ -306,24 +369,146 @@
         "pitch": {
           "$ref": "#/$defs/dimension"
         },
+        "sections": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "array",
+            "minItems": 3,
+            "items": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "items": {
+                "$ref": "#/$defs/dimension"
+              }
+            }
+          }
+        },
         "points": {
           "type": "array",
           "minItems": 3,
-          "items": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/dimension"}}
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "$ref": "#/$defs/dimension"
+            }
+          }
+        },
+        "left_handed": {
+          "type": "boolean",
+          "description": "Helix winding; false is right-handed"
+        },
+        "derived": {
+          "type": "boolean",
+          "description": "Use a calculated polygon profile instead of a constrained sketch"
+        },
+        "linked_profile": {
+          "type": "boolean",
+          "description": "Derived prism with expression-driven Part::Polygon and linked native Part::Extrusion"
+        },
+        "scale_parameter": {
+          "type": "string",
+          "description": "Positive parameter controlling a homogeneous derived sampled loft through a native uniform-scale link"
+        },
+        "profile_spline_runs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {"type": "integer", "minimum": 0}
+          },
+          "description": "Disjoint ordered inclusive section-point runs to interpolate; a new smooth approximation between retained samples, requiring geometry-specific checks"
+        },
+        "profile_parameterization": {
+          "enum": ["chord_length", "uniform_levels"],
+          "description": "Use common uniform level parameters across radial sections, or the curve constructor's chord-length default"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 360
+        },
+        "pattern_feature": {
+          "$ref": "#/$defs/feature"
+        },
+        "tool_clip": {
+          "$ref": "#/$defs/feature",
+          "description": "Linked computational intersection before pattern copies; must preserve every tool/stock intersection"
+        },
+        "profile_curve_mode": {"enum": ["interpolate", "bezier_fit"]},
+        "profile_curve_degree": {"type": "integer", "minimum": 3, "maximum": 5},
+        "step_degrees": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 360,
+          "description": "Fixed angular spacing for a partial polar pattern; default is 360/count"
         }
       },
       "allOf": [
         {
-          "if": {"properties": {"primitive": {"const": "prism"}}},
-          "then": {"required": ["points", "height"]}
+          "if": {
+            "properties": {
+              "primitive": {
+                "const": "loft"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "sections"
+            ]
+          }
         },
         {
-          "if": {"properties": {"primitive": {"const": "revolve"}}},
-          "then": {"required": ["points"]}
+          "if": {
+            "properties": {
+              "primitive": {
+                "const": "prism"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "points",
+              "height"
+            ]
+          }
         },
         {
-          "if": {"properties": {"primitive": {"const": "helix"}}},
-          "then": {"required": ["radius", "wire_radius", "pitch", "height"]}
+          "if": {
+            "properties": {
+              "primitive": {
+                "const": "revolve"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "points"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primitive": {
+                "const": "helix"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "radius",
+              "wire_radius",
+              "pitch",
+              "height"
+            ]
+          }
         },
         {
           "if": {
@@ -401,8 +586,96 @@
               "height"
             ]
           }
+        },
+        {
+          "if": {
+            "properties": {
+              "primitive": {
+                "const": "polar_pattern"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "count",
+              "pattern_feature"
+            ],
+            "properties": {
+              "pattern_feature": {
+                "properties": {
+                  "primitive": {
+                    "enum": [
+                      "box",
+                      "cylinder",
+                      "tube",
+                      "cone",
+                      "sphere",
+                      "prism",
+                      "revolve",
+                      "loft"
+                    ]
+                  }
+                }
+              }
+            }
+          }
         }
       ]
+    },
+    "dressup": {
+      "type": "object",
+      "required": [
+        "type",
+        "radius",
+        "selectors"
+      ],
+      "properties": {
+        "type": {
+          "const": "fillet"
+        },
+        "radius": {
+          "$ref": "#/$defs/dimension"
+        },
+        "label": {
+          "type": "string"
+        },
+        "selectors": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "curve",
+              "center",
+              "radius"
+            ],
+            "properties": {
+              "curve": {
+                "const": "circle"
+              },
+              "center": {
+                "$ref": "#/$defs/vector"
+              },
+              "radius": {
+                "$ref": "#/$defs/dimension"
+              },
+              "axis": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "items": {
+                  "type": "number"
+                }
+              },
+              "arc_fraction": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 1
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

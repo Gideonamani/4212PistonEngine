@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "native_sha256": "33f4e9b2f4d84ba04c88b1701aa65f088fdda67a2919c69c10ece3cb8659d4b9",
+  "geometry_sha256": "e71608b17b27ce55e0eb963701fa9d3e103379a3bb4f976f69ae77a893e35c47",
+  "scope": "Saved diagnostic scene identities, native mesh bounds, units, cameras, annotations and caption margins; no engineering geometry change or source-silhouette accuracy claim",
+  "views": [
+    {
+      "view": "internal",
+      "parts": 31,
+      "passed": true,
+      "bounds_error_m": 2.95639037695139e-08,
+      "camera_location_error_m": 0.0,
+      "camera_rotation_error": 1.1920928955078125e-07,
+      "projected_bounds": [
+        [
+          0.25211384892463684,
+          0.16554060578346252
+        ],
+        [
+          0.7327448129653931,
+          0.858193039894104
+        ]
+      ],
+      "image_sha256": "8ce1008f0e26ff31be0b334c34b98ab6afac42770ed4edee90e882eb7a0caefd",
+      "blend_sha256": "91546e1666b9a54119d9381ca5ce5d6ef8f10aa0941d90ef777c74aa9f18e387",
+      "plan_sha256": "10ad327e2fc362157fae190a16a6bb39a4e1e4b3ccb397b223efaf621ccfb1ac"
+    },
+    {
+      "view": "quill",
+      "parts": 1,
+      "passed": true,
+      "bounds_error_m": 1.8596649220548045e-08,
+      "camera_location_error_m": 0.0,
+      "camera_rotation_error": 1.1920928955078125e-07,
+      "projected_bounds": [
+        [
+          0.26154595613479614,
+          0.24264425039291382
+        ],
+        [
+          0.7370612025260925,
+          0.7573550939559937
+        ]
+      ],
+      "image_sha256": "a5931dab38f0efbcd3d534131aa298369d2949447b1676a7e3433e428ae7671f",
+      "blend_sha256": "930626292f1deb363f1e0a922178c93c902631728d0e8f5d636a4aebc00b42d3",
+      "plan_sha256": "cae78d05924f65b7e3165260e49663ef5d59f7e97a22860692934d9600304587"
+    }
+  ]
+}

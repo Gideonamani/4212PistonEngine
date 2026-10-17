@@ -1,0 +1,167 @@
+{
+  "schema": "image-matcher/comparison-v1",
+  "plan_sha256": "cc6ed4493c341c176d628dd4d91e0158f87992fdd968584d4406ca30447beb57",
+  "reference": {
+    "path": "C:\\Users\\user\\KeonGeraldo\\CodeProjects\\DigiMan\\work\\trials\\extracted_images_gtsio520\\p038_fig_A-4-20.png",
+    "sha256": "873ef4bf9301dfa4f1e291e60e0f77f9678677313bdaa0bbf8e761c02ec7c863",
+    "size_px": [
+      2268,
+      1970
+    ],
+    "crop": [
+      1020,
+      905,
+      1840,
+      1540
+    ]
+  },
+  "candidate": {
+    "path": "D:\\KEON\\AE Departmental\\_Teaching Modules\\Piston Engine\\20262025 Sem 1 - AMT GCAME Piston\\4212PistonEngine-gtsio520-realism\\build\\gtsio520-image-match\\before\\candidate.png",
+    "sha256": "1709e293d318668a434d28e3dfb837ac69c8e82d4b5548699ac9c21ab942d949",
+    "size_px": [
+      1000,
+      1000
+    ],
+    "crop": [
+      0,
+      0,
+      1000,
+      1000
+    ]
+  },
+  "cad": {
+    "path": "D:\\KEON\\AE Departmental\\_Teaching Modules\\Piston Engine\\20262025 Sem 1 - AMT GCAME Piston\\4212PistonEngine-gtsio520-realism\\build\\gtsio520-realism\\cad\\gtsio520-h-realism-core-v1.FCStd",
+    "sha256": "0209cd432cc5e3c2e9fda45bb0926ea80de01be435b214afde30dc1d965d9381"
+  },
+  "part_ids": [
+    "Crankshaft"
+  ],
+  "reference_locator": "Continental X-30045A, A-4-18, PDF38, Figure A-4-20 part 41; cropped forging, detached parts/leaders excluded from feature judgement",
+  "camera": {
+    "part_ids": [
+      "Crankshaft"
+    ],
+    "projection": "Orthographic approximation to the manual illustration; exact camera is unknown",
+    "width": 1000,
+    "height": 1000,
+    "center_mm": [
+      0,
+      0,
+      241
+    ],
+    "direction": [
+      1,
+      -1,
+      0.85
+    ],
+    "ortho_scale_mm": 600,
+    "landmarks_mm": {
+      "rear_main": [
+        0,
+        0,
+        22
+      ],
+      "middle_rear_main": [
+        0,
+        0,
+        168
+      ],
+      "middle_front_main": [
+        0,
+        0,
+        314
+      ],
+      "front_main": [
+        0,
+        0,
+        460
+      ]
+    }
+  },
+  "transform_candidate_crop_to_reference_crop": [
+    [
+      0.7096254071232243,
+      0.958953252869222,
+      -449.2893228514646
+    ],
+    [
+      -0.958953252869222,
+      0.7096254071232243,
+      442.6639281601201
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "uniform_scale": 1.1929625139220694,
+  "rotation_deg": -53.49855887949368,
+  "landmarks": [
+    {
+      "name": "front_main",
+      "role": "fit",
+      "reference_xy": [
+        85.0,
+        96.0
+      ],
+      "registered_candidate_xy": [
+        85.0,
+        96.0
+      ],
+      "error_px": 0.0
+    },
+    {
+      "name": "rear_main",
+      "role": "fit",
+      "reference_xy": [
+        685.0,
+        540.0
+      ],
+      "registered_candidate_xy": [
+        685.0000000000001,
+        540.0
+      ],
+      "error_px": 1.1368683772161603e-13
+    },
+    {
+      "name": "middle_front_main",
+      "role": "held_out",
+      "reference_xy": [
+        272.0,
+        234.0
+      ],
+      "registered_candidate_xy": [
+        284.9999666577937,
+        243.9999753267673
+      ],
+      "error_px": 16.401177995488712
+    },
+    {
+      "name": "middle_rear_main",
+      "role": "held_out",
+      "reference_xy": [
+        474.0,
+        385.0
+      ],
+      "registered_candidate_xy": [
+        484.9999904736553,
+        391.999992950505
+      ],
+      "error_px": 13.038392988694085
+    }
+  ],
+  "metrics": {
+    "silhouette_iou": null,
+    "held_out_max_error_px": 16.401177995488712
+  },
+  "masks": {},
+  "limitations": [
+    "Manual exploded illustration has unknown/stylised projection; orthographic camera is an approximation.",
+    "Reference journal-axis centres are interpreted from visible surfaces; allow approximately 8 px landmark placement uncertainty.",
+    "Loose neighbouring parts/callout leaders overlap the crop. No filled object mask was traced, so no silhouette percentage is reported.",
+    "Pixel registration cannot establish axial manufacturing dimensions or hidden geometry."
+  ],
+  "locked_from": null,
+  "interpretation": "Registration evidence only. Fitted landmarks are not validation. Feature interpretation and 3D fidelity require a separate visible-scope review."
+}

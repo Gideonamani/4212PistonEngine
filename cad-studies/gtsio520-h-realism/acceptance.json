@@ -1,0 +1,3538 @@
+{
+  "date": "2026-10-08",
+  "model_id": "gtsio520-h-realism-core-v4",
+  "parts": 103,
+  "features": 658,
+  "static_candidate_accepted": true,
+  "whole_engine_complete": false,
+  "operating_motion_validated": false,
+  "source_resemblance_review": {
+    "target": "GTSIO-520-H crankshaft forging, Figure A-4-20 part 41",
+    "review_date": "2026-10-08",
+    "reference": "X-30045A A-4-18 PDF38; construction A-3-1/2 PDF16-17; A-10-3 PDF70; Table 11 PDF117",
+    "status": "needs_another_iteration",
+    "manufacturing_fidelity_verified": false,
+    "findings": [
+      {
+        "id": "CR-01",
+        "part_id": "Crankshaft",
+        "feature": "Counterweight blades and paired seats",
+        "state_before": "missing",
+        "priority": 1,
+        "reference_region_px": [
+          1120,
+          940,
+          1710,
+          1490
+        ],
+        "observation": "The drawing shows projecting two-hole blades. The first forging has only rounded capsule webs.",
+        "evidence_status": "figure-supported construction; cheek positions corroborated by Table 11",
+        "confidence": "high for presence, limited for dimensions",
+        "operation": "Add two integral blade profiles to each middle cheek 2,5,8 and cut the paired axial bushing seats.",
+        "dimension_provenance": "Blade outline, spacing and bare host bore are estimates. Table 6 bushing ID is not substituted for host bore diameter.",
+        "expected_visual_effect": "Restore projecting tabs and twelve negative-space openings visible in the source construction.",
+        "interface_checks": [
+          "single forging solid",
+          "minimum remaining wall",
+          "adjacent rods/caps/pistons",
+          "full exported core static audit"
+        ],
+        "disposition": "implemented_in_revision_2; final checks recorded separately"
+      },
+      {
+        "id": "CR-02",
+        "part_id": "Crankshaft",
+        "feature": "Differentiated forged cheek contours",
+        "state_before": "wrong_shape",
+        "priority": 1,
+        "observation": "Equal-radius, flat capsule webs give the candidate a stack-of-plates appearance unlike the differentiated forging in the drawing.",
+        "evidence_status": "figure-supported",
+        "confidence": "medium",
+        "operation": "Use unequal main-journal/crankpin envelope profiles for outer cheeks and a separate middle-web profile; refine against sections or measured photographs.",
+        "dimension_provenance": "Documented journal/pin diameters retained. Margins and forging contour remain inferred.",
+        "expected_visual_effect": "More plausible boss-to-web proportions and distinct middle cheeks.",
+        "interface_checks": [
+          "documented diameters unchanged",
+          "solid connectivity",
+          "rod side clearance",
+          "assembly intersections"
+        ],
+        "disposition": "support profiles recalculated in revision 4; exact forging contour remains unresolved"
+      },
+      {
+        "id": "CR-06",
+        "part_id": "Crankshaft",
+        "feature": "Blade thickness and counterweight fork relationship",
+        "state_before": "wrong_shape",
+        "priority": 1,
+        "observation": "Revision 2 extruded the blades at the full cheek thickness. The user's design review and A-4-30 section identify the thinner central support that the counterweight fork straddles.",
+        "evidence_status": "user observation and section-supported deduction",
+        "confidence": "high for the relative relationship; exact widths unresolved",
+        "operation": "Use a separate blade-width parameter, centre the blade in the middle cheek, and later fit the fork slot and end clearance around it.",
+        "dimension_provenance": "Revision 4: blade width 0.60 of estimated cheek width = 8.4/14 mm; centered; exact fork slot remains unknown.",
+        "expected_visual_effect": "Reproduce the thinner flange and available space on its two axial sides.",
+        "interface_checks": [
+          "saved blade-wall span less than cheek width",
+          "blade centring",
+          "full static assembly audit",
+          "fork fit pending actual counterweight geometry"
+        ],
+        "disposition": "refined_in_revision_4_with_calculated_blade_and_bore_envelopes"
+      },
+      {
+        "id": "CR-07",
+        "part_id": "Crankshaft",
+        "feature": "Inclined cheek faces with retained machined support lands",
+        "state_before": "wrong_shape",
+        "priority": 1,
+        "observation": "Revision 2 changed the outline but retained uniform extruded faces; it did not express the slightly tapered three-dimensional web surfaces.",
+        "evidence_status": "user design observation and figure-supported construction hypothesis",
+        "confidence": "medium; angle and precise contours unresolved",
+        "operation": "Use native ruled loft sections for the outer webs, retain full-depth circular pin/journal lands, and measure actual surface angles and side clearance.",
+        "dimension_provenance": "Revision 4: taper scale 0.15 of cheek width = 2.10 mm; contained inclined sections give about 0.6984 degrees per face.",
+        "expected_visual_effect": "Inclined forged-web surfaces while retaining machined interface stations.",
+        "interface_checks": [
+          "native taper regeneration",
+          "actual saved planar face normals",
+          "rod side clearance and diameters",
+          "STEP",
+          "static pair audit"
+        ],
+        "disposition": "refined_in_revision_4: no negative inset into journals; full-size lands and roots checked"
+      },
+      {
+        "id": "CR-03",
+        "part_id": "Crankshaft",
+        "feature": "Journal shoulders and fillets",
+        "state_before": "wrong_shape",
+        "priority": 1,
+        "observation": "The drawing shows rounded forging/journal transitions; candidate intersections remain abrupt.",
+        "evidence_status": "figure-supported shape, radius unresolved",
+        "confidence": "medium",
+        "operation": "Add native CAD fillets/radiused shoulder features with a source-backed or explicitly estimated radius, retaining the bearing land and rod clearance.",
+        "dimension_provenance": "Calculated estimates: main root 0.75 of selected main margin, about 1.50 mm; pin root 0.60 of selected pin margin, about 1.71 mm. Manufacturer radii unknown.",
+        "expected_visual_effect": "Replace sharp plate/cylinder junctions with coherent forging transitions.",
+        "interface_checks": [
+          "bearing land lengths",
+          "clearance at cap edges",
+          "native regeneration",
+          "STEP round trip"
+        ],
+        "disposition": "implemented_in_revision_4: twelve pin and six main roots, native radius propagation and saved surfaces checked"
+      },
+      {
+        "id": "CR-04",
+        "part_id": "Crankshaft",
+        "feature": "Cheek circular openings / internal drilling",
+        "state_before": "uncertain",
+        "priority": 2,
+        "observation": "Several circular features in the illustration may be recesses, drilling ends or view-dependent pin faces. Their through depth and internal routes are not established.",
+        "evidence_status": "figure-supported presence; blind topology and depth are explicitly authorized estimates",
+        "confidence": "low for hidden topology",
+        "operation": "Represent the visible pin-end features as authorized estimated blind recesses, retain closed floors, and obtain a part drawing before claiming their actual purpose or internal oil routes.",
+        "dimension_provenance": "Radius 0.16 of documented pin diameter (9.14 mm); blind depth 0.25 of selected cheek width (3.50 mm). Explicit topology assumption, no oil route claim.",
+        "expected_visual_effect": "Correct the visible recessed features once identified.",
+        "interface_checks": [
+          "minimum wall",
+          "real connected oil routes if claimed",
+          "pin/journal strength is outside this teaching validation"
+        ],
+        "disposition": "revision_4_authorized_approximation: twelve blind end recesses with closed floors; internal routes remain unverified",
+        "state_after": "implemented_approximation"
+      },
+      {
+        "id": "CR-05",
+        "part_id": "Crankshaft",
+        "feature": "Axial journal and bay proportions",
+        "state_before": "uncertain",
+        "priority": 2,
+        "observation": "Two held-out journal centres differ by up to approximately 16 px after two-point registration. Illustration perspective and estimated centre placement also contribute.",
+        "evidence_status": "inferred comparison, not a machining measurement",
+        "confidence": "limited",
+        "operation": "Calibrate the four journal stations and cheek/pin widths against a dimensioned drawing or scaled orthogonal measurements before changing the shared engine datum.",
+        "dimension_provenance": "Axial widths remain estimated; interpreted source landmark placement uncertainty is approximately 8 px.",
+        "expected_visual_effect": "Correct bay and end proportions without hiding errors in camera fitting.",
+        "interface_checks": [
+          "all six cylinder stations",
+          "bearing supports",
+          "rod spacing",
+          "re-run every affected assembly audit"
+        ],
+        "disposition": "retained_as_initial_axial_estimates_in_revision_4; independent dimensional calibration pending"
+      }
+    ],
+    "current_revision": 4,
+    "estimation_record": "crankshaft-estimates.json"
+  },
+  "visible_feature_checks": {
+    "passed": true,
+    "part_id": "Crankshaft",
+    "native_sha256": "058aca7d571ec55575e11465752de5dad8ccd0ec3064065eb5a76f192d20629f",
+    "actual_cylindrical_blade_openings": 12,
+    "openings_per_middle_cheek": {
+      "95.0": 4,
+      "241.0": 4,
+      "387.0": 4
+    },
+    "bores": [
+      {
+        "radius_mm": 11.12266,
+        "centre_xy_mm": [
+          -23.357586,
+          -44.772707
+        ],
+        "z_span_mm": [
+          90.8,
+          99.2
+        ]
+      },
+      {
+        "radius_mm": 11.12266,
+        "centre_xy_mm": [
+          23.357586,
+          -44.772707
+        ],
+        "z_span_mm": [
+          90.8,
+          99.2
+        ]
+      },
+      {
+        "radius_mm": 11.12266,
+        "centre_xy_mm": [
+          23.357586,
+          44.772707
+        ],
+        "z_span_mm": [
+          90.8,
+          99.2
+        ]
+      },
+      {
+        "radius_mm": 11.12266,
+        "centre_xy_mm": [
+          -23.357586,
+          44.772707
+        ],
+        "z_span_mm": [
+          90.8,
+          99.2
+        ]
+      },
+      {
+        "radius_mm": 11.12266,
+        "centre_xy_mm": [
+          -27.095508658197403,
+          42.61461634707972
+        ],
+        "z_span_mm": [
+          236.8,
+          245.20000000000002
+        ]
+      },
+      {
+        "radius_mm": 11.12266,
+        "centre_xy_mm": [
+          -50.45309465819736,
+          2.158090652920187
+        ],
+        "z_span_mm": [
+          236.8,
+          245.20000000000002
+        ]
+      },
+      {
+        "radius_mm": 11.12266,
+        "centre_xy_mm": [
+          50.45309465819736,
+          -2.158090652920187
+        ],
+        "z_span_mm": [
+          236.8,
+          245.20000000000002
+        ]
+      },
+      {
+        "radius_mm": 11.12266,
+        "centre_xy_mm": [
+          27.095508658197403,
+          -42.61461634707972
+        ],
+        "z_span_mm": [
+          236.8,
+          245.20000000000002
+        ]
+      },
+      {
+        "radius_mm": 11.12266,
+        "centre_xy_mm": [
+          -50.45309465819736,
+          -2.158090652920279
+        ],
+        "z_span_mm": [
+          382.8,
+          391.2
+        ]
+      },
+      {
+        "radius_mm": 11.12266,
+        "centre_xy_mm": [
+          -27.095508658197332,
+          -42.61461634707977
+        ],
+        "z_span_mm": [
+          382.8,
+          391.2
+        ]
+      },
+      {
+        "radius_mm": 11.12266,
+        "centre_xy_mm": [
+          27.095508658197332,
+          42.61461634707977
+        ],
+        "z_span_mm": [
+          382.8,
+          391.2
+        ]
+      },
+      {
+        "radius_mm": 11.12266,
+        "centre_xy_mm": [
+          50.45309465819736,
+          2.158090652920279
+        ],
+        "z_span_mm": [
+          382.8,
+          391.2
+        ]
+      }
+    ],
+    "measured_blade_thicknesses_mm": [
+      8.400000000000006,
+      8.400000000000006,
+      8.400000000000006,
+      8.400000000000006,
+      8.400000000000006,
+      8.400000000000006,
+      8.400000000000006,
+      8.400000000000006,
+      8.399999999999977,
+      8.399999999999977,
+      8.399999999999977,
+      8.399999999999977
+    ],
+    "selected_cheek_thickness_mm": 14.0,
+    "blade_thinner_than_cheek": true,
+    "inclined_planar_faces": 24,
+    "measured_face_angles_deg": [
+      0.6984427819463049,
+      0.6984427819463049,
+      0.6984427819463049,
+      0.6984427819463049,
+      0.6984427819463049,
+      0.6984427819463049,
+      0.6984427819463049,
+      0.6984427819463049,
+      0.6984427819463049,
+      0.6984427819463049,
+      0.6984427819463049,
+      0.6984427819463049,
+      0.6984427819457831,
+      0.6984427819457831,
+      0.6984427819457831,
+      0.6984427819457831,
+      0.6984427819463049,
+      0.6984427819463049,
+      0.6984427819463049,
+      0.6984427819463049,
+      0.6984427819457831,
+      0.6984427819457831,
+      0.6984427819457831,
+      0.6984427819457831
+    ],
+    "selected_taper_angle_deg": 0.6984427819464207,
+    "taper_geometry_passed": true,
+    "source": "A-4-20 part 41; A-3-1/2; Table 11 cheeks 2,5,8",
+    "scope": "Confirms paired openings, thinner blade sections and actual inclined web faces in saved CAD. Sizes/angle remain inferred; actual counterweight-fork fit, strength and manufacturing fidelity are not certified."
+  },
+  "crankshaft_rebuild_checks": {
+    "passed": true,
+    "native_sha256": "058aca7d571ec55575e11465752de5dad8ccd0ec3064065eb5a76f192d20629f",
+    "part_id": "Crankshaft",
+    "measured_roots": 18,
+    "blind_recesses": 12,
+    "pockets": [
+      {
+        "pin": 1,
+        "face_station_mm": 44.0,
+        "direction": 1,
+        "radius_mm": 9.141967999999999,
+        "depth_mm": 3.5,
+        "closed_floor": true
+      },
+      {
+        "pin": 1,
+        "face_station_mm": 102.0,
+        "direction": -1,
+        "radius_mm": 9.141967999999999,
+        "depth_mm": 3.5,
+        "closed_floor": true
+      },
+      {
+        "pin": 2,
+        "face_station_mm": 88.0,
+        "direction": 1,
+        "radius_mm": 9.141967999999999,
+        "depth_mm": 3.5,
+        "closed_floor": true
+      },
+      {
+        "pin": 2,
+        "face_station_mm": 146.0,
+        "direction": -1,
+        "radius_mm": 9.141967999999999,
+        "depth_mm": 3.5,
+        "closed_floor": true
+      },
+      {
+        "pin": 3,
+        "face_station_mm": 190.0,
+        "direction": 1,
+        "radius_mm": 9.141967999999999,
+        "depth_mm": 3.5,
+        "closed_floor": true
+      },
+      {
+        "pin": 3,
+        "face_station_mm": 248.0,
+        "direction": -1,
+        "radius_mm": 9.141967999999999,
+        "depth_mm": 3.5,
+        "closed_floor": true
+      },
+      {
+        "pin": 4,
+        "face_station_mm": 234.0,
+        "direction": 1,
+        "radius_mm": 9.141967999999999,
+        "depth_mm": 3.5,
+        "closed_floor": true
+      },
+      {
+        "pin": 4,
+        "face_station_mm": 292.0,
+        "direction": -1,
+        "radius_mm": 9.141967999999999,
+        "depth_mm": 3.5,
+        "closed_floor": true
+      },
+      {
+        "pin": 5,
+        "face_station_mm": 336.0,
+        "direction": 1,
+        "radius_mm": 9.141967999999999,
+        "depth_mm": 3.5,
+        "closed_floor": true
+      },
+      {
+        "pin": 5,
+        "face_station_mm": 394.0,
+        "direction": -1,
+        "radius_mm": 9.141967999999999,
+        "depth_mm": 3.5,
+        "closed_floor": true
+      },
+      {
+        "pin": 6,
+        "face_station_mm": 380.0,
+        "direction": 1,
+        "radius_mm": 9.141967999999999,
+        "depth_mm": 3.5,
+        "closed_floor": true
+      },
+      {
+        "pin": 6,
+        "face_station_mm": 438.0,
+        "direction": -1,
+        "radius_mm": 9.141967999999999,
+        "depth_mm": 3.5,
+        "closed_floor": true
+      }
+    ],
+    "checks": [
+      {
+        "check": "pin 1 root -1",
+        "passed": true,
+        "expected_center_mm": [
+          50.8,
+          0.0,
+          59.714119
+        ],
+        "measured_minor_radius_mm": 1.7141189999999997,
+        "expected_minor_radius_mm": 1.7141189999999997,
+        "surface_regions": 3
+      },
+      {
+        "check": "pin 1 root 1",
+        "passed": true,
+        "expected_center_mm": [
+          50.8,
+          0.0,
+          86.285881
+        ],
+        "measured_minor_radius_mm": 1.7141189999999997,
+        "expected_minor_radius_mm": 1.7141189999999997,
+        "surface_regions": 1
+      },
+      {
+        "check": "pin 2 root -1",
+        "passed": true,
+        "expected_center_mm": [
+          -50.8,
+          -6.221205739668554e-15,
+          103.714119
+        ],
+        "measured_minor_radius_mm": 1.7141189999999997,
+        "expected_minor_radius_mm": 1.7141189999999997,
+        "surface_regions": 1
+      },
+      {
+        "check": "pin 2 root 1",
+        "passed": true,
+        "expected_center_mm": [
+          -50.8,
+          -6.221205739668554e-15,
+          130.285881
+        ],
+        "measured_minor_radius_mm": 1.7141189999999997,
+        "expected_minor_radius_mm": 1.7141189999999997,
+        "surface_regions": 3
+      },
+      {
+        "check": "pin 3 root -1",
+        "passed": true,
+        "expected_center_mm": [
+          -25.39999999999996,
+          -43.99409051224951,
+          205.714119
+        ],
+        "measured_minor_radius_mm": 1.7141189999999997,
+        "expected_minor_radius_mm": 1.7141189999999997,
+        "surface_regions": 3
+      },
+      {
+        "check": "pin 3 root 1",
+        "passed": true,
+        "expected_center_mm": [
+          -25.39999999999996,
+          -43.99409051224951,
+          232.285881
+        ],
+        "measured_minor_radius_mm": 1.7141189999999997,
+        "expected_minor_radius_mm": 1.7141189999999997,
+        "surface_regions": 1
+      },
+      {
+        "check": "pin 4 root -1",
+        "passed": true,
+        "expected_center_mm": [
+          25.400000000000006,
+          43.99409051224948,
+          249.714119
+        ],
+        "measured_minor_radius_mm": 1.7141189999999997,
+        "expected_minor_radius_mm": 1.7141189999999997,
+        "surface_regions": 1
+      },
+      {
+        "check": "pin 4 root 1",
+        "passed": true,
+        "expected_center_mm": [
+          25.400000000000006,
+          43.99409051224948,
+          276.285881
+        ],
+        "measured_minor_radius_mm": 1.7141189999999997,
+        "expected_minor_radius_mm": 1.7141189999999997,
+        "surface_regions": 3
+      },
+      {
+        "check": "pin 5 root -1",
+        "passed": true,
+        "expected_center_mm": [
+          -25.40000000000002,
+          43.99409051224947,
+          351.714119
+        ],
+        "measured_minor_radius_mm": 1.7141189999999997,
+        "expected_minor_radius_mm": 1.7141189999999997,
+        "surface_regions": 3
+      },
+      {
+        "check": "pin 5 root 1",
+        "passed": true,
+        "expected_center_mm": [
+          -25.40000000000002,
+          43.99409051224947,
+          378.285881
+        ],
+        "measured_minor_radius_mm": 1.7141189999999997,
+        "expected_minor_radius_mm": 1.7141189999999997,
+        "surface_regions": 1
+      },
+      {
+        "check": "pin 6 root -1",
+        "passed": true,
+        "expected_center_mm": [
+          25.399999999999984,
+          -43.99409051224949,
+          395.714119
+        ],
+        "measured_minor_radius_mm": 1.7141189999999997,
+        "expected_minor_radius_mm": 1.7141189999999997,
+        "surface_regions": 1
+      },
+      {
+        "check": "pin 6 root 1",
+        "passed": true,
+        "expected_center_mm": [
+          25.399999999999984,
+          -43.99409051224949,
+          422.285881
+        ],
+        "measured_minor_radius_mm": 1.7141189999999997,
+        "expected_minor_radius_mm": 1.7141189999999997,
+        "surface_regions": 3
+      },
+      {
+        "check": "main shoulder 44.0",
+        "passed": true,
+        "expected_center_mm": [
+          0,
+          0,
+          42.50009825
+        ],
+        "measured_minor_radius_mm": 1.4999017499999996,
+        "expected_minor_radius_mm": 1.4999017499999996,
+        "surface_regions": 3
+      },
+      {
+        "check": "main shoulder 146.0",
+        "passed": true,
+        "expected_center_mm": [
+          0,
+          0,
+          147.49990175
+        ],
+        "measured_minor_radius_mm": 1.4999017499999996,
+        "expected_minor_radius_mm": 1.4999017499999996,
+        "surface_regions": 3
+      },
+      {
+        "check": "main shoulder 190.0",
+        "passed": true,
+        "expected_center_mm": [
+          0,
+          0,
+          188.50009825
+        ],
+        "measured_minor_radius_mm": 1.4999017499999996,
+        "expected_minor_radius_mm": 1.4999017499999996,
+        "surface_regions": 3
+      },
+      {
+        "check": "main shoulder 292.0",
+        "passed": true,
+        "expected_center_mm": [
+          0,
+          0,
+          293.49990175
+        ],
+        "measured_minor_radius_mm": 1.4999017499999996,
+        "expected_minor_radius_mm": 1.4999017499999996,
+        "surface_regions": 3
+      },
+      {
+        "check": "main shoulder 336.0",
+        "passed": true,
+        "expected_center_mm": [
+          0,
+          0,
+          334.50009825
+        ],
+        "measured_minor_radius_mm": 1.4999017499999996,
+        "expected_minor_radius_mm": 1.4999017499999996,
+        "surface_regions": 3
+      },
+      {
+        "check": "main shoulder 438.0",
+        "passed": true,
+        "expected_center_mm": [
+          0,
+          0,
+          439.49990175
+        ],
+        "measured_minor_radius_mm": 1.4999017499999996,
+        "expected_minor_radius_mm": 1.4999017499999996,
+        "surface_regions": 3
+      },
+      {
+        "check": "pin 1 blind recess at 44.0",
+        "passed": true,
+        "radius_mm": 9.141967999999999,
+        "wall_spans_mm": [
+          3.5
+        ],
+        "closed_floor": true
+      },
+      {
+        "check": "pin 1 blind recess at 102.0",
+        "passed": true,
+        "radius_mm": 9.141967999999999,
+        "wall_spans_mm": [
+          3.5
+        ],
+        "closed_floor": true
+      },
+      {
+        "check": "pin 2 blind recess at 88.0",
+        "passed": true,
+        "radius_mm": 9.141967999999999,
+        "wall_spans_mm": [
+          3.5
+        ],
+        "closed_floor": true
+      },
+      {
+        "check": "pin 2 blind recess at 146.0",
+        "passed": true,
+        "radius_mm": 9.141967999999999,
+        "wall_spans_mm": [
+          3.5
+        ],
+        "closed_floor": true
+      },
+      {
+        "check": "pin 3 blind recess at 190.0",
+        "passed": true,
+        "radius_mm": 9.141967999999999,
+        "wall_spans_mm": [
+          3.5
+        ],
+        "closed_floor": true
+      },
+      {
+        "check": "pin 3 blind recess at 248.0",
+        "passed": true,
+        "radius_mm": 9.141967999999999,
+        "wall_spans_mm": [
+          3.5
+        ],
+        "closed_floor": true
+      },
+      {
+        "check": "pin 4 blind recess at 234.0",
+        "passed": true,
+        "radius_mm": 9.141967999999999,
+        "wall_spans_mm": [
+          3.5
+        ],
+        "closed_floor": true
+      },
+      {
+        "check": "pin 4 blind recess at 292.0",
+        "passed": true,
+        "radius_mm": 9.141967999999999,
+        "wall_spans_mm": [
+          3.5
+        ],
+        "closed_floor": true
+      },
+      {
+        "check": "pin 5 blind recess at 336.0",
+        "passed": true,
+        "radius_mm": 9.141967999999999,
+        "wall_spans_mm": [
+          3.5
+        ],
+        "closed_floor": true
+      },
+      {
+        "check": "pin 5 blind recess at 394.0",
+        "passed": true,
+        "radius_mm": 9.141967999999999,
+        "wall_spans_mm": [
+          3.5
+        ],
+        "closed_floor": true
+      },
+      {
+        "check": "pin 6 blind recess at 380.0",
+        "passed": true,
+        "radius_mm": 9.141967999999999,
+        "wall_spans_mm": [
+          3.5
+        ],
+        "closed_floor": true
+      },
+      {
+        "check": "pin 6 blind recess at 438.0",
+        "passed": true,
+        "radius_mm": 9.141967999999999,
+        "wall_spans_mm": [
+          3.5
+        ],
+        "closed_floor": true
+      },
+      {
+        "check": "pin 1 full-size central bearing land",
+        "passed": true,
+        "land_length_mm": 26.571762,
+        "relative_missing_volume": 2.1358487387612944e-16
+      },
+      {
+        "check": "pin 2 full-size central bearing land",
+        "passed": true,
+        "land_length_mm": 26.571762,
+        "relative_missing_volume": 2.1358487387612944e-16
+      },
+      {
+        "check": "pin 3 full-size central bearing land",
+        "passed": true,
+        "land_length_mm": 26.571762,
+        "relative_missing_volume": 4.271697477522589e-16
+      },
+      {
+        "check": "pin 4 full-size central bearing land",
+        "passed": true,
+        "land_length_mm": 26.571762,
+        "relative_missing_volume": 2.135848738761294e-16
+      },
+      {
+        "check": "pin 5 full-size central bearing land",
+        "passed": true,
+        "land_length_mm": 26.571762,
+        "relative_missing_volume": 1.281509243256777e-15
+      },
+      {
+        "check": "pin 6 full-size central bearing land",
+        "passed": true,
+        "land_length_mm": 26.571762,
+        "relative_missing_volume": 8.543394955045178e-16
+      },
+      {
+        "check": "main 1 annular bearing land",
+        "passed": true,
+        "land_length_mm": 42.50009825,
+        "verified_outer_radial_band_mm": 0.25,
+        "relative_missing_volume": 1.312870274504762e-14
+      },
+      {
+        "check": "main 2 annular bearing land",
+        "passed": true,
+        "land_length_mm": 41.000196500000015,
+        "verified_outer_radial_band_mm": 0.25,
+        "relative_missing_volume": 1.3608987375452268e-14
+      },
+      {
+        "check": "main 3 annular bearing land",
+        "passed": true,
+        "land_length_mm": 41.000196500000015,
+        "verified_outer_radial_band_mm": 0.25,
+        "relative_missing_volume": 2.7217974750904536e-14
+      },
+      {
+        "check": "main 4 annular bearing land",
+        "passed": true,
+        "land_length_mm": 42.50009825000001,
+        "verified_outer_radial_band_mm": 0.25,
+        "relative_missing_volume": 1.3128702745047533e-14
+      },
+      {
+        "check": "all split liners have two conical edge reliefs",
+        "passed": true,
+        "conical_faces": 24,
+        "relief_mm": 1.6625189999999999
+      },
+      {
+        "check": "saved native root-radius edit propagates",
+        "passed": true,
+        "before_volume_mm3": 2101437.64643541,
+        "after_volume_mm3": 2101522.538177027,
+        "radius_increment_mm": 0.1
+      },
+      {
+        "check": "restored radius/shape",
+        "passed": true
+      }
+    ],
+    "scope": "Confirms the estimated geometry and saved feature behaviour. No manufacturer radius, hidden drilling, stress or motion claim."
+  },
+  "sources": {
+    "original": {
+      "path": "D:\\KEON\\AE Departmental\\_Teaching Modules\\Piston Engine\\20262025 Sem 1 - AMT GCAME Piston\\Notes\\gtsio520_series.pdf",
+      "bytes": 12619184,
+      "sha256": "c8e7828e978772a55a9271d7bf678cc464ac772987ce7c44cfa3af89c9c21a07",
+      "pages": 236
+    },
+    "reviewed_pdf": {
+      "path": "C:\\Users\\user\\KeonGeraldo\\CodeProjects\\DigiMan\\work\\deliverables\\gtsio520\\GTSIO520_full_reviewed.pdf",
+      "bytes": 25590250,
+      "sha256": "e69c3fd8c5781d63d3310edcf326bfb197701cdce5a794210ed34b3a7a7a11c8",
+      "pages": 236
+    },
+    "reviewed_docx": {
+      "path": "C:\\Users\\user\\KeonGeraldo\\CodeProjects\\DigiMan\\work\\deliverables\\gtsio520\\GTSIO520_full_reviewed.docx",
+      "bytes": 37163918,
+      "sha256": "5bee23535a64031dc8f660298c36a274598f570076e3c018aa8ba990556db5f9"
+    },
+    "manual": {
+      "path": "D:\\KEON\\AE Departmental\\_Teaching Modules\\Piston Engine\\20262025 Sem 1 - AMT GCAME Piston\\Notes\\gtsio520_series.pdf",
+      "bytes": 12619184,
+      "sha256": "c8e7828e978772a55a9271d7bf678cc464ac772987ce7c44cfa3af89c9c21a07",
+      "pages": 236,
+      "title": "Continental GTSIO-520 Series Overhaul Manual",
+      "publication": "X-30045A",
+      "revision": "March 1981; relevant H pages June 1980",
+      "organization": "Teledyne Continental Motors",
+      "accessed": "2026-10-07",
+      "variant": "GTSIO-520-H"
+    }
+  },
+  "validation": {
+    "native": {
+      "schema_version": 1,
+      "model_id": "gtsio520-h-realism-core-v4",
+      "geometric_validation_passed": true,
+      "historical_accuracy_verified": false,
+      "freecad_version": [
+        "1",
+        "1",
+        "1",
+        "20260414 (Git shallow)",
+        "Unknown",
+        "2026/04/14 22:09:59",
+        "(HEAD detached at 0108fd4b4)",
+        "0108fd4b4850cc46e625b60e53cea7a7bbe69f8d"
+      ],
+      "bounds_method": "optimal_without_triangulation_or_shape_tolerance",
+      "part_count": 103,
+      "complete_spec": true,
+      "feature_count": 658,
+      "research_review": {
+        "passed": true,
+        "components": 93,
+        "source_callouts": 93,
+        "dispositions": {
+          "modelled": 0,
+          "simplified": 13,
+          "deferred": 78,
+          "outside_scope": 2
+        },
+        "coverage_checked": true,
+        "mechanisms": 3,
+        "historical_accuracy_verified": false,
+        "scope": "Ready only for the static forging/piston/rod candidate described in research.md; whole engine and operating animation remain incomplete."
+      },
+      "native_feature_history": "Native Part primitives, constrained sketch extrusions, linked polygon-section ruled lofts, helix sweeps and linked Booleans driven by Parameters expressions; optional radius-driven PartDesign fillets in a Body linked through BaseFeature; runs of 6 or more consecutive same-operation features are fused into one tool and applied in a single Boolean",
+      "batched_boolean_runs": 6,
+      "spec_sha256": "a8f25b0e416475ce355238c039a9b336dea45458ba06dc9f4d010d485223ce1f",
+      "files": {
+        "gtsio520-h-realism-core-v4.FCStd": {
+          "bytes": 4675714,
+          "sha256": "058aca7d571ec55575e11465752de5dad8ccd0ec3064065eb5a76f192d20629f"
+        },
+        "gtsio520-h-realism-core-v4.step": {
+          "bytes": 4677871,
+          "sha256": "c17f95400a728371393aba863c1fb237ae8bd4e361c9b72891082a6a074a34e9"
+        },
+        "geometry.json": {
+          "bytes": 5821151,
+          "sha256": "ad5de58830e5af9dcf6b510998ad2c920ee10ae29fb424ad2a3e2e0b46ecc43d"
+        }
+      },
+      "parts": [
+        {
+          "id": "Crankshaft",
+          "label": "Rebuilt six-throw forging / radiused roots and calculated blade seats",
+          "group": "crankshaft",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38 part 41; A-3-1/2 PDF16-17; A-10-3 PDF70; Table 6 PDF103; Table 11 PDF117 cheeks 2,5,8; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 2101437.64643541,
+          "bounds_mm": [
+            [
+              -82.22551509999998,
+              -75.4196056122495,
+              0.0
+            ],
+            [
+              82.22551509999998,
+              75.41960561224947,
+              482.0
+            ]
+          ],
+          "feature_count": 70
+        },
+        {
+          "id": "ConnectingRod1",
+          "label": "Rod 1 / I-section forging",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 77940.12974802713,
+          "bounds_mm": [
+            [
+              50.79999999999997,
+              -46.00000000000001,
+              58.1015999
+            ],
+            [
+              241.075,
+              46.0,
+              87.8984001
+            ]
+          ],
+          "feature_count": 15
+        },
+        {
+          "id": "RodCap1",
+          "label": "Rod 1 / separate cap",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 33301.63335429889,
+          "bounds_mm": [
+            [
+              11.799999899999998,
+              -46.000000000000014,
+              58.1015999
+            ],
+            [
+              50.77500000000034,
+              46.0,
+              87.89840009999999
+            ]
+          ],
+          "feature_count": 10
+        },
+        {
+          "id": "RodBearingUpper1",
+          "label": "Rod 1 / upper lined shell",
+          "group": "rods",
+          "material": "babbitt",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 5631.2393239675885,
+          "bounds_mm": [
+            [
+              50.799999999999976,
+              -30.743649999999995,
+              58.3016
+            ],
+            [
+              81.54364999999999,
+              30.743649999999995,
+              87.6984
+            ]
+          ],
+          "feature_count": 4
+        },
+        {
+          "id": "RodBearingLower1",
+          "label": "Rod 1 / lower lined shell",
+          "group": "rods",
+          "material": "babbitt",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 5628.221040681583,
+          "bounds_mm": [
+            [
+              20.056350000000002,
+              -30.743649999999995,
+              58.3016
+            ],
+            [
+              50.77500000000031,
+              30.743649999999995,
+              87.6984
+            ]
+          ],
+          "feature_count": 4
+        },
+        {
+          "id": "SmallEndBush1",
+          "label": "Rod 1 / split bronze bushing",
+          "group": "rods",
+          "material": "bronze",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 11001.028886022137,
+          "bounds_mm": [
+            [
+              201.075,
+              -17.99999999999999,
+              58.3016
+            ],
+            [
+              237.07495555550068,
+              18.00000000000001,
+              87.6984
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "RodBoltA1",
+          "label": "Rod 1 / bolt A",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3549.847931323786,
+          "bounds_mm": [
+            [
+              22.799999899999996,
+              31.0,
+              66.0
+            ],
+            [
+              73.8,
+              45.0,
+              80.0
+            ]
+          ],
+          "feature_count": 3
+        },
+        {
+          "id": "RodNutA1",
+          "label": "Rod 1 / slotted nut A",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 1091.2187232512915,
+          "bounds_mm": [
+            [
+              23.799999999999994,
+              30.638784067832272,
+              64.5
+            ],
+            [
+              32.8,
+              45.36121593216774,
+              81.5
+            ]
+          ],
+          "feature_count": 5
+        },
+        {
+          "id": "RodBoltB1",
+          "label": "Rod 1 / bolt B",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3549.847931323785,
+          "bounds_mm": [
+            [
+              22.799999899999996,
+              -45.0,
+              66.0
+            ],
+            [
+              73.8,
+              -31.0,
+              80.0
+            ]
+          ],
+          "feature_count": 3
+        },
+        {
+          "id": "RodNutB1",
+          "label": "Rod 1 / slotted nut B",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 1091.2187232512906,
+          "bounds_mm": [
+            [
+              23.799999999999994,
+              -45.36121593216773,
+              64.5
+            ],
+            [
+              32.8,
+              -30.63878406783227,
+              81.5
+            ]
+          ],
+          "feature_count": 5
+        },
+        {
+          "id": "CompressionRingA1",
+          "label": "Piston 1 / CompressionRingA",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3314.841846673,
+          "bounds_mm": [
+            [
+              241.07499999999996,
+              -66.6904,
+              6.309600000000003
+            ],
+            [
+              243.07500000000002,
+              66.6904,
+              139.6885998665439
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "CompressionRingB1",
+          "label": "Piston 1 / CompressionRingB",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3314.8418466730072,
+          "bounds_mm": [
+            [
+              235.07499999999996,
+              -66.6904,
+              6.31140013345609
+            ],
+            [
+              237.07500000000002,
+              66.6904,
+              139.6904
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "OilRing1",
+          "label": "Piston 1 / OilRing",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 5749.662040357511,
+          "bounds_mm": [
+            [
+              192.32499989999997,
+              -66.69040009999999,
+              6.309599900000002
+            ],
+            [
+              195.8250001,
+              66.6904001,
+              139.6885999665439
+            ]
+          ],
+          "feature_count": 14
+        },
+        {
+          "id": "ScraperRing1",
+          "label": "Piston 1 / ScraperRing",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 4143.552308341252,
+          "bounds_mm": [
+            [
+              179.82499999999996,
+              -66.6904,
+              6.311400133456089
+            ],
+            [
+              182.32500000000002,
+              66.6904,
+              139.6904
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "Piston1",
+          "label": "Piston 1 / hollow aluminium body",
+          "group": "pistons",
+          "material": "aluminium",
+          "evidence": "A-3-2 PDF17; A-4-17 PDF34; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 355829.40643975383,
+          "bounds_mm": [
+            [
+              171.0749998999998,
+              -66.54673009999999,
+              6.518043592220189
+            ],
+            [
+              253.07500000000002,
+              66.54673009999999,
+              139.4819564077798
+            ]
+          ],
+          "feature_count": 24
+        },
+        {
+          "id": "PistonPin1",
+          "label": "Piston 1 / floating hollow pin",
+          "group": "pistons",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 47263.64476271374,
+          "bounds_mm": [
+            [
+              204.79512,
+              -14.27988,
+              11.801249999999996
+            ],
+            [
+              233.35487999999998,
+              14.27988,
+              134.19875000000002
+            ]
+          ],
+          "feature_count": 1
+        },
+        {
+          "id": "PinPlugA1",
+          "label": "Pin 1 / permanent aluminium plug A",
+          "group": "pistons",
+          "material": "aluminium",
+          "evidence": "A-3-2 PDF17: forged-in end plugs; contours estimated; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3203.0889027534076,
+          "bounds_mm": [
+            [
+              204.79512,
+              -14.27988,
+              6.801249999999996
+            ],
+            [
+              233.35487999999998,
+              14.27988,
+              11.801249999999996
+            ]
+          ],
+          "feature_count": 1
+        },
+        {
+          "id": "PinPlugB1",
+          "label": "Pin 1 / permanent aluminium plug B",
+          "group": "pistons",
+          "material": "aluminium",
+          "evidence": "A-3-2 PDF17: forged-in end plugs; contours estimated; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3203.0889027534076,
+          "bounds_mm": [
+            [
+              204.79512,
+              -14.27988,
+              134.19875000000002
+            ],
+            [
+              233.35487999999998,
+              14.27988,
+              139.19875000000002
+            ]
+          ],
+          "feature_count": 1
+        },
+        {
+          "id": "ConnectingRod2",
+          "label": "Rod 2 / I-section forging",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 77940.12974733359,
+          "bounds_mm": [
+            [
+              -241.075,
+              -46.000000000000014,
+              102.1015999
+            ],
+            [
+              -50.79999999999999,
+              46.0,
+              131.89840010000006
+            ]
+          ],
+          "feature_count": 15
+        },
+        {
+          "id": "RodCap2",
+          "label": "Rod 2 / separate cap",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 33301.633352380566,
+          "bounds_mm": [
+            [
+              -50.77500000000037,
+              -46.000000000000014,
+              102.10159990000001
+            ],
+            [
+              -11.79999989999999,
+              46.0,
+              131.8984001
+            ]
+          ],
+          "feature_count": 10
+        },
+        {
+          "id": "RodBearingUpper2",
+          "label": "Rod 2 / upper lined shell",
+          "group": "rods",
+          "material": "babbitt",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 5631.239323967571,
+          "bounds_mm": [
+            [
+              -81.54365,
+              -30.74365000000001,
+              102.3016
+            ],
+            [
+              -50.79999999999999,
+              30.743649999999995,
+              131.6984
+            ]
+          ],
+          "feature_count": 4
+        },
+        {
+          "id": "RodBearingLower2",
+          "label": "Rod 2 / lower lined shell",
+          "group": "rods",
+          "material": "babbitt",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 5628.221040681583,
+          "bounds_mm": [
+            [
+              -50.775000000000354,
+              -30.743650000000002,
+              102.3016
+            ],
+            [
+              -20.056349999999995,
+              30.743649999999988,
+              131.6984
+            ]
+          ],
+          "feature_count": 4
+        },
+        {
+          "id": "SmallEndBush2",
+          "label": "Rod 2 / split bronze bushing",
+          "group": "rods",
+          "material": "bronze",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 11001.028886022148,
+          "bounds_mm": [
+            [
+              -237.07495555550068,
+              -18.0,
+              102.3016
+            ],
+            [
+              -201.075,
+              18.000000000000007,
+              131.6984
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "RodBoltA2",
+          "label": "Rod 2 / bolt A",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3549.8478640560243,
+          "bounds_mm": [
+            [
+              -73.8,
+              -45.00000000000001,
+              110.0
+            ],
+            [
+              -22.799999899999996,
+              -31.000000000000007,
+              124.0
+            ]
+          ],
+          "feature_count": 3
+        },
+        {
+          "id": "RodNutA2",
+          "label": "Rod 2 / slotted nut A",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 1091.2187232512902,
+          "bounds_mm": [
+            [
+              -32.8,
+              -45.36121593216774,
+              108.5
+            ],
+            [
+              -23.799999999999994,
+              -30.638784067832276,
+              125.5
+            ]
+          ],
+          "feature_count": 5
+        },
+        {
+          "id": "RodBoltB2",
+          "label": "Rod 2 / bolt B",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3549.8478640560224,
+          "bounds_mm": [
+            [
+              -73.8,
+              30.999999999999993,
+              110.0
+            ],
+            [
+              -22.799999899999996,
+              44.99999999999999,
+              124.0
+            ]
+          ],
+          "feature_count": 3
+        },
+        {
+          "id": "RodNutB2",
+          "label": "Rod 2 / slotted nut B",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 1091.2187232512902,
+          "bounds_mm": [
+            [
+              -32.8,
+              30.638784067832265,
+              108.5
+            ],
+            [
+              -23.799999999999994,
+              45.36121593216773,
+              125.5
+            ]
+          ],
+          "feature_count": 5
+        },
+        {
+          "id": "CompressionRingA2",
+          "label": "Piston 2 / CompressionRingA",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3314.8418466730036,
+          "bounds_mm": [
+            [
+              -243.07500000000002,
+              -66.6904,
+              50.3096
+            ],
+            [
+              -241.07499999999996,
+              66.6904,
+              183.6885998665439
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "CompressionRingB2",
+          "label": "Piston 2 / CompressionRingB",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3314.8418466729963,
+          "bounds_mm": [
+            [
+              -237.07500000000002,
+              -66.6904,
+              50.31140013345609
+            ],
+            [
+              -235.07499999999996,
+              66.6904,
+              183.6904
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "OilRing2",
+          "label": "Piston 2 / OilRing",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 5749.667051020482,
+          "bounds_mm": [
+            [
+              -195.8250001,
+              -66.69040010000002,
+              50.30959989999998
+            ],
+            [
+              -192.32499989999997,
+              66.69040010000002,
+              183.6885999665439
+            ]
+          ],
+          "feature_count": 14
+        },
+        {
+          "id": "ScraperRing2",
+          "label": "Piston 2 / ScraperRing",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 4143.552308341248,
+          "bounds_mm": [
+            [
+              -182.32500000000002,
+              -66.6904,
+              50.31140013345609
+            ],
+            [
+              -179.82499999999996,
+              66.6904,
+              183.6904
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "Piston2",
+          "label": "Piston 2 / hollow aluminium body",
+          "group": "pistons",
+          "material": "aluminium",
+          "evidence": "A-3-2 PDF17; A-4-17 PDF34; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 355833.7272963808,
+          "bounds_mm": [
+            [
+              -253.07500000000002,
+              -66.54673009999999,
+              50.51804359222015
+            ],
+            [
+              -171.07499989999994,
+              66.54673009999999,
+              183.4819564077798
+            ]
+          ],
+          "feature_count": 24
+        },
+        {
+          "id": "PistonPin2",
+          "label": "Piston 2 / floating hollow pin",
+          "group": "pistons",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 47263.64476271377,
+          "bounds_mm": [
+            [
+              -233.35487999999998,
+              -14.279880000000004,
+              55.801249999999996
+            ],
+            [
+              -204.79512,
+              14.279880000000004,
+              178.19875000000002
+            ]
+          ],
+          "feature_count": 1
+        },
+        {
+          "id": "PinPlugA2",
+          "label": "Pin 2 / permanent aluminium plug A",
+          "group": "pistons",
+          "material": "aluminium",
+          "evidence": "A-3-2 PDF17: forged-in end plugs; contours estimated; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3203.088902753409,
+          "bounds_mm": [
+            [
+              -233.35487999999998,
+              -14.279880000000004,
+              50.801249999999996
+            ],
+            [
+              -204.79512,
+              14.279880000000004,
+              55.801249999999996
+            ]
+          ],
+          "feature_count": 1
+        },
+        {
+          "id": "PinPlugB2",
+          "label": "Pin 2 / permanent aluminium plug B",
+          "group": "pistons",
+          "material": "aluminium",
+          "evidence": "A-3-2 PDF17: forged-in end plugs; contours estimated; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3203.0889027534085,
+          "bounds_mm": [
+            [
+              -233.35487999999998,
+              -14.279880000000004,
+              178.19875000000002
+            ],
+            [
+              -204.79512,
+              14.279880000000004,
+              183.19875000000002
+            ]
+          ],
+          "feature_count": 1
+        },
+        {
+          "id": "ConnectingRod3",
+          "label": "Rod 3 / I-section forging",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 77940.12972638925,
+          "bounds_mm": [
+            [
+              -37.42631504123292,
+              -88.39417774785092,
+              204.1015999
+            ],
+            [
+              159.02227564284405,
+              21.999999999999957,
+              233.8984001000001
+            ]
+          ],
+          "feature_count": 15
+        },
+        {
+          "id": "RodCap3",
+          "label": "Rod 3 / separate cap",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 33301.63335827786,
+          "bounds_mm": [
+            [
+              -64.40000009999996,
+              -93.10012711181164,
+              204.1015999
+            ],
+            [
+              -13.397815440960262,
+              0.39946068256861267,
+              233.89840009999998
+            ]
+          ],
+          "feature_count": 10
+        },
+        {
+          "id": "RodBearingUpper3",
+          "label": "Rod 3 / upper lined shell",
+          "group": "rods",
+          "material": "babbitt",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 5631.239323967573,
+          "bounds_mm": [
+            [
+              -33.43767000907391,
+              -73.66845446748422,
+              204.3016
+            ],
+            [
+              5.343650000000036,
+              -13.250440512249511,
+              233.69840000000002
+            ]
+          ],
+          "feature_count": 4
+        },
+        {
+          "id": "RodBearingLower3",
+          "label": "Rod 3 / lower lined shell",
+          "group": "rods",
+          "material": "babbitt",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 5628.221040681474,
+          "bounds_mm": [
+            [
+              -56.14364999999995,
+              -74.7377405122495,
+              204.3016
+            ],
+            [
+              -17.386460473119286,
+              -14.326262597798078,
+              233.6984
+            ]
+          ],
+          "feature_count": 4
+        },
+        {
+          "id": "SmallEndBush3",
+          "label": "Rod 3 / split bronze bushing",
+          "group": "rods",
+          "material": "bronze",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 11001.028886022128,
+          "bounds_mm": [
+            [
+              119.02227564284405,
+              -18.000000000000043,
+              204.3016
+            ],
+            [
+              155.02227564284405,
+              17.999999999999957,
+              233.6984
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "RodBoltA3",
+          "label": "Rod 3 / bolt A",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3549.850587828486,
+          "bounds_mm": [
+            [
+              -63.5112653248938,
+              -18.883088221778117,
+              212.0
+            ],
+            [
+              -11.30464695346495,
+              5.453934956237902,
+              226.0
+            ]
+          ],
+          "feature_count": 3
+        },
+        {
+          "id": "RodNutA3",
+          "label": "Rod 3 / slotted nut A",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 1091.2187232512958,
+          "bounds_mm": [
+            [
+              -63.54378943409121,
+              -22.305226884812708,
+              210.79563605429104
+            ],
+            [
+              -50.56064249494714,
+              -4.091161682072764,
+              227.20436394570896
+            ]
+          ],
+          "feature_count": 5
+        },
+        {
+          "id": "RodBoltB3",
+          "label": "Rod 3 / bolt B",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3549.8505878284814,
+          "bounds_mm": [
+            [
+              -43.641701343726304,
+              -92.23975408929346,
+              212.0
+            ],
+            [
+              8.564917027702544,
+              -67.90273091127743,
+              226.0
+            ]
+          ],
+          "feature_count": 3
+        },
+        {
+          "id": "RodNutB3",
+          "label": "Rod 3 / slotted nut B",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 1091.2187232512956,
+          "bounds_mm": [
+            [
+              -43.674225452923714,
+              -95.66189275232804,
+              210.79563605429104
+            ],
+            [
+              -30.691078513779644,
+              -77.4478275495881,
+              227.20436394570896
+            ]
+          ],
+          "feature_count": 5
+        },
+        {
+          "id": "CompressionRingA3",
+          "label": "Piston 3 / CompressionRingA",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3314.8418466730072,
+          "bounds_mm": [
+            [
+              159.022275642844,
+              -66.6904,
+              152.3096
+            ],
+            [
+              161.02227564284405,
+              66.6904,
+              285.6885998665439
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "CompressionRingB3",
+          "label": "Piston 3 / CompressionRingB",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3314.841846673,
+          "bounds_mm": [
+            [
+              153.022275642844,
+              -66.6904,
+              152.3114001334561
+            ],
+            [
+              155.02227564284405,
+              66.6904,
+              285.6904
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "OilRing3",
+          "label": "Piston 3 / OilRing",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 5749.662040355757,
+          "bounds_mm": [
+            [
+              110.27227554284401,
+              -66.69040010000002,
+              152.3095999
+            ],
+            [
+              113.77227574284403,
+              66.69040010000002,
+              285.68859996654396
+            ]
+          ],
+          "feature_count": 14
+        },
+        {
+          "id": "ScraperRing3",
+          "label": "Piston 3 / ScraperRing",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 4143.552308341252,
+          "bounds_mm": [
+            [
+              97.77227564284401,
+              -66.6904,
+              152.3114001334561
+            ],
+            [
+              100.27227564284404,
+              66.6904,
+              285.6904
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "Piston3",
+          "label": "Piston 3 / hollow aluminium body",
+          "group": "pistons",
+          "material": "aluminium",
+          "evidence": "A-3-2 PDF17; A-4-17 PDF34; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 355829.4063992133,
+          "bounds_mm": [
+            [
+              89.02227554284399,
+              -66.54673009999999,
+              152.51804359222018
+            ],
+            [
+              171.02227564284405,
+              66.54673009999999,
+              285.4819564077798
+            ]
+          ],
+          "feature_count": 24
+        },
+        {
+          "id": "PistonPin3",
+          "label": "Piston 3 / floating hollow pin",
+          "group": "pistons",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 47263.64476271373,
+          "bounds_mm": [
+            [
+              122.74239564284402,
+              -14.27988,
+              157.80124999999998
+            ],
+            [
+              151.302155642844,
+              14.27988,
+              280.19875
+            ]
+          ],
+          "feature_count": 1
+        },
+        {
+          "id": "PinPlugA3",
+          "label": "Pin 3 / permanent aluminium plug A",
+          "group": "pistons",
+          "material": "aluminium",
+          "evidence": "A-3-2 PDF17: forged-in end plugs; contours estimated; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3203.0889027534067,
+          "bounds_mm": [
+            [
+              122.74239564284402,
+              -14.27988,
+              152.80124999999998
+            ],
+            [
+              151.302155642844,
+              14.27988,
+              157.80124999999998
+            ]
+          ],
+          "feature_count": 1
+        },
+        {
+          "id": "PinPlugB3",
+          "label": "Pin 3 / permanent aluminium plug B",
+          "group": "pistons",
+          "material": "aluminium",
+          "evidence": "A-3-2 PDF17: forged-in end plugs; contours estimated; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3203.0889027534067,
+          "bounds_mm": [
+            [
+              122.74239564284402,
+              -14.27988,
+              280.19875
+            ],
+            [
+              151.302155642844,
+              14.27988,
+              285.19875
+            ]
+          ],
+          "feature_count": 1
+        },
+        {
+          "id": "ConnectingRod4",
+          "label": "Rod 4 / I-section forging",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 77940.1297681912,
+          "bounds_mm": [
+            [
+              -159.022275642844,
+              -22.000000000000007,
+              248.1015999
+            ],
+            [
+              37.42631504123297,
+              88.39417774785088,
+              277.89840010000006
+            ]
+          ],
+          "feature_count": 15
+        },
+        {
+          "id": "RodCap4",
+          "label": "Rod 4 / separate cap",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 33301.63336098193,
+          "bounds_mm": [
+            [
+              13.397815440960308,
+              -0.39946068256863754,
+              248.1015999
+            ],
+            [
+              64.4000001,
+              93.1001271118116,
+              277.8984001
+            ]
+          ],
+          "feature_count": 10
+        },
+        {
+          "id": "RodBearingUpper4",
+          "label": "Rod 4 / upper lined shell",
+          "group": "rods",
+          "material": "babbitt",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 5631.239323967555,
+          "bounds_mm": [
+            [
+              -5.343649999999993,
+              13.250440512249483,
+              248.3016
+            ],
+            [
+              33.437670009073955,
+              73.6684544674842,
+              277.6984
+            ]
+          ],
+          "feature_count": 4
+        },
+        {
+          "id": "RodBearingLower4",
+          "label": "Rod 4 / lower lined shell",
+          "group": "rods",
+          "material": "babbitt",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 5628.221040681437,
+          "bounds_mm": [
+            [
+              17.386460473119328,
+              14.326262597798053,
+              248.3016
+            ],
+            [
+              56.14365,
+              74.73774051224947,
+              277.69840000000005
+            ]
+          ],
+          "feature_count": 4
+        },
+        {
+          "id": "SmallEndBush4",
+          "label": "Rod 4 / split bronze bushing",
+          "group": "rods",
+          "material": "bronze",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 11001.028886022135,
+          "bounds_mm": [
+            [
+              -155.022275642844,
+              -18.000000000000007,
+              248.3016
+            ],
+            [
+              -119.022275642844,
+              17.999999999999993,
+              277.6984
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "RodBoltA4",
+          "label": "Rod 4 / bolt A",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3549.850685538851,
+          "bounds_mm": [
+            [
+              11.304646953465003,
+              -5.453934956237932,
+              256.0
+            ],
+            [
+              63.51126532489385,
+              18.88308822177809,
+              270.0
+            ]
+          ],
+          "feature_count": 3
+        },
+        {
+          "id": "RodNutA4",
+          "label": "Rod 4 / slotted nut A",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 1091.2187232512824,
+          "bounds_mm": [
+            [
+              50.56064249494719,
+              4.091161682072738,
+              254.79563605429104
+            ],
+            [
+              63.54378943409126,
+              22.305226884812683,
+              271.20436394570896
+            ]
+          ],
+          "feature_count": 5
+        },
+        {
+          "id": "RodBoltB4",
+          "label": "Rod 4 / bolt B",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3549.8506855388587,
+          "bounds_mm": [
+            [
+              -8.564917027702501,
+              67.9027309112774,
+              256.0
+            ],
+            [
+              43.641701343726346,
+              92.23975408929343,
+              270.0
+            ]
+          ],
+          "feature_count": 3
+        },
+        {
+          "id": "RodNutB4",
+          "label": "Rod 4 / slotted nut B",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 1091.2187232513093,
+          "bounds_mm": [
+            [
+              30.691078513779686,
+              77.44782754958808,
+              254.79563605429104
+            ],
+            [
+              43.67422545292376,
+              95.66189275232801,
+              271.20436394570896
+            ]
+          ],
+          "feature_count": 5
+        },
+        {
+          "id": "CompressionRingA4",
+          "label": "Piston 4 / CompressionRingA",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3314.8418466730036,
+          "bounds_mm": [
+            [
+              -161.02227564284402,
+              -66.6904,
+              196.3096
+            ],
+            [
+              -159.02227564284397,
+              66.6904,
+              329.6885998665439
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "CompressionRingB4",
+          "label": "Piston 4 / CompressionRingB",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3314.8418466730036,
+          "bounds_mm": [
+            [
+              -155.02227564284402,
+              -66.6904,
+              196.3114001334561
+            ],
+            [
+              -153.02227564284397,
+              66.6904,
+              329.6904
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "OilRing4",
+          "label": "Piston 4 / OilRing",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 5749.667051136232,
+          "bounds_mm": [
+            [
+              -113.772275742844,
+              -66.69040010000012,
+              196.3095999
+            ],
+            [
+              -110.27227554284399,
+              66.69040010000012,
+              329.6885999665439
+            ]
+          ],
+          "feature_count": 14
+        },
+        {
+          "id": "ScraperRing4",
+          "label": "Piston 4 / ScraperRing",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 4143.552308341252,
+          "bounds_mm": [
+            [
+              -100.27227564284401,
+              -66.6904,
+              196.3114001334561
+            ],
+            [
+              -97.77227564284398,
+              66.6904,
+              329.6904
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "Piston4",
+          "label": "Piston 4 / hollow aluminium body",
+          "group": "pistons",
+          "material": "aluminium",
+          "evidence": "A-3-2 PDF17; A-4-17 PDF34; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 355833.7273713521,
+          "bounds_mm": [
+            [
+              -171.02227564284402,
+              -66.54673009999999,
+              196.51804359222018
+            ],
+            [
+              -89.02227554284399,
+              66.54673009999999,
+              329.4819564077799
+            ]
+          ],
+          "feature_count": 24
+        },
+        {
+          "id": "PistonPin4",
+          "label": "Piston 4 / floating hollow pin",
+          "group": "pistons",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 47263.644762713775,
+          "bounds_mm": [
+            [
+              -151.30215564284399,
+              -14.279880000000004,
+              201.80124999999998
+            ],
+            [
+              -122.74239564284399,
+              14.279880000000004,
+              324.19875
+            ]
+          ],
+          "feature_count": 1
+        },
+        {
+          "id": "PinPlugA4",
+          "label": "Pin 4 / permanent aluminium plug A",
+          "group": "pistons",
+          "material": "aluminium",
+          "evidence": "A-3-2 PDF17: forged-in end plugs; contours estimated; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3203.0889027534085,
+          "bounds_mm": [
+            [
+              -151.30215564284399,
+              -14.279880000000004,
+              196.80124999999998
+            ],
+            [
+              -122.74239564284399,
+              14.279880000000004,
+              201.80124999999998
+            ]
+          ],
+          "feature_count": 1
+        },
+        {
+          "id": "PinPlugB4",
+          "label": "Pin 4 / permanent aluminium plug B",
+          "group": "pistons",
+          "material": "aluminium",
+          "evidence": "A-3-2 PDF17: forged-in end plugs; contours estimated; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3203.0889027534085,
+          "bounds_mm": [
+            [
+              -151.30215564284399,
+              -14.279880000000004,
+              324.19875
+            ],
+            [
+              -122.74239564284399,
+              14.279880000000004,
+              329.19875
+            ]
+          ],
+          "feature_count": 1
+        },
+        {
+          "id": "ConnectingRod5",
+          "label": "Rod 5 / I-section forging",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 77940.12976787609,
+          "bounds_mm": [
+            [
+              -37.42631504123298,
+              -22.000000000000014,
+              350.10159989999994
+            ],
+            [
+              159.02227564284397,
+              88.39417774785086,
+              379.8984001000001
+            ]
+          ],
+          "feature_count": 15
+        },
+        {
+          "id": "RodCap5",
+          "label": "Rod 5 / separate cap",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 33301.63336075524,
+          "bounds_mm": [
+            [
+              -64.40000010000001,
+              -0.39946068256867706,
+              350.1015999
+            ],
+            [
+              -13.3978154409603,
+              93.10012711181159,
+              379.89840010000006
+            ]
+          ],
+          "feature_count": 10
+        },
+        {
+          "id": "RodBearingUpper5",
+          "label": "Rod 5 / upper lined shell",
+          "group": "rods",
+          "material": "babbitt",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 5631.23932396754,
+          "bounds_mm": [
+            [
+              -33.43767000907397,
+              13.250440512249472,
+              350.3016
+            ],
+            [
+              5.343649999999979,
+              73.66845446748418,
+              379.6984
+            ]
+          ],
+          "feature_count": 4
+        },
+        {
+          "id": "RodBearingLower5",
+          "label": "Rod 5 / lower lined shell",
+          "group": "rods",
+          "material": "babbitt",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 5628.221040681252,
+          "bounds_mm": [
+            [
+              -56.143650000000015,
+              14.32626259779802,
+              350.3016
+            ],
+            [
+              -17.38646047311933,
+              74.73774051224947,
+              379.69840000000005
+            ]
+          ],
+          "feature_count": 4
+        },
+        {
+          "id": "SmallEndBush5",
+          "label": "Rod 5 / split bronze bushing",
+          "group": "rods",
+          "material": "bronze",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 11001.028886022128,
+          "bounds_mm": [
+            [
+              119.02227564284397,
+              -18.000000000000014,
+              350.3016
+            ],
+            [
+              155.02227564284397,
+              17.999999999999986,
+              379.6984
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "RodBoltA5",
+          "label": "Rod 5 / bolt A",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3549.8411386797316,
+          "bounds_mm": [
+            [
+              -43.64170134372636,
+              67.9027309112774,
+              358.0
+            ],
+            [
+              8.564917027702487,
+              92.23975408929343,
+              372.0
+            ]
+          ],
+          "feature_count": 3
+        },
+        {
+          "id": "RodNutA5",
+          "label": "Rod 5 / slotted nut A",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 1091.2187232512724,
+          "bounds_mm": [
+            [
+              -43.67422545292377,
+              77.44782754958808,
+              356.79563605429104
+            ],
+            [
+              -30.6910785137797,
+              95.66189275232801,
+              373.20436394570896
+            ]
+          ],
+          "feature_count": 5
+        },
+        {
+          "id": "RodBoltB5",
+          "label": "Rod 5 / bolt B",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3549.8411386797175,
+          "bounds_mm": [
+            [
+              -63.51126532489386,
+              -5.453934956237939,
+              358.0
+            ],
+            [
+              -11.304646953465017,
+              18.88308822177808,
+              372.0
+            ]
+          ],
+          "feature_count": 3
+        },
+        {
+          "id": "RodNutB5",
+          "label": "Rod 5 / slotted nut B",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 1091.2187232513074,
+          "bounds_mm": [
+            [
+              -63.54378943409127,
+              4.091161682072731,
+              356.79563605429104
+            ],
+            [
+              -50.5606424949472,
+              22.30522688481268,
+              373.20436394570896
+            ]
+          ],
+          "feature_count": 5
+        },
+        {
+          "id": "CompressionRingA5",
+          "label": "Piston 5 / CompressionRingA",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3314.8418466730036,
+          "bounds_mm": [
+            [
+              159.02227564284394,
+              -66.6904,
+              298.3096
+            ],
+            [
+              161.022275642844,
+              66.6904,
+              431.6885998665439
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "CompressionRingB5",
+          "label": "Piston 5 / CompressionRingB",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3314.8418466730072,
+          "bounds_mm": [
+            [
+              153.02227564284394,
+              -66.6904,
+              298.3114001334561
+            ],
+            [
+              155.022275642844,
+              66.6904,
+              431.6904
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "OilRing5",
+          "label": "Piston 5 / OilRing",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 5749.662040248564,
+          "bounds_mm": [
+            [
+              110.27227554284396,
+              -66.69040010000012,
+              298.30959989999997
+            ],
+            [
+              113.77227574284397,
+              66.69040010000012,
+              431.6885999665441
+            ]
+          ],
+          "feature_count": 14
+        },
+        {
+          "id": "ScraperRing5",
+          "label": "Piston 5 / ScraperRing",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 4143.552308341259,
+          "bounds_mm": [
+            [
+              97.77227564284395,
+              -66.6904,
+              298.3114001334561
+            ],
+            [
+              100.27227564284398,
+              66.6904,
+              431.6904
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "Piston5",
+          "label": "Piston 5 / hollow aluminium body",
+          "group": "pistons",
+          "material": "aluminium",
+          "evidence": "A-3-2 PDF17; A-4-17 PDF34; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 355829.40639941243,
+          "bounds_mm": [
+            [
+              89.02227554284396,
+              -66.54673009999999,
+              298.5180435922201
+            ],
+            [
+              171.022275642844,
+              66.54673009999999,
+              431.48195640777993
+            ]
+          ],
+          "feature_count": 24
+        },
+        {
+          "id": "PistonPin5",
+          "label": "Piston 5 / floating hollow pin",
+          "group": "pistons",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 47263.64476271374,
+          "bounds_mm": [
+            [
+              122.74239564284396,
+              -14.27988,
+              303.80125
+            ],
+            [
+              151.30215564284396,
+              14.27988,
+              426.19875
+            ]
+          ],
+          "feature_count": 1
+        },
+        {
+          "id": "PinPlugA5",
+          "label": "Pin 5 / permanent aluminium plug A",
+          "group": "pistons",
+          "material": "aluminium",
+          "evidence": "A-3-2 PDF17: forged-in end plugs; contours estimated; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3203.0889027534076,
+          "bounds_mm": [
+            [
+              122.74239564284396,
+              -14.27988,
+              298.80125
+            ],
+            [
+              151.30215564284396,
+              14.27988,
+              303.80125
+            ]
+          ],
+          "feature_count": 1
+        },
+        {
+          "id": "PinPlugB5",
+          "label": "Pin 5 / permanent aluminium plug B",
+          "group": "pistons",
+          "material": "aluminium",
+          "evidence": "A-3-2 PDF17: forged-in end plugs; contours estimated; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3203.0889027534076,
+          "bounds_mm": [
+            [
+              122.74239564284396,
+              -14.27988,
+              426.19875
+            ],
+            [
+              151.30215564284396,
+              14.27988,
+              431.19875
+            ]
+          ],
+          "feature_count": 1
+        },
+        {
+          "id": "ConnectingRod6",
+          "label": "Rod 6 / I-section forging",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 77940.12972572632,
+          "bounds_mm": [
+            [
+              -159.02227564284402,
+              -88.39417774785089,
+              394.1015999
+            ],
+            [
+              37.42631504123294,
+              21.999999999999975,
+              423.8984001000002
+            ]
+          ],
+          "feature_count": 15
+        },
+        {
+          "id": "RodCap6",
+          "label": "Rod 6 / separate cap",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 33301.63335737269,
+          "bounds_mm": [
+            [
+              13.397815440960283,
+              -93.10012711181162,
+              394.1015999
+            ],
+            [
+              64.40000009999999,
+              0.3994606825686433,
+              423.89840010000006
+            ]
+          ],
+          "feature_count": 10
+        },
+        {
+          "id": "RodBearingUpper6",
+          "label": "Rod 6 / upper lined shell",
+          "group": "rods",
+          "material": "babbitt",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 5631.239323967525,
+          "bounds_mm": [
+            [
+              -5.343650000000014,
+              -73.6684544674842,
+              394.3016
+            ],
+            [
+              33.43767000907394,
+              -13.250440512249497,
+              423.6984
+            ]
+          ],
+          "feature_count": 4
+        },
+        {
+          "id": "RodBearingLower6",
+          "label": "Rod 6 / lower lined shell",
+          "group": "rods",
+          "material": "babbitt",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 5628.2210406812555,
+          "bounds_mm": [
+            [
+              17.386460473119307,
+              -74.73774051224949,
+              394.3016
+            ],
+            [
+              56.14364999999998,
+              -14.326262597798056,
+              423.6984
+            ]
+          ],
+          "feature_count": 4
+        },
+        {
+          "id": "SmallEndBush6",
+          "label": "Rod 6 / split bronze bushing",
+          "group": "rods",
+          "material": "bronze",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 11001.028886022135,
+          "bounds_mm": [
+            [
+              -155.02227564284402,
+              -18.000000000000032,
+              394.3016
+            ],
+            [
+              -119.02227564284402,
+              17.99999999999997,
+              423.6984
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "RodBoltA6",
+          "label": "Rod 6 / bolt A",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3549.84072089694,
+          "bounds_mm": [
+            [
+              -8.564917027702519,
+              -92.23975408929346,
+              402.0
+            ],
+            [
+              43.64170134372633,
+              -67.90273091127743,
+              416.0
+            ]
+          ],
+          "feature_count": 3
+        },
+        {
+          "id": "RodNutA6",
+          "label": "Rod 6 / slotted nut A",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 1091.2187232512863,
+          "bounds_mm": [
+            [
+              30.691078513779672,
+              -95.66189275232806,
+              400.79563605429104
+            ],
+            [
+              43.67422545292374,
+              -77.4478275495881,
+              417.20436394570896
+            ]
+          ],
+          "feature_count": 5
+        },
+        {
+          "id": "RodBoltB6",
+          "label": "Rod 6 / bolt B",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3549.840720896923,
+          "bounds_mm": [
+            [
+              11.304646953464971,
+              -18.883088221778102,
+              402.0
+            ],
+            [
+              63.51126532489382,
+              5.453934956237916,
+              416.0
+            ]
+          ],
+          "feature_count": 3
+        },
+        {
+          "id": "RodNutB6",
+          "label": "Rod 6 / slotted nut B",
+          "group": "rods",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 1091.2187232512883,
+          "bounds_mm": [
+            [
+              50.56064249494716,
+              -22.305226884812694,
+              400.79563605429104
+            ],
+            [
+              63.54378943409123,
+              -4.09116168207275,
+              417.20436394570896
+            ]
+          ],
+          "feature_count": 5
+        },
+        {
+          "id": "CompressionRingA6",
+          "label": "Piston 6 / CompressionRingA",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3314.841846673,
+          "bounds_mm": [
+            [
+              -161.02227564284405,
+              -66.6904,
+              342.3096
+            ],
+            [
+              -159.022275642844,
+              66.6904,
+              475.6885998665439
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "CompressionRingB6",
+          "label": "Piston 6 / CompressionRingB",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3314.8418466730036,
+          "bounds_mm": [
+            [
+              -155.02227564284405,
+              -66.6904,
+              342.3114001334561
+            ],
+            [
+              -153.022275642844,
+              66.6904,
+              475.6904
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "OilRing6",
+          "label": "Piston 6 / OilRing",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 5749.667051021232,
+          "bounds_mm": [
+            [
+              -113.77227574284403,
+              -66.69040009999999,
+              342.30959989999997
+            ],
+            [
+              -110.27227554284401,
+              66.69040009999999,
+              475.6885999665441
+            ]
+          ],
+          "feature_count": 14
+        },
+        {
+          "id": "ScraperRing6",
+          "label": "Piston 6 / ScraperRing",
+          "group": "rings",
+          "material": "cast_iron",
+          "evidence": "A-4-17 PDF34; A-11-3 PDF75; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 4143.552308341248,
+          "bounds_mm": [
+            [
+              -100.27227564284404,
+              -66.6904,
+              342.3114001334561
+            ],
+            [
+              -97.77227564284401,
+              66.6904,
+              475.6904
+            ]
+          ],
+          "feature_count": 2
+        },
+        {
+          "id": "Piston6",
+          "label": "Piston 6 / hollow aluminium body",
+          "group": "pistons",
+          "material": "aluminium",
+          "evidence": "A-3-2 PDF17; A-4-17 PDF34; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 355833.72736308846,
+          "bounds_mm": [
+            [
+              -171.02227564284405,
+              -66.54673009999999,
+              342.51804359222007
+            ],
+            [
+              -89.022275542844,
+              66.54673009999999,
+              475.4819564077799
+            ]
+          ],
+          "feature_count": 24
+        },
+        {
+          "id": "PistonPin6",
+          "label": "Piston 6 / floating hollow pin",
+          "group": "pistons",
+          "material": "steel",
+          "evidence": "A-4-20 PDF38; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 47263.64476271377,
+          "bounds_mm": [
+            [
+              -151.302155642844,
+              -14.279880000000004,
+              347.80125
+            ],
+            [
+              -122.74239564284402,
+              14.279880000000004,
+              470.19875
+            ]
+          ],
+          "feature_count": 1
+        },
+        {
+          "id": "PinPlugA6",
+          "label": "Pin 6 / permanent aluminium plug A",
+          "group": "pistons",
+          "material": "aluminium",
+          "evidence": "A-3-2 PDF17: forged-in end plugs; contours estimated; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3203.0889027534085,
+          "bounds_mm": [
+            [
+              -151.302155642844,
+              -14.279880000000004,
+              342.80125
+            ],
+            [
+              -122.74239564284402,
+              14.279880000000004,
+              347.80125
+            ]
+          ],
+          "feature_count": 1
+        },
+        {
+          "id": "PinPlugB6",
+          "label": "Pin 6 / permanent aluminium plug B",
+          "group": "pistons",
+          "material": "aluminium",
+          "evidence": "A-3-2 PDF17: forged-in end plugs; contours estimated; critical dimensions Table 6 PDF103; unsupported contour/section/station dimensions explicitly inferred. Derived prism/revolve contours regenerate from this specification; linked basic features retain native expressions.",
+          "volume_mm3": 3203.0889027534085,
+          "bounds_mm": [
+            [
+              -151.302155642844,
+              -14.279880000000004,
+              470.19875
+            ],
+            [
+              -122.74239564284402,
+              14.279880000000004,
+              475.19875
+            ]
+          ],
+          "feature_count": 1
+        }
+      ]
+    },
+    "roundtrip": {
+      "passed": true,
+      "native_reopened": true,
+      "step_valid": true,
+      "parts": 103,
+      "relative_volume_error": 1.3957666895270435e-07,
+      "native_record_bounds_error_mm": 5.684341886080802e-14,
+      "native_record_relative_volume_error": 6.463816507553383e-15,
+      "total_volume_relative_tolerance": 1e-05,
+      "worst_solid_relative_volume_error": 3.387290729513347e-06,
+      "solid_volume_relative_tolerance": 0.0001,
+      "assembly_extents_mm": [
+        506.15,
+        191.32378550465606,
+        482.0
+      ],
+      "source_fidelity": "Not established by these checks",
+      "strict_solid_volume_check_passed": true,
+      "step_boundary_exception": null,
+      "validation_status": "passed"
+    },
+    "engineering": {
+      "passed": true,
+      "measurements": [
+        {
+          "check": "pin 1 outside diameter",
+          "actual": 28.55976,
+          "expected": 28.55976,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "piston 1 pin bore",
+          "actual": 28.56992,
+          "expected": 28.56992,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "rod 1 total axial side clearance",
+          "actual": 0.20319979999999305,
+          "expected": 0.2032,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "rod 1 measured center distance",
+          "actual": 168.27499999999998,
+          "expected": 168.27499999999998,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "bush 1 bore",
+          "actual": 28.62072,
+          "expected": 28.62072,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "pin 1 assembly length",
+          "actual": 132.39750000000004,
+          "expected": 132.3975,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "pin 2 outside diameter",
+          "actual": 28.55976,
+          "expected": 28.55976,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "piston 2 pin bore",
+          "actual": 28.56992,
+          "expected": 28.56992,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "rod 2 total axial side clearance",
+          "actual": 0.2031997999999362,
+          "expected": 0.2032,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "rod 2 measured center distance",
+          "actual": 168.27499999999998,
+          "expected": 168.27499999999998,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "bush 2 bore",
+          "actual": 28.620720000000006,
+          "expected": 28.62072,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "pin 2 assembly length",
+          "actual": 132.39750000000004,
+          "expected": 132.3975,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "pin 3 outside diameter",
+          "actual": 28.55976,
+          "expected": 28.55976,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "piston 3 pin bore",
+          "actual": 28.56992,
+          "expected": 28.56992,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "rod 3 total axial side clearance",
+          "actual": 0.20319979999990778,
+          "expected": 0.2032,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "rod 3 measured center distance",
+          "actual": 168.27499999999998,
+          "expected": 168.27499999999998,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "bush 3 bore",
+          "actual": 28.620719999999995,
+          "expected": 28.62072,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "pin 3 assembly length",
+          "actual": 132.39750000000004,
+          "expected": 132.3975,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "pin 4 outside diameter",
+          "actual": 28.55976,
+          "expected": 28.55976,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "piston 4 pin bore",
+          "actual": 28.56992,
+          "expected": 28.56992,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "rod 4 total axial side clearance",
+          "actual": 0.2031997999999362,
+          "expected": 0.2032,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "rod 4 measured center distance",
+          "actual": 168.27499999999998,
+          "expected": 168.27499999999998,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "bush 4 bore",
+          "actual": 28.620719999999995,
+          "expected": 28.62072,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "pin 4 assembly length",
+          "actual": 132.39750000000004,
+          "expected": 132.3975,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "pin 5 outside diameter",
+          "actual": 28.55976,
+          "expected": 28.55976,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "piston 5 pin bore",
+          "actual": 28.56992,
+          "expected": 28.56992,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "rod 5 total axial side clearance",
+          "actual": 0.20319979999982252,
+          "expected": 0.2032,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "rod 5 measured center distance",
+          "actual": 168.27499999999998,
+          "expected": 168.27499999999998,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "bush 5 bore",
+          "actual": 28.620719999999995,
+          "expected": 28.62072,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "pin 5 assembly length",
+          "actual": 132.39750000000004,
+          "expected": 132.3975,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "pin 6 outside diameter",
+          "actual": 28.55976,
+          "expected": 28.55976,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "piston 6 pin bore",
+          "actual": 28.56992,
+          "expected": 28.56992,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "rod 6 total axial side clearance",
+          "actual": 0.20319979999982252,
+          "expected": 0.2032,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "rod 6 measured center distance",
+          "actual": 168.27499999999998,
+          "expected": 168.27499999999998,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "bush 6 bore",
+          "actual": 28.62072,
+          "expected": 28.62072,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "pin 6 assembly length",
+          "actual": 132.39750000000004,
+          "expected": 132.3975,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "native versus development maximum relative volume difference",
+          "actual": 3.984292530246259e-07,
+          "expected": 0.0,
+          "tolerance": 1e-06,
+          "passed": true
+        },
+        {
+          "check": "native pin OD responds to +0.05 mm parameter",
+          "actual": 0.05000000000000071,
+          "expected": 0.05,
+          "tolerance": 1e-06,
+          "passed": true
+        }
+      ],
+      "parts": 103,
+      "bound_meeting_pairs": 266,
+      "overlaps": [],
+      "native_development_max_relative_volume_error": 3.984292530246259e-07,
+      "parameter_regeneration_passed": true,
+      "native_sha256": "058aca7d571ec55575e11465752de5dad8ccd0ec3064065eb5a76f192d20629f",
+      "scope": "Static saved core only; motion, counterweight clearance, source silhouettes and manufacturing fidelity not established."
+    },
+    "blender": {
+      "passed": true,
+      "parts": 103,
+      "blender_reopened": true,
+      "glb_id_roundtrip": true,
+      "bounds_roundtrip_error_m": 0.0,
+      "tour": [
+        {
+          "group": "overview",
+          "frame": 1,
+          "visible_parts": 103,
+          "title": "Major components - assembly"
+        },
+        {
+          "group": "crankshaft",
+          "frame": 73,
+          "visible_parts": 1,
+          "title": "Six-throw forging / four main journals"
+        },
+        {
+          "group": "rods",
+          "frame": 145,
+          "visible_parts": 54,
+          "title": "Six split I-section rods and lined bearings"
+        },
+        {
+          "group": "rings",
+          "frame": 217,
+          "visible_parts": 24,
+          "title": "Four rings per piston / alternating end gaps"
+        },
+        {
+          "group": "pistons",
+          "frame": 289,
+          "visible_parts": 24,
+          "title": "Six hollow pistons and floating pins"
+        },
+        {
+          "group": "structure",
+          "frame": 361,
+          "visible_parts": 55,
+          "title": "Crankshaft, rods and bearing interfaces"
+        },
+        {
+          "group": "core-side",
+          "frame": 433,
+          "visible_parts": 103,
+          "title": "Opposed banks / separate crankpins"
+        }
+      ]
+    },
+    "interference": {
+      "asset_sha256": "01b68cd8d1fe31a6a259b73e0e50094d7bdc358c586a8206d95ea5543c7c257c",
+      "asset_bytes": 8163076,
+      "parts": 103,
+      "tolerance_mm3": 0.001,
+      "max_penetration_mm": 0.05,
+      "method": "All bound-meeting pairs intersected exactly (Manifold boolean) at the rest pose and at sampled times of each baked animation clip. Touching is allowed, overlap is not; an overlap thinner than max_penetration_mm is treated as mesh tessellation noise on a touching face.",
+      "rest_neighbouring_pairs": 256,
+      "rest_touching_only": 256,
+      "clips": {},
+      "gear_meshes": [],
+      "unverified_parts": [],
+      "unverified_not_waived": [],
+      "stale_ledger_entries": [],
+      "overlaps_total": 0,
+      "known_defects": [],
+      "new_violations": [],
+      "clean": true,
+      "passed": true
+    }
+  },
+  "files": {
+    "cad/gtsio520-h-realism-core-v4.FCStd": {
+      "bytes": 4675714,
+      "sha256": "058aca7d571ec55575e11465752de5dad8ccd0ec3064065eb5a76f192d20629f"
+    },
+    "cad/gtsio520-h-realism-core-v4.step": {
+      "bytes": 4677871,
+      "sha256": "c17f95400a728371393aba863c1fb237ae8bd4e361c9b72891082a6a074a34e9"
+    },
+    "presentation/core-side.png": {
+      "bytes": 1532594,
+      "sha256": "dc17b9c2cf56fd6a22c1c8c50b4a1782d769471eb97ddd1de7b48832e9d9c7bc"
+    },
+    "presentation/crankshaft.png": {
+      "bytes": 1488577,
+      "sha256": "76a37e2b92588b66258d07936a273166fa234aa4770938d4945dd84adce1b622"
+    },
+    "presentation/gtsio520-h-realism-core-v4.blend": {
+      "bytes": 2746732,
+      "sha256": "fa255012f6d0c89c96da595ad6dee9986ca0bc637ce5b1bffb409d9cca89bd8d"
+    },
+    "presentation/gtsio520-h-realism-core-v4.glb": {
+      "bytes": 8163076,
+      "sha256": "01b68cd8d1fe31a6a259b73e0e50094d7bdc358c586a8206d95ea5543c7c257c"
+    },
+    "presentation/overview.png": {
+      "bytes": 1571026,
+      "sha256": "5635793c524a61fde3c667b6f74422b965ba0a3bcd50f3a5d33f0668ed803535"
+    },
+    "presentation/pistons.png": {
+      "bytes": 1533528,
+      "sha256": "54d0358011e07aa423e5368c2923ab13bc0fbd07a0bbf54208d54df4f0984991"
+    },
+    "presentation/rings.png": {
+      "bytes": 1525520,
+      "sha256": "ec8227ef0e7d341b4d8318a07ebe7ad4a6a01b8f541d80807211f2a947d3dcfb"
+    },
+    "presentation/rods.png": {
+      "bytes": 1517183,
+      "sha256": "d378c9181bea0bf9e17870526ff7a8e9e7f18f2f7f9b8d3b6593bf75956745e3"
+    },
+    "presentation/structure.png": {
+      "bytes": 1522836,
+      "sha256": "fc306026d20216bcc833486c0024a2ffc2c2dfc264ffd99ee8d2612c4057af25"
+    }
+  }
+}

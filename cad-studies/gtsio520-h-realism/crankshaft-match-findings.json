@@ -1,0 +1,158 @@
+{
+  "target": "GTSIO-520-H crankshaft forging, Figure A-4-20 part 41",
+  "review_date": "2026-10-08",
+  "reference": "X-30045A A-4-18 PDF38; construction A-3-1/2 PDF16-17; A-10-3 PDF70; Table 11 PDF117",
+  "status": "needs_another_iteration",
+  "manufacturing_fidelity_verified": false,
+  "findings": [
+    {
+      "id": "CR-01",
+      "part_id": "Crankshaft",
+      "feature": "Counterweight blades and paired seats",
+      "state_before": "missing",
+      "priority": 1,
+      "reference_region_px": [
+        1120,
+        940,
+        1710,
+        1490
+      ],
+      "observation": "The drawing shows projecting two-hole blades. The first forging has only rounded capsule webs.",
+      "evidence_status": "figure-supported construction; cheek positions corroborated by Table 11",
+      "confidence": "high for presence, limited for dimensions",
+      "operation": "Add two integral blade profiles to each middle cheek 2,5,8 and cut the paired axial bushing seats.",
+      "dimension_provenance": "Blade outline, spacing and bare host bore are estimates. Table 6 bushing ID is not substituted for host bore diameter.",
+      "expected_visual_effect": "Restore projecting tabs and twelve negative-space openings visible in the source construction.",
+      "interface_checks": [
+        "single forging solid",
+        "minimum remaining wall",
+        "adjacent rods/caps/pistons",
+        "full exported core static audit"
+      ],
+      "disposition": "implemented_in_revision_2; final checks recorded separately"
+    },
+    {
+      "id": "CR-02",
+      "part_id": "Crankshaft",
+      "feature": "Differentiated forged cheek contours",
+      "state_before": "wrong_shape",
+      "priority": 1,
+      "observation": "Equal-radius, flat capsule webs give the candidate a stack-of-plates appearance unlike the differentiated forging in the drawing.",
+      "evidence_status": "figure-supported",
+      "confidence": "medium",
+      "operation": "Use unequal main-journal/crankpin envelope profiles for outer cheeks and a separate middle-web profile; refine against sections or measured photographs.",
+      "dimension_provenance": "Documented journal/pin diameters retained. Margins and forging contour remain inferred.",
+      "expected_visual_effect": "More plausible boss-to-web proportions and distinct middle cheeks.",
+      "interface_checks": [
+        "documented diameters unchanged",
+        "solid connectivity",
+        "rod side clearance",
+        "assembly intersections"
+      ],
+      "disposition": "support profiles recalculated in revision 4; exact forging contour remains unresolved"
+    },
+    {
+      "id": "CR-06",
+      "part_id": "Crankshaft",
+      "feature": "Blade thickness and counterweight fork relationship",
+      "state_before": "wrong_shape",
+      "priority": 1,
+      "observation": "Revision 2 extruded the blades at the full cheek thickness. The user's design review and A-4-30 section identify the thinner central support that the counterweight fork straddles.",
+      "evidence_status": "user observation and section-supported deduction",
+      "confidence": "high for the relative relationship; exact widths unresolved",
+      "operation": "Use a separate blade-width parameter, centre the blade in the middle cheek, and later fit the fork slot and end clearance around it.",
+      "dimension_provenance": "Revision 4: blade width 0.60 of estimated cheek width = 8.4/14 mm; centered; exact fork slot remains unknown.",
+      "expected_visual_effect": "Reproduce the thinner flange and available space on its two axial sides.",
+      "interface_checks": [
+        "saved blade-wall span less than cheek width",
+        "blade centring",
+        "full static assembly audit",
+        "fork fit pending actual counterweight geometry"
+      ],
+      "disposition": "refined_in_revision_4_with_calculated_blade_and_bore_envelopes"
+    },
+    {
+      "id": "CR-07",
+      "part_id": "Crankshaft",
+      "feature": "Inclined cheek faces with retained machined support lands",
+      "state_before": "wrong_shape",
+      "priority": 1,
+      "observation": "Revision 2 changed the outline but retained uniform extruded faces; it did not express the slightly tapered three-dimensional web surfaces.",
+      "evidence_status": "user design observation and figure-supported construction hypothesis",
+      "confidence": "medium; angle and precise contours unresolved",
+      "operation": "Use native ruled loft sections for the outer webs, retain full-depth circular pin/journal lands, and measure actual surface angles and side clearance.",
+      "dimension_provenance": "Revision 4: taper scale 0.15 of cheek width = 2.10 mm; contained inclined sections give about 0.6984 degrees per face.",
+      "expected_visual_effect": "Inclined forged-web surfaces while retaining machined interface stations.",
+      "interface_checks": [
+        "native taper regeneration",
+        "actual saved planar face normals",
+        "rod side clearance and diameters",
+        "STEP",
+        "static pair audit"
+      ],
+      "disposition": "refined_in_revision_4: no negative inset into journals; full-size lands and roots checked"
+    },
+    {
+      "id": "CR-03",
+      "part_id": "Crankshaft",
+      "feature": "Journal shoulders and fillets",
+      "state_before": "wrong_shape",
+      "priority": 1,
+      "observation": "The drawing shows rounded forging/journal transitions; candidate intersections remain abrupt.",
+      "evidence_status": "figure-supported shape, radius unresolved",
+      "confidence": "medium",
+      "operation": "Add native CAD fillets/radiused shoulder features with a source-backed or explicitly estimated radius, retaining the bearing land and rod clearance.",
+      "dimension_provenance": "Calculated estimates: main root 0.75 of selected main margin, about 1.50 mm; pin root 0.60 of selected pin margin, about 1.71 mm. Manufacturer radii unknown.",
+      "expected_visual_effect": "Replace sharp plate/cylinder junctions with coherent forging transitions.",
+      "interface_checks": [
+        "bearing land lengths",
+        "clearance at cap edges",
+        "native regeneration",
+        "STEP round trip"
+      ],
+      "disposition": "implemented_in_revision_4: twelve pin and six main roots, native radius propagation and saved surfaces checked"
+    },
+    {
+      "id": "CR-04",
+      "part_id": "Crankshaft",
+      "feature": "Cheek circular openings / internal drilling",
+      "state_before": "uncertain",
+      "priority": 2,
+      "observation": "Several circular features in the illustration may be recesses, drilling ends or view-dependent pin faces. Their through depth and internal routes are not established.",
+      "evidence_status": "figure-supported presence; blind topology and depth are explicitly authorized estimates",
+      "confidence": "low for hidden topology",
+      "operation": "Represent the visible pin-end features as authorized estimated blind recesses, retain closed floors, and obtain a part drawing before claiming their actual purpose or internal oil routes.",
+      "dimension_provenance": "Radius 0.16 of documented pin diameter (9.14 mm); blind depth 0.25 of selected cheek width (3.50 mm). Explicit topology assumption, no oil route claim.",
+      "expected_visual_effect": "Correct the visible recessed features once identified.",
+      "interface_checks": [
+        "minimum wall",
+        "real connected oil routes if claimed",
+        "pin/journal strength is outside this teaching validation"
+      ],
+      "disposition": "revision_4_authorized_approximation: twelve blind end recesses with closed floors; internal routes remain unverified",
+      "state_after": "implemented_approximation"
+    },
+    {
+      "id": "CR-05",
+      "part_id": "Crankshaft",
+      "feature": "Axial journal and bay proportions",
+      "state_before": "uncertain",
+      "priority": 2,
+      "observation": "Two held-out journal centres differ by up to approximately 16 px after two-point registration. Illustration perspective and estimated centre placement also contribute.",
+      "evidence_status": "inferred comparison, not a machining measurement",
+      "confidence": "limited",
+      "operation": "Calibrate the four journal stations and cheek/pin widths against a dimensioned drawing or scaled orthogonal measurements before changing the shared engine datum.",
+      "dimension_provenance": "Axial widths remain estimated; interpreted source landmark placement uncertainty is approximately 8 px.",
+      "expected_visual_effect": "Correct bay and end proportions without hiding errors in camera fitting.",
+      "interface_checks": [
+        "all six cylinder stations",
+        "bearing supports",
+        "rod spacing",
+        "re-run every affected assembly audit"
+      ],
+      "disposition": "retained_as_initial_axial_estimates_in_revision_4; independent dimensional calibration pending"
+    }
+  ],
+  "current_revision": 4,
+  "estimation_record": "crankshaft-estimates.json"
+}

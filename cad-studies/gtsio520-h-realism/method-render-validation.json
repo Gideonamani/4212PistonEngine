@@ -1,0 +1,121 @@
+{
+  "geometry_sha256": "a3f9530b89429088239252ad85996010acf1dd6a9e05755a3d0d7f34ccda490c",
+  "plan_sha256": "ac0405df624f38bbb2004ec7dace7912b8f4a9cf5fd763f6c2f4dd9538439842",
+  "camera": {
+    "scope": "Isolated native Revolution/Fillet method fixture; not engine geometry",
+    "part_ids": [
+      "ShoulderRootFillet"
+    ],
+    "width": 700,
+    "height": 700,
+    "center_mm": [
+      0,
+      0,
+      25
+    ],
+    "direction": [
+      1,
+      -1,
+      0.6
+    ],
+    "ortho_scale_mm": 70,
+    "landmarks_mm": {
+      "shoulder_axis": [
+        0,
+        0,
+        20
+      ],
+      "upper_end_axis": [
+        0,
+        0,
+        50
+      ]
+    },
+    "view_settings": {
+      "view_transform": "Standard",
+      "look": "None",
+      "exposure": 0,
+      "gamma": 1
+    }
+  },
+  "landmarks": {
+    "shoulder_axis": [
+      349.9992907047272,
+      396.0292160511017
+    ],
+    "upper_end_axis": [
+      349.99931156635284,
+      119.85688209533691
+    ]
+  },
+  "image": "build/gtsio-method-research/render/candidate.png",
+  "image_sha256": "350320f3401d6741a8ecfb83315cf502f319b0d8c2ab849dc650d9bbecd87134",
+  "presentation_settings": {
+    "blender_version": "5.0.1",
+    "engine": "BLENDER_WORKBENCH",
+    "light": "STUDIO",
+    "studio_light": "Default",
+    "color_type": "MATERIAL",
+    "cavity": true,
+    "cavity_type": "BOTH",
+    "cavity_ridge": 1.0,
+    "cavity_valley": 1.0,
+    "curvature_ridge": 0.0,
+    "curvature_valley": 0.0,
+    "shadows": true,
+    "background_type": "VIEWPORT",
+    "viewport_background": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "film_transparent": false,
+    "world_present": false,
+    "image_color_mode": "RGBA",
+    "material_color": [
+      0.47999998927116394,
+      0.5299999713897705,
+      0.5799999833106995,
+      1.0
+    ],
+    "view_settings": {
+      "view_transform": "Standard",
+      "look": "None",
+      "exposure": 0.0,
+      "gamma": 1.0
+    }
+  },
+  "projection": "orthographic; fixed camera, no model rescaling or warping",
+  "passed": true,
+  "recorded_date": "2026-10-08",
+  "scope": "Isolated method fixture, not manufacturer reference comparison",
+  "saved_scene_verification": {
+    "passed": true,
+    "saved_scene_reopened": true,
+    "part_ids": [
+      "ShoulderRootFillet"
+    ],
+    "orthographic_scale_m": 0.07000000029802322,
+    "color_management_preserved": true
+  },
+  "source_script_sha256_lf": "ca187c0753325b83937dfdb0691b65b372b24e5405a6153df3ba1af3b0b27da0",
+  "saved_scene_sha256": "6c85cdb419d2d9df1d0261eba133048a96698f9b56de06b1047901737bde370c",
+  "visual_review": "Shoulder and root blend visible; transparent RGBA background recorded, no resemblance score",
+  "pixel_check": {
+    "mode": "RGBA",
+    "size": [
+      700,
+      700
+    ],
+    "corner_rgba": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "alpha_range": [
+      0,
+      255
+    ]
+  }
+}

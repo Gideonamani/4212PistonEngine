@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "scope": "Method fixtures only, no engine motion acceptance",
+  "source_script": "probe_blender_methods.py",
+  "source_script_sha256_lf": "001ea01920bc954a78fb7fd0fae01436075a0fc77928f696a4d4e7be84bf21fc",
+  "blender_version": "5.0.1",
+  "exporter_version": [
+    5,
+    0,
+    21
+  ],
+  "exporter_source_sha256": "0e21e09842467f2bce4b09376ca234c804118a4c326aad8266ab7bf68728c05e",
+  "fixture_sha256": "a3f9530b89429088239252ad85996010acf1dd6a9e05755a3d0d7f34ccda490c",
+  "shared_actions_saved_reopened": true,
+  "export_options": {
+    "mode": "ACTIONS",
+    "merge": "ACTION",
+    "force_sampling": false
+  },
+  "glb": {
+    "clips": [
+      {
+        "name": "Explode fixture",
+        "objects": 2,
+        "channels": 2
+      },
+      {
+        "name": "Operating fixture",
+        "objects": 2,
+        "channels": 2
+      }
+    ],
+    "exported_key_max_error": 1.3519594660449386e-07,
+    "geometry_bounds_max_error_m": 1.5199184411063271e-09,
+    "ids_preserved": true,
+    "axes_units_and_pivots_checked": true
+  },
+  "visual_bake": {
+    "passed": true,
+    "master_constraints_preserved": true,
+    "copy_constraints_cleared": true,
+    "saved_reopened": true,
+    "quarter_frame_checks": 97,
+    "evaluated_matrix_max_error": 1.2852251529693604e-06
+  },
+  "files_sha256": {
+    "action-slot-fixture.blend": "4869c89228f66210e142e5b3c33673b1965e54ed0e2285ab388f8af4b84cf634",
+    "action-slot-fixture.glb": "acbb5dcf5377879beb341966937e6e0eb850bbb61e6405ea5dc46d79cdda4f77",
+    "constraints-master.blend": "817abd098aeb311fce61008788a0047dc0f4d49aa96071e5a94b8f807cfc3578",
+    "constraints-baked-copy.blend": "6dff81d9c0d7839ce4616a7bdbaa23d7af771e94bfff76772d884423d93f7727"
+  },
+  "recorded_date": "2026-10-08",
+  "artifact_directory": "build/gtsio-method-research/blender",
+  "support_source_scripts_sha256_lf": {
+    "cad_pipeline/rig_wright.py": "720ff9785b0b9f719fdd86a34944d64a5b6f54f141b2b30f0045072ca90c04f2",
+    "scripts/normalize_glb_motion_time.py": "74dcb55aa5d9b304ec205457075b974eae538a76fb01a15a1aafe1ed3adab7d9"
+  }
+}

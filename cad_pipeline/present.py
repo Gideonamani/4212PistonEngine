@@ -1,10 +1,12 @@
 """Create an editable named Blender inspection tour and component plates from CAD.
 The tour is presentation visibility/camera motion, not engine operation.
 """
-import argparse,hashlib,json,sys
+import argparse,hashlib,json,sys,math
 from pathlib import Path
 import bpy
 from mathutils import Vector
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+from cad_pipeline.presentation_camera import frame_camera
 
 TITLES={'crankcase':'Crankcase & water jacket','cover':'Sheet-steel crankcase cover','cylinders':'Four cylinder liners',
         'pistons':'Cast-iron pistons & wrist pins','rods':'Built-up connecting rods','crankshaft':'Four-throw crankshaft',
@@ -14,28 +16,46 @@ TITLES={'crankcase':'Crankcase & water jacket','cover':'Sheet-steel crankcase co
         'ignition':'Make-and-break ignition & spark control','generator':'Generator & flywheel friction drive','bearings':'Split main bearings & shaft supports','rockers':'Two-cheek exhaust rockers & rollers'}
 COLORS={'steel':(.32,.39,.47,1),'aluminium':(.64,.69,.74,1),'cast_iron':(.21,.24,.27,1),'bronze':(.55,.31,.12,1),
         'babbitt':(.72,.73,.68,1),'copper':(.62,.28,.12,1),'wood':(.28,.15,.06,1),'rubber':(.055,.065,.075,1),'gasket':(.34,.24,.15,1),'insulator':(.8,.78,.63,1),'platinum':(.84,.86,.89,1)}
+COLORS['aluminum']=COLORS['aluminium']
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--package',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--engine',choices=['workbench','cycles','eevee'],default='workbench')
+    p=argparse.ArgumentParser();p.add_argument('--package',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--engine',choices=['workbench','cycles','eevee'],default='workbench');p.add_argument('--config',type=Path,help='Presentation-only labels/views; never geometry')
     a=p.parse_args(sys.argv[sys.argv.index('--')+1:]);out=a.output.resolve();out.mkdir(parents=True,exist_ok=True)
     package=a.package.resolve();manifest=json.loads((package/'cad-validation.json').read_text());g=package/'geometry.json'
     if manifest.get('complete_spec') is False or not manifest.get('geometric_validation_passed'):raise ValueError('CAD package is incomplete or invalid')
     if hashlib.sha256(g.read_bytes()).hexdigest()!=manifest['files']['geometry.json']['sha256']:raise ValueError('CAD geometry hash mismatch')
-    data=json.loads(g.read_text());config=data.get('presentation',{});bpy.ops.wm.read_factory_settings(use_empty=True);scene=bpy.context.scene
+    data=json.loads(g.read_text());config=dict(data.get('presentation',{}))
+    if a.config:
+        overrides=json.loads(a.config.read_text())
+        if 'group_titles' in overrides:
+            overrides['group_titles']={**config.get('group_titles',{}),**overrides['group_titles']}
+        config.update(overrides)
+    bpy.ops.wm.read_factory_settings(use_empty=True);scene=bpy.context.scene
     scene.unit_settings.system='METRIC';scene.unit_settings.scale_length=1;scene.render.engine={'workbench':'BLENDER_WORKBENCH','cycles':'CYCLES','eevee':'BLENDER_EEVEE'}[a.engine];scene.cycles.samples=20
+    if a.engine=='cycles':
+        scene.cycles.device='CPU';scene.cycles.denoiser='OPENIMAGEDENOISE';scene.cycles.denoising_use_gpu=False
     scene.display.shading.light='STUDIO';scene.display.shading.studiolight_rotate_z=.4;scene.display.shading.color_type='MATERIAL'
     scene.display.shading.show_shadows=True;scene.display.shading.show_cavity=True;scene.display.shading.cavity_type='BOTH';scene.display.shading.background_type='WORLD'
     scene.cycles.use_denoising=True;scene.render.resolution_x=1500;scene.render.resolution_y=1000;scene.render.resolution_percentage=100
     scene.render.image_settings.file_format='PNG';scene.render.fps=24
+    for name in ('view_transform','look','exposure','gamma'):
+        if name in config.get('view_settings',{}):setattr(scene.view_settings,name,config['view_settings'][name])
     world=bpy.data.worlds.new('Workshop');world.color=(.045,.065,.10);world.use_nodes=True;world.node_tree.nodes['Background'].inputs[0].default_value=(.10,.13,.18,1);world.node_tree.nodes['Background'].inputs[1].default_value=.4;scene.world=world
     materials={};objects=[];groups={}
     for name,col in COLORS.items():
         m=bpy.data.materials.new(name);m.diffuse_color=col;m.use_nodes=True;b=m.node_tree.nodes.get('Principled BSDF');b.inputs['Base Color'].default_value=col;b.inputs['Metallic'].default_value=.65;b.inputs['Roughness'].default_value=.37;materials[name]=m
     for part in data['parts']:
         mesh=bpy.data.meshes.new(part['id']);mesh.from_pydata([[c/1000 for c in v] for v in part['vertices_mm']],[],part['triangles']);mesh.update()
+        if 'smooth_angle_deg' in config:
+            angle=float(config['smooth_angle_deg'])
+            if not 0<angle<180:raise ValueError('Surface shading angle must be between 0 and 180 degrees')
+            mesh.polygons.foreach_set('use_smooth',[True]*len(mesh.polygons));mesh.set_sharp_from_angle(angle=math.radians(angle));mesh.update()
         obj=bpy.data.objects.new(part['id'],mesh);scene.collection.objects.link(obj);obj.data.materials.append(materials.get(part['material'],materials['steel']))
         for key in ('id','label','group','evidence'):obj[key]=part[key]
         obj['cad_geometry_sha256']=manifest['files']['geometry.json']['sha256'];objects.append(obj);groups.setdefault(part['group'],[]).append(obj)
+    # Blender now owns the copied meshes; do not retain a second full set of
+    # Python vertex/triangle lists during export and rendering on small machines.
+    del data['parts']
     # Export only engineering parts. Titles/cameras/lights never enter the engineering GLB.
     for o in objects:o.select_set(True)
     bpy.ops.export_scene.gltf(filepath=str(out/(data['model_id']+'.glb')),export_format='GLB',use_selection=True,export_extras=True,export_animations=False)
@@ -51,7 +71,9 @@ def main():
         section_views.append((section['id'],section_objects,section['title'],section['direction']))
     camera_data=bpy.data.cameras.new('Inspection camera');camera_data.type='ORTHO';camera=bpy.data.objects.new('Inspection camera',camera_data);scene.collection.objects.link(camera);scene.camera=camera
     for name,pos,power,size in [('Key',(1,-1,2),1000,2),('Fill',(-1,-.5,1),650,2),('Rim',(0,1.5,1.7),950,1.5)]:
-        light=bpy.data.lights.new(name,'AREA');light.energy=power;light.shape='DISK';light.size=size;o=bpy.data.objects.new(name,light);o.location=pos;scene.collection.objects.link(o);o.rotation_euler=(Vector((.18,.2,0))-o.location).to_track_quat('-Z','Y').to_euler()
+        lighting_scale=float(config.get('light_energy_scale',1.))
+        if not math.isfinite(lighting_scale) or lighting_scale<=0:raise ValueError('Light energy scale must be positive')
+        light=bpy.data.lights.new(name,'AREA');light.energy=power*lighting_scale;light.shape='DISK';light.size=size;o=bpy.data.objects.new(name,light);o.location=pos;scene.collection.objects.link(o);o.rotation_euler=(Vector((.18,.2,0))-o.location).to_track_quat('-Z','Y').to_euler()
     emission=bpy.data.materials.new('Caption white');emission.diffuse_color=(.8,.9,1,1);emission.use_nodes=True;n=emission.node_tree.nodes;n.clear();e=n.new('ShaderNodeEmission');e.inputs[0].default_value=(.78,.89,1,1);output=n.new('ShaderNodeOutputMaterial');emission.node_tree.links.new(e.outputs[0],output.inputs['Surface'])
     font_path=Path('C:/Windows/Fonts/segoeui.ttf');font=bpy.data.fonts.load(str(font_path)) if font_path.exists() else None
     captions=[]
@@ -59,19 +81,16 @@ def main():
         text=bpy.data.curves.new(name,'FONT');text.align_x='LEFT';text.size=.03
         if font:text.font=font
         o=bpy.data.objects.new(name,text);scene.collection.objects.link(o);o.parent=camera;text.materials.append(emission);captions.append(o)
-    def pose(visible,title,direction=(1,-1,.85)):
+    default_direction=config.get('direction',(1,-1,.85))
+    def pose(visible,title,direction=None):
+        if direction is None:direction=default_direction
         for o in objects:o.hide_render=o not in visible;o.hide_viewport=o not in visible
-        pts=[o.matrix_world @ Vector(v) for o in visible for v in o.bound_box]
-        lo=Vector(tuple(min(v[i] for v in pts) for i in range(3)));hi=Vector(tuple(max(v[i] for v in pts) for i in range(3)));center=(lo+hi)/2
-        direction=Vector(direction).normalized();camera.location=center+direction*3;camera.rotation_euler=(center-camera.location).to_track_quat('-Z','Y').to_euler()
-        inv=camera.matrix_world.inverted();bpy.context.view_layer.update();inv=camera.matrix_world.inverted();projected=[inv @ v for v in pts]
-        width=max(v.x for v in projected)-min(v.x for v in projected);height=max(v.y for v in projected)-min(v.y for v in projected)
-        # Blender's orthographic scale is horizontal in landscape rendering.
-        camera_data.ortho_scale=max(width*1.28,height*1.5*1.5,.22)
-        scale=camera_data.ortho_scale;vertical=scale/1.5
+        scale=frame_camera(scene,camera,visible,direction,config.get('up'));vertical=scale/1.5
         for o,body,y,size in zip(captions,[config.get('header','WRIGHT 1903 ENGINE'),title,config.get('footer','Evidence-led teaching reconstruction | Estimated geometry remains')],[.43,.35,-.45],[.020,.030,.016]):
             o.data.body=body;o.data.size=scale*size;o.location=(-scale*.45,vertical*y,-1.5)
-    plates=[];tourlabels=[];tour=[('overview',engineering_objects,'Major components - assembly',(1,-1,.85))]+[(key,vals,config.get('group_titles',{}).get(key,TITLES.get(key,key)),(1,-1,.85)) for key,vals in groups.items()]
+    selected_groups=config.get('group_views',list(groups))
+    if set(selected_groups)-set(groups):raise ValueError('Unknown component inspection group')
+    plates=[];tourlabels=[];tour=[('overview',engineering_objects,'Major components - assembly',default_direction)]+[(key,vals,config.get('group_titles',{}).get(key,TITLES.get(key,key)),default_direction) for key,vals in groups.items() if key in selected_groups]
     for view in config.get('views',[]):
         visible=[o for o in engineering_objects if o['id'] in view['parts']] if 'parts' in view else [o for o in engineering_objects if o['group'] not in view.get('hide_groups',[])]
         tour.append((view['id'],visible,view['title'],view.get('direction',(1,-1,.85))))
@@ -109,8 +128,9 @@ def main():
     scene['cad_geometry_sha256']=manifest['files']['geometry.json']['sha256']
     bpy.ops.file.pack_all()
     bpy.ops.wm.save_as_mainfile(filepath=str(out/(data['model_id']+'.blend')))
-    result=dict(model_id=data['model_id'],scope=data['scope'],blender_version=bpy.app.version_string,units='metres',cad_geometry_sha256=manifest['files']['geometry.json']['sha256'],parts=len(engineering_objects),presentation_only_parts=len(objects)-len(engineering_objects),tour=plates,
+    result=dict(model_id=data['model_id'],scope=data['scope'],blender_version=bpy.app.version_string,units='metres',cad_geometry_sha256=manifest['files']['geometry.json']['sha256'],surface_shading_angle_deg=config.get('smooth_angle_deg'),parts=len(engineering_objects),presentation_only_parts=len(objects)-len(engineering_objects),tour=plates,
                 files={f.name:dict(bytes=f.stat().st_size,sha256=hashlib.sha256(f.read_bytes()).hexdigest()) for f in out.iterdir() if f.suffix in ('.blend','.glb','.png')})
+    result['rendering']=dict(engine=scene.render.engine,device=scene.cycles.device if a.engine=='cycles' else None,samples=scene.cycles.samples if a.engine=='cycles' else None,group_views=selected_groups,light_energy_scale=lighting_scale,up_reference=config.get('up'),view_settings={name:getattr(scene.view_settings,name) for name in ('view_transform','look','exposure','gamma')})
     (out/'presentation-manifest.json').write_text(json.dumps(result,indent=2)+'\n');print('PRESENTATION_COMPLETE',flush=True)
 
 if __name__=='__main__':main()

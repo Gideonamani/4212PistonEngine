@@ -1,0 +1,513 @@
+{
+  "passed": true,
+  "native_sha256": "058aca7d571ec55575e11465752de5dad8ccd0ec3064065eb5a76f192d20629f",
+  "part_id": "Crankshaft",
+  "measured_roots": 18,
+  "blind_recesses": 12,
+  "pockets": [
+    {
+      "pin": 1,
+      "face_station_mm": 44.0,
+      "direction": 1,
+      "radius_mm": 9.141967999999999,
+      "depth_mm": 3.5,
+      "closed_floor": true
+    },
+    {
+      "pin": 1,
+      "face_station_mm": 102.0,
+      "direction": -1,
+      "radius_mm": 9.141967999999999,
+      "depth_mm": 3.5,
+      "closed_floor": true
+    },
+    {
+      "pin": 2,
+      "face_station_mm": 88.0,
+      "direction": 1,
+      "radius_mm": 9.141967999999999,
+      "depth_mm": 3.5,
+      "closed_floor": true
+    },
+    {
+      "pin": 2,
+      "face_station_mm": 146.0,
+      "direction": -1,
+      "radius_mm": 9.141967999999999,
+      "depth_mm": 3.5,
+      "closed_floor": true
+    },
+    {
+      "pin": 3,
+      "face_station_mm": 190.0,
+      "direction": 1,
+      "radius_mm": 9.141967999999999,
+      "depth_mm": 3.5,
+      "closed_floor": true
+    },
+    {
+      "pin": 3,
+      "face_station_mm": 248.0,
+      "direction": -1,
+      "radius_mm": 9.141967999999999,
+      "depth_mm": 3.5,
+      "closed_floor": true
+    },
+    {
+      "pin": 4,
+      "face_station_mm": 234.0,
+      "direction": 1,
+      "radius_mm": 9.141967999999999,
+      "depth_mm": 3.5,
+      "closed_floor": true
+    },
+    {
+      "pin": 4,
+      "face_station_mm": 292.0,
+      "direction": -1,
+      "radius_mm": 9.141967999999999,
+      "depth_mm": 3.5,
+      "closed_floor": true
+    },
+    {
+      "pin": 5,
+      "face_station_mm": 336.0,
+      "direction": 1,
+      "radius_mm": 9.141967999999999,
+      "depth_mm": 3.5,
+      "closed_floor": true
+    },
+    {
+      "pin": 5,
+      "face_station_mm": 394.0,
+      "direction": -1,
+      "radius_mm": 9.141967999999999,
+      "depth_mm": 3.5,
+      "closed_floor": true
+    },
+    {
+      "pin": 6,
+      "face_station_mm": 380.0,
+      "direction": 1,
+      "radius_mm": 9.141967999999999,
+      "depth_mm": 3.5,
+      "closed_floor": true
+    },
+    {
+      "pin": 6,
+      "face_station_mm": 438.0,
+      "direction": -1,
+      "radius_mm": 9.141967999999999,
+      "depth_mm": 3.5,
+      "closed_floor": true
+    }
+  ],
+  "checks": [
+    {
+      "check": "pin 1 root -1",
+      "passed": true,
+      "expected_center_mm": [
+        50.8,
+        0.0,
+        59.714119
+      ],
+      "measured_minor_radius_mm": 1.7141189999999997,
+      "expected_minor_radius_mm": 1.7141189999999997,
+      "surface_regions": 3
+    },
+    {
+      "check": "pin 1 root 1",
+      "passed": true,
+      "expected_center_mm": [
+        50.8,
+        0.0,
+        86.285881
+      ],
+      "measured_minor_radius_mm": 1.7141189999999997,
+      "expected_minor_radius_mm": 1.7141189999999997,
+      "surface_regions": 1
+    },
+    {
+      "check": "pin 2 root -1",
+      "passed": true,
+      "expected_center_mm": [
+        -50.8,
+        -6.221205739668554e-15,
+        103.714119
+      ],
+      "measured_minor_radius_mm": 1.7141189999999997,
+      "expected_minor_radius_mm": 1.7141189999999997,
+      "surface_regions": 1
+    },
+    {
+      "check": "pin 2 root 1",
+      "passed": true,
+      "expected_center_mm": [
+        -50.8,
+        -6.221205739668554e-15,
+        130.285881
+      ],
+      "measured_minor_radius_mm": 1.7141189999999997,
+      "expected_minor_radius_mm": 1.7141189999999997,
+      "surface_regions": 3
+    },
+    {
+      "check": "pin 3 root -1",
+      "passed": true,
+      "expected_center_mm": [
+        -25.39999999999996,
+        -43.99409051224951,
+        205.714119
+      ],
+      "measured_minor_radius_mm": 1.7141189999999997,
+      "expected_minor_radius_mm": 1.7141189999999997,
+      "surface_regions": 3
+    },
+    {
+      "check": "pin 3 root 1",
+      "passed": true,
+      "expected_center_mm": [
+        -25.39999999999996,
+        -43.99409051224951,
+        232.285881
+      ],
+      "measured_minor_radius_mm": 1.7141189999999997,
+      "expected_minor_radius_mm": 1.7141189999999997,
+      "surface_regions": 1
+    },
+    {
+      "check": "pin 4 root -1",
+      "passed": true,
+      "expected_center_mm": [
+        25.400000000000006,
+        43.99409051224948,
+        249.714119
+      ],
+      "measured_minor_radius_mm": 1.7141189999999997,
+      "expected_minor_radius_mm": 1.7141189999999997,
+      "surface_regions": 1
+    },
+    {
+      "check": "pin 4 root 1",
+      "passed": true,
+      "expected_center_mm": [
+        25.400000000000006,
+        43.99409051224948,
+        276.285881
+      ],
+      "measured_minor_radius_mm": 1.7141189999999997,
+      "expected_minor_radius_mm": 1.7141189999999997,
+      "surface_regions": 3
+    },
+    {
+      "check": "pin 5 root -1",
+      "passed": true,
+      "expected_center_mm": [
+        -25.40000000000002,
+        43.99409051224947,
+        351.714119
+      ],
+      "measured_minor_radius_mm": 1.7141189999999997,
+      "expected_minor_radius_mm": 1.7141189999999997,
+      "surface_regions": 3
+    },
+    {
+      "check": "pin 5 root 1",
+      "passed": true,
+      "expected_center_mm": [
+        -25.40000000000002,
+        43.99409051224947,
+        378.285881
+      ],
+      "measured_minor_radius_mm": 1.7141189999999997,
+      "expected_minor_radius_mm": 1.7141189999999997,
+      "surface_regions": 1
+    },
+    {
+      "check": "pin 6 root -1",
+      "passed": true,
+      "expected_center_mm": [
+        25.399999999999984,
+        -43.99409051224949,
+        395.714119
+      ],
+      "measured_minor_radius_mm": 1.7141189999999997,
+      "expected_minor_radius_mm": 1.7141189999999997,
+      "surface_regions": 1
+    },
+    {
+      "check": "pin 6 root 1",
+      "passed": true,
+      "expected_center_mm": [
+        25.399999999999984,
+        -43.99409051224949,
+        422.285881
+      ],
+      "measured_minor_radius_mm": 1.7141189999999997,
+      "expected_minor_radius_mm": 1.7141189999999997,
+      "surface_regions": 3
+    },
+    {
+      "check": "main shoulder 44.0",
+      "passed": true,
+      "expected_center_mm": [
+        0,
+        0,
+        42.50009825
+      ],
+      "measured_minor_radius_mm": 1.4999017499999996,
+      "expected_minor_radius_mm": 1.4999017499999996,
+      "surface_regions": 3
+    },
+    {
+      "check": "main shoulder 146.0",
+      "passed": true,
+      "expected_center_mm": [
+        0,
+        0,
+        147.49990175
+      ],
+      "measured_minor_radius_mm": 1.4999017499999996,
+      "expected_minor_radius_mm": 1.4999017499999996,
+      "surface_regions": 3
+    },
+    {
+      "check": "main shoulder 190.0",
+      "passed": true,
+      "expected_center_mm": [
+        0,
+        0,
+        188.50009825
+      ],
+      "measured_minor_radius_mm": 1.4999017499999996,
+      "expected_minor_radius_mm": 1.4999017499999996,
+      "surface_regions": 3
+    },
+    {
+      "check": "main shoulder 292.0",
+      "passed": true,
+      "expected_center_mm": [
+        0,
+        0,
+        293.49990175
+      ],
+      "measured_minor_radius_mm": 1.4999017499999996,
+      "expected_minor_radius_mm": 1.4999017499999996,
+      "surface_regions": 3
+    },
+    {
+      "check": "main shoulder 336.0",
+      "passed": true,
+      "expected_center_mm": [
+        0,
+        0,
+        334.50009825
+      ],
+      "measured_minor_radius_mm": 1.4999017499999996,
+      "expected_minor_radius_mm": 1.4999017499999996,
+      "surface_regions": 3
+    },
+    {
+      "check": "main shoulder 438.0",
+      "passed": true,
+      "expected_center_mm": [
+        0,
+        0,
+        439.49990175
+      ],
+      "measured_minor_radius_mm": 1.4999017499999996,
+      "expected_minor_radius_mm": 1.4999017499999996,
+      "surface_regions": 3
+    },
+    {
+      "check": "pin 1 blind recess at 44.0",
+      "passed": true,
+      "radius_mm": 9.141967999999999,
+      "wall_spans_mm": [
+        3.5
+      ],
+      "closed_floor": true
+    },
+    {
+      "check": "pin 1 blind recess at 102.0",
+      "passed": true,
+      "radius_mm": 9.141967999999999,
+      "wall_spans_mm": [
+        3.5
+      ],
+      "closed_floor": true
+    },
+    {
+      "check": "pin 2 blind recess at 88.0",
+      "passed": true,
+      "radius_mm": 9.141967999999999,
+      "wall_spans_mm": [
+        3.5
+      ],
+      "closed_floor": true
+    },
+    {
+      "check": "pin 2 blind recess at 146.0",
+      "passed": true,
+      "radius_mm": 9.141967999999999,
+      "wall_spans_mm": [
+        3.5
+      ],
+      "closed_floor": true
+    },
+    {
+      "check": "pin 3 blind recess at 190.0",
+      "passed": true,
+      "radius_mm": 9.141967999999999,
+      "wall_spans_mm": [
+        3.5
+      ],
+      "closed_floor": true
+    },
+    {
+      "check": "pin 3 blind recess at 248.0",
+      "passed": true,
+      "radius_mm": 9.141967999999999,
+      "wall_spans_mm": [
+        3.5
+      ],
+      "closed_floor": true
+    },
+    {
+      "check": "pin 4 blind recess at 234.0",
+      "passed": true,
+      "radius_mm": 9.141967999999999,
+      "wall_spans_mm": [
+        3.5
+      ],
+      "closed_floor": true
+    },
+    {
+      "check": "pin 4 blind recess at 292.0",
+      "passed": true,
+      "radius_mm": 9.141967999999999,
+      "wall_spans_mm": [
+        3.5
+      ],
+      "closed_floor": true
+    },
+    {
+      "check": "pin 5 blind recess at 336.0",
+      "passed": true,
+      "radius_mm": 9.141967999999999,
+      "wall_spans_mm": [
+        3.5
+      ],
+      "closed_floor": true
+    },
+    {
+      "check": "pin 5 blind recess at 394.0",
+      "passed": true,
+      "radius_mm": 9.141967999999999,
+      "wall_spans_mm": [
+        3.5
+      ],
+      "closed_floor": true
+    },
+    {
+      "check": "pin 6 blind recess at 380.0",
+      "passed": true,
+      "radius_mm": 9.141967999999999,
+      "wall_spans_mm": [
+        3.5
+      ],
+      "closed_floor": true
+    },
+    {
+      "check": "pin 6 blind recess at 438.0",
+      "passed": true,
+      "radius_mm": 9.141967999999999,
+      "wall_spans_mm": [
+        3.5
+      ],
+      "closed_floor": true
+    },
+    {
+      "check": "pin 1 full-size central bearing land",
+      "passed": true,
+      "land_length_mm": 26.571762,
+      "relative_missing_volume": 2.1358487387612944e-16
+    },
+    {
+      "check": "pin 2 full-size central bearing land",
+      "passed": true,
+      "land_length_mm": 26.571762,
+      "relative_missing_volume": 2.1358487387612944e-16
+    },
+    {
+      "check": "pin 3 full-size central bearing land",
+      "passed": true,
+      "land_length_mm": 26.571762,
+      "relative_missing_volume": 4.271697477522589e-16
+    },
+    {
+      "check": "pin 4 full-size central bearing land",
+      "passed": true,
+      "land_length_mm": 26.571762,
+      "relative_missing_volume": 2.135848738761294e-16
+    },
+    {
+      "check": "pin 5 full-size central bearing land",
+      "passed": true,
+      "land_length_mm": 26.571762,
+      "relative_missing_volume": 1.281509243256777e-15
+    },
+    {
+      "check": "pin 6 full-size central bearing land",
+      "passed": true,
+      "land_length_mm": 26.571762,
+      "relative_missing_volume": 8.543394955045178e-16
+    },
+    {
+      "check": "main 1 annular bearing land",
+      "passed": true,
+      "land_length_mm": 42.50009825,
+      "verified_outer_radial_band_mm": 0.25,
+      "relative_missing_volume": 1.312870274504762e-14
+    },
+    {
+      "check": "main 2 annular bearing land",
+      "passed": true,
+      "land_length_mm": 41.000196500000015,
+      "verified_outer_radial_band_mm": 0.25,
+      "relative_missing_volume": 1.3608987375452268e-14
+    },
+    {
+      "check": "main 3 annular bearing land",
+      "passed": true,
+      "land_length_mm": 41.000196500000015,
+      "verified_outer_radial_band_mm": 0.25,
+      "relative_missing_volume": 2.7217974750904536e-14
+    },
+    {
+      "check": "main 4 annular bearing land",
+      "passed": true,
+      "land_length_mm": 42.50009825000001,
+      "verified_outer_radial_band_mm": 0.25,
+      "relative_missing_volume": 1.3128702745047533e-14
+    },
+    {
+      "check": "all split liners have two conical edge reliefs",
+      "passed": true,
+      "conical_faces": 24,
+      "relief_mm": 1.6625189999999999
+    },
+    {
+      "check": "saved native root-radius edit propagates",
+      "passed": true,
+      "before_volume_mm3": 2101437.64643541,
+      "after_volume_mm3": 2101522.538177027,
+      "radius_increment_mm": 0.1
+    },
+    {
+      "check": "restored radius/shape",
+      "passed": true
+    }
+  ],
+  "scope": "Confirms the estimated geometry and saved feature behaviour. No manufacturer radius, hidden drilling, stress or motion claim."
+}

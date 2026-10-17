@@ -13,7 +13,7 @@ Rungs 1 to 5 can run on the fast evaluator's output while designing; the release
 | 6 | Does the motion obey the physics and sources it claims? | tests that load the exported GLB (`test_wright_reconstruction.mjs`) | ratios 1:1/2:1/190:40, 101.6 mm stroke, 12 degree rod swing, 7.9375 mm lift inside the exhaust stroke, fixed axes do not drift |
 | 7 | Do the files agree? | hashes: contract and audit name the GLB; report names the FCStd/STEP; spec hash matches | `package_animated.py` refuses a mismatch |
 | 8 | Does the interchange survive? | STEP round trip: per-solid volume, bounds, topology; reviewed exception only with evidence | four valve boxes, documented exception |
-| 9 | Does it look like the sources? | per-system figure overlays, dimension table with locators, silhouette comparison from identical cameras | the weakest rung: extend it |
+| 9 | Does it look like the sources? | `image-matcher`: comparable cameras/poses, registered figure views, visible feature/operation findings, dimension table with locators, silhouette metrics only on prepared masks | separate from solidity/interference; the GTSIO trial now records before/after and pending fillets/calibration |
 | 10 | Does the viewer show it? | load in the app, open each clip and stage, check the tree and labels | done by eye and by `npm test` |
 
 ## Rules that came from mistakes

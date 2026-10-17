@@ -29,9 +29,11 @@ glTF interpolates translation, rotation and scale linearly between keys. For a r
 
 - Actions are slotted: `action.slots.new(id_type='OBJECT', name=obj.name)`, `layer.strips.new(type='KEYFRAME')`, `strip.channelbag(slot, ensure=True)`.
 - Fast curve creation: `channelbag.fcurves.new(path, index=k)`, `curve.keyframe_points.add(n)`, `foreach_set('co', ...)`; per-key Python loops are too slow for hundreds of parts times 721 frames. Cache the track per rigid body.
-- The glTF exporter writes only actions referenced by NLA tracks: put each clip on a muted NLA track named for the clip, with `nla.action_slot = slot`.
+- The current rigs export active/stashed actions with `export_animation_mode='ACTIONS'`. One shared slotted action represents a clip; every object binds its slot on a muted NLA track, with `nla.action_slot = slot`. Use `export_merge_animation='ACTION'` explicitly for new rigs (the installed exporter default used by the existing rigs). Exporting `NLA_TRACKS` instead is a different sampled-track mode; matching names alone is not a portable grouping rule. Verify clip count/names and channels in the actual GLB.
 - Keep the quaternion on one hemisphere between keys. Decompose after multiplying by the pivot translation. Convert mm to metres once (only the translation scales).
 - `scripts/normalize_glb_motion_time.py` makes the exported time axis start at 0 and run in seconds.
+
+`cad_pipeline/probe_blender_methods.py` imports a checked FreeCAD fixture, reuses the Wright track writer, saves/reopens shared actions and checks both exported clips' IDs, axes, units and keys. It also visual-bakes a constrained copy and compares evaluated transforms at quarter-frame samples while preserving the constrained master. See `cad-studies/gtsio520-h-realism/implementation-research.md` for source/version applicability and actual results. It is method validation, not an engine release audit.
 
 ## Contract and viewer
 

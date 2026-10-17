@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "native_reopened": true,
+  "step_valid": true,
+  "parts": 103,
+  "relative_volume_error": 1.3957666895270435e-07,
+  "native_record_bounds_error_mm": 5.684341886080802e-14,
+  "native_record_relative_volume_error": 6.463816507553383e-15,
+  "total_volume_relative_tolerance": 1e-05,
+  "worst_solid_relative_volume_error": 3.387290729513347e-06,
+  "solid_volume_relative_tolerance": 0.0001,
+  "assembly_extents_mm": [
+    506.15,
+    191.32378550465606,
+    482.0
+  ],
+  "source_fidelity": "Not established by these checks",
+  "strict_solid_volume_check_passed": true,
+  "step_boundary_exception": null,
+  "validation_status": "passed"
+}

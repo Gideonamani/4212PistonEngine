@@ -1,0 +1,20 @@
+{
+  "asset_sha256": "27054c1c7d0714537462dafca2f3ab870e603cd6c50808227622e60add0c7281",
+  "asset_bytes": 63271640,
+  "parts": 1396,
+  "tolerance_mm3": 0.001,
+  "max_penetration_mm": 0.05,
+  "method": "All bound-meeting pairs intersected exactly (Manifold boolean) at the rest pose and at sampled times of each baked animation clip. Touching is allowed, overlap is not; an overlap thinner than max_penetration_mm is treated as mesh tessellation noise on a touching face.",
+  "rest_neighbouring_pairs": 5168,
+  "rest_touching_only": 5168,
+  "clips": {},
+  "gear_meshes": [],
+  "unverified_parts": [],
+  "unverified_not_waived": [],
+  "stale_ledger_entries": [],
+  "overlaps_total": 0,
+  "known_defects": [],
+  "new_violations": [],
+  "clean": true,
+  "passed": true
+}
