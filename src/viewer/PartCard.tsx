@@ -94,6 +94,13 @@ export function PartCard({
           </div>
 
           <dl className="grid grid-cols-[65px_1fr] sm:grid-cols-[80px_1fr] gap-x-2 gap-y-1 text-[10.5px] sm:text-[11.5px] leading-snug">
+            {data.partNumber && (
+              <>
+                <dt className="font-semibold text-slate-400">Part No.</dt>
+                <dd className="font-mono text-teal-300 font-semibold">{data.partNumber}</dd>
+              </>
+            )}
+
             <dt className="font-semibold text-slate-400">Material</dt>
             <dd className="font-mono text-slate-200">{data.material}</dd>
 
@@ -104,6 +111,13 @@ export function PartCard({
               <>
                 <dt className="font-semibold text-slate-400">Operating</dt>
                 <dd className="font-mono text-slate-200">{data.operatingConditions}</dd>
+              </>
+            )}
+
+            {data.source && (
+              <>
+                <dt className="font-semibold text-slate-400">Source</dt>
+                <dd className="font-mono text-[10px] text-slate-400">{data.source}</dd>
               </>
             )}
           </dl>

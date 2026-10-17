@@ -1,0 +1,1216 @@
+{
+  "schema": "4212.component-definitions/v1",
+  "engine": "Continental GTSIO-520-H",
+  "definitions": {
+    "rocker-cover-fillister-screw": {
+      "slug": "rocker-cover-fillister-screw",
+      "name": "Rocker Cover Fillister Screw",
+      "partNumber": "535118",
+      "system": "valvetrain",
+      "material": "Cadmium-plated low-carbon steel (1/4-20 x 1/2 in)",
+      "function": "Fastens the stamped rocker cover to the cylinder head with lock washer security.",
+      "operatingConditions": "Exposed to cylinder head fin temperatures up to 180 \u00b0C and engine vibration.",
+      "source": "IPC X-30040A Fig. 13 #35"
+    },
+    "rocker-cover-plain-washer": {
+      "slug": "rocker-cover-plain-washer",
+      "name": "Rocker Cover Plain Washer",
+      "partNumber": "20522",
+      "system": "valvetrain",
+      "material": "Low-carbon stamped steel, cadmium plated",
+      "function": "Distributes bolt clamping load over the rocker cover flange to prevent distortion.",
+      "operatingConditions": "Clamps cork/synthetic gasket to prevent oil seepage at rocker box.",
+      "source": "IPC X-30040A Fig. 13 #33"
+    },
+    "rocker-cover-lock-washer": {
+      "slug": "rocker-cover-lock-washer",
+      "name": "Rocker Cover Lock Washer",
+      "partNumber": "AN936A416",
+      "system": "valvetrain",
+      "material": "Spring steel, internal tooth lock washer",
+      "function": "Prevents vibration loosening of the rocker cover screws during engine operation.",
+      "operatingConditions": "Maintains screw tension under continuous 3,200 rpm vibration spectrum.",
+      "source": "IPC X-30040A Fig. 13 #34"
+    },
+    "valve-rocker-cover": {
+      "slug": "valve-rocker-cover",
+      "name": "Valve Rocker Cover",
+      "partNumber": "625615",
+      "system": "valvetrain",
+      "material": "Deep-drawn stamped sheet steel, protective enamel finish",
+      "function": "Encloses the rocker arms and valve springs, containing lubricating splash oil.",
+      "operatingConditions": "Oil bath environment at 100\u2013180 \u00b0C; external cooling air stream.",
+      "source": "IPC X-30040A Fig. 13 #32"
+    },
+    "rocker-cover-gasket": {
+      "slug": "rocker-cover-gasket",
+      "name": "Rocker Cover Gasket",
+      "partNumber": "630979",
+      "system": "valvetrain",
+      "material": "Resilient cork-synthetic elastomer composite",
+      "function": "Seals the joint between the rocker box rim and the stamped steel rocker cover.",
+      "operatingConditions": "Compliant seal resisting hot synthetic/mineral oil at 140 \u00b0C.",
+      "source": "IPC X-30040A Fig. 13"
+    },
+    "rocker-shaft-retaining-screw": {
+      "slug": "rocker-shaft-retaining-screw",
+      "name": "Rocker Shaft Retaining Screw",
+      "partNumber": "537019",
+      "system": "valvetrain",
+      "material": "High-tensile alloy steel (5/16-24 x 17/32 in)",
+      "function": "Clamps the rocker shaft rigidly in its cylinder head support bosses.",
+      "operatingConditions": "Resists cyclic rocker thrust and reaction forces without loosening.",
+      "source": "IPC X-30040A Fig. 13 #23"
+    },
+    "rocker-shaft-plain-washer": {
+      "slug": "rocker-shaft-plain-washer",
+      "name": "Rocker Shaft Plain Washer",
+      "partNumber": "2473",
+      "system": "valvetrain",
+      "material": "Hardened structural alloy steel",
+      "function": "Seats under the rocker shaft screw to distribute high clamping preload.",
+      "operatingConditions": "Maintains preload against aluminum cylinder head boss.",
+      "source": "IPC X-30040A Fig. 13 #22"
+    },
+    "rocker-shaft-lock-washer": {
+      "slug": "rocker-shaft-lock-washer",
+      "name": "Rocker Shaft Lock Washer",
+      "partNumber": "AN936A516",
+      "system": "valvetrain",
+      "material": "High-carbon spring steel, internal tooth",
+      "function": "Locks the rocker shaft screw against vibrational backing-out.",
+      "operatingConditions": "Vibrational environment directly on cylinder head casting.",
+      "source": "IPC X-30040A Fig. 13"
+    },
+    "rocker-shaft-locating-collar": {
+      "slug": "rocker-shaft-locating-collar",
+      "name": "Rocker Shaft Locating Collar",
+      "partNumber": "539740-C",
+      "system": "valvetrain",
+      "material": "Machined carbon steel",
+      "function": "Axially positions and spaces the rocker arms along the rocker shaft.",
+      "operatingConditions": "Maintains valve stem tip alignment over full valve lift travel.",
+      "source": "Overhaul Manual X-30045A Sec. IV"
+    },
+    "rocker-shaft-end-retaining-ring": {
+      "slug": "rocker-shaft-end-retaining-ring",
+      "name": "Rocker Shaft End Retaining Ring",
+      "partNumber": "539740-R",
+      "system": "valvetrain",
+      "material": "Spring steel external snap ring",
+      "function": "Secures the rocker shaft assembly axially in the cylinder head support towers.",
+      "operatingConditions": "Retains shaft under dynamic side-thrust.",
+      "source": "Overhaul Manual X-30045A Sec. IV"
+    },
+    "rocker-shaft-retention-hardware": {
+      "slug": "rocker-shaft-retention-hardware",
+      "name": "Rocker Shaft Retention Hardware",
+      "partNumber": "537019",
+      "system": "valvetrain",
+      "material": "High-tensile alloy steel",
+      "function": "Secures the rocker pivot assembly to the cylinder head structure.",
+      "operatingConditions": "Cyclic valve opening reaction loads.",
+      "source": "IPC X-30040A Fig. 13"
+    },
+    "cylinder-flange-hold-down-nut": {
+      "slug": "cylinder-flange-hold-down-nut",
+      "name": "Cylinder Flange Hold-Down Nut",
+      "partNumber": "531001",
+      "system": "crankcase",
+      "material": "Heat-treated high-strength alloy steel (7/16-20)",
+      "function": "Clamps the cylinder barrel mounting flange securely to the crankcase deck.",
+      "operatingConditions": "Torqued to 490\u2013510 in-lb to withstand peak firing pressures > 1,000 psi.",
+      "source": "IPC X-30040A Fig. 13 #2; Table 2 Torque Limits"
+    },
+    "cylinder-deck-attaching-stud": {
+      "slug": "cylinder-deck-attaching-stud",
+      "name": "Cylinder Deck Attaching Stud",
+      "partNumber": "401893",
+      "system": "crankcase",
+      "material": "Alloy steel, coarse case thread with fine nut thread (AMS 6320)",
+      "function": "Transfers cylinder gas pressure tension directly into the crankcase structure.",
+      "operatingConditions": "Cyclic tensile loads up to 45 kN per cylinder power stroke.",
+      "source": "IPC X-30040A Fig. 4 #9; Table 9 Setting Heights"
+    },
+    "cylinder-base-locking-palnut": {
+      "slug": "cylinder-base-locking-palnut",
+      "name": "Cylinder Base Locking Palnut",
+      "partNumber": "2958",
+      "system": "crankcase",
+      "material": "Stamped spring steel, cadmium plated (7/16-20)",
+      "function": "Locks the primary cylinder base flanged nut against vibrational loosening.",
+      "operatingConditions": "Installed finger-tight plus 1/3 turn over the primary nut.",
+      "source": "IPC X-30040A Fig. 13 #3; Table 2"
+    },
+    "crankcase-main-through-bolt": {
+      "slug": "crankcase-main-through-bolt",
+      "name": "Crankcase Main Through-Bolt",
+      "partNumber": "631580",
+      "system": "crankcase",
+      "material": "Vacuum-melted high-tensile alloy steel (1/2-20 thread)",
+      "function": "Passes across the crankcase to clamp both halves tightly across the main bearings.",
+      "operatingConditions": "Torqued to 700\u2013750 in-lb, clamping crankshaft main bearing shells.",
+      "source": "IPC X-30040A Fig. 2 #1; Table 2"
+    },
+    "crankcase-flange-through-bolt": {
+      "slug": "crankcase-flange-through-bolt",
+      "name": "Crankcase Flange Through-Bolt",
+      "partNumber": "631581",
+      "system": "crankcase",
+      "material": "High-tensile alloy steel (3/8-24)",
+      "function": "Clamps perimeter mating flanges of the crankcase halves together.",
+      "operatingConditions": "Maintains oil-tight seal across metal-to-metal crankcase spine.",
+      "source": "IPC X-30040A Fig. 2 #12"
+    },
+    "crankcase-through-bolt-hardened-washer": {
+      "slug": "crankcase-through-bolt-hardened-washer",
+      "name": "Crankcase Through-Bolt Hardened Washer",
+      "partNumber": "AN960-816",
+      "system": "crankcase",
+      "material": "Heat-treated hardened alloy steel",
+      "function": "Distributes through-bolt nut clamping force without galling the aluminum case.",
+      "operatingConditions": "High compressive preload under main bearing clamp.",
+      "source": "IPC X-30040A Fig. 2 #2"
+    },
+    "crankcase-through-bolt-flanged-locknut": {
+      "slug": "crankcase-through-bolt-flanged-locknut",
+      "name": "Crankcase Through-Bolt Flanged Locknut",
+      "partNumber": "531003",
+      "system": "crankcase",
+      "material": "Heat-treated high-strength alloy steel (1/2-20)",
+      "function": "High-load flanged nut securing the primary crankcase transverse through-bolts.",
+      "operatingConditions": "Main bearing saddle clamping tension.",
+      "source": "IPC X-30040A Fig. 2 #3"
+    },
+    "crankcase-perimeter-fastener": {
+      "slug": "crankcase-perimeter-fastener",
+      "name": "Crankcase Perimeter Fastener",
+      "partNumber": "AN4-14A",
+      "system": "crankcase",
+      "material": "Aircraft structural steel bolt / self-locking nut",
+      "function": "Secures outer split-line seam of crankcase halves.",
+      "operatingConditions": "Maintains case alignment and prevents oil weeping.",
+      "source": "IPC X-30040A Fig. 2"
+    },
+    "reduction-housing-split-lock-washer": {
+      "slug": "reduction-housing-split-lock-washer",
+      "name": "Reduction Housing Split Lock Washer",
+      "partNumber": "AN936A516",
+      "system": "reduction",
+      "material": "High-carbon spring steel split lock washer",
+      "function": "Maintains bolt tension clamping the front reduction nose case.",
+      "operatingConditions": "Absorbs propeller vibration harmonics.",
+      "source": "IPC X-30040A Fig. 2"
+    },
+    "nose-reduction-housing-fastener": {
+      "slug": "nose-reduction-housing-fastener",
+      "name": "Nose Reduction Housing Fastener",
+      "partNumber": "531001",
+      "system": "reduction",
+      "material": "Heat-treated alloy steel",
+      "function": "Fastens the forward reduction gear nose housing to the crankcase front flange.",
+      "operatingConditions": "Reacts propeller thrust and gyroscopic bending moments.",
+      "source": "Overhaul Manual X-30045A Sec. III"
+    },
+    "connecting-rod": {
+      "slug": "connecting-rod",
+      "name": "Connecting Rod",
+      "partNumber": "633403",
+      "system": "reciprocating",
+      "material": "Forged H-section alloy steel, shot-peened for fatigue endurance",
+      "function": "Transmits reciprocating gas forces from the piston pin to the crankshaft crankpin.",
+      "operatingConditions": "Alternating tension/compression loads exceeding 35 kN at 3,200 engine rpm.",
+      "source": "IPC X-30040A Fig. 11 #1; Overhaul Manual Table 6"
+    },
+    "connecting-rod-big-end-cap": {
+      "slug": "connecting-rod-big-end-cap",
+      "name": "Connecting Rod Big-End Cap",
+      "partNumber": "633403-CAP",
+      "system": "reciprocating",
+      "material": "Matched forged alloy steel forging with precision doweled alignment",
+      "function": "Clamps the lower rod bearing shell to the crankpin journal under high inertia.",
+      "operatingConditions": "Subjected to centrifugal and inertia tension during exhaust stroke TDC.",
+      "source": "IPC X-30040A Fig. 11 #2"
+    },
+    "connecting-rod-upper-bearing-shell": {
+      "slug": "connecting-rod-upper-bearing-shell",
+      "name": "Connecting Rod Upper Bearing Shell",
+      "partNumber": "635439-U",
+      "system": "reciprocating",
+      "material": "Steel-backed copper-lead lining with electroplated lead-tin babbitt overlay",
+      "function": "Carries maximum combustion firing loads between rod small end and crankpin.",
+      "operatingConditions": "Dynamic hydrodynamic oil film under peak unit loads > 3,500 psi.",
+      "source": "IPC X-30040A Fig. 8 #13"
+    },
+    "connecting-rod-lower-bearing-shell": {
+      "slug": "connecting-rod-lower-bearing-shell",
+      "name": "Connecting Rod Lower Bearing Shell",
+      "partNumber": "635439-L",
+      "system": "reciprocating",
+      "material": "Steel-backed trimetal copper-lead alloy shell with babbitt running surface",
+      "function": "Provides low-friction hydrodynamic journal support during inertia load reversals.",
+      "operatingConditions": "Hydrodynamic film lubricated by pressurized crankpin oil drilling.",
+      "source": "IPC X-30040A Fig. 8 #14"
+    },
+    "connecting-rod-piston-pin-bushing": {
+      "slug": "connecting-rod-piston-pin-bushing",
+      "name": "Connecting Rod Piston Pin Bushing",
+      "partNumber": "530658",
+      "system": "reciprocating",
+      "material": "Precision machined phosphor bronze (AMS 4820)",
+      "function": "Provides bearing journal for the full-floating wrist pin in the rod small end.",
+      "operatingConditions": "High oscillating bearing pressure under boundary oil mist lubrication.",
+      "source": "IPC X-30040A Fig. 11 #3"
+    },
+    "connecting-rod-precision-bolt": {
+      "slug": "connecting-rod-precision-bolt",
+      "name": "Connecting Rod Precision Bolt",
+      "partNumber": "629340",
+      "system": "reciprocating",
+      "material": "Vacuum-arc remelted alloy steel (AMS 6304), precision ground body",
+      "function": "Clamps connecting rod cap to rod body with calibrated stretch.",
+      "operatingConditions": "Preloaded to 400\u2013450 in-lb; carries continuous inertia cyclic tension.",
+      "source": "IPC X-30040A Fig. 11 #4; Table 2"
+    },
+    "connecting-rod-slotted-nut": {
+      "slug": "connecting-rod-slotted-nut",
+      "name": "Connecting Rod Slotted Nut",
+      "partNumber": "628109",
+      "system": "reciprocating",
+      "material": "High-tensile alloy steel (7/16-28 special thread)",
+      "function": "Secures the rod bolt clamping preload, locked with a stainless cotter pin.",
+      "operatingConditions": "Maintains calibrated bolt stretch under 3,200 rpm alternating fatigue.",
+      "source": "IPC X-30040A Fig. 11 #5"
+    },
+    "connecting-rod-cotter-pin": {
+      "slug": "connecting-rod-cotter-pin",
+      "name": "Connecting Rod Cotter Pin",
+      "partNumber": "AN381-25-10",
+      "system": "reciprocating",
+      "material": "Corrosion-resistant stainless steel (1/16 x 5/8 in)",
+      "function": "Positively locks the slotted rod nut to the connecting rod bolt shank.",
+      "operatingConditions": "Zero-failure positive mechanical locking in high centrifugal oil bath.",
+      "source": "IPC X-30040A Fig. 11 #6"
+    },
+    "piston-wrist-pin": {
+      "slug": "piston-wrist-pin",
+      "name": "Piston Wrist Pin",
+      "partNumber": "630046",
+      "system": "reciprocating",
+      "material": "High-nickel carburizing alloy steel, case-hardened and ground",
+      "function": "Transfers reciprocating piston pressure forces to the connecting rod small end.",
+      "operatingConditions": "Full-floating design free to rotate in piston bosses and rod bushing.",
+      "source": "IPC X-30040A Fig. 12 #6"
+    },
+    "piston-pin-end-plug": {
+      "slug": "piston-pin-end-plug",
+      "name": "Piston Pin End Plug",
+      "partNumber": "539467",
+      "system": "reciprocating",
+      "material": "Wrought aluminum alloy (AMS 4120), spherical contact face",
+      "function": "Prevents the hardened steel wrist pin from contacting and scoring the cylinder wall.",
+      "operatingConditions": "Slides smoothly against nitrided cylinder barrel at top and bottom of stroke.",
+      "source": "IPC X-30040A Fig. 12 #6 (included in assembly)"
+    },
+    "piston-body": {
+      "slug": "piston-body",
+      "name": "Piston Body",
+      "partNumber": "631475",
+      "system": "reciprocating",
+      "material": "Forged aluminum alloy (Al-Cu-Mg-Ni 2618-T61), cam-ground barrel skirt",
+      "function": "Forms movable boundary of combustion chamber; transfers gas pressure to pin.",
+      "operatingConditions": "Crown exposed to combustion flame > 1,800 \u00b0C; crown metal temperature up to 280 \u00b0C.",
+      "source": "IPC X-30040A Fig. 12 #1"
+    },
+    "top-compression-piston-ring": {
+      "slug": "top-compression-piston-ring",
+      "name": "Top Compression Piston Ring",
+      "partNumber": "630752",
+      "system": "reciprocating",
+      "material": "High-strength ductile alloy iron, hard chrome-plated keystone profile",
+      "function": "Primary combustion seal holding peak firing pressures; conducts crown heat to barrel.",
+      "operatingConditions": "Exposed directly to flame front; wedge keystone profile prevents groove sticking.",
+      "source": "IPC X-30040A Fig. 12 #2"
+    },
+    "second-compression-piston-ring": {
+      "slug": "second-compression-piston-ring",
+      "name": "Second Compression Piston Ring",
+      "partNumber": "630753",
+      "system": "reciprocating",
+      "material": "High-grade alloy cast iron, tapered face running profile",
+      "function": "Secondary gas seal and oil wiper ring controlling cylinder wall lubrication.",
+      "operatingConditions": "Scrapes excess oil downward while maintaining combustion gas seal.",
+      "source": "IPC X-30040A Fig. 12 #3"
+    },
+    "third-groove-oil-control-ring": {
+      "slug": "third-groove-oil-control-ring",
+      "name": "Third Groove Oil Control Ring",
+      "partNumber": "631729",
+      "system": "reciprocating",
+      "material": "Slotted alloy cast iron with internal helical spring expander",
+      "function": "Meters and scrapes lubricating oil film on cylinder bore to control consumption.",
+      "operatingConditions": "Channels surplus oil through piston drainage ports back to crankcase sump.",
+      "source": "IPC X-30040A Fig. 12 #4"
+    },
+    "fourth-groove-skirt-scraper-ring": {
+      "slug": "fourth-groove-skirt-scraper-ring",
+      "name": "Fourth Groove Skirt Scraper Ring",
+      "partNumber": "629401",
+      "system": "reciprocating",
+      "material": "Cast iron beveled scraper ring",
+      "function": "Wipes oil from lower cylinder skirt to prevent excess oil reaching combustion chamber.",
+      "operatingConditions": "Lower skirt ring groove running in crankcase splash zone.",
+      "source": "IPC X-30040A Fig. 12 #5"
+    },
+    "cylinder-barrel": {
+      "slug": "cylinder-barrel",
+      "name": "Cylinder Barrel",
+      "partNumber": "635448",
+      "system": "cylinder",
+      "material": "Forged chrome-molybdenum alloy steel (AMS 6382), nitrided choke bore",
+      "function": "Provides durable, wear-resistant reciprocating bore for piston and rings.",
+      "operatingConditions": "Bore diameter 5.250 in; choke-ground at top to compensate for thermal expansion.",
+      "source": "IPC X-30040A Fig. 13 #6; Overhaul Manual Table 6"
+    },
+    "cylinder-head": {
+      "slug": "cylinder-head",
+      "name": "Cylinder Head",
+      "partNumber": "635448A1",
+      "system": "cylinder",
+      "material": "Gravity-cast aluminum alloy (A355-T61) with integral deep cooling fins",
+      "function": "Encloses combustion chamber, houses valves, guides, seats, and spark plugs.",
+      "operatingConditions": "Thermal gradient from 180 \u00b0C (intake) to 240 \u00b0C (exhaust); shrunk onto barrel.",
+      "source": "IPC X-30040A Fig. 13 #6"
+    },
+    "cylinder-base-packing-o-ring": {
+      "slug": "cylinder-base-packing-o-ring",
+      "name": "Cylinder Base Packing O-Ring",
+      "partNumber": "631674",
+      "system": "cylinder",
+      "material": "Fluorosilicone / high-temperature synthetic elastomer",
+      "function": "Seals the cylinder flange pilot spigot in the crankcase deck bore against oil leakage.",
+      "operatingConditions": "Stationary radial compression seal resisting 150 \u00b0C oil bath.",
+      "source": "IPC X-30040A Fig. 13 #1"
+    },
+    "intake-valve": {
+      "slug": "intake-valve",
+      "name": "Intake Valve",
+      "partNumber": "539988",
+      "system": "valvetrain",
+      "material": "Low-alloy silicon-chromium steel (AMS 6440) with 30 deg ground seating face",
+      "function": "Admits fuel-air mixture from the intake port into the cylinder during intake stroke.",
+      "operatingConditions": "Head diameter 2.25 in; cooled by incoming induction charge to 300\u2013400 \u00b0C.",
+      "source": "IPC X-30040A Fig. 13 #13; Overhaul Manual Table 6"
+    },
+    "exhaust-valve": {
+      "slug": "exhaust-valve",
+      "name": "Exhaust Valve",
+      "partNumber": "635720",
+      "system": "valvetrain",
+      "material": "High-nickel austenitic steel stem, hollow sodium-filled cavity, Stellite face",
+      "function": "Releases burnt exhaust gases to exhaust port; transfers head heat via liquid sodium.",
+      "operatingConditions": "Internal sodium melts at 98 \u00b0C, transferring heat to guide; head operates at 650\u2013750 \u00b0C.",
+      "source": "IPC X-30040A Fig. 13 #14; Overhaul Manual Table 6"
+    },
+    "intake-valve-seat-insert": {
+      "slug": "intake-valve-seat-insert",
+      "name": "Intake Valve Seat Insert",
+      "partNumber": "630591",
+      "system": "cylinder",
+      "material": "Austenitic alloy steel with precision ground 30 deg sealing cone",
+      "function": "Provides hard, wear-resistant sealing surface for intake valve face.",
+      "operatingConditions": "Shrunk into heated cylinder head with 0.007 in interference fit.",
+      "source": "IPC X-30040A Fig. 13 #11"
+    },
+    "exhaust-valve-seat-insert": {
+      "slug": "exhaust-valve-seat-insert",
+      "name": "Exhaust Valve Seat Insert",
+      "partNumber": "35967",
+      "system": "cylinder",
+      "material": "Ni-Resist austenitic high-nickel cast iron alloy",
+      "function": "Seals exhaust valve under continuous high-temperature gas erosion.",
+      "operatingConditions": "Withstands 700 \u00b0C combustion gas impingement and severe thermal cycling.",
+      "source": "IPC X-30040A Fig. 13 #12"
+    },
+    "intake-valve-guide": {
+      "slug": "intake-valve-guide",
+      "name": "Intake Valve Guide",
+      "partNumber": "631496-IN",
+      "system": "cylinder",
+      "material": "Phosphor bronze / high-lead bronze alloy (AMS 4640)",
+      "function": "Accurately guides intake valve stem and transfers stem heat to aluminum head.",
+      "operatingConditions": "Shrunk into head bore; running clearance 0.0010\u20130.0024 in.",
+      "source": "IPC X-30040A Fig. 13 #8; Overhaul Manual Table 6"
+    },
+    "exhaust-valve-guide": {
+      "slug": "exhaust-valve-guide",
+      "name": "Exhaust Valve Guide",
+      "partNumber": "631496-EX",
+      "system": "cylinder",
+      "material": "High-strength phosphor bronze / silicon-bronze alloy",
+      "function": "Guides exhaust valve stem and dissipates high sodium-conducted heat flux.",
+      "operatingConditions": "Running clearance 0.0015\u20130.0030 in; absorbs bulk of valve heat dissipation.",
+      "source": "IPC X-30040A Fig. 13 #8; Overhaul Manual Table 6"
+    },
+    "valve-outer-spring": {
+      "slug": "valve-outer-spring",
+      "name": "Valve Outer Spring",
+      "partNumber": "631520",
+      "system": "valvetrain",
+      "material": "High-fatigue shot-peened chrome-vanadium spring steel (AMS 6450)",
+      "function": "Primary spring returning valve to seat and preventing float at 3,200 engine rpm.",
+      "operatingConditions": "Compressed load 80\u201390 lb installed, 180\u2013200 lb at full valve lift.",
+      "source": "IPC X-30040A Fig. 13 #16; Overhaul Manual Table 6"
+    },
+    "valve-inner-spring": {
+      "slug": "valve-inner-spring",
+      "name": "Valve Inner Spring",
+      "partNumber": "631521",
+      "system": "valvetrain",
+      "material": "Reverse-helix shot-peened spring steel",
+      "function": "Dampens harmonic surge of outer spring and provides failsafe seating force.",
+      "operatingConditions": "Wound in opposite direction to outer spring to prevent coil interlocking.",
+      "source": "IPC X-30040A Fig. 13 #15"
+    },
+    "valve-spring-lower-seat-washer": {
+      "slug": "valve-spring-lower-seat-washer",
+      "name": "Valve Spring Lower Seat Washer",
+      "partNumber": "625393",
+      "system": "valvetrain",
+      "material": "Hardened carbon steel",
+      "function": "Protects aluminum cylinder head casting from spring coil wear and fretting.",
+      "operatingConditions": "Stationary thrust face under spring stack preload.",
+      "source": "IPC X-30040A Fig. 13 #17"
+    },
+    "valve-spring-lower-inner-retainer": {
+      "slug": "valve-spring-lower-inner-retainer",
+      "name": "Valve Spring Lower Inner Retainer",
+      "partNumber": "625393",
+      "system": "valvetrain",
+      "material": "Hardened stamped steel",
+      "function": "Locates the inner valve spring concentric with the valve guide boss.",
+      "operatingConditions": "Static centering cup under inner spring base.",
+      "source": "IPC X-30040A Fig. 13 #17"
+    },
+    "intake-valve-upper-spring-retainer": {
+      "slug": "intake-valve-upper-spring-retainer",
+      "name": "Intake Valve Upper Spring Retainer",
+      "partNumber": "35971",
+      "system": "valvetrain",
+      "material": "Heat-treated carbon steel (AMS 5046)",
+      "function": "Transfers dual spring force to the split tapered keepers on the intake valve stem.",
+      "operatingConditions": "Reciprocates at valve speed with alternating spring acceleration loads.",
+      "source": "IPC X-30040A Fig. 13 #18"
+    },
+    "exhaust-valve-roto-cap-assembly": {
+      "slug": "exhaust-valve-roto-cap-assembly",
+      "name": "Exhaust Valve Roto-Cap Assembly",
+      "partNumber": "629117",
+      "system": "valvetrain",
+      "material": "Precision spring steel Belleville washer, ball bearings, and steel retainer cup",
+      "function": "Rotates exhaust valve slightly each stroke to prevent hot spots and seat carbon buildup.",
+      "operatingConditions": "Induces 1\u20134 degrees of valve rotation per lift cycle under spring compression.",
+      "source": "IPC X-30040A Fig. 13 #19"
+    },
+    "valve-stem-split-tapered-keeper-key": {
+      "slug": "valve-stem-split-tapered-keeper-key",
+      "name": "Valve Stem Split Tapered Keeper Key",
+      "partNumber": "24802",
+      "system": "valvetrain",
+      "material": "Hardened case-carburized alloy steel",
+      "function": "Locks the upper spring retainer into the circumferential groove on the valve stem.",
+      "operatingConditions": "Self-wedging taper lock supporting full 200 lb spring tension.",
+      "source": "IPC X-30040A Fig. 13 #20"
+    },
+    "intake-valve-rocker-arm": {
+      "slug": "intake-valve-rocker-arm",
+      "name": "Intake Valve Rocker Arm",
+      "partNumber": "539742",
+      "system": "valvetrain",
+      "material": "Forged alloy steel, hardened pad and bronze pivot bushing",
+      "function": "Multiplies and redirects pushrod upward motion into downward valve opening lift.",
+      "operatingConditions": "Rocker ratio 1.5:1; contact pad lubricated by pressurized pushrod oil.",
+      "source": "IPC X-30040A Fig. 13"
+    },
+    "exhaust-valve-rocker-arm": {
+      "slug": "exhaust-valve-rocker-arm",
+      "name": "Exhaust Valve Rocker Arm",
+      "partNumber": "539743",
+      "system": "valvetrain",
+      "material": "Forged alloy steel, induction hardened roller/pad nose",
+      "function": "Opens exhaust valve against combustion pressure and dual spring resistance.",
+      "operatingConditions": "Transmits valve opening force up to 250 lb during exhaust valve crack.",
+      "source": "IPC X-30040A Fig. 13"
+    },
+    "valve-rocker-shaft": {
+      "slug": "valve-rocker-shaft",
+      "name": "Valve Rocker Shaft",
+      "partNumber": "539740",
+      "system": "valvetrain",
+      "material": "Case-hardened precision ground alloy steel shaft",
+      "function": "Forms stationary pivot axis for intake and exhaust rocker arms in cylinder head.",
+      "operatingConditions": "Surface hardness HRC 58\u201362; fed pressurized oil to lubricate rocker bushings.",
+      "source": "IPC X-30040A Fig. 13 #21"
+    },
+    "rocker-arm-bronze-bushing": {
+      "slug": "rocker-arm-bronze-bushing",
+      "name": "Rocker Arm Bronze Bushing",
+      "partNumber": "539741",
+      "system": "valvetrain",
+      "material": "Lead-bronze bearing alloy (AMS 4820)",
+      "function": "Low-friction oscillating journal bearing pressed into rocker arm bore.",
+      "operatingConditions": "Boundary/hydrodynamic oscillating lubrication under valve lift loads.",
+      "source": "IPC X-30040A Fig. 13"
+    },
+    "pushrod-assembly": {
+      "slug": "pushrod-assembly",
+      "name": "Pushrod Assembly",
+      "partNumber": "538304",
+      "system": "valvetrain",
+      "material": "Seamless cold-drawn alloy steel tube with welded case-hardened ball ends",
+      "function": "Transfers cam lifter upward displacement to the rocker arm; delivers lubricating oil.",
+      "operatingConditions": "Hollow core conducts pressurized oil from lifter to cylinder head rocker gear.",
+      "source": "IPC X-30040A Fig. 13 #42"
+    },
+    "pushrod-shroud-tube": {
+      "slug": "pushrod-shroud-tube",
+      "name": "Pushrod Shroud Tube",
+      "partNumber": "537296",
+      "system": "valvetrain",
+      "material": "Seamless aluminum alloy tubing, flared seating ends",
+      "function": "Encloses pushrod between crankcase and cylinder head; drains return oil to sump.",
+      "operatingConditions": "Telescoping spring-loaded tube accommodating thermal expansion of cylinder.",
+      "source": "IPC X-30040A Fig. 13 #38"
+    },
+    "pushrod-shroud-tension-spring": {
+      "slug": "pushrod-shroud-tension-spring",
+      "name": "Pushrod Shroud Tension Spring",
+      "partNumber": "626147",
+      "system": "valvetrain",
+      "material": "Cadmium-plated music wire / spring steel",
+      "function": "Keeps constant compressive tension on pushrod shroud silicone seal rings.",
+      "operatingConditions": "Maintains oil-tight seal despite engine expansion and contraction.",
+      "source": "IPC X-30040A Fig. 13 #41"
+    },
+    "pushrod-shroud-silicone-seal-ring": {
+      "slug": "pushrod-shroud-silicone-seal-ring",
+      "name": "Pushrod Shroud Silicone Seal Ring",
+      "partNumber": "534610",
+      "system": "valvetrain",
+      "material": "High-temperature resilient silicone elastomer",
+      "function": "Seals the ends of the pushrod shroud tube at crankcase and cylinder head ports.",
+      "operatingConditions": "Resists hot engine oil at 150 \u00b0C without hardening or oil weeping.",
+      "source": "IPC X-30040A Fig. 13 #40"
+    },
+    "pushrod-shroud-retaining-washer": {
+      "slug": "pushrod-shroud-retaining-washer",
+      "name": "Pushrod Shroud Retaining Washer",
+      "partNumber": "534609",
+      "system": "valvetrain",
+      "material": "Flanged stamped carbon steel",
+      "function": "Provides positive spring seat backing for the pushrod shroud tension spring.",
+      "operatingConditions": "Distributes spring force evenly onto silicone seal packing.",
+      "source": "IPC X-30040A Fig. 13 #39"
+    },
+    "spark-plug-heli-coil-thread-insert": {
+      "slug": "spark-plug-heli-coil-thread-insert",
+      "name": "Spark Plug Heli-Coil Thread Insert",
+      "partNumber": "520112-1",
+      "system": "ignition",
+      "material": "Phosphor bronze / stainless steel 18 mm Heli-Coil thread insert",
+      "function": "Provides durable high-strength threads in aluminum head for spark plug installation.",
+      "operatingConditions": "Resists spark plug installation torque of 300\u2013360 in-lb and combustion heat.",
+      "source": "IPC X-30040A Fig. 13 #7"
+    },
+    "spark-plug-shielded-steel-shell": {
+      "slug": "spark-plug-shielded-steel-shell",
+      "name": "Spark Plug Shielded Steel Shell",
+      "partNumber": "RHB32E-S",
+      "system": "ignition",
+      "material": "Machined carbon steel, corrosion-resistant black oxide finish (18 mm thread)",
+      "function": "Threaded body anchoring plug into cylinder head and grounding the spark gap.",
+      "operatingConditions": "Hermetic seal holding 1,000 psi combustion pressure; 18 mm x 1.5 mm reach.",
+      "source": "Champion Aviation Spark Plug Catalog RHB32E"
+    },
+    "spark-plug-ceramic-insulator": {
+      "slug": "spark-plug-ceramic-insulator",
+      "name": "Spark Plug Ceramic Insulator",
+      "partNumber": "RHB32E-C",
+      "system": "ignition",
+      "material": "High-purity sintered aluminum oxide (alumina ceramic)",
+      "function": "Insulates high-voltage ignition pulse (up to 25 kV) from ground.",
+      "operatingConditions": "Dielectric breakdown resistance > 30 kV; thermal shock resistant.",
+      "source": "Champion Aviation Spark Plug Catalog RHB32E"
+    },
+    "spark-plug-shielded-terminal": {
+      "slug": "spark-plug-shielded-terminal",
+      "name": "Spark Plug Shielded Terminal",
+      "partNumber": "RHB32E-T",
+      "system": "ignition",
+      "material": "Brass contact with 5/8-24 shielded ignition lead connection",
+      "function": "Connects magneto high-tension harness lead inside a radio-shielded housing.",
+      "operatingConditions": "Prevents radio frequency interference (RFI) with aircraft avionics.",
+      "source": "Champion Aviation Spark Plug Catalog RHB32E"
+    },
+    "spark-plug-copper-crush-washer": {
+      "slug": "spark-plug-copper-crush-washer",
+      "name": "Spark Plug Copper Crush Washer",
+      "partNumber": "AN900-18",
+      "system": "ignition",
+      "material": "Solid annealed copper annular crush gasket",
+      "function": "Deforms under tightening torque to create gas-tight seal against cylinder head.",
+      "operatingConditions": "Single-use crush washer torqued to 300\u2013360 in-lb.",
+      "source": "IPC X-30040A Fig. 13"
+    },
+    "aviation-shielded-spark-plug": {
+      "slug": "aviation-shielded-spark-plug",
+      "name": "Aviation Shielded Spark Plug",
+      "partNumber": "RHB32E",
+      "system": "ignition",
+      "material": "Heavy-duty aviation shielded spark plug (18 mm, dual ground electrodes)",
+      "function": "Ignites compressed fuel-air charge at timed crank angle (20\u201322 deg BTDC).",
+      "operatingConditions": "Dual ignition system: two plugs per cylinder fired by independent magnetos.",
+      "source": "Continental GTSIO-520 Overhaul Manual Sec. X"
+    },
+    "hydraulic-valve-tappet-lifter": {
+      "slug": "hydraulic-valve-tappet-lifter",
+      "name": "Hydraulic Valve Tappet / Lifter",
+      "partNumber": "628488",
+      "system": "valvetrain",
+      "material": "Chilled cast alloy iron face with precision-honed steel body",
+      "function": "Eliminates mechanical valvetrain lash automatically using engine oil pressure.",
+      "operatingConditions": "Runs directly on camshaft lobe; maintains zero lash over entire engine thermal range.",
+      "source": "IPC X-30040A Fig. 9 #4; Overhaul Manual Table 6"
+    },
+    "hydraulic-lifter-outer-body": {
+      "slug": "hydraulic-lifter-outer-body",
+      "name": "Hydraulic Lifter Outer Body",
+      "partNumber": "628488-B",
+      "system": "valvetrain",
+      "material": "High-carbon alloy steel, hardened chilled iron foot (HRC 58 min)",
+      "function": "Rides cam lobe and guides internal hydraulic plunger in crankcase lifter bore.",
+      "operatingConditions": "Reciprocates in crankcase bore with 0.0015 in diametral clearance.",
+      "source": "IPC X-30040A Fig. 9 #5"
+    },
+    "hydraulic-lifter-plunger": {
+      "slug": "hydraulic-lifter-plunger",
+      "name": "Hydraulic Lifter Plunger",
+      "partNumber": "628488-P",
+      "system": "valvetrain",
+      "material": "Precision ground alloy steel, select-fitted to body bore",
+      "function": "Traps high-pressure oil column in lower chamber to transmit cam lift solidly.",
+      "operatingConditions": "Controlled oil bleed-down rate tested under 50 lb load in kerosene bath.",
+      "source": "IPC X-30040A Fig. 9 #10"
+    },
+    "hydraulic-lifter-plunger-spring": {
+      "slug": "hydraulic-lifter-plunger-spring",
+      "name": "Hydraulic Lifter Plunger Spring",
+      "partNumber": "628488-S",
+      "system": "valvetrain",
+      "material": "Light helical spring steel",
+      "function": "Expands plunger outward against pushrod socket when valvetrain is off the cam lobe.",
+      "operatingConditions": "Light expansion force taking up lash during base circle dwell.",
+      "source": "IPC X-30040A Fig. 9 #6"
+    },
+    "hydraulic-lifter-pushrod-socket": {
+      "slug": "hydraulic-lifter-pushrod-socket",
+      "name": "Hydraulic Lifter Pushrod Socket",
+      "partNumber": "628488-SK",
+      "system": "valvetrain",
+      "material": "Case-hardened steel hemispherical seat with central oil feed hole",
+      "function": "Provides spherical cup bearing for lower pushrod ball; meters oil to hollow pushrod.",
+      "operatingConditions": "Transfers full valve opening thrust from plunger to pushrod.",
+      "source": "IPC X-30040A Fig. 9 #11"
+    },
+    "hydraulic-lifter-retaining-ring": {
+      "slug": "hydraulic-lifter-retaining-ring",
+      "name": "Hydraulic Lifter Retaining Ring",
+      "partNumber": "628491",
+      "system": "valvetrain",
+      "material": "Spring wire snap ring",
+      "function": "Retains socket and plunger inside lifter body during assembly and handling.",
+      "operatingConditions": "Internal snap groove at open top of lifter body.",
+      "source": "IPC X-30040A Fig. 9 #14"
+    },
+    "dynamic-counterweight-pendulum-damper": {
+      "slug": "dynamic-counterweight-pendulum-damper",
+      "name": "Dynamic Counterweight Pendulum Damper",
+      "partNumber": "630261",
+      "system": "reciprocating",
+      "material": "Forged high-density alloy steel, precision ground fork ears",
+      "function": "Absorbs crankshaft torsional vibrations by oscillating as a tuned centrifugal pendulum.",
+      "operatingConditions": "Tuned to 4th and 5th engine harmonic orders to prevent crankshaft fatigue failure.",
+      "source": "IPC X-30040A Fig. 7 #18; Overhaul Manual Table 11"
+    },
+    "crankshaft-damper-blade-bushing": {
+      "slug": "crankshaft-damper-blade-bushing",
+      "name": "Crankshaft Damper Blade Bushing",
+      "partNumber": "350998-B",
+      "system": "reciprocating",
+      "material": "Case-hardened precision ground alloy steel race",
+      "function": "Forms hardened inner track in crankshaft cheek for the floating damper pin.",
+      "operatingConditions": "High rolling contact stresses under centrifugal pendulum acceleration.",
+      "source": "IPC X-30040A Fig. 7 #17"
+    },
+    "counterweight-fork-bushing": {
+      "slug": "counterweight-fork-bushing",
+      "name": "Counterweight Fork Bushing",
+      "partNumber": "350998-W",
+      "system": "reciprocating",
+      "material": "Hardened alloy steel race pressed into counterweight fork ears",
+      "function": "Provides outer rolling track for the floating stepped damper pin.",
+      "operatingConditions": "Rolling pendulum oscillation under 3,200 rpm centrifugal field.",
+      "source": "IPC X-30040A Fig. 7 #19"
+    },
+    "damper-pin-retaining-plate": {
+      "slug": "damper-pin-retaining-plate",
+      "name": "Damper Pin Retaining Plate",
+      "partNumber": "630261-PL",
+      "system": "reciprocating",
+      "material": "Stamped low-carbon steel disc",
+      "function": "Prevents axial migration of the floating damper pin out of its bushing tracks.",
+      "operatingConditions": "Kept in place by circular spring retaining snap ring.",
+      "source": "IPC X-30040A Fig. 7 #21"
+    },
+    "damper-plate-retaining-snap-ring": {
+      "slug": "damper-plate-retaining-snap-ring",
+      "name": "Damper Plate Retaining Snap Ring",
+      "partNumber": "630261-R",
+      "system": "reciprocating",
+      "material": "High-carbon spring steel gapped snap ring",
+      "function": "Locks the damper pin retaining plate into the counterweight counterbore.",
+      "operatingConditions": "Centrifugal retention inside counterweight recess.",
+      "source": "IPC X-30040A Fig. 7 #22"
+    },
+    "damper-dynamic-stepped-pin": {
+      "slug": "damper-dynamic-stepped-pin",
+      "name": "Damper Dynamic Stepped Pin",
+      "partNumber": "630261-27",
+      "system": "reciprocating",
+      "material": "Vacuum-arc remelted steel, carburized, ground, and micro-honed",
+      "function": "Rolls inside crankshaft and counterweight bushings, defining the pendulum radius.",
+      "operatingConditions": "Diameter difference defines exact order tuning (4th harmonic or 5th harmonic).",
+      "source": "IPC X-30040A Fig. 7 #20; Table 11"
+    },
+    "crankshaft-damper-bushing": {
+      "slug": "crankshaft-damper-bushing",
+      "name": "Crankshaft Damper Bushing",
+      "partNumber": "350998",
+      "system": "reciprocating",
+      "material": "Hardened alloy steel liner",
+      "function": "Provides precision rolling bore for counterweight dynamic pendulum pin.",
+      "operatingConditions": "High rolling fatigue endurance under torsional harmonic oscillation.",
+      "source": "IPC X-30040A Fig. 7 #17"
+    },
+    "crankshaft": {
+      "slug": "crankshaft",
+      "name": "Crankshaft",
+      "partNumber": "535661",
+      "system": "reciprocating",
+      "material": "Vacuum-arc remelted forged alloy steel (AMS 6415), gas nitrided journals",
+      "function": "Converts six reciprocating piston forces into rotational output torque.",
+      "operatingConditions": "Six throws at 120 deg; journals nitrided to 0.025 in case depth; 3,200 rpm rated speed.",
+      "source": "IPC X-30040A Fig. 7 #1; Overhaul Manual Table 6"
+    },
+    "crankshaft-main-bearing-shell": {
+      "slug": "crankshaft-main-bearing-shell",
+      "name": "Crankshaft Main Bearing Shell",
+      "partNumber": "635439-M",
+      "system": "reciprocating",
+      "material": "Steel-backed copper-lead lining with lead-tin electroplated babbitt overlay",
+      "function": "Supports the rotating crankshaft journals in the crankcase main bearing saddles.",
+      "operatingConditions": "Hydrodynamic oil film continuously fed from crankcase oil galleries.",
+      "source": "IPC X-30040A Fig. 8 #13; Overhaul Manual Table 6"
+    },
+    "crankshaft-main-thrust-washer": {
+      "slug": "crankshaft-main-thrust-washer",
+      "name": "Crankshaft Main Thrust Washer",
+      "partNumber": "536557",
+      "system": "reciprocating",
+      "material": "High-strength tin-bronze / babbitt faced thrust washer",
+      "function": "Carries axial crankshaft end-thrust and controls crankshaft end-play.",
+      "operatingConditions": "End-play maintained at 0.009\u20130.015 in.",
+      "source": "IPC X-30040A Fig. 7 #13; Overhaul Manual Table 6"
+    },
+    "crankshaft-timing-pinion-gear": {
+      "slug": "crankshaft-timing-pinion-gear",
+      "name": "Crankshaft Timing Pinion Gear",
+      "partNumber": "534757-CR",
+      "system": "reciprocating",
+      "material": "Carburized and hardened alloy steel spur gear",
+      "function": "Drives the camshaft gear at 1:2 ratio and powers the rear accessory gear trains.",
+      "operatingConditions": "Doweled directly to the rear flange of the crankshaft.",
+      "source": "IPC X-30040A Fig. 7 #28"
+    },
+    "camshaft": {
+      "slug": "camshaft",
+      "name": "Camshaft",
+      "partNumber": "535661-CAM",
+      "system": "valvetrain",
+      "material": "Chilled alloy cast iron, induction-hardened cam lobes (HRC 55 min)",
+      "function": "Controls timing, lift, and duration of the 12 intake and exhaust valves.",
+      "operatingConditions": "Rotates at 1/2 crankshaft speed (1,600 rpm at 3,200 engine rpm) on four journal bearings.",
+      "source": "IPC X-30040A Fig. 9 #2; Overhaul Manual Table 6"
+    },
+    "camshaft-gear-attaching-screw": {
+      "slug": "camshaft-gear-attaching-screw",
+      "name": "Camshaft Gear Attaching Screw",
+      "partNumber": "535666",
+      "system": "valvetrain",
+      "material": "High-tensile alloy steel (5/16-24 x 25/32 in)",
+      "function": "Fastens the camshaft timing gear and cluster gear to the camshaft rear flange.",
+      "operatingConditions": "Torqued and safety wired to maintain critical valve timing synchronization.",
+      "source": "IPC X-30040A Fig. 9 #3"
+    },
+    "camshaft-timing-spur-gear": {
+      "slug": "camshaft-timing-spur-gear",
+      "name": "Camshaft Timing Spur Gear",
+      "partNumber": "631845",
+      "system": "valvetrain",
+      "material": "Forged alloy steel, precision ground teeth",
+      "function": "Meshes with crankshaft pinion gear to rotate camshaft at half crankshaft speed.",
+      "operatingConditions": "Timing marks aligned to guarantee valve event phasing relative to pistons.",
+      "source": "IPC X-30040A Fig. 9 #2"
+    },
+    "camshaft-cluster-drive-gear": {
+      "slug": "camshaft-cluster-drive-gear",
+      "name": "Camshaft Cluster Drive Gear",
+      "partNumber": "535662",
+      "system": "valvetrain",
+      "material": "Integral alloy steel cluster gear",
+      "function": "Powers governor drive, tachometer, and auxiliary accessories from the camshaft.",
+      "operatingConditions": "Transmits auxiliary drive loads smoothly off the camshaft rear end.",
+      "source": "IPC X-30040A Fig. 9 #2"
+    },
+    "camshaft-drive-gear-train": {
+      "slug": "camshaft-drive-gear-train",
+      "name": "Camshaft Drive Gear Train",
+      "partNumber": "631845",
+      "system": "valvetrain",
+      "material": "Precision ground alloy steel gearing",
+      "function": "Synchronizes valvetrain camshaft rotation with crankshaft rotation.",
+      "operatingConditions": "Operates at half engine speed in pressurized oil mist.",
+      "source": "IPC X-30040A Fig. 9"
+    },
+    "propeller-flexible-quill-shaft": {
+      "slug": "propeller-flexible-quill-shaft",
+      "name": "Propeller Flexible Quill Shaft",
+      "partNumber": "636002",
+      "system": "reduction",
+      "material": "High-strength aircraft spring steel, precision ground torsional shaft",
+      "function": "Acts as a torsional spring isolating propeller inertia from crankshaft engine pulses.",
+      "operatingConditions": "Transmits 375 hp at 3,200 rpm while dampening torsional shock loads.",
+      "source": "Overhaul Manual X-30045A Sec. III General Description"
+    },
+    "propeller-drive-reduction-pinion": {
+      "slug": "propeller-drive-reduction-pinion",
+      "name": "Propeller Drive Reduction Pinion",
+      "partNumber": "636000",
+      "system": "reduction",
+      "material": "Carburized alloy steel (AMS 6260), case-hardened helical/spur teeth",
+      "function": "Driving pinion on front of crankshaft/quill driving the reduction bull gear.",
+      "operatingConditions": "0.667:1 gear reduction ratio: engine 3,200 rpm yields propeller 2,133 rpm.",
+      "source": "Overhaul Manual X-30045A Sec. III & Fig. A-4-41"
+    },
+    "propeller-reduction-bull-gear": {
+      "slug": "propeller-reduction-bull-gear",
+      "name": "Propeller Reduction Bull Gear",
+      "partNumber": "636001",
+      "system": "reduction",
+      "material": "Forged alloy steel, case-hardened precision ground internal/external gear",
+      "function": "Driven bull gear mounted on the propeller output shaft for speed reduction.",
+      "operatingConditions": "High torque transmission at 2,133 propeller rpm with minimum gear noise.",
+      "source": "Overhaul Manual X-30045A Sec. III"
+    },
+    "propeller-output-shaft": {
+      "slug": "propeller-output-shaft",
+      "name": "Propeller Output Shaft",
+      "partNumber": "636005",
+      "system": "reduction",
+      "material": "Heavy-duty forged alloy steel, hollow bore for propeller governor oil tube",
+      "function": "Output shaft delivering engine power to the aircraft constant-speed propeller.",
+      "operatingConditions": "SAE No. 20 splined propeller mounting flange with high thrust capacity.",
+      "source": "Overhaul Manual X-30045A Sec. III & Table 6"
+    },
+    "propeller-thrust-journal-bearing": {
+      "slug": "propeller-thrust-journal-bearing",
+      "name": "Propeller Thrust & Journal Bearing",
+      "partNumber": "537721",
+      "system": "reduction",
+      "material": "High-capacity deep-groove ball bearing / heavy-duty cylindrical roller bearing",
+      "function": "Carries forward aircraft propeller thrust loads (up to 2,000 lb) directly into the nose case.",
+      "operatingConditions": "Operates under continuous forward thrust and gyroscopic aircraft flight loads.",
+      "source": "Overhaul Manual X-30045A Sec. III & Table 6"
+    },
+    "propeller-pitch-control-oil-transfer-collar": {
+      "slug": "propeller-pitch-control-oil-transfer-collar",
+      "name": "Propeller Pitch Control Oil Transfer Collar",
+      "partNumber": "636010",
+      "system": "reduction",
+      "material": "Precision bronze sleeve with stationary ground oil transfer ports & O-rings",
+      "function": "Transfers high-pressure engine oil into the rotating propeller shaft to control blade pitch.",
+      "operatingConditions": "Seals governor oil pressure up to 300 psi across rotating joint.",
+      "source": "Overhaul Manual X-30045A Fig. A-4-41"
+    },
+    "propeller-shaft-front-oil-seal": {
+      "slug": "propeller-shaft-front-oil-seal",
+      "name": "Propeller Shaft Front Oil Seal",
+      "partNumber": "536200",
+      "system": "reduction",
+      "material": "Synthetic fluorocarbon elastomer with stainless garter spring in metal case",
+      "function": "Hermetically seals the front nose case opening around the rotating propeller shaft.",
+      "operatingConditions": "Prevents engine oil loss into propeller hub under flight airspeed pressure.",
+      "source": "Overhaul Manual X-30045A Fig. A-4-41/42"
+    },
+    "reduction-gear-retaining-hardware": {
+      "slug": "reduction-gear-retaining-hardware",
+      "name": "Reduction Gear Retaining Hardware",
+      "partNumber": "636015",
+      "system": "reduction",
+      "material": "High-tensile alloy steel plate, screws, and internal retaining ring",
+      "function": "Positively locks the reduction pinion and quill shaft axially in the reduction nose case.",
+      "operatingConditions": "Carries axial gear thrust reaction forces under load.",
+      "source": "Overhaul Manual X-30045A Fig. A-4-42"
+    },
+    "front-gear-reduction-drive-assembly": {
+      "slug": "front-gear-reduction-drive-assembly",
+      "name": "Front Gear Reduction Drive Assembly",
+      "partNumber": "636000-ASY",
+      "system": "reduction",
+      "material": "Precision reduction gearing and housing subassembly",
+      "function": "Provides speed reduction and propeller vibration isolation.",
+      "operatingConditions": "0.667:1 reduction gear ratio.",
+      "source": "Overhaul Manual X-30045A Sec. III"
+    },
+    "crankcase-left-half": {
+      "slug": "crankcase-left-half",
+      "name": "Crankcase Left Half",
+      "partNumber": "635441",
+      "system": "crankcase",
+      "material": "Permanent-mold cast aluminum alloy (A355-T61), heat treated and aged",
+      "function": "Left structural foundation of engine; houses cylinders 2, 4, 6 and left main saddles.",
+      "operatingConditions": "High rigidity casting with integral oil galleries, lifter guides, and engine mounts.",
+      "source": "IPC X-30040A Fig. 1 #1; Overhaul Manual Sec. IV"
+    },
+    "crankcase-right-half": {
+      "slug": "crankcase-right-half",
+      "name": "Crankcase Right Half",
+      "partNumber": "635440",
+      "system": "crankcase",
+      "material": "Permanent-mold cast aluminum alloy (A355-T61), chromate conversion coated",
+      "function": "Right structural foundation of engine; houses cylinders 1, 3, 5 and right main saddles.",
+      "operatingConditions": "Gold-dichromate finish; matched with left half by precision doweled line-boring.",
+      "source": "IPC X-30040A Fig. 1 #1; Overhaul Manual Sec. IV"
+    },
+    "crankcase-halves-assembly": {
+      "slug": "crankcase-halves-assembly",
+      "name": "Crankcase Halves Assembly",
+      "partNumber": "635440-SET",
+      "system": "crankcase",
+      "material": "Matched pair line-bored permanent-mold aluminum castings",
+      "function": "Main structural skeleton supporting the crankshaft, camshaft, and six cylinders.",
+      "operatingConditions": "Contains internal lubrication passages and reacts all dynamic engine loads.",
+      "source": "IPC X-30040A Fig. 1"
+    },
+    "accessory-idler-gear-support-pin": {
+      "slug": "accessory-idler-gear-support-pin",
+      "name": "Accessory Idler Gear Support Pin",
+      "partNumber": "534740",
+      "system": "crankcase",
+      "material": "Case-hardened alloy steel pin, ground finish with copper gasket",
+      "function": "Pressed into rear crankcase to support rotating accessory drive idler gear.",
+      "operatingConditions": "Carries accessory gear drive torque reaction with pressurized oil feed.",
+      "source": "IPC X-30040A Fig. 3 #17"
+    },
+    "accessory-drive-idler-gear": {
+      "slug": "accessory-drive-idler-gear",
+      "name": "Accessory Drive Idler Gear",
+      "partNumber": "534757",
+      "system": "crankcase",
+      "material": "Carburized alloy steel with pressed bronze bushing",
+      "function": "Transfers drive power from crankshaft rear gear to starter, alternator, and oil pump.",
+      "operatingConditions": "Rotates on hardened idler pin in continuous oil bath.",
+      "source": "IPC X-30040A Fig. 7 #24"
+    },
+    "idler-cluster-gear-screw": {
+      "slug": "idler-cluster-gear-screw",
+      "name": "Idler Cluster Gear Screw",
+      "partNumber": "535666",
+      "system": "crankcase",
+      "material": "High-tensile alloy steel (5/16-24)",
+      "function": "Fastens cluster gear to idler gear body.",
+      "operatingConditions": "Torqued and locked with tab washer.",
+      "source": "IPC X-30040A Fig. 7"
+    },
+    "accessory-drive-housing-bolt": {
+      "slug": "accessory-drive-housing-bolt",
+      "name": "Accessory Drive Housing Bolt",
+      "partNumber": "AN4-12A",
+      "system": "crankcase",
+      "material": "Aircraft structural alloy steel",
+      "function": "Secures accessory gear covers to crankcase rear accessory pad.",
+      "operatingConditions": "Vibration resistant clamping.",
+      "source": "IPC X-30040A Fig. 2"
+    },
+    "engine-oil-pump-housing": {
+      "slug": "engine-oil-pump-housing",
+      "name": "Engine Oil Pump Housing",
+      "partNumber": "631714",
+      "system": "lubrication",
+      "material": "Precision cast aluminum alloy, line-bored gear cavities",
+      "function": "Houses positive displacement gear-type pressure oil pump and tach drive gears.",
+      "operatingConditions": "Delivers 30\u201360 psi lubricating oil pressure across all engine operating ranges.",
+      "source": "IPC X-30040A Fig. 14 #1"
+    },
+    "oil-pump-driven-gear-spindle": {
+      "slug": "oil-pump-driven-gear-spindle",
+      "name": "Oil Pump Driven Gear & Spindle",
+      "partNumber": "629218",
+      "system": "lubrication",
+      "material": "Hardened alloy steel spur gear with integral bronze journal bushing",
+      "function": "Driven spur gear meshing with drive gear to pump pressurized engine oil.",
+      "operatingConditions": "Positive displacement pumping capacity 10\u201315 gpm at full engine rpm.",
+      "source": "IPC X-30040A Fig. 14 #10"
+    },
+    "oil-pump-drive-gear": {
+      "slug": "oil-pump-drive-gear",
+      "name": "Oil Pump Drive Gear",
+      "partNumber": "629217",
+      "system": "lubrication",
+      "material": "Carburized alloy steel gear integral with drive shaft",
+      "function": "Drives oil pump gears from the engine accessory gear train.",
+      "operatingConditions": "Transmits oil pumping power directly from camshaft/idler gear.",
+      "source": "IPC X-30040A Fig. 14"
+    },
+    "oil-pressure-relief-valve-assembly": {
+      "slug": "oil-pressure-relief-valve-assembly",
+      "name": "Oil Pressure Relief Valve Assembly",
+      "partNumber": "631618",
+      "system": "lubrication",
+      "material": "Precision ground steel plunger, calibrated spring, and threaded adjustment cap",
+      "function": "Regulates main oil gallery pressure by bypassing excess pump flow to the sump.",
+      "operatingConditions": "Maintains nominal 40\u201360 psi oil pressure across variable engine speeds and oil temps.",
+      "source": "IPC X-30040A Fig. 14 #11-18"
+    },
+    "full-flow-engine-oil-filter": {
+      "slug": "full-flow-engine-oil-filter",
+      "name": "Full-Flow Engine Oil Filter",
+      "partNumber": "538727",
+      "system": "lubrication",
+      "material": "Drawn steel canister with pleated resin-impregnated cellulose filter element",
+      "function": "Filters all oil delivered to engine bearings; traps particulates down to 15 microns.",
+      "operatingConditions": "Equipped with internal pressure relief bypass valve in case of filter clogging.",
+      "source": "IPC X-30040A Fig. 14 #52"
+    },
+    "turbocharger-oil-scavenge-pump": {
+      "slug": "turbocharger-oil-scavenge-pump",
+      "name": "Turbocharger Oil Scavenge Pump",
+      "partNumber": "631720",
+      "system": "lubrication",
+      "material": "Cast aluminum housing with steel scavenge gears",
+      "function": "Pumps return oil from the turbocharger bearing housing back up to the engine sump.",
+      "operatingConditions": "Continuous dual-phase oil/vapor scavenging against gravity.",
+      "source": "Overhaul Manual X-30045A Sec. IV"
+    },
+    "engine-oil-sump": {
+      "slug": "engine-oil-sump",
+      "name": "Engine Oil Sump",
+      "partNumber": "631682",
+      "system": "lubrication",
+      "material": "Permanent-mold cast aluminum alloy, internal anti-slosh baffles",
+      "function": "Reservoir holding 12 quarts of engine lubricating oil; houses oil pickup screen.",
+      "operatingConditions": "Bolted to bottom of crankcase; provides oil cooling surface and sump drainage.",
+      "source": "IPC X-30040A Fig. 24 #1"
+    },
+    "oil-gallery-pipe-plug-closure": {
+      "slug": "oil-gallery-pipe-plug-closure",
+      "name": "Oil Gallery Pipe Plug Closure",
+      "partNumber": "2024",
+      "system": "lubrication",
+      "material": "Hex-socket brass / steel pipe plug (1/8 NPT)",
+      "function": "Hermetically seals drilled longitudinal oil galleries in the crankcase casting.",
+      "operatingConditions": "Tapered pipe thread holding 60 psi hot engine oil pressure.",
+      "source": "IPC X-30040A Fig. 14"
+    },
+    "starter-adapter-assembly": {
+      "slug": "starter-adapter-assembly",
+      "name": "Starter Adapter Assembly",
+      "partNumber": "633402",
+      "system": "crankcase",
+      "material": "Worm drive shaft, gear, and wrap-spring overrunning clutch assembly",
+      "function": "Engages electric starter torque to crank engine, disengaging automatically when engine fires.",
+      "operatingConditions": "Wrap-spring clutch tightens during cranking; releases cleanly once engine exceeds starter rpm.",
+      "source": "IPC X-30040A Fig. 16 #1"
+    },
+    "alternator-drive-coupling": {
+      "slug": "alternator-drive-coupling",
+      "name": "Alternator Drive & Coupling",
+      "partNumber": "535908",
+      "system": "crankcase",
+      "material": "Carburized bevel gear with elastomeric / spring shock-absorbing drive hub",
+      "function": "Drives the 28V 70A aircraft alternator while dampening high-frequency torsional pulses.",
+      "operatingConditions": "Gear ratio approximately 3:1 to provide adequate electrical charging at engine idle.",
+      "source": "IPC X-30040A Fig. 19 & 21"
+    },
+    "magneto-accessory-drive-coupling": {
+      "slug": "magneto-accessory-drive-coupling",
+      "name": "Magneto Accessory Drive & Coupling",
+      "partNumber": "536563",
+      "system": "ignition",
+      "material": "Precision ground drive shaftgear with four-lug elastomer cushion drive blocks",
+      "function": "Drives aircraft high-tension magneto at exact engine speed with impulse vibration isolation.",
+      "operatingConditions": "Elastomer rubber blocks cushion magneto internal drive gears and timing gears.",
+      "source": "IPC X-30040A Fig. 34 #1"
+    },
+    "fuel-injection-pump-drive": {
+      "slug": "fuel-injection-pump-drive",
+      "name": "Fuel Injection Pump Drive",
+      "partNumber": "632050",
+      "system": "fuel",
+      "material": "Carburized splined shaftgear with precision mounting flange",
+      "function": "Drives positive displacement rotary fuel injection pump in direct synchronization with engine rpm.",
+      "operatingConditions": "Supplies fuel flow proportional to engine speed to maintain proper mixture metering.",
+      "source": "IPC X-30040A Fig. 30 #1; Manual Sec. III"
+    },
+    "propeller-governor-drive-gear": {
+      "slug": "propeller-governor-drive-gear",
+      "name": "Propeller Governor Drive Gear",
+      "partNumber": "534655",
+      "system": "reduction",
+      "material": "Precision bevel gear with Woodruff keyway",
+      "function": "Drives the aircraft propeller constant-speed governor from the front of the camshaft.",
+      "operatingConditions": "Drives governor flyweights and high-pressure oil boost pump.",
+      "source": "IPC X-30040A Fig. 9 #2"
+    },
+    "mechanical-tachometer-drive-housing": {
+      "slug": "mechanical-tachometer-drive-housing",
+      "name": "Mechanical Tachometer Drive & Housing",
+      "partNumber": "625885",
+      "system": "crankcase",
+      "material": "Precision 90 deg bevel gear drive in cast aluminum housing",
+      "function": "Drives aircraft mechanical RPM indicator cable at 0.5:1 engine camshaft speed.",
+      "operatingConditions": "Standard aircraft SAE 7/8-18 threaded mechanical tachometer drive port.",
+      "source": "IPC X-30040A Fig. 14 #23-40"
+    },
+    "auxiliary-accessory-pad-drive-bearings": {
+      "slug": "auxiliary-accessory-pad-drive-bearings",
+      "name": "Auxiliary Accessory Pad Drive & Bearings",
+      "partNumber": "537722",
+      "system": "crankcase",
+      "material": "Precision ground spur gearing, needle bearings, and cast aluminum pad closure",
+      "function": "Provides auxiliary drive pads for vacuum pumps, hydraulic pumps, or secondary alternators.",
+      "operatingConditions": "Lubricated by accessory case internal splash.",
+      "source": "Overhaul Manual X-30045A Sec. IV"
+    },
+    "crankcase-primary-external-fastener": {
+      "slug": "crankcase-primary-external-fastener",
+      "name": "Crankcase Primary External Fastener",
+      "partNumber": "531003",
+      "system": "crankcase",
+      "material": "Heat-treated high-tensile alloy steel",
+      "function": "Secures external end of primary through-bolts clamping main bearing saddles.",
+      "operatingConditions": "Torqued to 700 in-lb.",
+      "source": "IPC X-30040A Fig. 2 #3"
+    }
+  }
+}

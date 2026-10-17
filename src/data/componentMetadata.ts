@@ -4,6 +4,8 @@
  * Based on Continental GTSIO-520 / aircraft piston engine maintenance standards and technical specifications.
  */
 
+import { GTSIO_PART_ARCHETYPES } from './gtsioPartArchetypes.ts';
+
 export interface ComponentEngineeringData {
   id: string;
   label: string;
@@ -11,6 +13,8 @@ export interface ComponentEngineeringData {
   systemColor: string;
   function: string;
   material: string;
+  partNumber?: string;
+  source?: string;
   operatingConditions?: string;
   connectedParts?: { id: string; label: string }[];
 }
@@ -22,6 +26,8 @@ const SYSTEMS = {
   ignition: { name: 'Ignition system', color: '#f472b6' },
   crankcase: { name: 'Crankcase & power output', color: '#34d399' },
   fuel: { name: 'Fuel & induction', color: '#fb923c' },
+  lubrication: { name: 'Lubrication system', color: '#10b981' },
+  reduction: { name: 'Reduction gear & propeller drive', color: '#06b6d4' },
 };
 
 export const COMPONENT_METADATA: Record<string, Partial<ComponentEngineeringData>> = {
@@ -275,9 +281,66 @@ export const COMPONENT_METADATA: Record<string, Partial<ComponentEngineeringData
  * Uses verified engineering register when available, and generates consistent engineering defaults otherwise.
  */
 export function getComponentMetadata(id: string, defaultLabel?: string, defaultFunction?: string): ComponentEngineeringData {
-  const registered = COMPONENT_METADATA[id] || {};
-  let system = registered.system;
-  let systemColor = registered.systemColor;
+  const registered = COMPONENT_METADATA[id];
+  if (registered && registered.function) {
+    return {
+      id,
+      label: registered.label || defaultLabel || id.replace(/([A-Z])/g, ' $1').trim(),
+      system: registered.system || 'Engine Assembly',
+      systemColor: registered.systemColor || '#2dd4bf',
+      function: registered.function || defaultFunction || 'Performs structural, mechanical, or thermodynamic duties in the engine assembly.',
+      material: registered.material || 'Aircraft-certified alloy specification',
+      operatingConditions: registered.operatingConditions,
+      connectedParts: registered.connectedParts,
+      partNumber: registered.partNumber,
+      source: registered.source,
+    };
+  }
+
+  // Archetype matching for Continental GTSIO-520-H engine assembly components
+  for (const rule of GTSIO_PART_ARCHETYPES) {
+    if (rule.pattern.test(id)) {
+      const sysObj = SYSTEMS[rule.system] || SYSTEMS.crankcase;
+
+      // Extract cylinder, throw, left/right or instance numbers
+      const cylMatch = id.match(/(?:Cylinder|Cyl|Piston|Rod|Pin|Deck|Plug|Valve|Rocker|Spring|Seat|Guide|Cover|Shroud|Housing|Ring)(\d)/i);
+      const throwMatch = id.match(/(?:Throw|Cheek|Journal)(\d)/i);
+      const isLeft = /\bLeft\b|Left(?=[A-Z0-9])/i.test(id);
+      const isRight = /\bRight\b|Right(?=[A-Z0-9])/i.test(id);
+      const lrStr = isLeft ? ' (Left)' : isRight ? ' (Right)' : '';
+
+      let label = defaultLabel || rule.name;
+      if (!defaultLabel) {
+        if (cylMatch) {
+          label = `${rule.name} (Cylinder ${cylMatch[1]})${lrStr}`;
+        } else if (throwMatch) {
+          label = `${rule.name} (Throw ${throwMatch[1]})${lrStr}`;
+        } else if (lrStr) {
+          label = `${rule.name}${lrStr}`;
+        } else {
+          const numMatch = id.match(/(\d+)$/);
+          if (numMatch) {
+            label = `${rule.name} #${numMatch[1]}`;
+          }
+        }
+      }
+
+      return {
+        id,
+        label,
+        system: sysObj.name,
+        systemColor: sysObj.color,
+        function: rule.function,
+        material: rule.material,
+        partNumber: rule.partNumber,
+        source: rule.source,
+        operatingConditions: rule.operatingConditions,
+      };
+    }
+  }
+
+  let system = registered?.system;
+  let systemColor = registered?.systemColor;
 
   if (!system) {
     if (/Valve|Rocker|Spring|Pushrod|Lifter|Keeper|Retainer/i.test(id)) {
@@ -301,10 +364,9 @@ export function getComponentMetadata(id: string, defaultLabel?: string, defaultF
     }
   }
 
-  // Derive human-readable label if needed
-  const label = registered.label || defaultLabel || id.replace(/([A-Z])/g, ' $1').trim();
-  const func = registered.function || defaultFunction || 'Performs structural, mechanical, or thermodynamic duties in the engine assembly.';
-  const material = registered.material || 'Aircraft-certified alloy specification';
+  const label = registered?.label || defaultLabel || id.replace(/([A-Z])/g, ' $1').trim();
+  const func = registered?.function || defaultFunction || 'Performs structural, mechanical, or thermodynamic duties in the engine assembly.';
+  const material = registered?.material || 'Aircraft-certified alloy specification';
 
   return {
     id,
@@ -313,7 +375,9 @@ export function getComponentMetadata(id: string, defaultLabel?: string, defaultF
     systemColor: systemColor || '#2dd4bf',
     function: func,
     material,
-    operatingConditions: registered.operatingConditions,
-    connectedParts: registered.connectedParts,
+    operatingConditions: registered?.operatingConditions,
+    connectedParts: registered?.connectedParts,
+    partNumber: registered?.partNumber,
+    source: registered?.source,
   };
 }
