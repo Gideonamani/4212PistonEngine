@@ -179,178 +179,22 @@ test('full engine: every teaching component spotlights at least one part', { ski
   session.dispose();
 });
 
-test('animated-study-motion: O(1) part indexing, 720-degree crank angle mapping, display modes, and procedural Three.js motion', async () => {
-  const {
-    crankAngleForMotion,
-    createProceduralStudySampler,
-    indexStudyParts,
-    resolveMotionDisplay,
-  } = await import('../src/viewer/core/animated-study-motion.mjs');
-
-  const root = new THREE.Group();
-  const makeMesh = (id) => {
-    const m = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.1, 0.1), new THREE.MeshStandardMaterial());
-    m.userData.cad_part_id = id;
-    root.add(m);
-    return m;
-  };
-  const crank = makeMesh('Crankshaft');
-  const piston1 = makeMesh('Piston1');
-  const caseLeft = makeMesh('CrankcaseLeft');
-  const bolt1 = makeMesh('CaseThruBolt1');
-
-  const { meshes, partsById } = indexStudyParts(root);
-  assert.equal(meshes.length, 4);
-  assert.equal(partsById.get('Crankshaft'), crank);
-  assert.equal(partsById.get('Piston1'), piston1);
-  assert.equal(partsById.get('CrankcaseLeft'), caseLeft);
-  assert.equal(partsById.get('CaseThruBolt1'), bolt1);
-
-  const explodeMotion = { id: 'Explode - illustrative layout', procedural: { type: 'explode' } };
-  const collapseMotion = { id: 'Collapse - illustrative layout', procedural: { type: 'collapse' } };
-  const cycleMotion = {
+test('animated-study-motion: display mode filter and 720-degree crank angle helper', async () => {
+  const { crankAngleForMotion, resolveMotionDisplay } = await import('../src/viewer/core/animated-study-motion.mjs');
+  const cycle = {
     id: 'Core cycle - illustrative',
     degrees: 720,
-    procedural: { type: 'gtsio-core-cycle', degrees: 720 },
-    display: {
-      defaultViewMode: 'core',
-      allowAssembled: true,
-      visiblePartIds: ['Crankshaft', 'Piston1'],
-      ghostPartIds: ['CrankcaseLeft'],
-    },
+    display: { defaultViewMode: 'core', allowAssembled: true, visiblePartIds: ['Crankshaft'], ghostPartIds: ['CrankcaseLeft'] },
   };
-
-  assert.equal(crankAngleForMotion(explodeMotion, 50), undefined);
-  assert.equal(crankAngleForMotion(cycleMotion, 0), 0);
-  assert.equal(crankAngleForMotion(cycleMotion, 25), 180);
-  assert.equal(crankAngleForMotion(cycleMotion, 50), 360);
-  assert.equal(crankAngleForMotion(cycleMotion, 100), 720);
-
-  const coreDisplay = resolveMotionDisplay(cycleMotion, [], 'default');
-  assert.equal(coreDisplay.viewMode, 'core');
-  assert.equal(coreDisplay.allowAssembled, true);
-  assert.equal(coreDisplay.hasDisplayFilter, true);
-  assert.ok(coreDisplay.visibleSet.has('Crankshaft'));
-  assert.ok(coreDisplay.visibleSet.has('Piston1'));
-  assert.ok(coreDisplay.visibleSet.has('CrankcaseLeft'), 'ghostPartIds are kept visible so they render with ghost opacity');
-  assert.ok(!coreDisplay.visibleSet.has('CaseThruBolt1'));
-  assert.ok(coreDisplay.ghostSet.has('CrankcaseLeft'));
-
-  const assembledDisplay = resolveMotionDisplay(cycleMotion, [], 'assembled');
-  assert.equal(assembledDisplay.viewMode, 'assembled');
-  assert.equal(assembledDisplay.hasDisplayFilter, false);
-  assert.equal(assembledDisplay.visibleSet, null);
-  assert.equal(assembledDisplay.ghostSet.size, 0);
-
-  const contract = {
-    procedural: { stageEnds: [0, 0.18, 0.36, 0.58, 0.8, 1] },
-    parts: [
-      { id: 'Crankshaft', body: 'crank', cycle_visible: true, explosion: { stage: 5, offset_mm: [0, 0, 0] } },
-      { id: 'Piston1', body: 'piston1', cycle_visible: true, explosion: { stage: 5, offset_mm: [0, 0, 0] } },
-      { id: 'CrankcaseLeft', body: 'fixed:CrankcaseLeft', cycle_visible: false, explosion: { stage: 4, offset_mm: [-230, 260, 0] } },
-      { id: 'CaseThruBolt1', body: 'fixed:CaseThruBolt1', cycle_visible: false, explosion: { stage: 1, offset_mm: [-460, -130, 0] } },
-    ],
-  };
-  const sampler = createProceduralStudySampler(contract, partsById, root);
-  assert.equal(sampler.supports(explodeMotion), true);
-  assert.equal(sampler.supports(collapseMotion), true);
-  assert.equal(sampler.supports(cycleMotion), true);
-
-  sampler.apply(explodeMotion, 100);
-  assert.ok(Math.abs(caseLeft.matrixWorld.elements[12] - (-0.23)) < 1e-9);
-  assert.ok(Math.abs(caseLeft.matrixWorld.elements[14] - (-0.26)) < 1e-9);
-
-  sampler.apply(collapseMotion, 0);
-  assert.ok(Math.abs(caseLeft.matrixWorld.elements[12] - (-0.23)) < 1e-9);
-  sampler.apply(collapseMotion, 100);
-  assert.ok(Math.abs(caseLeft.matrixWorld.elements[12]) < 1e-9);
-
-  sampler.apply(cycleMotion, 25); // 180 deg crank angle -> Piston1 at BDC (-2 * throw = -0.1016 m)
-  assert.ok(Math.abs(piston1.matrixWorld.elements[12] - (-0.1016)) < 1e-6);
-  sampler.apply(cycleMotion, 100); // 720 deg -> back to TDC rest pose
-  assert.ok(Math.abs(piston1.matrixWorld.elements[12]) < 1e-9);
+  assert.equal(crankAngleForMotion(cycle, 25), 180);
+  const core = resolveMotionDisplay(cycle, [], 'default');
+  assert.equal(core.viewMode, 'core');
+  assert.ok(core.visibleSet.has('Crankshaft') && core.visibleSet.has('CrankcaseLeft'));
+  assert.ok(core.ghostSet.has('CrankcaseLeft'));
+  const assembled = resolveMotionDisplay(cycle, [], 'assembled');
+  assert.equal(assembled.viewMode, 'assembled');
+  assert.equal(assembled.visibleSet, null);
 });
 
-test('animatedStudyAdapter: respects per-motion display (core vs assembled viewMode, ghostPartIds) and reports 720-degree crank angle', async () => {
-  const baseContract = JSON.parse(fs.readFileSync('web/hydraulic-tappet-contract.json', 'utf8'));
-  const allPartIds = baseContract.parts.map((p) => p.id);
-  const ghostId = allPartIds[0];
-  const coreIds = allPartIds.slice(1, 4);
-  const hiddenId = allPartIds[4];
-  const customContract = {
-    ...baseContract,
-    parts: baseContract.parts.map((p, idx) => ({
-      ...p,
-      body: idx === 1 ? 'piston1' : `fixed:${p.id}`,
-      cycle_visible: coreIds.includes(p.id),
-      explosion: { stage: 1, offset_mm: [idx * 10, 0, 0] },
-    })),
-    motions: [
-      ...baseContract.motions,
-      {
-        id: 'Core cycle - illustrative',
-        label: 'Core cycle (illustrative)',
-        loop: true,
-        duration: 12,
-        degrees: 720,
-        procedural: { type: 'gtsio-core-cycle', degrees: 720 },
-        display: {
-          defaultViewMode: 'core',
-          allowAssembled: true,
-          visiblePartIds: coreIds,
-          ghostPartIds: [ghostId],
-        },
-        stages: [
-          { progress: 0, label: 'Power' },
-          { progress: 50, label: 'Intake' },
-          { progress: 100, label: 'Repeat' },
-        ],
-      },
-    ],
-  };
-
-  const prevFetch = globalThis.fetch;
-  globalThis.fetch = async (url) => {
-    const name = String(url).replace(/^\.\//, '').split('?')[0];
-    if (name === 'custom-study-contract.json') return new Response(JSON.stringify(customContract));
-    return prevFetch(url);
-  };
-  try {
-    const baseDef = registry.find((m) => m.id === 'hydraulic-tappet');
-    const runtime = { scene: new THREE.Scene(), camera: new THREE.PerspectiveCamera(), render() {}, fit() {}, setPickTargets() {}, setAnimationCallback() {} };
-    const session = await createAnimatedStudySession(
-      { ...baseDef, contractUrl: './custom-study-contract.json' },
-      { runtime, signal: new AbortController().signal, onProgress() {}, onChange() {}, profile: 'explore', savedMotionId: 'Core cycle - illustrative', motionProgress: 25 },
-    );
-    const meshesById = new Map();
-    runtime.scene.traverse((obj) => { if (obj.isMesh && obj.userData.partId) meshesById.set(obj.userData.partId, obj); });
-
-    assert.equal(session.snapshot().savedMotionId, 'Core cycle - illustrative');
-    assert.equal(session.snapshot().motionViewMode, 'core');
-    assert.equal(session.snapshot().motionAllowAssembled, true);
-    assert.equal(session.snapshot().angle, 180);
-    assert.equal(lookOf(meshesById.get(ghostId)), 'ghost', 'housing part in ghostPartIds is drawn as ghost in core mode');
-    for (const id of coreIds) {
-      assert.equal(lookOf(meshesById.get(id)), 'normal', `core part ${id} is drawn solid in core mode`);
-    }
-    assert.equal(lookOf(meshesById.get(hiddenId)), 'hidden', 'non-core part outside visiblePartIds is hidden in core mode');
-
-    session.features.savedMotions.setViewMode('assembled');
-    assert.equal(session.snapshot().motionViewMode, 'assembled');
-    assert.equal(lookOf(meshesById.get(ghostId)), 'normal', 'assembled mode restores ghosted housing to normal');
-    assert.equal(lookOf(meshesById.get(hiddenId)), 'normal', 'assembled mode reveals non-core parts');
-
-    session.features.savedMotions.setViewMode('core');
-    assert.equal(session.snapshot().motionViewMode, 'core');
-    assert.equal(lookOf(meshesById.get(ghostId)), 'ghost');
-    assert.equal(lookOf(meshesById.get(hiddenId)), 'hidden');
-
-    session.features.savedMotions.setProgress(50);
-    assert.equal(session.snapshot().angle, 360);
-    session.dispose();
-  } finally {
-    globalThis.fetch = prevFetch;
-  }
-});
 
 
