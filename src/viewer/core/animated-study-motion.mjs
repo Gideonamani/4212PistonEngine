@@ -368,25 +368,18 @@ export function resolveMotionDisplay(motion, contractParts = [], viewMode = 'def
  */
 export function createProceduralStudySampler(contract, partsById, root) {
   root.updateMatrixWorld(true);
-  const restWorld = new Map();
-  const parentInverse = new Map();
+  const restLocal = new Map();
   for (const [id, mesh] of partsById.entries()) {
-    restWorld.set(id, mesh.matrixWorld.clone());
-    parentInverse.set(id, mesh.parent ? mesh.parent.matrixWorld.clone().invert() : new THREE.Matrix4());
+    mesh.matrixAutoUpdate = false;
+    restLocal.set(id, mesh.matrix.clone());
   }
   const partSpecs = new Map((contract.parts || []).map((p) => [p.id, p]));
   const stageEnds = contract.procedural?.stageEnds || DEFAULT_STAGE_ENDS;
   const evaluateBody = createGtsioBodyEvaluator(contract.procedural?.parameters || {});
 
-  function setWorldMatrix(id, mesh, worldMatrix) {
-    mesh.matrixAutoUpdate = false;
-    mesh.matrix.copy(parentInverse.get(id)).multiply(worldMatrix);
-    mesh.matrixWorld.copy(worldMatrix);
-  }
-
   function restoreRest() {
     for (const [id, mesh] of partsById.entries()) {
-      setWorldMatrix(id, mesh, restWorld.get(id));
+      mesh.matrix.copy(restLocal.get(id));
     }
     root.updateMatrixWorld(true);
   }
@@ -394,12 +387,12 @@ export function createProceduralStudySampler(contract, partsById, root) {
   function applyExplosion(fraction) {
     const f = Math.max(0, Math.min(1, fraction));
     const delta = new THREE.Matrix4();
-    const world = new THREE.Matrix4();
+    const local = new THREE.Matrix4();
     for (const [id, mesh] of partsById.entries()) {
       const spec = partSpecs.get(id);
       const exp = spec?.explosion;
       if (!exp || !exp.stage) {
-        setWorldMatrix(id, mesh, restWorld.get(id));
+        mesh.matrix.copy(restLocal.get(id));
         continue;
       }
       const s0 = stageEnds[exp.stage - 1] ?? 0;
@@ -408,20 +401,20 @@ export function createProceduralStudySampler(contract, partsById, root) {
       const [dx, dy, dz] = exp.offset_mm || [0, 0, 0];
       // CAD mm (dx, dy, dz) -> glTF metres (dx/1000, dz/1000, -dy/1000)
       delta.makeTranslation((dx * amount) / 1000, (dz * amount) / 1000, (-dy * amount) / 1000);
-      world.copy(delta).multiply(restWorld.get(id));
-      setWorldMatrix(id, mesh, world);
+      local.copy(delta).multiply(restLocal.get(id));
+      mesh.matrix.copy(local);
     }
     root.updateMatrixWorld(true);
   }
 
   function applyCoreCycle(theta) {
     const bodyCache = new Map();
-    const world = new THREE.Matrix4();
+    const local = new THREE.Matrix4();
     for (const [id, mesh] of partsById.entries()) {
       const spec = partSpecs.get(id);
       const body = spec?.body || `fixed:${id}`;
       if (body.startsWith('fixed:')) {
-        setWorldMatrix(id, mesh, restWorld.get(id));
+        mesh.matrix.copy(restLocal.get(id));
         continue;
       }
       let delta = bodyCache.get(body);
@@ -429,8 +422,8 @@ export function createProceduralStudySampler(contract, partsById, root) {
         delta = evaluateBody(body, theta);
         bodyCache.set(body, delta);
       }
-      world.copy(delta).multiply(restWorld.get(id));
-      setWorldMatrix(id, mesh, world);
+      local.copy(delta).multiply(restLocal.get(id));
+      mesh.matrix.copy(local);
     }
     root.updateMatrixWorld(true);
   }

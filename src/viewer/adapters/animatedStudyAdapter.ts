@@ -29,7 +29,8 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   const componentsById = new Map<string, any>(components.map((part: any) => [part.id, part]));
   if (meshes.length !== components.length || meshes.some(mesh => !componentsById.has(mesh.userData.partId))) throw Error('Mechanism components do not match the contract.');
   const clips = new Map(loaded.gltf.animations.map(clip => [clip.name, clip]));
-  runtime.scene.add(root); root.updateMatrixWorld(true); runtime.fit(root);
+  root.rotation.x = Math.PI / 2;
+  runtime.scene.add(root); root.updateMatrixWorld(true); runtime.fit(root, new THREE.Vector3(1.3, 0.8, 1.55));
   const procedural = createProceduralStudySampler(contract, partsById, root);
   for (const motion of contract.motions) {
     if (!clips.has(motion.id) && !procedural.supports(motion)) throw Error(`Saved motion is missing: ${motion.id}`);
@@ -188,12 +189,12 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     // Use the union of both assembly extremes for cuts and framing in either direction.
     sample(0); const motionBounds = new THREE.Box3().setFromObject(root);
     sample(100); motionBounds.union(new THREE.Box3().setFromObject(root)); section.updateBounds(motionBounds);
-    const proxy = new THREE.Mesh(new THREE.BoxGeometry(...motionBounds.getSize(new THREE.Vector3()).toArray())); proxy.position.copy(motionBounds.getCenter(new THREE.Vector3())); runtime.fit(proxy); proxy.geometry.dispose(); sample(0);
+    const proxy = new THREE.Mesh(new THREE.BoxGeometry(...motionBounds.getSize(new THREE.Vector3()).toArray())); proxy.position.copy(motionBounds.getCenter(new THREE.Vector3())); runtime.fit(proxy, new THREE.Vector3(1.3, 0.8, 1.55)); proxy.geometry.dispose(); sample(0);
   };
   const fitVisible = () => {
     const box = new THREE.Box3(); for (const mesh of meshes) if (mesh.visible) box.expandByObject(mesh);
     if (box.isEmpty()) return;
-    const proxy = new THREE.Mesh(new THREE.BoxGeometry(...box.getSize(new THREE.Vector3()).toArray())); proxy.position.copy(box.getCenter(new THREE.Vector3())); runtime.fit(proxy); proxy.geometry.dispose();
+    const proxy = new THREE.Mesh(new THREE.BoxGeometry(...box.getSize(new THREE.Vector3()).toArray())); proxy.position.copy(box.getCenter(new THREE.Vector3())); runtime.fit(proxy, new THREE.Vector3(1.3, 0.8, 1.55)); proxy.geometry.dispose();
   };
   const select = (id: string) => {
     const part = componentsById.get(id);
