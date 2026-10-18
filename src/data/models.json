@@ -58,15 +58,15 @@
   },
   {
     "id": "gtsio520-h-r10-mechanism-study",
-    "label": "GTSIO-520-H complete engine assembly (1,396 parts)",
-    "shortLabel": "GTSIO-520-H mechanism study",
+    "label": "GTSIO-520-H whole engine, reconstruction draft (1,396 parts)",
+    "shortLabel": "GTSIO-520-H engine draft",
     "adapter": "animated-study",
-    "headerLabel": "GTSIO-520-H · MECHANISM STUDY",
-    "summary": "Full 1,396-part R10 candidate with Three.js-coordinated exploded layout and 720 deg operating cycle. Illustrative review draft.",
+    "headerLabel": "GTSIO-520-H · RECONSTRUCTION DRAFT",
+    "summary": "Draft reconstruction of the whole engine with an exploded view and a four-stroke cycle. Shapes and timing are not yet checked.",
     "capabilities": [
       {
         "kind": "animated",
-        "note": "Three.js 720° operating cycle"
+        "note": "Full four-stroke operating cycle"
       },
       {
         "kind": "exploded",
@@ -91,7 +91,7 @@
         "driveId": "1F8B93sONX8mT93GSxRWaRmRuDk0DJCIW"
       }
     ],
-    "contractUrl": "./gtsio520-r10-contract.json",
+    "contractUrl": "./gtsio520-r10-contract.json?v=80991fa8b0d5",
     "lessonControls": true
   },
   {

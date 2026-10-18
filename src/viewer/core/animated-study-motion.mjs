@@ -369,15 +369,21 @@ export function resolveMotionDisplay(motion, contractParts = [], viewMode = 'def
 export function createProceduralStudySampler(contract, partsById, root) {
   root.updateMatrixWorld(true);
   const restLocal = new Map();
-  for (const [id, mesh] of partsById.entries()) {
-    mesh.matrixAutoUpdate = false;
-    restLocal.set(id, mesh.matrix.clone());
+  for (const [id, mesh] of partsById.entries()) restLocal.set(id, mesh.matrix.clone());
+  // Taking over the part matrices stops baked clips from moving the parts, so it waits for the first procedural pose:
+  // models whose motions are all baked clips never reach it and keep animating through the mixer.
+  let matricesClaimed = false;
+  function claimMatrices() {
+    if (matricesClaimed) return;
+    matricesClaimed = true;
+    for (const mesh of partsById.values()) mesh.matrixAutoUpdate = false;
   }
   const partSpecs = new Map((contract.parts || []).map((p) => [p.id, p]));
   const stageEnds = contract.procedural?.stageEnds || DEFAULT_STAGE_ENDS;
   const evaluateBody = createGtsioBodyEvaluator(contract.procedural?.parameters || {});
 
   function restoreRest() {
+    claimMatrices();
     for (const [id, mesh] of partsById.entries()) {
       mesh.matrix.copy(restLocal.get(id));
     }
@@ -385,6 +391,7 @@ export function createProceduralStudySampler(contract, partsById, root) {
   }
 
   function applyExplosion(fraction) {
+    claimMatrices();
     const f = Math.max(0, Math.min(1, fraction));
     const delta = new THREE.Matrix4();
     const local = new THREE.Matrix4();
@@ -408,6 +415,7 @@ export function createProceduralStudySampler(contract, partsById, root) {
   }
 
   function applyCoreCycle(theta) {
+    claimMatrices();
     const bodyCache = new Map();
     const local = new THREE.Matrix4();
     for (const [id, mesh] of partsById.entries()) {
