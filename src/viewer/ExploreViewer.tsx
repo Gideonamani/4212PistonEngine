@@ -79,6 +79,7 @@ export default function ExploreViewer({ modelId, isFullscreen = false, onToggleF
           className="absolute z-20 pointer-events-auto transition-all duration-200 w-auto max-w-[50%] top-3 left-3 max-h-[50vh] overflow-y-auto sm:top-auto sm:left-auto sm:bottom-3 sm:right-3 sm:max-w-xs sm:w-80"
         >
           <PartCard
+            modelId={modelId}
             partId={snapshot.selectedId}
             defaultLabel={snapshot.selectedLabel}
             defaultFunction={snapshot.selectedDescription}

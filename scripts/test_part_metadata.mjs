@@ -1,9 +1,25 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import test from 'node:test';
-import { getComponentMetadata } from '../src/data/componentMetadata.ts';
+import { COMPONENT_METADATA, getComponentMetadata, GTSIO_MODEL_ID } from '../src/data/componentMetadata.ts';
+import { GTSIO_PART_ARCHETYPES } from '../src/data/gtsioPartArchetypes.ts';
 
-test('getComponentMetadata resolves authentic Continental IPC part numbers and engineering data', () => {
+const readJson = (path) => JSON.parse(readFileSync(new URL(`../${path}`, import.meta.url), 'utf8'));
+const registry = readJson('src/data/models.json');
+
+/** Part ids a contract (or the cylinder's component tree) offers to the part card. */
+function contractIds(contract) {
+  if (Array.isArray(contract.parts)) return contract.parts.map((part) => part.id);
+  if (Array.isArray(contract.teaching_components)) return contract.teaching_components.map((part) => part.id);
+  return [];
+}
+function treeIds(node, out = []) {
+  if (node?.kind === 'component') out.push(node.id);
+  for (const child of node?.children ?? []) treeIds(child, out);
+  return out;
+}
+
+test('getComponentMetadata resolves GTSIO-520-H archetype data for the R10 model', () => {
   const samples = [
     { id: 'ConnectingRod1', expectedPN: '633403', system: 'Reciprocating assembly' },
     { id: 'ConnectingRod6', expectedPN: '633403', system: 'Reciprocating assembly' },
@@ -34,7 +50,8 @@ test('getComponentMetadata resolves authentic Continental IPC part numbers and e
   ];
 
   for (const sample of samples) {
-    const meta = getComponentMetadata(sample.id);
+    const meta = getComponentMetadata(sample.id, undefined, undefined, GTSIO_MODEL_ID);
+    // partNumber/source are engineering-only references (IO-520 catalogue, unverified for this engine); the student card does not show them.
     assert.equal(meta.partNumber, sample.expectedPN, `Expected partNumber ${sample.expectedPN} for ${sample.id}, got ${meta.partNumber}`);
     assert.equal(meta.system, sample.system, `Expected system ${sample.system} for ${sample.id}, got ${meta.system}`);
     assert.ok(meta.function.length > 20, `Expected detailed function for ${sample.id}`);
@@ -44,9 +61,70 @@ test('getComponentMetadata resolves authentic Continental IPC part numbers and e
   }
 });
 
-test('R10 contract parts have 100% enriched educational metadata', () => {
-  const contract = JSON.parse(readFileSync('web/gtsio520-r10-contract.json', 'utf8'));
+test('GTSIO archetype rules apply to the R10 model id only', () => {
+  for (const id of ['Piston1', 'Crankshaft', 'PistonRingA1', 'CylinderHead1']) {
+    for (const modelId of [undefined, '', 'langley-manly-balzer-1903', 'wright-1903-reconstruction', 'cylinder']) {
+      const meta = getComponentMetadata(id, undefined, undefined, modelId);
+      assert.equal(meta.partNumber, undefined, `${id} on ${modelId ?? 'no model'} must carry no part number`);
+      assert.equal(meta.source, undefined, `${id} on ${modelId ?? 'no model'} must carry no source`);
+    }
+  }
+});
+
+test('no GTSIO-derived metadata appears on any other model', () => {
+  const gtsioText = new Set(GTSIO_PART_ARCHETYPES.flatMap((rule) => [rule.function, rule.material, rule.operatingConditions, rule.partNumber, rule.source]));
+
+  // Every contract in web/, each under the model id the registry gives it (an unregistered contract still counts as "not R10").
+  const contracts = readdirSync(new URL('../web/', import.meta.url)).filter((name) => name.endsWith('-contract.json'));
+  const targets = contracts.map((name) => {
+    const model = registry.find((entry) => entry.contractUrl?.replace(/^\.\//, '').replace(/\?.*$/, '') === name);
+    return { name, modelId: model?.id ?? name.replace(/-contract\.json$/, ''), ids: contractIds(readJson(`web/${name}`)) };
+  });
+  // The cylinder has no contract: its part ids come from the component tree.
+  const tree = readJson('web/component-tree.json');
+  targets.push({ name: 'component-tree.json', modelId: tree.modelId, ids: treeIds(tree.root) });
+
+  const others = targets.filter((target) => target.modelId !== GTSIO_MODEL_ID);
+  assert.ok(others.length >= 7, `Expected the other models' contracts to be covered, got ${others.map((target) => target.name).join(', ')}`);
+  assert.ok(targets.some((target) => target.modelId === GTSIO_MODEL_ID), 'The R10 contract must be found as the GTSIO model');
+
+  let checked = 0;
+  for (const { name, modelId, ids } of others) {
+    assert.ok(ids.length > 0, `${name} lists no part ids`);
+    for (const id of ids) {
+      const meta = getComponentMetadata(id, undefined, undefined, modelId);
+      assert.equal(meta.partNumber, undefined, `${name}: ${id} shows part number ${meta.partNumber}`);
+      assert.equal(meta.source, undefined, `${name}: ${id} shows source ${meta.source}`);
+      // Text a model's own hand-written register supplies is its own; anything else must not equal a GTSIO rule's text.
+      if (id in COMPONENT_METADATA) {
+        checked++;
+        continue;
+      }
+      for (const field of ['function', 'material', 'operatingConditions']) {
+        assert.ok(!gtsioText.has(meta[field]), `${name}: ${id} ${field} comes from a GTSIO archetype rule`);
+      }
+      checked++;
+    }
+  }
+  assert.ok(checked > 800, `Expected to check every non-R10 part id, checked ${checked}`);
+});
+
+test('the student part card shows no part number or source, and card titles carry no P/N suffix', () => {
+  const card = readFileSync(new URL('../src/viewer/PartCard.tsx', import.meta.url), 'utf8');
+  assert.ok(!/partNumber|data\.source|Part No\./.test(card), 'PartCard must not render part numbers or sources');
+
+  const contract = readJson('web/gtsio520-r10-contract.json');
+  for (const part of contract.parts) {
+    assert.ok(!/P\/N/.test(part.display_label || ''), `display_label of ${part.id} carries a part number: ${part.display_label}`);
+    assert.ok(!/P\/N|X-30040A/.test(part.label || ''), `label of ${part.id} carries a part number: ${part.label}`);
+  }
+  assert.ok(!/X-30040A/.test(JSON.stringify(registry)), 'The model registry must not cite the IO-520 catalogue');
+});
+
+test('R10 contract keeps engineering-only part references, flagged as unverified', () => {
+  const contract = readJson('web/gtsio520-r10-contract.json');
   assert.equal(contract.parts.length, 1396);
+  assert.equal(contract.part_reference_status?.audience, 'engineering-only');
 
   let withPartNumber = 0;
   for (const p of contract.parts) {
@@ -56,5 +134,8 @@ test('R10 contract parts have 100% enriched educational metadata', () => {
     assert.ok(p.source_locator, `Missing source locator on part ${p.id}`);
   }
 
-  assert.equal(withPartNumber, 1396, 'All 1,396 parts should carry an authentic part number');
+  // The data is kept for the session that verifies it; "present" here does not mean "correct".
+  assert.equal(withPartNumber, 1396, 'The engineering-only part_number field must stay on all 1,396 parts');
+  const definitions = readJson('data/gtsio520-component-definitions.json');
+  assert.ok(Object.keys(definitions.definitions).length > 0, 'data/gtsio520-component-definitions.json must not be emptied');
 });

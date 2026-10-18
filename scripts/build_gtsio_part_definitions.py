@@ -29,21 +29,20 @@ def format_part_instance(pid, label, rule):
         lr = " (Right)"
 
     base_name = rule["name"]
-    pn = rule["partNumber"]
 
     if cyl_num:
-        display_label = f"{base_name} (Cyl {cyl_num}){lr} · P/N {pn}"
+        display_label = f"{base_name} (Cyl {cyl_num}){lr}"
     elif throw_num:
-        display_label = f"{base_name} (Throw {throw_num}){lr} · P/N {pn}"
+        display_label = f"{base_name} (Throw {throw_num}){lr}"
     elif lr:
-        display_label = f"{base_name}{lr} · P/N {pn}"
+        display_label = f"{base_name}{lr}"
     else:
         # Check if ID has a simple trailing number
         num_match = re.search(r"(\d+)$", pid)
         if num_match:
-            display_label = f"{base_name} #{num_match.group(1)} · P/N {pn}"
+            display_label = f"{base_name} #{num_match.group(1)}"
         else:
-            display_label = f"{base_name} · P/N {pn}"
+            display_label = f"{base_name}"
 
     return display_label
 
