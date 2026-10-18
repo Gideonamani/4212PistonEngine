@@ -1,4 +1,5 @@
 import type * as THREE from 'three';
+import type { LearnerPart } from '../data/learnerPartDetails';
 
 export type ViewerProfile = 'explore' | 'lesson-dynamic' | 'lesson-reference';
 export type InteractionMode = 'orbit' | 'pan';
@@ -27,6 +28,8 @@ export type ModelComponent = {
   source?: string;
   evidence?: string;
   groups?: string[];
+  /** Extra words the Parts search matches besides the label and description (other names a learner may type). */
+  searchText?: string;
 };
 
 export type ModelGroup = {
@@ -40,6 +43,8 @@ export type ViewerSnapshot = {
   selectedId?: string;
   selectedLabel?: string;
   selectedDescription?: string;
+  /** The learner-facing details of the selected part, for a model that has them (the GTSIO-520-H whole engine). */
+  selectedDetails?: LearnerPart;
   isolated?: boolean;
   appearance?: AppearanceMode;
   angle?: number;

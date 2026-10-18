@@ -26,6 +26,7 @@ publish), then `AGENTS.md` (storage and validation rules), then the guides here.
 | [motion-profile.md](motion-profile.md) | guide | The shared cylinder motion profile. |
 | [export-pipeline.md](export-pipeline.md) | guide | The repeatable CAD and Blender export package. |
 | [manual-workflow.md](manual-workflow.md) | guide | From a manual to a modelled, animated teaching module. |
+| [gtsio-part-details.md](gtsio-part-details.md) | guide | What a learner reads when they tap a part of the GTSIO-520-H whole engine, how the text is named, sourced and reviewed, and how to change it. |
 | [accessories-and-drives.md](accessories-and-drives.md) | guide | The accessories and drives lesson and its model. |
 | [assembly-interference.md](assembly-interference.md) | guide | Parts touch but never overlap: the gear train, the CAD checks and the swept audit that enforce it. |
 | [galaxy-a16-release-check.md](galaxy-a16-release-check.md) | guide | The release check to run on a Samsung Galaxy A16 in Chrome. |
