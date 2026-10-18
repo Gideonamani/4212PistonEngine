@@ -4,8 +4,6 @@
  * Based on Continental GTSIO-520 / aircraft piston engine maintenance standards and technical specifications.
  */
 
-import { GTSIO_PART_ARCHETYPES } from './gtsioPartArchetypes.ts';
-
 export interface ComponentEngineeringData {
   id: string;
   label: string;
@@ -13,8 +11,6 @@ export interface ComponentEngineeringData {
   systemColor: string;
   function: string;
   material: string;
-  partNumber?: string;
-  source?: string;
   operatingConditions?: string;
   connectedParts?: { id: string; label: string }[];
 }
@@ -276,65 +272,13 @@ export const COMPONENT_METADATA: Record<string, Partial<ComponentEngineeringData
   },
 };
 
-/** The only model whose part ids the GTSIO-520-H archetype rules were written for. */
-export const GTSIO_MODEL_ID = 'gtsio520-h-r10-mechanism-study';
-
-/** Resolves the GTSIO archetype rule for a part id, or undefined. Rules never apply outside the R10 model. */
-function findGtsioArchetype(id: string, modelId?: string) {
-  if (modelId !== GTSIO_MODEL_ID) return undefined;
-  return GTSIO_PART_ARCHETYPES.find((rule) => rule.pattern.test(id));
-}
-
 /**
  * Returns complete, structured engineering metadata for any component id.
- * Uses verified engineering register when available, and generates consistent engineering defaults otherwise.
- * `modelId` scopes the GTSIO-520-H archetype rules: without the R10 model id, only the general register and defaults apply.
- * `partNumber` and `source` are engineering-only fields (IO-520 IPC references, applicability to the GTSIO-520-H unverified);
- * the student part card does not show them.
+ * Uses the verified engineering register when available, and generates consistent engineering defaults otherwise.
+ * The GTSIO-520-H whole engine does not use this: its part card reads the learner part details (learnerPartDetails.ts).
  */
-export function getComponentMetadata(id: string, defaultLabel?: string, defaultFunction?: string, modelId?: string): ComponentEngineeringData {
+export function getComponentMetadata(id: string, defaultLabel?: string, defaultFunction?: string): ComponentEngineeringData {
   const registered = COMPONENT_METADATA[id] || {};
-
-  // Archetype matching for Continental GTSIO-520-H engine assembly components (R10 model only)
-  const rule = findGtsioArchetype(id, modelId);
-  if (rule) {
-    const sysObj = SYSTEMS[rule.system] || SYSTEMS.crankcase;
-
-    // Extract cylinder, throw, left/right or instance numbers
-    const cylMatch = id.match(/(?:Cylinder|Cyl|Piston|Rod|Pin|Deck|Plug|Valve|Rocker|Spring|Seat|Guide|Cover|Shroud|Housing|Ring)(\d)/i);
-    const throwMatch = id.match(/(?:Throw|Cheek|Journal)(\d)/i);
-    const isLeft = /\bLeft\b|Left(?=[A-Z0-9])/i.test(id);
-    const isRight = /\bRight\b|Right(?=[A-Z0-9])/i.test(id);
-    const lrStr = isLeft ? ' (Left)' : isRight ? ' (Right)' : '';
-
-    let label = defaultLabel || rule.name;
-    if (!defaultLabel) {
-      if (cylMatch) {
-        label = `${rule.name} (Cylinder ${cylMatch[1]})${lrStr}`;
-      } else if (throwMatch) {
-        label = `${rule.name} (Throw ${throwMatch[1]})${lrStr}`;
-      } else if (lrStr) {
-        label = `${rule.name}${lrStr}`;
-      } else {
-        const numMatch = id.match(/(\d+)$/);
-        if (numMatch) {
-          label = `${rule.name} #${numMatch[1]}`;
-        }
-      }
-    }
-
-    return {
-      id,
-      label,
-      system: sysObj.name,
-      systemColor: sysObj.color,
-      function: rule.function,
-      material: rule.material,
-      partNumber: rule.partNumber,
-      source: rule.source,
-      operatingConditions: rule.operatingConditions,
-    };
-  }
 
   let system = registered.system;
   let systemColor = registered.systemColor;

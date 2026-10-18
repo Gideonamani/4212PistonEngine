@@ -72,7 +72,7 @@ export function useViewerControls(viewer: ModelViewerState, { host, lessonContro
     const items = features?.components?.items || [];
     const term = query.trim().toLowerCase();
     return items.filter((component) => inComponentGroup(component, group)
-      && (!term || `${component.label} ${component.description}`.toLowerCase().includes(term)));
+      && (!term || `${component.label} ${component.description} ${component.searchText ?? ''}`.toLowerCase().includes(term)));
   }, [features?.components?.items, query, group]);
 
   const setGroup = (value: string) => { setGroupState(value); features?.components?.select(''); };

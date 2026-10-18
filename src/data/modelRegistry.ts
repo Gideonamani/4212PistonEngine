@@ -40,6 +40,8 @@ export type ModelDefinition = {
   motionProfileUrl?: string;
   savedMotionsUrl?: string;
   contractUrl?: string;
+  /** Learner-facing part names and explanations (web/gtsio520-r10-parts.json), built from data/gtsio520-part-definitions.json. Its `model` field must equal this model's id. */
+  partDetailsUrl?: string;
   sourceUrl?: string;
   sourceLabel?: string;
   license?: string;
