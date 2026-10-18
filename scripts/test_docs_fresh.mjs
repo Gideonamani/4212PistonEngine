@@ -36,7 +36,7 @@ const names = new Set(files.map((file) => file.split('/').pop()));
 
 // Files the guides may name although they are not in the repository: outputs a script writes, and the ignored model binaries.
 // Native CAD sources (FreeCAD, Blender, STEP) live in Drive, not in Git.
-const GENERATED = /^(build|dist|node_modules|\.local|test-results)\/|\.glb(\.gz)?$|\.(FCStd|blend|step)$|^\.\.\//;
+const GENERATED = /^(build|dist|node_modules|\.local|test-results)\/|^data\/gtsio_part_authoring\/private\/|\.glb(\.gz)?$|\.(FCStd|blend|step)$|^\.\.\//;
 const RETIRED = ['ModelViewer', 'MobileFrame', 'VisualIllustration', 'draftStatus', 'Phone Shell', 'learn.html', 'explore.html', 'check.html', 'training.html', 'viewer.js', 'training-modes.mjs', 'model-router.mjs', 'general-lessons.json'];
 
 const guides = [...kinds].filter(([, kind]) => kind === 'guide').map(([name]) => `docs/${name}`).concat(['README.md', 'AGENTS.md']);

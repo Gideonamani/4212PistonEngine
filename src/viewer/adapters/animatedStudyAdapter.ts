@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import type { ModelDefinition } from '../../data/modelRegistry';
 import type { AdapterContext, FocusMode, ViewerSession, ViewerSnapshot } from '../types';
 import { loadGltf } from '../core/assets';
+import { learnerPartFor, learnerSearchText, loadLearnerParts, type LearnerPart } from '../../data/learnerPartDetails';
 import { cloneMaterials, createSectionController, disposeObject, meshMaterials } from '../core/modelUtils';
 import { groupComponentIds } from '../core/component-groups.mjs';
 import { focusModeOrDefault, partLook, partRole, spotlightPalette } from '../core/focus-style.mjs';
@@ -15,7 +16,12 @@ import {
 
 export async function createAnimatedStudySession(definition: ModelDefinition, context: AdapterContext): Promise<ViewerSession> {
   const { runtime, signal, onChange, onProgress } = context;
-  const [response, loaded] = await Promise.all([fetch(definition.contractUrl!, { signal }), loadGltf(definition.sources || [], signal, onProgress)]);
+  // A model with learner part details (the GTSIO-520-H whole engine) names and explains its parts from them; failing to load them leaves the contract's own labels.
+  const [response, loaded, learner] = await Promise.all([
+    fetch(definition.contractUrl!, { signal }),
+    loadGltf(definition.sources || [], signal, onProgress),
+    definition.partDetailsUrl ? loadLearnerParts(definition.partDetailsUrl, definition.id, signal) : undefined,
+  ]);
   if (!response.ok) throw Error('The mechanism study contract is unavailable.');
   const contract = await response.json();
   const digest = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', loaded.bytes)), byte => byte.toString(16).padStart(2, '0')).join('');
@@ -25,7 +31,9 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   const { meshes, partsById } = indexStudyParts(root) as { meshes: THREE.Mesh[]; partsById: Map<string, THREE.Mesh> };
   const paths: any[] = contract.powerPaths || [];
   const contractPartsById = new Map<string, any>((contract.parts || []).map((part: any) => [part.id, part]));
-  const components = contract.parts.map((part: any) => ({ id: part.id, label: part.label, group: part.group, groups: [...paths.filter(path => path.parts.includes(part.id)).map(path => `path:${path.id}`), ...(part.groups || [])], description: part.description, source: part.evidence || contract.reference, evidence: part.shape_status || 'Illustrative dimensions' }));
+  const detailsById = new Map<string, LearnerPart>();
+  for (const part of contract.parts) { const details = learnerPartFor(learner, part.id); if (details) detailsById.set(part.id, details); }
+  const components = contract.parts.map((part: any) => ({ id: part.id, label: detailsById.get(part.id)?.label ?? part.label, group: part.group, groups: [...paths.filter(path => path.parts.includes(part.id)).map(path => `path:${path.id}`), ...(part.groups || [])], description: detailsById.get(part.id)?.function.text ?? part.description, searchText: detailsById.has(part.id) ? learnerSearchText(detailsById.get(part.id)!) : undefined, source: part.evidence || contract.reference, evidence: part.shape_status || 'Illustrative dimensions' }));
   const componentsById = new Map<string, any>(components.map((part: any) => [part.id, part]));
   if (meshes.length !== components.length || meshes.some(mesh => !componentsById.has(mesh.userData.partId))) throw Error('Mechanism components do not match the contract.');
   const clips = new Map(loaded.gltf.animations.map(clip => [clip.name, clip]));
@@ -202,7 +210,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   };
   const select = (id: string) => {
     const part = componentsById.get(id);
-    snapshot.selectedId = part?.id; snapshot.selectedLabel = part?.label; snapshot.selectedDescription = part?.description;
+    snapshot.selectedId = part?.id; snapshot.selectedLabel = part?.label; snapshot.selectedDescription = part?.description; snapshot.selectedDetails = part ? detailsById.get(part.id) : undefined;
     applyAppearance(); onChange();
   };
   const showAll = () => { isolation = undefined; focus.clear(); powerPath = undefined; snapshot.powerPathId = ''; snapshot.powerPathNote = ''; snapshot.isolated = false; select(''); fitVisible(); };
