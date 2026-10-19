@@ -123,8 +123,10 @@ The R10 file is optimised on its own, with a stated phone budget (decision D3, 1
 `releases/model-optimization-gtsio520-r10.json`. Tools: `scripts/build_gtsio_r10_optimized.mjs` (build), `scripts/bind_gtsio_r10_optimized.mjs` (bind into the contract,
 `src/data/models.json` and the Drive manifest), `scripts/test_gtsio520_r10_optimization.mjs` (checks the record).
 
-**Status: built and verified on a desktop, not published.** `web/gtsio520-r10-static-opt1.glb.gz` exists locally (ignored by Git). The registry and manifest carry a visible placeholder Drive id,
-`PENDING_DRIVE_UPLOAD_gtsio520_r10_opt1`, so the asset download fails in CI until the file is uploaded and the real id is bound. Nothing was uploaded to Drive by this change.
+**Status: built and verified on a desktop; on Drive and bound; not yet measured on the phone.** `web/gtsio520-r10-static-opt1.glb.gz` is git-ignored like the other models. It is on Drive
+(file id `10AXTDqplLyTAjXp-wTikbdx7BGg5Dwf4`, in the shared published-models folder, anyone with the link can read), and the registry, the manifest and the record carry that id. An anonymous request with the
+site's key and referrer (the one `scripts/fetch_drive_assets.py` makes) returned HTTP 200, 11,998,800 bytes and the SHA-256 below on 19 October 2026 (13 s from a desktop connection; not a phone figure).
+Before the file was uploaded the binding used a visible placeholder id so that CI failed on it (`scripts/bind_gtsio_r10_optimized.mjs` without `--drive-id`).
 
 | | Before (`gtsio520-r10-static.glb.gz`) | After (`gtsio520-r10-static-opt1.glb.gz`) |
 |---|---|---|
@@ -153,7 +155,7 @@ Parse time went up by about 94 ms on the desktop (the meshopt decoder), which ma
 
 ```powershell
 node scripts/build_gtsio_r10_optimized.mjs                  # web/gtsio520-r10-static-opt1.glb.gz and the record, from web/gtsio520-r10-static.glb.gz (about 30 s)
-node scripts/bind_gtsio_r10_optimized.mjs                   # contract, registry and manifest (placeholder Drive id)
+node scripts/bind_gtsio_r10_optimized.mjs                   # contract, registry, manifest and record (placeholder Drive id)
 node scripts/bind_gtsio_r10_optimized.mjs --drive-id <id>   # after the file is on Drive with link sharing
 python scripts/fetch_drive_assets.py --verify-remote        # anonymous download, size and hash
 ```

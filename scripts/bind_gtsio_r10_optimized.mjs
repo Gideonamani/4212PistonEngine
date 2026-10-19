@@ -3,8 +3,9 @@
 //   node scripts/bind_gtsio_r10_optimized.mjs [--drive-id <Drive file id>]
 //
 // Changes only the lines that depend on the asset: web/gtsio520-r10-contract.json (asset_file, asset_sha256, bytes, gzip_bytes), the R10 entry of
-// src/data/models.json (localUrl, transferBytes, decodedBytes, driveId, and the ?v= token on contractUrl) and docs/drive-asset-manifest.json (the
-// R10 web asset; the file it replaces moves to previous_web_releases so the working release stays on record for rollback). Line endings are kept.
+// src/data/models.json (localUrl, transferBytes, decodedBytes, driveId, and the ?v= token on contractUrl), docs/drive-asset-manifest.json (the
+// R10 web asset; the file it replaces moves to previous_web_releases so the working release stays on record for rollback) and the Drive id in
+// releases/model-optimization-gtsio520-r10.json. Line endings are kept.
 // Without --drive-id the id is a visible placeholder that no Drive file has: the asset download fails in CI, so the pull request cannot merge before
 // the file is uploaded and the real id is bound. Run again with the id once the file is on Drive with link sharing, then check the anonymous download
 // (python scripts/fetch_drive_assets.py --verify-remote). Safe to run repeatedly.
@@ -69,6 +70,12 @@ if (old.path !== `web/${optimized.file}`) {
 }
 manifest.web_assets[index] = { path: `web/${optimized.file}`, drive_id: nextId, bytes: optimized.transferBytes, sha256: optimized.transferSha256 };
 write('docs/drive-asset-manifest.json', JSON.stringify(manifest, null, 2).replace(/\n/g, eol) + (manifestText.endsWith('\n') ? eol : ''));
+
+// 4. The optimisation record names the Drive file the registry uses (null while the id is only the placeholder).
+const recordFile = 'releases/model-optimization-gtsio520-r10.json';
+const recordDocument = JSON.parse(read(recordFile));
+recordDocument.models[0].optimized.driveId = nextId === PLACEHOLDER_DRIVE_ID ? null : nextId;
+write(recordFile, `${JSON.stringify(recordDocument, null, 2)}\n`);
 
 console.log(`bound ${optimized.file}: transfer ${optimized.transferBytes} bytes, sha256 ${optimized.transferSha256}`);
 console.log(`decoded ${optimized.decodedBytes} bytes, sha256 ${optimized.decodedSha256}`);
