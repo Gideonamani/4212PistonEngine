@@ -1,0 +1,1281 @@
+{
+  "_note": "Interference policy for the shipped GTSIO-520-H R10 study file (web/gtsio520-r10-static.glb.gz) when its core cycle and exploded layouts are posed by the viewer's procedural sampler (scripts/audit_procedural_poses.py). Touching is always allowed; overlap is not. known_defects is a ratchet: it records what the CURRENTLY PUBLISHED draft still contains in the sampled cycle, may only shrink, and an entry that is no longer observed fails the audit until it is removed. The assembled-pose audit has no ledger (cad-studies/gtsio520-h-static/interference-policy.json). Recording an overlap here is not an acceptance of it.",
+  "volume_tolerance_mm3": 0.001,
+  "max_penetration_mm": 0.05,
+  "min_gear_clearance_mm": 0.02,
+  "unverified_waivers": [],
+  "known_defects": [
+    {
+      "a": "Counterweight3A",
+      "b": "Crankshaft",
+      "max_mm3": 13928.623,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds Counterweight3A still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Counterweight3B",
+      "b": "Crankshaft",
+      "max_mm3": 13928.623,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds Counterweight3B still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Counterweight2A",
+      "b": "Crankshaft",
+      "max_mm3": 13928.622,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds Counterweight2A still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Counterweight2B",
+      "b": "Crankshaft",
+      "max_mm3": 13928.622,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds Counterweight2B still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Counterweight1A",
+      "b": "Crankshaft",
+      "max_mm3": 13928.591,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds Counterweight1A still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Counterweight1B",
+      "b": "Crankshaft",
+      "max_mm3": 13928.591,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds Counterweight1B still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Piston2",
+      "b": "RodCap1",
+      "max_mm3": 2814.249,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston4",
+      "b": "RodCap3",
+      "max_mm3": 2814.245,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston6",
+      "b": "RodCap5",
+      "max_mm3": 2814.245,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston1",
+      "b": "RodCap2",
+      "max_mm3": 2814.147,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston3",
+      "b": "RodCap4",
+      "max_mm3": 2814.141,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston5",
+      "b": "RodCap6",
+      "max_mm3": 2814.136,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPin1AL",
+      "max_mm3": 2387.875,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPin1AL still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPin1AR",
+      "max_mm3": 2387.875,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPin1AR still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPin1BL",
+      "max_mm3": 2387.875,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPin1BL still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPin1BR",
+      "max_mm3": 2387.875,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPin1BR still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPin2AL",
+      "max_mm3": 2387.874,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPin2AL still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPin2AR",
+      "max_mm3": 2387.874,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPin2AR still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPin2BL",
+      "max_mm3": 2387.874,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPin2BL still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPin2BR",
+      "max_mm3": 2387.874,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPin2BR still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPin3AL",
+      "max_mm3": 2387.874,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPin3AL still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPin3AR",
+      "max_mm3": 2387.874,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPin3AR still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPin3BL",
+      "max_mm3": 2387.874,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPin3BL still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPin3BR",
+      "max_mm3": 2387.874,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPin3BR still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "QuillShaft",
+      "max_mm3": 845.058,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds QuillShaft still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "BladeBush2AL",
+      "b": "Crankshaft",
+      "max_mm3": 827.856,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds BladeBush2AL still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "BladeBush2AR",
+      "b": "Crankshaft",
+      "max_mm3": 827.856,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds BladeBush2AR still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "BladeBush2BL",
+      "b": "Crankshaft",
+      "max_mm3": 827.856,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds BladeBush2BL still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "BladeBush2BR",
+      "b": "Crankshaft",
+      "max_mm3": 827.856,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds BladeBush2BR still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "BladeBush3AL",
+      "b": "Crankshaft",
+      "max_mm3": 827.856,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds BladeBush3AL still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "BladeBush3AR",
+      "b": "Crankshaft",
+      "max_mm3": 827.856,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds BladeBush3AR still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "BladeBush3BL",
+      "b": "Crankshaft",
+      "max_mm3": 827.856,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds BladeBush3BL still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "BladeBush3BR",
+      "b": "Crankshaft",
+      "max_mm3": 827.856,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds BladeBush3BR still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "BladeBush1AL",
+      "b": "Crankshaft",
+      "max_mm3": 827.853,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds BladeBush1AL still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "BladeBush1AR",
+      "b": "Crankshaft",
+      "max_mm3": 827.853,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds BladeBush1AR still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "BladeBush1BL",
+      "b": "Crankshaft",
+      "max_mm3": 827.853,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds BladeBush1BL still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "BladeBush1BR",
+      "b": "Crankshaft",
+      "max_mm3": 827.853,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds BladeBush1BR still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Counterweight2A",
+      "b": "Piston3",
+      "max_mm3": 770.767,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds Counterweight2A still (body 'fixed') while Piston3 (body 'piston3') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Counterweight2B",
+      "b": "Piston4",
+      "max_mm3": 770.767,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds Counterweight2B still (body 'fixed') while Piston4 (body 'piston4') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Counterweight3A",
+      "b": "Piston6",
+      "max_mm3": 770.767,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds Counterweight3A still (body 'fixed') while Piston6 (body 'piston6') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Counterweight3B",
+      "b": "Piston5",
+      "max_mm3": 770.767,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds Counterweight3B still (body 'fixed') while Piston5 (body 'piston5') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush2ALFront",
+      "max_mm3": 556.169,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush2ALFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush2ALRear",
+      "max_mm3": 556.169,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush2ALRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush2ARFront",
+      "max_mm3": 556.169,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush2ARFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush2ARRear",
+      "max_mm3": 556.169,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush2ARRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush2BLFront",
+      "max_mm3": 556.169,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush2BLFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush2BLRear",
+      "max_mm3": 556.169,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush2BLRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush2BRFront",
+      "max_mm3": 556.169,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush2BRFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush2BRRear",
+      "max_mm3": 556.169,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush2BRRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush3ALFront",
+      "max_mm3": 556.169,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush3ALFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush3ALRear",
+      "max_mm3": 556.169,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush3ALRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush3ARFront",
+      "max_mm3": 556.169,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush3ARFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush3ARRear",
+      "max_mm3": 556.169,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush3ARRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush3BLFront",
+      "max_mm3": 556.169,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush3BLFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush3BLRear",
+      "max_mm3": 556.169,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush3BLRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush3BRFront",
+      "max_mm3": 556.169,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush3BRFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush3BRRear",
+      "max_mm3": 556.169,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush3BRRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush1ALFront",
+      "max_mm3": 556.168,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush1ALFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush1ALRear",
+      "max_mm3": 556.168,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush1ALRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush1ARFront",
+      "max_mm3": 556.168,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush1ARFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush1ARRear",
+      "max_mm3": 556.168,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush1ARRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush1BLFront",
+      "max_mm3": 556.168,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush1BLFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush1BLRear",
+      "max_mm3": 556.168,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush1BLRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush1BRFront",
+      "max_mm3": 556.168,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush1BRFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "WeightBush1BRRear",
+      "max_mm3": 556.168,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds WeightBush1BRRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "CrankshaftGear",
+      "b": "IdlerGear",
+      "max_mm3": 497.562,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds IdlerGear still (body 'fixed') while CrankshaftGear (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "CrankshaftGear",
+      "b": "StarterShaftGear",
+      "max_mm3": 417.491,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds StarterShaftGear still (body 'fixed') while CrankshaftGear (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Piston3",
+      "b": "RodNutA4",
+      "max_mm3": 395.469,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston4",
+      "b": "RodNutB3",
+      "max_mm3": 395.468,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston6",
+      "b": "RodNutA5",
+      "max_mm3": 395.415,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston5",
+      "b": "RodNutB6",
+      "max_mm3": 395.412,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston1",
+      "b": "RodNutA2",
+      "max_mm3": 388.421,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston2",
+      "b": "RodNutB1",
+      "max_mm3": 388.42,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston3",
+      "b": "RodNutB4",
+      "max_mm3": 387.663,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston4",
+      "b": "RodNutA3",
+      "max_mm3": 387.663,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston2",
+      "b": "RodNutA1",
+      "max_mm3": 384.736,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston1",
+      "b": "RodNutB2",
+      "max_mm3": 384.735,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston5",
+      "b": "RodNutA6",
+      "max_mm3": 382.502,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston6",
+      "b": "RodNutB5",
+      "max_mm3": 382.501,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate1ALFront",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate1ALFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate1ALRear",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate1ALRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate1ARFront",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate1ARFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate1ARRear",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate1ARRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate1BLFront",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate1BLFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate1BLRear",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate1BLRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate1BRFront",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate1BRFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate1BRRear",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate1BRRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate2ALFront",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate2ALFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate2ALRear",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate2ALRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate2ARFront",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate2ARFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate2ARRear",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate2ARRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate2BLFront",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate2BLFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate2BLRear",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate2BLRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate2BRFront",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate2BRFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate2BRRear",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate2BRRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate3ALFront",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate3ALFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate3ALRear",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate3ALRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate3ARFront",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate3ARFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate3ARRear",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate3ARRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate3BLFront",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate3BLFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate3BLRear",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate3BLRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate3BRFront",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate3BRFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperPlate3BRRear",
+      "max_mm3": 374.776,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperPlate3BRRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "CamClusterGear",
+      "b": "FuelPumpDriveGear",
+      "max_mm3": 347.047,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds FuelPumpDriveGear still (body 'fixed') while CamClusterGear (body 'cam') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "CamClusterGear",
+      "b": "OilPumpDriver",
+      "max_mm3": 277.12,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds OilPumpDriver still (body 'fixed') while CamClusterGear (body 'cam') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Piston3",
+      "b": "RodBoltB4",
+      "max_mm3": 277.082,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston4",
+      "b": "RodBoltA3",
+      "max_mm3": 277.082,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston6",
+      "b": "RodBoltA5",
+      "max_mm3": 277.069,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston5",
+      "b": "RodBoltB6",
+      "max_mm3": 277.061,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston1",
+      "b": "RodBoltB2",
+      "max_mm3": 277.047,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston2",
+      "b": "RodBoltA1",
+      "max_mm3": 277.047,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston3",
+      "b": "RodBoltA4",
+      "max_mm3": 276.931,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston4",
+      "b": "RodBoltB3",
+      "max_mm3": 276.931,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston6",
+      "b": "RodBoltB5",
+      "max_mm3": 276.918,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston5",
+      "b": "RodBoltA6",
+      "max_mm3": 276.911,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston1",
+      "b": "RodBoltA2",
+      "max_mm3": 276.896,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston2",
+      "b": "RodBoltB1",
+      "max_mm3": 276.896,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Counterweight1A",
+      "b": "Piston1",
+      "max_mm3": 219.527,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds Counterweight1A still (body 'fixed') while Piston1 (body 'piston1') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Counterweight1A",
+      "b": "Piston2",
+      "max_mm3": 219.527,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds Counterweight1A still (body 'fixed') while Piston2 (body 'piston2') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Counterweight1B",
+      "b": "Piston1",
+      "max_mm3": 219.527,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds Counterweight1B still (body 'fixed') while Piston1 (body 'piston1') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Counterweight1B",
+      "b": "Piston2",
+      "max_mm3": 219.527,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds Counterweight1B still (body 'fixed') while Piston2 (body 'piston2') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "CamshaftGear",
+      "b": "OilPumpDriver",
+      "max_mm3": 159.344,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds OilPumpDriver still (body 'fixed') while CamshaftGear (body 'cam') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Piston1",
+      "b": "RodBearingLower2",
+      "max_mm3": 131.562,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston2",
+      "b": "RodBearingLower1",
+      "max_mm3": 131.562,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston4",
+      "b": "RodBearingLower3",
+      "max_mm3": 131.562,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston6",
+      "b": "RodBearingLower5",
+      "max_mm3": 131.562,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston3",
+      "b": "RodBearingLower4",
+      "max_mm3": 131.561,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Piston5",
+      "b": "RodBearingLower6",
+      "max_mm3": 131.561,
+      "status": "open",
+      "reason": "Default core view of the cycle: the piston passes through the big-end hardware (cap, bolt, nut or bearing) of the rod on the opposite bank of the same crank bay. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Camshaft",
+      "b": "GovernorCamKey",
+      "max_mm3": 119.509,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds GovernorCamKey still (body 'fixed') while Camshaft (body 'cam') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing1ALFront",
+      "max_mm3": 86.698,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing1ALFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing1ALRear",
+      "max_mm3": 86.698,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing1ALRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing1ARFront",
+      "max_mm3": 86.698,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing1ARFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing1ARRear",
+      "max_mm3": 86.698,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing1ARRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing1BLFront",
+      "max_mm3": 86.698,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing1BLFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing1BLRear",
+      "max_mm3": 86.698,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing1BLRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing1BRFront",
+      "max_mm3": 86.698,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing1BRFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing1BRRear",
+      "max_mm3": 86.698,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing1BRRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing2ALFront",
+      "max_mm3": 86.697,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing2ALFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing2ALRear",
+      "max_mm3": 86.697,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing2ALRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing2ARFront",
+      "max_mm3": 86.697,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing2ARFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing2ARRear",
+      "max_mm3": 86.697,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing2ARRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing2BLFront",
+      "max_mm3": 86.697,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing2BLFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing2BLRear",
+      "max_mm3": 86.697,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing2BLRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing2BRFront",
+      "max_mm3": 86.697,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing2BRFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing2BRRear",
+      "max_mm3": 86.697,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing2BRRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing3ALFront",
+      "max_mm3": 86.697,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing3ALFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing3ALRear",
+      "max_mm3": 86.697,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing3ALRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing3ARFront",
+      "max_mm3": 86.697,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing3ARFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing3ARRear",
+      "max_mm3": 86.697,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing3ARRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing3BLFront",
+      "max_mm3": 86.697,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing3BLFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing3BLRear",
+      "max_mm3": 86.697,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing3BLRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing3BRFront",
+      "max_mm3": 86.697,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing3BRFront still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "DamperRing3BRRear",
+      "max_mm3": 86.697,
+      "status": "open",
+      "reason": "Assembled view only. The contract holds DamperRing3BRRear still (body 'fixed') while Crankshaft (body 'crank') moves in the cycle, so the moving part turns or slides through it. The default core view hides this pair.",
+      "fix": "Open. Either the held-still part joins the moving body it rides on in the contract, or the Assembled view of the cycle must not show it; a content/CAD decision, not made in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "Piston1",
+      "max_mm3": 56.167,
+      "status": "open",
+      "reason": "Default core view of the cycle: the turning crankshaft meets the inside of a piston. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "Piston6",
+      "max_mm3": 56.07,
+      "status": "open",
+      "reason": "Default core view of the cycle: the turning crankshaft meets the inside of a piston. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "Piston4",
+      "max_mm3": 56.016,
+      "status": "open",
+      "reason": "Default core view of the cycle: the turning crankshaft meets the inside of a piston. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "Piston5",
+      "max_mm3": 55.979,
+      "status": "open",
+      "reason": "Default core view of the cycle: the turning crankshaft meets the inside of a piston. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "Piston3",
+      "max_mm3": 55.902,
+      "status": "open",
+      "reason": "Default core view of the cycle: the turning crankshaft meets the inside of a piston. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    },
+    {
+      "a": "Crankshaft",
+      "b": "Piston2",
+      "max_mm3": 55.816,
+      "status": "open",
+      "reason": "Default core view of the cycle: the turning crankshaft meets the inside of a piston. Observed at the crank angle(s) listed in the audit; cause not investigated.",
+      "fix": "Open. Needs a geometry or motion correction (reconstruction layout, illustrative rod/piston envelope or crank angle phasing); not attempted in the audit."
+    }
+  ]
+}

@@ -1,0 +1,3005 @@
+{
+  "asset_sha256": "80991fa8b0d5d4312aa5aabe549dd8a094afb9bad41d18cdc6b7921c4fe1ab9e",
+  "asset_bytes": 51199204,
+  "parts": 1396,
+  "tolerance_mm3": 0.001,
+  "max_penetration_mm": 0.05,
+  "method": "Poses sampled from the viewer's own procedural sampler (createProceduralStudySampler) by scripts/sample_animated_study_poses.mjs; every pair whose bounds meet is intersected exactly (Manifold boolean) at the assembled pose and at each sampled pose, skipping pairs of parts that share the same pose change. Touching is allowed, overlap is not; an overlap thinner than max_penetration_mm is treated as mesh tessellation noise on a touching face. Discrete sampling: an overlap narrower than the step could be missed.",
+  "sampler": "src/viewer/core/animated-study-motion.mjs createProceduralStudySampler (apply(motion, progress 0-100); cycle angle = progress x 7.2)",
+  "contract": "web/gtsio520-r10-contract.json",
+  "three_js_and_audit_rest_pose_max_matrix_difference": 0.0,
+  "rest_neighbouring_pairs": 5168,
+  "rest_touching_only": 5168,
+  "sampled": {
+    "rest": {
+      "poses": 1,
+      "labels": [
+        "rest"
+      ],
+      "pairs_intersected": 5168,
+      "max_moved_parts": 0
+    },
+    "explode": {
+      "poses": 10,
+      "labels": [
+        "explode @ 0.09",
+        "explode @ 0.18",
+        "explode @ 0.27",
+        "explode @ 0.36",
+        "explode @ 0.47",
+        "explode @ 0.58",
+        "explode @ 0.69",
+        "explode @ 0.8",
+        "explode @ 0.9",
+        "explode @ 1"
+      ],
+      "pairs_intersected": 1195,
+      "max_moved_parts": 1191
+    }
+  },
+  "pose_summaries": [
+    {
+      "label": "rest",
+      "kind": "rest",
+      "moved_parts": 0,
+      "pairs_intersected": 5168,
+      "overlapping_pairs": 0,
+      "seconds": 39.24
+    },
+    {
+      "label": "explode @ 0.09",
+      "kind": "explode",
+      "moved_parts": 385,
+      "pairs_intersected": 281,
+      "overlapping_pairs": 136,
+      "seconds": 0.88,
+      "overlaps": [
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "CylinderHead1",
+          "volume_mm3": 8496.819,
+          "thickness_mm": 5.428
+        },
+        {
+          "a": "CasePrimaryThroughBolt5",
+          "b": "CylinderHead5",
+          "volume_mm3": 8496.818,
+          "thickness_mm": 5.428
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "CylinderHead3",
+          "volume_mm3": 8496.817,
+          "thickness_mm": 5.428
+        },
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "Piston1",
+          "volume_mm3": 4215.786,
+          "thickness_mm": 3.04
+        },
+        {
+          "a": "CasePrimaryThroughBolt5",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 4209.141,
+          "thickness_mm": 2.22
+        },
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "CylinderBarrel1",
+          "volume_mm3": 4209.139,
+          "thickness_mm": 2.22
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "CylinderBarrel3",
+          "volume_mm3": 4209.136,
+          "thickness_mm": 2.22
+        },
+        {
+          "a": "CasePrimaryThroughBolt5",
+          "b": "Piston5",
+          "volume_mm3": 3122.239,
+          "thickness_mm": 2.729
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "Piston3",
+          "volume_mm3": 3122.238,
+          "thickness_mm": 2.729
+        },
+        {
+          "a": "CaseThruBolt6",
+          "b": "CylinderHead5",
+          "volume_mm3": 3029.666,
+          "thickness_mm": 3.295
+        },
+        {
+          "a": "CaseThruBolt4",
+          "b": "CylinderHead3",
+          "volume_mm3": 3029.666,
+          "thickness_mm": 3.295
+        },
+        {
+          "a": "CaseThruBolt2",
+          "b": "CylinderHead1",
+          "volume_mm3": 3029.664,
+          "thickness_mm": 3.295
+        },
+        {
+          "a": "CaseThruBolt4",
+          "b": "CylinderBarrel3",
+          "volume_mm3": 1737.762,
+          "thickness_mm": 1.377
+        },
+        {
+          "a": "CaseThruBolt6",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 1737.762,
+          "thickness_mm": 1.377
+        },
+        {
+          "a": "CaseThruBolt2",
+          "b": "CylinderBarrel1",
+          "volume_mm3": 1737.761,
+          "thickness_mm": 1.377
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "ExhaustOuterSpring3",
+          "volume_mm3": 923.124,
+          "thickness_mm": 1.651
+        },
+        {
+          "a": "CasePrimaryThroughBolt5",
+          "b": "ExhaustOuterSpring5",
+          "volume_mm3": 885.143,
+          "thickness_mm": 1.61
+        },
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "ExhaustOuterSpring1",
+          "volume_mm3": 885.134,
+          "thickness_mm": 1.61
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "PinPlugA3",
+          "volume_mm3": 878.016,
+          "thickness_mm": 2.644
+        },
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "PinPlugA1",
+          "volume_mm3": 878.016,
+          "thickness_mm": 2.644
+        },
+        {
+          "a": "CasePrimaryThroughBolt5",
+          "b": "PinPlugA5",
+          "volume_mm3": 878.014,
+          "thickness_mm": 2.644
+        },
+        {
+          "a": "CylinderHead6",
+          "b": "DeckStud6_2",
+          "volume_mm3": 661.787,
+          "thickness_mm": 1.518
+        },
+        {
+          "a": "CylinderHead5",
+          "b": "DeckStud5_1",
+          "volume_mm3": 661.778,
+          "thickness_mm": 1.518
+        },
+        {
+          "a": "CylinderHead4",
+          "b": "DeckStud4_2",
+          "volume_mm3": 661.778,
+          "thickness_mm": 1.518
+        },
+        {
+          "a": "CylinderHead1",
+          "b": "DeckStud1_1",
+          "volume_mm3": 661.777,
+          "thickness_mm": 1.518
+        },
+        {
+          "a": "CylinderHead2",
+          "b": "DeckStud2_2",
+          "volume_mm3": 661.777,
+          "thickness_mm": 1.518
+        },
+        {
+          "a": "CylinderHead3",
+          "b": "DeckStud3_1",
+          "volume_mm3": 661.777,
+          "thickness_mm": 1.518
+        },
+        {
+          "a": "CylinderHead2",
+          "b": "DeckStud2_1",
+          "volume_mm3": 619.504,
+          "thickness_mm": 1.475
+        },
+        {
+          "a": "CylinderHead1",
+          "b": "DeckStud1_2",
+          "volume_mm3": 619.504,
+          "thickness_mm": 1.475
+        },
+        {
+          "a": "CylinderHead6",
+          "b": "DeckStud6_1",
+          "volume_mm3": 619.503,
+          "thickness_mm": 1.475
+        },
+        {
+          "a": "CylinderHead3",
+          "b": "DeckStud3_2",
+          "volume_mm3": 619.503,
+          "thickness_mm": 1.475
+        },
+        {
+          "a": "CylinderHead4",
+          "b": "DeckStud4_1",
+          "volume_mm3": 619.503,
+          "thickness_mm": 1.475
+        },
+        {
+          "a": "CylinderHead5",
+          "b": "DeckStud5_2",
+          "volume_mm3": 619.503,
+          "thickness_mm": 1.475
+        },
+        {
+          "a": "CasePrimaryThroughBolt5",
+          "b": "PistonPin5",
+          "volume_mm3": 552.194,
+          "thickness_mm": 2.134
+        },
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "PistonPin1",
+          "volume_mm3": 552.192,
+          "thickness_mm": 2.134
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "PistonPin3",
+          "volume_mm3": 552.191,
+          "thickness_mm": 2.134
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "ExhaustRetainer3",
+          "volume_mm3": 448.854,
+          "thickness_mm": 2.269
+        },
+        {
+          "a": "CasePrimaryThroughBolt5",
+          "b": "ExhaustRetainer5",
+          "volume_mm3": 432.524,
+          "thickness_mm": 2.231
+        },
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "ExhaustRetainer1",
+          "volume_mm3": 432.524,
+          "thickness_mm": 2.231
+        },
+        {
+          "a": "CasePrimaryThroughBolt5",
+          "b": "ExhaustInnerSpring5",
+          "volume_mm3": 335.196,
+          "thickness_mm": 1.167
+        },
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "ExhaustInnerSpring1",
+          "volume_mm3": 335.195,
+          "thickness_mm": 1.167
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "ExhaustInnerSpring3",
+          "volume_mm3": 311.54,
+          "thickness_mm": 1.151
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "ExhaustRotocoilRim3",
+          "volume_mm3": 232.053,
+          "thickness_mm": 1.476
+        },
+        {
+          "a": "CasePrimaryThroughBolt5",
+          "b": "ExhaustRotocoilRim5",
+          "volume_mm3": 227.335,
+          "thickness_mm": 1.468
+        },
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "ExhaustRotocoilRim1",
+          "volume_mm3": 227.335,
+          "thickness_mm": 1.468
+        },
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "ExhaustSpringFoot1",
+          "volume_mm3": 187.768,
+          "thickness_mm": 1.431
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "ExhaustSpringFoot3",
+          "volume_mm3": 187.768,
+          "thickness_mm": 1.431
+        },
+        {
+          "a": "CasePrimaryThroughBolt5",
+          "b": "ExhaustSpringFoot5",
+          "volume_mm3": 187.768,
+          "thickness_mm": 1.431
+        },
+        {
+          "a": "DeckNut6_3",
+          "b": "ExhaustRetainer6",
+          "volume_mm3": 185.868,
+          "thickness_mm": 0.853
+        },
+        {
+          "a": "DeckNut1_8",
+          "b": "ExhaustRetainer1",
+          "volume_mm3": 185.868,
+          "thickness_mm": 0.853
+        },
+        {
+          "a": "DeckNut4_3",
+          "b": "ExhaustRetainer4",
+          "volume_mm3": 185.868,
+          "thickness_mm": 0.853
+        },
+        {
+          "a": "DeckNut5_8",
+          "b": "ExhaustRetainer5",
+          "volume_mm3": 185.868,
+          "thickness_mm": 0.853
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "OilRing3",
+          "volume_mm3": 177.79,
+          "thickness_mm": 1.655
+        },
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "OilRing1",
+          "volume_mm3": 177.79,
+          "thickness_mm": 1.655
+        },
+        {
+          "a": "CasePrimaryThroughBolt5",
+          "b": "OilRing5",
+          "volume_mm3": 177.79,
+          "thickness_mm": 1.655
+        },
+        {
+          "a": "DeckNut6_3",
+          "b": "ExhaustRotocoilRim6",
+          "volume_mm3": 128.856,
+          "thickness_mm": 0.768
+        },
+        {
+          "a": "DeckNut1_8",
+          "b": "ExhaustRotocoilRim1",
+          "volume_mm3": 128.856,
+          "thickness_mm": 0.768
+        },
+        {
+          "a": "DeckNut5_8",
+          "b": "ExhaustRotocoilRim5",
+          "volume_mm3": 128.855,
+          "thickness_mm": 0.768
+        },
+        {
+          "a": "DeckNut4_3",
+          "b": "ExhaustRotocoilRim4",
+          "volume_mm3": 128.855,
+          "thickness_mm": 0.768
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "ScraperRing3",
+          "volume_mm3": 127.021,
+          "thickness_mm": 1.392
+        },
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "ScraperRing1",
+          "volume_mm3": 127.021,
+          "thickness_mm": 1.392
+        },
+        {
+          "a": "CasePrimaryThroughBolt5",
+          "b": "ScraperRing5",
+          "volume_mm3": 127.021,
+          "thickness_mm": 1.392
+        },
+        {
+          "a": "DeckNut5_8",
+          "b": "ExhaustValve5",
+          "volume_mm3": 116.919,
+          "thickness_mm": 1.052
+        },
+        {
+          "a": "DeckNut4_3",
+          "b": "ExhaustValve4",
+          "volume_mm3": 116.919,
+          "thickness_mm": 1.052
+        },
+        {
+          "a": "DeckNut1_8",
+          "b": "ExhaustValve1",
+          "volume_mm3": 116.918,
+          "thickness_mm": 1.052
+        },
+        {
+          "a": "DeckNut6_3",
+          "b": "ExhaustValve6",
+          "volume_mm3": 116.918,
+          "thickness_mm": 1.052
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "CompressionRingB3",
+          "volume_mm3": 101.617,
+          "thickness_mm": 1.222
+        },
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "CompressionRingB1",
+          "volume_mm3": 101.617,
+          "thickness_mm": 1.222
+        },
+        {
+          "a": "CasePrimaryThroughBolt5",
+          "b": "CompressionRingB5",
+          "volume_mm3": 101.617,
+          "thickness_mm": 1.222
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "CompressionRingA3",
+          "volume_mm3": 101.597,
+          "thickness_mm": 1.222
+        },
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "CompressionRingA1",
+          "volume_mm3": 101.597,
+          "thickness_mm": 1.222
+        },
+        {
+          "a": "CasePrimaryThroughBolt5",
+          "b": "CompressionRingA5",
+          "volume_mm3": 101.597,
+          "thickness_mm": 1.222
+        },
+        {
+          "a": "CylinderHead5",
+          "b": "DeckNut5_3",
+          "volume_mm3": 87.416,
+          "thickness_mm": 0.729
+        },
+        {
+          "a": "CylinderHead4",
+          "b": "DeckNut4_8",
+          "volume_mm3": 87.415,
+          "thickness_mm": 0.729
+        },
+        {
+          "a": "CylinderHead2",
+          "b": "DeckNut2_8",
+          "volume_mm3": 87.415,
+          "thickness_mm": 0.729
+        },
+        {
+          "a": "CylinderHead3",
+          "b": "DeckNut3_3",
+          "volume_mm3": 87.415,
+          "thickness_mm": 0.729
+        },
+        {
+          "a": "CylinderHead6",
+          "b": "DeckNut6_8",
+          "volume_mm3": 87.415,
+          "thickness_mm": 0.729
+        },
+        {
+          "a": "CylinderHead1",
+          "b": "DeckNut1_3",
+          "volume_mm3": 87.415,
+          "thickness_mm": 0.729
+        },
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "ExhaustValve1",
+          "volume_mm3": 84.927,
+          "thickness_mm": 0.704
+        },
+        {
+          "a": "CasePrimaryThroughBolt5",
+          "b": "ExhaustValve5",
+          "volume_mm3": 84.926,
+          "thickness_mm": 0.704
+        },
+        {
+          "a": "DeckNut2_3",
+          "b": "ExhaustValve2",
+          "volume_mm3": 84.631,
+          "thickness_mm": 1.0
+        },
+        {
+          "a": "DeckNut2_3",
+          "b": "ExhaustRotocoilRim2",
+          "volume_mm3": 82.89,
+          "thickness_mm": 0.698
+        },
+        {
+          "a": "CylinderHead3",
+          "b": "DeckStud3_3",
+          "volume_mm3": 75.506,
+          "thickness_mm": 0.744
+        },
+        {
+          "a": "CylinderHead6",
+          "b": "DeckStud6_8",
+          "volume_mm3": 75.506,
+          "thickness_mm": 0.744
+        },
+        {
+          "a": "CylinderHead4",
+          "b": "DeckStud4_8",
+          "volume_mm3": 75.506,
+          "thickness_mm": 0.744
+        },
+        {
+          "a": "CylinderHead2",
+          "b": "DeckStud2_8",
+          "volume_mm3": 75.506,
+          "thickness_mm": 0.744
+        },
+        {
+          "a": "CylinderHead1",
+          "b": "DeckStud1_3",
+          "volume_mm3": 75.505,
+          "thickness_mm": 0.744
+        },
+        {
+          "a": "CylinderHead5",
+          "b": "DeckStud5_3",
+          "volume_mm3": 75.505,
+          "thickness_mm": 0.744
+        },
+        {
+          "a": "DeckStud5_2",
+          "b": "IntakeOuterSpring5",
+          "volume_mm3": 68.513,
+          "thickness_mm": 0.731
+        },
+        {
+          "a": "CylinderHead6",
+          "b": "DeckNut6_2",
+          "volume_mm3": 66.697,
+          "thickness_mm": 0.806
+        },
+        {
+          "a": "CylinderHead4",
+          "b": "DeckNut4_2",
+          "volume_mm3": 66.695,
+          "thickness_mm": 0.806
+        },
+        {
+          "a": "CylinderHead5",
+          "b": "DeckNut5_1",
+          "volume_mm3": 66.695,
+          "thickness_mm": 0.806
+        },
+        {
+          "a": "CylinderHead1",
+          "b": "DeckNut1_1",
+          "volume_mm3": 66.695,
+          "thickness_mm": 0.806
+        },
+        {
+          "a": "CylinderHead3",
+          "b": "DeckNut3_1",
+          "volume_mm3": 66.695,
+          "thickness_mm": 0.806
+        },
+        {
+          "a": "CylinderHead2",
+          "b": "DeckNut2_2",
+          "volume_mm3": 66.695,
+          "thickness_mm": 0.806
+        },
+        {
+          "a": "DeckNut2_3",
+          "b": "ExhaustRetainer2",
+          "volume_mm3": 64.18,
+          "thickness_mm": 0.788
+        },
+        {
+          "a": "DeckStud2_1",
+          "b": "IntakeOuterSpring2",
+          "volume_mm3": 58.16,
+          "thickness_mm": 0.731
+        },
+        {
+          "a": "DeckStud4_1",
+          "b": "IntakeOuterSpring4",
+          "volume_mm3": 55.211,
+          "thickness_mm": 0.728
+        },
+        {
+          "a": "DeckStud3_2",
+          "b": "IntakeOuterSpring3",
+          "volume_mm3": 55.211,
+          "thickness_mm": 0.728
+        },
+        {
+          "a": "DeckStud6_1",
+          "b": "IntakeOuterSpring6",
+          "volume_mm3": 55.211,
+          "thickness_mm": 0.728
+        },
+        {
+          "a": "DeckStud1_2",
+          "b": "IntakeOuterSpring1",
+          "volume_mm3": 55.211,
+          "thickness_mm": 0.728
+        },
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "ExhaustKeeperB1",
+          "volume_mm3": 51.001,
+          "thickness_mm": 0.915
+        },
+        {
+          "a": "CasePrimaryThroughBolt5",
+          "b": "ExhaustKeeperB5",
+          "volume_mm3": 51.001,
+          "thickness_mm": 0.915
+        },
+        {
+          "a": "CylinderHead2",
+          "b": "DeckNut2_1",
+          "volume_mm3": 50.841,
+          "thickness_mm": 0.699
+        },
+        {
+          "a": "CylinderHead1",
+          "b": "DeckNut1_2",
+          "volume_mm3": 50.841,
+          "thickness_mm": 0.699
+        },
+        {
+          "a": "CylinderHead4",
+          "b": "DeckNut4_1",
+          "volume_mm3": 50.84,
+          "thickness_mm": 0.699
+        },
+        {
+          "a": "CylinderHead3",
+          "b": "DeckNut3_2",
+          "volume_mm3": 50.84,
+          "thickness_mm": 0.699
+        },
+        {
+          "a": "CylinderHead6",
+          "b": "DeckNut6_1",
+          "volume_mm3": 50.84,
+          "thickness_mm": 0.699
+        },
+        {
+          "a": "CylinderHead5",
+          "b": "DeckNut5_2",
+          "volume_mm3": 50.84,
+          "thickness_mm": 0.699
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "ExhaustKeeperB3",
+          "volume_mm3": 46.593,
+          "thickness_mm": 0.899
+        },
+        {
+          "a": "DeckNut3_8",
+          "b": "ExhaustRocker3",
+          "volume_mm3": 41.99,
+          "thickness_mm": 0.694
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "ExhaustValve3",
+          "volume_mm3": 40.366,
+          "thickness_mm": 0.569
+        },
+        {
+          "a": "DeckNut6_3",
+          "b": "ExhaustKeeperB6",
+          "volume_mm3": 27.937,
+          "thickness_mm": 0.652
+        },
+        {
+          "a": "DeckNut1_8",
+          "b": "ExhaustKeeperB1",
+          "volume_mm3": 27.937,
+          "thickness_mm": 0.652
+        },
+        {
+          "a": "DeckNut5_8",
+          "b": "ExhaustKeeperB5",
+          "volume_mm3": 27.937,
+          "thickness_mm": 0.652
+        },
+        {
+          "a": "DeckNut4_3",
+          "b": "ExhaustKeeperB4",
+          "volume_mm3": 27.937,
+          "thickness_mm": 0.652
+        },
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "ExhaustLowerInnerRetainer1",
+          "volume_mm3": 22.541,
+          "thickness_mm": 0.795
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "ExhaustLowerInnerRetainer3",
+          "volume_mm3": 22.541,
+          "thickness_mm": 0.795
+        },
+        {
+          "a": "CasePrimaryThroughBolt5",
+          "b": "ExhaustLowerInnerRetainer5",
+          "volume_mm3": 22.541,
+          "thickness_mm": 0.795
+        },
+        {
+          "a": "DeckNut2_3",
+          "b": "ExhaustKeeperB2",
+          "volume_mm3": 17.626,
+          "thickness_mm": 0.57
+        },
+        {
+          "a": "DeckNut2_3",
+          "b": "ExhaustRocker2",
+          "volume_mm3": 13.03,
+          "thickness_mm": 0.609
+        },
+        {
+          "a": "DeckNut2_1",
+          "b": "IntakeRetainer2",
+          "volume_mm3": 11.506,
+          "thickness_mm": 0.285
+        },
+        {
+          "a": "DeckNut3_8",
+          "b": "ExhaustValve3",
+          "volume_mm3": 4.186,
+          "thickness_mm": 0.321
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "ExhaustSeat3",
+          "volume_mm3": 3.347,
+          "thickness_mm": 0.265
+        },
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "ExhaustSeat1",
+          "volume_mm3": 3.347,
+          "thickness_mm": 0.265
+        },
+        {
+          "a": "CasePrimaryThroughBolt5",
+          "b": "ExhaustSeat5",
+          "volume_mm3": 3.347,
+          "thickness_mm": 0.265
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "ExhaustRocker3",
+          "volume_mm3": 1.338,
+          "thickness_mm": 0.154
+        },
+        {
+          "a": "DeckStud5_2",
+          "b": "IntakeRetainer5",
+          "volume_mm3": 0.527,
+          "thickness_mm": 0.115
+        },
+        {
+          "a": "DeckNut1_3",
+          "b": "IntakeRetainer1",
+          "volume_mm3": 0.376,
+          "thickness_mm": 0.104
+        },
+        {
+          "a": "DeckNut6_8",
+          "b": "IntakeRetainer6",
+          "volume_mm3": 0.376,
+          "thickness_mm": 0.104
+        },
+        {
+          "a": "DeckNut3_3",
+          "b": "IntakeRetainer3",
+          "volume_mm3": 0.376,
+          "thickness_mm": 0.104
+        },
+        {
+          "a": "DeckNut4_8",
+          "b": "IntakeRetainer4",
+          "volume_mm3": 0.376,
+          "thickness_mm": 0.104
+        },
+        {
+          "a": "DeckNut3_2",
+          "b": "IntakeRetainer3",
+          "volume_mm3": 0.181,
+          "thickness_mm": 0.057
+        },
+        {
+          "a": "DeckNut4_1",
+          "b": "IntakeRetainer4",
+          "volume_mm3": 0.181,
+          "thickness_mm": 0.057
+        },
+        {
+          "a": "DeckNut6_1",
+          "b": "IntakeRetainer6",
+          "volume_mm3": 0.181,
+          "thickness_mm": 0.057
+        },
+        {
+          "a": "DeckNut1_2",
+          "b": "IntakeRetainer1",
+          "volume_mm3": 0.181,
+          "thickness_mm": 0.057
+        }
+      ]
+    },
+    {
+      "label": "explode @ 0.18",
+      "kind": "explode",
+      "moved_parts": 385,
+      "pairs_intersected": 20,
+      "overlapping_pairs": 5,
+      "seconds": 0.15,
+      "overlaps": [
+        {
+          "a": "CaseThruBolt1",
+          "b": "CylinderHead1",
+          "volume_mm3": 639.803,
+          "thickness_mm": 1.31
+        },
+        {
+          "a": "CaseThruBolt5",
+          "b": "CylinderHead5",
+          "volume_mm3": 579.249,
+          "thickness_mm": 1.436
+        },
+        {
+          "a": "CaseThruBolt3",
+          "b": "CylinderHead3",
+          "volume_mm3": 579.248,
+          "thickness_mm": 1.436
+        },
+        {
+          "a": "CaseThruBolt1",
+          "b": "ExhaustRotocoilRim1",
+          "volume_mm3": 29.069,
+          "thickness_mm": 0.905
+        },
+        {
+          "a": "CaseThruBolt1",
+          "b": "ExhaustRetainer1",
+          "volume_mm3": 13.963,
+          "thickness_mm": 0.559
+        }
+      ]
+    },
+    {
+      "label": "explode @ 0.27",
+      "kind": "explode",
+      "moved_parts": 641,
+      "pairs_intersected": 225,
+      "overlapping_pairs": 112,
+      "seconds": 2.57,
+      "overlaps": [
+        {
+          "a": "AlternatorSimplifiedShell",
+          "b": "CylinderHead5",
+          "volume_mm3": 9630.487,
+          "thickness_mm": 2.983
+        },
+        {
+          "a": "AlternatorSimplifiedShell",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 7533.98,
+          "thickness_mm": 1.742
+        },
+        {
+          "a": "AlternatorFaceGear",
+          "b": "CrankcaseRight",
+          "volume_mm3": 7350.977,
+          "thickness_mm": 2.631
+        },
+        {
+          "a": "LeftAccessoryGear",
+          "b": "RightMagnetoAdapter",
+          "volume_mm3": 2424.631,
+          "thickness_mm": 1.778
+        },
+        {
+          "a": "AlternatorFaceGear",
+          "b": "Piston5",
+          "volume_mm3": 1922.909,
+          "thickness_mm": 2.398
+        },
+        {
+          "a": "AlternatorFaceGear",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 1915.037,
+          "thickness_mm": 2.211
+        },
+        {
+          "a": "AlternatorSimplifiedShell",
+          "b": "ExhaustPushrodHousing5",
+          "volume_mm3": 1700.229,
+          "thickness_mm": 1.051
+        },
+        {
+          "a": "PumpDrivenSpindle",
+          "b": "ScavengePumpBody",
+          "volume_mm3": 1191.75,
+          "thickness_mm": 2.197
+        },
+        {
+          "a": "AlternatorFaceGear",
+          "b": "LifterBodyExhaust5",
+          "volume_mm3": 1063.039,
+          "thickness_mm": 2.145
+        },
+        {
+          "a": "AlternatorFaceGear",
+          "b": "ExhaustPushrod5",
+          "volume_mm3": 990.655,
+          "thickness_mm": 1.424
+        },
+        {
+          "a": "PumpDrivenSpindle",
+          "b": "ScavengePumpDriver",
+          "volume_mm3": 970.827,
+          "thickness_mm": 2.43
+        },
+        {
+          "a": "IdlerGear",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 954.528,
+          "thickness_mm": 1.682
+        },
+        {
+          "a": "LeftAccessoryGear",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 936.636,
+          "thickness_mm": 1.042
+        },
+        {
+          "a": "AlternatorFaceScrew1",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 825.523,
+          "thickness_mm": 2.857
+        },
+        {
+          "a": "ScavengeCoverBolt2",
+          "b": "ScavengePumpCover",
+          "volume_mm3": 811.093,
+          "thickness_mm": 2.178
+        },
+        {
+          "a": "AlternatorMountStud3",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 800.094,
+          "thickness_mm": 2.465
+        },
+        {
+          "a": "LeftAccessoryGear",
+          "b": "RightMagnetoBush",
+          "volume_mm3": 737.059,
+          "thickness_mm": 1.093
+        },
+        {
+          "a": "AlternatorFaceScrew3",
+          "b": "CrankcaseRight",
+          "volume_mm3": 721.026,
+          "thickness_mm": 2.757
+        },
+        {
+          "a": "AlternatorMountStud2",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 708.306,
+          "thickness_mm": 2.016
+        },
+        {
+          "a": "CaseThruBolt1",
+          "b": "CylinderHead1",
+          "volume_mm3": 639.803,
+          "thickness_mm": 1.31
+        },
+        {
+          "a": "CaseThruBolt5",
+          "b": "CylinderHead5",
+          "volume_mm3": 579.249,
+          "thickness_mm": 1.436
+        },
+        {
+          "a": "CaseThruBolt3",
+          "b": "CylinderHead3",
+          "volume_mm3": 579.248,
+          "thickness_mm": 1.436
+        },
+        {
+          "a": "AlternatorRotorShaft",
+          "b": "CylinderHead5",
+          "volume_mm3": 477.002,
+          "thickness_mm": 1.227
+        },
+        {
+          "a": "LeftAccessoryGear",
+          "b": "RightMagnetoSeal",
+          "volume_mm3": 384.419,
+          "thickness_mm": 1.441
+        },
+        {
+          "a": "AlternatorRearBearingEnvelope",
+          "b": "CylinderHead5",
+          "volume_mm3": 371.899,
+          "thickness_mm": 1.451
+        },
+        {
+          "a": "AlternatorFaceGear",
+          "b": "ExhaustPushrodHousing5",
+          "volume_mm3": 371.148,
+          "thickness_mm": 0.985
+        },
+        {
+          "a": "AlternatorSimplifiedShell",
+          "b": "Piston5",
+          "volume_mm3": 317.554,
+          "thickness_mm": 0.617
+        },
+        {
+          "a": "AlternatorFaceScrew2",
+          "b": "CrankcaseRight",
+          "volume_mm3": 261.008,
+          "thickness_mm": 1.616
+        },
+        {
+          "a": "AlternatorFaceGear",
+          "b": "LifterSocketExhaust5",
+          "volume_mm3": 260.36,
+          "thickness_mm": 1.47
+        },
+        {
+          "a": "LeftAccessoryGear",
+          "b": "RightMagnetoSleeve",
+          "volume_mm3": 237.118,
+          "thickness_mm": 0.851
+        },
+        {
+          "a": "LeftMagnetoAdapterBolt2",
+          "b": "RightMagnetoAdapter",
+          "volume_mm3": 225.048,
+          "thickness_mm": 1.467
+        },
+        {
+          "a": "LeftMagnetoAdapterBolt3",
+          "b": "RightMagnetoAdapter",
+          "volume_mm3": 225.048,
+          "thickness_mm": 1.467
+        },
+        {
+          "a": "ScavengeCoverBolt2",
+          "b": "ScavengePumpBody",
+          "volume_mm3": 211.534,
+          "thickness_mm": 1.289
+        },
+        {
+          "a": "AlternatorMountStud1",
+          "b": "ExhaustPushrodHousing5",
+          "volume_mm3": 203.156,
+          "thickness_mm": 0.979
+        },
+        {
+          "a": "AlternatorMountNut2",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 191.123,
+          "thickness_mm": 0.892
+        },
+        {
+          "a": "AlternatorMountGasket",
+          "b": "Piston5",
+          "volume_mm3": 182.211,
+          "thickness_mm": 0.457
+        },
+        {
+          "a": "AlternatorSimplifiedShell",
+          "b": "ExhaustPushrod5",
+          "volume_mm3": 170.101,
+          "thickness_mm": 1.14
+        },
+        {
+          "a": "AlternatorMountStud3",
+          "b": "Piston5",
+          "volume_mm3": 157.274,
+          "thickness_mm": 1.281
+        },
+        {
+          "a": "AlternatorMountNut3",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 136.829,
+          "thickness_mm": 0.942
+        },
+        {
+          "a": "ScavengeCoverBolt2",
+          "b": "ScavengePumpDriver",
+          "volume_mm3": 135.263,
+          "thickness_mm": 1.349
+        },
+        {
+          "a": "AlternatorFaceScrew4",
+          "b": "ExhaustPushrod5",
+          "volume_mm3": 115.071,
+          "thickness_mm": 1.192
+        },
+        {
+          "a": "AlternatorFaceTabLock2",
+          "b": "ExhaustPushrod5",
+          "volume_mm3": 103.067,
+          "thickness_mm": 0.41
+        },
+        {
+          "a": "AlternatorFaceTabLock1",
+          "b": "Piston5",
+          "volume_mm3": 99.585,
+          "thickness_mm": 0.451
+        },
+        {
+          "a": "AlternatorFaceGear",
+          "b": "OilRing5",
+          "volume_mm3": 70.518,
+          "thickness_mm": 1.284
+        },
+        {
+          "a": "LeftAccessoryNeedleRace",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 69.998,
+          "thickness_mm": 0.135
+        },
+        {
+          "a": "AlternatorFaceGear",
+          "b": "ExhaustHousingSpring5",
+          "volume_mm3": 63.546,
+          "thickness_mm": 0.671
+        },
+        {
+          "a": "AlternatorFaceGear",
+          "b": "ExhaustCaseSeal5",
+          "volume_mm3": 62.898,
+          "thickness_mm": 0.859
+        },
+        {
+          "a": "AlternatorMountGasket",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 59.959,
+          "thickness_mm": 0.408
+        },
+        {
+          "a": "LeftMagnetoAdapterBolt1",
+          "b": "RightMagnetoAdapter",
+          "volume_mm3": 58.404,
+          "thickness_mm": 0.774
+        },
+        {
+          "a": "LeftMagnetoAdapterBolt4",
+          "b": "RightMagnetoAdapter",
+          "volume_mm3": 58.404,
+          "thickness_mm": 0.762
+        },
+        {
+          "a": "AlternatorFaceTabLock1",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 54.921,
+          "thickness_mm": 0.401
+        },
+        {
+          "a": "AlternatorFaceGear",
+          "b": "LifterPlungerExhaust5",
+          "volume_mm3": 51.465,
+          "thickness_mm": 0.835
+        },
+        {
+          "a": "AlternatorFaceGear",
+          "b": "ScraperRing5",
+          "volume_mm3": 50.021,
+          "thickness_mm": 1.156
+        },
+        {
+          "a": "LeftAccessoryCoverScrew3",
+          "b": "RightMagnetoAdapter",
+          "volume_mm3": 41.493,
+          "thickness_mm": 1.192
+        },
+        {
+          "a": "LeftAccessoryCoverScrew2",
+          "b": "RightMagnetoAdapter",
+          "volume_mm3": 41.493,
+          "thickness_mm": 1.192
+        },
+        {
+          "a": "LeftAccessoryCoverScrew4",
+          "b": "RightMagnetoAdapter",
+          "volume_mm3": 41.493,
+          "thickness_mm": 1.192
+        },
+        {
+          "a": "LeftAccessoryCoverScrew1",
+          "b": "RightMagnetoAdapter",
+          "volume_mm3": 41.493,
+          "thickness_mm": 1.192
+        },
+        {
+          "a": "AlternatorMountStud3",
+          "b": "CompressionRingA5",
+          "volume_mm3": 37.653,
+          "thickness_mm": 1.007
+        },
+        {
+          "a": "AlternatorMountNut1",
+          "b": "ExhaustPushrodHousing5",
+          "volume_mm3": 34.68,
+          "thickness_mm": 0.693
+        },
+        {
+          "a": "AlternatorMountWasher2",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 30.434,
+          "thickness_mm": 0.651
+        },
+        {
+          "a": "AlternatorSimplifiedShell",
+          "b": "IntakePushrodHousing5",
+          "volume_mm3": 29.73,
+          "thickness_mm": 0.458
+        },
+        {
+          "a": "CaseThruBolt1",
+          "b": "ExhaustRotocoilRim1",
+          "volume_mm3": 29.069,
+          "thickness_mm": 0.905
+        },
+        {
+          "a": "AlternatorMountWasher3",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 27.43,
+          "thickness_mm": 0.658
+        },
+        {
+          "a": "AlternatorFaceTabLock2",
+          "b": "CrankcaseRight",
+          "volume_mm3": 26.371,
+          "thickness_mm": 0.391
+        },
+        {
+          "a": "AlternatorFaceGear",
+          "b": "ExhaustCaseWasher5",
+          "volume_mm3": 25.051,
+          "thickness_mm": 0.563
+        },
+        {
+          "a": "AlternatorFaceScrew3",
+          "b": "LifterBodyExhaust5",
+          "volume_mm3": 22.534,
+          "thickness_mm": 0.822
+        },
+        {
+          "a": "LeftAccessoryNeedle3",
+          "b": "RightMagnetoSleeve",
+          "volume_mm3": 19.471,
+          "thickness_mm": 0.51
+        },
+        {
+          "a": "LeftAccessoryNeedle19",
+          "b": "RightMagnetoSleeve",
+          "volume_mm3": 19.471,
+          "thickness_mm": 0.51
+        },
+        {
+          "a": "AlternatorMountLock2",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 18.031,
+          "thickness_mm": 0.497
+        },
+        {
+          "a": "AlternatorFaceGear",
+          "b": "LifterRingExhaust5",
+          "volume_mm3": 17.832,
+          "thickness_mm": 0.492
+        },
+        {
+          "a": "AlternatorFaceScrew1",
+          "b": "OilRing5",
+          "volume_mm3": 17.764,
+          "thickness_mm": 0.821
+        },
+        {
+          "a": "AlternatorMountStud1",
+          "b": "ExhaustPushrod5",
+          "volume_mm3": 17.523,
+          "thickness_mm": 0.553
+        },
+        {
+          "a": "AlternatorMountGasket",
+          "b": "ExhaustPushrodHousing5",
+          "volume_mm3": 17.022,
+          "thickness_mm": 0.346
+        },
+        {
+          "a": "AlternatorMountGasket",
+          "b": "ExhaustPushrod5",
+          "volume_mm3": 16.475,
+          "thickness_mm": 0.405
+        },
+        {
+          "a": "AlternatorMountLock3",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 16.091,
+          "thickness_mm": 0.5
+        },
+        {
+          "a": "LeftAccessoryNeedle12",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 14.953,
+          "thickness_mm": 0.632
+        },
+        {
+          "a": "LeftAccessoryNeedle14",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 14.953,
+          "thickness_mm": 0.632
+        },
+        {
+          "a": "LeftAccessoryNeedle9",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 14.953,
+          "thickness_mm": 0.632
+        },
+        {
+          "a": "LeftAccessoryNeedle7",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 14.953,
+          "thickness_mm": 0.632
+        },
+        {
+          "a": "LeftAccessoryNeedle15",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 14.953,
+          "thickness_mm": 0.632
+        },
+        {
+          "a": "LeftAccessoryNeedle16",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 14.953,
+          "thickness_mm": 0.632
+        },
+        {
+          "a": "LeftAccessoryNeedle11",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 14.953,
+          "thickness_mm": 0.632
+        },
+        {
+          "a": "LeftAccessoryNeedle6",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 14.953,
+          "thickness_mm": 0.632
+        },
+        {
+          "a": "LeftAccessoryNeedle13",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 14.953,
+          "thickness_mm": 0.632
+        },
+        {
+          "a": "LeftAccessoryNeedle10",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 14.953,
+          "thickness_mm": 0.632
+        },
+        {
+          "a": "LeftAccessoryNeedle8",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 14.953,
+          "thickness_mm": 0.632
+        },
+        {
+          "a": "AlternatorFaceTabLock1",
+          "b": "CrankcaseRight",
+          "volume_mm3": 14.551,
+          "thickness_mm": 0.369
+        },
+        {
+          "a": "LeftMagnetoAdapterBolt2",
+          "b": "RightMagnetoAdapterGasket",
+          "volume_mm3": 14.066,
+          "thickness_mm": 0.428
+        },
+        {
+          "a": "LeftMagnetoAdapterBolt3",
+          "b": "RightMagnetoAdapterGasket",
+          "volume_mm3": 14.066,
+          "thickness_mm": 0.428
+        },
+        {
+          "a": "CaseThruBolt1",
+          "b": "ExhaustRetainer1",
+          "volume_mm3": 13.963,
+          "thickness_mm": 0.559
+        },
+        {
+          "a": "AlternatorFaceGear",
+          "b": "CylinderBaseSeal5",
+          "volume_mm3": 10.105,
+          "thickness_mm": 0.599
+        },
+        {
+          "a": "AlternatorMountWasher1",
+          "b": "ExhaustPushrodHousing5",
+          "volume_mm3": 9.811,
+          "thickness_mm": 0.505
+        },
+        {
+          "a": "AlternatorFaceScrew1",
+          "b": "ScraperRing5",
+          "volume_mm3": 9.746,
+          "thickness_mm": 0.642
+        },
+        {
+          "a": "AlternatorFaceTabLock2",
+          "b": "LifterBodyExhaust5",
+          "volume_mm3": 7.359,
+          "thickness_mm": 0.385
+        },
+        {
+          "a": "LeftAccessoryNeedleRace",
+          "b": "RightMagnetoSleeve",
+          "volume_mm3": 6.84,
+          "thickness_mm": 0.091
+        },
+        {
+          "a": "AlternatorFaceScrew1",
+          "b": "Piston5",
+          "volume_mm3": 5.903,
+          "thickness_mm": 0.388
+        },
+        {
+          "a": "LeftAccessoryNeedle17",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 5.602,
+          "thickness_mm": 0.321
+        },
+        {
+          "a": "LeftAccessoryNeedle5",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 5.602,
+          "thickness_mm": 0.321
+        },
+        {
+          "a": "AlternatorMountLock1",
+          "b": "ExhaustPushrodHousing5",
+          "volume_mm3": 5.58,
+          "thickness_mm": 0.407
+        },
+        {
+          "a": "AlternatorFaceTabLock1",
+          "b": "ScraperRing5",
+          "volume_mm3": 5.301,
+          "thickness_mm": 0.379
+        },
+        {
+          "a": "AccessoryIdlerGear",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 5.157,
+          "thickness_mm": 0.346
+        },
+        {
+          "a": "AlternatorMountGasket",
+          "b": "IntakePushrodHousing5",
+          "volume_mm3": 4.449,
+          "thickness_mm": 0.287
+        },
+        {
+          "a": "AlternatorFaceTabLock1",
+          "b": "OilRing5",
+          "volume_mm3": 4.003,
+          "thickness_mm": 0.318
+        },
+        {
+          "a": "LeftAccessoryNeedle18",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 3.7,
+          "thickness_mm": 0.166
+        },
+        {
+          "a": "LeftAccessoryNeedle4",
+          "b": "RightMagnetoGear",
+          "volume_mm3": 3.7,
+          "thickness_mm": 0.166
+        },
+        {
+          "a": "LeftMagnetoAdapterBolt1",
+          "b": "RightMagnetoAdapterGasket",
+          "volume_mm3": 3.65,
+          "thickness_mm": 0.35
+        },
+        {
+          "a": "LeftMagnetoAdapterBolt4",
+          "b": "RightMagnetoAdapterGasket",
+          "volume_mm3": 3.65,
+          "thickness_mm": 0.35
+        },
+        {
+          "a": "AlternatorMountWasher1",
+          "b": "ExhaustPushrod5",
+          "volume_mm3": 2.232,
+          "thickness_mm": 0.349
+        },
+        {
+          "a": "AlternatorFaceScrew4",
+          "b": "ExhaustPushrodHousing5",
+          "volume_mm3": 1.933,
+          "thickness_mm": 0.242
+        },
+        {
+          "a": "AlternatorFaceTabLock1",
+          "b": "CylinderBaseSeal5",
+          "volume_mm3": 0.423,
+          "thickness_mm": 0.202
+        },
+        {
+          "a": "AlternatorMountLock1",
+          "b": "ExhaustPushrod5",
+          "volume_mm3": 0.307,
+          "thickness_mm": 0.145
+        },
+        {
+          "a": "AlternatorFaceGear",
+          "b": "ExhaustSpringWasher5",
+          "volume_mm3": 0.117,
+          "thickness_mm": 0.093
+        }
+      ]
+    },
+    {
+      "label": "explode @ 0.36",
+      "kind": "explode",
+      "moved_parts": 641,
+      "pairs_intersected": 28,
+      "overlapping_pairs": 5,
+      "seconds": 0.51,
+      "overlaps": [
+        {
+          "a": "CaseThruBolt1",
+          "b": "CylinderHead1",
+          "volume_mm3": 639.803,
+          "thickness_mm": 1.31
+        },
+        {
+          "a": "CaseThruBolt5",
+          "b": "CylinderHead5",
+          "volume_mm3": 579.249,
+          "thickness_mm": 1.436
+        },
+        {
+          "a": "CaseThruBolt3",
+          "b": "CylinderHead3",
+          "volume_mm3": 579.248,
+          "thickness_mm": 1.436
+        },
+        {
+          "a": "CaseThruBolt1",
+          "b": "ExhaustRotocoilRim1",
+          "volume_mm3": 29.069,
+          "thickness_mm": 0.905
+        },
+        {
+          "a": "CaseThruBolt1",
+          "b": "ExhaustRetainer1",
+          "volume_mm3": 13.963,
+          "thickness_mm": 0.559
+        }
+      ]
+    },
+    {
+      "label": "explode @ 0.47",
+      "kind": "explode",
+      "moved_parts": 1013,
+      "pairs_intersected": 142,
+      "overlapping_pairs": 38,
+      "seconds": 1.77,
+      "overlaps": [
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "CylinderHead1",
+          "volume_mm3": 6209.729,
+          "thickness_mm": 4.417
+        },
+        {
+          "a": "CaseThruBolt2",
+          "b": "CylinderHead1",
+          "volume_mm3": 4967.888,
+          "thickness_mm": 3.355
+        },
+        {
+          "a": "CaseThruBolt2",
+          "b": "CylinderBarrel1",
+          "volume_mm3": 4480.447,
+          "thickness_mm": 2.737
+        },
+        {
+          "a": "CaseThruBolt7",
+          "b": "CylinderHead5",
+          "volume_mm3": 3836.266,
+          "thickness_mm": 3.767
+        },
+        {
+          "a": "CasePrimaryThroughBolt1",
+          "b": "CylinderBarrel1",
+          "volume_mm3": 3642.944,
+          "thickness_mm": 1.309
+        },
+        {
+          "a": "CaseThruBolt6",
+          "b": "CylinderHead5",
+          "volume_mm3": 3220.989,
+          "thickness_mm": 3.472
+        },
+        {
+          "a": "CaseThruBolt1",
+          "b": "CylinderHead1",
+          "volume_mm3": 3023.189,
+          "thickness_mm": 3.847
+        },
+        {
+          "a": "CaseThruBolt4",
+          "b": "CylinderHead3",
+          "volume_mm3": 2753.936,
+          "thickness_mm": 3.733
+        },
+        {
+          "a": "CaseThruBolt3",
+          "b": "CylinderHead3",
+          "volume_mm3": 1935.204,
+          "thickness_mm": 2.36
+        },
+        {
+          "a": "CaseThruBolt7",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 1148.239,
+          "thickness_mm": 1.101
+        },
+        {
+          "a": "CasePrimaryThroughBolt7",
+          "b": "CylinderHead5",
+          "volume_mm3": 886.843,
+          "thickness_mm": 1.129
+        },
+        {
+          "a": "CasePrimaryThroughBolt3",
+          "b": "CylinderHead3",
+          "volume_mm3": 558.866,
+          "thickness_mm": 1.048
+        },
+        {
+          "a": "CaseThruBolt6",
+          "b": "ExhaustOuterSpring5",
+          "volume_mm3": 468.844,
+          "thickness_mm": 1.458
+        },
+        {
+          "a": "CaseThruBolt1",
+          "b": "ExhaustValve1",
+          "volume_mm3": 450.075,
+          "thickness_mm": 2.709
+        },
+        {
+          "a": "CaseThruBolt4",
+          "b": "IntakeSeat3",
+          "volume_mm3": 204.82,
+          "thickness_mm": 1.987
+        },
+        {
+          "a": "CaseThruBolt6",
+          "b": "ExhaustSeat5",
+          "volume_mm3": 188.123,
+          "thickness_mm": 1.822
+        },
+        {
+          "a": "CaseThruBolt6",
+          "b": "ExhaustInnerSpring5",
+          "volume_mm3": 180.892,
+          "thickness_mm": 1.092
+        },
+        {
+          "a": "CaseThruNut7",
+          "b": "CylinderHead5",
+          "volume_mm3": 134.118,
+          "thickness_mm": 1.287
+        },
+        {
+          "a": "CaseThruBolt4",
+          "b": "IntakeValve3",
+          "volume_mm3": 132.583,
+          "thickness_mm": 1.665
+        },
+        {
+          "a": "CaseThruNut2",
+          "b": "CylinderHead1",
+          "volume_mm3": 123.063,
+          "thickness_mm": 0.934
+        },
+        {
+          "a": "CaseThruBolt2",
+          "b": "IntakeOuterSpring1",
+          "volume_mm3": 119.292,
+          "thickness_mm": 1.067
+        },
+        {
+          "a": "CaseThruNut2",
+          "b": "IntakeOuterSpring1",
+          "volume_mm3": 97.809,
+          "thickness_mm": 1.249
+        },
+        {
+          "a": "CaseThruNut6",
+          "b": "ExhaustOuterSpring5",
+          "volume_mm3": 95.114,
+          "thickness_mm": 0.978
+        },
+        {
+          "a": "CaseThruBolt6",
+          "b": "ExhaustSpringFoot5",
+          "volume_mm3": 83.501,
+          "thickness_mm": 1.221
+        },
+        {
+          "a": "CaseThruBolt6",
+          "b": "ExhaustValve5",
+          "volume_mm3": 80.339,
+          "thickness_mm": 1.277
+        },
+        {
+          "a": "CaseThruNut3",
+          "b": "CylinderHead3",
+          "volume_mm3": 62.402,
+          "thickness_mm": 0.822
+        },
+        {
+          "a": "CaseThruBolt1",
+          "b": "ExhaustSeat1",
+          "volume_mm3": 59.353,
+          "thickness_mm": 1.046
+        },
+        {
+          "a": "CaseThruBolt6",
+          "b": "ExhaustLowerInnerRetainer5",
+          "volume_mm3": 45.779,
+          "thickness_mm": 1.062
+        },
+        {
+          "a": "CaseThruNut6",
+          "b": "ExhaustInnerSpring5",
+          "volume_mm3": 37.383,
+          "thickness_mm": 0.652
+        },
+        {
+          "a": "CaseThruBolt2",
+          "b": "IntakeSeat1",
+          "volume_mm3": 22.806,
+          "thickness_mm": 0.614
+        },
+        {
+          "a": "CaseThruWasher7",
+          "b": "CylinderHead5",
+          "volume_mm3": 20.305,
+          "thickness_mm": 0.664
+        },
+        {
+          "a": "CaseThruWasher2",
+          "b": "CylinderHead1",
+          "volume_mm3": 19.672,
+          "thickness_mm": 0.592
+        },
+        {
+          "a": "CaseThruWasher6",
+          "b": "ExhaustOuterSpring5",
+          "volume_mm3": 19.247,
+          "thickness_mm": 0.659
+        },
+        {
+          "a": "CaseThruWasher6",
+          "b": "ExhaustInnerSpring5",
+          "volume_mm3": 13.059,
+          "thickness_mm": 0.533
+        },
+        {
+          "a": "CaseThruBolt2",
+          "b": "IntakeSpringFoot1",
+          "volume_mm3": 8.331,
+          "thickness_mm": 0.53
+        },
+        {
+          "a": "CaseThruWasher3",
+          "b": "CylinderHead3",
+          "volume_mm3": 3.634,
+          "thickness_mm": 0.353
+        },
+        {
+          "a": "CaseThruNut2",
+          "b": "IntakeInnerSpring1",
+          "volume_mm3": 1.326,
+          "thickness_mm": 0.205
+        },
+        {
+          "a": "CaseThruWasher6",
+          "b": "ExhaustValve5",
+          "volume_mm3": 0.804,
+          "thickness_mm": 0.187
+        }
+      ]
+    },
+    {
+      "label": "explode @ 0.58",
+      "kind": "explode",
+      "moved_parts": 1013,
+      "pairs_intersected": 79,
+      "overlapping_pairs": 14,
+      "seconds": 1.21,
+      "overlaps": [
+        {
+          "a": "CasePrimaryThroughBolt7",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 3738.343,
+          "thickness_mm": 1.855
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "LowerPlugCeramic3",
+          "volume_mm3": 1227.694,
+          "thickness_mm": 1.789
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "LowerPlugCeramic4",
+          "volume_mm3": 1227.694,
+          "thickness_mm": 1.789
+        },
+        {
+          "a": "CylinderBarrel2",
+          "b": "PrimaryExternalWasher1",
+          "volume_mm3": 560.827,
+          "thickness_mm": 1.421
+        },
+        {
+          "a": "CylinderBarrel5",
+          "b": "PrimaryExternalWasher7",
+          "volume_mm3": 560.826,
+          "thickness_mm": 1.421
+        },
+        {
+          "a": "CylinderBarrel2",
+          "b": "PrimaryExternalNut1",
+          "volume_mm3": 363.067,
+          "thickness_mm": 1.215
+        },
+        {
+          "a": "CylinderBarrel5",
+          "b": "PrimaryExternalNut7",
+          "volume_mm3": 363.067,
+          "thickness_mm": 1.215
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "DeckNut3_2",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "DeckNut4_1",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "DeckNut4_2",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "DeckNut3_1",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "LowerPlugShell3",
+          "volume_mm3": 40.882,
+          "thickness_mm": 0.097
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "LowerPlugShell4",
+          "volume_mm3": 40.882,
+          "thickness_mm": 0.097
+        },
+        {
+          "a": "CasePrimaryThroughBolt7",
+          "b": "CylinderBaseSeal5",
+          "volume_mm3": 16.185,
+          "thickness_mm": 0.612
+        }
+      ]
+    },
+    {
+      "label": "explode @ 0.69",
+      "kind": "explode",
+      "moved_parts": 1023,
+      "pairs_intersected": 138,
+      "overlapping_pairs": 72,
+      "seconds": 1.57,
+      "overlaps": [
+        {
+          "a": "CrankcaseRight",
+          "b": "Piston1",
+          "volume_mm3": 91330.218,
+          "thickness_mm": 4.22
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "Piston2",
+          "volume_mm3": 78673.096,
+          "thickness_mm": 4.268
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "Piston3",
+          "volume_mm3": 74577.353,
+          "thickness_mm": 4.631
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "Piston5",
+          "volume_mm3": 74576.791,
+          "thickness_mm": 4.631
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "Piston4",
+          "volume_mm3": 74469.669,
+          "thickness_mm": 4.614
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "Piston6",
+          "volume_mm3": 74093.455,
+          "thickness_mm": 4.494
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "PistonPin1",
+          "volume_mm3": 19288.624,
+          "thickness_mm": 3.595
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "PistonPin2",
+          "volume_mm3": 16376.144,
+          "thickness_mm": 3.569
+        },
+        {
+          "a": "ConnectingRod2",
+          "b": "CrankcaseLeft",
+          "volume_mm3": 14467.547,
+          "thickness_mm": 3.432
+        },
+        {
+          "a": "ConnectingRod1",
+          "b": "CrankcaseRight",
+          "volume_mm3": 14466.378,
+          "thickness_mm": 3.431
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "PistonPin4",
+          "volume_mm3": 8847.748,
+          "thickness_mm": 2.899
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "PistonPin6",
+          "volume_mm3": 8847.739,
+          "thickness_mm": 2.899
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "PistonPin5",
+          "volume_mm3": 8843.344,
+          "thickness_mm": 2.897
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "PistonPin3",
+          "volume_mm3": 8843.34,
+          "thickness_mm": 2.897
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "SmallEndBush1",
+          "volume_mm3": 4511.511,
+          "thickness_mm": 2.889
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "SmallEndBush2",
+          "volume_mm3": 4510.784,
+          "thickness_mm": 2.888
+        },
+        {
+          "a": "CasePrimaryThroughBolt7",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 3738.343,
+          "thickness_mm": 1.855
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "OilRing1",
+          "volume_mm3": 3101.163,
+          "thickness_mm": 1.776
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "OilRing2",
+          "volume_mm3": 3069.033,
+          "thickness_mm": 1.76
+        },
+        {
+          "a": "ConnectingRod6",
+          "b": "CrankcaseLeft",
+          "volume_mm3": 2675.872,
+          "thickness_mm": 2.755
+        },
+        {
+          "a": "ConnectingRod4",
+          "b": "CrankcaseLeft",
+          "volume_mm3": 2675.358,
+          "thickness_mm": 2.755
+        },
+        {
+          "a": "ConnectingRod3",
+          "b": "CrankcaseRight",
+          "volume_mm3": 2675.085,
+          "thickness_mm": 2.754
+        },
+        {
+          "a": "ConnectingRod5",
+          "b": "CrankcaseRight",
+          "volume_mm3": 2674.63,
+          "thickness_mm": 2.753
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "PinPlugA1",
+          "volume_mm3": 2598.841,
+          "thickness_mm": 3.308
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "PinPlugA3",
+          "volume_mm3": 2431.98,
+          "thickness_mm": 3.368
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "PinPlugA5",
+          "volume_mm3": 2431.974,
+          "thickness_mm": 3.368
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "PinPlugB4",
+          "volume_mm3": 2314.663,
+          "thickness_mm": 2.92
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "ScraperRing1",
+          "volume_mm3": 2204.631,
+          "thickness_mm": 1.497
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "PinPlugB6",
+          "volume_mm3": 2197.067,
+          "thickness_mm": 2.552
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "ScraperRing2",
+          "volume_mm3": 2039.332,
+          "thickness_mm": 1.473
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "SmallEndBush6",
+          "volume_mm3": 1891.211,
+          "thickness_mm": 2.259
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "SmallEndBush3",
+          "volume_mm3": 1890.857,
+          "thickness_mm": 2.26
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "SmallEndBush4",
+          "volume_mm3": 1890.843,
+          "thickness_mm": 2.229
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "SmallEndBush5",
+          "volume_mm3": 1890.401,
+          "thickness_mm": 2.226
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "PinPlugB1",
+          "volume_mm3": 1448.882,
+          "thickness_mm": 3.059
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "PinPlugB2",
+          "volume_mm3": 1448.432,
+          "thickness_mm": 3.059
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "LowerPlugCeramic3",
+          "volume_mm3": 1227.694,
+          "thickness_mm": 1.789
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "LowerPlugCeramic4",
+          "volume_mm3": 1227.694,
+          "thickness_mm": 1.789
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "PinPlugA2",
+          "volume_mm3": 1206.233,
+          "thickness_mm": 2.629
+        },
+        {
+          "a": "CompressionRingA3",
+          "b": "CrankcaseRight",
+          "volume_mm3": 818.067,
+          "thickness_mm": 1.285
+        },
+        {
+          "a": "CompressionRingA5",
+          "b": "CrankcaseRight",
+          "volume_mm3": 818.067,
+          "thickness_mm": 1.285
+        },
+        {
+          "a": "CompressionRingA6",
+          "b": "CrankcaseLeft",
+          "volume_mm3": 815.938,
+          "thickness_mm": 1.22
+        },
+        {
+          "a": "CompressionRingA4",
+          "b": "CrankcaseLeft",
+          "volume_mm3": 803.461,
+          "thickness_mm": 1.264
+        },
+        {
+          "a": "CompressionRingB6",
+          "b": "CrankcaseLeft",
+          "volume_mm3": 787.736,
+          "thickness_mm": 1.21
+        },
+        {
+          "a": "CompressionRingB3",
+          "b": "CrankcaseRight",
+          "volume_mm3": 765.937,
+          "thickness_mm": 1.282
+        },
+        {
+          "a": "CompressionRingB5",
+          "b": "CrankcaseRight",
+          "volume_mm3": 765.937,
+          "thickness_mm": 1.282
+        },
+        {
+          "a": "CompressionRingB4",
+          "b": "CrankcaseLeft",
+          "volume_mm3": 750.297,
+          "thickness_mm": 1.25
+        },
+        {
+          "a": "CylinderBarrel2",
+          "b": "PrimaryExternalWasher1",
+          "volume_mm3": 560.827,
+          "thickness_mm": 1.421
+        },
+        {
+          "a": "CylinderBarrel5",
+          "b": "PrimaryExternalWasher7",
+          "volume_mm3": 560.826,
+          "thickness_mm": 1.421
+        },
+        {
+          "a": "CylinderBarrel2",
+          "b": "PrimaryExternalNut1",
+          "volume_mm3": 363.067,
+          "thickness_mm": 1.215
+        },
+        {
+          "a": "CylinderBarrel5",
+          "b": "PrimaryExternalNut7",
+          "volume_mm3": 363.067,
+          "thickness_mm": 1.215
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "PinPlugB5",
+          "volume_mm3": 348.386,
+          "thickness_mm": 2.041
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "PinPlugB3",
+          "volume_mm3": 348.385,
+          "thickness_mm": 2.041
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "OilRing4",
+          "volume_mm3": 333.537,
+          "thickness_mm": 1.424
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "OilRing6",
+          "volume_mm3": 333.515,
+          "thickness_mm": 1.424
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "OilRing3",
+          "volume_mm3": 333.489,
+          "thickness_mm": 1.424
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "OilRing5",
+          "volume_mm3": 333.488,
+          "thickness_mm": 1.424
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "PinPlugA4",
+          "volume_mm3": 316.739,
+          "thickness_mm": 1.936
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "PinPlugA6",
+          "volume_mm3": 316.739,
+          "thickness_mm": 1.936
+        },
+        {
+          "a": "CompressionRingA1",
+          "b": "CrankcaseRight",
+          "volume_mm3": 268.82,
+          "thickness_mm": 1.288
+        },
+        {
+          "a": "CompressionRingB1",
+          "b": "CrankcaseRight",
+          "volume_mm3": 171.533,
+          "thickness_mm": 1.088
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "ScraperRing4",
+          "volume_mm3": 156.448,
+          "thickness_mm": 1.017
+        },
+        {
+          "a": "CrankcaseLeft",
+          "b": "ScraperRing6",
+          "volume_mm3": 156.448,
+          "thickness_mm": 1.017
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "ScraperRing3",
+          "volume_mm3": 156.424,
+          "thickness_mm": 1.017
+        },
+        {
+          "a": "CrankcaseRight",
+          "b": "ScraperRing5",
+          "volume_mm3": 156.424,
+          "thickness_mm": 1.017
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "DeckNut3_2",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "DeckNut4_1",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "DeckNut4_2",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "DeckNut3_1",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "LowerPlugShell3",
+          "volume_mm3": 40.882,
+          "thickness_mm": 0.097
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "LowerPlugShell4",
+          "volume_mm3": 40.882,
+          "thickness_mm": 0.097
+        },
+        {
+          "a": "CasePrimaryThroughBolt7",
+          "b": "CylinderBaseSeal5",
+          "volume_mm3": 16.185,
+          "thickness_mm": 0.612
+        }
+      ]
+    },
+    {
+      "label": "explode @ 0.8",
+      "kind": "explode",
+      "moved_parts": 1023,
+      "pairs_intersected": 94,
+      "overlapping_pairs": 14,
+      "seconds": 0.75,
+      "overlaps": [
+        {
+          "a": "CasePrimaryThroughBolt7",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 3738.343,
+          "thickness_mm": 1.855
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "LowerPlugCeramic3",
+          "volume_mm3": 1227.694,
+          "thickness_mm": 1.789
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "LowerPlugCeramic4",
+          "volume_mm3": 1227.694,
+          "thickness_mm": 1.789
+        },
+        {
+          "a": "CylinderBarrel2",
+          "b": "PrimaryExternalWasher1",
+          "volume_mm3": 560.827,
+          "thickness_mm": 1.421
+        },
+        {
+          "a": "CylinderBarrel5",
+          "b": "PrimaryExternalWasher7",
+          "volume_mm3": 560.826,
+          "thickness_mm": 1.421
+        },
+        {
+          "a": "CylinderBarrel2",
+          "b": "PrimaryExternalNut1",
+          "volume_mm3": 363.067,
+          "thickness_mm": 1.215
+        },
+        {
+          "a": "CylinderBarrel5",
+          "b": "PrimaryExternalNut7",
+          "volume_mm3": 363.067,
+          "thickness_mm": 1.215
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "DeckNut3_2",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "DeckNut4_1",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "DeckNut4_2",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "DeckNut3_1",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "LowerPlugShell3",
+          "volume_mm3": 40.882,
+          "thickness_mm": 0.097
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "LowerPlugShell4",
+          "volume_mm3": 40.882,
+          "thickness_mm": 0.097
+        },
+        {
+          "a": "CasePrimaryThroughBolt7",
+          "b": "CylinderBaseSeal5",
+          "volume_mm3": 16.185,
+          "thickness_mm": 0.612
+        }
+      ]
+    },
+    {
+      "label": "explode @ 0.9",
+      "kind": "explode",
+      "moved_parts": 1191,
+      "pairs_intersected": 94,
+      "overlapping_pairs": 14,
+      "seconds": 1.02,
+      "overlaps": [
+        {
+          "a": "CasePrimaryThroughBolt7",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 3738.343,
+          "thickness_mm": 1.855
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "LowerPlugCeramic3",
+          "volume_mm3": 1227.694,
+          "thickness_mm": 1.789
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "LowerPlugCeramic4",
+          "volume_mm3": 1227.694,
+          "thickness_mm": 1.789
+        },
+        {
+          "a": "CylinderBarrel2",
+          "b": "PrimaryExternalWasher1",
+          "volume_mm3": 560.827,
+          "thickness_mm": 1.421
+        },
+        {
+          "a": "CylinderBarrel5",
+          "b": "PrimaryExternalWasher7",
+          "volume_mm3": 560.826,
+          "thickness_mm": 1.421
+        },
+        {
+          "a": "CylinderBarrel2",
+          "b": "PrimaryExternalNut1",
+          "volume_mm3": 363.067,
+          "thickness_mm": 1.215
+        },
+        {
+          "a": "CylinderBarrel5",
+          "b": "PrimaryExternalNut7",
+          "volume_mm3": 363.067,
+          "thickness_mm": 1.215
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "DeckNut3_2",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "DeckNut4_1",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "DeckNut4_2",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "DeckNut3_1",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "LowerPlugShell3",
+          "volume_mm3": 40.882,
+          "thickness_mm": 0.097
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "LowerPlugShell4",
+          "volume_mm3": 40.882,
+          "thickness_mm": 0.097
+        },
+        {
+          "a": "CasePrimaryThroughBolt7",
+          "b": "CylinderBaseSeal5",
+          "volume_mm3": 16.185,
+          "thickness_mm": 0.612
+        }
+      ]
+    },
+    {
+      "label": "explode @ 1",
+      "kind": "explode",
+      "moved_parts": 1191,
+      "pairs_intersected": 94,
+      "overlapping_pairs": 14,
+      "seconds": 0.94,
+      "overlaps": [
+        {
+          "a": "CasePrimaryThroughBolt7",
+          "b": "CylinderBarrel5",
+          "volume_mm3": 3738.343,
+          "thickness_mm": 1.855
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "LowerPlugCeramic3",
+          "volume_mm3": 1227.694,
+          "thickness_mm": 1.789
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "LowerPlugCeramic4",
+          "volume_mm3": 1227.694,
+          "thickness_mm": 1.789
+        },
+        {
+          "a": "CylinderBarrel2",
+          "b": "PrimaryExternalWasher1",
+          "volume_mm3": 560.827,
+          "thickness_mm": 1.421
+        },
+        {
+          "a": "CylinderBarrel5",
+          "b": "PrimaryExternalWasher7",
+          "volume_mm3": 560.826,
+          "thickness_mm": 1.421
+        },
+        {
+          "a": "CylinderBarrel2",
+          "b": "PrimaryExternalNut1",
+          "volume_mm3": 363.067,
+          "thickness_mm": 1.215
+        },
+        {
+          "a": "CylinderBarrel5",
+          "b": "PrimaryExternalNut7",
+          "volume_mm3": 363.067,
+          "thickness_mm": 1.215
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "DeckNut3_2",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "DeckNut4_1",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "DeckNut4_2",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "DeckNut3_1",
+          "volume_mm3": 101.339,
+          "thickness_mm": 0.912
+        },
+        {
+          "a": "CylinderBarrel3",
+          "b": "LowerPlugShell3",
+          "volume_mm3": 40.882,
+          "thickness_mm": 0.097
+        },
+        {
+          "a": "CylinderBarrel4",
+          "b": "LowerPlugShell4",
+          "volume_mm3": 40.882,
+          "thickness_mm": 0.097
+        },
+        {
+          "a": "CasePrimaryThroughBolt7",
+          "b": "CylinderBaseSeal5",
+          "volume_mm3": 16.185,
+          "thickness_mm": 0.612
+        }
+      ]
+    }
+  ],
+  "largest_non_overlapping_contact": {
+    "max_sliver_mm3": 64.67283132734399,
+    "max_sliver_thickness_mm": 0.019624605347450558
+  },
+  "unverified_parts": [],
+  "overlaps_total": 0,
+  "overlap_findings": [],
+  "cycle_view_split": {
+    "core_view_parts": 410,
+    "core_view_overlapping_pairs": 0,
+    "assembled_view_only_overlapping_pairs": 0,
+    "note": "The core cycle opens in the core view, which shows only the listed parts (some ghosted). The Assembled view shows all 1,396 parts while the same cycle runs, so a pair with a part outside the core view can only be seen there."
+  },
+  "exploded_layout_informational": {
+    "note": "Exploded layouts move parts in straight stages, so transit overlaps are expected and do not decide the result (docs/assembly-interference.md, exploded-view exception). Listed to show what the layouts contain.",
+    "overlapping_pairs": 349,
+    "worst": [
+      {
+        "a": "CrankcaseRight",
+        "b": "Piston1",
+        "max_overlap_mm3": 91330.218,
+        "max_thickness_mm": 4.22,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "CrankcaseLeft",
+        "b": "Piston2",
+        "max_overlap_mm3": 78673.096,
+        "max_thickness_mm": 4.268,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "CrankcaseRight",
+        "b": "Piston3",
+        "max_overlap_mm3": 74577.353,
+        "max_thickness_mm": 4.631,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "CrankcaseRight",
+        "b": "Piston5",
+        "max_overlap_mm3": 74576.791,
+        "max_thickness_mm": 4.631,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "CrankcaseLeft",
+        "b": "Piston4",
+        "max_overlap_mm3": 74469.669,
+        "max_thickness_mm": 4.614,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "CrankcaseLeft",
+        "b": "Piston6",
+        "max_overlap_mm3": 74093.455,
+        "max_thickness_mm": 4.494,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "CrankcaseRight",
+        "b": "PistonPin1",
+        "max_overlap_mm3": 19288.624,
+        "max_thickness_mm": 3.595,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "CrankcaseLeft",
+        "b": "PistonPin2",
+        "max_overlap_mm3": 16376.144,
+        "max_thickness_mm": 3.569,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "ConnectingRod2",
+        "b": "CrankcaseLeft",
+        "max_overlap_mm3": 14467.547,
+        "max_thickness_mm": 3.432,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "ConnectingRod1",
+        "b": "CrankcaseRight",
+        "max_overlap_mm3": 14466.378,
+        "max_thickness_mm": 3.431,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "AlternatorSimplifiedShell",
+        "b": "CylinderHead5",
+        "max_overlap_mm3": 9630.487,
+        "max_thickness_mm": 2.983,
+        "first_seen": "explode @ 0.27"
+      },
+      {
+        "a": "CrankcaseLeft",
+        "b": "PistonPin4",
+        "max_overlap_mm3": 8847.748,
+        "max_thickness_mm": 2.899,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "CrankcaseLeft",
+        "b": "PistonPin6",
+        "max_overlap_mm3": 8847.739,
+        "max_thickness_mm": 2.899,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "CrankcaseRight",
+        "b": "PistonPin5",
+        "max_overlap_mm3": 8843.344,
+        "max_thickness_mm": 2.897,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "CrankcaseRight",
+        "b": "PistonPin3",
+        "max_overlap_mm3": 8843.34,
+        "max_thickness_mm": 2.897,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "CasePrimaryThroughBolt1",
+        "b": "CylinderHead1",
+        "max_overlap_mm3": 8496.819,
+        "max_thickness_mm": 5.428,
+        "first_seen": "explode @ 0.09"
+      },
+      {
+        "a": "CasePrimaryThroughBolt5",
+        "b": "CylinderHead5",
+        "max_overlap_mm3": 8496.818,
+        "max_thickness_mm": 5.428,
+        "first_seen": "explode @ 0.09"
+      },
+      {
+        "a": "CasePrimaryThroughBolt3",
+        "b": "CylinderHead3",
+        "max_overlap_mm3": 8496.817,
+        "max_thickness_mm": 5.428,
+        "first_seen": "explode @ 0.09"
+      },
+      {
+        "a": "AlternatorSimplifiedShell",
+        "b": "CylinderBarrel5",
+        "max_overlap_mm3": 7533.98,
+        "max_thickness_mm": 1.742,
+        "first_seen": "explode @ 0.27"
+      },
+      {
+        "a": "AlternatorFaceGear",
+        "b": "CrankcaseRight",
+        "max_overlap_mm3": 7350.977,
+        "max_thickness_mm": 2.631,
+        "first_seen": "explode @ 0.27"
+      },
+      {
+        "a": "CaseThruBolt2",
+        "b": "CylinderHead1",
+        "max_overlap_mm3": 4967.888,
+        "max_thickness_mm": 3.355,
+        "first_seen": "explode @ 0.09"
+      },
+      {
+        "a": "CrankcaseRight",
+        "b": "SmallEndBush1",
+        "max_overlap_mm3": 4511.511,
+        "max_thickness_mm": 2.889,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "CrankcaseLeft",
+        "b": "SmallEndBush2",
+        "max_overlap_mm3": 4510.784,
+        "max_thickness_mm": 2.888,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "CaseThruBolt2",
+        "b": "CylinderBarrel1",
+        "max_overlap_mm3": 4480.447,
+        "max_thickness_mm": 2.737,
+        "first_seen": "explode @ 0.09"
+      },
+      {
+        "a": "CasePrimaryThroughBolt1",
+        "b": "Piston1",
+        "max_overlap_mm3": 4215.786,
+        "max_thickness_mm": 3.04,
+        "first_seen": "explode @ 0.09"
+      },
+      {
+        "a": "CasePrimaryThroughBolt5",
+        "b": "CylinderBarrel5",
+        "max_overlap_mm3": 4209.141,
+        "max_thickness_mm": 2.22,
+        "first_seen": "explode @ 0.09"
+      },
+      {
+        "a": "CasePrimaryThroughBolt1",
+        "b": "CylinderBarrel1",
+        "max_overlap_mm3": 4209.139,
+        "max_thickness_mm": 2.22,
+        "first_seen": "explode @ 0.09"
+      },
+      {
+        "a": "CasePrimaryThroughBolt3",
+        "b": "CylinderBarrel3",
+        "max_overlap_mm3": 4209.136,
+        "max_thickness_mm": 2.22,
+        "first_seen": "explode @ 0.09"
+      },
+      {
+        "a": "CaseThruBolt7",
+        "b": "CylinderHead5",
+        "max_overlap_mm3": 3836.266,
+        "max_thickness_mm": 3.767,
+        "first_seen": "explode @ 0.47"
+      },
+      {
+        "a": "CasePrimaryThroughBolt7",
+        "b": "CylinderBarrel5",
+        "max_overlap_mm3": 3738.343,
+        "max_thickness_mm": 1.855,
+        "first_seen": "explode @ 0.58"
+      },
+      {
+        "a": "CaseThruBolt6",
+        "b": "CylinderHead5",
+        "max_overlap_mm3": 3220.989,
+        "max_thickness_mm": 3.472,
+        "first_seen": "explode @ 0.09"
+      },
+      {
+        "a": "CasePrimaryThroughBolt5",
+        "b": "Piston5",
+        "max_overlap_mm3": 3122.239,
+        "max_thickness_mm": 2.729,
+        "first_seen": "explode @ 0.09"
+      },
+      {
+        "a": "CasePrimaryThroughBolt3",
+        "b": "Piston3",
+        "max_overlap_mm3": 3122.238,
+        "max_thickness_mm": 2.729,
+        "first_seen": "explode @ 0.09"
+      },
+      {
+        "a": "CrankcaseRight",
+        "b": "OilRing1",
+        "max_overlap_mm3": 3101.163,
+        "max_thickness_mm": 1.776,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "CrankcaseLeft",
+        "b": "OilRing2",
+        "max_overlap_mm3": 3069.033,
+        "max_thickness_mm": 1.76,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "CaseThruBolt4",
+        "b": "CylinderHead3",
+        "max_overlap_mm3": 3029.666,
+        "max_thickness_mm": 3.733,
+        "first_seen": "explode @ 0.09"
+      },
+      {
+        "a": "CaseThruBolt1",
+        "b": "CylinderHead1",
+        "max_overlap_mm3": 3023.189,
+        "max_thickness_mm": 3.847,
+        "first_seen": "explode @ 0.18"
+      },
+      {
+        "a": "ConnectingRod6",
+        "b": "CrankcaseLeft",
+        "max_overlap_mm3": 2675.872,
+        "max_thickness_mm": 2.755,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "ConnectingRod4",
+        "b": "CrankcaseLeft",
+        "max_overlap_mm3": 2675.358,
+        "max_thickness_mm": 2.755,
+        "first_seen": "explode @ 0.69"
+      },
+      {
+        "a": "ConnectingRod3",
+        "b": "CrankcaseRight",
+        "max_overlap_mm3": 2675.085,
+        "max_thickness_mm": 2.754,
+        "first_seen": "explode @ 0.69"
+      }
+    ]
+  },
+  "timing": {
+    "total_seconds": 62.6,
+    "python": "3.14.0",
+    "machine": "Windows-11-10.0.26300-SP0"
+  },
+  "unverified_not_waived": [],
+  "stale_ledger_entries": [],
+  "known_defects": [],
+  "new_violations": [],
+  "clean": true,
+  "passed": true,
+  "poses_file_sha256": "7847508d0a3dcf165c71feb4a857a95ee8e3e208489a4e1a0046232e9345793b"
+}
