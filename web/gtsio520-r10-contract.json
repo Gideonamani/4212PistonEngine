@@ -27388,6 +27388,7 @@
     "Every current saved-native bounding neighbor with hash-bound reuse counts",
     "Current bearing/support stock, pressure walls/closures and independent returns",
     "Current installed moving envelopes and actual full static GLB audit",
-    "Full editable Blender master, part identity/unit checks and actual clip/transform audits"
+    "Full editable Blender master, part identity/unit checks and actual clip/transform audits",
+    "Exported-file interference audit of the shipped static file 80991fa8b0d5 (sha256 80991fa8b0d5d4312aa5aabe549dd8a094afb9bad41d18cdc6b7921c4fe1ab9e, 51,199,204 bytes, 1,396 parts), 19 Oct 2026, cad-studies/gtsio520-h-static/shipped-r10: the assembled pose is clean (5,168 neighbouring pairs, none overlapping). The core cycle posed by the viewer's own sampler every 5 crank degrees (144 poses) is NOT clean: 159 overlapping pairs, 42 between parts the default core view shows (pistons against the big-end hardware of the opposite-bank rod, crankshaft against pistons) and 117 only in the Assembled view (crank and cam turning through parts the contract holds fixed). The exploded layouts are not decided by this audit; the fully exploded layout holds 14 overlapping pairs. Recorded in a known-defect ledger. This is a record of what the audit found, not an acceptance, and not a clip/transit clearance check."
   ]
 }

@@ -108,3 +108,9 @@ python scripts/serve_gtsio_review.py --port 8766
 ```
 
 The local server binds only `127.0.0.1`. It resolves Three.js from the primary checkout's existing `node_modules`. The local HTML, rig scripts and checks are tracked-source candidates; all generated model/video binaries remain ignored. The review page's video control records its own canvas and uses local ffmpeg to create H.264 MP4 copies.
+
+## Update, 19 October 2026: audit of the shipped file
+
+`interference-audit.json` in this folder describes the earlier animated file (sha256 `27054c...`, 63,271,640 bytes, assembled pose only). The file that ships now is the static
+`gtsio520-r10-static.glb.gz` (sha256 `80991fa8...`, 51,199,204 bytes), whose cycle the viewer computes. It was audited at its assembled pose and through the sampled cycle and
+exploded layouts; see `../shipped-r10/` and `docs/assembly-interference.md`. The assembled pose is clean; the sampled cycle is not (159 overlapping pairs, recorded in a ledger).

@@ -273,7 +273,12 @@ class Studies(unittest.TestCase):
 
     def test_r10_gaps_are_the_ones_the_review_found(self):
         cov = self.results['gtsio520-h-r10']['coverage']
-        self.assertEqual(cov['table']['engineering']['rest'], 0, 'no exported-file audit of the shipped asset yet; if one has landed, remove the waivers')
+        eng = cov['table']['engineering']
+        # The exported-file audit of the shipped asset (cad-studies/gtsio520-h-static/shipped-r10: assembled pose, plus the cycle posed through the sampler)
+        # covers the rest and clip gates. No audit measures the declared gear meshes, so only that gap stays waived.
+        self.assertEqual((eng['rest'], eng['clip']), (eng['parts'], eng['moving']))
+        self.assertEqual(eng['gear'], 0, 'no audit measures the gear clearances yet; if one has, remove the gear waiver')
+        self.assertEqual({gate for _, gate in cov['waived']}, {'gear'})
         self.assertTrue(all('different file' in n for n in cov['notes']))
 
     def test_the_lesson_map_is_the_committed_draft(self):

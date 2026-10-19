@@ -66,6 +66,7 @@ the checks follow. Do not type positions, rates or tooth phases into the builder
 | Hydraulic tappet | 8 | 4 | Not investigated; all under 0.2 mm thick. |
 | Oil pump | 14 | 3 | The gear pair uses the same square-tooth generator and overlaps; the relief plunger/spring and adjuster do too. |
 | Wright revision-2 reconstruction | 413 | 0 | Clean: rest pose 1,121 neighbouring pairs, all touching only; the illustrative operating clip is clean at 133 poses and the exhaust-to-ignition spur pair keeps at least 0.078 mm. The exploded clip is skipped (see below). |
+| GTSIO-520-H R10 study | 1,396 | 159 (cycle) | Assembled pose clean; sampled core cycle not clean, see the section above. Exported-file audit of 19 October 2026; the earlier audit covered an older animated file. |
 | Wright 1903 Smithsonian scan | n/a | n/a | One mesh: no part pairs to test. |
 
 ## The Wright revision-2 reconstruction
@@ -93,6 +94,43 @@ follower touching its cam by the nose only, two springs swinging into a valve bo
 stages, so parts pass through neighbours in transit (pistons and rods through the crankcase, liners through the valve boxes) and the held poses at the end of
 stages 2 and 3 leave 14 and 18 overlapping pairs (`python scripts/scan_assembly_pairs.py <glb> --clip "Systems exploded view" --fractions 0.3333 0.6667 1`).
 A removal-order planner that uses the audit as its oracle is the open step.
+
+## Models whose motion the viewer computes: GTSIO-520-H R10 (19 October 2026)
+
+R10 (`web/gtsio520-r10-static.glb.gz`, 1,396 parts) ships with no baked clips. The viewer computes its core cycle and exploded layout from the
+contract in `src/viewer/core/animated-study-motion.mjs`, so `audit_assembly_interference.py` can audit only its assembled pose. Two tools audit the rest:
+
+```powershell
+node scripts/sample_animated_study_poses.mjs web/gtsio520-r10-static.glb.gz web/gtsio520-r10-contract.json --cycle-step 5 `
+  --explode-fractions 0.09,0.18,0.27,0.36,0.47,0.58,0.69,0.8,0.9,1 --out build/gtsio520-pose-audit/poses-full.json
+python scripts/audit_procedural_poses.py web/gtsio520-r10-static.glb.gz build/gtsio520-pose-audit/poses-full.json `
+  --policy cad-studies/gtsio520-h-static/shipped-r10/interference-policy.json --contract web/gtsio520-r10-contract.json `
+  --output cad-studies/gtsio520-h-static/shipped-r10/interference-audit.json
+python scripts/test_procedural_pose_audit.py        # known-answer tests, also run in CI
+```
+
+The sampler replays the viewer's own `createProceduralStudySampler` and writes each part's world matrix; the auditor intersects every pair of parts whose
+bounds meet, with the same Manifold boolean, thresholds and ledger rule as the baked-clip audit, and skips pairs of parts that share the same pose change.
+It refuses poses sampled from a different file, and it checks that Three.js and the auditor read the assembled pose identically (they agreed exactly).
+`rest` and `cycle` poses decide the result. `explode` poses are listed but never decide it, like the exploded clips of the other models (above).
+Sampling is discrete: an overlap narrower than the step between poses (5 crank degrees here) could be missed, and nothing is checked between poses.
+
+**Result for the shipped file (sha256 `80991fa8b0d5…`), recorded in `cad-studies/gtsio520-h-static/shipped-r10/`:**
+
+| Pose set | Result |
+|---|---|
+| Assembled pose | Clean: 5,168 neighbouring pairs, none overlapping (the same count as the audit of the earlier animated file). |
+| Core cycle, 144 poses (every 5 crank degrees) | **Not clean: 159 overlapping pairs.** 42 are between parts the default core view shows: each piston passes through the big-end hardware (cap, bolts, nuts, lower bearing) of the rod on the opposite bank of the same crank bay (up to 2,814 mm³ and 3.0 mm thick for a rod cap), and the crankshaft meets each piston (about 56 mm³, 0.8 mm thick). 117 are visible only in the Assembled view of the cycle: the crankshaft and camshaft turn through counterweights, damper pins, plates, rings and bushes, the quill shaft, the governor cam key and the neighbouring gears, all of which the contract holds fixed (`body: fixed:…`). Causes of the first group are not investigated. |
+| Exploded layouts, 10 poses | Not decisive. Transit poses hold up to 136 overlapping pairs; the held layouts at the ends of stages 1 to 5 hold 5, 5, 14, 14 and 14 (the 14 of the fully exploded layout are through-bolts, washers, nuts, lower spark-plug parts and a base seal overlapping cylinder barrels). |
+
+The 159 cycle pairs are in a known-defect ledger (`shipped-r10/interference-policy.json`, status `open`) so the record can pass as a ratchet: a new overlap fails,
+a fixed one must come off the list. The ledger records the draft as it is; it does not accept it. R10 stays `release_allowed: false`, and the contract's pending
+list carries the same result against the asset hash.
+
+**Cost, and what CI does.** On this machine (8 GB, Python 3.14) reading the 1,396 parts takes 15 to 20 s, the assembled pose 40 to 60 s and a cycle pose 10 to 25 s, so the
+144-pose cycle took 43 minutes in all. The CI audit job (limit 25 minutes; six models took 5 minutes 15 seconds on 18 October) therefore audits R10's assembled pose
+only (`--rest-only`). The sampled cycle and exploded poses are run at release and committed; `scripts/test_interference_audit.mjs` fails when the record no longer matches the
+published file. Rerun the sampler on its own (about 35 s) and compare `poses_file_sha256` to see whether the motion has changed since the record was made.
 
 ## What it does not cover
 

@@ -51,7 +51,7 @@ jobs:
                 ui=true
               else
                 # Check CAD-related changes (geometry, policies, model exports, mesh audit)
-                if grep -q -E '^(cad-studies/.*|cad_pipeline/.*|web/.*\.glb(\.gz)?|web/.*-contract\.json|scripts/(audit_assembly_interference|test_assembly_audit|requirements-audit).*|docs/drive-asset-manifest\.json)$' changed.txt; then
+                if grep -q -E '^(cad-studies/.*|cad_pipeline/.*|web/.*\.glb(\.gz)?|web/.*-contract\.json|scripts/(audit_assembly_interference|audit_procedural_poses|test_assembly_audit|test_procedural_pose_audit|requirements-audit).*|docs/drive-asset-manifest\.json)$' changed.txt; then
                   cad=true
                 fi
                 # Check UI / Web / Tests / Application changes
@@ -185,6 +185,8 @@ jobs:
         run: python3 -m pip install -r scripts/requirements-audit.txt
       - name: Self-test the interference audit on gear trains that mesh and gear trains that do not
         run: python3 scripts/test_assembly_audit.py
+      - name: Self-test the pose audit used for models whose motion the viewer computes
+        run: python3 scripts/test_procedural_pose_audit.py
       - name: Audit the published models for part interference
         run: |
           python3 scripts/audit_assembly_interference.py web/accessory-drives.glb.gz --contract web/accessory-drives-contract.json --policy cad-studies/accessory-drives/interference-policy.json
@@ -193,6 +195,9 @@ jobs:
           python3 scripts/audit_assembly_interference.py web/oil-pump.glb.gz --policy cad-studies/oil-pump/interference-policy.json
           python3 scripts/audit_assembly_interference.py web/wright-1903-reconstruction.glb.gz --contract web/wright-1903-reconstruction-contract.json --policy cad-studies/wright-1903/revision-2/interference-policy.json
           python3 scripts/audit_assembly_interference.py web/langley-manly-balzer-1903.glb.gz --contract web/langley-manly-balzer-1903-contract.json --policy cad-studies/langley-manly-balzer-1903/interference-policy.json
+          # GTSIO-520-H R10 ships with no baked clips (the viewer computes its cycle), so CI audits the assembled pose only; the sampled cycle and
+          # exploded poses (scripts/audit_procedural_poses.py) take about an hour and are recorded at release in cad-studies/gtsio520-h-static/shipped-r10.
+          python3 scripts/audit_assembly_interference.py web/gtsio520-r10-static.glb.gz --policy cad-studies/gtsio520-h-static/interference-policy.json --rest-only
 
   # The browser tests, run on projects dynamically determined by the scope job (representative phone + tablet on PRs,
   # full matrix on manual runs or when tagged with [full-matrix]).
