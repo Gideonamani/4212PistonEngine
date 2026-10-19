@@ -6,6 +6,8 @@ import re
 
 OPS = {ast.Add:operator.add, ast.Sub:operator.sub, ast.Mult:operator.mul, ast.Div:operator.truediv}
 STATUSES = {'specified','measured','inferred','unknown'}
+# Fidelity class of a part or feature (cad_pipeline/fidelity.py derives it; docs/fidelity-classes.md). Optional here: the studies keep derived classes beside their spec.
+FIDELITY_RANK = {'cosmetic':0,'visual-structure':1,'engineering':2}
 
 def evaluate(value, parameters):
     if isinstance(value, (int,float)) and not isinstance(value,bool):
@@ -80,6 +82,13 @@ def validate_spec(spec):
                 if len(normal)!=3 or not any(normal) or not all(type(v) in (int,float) and math.isfinite(v) for v in normal) or len(base)!=3:raise ValueError('Invalid native mirror plane')
                 for v in base:evaluate(v,params)
         if not part.get('label') or not part.get('group') or not part.get('evidence') or not part.get('features'): raise ValueError('Part identity/group/evidence/features required')
+        nested=[]
+        for f in part['features']:
+            nested+=[f]+[f[key] for key in ('pattern_feature','tool_clip') if isinstance(f.get(key),dict)]
+        inner=[item['class'] for item in nested+list(part.get('dressups',[])) if 'class' in item]
+        for value in ([part['class']] if 'class' in part else [])+inner:
+            if value not in FIDELITY_RANK:raise ValueError('Unknown fidelity class on '+part['id']+': '+str(value))
+        if 'class' in part and any(FIDELITY_RANK[v]>FIDELITY_RANK[part['class']] for v in inner):raise ValueError('Part class is lower than the class of one of its features: '+part['id'])
         if 'boolean_refine' in part and type(part['boolean_refine']) is not bool:raise ValueError('Boolean refinement policy must be a boolean')
         if 'mesh_refine' in part and type(part['mesh_refine']) is not bool:raise ValueError('Meshing refinement policy must be a boolean')
         if 'boolean_batch_runs' in part and (type(part['boolean_batch_runs']) is not int or part['boolean_batch_runs']<0):raise ValueError('Boolean batching policy must be a nonnegative integer')
