@@ -30,6 +30,17 @@ def circle_profile(cr, cz, rad, n=16, start=0.0):
     return [(cr + rad * math.cos(start + 2 * math.pi * i / n), cz + rad * math.sin(start + 2 * math.pi * i / n)) for i in range(n)]
 
 
+# Linear tessellation deflection in named tiers, by kind of part (spec.deflection_for resolves them); a group not listed takes the default. The millimetres are exactly
+# those the released model was built with, so this changes no geometry; only the naming and grouping are new (scripts/test_tessellation_tiers.py pins the old numbers).
+# Why the finest tiers are fine: the piston-to-liner gap is 0.0635 mm, and the thin-wall pistons, liners, shells and jackets are tessellated finer than every clearance
+# (cad-studies/langley-manly-balzer-1903/build-notes.md).
+TESSELLATION = dict(
+    default_mm=0.4,
+    tiers=dict(fit=0.02, journal=0.03, thin_wall=0.04, valve=0.05, standard=0.1, body=0.2, pipe=0.3, coarse=0.4),
+    groups=dict(piston='fit', liner='fit', crank='journal', bearing='journal', shell='thin_wall', jacket='thin_wall', valve='valve', rod='standard', spring='standard',
+                ignition='standard', cylinder='body', pipe='pipe'))
+
+
 class Spec:
     def __init__(self):
         self.params, self.parts, self.derived = {}, [], {}
@@ -55,7 +66,7 @@ class Spec:
         return dict(schema_version=1, model_id='langley-manly-balzer-1903', units='mm', input_mode='mixed',
                     scope='Large 5 x 5.5 in water-cooled stationary radial of Langley Aerodrome A (built 1901): engine proper, flywheels and shaft stubs. Teaching reconstruction from the 1911 Memoir drawings; not a manufacturing drawing, not an authenticated running model.',
                     sources=self.sources, parameters=self.params, parts=self.parts,
-                    tessellation=dict(default_mm=0.4, groups={'piston': 0.02, 'liner': 0.02, 'crank': 0.03, 'bearing': 0.03, 'cylinder': 0.2, 'shell': 0.04, 'jacket': 0.04, 'rod': 0.1, 'valve': 0.05, 'spring': 0.1, 'pipe': 0.3, 'ignition': 0.1}))
+                    tessellation=TESSELLATION)
 
 
 # ---- feature constructors (local frame, numbers in mm)

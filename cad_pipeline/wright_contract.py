@@ -5,10 +5,13 @@ can play, and a scope note that is shown with every motion). Descriptions and th
 research inventory (cad-studies/wright-1903/revision-2/inventory.json), so what a student reads for a part is what the research
 recorded for the component it belongs to: its function, interfaces, the modelling decision and the source locator.
 Standard library only.
+
+This file is the Wright *configuration* of the shared builder in `study_contract.py`: the system titles, the scope text and the stage names.
 """
-import json, math
+import math
 from pathlib import Path
 
+from cad_pipeline.study_contract import ComponentTree, StudyConfig, build as build_contract, rebuild_released
 from cad_pipeline.wright_bodies import AXES
 
 REPO = Path(__file__).resolve().parents[1]
@@ -49,34 +52,13 @@ def gear_mesh():
                 module_mm=round(module, 4), backlash_mm=round(0.05 * module, 4))
 
 
+CONFIG = StudyConfig(
+    scope=SCOPE, reference=REFERENCE, viewpoint=VIEWPOINT, grouping=ComponentTree(), systems=[(system, title, None) for system, title in SYSTEM_TITLES.items()], study=STUDY,
+    gear_meshes=lambda: [gear_mesh()], part_fields=('id', 'label', 'group', 'groups', 'description', 'evidence', 'material', 'disposition', 'shape_status'),
+    shape_status='Reconstructed from the reviewed source account; dimensions estimated; instructor review pending',
+    key_order=('asset_sha256', 'parts', 'groups', 'reference', 'scope', 'motions', 'viewpoint', 'remoteDisplays', 'gearMeshes'))
+
+
 def build(geometry, asset_sha256, inventory=None, motions=None):
     """The contract dict for a geometry.json (parts in the CAD frame) and the exported asset's decoded hash."""
-    inventory = inventory or json.loads((STUDY / 'inventory.json').read_text(encoding='utf-8'))
-    by_part = {}
-    for component in inventory['components']:
-        for part_id in component.get('part_ids', []):
-            by_part.setdefault(part_id, []).append(component)
-    parts, group_of_component = [], {}
-    for p in geometry['parts']:
-        components = by_part.get(p['id'], [])
-        if components:
-            c = components[0]
-            description = f"{c['name']}. {c['function']}. Interfaces: {c['interfaces']}. {c['decision'].rstrip('.')}. Source: {c['locator']}."
-            disposition = c.get('disposition', 'simplified')
-            for c in components:
-                group_of_component.setdefault(c['id'], p['group'])
-        else:
-            description, disposition = p['label'] + '.', 'simplified'
-        parts.append(dict(id=p['id'], label=p['label'], group=p['group'], groups=[f"component:{c['id']}" for c in components],
-                          description=description, evidence=p['evidence'], material=p['material'], disposition=disposition,
-                          shape_status='Reconstructed from the reviewed source account; dimensions estimated; instructor review pending'))
-    tree = []
-    for system in SYSTEM_TITLES:
-        if not any(p['group'] == system for p in parts):
-            continue
-        tree.append(dict(id=system, label=SYSTEM_TITLES[system], depth=0))
-        for c in sorted((c for c in inventory['components'] if group_of_component.get(c['id']) == system), key=lambda c: (len(str(c['id'])), str(c['id']))):
-            if any(f"component:{c['id']}" in p['groups'] for p in parts):
-                tree.append(dict(id=f"component:{c['id']}", label=c['name'], depth=1))
-    return dict(asset_sha256=asset_sha256, parts=parts, groups=tree, reference=REFERENCE, scope=SCOPE, motions=motions or [], viewpoint=VIEWPOINT,
-                remoteDisplays=[], gearMeshes=[gear_mesh()])
+    return build_contract(CONFIG, geometry['parts'], asset_sha256, inventory=inventory, motions=motions)

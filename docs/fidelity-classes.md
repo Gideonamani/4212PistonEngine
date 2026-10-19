@@ -78,8 +78,9 @@ the waiver it makes unnecessary.
 
 ## What the classes drive (and what is not done yet)
 
-1. Tessellation tiers (plan item B1): not applied. The report shows what the classes would imply; today the tier follows the part group, and 126 of Langley's engineering parts sit at its
-   coarsest tier.
+1. Tessellation tiers (plan item B1): the mechanism is in, the class rule is not applied. A spec names its tiers and puts each kind of part in one (`tessellation.tiers`, `.groups`;
+   Langley has eight), and may cap a class (`tessellation.classes`); `cad_pipeline/spec.py` resolves them. No study declares a class ceiling, so no mesh and no asset hash changed. The
+   report shows what a ceiling would imply: 126 of Langley's engineering parts sit at its coarsest tier. See [animated-study-rig.md](animated-study-rig.md).
 2. Which gates run per iteration (B5): the coverage table is the input.
 3. What Blender may edit: [freecad-blender-boundary.md](freecad-blender-boundary.md).
 4. Where per-part colour variation applies, what a card says is accurate, and the lesson map: the lesson map is a draft; the other two are not started.

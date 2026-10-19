@@ -56,6 +56,7 @@ def validate_spec(spec):
                     for node in ast.walk(ast.parse(expr,mode='eval')):
                         if isinstance(node,ast.Name):dependencies(node.id,trail+[item])
             dependencies(name,[])
+    if 'tessellation' in spec: validate_tessellation(spec['tessellation'],spec['parts'])
     for part in spec['parts']:
         if not re.fullmatch('[A-Za-z][A-Za-z0-9_]*',part['id']) or part['id'] in ids: raise ValueError('Duplicate/unsafe part ID')
         ids.add(part['id'])
@@ -159,14 +160,46 @@ def validate_spec(spec):
             if len(axis)!=3 or not any(axis) or not all(math.isfinite(v) for v in axis): raise ValueError('Invalid axis')
     return spec
 
+TESSELLATION_KEYS = {'default_mm', 'tiers', 'groups', 'classes'}
+
+def tier_mm(setting, value):
+    """Millimetres of a tessellation setting: a number, or the name of a tier declared in setting['tiers']."""
+    if isinstance(value, str):
+        if value not in setting.get('tiers', {}): raise ValueError('Unknown tessellation tier: '+value)
+        return setting['tiers'][value]
+    return value
+
 def deflection_for(spec, part, default=.7):
-    """Linear tessellation deflection (mm) for a part: spec['tessellation'] may set a default and finer values per group.
+    """Linear tessellation deflection (mm) for a part, from spec['tessellation'].
+
+    The setting names the tiers a study uses (`tiers`: name -> mm), puts each kind of part in one (`groups`: group -> tier name or mm), and gives the rest a
+    default (`default_mm`). In order: a part's own `tessellation_tier`; its group's tier; the default. `classes` (fidelity class -> tier name or mm) is a ceiling: a
+    part of that class is never tessellated more coarsely than it, whatever its group says. A study that declares no tiers works as it always did (groups -> mm).
 
     Large tight-fitting cylinders (a piston in its liner) need a finer mesh than the 0.7 mm default, or two touching surfaces
     tessellate into slivers that overlap.
     """
     setting = spec.get('tessellation', {})
-    return setting.get('groups', {}).get(part.get('group', 'other'), setting.get('default_mm', default))
+    if part.get('tessellation_tier') is not None: mm = tier_mm(setting, part['tessellation_tier'])
+    else: mm = tier_mm(setting, setting.get('groups', {}).get(part.get('group', 'other'), setting.get('default_mm', default)))
+    ceiling = setting.get('classes', {}).get(part.get('class'))
+    return mm if ceiling is None else min(mm, tier_mm(setting, ceiling))
+
+def validate_tessellation(setting, parts):
+    """The tessellation setting is well formed: known keys, positive millimetres, tier names that exist, classes that exist."""
+    if not isinstance(setting, dict) or set(setting) - TESSELLATION_KEYS: raise ValueError('Tessellation setting has unknown keys: '+str(sorted(set(setting) - TESSELLATION_KEYS) if isinstance(setting, dict) else setting))
+    millimetres = lambda value: type(value) in (int, float) and math.isfinite(value) and value > 0
+    tiers = setting.get('tiers', {})
+    if not isinstance(tiers, dict) or not all(re.fullmatch('[a-z][a-z0-9_]*', name) and millimetres(mm) for name, mm in tiers.items()): raise ValueError('Tessellation tiers need a lower-case name and positive millimetres')
+    def known(value, where):
+        if not (millimetres(value) or (isinstance(value, str) and value in tiers)): raise ValueError('Tessellation setting needs positive millimetres or a declared tier, not '+repr(value)+' ('+where+')')
+    if 'default_mm' in setting: known(setting['default_mm'], 'default_mm')
+    for group, value in setting.get('groups', {}).items(): known(value, 'group '+group)
+    for cl, value in setting.get('classes', {}).items():
+        if cl not in FIDELITY_RANK: raise ValueError('Tessellation ceiling names an unknown fidelity class: '+cl)
+        known(value, 'class '+cl)
+    for part in parts:
+        if part.get('tessellation_tier') is not None: known(part['tessellation_tier'], 'part '+part['id'])
 
 
 def freecad_expression(value):

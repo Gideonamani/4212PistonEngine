@@ -14,7 +14,8 @@ from mathutils import Vector
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
-from cad_pipeline.gtsio_review_motion import ReviewMotion, build_reference_poses, build_review_contract
+from cad_pipeline.gtsio_review_motion import ReviewMotion, build_reference_poses
+from cad_pipeline.gtsio_contract import build_review_contract
 from cad_pipeline.look import DEFAULT_SMOOTH_ANGLE_DEG, apply_smooth_by_angle, apply_studio_world, blender_material
 
 

@@ -32,6 +32,7 @@ publish), then `AGENTS.md` (storage and validation rules), then the guides here.
 | [fidelity-classes.md](fidelity-classes.md) | guide | What is critical and what is cosmetic: the engineering, visual-structure and cosmetic classes, how they are derived from the audit and mass records, and the rule that no engineering part is left without a gate. |
 | [constraints.md](constraints.md) | guide | Closure checks and global constraints: one `constraints.json` per study, one runner, the pass, fail, accepted and unknown states, and what they found in the Langley and GTSIO-520-H studies. |
 | [freecad-blender-boundary.md](freecad-blender-boundary.md) | guide | Where FreeCAD stops and Blender starts: three zones, what each class allows, and the geometry drift check that enforces it. |
+| [animated-study-rig.md](animated-study-rig.md) | guide | The one Blender rig and the one contract builder behind the Wright, Langley and R10 cards, the tessellation tiers in a spec, and what the rebuild-equivalence check proves. |
 | [galaxy-a16-release-check.md](galaxy-a16-release-check.md) | guide | The release check to run on a Samsung Galaxy A16 in Chrome. |
 | [accessory-shape-review.md](accessory-shape-review.md) | record | Manual illustration and model shape audit, 3 October 2026. |
 | [ai-mechanical-engineer.md](ai-mechanical-engineer.md) | record | AI Mechanical Engineer vision, structure and roadmap, with the fortnightly review log (a living record, updated at each review), 7 October 2026. |

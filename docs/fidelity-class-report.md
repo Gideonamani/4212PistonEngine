@@ -42,9 +42,9 @@ A gate covers a part only when its audit record was run on the study's present a
 - Audit record not counted: gtsio520-h-static/interference-audit.json: audited a different file (395 parts, sha f7b44f321b); not counted.
 - Engineering parts missing a required gate: 0 open, 14 accepted by a waiver for this asset (gear: 14), 0 expired waiver(s).
 
-### Tessellation tiers the classes would imply (B1, not applied)
+### Tessellation tiers the classes would imply (B1)
 
-Every part is tessellated at one linear deflection (0.1 mm). Engineering parts keep it; visual-structure and cosmetic parts could move to a coarser tier, and B1 measures the size saved and the audit effect before anything is changed. The Langley study already uses 0.02 to 0.4 mm by group.
+Every part is tessellated at one linear deflection (0.1 mm), the `default_mm` of the spec; `cad_pipeline/spec.py` also takes named tiers per part group and a ceiling per fidelity class (`tessellation.classes`), neither declared here. Engineering parts keep this deflection; visual-structure and cosmetic parts could move to a coarser tier, but R10 keeps its shipped tessellation (and so its asset hash) until the size saved and the audit effect are measured. The Langley study already uses 0.02 to 0.4 mm in eight named tiers by part group.
 
 ## Langley / Manly-Balzer 1903 (358 parts)
 
@@ -85,15 +85,17 @@ A gate covers a part only when its audit record was run on the study's present a
 - Mass check: 14 lines, engine 63546 g; outside the 15 percent limit: W01 (1.188), W02 (1.453), W05 (1.228), W07 (1.217), W11 (1.75).
 - Every engineering part is covered by every gate it needs.
 
-### Tessellation tiers the classes would imply (B1, not applied)
+### Tessellation tiers the classes would imply (B1)
 
-| Class | Parts at each linear deflection today |
+| Class | Parts at each linear deflection (tier) today |
 |---|---|
-| engineering | 0.02 mm: 45, 0.03 mm: 5, 0.04 mm: 15, 0.05 mm: 45, 0.1 mm: 70, 0.2 mm: 15, 0.3 mm: 17, 0.4 mm: 126 |
-| visual-structure | 0.2 mm: 20 |
+| engineering | 0.02 mm (fit): 45, 0.03 mm (journal): 5, 0.04 mm (thin_wall): 15, 0.05 mm (valve): 45, 0.1 mm (standard): 70, 0.2 mm (body): 15, 0.3 mm (pipe): 17, 0.4 mm (coarse): 126 |
+| visual-structure | 0.2 mm (body): 20 |
 | cosmetic | - |
 
-The tiers follow the part group today, not the class: the default is 0.4 mm and the coarsest tier is 0.4 mm. 126 engineering parts (37% of them) sit at the coarsest tier, so tiers by class would make them finer and cost size, while the other classes could take the coarsest tier. Where an engineering part is engineering only by membership of a mass-check line, B1 should weigh that signal first. Nothing is changed here; B1 measures the size saved and the audit effect.
+The tiers follow the part group (the kind of part), not the class: the default is 0.4 mm and the coarsest tier is 0.4 mm. 126 engineering parts (37% of them) sit at the coarsest tier, so tiers by class would make them finer and cost size, while the other classes could take the coarsest tier. Where an engineering part is engineering only by membership of a mass-check line, B1 should weigh that signal first.
+
+The spec can cap a class (`tessellation.classes`, a ceiling in mm or tier name, resolved by `cad_pipeline/spec.py`); none is declared, so nothing changes. A ceiling of the `standard` tier (0.1 mm) on the engineering class would give 158 of its parts a finer mesh. The size and audit effect of that is not measured, so it is a decision, not a default.
 
 ## Lesson map for the R10 model (draft)
 
