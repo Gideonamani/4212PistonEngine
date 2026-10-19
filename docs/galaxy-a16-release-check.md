@@ -20,6 +20,26 @@ Reference family: Continental GTSIO-520. The current cylinder configuration rema
 
 Take this once on the live site before the optimised release is bound, and again after, with the same phone, connection and steps, so the saving is measured instead of assumed. For each of the six models record: first-load transfer and time to first frame on Wi-Fi, the same on mobile data, and a repeat visit after closing and reopening the tab. The sizes to expect are in the manifest; the optimisation record gives the new ones. Decoded size and transfer size are proxies; the phone's timings are the evidence.
 
+## GTSIO-520-H R10 card: before and after the optimised file
+
+The R10 card is the largest download (decision D3 sets the phone budget at about 16 MB of transfer, to be confirmed on this phone). Measure the live file first and the optimised one second, same phone, same connection, same steps:
+
+| | Live file | Optimised file |
+|---|---|---|
+| Transfer (gzip) | 25,327,875 bytes | 11,998,800 bytes |
+| Decoded | 51,199,204 bytes | 21,115,472 bytes |
+
+Each run, in Chrome on the phone with DevTools attached (chrome://inspect on the computer, Network tab, filter `googleapis.com`), and the site opened fresh in a new tab:
+
+1. Wi-Fi, first uncached load: open Explore, open the GTSIO-520-H R10 card. Note the transfer size, the download time (start to end of the request), and the time from the end of the download to the first rendered engine.
+2. Mobile data, the same. (Background downloads must not start by themselves on mobile data.)
+3. Repeat load: close the tab, reopen the site, open the same card. DevTools should show no download of the model.
+4. With the model open: orbit and zoom with one and two fingers, tap three or four parts and read the part card, play the cycle and watch for stutter, run the exploded view, then collapse it. Look for wrong orientation, missing or flickering parts, and parts that jump.
+5. Did the browser tab reload or crash, did the phone become noticeably warm, and did anything show an error?
+
+The result to record is the two timings per connection (download, and download end to first frame) next to the byte counts, not a pass or fail. A smaller file is not proof of a faster start: the optimised file takes about 94 ms longer to unpack on a desktop (376 to 470 ms), and the phone is slower.
+State only what was measured. Until this is run on the phone, no timing for R10 on the A16 exists.
+
 ## Student exercise
 
 1. Open the published site in Chrome without signing in. Courses, Explore and Check each load without a layout break at the phone's width, in portrait and landscape.

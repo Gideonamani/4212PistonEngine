@@ -121,6 +121,14 @@ class ProceduralPoseAudit(unittest.TestCase):
         self.assertIn('sampled poses', name)
         self.assertEqual((clip['moving_parts'], clip['poses']), (3, 2))      # A, B and C each moved at some sampled cycle pose; the explosion is not a clip
 
+    def test_a_packed_file_is_recorded_under_the_shipped_hash_with_the_audited_plain_form_beside_it(self):
+        data, _ = pose_file(self.glb, [])
+        shipped = dict(file='boxes.glb.gz', decoded_sha256='ab' * 32, decoded_bytes=12345, note='unpacked')
+        report = poses_audit.audit_poses(self.glb, data, shipped=shipped, log=lambda *_: None)
+        self.assertEqual(report['asset_sha256'], 'ab' * 32)
+        self.assertEqual(report['audited_plain_form']['sha256'], data['asset_sha256'])
+        self.assertEqual(report['asset_bytes'], 12345)
+
     def test_poses_from_another_file_are_refused(self):
         data, _ = pose_file(self.glb, [])
         data['asset_sha256'] = '0' * 64

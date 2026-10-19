@@ -199,7 +199,7 @@ def audit_poses(glb_path, poses_data, policy=None, log=print, contract=None, pos
                'every pair whose bounds meet is intersected exactly (Manifold boolean) at the assembled pose and at each sampled pose, skipping '
                'pairs of parts that share the same pose change. Touching is allowed, overlap is not; an overlap thinner than max_penetration_mm '
                'is treated as mesh tessellation noise on a touching face. Discrete sampling: an overlap narrower than the step could be missed.',
-        shipped_asset=shipped,
+        shipped_asset=shipped,    # classify() makes the shipped file the record's asset and keeps the audited plain form beside it
         sampler=poses_data.get('sampler'), contract=poses_data.get('contract'), poses_file_sha256=poses_file_sha256,
         three_js_and_audit_rest_pose_max_matrix_difference=reading_error,
         rest_neighbouring_pairs=rest_pairs, rest_touching_only=rest_touching,
@@ -230,6 +230,12 @@ def classify(report, policy):
     The ledger is a ratchet as in audit_assembly_interference.py: an overlap listed there passes while it stays within its recorded
     volume, a pair that is no longer observed makes the entry stale, and anything else is a new violation."""
     policy = policy or {}
+    shipped = report.get('shipped_asset')
+    if shipped and 'audited_plain_form' not in report:
+        # The record is keyed by the shipped file's hash, like every other audit record (the contract and cad_pipeline/fidelity.py compare it);
+        # the plain GLB the auditor actually read is named beside it.
+        report['audited_plain_form'] = dict(sha256=report['asset_sha256'], bytes=report['asset_bytes'], note=shipped['note'])
+        report['asset_sha256'], report['asset_bytes'] = shipped['decoded_sha256'], shipped['decoded_bytes']
     tolerance = report['tolerance_mm3']
     ledger = {frozenset((e['a'], e['b'])): e for e in policy.get('known_defects', [])}
     known, violations = [], []

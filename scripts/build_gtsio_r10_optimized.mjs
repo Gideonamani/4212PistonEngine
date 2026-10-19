@@ -28,6 +28,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   const recordFile = flag('--record', R10_RECORD);
   const entry = await buildModel(R10_MODEL, web, R10_OPTIONS);
   entry.settings = { ...R10_OPTIONS, normalBits: 12, note: 'Position mantissa raised from the default 16 bits to 20 so every part stays a closed solid for the exact-intersection audit.' };
+  entry.renderCheckNote = 'R10 has no baked animation and no morph targets, so the 12 pictures are 3 distinct rest views (iso, front, top) drawn four times; the viewer\'s computed cycle and explosion poses were not rendered. Their geometry comes from the same vertex data, and the exact-intersection audit of the same poses found the same 159 overlapping pairs before and after optimising.';
   const previous = fs.existsSync(recordFile) ? JSON.parse(fs.readFileSync(recordFile, 'utf8')).models?.[0] : undefined;
   if (previous?.optimized.transferSha256 === entry.optimized.transferSha256) {
     entry.optimized.driveId = previous.optimized.driveId;

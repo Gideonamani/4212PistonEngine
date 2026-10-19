@@ -54,6 +54,24 @@
         "positionMantissaBits": 20,
         "normalBits": 12,
         "note": "Position mantissa raised from the default 16 bits to 20 so every part stays a closed solid for the exact-intersection audit."
+      },
+      "renderCheckNote": "R10 has no baked animation and no morph targets, so the 12 pictures are 3 distinct rest views (iso, front, top) drawn four times; the viewer's computed cycle and explosion poses were not rendered. Their geometry comes from the same vertex data, and the exact-intersection audit of the same poses found the same 159 overlapping pairs before and after optimising.",
+      "renderCheck": {
+        "checkedOn": "2026-10-19",
+        "pictures": 12,
+        "worstDifferingPixels": 0.00001736111111111111,
+        "worstMeanDifference": 0.01756076388888889,
+        "limits": {
+          "differingPixels": 0.0005,
+          "meanDifference": 0.05
+        },
+        "passed": true
+      },
+      "parseTime": {
+        "originalMs": 376,
+        "optimisedMs": 470,
+        "runs": 3,
+        "where": "desktop Chrome, best of three, app loader"
       }
     }
   ]
