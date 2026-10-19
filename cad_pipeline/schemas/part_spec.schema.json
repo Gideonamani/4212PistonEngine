@@ -101,6 +101,14 @@
     }
   },
   "$defs": {
+    "fidelity_class": {
+      "enum": [
+        "engineering",
+        "visual-structure",
+        "cosmetic"
+      ],
+      "description": "Fidelity class: engineering (a gate depends on it), visual-structure (shape students recognise) or cosmetic (may change freely if an envelope check proves no interface moved). Derived by cad_pipeline/fidelity.py; a part is at least as critical as its most critical feature."
+    },
     "dimension": {
       "oneOf": [
         {
@@ -217,6 +225,9 @@
         "features"
       ],
       "properties": {
+        "class": {
+          "$ref": "#/$defs/fidelity_class"
+        },
         "boolean_refine": {
           "type": "boolean",
           "default": true
@@ -308,6 +319,9 @@
         "operation"
       ],
       "properties": {
+        "class": {
+          "$ref": "#/$defs/fidelity_class"
+        },
         "primitive": {
           "enum": [
             "box",
@@ -630,6 +644,9 @@
         "selectors"
       ],
       "properties": {
+        "class": {
+          "$ref": "#/$defs/fidelity_class"
+        },
         "type": {
           "const": "fillet"
         },
