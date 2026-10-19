@@ -1,5 +1,12 @@
 // Independent file-level checks using the same Three.js loader/sampler as the app.
 // Run manually: this private candidate is not a production test dependency.
+//
+//   node scripts/check_gtsio_review.mjs [review-folder]                         the review build's own GLB (default build/gtsio520-animation-review)
+//   node scripts/check_gtsio_review.mjs [review-folder] --asset web/gtsio520-r10-static-opt1.glb.gz //        --expect-sha256 <decoded sha256> --position-tolerance 1.1e-5            an optimised copy of it (meshopt-packed, gzip)
+//
+// With --asset the file is read in place of the review GLB and its hash is checked against --expect-sha256. The rest-bounds check then allows
+// the position rounding the optimiser reports (its limit is 1e-5 of the model size), and the result is written to
+// kinematic-export-checks-optimised.json so the review build's own record is not overwritten.
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -7,16 +14,23 @@ import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
+import {MeshoptDecoder} from 'three/examples/jsm/libs/meshopt_decoder.module.js';
+import {gunzipSync} from 'node:zlib';
 import {createProceduralStudySampler, indexStudyParts} from '../src/viewer/core/animated-study-motion.mjs';
 
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const out=process.argv[2]?path.resolve(process.argv[2]):path.join(repo,'build/gtsio520-animation-review');
+const args=process.argv.slice(2);
+const flag=(name)=>{const i=args.indexOf('--'+name);return i>=0?args[i+1]:undefined;};
+const out=args[0]&&!args[0].startsWith('--')?path.resolve(args[0]):path.join(repo,'build/gtsio520-animation-review');
+const assetOverride=flag('asset'),expectedSha=flag('expect-sha256'),positionTolerance=Number(flag('position-tolerance')??3e-7);
+if(assetOverride&&!expectedSha)throw new Error('--asset needs --expect-sha256');
 const contract=JSON.parse(fs.readFileSync(path.join(out,'review-contract.json')));
 const manifest=JSON.parse(fs.readFileSync(path.join(out,'review-manifest.json')));
 const reference=JSON.parse(fs.readFileSync(path.join(out,'reference-poses.json')));
 const assetFile=contract.asset_file || (fs.existsSync(path.join(out,'gtsio520-r10-static.glb')) ? 'gtsio520-r10-static.glb' : 'gtsio520-r10-animated-review.glb');
-const raw=fs.readFileSync(path.join(out,assetFile));
-const gltf=await new GLTFLoader().parseAsync(raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.byteLength),'');
+let raw=fs.readFileSync(assetOverride?path.resolve(assetOverride):path.join(out,assetFile));
+if(raw[0]===0x1f&&raw[1]===0x8b)raw=gunzipSync(raw);
+const gltf=await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).parseAsync(raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.byteLength),'');
 const root=gltf.scene,mixer=new THREE.AnimationMixer(root);
 const {partsById:parts}=indexStudyParts(root);root.updateMatrixWorld(true);
 const rest=new Map([...parts].map(([id,o])=>[id,o.matrixWorld.clone()]));
@@ -38,7 +52,7 @@ function sample(index,fraction){
 const err=(a,b)=>Math.max(...a.elements.map((v,i)=>Math.abs(v-b.elements[i])));
 check('Three motions, all 1396 stable IDs, matching hash and explicit draft scope',()=>{
   assert.equal(parts.size,1396);assert.equal(contract.parts.length,1396);
-  assert.equal(createHash('sha256').update(raw).digest('hex'),contract.asset_sha256);
+  assert.equal(createHash('sha256').update(raw).digest('hex'),expectedSha??contract.asset_sha256);
   assert.equal(contract.motions.length,3);
   assert.ok(contract.motions.every(m=>gltf.animations.some(c=>c.name===m.id)||procedural.supports(m)));
   assert.ok(contract.parts.every(p=>parts.has(p.id)));assert.equal(contract.release_allowed,false);
@@ -51,7 +65,7 @@ check('Rest mesh coordinates match frozen tessellation in metres and glTF axes',
     const lo=p.mesh_bounds_mm[0],hi=p.mesh_bounds_mm[1],expected=[lo[0]/1000,lo[2]/1000,-hi[1]/1000,hi[0]/1000,hi[2]/1000,-lo[1]/1000];
     const actual=[...box.min.toArray(),...box.max.toArray()];boundsError=Math.max(boundsError,...actual.map((x,i)=>Math.abs(x-expected[i])));
   }
-  assert.ok(boundsError<3e-7,`source-mesh export bounds error ${boundsError}`);
+  assert.ok(boundsError<positionTolerance,`source-mesh export bounds error ${boundsError} (limit ${positionTolerance})`);
 });
 let referenceError=0;
 check('Evaluated motion agrees with the shared definition at saved crank samples',()=>{
@@ -96,7 +110,7 @@ check('Cycle closure and clip switching restore the identical assembled pose',()
   }
   assert.ok(switchError<2e-6,`closure/switch error ${switchError}`);
 });
-fs.writeFileSync(path.join(out,'kinematic-export-checks.json'),JSON.stringify({passed:true,asset_file:assetFile,asset_sha256:contract.asset_sha256,checks:reports,
+fs.writeFileSync(path.join(out,assetOverride?'kinematic-export-checks-optimised.json':'kinematic-export-checks.json'),JSON.stringify({passed:true,asset_file:assetOverride?path.basename(assetOverride):assetFile,asset_sha256:expectedSha??contract.asset_sha256,position_tolerance_m:positionTolerance,checks:reports,
   max_errors:{cad_mesh_bounds_m:boundsError,shared_matrix:referenceError,between_key_piston_m:pistonError,between_key_rod_m:rodError,reverse_matrix:reverseError,switch_matrix:switchError},
   scope:'Kinematics and file integrity only. No native/STEP, physical removal-path, contact or swept-clearance acceptance.'},null,2)+'\n');
 

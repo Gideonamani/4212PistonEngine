@@ -116,3 +116,46 @@ Then the binding, which is deliberately not scripted blind because it touches ch
   Python checks CI runs, `npm run build`, `npm run e2e`.
 
 Rollback is a revert of that binding commit: the old files stay on Drive and in the manifest's `previous_web_releases`.
+
+## GTSIO-520-H R10 mechanism study (19 October 2026)
+
+The R10 file is optimised on its own, with a stated phone budget (decision D3, 18 October: about 16 MB gzip at most, then measured on the Galaxy A16). Record:
+`releases/model-optimization-gtsio520-r10.json`. Tools: `scripts/build_gtsio_r10_optimized.mjs` (build), `scripts/bind_gtsio_r10_optimized.mjs` (bind into the contract,
+`src/data/models.json` and the Drive manifest), `scripts/test_gtsio520_r10_optimization.mjs` (checks the record).
+
+**Status: built and verified on a desktop; on Drive and bound; not yet measured on the phone.** `web/gtsio520-r10-static-opt1.glb.gz` is git-ignored like the other models. It is on Drive
+(file id `10AXTDqplLyTAjXp-wTikbdx7BGg5Dwf4`, in the shared published-models folder, anyone with the link can read), and the registry, the manifest and the record carry that id. An anonymous request with the
+site's key and referrer (the one `scripts/fetch_drive_assets.py` makes) returned HTTP 200, 11,998,800 bytes and the SHA-256 below on 19 October 2026 (13 s from a desktop connection; not a phone figure).
+Before the file was uploaded the binding used a visible placeholder id so that CI failed on it (`scripts/bind_gtsio_r10_optimized.mjs` without `--drive-id`).
+
+| | Before (`gtsio520-r10-static.glb.gz`) | After (`gtsio520-r10-static-opt1.glb.gz`) |
+|---|---|---|
+| Transfer (gzip) | 25,327,875 bytes (24.2 MiB) | 11,998,800 bytes (11.4 MiB), -52.6% |
+| Decoded | 51,199,204 bytes | 21,115,472 bytes, -58.8% |
+| SHA-256 of the transfer file | `df420184b1a7…` | `64f433abefa78a102d731040762753c0a6a6c7a6f4b07ad973e79250035e2f52` |
+| SHA-256 of the decoded GLB (what the contract checks) | `80991fa8b0d5…` | `1dcf07ccd0f2951780dd5ae76ad8f1b5e2707616309067f1645f15f892d51abc` |
+| Parse (app loader, desktop Chrome, best of three) | 376 ms | 470 ms |
+
+Budget met at 12.0 MB. Levers 1 to 3 of the plan (coarser tessellation of the small fasteners, a second on-demand file, a Wi-Fi note) were not needed, and the first was not touched: no geometry was simplified.
+Triangles are unchanged (2,080,106), part count, names, hierarchy and transforms are unchanged, and accessors drop from 4,188 to 3,553 where identical data is shared.
+
+**One setting differs from the other models: positions are rounded to a 20-bit mantissa, not 16.** At 16 bits the file is 10.3 MB, but the two crankcase halves and the governor-driven shaft gear stop being
+closed solids and the exact-intersection audit (`docs/assembly-interference.md`) cannot test them. At 18 bits (11.3 MB) the two crankcase halves still fail. At 20 bits all 1,396 parts are verifiable.
+
+**Measured error against the unoptimised file:** positions within 2.4e-7 m on a 1.068 m model (2.2e-7 of the model size; limit 1e-5), normals within 0.024 degrees (limit 0.1), and the lossless packing round-trips exactly.
+`scripts/check_gtsio_review.mjs --asset … --expect-sha256 … --position-tolerance 5e-7` passes on the optimised file; its rest-bounds check has to allow for the rounding (largest difference 2.67e-7 m, against the default 3e-7).
+
+**Render check** (`scripts/compare_model_renders.mjs`, recorded in the JSON): same, within limits (worst picture 0.0017% of pixels differ, mean difference 0.018 levels). R10 has no baked animation and no morph targets, so
+the 12 pictures are three distinct rest views drawn four times. The cycle and explosion the viewer computes were not rendered; the pose audit checked them instead and found the same 159 overlapping pairs before and after.
+
+**Viewer check:** `npx playwright test e2e/part-details.spec.ts --project=phone-390` opens the R10 card from the optimised file and passes (19 October). That is desktop Chromium at a phone-sized viewport; it says nothing about the Galaxy A16.
+
+**Not measured:** transfer and parse time on the phone, memory, and the first rendered frame there. The saving in bytes is certain; the saving in time is not until `docs/galaxy-a16-release-check.md` has been run.
+Parse time went up by about 94 ms on the desktop (the meshopt decoder), which may matter more on a slower phone.
+
+```powershell
+node scripts/build_gtsio_r10_optimized.mjs                  # web/gtsio520-r10-static-opt1.glb.gz and the record, from web/gtsio520-r10-static.glb.gz (about 30 s)
+node scripts/bind_gtsio_r10_optimized.mjs                   # contract, registry, manifest and record (placeholder Drive id)
+node scripts/bind_gtsio_r10_optimized.mjs --drive-id <id>   # after the file is on Drive with link sharing
+python scripts/fetch_drive_assets.py --verify-remote        # anonymous download, size and hash
+```

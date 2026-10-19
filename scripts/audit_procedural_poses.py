@@ -17,7 +17,7 @@ exploded-view exception). Only parts whose pose differs from rest are re-posed, 
 change (one rigid body, so the rest-pose check already covers it). Sampling is discrete: an overlap narrower than the step between poses
 could be missed, and the report says what step was used.
 """
-import argparse, hashlib, importlib.util, json, platform, sys, time
+import argparse, gzip, hashlib, importlib.util, json, platform, sys, time
 from pathlib import Path
 
 import numpy as np
@@ -112,7 +112,7 @@ def cycle_clips(poses_data, overlapping_pairs, contract=None):
                        crank_degrees_sampled=dict(first=angles[0], last=angles[-1]) if angles else None)}
 
 
-def audit_poses(glb_path, poses_data, policy=None, log=print, contract=None, poses_file_sha256=None):
+def audit_poses(glb_path, poses_data, policy=None, log=print, contract=None, poses_file_sha256=None, shipped=None):
     started = time.time()
     core_view = core_view_parts(contract)
     policy = policy or {}
@@ -199,6 +199,7 @@ def audit_poses(glb_path, poses_data, policy=None, log=print, contract=None, pos
                'every pair whose bounds meet is intersected exactly (Manifold boolean) at the assembled pose and at each sampled pose, skipping '
                'pairs of parts that share the same pose change. Touching is allowed, overlap is not; an overlap thinner than max_penetration_mm '
                'is treated as mesh tessellation noise on a touching face. Discrete sampling: an overlap narrower than the step could be missed.',
+        shipped_asset=shipped,    # classify() makes the shipped file the record's asset and keeps the audited plain form beside it
         sampler=poses_data.get('sampler'), contract=poses_data.get('contract'), poses_file_sha256=poses_file_sha256,
         three_js_and_audit_rest_pose_max_matrix_difference=reading_error,
         rest_neighbouring_pairs=rest_pairs, rest_touching_only=rest_touching,
@@ -229,6 +230,12 @@ def classify(report, policy):
     The ledger is a ratchet as in audit_assembly_interference.py: an overlap listed there passes while it stays within its recorded
     volume, a pair that is no longer observed makes the entry stale, and anything else is a new violation."""
     policy = policy or {}
+    shipped = report.get('shipped_asset')
+    if shipped and 'audited_plain_form' not in report:
+        # The record is keyed by the shipped file's hash, like every other audit record (the contract and cad_pipeline/fidelity.py compare it);
+        # the plain GLB the auditor actually read is named beside it.
+        report['audited_plain_form'] = dict(sha256=report['asset_sha256'], bytes=report['asset_bytes'], note=shipped['note'])
+        report['asset_sha256'], report['asset_bytes'] = shipped['decoded_sha256'], shipped['decoded_bytes']
     tolerance = report['tolerance_mm3']
     ledger = {frozenset((e['a'], e['b'])): e for e in policy.get('known_defects', [])}
     known, violations = [], []
@@ -254,6 +261,7 @@ def main():
     parser.add_argument('glb', nargs='?')
     parser.add_argument('poses', nargs='?')
     parser.add_argument('--reclassify', help='apply --policy to the overlaps in an earlier report of this tool, without sampling again')
+    parser.add_argument('--shipped-asset', help='the published file when the audited GLB is its plain (meshopt-decoded) form from scripts/decode_model.mjs: records its decoded SHA-256')
     parser.add_argument('--stamp-poses', help='with --reclassify: record the SHA-256 of the poses file that report was made from')
     parser.add_argument('--policy')
     parser.add_argument('--contract', help='the model contract, to say which overlapping pairs the default core view shows')
@@ -272,8 +280,14 @@ def main():
         if not (args.glb and args.poses):
             parser.error('give the GLB and the poses file, or --reclassify')
         poses = json.loads(Path(args.poses).read_text(encoding='utf8'))
+        shipped = None
+        if args.shipped_asset:
+            raw = Path(args.shipped_asset).read_bytes()
+            raw = gzip.decompress(raw) if raw[:2] == bytes([0x1f, 0x8b]) else raw
+            shipped = dict(file=Path(args.shipped_asset).name, decoded_sha256=hashlib.sha256(raw).hexdigest(), decoded_bytes=len(raw),
+                           note='The audited GLB is the shipped file unpacked by scripts/decode_model.mjs (EXT_meshopt_compression is lossless), so the auditor can read it.')
         report = audit_poses(args.glb, poses, policy, contract=contract,
-                             poses_file_sha256=hashlib.sha256(Path(args.poses).read_bytes()).hexdigest())
+                             poses_file_sha256=hashlib.sha256(Path(args.poses).read_bytes()).hexdigest(), shipped=shipped)
     if args.output:
         Path(args.output).write_text(json.dumps(report, indent=2) + '\n', encoding='utf8')
     for item in report['new_violations']:

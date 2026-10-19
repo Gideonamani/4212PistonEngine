@@ -2,8 +2,8 @@
   "schema": "4212.animated-study/v1",
   "id": "gtsio520-r10-private-review",
   "scope": "Private illustrative review draft. Explosion is a component layout, not an approved maintenance removal sequence; transit and swept clearances are unaccepted. R10 whole-engine native/STEP validation is incomplete. Cycle uses the frozen slider-crank and inferred harmonic cam law; hydraulic behaviour, damper dynamics and accessory operation are excluded. No manufacturer timing or simulation claim.",
-  "asset_file": "gtsio520-r10-static.glb",
-  "asset_sha256": "80991fa8b0d5d4312aa5aabe549dd8a094afb9bad41d18cdc6b7921c4fe1ab9e",
+  "asset_file": "gtsio520-r10-static-opt1.glb",
+  "asset_sha256": "1dcf07ccd0f2951780dd5ae76ad8f1b5e2707616309067f1645f15f892d51abc",
   "complete_engine_acceptance": false,
   "release_allowed": false,
   "display": {
@@ -27381,14 +27381,14 @@
     "Core cycle - illustrative": 328
   },
   "blender_version": "5.0.1",
-  "bytes": 51199204,
-  "gzip_bytes": 25327875,
+  "bytes": 21115472,
+  "gzip_bytes": 11998800,
   "pending": [
     "Complete current saved/native/direct agreement, real edit/reopening and STEP",
     "Every current saved-native bounding neighbor with hash-bound reuse counts",
     "Current bearing/support stock, pressure walls/closures and independent returns",
     "Current installed moving envelopes and actual full static GLB audit",
     "Full editable Blender master, part identity/unit checks and actual clip/transform audits",
-    "Exported-file interference audit of the shipped static file 80991fa8b0d5 (sha256 80991fa8b0d5d4312aa5aabe549dd8a094afb9bad41d18cdc6b7921c4fe1ab9e, 51,199,204 bytes, 1,396 parts), 19 Oct 2026, cad-studies/gtsio520-h-static/shipped-r10: the assembled pose is clean (5,168 neighbouring pairs, none overlapping). The core cycle posed by the viewer's own sampler every 5 crank degrees (144 poses) is NOT clean: 159 overlapping pairs, 42 between parts the default core view shows (pistons against the big-end hardware of the opposite-bank rod, crankshaft against pistons) and 117 only in the Assembled view (crank and cam turning through parts the contract holds fixed). The exploded layouts are not decided by this audit; the fully exploded layout holds 14 overlapping pairs. Recorded in a known-defect ledger. This is a record of what the audit found, not an acceptance, and not a clip/transit clearance check."
+    "Exported-file interference audit of the shipped optimised file 1dcf07ccd0f2 (sha256 1dcf07ccd0f2951780dd5ae76ad8f1b5e2707616309067f1645f15f892d51abc, 21,115,472 bytes, 1,396 parts; audited in its unpacked form), 19 Oct 2026, cad-studies/gtsio520-h-static/shipped-r10: the assembled pose is clean (5,168 neighbouring pairs, none overlapping). The core cycle posed by the viewer's own sampler every 5 crank degrees (144 poses) is NOT clean: 159 overlapping pairs, 42 between parts the default core view shows (pistons against the big-end hardware of the opposite-bank rod, crankshaft against pistons) and 117 only in the Assembled view (crank and cam turning through parts the contract holds fixed); the same 159 pairs were found in the unoptimised file 80991fa8b0d5. The exploded layouts are not decided by this audit; the fully exploded layout holds 14 overlapping pairs. Recorded in a known-defect ledger. This is a record of what the audit found, not an acceptance, and not a clip/transit clearance check."
   ]
 }

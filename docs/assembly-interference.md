@@ -97,13 +97,18 @@ A removal-order planner that uses the audit as its oracle is the open step.
 
 ## Models whose motion the viewer computes: GTSIO-520-H R10 (19 October 2026)
 
-R10 (`web/gtsio520-r10-static.glb.gz`, 1,396 parts) ships with no baked clips. The viewer computes its core cycle and exploded layout from the
-contract in `src/viewer/core/animated-study-motion.mjs`, so `audit_assembly_interference.py` can audit only its assembled pose. Two tools audit the rest:
+R10 (1,396 parts) ships with no baked clips. The viewer computes its core cycle and exploded layout from the
+contract in `src/viewer/core/animated-study-motion.mjs`, so `audit_assembly_interference.py` can audit only its assembled pose. Two tools audit the rest.
+
+The file that ships is the optimised `web/gtsio520-r10-static-opt1.glb.gz` (meshopt-packed, 11,998,800 bytes; `docs/model-optimization.md`). The auditor reads raw buffers and
+refuses packed files, so the packed file is first unpacked with `scripts/decode_model.mjs` (lossless: the same numbers the viewer decodes), and the record names the shipped file's hash:
 
 ```powershell
-node scripts/sample_animated_study_poses.mjs web/gtsio520-r10-static.glb.gz web/gtsio520-r10-contract.json --cycle-step 5 `
-  --explode-fractions 0.09,0.18,0.27,0.36,0.47,0.58,0.69,0.8,0.9,1 --out build/gtsio520-pose-audit/poses-full.json
-python scripts/audit_procedural_poses.py web/gtsio520-r10-static.glb.gz build/gtsio520-pose-audit/poses-full.json `
+node scripts/decode_model.mjs web/gtsio520-r10-static-opt1.glb.gz build/gtsio520-pose-audit-opt1/gtsio520-r10-static-opt1.plain.glb
+node scripts/sample_animated_study_poses.mjs build/gtsio520-pose-audit-opt1/gtsio520-r10-static-opt1.plain.glb web/gtsio520-r10-contract.json --cycle-step 5 `
+  --explode-fractions 0.09,0.18,0.27,0.36,0.47,0.58,0.69,0.8,0.9,1 --out build/gtsio520-pose-audit-opt1/poses-full.json
+python scripts/audit_procedural_poses.py build/gtsio520-pose-audit-opt1/gtsio520-r10-static-opt1.plain.glb build/gtsio520-pose-audit-opt1/poses-full.json `
+  --shipped-asset web/gtsio520-r10-static-opt1.glb.gz `
   --policy cad-studies/gtsio520-h-static/shipped-r10/interference-policy.json --contract web/gtsio520-r10-contract.json `
   --output cad-studies/gtsio520-h-static/shipped-r10/interference-audit.json
 python scripts/test_procedural_pose_audit.py        # known-answer tests, also run in CI
@@ -115,7 +120,9 @@ It refuses poses sampled from a different file, and it checks that Three.js and 
 `rest` and `cycle` poses decide the result. `explode` poses are listed but never decide it, like the exploded clips of the other models (above).
 Sampling is discrete: an overlap narrower than the step between poses (5 crank degrees here) could be missed, and nothing is checked between poses.
 
-**Result for the shipped file (sha256 `80991fa8b0d5…`), recorded in `cad-studies/gtsio520-h-static/shipped-r10/`:**
+**Result for the shipped file (decoded sha256 `1dcf07ccd0f2…`; its plain unpacked form, which the auditor read, is `a2ab2fb9de36…`), recorded in `cad-studies/gtsio520-h-static/shipped-r10/`.**
+The same run on the earlier, unoptimised file (sha256 `80991fa8b0d5…`, 51.2 MB) found the same 159 overlapping pairs, so optimising changed nothing the audit can see. The optimiser keeps
+positions to a 20-bit mantissa (about 0.24 µm on a 1.07 m model) so every part stays a closed solid; at 16 bits the two crankcase halves and the governor-driven shaft gear, and at 18 bits the two crankcase halves, stopped being closed solids and could not be intersected exactly.
 
 | Pose set | Result |
 |---|---|
@@ -128,7 +135,7 @@ a fixed one must come off the list. The ledger records the draft as it is; it do
 list carries the same result against the asset hash.
 
 **Cost, and what CI does.** On this machine (8 GB, Python 3.14) reading the 1,396 parts takes 15 to 20 s, the assembled pose 40 to 60 s and a cycle pose 10 to 25 s, so the
-144-pose cycle took 43 minutes in all. The CI audit job (limit 25 minutes; six models took 5 minutes 15 seconds on 18 October) therefore audits R10's assembled pose
+144-pose cycle took 43 minutes in all. The CI audit job (limit 25 minutes; six models took 5 minutes 15 seconds on 18 October) therefore unpacks R10 (`scripts/decode_model.mjs`) and audits its assembled pose
 only (`--rest-only`). The sampled cycle and exploded poses are run at release and committed; `scripts/test_interference_audit.mjs` fails when the record no longer matches the
 published file. Rerun the sampler on its own (about 35 s) and compare `poses_file_sha256` to see whether the motion has changed since the record was made.
 

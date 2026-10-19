@@ -1,0 +1,78 @@
+{
+  "schema": "4212.model-optimization/v1",
+  "release": "opt1",
+  "description": "Optimisation of the GTSIO-520-H R10 study file (scripts/optimize_model.mjs, 20-bit positions). The current file is untouched; this is a new file that is not published until it is on Drive. See docs/model-optimization.md.",
+  "tool": {
+    "optimizer": "scripts/optimize_model.mjs",
+    "builder": "scripts/build_gtsio_r10_optimized.mjs"
+  },
+  "budget": {
+    "transferBytes": 16000000,
+    "note": "about 16 MB gzip, decision D3"
+  },
+  "models": [
+    {
+      "id": "gtsio520-h-r10-mechanism-study",
+      "source": {
+        "file": "gtsio520-r10-static.glb.gz",
+        "transferBytes": 25327875,
+        "transferSha256": "df420184b1a7289b106dd3638dc3e591c9d41366d7a9914038afd1cd16382e36",
+        "decodedBytes": 51199204,
+        "decodedSha256": "80991fa8b0d5d4312aa5aabe549dd8a094afb9bad41d18cdc6b7921c4fe1ab9e"
+      },
+      "optimized": {
+        "file": "gtsio520-r10-static-opt1.glb.gz",
+        "transferBytes": 11998800,
+        "transferSha256": "64f433abefa78a102d731040762753c0a6a6c7a6f4b07ad973e79250035e2f52",
+        "decodedBytes": 21115472,
+        "decodedSha256": "1dcf07ccd0f2951780dd5ae76ad8f1b5e2707616309067f1645f15f892d51abc",
+        "driveId": "10AXTDqplLyTAjXp-wTikbdx7BGg5Dwf4"
+      },
+      "saving": {
+        "transferPercent": 52.6,
+        "decodedPercent": 58.8
+      },
+      "changes": {
+        "triangles": 2080106,
+        "trianglesUnchanged": true,
+        "sharedDataUnchanged": true,
+        "accessorsBefore": 4188,
+        "accessorsAfter": 3553,
+        "animationKeysBefore": 0,
+        "animationKeysAfter": 0
+      },
+      "measuredError": {
+        "modelSizeMetres": 1.0681999921798706,
+        "positionAbsolute": 2.384185791015625e-7,
+        "positionRelativeToModel": 2.2319657446825368e-7,
+        "normalDegrees": 0.023516537840821396,
+        "animationTranslationRelativeToModel": 0,
+        "animationRotationDegrees": 0
+      },
+      "roundTripExact": true,
+      "settings": {
+        "positionMantissaBits": 20,
+        "normalBits": 12,
+        "note": "Position mantissa raised from the default 16 bits to 20 so every part stays a closed solid for the exact-intersection audit."
+      },
+      "renderCheckNote": "R10 has no baked animation and no morph targets, so the 12 pictures are 3 distinct rest views (iso, front, top) drawn four times; the viewer's computed cycle and explosion poses were not rendered. Their geometry comes from the same vertex data, and the exact-intersection audit of the same poses found the same 159 overlapping pairs before and after optimising.",
+      "renderCheck": {
+        "checkedOn": "2026-10-19",
+        "pictures": 12,
+        "worstDifferingPixels": 0.00001736111111111111,
+        "worstMeanDifference": 0.01756076388888889,
+        "limits": {
+          "differingPixels": 0.0005,
+          "meanDifference": 0.05
+        },
+        "passed": true
+      },
+      "parseTime": {
+        "originalMs": 376,
+        "optimisedMs": 470,
+        "runs": 3,
+        "where": "desktop Chrome, best of three, app loader"
+      }
+    }
+  ]
+}
