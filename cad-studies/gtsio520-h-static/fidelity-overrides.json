@@ -3,22 +3,6 @@
  "class_overrides": [],
  "coverage_waivers": [
   {
-   "gate": "rest",
-   "parts": "all",
-   "asset_sha256": "80991fa8b0d5d4312aa5aabe549dd8a094afb9bad41d18cdc6b7921c4fe1ab9e",
-   "reason": "No exported-file audit exists for this asset. The records on file audited the 395-part foundation and an earlier animated file of 1,396 parts (different SHA-256), not the static file the card ships.",
-   "clears_when": "an interference-audit.json recorded for this asset_sha256 audits all 1,396 parts (the exported-file audit under way on chore/gtsio-r10-exported-audit)",
-   "review": "2026-10-19"
-  },
-  {
-   "gate": "clip",
-   "parts": "all",
-   "asset_sha256": "80991fa8b0d5d4312aa5aabe549dd8a094afb9bad41d18cdc6b7921c4fe1ab9e",
-   "reason": "The core cycle is computed in the browser, so the file carries no baked clip and no swept audit exists for the 328 moving parts. The JavaScript sampler is checked against the shared definition by scripts/check_gtsio_review.mjs, which is not an interference audit.",
-   "clears_when": "a swept audit of the cycle (baked clip, or sampled poses through the sampler) is recorded in an interference-audit.json for this asset, with at least 328 moving parts",
-   "review": "2026-10-19"
-  },
-  {
    "gate": "gear",
    "parts": "all",
    "asset_sha256": "80991fa8b0d5d4312aa5aabe549dd8a094afb9bad41d18cdc6b7921c4fe1ab9e",

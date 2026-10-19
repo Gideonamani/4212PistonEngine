@@ -112,6 +112,15 @@ class ProceduralPoseAudit(unittest.TestCase):
         report = poses_audit.audit_poses(self.glb, data, contract=contract, log=lambda *_: None)
         self.assertEqual(report['cycle_view_split']['core_view_overlapping_pairs'], 1)
 
+    def test_the_sampled_cycle_is_recorded_as_a_swept_clip(self):
+        _, world = pose_file(self.glb, [])
+        report, _ = self.run_poses([self.pose('cycle', 'cycle @ 10 deg', world, {'C': -0.020}),
+                                    self.pose('cycle', 'cycle @ 20 deg', world, {'A': 0.001, 'B': 0.001}),
+                                    self.pose('explode', 'explode @ 1', world, {'C': 0.5})])
+        (name, clip), = report['clips'].items()
+        self.assertIn('sampled poses', name)
+        self.assertEqual((clip['moving_parts'], clip['poses']), (3, 2))      # A, B and C each moved at some sampled cycle pose; the explosion is not a clip
+
     def test_poses_from_another_file_are_refused(self):
         data, _ = pose_file(self.glb, [])
         data['asset_sha256'] = '0' * 64
