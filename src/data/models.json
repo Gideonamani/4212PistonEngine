@@ -84,14 +84,14 @@
     "previewUrl": "./model-previews/gtsio520-h-r10-mechanism-study.webp",
     "sources": [
       {
-        "localUrl": "./gtsio520-r10-static.glb.gz",
+        "localUrl": "./gtsio520-r10-static-opt1.glb.gz",
         "compressed": true,
-        "transferBytes": 25327875,
-        "decodedBytes": 51199204,
-        "driveId": "1F8B93sONX8mT93GSxRWaRmRuDk0DJCIW"
+        "transferBytes": 11998800,
+        "decodedBytes": 21115472,
+        "driveId": "PENDING_DRIVE_UPLOAD_gtsio520_r10_opt1"
       }
     ],
-    "contractUrl": "./gtsio520-r10-contract.json?v=80991fa8b0d5",
+    "contractUrl": "./gtsio520-r10-contract.json?v=1dcf07ccd0f2",
     "partDetailsUrl": "./gtsio520-r10-parts.json?v=db7cb9dda4bf",
     "lessonControls": true
   },

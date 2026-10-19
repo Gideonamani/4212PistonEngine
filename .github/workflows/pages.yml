@@ -174,9 +174,8 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+      # Node is needed to unpack the meshopt-packed R10 file for the audit (scripts/decode_model.mjs).
       - uses: ./.github/actions/prepare
-        with:
-          node: 'false'
       - name: Install the interference-audit dependencies
         run: python3 -m pip install -r scripts/requirements-audit.txt
       - name: Self-test the interference audit on gear trains that mesh and gear trains that do not
@@ -191,9 +190,12 @@ jobs:
           python3 scripts/audit_assembly_interference.py web/oil-pump.glb.gz --policy cad-studies/oil-pump/interference-policy.json
           python3 scripts/audit_assembly_interference.py web/wright-1903-reconstruction.glb.gz --contract web/wright-1903-reconstruction-contract.json --policy cad-studies/wright-1903/revision-2/interference-policy.json
           python3 scripts/audit_assembly_interference.py web/langley-manly-balzer-1903.glb.gz --contract web/langley-manly-balzer-1903-contract.json --policy cad-studies/langley-manly-balzer-1903/interference-policy.json
-          # GTSIO-520-H R10 ships with no baked clips (the viewer computes its cycle), so CI audits the assembled pose only; the sampled cycle and
-          # exploded poses (scripts/audit_procedural_poses.py) take about an hour and are recorded at release in cad-studies/gtsio520-h-static/shipped-r10.
-          python3 scripts/audit_assembly_interference.py web/gtsio520-r10-static.glb.gz --policy cad-studies/gtsio520-h-static/interference-policy.json --rest-only
+          # GTSIO-520-H R10 ships with no baked clips (the viewer computes its cycle) and is meshopt-packed, so CI unpacks it and audits the assembled
+          # pose only; the sampled cycle and exploded poses (scripts/audit_procedural_poses.py) take about 45 minutes and are recorded at release in
+          # cad-studies/gtsio520-h-static/shipped-r10.
+          mkdir -p build
+          node scripts/decode_model.mjs web/gtsio520-r10-static-opt1.glb.gz build/gtsio520-r10-static-opt1.plain.glb
+          python3 scripts/audit_assembly_interference.py build/gtsio520-r10-static-opt1.plain.glb --policy cad-studies/gtsio520-h-static/interference-policy.json --rest-only
 
   # The browser tests, run on projects dynamically determined by the scope job (representative phone + tablet on PRs,
   # full matrix on manual runs or when tagged with [full-matrix]).

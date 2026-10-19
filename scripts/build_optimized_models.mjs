@@ -29,11 +29,11 @@ export const MODELS = [
 const sha256 = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 const unpack = (bytes) => (bytes[0] === 0x1f && bytes[1] === 0x8b ? zlib.gunzipSync(bytes) : bytes);
 
-export async function buildModel(model, web) {
+export async function buildModel(model, web, options = {}) {
   const sourceFile = path.join(web, model.source);
   const sourceTransfer = fs.readFileSync(sourceFile);
   const sourceDecoded = unpack(sourceTransfer);
-  const { glb, gzip, report } = await optimizeModel(new Uint8Array(sourceDecoded));
+  const { glb, gzip, report } = await optimizeModel(new Uint8Array(sourceDecoded), options);
   fs.writeFileSync(path.join(web, model.output), gzip);
   if (model.fallback) fs.writeFileSync(path.join(web, model.fallback), glb);
   return {

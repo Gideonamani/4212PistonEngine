@@ -66,8 +66,11 @@ test('GTSIO-520-H R10: the sampled-pose audit describes the published file and f
   const audit = read(`${dir}/interference-audit.json`);
   const policy = read(`${dir}/interference-policy.json`);
   const contract = read('web/gtsio520-r10-contract.json');
-  const published = sha256('web/gtsio520-r10-static.glb.gz');
-  assert.equal(audit.asset_sha256, published, 'the model changed: rerun node scripts/sample_animated_study_poses.mjs and python scripts/audit_procedural_poses.py');
+  // The published file is the one the registry points at. When it is meshopt-packed the auditor reads its plain form (scripts/decode_model.mjs) and the
+  // record names the published file's hash separately as shipped_asset.decoded_sha256.
+  const registry = read('src/data/models.json').find((model) => model.id === 'gtsio520-h-r10-mechanism-study');
+  const published = sha256(`web/${registry.sources[0].localUrl.replace(/^\.\//, '')}`);
+  assert.equal(audit.shipped_asset?.decoded_sha256 ?? audit.asset_sha256, published, 'the model changed: rerun node scripts/sample_animated_study_poses.mjs and python scripts/audit_procedural_poses.py');
   assert.equal(contract.asset_sha256, published);
   assert.equal(contract.release_allowed, false, 'this audit does not accept the model for release');
   assert.match(contract.scope, /draft/i);

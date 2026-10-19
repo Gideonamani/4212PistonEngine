@@ -2,8 +2,8 @@
   "schema": "4212.animated-study/v1",
   "id": "gtsio520-r10-private-review",
   "scope": "Private illustrative review draft. Explosion is a component layout, not an approved maintenance removal sequence; transit and swept clearances are unaccepted. R10 whole-engine native/STEP validation is incomplete. Cycle uses the frozen slider-crank and inferred harmonic cam law; hydraulic behaviour, damper dynamics and accessory operation are excluded. No manufacturer timing or simulation claim.",
-  "asset_file": "gtsio520-r10-static.glb",
-  "asset_sha256": "80991fa8b0d5d4312aa5aabe549dd8a094afb9bad41d18cdc6b7921c4fe1ab9e",
+  "asset_file": "gtsio520-r10-static-opt1.glb",
+  "asset_sha256": "1dcf07ccd0f2951780dd5ae76ad8f1b5e2707616309067f1645f15f892d51abc",
   "complete_engine_acceptance": false,
   "release_allowed": false,
   "display": {
@@ -27381,8 +27381,8 @@
     "Core cycle - illustrative": 328
   },
   "blender_version": "5.0.1",
-  "bytes": 51199204,
-  "gzip_bytes": 25327875,
+  "bytes": 21115472,
+  "gzip_bytes": 11998800,
   "pending": [
     "Complete current saved/native/direct agreement, real edit/reopening and STEP",
     "Every current saved-native bounding neighbor with hash-bound reuse counts",
