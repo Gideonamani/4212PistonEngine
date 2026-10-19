@@ -95,6 +95,23 @@ def core_view_parts(contract):
     return None
 
 
+def cycle_clips(poses_data, overlapping_pairs, contract=None):
+    """The `clips` entry the baked-clip audit writes, for the sampled core cycle: the parts that moved at any sampled pose, and how many poses were audited.
+
+    Other tools (cad_pipeline/fidelity.py) read this to know that a swept audit of the cycle exists for the file; it says nothing about whether it was clean."""
+    cycle = [p for p in poses_data['poses'] if p['kind'] == 'cycle']
+    if not cycle:
+        return {}
+    moved = set()
+    for pose in cycle:
+        moved.update(pose['world'])
+    motion = next((m for m in (contract or {}).get('motions', []) if (m.get('procedural') or {}).get('type') == 'gtsio-core-cycle'), None)
+    name = f"{(motion or {}).get('id', 'Core cycle')} (sampled poses)"
+    angles = sorted(p['crank_deg'] for p in cycle if 'crank_deg' in p)
+    return {name: dict(moving_parts=len(moved), poses=len(cycle), new_overlaps=overlapping_pairs,
+                       crank_degrees_sampled=dict(first=angles[0], last=angles[-1]) if angles else None)}
+
+
 def audit_poses(glb_path, poses_data, policy=None, log=print, contract=None, poses_file_sha256=None, shipped=None):
     started = time.time()
     core_view = core_view_parts(contract)
@@ -186,7 +203,7 @@ def audit_poses(glb_path, poses_data, policy=None, log=print, contract=None, pos
         sampler=poses_data.get('sampler'), contract=poses_data.get('contract'), poses_file_sha256=poses_file_sha256,
         three_js_and_audit_rest_pose_max_matrix_difference=reading_error,
         rest_neighbouring_pairs=rest_pairs, rest_touching_only=rest_touching,
-        sampled=by_kind, pose_summaries=summaries,
+        sampled=by_kind, pose_summaries=summaries, clips=cycle_clips(poses_data, len(findings['gating']), contract),
         largest_non_overlapping_contact=touching_stats,
         unverified_parts=unverified,
         overlaps_total=len(findings['gating']),
@@ -251,6 +268,7 @@ def main():
         report.pop('contract_sha256', None)
         if args.stamp_poses:
             report['poses_file_sha256'] = hashlib.sha256(Path(args.stamp_poses).read_bytes()).hexdigest()
+            report['clips'] = cycle_clips(json.loads(Path(args.stamp_poses).read_text(encoding='utf8')), len(report['overlap_findings']), contract)
         report = classify(report, policy)
     else:
         if not (args.glb and args.poses):

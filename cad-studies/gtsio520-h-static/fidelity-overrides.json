@@ -1,0 +1,88 @@
+{
+ "_note": "Manual file for the R10 mechanism study (contract gtsio520-r10-private-review). class_overrides add to or change the derived classes in fidelity-classes.json; every entry needs a reason, and a part bound to a gate (it moves, meshes or is in the interference ledger) cannot be lowered. coverage_waivers accept a missing gate for ONE asset only (its SHA-256): when the asset changes the waiver no longer applies, so the gap must be closed by an audit or waived again on purpose. lesson_focus is the draft judgement (operate, identify or concept) that the lesson map uses; the instructor has not reviewed it. Guide: docs/fidelity-classes.md.",
+ "class_overrides": [],
+ "coverage_waivers": [
+  {
+   "gate": "gear",
+   "parts": "all",
+   "asset_sha256": "80991fa8b0d5d4312aa5aabe549dd8a094afb9bad41d18cdc6b7921c4fe1ab9e",
+   "reason": "The declared meshes (two in the timing and reduction train, seven in the accessory train) have no measured minimum clearance: the audit only measures meshes through a baked operating clip.",
+   "clears_when": "an interference-audit.json for this asset lists every declared mesh in gear_meshes with ok true",
+   "review": "2026-10-19"
+  }
+ ],
+ "lesson_focus": {
+  "1": {
+   "focus": "concept",
+   "note": "History of mechanical engines: no R10 part is used."
+  },
+  "2": {
+   "focus": "concept",
+   "note": "History of aircraft engines: uses the Wright engine, not R10."
+  },
+  "3": {
+   "focus": "identify",
+   "note": "Terminologies: learners name cylinder, piston, crankshaft and dead centres on the model."
+  },
+  "4": {
+   "focus": "operate",
+   "note": "Thermodynamic cycles: learners relate the four strokes to crank and piston movement."
+  },
+  "5": {
+   "focus": "identify",
+   "note": "Classification: recognising cylinder arrangement from the model."
+  },
+  "6": {
+   "focus": "identify",
+   "note": "Cooling methods: locating fins, baffles and the air path."
+  },
+  "7": {
+   "focus": "identify",
+   "note": "Parts and construction: naming and locating the major structural and power parts."
+  },
+  "8": {
+   "focus": "operate",
+   "note": "Valve operating: following the motion from camshaft to valve."
+  },
+  "9": {
+   "focus": "operate",
+   "note": "Accessories and drives: tracing power paths and predicting rotation."
+  },
+  "10": {
+   "focus": "operate",
+   "note": "Power generation: following the push from burning gas to the propeller shaft."
+  },
+  "11": {
+   "focus": "identify",
+   "note": "Induction and exhaust: following the air and gas routes through the engine."
+  },
+  "12": {
+   "focus": "concept",
+   "note": "Performance calculations: arithmetic on the engine's figures."
+  },
+  "13": {
+   "focus": "concept",
+   "note": "Factors affecting power: explained from air and ignition, not from geometry."
+  },
+  "14": {
+   "focus": "concept",
+   "note": "Engine requirements: a summary of what an engine must deliver."
+  },
+  "15": {
+   "focus": "concept",
+   "note": "Operation malfunctions: causes and signs, named against parts but not simulated."
+  },
+  "16": {
+   "focus": "identify",
+   "note": "Maintenance and servicing: finding where a cylinder leaks and which parts an overhaul touches."
+  },
+  "17": {
+   "focus": "concept",
+   "note": "Light sport aircraft: regulation and selection, not geometry."
+  },
+  "18": {
+   "focus": "identify",
+   "note": "Practicals: observe, name and describe real parts on the lab engines."
+  }
+ }
+}

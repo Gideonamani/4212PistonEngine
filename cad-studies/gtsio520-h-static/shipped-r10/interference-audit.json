@@ -6989,5 +6989,16 @@
   "new_violations": [],
   "clean": false,
   "passed": true,
-  "poses_file_sha256": "9457400bb3accd2b7a772fa9229401e4ff16653d4824ad068170a6075d01d587"
+  "poses_file_sha256": "9457400bb3accd2b7a772fa9229401e4ff16653d4824ad068170a6075d01d587",
+  "clips": {
+    "Core cycle - illustrative (sampled poses)": {
+      "moving_parts": 328,
+      "poses": 144,
+      "new_overlaps": 159,
+      "crank_degrees_sampled": {
+        "first": 0,
+        "last": 715
+      }
+    }
+  }
 }

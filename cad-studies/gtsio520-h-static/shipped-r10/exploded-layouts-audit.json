@@ -3001,5 +3001,6 @@
   "new_violations": [],
   "clean": true,
   "passed": true,
-  "poses_file_sha256": "7847508d0a3dcf165c71feb4a857a95ee8e3e208489a4e1a0046232e9345793b"
+  "poses_file_sha256": "7847508d0a3dcf165c71feb4a857a95ee8e3e208489a4e1a0046232e9345793b",
+  "clips": {}
 }
