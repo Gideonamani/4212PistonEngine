@@ -11,6 +11,7 @@ import re
 from cad_pipeline.gtsio_layout import StaticEngineLayout
 from cad_pipeline import gtsio_valvetrain_pose as vp
 from cad_pipeline import gtsio_valve_layout as vl
+import accessory_gears as gears  # scripts/ is on sys.path (gtsio_valvetrain_pose adds it); the declared gear train
 
 LAYOUT = StaticEngineLayout(complete_cylinders=True)
 EXPLODE = 'Explode - illustrative layout'
@@ -28,6 +29,56 @@ SCOPE = ('Private illustrative review draft. Explosion is a component layout, no
          'transit and swept clearances are unaccepted. R10 whole-engine native/STEP validation is incomplete. '
          'Cycle uses the frozen slider-crank and inferred harmonic cam law; hydraulic behaviour, damper dynamics and '
          'accessory operation are excluded. No manufacturer timing or simulation claim.')
+
+
+# Parts the Assembled view used to hold `fixed:` although they are fitted to a shaft or gear that turns (docs/r10-cycle-overlap-root-causes.md).
+# The Core view keeps hiding them (cycle_visible below), exactly as before. Every assignment was checked by the exact pose audit; the declared
+# gear train (scripts/accessory_gears.py) supplies each spinning body's centre and rate, nothing is invented here.
+CRANK_FITTED_GROUPS = ('dampers',)
+CRANK_FITTED = ('QuillShaft', 'ReductionPinion', 'QuillPlate', 'QuillPlateScrew1', 'QuillPlateScrew2',
+                'AlternatorFaceGear', 'AlternatorFaceTabLock1', 'AlternatorFaceTabLock2', *[f'AlternatorFaceScrew{n}' for n in range(1, 5)])
+CAM_FITTED = ('GovernorCamKey', 'GovernorDriveBevel', 'OilPumpDriver', 'ScavengePumpDriver', 'ScavengeDriveKey', 'TachDriverBevel', 'TachDriverPin')
+# Gears that turn about a Z-parallel axis, with what is fitted to them (screws, couplings): declared gear -> fitted part ids.
+SPINNING_GEARS = {
+    'IdlerGear': ('IdlerGear', 'IdlerClusterScrew1', 'IdlerClusterScrew2', 'IdlerClusterScrew3', 'IdlerClusterScrew4'),
+    'AccessoryIdlerGear': ('AccessoryIdlerGear',),
+    'LeftMagnetoGear': ('LeftMagnetoGear', 'LeftMagnetoCoupling'),
+    'RightMagnetoGear': ('RightMagnetoGear', 'RightMagnetoCoupling'),
+    'LeftAccessoryGear': ('LeftAccessoryGear',),
+    'RightAccessoryGear': ('RightAccessoryGear',),
+    'StarterShaftGear': ('StarterShaftGear',),
+    'FuelPumpDriveGear': ('FuelPumpDriveGear', 'FuelDriveCoupling'),
+    'OilPumpDriven': ('OilPumpDriven',),
+    'ScavengePumpDriven': ('ScavengePumpDriven',),
+    'PropellerShaft': ('PropellerShaft',),
+}
+
+
+def spin_body(point, axis, rate):
+    """`spin:px,py,pz,ax,ay,az,rate` in CAD millimetres: the part turns about the axis through p by rate x the crank angle. Mirrors the viewer's evaluator."""
+    return 'spin:' + ','.join(f'{v:.6f}' for v in (*point, *axis)) + f',{rate:.9f}'
+
+
+@lru_cache(maxsize=None)
+def spinning_bodies():
+    """{part id: spin body} from the declared gear train (accessory_gears.py): Z-axis gears, the governor and tach bevels' driven side, the alternator pinion."""
+    declared = {**gears.solve_gtsio_accessory_drive(), **gears.gtsio_h_accessory_development()}
+    out = {}
+    for gear, fitted in SPINNING_GEARS.items():
+        centre, rate = declared[gear]['centre'], declared[gear]['rate']
+        for pid in fitted:
+            out[pid] = spin_body((centre[0], centre[1], 0.), (0., 0., 1.), rate)
+    governor = gears.gtsio_governor_development()
+    for pid in ('GovernorDrivenShaftGear',):
+        out[pid] = spin_body(governor['apex'], governor['driven']['axis'], governor['driven']['rate'])
+    tach = gears.gtsio_tach_development()
+    for pid in ('TachDrivenBevel', 'TachDrivenPin', 'TachOutputShaft'):
+        out[pid] = spin_body(tach['apex'], tach['driven']['axis'], tach['driven']['rate'])
+    alternator = gears.gtsio_alternator_installation_development()
+    for pid in ('AlternatorDrivenGear', 'AlternatorGearBushing', 'AlternatorKeyedHub', 'AlternatorCouplingSpring', 'AlternatorRotorShaft',
+                'AlternatorWoodruffKey', 'AlternatorThrustWasher', 'AlternatorSlottedNut', 'AlternatorCotter'):
+        out[pid] = spin_body(alternator['pinion_start'], alternator['pinion_axis'], alternator['pinion_rate'])
+    return out
 
 
 def eye():
@@ -91,7 +142,14 @@ class ReviewMotion:
             if suffix in ['Rocker','RockerBush']:return 'rocker:'+name+str(n)
             if suffix=='Pushrod': return 'pushrod:'+name+str(n)
             if suffix in ['InnerSpring','OuterSpring']:return 'spring:'+name+str(n)
-        return 'fixed:'+pid
+        fitted=self.fitted_body(pid)
+        return fitted or 'fixed:'+pid
+
+    def fitted_body(self,pid):
+        """The moving body of a part the contract used to hold fixed (see CRANK_FITTED / CAM_FITTED / SPINNING_GEARS), or None."""
+        if pid in CRANK_FITTED or self.parts.get(pid,{}).get('group') in CRANK_FITTED_GROUPS:return 'crank'
+        if pid in CAM_FITTED:return 'cam'
+        return spinning_bodies().get(pid)
 
     def origin_basis(self,pid):
         body=self.body(pid)
@@ -114,6 +172,9 @@ class ReviewMotion:
         body=self.body(pid)
         if body=='crank':return around((0,0,1),math.radians(theta),(0,0,0))
         if body=='cam':return around((0,0,1),math.radians(theta)*vp.gtsio_cam_rate(),self.origin_basis(pid)[0])
+        if body.startswith('spin:'):
+            x=[float(v) for v in body[5:].split(',')]
+            return around(x[3:6],math.radians(theta)*x[6],x[0:3])
         if body.startswith('rod'):
             n=int(body[-1]);a,b=LAYOUT.pose(n),LAYOUT.pose(n,theta)
             return mul(mul(trans(b['pin']),rotation((0,0,1),math.radians(b['rod_roll']-a['rod_roll']))),trans(vp.scale(a['pin'],-1)))
@@ -143,7 +204,8 @@ class ReviewMotion:
     def cycle_visible(self,pid):
         # Hide unresolved connected mechanisms, including counterweights whose
         # articulation/dynamics have not been solved. No motion is invented.
-        return not self.body(pid).startswith('fixed:') or self.parts[pid]['group'] in ['main_bearings'] or bool(re.match(r'(Intake|Exhaust)(Seat|Guide|SpringFoot|LowerInnerRetainer|RockerShaft)[1-6]$',pid))
+        # Parts that only turn in the Assembled view (fitted_body) stay hidden in the Core view, as before.
+        return (not self.body(pid).startswith('fixed:') and not self.fitted_body(pid)) or self.parts[pid]['group'] in ['main_bearings'] or bool(re.match(r'(Intake|Exhaust)(Seat|Guide|SpringFoot|LowerInnerRetainer|RockerShaft)[1-6]$',pid))
 
     def explosion(self,pid):
         part=self.parts[pid];group=part['group'];bounds=part['bounds_mm']

@@ -243,6 +243,13 @@ export function createGtsioBodyEvaluator(parameters = {}) {
 
   return function evaluateBodyGltfMatrix(body, theta) {
     if (!body || body.startsWith('fixed:')) return new THREE.Matrix4();
+    if (body.startsWith('spin:')) {
+      // `spin:px,py,pz,ax,ay,az,rate` (CAD millimetres): turns about the axis through p by rate x the crank angle. The Python twin is
+      // ReviewMotion.matrix in cad_pipeline/gtsio_review_motion.py; the gear centres and rates come from scripts/accessory_gears.py.
+      const f = body.slice(5).split(',').map(Number);
+      if (f.length !== 7 || f.some((v) => !Number.isFinite(v)) || Math.hypot(f[3], f[4], f[5]) === 0) return new THREE.Matrix4();
+      return cadMmMatrixToGltfThree(around4(unit3([f[3], f[4], f[5]]), ((theta * Math.PI) / 180) * f[6], [f[0], f[1], f[2]]));
+    }
     if (body === 'crank') {
       return cadMmMatrixToGltfThree(around4([0, 0, 1], (theta * Math.PI) / 180, [0, 0, 0]));
     }
