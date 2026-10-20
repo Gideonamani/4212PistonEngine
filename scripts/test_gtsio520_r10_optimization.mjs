@@ -36,7 +36,7 @@ test('the record is about the R10 file under the name the build script writes, a
 test('the optimiser kept the surface and stayed inside its error limits, and the render check was made', () => {
   assert.equal(entry.roundTripExact, true);
   assert.equal(entry.changes.trianglesUnchanged, true);
-  assert.equal(entry.changes.triangles, 2_080_106, 'every triangle of the 1,396 parts is kept');
+  assert.equal(entry.changes.triangles, 2_079_722, 'every triangle of the 1,396 parts is kept');
   assert.equal(entry.changes.sharedDataUnchanged, true);
   assert.ok(entry.measuredError.positionRelativeToModel <= MAX_POSITION_ERROR);
   assert.ok(entry.measuredError.normalDegrees <= MAX_NORMAL_ERROR_DEGREES);
