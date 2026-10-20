@@ -71,6 +71,15 @@ def build(layout=k):
         'ring_gap':(.98,'Approximate ring gap envelope'), 'ring_clearance':(.10,'Selected axial side clearance for static model'),
         'boss_radius':(23.,'Estimated integral pin boss radius'), 'boss_inner':(32.,'Estimated inner boss axial location'),
         'boss_length':(30.,'Estimated integral pin boss axial width'), 'relief_radius':(18.,'Estimated cylindrical skirt relief'),
+        # Neighbour-bay skirt relief (20 Oct 2026). ILLUSTRATIVE MODELLING DECISION: no source describes the real piston skirt. The two opposed pistons of a bay reach
+        # bottom dead centre together, and the neighbour rod's big-end hardware, the crank pin and the crank counterweights then sweep under this piston's skirt.
+        # Sizes are the measured swept overlaps (docs/r10-cycle-overlap-root-causes.md) plus about 1.5 mm clearance.
+        'piston_relief_height':(22.,'Illustrative relief: axial height from the skirt bottom, clears the neighbour big-end hardware (20.3 mm swept) and keeps 3 mm above the pin boss and scraper groove'),
+        'piston_relief_depth':(27.,'Illustrative relief: depth from the flank facing the neighbouring bay, clears the neighbour big-end hardware (25.4 mm swept)'),
+        'piston_relief_half_width':(51.5,'Illustrative relief: half width across the thrust faces for the big-end hardware (50.1 mm swept)'),
+        'piston_relief_weight_height':(9.4,'Illustrative relief: axial height of the shallow step that clears the crank counterweights (7.9 mm swept)'),
+        'piston_relief_weight_depth':(51.,'Illustrative relief: depth of the counterweight step from the same flank (counterweights reach 49.4 mm in from it)'),
+        'piston_relief_weight_half_width':(58.,'Illustrative relief: half width of the counterweight step (56.4 mm swept)'),
         'ring_inner_clearance':(.10,'Selected radial ring-root clearance')}
     for name,(v,why) in estimates.items():par(name,v,why)
     def add(pid,label,group,fs,material='steel',frame=None,locator='A-4-20 PDF38'):
@@ -139,6 +148,10 @@ def build(layout=k):
         for x in (-33,29):piston.append(box(4.,18.,112.,[x,9.,-56.],label='Undercrown rib outside little-end eye'))
         piston.append(cylinder('pin_bore/2','pin_length+4',[0,0,'-pin_length/2-2'],op='cut',label='Floating pin bore'))
         for z in (-72.,72.):piston.append(cylinder('relief_radius',155.,[-77.5,-51.,z],(1,0,0),op='cut',label='Cylindrical skirt relief'))
+        # Stepped relief on the flank that faces the neighbouring bay (odd pistons: forward, even: aft). Two boxes, one parameter set; the lowest ring groove and the pin boss stay.
+        for height,depth,half,step in (('piston_relief_height','piston_relief_depth','piston_relief_half_width','rod hardware'),('piston_relief_weight_height','piston_relief_weight_depth','piston_relief_weight_half_width','counterweights')):
+            z0=f'piston_skirt/2-{depth}' if n%2 else '-piston_skirt/2-1'
+            piston.append(box(f'2*{half}',f'{height}+1',f'{depth}+1',[f'-{half}','skirt_bottom-1',z0],op='cut',label='Neighbour-bay skirt relief for '+step+' (illustrative modelling decision, no source for the real piston)'))
         ring_data=k.RING_DATA
         for name,y,width,gap_sign in ring_data:
             piston.append(tube(72.,'groove_root',width+.10,[0,y-width/2-.05,0],(0,1,0),op='cut',label=name+' groove'))
