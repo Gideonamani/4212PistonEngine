@@ -31,5 +31,5 @@ cad-studies/*/geometry.json
 preview-*.png
 lesson-step-*.svg
 
-# Catalogue data that stays out of Git (see docs/gtsio-part-details.md)
+# Catalogue data that stays out of Git (see docs/part-store.md)
 data/gtsio_part_authoring/private/

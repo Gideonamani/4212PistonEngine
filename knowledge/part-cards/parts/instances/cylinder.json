@@ -1,0 +1,427 @@
+{
+ "schema": "part-instances/1",
+ "model": "cylinder",
+ "idsFrom": {
+  "file": "web/components.json",
+  "list": "parts",
+  "key": "cad_stable_id"
+ },
+ "projection": {
+  "file": "web/cylinder-parts.json",
+  "schema": "cylinder-parts/1",
+  "registryUrl": "./cylinder-parts.json"
+ },
+ "rules": [],
+ "parts": [
+  {
+   "id": "CylinderBarrel",
+   "definition": "cylinder-barrel"
+  },
+  {
+   "id": "CylinderHead",
+   "definition": "cylinder-head"
+  },
+  {
+   "id": "CrankThrow",
+   "definition": "crankshaft-throw"
+  },
+  {
+   "id": "ConnectingRodBody",
+   "definition": "connecting-rod",
+   "claims": {
+    "madeOf": {
+     "text": "forged steel alloy",
+     "status": "specified",
+     "source": "Lesson 7, Parts and Construction: connecting rods are forged steel alloy"
+    }
+   },
+   "review": "draft"
+  },
+  {
+   "id": "ConnectingRodCap",
+   "definition": "connecting-rod-cap",
+   "claims": {
+    "madeOf": {
+     "text": "forged steel alloy",
+     "status": "inferred",
+     "basis": "made with the rod it closes, which is forged steel alloy (Lesson 7, Parts and Construction); no source names the cap alone"
+    }
+   },
+   "review": "draft"
+  },
+  {
+   "id": "BigEndBearing",
+   "definition": "connecting-rod-bearing",
+   "instance": "rod half"
+  },
+  {
+   "id": "CapBearingHalf",
+   "definition": "connecting-rod-bearing",
+   "instance": "cap half"
+  },
+  {
+   "id": "RodBoltMinus1",
+   "definition": "connecting-rod-bolt",
+   "instance": "A"
+  },
+  {
+   "id": "RodBolt1",
+   "definition": "connecting-rod-bolt",
+   "instance": "B"
+  },
+  {
+   "id": "RodNutMinus1",
+   "definition": "connecting-rod-nut",
+   "instance": "A"
+  },
+  {
+   "id": "RodNut1",
+   "definition": "connecting-rod-nut",
+   "instance": "B"
+  },
+  {
+   "id": "SmallEndBush",
+   "definition": "piston-pin-bushing"
+  },
+  {
+   "id": "FloatingPin",
+   "definition": "piston-pin"
+  },
+  {
+   "id": "PinPlugLeft",
+   "definition": "piston-pin-plug",
+   "instance": "left"
+  },
+  {
+   "id": "PinPlugRight",
+   "definition": "piston-pin-plug",
+   "instance": "right"
+  },
+  {
+   "id": "PistonBody",
+   "definition": "piston"
+  },
+  {
+   "id": "PistonRing1",
+   "definition": "compression-ring",
+   "instance": "top groove",
+   "claims": {
+    "madeOf": {
+     "text": "gray cast iron",
+     "status": "derived",
+     "source": "Lesson 7, Parts and Construction: most rings are gray cast iron"
+    }
+   },
+   "review": "draft"
+  },
+  {
+   "id": "PistonRing2",
+   "definition": "compression-ring",
+   "instance": "second groove",
+   "claims": {
+    "madeOf": {
+     "text": "gray cast iron",
+     "status": "derived",
+     "source": "Lesson 7, Parts and Construction: most rings are gray cast iron"
+    }
+   },
+   "review": "draft"
+  },
+  {
+   "id": "PistonRing3",
+   "definition": "oil-ring",
+   "claims": {
+    "madeOf": {
+     "text": "gray cast iron",
+     "status": "derived",
+     "source": "Lesson 7, Parts and Construction: most rings are gray cast iron"
+    }
+   },
+   "review": "draft"
+  },
+  {
+   "id": "PistonRing4",
+   "definition": "scraper-ring",
+   "claims": {
+    "madeOf": {
+     "text": "gray cast iron",
+     "status": "derived",
+     "source": "Lesson 7, Parts and Construction: most rings are gray cast iron"
+    }
+   },
+   "review": "draft"
+  },
+  {
+   "id": "IntakeSeatInsert",
+   "definition": "valve-seat-insert",
+   "instance": "intake"
+  },
+  {
+   "id": "IntakeValveGuide",
+   "definition": "valve-guide",
+   "instance": "intake",
+   "claims": {
+    "madeOf": {
+     "text": "bronze",
+     "status": "inferred",
+     "basis": "the usual guide metal; no manual or lesson names it"
+    }
+   },
+   "review": "draft"
+  },
+  {
+   "id": "IntakeInnerSpring",
+   "definition": "valve-spring",
+   "instance": "intake · inner"
+  },
+  {
+   "id": "IntakeOuterSpring",
+   "definition": "valve-spring",
+   "instance": "intake · outer"
+  },
+  {
+   "id": "IntakeValveKeeper",
+   "definition": "valve-spring-retainer-key",
+   "instance": "intake"
+  },
+  {
+   "id": "IntakeRockerShaft",
+   "definition": "valve-rocker-shaft",
+   "instance": "intake"
+  },
+  {
+   "id": "IntakeRockerArm",
+   "definition": "valve-rocker",
+   "instance": "intake"
+  },
+  {
+   "id": "IntakeRockerHousing",
+   "definition": "rocker-housing",
+   "instance": "intake"
+  },
+  {
+   "id": "IntakeRockerGasket",
+   "definition": "rocker-cover-gasket",
+   "instance": "intake"
+  },
+  {
+   "id": "IntakeRockerCover",
+   "definition": "rocker-cover",
+   "instance": "intake"
+  },
+  {
+   "id": "IntakePushrod",
+   "definition": "push-rod",
+   "instance": "intake"
+  },
+  {
+   "id": "IntakePushrodHousing",
+   "definition": "push-rod-housing",
+   "instance": "intake"
+  },
+  {
+   "id": "IntakeLowerPushrodSeal",
+   "definition": "push-rod-housing-packing",
+   "instance": "intake · crankcase end"
+  },
+  {
+   "id": "IntakeUpperPushrodSeal",
+   "definition": "push-rod-housing-packing",
+   "instance": "intake · cylinder end"
+  },
+  {
+   "id": "IntakeHydraulicLifterBody",
+   "definition": "hydraulic-valve-lifter-body",
+   "instance": "intake"
+  },
+  {
+   "id": "ExhaustSeatInsert",
+   "definition": "valve-seat-insert",
+   "instance": "exhaust"
+  },
+  {
+   "id": "ExhaustValveGuide",
+   "definition": "valve-guide",
+   "instance": "exhaust",
+   "claims": {
+    "madeOf": {
+     "text": "bronze",
+     "status": "inferred",
+     "basis": "the usual guide metal; no manual or lesson names it"
+    }
+   },
+   "review": "draft"
+  },
+  {
+   "id": "ExhaustInnerSpring",
+   "definition": "valve-spring",
+   "instance": "exhaust · inner"
+  },
+  {
+   "id": "ExhaustOuterSpring",
+   "definition": "valve-spring",
+   "instance": "exhaust · outer"
+  },
+  {
+   "id": "ExhaustValveKeeper",
+   "definition": "valve-spring-retainer-key",
+   "instance": "exhaust"
+  },
+  {
+   "id": "ExhaustRockerShaft",
+   "definition": "valve-rocker-shaft",
+   "instance": "exhaust"
+  },
+  {
+   "id": "ExhaustRockerArm",
+   "definition": "valve-rocker",
+   "instance": "exhaust"
+  },
+  {
+   "id": "ExhaustRockerHousing",
+   "definition": "rocker-housing",
+   "instance": "exhaust"
+  },
+  {
+   "id": "ExhaustRockerGasket",
+   "definition": "rocker-cover-gasket",
+   "instance": "exhaust"
+  },
+  {
+   "id": "ExhaustRockerCover",
+   "definition": "rocker-cover",
+   "instance": "exhaust"
+  },
+  {
+   "id": "ExhaustPushrod",
+   "definition": "push-rod",
+   "instance": "exhaust"
+  },
+  {
+   "id": "ExhaustPushrodHousing",
+   "definition": "push-rod-housing",
+   "instance": "exhaust"
+  },
+  {
+   "id": "ExhaustLowerPushrodSeal",
+   "definition": "push-rod-housing-packing",
+   "instance": "exhaust · crankcase end"
+  },
+  {
+   "id": "ExhaustUpperPushrodSeal",
+   "definition": "push-rod-housing-packing",
+   "instance": "exhaust · cylinder end"
+  },
+  {
+   "id": "ExhaustHydraulicLifterBody",
+   "definition": "hydraulic-valve-lifter-body",
+   "instance": "exhaust"
+  },
+  {
+   "id": "IntakeValve",
+   "definition": "intake-valve"
+  },
+  {
+   "id": "ExhaustValve",
+   "definition": "exhaust-valve"
+  },
+  {
+   "id": "IntakeSpringRetainer",
+   "definition": "intake-valve-spring-retainer"
+  },
+  {
+   "id": "ExhaustSpringRetainer",
+   "definition": "exhaust-roto-cap",
+   "claims": {
+    "function": {
+     "text": "Holds the exhaust valve springs and gently turns the valve, which helps stop burning and eroding of the valve and seat.",
+     "status": "derived",
+     "source": "IO-520 maintenance manual (a similar engine), chapter 19, Cylinder Assembly Description: the rotocoil retainer and its controlled rotating action"
+    }
+   },
+   "review": "draft"
+  },
+  {
+   "id": "UpperSparkPlug",
+   "definition": "spark-plug-shell",
+   "instance": "upper",
+   "claims": {
+    "madeOf": {
+     "text": "steel",
+     "status": "inferred",
+     "basis": "the usual construction of a spark plug; no manual or lesson names the metal"
+    }
+   },
+   "review": "draft"
+  },
+  {
+   "id": "UpperSparkInsulator",
+   "definition": "spark-plug-insulator",
+   "instance": "upper",
+   "claims": {
+    "madeOf": {
+     "text": "ceramic",
+     "status": "derived",
+     "source": "Lesson 13, Factors Affecting Power: the ceramic nose of a spark plug"
+    }
+   },
+   "review": "draft"
+  },
+  {
+   "id": "UpperSparkTerminal",
+   "definition": "spark-plug-terminal",
+   "instance": "upper",
+   "claims": {
+    "madeOf": {
+     "text": "steel",
+     "status": "inferred",
+     "basis": "the usual construction of a spark plug; no manual or lesson names the metal"
+    }
+   },
+   "review": "draft"
+  },
+  {
+   "id": "LowerSparkPlug",
+   "definition": "spark-plug-shell",
+   "instance": "lower",
+   "claims": {
+    "madeOf": {
+     "text": "steel",
+     "status": "inferred",
+     "basis": "the usual construction of a spark plug; no manual or lesson names the metal"
+    }
+   },
+   "review": "draft"
+  },
+  {
+   "id": "LowerSparkInsulator",
+   "definition": "spark-plug-insulator",
+   "instance": "lower",
+   "claims": {
+    "madeOf": {
+     "text": "ceramic",
+     "status": "derived",
+     "source": "Lesson 13, Factors Affecting Power: the ceramic nose of a spark plug"
+    }
+   },
+   "review": "draft"
+  },
+  {
+   "id": "LowerSparkTerminal",
+   "definition": "spark-plug-terminal",
+   "instance": "lower",
+   "claims": {
+    "madeOf": {
+     "text": "steel",
+     "status": "inferred",
+     "basis": "the usual construction of a spark plug; no manual or lesson names the metal"
+    }
+   },
+   "review": "draft"
+  },
+  {
+   "id": "FuelDischargeNozzle",
+   "definition": "fuel-discharge-nozzle"
+  }
+ ]
+}

@@ -26,7 +26,7 @@ publish), then `AGENTS.md` (storage and validation rules), then the guides here.
 | [motion-profile.md](motion-profile.md) | guide | The shared cylinder motion profile. |
 | [export-pipeline.md](export-pipeline.md) | guide | The repeatable CAD and Blender export package. |
 | [manual-workflow.md](manual-workflow.md) | guide | From a manual to a modelled, animated teaching module. |
-| [gtsio-part-details.md](gtsio-part-details.md) | guide | What a learner reads when they tap a part of the GTSIO-520-H whole engine, how the text is named, sourced and reviewed, and how to change it. |
+| [part-store.md](part-store.md) | guide | The part store: definitions, instances and systems; what a learner reads when they tap a part of the GTSIO-520-H whole engine or the operating cylinder; how the text is named, sourced and reviewed, and how to change it. |
 | [accessories-and-drives.md](accessories-and-drives.md) | guide | The accessories and drives lesson and its model. |
 | [assembly-interference.md](assembly-interference.md) | guide | Parts touch but never overlap: the gear train, the CAD checks and the swept audit that enforce it. |
 | [fidelity-classes.md](fidelity-classes.md) | guide | What is critical and what is cosmetic: the engineering, visual-structure and cosmetic classes, how they are derived from the audit and mass records, and the rule that no engineering part is left without a gate. |

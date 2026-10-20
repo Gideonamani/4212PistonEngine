@@ -1,10 +1,11 @@
 /**
- * Learner-facing part details for the R10 (GTSIO-520-H) Explore card.
+ * Learner-facing part details for the models that have them (the GTSIO-520-H whole engine and the operating cylinder).
  *
- * web/gtsio520-r10-parts.json is built from data/gtsio520-part-definitions.json (see docs/gtsio-part-details.md):
- * one definition per kind of part, plus a table that maps every part id to its definition and to what tells it
- * from the others of its kind ("cylinder 3 · intake"). Only the student fields ship. The catalogue cross-check
- * (part numbers, figure keys) stays in data/ and never reaches the browser.
+ * web/<model>-parts.json is built from the part store (knowledge/part-cards/parts/, see docs/part-store.md): the definitions
+ * the model uses, plus a table that maps every part id to its definition and to what tells it from the others of its kind
+ * ("cylinder 3 · intake"). Where a model words a part differently from its definition, `overrides` carries that wording for
+ * that part only. Only the student fields ship. The catalogue cross-check (figure keys, alignment) stays in the store's
+ * engineering block and never reaches the browser.
  *
  * Every definition is 'draft' until the instructor has reviewed it; the part card says so.
  */
@@ -33,6 +34,9 @@ export type LearnerDefinition = {
   lessons: LessonMention[];
 };
 
+/** What one model says about one part in place of its definition's wording: its own lines, system or review state. */
+export type PartOverride = Partial<Pick<LearnerDefinition, 'function' | 'madeOf' | 'sits' | 'review'>> & { system?: string };
+
 export type LearnerPartsFile = {
   schema: string;
   model: string;
@@ -42,7 +46,12 @@ export type LearnerPartsFile = {
   definitions: Record<string, LearnerDefinition>;
   /** part id -> [definition id, what tells it from the others of its kind] */
   parts: Record<string, [string, string]>;
+  /** part id -> the model's own wording for that part; absent when no part has any */
+  overrides?: Record<string, PartOverride>;
 };
+
+/** Each model's file is named for it: "gtsio520-r10-parts/1", "cylinder-parts/1". */
+const PARTS_SCHEMA = /^[a-z0-9]+(?:-[a-z0-9]+)*-parts\/1$/;
 
 /** What the part card and the Parts list show for one part. */
 export type LearnerPart = {
@@ -73,7 +82,7 @@ export type LearnerPart = {
 export function parseLearnerParts(value: unknown): LearnerPartsFile | undefined {
   const file = value as Partial<LearnerPartsFile> | null;
   if (!file || typeof file !== 'object') return undefined;
-  if (file.schema !== 'gtsio520-r10-parts/1') return undefined;
+  if (typeof file.schema !== 'string' || !PARTS_SCHEMA.test(file.schema)) return undefined;
   if (!file.definitions || typeof file.definitions !== 'object' || !file.parts || typeof file.parts !== 'object') return undefined;
   if (!Array.isArray(file.systems)) return undefined;
   return file as LearnerPartsFile;
@@ -100,7 +109,9 @@ export function learnerPartFor(file: LearnerPartsFile | undefined, partId: strin
   if (!file || !entry || !definition) return undefined;
   const title = definition.title.text;
   const instance = entry[1];
-  const system = file.systems.find((item) => item.id === definition.system);
+  const own = file.overrides?.[partId];
+  const systemId = own?.system ?? definition.system;
+  const system = file.systems.find((item) => item.id === systemId);
   return {
     partId,
     definitionId: entry[0],
@@ -109,12 +120,12 @@ export function learnerPartFor(file: LearnerPartsFile | undefined, partId: strin
     context: definition.context,
     instance,
     label: [title, definition.context, instance].filter(Boolean).join(' · '),
-    review: definition.review,
+    review: own?.review ?? definition.review,
     aliases: definition.aliases,
-    system: { id: definition.system, label: system?.label ?? definition.system },
-    function: definition.function,
-    madeOf: definition.madeOf,
-    sits: definition.sits,
+    system: { id: systemId, label: system?.label ?? systemId },
+    function: own?.function ?? definition.function,
+    madeOf: own?.madeOf ?? definition.madeOf,
+    sits: own?.sits ?? definition.sits,
     worksWith: definition.worksWith,
     lookFor: definition.lookFor,
     catalogue: definition.catalogue,

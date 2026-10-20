@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import type { ModelDefinition } from '../../data/modelRegistry';
 import { createExplodedMotion } from '../core/saved-motions.mjs';
+import { learnerPartFor, learnerSearchText, loadLearnerParts, type LearnerPart } from '../../data/learnerPartDetails';
 import { cylinderPartGroup, groupComponentIds } from '../core/component-groups.mjs';
 import { loadGltf } from '../core/assets';
 import { createSectionController, disposeObject } from '../core/modelUtils';
@@ -39,11 +40,13 @@ const STROKES = ['Intake', 'Compression', 'Power', 'Exhaust'].map((label, index)
 
 export async function createCylinderSession(definition: ModelDefinition, context: AdapterContext): Promise<ViewerSession> {
   const { runtime, signal, onChange, onProgress } = context;
-  const [catalogueResponse, motionResponse, loaded, savedResponse] = await Promise.all([
+  // The part card reads the learner part details (the part store, docs/part-store.md); failing to load them leaves the card with the catalogue's own name and function.
+  const [catalogueResponse, motionResponse, loaded, savedResponse, learner] = await Promise.all([
     fetch(definition.componentCatalogueUrl!, { signal }),
     fetch(definition.motionProfileUrl!, { signal }),
     loadGltf(definition.sources || [], signal, onProgress),
     definition.savedMotionsUrl ? fetch(definition.savedMotionsUrl, { signal }) : undefined,
+    definition.partDetailsUrl ? loadLearnerParts(definition.partDetailsUrl, definition.id, signal) : undefined,
   ]);
   if (!catalogueResponse.ok) throw Error('The cylinder component catalogue is unavailable.');
   if (!motionResponse.ok) throw Error('The cylinder motion profile is unavailable.');
@@ -81,6 +84,8 @@ export async function createCylinderSession(definition: ModelDefinition, context
   }
 
   const catalogueById = new Map<string, any>(catalogue.parts.map((part: any) => [part.cad_stable_id, part]));
+  const detailsById = new Map<string, LearnerPart>();
+  for (const id of catalogueById.keys()) { const details = learnerPartFor(learner, id); if (details) detailsById.set(id, details); }
   const originals = new Map<THREE.Mesh, THREE.Material | THREE.Material[]>();
   const inspection = new Map<THREE.Mesh, THREE.Material>();
   for (const mesh of meshes) {
@@ -159,9 +164,12 @@ export async function createCylinderSession(definition: ModelDefinition, context
     selectedId = id;
     isolated = false;
     const part = catalogueById.get(id);
+    const details = detailsById.get(id);
     snapshot.selectedId = id || undefined;
+    // The Parts list and its summary keep the catalogue's names (lessons and checks refer to them); only the part card speaks from the details.
     snapshot.selectedLabel = part?.display_name;
     snapshot.selectedDescription = part?.function;
+    snapshot.selectedDetails = details;
     snapshot.isolated = false;
     applyAppearance();
     onChange();
@@ -275,6 +283,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
     snapshot.selectedId = undefined;
     snapshot.selectedLabel = undefined;
     snapshot.selectedDescription = undefined;
+    snapshot.selectedDetails = undefined;
     snapshot.isolated = false;
     applyAppearance();
     if (!focusSet.size) { runtime.fit(root); return; }
@@ -295,6 +304,8 @@ export async function createCylinderSession(definition: ModelDefinition, context
     group: cylinderPartGroup(id),
     source: part.function_source_summary,
     evidence: part.geometry_evidence_status,
+    // The other names a learner knows a part by (tappet, rocker arm) find it in the Parts search.
+    searchText: detailsById.has(id) ? learnerSearchText(detailsById.get(id)!) : undefined,
   })).sort((left, right) => left.label.localeCompare(right.label));
   const groups: ModelGroup[] = [
     { id: '', label: 'All groups' },
@@ -394,6 +405,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
           snapshot.selectedId = undefined;
           snapshot.selectedLabel = undefined;
           snapshot.selectedDescription = undefined;
+          snapshot.selectedDetails = undefined;
           snapshot.isolated = false;
           applyAppearance();
           runtime.fit(root);

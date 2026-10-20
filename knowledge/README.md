@@ -6,6 +6,7 @@ What the project knows about building mechanical parts, kept as text in Git so e
 | Path | Holds | Checked by |
 |---|---|---|
 | `part-cards/<family>.json` | One family (piston, connecting rod, valve, cam, gear) with its variants (types) and the instances each study built. This is the data of the component gallery | `python -m cad_pipeline.intent.part_card`, `scripts/test_knowledge_store.py` |
+| `part-cards/parts/` | The part store: `definitions/` (what a kind of part is, with a learner-facing `student` block and a never-shipped `engineering` block), `instances/` (which of a model's part ids is which definition) and `store.json` (the flat systems). Two models read it: the R10 whole engine and the operating cylinder. See `docs/part-store.md` | `python -m cad_pipeline.intent.part_store`, `scripts/test_knowledge_store.py`, `scripts/test_part_store.mjs` |
 | `metrics.csv` | One row per completed study: parts, features, audits, parameter statuses, reuse ratio | `scripts/test_knowledge_store.py` |
 | `retrospectives/` | One note per study, from `TEMPLATE.md`: what went wrong, what to promote | by reading, at the fortnightly review |
 

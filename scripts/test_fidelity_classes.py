@@ -290,7 +290,8 @@ class Studies(unittest.TestCase):
         self.assertTrue(all(l['focus'] in ('operate', 'identify', 'concept') for l in committed['lessons']), 'every lesson has a focus')
 
     def test_the_lesson_map_only_names_real_parts_kinds(self):
-        definitions = {d['id'] for d in json.loads((REPO / 'data/gtsio520-part-definitions.json').read_text(encoding='utf-8'))['definitions']}
+        from cad_pipeline.intent import part_store
+        definitions = {d['id'] for d in part_store.load_store()['definitions']}
         committed = json.loads((REPO / 'data/gtsio520-lesson-fidelity-map.json').read_text(encoding='utf-8'))
         for lesson in committed['lessons']:
             for entry in lesson['needs']:

@@ -1,0 +1,2506 @@
+{
+ "schema": "cylinder-parts/1",
+ "model": "cylinder",
+ "state": "draft",
+ "systems": [
+  {
+   "id": "structure",
+   "label": "Engine Structure",
+   "question": "What holds the engine together?"
+  },
+  {
+   "id": "power",
+   "label": "Power Mechanism",
+   "question": "How does combustion turn the shaft?"
+  },
+  {
+   "id": "gas",
+   "label": "Gas Exchange & Valve Train",
+   "question": "How does mixture get in and exhaust get out?"
+  },
+  {
+   "id": "ignition",
+   "label": "Ignition",
+   "question": "How is combustion started?"
+  },
+  {
+   "id": "lubrication",
+   "label": "Lubrication",
+   "question": "How are the moving parts protected?"
+  },
+  {
+   "id": "output",
+   "label": "Power Output & Transmission",
+   "question": "How does engine power reach the propeller?"
+  },
+  {
+   "id": "accessories",
+   "label": "Accessory Drives",
+   "question": "What does the engine drive besides the propeller?"
+  }
+ ],
+ "statuses": {
+  "specified": "a source states it directly",
+  "derived": "worked out from a source by a stated step",
+  "inferred": "a reasonable basis, not a source: the claim is not stated in any source read",
+  "illustrative": "a prompt for the learner; it claims nothing about the engine"
+ },
+ "definitions": {
+  "cylinder-barrel": {
+   "family": "Cylinder barrel",
+   "review": "draft",
+   "title": {
+    "text": "Cylinder barrel",
+    "status": "derived",
+    "source": "The catalogue lists one 'Cylinder Assembly'; the piece name comes from Lesson 7, Parts and Construction"
+   },
+   "context": "",
+   "aliases": [
+    "cylinder"
+   ],
+   "system": "gas",
+   "function": {
+    "text": "Guides the piston and forms the wall of the combustion chamber.",
+    "status": "derived",
+    "source": "Lesson 7, Parts and Construction; GTSIO-520 overhaul manual, 3-1c"
+   },
+   "madeOf": {
+    "text": "steel",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-1c: steel alloy barrel"
+   },
+   "sits": {
+    "text": "Six in all, three on each side of the crankcase, standing out sideways with a head on each outer end.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 1-7 and 3-1b"
+   },
+   "worksWith": {
+    "ids": [
+     "cylinder-head",
+     "piston",
+     "compression-ring",
+     "cylinder-base-packing",
+     "crankcase"
+    ],
+    "status": "derived",
+    "source": "Lesson 7, Parts and Construction",
+    "titles": [
+     "Cylinder head",
+     "Piston",
+     "Compression ring",
+     "Cylinder base packing",
+     "Crankcase"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the cooling fins on a barrel and the flange at its foot where it meets the crankcase.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Cylinder Assembly",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 7,
+     "title": "Parts and Construction",
+     "mentions": 2
+    },
+    {
+     "lesson": 18,
+     "title": "Practicals",
+     "mentions": 2
+    }
+   ]
+  },
+  "cylinder-head": {
+   "family": "Cylinder head",
+   "review": "draft",
+   "title": {
+    "text": "Cylinder head",
+    "status": "derived",
+    "source": "The catalogue lists one 'Cylinder Assembly'; the piece name comes from Lesson 7, Parts and Construction"
+   },
+   "context": "",
+   "aliases": [
+    "cylinder"
+   ],
+   "system": "gas",
+   "function": {
+    "text": "Closes the outer end of the cylinder and carries the valves, valve seats and spark plugs.",
+    "status": "derived",
+    "source": "Lesson 7, Parts and Construction; GTSIO-520 overhaul manual, 3-1c"
+   },
+   "madeOf": {
+    "text": "aluminium alloy",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-1c"
+   },
+   "sits": {
+    "text": "On the outer end of each barrel, with the intake and exhaust valves and an upper and a lower spark plug.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c"
+   },
+   "worksWith": {
+    "ids": [
+     "cylinder-barrel",
+     "intake-valve",
+     "exhaust-valve",
+     "spark-plug-thread-insert",
+     "valve-rocker"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c",
+    "titles": [
+     "Cylinder barrel",
+     "Intake valve",
+     "Exhaust valve",
+     "Spark plug thread insert",
+     "Valve rocker"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the deep cooling fins, the two covers over the valve gear and the two spark plug holes.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Cylinder Assembly",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 15,
+     "title": "Operation Malfunctions",
+     "mentions": 10
+    },
+    {
+     "lesson": 8,
+     "title": "Valve Operating",
+     "mentions": 6
+    },
+    {
+     "lesson": 7,
+     "title": "Parts and Construction",
+     "mentions": 4
+    },
+    {
+     "lesson": 12,
+     "title": "Performance Calculations",
+     "mentions": 4
+    }
+   ]
+  },
+  "intake-valve": {
+   "family": "Intake valve",
+   "review": "draft",
+   "title": {
+    "text": "Intake valve",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [],
+   "system": "gas",
+   "function": {
+    "text": "Opens to let air and fuel into the cylinder and closes to seal it for compression and combustion.",
+    "status": "derived",
+    "source": "Lesson 8, Valve Operating"
+   },
+   "madeOf": {
+    "text": "steel",
+    "status": "specified",
+    "source": "Lesson 8, Valve Operating: intake valves can be chromic-nickel steel"
+   },
+   "sits": {
+    "text": "In the intake port of each cylinder head, resting on its seat insert when closed.",
+    "status": "derived",
+    "source": "Lesson 8, Valve Operating"
+   },
+   "worksWith": {
+    "ids": [
+     "valve-seat-insert",
+     "valve-guide",
+     "valve-spring",
+     "valve-rocker"
+    ],
+    "status": "derived",
+    "source": "Lesson 8, Valve Operating",
+    "titles": [
+     "Valve seat insert",
+     "Valve guide",
+     "Valve spring",
+     "Valve rocker"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the long stem and the wider head that seals against the seat.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Valve, Intake",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 8,
+     "title": "Valve Operating",
+     "mentions": 22
+    },
+    {
+     "lesson": 18,
+     "title": "Practicals",
+     "mentions": 10
+    },
+    {
+     "lesson": 15,
+     "title": "Operation Malfunctions",
+     "mentions": 8
+    },
+    {
+     "lesson": 4,
+     "title": "Thermodynamic Cycles",
+     "mentions": 4
+    }
+   ]
+  },
+  "exhaust-valve": {
+   "family": "Exhaust valve",
+   "review": "draft",
+   "title": {
+    "text": "Exhaust valve",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [],
+   "system": "gas",
+   "function": {
+    "text": "Opens to let burnt gas out of the cylinder and closes to seal it.",
+    "status": "derived",
+    "source": "Lesson 8, Valve Operating"
+   },
+   "madeOf": {
+    "text": "heat-resistant steel",
+    "status": "derived",
+    "source": "Lesson 8, Valve Operating; GTSIO-520 overhaul manual, 3-1c: faced with a special heat and corrosion-resistant material"
+   },
+   "sits": {
+    "text": "In the exhaust port of each cylinder head, resting on its seat insert when closed.",
+    "status": "derived",
+    "source": "Lesson 8, Valve Operating"
+   },
+   "worksWith": {
+    "ids": [
+     "valve-seat-insert",
+     "valve-guide",
+     "valve-spring",
+     "valve-rocker"
+    ],
+    "status": "derived",
+    "source": "Lesson 8, Valve Operating",
+    "titles": [
+     "Valve seat insert",
+     "Valve guide",
+     "Valve spring",
+     "Valve rocker"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the long stem and the wider head, and compare it with the intake valve.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Valve, Exhaust",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 8,
+     "title": "Valve Operating",
+     "mentions": 20
+    },
+    {
+     "lesson": 18,
+     "title": "Practicals",
+     "mentions": 10
+    },
+    {
+     "lesson": 15,
+     "title": "Operation Malfunctions",
+     "mentions": 5
+    },
+    {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 4
+    }
+   ]
+  },
+  "valve-guide": {
+   "family": "Valve guide",
+   "review": "draft",
+   "title": {
+    "text": "Valve guide",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [],
+   "system": "gas",
+   "function": {
+    "text": "Keeps the valve stem square to its seat as the valve slides open and shut.",
+    "status": "specified",
+    "source": "Lesson 8, Valve Operating"
+   },
+   "madeOf": {
+    "text": "bronze",
+    "status": "inferred",
+    "basis": "the usual guide metal; no manual or lesson names it"
+   },
+   "sits": {
+    "text": "Pressed into the cylinder head around each valve stem.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c: guides are installed in the head"
+   },
+   "worksWith": {
+    "ids": [
+     "intake-valve",
+     "exhaust-valve",
+     "cylinder-head"
+    ],
+    "status": "derived",
+    "source": "Lesson 8, Valve Operating",
+    "titles": [
+     "Intake valve",
+     "Exhaust valve",
+     "Cylinder head"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the short tube the valve stem slides through.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Guide, Valve",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 8,
+     "title": "Valve Operating",
+     "mentions": 3
+    }
+   ]
+  },
+  "valve-seat-insert": {
+   "family": "Valve seat insert",
+   "review": "draft",
+   "title": {
+    "text": "Valve seat insert",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [
+    "valve seat"
+   ],
+   "system": "gas",
+   "function": {
+    "text": "Gives the valve face a hard, replaceable surface to seal against.",
+    "status": "specified",
+    "source": "Lesson 8, Valve Operating"
+   },
+   "madeOf": {
+    "text": "hard, wear-resistant metal",
+    "status": "derived",
+    "source": "Lesson 8, Valve Operating: a hard, durable seat insert"
+   },
+   "sits": {
+    "text": "Pressed into each valve port in the cylinder head, where the valve face closes.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c; Lesson 8, Valve Operating"
+   },
+   "worksWith": {
+    "ids": [
+     "intake-valve",
+     "exhaust-valve",
+     "cylinder-head"
+    ],
+    "status": "derived",
+    "source": "Lesson 8, Valve Operating",
+    "titles": [
+     "Intake valve",
+     "Exhaust valve",
+     "Cylinder head"
+    ]
+   },
+   "lookFor": {
+    "text": "Look into a port for the ring the valve face closes on.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Insert, Intake Valve Seat; Insert, Exhaust Valve Seat",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 8,
+     "title": "Valve Operating",
+     "mentions": 5
+    },
+    {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 2
+    }
+   ]
+  },
+  "valve-spring": {
+   "family": "Valve spring",
+   "review": "draft",
+   "title": {
+    "text": "Valve spring",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [],
+   "system": "gas",
+   "function": {
+    "text": "Closes the valve after the cam lobe passes and holds it shut.",
+    "status": "specified",
+    "source": "Lesson 8, Valve Operating"
+   },
+   "madeOf": {
+    "text": "spring steel",
+    "status": "inferred",
+    "basis": "the usual spring material; the manual does not name it"
+   },
+   "sits": {
+    "text": "Around each valve stem, two springs per valve with the inner spring sitting inside the outer one.",
+    "status": "specified",
+    "source": "Lesson 8, Valve Operating"
+   },
+   "worksWith": {
+    "ids": [
+     "intake-valve",
+     "exhaust-valve",
+     "inner-valve-spring-retainer",
+     "valve-spring-retainer-key"
+    ],
+    "status": "derived",
+    "source": "Lesson 8, Valve Operating",
+    "titles": [
+     "Intake valve",
+     "Exhaust valve",
+     "Inner valve spring retainer",
+     "Valve spring retainer key"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the two springs on one valve, one nested inside the other.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Spring, Valve Inner; Spring, Valve Outer",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 18,
+     "title": "Practicals",
+     "mentions": 12
+    },
+    {
+     "lesson": 8,
+     "title": "Valve Operating",
+     "mentions": 9
+    },
+    {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 3
+    }
+   ]
+  },
+  "intake-valve-spring-retainer": {
+   "family": "Intake valve spring retainer",
+   "review": "draft",
+   "title": {
+    "text": "Intake valve spring retainer",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [],
+   "system": "gas",
+   "function": {
+    "text": "Caps the valve springs at the top and locks onto the valve stem through the split keys.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c"
+   },
+   "madeOf": {
+    "text": "steel",
+    "status": "inferred",
+    "basis": "standard practice; the overhaul manual does not say"
+   },
+   "sits": {
+    "text": "On each intake valve stem just below its tip, over both springs.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, figure A-4-17 callout 25"
+   },
+   "worksWith": {
+    "ids": [
+     "valve-spring",
+     "valve-spring-retainer-key",
+     "intake-valve"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c",
+    "titles": [
+     "Valve spring",
+     "Valve spring retainer key",
+     "Intake valve"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the cap at the top of the springs and the keys that lock it on the stem.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Retainer, Valve Spring Intake",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 8,
+     "title": "Valve Operating",
+     "mentions": 5
+    }
+   ]
+  },
+  "exhaust-roto-cap": {
+   "family": "Exhaust roto cap",
+   "review": "draft",
+   "title": {
+    "text": "Exhaust roto cap",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [
+    "Roto Coil",
+    "valve rotator"
+   ],
+   "system": "gas",
+   "function": {
+    "text": "Holds the exhaust valve springs and gently turns the valve, which helps stop burning and eroding of the valve and seat.",
+    "status": "derived",
+    "source": "IO-520 maintenance manual (a similar engine), chapter 19, Cylinder Assembly Description: the rotocoil retainer and its controlled rotating action"
+   },
+   "madeOf": {
+    "text": "steel",
+    "status": "inferred",
+    "basis": "standard practice; the overhaul manual does not say"
+   },
+   "sits": {
+    "text": "On each exhaust valve stem in place of a plain spring retainer, over both springs.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, figure A-4-17 callout 24"
+   },
+   "worksWith": {
+    "ids": [
+     "valve-spring",
+     "valve-spring-retainer-key",
+     "exhaust-valve"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, figure A-4-17",
+    "titles": [
+     "Valve spring",
+     "Valve spring retainer key",
+     "Exhaust valve"
+    ]
+   },
+   "lookFor": {
+    "text": "Compare the cap on an exhaust valve with the plain cap on an intake valve.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Roto Cap Assembly, Exhaust",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 8,
+     "title": "Valve Operating",
+     "mentions": 3
+    }
+   ]
+  },
+  "valve-spring-retainer-key": {
+   "family": "Valve spring retainer key",
+   "review": "draft",
+   "title": {
+    "text": "Valve spring retainer key",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [
+    "valve keeper",
+    "split key"
+   ],
+   "system": "gas",
+   "function": {
+    "text": "Locks the spring retainer onto the valve stem by fitting into a groove near the tip.",
+    "status": "specified",
+    "source": "Lesson 8, Valve Operating; GTSIO-520 overhaul manual, 3-1c"
+   },
+   "madeOf": {
+    "text": "steel",
+    "status": "inferred",
+    "basis": "standard practice; the overhaul manual does not say"
+   },
+   "sits": {
+    "text": "Two half-round keys around each valve stem, just below its tip.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c: tapered, semi-circular keys"
+   },
+   "worksWith": {
+    "ids": [
+     "valve-spring",
+     "intake-valve-spring-retainer",
+     "exhaust-roto-cap"
+    ],
+    "status": "derived",
+    "source": "Lesson 8, Valve Operating",
+    "titles": [
+     "Valve spring",
+     "Intake valve spring retainer",
+     "Exhaust roto cap"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the two tapered halves that wrap the stem under the retainer.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Key, Valve Spring Retainer",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 8,
+     "title": "Valve Operating",
+     "mentions": 1
+    }
+   ]
+  },
+  "valve-rocker": {
+   "family": "Valve rocker",
+   "review": "draft",
+   "title": {
+    "text": "Valve rocker",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [
+    "rocker arm"
+   ],
+   "system": "gas",
+   "function": {
+    "text": "Pivots on its shaft so the pushrod's upward movement presses the valve open.",
+    "status": "specified",
+    "source": "Lesson 8, Valve Operating"
+   },
+   "madeOf": {
+    "text": "forged steel",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-1c: steel forgings"
+   },
+   "sits": {
+    "text": "On a shaft in each cylinder head, one for the intake valve and one for the exhaust valve.",
+    "status": "derived",
+    "source": "Lesson 8, Valve Operating; GTSIO-520 overhaul manual, 3-1c"
+   },
+   "worksWith": {
+    "ids": [
+     "push-rod",
+     "valve-rocker-shaft",
+     "valve-rocker-bushing",
+     "intake-valve",
+     "exhaust-valve"
+    ],
+    "status": "derived",
+    "source": "Lesson 8, Valve Operating",
+    "titles": [
+     "Push rod",
+     "Valve rocker shaft",
+     "Valve rocker bushing",
+     "Intake valve",
+     "Exhaust valve"
+    ]
+   },
+   "lookFor": {
+    "text": "Trace from the pushrod end of a rocker to the valve stem end.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Rocker Assembly, Intake Valve; Rocker Assembly, Exhaust Valve",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 8,
+     "title": "Valve Operating",
+     "mentions": 32
+    },
+    {
+     "lesson": 18,
+     "title": "Practicals",
+     "mentions": 30
+    },
+    {
+     "lesson": 10,
+     "title": "Power Generation",
+     "mentions": 4
+    },
+    {
+     "lesson": 3,
+     "title": "Terminologies",
+     "mentions": 2
+    }
+   ]
+  },
+  "valve-rocker-shaft": {
+   "family": "Valve rocker shaft",
+   "review": "draft",
+   "title": {
+    "text": "Valve rocker shaft",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [],
+   "system": "gas",
+   "function": {
+    "text": "Carries the rockers so they can swing, and is held still in the cylinder head.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c"
+   },
+   "madeOf": {
+    "text": "steel",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-1c: fully machined, chrome plated steel"
+   },
+   "sits": {
+    "text": "Across the rocker boss of each cylinder head, with a rocker turning on it.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c"
+   },
+   "worksWith": {
+    "ids": [
+     "valve-rocker",
+     "valve-rocker-bushing",
+     "rocker-shaft-retainer"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c",
+    "titles": [
+     "Valve rocker",
+     "Valve rocker bushing",
+     "Rocker shaft retainer"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the short rod each rocker swings on.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Shaft, Valve Rocker",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": []
+  },
+  "rocker-cover": {
+   "family": "Rocker cover",
+   "review": "draft",
+   "title": {
+    "text": "Rocker cover",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [
+    "valve cover"
+   ],
+   "system": "gas",
+   "function": {
+    "text": "Covers the rockers and valve springs and keeps the oil inside the cylinder head.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c; figure A-4-17 callout 4"
+   },
+   "madeOf": {
+    "text": "stamped sheet steel",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-1c"
+   },
+   "sits": {
+    "text": "On top of each cylinder head: one cover over the intake rocker and one over the exhaust rocker.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, figure A-4-17"
+   },
+   "worksWith": {
+    "ids": [
+     "rocker-cover-gasket",
+     "rocker-cover-screw",
+     "valve-rocker",
+     "cylinder-head"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, figure A-4-17",
+    "titles": [
+     "Rocker cover gasket",
+     "Fillister head screw",
+     "Valve rocker",
+     "Cylinder head"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the two covers on one cylinder head and the screws that hold each one.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Cover, Valve Rocker",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": []
+  },
+  "rocker-cover-gasket": {
+   "family": "Rocker cover gasket",
+   "review": "draft",
+   "title": {
+    "text": "Rocker cover gasket",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [],
+   "system": "gas",
+   "function": {
+    "text": "Seals the joint between a rocker cover and the cylinder head so oil does not leak.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, figure A-4-17 callout 5"
+   },
+   "madeOf": {
+    "text": "gasket material",
+    "status": "inferred",
+    "basis": "gaskets are made from sheet seal material; the manual does not name it"
+   },
+   "sits": {
+    "text": "Between each rocker cover and its seat on the cylinder head.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, figure A-4-17"
+   },
+   "worksWith": {
+    "ids": [
+     "rocker-cover",
+     "cylinder-head"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, figure A-4-17",
+    "titles": [
+     "Rocker cover",
+     "Cylinder head"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the thin layer between a rocker cover and the head.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Gasket, Valve Rocker Cover",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": []
+  },
+  "push-rod": {
+   "family": "Push rod",
+   "review": "draft",
+   "title": {
+    "text": "Push rod",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [
+    "pushrod"
+   ],
+   "system": "gas",
+   "function": {
+    "text": "Carries the lifter's movement up to the rocker through a tube from the crankcase to the head.",
+    "status": "specified",
+    "source": "Lesson 8, Valve Operating"
+   },
+   "madeOf": {
+    "text": "steel",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-1c: steel tube with hardened forged steel ball ends"
+   },
+   "sits": {
+    "text": "Between each hydraulic lifter in the crankcase and its rocker in the cylinder head, inside a push rod housing.",
+    "status": "derived",
+    "source": "Lesson 8, Valve Operating; GTSIO-520 overhaul manual, 3-1c"
+   },
+   "worksWith": {
+    "ids": [
+     "hydraulic-valve-lifter-socket",
+     "valve-rocker",
+     "push-rod-housing"
+    ],
+    "status": "derived",
+    "source": "Lesson 8, Valve Operating",
+    "titles": [
+     "Hydraulic lifter socket",
+     "Valve rocker",
+     "Push rod housing"
+    ]
+   },
+   "lookFor": {
+    "text": "Follow one push rod from the crankcase to the rocker at the top of the cylinder.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Push Rod Assembly",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 8,
+     "title": "Valve Operating",
+     "mentions": 21
+    },
+    {
+     "lesson": 18,
+     "title": "Practicals",
+     "mentions": 8
+    },
+    {
+     "lesson": 3,
+     "title": "Terminologies",
+     "mentions": 1
+    }
+   ]
+  },
+  "push-rod-housing": {
+   "family": "Push rod housing",
+   "review": "draft",
+   "title": {
+    "text": "Push rod housing",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [
+    "push rod tube"
+   ],
+   "system": "gas",
+   "function": {
+    "text": "Encloses a push rod and lets oil drain back to the crankcase.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1d"
+   },
+   "madeOf": {
+    "text": "steel",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-1c: beaded steel tubes"
+   },
+   "sits": {
+    "text": "A tube around each push rod, from the crankcase to the cylinder head.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c"
+   },
+   "worksWith": {
+    "ids": [
+     "push-rod",
+     "push-rod-housing-spring",
+     "push-rod-housing-washer",
+     "push-rod-housing-packing"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c",
+    "titles": [
+     "Push rod",
+     "Push rod housing spring",
+     "Push rod housing washer",
+     "Push rod housing packing"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the thin tube that surrounds each push rod.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Housing, Push Rod",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": []
+  },
+  "push-rod-housing-packing": {
+   "family": "Push rod housing packing",
+   "review": "draft",
+   "title": {
+    "text": "Push rod housing packing",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [
+    "O-ring seal"
+   ],
+   "system": "gas",
+   "function": {
+    "text": "Seals the push rod housing where it meets the cylinder head and the crankcase.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c: rubber seals"
+   },
+   "madeOf": {
+    "text": "rubber",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-1d: sealed by rubber seals"
+   },
+   "sits": {
+    "text": "At each end of every push rod housing, one at the head and one at the crankcase.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c"
+   },
+   "worksWith": {
+    "ids": [
+     "push-rod-housing",
+     "push-rod-housing-washer"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c",
+    "titles": [
+     "Push rod housing",
+     "Push rod housing washer"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the rubber ring at each end of a push rod housing.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Packing, Push Rod Housing",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": []
+  },
+  "hydraulic-valve-lifter-body": {
+   "family": "Hydraulic valve lifter",
+   "review": "draft",
+   "title": {
+    "text": "Valve lifter body",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [
+    "hydraulic lifter",
+    "hydraulic tappet",
+    "tappet body"
+   ],
+   "system": "gas",
+   "function": {
+    "text": "The outer barrel of the hydraulic lifter; it follows the cam lobe and slides in a guide in the crankcase.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1i; figure A-4-10"
+   },
+   "madeOf": {
+    "text": "hardened steel",
+    "status": "inferred",
+    "basis": "lifter bodies are hardened steel in general practice; the manual does not name it"
+   },
+   "sits": {
+    "text": "In a guide bore in the crankcase, one for each valve, resting on the camshaft.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1b and 3-1i"
+   },
+   "worksWith": {
+    "ids": [
+     "camshaft",
+     "hydraulic-valve-lifter-plunger",
+     "push-rod"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, figure A-4-10",
+    "titles": [
+     "Camshaft",
+     "Hydraulic lifter plunger",
+     "Push rod"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the barrel that rides the cam lobe, with the other lifter parts inside it.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Lifter Assembly, Hydraulic Valve; Body, Valve Lifter",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 8,
+     "title": "Valve Operating",
+     "mentions": 34
+    },
+    {
+     "lesson": 18,
+     "title": "Practicals",
+     "mentions": 29
+    },
+    {
+     "lesson": 13,
+     "title": "Factors Affecting Power",
+     "mentions": 4
+    },
+    {
+     "lesson": 3,
+     "title": "Terminologies",
+     "mentions": 1
+    }
+   ]
+  },
+  "connecting-rod": {
+   "family": "Connecting rod",
+   "review": "draft",
+   "title": {
+    "text": "Connecting rod",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [
+    "conrod"
+   ],
+   "system": "power",
+   "function": {
+    "text": "Carries the piston's push to the crankshaft and turns the straight-line motion into rotation.",
+    "status": "specified",
+    "source": "Lesson 3, Terminologies; Lesson 7, Parts and Construction"
+   },
+   "madeOf": {
+    "text": "forged steel alloy",
+    "status": "specified",
+    "source": "Lesson 7, Parts and Construction: connecting rods are forged steel alloy"
+   },
+   "sits": {
+    "text": "Between each piston and its crankpin; six rods, one per cylinder.",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-1f; Lesson 7, Parts and Construction"
+   },
+   "worksWith": {
+    "ids": [
+     "piston",
+     "piston-pin",
+     "crankshaft",
+     "connecting-rod-cap",
+     "connecting-rod-bearing"
+    ],
+    "status": "derived",
+    "source": "Lesson 7, Parts and Construction",
+    "titles": [
+     "Piston",
+     "Piston pin",
+     "Crankshaft",
+     "Connecting rod cap",
+     "Connecting rod bearing"
+    ]
+   },
+   "lookFor": {
+    "text": "Follow a rod from the piston pin down to the crankpin and see the I-beam shape of its shank.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Rod, Connecting",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 10,
+     "title": "Power Generation",
+     "mentions": 15
+    },
+    {
+     "lesson": 18,
+     "title": "Practicals",
+     "mentions": 14
+    },
+    {
+     "lesson": 7,
+     "title": "Parts and Construction",
+     "mentions": 9
+    },
+    {
+     "lesson": 3,
+     "title": "Terminologies",
+     "mentions": 4
+    }
+   ]
+  },
+  "connecting-rod-cap": {
+   "family": "Connecting rod cap",
+   "review": "draft",
+   "title": {
+    "text": "Connecting rod cap",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [],
+   "system": "power",
+   "function": {
+    "text": "Closes the big end of the rod around the crankpin and holds the bearing halves in place.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1f; Lesson 7, Parts and Construction"
+   },
+   "madeOf": {
+    "text": "forged steel alloy",
+    "status": "inferred",
+    "basis": "made with the rod it closes, which is forged steel alloy (Lesson 7, Parts and Construction); no source names the cap alone"
+   },
+   "sits": {
+    "text": "The bottom half of each rod's crankpin end, held to the rod by two bolts.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, figure A-4-20 callouts 3 to 5"
+   },
+   "worksWith": {
+    "ids": [
+     "connecting-rod",
+     "connecting-rod-bolt",
+     "connecting-rod-nut",
+     "connecting-rod-bearing"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, figure A-4-20",
+    "titles": [
+     "Connecting rod",
+     "Connecting rod bolt",
+     "Connecting rod nut",
+     "Connecting rod bearing"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the split line where the cap meets the rod at the crankpin.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Cap, Connecting Rod",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": []
+  },
+  "connecting-rod-bearing": {
+   "family": "Connecting rod bearing",
+   "review": "draft",
+   "title": {
+    "text": "Connecting rod bearing",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [],
+   "system": "power",
+   "function": {
+    "text": "Gives the rod a smooth, lubricated surface to turn on at the crankpin.",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-1f; Lesson 7 cylinder interfaces study"
+   },
+   "madeOf": {
+    "text": "steel-backed bearing metal",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1f: the same type as the main bearings"
+   },
+   "sits": {
+    "text": "Two half-shell inserts in each rod's crankpin end, one in the rod and one in the cap.",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-1f: two identical precision inserts"
+   },
+   "worksWith": {
+    "ids": [
+     "connecting-rod",
+     "connecting-rod-cap",
+     "crankshaft"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1f",
+    "titles": [
+     "Connecting rod",
+     "Connecting rod cap",
+     "Crankshaft"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the two curved shells that surround the crankpin.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Bearing, Connecting Rod",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": []
+  },
+  "piston-pin-bushing": {
+   "family": "Piston pin bushing",
+   "review": "draft",
+   "title": {
+    "text": "Piston pin bushing",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [],
+   "system": "power",
+   "function": {
+    "text": "Lets the piston pin turn smoothly in the small end of the rod.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1f: split bronze piston pin bushings"
+   },
+   "madeOf": {
+    "text": "bronze",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-1f; Lesson 7, Parts and Construction"
+   },
+   "sits": {
+    "text": "Pressed into the small end of each connecting rod, around the piston pin.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1f"
+   },
+   "worksWith": {
+    "ids": [
+     "piston-pin",
+     "connecting-rod"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1f",
+    "titles": [
+     "Piston pin",
+     "Connecting rod"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the bronze sleeve in the top end of a connecting rod.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Bushing, Piston Pin",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": []
+  },
+  "connecting-rod-bolt": {
+   "family": "Connecting rod bolt",
+   "review": "draft",
+   "title": {
+    "text": "Connecting rod bolt",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [],
+   "system": "power",
+   "function": {
+    "text": "Clamps the connecting rod cap to the rod around the crankpin.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, figure A-4-20 callout 3"
+   },
+   "madeOf": {
+    "text": "steel",
+    "status": "inferred",
+    "basis": "standard practice; the overhaul manual does not say"
+   },
+   "sits": {
+    "text": "Two bolts through each rod cap into the rod.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, figure A-4-20"
+   },
+   "worksWith": {
+    "ids": [
+     "connecting-rod-cap",
+     "connecting-rod-nut",
+     "connecting-rod"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, figure A-4-20",
+    "titles": [
+     "Connecting rod cap",
+     "Connecting rod nut",
+     "Connecting rod"
+    ]
+   },
+   "lookFor": {
+    "text": "Count the bolts that hold one rod cap.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Bolt, Connecting Rod",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": []
+  },
+  "connecting-rod-nut": {
+   "family": "Connecting rod nut",
+   "review": "draft",
+   "title": {
+    "text": "Connecting rod nut",
+    "status": "derived",
+    "source": "The catalogue and manual call it 'Nut, Slotted, Special' and list it with the connecting rod parts"
+   },
+   "context": "",
+   "aliases": [
+    "slotted nut"
+   ],
+   "system": "power",
+   "function": {
+    "text": "Locks the connecting rod bolt and keeps the cap tight against the rod.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, figure A-4-20 callout 2"
+   },
+   "madeOf": {
+    "text": "steel",
+    "status": "inferred",
+    "basis": "standard practice; the overhaul manual does not say"
+   },
+   "sits": {
+    "text": "On the end of each connecting rod bolt, below the cap.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, figure A-4-20"
+   },
+   "worksWith": {
+    "ids": [
+     "connecting-rod-bolt",
+     "connecting-rod-cap"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, figure A-4-20",
+    "titles": [
+     "Connecting rod bolt",
+     "Connecting rod cap"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the slotted nut on the end of a rod bolt.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Nut, 7/16-28, Slotted, Special",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": []
+  },
+  "piston": {
+   "family": "Piston",
+   "review": "draft",
+   "title": {
+    "text": "Piston",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [],
+   "system": "power",
+   "function": {
+    "text": "Is pushed down the cylinder by the burning gas and passes that push to the connecting rod.",
+    "status": "specified",
+    "source": "Lesson 3, Terminologies; Lesson 7, Parts and Construction"
+   },
+   "madeOf": {
+    "text": "aluminium alloy",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-1g: aluminium alloy castings or forgings"
+   },
+   "sits": {
+    "text": "Inside each cylinder barrel, joined to its connecting rod by the piston pin.",
+    "status": "specified",
+    "source": "Lesson 7, Parts and Construction"
+   },
+   "worksWith": {
+    "ids": [
+     "cylinder-barrel",
+     "compression-ring",
+     "piston-pin",
+     "connecting-rod"
+    ],
+    "status": "derived",
+    "source": "Lesson 7, Parts and Construction",
+    "titles": [
+     "Cylinder barrel",
+     "Compression ring",
+     "Piston pin",
+     "Connecting rod"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the crown, the ring grooves round it and the cut-outs in the skirt that clear the counterweights.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Piston",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 10,
+     "title": "Power Generation",
+     "mentions": 93
+    },
+    {
+     "lesson": 18,
+     "title": "Practicals",
+     "mentions": 79
+    },
+    {
+     "lesson": 3,
+     "title": "Terminologies",
+     "mentions": 54
+    },
+    {
+     "lesson": 7,
+     "title": "Parts and Construction",
+     "mentions": 39
+    }
+   ]
+  },
+  "piston-pin": {
+   "family": "Piston pin",
+   "review": "draft",
+   "title": {
+    "text": "Piston pin",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [
+    "gudgeon pin",
+    "wrist pin"
+   ],
+   "system": "power",
+   "function": {
+    "text": "Joins the piston to the connecting rod and lets the rod swing as the crank turns.",
+    "status": "specified",
+    "source": "Lesson 7, Parts and Construction; Lesson 7 cylinder interfaces study"
+   },
+   "madeOf": {
+    "text": "steel",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-1g: full-floating ground steel tubes"
+   },
+   "sits": {
+    "text": "Straight across the piston, through the small end of the connecting rod.",
+    "status": "specified",
+    "source": "Lesson 7, Parts and Construction"
+   },
+   "worksWith": {
+    "ids": [
+     "piston",
+     "connecting-rod",
+     "piston-pin-plug",
+     "piston-pin-bushing"
+    ],
+    "status": "derived",
+    "source": "Lesson 7, Parts and Construction",
+    "titles": [
+     "Piston",
+     "Connecting rod",
+     "Piston pin plug",
+     "Piston pin bushing"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the pin through the piston and the soft plug at each end of it.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Pin and Plug Assembly, Piston",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 18,
+     "title": "Practicals",
+     "mentions": 9
+    },
+    {
+     "lesson": 10,
+     "title": "Power Generation",
+     "mentions": 6
+    },
+    {
+     "lesson": 7,
+     "title": "Parts and Construction",
+     "mentions": 4
+    },
+    {
+     "lesson": 3,
+     "title": "Terminologies",
+     "mentions": 2
+    }
+   ]
+  },
+  "piston-pin-plug": {
+   "family": "Piston pin plug",
+   "review": "draft",
+   "title": {
+    "text": "Piston pin plug",
+    "status": "derived",
+    "source": "The catalogue lists the pin and plugs as one assembly, 'Pin and Plug Assembly'; the plug name comes from the manual"
+   },
+   "context": "",
+   "aliases": [],
+   "system": "power",
+   "function": {
+    "text": "Closes each end of the piston pin and, being soft, will not score the cylinder wall.",
+    "status": "specified",
+    "source": "Lesson 7, Parts and Construction: soft aluminium end plugs stop it scoring the cylinder wall"
+   },
+   "madeOf": {
+    "text": "aluminium",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-1g: permanently forged-in aluminium plugs"
+   },
+   "sits": {
+    "text": "One in each end of the piston pin.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1g"
+   },
+   "worksWith": {
+    "ids": [
+     "piston-pin",
+     "piston",
+     "cylinder-barrel"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1g",
+    "titles": [
+     "Piston pin",
+     "Piston",
+     "Cylinder barrel"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the soft end at each side of the piston pin.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Pin and Plug Assembly, Piston",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": []
+  },
+  "compression-ring": {
+   "family": "Compression ring",
+   "review": "draft",
+   "title": {
+    "text": "Compression ring",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [],
+   "system": "power",
+   "function": {
+    "text": "Seals the burning gas above the piston so it cannot leak past into the crankcase.",
+    "status": "specified",
+    "source": "Lesson 7, Parts and Construction: compression rings seal the combustion gases"
+   },
+   "madeOf": {
+    "text": "gray cast iron",
+    "status": "derived",
+    "source": "Lesson 7, Parts and Construction: most rings are gray cast iron"
+   },
+   "sits": {
+    "text": "In the top two grooves of each piston, closest to the crown.",
+    "status": "specified",
+    "source": "Lesson 7, Parts and Construction: usually two, nearest the crown"
+   },
+   "worksWith": {
+    "ids": [
+     "piston",
+     "cylinder-barrel",
+     "oil-ring",
+     "scraper-ring"
+    ],
+    "status": "derived",
+    "source": "Lesson 7, Parts and Construction",
+    "titles": [
+     "Piston",
+     "Cylinder barrel",
+     "Oil ring",
+     "Scraper ring"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the two rings nearest the crown and compare them with the rings below.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Ring, Piston Compression - Top Groove; Ring, Piston Compression - 2nd Groove",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": []
+  },
+  "oil-ring": {
+   "family": "Oil ring",
+   "review": "draft",
+   "title": {
+    "text": "Oil ring",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [
+    "oil control ring"
+   ],
+   "system": "power",
+   "function": {
+    "text": "Limits how much oil reaches the combustion chamber and returns the extra to the crankcase.",
+    "status": "specified",
+    "source": "Lesson 7, Parts and Construction: oil control rings limit the oil and return the surplus to the crankcase"
+   },
+   "madeOf": {
+    "text": "gray cast iron",
+    "status": "derived",
+    "source": "Lesson 7, Parts and Construction: most rings are gray cast iron"
+   },
+   "sits": {
+    "text": "In the third groove of each piston, below the compression rings.",
+    "status": "derived",
+    "source": "Lesson 7, Parts and Construction"
+   },
+   "worksWith": {
+    "ids": [
+     "piston",
+     "cylinder-barrel",
+     "scraper-ring",
+     "compression-ring"
+    ],
+    "status": "derived",
+    "source": "Lesson 7, Parts and Construction",
+    "titles": [
+     "Piston",
+     "Cylinder barrel",
+     "Scraper ring",
+     "Compression ring"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the slotted ring below the compression rings.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Ring Assembly, Oil - 3rd Groove",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 7,
+     "title": "Parts and Construction",
+     "mentions": 1
+    }
+   ]
+  },
+  "scraper-ring": {
+   "family": "Scraper ring",
+   "review": "draft",
+   "title": {
+    "text": "Scraper ring",
+    "status": "specified",
+    "source": "IO-520 parts catalogue (a similar engine)"
+   },
+   "context": "",
+   "aliases": [
+    "oil scraper"
+   ],
+   "system": "power",
+   "function": {
+    "text": "Wipes surplus oil off the cylinder wall as the piston moves.",
+    "status": "specified",
+    "source": "Lesson 7, Parts and Construction: an oil scraper"
+   },
+   "madeOf": {
+    "text": "gray cast iron",
+    "status": "derived",
+    "source": "Lesson 7, Parts and Construction: most rings are gray cast iron"
+   },
+   "sits": {
+    "text": "In the fourth groove of each piston, at the bottom of the ring pack.",
+    "status": "derived",
+    "source": "Lesson 7, Parts and Construction; GTSIO-520 overhaul manual, 3-1g: the four-ring piston"
+   },
+   "worksWith": {
+    "ids": [
+     "piston",
+     "cylinder-barrel",
+     "oil-ring"
+    ],
+    "status": "derived",
+    "source": "Lesson 7, Parts and Construction",
+    "titles": [
+     "Piston",
+     "Cylinder barrel",
+     "Oil ring"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the lowest ring on the piston.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Ring, Piston, Scraper - 4th Groove",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": []
+  },
+  "spark-plug-shell": {
+   "family": "Spark plug part",
+   "review": "draft",
+   "title": {
+    "text": "Spark plug shell",
+    "status": "derived",
+    "source": "The catalogue lists a 'Spark Plug' as one part; the model draws it in pieces and names them from their jobs"
+   },
+   "context": "",
+   "aliases": [],
+   "system": "ignition",
+   "function": {
+    "text": "Forms the threaded metal body that screws into the cylinder head and carries the electrode at the firing end.",
+    "status": "inferred",
+    "basis": "the usual construction of a spark plug; no manual or lesson describes the shell"
+   },
+   "madeOf": {
+    "text": "steel",
+    "status": "inferred",
+    "basis": "the usual construction of a spark plug; no manual or lesson names the metal"
+   },
+   "sits": {
+    "text": "Screwed into a thread insert in the cylinder head: two plugs per cylinder, an upper and a lower, twelve in all.",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-2d; GTSIO-520 overhaul manual, 3-1c and Lesson 5"
+   },
+   "worksWith": {
+    "ids": [
+     "spark-plug-insulator",
+     "spark-plug-terminal",
+     "spark-plug-gasket",
+     "spark-plug-thread-insert",
+     "cylinder-head"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-2d",
+    "titles": [
+     "Spark plug insulator",
+     "Spark plug terminal",
+     "Spark plug gasket",
+     "Spark plug thread insert",
+     "Cylinder head"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the threaded end that screws into the head and the hex that a wrench grips.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Spark Plug",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 9
+    },
+    {
+     "lesson": 3,
+     "title": "Terminologies",
+     "mentions": 7
+    },
+    {
+     "lesson": 10,
+     "title": "Power Generation",
+     "mentions": 5
+    },
+    {
+     "lesson": 13,
+     "title": "Factors Affecting Power",
+     "mentions": 5
+    }
+   ]
+  },
+  "spark-plug-insulator": {
+   "family": "Spark plug part",
+   "review": "draft",
+   "title": {
+    "text": "Spark plug insulator",
+    "status": "derived",
+    "source": "The catalogue lists a 'Spark Plug' as one part; the model draws the insulator separately, and Lesson 16 uses the word"
+   },
+   "context": "",
+   "aliases": [],
+   "system": "ignition",
+   "function": {
+    "text": "Keeps the high voltage inside the plug so the spark jumps at the firing end, not along the body.",
+    "status": "inferred",
+    "basis": "the usual job of a plug insulator; the course text only warns that a cracked one must not be used"
+   },
+   "madeOf": {
+    "text": "ceramic",
+    "status": "derived",
+    "source": "Lesson 13, Factors Affecting Power: the ceramic nose of a spark plug"
+   },
+   "sits": {
+    "text": "Inside the plug shell, running from the firing end up to the terminal.",
+    "status": "inferred",
+    "basis": "the usual construction of a spark plug"
+   },
+   "worksWith": {
+    "ids": [
+     "spark-plug-shell",
+     "spark-plug-terminal"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-2d",
+    "titles": [
+     "Spark plug shell",
+     "Spark plug terminal"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the white ceramic part and see how far it runs inside the metal shell.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Spark Plug",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 15,
+     "title": "Operation Malfunctions",
+     "mentions": 4
+    },
+    {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 4
+    }
+   ]
+  },
+  "spark-plug-terminal": {
+   "family": "Spark plug part",
+   "review": "draft",
+   "title": {
+    "text": "Spark plug terminal",
+    "status": "derived",
+    "source": "The catalogue lists a 'Spark Plug' as one part; the model draws the terminal end separately"
+   },
+   "context": "",
+   "aliases": [],
+   "system": "ignition",
+   "function": {
+    "text": "Receives the ignition lead from the magneto and passes the high voltage into the plug.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-2d: spark is transmitted to the spark plugs through high tension cables connected to the plugs by nuts"
+   },
+   "madeOf": {
+    "text": "steel",
+    "status": "inferred",
+    "basis": "the usual construction of a spark plug; no manual or lesson names the metal"
+   },
+   "sits": {
+    "text": "At the outer end of each spark plug, where the ignition lead connects.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-2d"
+   },
+   "worksWith": {
+    "ids": [
+     "spark-plug-insulator",
+     "spark-plug-shell"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-2d",
+    "titles": [
+     "Spark plug insulator",
+     "Spark plug shell"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the connector end where the lead nut screws on.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Spark Plug",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": []
+  },
+  "crankshaft-throw": {
+   "family": "Crankshaft throw",
+   "review": "draft",
+   "title": {
+    "text": "Crankshaft throw",
+    "status": "derived",
+    "source": "Lesson 7, Parts and Construction; Lesson 10, Power Generation: the one-cylinder model shows a single crank throw; the catalogue lists the whole crankshaft"
+   },
+   "context": "",
+   "aliases": [
+    "crank throw"
+   ],
+   "system": "power",
+   "function": {
+    "text": "Takes the connecting rod's push at the crankpin and turns it into rotation of the crankshaft.",
+    "status": "derived",
+    "source": "Lesson 7, Parts and Construction; Lesson 10, Power Generation"
+   },
+   "madeOf": {
+    "text": "forged steel alloy",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-1e: a steel alloy forging"
+   },
+   "sits": {
+    "text": "Two cheeks and a crankpin of the crankshaft, where one connecting rod fits; the six-cylinder engine has six, one for each cylinder.",
+    "status": "derived",
+    "source": "Lesson 7, Parts and Construction; GTSIO-520 overhaul manual, 3-1e"
+   },
+   "worksWith": {
+    "ids": [
+     "connecting-rod",
+     "connecting-rod-bearing",
+     "connecting-rod-cap",
+     "crankshaft"
+    ],
+    "status": "derived",
+    "source": "Lesson 7, Parts and Construction",
+    "titles": [
+     "Connecting rod",
+     "Connecting rod bearing",
+     "Connecting rod cap",
+     "Crankshaft"
+    ]
+   },
+   "lookFor": {
+    "text": "Find the crankpin between the two cheeks and see where the connecting rod's big end wraps around it.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": null,
+   "lessons": [
+    {
+     "lesson": 18,
+     "title": "Practicals",
+     "mentions": 5
+    },
+    {
+     "lesson": 7,
+     "title": "Parts and Construction",
+     "mentions": 1
+    },
+    {
+     "lesson": 10,
+     "title": "Power Generation",
+     "mentions": 1
+    }
+   ]
+  },
+  "rocker-housing": {
+   "family": "Rocker housing",
+   "review": "draft",
+   "title": {
+    "text": "Rocker housing",
+    "status": "derived",
+    "source": "Neither book lists a separate rocker housing; the cylinder model draws the rocker boss of the cylinder head as its own piece and names it from its job"
+   },
+   "context": "",
+   "aliases": [
+    "rocker boss"
+   ],
+   "system": "gas",
+   "function": {
+    "text": "Holds the rocker shaft and rocker on the cylinder head and sits under the rocker cover.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c: the rocker shafts are held by screws in the cylinder rocker bosses"
+   },
+   "madeOf": {
+    "text": "aluminium alloy",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c: the cylinder head is an aluminium alloy casting"
+   },
+   "sits": {
+    "text": "On the cylinder head beside each valve, under its rocker cover; the model draws one for the intake rocker and one for the exhaust rocker.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c; the cylinder model layout"
+   },
+   "worksWith": {
+    "ids": [
+     "cylinder-head",
+     "valve-rocker-shaft",
+     "valve-rocker",
+     "rocker-cover"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-1c",
+    "titles": [
+     "Cylinder head",
+     "Valve rocker shaft",
+     "Valve rocker",
+     "Rocker cover"
+    ]
+   },
+   "lookFor": {
+    "text": "Hide the rocker cover and find the raised block that carries each rocker shaft.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": null,
+   "lessons": []
+  },
+  "fuel-discharge-nozzle": {
+   "family": "Fuel discharge nozzle",
+   "review": "draft",
+   "title": {
+    "text": "Fuel discharge nozzle",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-2e: fuel discharge nozzles"
+   },
+   "context": "",
+   "aliases": [
+    "injector nozzle",
+    "injector"
+   ],
+   "system": "gas",
+   "function": {
+    "text": "Feeds fuel continuously into the intake port just outside the intake valve; an air bleed helps the fuel vaporise.",
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-2e: injected into the intake valve port; the air bleed aids vaporisation"
+   },
+   "madeOf": {
+    "text": "metal",
+    "status": "inferred",
+    "basis": "a fuel nozzle is a machined metal fitting; no manual or lesson names the metal"
+   },
+   "sits": {
+    "text": "Installed in each cylinder head outside the intake valve, fed by its own fuel line from the fuel manifold.",
+    "status": "specified",
+    "source": "GTSIO-520 overhaul manual, 3-2e: nozzles installed in the cylinder heads outside each intake valve; individual fuel lines from the manifold"
+   },
+   "worksWith": {
+    "ids": [
+     "cylinder-head",
+     "intake-valve"
+    ],
+    "status": "derived",
+    "source": "GTSIO-520 overhaul manual, 3-2e",
+    "titles": [
+     "Cylinder head",
+     "Intake valve"
+    ]
+   },
+   "lookFor": {
+    "text": "Find where a fuel line meets the head beside the intake port.",
+    "status": "illustrative",
+    "basis": "A prompt for the learner; it claims nothing about the engine."
+   },
+   "catalogue": {
+    "description": "Nozzle Assembly",
+    "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
+   },
+   "lessons": [
+    {
+     "lesson": 15,
+     "title": "Operation Malfunctions",
+     "mentions": 7
+    }
+   ]
+  }
+ },
+ "parts": {
+  "CylinderBarrel": [
+   "cylinder-barrel",
+   ""
+  ],
+  "CylinderHead": [
+   "cylinder-head",
+   ""
+  ],
+  "CrankThrow": [
+   "crankshaft-throw",
+   ""
+  ],
+  "ConnectingRodBody": [
+   "connecting-rod",
+   ""
+  ],
+  "ConnectingRodCap": [
+   "connecting-rod-cap",
+   ""
+  ],
+  "BigEndBearing": [
+   "connecting-rod-bearing",
+   "rod half"
+  ],
+  "CapBearingHalf": [
+   "connecting-rod-bearing",
+   "cap half"
+  ],
+  "RodBoltMinus1": [
+   "connecting-rod-bolt",
+   "A"
+  ],
+  "RodNutMinus1": [
+   "connecting-rod-nut",
+   "A"
+  ],
+  "RodBolt1": [
+   "connecting-rod-bolt",
+   "B"
+  ],
+  "RodNut1": [
+   "connecting-rod-nut",
+   "B"
+  ],
+  "SmallEndBush": [
+   "piston-pin-bushing",
+   ""
+  ],
+  "FloatingPin": [
+   "piston-pin",
+   ""
+  ],
+  "PinPlugLeft": [
+   "piston-pin-plug",
+   "left"
+  ],
+  "PinPlugRight": [
+   "piston-pin-plug",
+   "right"
+  ],
+  "PistonBody": [
+   "piston",
+   ""
+  ],
+  "PistonRing1": [
+   "compression-ring",
+   "top groove"
+  ],
+  "PistonRing2": [
+   "compression-ring",
+   "second groove"
+  ],
+  "PistonRing3": [
+   "oil-ring",
+   ""
+  ],
+  "PistonRing4": [
+   "scraper-ring",
+   ""
+  ],
+  "IntakeSeatInsert": [
+   "valve-seat-insert",
+   "intake"
+  ],
+  "IntakeValve": [
+   "intake-valve",
+   ""
+  ],
+  "IntakeValveGuide": [
+   "valve-guide",
+   "intake"
+  ],
+  "IntakeInnerSpring": [
+   "valve-spring",
+   "intake · inner"
+  ],
+  "IntakeOuterSpring": [
+   "valve-spring",
+   "intake · outer"
+  ],
+  "IntakeSpringRetainer": [
+   "intake-valve-spring-retainer",
+   ""
+  ],
+  "IntakeValveKeeper": [
+   "valve-spring-retainer-key",
+   "intake"
+  ],
+  "IntakeRockerShaft": [
+   "valve-rocker-shaft",
+   "intake"
+  ],
+  "IntakeRockerArm": [
+   "valve-rocker",
+   "intake"
+  ],
+  "IntakeRockerHousing": [
+   "rocker-housing",
+   "intake"
+  ],
+  "IntakeRockerGasket": [
+   "rocker-cover-gasket",
+   "intake"
+  ],
+  "IntakeRockerCover": [
+   "rocker-cover",
+   "intake"
+  ],
+  "IntakePushrod": [
+   "push-rod",
+   "intake"
+  ],
+  "IntakePushrodHousing": [
+   "push-rod-housing",
+   "intake"
+  ],
+  "IntakeLowerPushrodSeal": [
+   "push-rod-housing-packing",
+   "intake · crankcase end"
+  ],
+  "IntakeUpperPushrodSeal": [
+   "push-rod-housing-packing",
+   "intake · cylinder end"
+  ],
+  "IntakeHydraulicLifterBody": [
+   "hydraulic-valve-lifter-body",
+   "intake"
+  ],
+  "ExhaustSeatInsert": [
+   "valve-seat-insert",
+   "exhaust"
+  ],
+  "ExhaustValve": [
+   "exhaust-valve",
+   ""
+  ],
+  "ExhaustValveGuide": [
+   "valve-guide",
+   "exhaust"
+  ],
+  "ExhaustInnerSpring": [
+   "valve-spring",
+   "exhaust · inner"
+  ],
+  "ExhaustOuterSpring": [
+   "valve-spring",
+   "exhaust · outer"
+  ],
+  "ExhaustSpringRetainer": [
+   "exhaust-roto-cap",
+   ""
+  ],
+  "ExhaustValveKeeper": [
+   "valve-spring-retainer-key",
+   "exhaust"
+  ],
+  "ExhaustRockerShaft": [
+   "valve-rocker-shaft",
+   "exhaust"
+  ],
+  "ExhaustRockerArm": [
+   "valve-rocker",
+   "exhaust"
+  ],
+  "ExhaustRockerHousing": [
+   "rocker-housing",
+   "exhaust"
+  ],
+  "ExhaustRockerGasket": [
+   "rocker-cover-gasket",
+   "exhaust"
+  ],
+  "ExhaustRockerCover": [
+   "rocker-cover",
+   "exhaust"
+  ],
+  "ExhaustPushrod": [
+   "push-rod",
+   "exhaust"
+  ],
+  "ExhaustPushrodHousing": [
+   "push-rod-housing",
+   "exhaust"
+  ],
+  "ExhaustLowerPushrodSeal": [
+   "push-rod-housing-packing",
+   "exhaust · crankcase end"
+  ],
+  "ExhaustUpperPushrodSeal": [
+   "push-rod-housing-packing",
+   "exhaust · cylinder end"
+  ],
+  "ExhaustHydraulicLifterBody": [
+   "hydraulic-valve-lifter-body",
+   "exhaust"
+  ],
+  "UpperSparkPlug": [
+   "spark-plug-shell",
+   "upper"
+  ],
+  "UpperSparkInsulator": [
+   "spark-plug-insulator",
+   "upper"
+  ],
+  "UpperSparkTerminal": [
+   "spark-plug-terminal",
+   "upper"
+  ],
+  "LowerSparkPlug": [
+   "spark-plug-shell",
+   "lower"
+  ],
+  "LowerSparkInsulator": [
+   "spark-plug-insulator",
+   "lower"
+  ],
+  "LowerSparkTerminal": [
+   "spark-plug-terminal",
+   "lower"
+  ],
+  "FuelDischargeNozzle": [
+   "fuel-discharge-nozzle",
+   ""
+  ]
+ }
+}
