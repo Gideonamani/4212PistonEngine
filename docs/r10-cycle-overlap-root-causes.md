@@ -108,10 +108,10 @@ So the split is stable on the shipped file, and the causes above describe all 15
 
 ## Outcome of the fix (20 October 2026)
 
-The user decided to fix both groups in one change. **159 overlapping pairs became 2** (core view 42 to 0, Assembled view only 117 to 2) on the new file (decoded sha256 `7416aa5a90c0…`, 11,993,989 bytes transfer, 21,112,200 decoded; `docs/model-optimization.md`).
+The user decided to fix both groups in one change. **159 overlapping pairs became 2** (core view 42 to 0, Assembled view only 117 to 2) on the new file (decoded sha256 `1989cf62ae5e…`, 12,019,746 bytes transfer, 21,087,416 decoded; `docs/model-optimization.md`). The same release also reflects the model left to right to the engine's real handedness (`docs/r10-handedness.md`); the audit of the shipped, reflected file gave the same result pair for pair as the unreflected build (`7416aa5a90c0…`, never published), as an isometry must.
 The audit is the full one of `docs/assembly-interference.md`: the assembled pose (5,160 neighbouring pairs, all touching only) and 144 cycle poses every 5 crank degrees, with the exploded layouts (informational, as before: transit poses hold up to 136 overlapping pairs, and the held layouts at the ends of stages 1 to 5 hold 5, 5, 14, 14 and 14).
 Nothing new appeared: every pair found is one of the 2 that turning the gears uncovered. A second, restricted exact audit every **1 degree** (720 poses; pistons, rods, rings, crankshaft and the damper system against every other part, 476,948 pair tests) found **no overlap at all**,
-so the relief's margin holds between the 5-degree poses too.
+so the relief's margin holds between the 5-degree poses too (run on the unreflected build, which the reflection leaves unchanged).
 
 | | Before | After |
 |---|---|---|

@@ -53,16 +53,18 @@ AUDIT_RECORDS = [
                'and cam turning through parts the contract holds fixed); the same 159 pairs were found in the unoptimised file 80991fa8b0d5. The exploded '
                'layouts are not decided by this audit; the fully exploded layout holds 14 overlapping pairs. Recorded in a known-defect ledger. This is a '
                'record of what the audit found, not an acceptance, and not a clip/transit clearance check.')),
-    dict(asset_sha256='7416aa5a90c02f9eabdcadcebbd0777f33a1b275972c1edd08070592556be676',
+    dict(asset_sha256='1989cf62ae5e6d69ea3728e37b8d69072e89bbe1b5716e811263edf3e0993f3e',
          line=(
-               'Exported-file interference audit of the shipped optimised file 7416aa5a90c0 (sha256 '
-               '7416aa5a90c02f9eabdcadcebbd0777f33a1b275972c1edd08070592556be676, 21,112,200 bytes, 1,396 parts; audited in its unpacked form), 20 Oct 2026,'
+               'Exported-file interference audit of the shipped optimised file 1989cf62ae5e (sha256 '
+               '1989cf62ae5e6d69ea3728e37b8d69072e89bbe1b5716e811263edf3e0993f3e, 21,087,416 bytes, 1,396 parts; audited in its unpacked form), 20 Oct 2026,'
                ' cad-studies/gtsio520-h-static/shipped-r10: the assembled pose is clean (5,160 neighbouring pairs, none overlapping). The core cycle posed '
                "by the viewer's own sampler every 5 crank degrees (144 poses) has 2 overlapping pairs, none between parts the default core view shows: "
                'AccessoryIdlerGear against LeftMagnetoGear and RightMagnetoGear (1.5 mm3 each, 0.35 mm thick), visible only in the Assembled view, where the tooth tips of '
                'the declared gears overlap axially by 1 mm. The file of 19 Oct (1dcf07ccd0f2) had 159 (42 in the core view); the piston skirt relief and the fitted-body '
-               'motion cleared the rest. The exploded layouts are not decided by this audit; the fully exploded layout holds 14 overlapping pairs. The 2 pairs are in a '
-               'known-defect ledger. This is a record of what the audit found, not an acceptance, and not a clip/transit clearance check.')),
+               'motion cleared the rest. This file is also the left-right reflection of the relieved build (docs/r10-handedness.md); a reflection is an isometry and the '
+               'audit gave the same result as for that unreflected build (7416aa5a90c0, never published). The exploded layouts are not decided by this audit; the fully '
+               'exploded layout holds 14 overlapping pairs. The 2 pairs are in a known-defect ledger. This is a record of what the audit found, not an acceptance, and not a '
+               'clip/transit clearance check.')),
 ]
 
 # Modelling decisions that change the shape of the model without a source for the real part. A note is written only for the asset that contains the decision.

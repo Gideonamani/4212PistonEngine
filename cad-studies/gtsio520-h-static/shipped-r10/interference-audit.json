@@ -1,19 +1,19 @@
 {
-  "asset_sha256": "7416aa5a90c02f9eabdcadcebbd0777f33a1b275972c1edd08070592556be676",
-  "asset_bytes": 21112200,
+  "asset_sha256": "1989cf62ae5e6d69ea3728e37b8d69072e89bbe1b5716e811263edf3e0993f3e",
+  "asset_bytes": 21087416,
   "parts": 1396,
   "tolerance_mm3": 0.001,
   "max_penetration_mm": 0.05,
   "method": "Poses sampled from the viewer's own procedural sampler (createProceduralStudySampler) by scripts/sample_animated_study_poses.mjs; every pair whose bounds meet is intersected exactly (Manifold boolean) at the assembled pose and at each sampled pose, skipping pairs of parts that share the same pose change. Touching is allowed, overlap is not; an overlap thinner than max_penetration_mm is treated as mesh tessellation noise on a touching face. Discrete sampling: an overlap narrower than the step could be missed.",
   "shipped_asset": {
     "file": "gtsio520-r10-static-opt1.glb.gz",
-    "decoded_sha256": "7416aa5a90c02f9eabdcadcebbd0777f33a1b275972c1edd08070592556be676",
-    "decoded_bytes": 21112200,
+    "decoded_sha256": "1989cf62ae5e6d69ea3728e37b8d69072e89bbe1b5716e811263edf3e0993f3e",
+    "decoded_bytes": 21087416,
     "note": "The audited GLB is the shipped file unpacked by scripts/decode_model.mjs (EXT_meshopt_compression is lossless), so the auditor can read it."
   },
   "sampler": "src/viewer/core/animated-study-motion.mjs createProceduralStudySampler (apply(motion, progress 0-100); cycle angle = progress x 7.2)",
   "contract": "web/gtsio520-r10-contract.json",
-  "poses_file_sha256": "52a639b6ded9d0cdf3a6e4cf4a79ae756d32a2c6d6c69f59d920b4909d1c5dbd",
+  "poses_file_sha256": "15fb4204c9dafa8b5680c3806e8ef5c57a6bbf215aedd5220c7306deba1d7f6b",
   "three_js_and_audit_rest_pose_max_matrix_difference": 0.0,
   "rest_neighbouring_pairs": 5160,
   "rest_touching_only": 5160,
@@ -202,7 +202,7 @@
       "moved_parts": 0,
       "pairs_intersected": 5160,
       "overlapping_pairs": 0,
-      "seconds": 37.76
+      "seconds": 37.35
     },
     {
       "label": "cycle @ 0 deg",
@@ -218,7 +218,7 @@
       "moved_parts": 340,
       "pairs_intersected": 1189,
       "overlapping_pairs": 0,
-      "seconds": 9.04
+      "seconds": 9.53
     },
     {
       "label": "cycle @ 10 deg",
@@ -226,7 +226,7 @@
       "moved_parts": 340,
       "pairs_intersected": 1187,
       "overlapping_pairs": 0,
-      "seconds": 9.95
+      "seconds": 9.15
     },
     {
       "label": "cycle @ 15 deg",
@@ -234,7 +234,7 @@
       "moved_parts": 358,
       "pairs_intersected": 1291,
       "overlapping_pairs": 2,
-      "seconds": 11.09
+      "seconds": 11.18
     },
     {
       "label": "cycle @ 20 deg",
@@ -242,7 +242,7 @@
       "moved_parts": 358,
       "pairs_intersected": 1302,
       "overlapping_pairs": 2,
-      "seconds": 12.27
+      "seconds": 11.1
     },
     {
       "label": "cycle @ 25 deg",
@@ -250,7 +250,7 @@
       "moved_parts": 358,
       "pairs_intersected": 1297,
       "overlapping_pairs": 2,
-      "seconds": 10.54
+      "seconds": 13.0
     },
     {
       "label": "cycle @ 30 deg",
@@ -258,7 +258,7 @@
       "moved_parts": 358,
       "pairs_intersected": 1284,
       "overlapping_pairs": 2,
-      "seconds": 11.66
+      "seconds": 11.85
     },
     {
       "label": "cycle @ 35 deg",
@@ -266,7 +266,7 @@
       "moved_parts": 358,
       "pairs_intersected": 1287,
       "overlapping_pairs": 1,
-      "seconds": 10.83
+      "seconds": 10.8
     },
     {
       "label": "cycle @ 40 deg",
@@ -274,7 +274,7 @@
       "moved_parts": 358,
       "pairs_intersected": 1280,
       "overlapping_pairs": 0,
-      "seconds": 10.56
+      "seconds": 11.27
     },
     {
       "label": "cycle @ 45 deg",
@@ -282,7 +282,7 @@
       "moved_parts": 358,
       "pairs_intersected": 1287,
       "overlapping_pairs": 0,
-      "seconds": 10.6
+      "seconds": 11.19
     },
     {
       "label": "cycle @ 50 deg",
@@ -290,7 +290,7 @@
       "moved_parts": 358,
       "pairs_intersected": 1274,
       "overlapping_pairs": 0,
-      "seconds": 10.66
+      "seconds": 10.55
     },
     {
       "label": "cycle @ 55 deg",
@@ -298,7 +298,7 @@
       "moved_parts": 358,
       "pairs_intersected": 1274,
       "overlapping_pairs": 0,
-      "seconds": 11.22
+      "seconds": 11.2
     },
     {
       "label": "cycle @ 60 deg",
@@ -306,7 +306,7 @@
       "moved_parts": 340,
       "pairs_intersected": 1183,
       "overlapping_pairs": 0,
-      "seconds": 8.86
+      "seconds": 9.89
     },
     {
       "label": "cycle @ 65 deg",
@@ -314,7 +314,7 @@
       "moved_parts": 358,
       "pairs_intersected": 1275,
       "overlapping_pairs": 1,
-      "seconds": 11.26
+      "seconds": 10.93
     },
     {
       "label": "cycle @ 70 deg",
@@ -322,7 +322,7 @@
       "moved_parts": 358,
       "pairs_intersected": 1271,
       "overlapping_pairs": 2,
-      "seconds": 12.36
+      "seconds": 10.94
     },
     {
       "label": "cycle @ 75 deg",
@@ -330,7 +330,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1361,
       "overlapping_pairs": 2,
-      "seconds": 12.98
+      "seconds": 11.93
     },
     {
       "label": "cycle @ 80 deg",
@@ -338,7 +338,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1351,
       "overlapping_pairs": 2,
-      "seconds": 11.86
+      "seconds": 11.72
     },
     {
       "label": "cycle @ 85 deg",
@@ -346,7 +346,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1358,
       "overlapping_pairs": 1,
-      "seconds": 12.88
+      "seconds": 11.68
     },
     {
       "label": "cycle @ 90 deg",
@@ -354,7 +354,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1354,
       "overlapping_pairs": 0,
-      "seconds": 13.61
+      "seconds": 11.67
     },
     {
       "label": "cycle @ 95 deg",
@@ -362,7 +362,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1369,
       "overlapping_pairs": 0,
-      "seconds": 19.3
+      "seconds": 11.73
     },
     {
       "label": "cycle @ 100 deg",
@@ -370,7 +370,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1376,
       "overlapping_pairs": 0,
-      "seconds": 14.1
+      "seconds": 14.11
     },
     {
       "label": "cycle @ 105 deg",
@@ -378,7 +378,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1364,
       "overlapping_pairs": 0,
-      "seconds": 12.55
+      "seconds": 12.33
     },
     {
       "label": "cycle @ 110 deg",
@@ -386,7 +386,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1337,
       "overlapping_pairs": 0,
-      "seconds": 12.29
+      "seconds": 12.4
     },
     {
       "label": "cycle @ 115 deg",
@@ -394,7 +394,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1335,
       "overlapping_pairs": 1,
-      "seconds": 12.05
+      "seconds": 12.31
     },
     {
       "label": "cycle @ 120 deg",
@@ -402,7 +402,7 @@
       "moved_parts": 350,
       "pairs_intersected": 1245,
       "overlapping_pairs": 2,
-      "seconds": 11.51
+      "seconds": 11.83
     },
     {
       "label": "cycle @ 125 deg",
@@ -410,7 +410,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1337,
       "overlapping_pairs": 2,
-      "seconds": 11.9
+      "seconds": 15.06
     },
     {
       "label": "cycle @ 130 deg",
@@ -418,7 +418,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1340,
       "overlapping_pairs": 2,
-      "seconds": 12.29
+      "seconds": 14.86
     },
     {
       "label": "cycle @ 135 deg",
@@ -426,7 +426,7 @@
       "moved_parts": 393,
       "pairs_intersected": 1441,
       "overlapping_pairs": 2,
-      "seconds": 13.63
+      "seconds": 17.41
     },
     {
       "label": "cycle @ 140 deg",
@@ -434,7 +434,7 @@
       "moved_parts": 393,
       "pairs_intersected": 1453,
       "overlapping_pairs": 0,
-      "seconds": 13.57
+      "seconds": 14.91
     },
     {
       "label": "cycle @ 145 deg",
@@ -442,7 +442,7 @@
       "moved_parts": 393,
       "pairs_intersected": 1447,
       "overlapping_pairs": 0,
-      "seconds": 14.55
+      "seconds": 15.63
     },
     {
       "label": "cycle @ 150 deg",
@@ -450,7 +450,7 @@
       "moved_parts": 393,
       "pairs_intersected": 1432,
       "overlapping_pairs": 0,
-      "seconds": 14.45
+      "seconds": 17.1
     },
     {
       "label": "cycle @ 155 deg",
@@ -458,7 +458,7 @@
       "moved_parts": 393,
       "pairs_intersected": 1436,
       "overlapping_pairs": 0,
-      "seconds": 14.29
+      "seconds": 16.35
     },
     {
       "label": "cycle @ 160 deg",
@@ -466,7 +466,7 @@
       "moved_parts": 393,
       "pairs_intersected": 1428,
       "overlapping_pairs": 0,
-      "seconds": 14.19
+      "seconds": 16.14
     },
     {
       "label": "cycle @ 165 deg",
@@ -474,7 +474,7 @@
       "moved_parts": 393,
       "pairs_intersected": 1433,
       "overlapping_pairs": 1,
-      "seconds": 14.92
+      "seconds": 15.79
     },
     {
       "label": "cycle @ 170 deg",
@@ -482,7 +482,7 @@
       "moved_parts": 393,
       "pairs_intersected": 1421,
       "overlapping_pairs": 1,
-      "seconds": 16.04
+      "seconds": 14.31
     },
     {
       "label": "cycle @ 175 deg",
@@ -490,7 +490,7 @@
       "moved_parts": 393,
       "pairs_intersected": 1425,
       "overlapping_pairs": 2,
-      "seconds": 15.74
+      "seconds": 13.42
     },
     {
       "label": "cycle @ 180 deg",
@@ -498,7 +498,7 @@
       "moved_parts": 376,
       "pairs_intersected": 1346,
       "overlapping_pairs": 2,
-      "seconds": 13.52
+      "seconds": 12.64
     },
     {
       "label": "cycle @ 185 deg",
@@ -506,7 +506,7 @@
       "moved_parts": 393,
       "pairs_intersected": 1425,
       "overlapping_pairs": 1,
-      "seconds": 15.57
+      "seconds": 13.1
     },
     {
       "label": "cycle @ 190 deg",
@@ -514,7 +514,7 @@
       "moved_parts": 393,
       "pairs_intersected": 1423,
       "overlapping_pairs": 0,
-      "seconds": 14.27
+      "seconds": 13.78
     },
     {
       "label": "cycle @ 195 deg",
@@ -522,7 +522,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1510,
       "overlapping_pairs": 0,
-      "seconds": 16.05
+      "seconds": 16.58
     },
     {
       "label": "cycle @ 200 deg",
@@ -530,7 +530,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1503,
       "overlapping_pairs": 0,
-      "seconds": 15.78
+      "seconds": 15.57
     },
     {
       "label": "cycle @ 205 deg",
@@ -538,7 +538,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1506,
       "overlapping_pairs": 0,
-      "seconds": 16.5
+      "seconds": 15.09
     },
     {
       "label": "cycle @ 210 deg",
@@ -546,7 +546,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1502,
       "overlapping_pairs": 0,
-      "seconds": 17.37
+      "seconds": 16.18
     },
     {
       "label": "cycle @ 215 deg",
@@ -554,7 +554,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1516,
       "overlapping_pairs": 1,
-      "seconds": 17.55
+      "seconds": 17.15
     },
     {
       "label": "cycle @ 220 deg",
@@ -562,7 +562,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1522,
       "overlapping_pairs": 2,
-      "seconds": 16.59
+      "seconds": 16.09
     },
     {
       "label": "cycle @ 225 deg",
@@ -570,7 +570,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1513,
       "overlapping_pairs": 2,
-      "seconds": 15.67
+      "seconds": 15.71
     },
     {
       "label": "cycle @ 230 deg",
@@ -578,7 +578,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1485,
       "overlapping_pairs": 2,
-      "seconds": 15.79
+      "seconds": 16.93
     },
     {
       "label": "cycle @ 235 deg",
@@ -586,7 +586,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1481,
       "overlapping_pairs": 2,
-      "seconds": 15.64
+      "seconds": 17.51
     },
     {
       "label": "cycle @ 240 deg",
@@ -594,7 +594,7 @@
       "moved_parts": 381,
       "pairs_intersected": 1342,
       "overlapping_pairs": 1,
-      "seconds": 15.5
+      "seconds": 14.22
     },
     {
       "label": "cycle @ 245 deg",
@@ -602,7 +602,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1484,
       "overlapping_pairs": 0,
-      "seconds": 16.03
+      "seconds": 15.69
     },
     {
       "label": "cycle @ 250 deg",
@@ -610,7 +610,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1487,
       "overlapping_pairs": 0,
-      "seconds": 15.95
+      "seconds": 17.39
     },
     {
       "label": "cycle @ 255 deg",
@@ -618,7 +618,7 @@
       "moved_parts": 428,
       "pairs_intersected": 1590,
       "overlapping_pairs": 0,
-      "seconds": 17.58
+      "seconds": 17.11
     },
     {
       "label": "cycle @ 260 deg",
@@ -626,7 +626,7 @@
       "moved_parts": 428,
       "pairs_intersected": 1599,
       "overlapping_pairs": 0,
-      "seconds": 17.54
+      "seconds": 16.37
     },
     {
       "label": "cycle @ 265 deg",
@@ -634,7 +634,7 @@
       "moved_parts": 428,
       "pairs_intersected": 1594,
       "overlapping_pairs": 1,
-      "seconds": 17.53
+      "seconds": 16.65
     },
     {
       "label": "cycle @ 270 deg",
@@ -642,7 +642,7 @@
       "moved_parts": 428,
       "pairs_intersected": 1581,
       "overlapping_pairs": 2,
-      "seconds": 17.59
+      "seconds": 17.3
     },
     {
       "label": "cycle @ 275 deg",
@@ -650,7 +650,7 @@
       "moved_parts": 428,
       "pairs_intersected": 1585,
       "overlapping_pairs": 2,
-      "seconds": 16.71
+      "seconds": 20.79
     },
     {
       "label": "cycle @ 280 deg",
@@ -658,7 +658,7 @@
       "moved_parts": 428,
       "pairs_intersected": 1578,
       "overlapping_pairs": 2,
-      "seconds": 16.85
+      "seconds": 18.56
     },
     {
       "label": "cycle @ 285 deg",
@@ -666,7 +666,7 @@
       "moved_parts": 428,
       "pairs_intersected": 1581,
       "overlapping_pairs": 2,
-      "seconds": 17.09
+      "seconds": 19.18
     },
     {
       "label": "cycle @ 290 deg",
@@ -674,7 +674,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1486,
       "overlapping_pairs": 1,
-      "seconds": 15.25
+      "seconds": 17.35
     },
     {
       "label": "cycle @ 295 deg",
@@ -682,7 +682,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1490,
       "overlapping_pairs": 0,
-      "seconds": 15.28
+      "seconds": 16.81
     },
     {
       "label": "cycle @ 300 deg",
@@ -690,7 +690,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1465,
       "overlapping_pairs": 0,
-      "seconds": 15.3
+      "seconds": 19.33
     },
     {
       "label": "cycle @ 305 deg",
@@ -698,7 +698,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1489,
       "overlapping_pairs": 0,
-      "seconds": 15.41
+      "seconds": 17.57
     },
     {
       "label": "cycle @ 310 deg",
@@ -706,7 +706,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1489,
       "overlapping_pairs": 0,
-      "seconds": 15.41
+      "seconds": 15.8
     },
     {
       "label": "cycle @ 315 deg",
@@ -714,7 +714,7 @@
       "moved_parts": 427,
       "pairs_intersected": 1577,
       "overlapping_pairs": 0,
-      "seconds": 16.92
+      "seconds": 16.29
     },
     {
       "label": "cycle @ 320 deg",
@@ -722,7 +722,7 @@
       "moved_parts": 427,
       "pairs_intersected": 1570,
       "overlapping_pairs": 2,
-      "seconds": 16.87
+      "seconds": 16.85
     },
     {
       "label": "cycle @ 325 deg",
@@ -730,7 +730,7 @@
       "moved_parts": 427,
       "pairs_intersected": 1577,
       "overlapping_pairs": 2,
-      "seconds": 16.69
+      "seconds": 21.54
     },
     {
       "label": "cycle @ 330 deg",
@@ -738,7 +738,7 @@
       "moved_parts": 427,
       "pairs_intersected": 1569,
       "overlapping_pairs": 2,
-      "seconds": 16.69
+      "seconds": 18.26
     },
     {
       "label": "cycle @ 335 deg",
@@ -746,7 +746,7 @@
       "moved_parts": 427,
       "pairs_intersected": 1584,
       "overlapping_pairs": 1,
-      "seconds": 16.25
+      "seconds": 18.22
     },
     {
       "label": "cycle @ 340 deg",
@@ -754,7 +754,7 @@
       "moved_parts": 427,
       "pairs_intersected": 1589,
       "overlapping_pairs": 1,
-      "seconds": 16.83
+      "seconds": 19.95
     },
     {
       "label": "cycle @ 345 deg",
@@ -762,7 +762,7 @@
       "moved_parts": 427,
       "pairs_intersected": 1577,
       "overlapping_pairs": 0,
-      "seconds": 16.6
+      "seconds": 18.29
     },
     {
       "label": "cycle @ 350 deg",
@@ -770,7 +770,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1485,
       "overlapping_pairs": 0,
-      "seconds": 15.5
+      "seconds": 22.85
     },
     {
       "label": "cycle @ 355 deg",
@@ -778,7 +778,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1484,
       "overlapping_pairs": 0,
-      "seconds": 15.43
+      "seconds": 17.72
     },
     {
       "label": "cycle @ 360 deg",
@@ -786,7 +786,7 @@
       "moved_parts": 176,
       "pairs_intersected": 896,
       "overlapping_pairs": 0,
-      "seconds": 13.23
+      "seconds": 13.99
     },
     {
       "label": "cycle @ 365 deg",
@@ -794,7 +794,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1482,
       "overlapping_pairs": 0,
-      "seconds": 14.82
+      "seconds": 15.42
     },
     {
       "label": "cycle @ 370 deg",
@@ -802,7 +802,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1484,
       "overlapping_pairs": 2,
-      "seconds": 14.8
+      "seconds": 15.21
     },
     {
       "label": "cycle @ 375 deg",
@@ -810,7 +810,7 @@
       "moved_parts": 428,
       "pairs_intersected": 1589,
       "overlapping_pairs": 2,
-      "seconds": 16.75
+      "seconds": 17.91
     },
     {
       "label": "cycle @ 380 deg",
@@ -818,7 +818,7 @@
       "moved_parts": 428,
       "pairs_intersected": 1604,
       "overlapping_pairs": 2,
-      "seconds": 16.56
+      "seconds": 17.5
     },
     {
       "label": "cycle @ 385 deg",
@@ -826,7 +826,7 @@
       "moved_parts": 428,
       "pairs_intersected": 1598,
       "overlapping_pairs": 2,
-      "seconds": 16.72
+      "seconds": 17.32
     },
     {
       "label": "cycle @ 390 deg",
@@ -834,7 +834,7 @@
       "moved_parts": 428,
       "pairs_intersected": 1580,
       "overlapping_pairs": 0,
-      "seconds": 16.73
+      "seconds": 17.7
     },
     {
       "label": "cycle @ 395 deg",
@@ -842,7 +842,7 @@
       "moved_parts": 428,
       "pairs_intersected": 1585,
       "overlapping_pairs": 0,
-      "seconds": 17.08
+      "seconds": 18.9
     },
     {
       "label": "cycle @ 400 deg",
@@ -850,7 +850,7 @@
       "moved_parts": 428,
       "pairs_intersected": 1578,
       "overlapping_pairs": 0,
-      "seconds": 16.67
+      "seconds": 18.98
     },
     {
       "label": "cycle @ 405 deg",
@@ -858,7 +858,7 @@
       "moved_parts": 428,
       "pairs_intersected": 1583,
       "overlapping_pairs": 0,
-      "seconds": 16.64
+      "seconds": 20.69
     },
     {
       "label": "cycle @ 410 deg",
@@ -866,7 +866,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1488,
       "overlapping_pairs": 0,
-      "seconds": 14.78
+      "seconds": 17.44
     },
     {
       "label": "cycle @ 415 deg",
@@ -874,7 +874,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1488,
       "overlapping_pairs": 1,
-      "seconds": 14.99
+      "seconds": 17.38
     },
     {
       "label": "cycle @ 420 deg",
@@ -882,7 +882,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1474,
       "overlapping_pairs": 1,
-      "seconds": 14.99
+      "seconds": 17.23
     },
     {
       "label": "cycle @ 425 deg",
@@ -890,7 +890,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1490,
       "overlapping_pairs": 2,
-      "seconds": 15.1
+      "seconds": 17.02
     },
     {
       "label": "cycle @ 430 deg",
@@ -898,7 +898,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1488,
       "overlapping_pairs": 2,
-      "seconds": 15.07
+      "seconds": 17.81
     },
     {
       "label": "cycle @ 435 deg",
@@ -906,7 +906,7 @@
       "moved_parts": 427,
       "pairs_intersected": 1577,
       "overlapping_pairs": 2,
-      "seconds": 16.76
+      "seconds": 19.5
     },
     {
       "label": "cycle @ 440 deg",
@@ -914,7 +914,7 @@
       "moved_parts": 427,
       "pairs_intersected": 1570,
       "overlapping_pairs": 1,
-      "seconds": 17.35
+      "seconds": 22.26
     },
     {
       "label": "cycle @ 445 deg",
@@ -922,7 +922,7 @@
       "moved_parts": 427,
       "pairs_intersected": 1576,
       "overlapping_pairs": 0,
-      "seconds": 17.27
+      "seconds": 18.66
     },
     {
       "label": "cycle @ 450 deg",
@@ -930,7 +930,7 @@
       "moved_parts": 427,
       "pairs_intersected": 1572,
       "overlapping_pairs": 0,
-      "seconds": 16.79
+      "seconds": 19.86
     },
     {
       "label": "cycle @ 455 deg",
@@ -938,7 +938,7 @@
       "moved_parts": 427,
       "pairs_intersected": 1585,
       "overlapping_pairs": 0,
-      "seconds": 16.38
+      "seconds": 20.11
     },
     {
       "label": "cycle @ 460 deg",
@@ -946,7 +946,7 @@
       "moved_parts": 427,
       "pairs_intersected": 1589,
       "overlapping_pairs": 0,
-      "seconds": 16.57
+      "seconds": 20.14
     },
     {
       "label": "cycle @ 465 deg",
@@ -954,7 +954,7 @@
       "moved_parts": 427,
       "pairs_intersected": 1578,
       "overlapping_pairs": 1,
-      "seconds": 16.35
+      "seconds": 19.46
     },
     {
       "label": "cycle @ 470 deg",
@@ -962,7 +962,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1483,
       "overlapping_pairs": 1,
-      "seconds": 14.88
+      "seconds": 18.14
     },
     {
       "label": "cycle @ 475 deg",
@@ -970,7 +970,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1483,
       "overlapping_pairs": 2,
-      "seconds": 14.78
+      "seconds": 17.42
     },
     {
       "label": "cycle @ 480 deg",
@@ -978,7 +978,7 @@
       "moved_parts": 381,
       "pairs_intersected": 1342,
       "overlapping_pairs": 2,
-      "seconds": 15.08
+      "seconds": 17.07
     },
     {
       "label": "cycle @ 485 deg",
@@ -986,7 +986,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1481,
       "overlapping_pairs": 2,
-      "seconds": 15.14
+      "seconds": 18.01
     },
     {
       "label": "cycle @ 490 deg",
@@ -994,7 +994,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1484,
       "overlapping_pairs": 1,
-      "seconds": 15.13
+      "seconds": 21.97
     },
     {
       "label": "cycle @ 495 deg",
@@ -1002,7 +1002,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1507,
       "overlapping_pairs": 0,
-      "seconds": 14.99
+      "seconds": 20.57
     },
     {
       "label": "cycle @ 500 deg",
@@ -1010,7 +1010,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1524,
       "overlapping_pairs": 0,
-      "seconds": 14.92
+      "seconds": 20.43
     },
     {
       "label": "cycle @ 505 deg",
@@ -1018,7 +1018,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1518,
       "overlapping_pairs": 0,
-      "seconds": 14.85
+      "seconds": 18.07
     },
     {
       "label": "cycle @ 510 deg",
@@ -1026,7 +1026,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1503,
       "overlapping_pairs": 0,
-      "seconds": 15.03
+      "seconds": 17.74
     },
     {
       "label": "cycle @ 515 deg",
@@ -1034,7 +1034,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1504,
       "overlapping_pairs": 0,
-      "seconds": 14.84
+      "seconds": 17.56
     },
     {
       "label": "cycle @ 520 deg",
@@ -1042,7 +1042,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1498,
       "overlapping_pairs": 2,
-      "seconds": 14.81
+      "seconds": 18.01
     },
     {
       "label": "cycle @ 525 deg",
@@ -1050,7 +1050,7 @@
       "moved_parts": 410,
       "pairs_intersected": 1503,
       "overlapping_pairs": 2,
-      "seconds": 14.7
+      "seconds": 17.96
     },
     {
       "label": "cycle @ 530 deg",
@@ -1058,7 +1058,7 @@
       "moved_parts": 392,
       "pairs_intersected": 1411,
       "overlapping_pairs": 2,
-      "seconds": 13.14
+      "seconds": 15.29
     },
     {
       "label": "cycle @ 535 deg",
@@ -1066,7 +1066,7 @@
       "moved_parts": 392,
       "pairs_intersected": 1413,
       "overlapping_pairs": 2,
-      "seconds": 13.29
+      "seconds": 16.36
     },
     {
       "label": "cycle @ 540 deg",
@@ -1074,7 +1074,7 @@
       "moved_parts": 374,
       "pairs_intersected": 1311,
       "overlapping_pairs": 1,
-      "seconds": 11.25
+      "seconds": 13.22
     },
     {
       "label": "cycle @ 545 deg",
@@ -1082,7 +1082,7 @@
       "moved_parts": 392,
       "pairs_intersected": 1410,
       "overlapping_pairs": 0,
-      "seconds": 13.34
+      "seconds": 15.28
     },
     {
       "label": "cycle @ 550 deg",
@@ -1090,7 +1090,7 @@
       "moved_parts": 392,
       "pairs_intersected": 1408,
       "overlapping_pairs": 0,
-      "seconds": 13.21
+      "seconds": 15.2
     },
     {
       "label": "cycle @ 555 deg",
@@ -1098,7 +1098,7 @@
       "moved_parts": 392,
       "pairs_intersected": 1430,
       "overlapping_pairs": 0,
-      "seconds": 13.37
+      "seconds": 16.01
     },
     {
       "label": "cycle @ 560 deg",
@@ -1106,7 +1106,7 @@
       "moved_parts": 392,
       "pairs_intersected": 1422,
       "overlapping_pairs": 0,
-      "seconds": 13.14
+      "seconds": 15.84
     },
     {
       "label": "cycle @ 565 deg",
@@ -1114,7 +1114,7 @@
       "moved_parts": 392,
       "pairs_intersected": 1428,
       "overlapping_pairs": 0,
-      "seconds": 13.17
+      "seconds": 15.58
     },
     {
       "label": "cycle @ 570 deg",
@@ -1122,7 +1122,7 @@
       "moved_parts": 392,
       "pairs_intersected": 1424,
       "overlapping_pairs": 1,
-      "seconds": 13.34
+      "seconds": 16.2
     },
     {
       "label": "cycle @ 575 deg",
@@ -1130,7 +1130,7 @@
       "moved_parts": 392,
       "pairs_intersected": 1438,
       "overlapping_pairs": 2,
-      "seconds": 13.25
+      "seconds": 16.91
     },
     {
       "label": "cycle @ 580 deg",
@@ -1138,7 +1138,7 @@
       "moved_parts": 392,
       "pairs_intersected": 1445,
       "overlapping_pairs": 2,
-      "seconds": 13.38
+      "seconds": 15.56
     },
     {
       "label": "cycle @ 585 deg",
@@ -1146,7 +1146,7 @@
       "moved_parts": 392,
       "pairs_intersected": 1431,
       "overlapping_pairs": 2,
-      "seconds": 13.26
+      "seconds": 15.3
     },
     {
       "label": "cycle @ 590 deg",
@@ -1154,7 +1154,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1335,
       "overlapping_pairs": 1,
-      "seconds": 11.85
+      "seconds": 16.2
     },
     {
       "label": "cycle @ 595 deg",
@@ -1162,7 +1162,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1332,
       "overlapping_pairs": 0,
-      "seconds": 11.74
+      "seconds": 14.46
     },
     {
       "label": "cycle @ 600 deg",
@@ -1170,7 +1170,7 @@
       "moved_parts": 350,
       "pairs_intersected": 1241,
       "overlapping_pairs": 0,
-      "seconds": 11.63
+      "seconds": 12.57
     },
     {
       "label": "cycle @ 605 deg",
@@ -1178,7 +1178,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1336,
       "overlapping_pairs": 0,
-      "seconds": 12.67
+      "seconds": 12.65
     },
     {
       "label": "cycle @ 610 deg",
@@ -1186,7 +1186,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1337,
       "overlapping_pairs": 0,
-      "seconds": 11.97
+      "seconds": 12.56
     },
     {
       "label": "cycle @ 615 deg",
@@ -1194,7 +1194,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1358,
       "overlapping_pairs": 0,
-      "seconds": 11.87
+      "seconds": 12.11
     },
     {
       "label": "cycle @ 620 deg",
@@ -1202,7 +1202,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1372,
       "overlapping_pairs": 2,
-      "seconds": 11.74
+      "seconds": 12.13
     },
     {
       "label": "cycle @ 625 deg",
@@ -1210,7 +1210,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1373,
       "overlapping_pairs": 2,
-      "seconds": 11.87
+      "seconds": 14.03
     },
     {
       "label": "cycle @ 630 deg",
@@ -1218,7 +1218,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1358,
       "overlapping_pairs": 2,
-      "seconds": 11.84
+      "seconds": 13.2
     },
     {
       "label": "cycle @ 635 deg",
@@ -1226,7 +1226,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1362,
       "overlapping_pairs": 2,
-      "seconds": 11.81
+      "seconds": 13.48
     },
     {
       "label": "cycle @ 640 deg",
@@ -1234,7 +1234,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1350,
       "overlapping_pairs": 2,
-      "seconds": 11.67
+      "seconds": 13.33
     },
     {
       "label": "cycle @ 645 deg",
@@ -1242,7 +1242,7 @@
       "moved_parts": 375,
       "pairs_intersected": 1357,
       "overlapping_pairs": 0,
-      "seconds": 11.85
+      "seconds": 14.17
     },
     {
       "label": "cycle @ 650 deg",
@@ -1250,7 +1250,7 @@
       "moved_parts": 357,
       "pairs_intersected": 1260,
       "overlapping_pairs": 0,
-      "seconds": 9.92
+      "seconds": 11.79
     },
     {
       "label": "cycle @ 655 deg",
@@ -1258,7 +1258,7 @@
       "moved_parts": 357,
       "pairs_intersected": 1264,
       "overlapping_pairs": 0,
-      "seconds": 10.18
+      "seconds": 11.16
     },
     {
       "label": "cycle @ 660 deg",
@@ -1266,7 +1266,7 @@
       "moved_parts": 340,
       "pairs_intersected": 1179,
       "overlapping_pairs": 0,
-      "seconds": 8.6
+      "seconds": 10.05
     },
     {
       "label": "cycle @ 665 deg",
@@ -1274,7 +1274,7 @@
       "moved_parts": 357,
       "pairs_intersected": 1260,
       "overlapping_pairs": 0,
-      "seconds": 10.02
+      "seconds": 11.44
     },
     {
       "label": "cycle @ 670 deg",
@@ -1282,7 +1282,7 @@
       "moved_parts": 357,
       "pairs_intersected": 1260,
       "overlapping_pairs": 1,
-      "seconds": 11.1
+      "seconds": 11.83
     },
     {
       "label": "cycle @ 675 deg",
@@ -1290,7 +1290,7 @@
       "moved_parts": 357,
       "pairs_intersected": 1279,
       "overlapping_pairs": 2,
-      "seconds": 10.99
+      "seconds": 11.48
     },
     {
       "label": "cycle @ 680 deg",
@@ -1298,7 +1298,7 @@
       "moved_parts": 357,
       "pairs_intersected": 1275,
       "overlapping_pairs": 2,
-      "seconds": 10.35
+      "seconds": 11.69
     },
     {
       "label": "cycle @ 685 deg",
@@ -1306,7 +1306,7 @@
       "moved_parts": 357,
       "pairs_intersected": 1281,
       "overlapping_pairs": 2,
-      "seconds": 10.28
+      "seconds": 11.63
     },
     {
       "label": "cycle @ 690 deg",
@@ -1314,7 +1314,7 @@
       "moved_parts": 357,
       "pairs_intersected": 1275,
       "overlapping_pairs": 1,
-      "seconds": 10.17
+      "seconds": 11.62
     },
     {
       "label": "cycle @ 695 deg",
@@ -1322,7 +1322,7 @@
       "moved_parts": 357,
       "pairs_intersected": 1290,
       "overlapping_pairs": 0,
-      "seconds": 10.08
+      "seconds": 13.47
     },
     {
       "label": "cycle @ 700 deg",
@@ -1330,7 +1330,7 @@
       "moved_parts": 357,
       "pairs_intersected": 1294,
       "overlapping_pairs": 0,
-      "seconds": 10.3
+      "seconds": 11.86
     },
     {
       "label": "cycle @ 705 deg",
@@ -1338,7 +1338,7 @@
       "moved_parts": 357,
       "pairs_intersected": 1283,
       "overlapping_pairs": 0,
-      "seconds": 10.19
+      "seconds": 11.28
     },
     {
       "label": "cycle @ 710 deg",
@@ -1346,7 +1346,7 @@
       "moved_parts": 340,
       "pairs_intersected": 1187,
       "overlapping_pairs": 0,
-      "seconds": 9.29
+      "seconds": 10.32
     },
     {
       "label": "cycle @ 715 deg",
@@ -1354,7 +1354,7 @@
       "moved_parts": 340,
       "pairs_intersected": 1185,
       "overlapping_pairs": 0,
-      "seconds": 9.23
+      "seconds": 12.63
     },
     {
       "label": "explode @ 0.09",
@@ -1362,7 +1362,7 @@
       "moved_parts": 385,
       "pairs_intersected": 281,
       "overlapping_pairs": 136,
-      "seconds": 0.94,
+      "seconds": 1.36,
       "overlaps": [
         {
           "a": "CasePrimaryThroughBolt1",
@@ -1625,7 +1625,7 @@
         {
           "a": "CasePrimaryThroughBolt1",
           "b": "ExhaustRotocoilRim1",
-          "volume_mm3": 227.335,
+          "volume_mm3": 227.334,
           "thickness_mm": 1.468
         },
         {
@@ -1865,7 +1865,7 @@
         {
           "a": "CylinderHead4",
           "b": "DeckStud4_8",
-          "volume_mm3": 75.507,
+          "volume_mm3": 75.508,
           "thickness_mm": 0.744
         },
         {
@@ -2188,7 +2188,7 @@
       "moved_parts": 385,
       "pairs_intersected": 20,
       "overlapping_pairs": 5,
-      "seconds": 0.15,
+      "seconds": 0.19,
       "overlaps": [
         {
           "a": "CaseThruBolt1",
@@ -2228,7 +2228,7 @@
       "moved_parts": 641,
       "pairs_intersected": 225,
       "overlapping_pairs": 112,
-      "seconds": 2.46,
+      "seconds": 2.72,
       "overlaps": [
         {
           "a": "AlternatorSimplifiedShell",
@@ -2318,7 +2318,7 @@
           "a": "ScavengeCoverBolt2",
           "b": "ScavengePumpCover",
           "volume_mm3": 811.094,
-          "thickness_mm": 2.178
+          "thickness_mm": 2.176
         },
         {
           "a": "AlternatorMountStud3",
@@ -2522,7 +2522,7 @@
           "a": "LeftMagnetoAdapterBolt4",
           "b": "RightMagnetoAdapter",
           "volume_mm3": 58.405,
-          "thickness_mm": 0.762
+          "thickness_mm": 0.76
         },
         {
           "a": "LeftMagnetoAdapterBolt1",
@@ -2910,7 +2910,7 @@
       "moved_parts": 641,
       "pairs_intersected": 28,
       "overlapping_pairs": 5,
-      "seconds": 0.26,
+      "seconds": 0.35,
       "overlaps": [
         {
           "a": "CaseThruBolt1",
@@ -2950,7 +2950,7 @@
       "moved_parts": 1013,
       "pairs_intersected": 142,
       "overlapping_pairs": 38,
-      "seconds": 1.02,
+      "seconds": 1.56,
       "overlaps": [
         {
           "a": "CasePrimaryThroughBolt1",
@@ -3188,7 +3188,7 @@
       "moved_parts": 1013,
       "pairs_intersected": 79,
       "overlapping_pairs": 14,
-      "seconds": 0.86,
+      "seconds": 0.97,
       "overlaps": [
         {
           "a": "CasePrimaryThroughBolt7",
@@ -3282,7 +3282,7 @@
       "moved_parts": 1023,
       "pairs_intersected": 138,
       "overlapping_pairs": 72,
-      "seconds": 1.34,
+      "seconds": 2.38,
       "overlaps": [
         {
           "a": "CrankcaseRight",
@@ -3377,7 +3377,7 @@
         {
           "a": "CrankcaseLeft",
           "b": "SmallEndBush2",
-          "volume_mm3": 4510.783,
+          "volume_mm3": 4510.782,
           "thickness_mm": 2.888
         },
         {
@@ -3413,7 +3413,7 @@
         {
           "a": "ConnectingRod3",
           "b": "CrankcaseRight",
-          "volume_mm3": 2675.1,
+          "volume_mm3": 2675.101,
           "thickness_mm": 2.754
         },
         {
@@ -3724,7 +3724,7 @@
       "moved_parts": 1023,
       "pairs_intersected": 94,
       "overlapping_pairs": 14,
-      "seconds": 0.7,
+      "seconds": 0.94,
       "overlaps": [
         {
           "a": "CasePrimaryThroughBolt7",
@@ -3818,7 +3818,7 @@
       "moved_parts": 1191,
       "pairs_intersected": 94,
       "overlapping_pairs": 14,
-      "seconds": 0.85,
+      "seconds": 1.45,
       "overlaps": [
         {
           "a": "CasePrimaryThroughBolt7",
@@ -3912,7 +3912,7 @@
       "moved_parts": 1191,
       "pairs_intersected": 94,
       "overlapping_pairs": 14,
-      "seconds": 0.84,
+      "seconds": 0.9,
       "overlaps": [
         {
           "a": "CasePrimaryThroughBolt7",
@@ -4013,8 +4013,8 @@
     }
   },
   "largest_non_overlapping_contact": {
-    "max_sliver_mm3": 64.6587587381508,
-    "max_sliver_thickness_mm": 0.04738558365251253
+    "max_sliver_mm3": 64.65875873815067,
+    "max_sliver_thickness_mm": 0.047385583652507
   },
   "unverified_parts": [],
   "overlaps_total": 2,
@@ -4022,8 +4022,8 @@
     {
       "a": "AccessoryIdlerGear",
       "b": "RightMagnetoGear",
-      "max_overlap_mm3": 1.5564871827612141,
-      "max_thickness_mm": 0.3508258521652006,
+      "max_overlap_mm3": 1.5564871827611988,
+      "max_thickness_mm": 0.3508258521651972,
       "first_seen": "cycle @ 15 deg",
       "poses": [
         "cycle @ 15 deg",
@@ -4038,8 +4038,8 @@
     {
       "a": "AccessoryIdlerGear",
       "b": "LeftMagnetoGear",
-      "max_overlap_mm3": 1.546959963429225,
-      "max_thickness_mm": 0.34973637088810666,
+      "max_overlap_mm3": 1.5469599634292266,
+      "max_thickness_mm": 0.349736370888107,
       "first_seen": "cycle @ 15 deg",
       "poses": [
         "cycle @ 15 deg",
@@ -4219,7 +4219,7 @@
       {
         "a": "CrankcaseLeft",
         "b": "SmallEndBush2",
-        "max_overlap_mm3": 4510.783,
+        "max_overlap_mm3": 4510.782,
         "max_thickness_mm": 2.888,
         "first_seen": "explode @ 0.69"
       },
@@ -4338,20 +4338,20 @@
       {
         "a": "ConnectingRod3",
         "b": "CrankcaseRight",
-        "max_overlap_mm3": 2675.1,
+        "max_overlap_mm3": 2675.101,
         "max_thickness_mm": 2.754,
         "first_seen": "explode @ 0.69"
       }
     ]
   },
   "timing": {
-    "total_seconds": 2053.2,
+    "total_seconds": 2258.1,
     "python": "3.14.0",
     "machine": "Windows-11-10.0.26300-SP0"
   },
   "audited_plain_form": {
-    "sha256": "2a8fb98a93b7aa2987388ae3caf703616cef7ad771954f42431f09b0d583a42f",
-    "bytes": 43755308,
+    "sha256": "c1d7e5c0072f08c7caa6f325f93d1c78791603d9e4b330753c7e269a54e58853",
+    "bytes": 43760300,
     "note": "The audited GLB is the shipped file unpacked by scripts/decode_model.mjs (EXT_meshopt_compression is lossless), so the auditor can read it."
   },
   "unverified_not_waived": [],
@@ -4360,8 +4360,8 @@
     {
       "a": "AccessoryIdlerGear",
       "b": "RightMagnetoGear",
-      "max_overlap_mm3": 1.5564871827612141,
-      "max_thickness_mm": 0.3508258521652006,
+      "max_overlap_mm3": 1.5564871827611988,
+      "max_thickness_mm": 0.3508258521651972,
       "first_seen": "cycle @ 15 deg",
       "poses": [
         "cycle @ 15 deg",
@@ -4377,8 +4377,8 @@
     {
       "a": "AccessoryIdlerGear",
       "b": "LeftMagnetoGear",
-      "max_overlap_mm3": 1.546959963429225,
-      "max_thickness_mm": 0.34973637088810666,
+      "max_overlap_mm3": 1.5469599634292266,
+      "max_thickness_mm": 0.349736370888107,
       "first_seen": "cycle @ 15 deg",
       "poses": [
         "cycle @ 15 deg",

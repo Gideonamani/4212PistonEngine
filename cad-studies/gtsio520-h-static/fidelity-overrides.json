@@ -5,7 +5,7 @@
   {
    "gate": "gear",
    "parts": "all",
-   "asset_sha256": "7416aa5a90c02f9eabdcadcebbd0777f33a1b275972c1edd08070592556be676",
+   "asset_sha256": "1989cf62ae5e6d69ea3728e37b8d69072e89bbe1b5716e811263edf3e0993f3e",
    "reason": "The declared meshes (two in the timing and reduction train, seven in the accessory train) have no measured minimum clearance: the audit only measures meshes through a baked operating clip.",
    "clears_when": "an interference-audit.json for this asset lists every declared mesh in gear_meshes with ok true",
    "review": "2026-10-20"

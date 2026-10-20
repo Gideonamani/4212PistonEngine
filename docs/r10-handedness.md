@@ -47,6 +47,14 @@ The editable CAD recipes could not be re-run in the other handedness here: the f
 
 **Consequence.** The CAD sources and the specs stay in the old frame, and the reflection lives in the export. **At the next full CAD rebuild** (when the frozen inputs are back), build in the real handedness instead: flip the odd/even bank sign everywhere it appears (`gtsio_layout.pose`, `gtsio_valve_layout`, `gtsio_valvetrain_pose`, the cylinder, crankcase and head recipes), flip the x of the gear centres, axes and `pad_x` in `scripts/accessory_gears.py`, set the root crank rate to -1 and re-solve the tooth phases, regenerate the spec, then set `EXPORT_MIRROR_X = False`. The starter worm changes hand under a reflection (cosmetic).
 
+## How it was checked
+
+- `python scripts/check_constraints.py --all`: 27 checks pass, none fail, none are `accepted` any more, 8 are `unknown` with a reason. `scripts/test_constraints.py` (58 tests), `scripts/test_gtsio_review_motion.py` (10) and `scripts/test_study_contract.py` pass.
+- `node scripts/check_gtsio_review.mjs` on the shipped file: 6 of 6 (the reflection is built into its expectations by hand, not taken from the evaluator under test).
+- The exact interference audit of the shipped, reflected file (`cad-studies/gtsio520-h-static/shipped-r10/interference-audit.json`, plain unpacked form `c1d7e5c0072f…`) gave the same result as the unreflected build, pair for pair: assembled pose clean (5,160 neighbouring pairs), 144 cycle poses with 2 overlapping pairs (the idler gear against the two magneto gears, 1.5 mm3 each), none between parts the core view shows.
+  The three.js poses and the auditor agree on the rest pose exactly (matrix difference 0). The exploded layouts are informational as before (the fully exploded layout holds 14 overlapping pairs).
+- The geometry tool is tested on a synthetic shared-buffer file (`scripts/test_mirror_gtsio_r10.mjs`), and on the real file all 1,396 parts were compared with the source: x negated exactly, y and z equal, normals reflected, same positive volume.
+
 ## What to review (learner-facing text)
 
 - Part names and the learner file (`web/gtsio520-r10-parts.json`) use "left" and "right" as parts of the real engine's names (left magneto, right crankcase half), which are now where the names say. One phrase is tied to a drawing: "pressed into the right crankcase, to the right of the rear main bearing". It reads the same in both frames and needs the instructor's eye only if the drawing it came from is shown.

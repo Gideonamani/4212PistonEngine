@@ -111,9 +111,9 @@
     },
     {
       "path": "web/gtsio520-r10-static-opt1.glb.gz",
-      "drive_id": "1JL79_6POz3VcCT0M9trDTxUmxema1ypm",
-      "bytes": 11993989,
-      "sha256": "e3592272a2d0f6461b5320d496d781b372cb2850ac8bb3a107f4e4e3eb222c48"
+      "drive_id": "1Gx9nOjT-p9xMKlGJ4yrj3z26d5akxKaI",
+      "bytes": 12019746,
+      "sha256": "bcc141fafe3a282aecc686195ea97b9f1fe43fc58a215ad0102ebfecfccee549"
     }
   ],
   "history_policy": "New unpublished accessory commits exclude model binaries. Existing published history retained; native CAD and exported GLBs are no longer tracked going forward.",
@@ -152,6 +152,13 @@
       "bytes": 11998800,
       "sha256": "64f433abefa78a102d731040762753c0a6a6c7a6f4b07ad973e79250035e2f52",
       "retained_reason": "Previous GTSIO-520-H R10 optimised release (before the piston skirt relief of 20 October 2026), retained so the relief release can be rolled back."
+    },
+    {
+      "path": "web/gtsio520-r10-static-opt1.glb.gz",
+      "drive_id": "1JL79_6POz3VcCT0M9trDTxUmxema1ypm",
+      "bytes": 11993989,
+      "sha256": "e3592272a2d0f6461b5320d496d781b372cb2850ac8bb3a107f4e4e3eb222c48",
+      "retained_reason": "GTSIO-520-H R10 with the piston skirt relief but not yet reflected to the real handedness (20 October 2026). Never the live release: the reflected release replaced it before the change was merged. Kept on Drive as the unreflected audit and rollback reference."
     }
   ],
   "accessory_native_archive": {

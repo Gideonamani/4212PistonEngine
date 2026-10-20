@@ -187,3 +187,28 @@ node scripts/bind_gtsio_r10_optimized.mjs                   # contract, registry
 node scripts/bind_gtsio_r10_optimized.mjs --drive-id <id>   # after the file is on Drive with link sharing
 python scripts/fetch_drive_assets.py --verify-remote        # anonymous download, size and hash
 ```
+
+### Reflected to the engine's real handedness (20 October 2026)
+
+The same release also turns the model the right way round (`docs/r10-handedness.md`): the card was the left-right mirror image of the real engine (odd cylinders and the alternator on the wrong side). The build inputs
+are not kept in Git either, so the relieved source was reflected x to -x as a whole by `scripts/mirror_gtsio_r10.mjs` (positions and normals; the winding of every triangle reversed once per shared index buffer), and the contract carries
+`procedural.mirror_x` so the viewer, the Python twin and the audits describe the reflected model. The file under the same name is replaced again; the relief-only build (`7416aa5a90c0…`) was uploaded to Drive but never went live.
+
+| | Release of 19 October | Relief and reflection release |
+|---|---|---|
+| Transfer (gzip) | 11,998,800 bytes | 12,019,746 bytes (11.5 MiB; budget 16 MB) |
+| Decoded | 21,115,472 bytes | 21,087,416 bytes |
+| SHA-256 of the transfer file | `64f433abefa7…` | `bcc141fafe3a282aecc686195ea97b9f1fe43fc58a215ad0102ebfecfccee549` |
+| SHA-256 of the decoded GLB (what the contract checks) | `1dcf07ccd0f2…` | `1989cf62ae5e6d69ea3728e37b8d69072e89bbe1b5716e811263edf3e0993f3e` |
+| Triangles | 2,080,106 | 2,079,722 |
+| Drive file id | `10AXTDqplLyTAjXp-wTikbdx7BGg5Dwf4` | `1Gx9nOjT-p9xMKlGJ4yrj3z26d5akxKaI` (named `gtsio520-r10-static-opt1-mirror-20261020.glb.gz`) |
+| Parse (app loader, desktop Chrome, best of three) | 470 ms | 241 ms (mirrored unoptimised source: 139 ms) |
+
+The parse times vary a lot between runs on this machine (the relief build measured 308 ms earlier the same morning), so they say only that the file parses in a fraction of a second on a desktop; nothing was measured on the phone.
+Errors against the mirrored unoptimised source are the same as before (positions within 2.4e-7 m, normals within 0.024 degrees, lossless packing exact) and the render check passes again (worst picture 0.0009% of pixels differ, mean difference 0.017 levels).
+`scripts/check_gtsio_review.mjs` passes on the file (six checks, with the reflection built into its expectations), and the anonymous download from Drive was verified by size and hash (`python scripts/fetch_drive_assets.py --verify-remote`).
+
+```powershell
+node scripts/mirror_gtsio_r10.mjs build/r10-graft/web/gtsio520-r10-static.glb.gz build/r10-mirror/web/gtsio520-r10-static.glb.gz
+node scripts/build_gtsio_r10_optimized.mjs --into build/r10-mirror/web --record build/r10-mirror/record.json
+```
