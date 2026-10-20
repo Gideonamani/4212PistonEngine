@@ -153,6 +153,34 @@ the 12 pictures are three distinct rest views drawn four times. The cycle and ex
 **Not measured:** transfer and parse time on the phone, memory, and the first rendered frame there. The saving in bytes is certain; the saving in time is not until `docs/galaxy-a16-release-check.md` has been run.
 Parse time went up by about 94 ms on the desktop (the meshopt decoder), which may matter more on a slower phone.
 
+### Rebuilt with the piston skirt relief (20 October 2026)
+
+The file under the same name was rebuilt after the cycle audit's 159 overlapping pairs were traced (`docs/r10-cycle-overlap-root-causes.md`): each of the six pistons now has a stepped relief on the
+flank that faces the neighbouring crank bay (**an illustrative modelling decision; there is no source for the real piston**), and 152 parts the contract held fixed now turn with the crank, the cam or their gear.
+The frozen R10 build inputs are not kept in Git, so the pistons were regenerated from `cad_pipeline/gtsio_core.py` with FreeCAD and grafted into the unoptimised source by
+`scripts/graft_gtsio_r10_pistons.mjs` (the other 1,390 parts are unchanged byte for byte), then optimised exactly as before.
+
+| | Release of 19 October | Relief release |
+|---|---|---|
+| Transfer (gzip) | 11,998,800 bytes | 11,993,989 bytes (11.4 MiB; budget 16 MB) |
+| Decoded | 21,115,472 bytes | 21,112,200 bytes |
+| SHA-256 of the transfer file | `64f433abefa7…` | `e3592272a2d0f6461b5320d496d781b372cb2850ac8bb3a107f4e4e3eb222c48` |
+| SHA-256 of the decoded GLB (what the contract checks) | `1dcf07ccd0f2…` | `7416aa5a90c02f9eabdcadcebbd0777f33a1b275972c1edd08070592556be676` |
+| Triangles | 2,080,106 | 2,079,722 (the relief removes 64 from each piston) |
+| Drive file id | `10AXTDqplLyTAjXp-wTikbdx7BGg5Dwf4` | `1JL79_6POz3VcCT0M9trDTxUmxema1ypm` |
+| Parse (app loader, desktop Chrome, best of three) | 470 ms | 308 ms (unoptimised source: 286 ms) |
+
+The earlier release stays on Drive and in the manifest's `previous_web_releases` for rollback. The file name `gtsio520-r10-static-opt1.glb.gz` is unchanged (so are the paths in the workflow and tests); the Drive copy is
+named `gtsio520-r10-static-opt1-relief-20261020.glb.gz`. The size error limits are the same (positions within 2.4e-7 m, normals within 0.024 degrees); the render check passes again (worst picture 0.0017% of pixels differ,
+mean difference 0.018 levels). `scripts/check_gtsio_review.mjs` passes on the file (six checks) with the new contract; its rest-bounds check compares with the review manifest, whose six piston entries were taken from the regenerated pistons.
+
+```powershell
+python -c "import json,sys; sys.path.insert(0,'.'); from cad_pipeline import gtsio_core; from cad_pipeline.gtsio_layout import StaticEngineLayout; json.dump(gtsio_core.build(layout=StaticEngineLayout(complete_cylinders=True))[0], open('build/r10-pistons/spec-relief.json','w'), indent=1)"
+& "C:/Program Files/FreeCAD 1.1/bin/python.exe" cad_pipeline/generate.py --spec build/r10-pistons/spec-relief.json --output build/r10-pistons/relief --only Piston1 Piston2 Piston3 Piston4 Piston5 Piston6
+node scripts/graft_gtsio_r10_pistons.mjs web/gtsio520-r10-static.glb.gz build/r10-pistons/relief/geometry.json build/r10-graft/web/gtsio520-r10-static.glb.gz
+node scripts/build_gtsio_r10_optimized.mjs --into build/r10-graft/web --record build/r10-graft/record.json
+```
+
 ```powershell
 node scripts/build_gtsio_r10_optimized.mjs                  # web/gtsio520-r10-static-opt1.glb.gz and the record, from web/gtsio520-r10-static.glb.gz (about 30 s)
 node scripts/bind_gtsio_r10_optimized.mjs                   # contract, registry, manifest and record (placeholder Drive id)

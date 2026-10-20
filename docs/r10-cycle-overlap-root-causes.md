@@ -1,6 +1,6 @@
 # R10 cycle overlaps: what causes them (20 October 2026)
 
-An investigation of the 159 overlapping part pairs that the sampled pose audit finds in the computed 720-degree cycle of the GTSIO-520-H R10 card (`cad-studies/gtsio520-h-static/shipped-r10/interference-audit.json`, PR #82, rebuilt on the optimised file in PR #83). It changes no model, contract, asset hash, Drive id or manifest. Everything below was measured on the shipped geometry; where something is an estimate or was not checked, it says so.
+An investigation of the 159 overlapping part pairs that the sampled pose audit finds in the computed 720-degree cycle of the GTSIO-520-H R10 card (`cad-studies/gtsio520-h-static/shipped-r10/interference-audit.json`, PR #82, rebuilt on the optimised file in PR #83). The investigation itself changed no model, contract, asset hash, Drive id or manifest. **Status: fixed on 20 October 2026 in a new release (see "Outcome of the fix" below); the sections before it describe the file of 19 October (decoded sha256 `1dcf07cc…`) and are kept as the record of the cause.** Everything below was measured on the shipped geometry of that date; where something is an estimate or was not checked, it says so.
 
 ## Result in one table
 
@@ -106,6 +106,55 @@ The full audit was run once more on the shipped optimised file (packed sha256 `6
 
 So the split is stable on the shipped file, and the causes above describe all 159 pairs.
 
+## Outcome of the fix (20 October 2026)
+
+The user decided to fix both groups in one change. **159 overlapping pairs became 2** (core view 42 to 0, Assembled view only 117 to 2) on the new file (decoded sha256 `7416aa5a90c0…`, 11,993,989 bytes transfer, 21,112,200 decoded; `docs/model-optimization.md`).
+The audit is the full one of `docs/assembly-interference.md`: the assembled pose (5,160 neighbouring pairs, all touching only) and 144 cycle poses every 5 crank degrees, with the exploded layouts (informational, as before: transit poses hold up to 136 overlapping pairs, and the held layouts at the ends of stages 1 to 5 hold 5, 5, 14, 14 and 14).
+Nothing new appeared: every pair found is one of the 2 that turning the gears uncovered. A second, restricted exact audit every **1 degree** (720 poses; pistons, rods, rings, crankshaft and the damper system against every other part, 476,948 pair tests) found **no overlap at all**,
+so the relief's margin holds between the 5-degree poses too.
+
+| | Before | After |
+|---|---|---|
+| Core view (the default) | 42 pairs | **0** |
+| Assembled view only | 117 pairs | 2 (`AccessoryIdlerGear` against each magneto gear, 1.5 mm³ each, 0.35 mm thick) |
+| Rest pose | clean | clean |
+
+**Group 1: the piston skirt relief (an illustrative modelling decision, no source for the real piston).** One parameterised cut in `cad_pipeline/gtsio_core.py` (`piston_relief_*`, labelled as an illustrative modelling decision in the parameter rationale, the feature labels, the contract's `pending` list and here),
+made of two boxes on the flank that faces the neighbouring bay, mirror-image for odd and even pistons: **22 x 27 x 103 mm** (height from the skirt bottom, depth in from the flank, width across the thrust faces) for the big-end hardware, and a shallower **9.4 x 51 x 116 mm** step for the crank counterweights.
+This is the 20.3 x 25.4 x 100 mm minimum above with about 1.5 mm clearance each way, **plus the counterweights' swept volume** (7.9 mm high, 49.4 mm deep, 112.9 mm wide; they reach under the skirt as soon as they turn with the crank), so one relief clears everything.
+It removes **16.1 cm³ per piston (4.5 percent of 354.9 cm³)** against 6.4 cm³ for the hardware alone, and leaves **3.0 to 3.25 mm of web** to the lowest ring groove (the scraper ring) and to the pin boss, so neither is touched; the relief stayed clear of the point where it would eat the ring groove or the boss, so no alternative had to be decided.
+What the learner sees: the bottom corners of the thrust panels on the neighbour side are cut away (the counterweight step is the larger part of that). The alternatives, reshaping the counterweights or accepting the clash with a documented note, were not needed.
+FreeCAD regenerates the six pistons (the recipe without the relief reproduces the shipped Piston2 to within two triangles of 6,774) and `scripts/graft_gtsio_r10_pistons.mjs` puts them into the unoptimised source.
+
+**Group 2: parts the contract held fixed.** `cad_pipeline/gtsio_review_motion.py` and the viewer's evaluator (`src/viewer/core/animated-study-motion.mjs`, which must agree: `scripts/check_gtsio_review.mjs` passes, six checks) now assign **152 parts** to a moving body:
+`crank` for the damper system (102 parts), `QuillShaft`, `ReductionPinion`, `QuillPlate` and its screws, and the alternator face gear with its screws and tab locks; `cam` for `GovernorCamKey`, `GovernorDriveBevel`, `OilPumpDriver`, `ScavengePumpDriver`, `ScavengeDriveKey`, `TachDriverBevel` and `TachDriverPin`;
+and a new body kind `spin:px,py,pz,ax,ay,az,rate` for the gears, which turn about their own axes at the rates `scripts/accessory_gears.py` already declares (centres, axes and signs come from the same declaration; none is invented here). The Core view is unchanged: these parts stay hidden there.
+The explosion is untouched (it reads the contract's `explosion` offsets, not the bodies; the collapse is still its exact inverse).
+
+The remaining pairs of the earlier experiment, one by one (volumes at the worst pose, on the old file):
+
+| Pairs | Cause | Parent body |
+|---|---|---|
+| `QuillShaft` / `ReductionPinion` (944 mm³) | the pinion sits on the quill shaft | both `crank`; `PropellerShaft` meshes with the pinion and turns at -0.667 about its own axis (the audit then finds the teeth clear at all 144 poses) |
+| `QuillPlateScrew1`, `2` / `QuillShaft` (143 each), `QuillPlate` / screws (24 each) | the screws thread into the shaft and clamp the plate | `crank` (screws, then the plate) |
+| `AccessoryIdlerGear` / `LeftAccessoryGear`, `RightAccessoryGear` (542 each) | the accessory gears are the idler's declared mates | spin at 1.142857 about their own centres, the idler at -0.714286 |
+| `AccessoryIdlerGear`, `IdlerGear` / `IdlerClusterScrew1` to `4` (234 and 225 each) | the four screws clamp the two idler gears together | spin with the idler cluster |
+| `FuelDriveCoupling` / `FuelPumpDriveGear` (203), `Left`/`RightMagnetoCoupling` / gears (189 each) | couplings sit in their gears | spin with their gear (0.5; 1.5) |
+| `OilPumpDriver` / `TachDriverPin` (59), `OilPumpDriver` / `ScavengeDriveKey` (30), `ScavengeDriveKey` / `ScavengePumpDriver` (25) | pin and key join a gear to the cam-speed shaft | `cam`; the tach driven bevel, its pin and the output shaft spin at -0.5 about the X axis through the bevel apex (declared) |
+| `GovernorCamKey` / `GovernorDriveBevel` (19) | the bevel is keyed to the cam | `cam`; the governor driven gear spins at -0.809 about the X axis through the bevel apex (declared) |
+| 12 `Counterweight` / `Piston` pairs (287 mm³ each) | the counterweights, once they turn with the crank, sweep under the skirts | cleared by the counterweight step of the relief |
+| found on the way: `AlternatorFaceScrew1` to `4` / `ReductionPinion` (197 each), `AlternatorFaceTabLock1`, `2` / screws (25 each), `AlternatorKeyedHub` / `AlternatorWoodruffKey` (4), `AlternatorRotorShaft` / key (16), `AlternatorCotter` / shaft (5) | the alternator face gear is bolted to the pinion and drives a pinion on the X axis | face gear, screws and tab locks `crank`; the pinion, hub, key, rotor shaft, washer, nut, cotter, bushing and coupling spring spin at 3.0 about the X axis through (40.5, 0, 619) |
+| `AccessoryIdlerGear` / `LeftMagnetoGear`, `RightMagnetoGear` (1.5 mm³ each) | **real geometry, not a motion error.** The idler's teeth (z -48 to -36 mm, tip radius 56.75) and the magneto gear teeth (z -37 to -25, tip radius 30.8) overlap axially by 1 mm and the axes are 86.8 mm apart, so the tips pass through each other by up to 0.75 mm at some angles | **kept in the ledger** (`shipped-r10/interference-policy.json`, status `open`) with the fix: move one gear 1 mm along its axis or trim the teeth, an accessory-drive recipe change not made here |
+
+The signs of the bevel and pinion meshes were checked rather than assumed: with the declared signs reversed the audit finds tooth overlaps (alternator pinion against face gear 77 mm³, governor 34, tach 10), with the declared signs none.
+
+**One consequence to know about.** A gear that turns at a fixed ratio to the crank returns to its start pose after the 720-degree cycle only when twice its ratio is a whole number. Eleven parts do not (the idler and its four screws, the accessory idler, the starter gear, the propeller shaft, the two accessory gears and the governor driven gear),
+so when the looped cycle restarts they jump to their start angle: gear teeth look identical, screws and couplings on them jump. This is visible only in the Assembled view. `scripts/check_gtsio_review.mjs` counts these parts instead of failing on them.
+Making the loop seamless would need rates that break the declared meshes, so it was not done.
+
+**Guard checks.** `scripts/test_gtsio_spin_body.mjs` and `scripts/test_gtsio_review_motion.py` (in CI) test the new body kind and that the declared rates, centres and axes are the ones used. The committed audit record is read by `scripts/test_interference_audit.mjs`, which fails on any overlap outside the ledger and now also on a core-view overlap or a ledger longer than the two known pairs.
+A motion-coverage check in the closure-check framework (parts that touch or fit statically must share a moving body unless the pair is a declared joint or sliding fit) needs the rest-pose touching pairs and a list of declared joints; the audit does not write the touching pairs down, so it was not built here.
+
 ## Faster audit (audit-side change)
 
 The full run (1,396 parts read, 144 cycle poses) takes about 45 minutes on the 8 GB machine. A restricted audit gives the same answers for any change that moves only some parts: take the world bounding box of every part from the sampler for each pose, build exact solids only for pairs that involve a part from a chosen "focus" set (the parts whose body changed), and skip pairs that share a pose change (as the audit already does). The prototype (`variant_audit.py`, kept outside the repository with its sampler variant) ran the 114-part focus above over 72 poses in 120 seconds and 26,744 pair tests. On four baseline poses it reproduced the ledger exactly (91 pairs, all in the ledger). It is not a replacement for the full audit at release; it is a cheap way to check a contract change before the full run. Two small improvements to the audit's own record would also have saved most of this investigation: write each overlap's intersection bounding box, and the crank angle range of every overlap, into `interference-audit.json`.
@@ -114,7 +163,7 @@ The full run (1,396 parts read, 144 cycle poses) takes about 45 minutes on the 8
 
 - The relief sizes come from sampling every 2 degrees; an overlap narrower than that could be missed, so the clearance margin above matters. They were measured on the unoptimised file (the shipped file differs by at most 0.24 µm).
 - The spin-body experiment shows that the declared rates remove the listed overlaps, not that the gears mesh correctly at every angle; tooth-level meshing is only checked as far as the overlap threshold.
-- The relief and pitch options were computed, not modelled; nothing was cut in FreeCAD.
+- The relief and pitch options above were computed, not modelled; the relief of the outcome section was then cut in FreeCAD and audited.
 - The real engine's piston skirt, crank pin width and bay pitch are not in the project's sources.
 
 ## Files

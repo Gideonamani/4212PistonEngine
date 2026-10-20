@@ -8,8 +8,8 @@
 //   node scripts/build_gtsio_r10_optimized.mjs --into build/r10-graft/web --record build/r10-graft/record.json
 //
 // Positions follow the frozen pipeline (cad_pipeline/review_gtsio_r10.py): metres, glTF frame (x, y = CAD z, z = -CAD y). Normals follow cad_pipeline/look.py:
-// smooth shading with the edges sharper than 30 degrees split (Blender's set_sharp_from_angle), corner-angle weighted. On the unmodified recipe the vertex counts
-// are within 0.3 % of the frozen file's (6,371 against 6,388 for Piston1, the difference being the relief), so the tessellation matches.
+// smooth shading with the edges sharper than 30 degrees split (Blender's set_sharp_from_angle), corner-angle weighted. Checked on the recipe without the relief:
+// Piston2 comes out with 6,392 vertices and 6,776 triangles against the frozen file's 6,390 and 6,774, so the tessellation matches to two triangles.
 import fs from 'node:fs';
 import zlib from 'node:zlib';
 import crypto from 'node:crypto';

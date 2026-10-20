@@ -100,7 +100,7 @@ A removal-order planner that uses the audit as its oracle is the open step.
 R10 (1,396 parts) ships with no baked clips. The viewer computes its core cycle and exploded layout from the
 contract in `src/viewer/core/animated-study-motion.mjs`, so `audit_assembly_interference.py` can audit only its assembled pose. Two tools audit the rest.
 
-The file that ships is the optimised `web/gtsio520-r10-static-opt1.glb.gz` (meshopt-packed, 11,998,800 bytes; `docs/model-optimization.md`). The auditor reads raw buffers and
+The file that ships is the optimised `web/gtsio520-r10-static-opt1.glb.gz` (meshopt-packed, 11,993,989 bytes; `docs/model-optimization.md`). The auditor reads raw buffers and
 refuses packed files, so the packed file is first unpacked with `scripts/decode_model.mjs` (lossless: the same numbers the viewer decodes), and the record names the shipped file's hash:
 
 ```powershell
@@ -120,17 +120,17 @@ It refuses poses sampled from a different file, and it checks that Three.js and 
 `rest` and `cycle` poses decide the result. `explode` poses are listed but never decide it, like the exploded clips of the other models (above).
 Sampling is discrete: an overlap narrower than the step between poses (5 crank degrees here) could be missed, and nothing is checked between poses.
 
-**Result for the shipped file (decoded sha256 `1dcf07ccd0f2…`; its plain unpacked form, which the auditor read, is `a2ab2fb9de36…`), recorded in `cad-studies/gtsio520-h-static/shipped-r10/`.**
-The same run on the earlier, unoptimised file (sha256 `80991fa8b0d5…`, 51.2 MB) found the same 159 overlapping pairs, so optimising changed nothing the audit can see. The optimiser keeps
+**Result for the shipped file (decoded sha256 `7416aa5a90c0…`; its plain unpacked form, which the auditor read, is `2a8fb98a93b7…`), recorded in `cad-studies/gtsio520-h-static/shipped-r10/`.**
+This is the file of 20 October 2026, rebuilt with the piston skirt relief and the fitted-body motion (`r10-cycle-overlap-root-causes.md`, "Outcome of the fix"). The file of 19 October (decoded sha256 `1dcf07ccd0f2…`) had 159 overlapping pairs in the cycle, and the earlier unoptimised file (sha256 `80991fa8b0d5…`, 51.2 MB) found the same 159, so optimising changed nothing the audit can see. The optimiser keeps
 positions to a 20-bit mantissa (about 0.24 µm on a 1.07 m model) so every part stays a closed solid; at 16 bits the two crankcase halves and the governor-driven shaft gear, and at 18 bits the two crankcase halves, stopped being closed solids and could not be intersected exactly.
 
 | Pose set | Result |
 |---|---|
-| Assembled pose | Clean: 5,168 neighbouring pairs, none overlapping (the same count as the audit of the earlier animated file). |
-| Core cycle, 144 poses (every 5 crank degrees) | **Not clean: 159 overlapping pairs.** 42 are between parts the default core view shows: each piston passes through the big-end hardware (cap, bolts, nuts, lower bearing) of the rod on the opposite bank of the same crank bay (up to 2,814 mm³ and 3.0 mm thick for a rod cap), and the crankshaft meets each piston (about 56 mm³, 0.8 mm thick). 117 are visible only in the Assembled view of the cycle: the crankshaft and camshaft turn through counterweights, damper pins, plates, rings and bushes, the quill shaft, the governor cam key and the neighbouring gears, all of which the contract holds fixed (`body: fixed:…`). Causes: see [r10-cycle-overlap-root-causes.md](r10-cycle-overlap-root-causes.md) (the first group is real geometry, the second mostly parts the contract holds fixed). |
+| Assembled pose | Clean: 5,160 neighbouring pairs, none overlapping (5,168 on the file of 19 October; which eight pairs dropped out was not traced). |
+| Core cycle, 144 poses (every 5 crank degrees) | **Not clean: 2 overlapping pairs, none between parts the default core view shows.** Both are `AccessoryIdlerGear` against a magneto gear (1.5 mm³ each, 0.35 mm thick), visible only in the Assembled view: the teeth of the two gears overlap axially by 1 mm (declared geometry, not a motion error), so it stays in the ledger with its fix. The file of 19 October had 159 (42 in the core view: each piston through the big-end hardware of the rod on the opposite bank of its crank bay, and the crankshaft against each piston; 117 only in the Assembled view: parts the contract held fixed while the shaft or gear they sit on turned). The pistons now carry an illustrative skirt relief (no source for the real piston), and the contract assigns the crank-mounted, cam-mounted and gear parts to the body they turn with. Causes and the one-by-one classification: see [r10-cycle-overlap-root-causes.md](r10-cycle-overlap-root-causes.md). |
 | Exploded layouts, 10 poses | Not decisive. Transit poses hold up to 136 overlapping pairs; the held layouts at the ends of stages 1 to 5 hold 5, 5, 14, 14 and 14 (the 14 of the fully exploded layout are through-bolts, washers, nuts, lower spark-plug parts and a base seal overlapping cylinder barrels). |
 
-The 159 cycle pairs are in a known-defect ledger (`shipped-r10/interference-policy.json`, status `open`) so the record can pass as a ratchet: a new overlap fails,
+The 2 cycle pairs are in a known-defect ledger (`shipped-r10/interference-policy.json`, status `open`; it held 159 before the 20 October rebuild) so the record can pass as a ratchet: a new overlap fails,
 a fixed one must come off the list. The ledger records the draft as it is; it does not accept it. R10 stays `release_allowed: false`, and the contract's pending
 list carries the same result against the asset hash.
 

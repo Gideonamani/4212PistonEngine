@@ -8,23 +8,22 @@ Derived from `web/gtsio520-r10-contract.json`, `cad-studies/gtsio520-h-static/in
 
 | Class | Parts | Share | Features (spec known for 335 parts) |
 |---|---|---|---|
-| engineering | 694 | 50% | 1043 |
-| visual-structure | 702 | 50% | 222 |
+| engineering | 728 | 52% | 1043 |
+| visual-structure | 668 | 48% | 222 |
 | cosmetic | 0 | 0% | 0 |
 
 Why the engineering parts are engineering (the set of signals each has):
 
 | Signals | Parts |
 |---|---|
-| path | 342 |
-| motion + path | 294 |
-| motion | 31 |
+| motion + path | 400 |
+| path | 236 |
+| motion | 65 |
 | feature | 12 |
-| gear | 10 |
-| gear + motion + path | 3 |
-| gear + path | 2 |
+| gear + motion | 10 |
+| gear + motion + path | 5 |
 
-Signals present in the records: 328 moving parts, 15 gear parts, 0 parts in the interference ledger, 0 parts in a mass-check line, 641 parts on a mechanism path of the inventory. Overrides applied: 0.
+Signals present in the records: 480 moving parts, 15 gear parts, 0 parts in the interference ledger, 0 parts in a mass-check line, 641 parts on a mechanism path of the inventory. Overrides applied: 0.
 
 No cosmetic part or feature is modelled yet: no feature label names a chamfer, edge break, blend, texture or lettering, and the spec holds 2 fillet dressups (a dressup takes the class of its part). The class exists for the casting spike (B8) and any display skin; it is derived only from a label that names one, or from an override.
 
@@ -34,8 +33,8 @@ A gate covers a part only when its audit record was run on the study's present a
 
 | Class | Parts | Rest-pose audit | Moving | Swept clip | Meshed | Gear clearance | In a mass-check line | On a mechanism path |
 |---|---|---|---|---|---|---|---|---|
-| engineering | 694 | 694 | 328 | 328 | 14 | 0 | 0 | 641 |
-| visual-structure | 702 | 702 | 0 | 0 | 0 | 0 | 0 | 0 |
+| engineering | 728 | 728 | 480 | 480 | 14 | 0 | 0 | 641 |
+| visual-structure | 668 | 668 | 0 | 0 | 0 | 0 | 0 | 0 |
 | cosmetic | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 - Audit record not counted: animation-review/interference-audit.json: audited a different file (1396 parts, sha 27054c1c7d); not counted.
@@ -99,7 +98,7 @@ The spec can cap a class (`tessellation.classes`, a ceiling in mm or tier name, 
 
 ## Lesson map for the R10 model (draft)
 
-`data/gtsio520-lesson-fidelity-map.json`, status **draft**. Of 1396 R10 parts, 176 are needed at engineering fidelity by an operate lesson, 76 more at visual-structure fidelity by an identify lesson, and 1138 are named in no lesson text (6 more only in concept lessons). Mentions come from the lesson text and keep the top four lessons per part kind, so a part kind used in a fifth lesson is understated.
+`data/gtsio520-lesson-fidelity-map.json`, status **draft**. Of 1396 R10 parts, 181 are needed at engineering fidelity by an operate lesson, 71 more at visual-structure fidelity by an identify lesson, and 1138 are named in no lesson text (6 more only in concept lessons). Mentions come from the lesson text and keep the top four lessons per part kind, so a part kind used in a fifth lesson is understated.
 
 | Lesson | Focus | Part kinds | Parts | Needed at engineering | Needed at visual-structure | Named only |
 |---|---|---|---|---|---|---|
@@ -111,8 +110,8 @@ The spec can cap a class (`tessellation.classes`, a ceiling in mm or tier name, 
 | 6. Cooling Methods | identify | 3 | 3 | 0 | 3 | 0 |
 | 7. Parts and Construction | identify | 12 | 50 | 0 | 50 | 0 |
 | 8. Valve Operating | operate | 19 | 174 | 144 | 30 | 0 |
-| 9. Accessories & Drives | operate | 18 | 20 | 12 | 8 | 0 |
-| 10. Power Generation | operate | 9 | 53 | 39 | 14 | 0 |
+| 9. Accessories & Drives | operate | 18 | 20 | 16 | 4 | 0 |
+| 10. Power Generation | operate | 9 | 53 | 40 | 13 | 0 |
 | 11. Induction & Exhaust | identify | 1 | 1 | 0 | 1 | 0 |
 | 12. Performance Calculations | concept | 3 | 8 | 0 | 0 | 8 |
 | 13. Factors Affecting Power | concept | 2 | 24 | 0 | 0 | 24 |
