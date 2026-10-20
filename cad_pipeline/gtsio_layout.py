@@ -3,8 +3,19 @@
 Z runs aft to forward; odd cylinders extend +X, even cylinders -X.
 Dimensional manufacturing data: X-30045A Table 6, PDF103; H: PDF152-153.
 Axial spacing and rest-pose registration are reconstruction choices.
+
+Handedness. That is the frame of the frozen CAD build ("CAD frame"). In a right-handed frame with +Z forward and +Y up, right is -X, so the CAD frame has
+the odd cylinders on the LEFT looking forward from the accessory end, where X-30045A section 1-7 and Fig A-4-1 put Nos. 1, 3 and 5 on the right (the user
+saw the same on the real engine: the alternator is on the left from the front in the model and on the right on the engine). The R10 review export is therefore
+the reflection x -> -x of this frame (`EXPORT_MIRROR_X`): the viewer, the contract, the audits and the closure checks all work in that export frame, and the
+recipes, specs and gear declarations of the CAD build stay as built. See docs/r10-handedness.md.
 """
 import math
+
+# The one handedness parameter of the R10 review export. True: the export is the reflection x -> -x of the CAD frame above (odd cylinders on the right, the
+# crank turning counterclockwise looking forward, the propeller clockwise). Set it to False only after the CAD build itself has been regenerated with the
+# real handedness (then the declarations are already in the export frame). The contract records it (`procedural.mirror_x`) so the viewer reads the same value.
+EXPORT_MIRROR_X = True
 
 INCH = 25.4
 BORE = 5.250 * INCH

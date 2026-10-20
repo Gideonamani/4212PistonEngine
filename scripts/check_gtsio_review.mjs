@@ -35,6 +35,9 @@ const root=gltf.scene,mixer=new THREE.AnimationMixer(root);
 const {partsById:parts}=indexStudyParts(root);root.updateMatrixWorld(true);
 const rest=new Map([...parts].map(([id,o])=>[id,o.matrixWorld.clone()]));
 const procedural=createProceduralStudySampler(contract,parts,root);
+// The export is the reflection x -> -x of the frozen CAD build when the contract says so (cad_pipeline/gtsio_layout.py EXPORT_MIRROR_X): the manifest holds the CAD frame's
+// bounds and the independent slider-crank derivation below is written in it, so the expected values are reflected here, by hand, not by the evaluator under test.
+const mirror=contract.procedural?.mirror_x===true,mx=mirror?-1:1;
 const reports=[];
 function check(name,fn){fn();reports.push({name,passed:true});console.log('PASS',name);}
 function sample(index,fraction){
@@ -62,7 +65,7 @@ let boundsError=0;
 check('Rest mesh coordinates match frozen tessellation in metres and glTF axes',()=>{
   for(const p of manifest.parts){const o=parts.get(p.id),box=new THREE.Box3(),v=new THREE.Vector3(),attr=o.geometry.getAttribute('position');
     for(let i=0;i<attr.count;i++)box.expandByPoint(v.fromBufferAttribute(attr,i).applyMatrix4(o.matrixWorld));
-    const lo=p.mesh_bounds_mm[0],hi=p.mesh_bounds_mm[1],expected=[lo[0]/1000,lo[2]/1000,-hi[1]/1000,hi[0]/1000,hi[2]/1000,-lo[1]/1000];
+    const lo=p.mesh_bounds_mm[0],hi=p.mesh_bounds_mm[1],xlo=mirror?-hi[0]:lo[0],xhi=mirror?-lo[0]:hi[0],expected=[xlo/1000,lo[2]/1000,-hi[1]/1000,xhi/1000,hi[2]/1000,-lo[1]/1000];
     const actual=[...box.min.toArray(),...box.max.toArray()];boundsError=Math.max(boundsError,...actual.map((x,i)=>Math.abs(x-expected[i])));
   }
   assert.ok(boundsError<positionTolerance,`source-mesh export bounds error ${boundsError} (limit ${positionTolerance})`);
@@ -84,13 +87,13 @@ check('Between-key slider-crank stroke and both ends of all six rods',()=>{
   for(let angle=.5;angle<720;angle+=4.5){sample(2,angle/720);
     for(let n=1;n<=6;n++){const sign=n%2?1:-1,a=(angle-phases[n-1]+(sign>0?0:180))*Math.PI/180;
       const a0=(-phases[n-1]+(sign>0?0:180))*Math.PI/180,z=(85+Math.floor((n-1)/2)*182+((n-1)%2)*56)/1000;
-      const pin=new THREE.Vector3(r*Math.cos(a),z,-r*Math.sin(a));
-      const pin0=new THREE.Vector3(r*Math.cos(a0),z,-r*Math.sin(a0));
+      const pin=new THREE.Vector3(mx*r*Math.cos(a),z,-r*Math.sin(a));
+      const pin0=new THREE.Vector3(mx*r*Math.cos(a0),z,-r*Math.sin(a0));
       const wx=sign*Math.sqrt(L*L-r*r*Math.sin(a)**2)+r*Math.cos(a),wx0=sign*Math.sqrt(L*L-r*r*Math.sin(a0)**2)+r*Math.cos(a0);
       const delta=parts.get('Piston'+n).matrixWorld.clone().multiply(rest.get('Piston'+n).clone().invert());
-      pistonError=Math.max(pistonError,Math.abs(delta.elements[12]-(wx-wx0)));
+      pistonError=Math.max(pistonError,Math.abs(delta.elements[12]-mx*(wx-wx0)));
       const rodDelta=parts.get('ConnectingRod'+n).matrixWorld.clone().multiply(rest.get('ConnectingRod'+n).clone().invert());
-      rodError=Math.max(rodError,pin0.clone().applyMatrix4(rodDelta).distanceTo(pin),new THREE.Vector3(wx0,z,0).applyMatrix4(rodDelta).distanceTo(new THREE.Vector3(wx,z,0)));
+      rodError=Math.max(rodError,pin0.clone().applyMatrix4(rodDelta).distanceTo(pin),new THREE.Vector3(mx*wx0,z,0).applyMatrix4(rodDelta).distanceTo(new THREE.Vector3(mx*wx,z,0)));
     }
   }
   assert.ok(pistonError<4e-6,`between-key piston error ${pistonError}`);assert.ok(rodError<5e-6,`between-key rod error ${rodError}`);

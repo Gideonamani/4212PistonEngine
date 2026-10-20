@@ -14,12 +14,15 @@ Two things to keep in step with the shipped file:
 import gzip, hashlib, json
 from pathlib import Path
 
+from cad_pipeline.gtsio_layout import EXPORT_MIRROR_X
 from cad_pipeline.gtsio_review_motion import CYCLE, COLLAPSE, EXPLODE, SCOPE, STAGES
 from cad_pipeline import gtsio_valvetrain_pose as vp
 from cad_pipeline.study_contract import FlatGroups, StudyConfig, build as build_contract
 
 GHOST_IDS = ['CrankcaseLeft', 'CrankcaseRight', *[f'CylinderBarrel{n}' for n in range(1, 7)], *[f'CylinderHead{n}' for n in range(1, 7)]]
-DISPLAY = dict(rotation_x_deg=90, fit_direction=[1.3, 0.8, 1.55])
+# The default camera looks at the engine from the front and from above, from the side of the odd cylinders and the alternator: +X in the CAD frame, -X in the export frame,
+# so the first view the learner sees shows the same parts as before (mirrored, like the model).
+DISPLAY = dict(rotation_x_deg=90, fit_direction=[-1.3 if EXPORT_MIRROR_X else 1.3, 0.8, 1.55])
 REFERENCE = 'Frozen R10 inventory / X-30045A; inferred geometry and cam law retained'
 SHAPE_STATUS = 'Reconstruction; direct-only R10 candidate, not OEM accepted'
 STUDY_ID = 'gtsio520-r10-private-review'
@@ -63,14 +66,24 @@ AUDIT_RECORDS = [
 ]
 
 # Modelling decisions that change the shape of the model without a source for the real part. A note is written only for the asset that contains the decision.
+RELEASE_SHA256 = '1989cf62ae5e6d69ea3728e37b8d69072e89bbe1b5716e811263edf3e0993f3e'   # the file this contract describes: the mirrored release of 20 Oct 2026 (the unmirrored relief build 7416aa5a90c0 was never shipped)
 MODELLING_DECISIONS = [
-    dict(asset_sha256='7416aa5a90c02f9eabdcadcebbd0777f33a1b275972c1edd08070592556be676',
+    dict(asset_sha256=RELEASE_SHA256,
          line=('Piston skirt relief, an illustrative modelling decision with no source for the real piston (20 Oct 2026): each of the six pistons has a stepped relief cut into the skirt '
                'on the flank that faces the neighbouring crank bay (22 x 27 x 103 mm for the big-end hardware plus a 9.4 x 51 x 116 mm step for the counterweights; 16.1 cm3, 4.5 % of '
                "the piston, removed). The two opposed pistons of a bay reach bottom dead centre together and the reconstruction's bay pitch is 56 mm, so the neighbour rod's big end, "
                'the crank pin and the counterweights would otherwise pass through the skirt. The real piston skirt, crank pin width and bay pitch are not in the project sources; the '
                'sizes are the swept overlaps plus about 1.5 mm, leaving 3.0 mm of web to the lowest ring groove and the pin boss. One parameterised cut in cad_pipeline/gtsio_core.py '
                '(piston_relief_*); docs/r10-cycle-overlap-root-causes.md.')),
+    dict(asset_sha256=RELEASE_SHA256,
+         line=('Handedness (20 Oct 2026): the model is the left-right reflection (x -> -x) of the frozen CAD build, because the build had the odd cylinders on the left looking forward from the '
+               'accessory end, where X-30045A section 1-7 and Fig A-4-1 put Nos. 1, 3 and 5 on the right (the user saw the same on the real engine: the alternator is on the right). Now the odd '
+               'cylinders and the alternator are on the right, the even cylinders, the governor and the left magneto on the left, the crank turns counterclockwise looking forward and the propeller '
+               'clockwise. Numbering from the rear and the firing order 1-4-5-2-3-6 are unchanged. The crank direction is DERIVED from the propeller line (clockwise looking forward, one external '
+               'mesh), not stated by the manual: its pad-rotation labels are read from a viewpoint the sources do not define, so they cannot settle it (an open check; the operator handbook X-30129 or a '
+               'hand-turn of a real engine would). The sides of the starter, the fuel-pump drive and the tachometer pad are INFERRED from the reflection only; the manual does not give them. The '
+               'editable CAD recipes and gear declarations are still in the old frame and are reflected at export (cad_pipeline/gtsio_layout.py EXPORT_MIRROR_X, procedural.mirror_x); '
+               'docs/r10-handedness.md.')),
 ]
 
 
@@ -111,7 +124,8 @@ def _extra_fields(parts, asset_sha256, context):
         complete_engine_acceptance=False, release_allowed=False, display=DISPLAY,
         geometry=handoff['selected_geometry'], spec=handoff['selected_spec'],
         procedural=dict(version=1, stageEnds=[0.0, 0.18, 0.36, 0.58, 0.80, 1.0],
-                        parameters={**{name: float(params[name]['value']) for name in PARAMETERS}, 'cam_rate': float(vp.gtsio_cam_rate())}),
+                        parameters={**{name: float(params[name]['value']) for name in PARAMETERS}, 'cam_rate': float(vp.gtsio_cam_rate())},
+                        mirror_x=bool(EXPORT_MIRROR_X)),
         review_visibility=REVIEW_VISIBILITY, exclusions=EXCLUSIONS, animated_nodes=animated_nodes,
         blender_version=context['blender_version'], bytes=context['asset_bytes'], gzip_bytes=context['gzip_bytes'], pending=pending)
 
