@@ -24,8 +24,9 @@ REFERENCE = 'Frozen R10 inventory / X-30045A; inferred geometry and cam law reta
 SHAPE_STATUS = 'Reconstruction; direct-only R10 candidate, not OEM accepted'
 STUDY_ID = 'gtsio520-r10-private-review'
 PARAMETERS = ('case_cam_y', 'head_seat', 'valve_offset', 'intake_angle', 'exhaust_angle', 'intake_valve_length', 'exhaust_valve_length')
-EXCLUSIONS = ['Damper oscillation; counterweights hidden in the cycle core view',
-              'Accessory, reduction and propeller motion; connected static systems hidden in the cycle core view',
+EXCLUSIONS = ['Damper oscillation; the damper system turns with the crank in the Assembled view and is hidden in the cycle core view',
+              'Accessory, reduction and propeller drive: the Assembled view turns the gears, shafts and the screws, keys and couplings fitted to them at their declared ratios, '
+              'without bearings, torque, backlash or oil; these systems are hidden in the cycle core view',
               'Hydraulic internal action; lifter internals follow their body',
               'Gas, combustion, pressure and oil flow']
 REVIEW_VISIBILITY = dict(cycle='Core view ghosts crankcase halves, cylinder barrels and heads so internal crank, rod, piston and valvetrain motion is legible; '
@@ -49,6 +50,17 @@ AUDIT_RECORDS = [
                'and cam turning through parts the contract holds fixed); the same 159 pairs were found in the unoptimised file 80991fa8b0d5. The exploded '
                'layouts are not decided by this audit; the fully exploded layout holds 14 overlapping pairs. Recorded in a known-defect ledger. This is a '
                'record of what the audit found, not an acceptance, and not a clip/transit clearance check.')),
+]
+
+# Modelling decisions that change the shape of the model without a source for the real part. A note is written only for the asset that contains the decision.
+MODELLING_DECISIONS = [
+    dict(asset_sha256='7416aa5a90c02f9eabdcadcebbd0777f33a1b275972c1edd08070592556be676',
+         line=('Piston skirt relief, an illustrative modelling decision with no source for the real piston (20 Oct 2026): each of the six pistons has a stepped relief cut into the skirt '
+               'on the flank that faces the neighbouring crank bay (22 x 27 x 103 mm for the big-end hardware plus a 9.4 x 51 x 116 mm step for the counterweights; 16.1 cm3, 4.5 % of '
+               "the piston, removed). The two opposed pistons of a bay reach bottom dead centre together and the reconstruction's bay pitch is 56 mm, so the neighbour rod's big end, "
+               'the crank pin and the counterweights would otherwise pass through the skirt. The real piston skirt, crank pin width and bay pitch are not in the project sources; the '
+               'sizes are the swept overlaps plus about 1.5 mm, leaving 3.0 mm of web to the lowest ring groove and the pin boss. One parameterised cut in cad_pipeline/gtsio_core.py '
+               '(piston_relief_*); docs/r10-cycle-overlap-root-causes.md.')),
 ]
 
 
@@ -82,7 +94,8 @@ def _extra_fields(parts, asset_sha256, context):
     moving = sum(1 for p in parts if not p['body'].startswith('fixed:'))
     exploding = sum(1 for p in parts if any(abs(c) > 1e-9 for c in p['explosion']['offset_mm']))
     animated_nodes = context.get('animated_nodes') or {EXPLODE: exploding, COLLAPSE: exploding, CYCLE: moving}
-    pending = list(handoff['pending_before_animation_acceptance']) + [r['line'] for r in AUDIT_RECORDS if r['asset_sha256'] == asset_sha256]
+    pending = (list(handoff['pending_before_animation_acceptance']) + [r['line'] for r in MODELLING_DECISIONS if r['asset_sha256'] == asset_sha256]
+               + [r['line'] for r in AUDIT_RECORDS if r['asset_sha256'] == asset_sha256])
     return dict(
         schema='4212.animated-study/v1', id=STUDY_ID, asset_file=context['asset_file'],
         complete_engine_acceptance=False, release_allowed=False, display=DISPLAY,

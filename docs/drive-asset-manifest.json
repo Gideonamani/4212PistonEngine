@@ -111,9 +111,9 @@
     },
     {
       "path": "web/gtsio520-r10-static-opt1.glb.gz",
-      "drive_id": "10AXTDqplLyTAjXp-wTikbdx7BGg5Dwf4",
-      "bytes": 11998800,
-      "sha256": "64f433abefa78a102d731040762753c0a6a6c7a6f4b07ad973e79250035e2f52"
+      "drive_id": "1JL79_6POz3VcCT0M9trDTxUmxema1ypm",
+      "bytes": 11993989,
+      "sha256": "e3592272a2d0f6461b5320d496d781b372cb2850ac8bb3a107f4e4e3eb222c48"
     }
   ],
   "history_policy": "New unpublished accessory commits exclude model binaries. Existing published history retained; native CAD and exported GLBs are no longer tracked going forward.",
@@ -145,6 +145,13 @@
       "bytes": 25327875,
       "sha256": "df420184b1a7289b106dd3638dc3e591c9d41366d7a9914038afd1cd16382e36",
       "retained_reason": "Previous GTSIO-520-H R10 draft release (unoptimised, 25.3 MB transfer), retained so the optimised file can be rolled back."
+    },
+    {
+      "path": "web/gtsio520-r10-static-opt1.glb.gz",
+      "drive_id": "10AXTDqplLyTAjXp-wTikbdx7BGg5Dwf4",
+      "bytes": 11998800,
+      "sha256": "64f433abefa78a102d731040762753c0a6a6c7a6f4b07ad973e79250035e2f52",
+      "retained_reason": "Previous GTSIO-520-H R10 optimised release (before the piston skirt relief of 20 October 2026), retained so the relief release can be rolled back."
     }
   ],
   "accessory_native_archive": {

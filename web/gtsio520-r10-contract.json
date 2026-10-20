@@ -3,7 +3,7 @@
   "id": "gtsio520-r10-private-review",
   "scope": "Private illustrative review draft. Explosion is a component layout, not an approved maintenance removal sequence; transit and swept clearances are unaccepted. R10 whole-engine native/STEP validation is incomplete. Cycle uses the frozen slider-crank and inferred harmonic cam law; hydraulic behaviour, damper dynamics and accessory operation are excluded. No manufacturer timing or simulation claim.",
   "asset_file": "gtsio520-r10-static-opt1.glb",
-  "asset_sha256": "1dcf07ccd0f2951780dd5ae76ad8f1b5e2707616309067f1645f15f892d51abc",
+  "asset_sha256": "7416aa5a90c02f9eabdcadcebbd0777f33a1b275972c1edd08070592556be676",
   "complete_engine_acceptance": false,
   "release_allowed": false,
   "display": {
@@ -2012,7 +2012,7 @@
       "description": "Third-order forked mass 1B",
       "evidence": "X-30045A A-4-20:12; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:Counterweight1B",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2031,7 +2031,7 @@
       "description": "Hardened blade race 1BL",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:BladeBush1BL",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2050,7 +2050,7 @@
       "description": "Damper roller pin 1BL",
       "evidence": "X-30045A A-4-20:10; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPin1BL",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2069,7 +2069,7 @@
       "description": "Hardened fork race 1BLRear",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush1BLRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2088,7 +2088,7 @@
       "description": "Pin retaining plate 1BLRear",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate1BLRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2107,7 +2107,7 @@
       "description": "Gapped retaining ring 1BLRear",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing1BLRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2126,7 +2126,7 @@
       "description": "Hardened fork race 1BLFront",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush1BLFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2145,7 +2145,7 @@
       "description": "Pin retaining plate 1BLFront",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate1BLFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2164,7 +2164,7 @@
       "description": "Gapped retaining ring 1BLFront",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing1BLFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2183,7 +2183,7 @@
       "description": "Hardened blade race 1BR",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:BladeBush1BR",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2202,7 +2202,7 @@
       "description": "Damper roller pin 1BR",
       "evidence": "X-30045A A-4-20:10; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPin1BR",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2221,7 +2221,7 @@
       "description": "Hardened fork race 1BRRear",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush1BRRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2240,7 +2240,7 @@
       "description": "Pin retaining plate 1BRRear",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate1BRRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2259,7 +2259,7 @@
       "description": "Gapped retaining ring 1BRRear",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing1BRRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2278,7 +2278,7 @@
       "description": "Hardened fork race 1BRFront",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush1BRFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2297,7 +2297,7 @@
       "description": "Pin retaining plate 1BRFront",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate1BRFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2316,7 +2316,7 @@
       "description": "Gapped retaining ring 1BRFront",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing1BRFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2335,7 +2335,7 @@
       "description": "Third-order forked mass 1A",
       "evidence": "X-30045A A-4-20:12; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:Counterweight1A",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2354,7 +2354,7 @@
       "description": "Hardened blade race 1AL",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:BladeBush1AL",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2373,7 +2373,7 @@
       "description": "Damper roller pin 1AL",
       "evidence": "X-30045A A-4-20:10; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPin1AL",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2392,7 +2392,7 @@
       "description": "Hardened fork race 1ALRear",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush1ALRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2411,7 +2411,7 @@
       "description": "Pin retaining plate 1ALRear",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate1ALRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2430,7 +2430,7 @@
       "description": "Gapped retaining ring 1ALRear",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing1ALRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2449,7 +2449,7 @@
       "description": "Hardened fork race 1ALFront",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush1ALFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2468,7 +2468,7 @@
       "description": "Pin retaining plate 1ALFront",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate1ALFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2487,7 +2487,7 @@
       "description": "Gapped retaining ring 1ALFront",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing1ALFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2506,7 +2506,7 @@
       "description": "Hardened blade race 1AR",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:BladeBush1AR",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2525,7 +2525,7 @@
       "description": "Damper roller pin 1AR",
       "evidence": "X-30045A A-4-20:10; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPin1AR",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2544,7 +2544,7 @@
       "description": "Hardened fork race 1ARRear",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush1ARRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2563,7 +2563,7 @@
       "description": "Pin retaining plate 1ARRear",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate1ARRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2582,7 +2582,7 @@
       "description": "Gapped retaining ring 1ARRear",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing1ARRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2601,7 +2601,7 @@
       "description": "Hardened fork race 1ARFront",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush1ARFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2620,7 +2620,7 @@
       "description": "Pin retaining plate 1ARFront",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate1ARFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2639,7 +2639,7 @@
       "description": "Gapped retaining ring 1ARFront",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing1ARFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2658,7 +2658,7 @@
       "description": "Third-order forked mass 2B",
       "evidence": "X-30045A A-4-20:12; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:Counterweight2B",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2677,7 +2677,7 @@
       "description": "Hardened blade race 2BL",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:BladeBush2BL",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2696,7 +2696,7 @@
       "description": "Damper roller pin 2BL",
       "evidence": "X-30045A A-4-20:10; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPin2BL",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2715,7 +2715,7 @@
       "description": "Hardened fork race 2BLRear",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush2BLRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2734,7 +2734,7 @@
       "description": "Pin retaining plate 2BLRear",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate2BLRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2753,7 +2753,7 @@
       "description": "Gapped retaining ring 2BLRear",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing2BLRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2772,7 +2772,7 @@
       "description": "Hardened fork race 2BLFront",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush2BLFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2791,7 +2791,7 @@
       "description": "Pin retaining plate 2BLFront",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate2BLFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2810,7 +2810,7 @@
       "description": "Gapped retaining ring 2BLFront",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing2BLFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2829,7 +2829,7 @@
       "description": "Hardened blade race 2BR",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:BladeBush2BR",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2848,7 +2848,7 @@
       "description": "Damper roller pin 2BR",
       "evidence": "X-30045A A-4-20:10; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPin2BR",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2867,7 +2867,7 @@
       "description": "Hardened fork race 2BRRear",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush2BRRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2886,7 +2886,7 @@
       "description": "Pin retaining plate 2BRRear",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate2BRRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2905,7 +2905,7 @@
       "description": "Gapped retaining ring 2BRRear",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing2BRRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2924,7 +2924,7 @@
       "description": "Hardened fork race 2BRFront",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush2BRFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2943,7 +2943,7 @@
       "description": "Pin retaining plate 2BRFront",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate2BRFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2962,7 +2962,7 @@
       "description": "Gapped retaining ring 2BRFront",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing2BRFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -2981,7 +2981,7 @@
       "description": "Third-order forked mass 2A",
       "evidence": "X-30045A A-4-20:12; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:Counterweight2A",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3000,7 +3000,7 @@
       "description": "Hardened blade race 2AL",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:BladeBush2AL",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3019,7 +3019,7 @@
       "description": "Damper roller pin 2AL",
       "evidence": "X-30045A A-4-20:10; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPin2AL",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3038,7 +3038,7 @@
       "description": "Hardened fork race 2ALRear",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush2ALRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3057,7 +3057,7 @@
       "description": "Pin retaining plate 2ALRear",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate2ALRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3076,7 +3076,7 @@
       "description": "Gapped retaining ring 2ALRear",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing2ALRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3095,7 +3095,7 @@
       "description": "Hardened fork race 2ALFront",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush2ALFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3114,7 +3114,7 @@
       "description": "Pin retaining plate 2ALFront",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate2ALFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3133,7 +3133,7 @@
       "description": "Gapped retaining ring 2ALFront",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing2ALFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3152,7 +3152,7 @@
       "description": "Hardened blade race 2AR",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:BladeBush2AR",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3171,7 +3171,7 @@
       "description": "Damper roller pin 2AR",
       "evidence": "X-30045A A-4-20:10; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPin2AR",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3190,7 +3190,7 @@
       "description": "Hardened fork race 2ARRear",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush2ARRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3209,7 +3209,7 @@
       "description": "Pin retaining plate 2ARRear",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate2ARRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3228,7 +3228,7 @@
       "description": "Gapped retaining ring 2ARRear",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing2ARRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3247,7 +3247,7 @@
       "description": "Hardened fork race 2ARFront",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush2ARFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3266,7 +3266,7 @@
       "description": "Pin retaining plate 2ARFront",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate2ARFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3285,7 +3285,7 @@
       "description": "Gapped retaining ring 2ARFront",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing2ARFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3304,7 +3304,7 @@
       "description": "Third-order forked mass 3B",
       "evidence": "X-30045A A-4-20:12; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:Counterweight3B",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3323,7 +3323,7 @@
       "description": "Hardened blade race 3BL",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:BladeBush3BL",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3342,7 +3342,7 @@
       "description": "Damper roller pin 3BL",
       "evidence": "X-30045A A-4-20:10; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPin3BL",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3361,7 +3361,7 @@
       "description": "Hardened fork race 3BLRear",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush3BLRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3380,7 +3380,7 @@
       "description": "Pin retaining plate 3BLRear",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate3BLRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3399,7 +3399,7 @@
       "description": "Gapped retaining ring 3BLRear",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing3BLRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3418,7 +3418,7 @@
       "description": "Hardened fork race 3BLFront",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush3BLFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3437,7 +3437,7 @@
       "description": "Pin retaining plate 3BLFront",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate3BLFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3456,7 +3456,7 @@
       "description": "Gapped retaining ring 3BLFront",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing3BLFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3475,7 +3475,7 @@
       "description": "Hardened blade race 3BR",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:BladeBush3BR",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3494,7 +3494,7 @@
       "description": "Damper roller pin 3BR",
       "evidence": "X-30045A A-4-20:10; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPin3BR",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3513,7 +3513,7 @@
       "description": "Hardened fork race 3BRRear",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush3BRRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3532,7 +3532,7 @@
       "description": "Pin retaining plate 3BRRear",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate3BRRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3551,7 +3551,7 @@
       "description": "Gapped retaining ring 3BRRear",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing3BRRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3570,7 +3570,7 @@
       "description": "Hardened fork race 3BRFront",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush3BRFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3589,7 +3589,7 @@
       "description": "Pin retaining plate 3BRFront",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate3BRFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3608,7 +3608,7 @@
       "description": "Gapped retaining ring 3BRFront",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing3BRFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3627,7 +3627,7 @@
       "description": "Third-order forked mass 3A",
       "evidence": "X-30045A A-4-20:12; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:Counterweight3A",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3646,7 +3646,7 @@
       "description": "Hardened blade race 3AL",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:BladeBush3AL",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3665,7 +3665,7 @@
       "description": "Damper roller pin 3AL",
       "evidence": "X-30045A A-4-20:10; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPin3AL",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3684,7 +3684,7 @@
       "description": "Hardened fork race 3ALRear",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush3ALRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3703,7 +3703,7 @@
       "description": "Pin retaining plate 3ALRear",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate3ALRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3722,7 +3722,7 @@
       "description": "Gapped retaining ring 3ALRear",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing3ALRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3741,7 +3741,7 @@
       "description": "Hardened fork race 3ALFront",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush3ALFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3760,7 +3760,7 @@
       "description": "Pin retaining plate 3ALFront",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate3ALFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3779,7 +3779,7 @@
       "description": "Gapped retaining ring 3ALFront",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing3ALFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3798,7 +3798,7 @@
       "description": "Hardened blade race 3AR",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:BladeBush3AR",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3817,7 +3817,7 @@
       "description": "Damper roller pin 3AR",
       "evidence": "X-30045A A-4-20:10; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPin3AR",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3836,7 +3836,7 @@
       "description": "Hardened fork race 3ARRear",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush3ARRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3855,7 +3855,7 @@
       "description": "Pin retaining plate 3ARRear",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate3ARRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3874,7 +3874,7 @@
       "description": "Gapped retaining ring 3ARRear",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing3ARRear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3893,7 +3893,7 @@
       "description": "Hardened fork race 3ARFront",
       "evidence": "X-30045A A-4-20:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:WeightBush3ARFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3912,7 +3912,7 @@
       "description": "Pin retaining plate 3ARFront",
       "evidence": "X-30045A A-4-20:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperPlate3ARFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -3931,7 +3931,7 @@
       "description": "Gapped retaining ring 3ARFront",
       "evidence": "X-30045A A-4-20:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:DamperRing3ARFront",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -20613,7 +20613,7 @@
       "description": "Estimated splined reduced-section quill shaft",
       "evidence": "X-30045A A-4-19/20; source construction, estimated packaging/detail",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:QuillShaft",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -20632,7 +20632,7 @@
       "description": "Quill-driven reduction pinion and journal",
       "evidence": "X-30045A A-4-19/20; source construction, estimated packaging/detail",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:ReductionPinion",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -20651,7 +20651,7 @@
       "description": "Two-screw quill retaining plate",
       "evidence": "X-30045A A-4-19/20; source construction, estimated packaging/detail",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:QuillPlate",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -20670,7 +20670,7 @@
       "description": "Quill retaining screw 1",
       "evidence": "X-30045A A-4-19/20; source construction, estimated packaging/detail",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:QuillPlateScrew1",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -20689,7 +20689,7 @@
       "description": "Quill retaining screw 2",
       "evidence": "X-30045A A-4-19/20; source construction, estimated packaging/detail",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:QuillPlateScrew2",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -20727,7 +20727,7 @@
       "description": "Integral propeller gear, shaft and selected D-family flange",
       "evidence": "X-30045A A-4-19/20; source construction, estimated packaging/detail",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:PropellerShaft",
+      "body": "spin:0.000000,126.000000,0.000000,0.000000,0.000000,1.000000,-0.666666667",
       "cycle_visible": false,
       "explosion": {
         "stage": 5,
@@ -21905,7 +21905,7 @@
       "description": "Compound idler main wheel",
       "evidence": "X-30045A A-4-8:12, A-4-20:37; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:IdlerGear",
+      "body": "spin:0.000000,100.800000,0.000000,0.000000,0.000000,1.000000,-0.714285714",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -21924,7 +21924,7 @@
       "description": "IdlerClusterScrew1",
       "evidence": "X-30045A A-4-20:34; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:IdlerClusterScrew1",
+      "body": "spin:0.000000,100.800000,0.000000,0.000000,0.000000,1.000000,-0.714285714",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -21943,7 +21943,7 @@
       "description": "IdlerClusterScrew2",
       "evidence": "X-30045A A-4-20:34; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:IdlerClusterScrew2",
+      "body": "spin:0.000000,100.800000,0.000000,0.000000,0.000000,1.000000,-0.714285714",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -21962,7 +21962,7 @@
       "description": "IdlerClusterScrew3",
       "evidence": "X-30045A A-4-20:34; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:IdlerClusterScrew3",
+      "body": "spin:0.000000,100.800000,0.000000,0.000000,0.000000,1.000000,-0.714285714",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -21981,7 +21981,7 @@
       "description": "IdlerClusterScrew4",
       "evidence": "X-30045A A-4-20:34; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:IdlerClusterScrew4",
+      "body": "spin:0.000000,100.800000,0.000000,0.000000,0.000000,1.000000,-0.714285714",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -22000,7 +22000,7 @@
       "description": "Compound idler accessory wheel / module calculated for coaxial H branch",
       "evidence": "X-30045A A-4-8:12, A-4-20:35; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:AccessoryIdlerGear",
+      "body": "spin:0.000000,100.800000,0.000000,0.000000,0.000000,1.000000,-0.714285714",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -22114,7 +22114,7 @@
       "description": "Left independent magneto gear and inner journal",
       "evidence": "X-30045A A-4-8:14, A-4-11:16; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:LeftMagnetoGear",
+      "body": "spin:-52.080000,170.240000,0.000000,0.000000,0.000000,1.000000,1.500000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -22190,7 +22190,7 @@
       "description": "Left elastomer coupling blocks / joined bridge estimate",
       "evidence": "X-30045A A-4-11:17; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:LeftMagnetoCoupling",
+      "body": "spin:-52.080000,170.240000,0.000000,0.000000,0.000000,1.000000,1.500000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -22342,7 +22342,7 @@
       "description": "Right independent magneto gear and inner journal",
       "evidence": "X-30045A A-4-8:15, A-4-11:16; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:RightMagnetoGear",
+      "body": "spin:52.080000,170.240000,0.000000,0.000000,0.000000,1.000000,1.500000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -22418,7 +22418,7 @@
       "description": "Right elastomer coupling blocks / joined bridge estimate",
       "evidence": "X-30045A A-4-11:17; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:RightMagnetoCoupling",
+      "body": "spin:52.080000,170.240000,0.000000,0.000000,0.000000,1.000000,1.500000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -22570,7 +22570,7 @@
       "description": "H replacement fuel-pump shaftgear / estimated spline",
       "evidence": "X-30045A A-4-8:22, C-3-1:74; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:FuelPumpDriveGear",
+      "body": "spin:-67.200000,-126.000000,0.000000,0.000000,0.000000,1.000000,0.500000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -22589,7 +22589,7 @@
       "description": "H replacement separate drive coupling / estimated spline",
       "evidence": "X-30045A C-3-1:76; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:FuelDriveCoupling",
+      "body": "spin:-67.200000,-126.000000,0.000000,0.000000,0.000000,1.000000,0.500000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -22703,7 +22703,7 @@
       "description": "Oil pressure-pump shaftgear / cam spline / keyed tail",
       "evidence": "X-30045A A-4-8:8, A-4-16:22; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:OilPumpDriver",
+      "body": "cam",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -22722,7 +22722,7 @@
       "description": "Long oil pressure-pump driven gear / separate end bushes",
       "evidence": "X-30045A A-4-8:9, A-4-16:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:OilPumpDriven",
+      "body": "spin:32.400000,-126.000000,0.000000,0.000000,0.000000,1.000000,0.500000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -22798,7 +22798,7 @@
       "description": "Keyed turbo-oil scavenge driver",
       "evidence": "X-30045A A-4-8:11, A-4-16:29; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:ScavengePumpDriver",
+      "body": "cam",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -22817,7 +22817,7 @@
       "description": "Simplified seated scavenge drive key",
       "evidence": "X-30045A A-4-16:25; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:ScavengeDriveKey",
+      "body": "cam",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -22836,7 +22836,7 @@
       "description": "Turbo-oil scavenge driven gear",
       "evidence": "X-30045A A-4-8:10, A-4-16:30; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:ScavengePumpDriven",
+      "body": "spin:32.400000,-126.000000,0.000000,0.000000,0.000000,1.000000,0.500000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -23064,7 +23064,7 @@
       "description": "Starter main-train shaftgear / supported estimated tail",
       "evidence": "X-30045A A-4-8:21, A-4-15:12; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:StarterShaftGear",
+      "body": "spin:75.600000,0.000000,0.000000,0.000000,0.000000,1.000000,-1.250000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -23216,7 +23216,7 @@
       "description": "Keyed governor bevel driver",
       "evidence": "X-30045A A-4-19:2; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:GovernorDriveBevel",
+      "body": "cam",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -23235,7 +23235,7 @@
       "description": "Governor shaftgear / continuous journal, gear-side shoulder and recessed end",
       "evidence": "X-30045A A-4-19:1; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:GovernorDrivenShaftGear",
+      "body": "spin:0.000000,-126.000000,617.000000,-1.000000,0.000000,0.000000,-0.808823529",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -23254,7 +23254,7 @@
       "description": "Governor Woodruff key / estimated section",
       "evidence": "X-30045A A-4-19:3; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:GovernorCamKey",
+      "body": "cam",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -23273,7 +23273,7 @@
       "description": "Pinned tach input bevel / estimated24 teeth",
       "evidence": "X-30045A A-4-16:24; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:TachDriverBevel",
+      "body": "cam",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -23292,7 +23292,7 @@
       "description": "Separate pinned output bevel / estimated24 teeth",
       "evidence": "X-30045A A-4-16:47; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:TachDrivenBevel",
+      "body": "spin:0.000000,-126.000000,-216.000000,1.000000,0.000000,0.000000,-0.500000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -23311,7 +23311,7 @@
       "description": "Tach output shaft / guide shoulder / estimated cable socket",
       "evidence": "X-30045A A-4-16:45; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:TachOutputShaft",
+      "body": "spin:0.000000,-126.000000,-216.000000,1.000000,0.000000,0.000000,-0.500000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -23330,7 +23330,7 @@
       "description": "Separate tach dowel / estimated size",
       "evidence": "X-30045A A-4-16:23; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:TachDriverPin",
+      "body": "cam",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -23349,7 +23349,7 @@
       "description": "Separate tach dowel / estimated size",
       "evidence": "X-30045A A-4-16:46; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:TachDrivenPin",
+      "body": "spin:0.000000,-126.000000,-216.000000,1.000000,0.000000,0.000000,-0.500000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -23995,7 +23995,7 @@
       "description": "Left independent accessory shaftgear / estimated8/7 crank speed",
       "evidence": "X-30045A A-4-11:20; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:LeftAccessoryGear",
+      "body": "spin:-52.080000,170.240000,0.000000,0.000000,0.000000,1.000000,1.142857143",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -24679,7 +24679,7 @@
       "description": "Right independent accessory shaftgear / estimated8/7 crank speed",
       "evidence": "X-30045A A-4-11:20; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:RightAccessoryGear",
+      "body": "spin:52.080000,170.240000,0.000000,0.000000,0.000000,1.000000,1.142857143",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -25515,7 +25515,7 @@
       "description": "Face ring mounting screw / estimated envelope",
       "evidence": "X-30045A A-4-20:21; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:AlternatorFaceScrew1",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -25534,7 +25534,7 @@
       "description": "Face ring mounting screw / estimated envelope",
       "evidence": "X-30045A A-4-20:21; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:AlternatorFaceScrew2",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -25553,7 +25553,7 @@
       "description": "Face ring mounting screw / estimated envelope",
       "evidence": "X-30045A A-4-20:21; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:AlternatorFaceScrew3",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -25572,7 +25572,7 @@
       "description": "Face ring mounting screw / estimated envelope",
       "evidence": "X-30045A A-4-20:21; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:AlternatorFaceScrew4",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -25591,7 +25591,7 @@
       "description": "Separate complete60-slot alternator face ring / sampled envelope",
       "evidence": "X-30045A A-4-20:23; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:AlternatorFaceGear",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -25610,7 +25610,7 @@
       "description": "Separate two-screw tab lock",
       "evidence": "X-30045A A-4-20:22; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:AlternatorFaceTabLock1",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -25629,7 +25629,7 @@
       "description": "Separate two-screw tab lock",
       "evidence": "X-30045A A-4-20:22; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:AlternatorFaceTabLock2",
+      "body": "crank",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -25648,7 +25648,7 @@
       "description": "Separate driven gear and estimated clutch cup",
       "evidence": "X-30045A A-4-13:10; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:AlternatorDrivenGear",
+      "body": "spin:40.500000,0.000000,619.000000,1.000000,0.000000,0.000000,3.000000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -25667,7 +25667,7 @@
       "description": "Driven gear bushing on keyed hub post",
       "evidence": "X-30045A A-4-13:11; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:AlternatorGearBushing",
+      "body": "spin:40.500000,0.000000,619.000000,1.000000,0.000000,0.000000,3.000000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -25686,7 +25686,7 @@
       "description": "Separate keyed hub / spring contact remains development",
       "evidence": "X-30045A A-4-13:13; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:AlternatorKeyedHub",
+      "body": "spin:40.500000,0.000000,619.000000,1.000000,0.000000,0.000000,3.000000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -25705,7 +25705,7 @@
       "description": "One geometric spring assembly / hand and preload unresolved",
       "evidence": "X-30045A A-4-13:12; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:AlternatorCouplingSpring",
+      "body": "spin:40.500000,0.000000,619.000000,1.000000,0.000000,0.000000,3.000000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -25724,7 +25724,7 @@
       "description": "Rotor shaft / electrical internals deferred",
       "evidence": "X-30045A A-4-13:4; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:AlternatorRotorShaft",
+      "body": "spin:40.500000,0.000000,619.000000,1.000000,0.000000,0.000000,3.000000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -25743,7 +25743,7 @@
       "description": "Separate Woodruff key / estimated circular segment",
       "evidence": "X-30045A A-4-13:8; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:AlternatorWoodruffKey",
+      "body": "spin:40.500000,0.000000,619.000000,1.000000,0.000000,0.000000,3.000000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -25762,7 +25762,7 @@
       "description": "Special thrust washer / copper face toward+X alternator",
       "evidence": "X-30045A A-4-13:9; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:AlternatorThrustWasher",
+      "body": "spin:40.500000,0.000000,619.000000,1.000000,0.000000,0.000000,3.000000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -25781,7 +25781,7 @@
       "description": "AlternatorSlottedNut",
       "evidence": "X-30045A A-4-13:7; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:AlternatorSlottedNut",
+      "body": "spin:40.500000,0.000000,619.000000,1.000000,0.000000,0.000000,3.000000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -25800,7 +25800,7 @@
       "description": "Separate flat-wire cotter envelope / final bends estimated",
       "evidence": "X-30045A A-4-13:6; documented anchors and explicit calculated contour/packaging estimates. See static-engine research.",
       "shape_status": "Reconstruction; direct-only R10 candidate, not OEM accepted",
-      "body": "fixed:AlternatorCotter",
+      "body": "spin:40.500000,0.000000,619.000000,1.000000,0.000000,0.000000,3.000000000",
       "cycle_visible": false,
       "explosion": {
         "stage": 2,
@@ -27370,25 +27370,25 @@
     "cycle": "Core view ghosts crankcase halves, cylinder barrels and heads so internal crank, rod, piston and valvetrain motion is legible; Assembled view shows all 1396 parts."
   },
   "exclusions": [
-    "Damper oscillation; counterweights hidden in the cycle core view",
-    "Accessory, reduction and propeller motion; connected static systems hidden in the cycle core view",
+    "Damper oscillation; the damper system turns with the crank in the Assembled view and is hidden in the cycle core view",
+    "Accessory, reduction and propeller drive: the Assembled view turns the gears, shafts and the screws, keys and couplings fitted to them at their declared ratios, without bearings, torque, backlash or oil; these systems are hidden in the cycle core view",
     "Hydraulic internal action; lifter internals follow their body",
     "Gas, combustion, pressure and oil flow"
   ],
   "animated_nodes": {
     "Explode - illustrative layout": 1191,
     "Collapse - illustrative layout": 1191,
-    "Core cycle - illustrative": 328
+    "Core cycle - illustrative": 480
   },
   "blender_version": "5.0.1",
-  "bytes": 21115472,
-  "gzip_bytes": 11998800,
+  "bytes": 21112200,
+  "gzip_bytes": 11993989,
   "pending": [
     "Complete current saved/native/direct agreement, real edit/reopening and STEP",
     "Every current saved-native bounding neighbor with hash-bound reuse counts",
     "Current bearing/support stock, pressure walls/closures and independent returns",
     "Current installed moving envelopes and actual full static GLB audit",
     "Full editable Blender master, part identity/unit checks and actual clip/transform audits",
-    "Exported-file interference audit of the shipped optimised file 1dcf07ccd0f2 (sha256 1dcf07ccd0f2951780dd5ae76ad8f1b5e2707616309067f1645f15f892d51abc, 21,115,472 bytes, 1,396 parts; audited in its unpacked form), 19 Oct 2026, cad-studies/gtsio520-h-static/shipped-r10: the assembled pose is clean (5,168 neighbouring pairs, none overlapping). The core cycle posed by the viewer's own sampler every 5 crank degrees (144 poses) is NOT clean: 159 overlapping pairs, 42 between parts the default core view shows (pistons against the big-end hardware of the opposite-bank rod, crankshaft against pistons) and 117 only in the Assembled view (crank and cam turning through parts the contract holds fixed); the same 159 pairs were found in the unoptimised file 80991fa8b0d5. The exploded layouts are not decided by this audit; the fully exploded layout holds 14 overlapping pairs. Recorded in a known-defect ledger. This is a record of what the audit found, not an acceptance, and not a clip/transit clearance check."
+    "Piston skirt relief, an illustrative modelling decision with no source for the real piston (20 Oct 2026): each of the six pistons has a stepped relief cut into the skirt on the flank that faces the neighbouring crank bay (22 x 27 x 103 mm for the big-end hardware plus a 9.4 x 51 x 116 mm step for the counterweights; 16.1 cm3, 4.5 % of the piston, removed). The two opposed pistons of a bay reach bottom dead centre together and the reconstruction's bay pitch is 56 mm, so the neighbour rod's big end, the crank pin and the counterweights would otherwise pass through the skirt. The real piston skirt, crank pin width and bay pitch are not in the project sources; the sizes are the swept overlaps plus about 1.5 mm, leaving 3.0 mm of web to the lowest ring groove and the pin boss. One parameterised cut in cad_pipeline/gtsio_core.py (piston_relief_*); docs/r10-cycle-overlap-root-causes.md."
   ]
 }
