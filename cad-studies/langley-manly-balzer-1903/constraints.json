@@ -1,0 +1,427 @@
+{
+  "schema": "constraints/1",
+  "study": "langley-manly-balzer-1903",
+  "title": "Langley / Manly-Balzer 1903: closure checks and global constraints",
+  "note": "The figures were read from M1 (Manly, Langley Memoir, 1911) and A1 (Meyer, Annals of Flight 6) in the 6 Oct 2026 research session; they are carried over from research.md, operating-motion.md and the checks in scripts/test_langley_research.py, and were not re-read from the pages for this file. The weight table was checked against the page image then. Mass is evaluated from the committed record mass-check.json (the last run of the model) unless per-part volumes are given with --volumes.",
+  "python_path": [
+    "."
+  ],
+  "sources": {
+    "M1": {
+      "title": "Manly, Langley Memoir on Mechanical Flight, Part II (1897-1903), Smithsonian Contributions to Knowledge vol. 27 no. 3 (1911)",
+      "path": "source-manifest.json in this study"
+    },
+    "A1": {
+      "title": "Meyer (ed.), Langley's Aero Engine of 1903, Smithsonian Annals of Flight 6",
+      "path": "source-manifest.json in this study"
+    }
+  },
+  "bindings": {
+    "spec_cam_ratio": {
+      "kind": "json",
+      "path": "cad-studies/langley-manly-balzer-1903/part-spec.json",
+      "select": "parameters/cam_gear_ratio/value",
+      "locator": "part-spec.json parameters.cam_gear_ratio (signed ratio of the ring cam to the crank)"
+    },
+    "cam_firing_order": {
+      "kind": "python",
+      "module": "cad_pipeline.langley_cam",
+      "attr": "FIRING_ORDER",
+      "locator": "cad_pipeline/langley_cam.py FIRING_ORDER"
+    },
+    "cam_power_tdc": {
+      "kind": "python",
+      "module": "cad_pipeline.langley_cam",
+      "attr": "POWER_TDC",
+      "locator": "cad_pipeline/langley_cam.py POWER_TDC: crank angle of each cylinder's power top centre, degrees"
+    }
+  },
+  "checks": [
+    {
+      "id": "displacement-from-bore-stroke",
+      "kind": "displacement",
+      "title": "Five cylinders of 5 in bore and 5.5 in stroke sweep the 540.2 cubic inches the Annals print",
+      "source": [
+        {
+          "source": "A1",
+          "where": "p. 156 and p. 182: bore, stroke; the Annals print 540.2 cu in",
+          "verified": "carried over from research.md (6 Oct 2026)"
+        },
+        {
+          "source": "M1",
+          "where": "p. 237: five cylinders spaced 72 degrees",
+          "verified": "carried over from research.md"
+        }
+      ],
+      "cylinders": 5,
+      "bore": {
+        "value": 5,
+        "unit": "in"
+      },
+      "stroke": {
+        "value": 5.5,
+        "unit": "in"
+      },
+      "stated": {
+        "value": 540.2,
+        "unit": "cu in"
+      },
+      "tolerance": {
+        "rel": 0.001,
+        "why": "the derived 539.96 cu in differs from the printed figure by 0.044 percent; the same bound as test_displacement_closes"
+      }
+    },
+    {
+      "id": "power-plank-pressure",
+      "kind": "power",
+      "title": "PLANK power from the rated 52.4 hp at 950 rpm implies a mean effective pressure Manly expected",
+      "source": [
+        {
+          "source": "M1",
+          "where": "p. 249: 52.4 hp at 950 rpm (267 lb pull on a 13 in lever, three 10-hour runs, August 1904)",
+          "verified": "carried over from research.md"
+        },
+        {
+          "source": "A1",
+          "where": "p. 93: Manly expected 75-80 psi; the band is widened to 85 psi as in scripts/test_langley_research.py",
+          "verified": "carried over from the existing test"
+        }
+      ],
+      "solve": "pressure",
+      "cylinders": 5,
+      "strokes_per_cycle": 4,
+      "bore": {
+        "value": 5,
+        "unit": "in"
+      },
+      "stroke": {
+        "value": 5.5,
+        "unit": "in"
+      },
+      "speed": {
+        "value": 950,
+        "unit": "rpm"
+      },
+      "stated_power": {
+        "value": 52.4,
+        "unit": "hp"
+      },
+      "pressure_unit": "psi",
+      "expect_pressure": {
+        "min": 75,
+        "max": 85,
+        "unit": "psi",
+        "locator": "A1 p. 93"
+      }
+    },
+    {
+      "id": "ratio-ring-cam-quarter-speed",
+      "kind": "ratio",
+      "title": "The ring cam turns at one quarter of crank speed, in reverse",
+      "source": {
+        "source": "M1",
+        "where": "p. 237: a double-pointed cam turning at one quarter crank speed in the reverse direction",
+        "verified": "carried over from research.md (documented ratio)"
+      },
+      "actual": {
+        "bind": "spec_cam_ratio"
+      },
+      "expected": 0.25,
+      "direction": "against",
+      "tolerance": {
+        "rel": 1e-09
+      }
+    },
+    {
+      "id": "cam-speed-closes-with-four-stroke-cycle",
+      "kind": "formula",
+      "title": "Two lobes at one quarter crank speed give one exhaust opening per 720 degrees",
+      "source": {
+        "source": "M1",
+        "where": "p. 237: double-pointed ring cam; a four-stroke cylinder opens its exhaust valve once per two crank turns",
+        "verified": "carried over from research.md"
+      },
+      "vars": {
+        "lobes_per_valve_event": 2,
+        "cam_rate": {
+          "bind": "spec_cam_ratio"
+        }
+      },
+      "expr": "lobes_per_valve_event * abs(cam_rate)",
+      "expect": {
+        "equals": 0.5
+      },
+      "tolerance": {
+        "abs": 1e-09
+      }
+    },
+    {
+      "id": "firing-order-in-model",
+      "kind": "sequence",
+      "title": "The model's firing order is the documented 1-3-5-2-4",
+      "source": {
+        "source": "M1",
+        "where": "p. 245: firing order 1-3-5-2-4, five impulses every 720 degrees",
+        "verified": "carried over from operating-motion.md"
+      },
+      "expected": {
+        "value": [
+          1,
+          3,
+          5,
+          2,
+          4
+        ]
+      },
+      "actuals": {
+        "cad_pipeline/langley_cam.py": {
+          "bind": "cam_firing_order"
+        }
+      }
+    },
+    {
+      "id": "firing-intervals",
+      "kind": "firing-intervals",
+      "title": "The model fires one cylinder every 144 degrees, in the documented order",
+      "source": {
+        "source": "M1",
+        "where": "p. 245: firing order 1-3-5-2-4, 144 degree intervals",
+        "verified": "carried over from operating-motion.md"
+      },
+      "cylinders": 5,
+      "strokes_per_cycle": 4,
+      "order": {
+        "value": [
+          1,
+          3,
+          5,
+          2,
+          4
+        ]
+      },
+      "phases": {
+        "bind": "cam_power_tdc"
+      },
+      "tolerance": {
+        "abs": 1e-06,
+        "unit": "deg"
+      }
+    },
+    {
+      "id": "mass-by-weight-line",
+      "kind": "mass",
+      "title": "Model mass per line of Manly's weight table, and the engine total, within 15 percent",
+      "source": {
+        "source": "M1",
+        "where": "p. 250: 'Detailed weight of new large engine' (page image checked; the table's lines sum to 65 g less than its printed total, so the rod line is taken as 5,070 g)",
+        "verified": "page image (6 Oct 2026 session)"
+      },
+      "volumes": {
+        "geometry": "build/dev/out358/geometry.json",
+        "record": "cad-studies/langley-manly-balzer-1903/mass-check.json"
+      },
+      "densities_g_cm3": {
+        "steel": 7.85,
+        "cast iron": 7.2,
+        "bronze": 8.8,
+        "brass": 8.5,
+        "aluminium": 2.7,
+        "porcelain": 2.4,
+        "rubber": 1.2
+      },
+      "default_density_g_cm3": 7.85,
+      "density_source": "carried over from the former scripts/langley_mass_check.py: nominal material densities, no source recorded; steel 7.85 also applies to any material not listed",
+      "tolerance": {
+        "rel": 0.15
+      },
+      "groups": [
+        {
+          "id": "W01",
+          "published": {
+            "value": 5225,
+            "unit": "g"
+          },
+          "patterns": [
+            "^(Crankshaft|CrankPlug|CrankOilPipe)$"
+          ],
+          "accepted": {
+            "max_ratio": 1.2,
+            "reason": "crankshaft bore 36 mm (top of the measured 27-36 mm range) and webs 24 mm; build-notes.md mass table, 7 Oct 2026 run (ratio 1.188)"
+          }
+        },
+        {
+          "id": "W02",
+          "published": {
+            "value": 5070,
+            "unit": "g"
+          },
+          "patterns": [
+            "^(MasterRod|MasterSleeveCap|MasterLining\\w+|LinkRod\\d|LinkShoe\\d|WristBush\\d|ConeNut\\w+|JamNut\\w+)$"
+          ],
+          "accepted": {
+            "max_ratio": 1.46,
+            "reason": "unresolved: the drawn master sleeve (8.3 mm wall), shoes, cone and jam nuts alone are 3.7 kg; either the table leaves the sleeve hardware out of this line or the sleeve is lighter than the plate bands suggest (build-notes.md, ratio 1.453)"
+          }
+        },
+        {
+          "id": "W03",
+          "published": {
+            "value": 8260,
+            "unit": "g"
+          },
+          "patterns": [
+            "^(Piston\\d|PistonRing\\d_\\d|GudgeonPin\\d|PinRetainer\\d_\\w)$"
+          ]
+        },
+        {
+          "id": "W04",
+          "published": {
+            "value": 23524,
+            "unit": "g"
+          },
+          "patterns": [
+            "^(CylShell|CylLiner|CylFlange|JacketRing|Jacket|Chamber|ExhaustOutlet|InletSeatNut|InletSeat|InletValve|InletSpringCap|InletSpring|ExhaustSeat|ExhaustValve|ExhaustGuide|ExhaustSpringCollar|ExhaustSpringNut|ExhaustSpring|OilCupTube|OilCup|WaterInletStub|WaterOutletStub)\\d$"
+          ]
+        },
+        {
+          "id": "W05",
+          "published": {
+            "value": 5225,
+            "unit": "g"
+          },
+          "patterns": [
+            "^(PortDrum|PortMainBushing|PortDrumBushingFlange|CamRing|CamPinion|CamGearLarge|CamGearSmall|CamIdler|CamStud|PunchRod\\d|PunchRoller\\d|PunchGuide\\d|PortOilCup|PortOilCupTube)$"
+          ],
+          "accepted": {
+            "max_ratio": 1.23,
+            "reason": "gears and cam ring already webbed to get here; build-notes.md, ratio 1.228"
+          }
+        },
+        {
+          "id": "W06",
+          "published": {
+            "value": 3440,
+            "unit": "g"
+          },
+          "patterns": [
+            "^(StbdDrum|StbdMainBushing)$"
+          ]
+        },
+        {
+          "id": "W07",
+          "published": {
+            "value": 450,
+            "unit": "g"
+          },
+          "patterns": [
+            "^(PlugShell|PlugInsulator|PlugElectrode)\\d$"
+          ],
+          "accepted": {
+            "max_ratio": 1.22,
+            "reason": "spark-plug line; build-notes.md records the value (ratio 1.217) without a remark, so the cause is not explained"
+          }
+        },
+        {
+          "id": "W08",
+          "published": {
+            "value": 450,
+            "unit": "g"
+          },
+          "patterns": [
+            "^(WaterOutletRing|WaterOutletConnection\\w+)$"
+          ]
+        },
+        {
+          "id": "W09",
+          "published": {
+            "value": 360,
+            "unit": "g"
+          },
+          "patterns": [
+            "^(WaterInletRing|WaterInletRiser)$"
+          ]
+        },
+        {
+          "id": "W10",
+          "published": {
+            "value": 1700,
+            "unit": "g"
+          },
+          "patterns": [
+            "^(InletRing\\w|InletFlange\\w+|CarbConnection|AirValvePipe|AirValveSleeve)$"
+          ]
+        },
+        {
+          "id": "W11",
+          "published": {
+            "value": 512,
+            "unit": "g"
+          },
+          "patterns": [
+            "^(SparkSleeve|SparkSleeveRing|SparkPinion|SparkGearLarge|SparkerCam|SparkerPawl|SparkerSpring|SparkerBracket|SparkerContact|DistributorDisc|DistributorBrush|CommutatorBody|CommutatorSegment\\d|SparkWire\\d|SparkTiming\\w+)$"
+          ],
+          "accepted": {
+            "max_ratio": 1.76,
+            "reason": "the 60-tooth sparker gear alone is about 0.4 kg even webbed to 2 mm; build-notes.md, ratio 1.750"
+          }
+        },
+        {
+          "id": "W12+W13",
+          "published": {
+            "value": 2107,
+            "unit": "g"
+          },
+          "patterns": [
+            "^(BalanceArm|BalanceBrace\\w*)(Port|Stbd)$"
+          ]
+        },
+        {
+          "id": "W14",
+          "published": {
+            "value": 3946,
+            "unit": "g"
+          },
+          "patterns": [
+            "^Flywheel(Rim|Hub|Spoke)Stbd\\d*$"
+          ]
+        },
+        {
+          "id": "W15",
+          "published": {
+            "value": 3234,
+            "unit": "g"
+          },
+          "patterns": [
+            "^Flywheel(Rim|Hub|Spoke)Port\\d*$"
+          ]
+        }
+      ],
+      "totals": [
+        {
+          "id": "engine",
+          "groups": [
+            "W01",
+            "W02",
+            "W03",
+            "W04",
+            "W05",
+            "W06",
+            "W07",
+            "W08",
+            "W09",
+            "W10",
+            "W11",
+            "W12+W13"
+          ],
+          "published": {
+            "value": 56323,
+            "unit": "g"
+          },
+          "tolerance": {
+            "rel": 0.15
+          }
+        }
+      ]
+    }
+  ]
+}

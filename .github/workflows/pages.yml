@@ -167,6 +167,10 @@ jobs:
         run: python3 scripts/test_fidelity_classes.py
       - name: Verify that the presentation stage cannot change geometry (standard library only; the fixture is built in the test)
         run: python3 scripts/test_geometry_drift.py
+      - name: Verify the closure checks and global constraints of every engine study (standard library only)
+        run: |
+          python3 scripts/test_constraints.py
+          python3 scripts/check_constraints.py --all --quiet
 
   # Parts may touch but not overlap, at the assembled pose and through every baked motion. Each model's interference-policy.json
   # is a ratchet: new overlaps fail, and a fixed overlap must be removed from the ledger. This check runs only when CAD models,

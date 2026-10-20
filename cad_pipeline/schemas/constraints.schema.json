@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "constraints.schema.json",
+  "title": "Engine-study closure checks and global constraints (constraints/1)",
+  "description": "One file per engine study at cad-studies/<study>/constraints.json, evaluated by cad_pipeline/constraints.py (python scripts/check_constraints.py). This schema documents the shape; cad_pipeline.constraints.validate() enforces it and the two additional rules a schema cannot say: every check names a declared source and gives `where`, and every check carries a tolerance unless it is declared `unknown`. Guide: docs/constraints.md.",
+  "type": "object",
+  "required": ["schema", "study", "sources", "checks"],
+  "properties": {
+    "schema": {"const": "constraints/1"},
+    "study": {"type": "string", "description": "The study folder name."},
+    "title": {"type": "string"},
+    "note": {"type": "string", "description": "How the figures were read and what was not."},
+    "python_path": {"type": "array", "items": {"type": "string"}, "description": "Repository-relative folders added to sys.path before a `python` binding is imported."},
+    "sources": {
+      "type": "object",
+      "description": "Where published figures come from. `repo` is always available for model-side locators.",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {"title": {"type": "string"}, "path": {"type": "string"}, "sha256": {"type": "string"}, "pages": {"type": "string"}}
+      }
+    },
+    "bindings": {
+      "type": "object",
+      "description": "Values read from the repository, by name. Every binding carries a locator.",
+      "additionalProperties": {"$ref": "#/$defs/binding"}
+    },
+    "checks": {"type": "array", "items": {"$ref": "#/$defs/check"}}
+  },
+  "$defs": {
+    "binding": {
+      "type": "object",
+      "required": ["kind", "locator"],
+      "properties": {
+        "kind": {"enum": ["json", "regex", "python"]},
+        "locator": {"type": "string", "description": "The file and line, or the field, the value is read from."},
+        "unit": {"type": "string"},
+        "path": {"type": "string", "description": "json, regex: repository-relative file."},
+        "select": {"type": "string", "description": "json: a/b[field=value]/c. [f=v] first match, [f==v] every match, [f^=v] every prefix match; a name over a list maps; a number indexes."},
+        "pattern": {"type": "string", "description": "regex: the first match; group 1 (or the whole match) is parsed."},
+        "parse": {"enum": ["int", "float", "int-list", "float-list", "str"]},
+        "module": {"type": "string", "description": "python: importable module (after python_path)."},
+        "attr": {"type": "string", "description": "python: dotted attribute path in the module."},
+        "call": {"type": "boolean"},
+        "args": {"type": "array", "description": "python: call with these; '$' is replaced by the foreach item."},
+        "foreach": {"type": "array"}
+      }
+    },
+    "locator": {
+      "type": "object",
+      "required": ["source", "where"],
+      "properties": {
+        "source": {"type": "string", "description": "A key of `sources`, or `repo`."},
+        "where": {"type": "string", "description": "Page and item, figure, or file and line."},
+        "verified": {"type": "string", "description": "How it was read: page image, OCR text, carried over from a named record, file."}
+      }
+    },
+    "tolerance": {
+      "type": "object",
+      "description": "abs is in the published figure's unit (or `unit`); rel is a fraction; the larger applies.",
+      "properties": {"abs": {"type": "number"}, "rel": {"type": "number"}, "unit": {"type": "string"}, "why": {"type": "string"}}
+    },
+    "check": {
+      "type": "object",
+      "required": ["id", "kind", "title", "source"],
+      "properties": {
+        "id": {"type": "string"},
+        "kind": {"enum": ["compare", "displacement", "power", "ratio", "formula", "sequence", "firing-intervals", "tdc", "numbering", "rotation", "mass"]},
+        "title": {"type": "string"},
+        "source": {"oneOf": [{"$ref": "#/$defs/locator"}, {"type": "array", "items": {"$ref": "#/$defs/locator"}, "minItems": 1}]},
+        "tolerance": {"$ref": "#/$defs/tolerance"},
+        "unknown": {"type": "string", "description": "A legal state: the reason the check cannot be evaluated. Nothing is invented."},
+        "evaluate": {"type": "boolean", "description": "With `unknown`: still compute the check and show the figure, without judging it."},
+        "accepted": {"type": "object", "required": ["reason"], "properties": {"reason": {"type": "string"}, "ref": {"type": "string"}, "max_ratio": {"type": "number", "description": "mass groups: ratchet; a ratio above this fails."}}, "description": "A failure that is reported and does not fail the run. If the check later passes, the stale record fails the run."},
+        "requires": {"type": "array", "items": {"type": "string"}, "description": "Check ids that must pass first; otherwise this check is unknown."},
+        "anchors": {"type": "array", "items": {"type": "object", "required": ["path", "pattern"], "properties": {"path": {"type": "string"}, "pattern": {"type": "string"}}}, "description": "Source lines a literal in this check was read from; if one stops matching the check is unknown."},
+        "note": {"type": "string"}
+      },
+      "description": "Inputs depend on the kind: compare {actual, expected, family?}; displacement {cylinders, bore, stroke, stated}; power {cylinders, strokes_per_cycle, bore, stroke, speed, stated_power, pressure | solve:'pressure', expect_pressure}; ratio {actual, expected, direction: with|against}; formula {vars, expr, expect: {min,max} | {equals} | {true}}; sequence {expected, actuals}; firing-intervals {cylinders, strokes_per_cycle, order, phases | step_deg [+ phase_order: the order the model's code uses]}; tdc {cylinders, order, phases, pins_at_zero, bore_points, pin_at_zero, pin_at_probe}; numbering {forward, up, bore_points, stations, expect: {odd_side, numbered_from}}; rotation {model: {pin_at_zero, pin_at_probe, axis, forward}, anchor: {part, direction}, chain: [{link: rigid|external-mesh}]}; mass {volumes: {geometry, record}, densities_g_cm3, default_density_g_cm3, groups: [{id, patterns, published | at_most, tolerance, accepted}], totals}."
+    }
+  }
+}

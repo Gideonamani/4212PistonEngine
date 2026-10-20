@@ -30,6 +30,7 @@ publish), then `AGENTS.md` (storage and validation rules), then the guides here.
 | [accessories-and-drives.md](accessories-and-drives.md) | guide | The accessories and drives lesson and its model. |
 | [assembly-interference.md](assembly-interference.md) | guide | Parts touch but never overlap: the gear train, the CAD checks and the swept audit that enforce it. |
 | [fidelity-classes.md](fidelity-classes.md) | guide | What is critical and what is cosmetic: the engineering, visual-structure and cosmetic classes, how they are derived from the audit and mass records, and the rule that no engineering part is left without a gate. |
+| [constraints.md](constraints.md) | guide | Closure checks and global constraints: one `constraints.json` per study, one runner, the pass, fail, accepted and unknown states, and what they found in the Langley and GTSIO-520-H studies. |
 | [freecad-blender-boundary.md](freecad-blender-boundary.md) | guide | Where FreeCAD stops and Blender starts: three zones, what each class allows, and the geometry drift check that enforces it. |
 | [galaxy-a16-release-check.md](galaxy-a16-release-check.md) | guide | The release check to run on a Samsung Galaxy A16 in Chrome. |
 | [accessory-shape-review.md](accessory-shape-review.md) | record | Manual illustration and model shape audit, 3 October 2026. |
