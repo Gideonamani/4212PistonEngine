@@ -85,6 +85,7 @@ def _flat(x):
 FUNCTIONS = dict(sqrt=math.sqrt, sin=math.sin, cos=math.cos, tan=math.tan, atan2=math.atan2, degrees=math.degrees, radians=math.radians, abs=abs, min=min, max=max,
                  sum=sum, len=len, round=round, mean=lambda x: sum(x) / len(x), col=_deep_col, flat=_flat,
                  shift=lambda x, c: [v + c for v in x], maxdiff=lambda a, b: max(abs(p - q) for p, q in zip(a, b)),
+                 maxsum=lambda a, b: max(abs(p + q) for p, q in zip(a, b)),          # the same comparison across a reflection: equal in magnitude, opposite in sign
                  sign=lambda v: (v > 0) - (v < 0), allclose=lambda a, b, t: all(abs(p - q) <= t for p, q in zip(a, b)))
 BINARY = {ast.Add: lambda a, b: a + b, ast.Sub: lambda a, b: a - b, ast.Mult: lambda a, b: a * b, ast.Div: lambda a, b: a / b, ast.Pow: lambda a, b: a ** b,
           ast.Mod: lambda a, b: a % b, ast.FloorDiv: lambda a, b: a // b}

@@ -82,7 +82,9 @@ class R10Configuration(unittest.TestCase):
     def test_the_hand_edits_of_the_shipped_file_are_in_the_config(self):
         c = self.contract()
         self.assertEqual(c['display'], gtsio_contract.DISPLAY)
-        self.assertEqual(c['display'], dict(rotation_x_deg=90, fit_direction=[1.3, 0.8, 1.55]))
+        # the default camera looks from the side of the odd cylinders and the alternator: +X in the CAD frame, -X in the reflected export frame (EXPORT_MIRROR_X)
+        self.assertEqual(c['display'], dict(rotation_x_deg=90, fit_direction=[-1.3 if gtsio_contract.EXPORT_MIRROR_X else 1.3, 0.8, 1.55]))
+        self.assertIs(c['procedural']['mirror_x'], gtsio_contract.EXPORT_MIRROR_X)
         self.assertEqual(c['release_allowed'], False)
         self.assertEqual(c['complete_engine_acceptance'], False)
         self.assertEqual(list(c), [k for k in gtsio_contract.CONFIG.key_order if k in c])

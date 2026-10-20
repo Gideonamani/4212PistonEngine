@@ -112,6 +112,14 @@ function cadMmMatrixToGltfThree(m) {
   ).premultiply(CAD_TO_GLTF).multiply(GLTF_TO_CAD);
 }
 
+// The export frame is the reflection x -> -x of the CAD frame the maths below is written in (cad_pipeline/gtsio_layout.py EXPORT_MIRROR_X writes
+// contract.procedural.mirror_x; docs/r10-handedness.md): a rigid motion M becomes R M R, so the crank turns the other way about +Z and every body is the exact
+// mirror image of its CAD-frame self. `spin:` bodies are written in the export frame already and are not reflected. The Python twin is ReviewMotion.matrix.
+function reflectX4(m) {
+  const k = [-1, 1, 1, 1];
+  return m.map((row, i) => row.map((v, j) => v * k[i] * k[j] + 0));
+}
+
 export function stationMm(n) {
   const bay = Math.floor((n - 1) / 2);
   const index = (n - 1) % 2;
@@ -220,7 +228,7 @@ function valvePoseMm(name, n, params, theta = 0) {
   return { socket: a, cup: toWorld(rawCup(beta)), beta, valve_lift: valveLift };
 }
 
-export function createGtsioBodyEvaluator(parameters = {}) {
+export function createGtsioBodyEvaluator(parameters = {}, { mirrorX = false } = {}) {
   const params = {
     case_cam_y: -78.0,
     head_seat: 157.0,
@@ -241,24 +249,32 @@ export function createGtsioBodyEvaluator(parameters = {}) {
   const closedCrank = {};
   for (let n = 1; n <= 6; n++) closedCrank[n] = sliderCrankPoseMm(n, 0);
 
+  const finish = (m) => cadMmMatrixToGltfThree(mirrorX ? reflectX4(m) : m);
   return function evaluateBodyGltfMatrix(body, theta) {
     if (!body || body.startsWith('fixed:')) return new THREE.Matrix4();
+    if (body.startsWith('spin:')) {
+      // `spin:px,py,pz,ax,ay,az,rate` (CAD millimetres): turns about the axis through p by rate x the crank angle. The Python twin is
+      // ReviewMotion.matrix in cad_pipeline/gtsio_review_motion.py; the gear centres and rates come from scripts/accessory_gears.py.
+      const f = body.slice(5).split(',').map(Number);
+      if (f.length !== 7 || f.some((v) => !Number.isFinite(v)) || Math.hypot(f[3], f[4], f[5]) === 0) return new THREE.Matrix4();
+      return cadMmMatrixToGltfThree(around4(unit3([f[3], f[4], f[5]]), ((theta * Math.PI) / 180) * f[6], [f[0], f[1], f[2]]));
+    }
     if (body === 'crank') {
-      return cadMmMatrixToGltfThree(around4([0, 0, 1], (theta * Math.PI) / 180, [0, 0, 0]));
+      return finish(around4([0, 0, 1], (theta * Math.PI) / 180, [0, 0, 0]));
     }
     if (body === 'cam') {
-      return cadMmMatrixToGltfThree(around4([0, 0, 1], ((theta * Math.PI) / 180) * params.cam_rate, [0, params.case_cam_y, 0]));
+      return finish(around4([0, 0, 1], ((theta * Math.PI) / 180) * params.cam_rate, [0, params.case_cam_y, 0]));
     }
     if (body.startsWith('rod')) {
       const n = Number(body.slice(-1));
       const a = closedCrank[n], b = sliderCrankPoseMm(n, theta);
       const m = mul4(mul4(trans4(b.pin), rotation4([0, 0, 1], ((b.rod_roll - a.rod_roll) * Math.PI) / 180)), trans4(scale3(a.pin, -1)));
-      return cadMmMatrixToGltfThree(m);
+      return finish(m);
     }
     if (body.startsWith('piston')) {
       const n = Number(body.slice(-1));
       const a = closedCrank[n], b = sliderCrankPoseMm(n, theta);
-      return cadMmMatrixToGltfThree(trans4(sub3(b.wrist, a.wrist)));
+      return finish(trans4(sub3(b.wrist, a.wrist)));
     }
     const colon = body.indexOf(':');
     if (colon < 0) return new THREE.Matrix4();
@@ -271,20 +287,20 @@ export function createGtsioBodyEvaluator(parameters = {}) {
     const a = closedValves.get(tag);
     const b = valvePoseMm(name, n, params, theta);
     if (kind === 'lifter') {
-      return cadMmMatrixToGltfThree(trans4(sub3(b.socket, a.socket)));
+      return finish(trans4(sub3(b.socket, a.socket)));
     }
     if (kind === 'valve') {
       const direction = worldVector(rawFrame(name, params).d, n);
-      return cadMmMatrixToGltfThree(trans4(scale3(direction, -(b.valve_lift - a.valve_lift))));
+      return finish(trans4(scale3(direction, -(b.valve_lift - a.valve_lift))));
     }
     if (kind === 'rocker') {
       const axis = scale3(worldVector(rawFrame(name, params).v, n), -1);
       const pivot = worldPoint(name, n, PIVOT_T, PIVOT_U, 0, params);
-      return cadMmMatrixToGltfThree(around4(axis, b.beta - a.beta, pivot));
+      return finish(around4(axis, b.beta - a.beta, pivot));
     }
     if (kind === 'pushrod') {
       const m = mul4(mul4(trans4(b.socket), align4(sub3(a.cup, a.socket), sub3(b.cup, b.socket))), trans4(scale3(a.socket, -1)));
-      return cadMmMatrixToGltfThree(m);
+      return finish(m);
     }
     if (kind === 'spring') {
       const scale = (SPRING_INSTALLED - b.valve_lift) / (SPRING_INSTALLED - a.valve_lift);
@@ -294,7 +310,7 @@ export function createGtsioBodyEvaluator(parameters = {}) {
         for (let j = 0; j < 3; j++) m[i][j] += (scale - 1) * axis[i] * axis[j];
       }
       const foot = worldPoint(name, n, SPRING_TOP - SPRING_INSTALLED, 0, 0, params);
-      return cadMmMatrixToGltfThree(mul4(mul4(trans4(foot), m), trans4(scale3(foot, -1))));
+      return finish(mul4(mul4(trans4(foot), m), trans4(scale3(foot, -1))));
     }
     return new THREE.Matrix4();
   };
@@ -380,7 +396,7 @@ export function createProceduralStudySampler(contract, partsById, root) {
   }
   const partSpecs = new Map((contract.parts || []).map((p) => [p.id, p]));
   const stageEnds = contract.procedural?.stageEnds || DEFAULT_STAGE_ENDS;
-  const evaluateBody = createGtsioBodyEvaluator(contract.procedural?.parameters || {});
+  const evaluateBody = createGtsioBodyEvaluator(contract.procedural?.parameters || {}, { mirrorX: contract.procedural?.mirror_x === true });
 
   function restoreRest() {
     claimMatrices();

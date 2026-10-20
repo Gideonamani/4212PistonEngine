@@ -224,6 +224,8 @@ class Formula(unittest.TestCase):
             with self.assertRaises((C.ConstraintError, C.Unresolved), msg=bad):
                 C.safe_eval(bad, {'a': 1})
         self.assertEqual(C.safe_eval('sqrt(16) + max(1, 2)', {}), 6.0)
+        self.assertEqual(C.safe_eval('maxsum([1, -2], [-1, 2])', {}), 0)         # equal across a reflection: opposite in sign
+        self.assertEqual(C.safe_eval('maxsum([1, -2], [1, -2])', {}), 4)
 
     def test_an_unknown_name_is_a_malformed_file(self):
         with self.assertRaises(C.ConstraintError):
@@ -510,24 +512,33 @@ class Studies(unittest.TestCase):
                     'frame-up-is-plus-y', 'frame-forward-is-plus-z', 'tdc-vs-crank-pins'):
             self.assertEqual(s[cid], 'pass', cid)
         tdc = next(c for c in self.reports['gtsio520-h-static']['checks'] if c['id'] == 'tdc-vs-crank-pins')
-        self.assertIn('crank turns anticlockwise about +Z', tdc['detail'])
+        # the R10 export is the reflection of the CAD build (EXPORT_MIRROR_X): the pin angle falls as the crank angle rises, odd cylinders at -X
+        self.assertIn('crank turns clockwise about +Z', tdc['detail'])
 
-    def test_gtsio_numbering_is_from_the_rear_but_the_banks_are_mirrored_and_that_is_accepted_and_reported(self):
+    def test_gtsio_odd_cylinders_are_on_the_right_numbered_from_the_rear_and_the_pads_sit_where_the_manual_puts_them(self):
         s = self.states('gtsio520-h-static')
-        self.assertEqual(s['numbering-bank-side'], 'accepted')
+        self.assertEqual(s['numbering-bank-side'], 'pass')
         c = next(c for c in self.reports['gtsio520-h-static']['checks'] if c['id'] == 'numbering-bank-side')
-        self.assertIn('odd cylinders on the left', c['detail'])
+        self.assertIn('odd cylinders on the right', c['detail'])
         self.assertIn('numbered from the rear', c['detail'])
+        self.assertNotIn('accepted', C.load(GTSIO / 'constraints.json')['checks'][[x['id'] for x in C.load(GTSIO / 'constraints.json')['checks']].index('numbering-bank-side')])
+        self.assertEqual(s['pads-sit-on-the-side-the-manual-gives-relative-to-the-banks'], 'pass')
+        self.assertEqual(s['pads-sit-on-the-side-the-manual-gives-absolute'], 'pass')
 
-    def test_gtsio_crank_direction_is_shown_but_not_judged(self):
+    def test_gtsio_crank_direction_is_derived_from_the_propeller_line_and_the_pad_label_viewpoint_stays_unknown(self):
         c = next(c for c in self.reports['gtsio520-h-static']['checks'] if c['id'] == 'crank-rotation-direction')
-        self.assertEqual(c['state'], 'unknown')
-        self.assertIn('model crank turns clockwise looking forward', c['detail'])
+        self.assertEqual(c['state'], 'pass')
+        self.assertIn('model crank turns counterclockwise looking forward', c['detail'])
+        s = self.states('gtsio520-h-static')
+        self.assertEqual(s['pad-rotation-labels-need-a-viewpoint'], 'unknown')
+        self.assertEqual(s['pad-sides-inferred-from-the-mirror'], 'unknown')
+        inferred = next(c for c in self.reports['gtsio520-h-static']['checks'] if c['id'] == 'pad-sides-inferred-from-the-mirror')
+        self.assertIn('computed anyway', inferred['detail'])
 
     def test_gtsio_unknowns_are_the_ones_with_no_readable_source_or_no_committed_input(self):
         unknown = {k for k, v in self.states('gtsio520-h-static').items() if v == 'unknown'}
-        self.assertEqual(unknown, {'power-plank-pressure', 'mass-model-against-dry-weight', 'mass-by-group', 'ratio-vacuum-pump', 'ratio-starter', 'crank-rotation-direction',
-                                   'compression-ratio-from-chamber'})
+        self.assertEqual(unknown, {'power-plank-pressure', 'mass-model-against-dry-weight', 'mass-by-group', 'ratio-vacuum-pump', 'ratio-starter',
+                                   'pad-rotation-labels-need-a-viewpoint', 'pad-sides-inferred-from-the-mirror', 'compression-ratio-from-chamber'})
 
     def test_gtsio_mass_check_says_what_it_could_not_use(self):
         c = next(c for c in self.reports['gtsio520-h-static']['checks'] if c['id'] == 'mass-model-against-dry-weight')

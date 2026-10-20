@@ -1,7 +1,7 @@
 {
   "schema": "4212.model-optimization/v1",
   "release": "opt1",
-  "description": "Optimisation of the GTSIO-520-H R10 study file (scripts/optimize_model.mjs, 20-bit positions). The current file is untouched; this is a new file that is not published until it is on Drive. See docs/model-optimization.md.",
+  "description": "Optimisation of the GTSIO-520-H R10 study file (scripts/optimize_model.mjs, 20-bit positions), rebuilt on 20 October 2026 from the source with the piston skirt relief (docs/r10-cycle-overlap-root-causes.md) and reflected left to right so the engine has the real handedness (docs/r10-handedness.md). The file keeps the name gtsio520-r10-static-opt1.glb.gz; the release it replaces (Drive id 10AXTDqplLyTAjXp-wTikbdx7BGg5Dwf4, decoded sha256 1dcf07ccd0f2) stays on Drive and in the manifest's previous_web_releases. See docs/model-optimization.md.",
   "tool": {
     "optimizer": "scripts/optimize_model.mjs",
     "builder": "scripts/build_gtsio_r10_optimized.mjs"
@@ -15,29 +15,35 @@
       "id": "gtsio520-h-r10-mechanism-study",
       "source": {
         "file": "gtsio520-r10-static.glb.gz",
-        "transferBytes": 25327875,
-        "transferSha256": "df420184b1a7289b106dd3638dc3e591c9d41366d7a9914038afd1cd16382e36",
-        "decodedBytes": 51199204,
-        "decodedSha256": "80991fa8b0d5d4312aa5aabe549dd8a094afb9bad41d18cdc6b7921c4fe1ab9e"
+        "transferBytes": 27524143,
+        "transferSha256": "3f06cfb980fede0fb8b4a6912e5a1a526108e4346f30aed8ae18f7a9eea4cc8f",
+        "decodedBytes": 51126876,
+        "decodedSha256": "8e3cd3ba7f4b42e8ad35050839ca67d290229d2434842ce40f3199fe47047380",
+        "derivedFrom": {
+          "note": "Not a published file. The unoptimised release below with Piston1 to Piston6 replaced by scripts/graft_gtsio_r10_pistons.mjs (FreeCAD pistons with the neighbour-bay skirt relief, 20 October 2026) and then reflected x -> -x by scripts/mirror_gtsio_r10.mjs (docs/r10-handedness.md); the graft before the reflection had decoded sha256 4ecad59c107eaba2638a771c008ec715f19fad48f5d7a1ce464643aebc322138. Apart from the six pistons and the reflection the 1,390 other parts are the unoptimised release byte for byte.",
+          "file": "gtsio520-r10-static.glb.gz",
+          "transferSha256": "df420184b1a7289b106dd3638dc3e591c9d41366d7a9914038afd1cd16382e36",
+          "decodedSha256": "80991fa8b0d5d4312aa5aabe549dd8a094afb9bad41d18cdc6b7921c4fe1ab9e"
+        }
       },
       "optimized": {
         "file": "gtsio520-r10-static-opt1.glb.gz",
-        "transferBytes": 11998800,
-        "transferSha256": "64f433abefa78a102d731040762753c0a6a6c7a6f4b07ad973e79250035e2f52",
-        "decodedBytes": 21115472,
-        "decodedSha256": "1dcf07ccd0f2951780dd5ae76ad8f1b5e2707616309067f1645f15f892d51abc",
-        "driveId": "10AXTDqplLyTAjXp-wTikbdx7BGg5Dwf4"
+        "transferBytes": 12019746,
+        "transferSha256": "bcc141fafe3a282aecc686195ea97b9f1fe43fc58a215ad0102ebfecfccee549",
+        "decodedBytes": 21087416,
+        "decodedSha256": "1989cf62ae5e6d69ea3728e37b8d69072e89bbe1b5716e811263edf3e0993f3e",
+        "driveId": "1Gx9nOjT-p9xMKlGJ4yrj3z26d5akxKaI"
       },
       "saving": {
-        "transferPercent": 52.6,
+        "transferPercent": 56.3,
         "decodedPercent": 58.8
       },
       "changes": {
-        "triangles": 2080106,
+        "triangles": 2079722,
         "trianglesUnchanged": true,
         "sharedDataUnchanged": true,
         "accessorsBefore": 4188,
-        "accessorsAfter": 3553,
+        "accessorsAfter": 3552,
         "animationKeysBefore": 0,
         "animationKeysAfter": 0
       },
@@ -55,12 +61,12 @@
         "normalBits": 12,
         "note": "Position mantissa raised from the default 16 bits to 20 so every part stays a closed solid for the exact-intersection audit."
       },
-      "renderCheckNote": "R10 has no baked animation and no morph targets, so the 12 pictures are 3 distinct rest views (iso, front, top) drawn four times; the viewer's computed cycle and explosion poses were not rendered. Their geometry comes from the same vertex data, and the exact-intersection audit of the same poses found the same 159 overlapping pairs before and after optimising.",
+      "renderCheckNote": "R10 has no baked animation and no morph targets, so the 12 pictures are 3 distinct rest views (iso, front, top) drawn four times; the viewer's computed cycle and explosion poses were not rendered. Their geometry comes from the same vertex data, and the exact-intersection audit of the same poses on the shipped file found the same result as on the unmirrored build (assembled pose clean; 144 cycle poses with 2 overlapping pairs, none in the core view). The original of this comparison is the mirrored unoptimised source, so it measures the optimiser, not the reflection (the reflection is checked in docs/r10-handedness.md). Parse times vary a lot from run to run on this machine (308 ms on the relief run of the same morning, 241 ms here), so they say only that the optimised file parses in a fraction of a second on a desktop.",
       "renderCheck": {
-        "checkedOn": "2026-10-19",
+        "checkedOn": "2026-10-20",
         "pictures": 12,
-        "worstDifferingPixels": 0.00001736111111111111,
-        "worstMeanDifference": 0.01756076388888889,
+        "worstDifferingPixels": 0.000008680555555555556,
+        "worstMeanDifference": 0.017378472222222222,
         "limits": {
           "differingPixels": 0.0005,
           "meanDifference": 0.05
@@ -68,8 +74,8 @@
         "passed": true
       },
       "parseTime": {
-        "originalMs": 376,
-        "optimisedMs": 470,
+        "originalMs": 139,
+        "optimisedMs": 241,
         "runs": 3,
         "where": "desktop Chrome, best of three, app loader"
       }

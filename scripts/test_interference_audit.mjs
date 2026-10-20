@@ -88,6 +88,12 @@ test('GTSIO-520-H R10: the sampled-pose audit describes the published file and f
   assert.deepEqual(audit.known_defects.map((v) => pairKey(v.a, v.b)).sort(), ledger, 'ledger and audit disagree');
   for (const entry of policy.known_defects) assert.ok(entry.reason && entry.fix && entry.max_mm3 > 0, `${entry.a} / ${entry.b} needs a reason, a fix and a limit`);
   if (ledger.length === 0) assert.equal(audit.clean, true);
+  // The default core view of the cycle is the view the learner sees first: it stays free of overlaps. The ledger fell from 159 pairs to these 2 on 20 October 2026
+  // (piston skirt relief; shaft- and gear-mounted parts turn with their shaft). It may only shrink: lower the ceiling when a pair is fixed, never raise it to admit a new one.
+  const R10_LEDGER_CEILING = 2;
+  assert.equal(audit.cycle_view_split.core_view_overlapping_pairs, 0, 'a part the default core view shows overlaps another during the cycle');
+  assert.ok(ledger.length <= R10_LEDGER_CEILING, `the ledger holds ${ledger.length} pairs; it may only shrink (ceiling ${R10_LEDGER_CEILING})`);
+  for (const entry of policy.known_defects) assert.match(entry.status, /^(open|unreviewed|fixed-in-source-pending-rebuild)$/);
   // The contract must say so, and must not claim acceptance.
   const recorded = contract.pending.filter((line) => line.includes(published.slice(0, 12)));
   assert.equal(recorded.length, 1, 'the contract pending list must record this audit against the asset hash');

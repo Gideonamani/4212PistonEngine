@@ -67,6 +67,9 @@ const old = manifest.web_assets[index];
 if (old.path !== `web/${optimized.file}`) {
   const retained = { ...old, retained_reason: 'Previous GTSIO-520-H R10 draft release (unoptimised, 25.3 MB transfer), retained so the optimised file can be rolled back.' };
   if (!manifest.previous_web_releases.some((entry) => entry.drive_id === old.drive_id)) manifest.previous_web_releases.push(retained);
+} else if (old.drive_id !== nextId && old.sha256 !== optimized.transferSha256 && !manifest.previous_web_releases.some((entry) => entry.drive_id === old.drive_id)) {
+  // A rebuilt release under the same file name (the piston skirt relief, 20 October 2026): the file it replaces stays on Drive and on record for rollback.
+  manifest.previous_web_releases.push({ ...old, retained_reason: 'Previous GTSIO-520-H R10 optimised release (before the piston skirt relief of 20 October 2026), retained so the relief release can be rolled back.' });
 }
 manifest.web_assets[index] = { path: `web/${optimized.file}`, drive_id: nextId, bytes: optimized.transferBytes, sha256: optimized.transferSha256 };
 write('docs/drive-asset-manifest.json', JSON.stringify(manifest, null, 2).replace(/\n/g, eol) + (manifestText.endsWith('\n') ? eol : ''));

@@ -13,7 +13,8 @@ test('only the GTSIO-520-H R10 study turns or reframes its model; the other anim
   for (const model of studies) {
     const contract = readJson(`web/${model.contractUrl.replace(/^\.\//, '').replace(/\?.*$/, '')}`);
     if (model.id === 'gtsio520-h-r10-mechanism-study') {
-      assert.deepEqual(contract.display, { rotation_x_deg: 90, fit_direction: [1.3, 0.8, 1.55] });
+      // The default camera looks from the side of the odd cylinders and the alternator; a reflected export (procedural.mirror_x, docs/r10-handedness.md) mirrors that side.
+      assert.deepEqual(contract.display, { rotation_x_deg: 90, fit_direction: [contract.procedural.mirror_x === true ? -1.3 : 1.3, 0.8, 1.55] });
     } else {
       assert.equal(contract.display, undefined, `${model.id} must not set a display orientation`);
     }

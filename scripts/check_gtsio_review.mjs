@@ -35,6 +35,9 @@ const root=gltf.scene,mixer=new THREE.AnimationMixer(root);
 const {partsById:parts}=indexStudyParts(root);root.updateMatrixWorld(true);
 const rest=new Map([...parts].map(([id,o])=>[id,o.matrixWorld.clone()]));
 const procedural=createProceduralStudySampler(contract,parts,root);
+// The export is the reflection x -> -x of the frozen CAD build when the contract says so (cad_pipeline/gtsio_layout.py EXPORT_MIRROR_X): the manifest holds the CAD frame's
+// bounds and the independent slider-crank derivation below is written in it, so the expected values are reflected here, by hand, not by the evaluator under test.
+const mirror=contract.procedural?.mirror_x===true,mx=mirror?-1:1;
 const reports=[];
 function check(name,fn){fn();reports.push({name,passed:true});console.log('PASS',name);}
 function sample(index,fraction){
@@ -62,7 +65,7 @@ let boundsError=0;
 check('Rest mesh coordinates match frozen tessellation in metres and glTF axes',()=>{
   for(const p of manifest.parts){const o=parts.get(p.id),box=new THREE.Box3(),v=new THREE.Vector3(),attr=o.geometry.getAttribute('position');
     for(let i=0;i<attr.count;i++)box.expandByPoint(v.fromBufferAttribute(attr,i).applyMatrix4(o.matrixWorld));
-    const lo=p.mesh_bounds_mm[0],hi=p.mesh_bounds_mm[1],expected=[lo[0]/1000,lo[2]/1000,-hi[1]/1000,hi[0]/1000,hi[2]/1000,-lo[1]/1000];
+    const lo=p.mesh_bounds_mm[0],hi=p.mesh_bounds_mm[1],xlo=mirror?-hi[0]:lo[0],xhi=mirror?-lo[0]:hi[0],expected=[xlo/1000,lo[2]/1000,-hi[1]/1000,xhi/1000,hi[2]/1000,-lo[1]/1000];
     const actual=[...box.min.toArray(),...box.max.toArray()];boundsError=Math.max(boundsError,...actual.map((x,i)=>Math.abs(x-expected[i])));
   }
   assert.ok(boundsError<positionTolerance,`source-mesh export bounds error ${boundsError} (limit ${positionTolerance})`);
@@ -84,13 +87,13 @@ check('Between-key slider-crank stroke and both ends of all six rods',()=>{
   for(let angle=.5;angle<720;angle+=4.5){sample(2,angle/720);
     for(let n=1;n<=6;n++){const sign=n%2?1:-1,a=(angle-phases[n-1]+(sign>0?0:180))*Math.PI/180;
       const a0=(-phases[n-1]+(sign>0?0:180))*Math.PI/180,z=(85+Math.floor((n-1)/2)*182+((n-1)%2)*56)/1000;
-      const pin=new THREE.Vector3(r*Math.cos(a),z,-r*Math.sin(a));
-      const pin0=new THREE.Vector3(r*Math.cos(a0),z,-r*Math.sin(a0));
+      const pin=new THREE.Vector3(mx*r*Math.cos(a),z,-r*Math.sin(a));
+      const pin0=new THREE.Vector3(mx*r*Math.cos(a0),z,-r*Math.sin(a0));
       const wx=sign*Math.sqrt(L*L-r*r*Math.sin(a)**2)+r*Math.cos(a),wx0=sign*Math.sqrt(L*L-r*r*Math.sin(a0)**2)+r*Math.cos(a0);
       const delta=parts.get('Piston'+n).matrixWorld.clone().multiply(rest.get('Piston'+n).clone().invert());
-      pistonError=Math.max(pistonError,Math.abs(delta.elements[12]-(wx-wx0)));
+      pistonError=Math.max(pistonError,Math.abs(delta.elements[12]-mx*(wx-wx0)));
       const rodDelta=parts.get('ConnectingRod'+n).matrixWorld.clone().multiply(rest.get('ConnectingRod'+n).clone().invert());
-      rodError=Math.max(rodError,pin0.clone().applyMatrix4(rodDelta).distanceTo(pin),new THREE.Vector3(wx0,z,0).applyMatrix4(rodDelta).distanceTo(new THREE.Vector3(wx,z,0)));
+      rodError=Math.max(rodError,pin0.clone().applyMatrix4(rodDelta).distanceTo(pin),new THREE.Vector3(mx*wx0,z,0).applyMatrix4(rodDelta).distanceTo(new THREE.Vector3(mx*wx,z,0)));
     }
   }
   assert.ok(pistonError<4e-6,`between-key piston error ${pistonError}`);assert.ok(rodError<5e-6,`between-key rod error ${rodError}`);
@@ -103,14 +106,21 @@ check('Collapse is the exact inverse at held and between-key layout poses',()=>{
   assert.ok(reverseError<2e-6,`inverse layout error ${reverseError}`);
 });
 let switchError=0;
+// A spinning gear (`spin:` body) turns at its declared ratio to the crank, so after the 720 degree cycle it is back at its start pose only when
+// 2 x rate is a whole number. Eleven parts are not (the idler and its four screws at -5/7, the accessory idler, the starter gear at -5/4, the
+// propeller shaft at -2/3, the two accessory gears at 8/7 and the governor driven gear at -55/68): the loop restarts with them at their residual
+// angle, so tooth profiles repeat but screws and couplings jump. They are checked against the rest pose only where they close, and counted.
+const spinRate=(body)=>Number(body.split(',')[6]);
+const loopSeam=new Map(contract.parts.filter(p=>p.body?.startsWith('spin:')&&Math.abs(2*spinRate(p.body)-Math.round(2*spinRate(p.body)))>1e-6).map(p=>[p.id,p.body]));
 check('Cycle closure and clip switching restore the identical assembled pose',()=>{
   for(const [clip,fraction] of [[0,0],[1,1],[2,0],[2,1],[0,.8],[2,0],[1,.6],[0,0]]){
     sample(clip,fraction);if((clip===0&&fraction===0)||(clip===1&&fraction===1)||(clip===2&&(fraction===0||fraction===1)))
-      for(const [id,o] of parts)switchError=Math.max(switchError,err(o.matrixWorld,rest.get(id)));
+      for(const [id,o] of parts){if(clip===2&&fraction===1&&loopSeam.has(id))continue;switchError=Math.max(switchError,err(o.matrixWorld,rest.get(id)));}
   }
   assert.ok(switchError<2e-6,`closure/switch error ${switchError}`);
 });
 fs.writeFileSync(path.join(out,assetOverride?'kinematic-export-checks-optimised.json':'kinematic-export-checks.json'),JSON.stringify({passed:true,asset_file:assetOverride?path.basename(assetOverride):assetFile,asset_sha256:expectedSha??contract.asset_sha256,position_tolerance_m:positionTolerance,checks:reports,
   max_errors:{cad_mesh_bounds_m:boundsError,shared_matrix:referenceError,between_key_piston_m:pistonError,between_key_rod_m:rodError,reverse_matrix:reverseError,switch_matrix:switchError},
+  cycle_loop_seam:{parts_not_back_at_start_after_720_degrees:loopSeam.size,bodies:[...new Set(loopSeam.values())].length},
   scope:'Kinematics and file integrity only. No native/STEP, physical removal-path, contact or swept-clearance acceptance.'},null,2)+'\n');
 
