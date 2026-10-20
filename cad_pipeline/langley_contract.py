@@ -4,9 +4,14 @@ The viewer's animated-study adapter reads this beside the GLB (parts with a desc
 shown with every motion). Descriptions and the component level of the tree come from the research inventory
 (cad-studies/langley-manly-balzer-1903/inventory.json), so what a student reads for a part is what the research recorded for the component it belongs to: its
 function, interfaces, the modelling decision and the source locator. Standard library only.
+
+This file is the Langley *configuration* of the shared builder in `study_contract.py`: the systems, the assembly rules, the scope text and the stage names. The
+skeleton (parts, tree, motions, key order) lives there.
 """
-import json, math, re
+import math
 from pathlib import Path
+
+from cad_pipeline.study_contract import AssemblyRules, StudyConfig, build as build_contract, rebuild_released
 
 REPO = Path(__file__).resolve().parents[1]
 STUDY = REPO / 'cad-studies/langley-manly-balzer-1903'
@@ -54,15 +59,9 @@ ASSEMBLIES = [
     ('couplings', 'output', 'Couplings and shaft stubs', r'^(CouplingFlange|TransShaftStub)(Port|Stbd)$'),
     ('starting', 'output', 'Starting mechanism', r'^(WormWheel|StartWorm|StartShaft|StartBracketUpper|StartBracketLower|StartPawlPlug)$'),
 ]
-_ASSEMBLY_RULES = [(aid, sid, re.compile(pattern)) for aid, sid, _, pattern in ASSEMBLIES]
-
-
-def assembly_of(part_id):
-    """(system id, assembly id) of a part, or raises: every part must be placed."""
-    for aid, sid, pattern in _ASSEMBLY_RULES:
-        if pattern.match(part_id):
-            return sid, aid
-    raise ValueError('Part is in no assembly: ' + part_id)
+GROUPING = AssemblyRules(ASSEMBLIES)
+_ASSEMBLY_RULES = GROUPING._compiled
+assembly_of = GROUPING.assembly_of
 
 
 SCOPE = ('Source-led teaching reconstruction of the large 5 x 5.5 in water-cooled radial engine of Langley\'s Aerodrome A (built 1901), drawn from Manly\'s 1911 Memoir '
@@ -102,45 +101,22 @@ def gear_meshes():
     return [dict(driver=a, driven=b, teeth=list(t), ratio=round(t[0] / t[1], 6), centre_distance_mm=round(cd, 4), module_mm=m, backlash_mm=round(0.05 * m, 4)) for a, b, t, cd, m in rows]
 
 
+CONFIG = StudyConfig(
+    scope=SCOPE, reference=REFERENCE, viewpoint=VIEWPOINT, grouping=GROUPING, systems=SYSTEMS, study=STUDY, gear_meshes=gear_meshes,
+    shape_status='Reconstructed from the 1911 Memoir drawings; dimensions the plates omit are estimated; instructor review pending',
+    key_order=('asset_sha256', 'parts', 'groups', 'reference', 'scope', 'motions', 'viewpoint', 'remoteDisplays', 'gearMeshes'))
+
+
 def build(geometry, asset_sha256, inventory=None, motions=None):
     """The contract dict for a geometry.json (parts in the CAD frame) and the exported asset's decoded hash."""
-    inventory = inventory or json.loads((STUDY / 'inventory.json').read_text(encoding='utf-8'))
-    by_part = {}
-    for component in inventory['components']:
-        for part_id in component.get('part_ids', []):
-            by_part.setdefault(part_id, []).append(component)
-    parts, used = [], set()
-    for p in geometry['parts']:
-        system, assembly = assembly_of(p['id'])
-        used.add(assembly)
-        components = by_part.get(p['id'], [])
-        if components:
-            c = components[0]
-            description = f"{c['name']}. {c['function']}. Interfaces: {c['interfaces']}. {c['decision'].rstrip('.')}. Source: {c['locator']}."
-            disposition = c.get('disposition', 'simplified')
-        else:
-            description, disposition = p['label'] + '.', 'simplified'
-        parts.append(dict(id=p['id'], label=p['label'], group=system, groups=[f'assembly:{assembly}'], component=components[0]['id'] if components else None,
-                          description=description, evidence=p['evidence'], material=p['material'], disposition=disposition,
-                          shape_status='Reconstructed from the 1911 Memoir drawings; dimensions the plates omit are estimated; instructor review pending'))
-    tree = []
-    for system, title, question in SYSTEMS:
-        tree.append(dict(id=system, label=title, depth=0, question=question))
-        for aid, sid, atitle, _ in ASSEMBLIES:
-            if sid == system and aid in used:
-                tree.append(dict(id=f'assembly:{aid}', label=atitle, depth=1))
-    return dict(asset_sha256=asset_sha256, parts=parts, groups=tree, reference=REFERENCE, scope=SCOPE, motions=motions or [], viewpoint=VIEWPOINT,
-                remoteDisplays=[], gearMeshes=gear_meshes())
+    return build_contract(CONFIG, geometry['parts'], asset_sha256, inventory=inventory, motions=motions)
 
 
 def main():
     """Rebuild the tree and part list of a released contract from part-spec.json, keeping its asset hash and motions: python -m cad_pipeline.langley_contract web/langley-manly-balzer-1903-contract.json"""
-    import sys
+    import json, sys
     path = Path(sys.argv[1])
-    old = json.loads(path.read_text(encoding='utf-8'))
-    geometry = json.loads((STUDY / 'part-spec.json').read_text(encoding='utf-8'))
-    new = build(geometry, old['asset_sha256'], motions=old['motions'])
-    path.write_text(json.dumps(new, indent=2) + '\n', encoding='utf-8')
+    new = rebuild_released(CONFIG, path, json.loads((STUDY / 'part-spec.json').read_text(encoding='utf-8')))
     print(f"{len(new['parts'])} parts, {sum(1 for g in new['groups'] if g['depth'] == 0)} systems, {sum(1 for g in new['groups'] if g['depth'] == 1)} assemblies -> {path}")
 
 

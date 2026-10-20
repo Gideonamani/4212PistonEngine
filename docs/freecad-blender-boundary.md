@@ -68,9 +68,9 @@ a missing part, an unnamed overlay, a compressed file and a wrong axes mapping e
 
 ## What the Blender stages do today
 
-The stages that build the studies' GLBs (`present.py`, `review_gtsio_r10.py`, `rig_gtsio_review.py`, `rig_langley.py`, `rig_wright.py`, `look.py`) create each mesh from the frozen vertices
+The stages that build the studies' GLBs (`present.py`, `review_gtsio_r10.py`, `rig_animated_study.py` (behind the entry points `rig_gtsio_review.py`, `rig_langley.py` and `rig_wright.py`), `look.py`) create each mesh from the frozen vertices
 (`from_pydata`, millimetres to metres, minus the part's pivot in the rigs). The only mesh edit is `look.py`'s smoothing by angle, which sets edge sharpness and per-face smooth flags and
-moves no vertex; `rig_gtsio_review.py` re-bases mesh data to the part's pivot, a rigid move that the node transform undoes. The drift check turns that from a reading of the scripts into a
+moves no vertex; `rig_animated_study.py` re-bases mesh data (for R10, when it bakes) to the part's pivot, a rigid move that the node transform undoes. The drift check turns that from a reading of the scripts into a
 tested fact on each export.
 
 ## What it does not check

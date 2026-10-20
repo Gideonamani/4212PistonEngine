@@ -1,6 +1,6 @@
 """Shared material table, role-aware metallic finishes, per-part tone variation, and angle-based smoothing for Blender CAD stages.
 
-Used by present.py, review_gtsio_r10.py, rig_wright.py, rig_langley.py, and rig_gtsio_review.py so every stage shares
+Used by present.py, review_gtsio_r10.py and rig_animated_study.py (the one rig behind rig_wright.py, rig_langley.py and rig_gtsio_review.py) so every stage shares
 one canonical material table instead of duplicating COLORS dictionaries or silently falling back to steel.
 """
 import math

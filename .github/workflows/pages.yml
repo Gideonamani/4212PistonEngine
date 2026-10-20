@@ -171,6 +171,12 @@ jobs:
         run: |
           python3 scripts/test_constraints.py
           python3 scripts/check_constraints.py --all --quiet
+      - name: Verify the shared animated-study contract builder rebuilds the Langley and Wright contracts exactly (standard library only)
+        run: python3 scripts/test_study_contract.py
+      - name: Verify the tessellation tiers resolve to the deflections the models were built with (standard library only)
+        run: python3 scripts/test_tessellation_tiers.py
+      - name: Verify the GLB structure comparator on known answers (standard library only; the fixtures are built in the test)
+        run: python3 scripts/test_glb_compare.py
 
   # Parts may touch but not overlap, at the assembled pose and through every baked motion. Each model's interference-policy.json
   # is a ratchet: new overlaps fail, and a fixed overlap must be removed from the ledger. This check runs only when CAD models,

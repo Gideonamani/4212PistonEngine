@@ -7,6 +7,7 @@ from collections import Counter, defaultdict
 
 from cad_pipeline.fidelity import CLASSES, _json, counts, coverage_gaps, gate_coverage
 from cad_pipeline.intent import part_store
+from cad_pipeline.spec import deflection_for, tier_mm
 
 
 def coverage(result):
@@ -163,25 +164,36 @@ def report_markdown(results, lesson_data):
                        f'({", ".join(f"{g}: {n}" for g, n in sorted(by_gate.items())) or "none"}), {len(cov["expired"])} expired waiver(s).')
         else:
             out.append('- Every engineering part is covered by every gate it needs.')
-        out += ['', '### Tessellation tiers the classes would imply (B1, not applied)', '']
+        out += ['', '### Tessellation tiers the classes would imply (B1)', '']
         setting = spec.get('tessellation', {})
-        default, groups = setting.get('default_mm'), setting.get('groups', {})
+        default, groups, named = tier_mm(setting, setting.get('default_mm')), setting.get('groups', {}), setting.get('tiers', {})
         if groups:
-            group_of = {p['id']: p['group'] for p in spec['parts']}
-            tiers = Counter((r['class'], groups.get(group_of.get(r['id']), default)) for r in result['parts'])
-            out += ['| Class | Parts at each linear deflection today |', '|---|---|']
+            by_id = {p['id']: p for p in spec['parts']}
+            tiers = Counter((r['class'], deflection_for(spec, by_id[r['id']]) if r['id'] in by_id else default) for r in result['parts'])
+            tier_name = {mm: name for name, mm in named.items()}
+            label = lambda d: f'{d} mm ({tier_name[d]})' if d in tier_name else f'{d} mm'
+            out += ['| Class | Parts at each linear deflection (tier) today |', '|---|---|']
             for cl in CLASSES:
-                row = ', '.join(f'{d} mm: {n}' for (k, d), n in sorted(tiers.items(), key=lambda kv: kv[0][1]) if k == cl)
+                row = ', '.join(f'{label(d)}: {n}' for (k, d), n in sorted(tiers.items(), key=lambda kv: kv[0][1]) if k == cl)
                 out.append(f'| {cl} | {row or "-"} |')
-            coarsest = max([default] + list(groups.values()))
+            coarsest = max([default] + [tier_mm(setting, v) for v in groups.values()])
             at_coarsest = tiers[('engineering', coarsest)]
-            out += ['', f'The tiers follow the part group today, not the class: the default is {default} mm and the coarsest tier is {coarsest} mm. {at_coarsest} engineering parts '
+            out += ['', f'The tiers follow the part group (the kind of part), not the class: the default is {default} mm and the coarsest tier is {coarsest} mm. {at_coarsest} engineering parts '
                         f'({percent(at_coarsest, c["parts"]["engineering"])} of them) sit at the coarsest tier, so tiers by class would make them finer and cost size, while the other '
-                        'classes could take the coarsest tier. Where an engineering part is engineering only by membership of a mass-check line, B1 should weigh that signal first. '
-                        'Nothing is changed here; B1 measures the size saved and the audit effect.', '']
+                        'classes could take the coarsest tier. Where an engineering part is engineering only by membership of a mass-check line, B1 should weigh that signal first.']
+            standard = named.get('standard')
+            if standard:
+                coarser = sum(n for (k, d), n in tiers.items() if k == 'engineering' and d > standard)
+                out += ['', f'The spec can cap a class (`tessellation.classes`, a ceiling in mm or tier name, resolved by `cad_pipeline/spec.py`); none is declared, so nothing changes. A ceiling of the '
+                        f'`standard` tier ({standard} mm) on the engineering class would give {coarser} of its parts a finer mesh. The size and audit effect of that is not measured, so it is a '
+                        'decision, not a default.', '']
+            else:
+                out.append('')
         else:
-            out += [f'Every part is tessellated at one linear deflection ({default} mm). Engineering parts keep it; visual-structure and cosmetic parts could move to a coarser tier, and '
-                    'B1 measures the size saved and the audit effect before anything is changed. The Langley study already uses 0.02 to 0.4 mm by group.', '']
+            out += [f'Every part is tessellated at one linear deflection ({default} mm), the `default_mm` of the spec; `cad_pipeline/spec.py` also takes named tiers per part group and a '
+                    'ceiling per fidelity class (`tessellation.classes`), neither declared here. Engineering parts keep this deflection; visual-structure and cosmetic parts could move to a '
+                    'coarser tier, but R10 keeps its shipped tessellation (and so its asset hash) until the size saved and the audit effect are measured. The Langley study already uses '
+                    '0.02 to 0.4 mm in eight named tiers by part group.', '']
     if lesson_data:
         s = lesson_data['summary']
         out += ['## Lesson map for the R10 model (draft)', '',

@@ -37596,19 +37596,29 @@
  ],
  "tessellation": {
   "default_mm": 0.4,
-  "groups": {
-   "piston": 0.02,
-   "liner": 0.02,
-   "crank": 0.03,
-   "bearing": 0.03,
-   "cylinder": 0.2,
-   "shell": 0.04,
-   "jacket": 0.04,
-   "rod": 0.1,
+  "tiers": {
+   "fit": 0.02,
+   "journal": 0.03,
+   "thin_wall": 0.04,
    "valve": 0.05,
-   "spring": 0.1,
+   "standard": 0.1,
+   "body": 0.2,
    "pipe": 0.3,
-   "ignition": 0.1
+   "coarse": 0.4
+  },
+  "groups": {
+   "piston": "fit",
+   "liner": "fit",
+   "crank": "journal",
+   "bearing": "journal",
+   "shell": "thin_wall",
+   "jacket": "thin_wall",
+   "valve": "valve",
+   "rod": "standard",
+   "spring": "standard",
+   "ignition": "standard",
+   "cylinder": "body",
+   "pipe": "pipe"
   }
  }
 }
