@@ -18,9 +18,12 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from compare_glb_structure import compare
+sys.path.insert(0, str(REPO))
+from cad_pipeline.study_contract import diff
 
 BLENDER = Path('C:/Program Files/Blender Foundation/Blender 5.0/blender.exe')
-STUDIES = {'langley': dict(rig='rig_langley.py', name='langley-manly-balzer-1903-animated'), 'wright': dict(rig='rig_wright.py', name='wright-research-revision-2-animated')}
+STUDIES = {'langley': dict(rig='rig_langley.py', name='langley-manly-balzer-1903-animated', web='langley-manly-balzer-1903-contract.json'),
+           'wright': dict(rig='rig_wright.py', name='wright-research-revision-2-animated', web='wright-1903-reconstruction-contract.json')}
 sha256 = lambda path: hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
@@ -94,6 +97,11 @@ def main():
         old_asset, new_asset = old.pop('asset_sha256'), new.pop('asset_sha256')
         report['released_vs_current'] = dict(glb=ref, contract_identical_but_for_asset_hash=old == new, released_asset_sha256=old_asset, current_asset_sha256=new_asset,
                                              sections_that_differ=sorted(n for n, s in ref['sections'].items() if s['mismatches']))
+    shipped = REPO / 'web' / study['web']
+    if shipped.exists() and (current / (study['name'] + '-contract.json')).exists():
+        # The contract the site serves, not the one inside the package (which can be older): only the asset hash may differ, because the look module changed after the export.
+        rows = diff(json.loads(shipped.read_text(encoding='utf-8')), json.loads((current / (study['name'] + '-contract.json')).read_text(encoding='utf-8')))
+        report['web_contract_vs_current'] = dict(path=str(shipped.relative_to(REPO)).replace(chr(92), '/'), differences=[row[0] + ' ' + row[1] for row in rows])
     (work / 'report.json').write_text(json.dumps(report, indent=2) + '\n')
     print(f"{args.study}: baseline vs current: " + ('not run' if ok is None else 'EQUIVALENT, files identical' if ok else 'DIFFERENT'))
     if 'baseline_vs_current' in report:
@@ -102,6 +110,9 @@ def main():
     if 'released_vs_current' in report:
         r = report['released_vs_current']
         print(f"  released vs current: GLB equivalent {r['glb']['equivalent']}; sections that differ: {r['sections_that_differ'] or 'none'}; contract identical but for the asset hash: {r['contract_identical_but_for_asset_hash']}")
+    if 'web_contract_vs_current' in report:
+        w = report['web_contract_vs_current']
+        print(f"  {w['path']} vs current contract: {len(w['differences'])} difference(s): {', '.join(w['differences']) or 'none'}")
     print('  report:', work / 'report.json')
     return 0 if ok is not False else 1
 

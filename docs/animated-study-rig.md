@@ -88,7 +88,9 @@ Blender, makes the same file the old rig made. It does not prove the result is r
 change the exporter would need the comparison run again.
 
 When the package also holds the released export, the check reports the released file against the new export too. That comparison is information, not a gate: the released Langley and Wright files were
-exported before the look module changed (PR #74), so their materials differ from a rebuild's and nothing else does. The shipped GLBs are unchanged by this work.
+exported before the look module changed (PR #74), so their materials differ from a rebuild's and nothing else does. It also reports the contract the site serves (the file in `web/`) against the
+rebuilt one: only the asset hash differs, for the same reason. The contract inside an older package can be older than the one in `web/` (the Langley package holds an earlier system tree), so
+that comparison is the one to read. The shipped GLBs are unchanged by this work.
 
 ## Not covered
 
