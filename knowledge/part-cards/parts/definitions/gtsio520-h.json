@@ -1,56 +1,7 @@
 {
- "schema": "gtsio520-part-definitions/1",
- "model": "gtsio520-h-r10-mechanism-study",
- "state": "draft",
- "about": "Learner-facing details for every part of the R10 (GTSIO-520-H) Explore card, one definition per kind of part. The 'student' block is what a learner may see once reviewed; the 'engineering' block is the GTSIO manual cross-check and the alignment result, and never ships to the browser. The IO-520 catalogue rows behind each alignment result are kept out of Git (the repository is public). Every definition stays 'draft' until the instructor has reviewed it.",
- "rules": {
-  "title": "The part noun from the IO-520 parts catalogue description in plain, natural order, four words at most; size, thread and length go in 'catalogue'. Where the IO-520 catalogue has no row, the GTSIO-520 overhaul manual figure key supplies the name by the same rule.",
-  "statuses": {
-   "specified": "a source states it directly",
-   "derived": "worked out from a source by a stated step",
-   "inferred": "a reasonable basis, not a source: the claim is not stated in any source read",
-   "illustrative": "a prompt for the learner; it claims nothing about the engine"
-  },
-  "numbers": "Numbers appear only where a lesson or a manual gives them. Part numbers are never shown to learners.",
-  "catalogueNote": "IO-520 sizes and descriptions are tagged 'the GTSIO-520-H may differ' unless the GTSIO manual confirms them."
- },
- "systems": [
-  {
-   "id": "structure",
-   "label": "Engine Structure",
-   "question": "What holds the engine together?"
-  },
-  {
-   "id": "power",
-   "label": "Power Mechanism",
-   "question": "How does combustion turn the shaft?"
-  },
-  {
-   "id": "gas",
-   "label": "Gas Exchange & Valve Train",
-   "question": "How does mixture get in and exhaust get out?"
-  },
-  {
-   "id": "ignition",
-   "label": "Ignition",
-   "question": "How is combustion started?"
-  },
-  {
-   "id": "lubrication",
-   "label": "Lubrication",
-   "question": "How are the moving parts protected?"
-  },
-  {
-   "id": "output",
-   "label": "Power Output & Transmission",
-   "question": "How does engine power reach the propeller?"
-  },
-  {
-   "id": "accessories",
-   "label": "Accessory Drives",
-   "question": "What does the engine drive besides the propeller?"
-  }
- ],
+ "schema": "part-definitions/1",
+ "set": "gtsio520-h",
+ "about": "Definitions for the parts of the Continental GTSIO-520-H, one per kind of part. The 'student' block is what a learner may read once reviewed; the 'engineering' block is the GTSIO manual cross-check and the alignment result, and never ships to the browser. The IO-520 catalogue rows behind each alignment result are kept out of Git (the repository is public). Every definition stays 'draft' until the instructor has reviewed it.",
  "references": {
   "io520Catalogue": {
    "title": "Continental IO-520 Illustrated Parts Catalog, Form X-30040A, 1 May 1969",
@@ -73,6 +24,9 @@
    "id": "crankcase",
    "family": "Crankcase",
    "review": "draft",
+   "lessonTerms": [
+    "crankcase"
+   ],
    "student": {
     "title": {
      "text": "Crankcase",
@@ -178,16 +132,16 @@
     "modelMaterials": [
      "aluminium"
     ]
-   },
-   "match": [
-    "Crankcase(?<side>Left|Right)"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "crankcase-through-bolt",
    "family": "Crankcase through-bolt",
    "review": "draft",
+   "lessonTerms": [
+    "through bolt",
+    "through-bolt"
+   ],
    "student": {
     "title": {
      "text": "Crankcase through-bolt",
@@ -260,25 +214,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<set>CaseThru)Bolt(?<n>\\d+)",
-    "(?<set>CasePrimaryThrough)Bolt(?<n>\\d+)",
-    "(?<set>FrontCaseThrough)Bolt(?<n>\\d+)"
-   ],
-   "instanceWords": {
-    "sets": {
-     "CaseThru": "case set",
-     "CasePrimaryThrough": "primary set",
-     "FrontCaseThrough": "front set"
-    }
-   },
-   "partCount": 21
+   }
   },
   {
    "id": "crankcase-through-bolt-washer",
    "family": "Plain washer",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Plain washer",
@@ -347,24 +289,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<set>CaseThru)Washer(?<n>\\d+)",
-    "(?<set>PrimaryExternal)Washer(?<n>\\d+)",
-    "FrontCaseWasher(?<n>\\d+)(?<side>Left|Right)"
-   ],
-   "instanceWords": {
-    "sets": {
-     "CaseThru": "case set",
-     "PrimaryExternal": "primary set"
-    }
-   },
-   "partCount": 23
+   }
   },
   {
    "id": "crankcase-through-bolt-lock-washer",
    "family": "Lock washer",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Lock washer",
@@ -433,16 +364,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "FrontCaseLockWasher(?<n>\\d+)(?<side>Left|Right)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "crankcase-through-bolt-nut",
    "family": "Flanged nut",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Flanged nut",
@@ -509,23 +437,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<set>CaseThru)Nut(?<n>\\d+)",
-    "(?<set>PrimaryExternal)Nut(?<n>\\d+)"
-   ],
-   "instanceWords": {
-    "sets": {
-     "CaseThru": "case set",
-     "PrimaryExternal": "primary set"
-    }
-   },
-   "partCount": 11
+   }
   },
   {
    "id": "front-case-nut",
    "family": "Hex nut",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Hex nut",
@@ -594,16 +512,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "FrontCaseNut(?<n>\\d+)(?<side>Left|Right)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "cylinder-base-stud",
    "family": "Stud",
    "review": "draft",
+   "lessonTerms": [
+    "stud"
+   ],
    "student": {
     "title": {
      "text": "Stud",
@@ -675,16 +592,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "DeckStud(?<cyl>\\d)_(?<n>\\d+)"
-   ],
-   "partCount": 36
+   }
   },
   {
    "id": "cylinder-base-nut",
    "family": "Flanged nut",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Flanged nut",
@@ -753,16 +667,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "DeckNut(?<cyl>\\d)_(?<n>\\d+)"
-   ],
-   "partCount": 48
+   }
   },
   {
    "id": "cylinder-barrel",
    "family": "Cylinder barrel",
    "review": "draft",
+   "lessonTerms": [
+    "cylinder barrel"
+   ],
    "student": {
     "title": {
      "text": "Cylinder barrel",
@@ -843,17 +756,36 @@
     },
     "modelMaterials": [
      "steel_barrel"
+    ],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "CylinderBarrel",
+      "field": "material",
+      "text": "Forged chrome-molybdenum alloy steel (AMS 6382), nitrided bore",
+      "status": "unsourced",
+      "basis": "In part supported: a steel alloy barrel (GTSIO-520 overhaul manual, 3-1c), nitrided inside (Lesson 7; IO-520 maintenance manual). The specification, \"chrome-molybdenum\" and \"forged\" are in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "CylinderBarrel",
+      "field": "operatingConditions",
+      "text": "Inner wall exposed to combustion flame; outer fin temp 180–230 °C",
+      "status": "unsourced",
+      "basis": "No fin temperature range appears in the sources read; the manual gives cylinder head temperature limits, not fin temperatures.",
+      "disposition": "dropped"
+     }
     ]
-   },
-   "match": [
-    "CylinderBarrel(?<cyl>\\d)"
-   ],
-   "partCount": 6
+   }
   },
   {
    "id": "cylinder-head",
    "family": "Cylinder head",
    "review": "draft",
+   "lessonTerms": [
+    "cylinder head"
+   ],
    "student": {
     "title": {
      "text": "Cylinder head",
@@ -944,17 +876,36 @@
     },
     "modelMaterials": [
      "aluminium"
+    ],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "CylinderHead",
+      "field": "material",
+      "text": "Cast aluminum alloy (A355-T61) with shrunk-in bronze guides & steel seats",
+      "status": "unsourced",
+      "basis": "In part supported: an aluminium alloy head heated onto the barrel, with valve seats and guides installed first (GTSIO-520 overhaul manual, 3-1c). The alloy designation, bronze guides and steel seats are in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "CylinderHead",
+      "field": "operatingConditions",
+      "text": "Direct combustion chamber boundary; peak temp around exhaust port 220–250 °C",
+      "status": "unsourced",
+      "basis": "No exhaust-port temperature range appears in the sources read.",
+      "disposition": "dropped"
+     }
     ]
-   },
-   "match": [
-    "CylinderHead(?<cyl>\\d)"
-   ],
-   "partCount": 6
+   }
   },
   {
    "id": "cylinder-base-packing",
    "family": "Cylinder base packing",
    "review": "draft",
+   "lessonTerms": [
+    "cylinder base packing"
+   ],
    "student": {
     "title": {
      "text": "Cylinder base packing",
@@ -1022,16 +973,15 @@
     "modelMaterials": [
      "rubber"
     ]
-   },
-   "match": [
-    "CylinderBaseSeal(?<cyl>\\d)"
-   ],
-   "partCount": 6
+   }
   },
   {
    "id": "intake-valve",
    "family": "Intake valve",
    "review": "draft",
+   "lessonTerms": [
+    "intake valve"
+   ],
    "student": {
     "title": {
      "text": "Intake valve",
@@ -1119,17 +1069,36 @@
     },
     "modelMaterials": [
      "steel_polished"
+    ],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "IntakeValve",
+      "field": "material",
+      "text": "Chromium-nickel alloy steel (silchrome steel) with cobalt stellite seat face",
+      "status": "unsourced",
+      "basis": "Contradicted in part: Lesson 8 gives chromic-nickel steel for intake valves, lists silchrome for the exhaust, and the Stellite face belongs to the exhaust valve (IO-520 maintenance manual; GTSIO-520 overhaul manual, 3-1c).",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "IntakeValve",
+      "field": "operatingConditions",
+      "text": "Cooled by incoming fuel-air charge; head temp approx. 350–450 °C",
+      "status": "unsourced",
+      "basis": "That intake valves run cooler is supported (Lesson 8); the 350 to 450 degree range is in no source read.",
+      "disposition": "dropped"
+     }
     ]
-   },
-   "match": [
-    "IntakeValve(?<cyl>\\d)"
-   ],
-   "partCount": 6
+   }
   },
   {
    "id": "exhaust-valve",
    "family": "Exhaust valve",
    "review": "draft",
+   "lessonTerms": [
+    "exhaust valve"
+   ],
    "student": {
     "title": {
      "text": "Exhaust valve",
@@ -1217,17 +1186,36 @@
     },
     "modelMaterials": [
      "steel_polished"
+    ],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "ExhaustValve",
+      "field": "material",
+      "text": "Austenitic heat-resisting steel, sodium-cooled hollow stem, Stellite-faced face and tip",
+      "status": "unsourced",
+      "basis": "Contradicted in part: the IO-520 maintenance manual says valve stems are solid; GTSIO-520 overhaul manual, 3-1c says the face is a special heat- and corrosion-resistant material. Sodium-filled stems are general (Lesson 8), not stated for this engine.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "ExhaustValve",
+      "field": "operatingConditions",
+      "text": "Exhaust stream up to 850 °C; sodium transfers heat from head to guide",
+      "status": "unsourced",
+      "basis": "The 850 degree exhaust figure is in no source read.",
+      "disposition": "dropped"
+     }
     ]
-   },
-   "match": [
-    "ExhaustValve(?<cyl>\\d)"
-   ],
-   "partCount": 6
+   }
   },
   {
    "id": "valve-guide",
    "family": "Valve guide",
    "review": "draft",
+   "lessonTerms": [
+    "valve guide"
+   ],
    "student": {
     "title": {
      "text": "Valve guide",
@@ -1300,16 +1288,16 @@
     "modelMaterials": [
      "bronze"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)Guide(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "valve-seat-insert",
    "family": "Valve seat insert",
    "review": "draft",
+   "lessonTerms": [
+    "seat insert",
+    "valve seat"
+   ],
    "student": {
     "title": {
      "text": "Valve seat insert",
@@ -1398,17 +1386,54 @@
     },
     "modelMaterials": [
      "steel"
+    ],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "IntakeSeatInsert",
+      "field": "material",
+      "text": "Hardened aluminum-bronze or alloy steel shrunk into heated aluminum head",
+      "status": "unsourced",
+      "basis": "A hard, durable, replaceable seat insert is supported (Lesson 8; GTSIO-520 overhaul manual, 3-1c). \"Aluminium-bronze or alloy steel\" is in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "IntakeSeatInsert",
+      "field": "operatingConditions",
+      "text": "Provides precision sealing surface and thermal transfer path for valve head",
+      "status": "unsourced",
+      "basis": "A sealing surface is supported (Lesson 8); the heat path wording is in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "ExhaustSeatInsert",
+      "field": "material",
+      "text": "High-alloy cobalt-base heat-resisting insert (Stellite alloy)",
+      "status": "unsourced",
+      "basis": "Stellite is stated for the exhaust valve face (IO-520 maintenance manual), not for the insert.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "ExhaustSeatInsert",
+      "field": "operatingConditions",
+      "text": "Withstands repetitive exhaust valve impacts at elevated temperature",
+      "status": "unsourced",
+      "basis": "The wording about repetitive impacts at elevated temperature is in no source read.",
+      "disposition": "dropped"
+     }
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)Seat(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "valve-spring",
    "family": "Valve spring",
    "review": "draft",
+   "lessonTerms": [
+    "valve spring"
+   ],
    "student": {
     "title": {
      "text": "Valve spring",
@@ -1502,16 +1527,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)(?<pos>Outer|Inner)Spring(?<cyl>\\d)"
-   ],
-   "partCount": 24
+   }
   },
   {
    "id": "inner-valve-spring-retainer",
    "family": "Inner valve spring retainer",
    "review": "draft",
+   "lessonTerms": [
+    "inner valve spring retainer"
+   ],
    "student": {
     "title": {
      "text": "Inner valve spring retainer",
@@ -1577,16 +1601,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)LowerInnerRetainer(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "outer-spring-foot-washer",
    "family": "Spring seat washer",
    "review": "draft",
+   "lessonTerms": [
+    "spring seat washer"
+   ],
    "student": {
     "title": {
      "text": "Spring seat washer",
@@ -1652,16 +1675,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)SpringFoot(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "intake-valve-spring-retainer",
    "family": "Intake valve spring retainer",
    "review": "draft",
+   "lessonTerms": [
+    "retainer"
+   ],
    "student": {
     "title": {
      "text": "Intake valve spring retainer",
@@ -1734,16 +1756,17 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "IntakeRetainer(?<cyl>\\d)"
-   ],
-   "partCount": 6
+   }
   },
   {
    "id": "exhaust-roto-cap",
    "family": "Exhaust roto cap",
    "review": "draft",
+   "lessonTerms": [
+    "rotocoil",
+    "roto coil",
+    "roto cap"
+   ],
    "student": {
     "title": {
      "text": "Exhaust roto cap",
@@ -1820,23 +1843,16 @@
      "steel",
      "steel_hardware"
     ]
-   },
-   "match": [
-    "Exhaust(?<set>Retainer)(?<cyl>\\d)",
-    "Exhaust(?<set>RotocoilRim)(?<cyl>\\d)"
-   ],
-   "instanceWords": {
-    "sets": {
-     "Retainer": "cap",
-     "RotocoilRim": "rim"
-    }
-   },
-   "partCount": 12
+   }
   },
   {
    "id": "valve-spring-retainer-key",
    "family": "Valve spring retainer key",
    "review": "draft",
+   "lessonTerms": [
+    "keeper",
+    "split key"
+   ],
    "student": {
     "title": {
      "text": "Valve spring retainer key",
@@ -1912,16 +1928,16 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)Keeper(?<pos>A|B)(?<cyl>\\d)"
-   ],
-   "partCount": 24
+   }
   },
   {
    "id": "valve-rocker",
    "family": "Valve rocker",
    "review": "draft",
+   "lessonTerms": [
+    "rocker arm",
+    "rocker"
+   ],
    "student": {
     "title": {
      "text": "Valve rocker",
@@ -2012,17 +2028,54 @@
     },
     "modelMaterials": [
      "steel"
+    ],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "IntakeRockerArm",
+      "field": "material",
+      "text": "Drop-forged steel with hardened roller or contact toe, pressure-fed bronze bushing",
+      "status": "unsourced",
+      "basis": "In part supported: steel forgings with pressed-in bronze bushings and hardened faces and pushrod sockets (GTSIO-520 overhaul manual, 3-1c). A roller toe and a pressure-fed bushing are in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "IntakeRockerArm",
+      "field": "operatingConditions",
+      "text": "Translates pushrod linear rise into downward intake valve depression",
+      "status": "derived",
+      "source": "Lesson 8, Valve Operating: the rocker turns the pushrod rise into valve opening",
+      "disposition": "kept"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "ExhaustRockerArm",
+      "field": "material",
+      "text": "Forged alloy steel with case-hardened contact pads",
+      "status": "unsourced",
+      "basis": "Steel forgings with hardened faces are supported (GTSIO-520 overhaul manual, 3-1c); \"case-hardened\" is in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "ExhaustRockerArm",
+      "field": "operatingConditions",
+      "text": "Actuates heavy-duty exhaust valve against dual valve spring pressure",
+      "status": "derived",
+      "source": "Lesson 8, Valve Operating: the rocker opens the valve against the two valve springs",
+      "disposition": "kept"
+     }
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)Rocker(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "valve-rocker-bushing",
    "family": "Valve rocker bushing",
    "review": "draft",
+   "lessonTerms": [
+    "valve rocker bushing"
+   ],
    "student": {
     "title": {
      "text": "Valve rocker bushing",
@@ -2088,16 +2141,15 @@
     "modelMaterials": [
      "bronze"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)RockerBush(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "valve-rocker-shaft",
    "family": "Valve rocker shaft",
    "review": "draft",
+   "lessonTerms": [
+    "valve rocker shaft"
+   ],
    "student": {
     "title": {
      "text": "Valve rocker shaft",
@@ -2164,16 +2216,15 @@
     "modelMaterials": [
      "steel_polished"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)RockerShaft(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "rocker-shaft-retainer",
    "family": "Rocker shaft retainer",
    "review": "draft",
+   "lessonTerms": [
+    "rocker shaft retainer"
+   ],
    "student": {
     "title": {
      "text": "Rocker shaft retainer",
@@ -2240,16 +2291,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)ShaftRetainer(?<pos>A|B)(?<cyl>\\d)"
-   ],
-   "partCount": 24
+   }
   },
   {
    "id": "rocker-thrust-washer",
    "family": "Thrust washer",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Thrust washer",
@@ -2316,16 +2364,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)ThrustWasher(?<pos>A|B)(?<cyl>\\d)"
-   ],
-   "partCount": 24
+   }
   },
   {
    "id": "rocker-retainer-screw",
    "family": "Screw",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Screw",
@@ -2393,16 +2438,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)RetainerScrew(?<pos>A|B)(?<cyl>\\d)"
-   ],
-   "partCount": 24
+   }
   },
   {
    "id": "tab-washer",
    "family": "Tab washer",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Tab washer",
@@ -2468,16 +2510,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)RetainerTab(?<pos>A|B)(?<cyl>\\d)"
-   ],
-   "partCount": 24
+   }
   },
   {
    "id": "rocker-cover",
    "family": "Rocker cover",
    "review": "draft",
+   "lessonTerms": [
+    "rocker cover"
+   ],
    "student": {
     "title": {
      "text": "Rocker cover",
@@ -2547,16 +2588,15 @@
     "modelMaterials": [
      "steel_cover_gold"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)RockerCover(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "rocker-cover-gasket",
    "family": "Rocker cover gasket",
    "review": "draft",
+   "lessonTerms": [
+    "rocker cover gasket"
+   ],
    "student": {
     "title": {
      "text": "Rocker cover gasket",
@@ -2622,16 +2662,15 @@
     "modelMaterials": [
      "gasket"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)CoverGasket(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "rocker-cover-screw",
    "family": "Fillister head screw",
    "review": "draft",
+   "lessonTerms": [
+    "fillister head screw"
+   ],
    "student": {
     "title": {
      "text": "Fillister head screw",
@@ -2698,16 +2737,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)CoverScrew(?<n>\\d)(?<cyl>\\d)"
-   ],
-   "partCount": 60
+   }
   },
   {
    "id": "rocker-cover-plain-washer",
    "family": "Plain washer",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Plain washer",
@@ -2777,16 +2813,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)CoverPlainWasher(?<n>\\d)(?<cyl>\\d)"
-   ],
-   "partCount": 60
+   }
   },
   {
    "id": "rocker-cover-lock-washer",
    "family": "Lock washer",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Lock washer",
@@ -2855,16 +2888,16 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)CoverLockWasher(?<n>\\d)(?<cyl>\\d)"
-   ],
-   "partCount": 60
+   }
   },
   {
    "id": "push-rod",
    "family": "Push rod",
    "review": "draft",
+   "lessonTerms": [
+    "pushrod",
+    "push rod"
+   ],
    "student": {
     "title": {
      "text": "Push rod",
@@ -2948,17 +2981,54 @@
     },
     "modelMaterials": [
      "steel_polished"
+    ],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "IntakePushrod",
+      "field": "material",
+      "text": "Seamless alloy steel tubular rod with case-hardened ball ends and central oil passage",
+      "status": "unsourced",
+      "basis": "In part supported: steel tubes with pressed-in, hardened, forged steel ball ends, centre drilled for oil (GTSIO-520 overhaul manual, 3-1c). \"Seamless\", \"alloy\" and \"case-hardened\" are in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "IntakePushrod",
+      "field": "operatingConditions",
+      "text": "Transmits cam follower motion to cylinder head; conveys engine oil to rockers",
+      "status": "specified",
+      "source": "GTSIO-520 overhaul manual, 3-1d: oil is forced through the pushrods to the rockers; Lesson 8: the pushrod carries the lifter movement up to the rocker",
+      "disposition": "kept"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "ExhaustPushrod",
+      "field": "material",
+      "text": "Hollow steel pushrod with through-drilled lubrication conduit",
+      "status": "derived",
+      "source": "GTSIO-520 overhaul manual, 3-1c: steel tubes, centre drilled for oil passages",
+      "disposition": "kept"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "ExhaustPushrod",
+      "field": "operatingConditions",
+      "text": "Operates in compressive column loading during exhaust valve opening",
+      "status": "unsourced",
+      "basis": "The compressive column loading wording is in no source read.",
+      "disposition": "dropped"
+     }
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)Pushrod(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "push-rod-housing",
    "family": "Push rod housing",
    "review": "draft",
+   "lessonTerms": [
+    "push rod housing"
+   ],
    "student": {
     "title": {
      "text": "Push rod housing",
@@ -3028,16 +3098,15 @@
     "modelMaterials": [
      "steel_polished"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)PushrodHousing(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "push-rod-housing-spring",
    "family": "Push rod housing spring",
    "review": "draft",
+   "lessonTerms": [
+    "push rod housing spring"
+   ],
    "student": {
     "title": {
      "text": "Push rod housing spring",
@@ -3103,16 +3172,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)HousingSpring(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "push-rod-housing-washer",
    "family": "Push rod housing washer",
    "review": "draft",
+   "lessonTerms": [
+    "push rod housing washer"
+   ],
    "student": {
     "title": {
      "text": "Push rod housing washer",
@@ -3179,16 +3247,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)(?<pos>Case|Head|Spring)Washer(?<cyl>\\d)"
-   ],
-   "partCount": 36
+   }
   },
   {
    "id": "push-rod-housing-packing",
    "family": "Push rod housing packing",
    "review": "draft",
+   "lessonTerms": [
+    "push rod housing packing"
+   ],
    "student": {
     "title": {
      "text": "Push rod housing packing",
@@ -3266,16 +3333,16 @@
     "modelMaterials": [
      "rubber"
     ]
-   },
-   "match": [
-    "(?<end>Intake|Exhaust)(?<pos>CaseSeal|HeadPacking)(?<cyl>\\d)"
-   ],
-   "partCount": 24
+   }
   },
   {
    "id": "hydraulic-valve-lifter-body",
    "family": "Hydraulic valve lifter",
    "review": "draft",
+   "lessonTerms": [
+    "tappet",
+    "lifter"
+   ],
    "student": {
     "title": {
      "text": "Valve lifter body",
@@ -3376,17 +3443,54 @@
     },
     "modelMaterials": [
      "steel"
+    ],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "IntakeHydraulicLifterBody",
+      "field": "material",
+      "text": "Cast chilled iron body with hardened plunger and check ball valve",
+      "status": "unsourced",
+      "basis": "Contradicted in part: the lifter figure (GTSIO-520 overhaul manual, A-4-10) lists a check valve plate, not a check ball; no source read names the metal of the body.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "IntakeHydraulicLifterBody",
+      "field": "operatingConditions",
+      "text": "Maintains zero valve lash automatically using pressurized engine oil",
+      "status": "derived",
+      "source": "GTSIO-520 overhaul manual, 3-1d: oil under pressure fills the lifter so the valve train keeps no clearance; Lesson 8",
+      "disposition": "kept"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "ExhaustHydraulicLifterBody",
+      "field": "material",
+      "text": "Chilled iron body riding on camshaft exhaust lobe",
+      "status": "unsourced",
+      "basis": "No source read names the metal of the lifter body.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "ExhaustHydraulicLifterBody",
+      "field": "operatingConditions",
+      "text": "Eliminates thermal valve clearance variations from cold start to redline",
+      "status": "unsourced",
+      "basis": "Taking up clearance is the lifter job (GTSIO-520 overhaul manual, 3-1d); \"cold start to redline\" is in no source read.",
+      "disposition": "dropped"
+     }
     ]
-   },
-   "match": [
-    "LifterBody(?<end>Intake|Exhaust)(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "hydraulic-valve-lifter-plunger",
    "family": "Hydraulic lifter plunger",
    "review": "draft",
+   "lessonTerms": [
+    "plunger"
+   ],
    "student": {
     "title": {
      "text": "Hydraulic lifter plunger",
@@ -3484,16 +3588,15 @@
     "modelMaterials": [
      "steel_polished"
     ]
-   },
-   "match": [
-    "LifterPlunger(?<end>Intake|Exhaust)(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "plunger-spring",
    "family": "Plunger spring",
    "review": "draft",
+   "lessonTerms": [
+    "plunger spring"
+   ],
    "student": {
     "title": {
      "text": "Plunger spring",
@@ -3567,16 +3670,15 @@
     "modelMaterials": [
      "steel_polished"
     ]
-   },
-   "match": [
-    "LifterPlungerSpring(?<end>Intake|Exhaust)(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "check-valve-housing",
    "family": "Check valve housing",
    "review": "draft",
+   "lessonTerms": [
+    "check valve housing"
+   ],
    "student": {
     "title": {
      "text": "Check valve housing",
@@ -3649,16 +3751,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "LifterCheckHousing(?<end>Intake|Exhaust)(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "check-valve-plate",
    "family": "Check valve plate",
    "review": "draft",
+   "lessonTerms": [
+    "check valve plate"
+   ],
    "student": {
     "title": {
      "text": "Check valve plate",
@@ -3725,16 +3826,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "LifterCheckPlate(?<end>Intake|Exhaust)(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "check-valve-spring",
    "family": "Check valve spring",
    "review": "draft",
+   "lessonTerms": [
+    "check valve spring"
+   ],
    "student": {
     "title": {
      "text": "Check valve spring",
@@ -3800,16 +3900,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "LifterCheckSpring(?<end>Intake|Exhaust)(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "hydraulic-valve-lifter-socket",
    "family": "Hydraulic lifter socket",
    "review": "draft",
+   "lessonTerms": [
+    "hydraulic lifter socket"
+   ],
    "student": {
     "title": {
      "text": "Hydraulic lifter socket",
@@ -3878,16 +3977,13 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "LifterSocket(?<end>Intake|Exhaust)(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "lifter-retaining-ring",
    "family": "Retaining ring",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Retaining ring",
@@ -3956,16 +4052,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "LifterRing(?<end>Intake|Exhaust)(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "camshaft",
    "family": "Camshaft",
    "review": "draft",
+   "lessonTerms": [
+    "camshaft"
+   ],
    "student": {
     "title": {
      "text": "Camshaft",
@@ -4058,16 +4153,15 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "Camshaft"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "camshaft-gear",
    "family": "Camshaft gear",
    "review": "draft",
+   "lessonTerms": [
+    "camshaft gear"
+   ],
    "student": {
     "title": {
      "text": "Camshaft gear",
@@ -4155,16 +4249,15 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "CamshaftGear"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "cam-cluster-gear",
    "family": "Cam cluster gear",
    "review": "draft",
+   "lessonTerms": [
+    "cam cluster gear"
+   ],
    "student": {
     "title": {
      "text": "Cam cluster gear",
@@ -4235,16 +4328,13 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "CamClusterGear"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "camshaft-gear-screw",
    "family": "Screw",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Screw",
@@ -4312,16 +4402,15 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "CamGearScrew(?<n>\\d+)"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "crankshaft-gear",
    "family": "Crankshaft gear",
    "review": "draft",
+   "lessonTerms": [
+    "crankshaft gear"
+   ],
    "student": {
     "title": {
      "text": "Crankshaft gear",
@@ -4410,16 +4499,13 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "CrankshaftGear"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "crankshaft-gear-screw",
    "family": "Screw",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Screw",
@@ -4487,16 +4573,15 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "CrankGearScrew(?<n>\\d+)"
-   ],
-   "partCount": 6
+   }
   },
   {
    "id": "crankshaft-gear-dowel",
    "family": "Crankshaft-to-gear dowel",
    "review": "draft",
+   "lessonTerms": [
+    "crankshaft-to-gear dowel"
+   ],
    "student": {
     "title": {
      "text": "Crankshaft-to-gear dowel",
@@ -4568,16 +4653,15 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "CrankGearDowel"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "crankshaft",
    "family": "Crankshaft",
    "review": "draft",
+   "lessonTerms": [
+    "crankshaft"
+   ],
    "student": {
     "title": {
      "text": "Crankshaft",
@@ -4671,16 +4755,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "Crankshaft"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "crankshaft-main-bearing",
    "family": "Main bearing",
    "review": "draft",
+   "lessonTerms": [
+    "main bearing"
+   ],
    "student": {
     "title": {
      "text": "Main bearing",
@@ -4759,19 +4842,16 @@
     "modelMaterials": [
      "babbitt"
     ]
-   },
-   "match": [
-    "MainBearing(?<side>Left|Right)(?<n>\\d)"
-   ],
-   "instanceWords": {
-    "n": "journal"
-   },
-   "partCount": 8
+   }
   },
   {
    "id": "counterweight",
    "family": "Counterweight",
    "review": "draft",
+   "lessonTerms": [
+    "counterweight",
+    "dynamic damper"
+   ],
    "student": {
     "title": {
      "text": "Counterweight",
@@ -4851,19 +4931,15 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "Counterweight(?<n>\\d)(?<pos>A|B)"
-   ],
-   "instanceWords": {
-    "n": "throw"
-   },
-   "partCount": 6
+   }
   },
   {
    "id": "damper-bushing",
    "family": "Damper bushing",
    "review": "draft",
+   "lessonTerms": [
+    "damper bushing"
+   ],
    "student": {
     "title": {
      "text": "Damper bushing",
@@ -4930,19 +5006,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "BladeBush(?<n>\\d)(?<pos>[AB][LR])"
-   ],
-   "instanceWords": {
-    "n": "throw"
-   },
-   "partCount": 12
+   }
   },
   {
    "id": "counterweight-bushing",
    "family": "Counterweight bushing",
    "review": "draft",
+   "lessonTerms": [
+    "counterweight bushing"
+   ],
    "student": {
     "title": {
      "text": "Counterweight bushing",
@@ -5008,19 +5080,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "WeightBush(?<n>\\d)(?<pos>[AB][LR])(?<end>Front|Rear)"
-   ],
-   "instanceWords": {
-    "n": "throw"
-   },
-   "partCount": 24
+   }
   },
   {
    "id": "damper-pin",
    "family": "Damper pin",
    "review": "draft",
+   "lessonTerms": [
+    "damper pin"
+   ],
    "student": {
     "title": {
      "text": "Damper pin",
@@ -5088,19 +5156,15 @@
     "modelMaterials": [
      "steel_polished"
     ]
-   },
-   "match": [
-    "DamperPin(?<n>\\d)(?<pos>[AB][LR])"
-   ],
-   "instanceWords": {
-    "n": "throw"
-   },
-   "partCount": 12
+   }
   },
   {
    "id": "pin-retaining-plate",
    "family": "Pin retaining plate",
    "review": "draft",
+   "lessonTerms": [
+    "pin retaining plate"
+   ],
    "student": {
     "title": {
      "text": "Pin retaining plate",
@@ -5166,19 +5230,13 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "DamperPlate(?<n>\\d)(?<pos>[AB][LR])(?<end>Front|Rear)"
-   ],
-   "instanceWords": {
-    "n": "throw"
-   },
-   "partCount": 24
+   }
   },
   {
    "id": "damper-retaining-ring",
    "family": "Retaining ring",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Retaining ring",
@@ -5247,19 +5305,15 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "DamperRing(?<n>\\d)(?<pos>[AB][LR])(?<end>Front|Rear)"
-   ],
-   "instanceWords": {
-    "n": "throw"
-   },
-   "partCount": 24
+   }
   },
   {
    "id": "connecting-rod",
    "family": "Connecting rod",
    "review": "draft",
+   "lessonTerms": [
+    "connecting rod"
+   ],
    "student": {
     "title": {
      "text": "Connecting rod",
@@ -5354,17 +5408,36 @@
     },
     "modelMaterials": [
      "steel_forged"
+    ],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "ConnectingRodBody",
+      "field": "material",
+      "text": "Forged H-section alloy steel, shot-peened for fatigue endurance",
+      "status": "unsourced",
+      "basis": "Contradicted in part: the manual and Lesson 7 describe I-beam rods (GTSIO-520 overhaul manual, 3-1f), not H-section. Forged steel alloy is supported (Lesson 7). \"Shot-peened\" is in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "ConnectingRodBody",
+      "field": "operatingConditions",
+      "text": "Alternating tension/compression loads exceeding 35 kN per power stroke",
+      "status": "unsourced",
+      "basis": "The 35 kN load figure is in no source read.",
+      "disposition": "dropped"
+     }
     ]
-   },
-   "match": [
-    "ConnectingRod(?<cyl>\\d)"
-   ],
-   "partCount": 6
+   }
   },
   {
    "id": "connecting-rod-cap",
    "family": "Connecting rod cap",
    "review": "draft",
+   "lessonTerms": [
+    "connecting rod cap"
+   ],
    "student": {
     "title": {
      "text": "Connecting rod cap",
@@ -5431,17 +5504,36 @@
     },
     "modelMaterials": [
      "steel_forged"
+    ],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "ConnectingRodCap",
+      "field": "material",
+      "text": "Matched forged alloy steel forging with precision doweled alignment",
+      "status": "unsourced",
+      "basis": "The forging description and the doweled alignment are in no source read; the manual describes the rod bearing inserts and bolts, not the cap metal.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "ConnectingRodCap",
+      "field": "operatingConditions",
+      "text": "Clamped by high-tensile rod bolts to secure crankpin bearing shells",
+      "status": "unsourced",
+      "basis": "In part supported: bolts clamp the cap to the rod (GTSIO-520 overhaul manual, figure A-4-20). \"High-tensile\" is in no source read.",
+      "disposition": "dropped"
+     }
     ]
-   },
-   "match": [
-    "RodCap(?<cyl>\\d)"
-   ],
-   "partCount": 6
+   }
   },
   {
    "id": "connecting-rod-bearing",
    "family": "Connecting rod bearing",
    "review": "draft",
+   "lessonTerms": [
+    "rod bearing"
+   ],
    "student": {
     "title": {
      "text": "Connecting rod bearing",
@@ -5507,17 +5599,54 @@
     },
     "modelMaterials": [
      "babbitt"
+    ],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "BigEndBearing",
+      "field": "material",
+      "text": "Steel-backed copper-lead lining with lead-tin electroplated babbitt overlay",
+      "status": "unsourced",
+      "basis": "In part supported: steel-backed, lead-alloy-lined inserts of the main-bearing type (GTSIO-520 overhaul manual, 3-1b and 3-1f). \"Copper-lead\" and a lead-tin electroplated babbitt overlay are in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "BigEndBearing",
+      "field": "operatingConditions",
+      "text": "Hydrodynamic oil film lubrication under continuous dynamic loads",
+      "status": "unsourced",
+      "basis": "Oil-film lubrication is a general principle; no source read states this wording.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "CapBearingHalf",
+      "field": "material",
+      "text": "Steel-backed trimetal copper-lead alloy shell",
+      "status": "unsourced",
+      "basis": "In part supported: steel-backed, lead-alloy-lined inserts of the main-bearing type (GTSIO-520 overhaul manual, 3-1b and 3-1f). \"Trimetal copper-lead\" is in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "CapBearingHalf",
+      "field": "operatingConditions",
+      "text": "Hydrodynamic bearing film under inertial tension during exhaust/intake strokes",
+      "status": "unsourced",
+      "basis": "The wording about inertial tension in the exhaust and intake strokes is in no source read.",
+      "disposition": "dropped"
+     }
     ]
-   },
-   "match": [
-    "RodBearing(?<pos>Upper|Lower)(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "piston-pin-bushing",
    "family": "Piston pin bushing",
    "review": "draft",
+   "lessonTerms": [
+    "piston pin bushing"
+   ],
    "student": {
     "title": {
      "text": "Piston pin bushing",
@@ -5583,16 +5712,15 @@
     "modelMaterials": [
      "bronze"
     ]
-   },
-   "match": [
-    "SmallEndBush(?<cyl>\\d)"
-   ],
-   "partCount": 6
+   }
   },
   {
    "id": "connecting-rod-bolt",
    "family": "Connecting rod bolt",
    "review": "draft",
+   "lessonTerms": [
+    "connecting rod bolt"
+   ],
    "student": {
     "title": {
      "text": "Connecting rod bolt",
@@ -5659,16 +5787,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "RodBolt(?<pos>A|B)(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "connecting-rod-nut",
    "family": "Connecting rod nut",
    "review": "draft",
+   "lessonTerms": [
+    "connecting rod nut"
+   ],
    "student": {
     "title": {
      "text": "Connecting rod nut",
@@ -5736,16 +5863,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "RodNut(?<pos>A|B)(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "piston",
    "family": "Piston",
    "review": "draft",
+   "lessonTerms": [
+    "piston"
+   ],
    "student": {
     "title": {
      "text": "Piston",
@@ -5833,17 +5959,36 @@
     },
     "modelMaterials": [
      "aluminium_forged"
+    ],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "PistonBody",
+      "field": "material",
+      "text": "Forged aluminum alloy (Al-Cu-Mg-Ni, 2618-T61) with cam-ground skirt",
+      "status": "unsourced",
+      "basis": "In part supported: aluminium alloy castings or forgings (GTSIO-520 overhaul manual, 3-1g). The alloy designation and the cam-ground skirt are in no source read; the manual says the skirts are solid with cylindrical relief cuts.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "PistonBody",
+      "field": "operatingConditions",
+      "text": "Crown exposed to gas temps > 1,800 °C, crown metal temp up to 300 °C",
+      "status": "unsourced",
+      "basis": "The gas and crown temperatures are in no source read.",
+      "disposition": "dropped"
+     }
     ]
-   },
-   "match": [
-    "Piston(?<cyl>\\d)"
-   ],
-   "partCount": 6
+   }
   },
   {
    "id": "piston-pin",
    "family": "Piston pin",
    "review": "draft",
+   "lessonTerms": [
+    "piston pin"
+   ],
    "student": {
     "title": {
      "text": "Piston pin",
@@ -5934,17 +6079,36 @@
     },
     "modelMaterials": [
      "steel_polished"
+    ],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "FloatingPin",
+      "field": "material",
+      "text": "Case-hardened low-carbon alloy steel, ground and micro-honed",
+      "status": "unsourced",
+      "basis": "In part supported: a full-floating ground steel tube (GTSIO-520 overhaul manual, 3-1g). \"Case-hardened low-carbon\" and \"micro-honed\" are in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "FloatingPin",
+      "field": "operatingConditions",
+      "text": "Full-floating pin oscillating in piston bosses and rod small-end bushing",
+      "status": "derived",
+      "source": "GTSIO-520 overhaul manual, 3-1f and 3-1g: a full-floating pin turning in the piston and in the rod small-end bushing",
+      "disposition": "kept"
+     }
     ]
-   },
-   "match": [
-    "PistonPin(?<cyl>\\d)"
-   ],
-   "partCount": 6
+   }
   },
   {
    "id": "piston-pin-plug",
    "family": "Piston pin plug",
    "review": "draft",
+   "lessonTerms": [
+    "piston pin plug"
+   ],
    "student": {
     "title": {
      "text": "Piston pin plug",
@@ -6010,17 +6174,54 @@
     },
     "modelMaterials": [
      "aluminium"
+    ],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "PinPlugLeft",
+      "field": "material",
+      "text": "Soft aluminum alloy plug",
+      "status": "derived",
+      "source": "GTSIO-520 overhaul manual, 3-1g: permanently forged-in aluminum plugs; Lesson 7, Parts and Construction: soft aluminium end plugs",
+      "disposition": "kept"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "PinPlugLeft",
+      "field": "operatingConditions",
+      "text": "Prevents steel wrist pin from contacting and scoring the cylinder barrel wall",
+      "status": "specified",
+      "source": "Lesson 7, Parts and Construction: the soft aluminium end plugs stop the pin scoring the cylinder wall",
+      "disposition": "kept"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "PinPlugRight",
+      "field": "material",
+      "text": "Soft aluminum alloy plug",
+      "status": "derived",
+      "source": "GTSIO-520 overhaul manual, 3-1g: permanently forged-in aluminum plugs; Lesson 7, Parts and Construction: soft aluminium end plugs",
+      "disposition": "kept"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "PinPlugRight",
+      "field": "operatingConditions",
+      "text": "Prevents steel wrist pin from contacting and scoring the cylinder barrel wall",
+      "status": "specified",
+      "source": "Lesson 7, Parts and Construction: the soft aluminium end plugs stop the pin scoring the cylinder wall",
+      "disposition": "kept"
+     }
     ]
-   },
-   "match": [
-    "PinPlug(?<pos>A|B)(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "compression-ring",
    "family": "Compression ring",
    "review": "draft",
+   "lessonTerms": [
+    "compression ring"
+   ],
    "student": {
     "title": {
      "text": "Compression ring",
@@ -6099,17 +6300,55 @@
     },
     "modelMaterials": [
      "cast_iron"
+    ],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "PistonRing1",
+      "field": "material",
+      "text": "High-grade ductile cast iron, hard chrome-plated running face, keystone profile",
+      "status": "unsourced",
+      "basis": "In part supported: gray cast iron rings (Lesson 7, Parts and Construction). \"Ductile\", \"hard chrome-plated\" and \"keystone\" are in no source read; Lesson 7 says chrome rings belong only with steel cylinder walls.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "PistonRing1",
+      "field": "operatingConditions",
+      "text": "Top compression ring sealing peak gas pressure and conducting crown heat to wall",
+      "status": "unsourced",
+      "basis": "Sealing the gas is supported (Lesson 7, Parts and Construction). Conducting crown heat to the wall is in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "PistonRing2",
+      "field": "material",
+      "text": "Cast iron with tapered face (second compression / scraper ring)",
+      "status": "unsourced",
+      "basis": "Gray cast iron is supported (Lesson 7, Parts and Construction); \"tapered face\" is in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "PistonRing2",
+      "field": "operatingConditions",
+      "text": "Secondary pressure seal and oil control wiper",
+      "status": "unsourced",
+      "basis": "The secondary seal and oil wiper wording is in no source read for this ring; Lesson 7, Parts and Construction names two compression rings.",
+      "disposition": "dropped"
+     }
     ]
-   },
-   "match": [
-    "CompressionRing(?<pos>A|B)(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "oil-ring",
    "family": "Oil ring",
    "review": "draft",
+   "lessonTerms": [
+    "oil control ring",
+    "oil-control ring"
+   ],
    "student": {
     "title": {
      "text": "Oil ring",
@@ -6184,17 +6423,36 @@
     },
     "modelMaterials": [
      "cast_iron"
+    ],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "PistonRing3",
+      "field": "material",
+      "text": "Slotted cast iron oil control ring with internal expander spring",
+      "status": "unsourced",
+      "basis": "A slotted oil-control ring is supported (Lesson 7, Parts and Construction); the internal expander spring is in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "PistonRing3",
+      "field": "operatingConditions",
+      "text": "Regulates oil film thickness on cylinder barrel during reciprocating travel",
+      "status": "derived",
+      "source": "Lesson 7, Parts and Construction: oil control rings scrape surplus oil back to the crankcase",
+      "disposition": "kept"
+     }
     ]
-   },
-   "match": [
-    "OilRing(?<cyl>\\d)"
-   ],
-   "partCount": 6
+   }
   },
   {
    "id": "scraper-ring",
    "family": "Scraper ring",
    "review": "draft",
+   "lessonTerms": [
+    "scraper ring"
+   ],
    "student": {
     "title": {
      "text": "Scraper ring",
@@ -6262,17 +6520,37 @@
     },
     "modelMaterials": [
      "cast_iron"
+    ],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "PistonRing4",
+      "field": "material",
+      "text": "Lower skirt oil scraper ring",
+      "status": "unsourced",
+      "basis": "\"Lower skirt\" placement is not stated; Lesson 7, Parts and Construction names an oil scraper and GTSIO-520 overhaul manual, 3-1g a four-ring piston.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "PistonRing4",
+      "field": "operatingConditions",
+      "text": "Returns excess splash oil to the crankcase sump",
+      "status": "derived",
+      "source": "Lesson 7, Parts and Construction: the oil scraper wipes surplus oil back to the crankcase",
+      "disposition": "kept"
+     }
     ]
-   },
-   "match": [
-    "ScraperRing(?<cyl>\\d)"
-   ],
-   "partCount": 6
+   }
   },
   {
    "id": "quill-shaft",
    "family": "Quill shaft",
    "review": "draft",
+   "lessonTerms": [
+    "quill shaft",
+    "quill"
+   ],
    "student": {
     "title": {
      "text": "Quill shaft",
@@ -6366,16 +6644,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "QuillShaft"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "quill-shaft-gear",
    "family": "Propeller shaft drive gear",
    "review": "draft",
+   "lessonTerms": [
+    "reduction gear"
+   ],
    "student": {
     "title": {
      "text": "Propeller shaft drive gear",
@@ -6480,16 +6757,15 @@
     "modelMaterials": [
      "steel_polished"
     ]
-   },
-   "match": [
-    "ReductionPinion"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "quill-shaft-plate",
    "family": "Quill shaft plate",
    "review": "draft",
+   "lessonTerms": [
+    "quill shaft plate"
+   ],
    "student": {
     "title": {
      "text": "Quill shaft plate",
@@ -6556,16 +6832,13 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "QuillPlate"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "quill-plate-screw",
    "family": "Screw",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Screw",
@@ -6632,16 +6905,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "QuillPlateScrew(?<n>\\d+)"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "quill-retaining-ring",
    "family": "Retaining ring",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Retaining ring",
@@ -6710,16 +6980,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "QuillRetainingRing"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "propeller-shaft",
    "family": "Propeller shaft",
    "review": "draft",
+   "lessonTerms": [
+    "propeller shaft"
+   ],
    "student": {
     "title": {
      "text": "Propeller shaft",
@@ -6820,16 +7089,15 @@
     "modelMaterials": [
      "steel_polished"
     ]
-   },
-   "match": [
-    "PropellerShaft"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "propeller-shaft-bearing",
    "family": "Propeller shaft bearing",
    "review": "draft",
+   "lessonTerms": [
+    "propeller shaft bearing"
+   ],
    "student": {
     "title": {
      "text": "Propeller shaft bearing",
@@ -6895,16 +7163,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "Propeller(?<end>Front|Rear)Bearing(?<side>Left|Right)"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "propeller-drive-gear-bearing",
    "family": "Drive gear bearing",
    "review": "draft",
+   "lessonTerms": [
+    "drive gear bearing"
+   ],
    "student": {
     "title": {
      "text": "Drive gear bearing",
@@ -6970,16 +7237,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "ReductionBearing(?<side>Left|Right)"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "propeller-shaft-thrust-washer",
    "family": "Propeller shaft thrust washer",
    "review": "draft",
+   "lessonTerms": [
+    "propeller shaft thrust washer"
+   ],
    "student": {
     "title": {
      "text": "Propeller shaft thrust washer",
@@ -7046,16 +7312,13 @@
     "modelMaterials": [
      "bronze"
     ]
-   },
-   "match": [
-    "PropellerThrust(?<end>Front|Aft)(?<side>Left|Right)"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "thrust-washer-locating-pin",
    "family": "Locating pin",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Locating pin",
@@ -7105,16 +7368,15 @@
     "modelMaterials": [
      "steel_polished"
     ]
-   },
-   "match": [
-    "PropellerThrustPin(?<end>Front|Aft)"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "crankshaft-oil-seal",
    "family": "Crankshaft oil seal",
    "review": "draft",
+   "lessonTerms": [
+    "crankshaft oil seal"
+   ],
    "student": {
     "title": {
      "text": "Crankshaft oil seal",
@@ -7186,16 +7448,15 @@
     "modelMaterials": [
      "rubber"
     ]
-   },
-   "match": [
-    "PropellerOilSeal"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "oil-seal-reinforcing-ring",
    "family": "Oil seal reinforcing ring",
    "review": "draft",
+   "lessonTerms": [
+    "oil seal reinforcing ring"
+   ],
    "student": {
     "title": {
      "text": "Oil seal reinforcing ring",
@@ -7261,16 +7522,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "SealReinforcementRing"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "oil-seal-spring",
    "family": "Oil seal spring",
    "review": "draft",
+   "lessonTerms": [
+    "oil seal spring"
+   ],
    "student": {
     "title": {
      "text": "Oil seal spring",
@@ -7342,16 +7602,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "SealGarterSpring"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "oil-transfer-sleeve",
    "family": "Oil transfer sleeve",
    "review": "draft",
+   "lessonTerms": [
+    "oil transfer sleeve"
+   ],
    "student": {
     "title": {
      "text": "Oil transfer sleeve",
@@ -7428,23 +7687,15 @@
     "modelMaterials": [
      "bronze"
     ]
-   },
-   "match": [
-    "(?<set>PropellerRear)Sleeve",
-    "(?<set>PropellerTransfer)Sleeve"
-   ],
-   "instanceWords": {
-    "sets": {
-     "PropellerRear": "rear",
-     "PropellerTransfer": "forward"
-    }
-   },
-   "partCount": 2
+   }
   },
   {
    "id": "oil-transfer-tube",
    "family": "Oil transfer tube",
    "review": "draft",
+   "lessonTerms": [
+    "oil transfer tube"
+   ],
    "student": {
     "title": {
      "text": "Oil transfer tube",
@@ -7511,16 +7762,13 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "PropellerTransferTube"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "oil-transfer-o-ring",
    "family": "O-ring",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "O-ring",
@@ -7586,16 +7834,15 @@
     "modelMaterials": [
      "rubber"
     ]
-   },
-   "match": [
-    "PropellerTransferORing"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "oil-sump",
    "family": "Oil sump",
    "review": "draft",
+   "lessonTerms": [
+    "sump"
+   ],
    "student": {
     "title": {
      "text": "Oil sump",
@@ -7686,16 +7933,15 @@
     "modelMaterials": [
      "aluminium"
     ]
-   },
-   "match": [
-    "OilSump"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "oil-sump-gasket",
    "family": "Oil sump gasket",
    "review": "draft",
+   "lessonTerms": [
+    "oil sump gasket"
+   ],
    "student": {
     "title": {
      "text": "Oil sump gasket",
@@ -7762,16 +8008,15 @@
     "modelMaterials": [
      "gasket"
     ]
-   },
-   "match": [
-    "SumpGasket"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "oil-drain-plug",
    "family": "Oil drain plug",
    "review": "draft",
+   "lessonTerms": [
+    "oil drain plug"
+   ],
    "student": {
     "title": {
      "text": "Oil drain plug",
@@ -7836,16 +8081,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "SumpDrainPlug"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "oil-sump-screw",
    "family": "Screw",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Screw",
@@ -7922,16 +8164,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "SumpScrew(?<n>\\d+)(?<side>L|R)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "oil-pump-housing",
    "family": "Oil pump housing",
    "review": "draft",
+   "lessonTerms": [
+    "oil pump"
+   ],
    "student": {
     "title": {
      "text": "Oil pump housing",
@@ -8021,16 +8262,15 @@
     "modelMaterials": [
      "aluminium"
     ]
-   },
-   "match": [
-    "OilPumpHousing"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "oil-pump-gasket",
    "family": "Oil pump gasket",
    "review": "draft",
+   "lessonTerms": [
+    "oil pump gasket"
+   ],
    "student": {
     "title": {
      "text": "Oil pump gasket",
@@ -8097,16 +8337,13 @@
     "modelMaterials": [
      "gasket"
     ]
-   },
-   "match": [
-    "OilPumpMountGasket"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "oil-pump-mount-bolt",
    "family": "Stud",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Stud",
@@ -8173,16 +8410,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "OilPumpMountBolt(?<n>\\d+)"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "oil-pump-driver-gear",
    "family": "Oil pump driver gear",
    "review": "draft",
+   "lessonTerms": [
+    "oil pump driver gear"
+   ],
    "student": {
     "title": {
      "text": "Oil pump driver gear",
@@ -8259,16 +8495,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "OilPumpDriver"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "oil-pump-driven-gear",
    "family": "Oil pump driven gear",
    "review": "draft",
+   "lessonTerms": [
+    "oil pump driven gear"
+   ],
    "student": {
     "title": {
      "text": "Oil pump driven gear",
@@ -8342,16 +8577,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "OilPumpDriven"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "oil-pump-gear-bushing",
    "family": "Oil pump gear bushing",
    "review": "draft",
+   "lessonTerms": [
+    "oil pump gear bushing"
+   ],
    "student": {
     "title": {
      "text": "Oil pump gear bushing",
@@ -8417,16 +8651,15 @@
     "modelMaterials": [
      "bronze"
     ]
-   },
-   "match": [
-    "OilDrivenBush(?<n>\\d+)"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "oil-pump-spindle",
    "family": "Oil pump shaft",
    "review": "draft",
+   "lessonTerms": [
+    "oil pump shaft"
+   ],
    "student": {
     "title": {
      "text": "Oil pump shaft",
@@ -8495,16 +8728,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "PumpDrivenSpindle"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "relief-valve-plunger",
    "family": "Relief valve plunger",
    "review": "draft",
+   "lessonTerms": [
+    "relief valve"
+   ],
    "student": {
     "title": {
      "text": "Relief valve plunger",
@@ -8582,16 +8814,15 @@
     "modelMaterials": [
      "steel_polished"
     ]
-   },
-   "match": [
-    "OilReliefPlunger"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "relief-valve-spring",
    "family": "Relief valve spring",
    "review": "draft",
+   "lessonTerms": [
+    "relief valve spring"
+   ],
    "student": {
     "title": {
      "text": "Relief valve spring",
@@ -8658,16 +8889,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "OilReliefSpring"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "spring-guide-washer",
    "family": "Spring guide washer",
    "review": "draft",
+   "lessonTerms": [
+    "spring guide washer"
+   ],
    "student": {
     "title": {
      "text": "Spring guide washer",
@@ -8733,16 +8963,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "OilReliefSpringGuide"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "relief-adjusting-screw",
    "family": "Adjusting screw",
    "review": "draft",
+   "lessonTerms": [
+    "adjusting screw"
+   ],
    "student": {
     "title": {
      "text": "Adjusting screw",
@@ -8811,16 +9040,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "OilReliefAdjuster"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "relief-valve-housing",
    "family": "Relief valve housing",
    "review": "draft",
+   "lessonTerms": [
+    "relief valve housing"
+   ],
    "student": {
     "title": {
      "text": "Relief valve housing",
@@ -8888,16 +9116,15 @@
     "modelMaterials": [
      "aluminium"
     ]
-   },
-   "match": [
-    "OilReliefCap"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "annular-gasket",
    "family": "Annular gasket",
    "review": "draft",
+   "lessonTerms": [
+    "annular gasket"
+   ],
    "student": {
     "title": {
      "text": "Annular gasket",
@@ -8966,16 +9193,15 @@
     "modelMaterials": [
      "gasket"
     ]
-   },
-   "match": [
-    "OilReliefCapGasket"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "copper-washer",
    "family": "Copper washer",
    "review": "draft",
+   "lessonTerms": [
+    "copper washer"
+   ],
    "student": {
     "title": {
      "text": "Copper washer",
@@ -9041,16 +9267,15 @@
     "modelMaterials": [
      "copper"
     ]
-   },
-   "match": [
-    "OilReliefCopperWasher"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "relief-adjusting-nut",
    "family": "Adjusting nut",
    "review": "draft",
+   "lessonTerms": [
+    "adjusting nut"
+   ],
    "student": {
     "title": {
      "text": "Adjusting nut",
@@ -9116,16 +9341,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "OilReliefLocknut"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "scavenge-pump-body",
    "family": "Scavenge pump body",
    "review": "draft",
+   "lessonTerms": [
+    "scavenge"
+   ],
    "student": {
     "title": {
      "text": "Scavenge pump body",
@@ -9209,16 +9433,15 @@
     "modelMaterials": [
      "aluminium"
     ]
-   },
-   "match": [
-    "ScavengePumpBody"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "scavenge-pump-cover",
    "family": "Scavenge pump cover",
    "review": "draft",
+   "lessonTerms": [
+    "scavenge pump cover"
+   ],
    "student": {
     "title": {
      "text": "Scavenge pump cover",
@@ -9284,16 +9507,15 @@
     "modelMaterials": [
      "aluminium"
     ]
-   },
-   "match": [
-    "ScavengePumpCover"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "scavenge-pump-driver-gear",
    "family": "Scavenge pump driver gear",
    "review": "draft",
+   "lessonTerms": [
+    "scavenge pump driver gear"
+   ],
    "student": {
     "title": {
      "text": "Scavenge pump driver gear",
@@ -9369,16 +9591,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "ScavengePumpDriver"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "scavenge-pump-driven-gear",
    "family": "Scavenge pump driven gear",
    "review": "draft",
+   "lessonTerms": [
+    "scavenge pump driven gear"
+   ],
    "student": {
     "title": {
      "text": "Scavenge pump driven gear",
@@ -9455,16 +9676,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "ScavengePumpDriven"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "scavenge-gear-bushing",
    "family": "Scavenge gear bushing",
    "review": "draft",
+   "lessonTerms": [
+    "scavenge gear bushing"
+   ],
    "student": {
     "title": {
      "text": "Scavenge gear bushing",
@@ -9530,16 +9750,13 @@
     "modelMaterials": [
      "bronze"
     ]
-   },
-   "match": [
-    "ScavengeDrivenBush"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "scavenge-cover-bolt",
    "family": "Stud",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Stud",
@@ -9616,16 +9833,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "ScavengeCoverBolt(?<n>\\d+)"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "oil-gallery-plug",
    "family": "Pipe plug",
    "review": "draft",
+   "lessonTerms": [
+    "oil gallery plug"
+   ],
    "student": {
     "title": {
      "text": "Oil gallery plug",
@@ -9685,16 +9901,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "(?<side>Left|Right)(?<pos>Front)?OilGalleryClosure"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "spark-plug-shell",
    "family": "Spark plug part",
    "review": "draft",
+   "lessonTerms": [
+    "spark plug"
+   ],
    "student": {
     "title": {
      "text": "Spark plug shell",
@@ -9771,17 +9986,54 @@
     },
     "modelMaterials": [
      "steel_hardware"
+    ],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "UpperSparkPlug",
+      "field": "material",
+      "text": "High-tensile steel shell, nickel-alloy or platinum electrodes, alumina ceramic core",
+      "status": "unsourced",
+      "basis": "In part supported: a ceramic insulator (Lesson 13). The steel shell, the electrode metals and \"alumina\" are in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "UpperSparkPlug",
+      "field": "operatingConditions",
+      "text": "Dual-spark ignition firing up to 25 kV spark at 20–25 times per second at cruise",
+      "status": "unsourced",
+      "basis": "Two plugs per cylinder are supported (GTSIO-520 overhaul manual, 3-2d). The 25 kV figure and the 20 to 25 sparks a second are in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "LowerSparkPlug",
+      "field": "material",
+      "text": "Heavy-duty shielded aviation spark plug with 18 mm thread",
+      "status": "unsourced",
+      "basis": "In part supported: 18 mm thread inserts in the spark plug holes (GTSIO-520 overhaul manual, 3-1c). \"Heavy-duty shielded\" is in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "LowerSparkPlug",
+      "field": "operatingConditions",
+      "text": "Lower dual ignition circuit fired by independent engine magneto",
+      "status": "unsourced",
+      "basis": "Contradicted in part: GTSIO-520 overhaul manual, 3-2d has each magneto fire some upper and some lower plugs, so a lower circuit with a magneto of its own is not what it says.",
+      "disposition": "dropped"
+     }
     ]
-   },
-   "match": [
-    "(?<pos>Upper|Lower)PlugShell(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "spark-plug-insulator",
    "family": "Spark plug part",
    "review": "draft",
+   "lessonTerms": [
+    "insulator"
+   ],
    "student": {
     "title": {
      "text": "Spark plug insulator",
@@ -9846,16 +10098,15 @@
     "modelMaterials": [
      "insulator"
     ]
-   },
-   "match": [
-    "(?<pos>Upper|Lower)PlugCeramic(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "spark-plug-terminal",
    "family": "Spark plug part",
    "review": "draft",
+   "lessonTerms": [
+    "spark plug terminal"
+   ],
    "student": {
     "title": {
      "text": "Spark plug terminal",
@@ -9909,16 +10160,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<pos>Upper|Lower)PlugTerminal(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "spark-plug-gasket",
    "family": "Spark plug part",
    "review": "draft",
+   "lessonTerms": [
+    "spark plug gasket"
+   ],
    "student": {
     "title": {
      "text": "Spark plug gasket",
@@ -9969,16 +10219,15 @@
     "modelMaterials": [
      "copper"
     ]
-   },
-   "match": [
-    "(?<pos>Upper|Lower)PlugWasher(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "spark-plug-thread-insert",
    "family": "Spark plug thread insert",
    "review": "draft",
+   "lessonTerms": [
+    "spark plug thread insert"
+   ],
    "student": {
     "title": {
      "text": "Spark plug thread insert",
@@ -10044,16 +10293,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<pos>Upper|Lower)PlugInsert(?<cyl>\\d)"
-   ],
-   "partCount": 12
+   }
   },
   {
    "id": "magneto-drive-gear",
    "family": "Magneto drive gear",
    "review": "draft",
+   "lessonTerms": [
+    "magneto drive gear"
+   ],
    "student": {
     "title": {
      "text": "Magneto drive gear",
@@ -10141,16 +10389,15 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "(?<side>Left|Right)MagnetoGear"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "magneto-adapter-bushing",
    "family": "Adapter bushing",
    "review": "draft",
+   "lessonTerms": [
+    "adapter bushing"
+   ],
    "student": {
     "title": {
      "text": "Adapter bushing",
@@ -10216,16 +10463,15 @@
     "modelMaterials": [
      "bronze"
     ]
-   },
-   "match": [
-    "(?<side>Left|Right)MagnetoBush"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "drive-gear-sleeve",
    "family": "Drive gear sleeve",
    "review": "draft",
+   "lessonTerms": [
+    "drive gear sleeve"
+   ],
    "student": {
     "title": {
      "text": "Drive gear sleeve",
@@ -10301,16 +10547,13 @@
     "modelMaterials": [
      "steel_polished"
     ]
-   },
-   "match": [
-    "(?<side>Left|Right)MagnetoSleeve"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "magneto-drive-oil-seal",
    "family": "Oil seal",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Oil seal",
@@ -10376,16 +10619,15 @@
     "modelMaterials": [
      "rubber"
     ]
-   },
-   "match": [
-    "(?<side>Left|Right)MagnetoSeal"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "drive-coupling-bushing",
    "family": "Drive coupling bushing",
    "review": "draft",
+   "lessonTerms": [
+    "drive coupling bushing"
+   ],
    "student": {
     "title": {
      "text": "Drive coupling bushing",
@@ -10451,16 +10693,15 @@
     "modelMaterials": [
      "rubber"
     ]
-   },
-   "match": [
-    "(?<side>Left|Right)MagnetoCoupling"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "magneto-coupling-retainer",
    "family": "Magneto coupling retainer",
    "review": "draft",
+   "lessonTerms": [
+    "magneto coupling retainer"
+   ],
    "student": {
     "title": {
      "text": "Magneto coupling retainer",
@@ -10526,16 +10767,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<side>Left|Right)MagnetoRetainer"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "magneto-drive-adapter",
    "family": "Magneto drive adapter",
    "review": "draft",
+   "lessonTerms": [
+    "magneto drive adapter"
+   ],
    "student": {
     "title": {
      "text": "Magneto drive adapter",
@@ -10605,16 +10845,13 @@
     "modelMaterials": [
      "aluminium"
     ]
-   },
-   "match": [
-    "(?<side>Left|Right)MagnetoAdapter"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "magneto-adapter-gasket",
    "family": "Adapter gasket",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Adapter gasket",
@@ -10680,16 +10917,13 @@
     "modelMaterials": [
      "gasket"
     ]
-   },
-   "match": [
-    "(?<side>Left|Right)MagnetoAdapterGasket"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "magneto-adapter-bolt",
    "family": "Stud",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Stud",
@@ -10756,16 +10990,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<side>Left|Right)MagnetoAdapterBolt(?<n>\\d+)"
-   ],
-   "partCount": 8
+   }
   },
   {
    "id": "idler-gear",
    "family": "Idler gear",
    "review": "draft",
+   "lessonTerms": [
+    "idler"
+   ],
    "student": {
     "title": {
      "text": "Idler gear",
@@ -10849,16 +11082,15 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "IdlerGear"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "accessory-drive-idler-gear",
    "family": "Accessory drive idler gear",
    "review": "draft",
+   "lessonTerms": [
+    "accessory drive idler gear"
+   ],
    "student": {
     "title": {
      "text": "Accessory drive idler gear",
@@ -10925,16 +11157,15 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "AccessoryIdlerGear"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "idler-gear-bushing",
    "family": "Idler gear bushing",
    "review": "draft",
+   "lessonTerms": [
+    "idler gear bushing"
+   ],
    "student": {
     "title": {
      "text": "Idler gear bushing",
@@ -11000,16 +11231,15 @@
     "modelMaterials": [
      "bronze"
     ]
-   },
-   "match": [
-    "IdlerBushing"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "idler-gear-support-pin",
    "family": "Idler gear support pin",
    "review": "draft",
+   "lessonTerms": [
+    "idler gear support pin"
+   ],
    "student": {
     "title": {
      "text": "Idler gear support pin",
@@ -11086,16 +11316,15 @@
     "modelMaterials": [
      "steel_polished"
     ]
-   },
-   "match": [
-    "IdlerSupportPin"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "idler-support-gasket",
    "family": "Idler support gasket",
    "review": "draft",
+   "lessonTerms": [
+    "idler support gasket"
+   ],
    "student": {
     "title": {
      "text": "Idler support gasket",
@@ -11161,16 +11390,13 @@
     "modelMaterials": [
      "gasket"
     ]
-   },
-   "match": [
-    "IdlerSupportGasket"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "idler-support-bolt",
    "family": "Hex head bolt",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Hex head bolt",
@@ -11236,16 +11462,13 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "IdlerSupportBolt(?<n>\\d+)"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "idler-cluster-screw",
    "family": "Screw",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Screw",
@@ -11312,16 +11535,15 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "IdlerClusterScrew(?<n>\\d+)"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "accessory-drive-gear",
    "family": "Accessory drive gear",
    "review": "draft",
+   "lessonTerms": [
+    "accessory drive gear"
+   ],
    "student": {
     "title": {
      "text": "Accessory drive gear",
@@ -11398,16 +11620,13 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "(?<side>Left|Right)AccessoryGear"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "accessory-needle-bearing",
    "family": "Needle bearing",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Needle bearing",
@@ -11474,17 +11693,15 @@
     "modelMaterials": [
      "steel_polished"
     ]
-   },
-   "match": [
-    "(?<side>Left|Right)AccessoryNeedle(?<n>\\d+)",
-    "(?<side>Left|Right)AccessoryNeedleRace"
-   ],
-   "partCount": 42
+   }
   },
   {
    "id": "accessory-drive-cover",
    "family": "Accessory drive cover",
    "review": "draft",
+   "lessonTerms": [
+    "accessory drive cover"
+   ],
    "student": {
     "title": {
      "text": "Accessory drive cover",
@@ -11551,16 +11768,13 @@
     "modelMaterials": [
      "aluminium"
     ]
-   },
-   "match": [
-    "(?<side>Left|Right)AccessoryCover"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "accessory-cover-gasket",
    "family": "Cover gasket",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Accessory cover gasket",
@@ -11626,16 +11840,13 @@
     "modelMaterials": [
      "gasket"
     ]
-   },
-   "match": [
-    "(?<side>Left|Right)AccessoryCoverGasket"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "accessory-cover-screw",
    "family": "Stud",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Stud",
@@ -11703,16 +11914,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<side>Left|Right)AccessoryCoverScrew(?<n>\\d+)"
-   ],
-   "partCount": 8
+   }
   },
   {
    "id": "accessory-cover-lock-washer",
    "family": "Lock washer",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Lock washer",
@@ -11781,16 +11989,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<side>Left|Right)AccessoryCoverLock(?<n>\\d+)"
-   ],
-   "partCount": 8
+   }
   },
   {
    "id": "accessory-cover-washer",
    "family": "Plain washer",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Plain washer",
@@ -11859,16 +12064,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<side>Left|Right)AccessoryCoverWasher(?<n>\\d+)"
-   ],
-   "partCount": 8
+   }
   },
   {
    "id": "starter-adapter",
    "family": "Starter adapter",
    "review": "draft",
+   "lessonTerms": [
+    "starter"
+   ],
    "student": {
     "title": {
      "text": "Starter adapter",
@@ -11957,16 +12161,15 @@
     "modelMaterials": [
      "aluminium"
     ]
-   },
-   "match": [
-    "StarterSimplifiedShell"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "starter-shaftgear",
    "family": "Starter shaftgear",
    "review": "draft",
+   "lessonTerms": [
+    "starter shaftgear"
+   ],
    "student": {
     "title": {
      "text": "Starter shaftgear",
@@ -12044,16 +12247,13 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "StarterShaftGear"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "starter-needle-bearing",
    "family": "Needle bearing",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Needle bearing",
@@ -12126,16 +12326,13 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "StarterFrontBearing"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "starter-ball-bearing",
    "family": "Ball bearing",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Ball bearing",
@@ -12207,16 +12404,13 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "StarterRearBearing"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "starter-mount-bolt",
    "family": "Screw",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Screw",
@@ -12283,16 +12477,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "StarterMountBolt(?<n>\\d+)"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "alternator",
    "family": "Alternator",
    "review": "draft",
+   "lessonTerms": [
+    "alternator"
+   ],
    "student": {
     "title": {
      "text": "Alternator",
@@ -12380,16 +12573,15 @@
     "modelMaterials": [
      "aluminium"
     ]
-   },
-   "match": [
-    "AlternatorSimplifiedShell"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "alternator-gasket",
    "family": "Gasket",
    "review": "draft",
+   "lessonTerms": [
+    "alternator gasket"
+   ],
    "student": {
     "title": {
      "text": "Alternator gasket",
@@ -12455,16 +12647,15 @@
     "modelMaterials": [
      "gasket"
     ]
-   },
-   "match": [
-    "AlternatorMountGasket"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "alternator-rotor-shaft",
    "family": "Alternator rotor shaft",
    "review": "draft",
+   "lessonTerms": [
+    "alternator rotor shaft"
+   ],
    "student": {
     "title": {
      "text": "Alternator rotor shaft",
@@ -12515,16 +12706,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "AlternatorRotorShaft"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "alternator-bearing",
    "family": "Alternator bearing",
    "review": "draft",
+   "lessonTerms": [
+    "alternator bearing"
+   ],
    "student": {
     "title": {
      "text": "Alternator bearing",
@@ -12574,16 +12764,15 @@
     "modelMaterials": [
      "bronze"
     ]
-   },
-   "match": [
-    "Alternator(?<pos>Front|Rear)BearingEnvelope"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "alternator-driven-gear",
    "family": "Alternator driven gear",
    "review": "draft",
+   "lessonTerms": [
+    "alternator driven gear"
+   ],
    "student": {
     "title": {
      "text": "Alternator driven gear",
@@ -12651,16 +12840,15 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "AlternatorDrivenGear"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "alternator-gear-bushing",
    "family": "Alternator gear bushing",
    "review": "draft",
+   "lessonTerms": [
+    "alternator gear bushing"
+   ],
    "student": {
     "title": {
      "text": "Alternator gear bushing",
@@ -12726,16 +12914,15 @@
     "modelMaterials": [
      "bronze"
     ]
-   },
-   "match": [
-    "AlternatorGearBushing"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "alternator-gear-hub",
    "family": "Alternator gear hub",
    "review": "draft",
+   "lessonTerms": [
+    "alternator gear hub"
+   ],
    "student": {
     "title": {
      "text": "Alternator gear hub",
@@ -12803,16 +12990,13 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "AlternatorKeyedHub"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "clutch-spring",
    "family": "Clutch spring",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Clutch spring",
@@ -12878,16 +13062,13 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "AlternatorCouplingSpring"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "woodruff-key",
    "family": "Woodruff key",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Woodruff key",
@@ -12974,25 +13155,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "(?<set>Alternator)WoodruffKey",
-    "(?<set>Governor)CamKey",
-    "(?<set>Scavenge)DriveKey"
-   ],
-   "instanceWords": {
-    "sets": {
-     "Alternator": "alternator",
-     "Governor": "governor",
-     "Scavenge": "scavenge pump"
-    }
-   },
-   "partCount": 3
+   }
   },
   {
    "id": "alternator-thrust-washer",
    "family": "Thrust washer",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Thrust washer",
@@ -13059,16 +13228,13 @@
     "modelMaterials": [
      "copper"
     ]
-   },
-   "match": [
-    "AlternatorThrustWasher"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "alternator-slotted-nut",
    "family": "Slotted hex nut",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Slotted hex nut",
@@ -13135,16 +13301,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "AlternatorSlottedNut"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "alternator-cotter-pin",
    "family": "Cotter pin",
    "review": "draft",
+   "lessonTerms": [
+    "cotter"
+   ],
    "student": {
     "title": {
      "text": "Cotter pin",
@@ -13225,16 +13390,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "AlternatorCotter"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "alternator-mount-stud",
    "family": "Stud",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Stud",
@@ -13303,16 +13465,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "AlternatorMountStud(?<n>\\d+)"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "alternator-mount-washer",
    "family": "Plain washer",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Plain washer",
@@ -13381,16 +13540,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "AlternatorMountWasher(?<n>\\d+)"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "alternator-mount-lock-washer",
    "family": "Lock washer",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Lock washer",
@@ -13459,16 +13615,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "AlternatorMountLock(?<n>\\d+)"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "alternator-mount-nut",
    "family": "Hex nut",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Hex nut",
@@ -13536,16 +13689,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "AlternatorMountNut(?<n>\\d+)"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "alternator-drive-gear",
    "family": "Alternator drive gear",
    "review": "draft",
+   "lessonTerms": [
+    "alternator drive gear"
+   ],
    "student": {
     "title": {
      "text": "Alternator drive gear",
@@ -13615,16 +13767,13 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "AlternatorFaceGear"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "alternator-face-screw",
    "family": "Screw",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Screw",
@@ -13691,16 +13840,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "AlternatorFaceScrew(?<n>\\d+)"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "tab-lock-plate",
    "family": "Tab lock plate",
    "review": "draft",
+   "lessonTerms": [
+    "tab lock plate"
+   ],
    "student": {
     "title": {
      "text": "Tab lock plate",
@@ -13766,16 +13914,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "AlternatorFaceTabLock(?<n>\\d+)"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "fuel-pump-drive-gear",
    "family": "Fuel pump drive gear",
    "review": "draft",
+   "lessonTerms": [
+    "fuel pump"
+   ],
    "student": {
     "title": {
      "text": "Fuel pump drive gear",
@@ -13857,16 +14004,15 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "FuelPumpDriveGear"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "fuel-pump-drive-coupling",
    "family": "Fuel pump drive coupling",
    "review": "draft",
+   "lessonTerms": [
+    "fuel pump drive coupling"
+   ],
    "student": {
     "title": {
      "text": "Fuel pump drive coupling",
@@ -13924,16 +14070,13 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "FuelDriveCoupling"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "fuel-pump-stud",
    "family": "Stud",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Stud",
@@ -13984,16 +14127,15 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "FuelMountStud(?<n>\\d+)"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "fuel-pump-gasket",
    "family": "Fuel pump gasket",
    "review": "draft",
+   "lessonTerms": [
+    "fuel pump gasket"
+   ],
    "student": {
     "title": {
      "text": "Fuel pump gasket",
@@ -14047,16 +14189,15 @@
     "modelMaterials": [
      "gasket"
     ]
-   },
-   "match": [
-    "FuelMountGasket"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "governor-drive-bevel-gear",
    "family": "Governor drive bevel gear",
    "review": "draft",
+   "lessonTerms": [
+    "governor"
+   ],
    "student": {
     "title": {
      "text": "Governor drive bevel gear",
@@ -14148,16 +14289,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "GovernorDriveBevel"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "governor-driven-bevel-gear",
    "family": "Governor driven bevel gear",
    "review": "draft",
+   "lessonTerms": [
+    "governor driven bevel gear"
+   ],
    "student": {
     "title": {
      "text": "Governor driven bevel gear",
@@ -14239,16 +14379,16 @@
     "modelMaterials": [
      "steel_forged"
     ]
-   },
-   "match": [
-    "GovernorDrivenShaftGear"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "tach-drive-bevel-gear",
    "family": "Tach drive bevel gear",
    "review": "draft",
+   "lessonTerms": [
+    "tachometer drive",
+    "tach drive"
+   ],
    "student": {
     "title": {
      "text": "Tach drive bevel gear",
@@ -14338,16 +14478,15 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "Tach(?<pos>Driver|Driven)Bevel"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "tach-drive-shaft",
    "family": "Tach drive shaft",
    "review": "draft",
+   "lessonTerms": [
+    "tach drive shaft"
+   ],
    "student": {
     "title": {
      "text": "Tach drive shaft",
@@ -14414,16 +14553,13 @@
     "modelMaterials": [
      "steel"
     ]
-   },
-   "match": [
-    "TachOutputShaft"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "dowel-pin",
    "family": "Dowel pin",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Dowel pin",
@@ -14499,16 +14635,15 @@
     "modelMaterials": [
      "steel_polished"
     ]
-   },
-   "match": [
-    "Tach(?<pos>Driver|Driven)Pin"
-   ],
-   "partCount": 2
+   }
   },
   {
    "id": "tach-drive-oil-seal",
    "family": "Oil seal",
    "review": "draft",
+   "lessonTerms": [
+    "tach drive oil seal"
+   ],
    "student": {
     "title": {
      "text": "Tach drive oil seal",
@@ -14574,16 +14709,13 @@
     "modelMaterials": [
      "rubber"
     ]
-   },
-   "match": [
-    "TachOutputSeal"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "tach-pad-gasket",
    "family": "Cover gasket",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Tach drive pad gasket",
@@ -14649,16 +14781,15 @@
     "modelMaterials": [
      "gasket"
     ]
-   },
-   "match": [
-    "TachPadGasket"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "tach-drive-pad-cover",
    "family": "Tach drive pad cover",
    "review": "draft",
+   "lessonTerms": [
+    "tach drive pad cover"
+   ],
    "student": {
     "title": {
      "text": "Tach drive pad cover",
@@ -14725,16 +14856,13 @@
     "modelMaterials": [
      "aluminium"
     ]
-   },
-   "match": [
-    "TachPadBlank"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "tach-gear-box-gasket",
    "family": "Cover gasket",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Gear box cover gasket",
@@ -14800,16 +14928,15 @@
     "modelMaterials": [
      "gasket"
     ]
-   },
-   "match": [
-    "TachAccessGasket"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "tach-gear-box-cover",
    "family": "Tach gear box cover",
    "review": "draft",
+   "lessonTerms": [
+    "tach gear box cover"
+   ],
    "student": {
     "title": {
      "text": "Tach gear box cover",
@@ -14876,16 +15003,13 @@
     "modelMaterials": [
      "aluminium"
     ]
-   },
-   "match": [
-    "TachAccessCover"
-   ],
-   "partCount": 1
+   }
   },
   {
    "id": "tach-pad-stud",
    "family": "Stud",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Stud",
@@ -14954,16 +15078,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "TachPadStud(?<n>\\d+)"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "tach-pad-washer",
    "family": "Plain washer",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Plain washer",
@@ -15032,16 +15153,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "TachPadWasher(?<n>\\d+)"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "tach-pad-lock-washer",
    "family": "Lock washer",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Lock washer",
@@ -15110,16 +15228,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "TachPadLockWasher(?<n>\\d+)"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "tach-pad-nut",
    "family": "Hex nut",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Hex nut",
@@ -15187,16 +15302,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "TachPadNut(?<n>\\d+)"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "tach-access-screw",
    "family": "Screw",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Screw",
@@ -15264,16 +15376,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "TachAccessScrew(?<n>\\d+)"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "tach-access-washer",
    "family": "Plain washer",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Flat washer",
@@ -15341,16 +15450,13 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "TachAccessWasher(?<n>\\d+)"
-   ],
-   "partCount": 4
+   }
   },
   {
    "id": "tach-access-lock-washer",
    "family": "Lock washer",
    "review": "draft",
+   "lessonTerms": [],
    "student": {
     "title": {
      "text": "Lock washer",
@@ -15419,11 +15525,254 @@
     "modelMaterials": [
      "steel_hardware"
     ]
-   },
-   "match": [
-    "TachAccessLockWasher(?<n>\\d+)"
+   }
+  },
+  {
+   "id": "crankshaft-throw",
+   "family": "Crankshaft throw",
+   "review": "draft",
+   "lessonTerms": [
+    "crankshaft throw",
+    "crank throw"
    ],
-   "partCount": 4
+   "student": {
+    "title": {
+     "text": "Crankshaft throw",
+     "status": "derived",
+     "source": "Lesson 7, Parts and Construction; Lesson 10, Power Generation: the one-cylinder model shows a single crank throw; the catalogue lists the whole crankshaft"
+    },
+    "aliases": [
+     "crank throw"
+    ],
+    "system": "power",
+    "function": {
+     "text": "Takes the connecting rod's push at the crankpin and turns it into rotation of the crankshaft.",
+     "status": "derived",
+     "source": "Lesson 7, Parts and Construction; Lesson 10, Power Generation"
+    },
+    "madeOf": {
+     "text": "forged steel alloy",
+     "status": "specified",
+     "source": "GTSIO-520 overhaul manual, 3-1e: a steel alloy forging"
+    },
+    "sits": {
+     "text": "Two cheeks and a crankpin of the crankshaft, where one connecting rod fits; the six-cylinder engine has six, one for each cylinder.",
+     "status": "derived",
+     "source": "Lesson 7, Parts and Construction; GTSIO-520 overhaul manual, 3-1e"
+    },
+    "worksWith": {
+     "ids": [
+      "connecting-rod",
+      "connecting-rod-bearing",
+      "connecting-rod-cap",
+      "crankshaft"
+     ],
+     "status": "derived",
+     "source": "Lesson 7, Parts and Construction"
+    },
+    "lookFor": {
+     "text": "Find the crankpin between the two cheeks and see where the connecting rod's big end wraps around it.",
+     "status": "illustrative",
+     "basis": "A prompt for the learner; it claims nothing about the engine."
+    },
+    "catalogue": null,
+    "lessons": [
+     {
+      "lesson": 18,
+      "title": "Practicals",
+      "mentions": 5
+     },
+     {
+      "lesson": 7,
+      "title": "Parts and Construction",
+      "mentions": 1
+     },
+     {
+      "lesson": 10,
+      "title": "Power Generation",
+      "mentions": 1
+     }
+    ]
+   },
+   "engineering": {
+    "gtsioManual": [],
+    "contractLocators": [],
+    "alignment": {
+     "result": "not_found",
+     "note": "Neither book lists a single throw; the overhaul manual describes the whole six-throw crankshaft (3-1e). The cylinder model draws one simplified throw."
+    },
+    "modelMaterials": [],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "CrankThrow",
+      "field": "material",
+      "text": "Vacuum-arc remelted forged alloy steel, nitrided journal surface",
+      "status": "unsourced",
+      "basis": "In part supported: a steel alloy forging with nitrided journals and crankpins (GTSIO-520 overhaul manual, 3-1e). \"Vacuum-arc remelted\" is in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "CrankThrow",
+      "field": "operatingConditions",
+      "text": "Rotational speeds up to 3,200 rpm (geared output); transmits combined cycle torque",
+      "status": "unsourced",
+      "basis": "3,200 rpm is the GTSIO-520-C rating in the specifications table; the -H column was not checked here. A geared output is supported (GTSIO-520 overhaul manual, 3-2a).",
+      "disposition": "dropped"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rocker-housing",
+   "family": "Rocker housing",
+   "review": "draft",
+   "lessonTerms": [
+    "rocker housing"
+   ],
+   "student": {
+    "title": {
+     "text": "Rocker housing",
+     "status": "derived",
+     "source": "Neither book lists a separate rocker housing; the cylinder model draws the rocker boss of the cylinder head as its own piece and names it from its job"
+    },
+    "aliases": [
+     "rocker boss"
+    ],
+    "system": "gas",
+    "function": {
+     "text": "Holds the rocker shaft and rocker on the cylinder head and sits under the rocker cover.",
+     "status": "derived",
+     "source": "GTSIO-520 overhaul manual, 3-1c: the rocker shafts are held by screws in the cylinder rocker bosses"
+    },
+    "madeOf": {
+     "text": "aluminium alloy",
+     "status": "derived",
+     "source": "GTSIO-520 overhaul manual, 3-1c: the cylinder head is an aluminium alloy casting"
+    },
+    "sits": {
+     "text": "On the cylinder head beside each valve, under its rocker cover; the model draws one for the intake rocker and one for the exhaust rocker.",
+     "status": "derived",
+     "source": "GTSIO-520 overhaul manual, 3-1c; the cylinder model layout"
+    },
+    "worksWith": {
+     "ids": [
+      "cylinder-head",
+      "valve-rocker-shaft",
+      "valve-rocker",
+      "rocker-cover"
+     ],
+     "status": "derived",
+     "source": "GTSIO-520 overhaul manual, 3-1c"
+    },
+    "lookFor": {
+     "text": "Hide the rocker cover and find the raised block that carries each rocker shaft.",
+     "status": "illustrative",
+     "basis": "A prompt for the learner; it claims nothing about the engine."
+    },
+    "catalogue": null,
+    "lessons": []
+   },
+   "engineering": {
+    "gtsioManual": [],
+    "contractLocators": [],
+    "alignment": {
+     "result": "not_found",
+     "note": "Neither book lists a rocker housing; the rocker boss is part of the cylinder head casting. The cylinder model separates it so the head assembly can be inspected."
+    },
+    "modelMaterials": []
+   }
+  },
+  {
+   "id": "fuel-discharge-nozzle",
+   "family": "Fuel discharge nozzle",
+   "review": "draft",
+   "lessonTerms": [
+    "fuel discharge nozzle",
+    "injector nozzle"
+   ],
+   "student": {
+    "title": {
+     "text": "Fuel discharge nozzle",
+     "status": "specified",
+     "source": "GTSIO-520 overhaul manual, 3-2e: fuel discharge nozzles"
+    },
+    "aliases": [
+     "injector nozzle",
+     "injector"
+    ],
+    "system": "gas",
+    "function": {
+     "text": "Feeds fuel continuously into the intake port just outside the intake valve; an air bleed helps the fuel vaporise.",
+     "status": "derived",
+     "source": "GTSIO-520 overhaul manual, 3-2e: injected into the intake valve port; the air bleed aids vaporisation"
+    },
+    "madeOf": {
+     "text": "metal",
+     "status": "inferred",
+     "basis": "a fuel nozzle is a machined metal fitting; no manual or lesson names the metal"
+    },
+    "sits": {
+     "text": "Installed in each cylinder head outside the intake valve, fed by its own fuel line from the fuel manifold.",
+     "status": "specified",
+     "source": "GTSIO-520 overhaul manual, 3-2e: nozzles installed in the cylinder heads outside each intake valve; individual fuel lines from the manifold"
+    },
+    "worksWith": {
+     "ids": [
+      "cylinder-head",
+      "intake-valve"
+     ],
+     "status": "derived",
+     "source": "GTSIO-520 overhaul manual, 3-2e"
+    },
+    "lookFor": {
+     "text": "Find where a fuel line meets the head beside the intake port.",
+     "status": "illustrative",
+     "basis": "A prompt for the learner; it claims nothing about the engine."
+    },
+    "catalogue": {
+     "description": "Nozzle Assembly",
+     "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ.",
+     "basis": "io520"
+    },
+    "lessons": [
+     {
+      "lesson": 15,
+      "title": "Operation Malfunctions",
+      "mentions": 7
+     }
+    ]
+   },
+   "engineering": {
+    "gtsioManual": [],
+    "contractLocators": [],
+    "alignment": {
+     "result": "io520_only",
+     "note": "Section 3-2e of the overhaul manual describes the fuel discharge nozzle, but no figure key in A-4-8 to A-4-20 lists it; the IO-520 catalogue lists a nozzle assembly."
+    },
+    "modelMaterials": [],
+    "legacyValues": [
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "FuelDischargeNozzle",
+      "field": "material",
+      "text": "Precision-machined brass with calibrated metering orifice and air-bleed screen",
+      "status": "unsourced",
+      "basis": "In part supported: an air-bleed arrangement (GTSIO-520 overhaul manual, 3-2e). \"Brass\" and the metering orifice are in no source read.",
+      "disposition": "dropped"
+     },
+     {
+      "from": "src/data/componentMetadata.ts, retired in the part-store pilot",
+      "part": "FuelDischargeNozzle",
+      "field": "operatingConditions",
+      "text": "Continuous low-pressure fuel atomization into intake valve port",
+      "status": "derived",
+      "source": "GTSIO-520 overhaul manual, 3-2e: a low-pressure, continuous-flow system that injects fuel into the intake valve port",
+      "disposition": "kept"
+     }
+    ]
+   }
   }
  ]
 }

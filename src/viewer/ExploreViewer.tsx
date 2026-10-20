@@ -84,7 +84,6 @@ export default function ExploreViewer({ modelId, isFullscreen = false, onToggleF
             defaultLabel={snapshot.selectedLabel}
             defaultFunction={snapshot.selectedDescription}
             onClose={() => features?.components?.select('')}
-            onSelectPart={(id) => features?.components?.select(id)}
             onIsolatePart={(id) => {
               features?.focus?.set([id], 'isolate');
             }}

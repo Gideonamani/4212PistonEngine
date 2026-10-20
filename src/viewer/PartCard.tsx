@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { Box, ChevronDown, RotateCcw, X } from 'lucide-react';
-import { getComponentMetadata } from '../data/componentMetadata';
+import { getGenericPartInfo } from '../data/genericPartInfo';
 import { STATUS_LABELS, type Claim, type LearnerPart } from '../data/learnerPartDetails';
 
 export type PartCardProps = {
   partId: string;
   defaultLabel?: string;
   defaultFunction?: string;
-  /** Learner-facing details for the part (the GTSIO-520-H whole engine). Without them the card shows the general register. */
+  /** Learner-facing details for the part (the GTSIO-520-H whole engine and the operating cylinder). Without them the card shows the general fallback. */
   learner?: LearnerPart;
   onClose: () => void;
-  onSelectPart?: (id: string) => void;
   onIsolatePart?: (id: string) => void;
   isIsolated?: boolean;
   onUnisolate?: () => void;
@@ -105,14 +104,13 @@ export function PartCard({
   defaultFunction,
   learner,
   onClose,
-  onSelectPart,
   onIsolatePart,
   isIsolated = false,
   onUnisolate,
   className = '',
 }: PartCardProps) {
   const [expanded, setExpanded] = useState(false);
-  const data = getComponentMetadata(partId, defaultLabel, defaultFunction);
+  const data = getGenericPartInfo(partId, defaultLabel, defaultFunction);
   const label = learner?.label ?? data.label;
   const functionText = learner?.function.text ?? data.function;
 
@@ -200,34 +198,7 @@ export function PartCard({
 
                 <dt className="font-semibold text-slate-400">System</dt>
                 <dd className="font-mono text-slate-200">{data.system}</dd>
-
-                {data.operatingConditions && (
-                  <>
-                    <dt className="font-semibold text-slate-400">Operating</dt>
-                    <dd className="font-mono text-slate-200">{data.operatingConditions}</dd>
-                  </>
-                )}
               </dl>
-
-              {data.connectedParts && data.connectedParts.length > 0 && (
-                <div className="pt-1.5 border-t border-white/5">
-                  <span className="block text-[9.5px] sm:text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
-                    Connected components
-                  </span>
-                  <div className="flex flex-wrap gap-1">
-                    {data.connectedParts.map((conn) => (
-                      <button
-                        key={conn.id}
-                        type="button"
-                        onClick={() => onSelectPart?.(conn.id)}
-                        className="inline-flex items-center rounded border border-white/10 bg-slate-950/60 px-1.5 py-0.5 text-[10.5px] font-medium text-slate-300 hover:border-teal-400/40 hover:text-teal-200 focus-visible:ring-1 focus-visible:ring-teal-300"
-                      >
-                        {conn.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
             </>
           )}
         </div>

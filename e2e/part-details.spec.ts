@@ -1,6 +1,6 @@
 import { appReady, expect, onlyIn, test } from './fixtures';
 
-// The GTSIO-520-H whole engine names and explains its parts from web/gtsio520-r10-parts.json (data/gtsio520-part-definitions.json): a plain
+// The GTSIO-520-H whole engine names and explains its parts from web/gtsio520-r10-parts.json (the part store, docs/part-store.md): a plain
 // title, one sentence on what the part does, and a Details drawer that says where each line comes from. The text is a draft until the
 // instructor reviews it, so the card says so; no part number reaches the learner. This opens the whole-engine model (12 MB transfer; 25 MB before optimisation), so it runs once.
 

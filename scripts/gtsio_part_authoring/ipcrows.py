@@ -4,10 +4,11 @@ Run once, from the OCR text pages (p06.txt ... p101.txt) of the Continental IO-5
 
     python scripts/gtsio_part_authoring/ipcrows.py <folder with the p*.txt pages> [words to list]
 
-It writes data/gtsio_part_authoring/private/ipc_rows.json (kept out of Git: the repository is public), which the assembler reads when present.
+It writes data/gtsio_part_authoring/private/ipc_rows.json (kept out of Git: the repository is public), which private_check.py reads when present.
 """
 import re, json, os, sys
-from lib import INPUTS
+from pathlib import Path
+INPUTS = Path(__file__).resolve().parents[2] / "data" / "gtsio_part_authoring"
 
 DEFAULT_FIG = {6: 1, 7: 2, 8: 2, 9: 3, 10: 3, 11: 4, 12: 5, 13: 5, 14: 6, 15: 7, 16: 8, 17: 9, 18: 10, 19: 11, 20: 13,
                21: 13, 22: 14, 23: 15, 24: 15, 26: 16, 28: 17, 29: 18, 30: 19, 31: 20, 32: 21, 35: 24, 36: 25, 37: 26,

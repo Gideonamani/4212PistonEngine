@@ -35,7 +35,8 @@
     ],
     "componentCatalogueUrl": "./components.json?v=20261001-reviewed",
     "motionProfileUrl": "./motion.json?v=20261001-reviewed",
-    "savedMotionsUrl": "./cylinder-saved-motions.json?v=c6fa854411be"
+    "savedMotionsUrl": "./cylinder-saved-motions.json?v=c6fa854411be",
+    "partDetailsUrl": "./cylinder-parts.json?v=fcb57e0189fa"
   },
   {
     "id": "gtsio520-h-v5-teaching-engine",

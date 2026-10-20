@@ -1,6 +1,8 @@
 """GTSIO-520 overhaul manual figure keys (X-30045A), parsed from pdftotext + patched from page images."""
 import json
-from lib import INPUTS
+from pathlib import Path
+
+INPUTS = Path(__file__).resolve().parents[2] / "data" / "gtsio_part_authoring"
 
 _PARSED = json.load(open(INPUTS / 'gtsio_keys.json', encoding='utf-8'))
 KEYS = {f: {int(k): v for k, v in d.items()} for f, d in _PARSED.items()}

@@ -54,7 +54,7 @@ Every stage reads and writes one of these, so any stage can be replaced or impro
 
 ### The part card
 
-Your list for inspecting a part, as a schema. Each field names where its truth comes from and which rung can test it.
+Your list for inspecting a part, as a schema. Each field names where its truth comes from and which rung can test it. (20 October 2026: the part cards are now one level of the part store, which adds definitions, per-model instances and systems for the learner-facing part card; see `docs/part-store.md`.)
 
 | Field | Answers | Source of truth | Tested by |
 |---|---|---|---|
