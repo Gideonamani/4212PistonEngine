@@ -1,6 +1,0 @@
-interface:
-  display_name: "Image Matcher"
-  short_description: "Reason through designs and compare reconstructed geometry"
-  default_prompt: "Use $image-matcher to study and explain this design, research and test suitable modelling methods where needed, compare the reconstruction with its reference, and retain the CAD operations and learning."
-policy:
-  allow_implicit_invocation: true
