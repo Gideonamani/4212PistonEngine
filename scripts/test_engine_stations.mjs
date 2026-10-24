@@ -11,7 +11,7 @@ import { MeshoptDecoder } from 'meshoptimizer';
 // model itself: the cylinders' real positions in the GLB, with "right" and "forward" read from the model's own parts (its Right crankcase
 // half, its propeller flange), and to the GTSIO-520 manual's numbering (from the rear, odd numbers on the right bank, even on the left).
 
-const contract = JSON.parse(fs.readFileSync('data/engine-contracts/gtsio520-h-v5.json', 'utf8'));
+const contract = JSON.parse(fs.readFileSync('web/engine-contract.json', 'utf8'));
 const instances = contract.m4_foundation.cylinder_instances;
 const MODEL = 'web/engine.glb.gz';
 

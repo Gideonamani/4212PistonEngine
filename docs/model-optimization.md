@@ -111,7 +111,7 @@ Then the binding, which is deliberately not scripted blind because it touches ch
   model becomes a `.glb.gz` too) and the `?v=` of its catalogue, motion or contract URL;
 - the decoded-file hash, which the viewer checks before it trusts a model: `asset_sha256` in `web/motion.json`, `source_asset_sha256` in
   `web/cylinder-saved-motions.json`, `asset_sha256` in the tappet, oil pump and accessory contracts, and `asset` and `asset.transport` in
-  both copies of the engine contract (`data/engine-contracts/gtsio520-h-v5.json`, `web/engine-contract.json`);
+  both copies of the engine contract (`EngineReverseEngineering_MEDIS/data/engine-contracts/gtsio520-h-v5.json`, `web/engine-contract.json`);
 - the scripts and tests that name the current files or hashes (`grep -rn "cylinder-reviewed-20261001"`); then `npm run lint`, `npm test`, the
   Python checks CI runs, `npm run build`, `npm run e2e`.
 
@@ -120,13 +120,13 @@ Rollback is a revert of that binding commit: the old files stay on Drive and in 
 ## GTSIO-520-H R10 mechanism study (19 October 2026)
 
 The R10 file is optimised on its own, with a stated phone budget (decision D3, 18 October: about 16 MB gzip at most, then measured on the Galaxy A16). Record:
-`releases/model-optimization-gtsio520-r10.json`. Tools: `scripts/build_gtsio_r10_optimized.mjs` (build), `scripts/bind_gtsio_r10_optimized.mjs` (bind into the contract,
-`src/data/models.json` and the Drive manifest), `scripts/test_gtsio520_r10_optimization.mjs` (checks the record).
+`EngineReverseEngineering_MEDIS/releases/model-optimization-gtsio520-r10.json`. Tools: `EngineReverseEngineering_MEDIS/scripts/build_gtsio_r10_optimized.mjs` (build), `EngineReverseEngineering_MEDIS/scripts/bind_gtsio_r10_optimized.mjs` (bind into the contract,
+`src/data/models.json` and the Drive manifest), `EngineReverseEngineering_MEDIS/scripts/test_gtsio520_r10_optimization.mjs` (checks the record).
 
 **Status: built and verified on a desktop; on Drive and bound; not yet measured on the phone.** `web/gtsio520-r10-static-opt1.glb.gz` is git-ignored like the other models. It is on Drive
 (file id `10AXTDqplLyTAjXp-wTikbdx7BGg5Dwf4`, in the shared published-models folder, anyone with the link can read), and the registry, the manifest and the record carry that id. An anonymous request with the
 site's key and referrer (the one `scripts/fetch_drive_assets.py` makes) returned HTTP 200, 11,998,800 bytes and the SHA-256 below on 19 October 2026 (13 s from a desktop connection; not a phone figure).
-Before the file was uploaded the binding used a visible placeholder id so that CI failed on it (`scripts/bind_gtsio_r10_optimized.mjs` without `--drive-id`).
+Before the file was uploaded the binding used a visible placeholder id so that CI failed on it (`EngineReverseEngineering_MEDIS/scripts/bind_gtsio_r10_optimized.mjs` without `--drive-id`).
 
 | | Before (`gtsio520-r10-static.glb.gz`) | After (`gtsio520-r10-static-opt1.glb.gz`) |
 |---|---|---|
@@ -140,7 +140,7 @@ Budget met at 12.0 MB. Levers 1 to 3 of the plan (coarser tessellation of the sm
 Triangles are unchanged (2,080,106), part count, names, hierarchy and transforms are unchanged, and accessors drop from 4,188 to 3,553 where identical data is shared.
 
 **One setting differs from the other models: positions are rounded to a 20-bit mantissa, not 16.** At 16 bits the file is 10.3 MB, but the two crankcase halves and the governor-driven shaft gear stop being
-closed solids and the exact-intersection audit (`docs/assembly-interference.md`) cannot test them. At 18 bits (11.3 MB) the two crankcase halves still fail. At 20 bits all 1,396 parts are verifiable.
+closed solids and the exact-intersection audit (`EngineReverseEngineering_MEDIS/docs/assembly-interference.md`) cannot test them. At 18 bits (11.3 MB) the two crankcase halves still fail. At 20 bits all 1,396 parts are verifiable.
 
 **Measured error against the unoptimised file:** positions within 2.4e-7 m on a 1.068 m model (2.2e-7 of the model size; limit 1e-5), normals within 0.024 degrees (limit 0.1), and the lossless packing round-trips exactly.
 `scripts/check_gtsio_review.mjs --asset … --expect-sha256 … --position-tolerance 5e-7` passes on the optimised file; its rest-bounds check has to allow for the rounding (largest difference 2.67e-7 m, against the default 3e-7).
@@ -155,10 +155,10 @@ Parse time went up by about 94 ms on the desktop (the meshopt decoder), which ma
 
 ### Rebuilt with the piston skirt relief (20 October 2026)
 
-The file under the same name was rebuilt after the cycle audit's 159 overlapping pairs were traced (`docs/r10-cycle-overlap-root-causes.md`): each of the six pistons now has a stepped relief on the
+The file under the same name was rebuilt after the cycle audit's 159 overlapping pairs were traced (`EngineReverseEngineering_MEDIS/docs/r10-cycle-overlap-root-causes.md`): each of the six pistons now has a stepped relief on the
 flank that faces the neighbouring crank bay (**an illustrative modelling decision; there is no source for the real piston**), and 152 parts the contract held fixed now turn with the crank, the cam or their gear.
-The frozen R10 build inputs are not kept in Git, so the pistons were regenerated from `cad_pipeline/gtsio_core.py` with FreeCAD and grafted into the unoptimised source by
-`scripts/graft_gtsio_r10_pistons.mjs` (the other 1,390 parts are unchanged byte for byte), then optimised exactly as before.
+The frozen R10 build inputs are not kept in Git, so the pistons were regenerated from `EngineReverseEngineering_MEDIS/cad_pipeline/gtsio_core.py` with FreeCAD and grafted into the unoptimised source by
+`EngineReverseEngineering_MEDIS/scripts/graft_gtsio_r10_pistons.mjs` (the other 1,390 parts are unchanged byte for byte), then optimised exactly as before.
 
 | | Release of 19 October | Relief release |
 |---|---|---|
@@ -172,7 +172,7 @@ The frozen R10 build inputs are not kept in Git, so the pistons were regenerated
 
 The earlier release stays on Drive and in the manifest's `previous_web_releases` for rollback. The file name `gtsio520-r10-static-opt1.glb.gz` is unchanged (so are the paths in the workflow and tests); the Drive copy is
 named `gtsio520-r10-static-opt1-relief-20261020.glb.gz`. The size error limits are the same (positions within 2.4e-7 m, normals within 0.024 degrees); the render check passes again (worst picture 0.0017% of pixels differ,
-mean difference 0.018 levels). `scripts/check_gtsio_review.mjs` passes on the file (six checks) with the new contract; its rest-bounds check compares with the review manifest, whose six piston entries were taken from the regenerated pistons.
+mean difference 0.018 levels). `EngineReverseEngineering_MEDIS/scripts/check_gtsio_review.mjs` passes on the file (six checks) with the new contract; its rest-bounds check compares with the review manifest, whose six piston entries were taken from the regenerated pistons.
 
 ```powershell
 python -c "import json,sys; sys.path.insert(0,'.'); from cad_pipeline import gtsio_core; from cad_pipeline.gtsio_layout import StaticEngineLayout; json.dump(gtsio_core.build(layout=StaticEngineLayout(complete_cylinders=True))[0], open('build/r10-pistons/spec-relief.json','w'), indent=1)"
@@ -190,8 +190,8 @@ python scripts/fetch_drive_assets.py --verify-remote        # anonymous download
 
 ### Reflected to the engine's real handedness (20 October 2026)
 
-The same release also turns the model the right way round (`docs/r10-handedness.md`): the card was the left-right mirror image of the real engine (odd cylinders and the alternator on the wrong side). The build inputs
-are not kept in Git either, so the relieved source was reflected x to -x as a whole by `scripts/mirror_gtsio_r10.mjs` (positions and normals; the winding of every triangle reversed once per shared index buffer), and the contract carries
+The same release also turns the model the right way round (`EngineReverseEngineering_MEDIS/docs/r10-handedness.md`): the card was the left-right mirror image of the real engine (odd cylinders and the alternator on the wrong side). The build inputs
+are not kept in Git either, so the relieved source was reflected x to -x as a whole by `EngineReverseEngineering_MEDIS/scripts/mirror_gtsio_r10.mjs` (positions and normals; the winding of every triangle reversed once per shared index buffer), and the contract carries
 `procedural.mirror_x` so the viewer, the Python twin and the audits describe the reflected model. The file under the same name is replaced again; the relief-only build (`7416aa5a90c0…`) was uploaded to Drive but never went live.
 
 | | Release of 19 October | Relief and reflection release |
@@ -206,7 +206,7 @@ are not kept in Git either, so the relieved source was reflected x to -x as a wh
 
 The parse times vary a lot between runs on this machine (the relief build measured 308 ms earlier the same morning), so they say only that the file parses in a fraction of a second on a desktop; nothing was measured on the phone.
 Errors against the mirrored unoptimised source are the same as before (positions within 2.4e-7 m, normals within 0.024 degrees, lossless packing exact) and the render check passes again (worst picture 0.0009% of pixels differ, mean difference 0.017 levels).
-`scripts/check_gtsio_review.mjs` passes on the file (six checks, with the reflection built into its expectations), and the anonymous download from Drive was verified by size and hash (`python scripts/fetch_drive_assets.py --verify-remote`).
+`EngineReverseEngineering_MEDIS/scripts/check_gtsio_review.mjs` passes on the file (six checks, with the reflection built into its expectations), and the anonymous download from Drive was verified by size and hash (`python scripts/fetch_drive_assets.py --verify-remote`).
 
 ```powershell
 node scripts/mirror_gtsio_r10.mjs build/r10-graft/web/gtsio520-r10-static.glb.gz build/r10-mirror/web/gtsio520-r10-static.glb.gz

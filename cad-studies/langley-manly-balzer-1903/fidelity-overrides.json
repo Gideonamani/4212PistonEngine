@@ -1,5 +1,0 @@
-{
- "_note": "Manual file for the Langley / Manly-Balzer study. class_overrides add to or change the derived classes in fidelity-classes.json; every entry needs a reason, and a part bound to a gate (it moves, meshes or is in the interference ledger) cannot be lowered. coverage_waivers accept a missing gate for ONE asset only (its SHA-256). Guide: docs/fidelity-classes.md.",
- "class_overrides": [],
- "coverage_waivers": []
-}

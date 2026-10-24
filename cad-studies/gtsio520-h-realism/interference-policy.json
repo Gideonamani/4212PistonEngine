@@ -1,8 +1,0 @@
-{
-  "_note": "Candidate static core: no permitted overlaps and no waivers. Operating and explosion clips are not exported; they need new research and audits before release.",
-  "volume_tolerance_mm3": 0.001,
-  "max_penetration_mm": 0.05,
-  "min_gear_clearance_mm": 0.02,
-  "unverified_waivers": [],
-  "known_defects": []
-}

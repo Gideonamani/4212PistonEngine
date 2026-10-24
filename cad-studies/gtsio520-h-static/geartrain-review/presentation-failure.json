@@ -1,5 +1,0 @@
-{
-  "reason": "Front propeller flange enters title/subtitle band at 1120 mm camera scale",
-  "correction": "1400 mm fixed orthographic scale; all CAD coordinates unchanged",
-  "image_sha256": "5be057a819f6f2e531c0356824ebf2d88df4bc3764360595f36b7eff1cb1fd4f"
-}

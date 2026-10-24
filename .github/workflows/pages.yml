@@ -13,13 +13,12 @@ concurrency:
 jobs:
   # Decides how much a pull request needs. A push to main and a manual run always take the full run, because they publish.
   # A pull request whose changes are all Markdown or ignore files (the light set below) takes only the documentation test: the
-  # model audits, the application build and the browser tests cannot be affected by it.
+  # application build and the browser tests cannot be affected by it.
   scope:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     outputs:
       full: ${{ steps.scope.outputs.full }}
-      cad: ${{ steps.scope.outputs.cad }}
       ui: ${{ steps.scope.outputs.ui }}
       deploy_fast: ${{ steps.scope.outputs.deploy_fast }}
     steps:
@@ -33,36 +32,19 @@ jobs:
           HEAD: ${{ github.event.pull_request.head.sha }}
         run: |
           full=true
-          cad=false
           ui=false
           deploy_fast=false
 
           if [ "$EVENT" = "pull_request" ]; then
             git diff --name-only "$BASE...$HEAD" | tee changed.txt
-            # The light set: Markdown under docs, cad-studies, cad_pipeline and .agents or at the top level, and the ignore and attribute files.
-            # Anything else (code, data, models, tests, the workflow itself, web/) takes the full run.
-            if [ -s changed.txt ] && ! grep -v -E '^((docs|cad-studies|cad_pipeline|\.agents)/.*|[^/]+)\.md$|^\.gitignore$|^\.gitattributes$' changed.txt | grep -q .; then
+            # The light set: Markdown under docs or at the top level, and the ignore and attribute files.
+            # Anything else (code, data, models, tests, the workflow itself, web/) takes the full run, browser tests included.
+            # (The CAD checks and the interference audit moved to EngineReverseEngineering_MEDIS on 24 October 2026.)
+            if [ -s changed.txt ] && ! grep -v -E '^(docs/.*|[^/]+)\.md$|^\.gitignore$|^\.gitattributes$' changed.txt | grep -q .; then
               full=false
             else
               full=true
-              # If the CI workflow itself changed, run both CAD and UI suites to test workflow edits
-              if grep -q -E '^\.github/' changed.txt; then
-                cad=true
-                ui=true
-              else
-                # Check CAD-related changes (geometry, policies, model exports, mesh audit)
-                if grep -q -E '^(cad-studies/.*|cad_pipeline/.*|web/.*\.glb(\.gz)?|web/.*-contract\.json|scripts/(audit_assembly_interference|audit_procedural_poses|test_assembly_audit|test_procedural_pose_audit|requirements-audit).*|docs/drive-asset-manifest\.json)$' changed.txt; then
-                  cad=true
-                fi
-                # Check UI / Web / Tests / Application changes
-                if grep -q -E '^(src/|public/|e2e/|index\.html|package(-lock)?\.json|vite\.config\.|playwright\.config\.|tsconfig|scripts/(test_|package_full_engine)).*' changed.txt; then
-                  ui=true
-                fi
-                # Fallback: if neither matched specifically but not docs-only, ensure UI suite runs
-                if [ "$cad" = "false" ] && [ "$ui" = "false" ]; then
-                  ui=true
-                fi
-              fi
+              ui=true
             fi
 
           elif [ "$EVENT" = "push" ]; then
@@ -73,13 +55,11 @@ jobs:
               echo "PR merge detected on main - fast deploy mode enabled"
               deploy_fast=true
               full=false
-              cad=false
               ui=false
             else
               echo "Direct push on main - running full validation"
               deploy_fast=false
               full=true
-              cad=true
               ui=true
             fi
 
@@ -87,13 +67,11 @@ jobs:
             echo "Manual dispatch - running full validation"
             deploy_fast=false
             full=true
-            cad=true
             ui=true
           fi
 
-          echo "Summary: full=$full cad=$cad ui=$ui deploy_fast=$deploy_fast"
+          echo "Summary: full=$full ui=$ui deploy_fast=$deploy_fast"
           echo "full=$full" >> "$GITHUB_OUTPUT"
-          echo "cad=$cad" >> "$GITHUB_OUTPUT"
           echo "ui=$ui" >> "$GITHUB_OUTPUT"
           echo "deploy_fast=$deploy_fast" >> "$GITHUB_OUTPUT"
 
@@ -111,7 +89,7 @@ jobs:
       - name: Check that the guides point only at things that exist
         run: node --test scripts/test_docs_fresh.mjs
 
-  # The full run is the jobs below, side by side: assets first, then checks, audit and e2e (one job per viewport) together, and on
+  # The full run is the jobs below, side by side: assets first, then checks and e2e (one job per viewport) together, and on
   # a push to main the Pages artifact. Each job is much shorter than the one job this replaced, which took up to 30 minutes.
   #
   # The Drive-hosted test models (ignored by Git) are restored here once and saved to the cache, so the jobs that need them find
@@ -133,7 +111,7 @@ jobs:
       - name: Restore and verify Drive-hosted model assets for tests
         run: python3 scripts/fetch_drive_assets.py
 
-  # Type checks, the JavaScript tests and the Python checks that need no CAD tooling.
+  # Type checks and the JavaScript tests.
   checks:
     needs: [scope, assets]
     if: needs.scope.outputs.full == 'true' && needs.scope.outputs.deploy_fast != 'true'
@@ -146,72 +124,6 @@ jobs:
         run: npm run lint
       - name: Run every JavaScript test
         run: npm test
-      - name: Verify the published engine contract and asset binding
-        run: |
-          python3 scripts/package_full_engine_transport.py --check
-          python3 scripts/test_engine_contract.py
-          python3 scripts/test_m4_engine_foundation.py
-      - name: Verify the published operating-cylinder profile and asset binding
-        run: python3 scripts/test_cylinder_motion_profile.py
-      - name: Verify the accessory gear train (standard library only)
-        run: python3 scripts/test_gear_geometry.py
-      - name: Verify the Wright reconstruction layout, seats and motion (standard library only)
-        run: python3 scripts/test_wright_layout.py
-      - name: Verify the Langley reconstruction research, motion and layout (standard library only)
-        run: |
-          python3 scripts/test_langley_research.py
-          python3 scripts/test_langley_motion.py
-      - name: Verify the knowledge store, part cards and metrics against the studies (standard library only)
-        run: python3 scripts/test_knowledge_store.py
-      - name: Verify the fidelity classes and that no engineering part is left without a gate (standard library only)
-        run: python3 scripts/test_fidelity_classes.py
-      - name: Verify that the presentation stage cannot change geometry (standard library only; the fixture is built in the test)
-        run: python3 scripts/test_geometry_drift.py
-      - name: Verify the closure checks and global constraints of every engine study (standard library only)
-        run: |
-          python3 scripts/test_constraints.py
-          python3 scripts/check_constraints.py --all --quiet
-      - name: Verify the shared animated-study contract builder rebuilds the Langley and Wright contracts exactly (standard library only)
-        run: python3 scripts/test_study_contract.py
-      - name: Verify the R10 review motion's fitted bodies take the declared gear rates and leave the core view unchanged (standard library only)
-        run: python3 scripts/test_gtsio_review_motion.py
-      - name: Verify the tessellation tiers resolve to the deflections the models were built with (standard library only)
-        run: python3 scripts/test_tessellation_tiers.py
-      - name: Verify the GLB structure comparator on known answers (standard library only; the fixtures are built in the test)
-        run: python3 scripts/test_glb_compare.py
-
-  # Parts may touch but not overlap, at the assembled pose and through every baked motion. Each model's interference-policy.json
-  # is a ratchet: new overlaps fail, and a fixed overlap must be removed from the ledger. This check runs only when CAD models,
-  # pipeline scripts or policies change, saving 4-7 minutes on UI-only pull requests.
-  audit:
-    needs: [scope, assets]
-    if: needs.scope.outputs.full == 'true' && needs.scope.outputs.cad == 'true' && needs.scope.outputs.deploy_fast != 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 25
-    steps:
-      - uses: actions/checkout@v4
-      # Node is needed to unpack the meshopt-packed R10 file for the audit (scripts/decode_model.mjs).
-      - uses: ./.github/actions/prepare
-      - name: Install the interference-audit dependencies
-        run: python3 -m pip install -r scripts/requirements-audit.txt
-      - name: Self-test the interference audit on gear trains that mesh and gear trains that do not
-        run: python3 scripts/test_assembly_audit.py
-      - name: Self-test the pose audit used for models whose motion the viewer computes
-        run: python3 scripts/test_procedural_pose_audit.py
-      - name: Audit the published models for part interference
-        run: |
-          python3 scripts/audit_assembly_interference.py web/accessory-drives.glb.gz --contract web/accessory-drives-contract.json --policy cad-studies/accessory-drives/interference-policy.json
-          python3 scripts/audit_assembly_interference.py web/cylinder-reviewed-20261001.glb.gz --policy cad-studies/cylinder/interference-policy.json
-          python3 scripts/audit_assembly_interference.py web/hydraulic-tappet.glb.gz --policy cad-studies/hydraulic-tappet/interference-policy.json
-          python3 scripts/audit_assembly_interference.py web/oil-pump.glb.gz --policy cad-studies/oil-pump/interference-policy.json
-          python3 scripts/audit_assembly_interference.py web/wright-1903-reconstruction.glb.gz --contract web/wright-1903-reconstruction-contract.json --policy cad-studies/wright-1903/revision-2/interference-policy.json
-          python3 scripts/audit_assembly_interference.py web/langley-manly-balzer-1903.glb.gz --contract web/langley-manly-balzer-1903-contract.json --policy cad-studies/langley-manly-balzer-1903/interference-policy.json
-          # GTSIO-520-H R10 ships with no baked clips (the viewer computes its cycle) and is meshopt-packed, so CI unpacks it and audits the assembled
-          # pose only; the sampled cycle and exploded poses (scripts/audit_procedural_poses.py) take about 45 minutes and are recorded at release in
-          # cad-studies/gtsio520-h-static/shipped-r10.
-          mkdir -p build
-          node scripts/decode_model.mjs web/gtsio520-r10-static-opt1.glb.gz build/gtsio520-r10-static-opt1.plain.glb
-          python3 scripts/audit_assembly_interference.py build/gtsio520-r10-static-opt1.plain.glb --policy cad-studies/gtsio520-h-static/interference-policy.json --rest-only
 
   # The browser tests, run on projects dynamically determined by the scope job (representative phone + tablet on PRs,
   # full matrix on manual runs or when tagged with [full-matrix]).
@@ -265,10 +177,10 @@ jobs:
           path: dist
 
   # The one check branch protection requires ("verify"). It passes when everything that applied has passed: for a full run the
-  # assets, checks, audit and every browser-test job (and, on a push to main, the site build); for a light pull request the
+  # assets, checks and every browser-test job (and, on a push to main, the site build); for a light pull request the
   # documentation test. A failed, cancelled or missing job fails it.
   verify:
-    needs: [scope, assets, checks, audit, e2e, site, docs]
+    needs: [scope, assets, checks, e2e, site, docs]
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -277,18 +189,16 @@ jobs:
         env:
           EVENT: ${{ github.event_name }}
           FULL_SCOPE: ${{ needs.scope.outputs.full }}
-          CAD_SCOPE: ${{ needs.scope.outputs.cad }}
           UI_SCOPE: ${{ needs.scope.outputs.ui }}
           DEPLOY_FAST: ${{ needs.scope.outputs.deploy_fast }}
           SCOPE: ${{ needs.scope.result }}
           ASSETS: ${{ needs.assets.result }}
           CHECKS: ${{ needs.checks.result }}
-          AUDIT: ${{ needs.audit.result }}
           E2E: ${{ needs.e2e.result }}
           SITE: ${{ needs.site.result }}
           DOCS: ${{ needs.docs.result }}
         run: |
-          echo "scope=$SCOPE (full: $FULL_SCOPE, cad: $CAD_SCOPE, ui: $UI_SCOPE, deploy_fast: $DEPLOY_FAST) assets=$ASSETS checks=$CHECKS audit=$AUDIT e2e=$E2E site=$SITE docs=$DOCS"
+          echo "scope=$SCOPE (full: $FULL_SCOPE, ui: $UI_SCOPE, deploy_fast: $DEPLOY_FAST) assets=$ASSETS checks=$CHECKS e2e=$E2E site=$SITE docs=$DOCS"
           [ "$SCOPE" = "success" ] || { echo "The scope job did not succeed"; exit 1; }
 
           if [ "$DEPLOY_FAST" = "true" ]; then
@@ -296,7 +206,6 @@ jobs:
             required="assets=$ASSETS site=$SITE"
           elif [ "$FULL_SCOPE" = "true" ]; then
             required="assets=$ASSETS checks=$CHECKS"
-            [ "$CAD_SCOPE" = "true" ] && required="$required audit=$AUDIT"
             [ "$UI_SCOPE" = "true" ] && required="$required e2e=$E2E"
             # Only a push to main or a manual run builds the Pages artifact.
             [ "$EVENT" = "pull_request" ] || required="$required site=$SITE"
