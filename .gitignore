@@ -33,3 +33,7 @@ lesson-step-*.svg
 
 # Catalogue data that stays out of Git (see docs/part-store.md)
 data/gtsio_part_authoring/private/
+
+# Google Drive for desktop sync of web/published-models (its staging folder and folder icon)
+.tmp.drive*/
+desktop.ini

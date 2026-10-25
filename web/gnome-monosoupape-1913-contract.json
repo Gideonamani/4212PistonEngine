@@ -1,0 +1,3079 @@
+{
+  "asset_sha256": "1417205c5da94963085446c45d56e3e24c03cd585891bead8869ac53bee802ff",
+  "parts": [
+    {
+      "id": "CrankshaftFrontPin",
+      "label": "Fixed front crankshaft and crankpin",
+      "group": "crank",
+      "groups": [
+        "component:G01"
+      ],
+      "description": "Fixed Hollow Crankshaft. Carries engine loads, mounts engine to airframe, routes fuel and oil. Interfaces: Fuselage bearer plates, main ball bearings, master rod crankpin, front sun gear. Two-piece nickel-chrome steel built-up shaft; long rear shaft clamped to fuselage, short front pin extension with crank throw of 75 mm. Source: P1 p. 306, 315, 486, Fig. 127C.",
+      "evidence": "P1 p. 306, 315; Fig. 127C",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CrankshaftRear",
+      "label": "Fixed hollow rear crankshaft",
+      "group": "crank",
+      "groups": [
+        "component:G01"
+      ],
+      "description": "Fixed Hollow Crankshaft. Carries engine loads, mounts engine to airframe, routes fuel and oil. Interfaces: Fuselage bearer plates, main ball bearings, master rod crankpin, front sun gear. Two-piece nickel-chrome steel built-up shaft; long rear shaft clamped to fuselage, short front pin extension with crank throw of 75 mm. Source: P1 p. 306, 315, 486, Fig. 127C.",
+      "evidence": "P1 p. 306, 315; Fig. 127C",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "FuelFeedTube",
+      "label": "Internal fuel feed tube",
+      "group": "accessory",
+      "groups": [
+        "component:G02"
+      ],
+      "description": "Internal Fuel Spray Conduit & Nozzle. Delivers pressurized gasoline into rotating crank chamber. Interfaces: Hollow crankshaft bore, crankcase interior fog. Brass tube running through center of rear crankshaft ending in calibrated atomizing jet. Source: P1 p. 490-491, Fig. 210.",
+      "evidence": "P1 p. 490-491",
+      "material": "brass",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "FuelSprayNozzle",
+      "label": "Internal fuel atomizing spray nozzle",
+      "group": "accessory",
+      "groups": [
+        "component:G02"
+      ],
+      "description": "Internal Fuel Spray Conduit & Nozzle. Delivers pressurized gasoline into rotating crank chamber. Interfaces: Hollow crankshaft bore, crankcase interior fog. Brass tube running through center of rear crankshaft ending in calibrated atomizing jet. Source: P1 p. 490-491, Fig. 210.",
+      "evidence": "P1 p. 490-491",
+      "material": "brass",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "OilConduitRear",
+      "label": "Internal rear bearing oil conduit",
+      "group": "accessory",
+      "groups": [
+        "component:G03"
+      ],
+      "description": "Internal Lubrication Oil Conduits. Carries castor oil under pressure to crankpin and cam box. Interfaces: Hollow crankshaft, rear ball bearings, crankpin bearing, cam box. Copper tubes within hollow shaft feeding oil holes drilled in crankpin. Source: P1 p. 492-493.",
+      "evidence": "P1 p. 492-493",
+      "material": "copper",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "OilConduitCrankpin",
+      "label": "Internal crankpin oil conduit",
+      "group": "accessory",
+      "groups": [
+        "component:G03"
+      ],
+      "description": "Internal Lubrication Oil Conduits. Carries castor oil under pressure to crankpin and cam box. Interfaces: Hollow crankshaft, rear ball bearings, crankpin bearing, cam box. Copper tubes within hollow shaft feeding oil holes drilled in crankpin. Source: P1 p. 492-493.",
+      "evidence": "P1 p. 492-493",
+      "material": "copper",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "BearerPlateRear",
+      "label": "Rear fuselage mounting spider",
+      "group": "accessory",
+      "groups": [
+        "component:G04"
+      ],
+      "description": "Fuselage Bearer Plates (Spiders). Clamps fixed crankshaft rigidly to aircraft front fuselage. Interfaces: Aircraft fuselage longerons, rear crankshaft journal. Pressed steel spider mountings with clamping bolts. Source: P1 p. 343-344, Fig. 156.",
+      "evidence": "P1 p. 343-344; Fig. 156",
+      "material": "steel",
+      "disposition": "simplified",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "BearerPlateFront",
+      "label": "Fuselage intermediate support plate",
+      "group": "accessory",
+      "groups": [
+        "component:G04"
+      ],
+      "description": "Fuselage Bearer Plates (Spiders). Clamps fixed crankshaft rigidly to aircraft front fuselage. Interfaces: Aircraft fuselage longerons, rear crankshaft journal. Pressed steel spider mountings with clamping bolts. Source: P1 p. 343-344, Fig. 156.",
+      "evidence": "P1 p. 343-344; Fig. 156",
+      "material": "steel",
+      "disposition": "simplified",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CrankcaseFront",
+      "label": "Revolving crankcase front bowl",
+      "group": "case",
+      "groups": [
+        "component:G05"
+      ],
+      "description": "Revolving Crankcase Shell. Houses rotating cylinders and crank mechanism, rotates with propeller. Interfaces: Fixed crankshaft bearings, cylinders, front cam housing, rear thrust plate. Two deep nickel-chrome steel forged halves joined along central cylinder plane. Source: P1 p. 486-487, Fig. 210.",
+      "evidence": "P1 p. 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CrankcaseRear",
+      "label": "Revolving crankcase rear bowl",
+      "group": "case",
+      "groups": [
+        "component:G05"
+      ],
+      "description": "Revolving Crankcase Shell. Houses rotating cylinders and crank mechanism, rotates with propeller. Interfaces: Fixed crankshaft bearings, cylinders, front cam housing, rear thrust plate. Two deep nickel-chrome steel forged halves joined along central cylinder plane. Source: P1 p. 486-487, Fig. 210.",
+      "evidence": "P1 p. 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CrankcaseTieBolt1",
+      "label": "Crankcase assembly tie bolt 1",
+      "group": "case",
+      "groups": [
+        "component:G06"
+      ],
+      "description": "Crankcase Tie Bolts. Fastens front and rear crankcase halves together between cylinders. Interfaces: Crankcase front half, crankcase rear half. Nine high-tensile through-bolts located between cylinder sockets. Source: P1 p. 487, Fig. 210.",
+      "evidence": "P1 p. 487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CrankcaseTieBolt2",
+      "label": "Crankcase assembly tie bolt 2",
+      "group": "case",
+      "groups": [
+        "component:G06"
+      ],
+      "description": "Crankcase Tie Bolts. Fastens front and rear crankcase halves together between cylinders. Interfaces: Crankcase front half, crankcase rear half. Nine high-tensile through-bolts located between cylinder sockets. Source: P1 p. 487, Fig. 210.",
+      "evidence": "P1 p. 487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CrankcaseTieBolt3",
+      "label": "Crankcase assembly tie bolt 3",
+      "group": "case",
+      "groups": [
+        "component:G06"
+      ],
+      "description": "Crankcase Tie Bolts. Fastens front and rear crankcase halves together between cylinders. Interfaces: Crankcase front half, crankcase rear half. Nine high-tensile through-bolts located between cylinder sockets. Source: P1 p. 487, Fig. 210.",
+      "evidence": "P1 p. 487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CrankcaseTieBolt4",
+      "label": "Crankcase assembly tie bolt 4",
+      "group": "case",
+      "groups": [
+        "component:G06"
+      ],
+      "description": "Crankcase Tie Bolts. Fastens front and rear crankcase halves together between cylinders. Interfaces: Crankcase front half, crankcase rear half. Nine high-tensile through-bolts located between cylinder sockets. Source: P1 p. 487, Fig. 210.",
+      "evidence": "P1 p. 487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CrankcaseTieBolt5",
+      "label": "Crankcase assembly tie bolt 5",
+      "group": "case",
+      "groups": [
+        "component:G06"
+      ],
+      "description": "Crankcase Tie Bolts. Fastens front and rear crankcase halves together between cylinders. Interfaces: Crankcase front half, crankcase rear half. Nine high-tensile through-bolts located between cylinder sockets. Source: P1 p. 487, Fig. 210.",
+      "evidence": "P1 p. 487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CrankcaseTieBolt6",
+      "label": "Crankcase assembly tie bolt 6",
+      "group": "case",
+      "groups": [
+        "component:G06"
+      ],
+      "description": "Crankcase Tie Bolts. Fastens front and rear crankcase halves together between cylinders. Interfaces: Crankcase front half, crankcase rear half. Nine high-tensile through-bolts located between cylinder sockets. Source: P1 p. 487, Fig. 210.",
+      "evidence": "P1 p. 487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CrankcaseTieBolt7",
+      "label": "Crankcase assembly tie bolt 7",
+      "group": "case",
+      "groups": [
+        "component:G06"
+      ],
+      "description": "Crankcase Tie Bolts. Fastens front and rear crankcase halves together between cylinders. Interfaces: Crankcase front half, crankcase rear half. Nine high-tensile through-bolts located between cylinder sockets. Source: P1 p. 487, Fig. 210.",
+      "evidence": "P1 p. 487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CrankcaseTieBolt8",
+      "label": "Crankcase assembly tie bolt 8",
+      "group": "case",
+      "groups": [
+        "component:G06"
+      ],
+      "description": "Crankcase Tie Bolts. Fastens front and rear crankcase halves together between cylinders. Interfaces: Crankcase front half, crankcase rear half. Nine high-tensile through-bolts located between cylinder sockets. Source: P1 p. 487, Fig. 210.",
+      "evidence": "P1 p. 487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CrankcaseTieBolt9",
+      "label": "Crankcase assembly tie bolt 9",
+      "group": "case",
+      "groups": [
+        "component:G06"
+      ],
+      "description": "Crankcase Tie Bolts. Fastens front and rear crankcase halves together between cylinders. Interfaces: Crankcase front half, crankcase rear half. Nine high-tensile through-bolts located between cylinder sockets. Source: P1 p. 487, Fig. 210.",
+      "evidence": "P1 p. 487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "MasterRod",
+      "label": "Master connecting rod with circular cheeks",
+      "group": "rod",
+      "groups": [
+        "component:G07"
+      ],
+      "description": "Master (Mother) Connecting Rod. Carries single crankpin load and provides pivot cheeks for 8 link rods. Interfaces: Stationary crankpin, master piston gudgeon pin, 8 auxiliary knuckle pins. One-piece nickel-chrome steel forging with H-section shank and integral circular cheeks. Source: P1 p. 305-306, Fig. 121, Fig. 127B.",
+      "evidence": "P1 p. 305-306; Fig. 121, Fig. 127B",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "MasterBigEndCap",
+      "label": "Master rod bearing retainer sleeve",
+      "group": "rod",
+      "groups": [
+        "component:G07"
+      ],
+      "description": "Master (Mother) Connecting Rod. Carries single crankpin load and provides pivot cheeks for 8 link rods. Interfaces: Stationary crankpin, master piston gudgeon pin, 8 auxiliary knuckle pins. One-piece nickel-chrome steel forging with H-section shank and integral circular cheeks. Source: P1 p. 305-306, Fig. 121, Fig. 127B.",
+      "evidence": "P1 p. 306",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "MasterBallBearingFront",
+      "label": "Master rod front ball bearing race",
+      "group": "bearing",
+      "groups": [
+        "component:G08"
+      ],
+      "description": "Master Big-End Ball Bearings. Reduces friction between rotating master rod big end and fixed crankpin. Interfaces: Fixed crankpin, master rod big-end bore. Two heavy-duty deep-groove annular ball bearing races housed in master cheeks. Source: P1 p. 306, 480.",
+      "evidence": "P1 p. 306, 480",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "MasterBallBearingRear",
+      "label": "Master rod rear ball bearing race",
+      "group": "bearing",
+      "groups": [
+        "component:G08"
+      ],
+      "description": "Master Big-End Ball Bearings. Reduces friction between rotating master rod big end and fixed crankpin. Interfaces: Fixed crankpin, master rod big-end bore. Two heavy-duty deep-groove annular ball bearing races housed in master cheeks. Source: P1 p. 306, 480.",
+      "evidence": "P1 p. 306, 480",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "AuxRod1",
+      "label": "Auxiliary connecting rod 1",
+      "group": "rod",
+      "groups": [
+        "component:G09"
+      ],
+      "description": "Auxiliary (Link) Connecting Rods. Transmits gas loads from 8 link pistons to master rod cheeks. Interfaces: Master rod big-end cheeks, 8 auxiliary pistons. Eight tubular or H-section nickel-chrome steel rods with eye ends at both terminals. Source: P1 p. 306, Fig. 121, Fig. 127A.",
+      "evidence": "P1 p. 306; Fig. 121, Fig. 127A",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "KnucklePin1",
+      "label": "Auxiliary knuckle wrist pin 1",
+      "group": "rod",
+      "groups": [
+        "component:G10"
+      ],
+      "description": "Auxiliary Knuckle Pins and Bushings. Pivots 8 auxiliary rods to master rod circular cheeks. Interfaces: Master rod big end cheeks, auxiliary rod big-end eyes. Hollow hardened-steel pins passing through cheeks with bronze link-rod bushings. Source: P1 p. 306, 480.",
+      "evidence": "P1 p. 306",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "KnuckleBushing1",
+      "label": "Auxiliary knuckle bronze bushing 1",
+      "group": "bearing",
+      "groups": [
+        "component:G10"
+      ],
+      "description": "Auxiliary Knuckle Pins and Bushings. Pivots 8 auxiliary rods to master rod circular cheeks. Interfaces: Master rod big end cheeks, auxiliary rod big-end eyes. Hollow hardened-steel pins passing through cheeks with bronze link-rod bushings. Source: P1 p. 306, 480.",
+      "evidence": "P1 p. 306",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "AuxRod2",
+      "label": "Auxiliary connecting rod 2",
+      "group": "rod",
+      "groups": [
+        "component:G09"
+      ],
+      "description": "Auxiliary (Link) Connecting Rods. Transmits gas loads from 8 link pistons to master rod cheeks. Interfaces: Master rod big-end cheeks, 8 auxiliary pistons. Eight tubular or H-section nickel-chrome steel rods with eye ends at both terminals. Source: P1 p. 306, Fig. 121, Fig. 127A.",
+      "evidence": "P1 p. 306; Fig. 121, Fig. 127A",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "KnucklePin2",
+      "label": "Auxiliary knuckle wrist pin 2",
+      "group": "rod",
+      "groups": [
+        "component:G10"
+      ],
+      "description": "Auxiliary Knuckle Pins and Bushings. Pivots 8 auxiliary rods to master rod circular cheeks. Interfaces: Master rod big end cheeks, auxiliary rod big-end eyes. Hollow hardened-steel pins passing through cheeks with bronze link-rod bushings. Source: P1 p. 306, 480.",
+      "evidence": "P1 p. 306",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "KnuckleBushing2",
+      "label": "Auxiliary knuckle bronze bushing 2",
+      "group": "bearing",
+      "groups": [
+        "component:G10"
+      ],
+      "description": "Auxiliary Knuckle Pins and Bushings. Pivots 8 auxiliary rods to master rod circular cheeks. Interfaces: Master rod big end cheeks, auxiliary rod big-end eyes. Hollow hardened-steel pins passing through cheeks with bronze link-rod bushings. Source: P1 p. 306, 480.",
+      "evidence": "P1 p. 306",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "AuxRod3",
+      "label": "Auxiliary connecting rod 3",
+      "group": "rod",
+      "groups": [
+        "component:G09"
+      ],
+      "description": "Auxiliary (Link) Connecting Rods. Transmits gas loads from 8 link pistons to master rod cheeks. Interfaces: Master rod big-end cheeks, 8 auxiliary pistons. Eight tubular or H-section nickel-chrome steel rods with eye ends at both terminals. Source: P1 p. 306, Fig. 121, Fig. 127A.",
+      "evidence": "P1 p. 306; Fig. 121, Fig. 127A",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "KnucklePin3",
+      "label": "Auxiliary knuckle wrist pin 3",
+      "group": "rod",
+      "groups": [
+        "component:G10"
+      ],
+      "description": "Auxiliary Knuckle Pins and Bushings. Pivots 8 auxiliary rods to master rod circular cheeks. Interfaces: Master rod big end cheeks, auxiliary rod big-end eyes. Hollow hardened-steel pins passing through cheeks with bronze link-rod bushings. Source: P1 p. 306, 480.",
+      "evidence": "P1 p. 306",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "KnuckleBushing3",
+      "label": "Auxiliary knuckle bronze bushing 3",
+      "group": "bearing",
+      "groups": [
+        "component:G10"
+      ],
+      "description": "Auxiliary Knuckle Pins and Bushings. Pivots 8 auxiliary rods to master rod circular cheeks. Interfaces: Master rod big end cheeks, auxiliary rod big-end eyes. Hollow hardened-steel pins passing through cheeks with bronze link-rod bushings. Source: P1 p. 306, 480.",
+      "evidence": "P1 p. 306",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "AuxRod4",
+      "label": "Auxiliary connecting rod 4",
+      "group": "rod",
+      "groups": [
+        "component:G09"
+      ],
+      "description": "Auxiliary (Link) Connecting Rods. Transmits gas loads from 8 link pistons to master rod cheeks. Interfaces: Master rod big-end cheeks, 8 auxiliary pistons. Eight tubular or H-section nickel-chrome steel rods with eye ends at both terminals. Source: P1 p. 306, Fig. 121, Fig. 127A.",
+      "evidence": "P1 p. 306; Fig. 121, Fig. 127A",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "KnucklePin4",
+      "label": "Auxiliary knuckle wrist pin 4",
+      "group": "rod",
+      "groups": [
+        "component:G10"
+      ],
+      "description": "Auxiliary Knuckle Pins and Bushings. Pivots 8 auxiliary rods to master rod circular cheeks. Interfaces: Master rod big end cheeks, auxiliary rod big-end eyes. Hollow hardened-steel pins passing through cheeks with bronze link-rod bushings. Source: P1 p. 306, 480.",
+      "evidence": "P1 p. 306",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "KnuckleBushing4",
+      "label": "Auxiliary knuckle bronze bushing 4",
+      "group": "bearing",
+      "groups": [
+        "component:G10"
+      ],
+      "description": "Auxiliary Knuckle Pins and Bushings. Pivots 8 auxiliary rods to master rod circular cheeks. Interfaces: Master rod big end cheeks, auxiliary rod big-end eyes. Hollow hardened-steel pins passing through cheeks with bronze link-rod bushings. Source: P1 p. 306, 480.",
+      "evidence": "P1 p. 306",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "AuxRod5",
+      "label": "Auxiliary connecting rod 5",
+      "group": "rod",
+      "groups": [
+        "component:G09"
+      ],
+      "description": "Auxiliary (Link) Connecting Rods. Transmits gas loads from 8 link pistons to master rod cheeks. Interfaces: Master rod big-end cheeks, 8 auxiliary pistons. Eight tubular or H-section nickel-chrome steel rods with eye ends at both terminals. Source: P1 p. 306, Fig. 121, Fig. 127A.",
+      "evidence": "P1 p. 306; Fig. 121, Fig. 127A",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "KnucklePin5",
+      "label": "Auxiliary knuckle wrist pin 5",
+      "group": "rod",
+      "groups": [
+        "component:G10"
+      ],
+      "description": "Auxiliary Knuckle Pins and Bushings. Pivots 8 auxiliary rods to master rod circular cheeks. Interfaces: Master rod big end cheeks, auxiliary rod big-end eyes. Hollow hardened-steel pins passing through cheeks with bronze link-rod bushings. Source: P1 p. 306, 480.",
+      "evidence": "P1 p. 306",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "KnuckleBushing5",
+      "label": "Auxiliary knuckle bronze bushing 5",
+      "group": "bearing",
+      "groups": [
+        "component:G10"
+      ],
+      "description": "Auxiliary Knuckle Pins and Bushings. Pivots 8 auxiliary rods to master rod circular cheeks. Interfaces: Master rod big end cheeks, auxiliary rod big-end eyes. Hollow hardened-steel pins passing through cheeks with bronze link-rod bushings. Source: P1 p. 306, 480.",
+      "evidence": "P1 p. 306",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "AuxRod6",
+      "label": "Auxiliary connecting rod 6",
+      "group": "rod",
+      "groups": [
+        "component:G09"
+      ],
+      "description": "Auxiliary (Link) Connecting Rods. Transmits gas loads from 8 link pistons to master rod cheeks. Interfaces: Master rod big-end cheeks, 8 auxiliary pistons. Eight tubular or H-section nickel-chrome steel rods with eye ends at both terminals. Source: P1 p. 306, Fig. 121, Fig. 127A.",
+      "evidence": "P1 p. 306; Fig. 121, Fig. 127A",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "KnucklePin6",
+      "label": "Auxiliary knuckle wrist pin 6",
+      "group": "rod",
+      "groups": [
+        "component:G10"
+      ],
+      "description": "Auxiliary Knuckle Pins and Bushings. Pivots 8 auxiliary rods to master rod circular cheeks. Interfaces: Master rod big end cheeks, auxiliary rod big-end eyes. Hollow hardened-steel pins passing through cheeks with bronze link-rod bushings. Source: P1 p. 306, 480.",
+      "evidence": "P1 p. 306",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "KnuckleBushing6",
+      "label": "Auxiliary knuckle bronze bushing 6",
+      "group": "bearing",
+      "groups": [
+        "component:G10"
+      ],
+      "description": "Auxiliary Knuckle Pins and Bushings. Pivots 8 auxiliary rods to master rod circular cheeks. Interfaces: Master rod big end cheeks, auxiliary rod big-end eyes. Hollow hardened-steel pins passing through cheeks with bronze link-rod bushings. Source: P1 p. 306, 480.",
+      "evidence": "P1 p. 306",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "AuxRod7",
+      "label": "Auxiliary connecting rod 7",
+      "group": "rod",
+      "groups": [
+        "component:G09"
+      ],
+      "description": "Auxiliary (Link) Connecting Rods. Transmits gas loads from 8 link pistons to master rod cheeks. Interfaces: Master rod big-end cheeks, 8 auxiliary pistons. Eight tubular or H-section nickel-chrome steel rods with eye ends at both terminals. Source: P1 p. 306, Fig. 121, Fig. 127A.",
+      "evidence": "P1 p. 306; Fig. 121, Fig. 127A",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "KnucklePin7",
+      "label": "Auxiliary knuckle wrist pin 7",
+      "group": "rod",
+      "groups": [
+        "component:G10"
+      ],
+      "description": "Auxiliary Knuckle Pins and Bushings. Pivots 8 auxiliary rods to master rod circular cheeks. Interfaces: Master rod big end cheeks, auxiliary rod big-end eyes. Hollow hardened-steel pins passing through cheeks with bronze link-rod bushings. Source: P1 p. 306, 480.",
+      "evidence": "P1 p. 306",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "KnuckleBushing7",
+      "label": "Auxiliary knuckle bronze bushing 7",
+      "group": "bearing",
+      "groups": [
+        "component:G10"
+      ],
+      "description": "Auxiliary Knuckle Pins and Bushings. Pivots 8 auxiliary rods to master rod circular cheeks. Interfaces: Master rod big end cheeks, auxiliary rod big-end eyes. Hollow hardened-steel pins passing through cheeks with bronze link-rod bushings. Source: P1 p. 306, 480.",
+      "evidence": "P1 p. 306",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "AuxRod8",
+      "label": "Auxiliary connecting rod 8",
+      "group": "rod",
+      "groups": [
+        "component:G09"
+      ],
+      "description": "Auxiliary (Link) Connecting Rods. Transmits gas loads from 8 link pistons to master rod cheeks. Interfaces: Master rod big-end cheeks, 8 auxiliary pistons. Eight tubular or H-section nickel-chrome steel rods with eye ends at both terminals. Source: P1 p. 306, Fig. 121, Fig. 127A.",
+      "evidence": "P1 p. 306; Fig. 121, Fig. 127A",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "KnucklePin8",
+      "label": "Auxiliary knuckle wrist pin 8",
+      "group": "rod",
+      "groups": [
+        "component:G10"
+      ],
+      "description": "Auxiliary Knuckle Pins and Bushings. Pivots 8 auxiliary rods to master rod circular cheeks. Interfaces: Master rod big end cheeks, auxiliary rod big-end eyes. Hollow hardened-steel pins passing through cheeks with bronze link-rod bushings. Source: P1 p. 306, 480.",
+      "evidence": "P1 p. 306",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "KnuckleBushing8",
+      "label": "Auxiliary knuckle bronze bushing 8",
+      "group": "bearing",
+      "groups": [
+        "component:G10"
+      ],
+      "description": "Auxiliary Knuckle Pins and Bushings. Pivots 8 auxiliary rods to master rod circular cheeks. Interfaces: Master rod big end cheeks, auxiliary rod big-end eyes. Hollow hardened-steel pins passing through cheeks with bronze link-rod bushings. Source: P1 p. 306, 480.",
+      "evidence": "P1 p. 306",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Cylinder1",
+      "label": "Steel cylinder 1 with integral cooling fins",
+      "group": "cylinder",
+      "groups": [
+        "component:G11"
+      ],
+      "description": "Steel Cylinders with Integral Fins. Combustion chamber and cylinder barrel; machined from 97 lb solid billet. Interfaces: Crankcase sockets, pistons, cylinder heads, single overhead valves. Machined from 6-inch solid steel bar down to 5.5 lb; 0.6 mm tip to 1.4 mm base fins. Source: P1 p. 488-490, Figs. 210-211.",
+      "evidence": "P1 p. 488-490; Figs. 210-211",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CylinderClamp1",
+      "label": "Cylinder 1 base retaining clamp ring",
+      "group": "cylinder",
+      "groups": [
+        "component:G12"
+      ],
+      "description": "Cylinder Retaining Clamping Rings. Clamps cylinder base securely into crankcase radial sockets. Interfaces: Cylinder lower skirt, crankcase cylinder boss. External steel clamping rings seating against crankcase flanges. Source: P1 p. 487, 495, Fig. 210.",
+      "evidence": "P1 p. 487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SkirtPortBelt1",
+      "label": "Cylinder 1 skirt scavenging transfer ports",
+      "group": "cylinder",
+      "groups": [
+        "component:G13"
+      ],
+      "description": "Skirt Scavenging & Transfer Ports. Admits rich crankcase fuel mixture during vacuum depression at BDC. Interfaces: Crankcase chamber, cylinder interior. Belt of 8 mm circular holes drilled around lower cylinder wall uncovered at 160-200 deg. Source: P1 p. 280, 486-487, Fig. 210; S1 US Patent 1,141,664.",
+      "evidence": "P1 p. 280, 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Cylinder2",
+      "label": "Steel cylinder 2 with integral cooling fins",
+      "group": "cylinder",
+      "groups": [
+        "component:G11"
+      ],
+      "description": "Steel Cylinders with Integral Fins. Combustion chamber and cylinder barrel; machined from 97 lb solid billet. Interfaces: Crankcase sockets, pistons, cylinder heads, single overhead valves. Machined from 6-inch solid steel bar down to 5.5 lb; 0.6 mm tip to 1.4 mm base fins. Source: P1 p. 488-490, Figs. 210-211.",
+      "evidence": "P1 p. 488-490; Figs. 210-211",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CylinderClamp2",
+      "label": "Cylinder 2 base retaining clamp ring",
+      "group": "cylinder",
+      "groups": [
+        "component:G12"
+      ],
+      "description": "Cylinder Retaining Clamping Rings. Clamps cylinder base securely into crankcase radial sockets. Interfaces: Cylinder lower skirt, crankcase cylinder boss. External steel clamping rings seating against crankcase flanges. Source: P1 p. 487, 495, Fig. 210.",
+      "evidence": "P1 p. 487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SkirtPortBelt2",
+      "label": "Cylinder 2 skirt scavenging transfer ports",
+      "group": "cylinder",
+      "groups": [
+        "component:G13"
+      ],
+      "description": "Skirt Scavenging & Transfer Ports. Admits rich crankcase fuel mixture during vacuum depression at BDC. Interfaces: Crankcase chamber, cylinder interior. Belt of 8 mm circular holes drilled around lower cylinder wall uncovered at 160-200 deg. Source: P1 p. 280, 486-487, Fig. 210; S1 US Patent 1,141,664.",
+      "evidence": "P1 p. 280, 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Cylinder3",
+      "label": "Steel cylinder 3 with integral cooling fins",
+      "group": "cylinder",
+      "groups": [
+        "component:G11"
+      ],
+      "description": "Steel Cylinders with Integral Fins. Combustion chamber and cylinder barrel; machined from 97 lb solid billet. Interfaces: Crankcase sockets, pistons, cylinder heads, single overhead valves. Machined from 6-inch solid steel bar down to 5.5 lb; 0.6 mm tip to 1.4 mm base fins. Source: P1 p. 488-490, Figs. 210-211.",
+      "evidence": "P1 p. 488-490; Figs. 210-211",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CylinderClamp3",
+      "label": "Cylinder 3 base retaining clamp ring",
+      "group": "cylinder",
+      "groups": [
+        "component:G12"
+      ],
+      "description": "Cylinder Retaining Clamping Rings. Clamps cylinder base securely into crankcase radial sockets. Interfaces: Cylinder lower skirt, crankcase cylinder boss. External steel clamping rings seating against crankcase flanges. Source: P1 p. 487, 495, Fig. 210.",
+      "evidence": "P1 p. 487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SkirtPortBelt3",
+      "label": "Cylinder 3 skirt scavenging transfer ports",
+      "group": "cylinder",
+      "groups": [
+        "component:G13"
+      ],
+      "description": "Skirt Scavenging & Transfer Ports. Admits rich crankcase fuel mixture during vacuum depression at BDC. Interfaces: Crankcase chamber, cylinder interior. Belt of 8 mm circular holes drilled around lower cylinder wall uncovered at 160-200 deg. Source: P1 p. 280, 486-487, Fig. 210; S1 US Patent 1,141,664.",
+      "evidence": "P1 p. 280, 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Cylinder4",
+      "label": "Steel cylinder 4 with integral cooling fins",
+      "group": "cylinder",
+      "groups": [
+        "component:G11"
+      ],
+      "description": "Steel Cylinders with Integral Fins. Combustion chamber and cylinder barrel; machined from 97 lb solid billet. Interfaces: Crankcase sockets, pistons, cylinder heads, single overhead valves. Machined from 6-inch solid steel bar down to 5.5 lb; 0.6 mm tip to 1.4 mm base fins. Source: P1 p. 488-490, Figs. 210-211.",
+      "evidence": "P1 p. 488-490; Figs. 210-211",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CylinderClamp4",
+      "label": "Cylinder 4 base retaining clamp ring",
+      "group": "cylinder",
+      "groups": [
+        "component:G12"
+      ],
+      "description": "Cylinder Retaining Clamping Rings. Clamps cylinder base securely into crankcase radial sockets. Interfaces: Cylinder lower skirt, crankcase cylinder boss. External steel clamping rings seating against crankcase flanges. Source: P1 p. 487, 495, Fig. 210.",
+      "evidence": "P1 p. 487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SkirtPortBelt4",
+      "label": "Cylinder 4 skirt scavenging transfer ports",
+      "group": "cylinder",
+      "groups": [
+        "component:G13"
+      ],
+      "description": "Skirt Scavenging & Transfer Ports. Admits rich crankcase fuel mixture during vacuum depression at BDC. Interfaces: Crankcase chamber, cylinder interior. Belt of 8 mm circular holes drilled around lower cylinder wall uncovered at 160-200 deg. Source: P1 p. 280, 486-487, Fig. 210; S1 US Patent 1,141,664.",
+      "evidence": "P1 p. 280, 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Cylinder5",
+      "label": "Steel cylinder 5 with integral cooling fins",
+      "group": "cylinder",
+      "groups": [
+        "component:G11"
+      ],
+      "description": "Steel Cylinders with Integral Fins. Combustion chamber and cylinder barrel; machined from 97 lb solid billet. Interfaces: Crankcase sockets, pistons, cylinder heads, single overhead valves. Machined from 6-inch solid steel bar down to 5.5 lb; 0.6 mm tip to 1.4 mm base fins. Source: P1 p. 488-490, Figs. 210-211.",
+      "evidence": "P1 p. 488-490; Figs. 210-211",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CylinderClamp5",
+      "label": "Cylinder 5 base retaining clamp ring",
+      "group": "cylinder",
+      "groups": [
+        "component:G12"
+      ],
+      "description": "Cylinder Retaining Clamping Rings. Clamps cylinder base securely into crankcase radial sockets. Interfaces: Cylinder lower skirt, crankcase cylinder boss. External steel clamping rings seating against crankcase flanges. Source: P1 p. 487, 495, Fig. 210.",
+      "evidence": "P1 p. 487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SkirtPortBelt5",
+      "label": "Cylinder 5 skirt scavenging transfer ports",
+      "group": "cylinder",
+      "groups": [
+        "component:G13"
+      ],
+      "description": "Skirt Scavenging & Transfer Ports. Admits rich crankcase fuel mixture during vacuum depression at BDC. Interfaces: Crankcase chamber, cylinder interior. Belt of 8 mm circular holes drilled around lower cylinder wall uncovered at 160-200 deg. Source: P1 p. 280, 486-487, Fig. 210; S1 US Patent 1,141,664.",
+      "evidence": "P1 p. 280, 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Cylinder6",
+      "label": "Steel cylinder 6 with integral cooling fins",
+      "group": "cylinder",
+      "groups": [
+        "component:G11"
+      ],
+      "description": "Steel Cylinders with Integral Fins. Combustion chamber and cylinder barrel; machined from 97 lb solid billet. Interfaces: Crankcase sockets, pistons, cylinder heads, single overhead valves. Machined from 6-inch solid steel bar down to 5.5 lb; 0.6 mm tip to 1.4 mm base fins. Source: P1 p. 488-490, Figs. 210-211.",
+      "evidence": "P1 p. 488-490; Figs. 210-211",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CylinderClamp6",
+      "label": "Cylinder 6 base retaining clamp ring",
+      "group": "cylinder",
+      "groups": [
+        "component:G12"
+      ],
+      "description": "Cylinder Retaining Clamping Rings. Clamps cylinder base securely into crankcase radial sockets. Interfaces: Cylinder lower skirt, crankcase cylinder boss. External steel clamping rings seating against crankcase flanges. Source: P1 p. 487, 495, Fig. 210.",
+      "evidence": "P1 p. 487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SkirtPortBelt6",
+      "label": "Cylinder 6 skirt scavenging transfer ports",
+      "group": "cylinder",
+      "groups": [
+        "component:G13"
+      ],
+      "description": "Skirt Scavenging & Transfer Ports. Admits rich crankcase fuel mixture during vacuum depression at BDC. Interfaces: Crankcase chamber, cylinder interior. Belt of 8 mm circular holes drilled around lower cylinder wall uncovered at 160-200 deg. Source: P1 p. 280, 486-487, Fig. 210; S1 US Patent 1,141,664.",
+      "evidence": "P1 p. 280, 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Cylinder7",
+      "label": "Steel cylinder 7 with integral cooling fins",
+      "group": "cylinder",
+      "groups": [
+        "component:G11"
+      ],
+      "description": "Steel Cylinders with Integral Fins. Combustion chamber and cylinder barrel; machined from 97 lb solid billet. Interfaces: Crankcase sockets, pistons, cylinder heads, single overhead valves. Machined from 6-inch solid steel bar down to 5.5 lb; 0.6 mm tip to 1.4 mm base fins. Source: P1 p. 488-490, Figs. 210-211.",
+      "evidence": "P1 p. 488-490; Figs. 210-211",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CylinderClamp7",
+      "label": "Cylinder 7 base retaining clamp ring",
+      "group": "cylinder",
+      "groups": [
+        "component:G12"
+      ],
+      "description": "Cylinder Retaining Clamping Rings. Clamps cylinder base securely into crankcase radial sockets. Interfaces: Cylinder lower skirt, crankcase cylinder boss. External steel clamping rings seating against crankcase flanges. Source: P1 p. 487, 495, Fig. 210.",
+      "evidence": "P1 p. 487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SkirtPortBelt7",
+      "label": "Cylinder 7 skirt scavenging transfer ports",
+      "group": "cylinder",
+      "groups": [
+        "component:G13"
+      ],
+      "description": "Skirt Scavenging & Transfer Ports. Admits rich crankcase fuel mixture during vacuum depression at BDC. Interfaces: Crankcase chamber, cylinder interior. Belt of 8 mm circular holes drilled around lower cylinder wall uncovered at 160-200 deg. Source: P1 p. 280, 486-487, Fig. 210; S1 US Patent 1,141,664.",
+      "evidence": "P1 p. 280, 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Cylinder8",
+      "label": "Steel cylinder 8 with integral cooling fins",
+      "group": "cylinder",
+      "groups": [
+        "component:G11"
+      ],
+      "description": "Steel Cylinders with Integral Fins. Combustion chamber and cylinder barrel; machined from 97 lb solid billet. Interfaces: Crankcase sockets, pistons, cylinder heads, single overhead valves. Machined from 6-inch solid steel bar down to 5.5 lb; 0.6 mm tip to 1.4 mm base fins. Source: P1 p. 488-490, Figs. 210-211.",
+      "evidence": "P1 p. 488-490; Figs. 210-211",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CylinderClamp8",
+      "label": "Cylinder 8 base retaining clamp ring",
+      "group": "cylinder",
+      "groups": [
+        "component:G12"
+      ],
+      "description": "Cylinder Retaining Clamping Rings. Clamps cylinder base securely into crankcase radial sockets. Interfaces: Cylinder lower skirt, crankcase cylinder boss. External steel clamping rings seating against crankcase flanges. Source: P1 p. 487, 495, Fig. 210.",
+      "evidence": "P1 p. 487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SkirtPortBelt8",
+      "label": "Cylinder 8 skirt scavenging transfer ports",
+      "group": "cylinder",
+      "groups": [
+        "component:G13"
+      ],
+      "description": "Skirt Scavenging & Transfer Ports. Admits rich crankcase fuel mixture during vacuum depression at BDC. Interfaces: Crankcase chamber, cylinder interior. Belt of 8 mm circular holes drilled around lower cylinder wall uncovered at 160-200 deg. Source: P1 p. 280, 486-487, Fig. 210; S1 US Patent 1,141,664.",
+      "evidence": "P1 p. 280, 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Cylinder9",
+      "label": "Steel cylinder 9 with integral cooling fins",
+      "group": "cylinder",
+      "groups": [
+        "component:G11"
+      ],
+      "description": "Steel Cylinders with Integral Fins. Combustion chamber and cylinder barrel; machined from 97 lb solid billet. Interfaces: Crankcase sockets, pistons, cylinder heads, single overhead valves. Machined from 6-inch solid steel bar down to 5.5 lb; 0.6 mm tip to 1.4 mm base fins. Source: P1 p. 488-490, Figs. 210-211.",
+      "evidence": "P1 p. 488-490; Figs. 210-211",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CylinderClamp9",
+      "label": "Cylinder 9 base retaining clamp ring",
+      "group": "cylinder",
+      "groups": [
+        "component:G12"
+      ],
+      "description": "Cylinder Retaining Clamping Rings. Clamps cylinder base securely into crankcase radial sockets. Interfaces: Cylinder lower skirt, crankcase cylinder boss. External steel clamping rings seating against crankcase flanges. Source: P1 p. 487, 495, Fig. 210.",
+      "evidence": "P1 p. 487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SkirtPortBelt9",
+      "label": "Cylinder 9 skirt scavenging transfer ports",
+      "group": "cylinder",
+      "groups": [
+        "component:G13"
+      ],
+      "description": "Skirt Scavenging & Transfer Ports. Admits rich crankcase fuel mixture during vacuum depression at BDC. Interfaces: Crankcase chamber, cylinder interior. Belt of 8 mm circular holes drilled around lower cylinder wall uncovered at 160-200 deg. Source: P1 p. 280, 486-487, Fig. 210; S1 US Patent 1,141,664.",
+      "evidence": "P1 p. 280, 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Piston1",
+      "label": "Cast-iron piston 1",
+      "group": "piston",
+      "groups": [
+        "component:G14"
+      ],
+      "description": "Cast-Iron Pistons. Reciprocates in cylinder, transmits gas force to connecting rod. Interfaces: Cylinder bore, gudgeon pin, piston rings. Flat-top lightweight thin-walled cast-iron piston with internal pin bosses. Source: P1 p. 295, Fig. 121.",
+      "evidence": "P1 p. 295; Fig. 121",
+      "material": "cast iron",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ObturatorRing1",
+      "label": "Piston 1 bronze obturator ring",
+      "group": "piston",
+      "groups": [
+        "component:G15"
+      ],
+      "description": "Bronze L-Section Obturator Rings. Ensures high-pressure gas seal against flexible thin steel cylinder. Interfaces: Piston top ring groove, cylinder wall. Thin flexible rolled sheet bronze L-section ring expanding under combustion pressure. Source: P1 p. 295, 300, Fig. 121, Fig. 124.",
+      "evidence": "P1 p. 295, 300; Fig. 121",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CompressionRing1",
+      "label": "Piston 1 cast-iron compression rings",
+      "group": "piston",
+      "groups": [
+        "component:G16"
+      ],
+      "description": "Cast-Iron Compression Rings. Provides secondary gas and oil seal below obturator ring. Interfaces: Piston ring grooves, cylinder wall. Concentric cast-iron rings with precision lap joints. Source: P1 p. 295, 300, Fig. 124.",
+      "evidence": "P1 p. 295; Fig. 124",
+      "material": "cast iron",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "GudgeonPin1",
+      "label": "Piston 1 gudgeon pin",
+      "group": "piston",
+      "groups": [
+        "component:G17"
+      ],
+      "description": "Piston Gudgeon Wrist Pins. Hinges connecting rod little end inside piston bosses. Interfaces: Piston bosses, rod little-end bronze bushing. Hollow case-hardened steel pins locked against rotation by expansion plugs. Source: P1 p. 295, Fig. 121.",
+      "evidence": "P1 p. 295; Fig. 121",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Piston2",
+      "label": "Cast-iron piston 2",
+      "group": "piston",
+      "groups": [
+        "component:G14"
+      ],
+      "description": "Cast-Iron Pistons. Reciprocates in cylinder, transmits gas force to connecting rod. Interfaces: Cylinder bore, gudgeon pin, piston rings. Flat-top lightweight thin-walled cast-iron piston with internal pin bosses. Source: P1 p. 295, Fig. 121.",
+      "evidence": "P1 p. 295; Fig. 121",
+      "material": "cast iron",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ObturatorRing2",
+      "label": "Piston 2 bronze obturator ring",
+      "group": "piston",
+      "groups": [
+        "component:G15"
+      ],
+      "description": "Bronze L-Section Obturator Rings. Ensures high-pressure gas seal against flexible thin steel cylinder. Interfaces: Piston top ring groove, cylinder wall. Thin flexible rolled sheet bronze L-section ring expanding under combustion pressure. Source: P1 p. 295, 300, Fig. 121, Fig. 124.",
+      "evidence": "P1 p. 295, 300; Fig. 121",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CompressionRing2",
+      "label": "Piston 2 cast-iron compression rings",
+      "group": "piston",
+      "groups": [
+        "component:G16"
+      ],
+      "description": "Cast-Iron Compression Rings. Provides secondary gas and oil seal below obturator ring. Interfaces: Piston ring grooves, cylinder wall. Concentric cast-iron rings with precision lap joints. Source: P1 p. 295, 300, Fig. 124.",
+      "evidence": "P1 p. 295; Fig. 124",
+      "material": "cast iron",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "GudgeonPin2",
+      "label": "Piston 2 gudgeon pin",
+      "group": "piston",
+      "groups": [
+        "component:G17"
+      ],
+      "description": "Piston Gudgeon Wrist Pins. Hinges connecting rod little end inside piston bosses. Interfaces: Piston bosses, rod little-end bronze bushing. Hollow case-hardened steel pins locked against rotation by expansion plugs. Source: P1 p. 295, Fig. 121.",
+      "evidence": "P1 p. 295; Fig. 121",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Piston3",
+      "label": "Cast-iron piston 3",
+      "group": "piston",
+      "groups": [
+        "component:G14"
+      ],
+      "description": "Cast-Iron Pistons. Reciprocates in cylinder, transmits gas force to connecting rod. Interfaces: Cylinder bore, gudgeon pin, piston rings. Flat-top lightweight thin-walled cast-iron piston with internal pin bosses. Source: P1 p. 295, Fig. 121.",
+      "evidence": "P1 p. 295; Fig. 121",
+      "material": "cast iron",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ObturatorRing3",
+      "label": "Piston 3 bronze obturator ring",
+      "group": "piston",
+      "groups": [
+        "component:G15"
+      ],
+      "description": "Bronze L-Section Obturator Rings. Ensures high-pressure gas seal against flexible thin steel cylinder. Interfaces: Piston top ring groove, cylinder wall. Thin flexible rolled sheet bronze L-section ring expanding under combustion pressure. Source: P1 p. 295, 300, Fig. 121, Fig. 124.",
+      "evidence": "P1 p. 295, 300; Fig. 121",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CompressionRing3",
+      "label": "Piston 3 cast-iron compression rings",
+      "group": "piston",
+      "groups": [
+        "component:G16"
+      ],
+      "description": "Cast-Iron Compression Rings. Provides secondary gas and oil seal below obturator ring. Interfaces: Piston ring grooves, cylinder wall. Concentric cast-iron rings with precision lap joints. Source: P1 p. 295, 300, Fig. 124.",
+      "evidence": "P1 p. 295; Fig. 124",
+      "material": "cast iron",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "GudgeonPin3",
+      "label": "Piston 3 gudgeon pin",
+      "group": "piston",
+      "groups": [
+        "component:G17"
+      ],
+      "description": "Piston Gudgeon Wrist Pins. Hinges connecting rod little end inside piston bosses. Interfaces: Piston bosses, rod little-end bronze bushing. Hollow case-hardened steel pins locked against rotation by expansion plugs. Source: P1 p. 295, Fig. 121.",
+      "evidence": "P1 p. 295; Fig. 121",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Piston4",
+      "label": "Cast-iron piston 4",
+      "group": "piston",
+      "groups": [
+        "component:G14"
+      ],
+      "description": "Cast-Iron Pistons. Reciprocates in cylinder, transmits gas force to connecting rod. Interfaces: Cylinder bore, gudgeon pin, piston rings. Flat-top lightweight thin-walled cast-iron piston with internal pin bosses. Source: P1 p. 295, Fig. 121.",
+      "evidence": "P1 p. 295; Fig. 121",
+      "material": "cast iron",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ObturatorRing4",
+      "label": "Piston 4 bronze obturator ring",
+      "group": "piston",
+      "groups": [
+        "component:G15"
+      ],
+      "description": "Bronze L-Section Obturator Rings. Ensures high-pressure gas seal against flexible thin steel cylinder. Interfaces: Piston top ring groove, cylinder wall. Thin flexible rolled sheet bronze L-section ring expanding under combustion pressure. Source: P1 p. 295, 300, Fig. 121, Fig. 124.",
+      "evidence": "P1 p. 295, 300; Fig. 121",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CompressionRing4",
+      "label": "Piston 4 cast-iron compression rings",
+      "group": "piston",
+      "groups": [
+        "component:G16"
+      ],
+      "description": "Cast-Iron Compression Rings. Provides secondary gas and oil seal below obturator ring. Interfaces: Piston ring grooves, cylinder wall. Concentric cast-iron rings with precision lap joints. Source: P1 p. 295, 300, Fig. 124.",
+      "evidence": "P1 p. 295; Fig. 124",
+      "material": "cast iron",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "GudgeonPin4",
+      "label": "Piston 4 gudgeon pin",
+      "group": "piston",
+      "groups": [
+        "component:G17"
+      ],
+      "description": "Piston Gudgeon Wrist Pins. Hinges connecting rod little end inside piston bosses. Interfaces: Piston bosses, rod little-end bronze bushing. Hollow case-hardened steel pins locked against rotation by expansion plugs. Source: P1 p. 295, Fig. 121.",
+      "evidence": "P1 p. 295; Fig. 121",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Piston5",
+      "label": "Cast-iron piston 5",
+      "group": "piston",
+      "groups": [
+        "component:G14"
+      ],
+      "description": "Cast-Iron Pistons. Reciprocates in cylinder, transmits gas force to connecting rod. Interfaces: Cylinder bore, gudgeon pin, piston rings. Flat-top lightweight thin-walled cast-iron piston with internal pin bosses. Source: P1 p. 295, Fig. 121.",
+      "evidence": "P1 p. 295; Fig. 121",
+      "material": "cast iron",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ObturatorRing5",
+      "label": "Piston 5 bronze obturator ring",
+      "group": "piston",
+      "groups": [
+        "component:G15"
+      ],
+      "description": "Bronze L-Section Obturator Rings. Ensures high-pressure gas seal against flexible thin steel cylinder. Interfaces: Piston top ring groove, cylinder wall. Thin flexible rolled sheet bronze L-section ring expanding under combustion pressure. Source: P1 p. 295, 300, Fig. 121, Fig. 124.",
+      "evidence": "P1 p. 295, 300; Fig. 121",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CompressionRing5",
+      "label": "Piston 5 cast-iron compression rings",
+      "group": "piston",
+      "groups": [
+        "component:G16"
+      ],
+      "description": "Cast-Iron Compression Rings. Provides secondary gas and oil seal below obturator ring. Interfaces: Piston ring grooves, cylinder wall. Concentric cast-iron rings with precision lap joints. Source: P1 p. 295, 300, Fig. 124.",
+      "evidence": "P1 p. 295; Fig. 124",
+      "material": "cast iron",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "GudgeonPin5",
+      "label": "Piston 5 gudgeon pin",
+      "group": "piston",
+      "groups": [
+        "component:G17"
+      ],
+      "description": "Piston Gudgeon Wrist Pins. Hinges connecting rod little end inside piston bosses. Interfaces: Piston bosses, rod little-end bronze bushing. Hollow case-hardened steel pins locked against rotation by expansion plugs. Source: P1 p. 295, Fig. 121.",
+      "evidence": "P1 p. 295; Fig. 121",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Piston6",
+      "label": "Cast-iron piston 6",
+      "group": "piston",
+      "groups": [
+        "component:G14"
+      ],
+      "description": "Cast-Iron Pistons. Reciprocates in cylinder, transmits gas force to connecting rod. Interfaces: Cylinder bore, gudgeon pin, piston rings. Flat-top lightweight thin-walled cast-iron piston with internal pin bosses. Source: P1 p. 295, Fig. 121.",
+      "evidence": "P1 p. 295; Fig. 121",
+      "material": "cast iron",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ObturatorRing6",
+      "label": "Piston 6 bronze obturator ring",
+      "group": "piston",
+      "groups": [
+        "component:G15"
+      ],
+      "description": "Bronze L-Section Obturator Rings. Ensures high-pressure gas seal against flexible thin steel cylinder. Interfaces: Piston top ring groove, cylinder wall. Thin flexible rolled sheet bronze L-section ring expanding under combustion pressure. Source: P1 p. 295, 300, Fig. 121, Fig. 124.",
+      "evidence": "P1 p. 295, 300; Fig. 121",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CompressionRing6",
+      "label": "Piston 6 cast-iron compression rings",
+      "group": "piston",
+      "groups": [
+        "component:G16"
+      ],
+      "description": "Cast-Iron Compression Rings. Provides secondary gas and oil seal below obturator ring. Interfaces: Piston ring grooves, cylinder wall. Concentric cast-iron rings with precision lap joints. Source: P1 p. 295, 300, Fig. 124.",
+      "evidence": "P1 p. 295; Fig. 124",
+      "material": "cast iron",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "GudgeonPin6",
+      "label": "Piston 6 gudgeon pin",
+      "group": "piston",
+      "groups": [
+        "component:G17"
+      ],
+      "description": "Piston Gudgeon Wrist Pins. Hinges connecting rod little end inside piston bosses. Interfaces: Piston bosses, rod little-end bronze bushing. Hollow case-hardened steel pins locked against rotation by expansion plugs. Source: P1 p. 295, Fig. 121.",
+      "evidence": "P1 p. 295; Fig. 121",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Piston7",
+      "label": "Cast-iron piston 7",
+      "group": "piston",
+      "groups": [
+        "component:G14"
+      ],
+      "description": "Cast-Iron Pistons. Reciprocates in cylinder, transmits gas force to connecting rod. Interfaces: Cylinder bore, gudgeon pin, piston rings. Flat-top lightweight thin-walled cast-iron piston with internal pin bosses. Source: P1 p. 295, Fig. 121.",
+      "evidence": "P1 p. 295; Fig. 121",
+      "material": "cast iron",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ObturatorRing7",
+      "label": "Piston 7 bronze obturator ring",
+      "group": "piston",
+      "groups": [
+        "component:G15"
+      ],
+      "description": "Bronze L-Section Obturator Rings. Ensures high-pressure gas seal against flexible thin steel cylinder. Interfaces: Piston top ring groove, cylinder wall. Thin flexible rolled sheet bronze L-section ring expanding under combustion pressure. Source: P1 p. 295, 300, Fig. 121, Fig. 124.",
+      "evidence": "P1 p. 295, 300; Fig. 121",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CompressionRing7",
+      "label": "Piston 7 cast-iron compression rings",
+      "group": "piston",
+      "groups": [
+        "component:G16"
+      ],
+      "description": "Cast-Iron Compression Rings. Provides secondary gas and oil seal below obturator ring. Interfaces: Piston ring grooves, cylinder wall. Concentric cast-iron rings with precision lap joints. Source: P1 p. 295, 300, Fig. 124.",
+      "evidence": "P1 p. 295; Fig. 124",
+      "material": "cast iron",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "GudgeonPin7",
+      "label": "Piston 7 gudgeon pin",
+      "group": "piston",
+      "groups": [
+        "component:G17"
+      ],
+      "description": "Piston Gudgeon Wrist Pins. Hinges connecting rod little end inside piston bosses. Interfaces: Piston bosses, rod little-end bronze bushing. Hollow case-hardened steel pins locked against rotation by expansion plugs. Source: P1 p. 295, Fig. 121.",
+      "evidence": "P1 p. 295; Fig. 121",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Piston8",
+      "label": "Cast-iron piston 8",
+      "group": "piston",
+      "groups": [
+        "component:G14"
+      ],
+      "description": "Cast-Iron Pistons. Reciprocates in cylinder, transmits gas force to connecting rod. Interfaces: Cylinder bore, gudgeon pin, piston rings. Flat-top lightweight thin-walled cast-iron piston with internal pin bosses. Source: P1 p. 295, Fig. 121.",
+      "evidence": "P1 p. 295; Fig. 121",
+      "material": "cast iron",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ObturatorRing8",
+      "label": "Piston 8 bronze obturator ring",
+      "group": "piston",
+      "groups": [
+        "component:G15"
+      ],
+      "description": "Bronze L-Section Obturator Rings. Ensures high-pressure gas seal against flexible thin steel cylinder. Interfaces: Piston top ring groove, cylinder wall. Thin flexible rolled sheet bronze L-section ring expanding under combustion pressure. Source: P1 p. 295, 300, Fig. 121, Fig. 124.",
+      "evidence": "P1 p. 295, 300; Fig. 121",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CompressionRing8",
+      "label": "Piston 8 cast-iron compression rings",
+      "group": "piston",
+      "groups": [
+        "component:G16"
+      ],
+      "description": "Cast-Iron Compression Rings. Provides secondary gas and oil seal below obturator ring. Interfaces: Piston ring grooves, cylinder wall. Concentric cast-iron rings with precision lap joints. Source: P1 p. 295, 300, Fig. 124.",
+      "evidence": "P1 p. 295; Fig. 124",
+      "material": "cast iron",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "GudgeonPin8",
+      "label": "Piston 8 gudgeon pin",
+      "group": "piston",
+      "groups": [
+        "component:G17"
+      ],
+      "description": "Piston Gudgeon Wrist Pins. Hinges connecting rod little end inside piston bosses. Interfaces: Piston bosses, rod little-end bronze bushing. Hollow case-hardened steel pins locked against rotation by expansion plugs. Source: P1 p. 295, Fig. 121.",
+      "evidence": "P1 p. 295; Fig. 121",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Piston9",
+      "label": "Cast-iron piston 9",
+      "group": "piston",
+      "groups": [
+        "component:G14"
+      ],
+      "description": "Cast-Iron Pistons. Reciprocates in cylinder, transmits gas force to connecting rod. Interfaces: Cylinder bore, gudgeon pin, piston rings. Flat-top lightweight thin-walled cast-iron piston with internal pin bosses. Source: P1 p. 295, Fig. 121.",
+      "evidence": "P1 p. 295; Fig. 121",
+      "material": "cast iron",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ObturatorRing9",
+      "label": "Piston 9 bronze obturator ring",
+      "group": "piston",
+      "groups": [
+        "component:G15"
+      ],
+      "description": "Bronze L-Section Obturator Rings. Ensures high-pressure gas seal against flexible thin steel cylinder. Interfaces: Piston top ring groove, cylinder wall. Thin flexible rolled sheet bronze L-section ring expanding under combustion pressure. Source: P1 p. 295, 300, Fig. 121, Fig. 124.",
+      "evidence": "P1 p. 295, 300; Fig. 121",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CompressionRing9",
+      "label": "Piston 9 cast-iron compression rings",
+      "group": "piston",
+      "groups": [
+        "component:G16"
+      ],
+      "description": "Cast-Iron Compression Rings. Provides secondary gas and oil seal below obturator ring. Interfaces: Piston ring grooves, cylinder wall. Concentric cast-iron rings with precision lap joints. Source: P1 p. 295, 300, Fig. 124.",
+      "evidence": "P1 p. 295; Fig. 124",
+      "material": "cast iron",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "GudgeonPin9",
+      "label": "Piston 9 gudgeon pin",
+      "group": "piston",
+      "groups": [
+        "component:G17"
+      ],
+      "description": "Piston Gudgeon Wrist Pins. Hinges connecting rod little end inside piston bosses. Interfaces: Piston bosses, rod little-end bronze bushing. Hollow case-hardened steel pins locked against rotation by expansion plugs. Source: P1 p. 295, Fig. 121.",
+      "evidence": "P1 p. 295; Fig. 121",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "OverheadValve1",
+      "label": "Single overhead poppet valve 1",
+      "group": "valve",
+      "groups": [
+        "component:G18"
+      ],
+      "description": "Overhead Single Poppet Valves. Controls exhaust venting (85-360 deg) and fresh air induction (360-475 deg). Interfaces: Cylinder head valve seat, valve guide cage. Single large tulip poppet valve (48 mm head) centrally positioned in cylinder head. Source: P1 p. 278-280, 486, Fig. 111, Fig. 210.",
+      "evidence": "P1 p. 278-280, 486; Fig. 111, Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ValveGuideCage1",
+      "label": "Valve guide cage 1",
+      "group": "valve",
+      "groups": [
+        "component:G19"
+      ],
+      "description": "Valve Guide Cages. Guides valve stem and retains valve seat in cylinder dome. Interfaces: Cylinder dome, valve stem, valve spring. Machined steel or bronze cage pressed and threaded into cylinder head. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ValveSpring1",
+      "label": "Valve return coil spring 1",
+      "group": "valve",
+      "groups": [
+        "component:G20"
+      ],
+      "description": "Valve Return Coil Springs. Closes valve when pushrod retracts; calibrated to overcome inertia. Interfaces: Valve guide cage, valve spring retainer washer. High-tensile helical steel coil springs surrounding valve stem. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "RockerPillar1",
+      "label": "Rocker support pillar 1",
+      "group": "valve",
+      "groups": [
+        "component:G22"
+      ],
+      "description": "Rocker Support Pillars. Mounts rocker arm pivot securely on cylinder head. Interfaces: Cylinder head, rocker pivot pin. Machined steel pillar screwed and locked to cylinder head dome. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "RockerArm1",
+      "label": "Counterbalanced rocker arm 1",
+      "group": "valve",
+      "groups": [
+        "component:G21"
+      ],
+      "description": "Rocker Arms with Counterweights. Transfers pushrod lift to depress overhead valve; counterbalances centrifugal force. Interfaces: Rocker pillar, pushrod upper ball end, valve stem tip. Forged steel rocker arm with integral counterweight or opposing balance spring. Source: P1 p. 486-487, Fig. 210.",
+      "evidence": "P1 p. 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Pushrod1",
+      "label": "Valve operating pushrod 1",
+      "group": "valve",
+      "groups": [
+        "component:G23"
+      ],
+      "description": "Tubular Pushrods. Transmits cam follower plunger motion to cylinder head rocker arm. Interfaces: Front cam tappet plunger, rocker arm ball cup. Lightweight seamless steel tube with hardened spherical ball ends. Source: P1 p. 486, 492, Fig. 210.",
+      "evidence": "P1 p. 486, 492; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "OverheadValve2",
+      "label": "Single overhead poppet valve 2",
+      "group": "valve",
+      "groups": [
+        "component:G18"
+      ],
+      "description": "Overhead Single Poppet Valves. Controls exhaust venting (85-360 deg) and fresh air induction (360-475 deg). Interfaces: Cylinder head valve seat, valve guide cage. Single large tulip poppet valve (48 mm head) centrally positioned in cylinder head. Source: P1 p. 278-280, 486, Fig. 111, Fig. 210.",
+      "evidence": "P1 p. 278-280, 486; Fig. 111, Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ValveGuideCage2",
+      "label": "Valve guide cage 2",
+      "group": "valve",
+      "groups": [
+        "component:G19"
+      ],
+      "description": "Valve Guide Cages. Guides valve stem and retains valve seat in cylinder dome. Interfaces: Cylinder dome, valve stem, valve spring. Machined steel or bronze cage pressed and threaded into cylinder head. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ValveSpring2",
+      "label": "Valve return coil spring 2",
+      "group": "valve",
+      "groups": [
+        "component:G20"
+      ],
+      "description": "Valve Return Coil Springs. Closes valve when pushrod retracts; calibrated to overcome inertia. Interfaces: Valve guide cage, valve spring retainer washer. High-tensile helical steel coil springs surrounding valve stem. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "RockerPillar2",
+      "label": "Rocker support pillar 2",
+      "group": "valve",
+      "groups": [
+        "component:G22"
+      ],
+      "description": "Rocker Support Pillars. Mounts rocker arm pivot securely on cylinder head. Interfaces: Cylinder head, rocker pivot pin. Machined steel pillar screwed and locked to cylinder head dome. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "RockerArm2",
+      "label": "Counterbalanced rocker arm 2",
+      "group": "valve",
+      "groups": [
+        "component:G21"
+      ],
+      "description": "Rocker Arms with Counterweights. Transfers pushrod lift to depress overhead valve; counterbalances centrifugal force. Interfaces: Rocker pillar, pushrod upper ball end, valve stem tip. Forged steel rocker arm with integral counterweight or opposing balance spring. Source: P1 p. 486-487, Fig. 210.",
+      "evidence": "P1 p. 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Pushrod2",
+      "label": "Valve operating pushrod 2",
+      "group": "valve",
+      "groups": [
+        "component:G23"
+      ],
+      "description": "Tubular Pushrods. Transmits cam follower plunger motion to cylinder head rocker arm. Interfaces: Front cam tappet plunger, rocker arm ball cup. Lightweight seamless steel tube with hardened spherical ball ends. Source: P1 p. 486, 492, Fig. 210.",
+      "evidence": "P1 p. 486, 492; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "OverheadValve3",
+      "label": "Single overhead poppet valve 3",
+      "group": "valve",
+      "groups": [
+        "component:G18"
+      ],
+      "description": "Overhead Single Poppet Valves. Controls exhaust venting (85-360 deg) and fresh air induction (360-475 deg). Interfaces: Cylinder head valve seat, valve guide cage. Single large tulip poppet valve (48 mm head) centrally positioned in cylinder head. Source: P1 p. 278-280, 486, Fig. 111, Fig. 210.",
+      "evidence": "P1 p. 278-280, 486; Fig. 111, Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ValveGuideCage3",
+      "label": "Valve guide cage 3",
+      "group": "valve",
+      "groups": [
+        "component:G19"
+      ],
+      "description": "Valve Guide Cages. Guides valve stem and retains valve seat in cylinder dome. Interfaces: Cylinder dome, valve stem, valve spring. Machined steel or bronze cage pressed and threaded into cylinder head. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ValveSpring3",
+      "label": "Valve return coil spring 3",
+      "group": "valve",
+      "groups": [
+        "component:G20"
+      ],
+      "description": "Valve Return Coil Springs. Closes valve when pushrod retracts; calibrated to overcome inertia. Interfaces: Valve guide cage, valve spring retainer washer. High-tensile helical steel coil springs surrounding valve stem. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "RockerPillar3",
+      "label": "Rocker support pillar 3",
+      "group": "valve",
+      "groups": [
+        "component:G22"
+      ],
+      "description": "Rocker Support Pillars. Mounts rocker arm pivot securely on cylinder head. Interfaces: Cylinder head, rocker pivot pin. Machined steel pillar screwed and locked to cylinder head dome. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "RockerArm3",
+      "label": "Counterbalanced rocker arm 3",
+      "group": "valve",
+      "groups": [
+        "component:G21"
+      ],
+      "description": "Rocker Arms with Counterweights. Transfers pushrod lift to depress overhead valve; counterbalances centrifugal force. Interfaces: Rocker pillar, pushrod upper ball end, valve stem tip. Forged steel rocker arm with integral counterweight or opposing balance spring. Source: P1 p. 486-487, Fig. 210.",
+      "evidence": "P1 p. 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Pushrod3",
+      "label": "Valve operating pushrod 3",
+      "group": "valve",
+      "groups": [
+        "component:G23"
+      ],
+      "description": "Tubular Pushrods. Transmits cam follower plunger motion to cylinder head rocker arm. Interfaces: Front cam tappet plunger, rocker arm ball cup. Lightweight seamless steel tube with hardened spherical ball ends. Source: P1 p. 486, 492, Fig. 210.",
+      "evidence": "P1 p. 486, 492; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "OverheadValve4",
+      "label": "Single overhead poppet valve 4",
+      "group": "valve",
+      "groups": [
+        "component:G18"
+      ],
+      "description": "Overhead Single Poppet Valves. Controls exhaust venting (85-360 deg) and fresh air induction (360-475 deg). Interfaces: Cylinder head valve seat, valve guide cage. Single large tulip poppet valve (48 mm head) centrally positioned in cylinder head. Source: P1 p. 278-280, 486, Fig. 111, Fig. 210.",
+      "evidence": "P1 p. 278-280, 486; Fig. 111, Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ValveGuideCage4",
+      "label": "Valve guide cage 4",
+      "group": "valve",
+      "groups": [
+        "component:G19"
+      ],
+      "description": "Valve Guide Cages. Guides valve stem and retains valve seat in cylinder dome. Interfaces: Cylinder dome, valve stem, valve spring. Machined steel or bronze cage pressed and threaded into cylinder head. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ValveSpring4",
+      "label": "Valve return coil spring 4",
+      "group": "valve",
+      "groups": [
+        "component:G20"
+      ],
+      "description": "Valve Return Coil Springs. Closes valve when pushrod retracts; calibrated to overcome inertia. Interfaces: Valve guide cage, valve spring retainer washer. High-tensile helical steel coil springs surrounding valve stem. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "RockerPillar4",
+      "label": "Rocker support pillar 4",
+      "group": "valve",
+      "groups": [
+        "component:G22"
+      ],
+      "description": "Rocker Support Pillars. Mounts rocker arm pivot securely on cylinder head. Interfaces: Cylinder head, rocker pivot pin. Machined steel pillar screwed and locked to cylinder head dome. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "RockerArm4",
+      "label": "Counterbalanced rocker arm 4",
+      "group": "valve",
+      "groups": [
+        "component:G21"
+      ],
+      "description": "Rocker Arms with Counterweights. Transfers pushrod lift to depress overhead valve; counterbalances centrifugal force. Interfaces: Rocker pillar, pushrod upper ball end, valve stem tip. Forged steel rocker arm with integral counterweight or opposing balance spring. Source: P1 p. 486-487, Fig. 210.",
+      "evidence": "P1 p. 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Pushrod4",
+      "label": "Valve operating pushrod 4",
+      "group": "valve",
+      "groups": [
+        "component:G23"
+      ],
+      "description": "Tubular Pushrods. Transmits cam follower plunger motion to cylinder head rocker arm. Interfaces: Front cam tappet plunger, rocker arm ball cup. Lightweight seamless steel tube with hardened spherical ball ends. Source: P1 p. 486, 492, Fig. 210.",
+      "evidence": "P1 p. 486, 492; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "OverheadValve5",
+      "label": "Single overhead poppet valve 5",
+      "group": "valve",
+      "groups": [
+        "component:G18"
+      ],
+      "description": "Overhead Single Poppet Valves. Controls exhaust venting (85-360 deg) and fresh air induction (360-475 deg). Interfaces: Cylinder head valve seat, valve guide cage. Single large tulip poppet valve (48 mm head) centrally positioned in cylinder head. Source: P1 p. 278-280, 486, Fig. 111, Fig. 210.",
+      "evidence": "P1 p. 278-280, 486; Fig. 111, Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ValveGuideCage5",
+      "label": "Valve guide cage 5",
+      "group": "valve",
+      "groups": [
+        "component:G19"
+      ],
+      "description": "Valve Guide Cages. Guides valve stem and retains valve seat in cylinder dome. Interfaces: Cylinder dome, valve stem, valve spring. Machined steel or bronze cage pressed and threaded into cylinder head. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ValveSpring5",
+      "label": "Valve return coil spring 5",
+      "group": "valve",
+      "groups": [
+        "component:G20"
+      ],
+      "description": "Valve Return Coil Springs. Closes valve when pushrod retracts; calibrated to overcome inertia. Interfaces: Valve guide cage, valve spring retainer washer. High-tensile helical steel coil springs surrounding valve stem. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "RockerPillar5",
+      "label": "Rocker support pillar 5",
+      "group": "valve",
+      "groups": [
+        "component:G22"
+      ],
+      "description": "Rocker Support Pillars. Mounts rocker arm pivot securely on cylinder head. Interfaces: Cylinder head, rocker pivot pin. Machined steel pillar screwed and locked to cylinder head dome. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "RockerArm5",
+      "label": "Counterbalanced rocker arm 5",
+      "group": "valve",
+      "groups": [
+        "component:G21"
+      ],
+      "description": "Rocker Arms with Counterweights. Transfers pushrod lift to depress overhead valve; counterbalances centrifugal force. Interfaces: Rocker pillar, pushrod upper ball end, valve stem tip. Forged steel rocker arm with integral counterweight or opposing balance spring. Source: P1 p. 486-487, Fig. 210.",
+      "evidence": "P1 p. 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Pushrod5",
+      "label": "Valve operating pushrod 5",
+      "group": "valve",
+      "groups": [
+        "component:G23"
+      ],
+      "description": "Tubular Pushrods. Transmits cam follower plunger motion to cylinder head rocker arm. Interfaces: Front cam tappet plunger, rocker arm ball cup. Lightweight seamless steel tube with hardened spherical ball ends. Source: P1 p. 486, 492, Fig. 210.",
+      "evidence": "P1 p. 486, 492; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "OverheadValve6",
+      "label": "Single overhead poppet valve 6",
+      "group": "valve",
+      "groups": [
+        "component:G18"
+      ],
+      "description": "Overhead Single Poppet Valves. Controls exhaust venting (85-360 deg) and fresh air induction (360-475 deg). Interfaces: Cylinder head valve seat, valve guide cage. Single large tulip poppet valve (48 mm head) centrally positioned in cylinder head. Source: P1 p. 278-280, 486, Fig. 111, Fig. 210.",
+      "evidence": "P1 p. 278-280, 486; Fig. 111, Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ValveGuideCage6",
+      "label": "Valve guide cage 6",
+      "group": "valve",
+      "groups": [
+        "component:G19"
+      ],
+      "description": "Valve Guide Cages. Guides valve stem and retains valve seat in cylinder dome. Interfaces: Cylinder dome, valve stem, valve spring. Machined steel or bronze cage pressed and threaded into cylinder head. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ValveSpring6",
+      "label": "Valve return coil spring 6",
+      "group": "valve",
+      "groups": [
+        "component:G20"
+      ],
+      "description": "Valve Return Coil Springs. Closes valve when pushrod retracts; calibrated to overcome inertia. Interfaces: Valve guide cage, valve spring retainer washer. High-tensile helical steel coil springs surrounding valve stem. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "RockerPillar6",
+      "label": "Rocker support pillar 6",
+      "group": "valve",
+      "groups": [
+        "component:G22"
+      ],
+      "description": "Rocker Support Pillars. Mounts rocker arm pivot securely on cylinder head. Interfaces: Cylinder head, rocker pivot pin. Machined steel pillar screwed and locked to cylinder head dome. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "RockerArm6",
+      "label": "Counterbalanced rocker arm 6",
+      "group": "valve",
+      "groups": [
+        "component:G21"
+      ],
+      "description": "Rocker Arms with Counterweights. Transfers pushrod lift to depress overhead valve; counterbalances centrifugal force. Interfaces: Rocker pillar, pushrod upper ball end, valve stem tip. Forged steel rocker arm with integral counterweight or opposing balance spring. Source: P1 p. 486-487, Fig. 210.",
+      "evidence": "P1 p. 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Pushrod6",
+      "label": "Valve operating pushrod 6",
+      "group": "valve",
+      "groups": [
+        "component:G23"
+      ],
+      "description": "Tubular Pushrods. Transmits cam follower plunger motion to cylinder head rocker arm. Interfaces: Front cam tappet plunger, rocker arm ball cup. Lightweight seamless steel tube with hardened spherical ball ends. Source: P1 p. 486, 492, Fig. 210.",
+      "evidence": "P1 p. 486, 492; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "OverheadValve7",
+      "label": "Single overhead poppet valve 7",
+      "group": "valve",
+      "groups": [
+        "component:G18"
+      ],
+      "description": "Overhead Single Poppet Valves. Controls exhaust venting (85-360 deg) and fresh air induction (360-475 deg). Interfaces: Cylinder head valve seat, valve guide cage. Single large tulip poppet valve (48 mm head) centrally positioned in cylinder head. Source: P1 p. 278-280, 486, Fig. 111, Fig. 210.",
+      "evidence": "P1 p. 278-280, 486; Fig. 111, Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ValveGuideCage7",
+      "label": "Valve guide cage 7",
+      "group": "valve",
+      "groups": [
+        "component:G19"
+      ],
+      "description": "Valve Guide Cages. Guides valve stem and retains valve seat in cylinder dome. Interfaces: Cylinder dome, valve stem, valve spring. Machined steel or bronze cage pressed and threaded into cylinder head. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ValveSpring7",
+      "label": "Valve return coil spring 7",
+      "group": "valve",
+      "groups": [
+        "component:G20"
+      ],
+      "description": "Valve Return Coil Springs. Closes valve when pushrod retracts; calibrated to overcome inertia. Interfaces: Valve guide cage, valve spring retainer washer. High-tensile helical steel coil springs surrounding valve stem. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "RockerPillar7",
+      "label": "Rocker support pillar 7",
+      "group": "valve",
+      "groups": [
+        "component:G22"
+      ],
+      "description": "Rocker Support Pillars. Mounts rocker arm pivot securely on cylinder head. Interfaces: Cylinder head, rocker pivot pin. Machined steel pillar screwed and locked to cylinder head dome. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "RockerArm7",
+      "label": "Counterbalanced rocker arm 7",
+      "group": "valve",
+      "groups": [
+        "component:G21"
+      ],
+      "description": "Rocker Arms with Counterweights. Transfers pushrod lift to depress overhead valve; counterbalances centrifugal force. Interfaces: Rocker pillar, pushrod upper ball end, valve stem tip. Forged steel rocker arm with integral counterweight or opposing balance spring. Source: P1 p. 486-487, Fig. 210.",
+      "evidence": "P1 p. 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Pushrod7",
+      "label": "Valve operating pushrod 7",
+      "group": "valve",
+      "groups": [
+        "component:G23"
+      ],
+      "description": "Tubular Pushrods. Transmits cam follower plunger motion to cylinder head rocker arm. Interfaces: Front cam tappet plunger, rocker arm ball cup. Lightweight seamless steel tube with hardened spherical ball ends. Source: P1 p. 486, 492, Fig. 210.",
+      "evidence": "P1 p. 486, 492; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "OverheadValve8",
+      "label": "Single overhead poppet valve 8",
+      "group": "valve",
+      "groups": [
+        "component:G18"
+      ],
+      "description": "Overhead Single Poppet Valves. Controls exhaust venting (85-360 deg) and fresh air induction (360-475 deg). Interfaces: Cylinder head valve seat, valve guide cage. Single large tulip poppet valve (48 mm head) centrally positioned in cylinder head. Source: P1 p. 278-280, 486, Fig. 111, Fig. 210.",
+      "evidence": "P1 p. 278-280, 486; Fig. 111, Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ValveGuideCage8",
+      "label": "Valve guide cage 8",
+      "group": "valve",
+      "groups": [
+        "component:G19"
+      ],
+      "description": "Valve Guide Cages. Guides valve stem and retains valve seat in cylinder dome. Interfaces: Cylinder dome, valve stem, valve spring. Machined steel or bronze cage pressed and threaded into cylinder head. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ValveSpring8",
+      "label": "Valve return coil spring 8",
+      "group": "valve",
+      "groups": [
+        "component:G20"
+      ],
+      "description": "Valve Return Coil Springs. Closes valve when pushrod retracts; calibrated to overcome inertia. Interfaces: Valve guide cage, valve spring retainer washer. High-tensile helical steel coil springs surrounding valve stem. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "RockerPillar8",
+      "label": "Rocker support pillar 8",
+      "group": "valve",
+      "groups": [
+        "component:G22"
+      ],
+      "description": "Rocker Support Pillars. Mounts rocker arm pivot securely on cylinder head. Interfaces: Cylinder head, rocker pivot pin. Machined steel pillar screwed and locked to cylinder head dome. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "RockerArm8",
+      "label": "Counterbalanced rocker arm 8",
+      "group": "valve",
+      "groups": [
+        "component:G21"
+      ],
+      "description": "Rocker Arms with Counterweights. Transfers pushrod lift to depress overhead valve; counterbalances centrifugal force. Interfaces: Rocker pillar, pushrod upper ball end, valve stem tip. Forged steel rocker arm with integral counterweight or opposing balance spring. Source: P1 p. 486-487, Fig. 210.",
+      "evidence": "P1 p. 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Pushrod8",
+      "label": "Valve operating pushrod 8",
+      "group": "valve",
+      "groups": [
+        "component:G23"
+      ],
+      "description": "Tubular Pushrods. Transmits cam follower plunger motion to cylinder head rocker arm. Interfaces: Front cam tappet plunger, rocker arm ball cup. Lightweight seamless steel tube with hardened spherical ball ends. Source: P1 p. 486, 492, Fig. 210.",
+      "evidence": "P1 p. 486, 492; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "OverheadValve9",
+      "label": "Single overhead poppet valve 9",
+      "group": "valve",
+      "groups": [
+        "component:G18"
+      ],
+      "description": "Overhead Single Poppet Valves. Controls exhaust venting (85-360 deg) and fresh air induction (360-475 deg). Interfaces: Cylinder head valve seat, valve guide cage. Single large tulip poppet valve (48 mm head) centrally positioned in cylinder head. Source: P1 p. 278-280, 486, Fig. 111, Fig. 210.",
+      "evidence": "P1 p. 278-280, 486; Fig. 111, Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ValveGuideCage9",
+      "label": "Valve guide cage 9",
+      "group": "valve",
+      "groups": [
+        "component:G19"
+      ],
+      "description": "Valve Guide Cages. Guides valve stem and retains valve seat in cylinder dome. Interfaces: Cylinder dome, valve stem, valve spring. Machined steel or bronze cage pressed and threaded into cylinder head. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "ValveSpring9",
+      "label": "Valve return coil spring 9",
+      "group": "valve",
+      "groups": [
+        "component:G20"
+      ],
+      "description": "Valve Return Coil Springs. Closes valve when pushrod retracts; calibrated to overcome inertia. Interfaces: Valve guide cage, valve spring retainer washer. High-tensile helical steel coil springs surrounding valve stem. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "RockerPillar9",
+      "label": "Rocker support pillar 9",
+      "group": "valve",
+      "groups": [
+        "component:G22"
+      ],
+      "description": "Rocker Support Pillars. Mounts rocker arm pivot securely on cylinder head. Interfaces: Cylinder head, rocker pivot pin. Machined steel pillar screwed and locked to cylinder head dome. Source: P1 p. 486, Fig. 210.",
+      "evidence": "P1 p. 486; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "RockerArm9",
+      "label": "Counterbalanced rocker arm 9",
+      "group": "valve",
+      "groups": [
+        "component:G21"
+      ],
+      "description": "Rocker Arms with Counterweights. Transfers pushrod lift to depress overhead valve; counterbalances centrifugal force. Interfaces: Rocker pillar, pushrod upper ball end, valve stem tip. Forged steel rocker arm with integral counterweight or opposing balance spring. Source: P1 p. 486-487, Fig. 210.",
+      "evidence": "P1 p. 486-487; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "Pushrod9",
+      "label": "Valve operating pushrod 9",
+      "group": "valve",
+      "groups": [
+        "component:G23"
+      ],
+      "description": "Tubular Pushrods. Transmits cam follower plunger motion to cylinder head rocker arm. Interfaces: Front cam tappet plunger, rocker arm ball cup. Lightweight seamless steel tube with hardened spherical ball ends. Source: P1 p. 486, 492, Fig. 210.",
+      "evidence": "P1 p. 486, 492; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CamGearHousing",
+      "label": "Front cam gear casing",
+      "group": "cam",
+      "groups": [
+        "component:G24"
+      ],
+      "description": "Front Cam Gear Case & Nose Housing. Houses epicyclic cam gearing, tappet guides, and propeller flange. Interfaces: Front crankcase face, fixed front crankshaft, propeller hub. Machined aluminum or alloy steel casing with radial bosses for 9 tappet guides. Source: P1 p. 491-492, Figs. 212-213.",
+      "evidence": "P1 p. 491-492; Figs. 212-213",
+      "material": "aluminum",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "NoseCover",
+      "label": "Front cam housing nose cover",
+      "group": "cam",
+      "groups": [
+        "component:G24"
+      ],
+      "description": "Front Cam Gear Case & Nose Housing. Houses epicyclic cam gearing, tappet guides, and propeller flange. Interfaces: Front crankcase face, fixed front crankshaft, propeller hub. Machined aluminum or alloy steel casing with radial bosses for 9 tappet guides. Source: P1 p. 491-492, Figs. 212-213.",
+      "evidence": "P1 p. 492",
+      "material": "aluminum",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SunPinionFixed",
+      "label": "Fixed crankshaft sun pinion",
+      "group": "cam",
+      "groups": [
+        "component:G25"
+      ],
+      "description": "Fixed Sun Pinion. Stationary reaction gear for epicyclic reduction train. Interfaces: Fixed front crankshaft, revolving planet pinions. Spur pinion rigidly keyed to stationary front crankshaft extension. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "PlanetCarrier",
+      "label": "Epicyclic planet gear carrier",
+      "group": "cam",
+      "groups": [
+        "component:G26"
+      ],
+      "description": "Epicyclic Planet Pinions & Carrier. Drives cam sleeve at half relative engine speed. Interfaces: Sun pinion, rotating cam case carrier, cam sleeve driven gear. Planetary gear set revolving with crankcase around fixed sun gear. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "PlanetPinion1",
+      "label": "Compound planet pinion pair 1",
+      "group": "cam",
+      "groups": [
+        "component:G26"
+      ],
+      "description": "Epicyclic Planet Pinions & Carrier. Drives cam sleeve at half relative engine speed. Interfaces: Sun pinion, rotating cam case carrier, cam sleeve driven gear. Planetary gear set revolving with crankcase around fixed sun gear. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "PlanetPinion2",
+      "label": "Compound planet pinion pair 2",
+      "group": "cam",
+      "groups": [
+        "component:G26"
+      ],
+      "description": "Epicyclic Planet Pinions & Carrier. Drives cam sleeve at half relative engine speed. Interfaces: Sun pinion, rotating cam case carrier, cam sleeve driven gear. Planetary gear set revolving with crankcase around fixed sun gear. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "CamSleeve9",
+      "label": "Rotating nine-cam sleeve",
+      "group": "cam",
+      "groups": [
+        "component:G27"
+      ],
+      "description": "Rotating Nine-Cam Sleeve. Carries 9 individual cam lobes to actuate the 9 cylinder pushrods. Interfaces: Cam gear case bronze bushings, 9 roller tappet followers. One-piece sleeve with 9 staggered cam profiles running at half relative speed. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "TappetPlunger1",
+      "label": "Roller tappet plunger 1",
+      "group": "cam",
+      "groups": [
+        "component:G28"
+      ],
+      "description": "Roller Tappet Plungers and Guides. Follows cam profiles and drives pushrods linearly outward. Interfaces: Cam sleeve lobes, pushrod lower ends, cam case guide bosses. Nine hardened steel plungers with bronze roller followers sliding in radial guides. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "TappetGuide1",
+      "label": "Tappet guide sleeve 1",
+      "group": "cam",
+      "groups": [
+        "component:G28"
+      ],
+      "description": "Roller Tappet Plungers and Guides. Follows cam profiles and drives pushrods linearly outward. Interfaces: Cam sleeve lobes, pushrod lower ends, cam case guide bosses. Nine hardened steel plungers with bronze roller followers sliding in radial guides. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "TappetPlunger2",
+      "label": "Roller tappet plunger 2",
+      "group": "cam",
+      "groups": [
+        "component:G28"
+      ],
+      "description": "Roller Tappet Plungers and Guides. Follows cam profiles and drives pushrods linearly outward. Interfaces: Cam sleeve lobes, pushrod lower ends, cam case guide bosses. Nine hardened steel plungers with bronze roller followers sliding in radial guides. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "TappetGuide2",
+      "label": "Tappet guide sleeve 2",
+      "group": "cam",
+      "groups": [
+        "component:G28"
+      ],
+      "description": "Roller Tappet Plungers and Guides. Follows cam profiles and drives pushrods linearly outward. Interfaces: Cam sleeve lobes, pushrod lower ends, cam case guide bosses. Nine hardened steel plungers with bronze roller followers sliding in radial guides. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "TappetPlunger3",
+      "label": "Roller tappet plunger 3",
+      "group": "cam",
+      "groups": [
+        "component:G28"
+      ],
+      "description": "Roller Tappet Plungers and Guides. Follows cam profiles and drives pushrods linearly outward. Interfaces: Cam sleeve lobes, pushrod lower ends, cam case guide bosses. Nine hardened steel plungers with bronze roller followers sliding in radial guides. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "TappetGuide3",
+      "label": "Tappet guide sleeve 3",
+      "group": "cam",
+      "groups": [
+        "component:G28"
+      ],
+      "description": "Roller Tappet Plungers and Guides. Follows cam profiles and drives pushrods linearly outward. Interfaces: Cam sleeve lobes, pushrod lower ends, cam case guide bosses. Nine hardened steel plungers with bronze roller followers sliding in radial guides. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "TappetPlunger4",
+      "label": "Roller tappet plunger 4",
+      "group": "cam",
+      "groups": [
+        "component:G28"
+      ],
+      "description": "Roller Tappet Plungers and Guides. Follows cam profiles and drives pushrods linearly outward. Interfaces: Cam sleeve lobes, pushrod lower ends, cam case guide bosses. Nine hardened steel plungers with bronze roller followers sliding in radial guides. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "TappetGuide4",
+      "label": "Tappet guide sleeve 4",
+      "group": "cam",
+      "groups": [
+        "component:G28"
+      ],
+      "description": "Roller Tappet Plungers and Guides. Follows cam profiles and drives pushrods linearly outward. Interfaces: Cam sleeve lobes, pushrod lower ends, cam case guide bosses. Nine hardened steel plungers with bronze roller followers sliding in radial guides. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "TappetPlunger5",
+      "label": "Roller tappet plunger 5",
+      "group": "cam",
+      "groups": [
+        "component:G28"
+      ],
+      "description": "Roller Tappet Plungers and Guides. Follows cam profiles and drives pushrods linearly outward. Interfaces: Cam sleeve lobes, pushrod lower ends, cam case guide bosses. Nine hardened steel plungers with bronze roller followers sliding in radial guides. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "TappetGuide5",
+      "label": "Tappet guide sleeve 5",
+      "group": "cam",
+      "groups": [
+        "component:G28"
+      ],
+      "description": "Roller Tappet Plungers and Guides. Follows cam profiles and drives pushrods linearly outward. Interfaces: Cam sleeve lobes, pushrod lower ends, cam case guide bosses. Nine hardened steel plungers with bronze roller followers sliding in radial guides. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "TappetPlunger6",
+      "label": "Roller tappet plunger 6",
+      "group": "cam",
+      "groups": [
+        "component:G28"
+      ],
+      "description": "Roller Tappet Plungers and Guides. Follows cam profiles and drives pushrods linearly outward. Interfaces: Cam sleeve lobes, pushrod lower ends, cam case guide bosses. Nine hardened steel plungers with bronze roller followers sliding in radial guides. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "TappetGuide6",
+      "label": "Tappet guide sleeve 6",
+      "group": "cam",
+      "groups": [
+        "component:G28"
+      ],
+      "description": "Roller Tappet Plungers and Guides. Follows cam profiles and drives pushrods linearly outward. Interfaces: Cam sleeve lobes, pushrod lower ends, cam case guide bosses. Nine hardened steel plungers with bronze roller followers sliding in radial guides. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "TappetPlunger7",
+      "label": "Roller tappet plunger 7",
+      "group": "cam",
+      "groups": [
+        "component:G28"
+      ],
+      "description": "Roller Tappet Plungers and Guides. Follows cam profiles and drives pushrods linearly outward. Interfaces: Cam sleeve lobes, pushrod lower ends, cam case guide bosses. Nine hardened steel plungers with bronze roller followers sliding in radial guides. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "TappetGuide7",
+      "label": "Tappet guide sleeve 7",
+      "group": "cam",
+      "groups": [
+        "component:G28"
+      ],
+      "description": "Roller Tappet Plungers and Guides. Follows cam profiles and drives pushrods linearly outward. Interfaces: Cam sleeve lobes, pushrod lower ends, cam case guide bosses. Nine hardened steel plungers with bronze roller followers sliding in radial guides. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "TappetPlunger8",
+      "label": "Roller tappet plunger 8",
+      "group": "cam",
+      "groups": [
+        "component:G28"
+      ],
+      "description": "Roller Tappet Plungers and Guides. Follows cam profiles and drives pushrods linearly outward. Interfaces: Cam sleeve lobes, pushrod lower ends, cam case guide bosses. Nine hardened steel plungers with bronze roller followers sliding in radial guides. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "TappetGuide8",
+      "label": "Tappet guide sleeve 8",
+      "group": "cam",
+      "groups": [
+        "component:G28"
+      ],
+      "description": "Roller Tappet Plungers and Guides. Follows cam profiles and drives pushrods linearly outward. Interfaces: Cam sleeve lobes, pushrod lower ends, cam case guide bosses. Nine hardened steel plungers with bronze roller followers sliding in radial guides. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "TappetPlunger9",
+      "label": "Roller tappet plunger 9",
+      "group": "cam",
+      "groups": [
+        "component:G28"
+      ],
+      "description": "Roller Tappet Plungers and Guides. Follows cam profiles and drives pushrods linearly outward. Interfaces: Cam sleeve lobes, pushrod lower ends, cam case guide bosses. Nine hardened steel plungers with bronze roller followers sliding in radial guides. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "TappetGuide9",
+      "label": "Tappet guide sleeve 9",
+      "group": "cam",
+      "groups": [
+        "component:G28"
+      ],
+      "description": "Roller Tappet Plungers and Guides. Follows cam profiles and drives pushrods linearly outward. Interfaces: Cam sleeve lobes, pushrod lower ends, cam case guide bosses. Nine hardened steel plungers with bronze roller followers sliding in radial guides. Source: P1 p. 492, Fig. 213.",
+      "evidence": "P1 p. 492; Fig. 213",
+      "material": "bronze",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "PropellerHubBody",
+      "label": "Propeller drive hub body",
+      "group": "propeller",
+      "groups": [
+        "component:G29"
+      ],
+      "description": "Propeller Drive Hub & Flange. Mounts wood propeller rigidly to rotating engine nose. Interfaces: Front cam housing extension, propeller hub bolts. Steel hub forging with splines, tapered clamping cones, and front clamping plate. Source: P1 p. 491, Fig. 210.",
+      "evidence": "P1 p. 491; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "PropellerFrontFlange",
+      "label": "Propeller front clamping flange",
+      "group": "propeller",
+      "groups": [
+        "component:G29"
+      ],
+      "description": "Propeller Drive Hub & Flange. Mounts wood propeller rigidly to rotating engine nose. Interfaces: Front cam housing extension, propeller hub bolts. Steel hub forging with splines, tapered clamping cones, and front clamping plate. Source: P1 p. 491, Fig. 210.",
+      "evidence": "P1 p. 491; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "MagnetoDrivePinion",
+      "label": "Magneto driving pinion",
+      "group": "accessory",
+      "groups": [
+        "component:G30"
+      ],
+      "description": "Inverted Magneto Drive & Platform. Drives Splitdorf high-tension magneto at 2.25x engine speed. Interfaces: Rear bearer plate, rear crankcase driving ring. Spur driving gear on rear crankcase mating with magneto pinion; mounted inverted. Source: P1 p. 490-491.",
+      "evidence": "P1 p. 490-491",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "MagnetoMountPlatform",
+      "label": "Inverted magneto mounting platform",
+      "group": "accessory",
+      "groups": [
+        "component:G30"
+      ],
+      "description": "Inverted Magneto Drive & Platform. Drives Splitdorf high-tension magneto at 2.25x engine speed. Interfaces: Rear bearer plate, rear crankcase driving ring. Spur driving gear on rear crankcase mating with magneto pinion; mounted inverted. Source: P1 p. 490-491.",
+      "evidence": "P1 p. 490-491",
+      "material": "aluminum",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "DistributorInsulatorRing",
+      "label": "High-tension distributor insulator ring",
+      "group": "accessory",
+      "groups": [
+        "component:G31"
+      ],
+      "description": "High-Tension Distributor Ring & Segments. Distributes ignition spark to 9 revolving spark plugs. Interfaces: Rear thrust plate, bare brass high-tension wires. Hard rubber ring with 9 embedded brass contact sectors rotating at engine speed. Source: P1 p. 490-491.",
+      "evidence": "P1 p. 490-491",
+      "material": "rubber",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "DistributorSegment1",
+      "label": "Distributor brass contact segment 1",
+      "group": "accessory",
+      "groups": [
+        "component:G31"
+      ],
+      "description": "High-Tension Distributor Ring & Segments. Distributes ignition spark to 9 revolving spark plugs. Interfaces: Rear thrust plate, bare brass high-tension wires. Hard rubber ring with 9 embedded brass contact sectors rotating at engine speed. Source: P1 p. 490-491.",
+      "evidence": "P1 p. 490-491",
+      "material": "brass",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "DistributorSegment2",
+      "label": "Distributor brass contact segment 2",
+      "group": "accessory",
+      "groups": [
+        "component:G31"
+      ],
+      "description": "High-Tension Distributor Ring & Segments. Distributes ignition spark to 9 revolving spark plugs. Interfaces: Rear thrust plate, bare brass high-tension wires. Hard rubber ring with 9 embedded brass contact sectors rotating at engine speed. Source: P1 p. 490-491.",
+      "evidence": "P1 p. 490-491",
+      "material": "brass",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "DistributorSegment3",
+      "label": "Distributor brass contact segment 3",
+      "group": "accessory",
+      "groups": [
+        "component:G31"
+      ],
+      "description": "High-Tension Distributor Ring & Segments. Distributes ignition spark to 9 revolving spark plugs. Interfaces: Rear thrust plate, bare brass high-tension wires. Hard rubber ring with 9 embedded brass contact sectors rotating at engine speed. Source: P1 p. 490-491.",
+      "evidence": "P1 p. 490-491",
+      "material": "brass",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "DistributorSegment4",
+      "label": "Distributor brass contact segment 4",
+      "group": "accessory",
+      "groups": [
+        "component:G31"
+      ],
+      "description": "High-Tension Distributor Ring & Segments. Distributes ignition spark to 9 revolving spark plugs. Interfaces: Rear thrust plate, bare brass high-tension wires. Hard rubber ring with 9 embedded brass contact sectors rotating at engine speed. Source: P1 p. 490-491.",
+      "evidence": "P1 p. 490-491",
+      "material": "brass",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "DistributorSegment5",
+      "label": "Distributor brass contact segment 5",
+      "group": "accessory",
+      "groups": [
+        "component:G31"
+      ],
+      "description": "High-Tension Distributor Ring & Segments. Distributes ignition spark to 9 revolving spark plugs. Interfaces: Rear thrust plate, bare brass high-tension wires. Hard rubber ring with 9 embedded brass contact sectors rotating at engine speed. Source: P1 p. 490-491.",
+      "evidence": "P1 p. 490-491",
+      "material": "brass",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "DistributorSegment6",
+      "label": "Distributor brass contact segment 6",
+      "group": "accessory",
+      "groups": [
+        "component:G31"
+      ],
+      "description": "High-Tension Distributor Ring & Segments. Distributes ignition spark to 9 revolving spark plugs. Interfaces: Rear thrust plate, bare brass high-tension wires. Hard rubber ring with 9 embedded brass contact sectors rotating at engine speed. Source: P1 p. 490-491.",
+      "evidence": "P1 p. 490-491",
+      "material": "brass",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "DistributorSegment7",
+      "label": "Distributor brass contact segment 7",
+      "group": "accessory",
+      "groups": [
+        "component:G31"
+      ],
+      "description": "High-Tension Distributor Ring & Segments. Distributes ignition spark to 9 revolving spark plugs. Interfaces: Rear thrust plate, bare brass high-tension wires. Hard rubber ring with 9 embedded brass contact sectors rotating at engine speed. Source: P1 p. 490-491.",
+      "evidence": "P1 p. 490-491",
+      "material": "brass",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "DistributorSegment8",
+      "label": "Distributor brass contact segment 8",
+      "group": "accessory",
+      "groups": [
+        "component:G31"
+      ],
+      "description": "High-Tension Distributor Ring & Segments. Distributes ignition spark to 9 revolving spark plugs. Interfaces: Rear thrust plate, bare brass high-tension wires. Hard rubber ring with 9 embedded brass contact sectors rotating at engine speed. Source: P1 p. 490-491.",
+      "evidence": "P1 p. 490-491",
+      "material": "brass",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "DistributorSegment9",
+      "label": "Distributor brass contact segment 9",
+      "group": "accessory",
+      "groups": [
+        "component:G31"
+      ],
+      "description": "High-Tension Distributor Ring & Segments. Distributes ignition spark to 9 revolving spark plugs. Interfaces: Rear thrust plate, bare brass high-tension wires. Hard rubber ring with 9 embedded brass contact sectors rotating at engine speed. Source: P1 p. 490-491.",
+      "evidence": "P1 p. 490-491",
+      "material": "brass",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SparkPlug1",
+      "label": "Aviation spark plug 1",
+      "group": "accessory",
+      "groups": [
+        "component:G32"
+      ],
+      "description": "Spark Plugs. Fires compressed combustible mixture in cylinder side dome. Interfaces: Cylinder side tapped boss, distributor wire clips. Metric threaded aviation spark plugs with copper-asbestos sealing gaskets. Source: P1 p. 486, 491, Fig. 210.",
+      "evidence": "P1 p. 486, 491; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SparkPlug2",
+      "label": "Aviation spark plug 2",
+      "group": "accessory",
+      "groups": [
+        "component:G32"
+      ],
+      "description": "Spark Plugs. Fires compressed combustible mixture in cylinder side dome. Interfaces: Cylinder side tapped boss, distributor wire clips. Metric threaded aviation spark plugs with copper-asbestos sealing gaskets. Source: P1 p. 486, 491, Fig. 210.",
+      "evidence": "P1 p. 486, 491; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SparkPlug3",
+      "label": "Aviation spark plug 3",
+      "group": "accessory",
+      "groups": [
+        "component:G32"
+      ],
+      "description": "Spark Plugs. Fires compressed combustible mixture in cylinder side dome. Interfaces: Cylinder side tapped boss, distributor wire clips. Metric threaded aviation spark plugs with copper-asbestos sealing gaskets. Source: P1 p. 486, 491, Fig. 210.",
+      "evidence": "P1 p. 486, 491; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SparkPlug4",
+      "label": "Aviation spark plug 4",
+      "group": "accessory",
+      "groups": [
+        "component:G32"
+      ],
+      "description": "Spark Plugs. Fires compressed combustible mixture in cylinder side dome. Interfaces: Cylinder side tapped boss, distributor wire clips. Metric threaded aviation spark plugs with copper-asbestos sealing gaskets. Source: P1 p. 486, 491, Fig. 210.",
+      "evidence": "P1 p. 486, 491; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SparkPlug5",
+      "label": "Aviation spark plug 5",
+      "group": "accessory",
+      "groups": [
+        "component:G32"
+      ],
+      "description": "Spark Plugs. Fires compressed combustible mixture in cylinder side dome. Interfaces: Cylinder side tapped boss, distributor wire clips. Metric threaded aviation spark plugs with copper-asbestos sealing gaskets. Source: P1 p. 486, 491, Fig. 210.",
+      "evidence": "P1 p. 486, 491; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SparkPlug6",
+      "label": "Aviation spark plug 6",
+      "group": "accessory",
+      "groups": [
+        "component:G32"
+      ],
+      "description": "Spark Plugs. Fires compressed combustible mixture in cylinder side dome. Interfaces: Cylinder side tapped boss, distributor wire clips. Metric threaded aviation spark plugs with copper-asbestos sealing gaskets. Source: P1 p. 486, 491, Fig. 210.",
+      "evidence": "P1 p. 486, 491; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SparkPlug7",
+      "label": "Aviation spark plug 7",
+      "group": "accessory",
+      "groups": [
+        "component:G32"
+      ],
+      "description": "Spark Plugs. Fires compressed combustible mixture in cylinder side dome. Interfaces: Cylinder side tapped boss, distributor wire clips. Metric threaded aviation spark plugs with copper-asbestos sealing gaskets. Source: P1 p. 486, 491, Fig. 210.",
+      "evidence": "P1 p. 486, 491; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SparkPlug8",
+      "label": "Aviation spark plug 8",
+      "group": "accessory",
+      "groups": [
+        "component:G32"
+      ],
+      "description": "Spark Plugs. Fires compressed combustible mixture in cylinder side dome. Interfaces: Cylinder side tapped boss, distributor wire clips. Metric threaded aviation spark plugs with copper-asbestos sealing gaskets. Source: P1 p. 486, 491, Fig. 210.",
+      "evidence": "P1 p. 486, 491; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "SparkPlug9",
+      "label": "Aviation spark plug 9",
+      "group": "accessory",
+      "groups": [
+        "component:G32"
+      ],
+      "description": "Spark Plugs. Fires compressed combustible mixture in cylinder side dome. Interfaces: Cylinder side tapped boss, distributor wire clips. Metric threaded aviation spark plugs with copper-asbestos sealing gaskets. Source: P1 p. 486, 491, Fig. 210.",
+      "evidence": "P1 p. 486, 491; Fig. 210",
+      "material": "steel",
+      "disposition": "modelled",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "DualPumpBody",
+      "label": "Dual oil and air pump body",
+      "group": "accessory",
+      "groups": [
+        "component:G33"
+      ],
+      "description": "Dual Plunger Castor Oil and Air Pump. Pumps castor oil and pressurizes gasoline fuel tank to 5 psi. Interfaces: Rear bearer plate, rear crankshaft drive eccentric. Reciprocating plunger pump assembly driven off rear crankshaft eccentric. Source: P1 p. 490, 492-493, Fig. 210.",
+      "evidence": "P1 p. 490, 492-493; Fig. 210",
+      "material": "bronze",
+      "disposition": "simplified",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    },
+    {
+      "id": "DualPumpPlunger",
+      "label": "Dual pump reciprocating plunger",
+      "group": "accessory",
+      "groups": [
+        "component:G33"
+      ],
+      "description": "Dual Plunger Castor Oil and Air Pump. Pumps castor oil and pressurizes gasoline fuel tank to 5 psi. Interfaces: Rear bearer plate, rear crankshaft drive eccentric. Reciprocating plunger pump assembly driven off rear crankshaft eccentric. Source: P1 p. 490, 492-493, Fig. 210.",
+      "evidence": "P1 p. 492-493",
+      "material": "steel",
+      "disposition": "simplified",
+      "shape_status": "Reconstructed from the period text and handbook; dimensions the sources omit are estimated; instructor review pending"
+    }
+  ],
+  "groups": [
+    {
+      "id": "crank",
+      "label": "Fixed crankshaft",
+      "depth": 0,
+      "question": "What stays still while the engine turns?"
+    },
+    {
+      "id": "component:G01",
+      "label": "Fixed Hollow Crankshaft",
+      "depth": 1
+    },
+    {
+      "id": "case",
+      "label": "Revolving crankcase",
+      "depth": 0,
+      "question": "What turns with the propeller?"
+    },
+    {
+      "id": "component:G05",
+      "label": "Revolving Crankcase Shell",
+      "depth": 1
+    },
+    {
+      "id": "component:G06",
+      "label": "Crankcase Tie Bolts",
+      "depth": 1
+    },
+    {
+      "id": "cylinder",
+      "label": "Cylinders and transfer ports",
+      "depth": 0,
+      "question": "How does the mixture get from the crankcase into a cylinder?"
+    },
+    {
+      "id": "component:G11",
+      "label": "Steel Cylinders with Integral Fins",
+      "depth": 1
+    },
+    {
+      "id": "component:G12",
+      "label": "Cylinder Retaining Clamping Rings",
+      "depth": 1
+    },
+    {
+      "id": "component:G13",
+      "label": "Skirt Scavenging & Transfer Ports",
+      "depth": 1
+    },
+    {
+      "id": "piston",
+      "label": "Pistons, rings and pins",
+      "depth": 0,
+      "question": "What does the combustion push on?"
+    },
+    {
+      "id": "component:G14",
+      "label": "Cast-Iron Pistons",
+      "depth": 1
+    },
+    {
+      "id": "component:G15",
+      "label": "Bronze L-Section Obturator Rings",
+      "depth": 1
+    },
+    {
+      "id": "component:G16",
+      "label": "Cast-Iron Compression Rings",
+      "depth": 1
+    },
+    {
+      "id": "component:G17",
+      "label": "Piston Gudgeon Wrist Pins",
+      "depth": 1
+    },
+    {
+      "id": "rod",
+      "label": "Master and auxiliary rods",
+      "depth": 0,
+      "question": "How do nine pistons share one crankpin?"
+    },
+    {
+      "id": "component:G07",
+      "label": "Master (Mother) Connecting Rod",
+      "depth": 1
+    },
+    {
+      "id": "component:G09",
+      "label": "Auxiliary (Link) Connecting Rods",
+      "depth": 1
+    },
+    {
+      "id": "component:G10",
+      "label": "Auxiliary Knuckle Pins and Bushings",
+      "depth": 1
+    },
+    {
+      "id": "bearing",
+      "label": "Rod bearings",
+      "depth": 0,
+      "question": "What lets the rods turn on their pins?"
+    },
+    {
+      "id": "component:G08",
+      "label": "Master Big-End Ball Bearings",
+      "depth": 1
+    },
+    {
+      "id": "valve",
+      "label": "Overhead valve train",
+      "depth": 0,
+      "question": "How does one valve do the work of two?"
+    },
+    {
+      "id": "component:G18",
+      "label": "Overhead Single Poppet Valves",
+      "depth": 1
+    },
+    {
+      "id": "component:G19",
+      "label": "Valve Guide Cages",
+      "depth": 1
+    },
+    {
+      "id": "component:G20",
+      "label": "Valve Return Coil Springs",
+      "depth": 1
+    },
+    {
+      "id": "component:G21",
+      "label": "Rocker Arms with Counterweights",
+      "depth": 1
+    },
+    {
+      "id": "component:G22",
+      "label": "Rocker Support Pillars",
+      "depth": 1
+    },
+    {
+      "id": "component:G23",
+      "label": "Tubular Pushrods",
+      "depth": 1
+    },
+    {
+      "id": "cam",
+      "label": "Epicyclic cam drive",
+      "depth": 0,
+      "question": "How are the valves timed when the cylinders turn?"
+    },
+    {
+      "id": "component:G24",
+      "label": "Front Cam Gear Case & Nose Housing",
+      "depth": 1
+    },
+    {
+      "id": "component:G25",
+      "label": "Fixed Sun Pinion",
+      "depth": 1
+    },
+    {
+      "id": "component:G26",
+      "label": "Epicyclic Planet Pinions & Carrier",
+      "depth": 1
+    },
+    {
+      "id": "component:G27",
+      "label": "Rotating Nine-Cam Sleeve",
+      "depth": 1
+    },
+    {
+      "id": "component:G28",
+      "label": "Roller Tappet Plungers and Guides",
+      "depth": 1
+    },
+    {
+      "id": "propeller",
+      "label": "Propeller drive",
+      "depth": 0,
+      "question": "How does the power leave the engine?"
+    },
+    {
+      "id": "component:G29",
+      "label": "Propeller Drive Hub & Flange",
+      "depth": 1
+    },
+    {
+      "id": "accessory",
+      "label": "Mounting, fuel, oil and ignition",
+      "depth": 0,
+      "question": "How is the engine held, fed and fired?"
+    },
+    {
+      "id": "component:G02",
+      "label": "Internal Fuel Spray Conduit & Nozzle",
+      "depth": 1
+    },
+    {
+      "id": "component:G03",
+      "label": "Internal Lubrication Oil Conduits",
+      "depth": 1
+    },
+    {
+      "id": "component:G04",
+      "label": "Fuselage Bearer Plates (Spiders)",
+      "depth": 1
+    },
+    {
+      "id": "component:G30",
+      "label": "Inverted Magneto Drive & Platform",
+      "depth": 1
+    },
+    {
+      "id": "component:G31",
+      "label": "High-Tension Distributor Ring & Segments",
+      "depth": 1
+    },
+    {
+      "id": "component:G32",
+      "label": "Spark Plugs",
+      "depth": 1
+    },
+    {
+      "id": "component:G33",
+      "label": "Dual Plunger Castor Oil and Air Pump",
+      "depth": 1
+    }
+  ],
+  "reference": "Page, Aviation Engines (1917), chapters VIII-XII (P1); British Air Board, The Care of the 100 hp Monosoupape Engine (1917) and Technical Notes (1918); see cad-studies/gnome-monosoupape-1913/research.md.",
+  "scope": "Source-led teaching reconstruction of the 100 hp Gnome Monosoupape Type B-2 nine-cylinder rotary (1913), drawn from Page's Aviation Engines (1917) and the British Air Board handbook; it is not a museum object, not a manufacturing drawing and not a running model. Dimensions the sources do not give are estimates (the master and auxiliary rod lengths, the knuckle radius, wall thicknesses). The operating motion is illustrative: the fixed crankshaft with the case, cylinders and propeller turning about it, the master rod with eight auxiliary rods, the 1-3-5-7-9-2-4-6-8 firing order, the 85 to 475 degree single-valve window with 11.5 mm lift and the half-speed cam sleeve follow the sources. The lift curve inside that window, the rocker and pushrod geometry, the planet-pinion spin and the cam lobes are teaching choices; the lobes are schematic and do not drive the tappets. Valve timing is keyed to the nominal 40 degree cylinder spacing, while the articulated rods shift each piston's true top dead centre by up to 5 degrees, as on the real engine. The magneto, the pump and the spark are not animated.",
+  "motions": [
+    {
+      "id": "Operating mechanism (illustrative)",
+      "label": "Operating mechanism (illustrative)",
+      "loop": true,
+      "stages": [
+        {
+          "label": "Cylinder 1 at top dead centre, firing",
+          "progress": 0,
+          "note": "Cylinder 1 is at the top of its compression stroke and fires. The crankshaft and its crankpin never move: the case, the nine cylinders and the propeller turn about them, and each piston's rod pulls it toward the fixed crankpin as its cylinder swings round."
+        },
+        {
+          "label": "Half a case turn",
+          "progress": 25,
+          "note": "The case has turned 180 degrees. Cylinders fire every 80 degrees in the order 1-3-5-7-9-2-4-6-8, so cylinders 3 and 5 have fired since cylinder 1. The single overhead valve of cylinder 1 opened at 85 degrees, early in the stroke, to let the exhaust out."
+        },
+        {
+          "label": "One case turn",
+          "progress": 50,
+          "note": "Cylinder 1 is back at the top with its valve still open: on the Monosoupape the one valve stays open into the next stroke and draws in fresh air. The cam sleeve has turned half as far as the case."
+        },
+        {
+          "label": "Three half-turns",
+          "progress": 75,
+          "note": "Cylinder 1's valve closed at 115 degrees past the top; the piston kept going down and made a vacuum, then uncovered the skirt ports near the bottom so rich mixture rushed in from the crankcase. That is why the engine needs only one valve."
+        },
+        {
+          "label": "Two case turns: one four-stroke cycle",
+          "progress": 100,
+          "note": "Every cylinder has fired once. The lift curve, the rocker and pushrod geometry and the cam lobes here are teaching choices; the window, the lift and the firing order follow the sources."
+        }
+      ]
+    },
+    {
+      "id": "Systems exploded view",
+      "label": "Systems exploded view",
+      "loop": false,
+      "stages": [
+        {
+          "label": "Assembled",
+          "progress": 0,
+          "note": "The engine as modelled: every part in its assembled position, cylinder 1 at the top and every valve closed."
+        },
+        {
+          "label": "Nose, cam drive and accessories",
+          "progress": 34,
+          "note": "At the front the propeller hub, the nose cover, the cam gear case with its tappets, the nine-cam sleeve and the epicyclic planet gears move forward along the shaft; at the rear the distributor ring, the magneto drive and the fuselage bearer plates move back. The spark plugs leave the cylinders."
+        },
+        {
+          "label": "Valve gear",
+          "progress": 67,
+          "note": "Each cylinder's overhead valve train moves out along its own axis: the rocker and its pillar, the pushrod, the valve with its spring and guide cage."
+        },
+        {
+          "label": "Cylinders, pistons and crankcase",
+          "progress": 100,
+          "note": "The nine cylinders with their clamps and port belts move out along their axes, the pistons part from the auxiliary rods, and the two crankcase bowls and the tie bolts separate along the shaft. The fixed crankshaft with the master rod and the eight auxiliary rods stays as the reference."
+        }
+      ]
+    }
+  ],
+  "viewpoint": "Axes: the crankshaft runs along x with the propeller at the front (-x) and the fuselage at the rear (+x), z is up and cylinder 1 points up at the assembled pose. The crankpin is fixed at +z; the case turns clockwise seen from the cockpit (from +x looking forward).",
+  "remoteDisplays": []
+}

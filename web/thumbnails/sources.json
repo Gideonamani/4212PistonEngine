@@ -328,6 +328,12 @@
         "credit": "Rendered from the app's Langley / Manly-Balzer 1903 reconstruction (assembled)",
         "license": "Course material"
       },
+      "gnome-monosoupape-1913": {
+        "kind": "render",
+        "path": "explore-gnome-monosoupape-1913.webp",
+        "credit": "Rendered from the app's Gnome Monosoupape 1913 reconstruction (assembled)",
+        "license": "Course material"
+      },
       "hydraulic-tappet": {
         "kind": "render",
         "path": "explore-hydraulic-tappet.webp",

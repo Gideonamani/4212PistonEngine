@@ -266,6 +266,40 @@
     "lessonControls": true
   },
   {
+    "id": "gnome-monosoupape-1913",
+    "label": "1913 Gnome Monosoupape rotary engine, modelled part by part",
+    "shortLabel": "Gnome rotary reconstruction",
+    "adapter": "animated-study",
+    "headerLabel": "GNOME ROTARY \u00b7 RECONSTRUCTION",
+    "summary": "Nine-cylinder rotary from Page's 1917 text: the crankshaft stays still and the engine turns. Timing is illustrative.",
+    "capabilities": [
+      {
+        "kind": "animated",
+        "note": "Illustrative operating cycle"
+      },
+      {
+        "kind": "exploded",
+        "note": "Systems exploded view"
+      },
+      {
+        "kind": "parts",
+        "note": "214 modelled parts"
+      }
+    ],
+    "previewUrl": "./model-previews/gnome-monosoupape-1913.webp",
+    "sources": [
+      {
+        "localUrl": "./gnome-monosoupape-1913.glb.gz?v=1417205c5da9",
+        "compressed": true,
+        "transferBytes": 15128689,
+        "decodedBytes": 48302096,
+        "driveId": "PENDING_DRIVE_ID"
+      }
+    ],
+    "contractUrl": "./gnome-monosoupape-1913-contract.json?v=dba12bb0840d",
+    "lessonControls": true
+  },
+  {
     "id": "hydraulic-tappet",
     "label": "Hydraulic tappet internals",
     "shortLabel": "Hydraulic tappet",
