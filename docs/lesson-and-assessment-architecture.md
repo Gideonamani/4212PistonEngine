@@ -238,12 +238,13 @@ Each stage's note cites its paragraph. The order is the manual's, but the distan
   - In the removal motion, a part may move several times in turn (`moves`: a stage and an offset each). A valve leaves with its cylinder and then comes out of it.
   - `src/viewer/core/saved-motions.mjs` adds the moves up (`offsetAt`). The adapter lists every motion in the file, and Previous stage and Next stage stop at each motion's own stages.
   - `scripts/test_removal_motion.mjs` pins the manual's order. `scripts/build_cylinder_removal_motion.mjs` writes the removal motion into the file, so change it there and rerun it.
-- **Lesson.** Maintenance & Servicing (lesson 16) uses the motion in steps 18, 19, 21 and 23:
+- **Lesson.** Maintenance & Servicing (lesson 16) uses the motion in steps 18, 19, 21, 22 and 24:
   - the cylinder in the manual's order;
   - valves closed before the rockers come off;
   - the parts the manual always replaces;
+  - finding a part number in the illustrated parts catalogue (issue #76): two example entries, the piston pin and plug assembly and the hydraulic lifter with its note on nitralloy guides. Part numbers are kept to these few on purpose: the lesson teaches looking a number up in the current catalogue and reading its notes, and learners remember parts by name and job, not number;
   - measuring a cylinder (paragraph 9-19).
 
-  Step 17 lists the engine-level order: ignition, fuel injection, induction, accessory drives, sump, oil cooler, alternator, starter, oil pump, cylinders, crankcase, camshaft, crankshaft. Four checks go with these steps: an ordering question, two multiple-choice questions and the bore-measurement station.
+  Step 17 lists the engine-level order: ignition, fuel injection, induction, accessory drives, sump, oil cooler, alternator, starter, oil pump, cylinders, crankcase, camshaft, crankshaft. Six checks go with these steps: an ordering question, two multiple-choice questions on the removal, the bore-measurement station, and two on reading a catalogue entry (its note, and where a part number comes from).
 - **Not shown.** The engine-level order is text, not motion: the full-engine model cannot take parts off. The manual's table of limits (Chapter B) is a scanned table whose columns do not read reliably as text, so the lesson gives only the limits stated in prose (9-19) and sends the learner to the current table for the numbers.
 

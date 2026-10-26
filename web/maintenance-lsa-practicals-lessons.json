@@ -69,6 +69,13 @@
       "title": "The course instructor's list of the four practical working areas and which practical belongs to each, 13 October 2026, with the instructor's teaching notes (Observation from teaching AMT04212 in 20252026)",
       "path": "Supplied in chat by the course instructor on 13 October 2026; Notes/Observation from teaching AMT04212 in 20252026.txt",
       "applicability": "The instructor's own statement of what equipment the course has and where each practical takes place: I, the motorised engine mechanism, in the HighTech Powerplant Lab (a cut-away O-360); II, the internal disassembled components, in the Hangar (two disassembled engines in the Engine Room, one with a four-throw and one with a six-throw crankshaft); III, the external assembled components, in the Aviation Complex Powerplant Room (four assembled GTSIO-520 engines) and the assembled O-360 in the Hangar; IV, the engine mounted on an aircraft, a Cessna 182 outside the Hangar. It carries no technical evidence. It does not say where the Practical C maintenance tasks are done, or what the assessor looks for."
+    },
+    {
+      "id": "gtsio520-ipc",
+      "tier": 3,
+      "title": "Continental GTSIO-520 Series Illustrated Parts Catalog, Form X-30046",
+      "path": "Continental_GTSIO-520_Illustrated_Parts_Catalog_Form_X-30046.pdf (project Google Drive)",
+      "applicability": "The manufacturer's parts catalogue for the GTSIO-520 series (models C, D, F, H, K, L, M, N): figures of each group of parts with index numbers, the part number and quantity for each, notes on interchangeability, and a numerical parts list. Used in lesson 16 for two example entries only, each confirmed in both the figure list and the numerical list: figure 5 index 8, hydraulic valve lifter assembly (646277, and the older 628488, with the notes that lifter 646277 must be used with a nitralloy guide and that the older 628488 lifter must use the 628491 snap ring), and figure 7 index 6, piston pin and plug assembly (630046). The catalogue in the course's copy predates later changes: always use the current catalogue and its revisions for the engine in front of you."
     }
   ],
   "lessons": [
@@ -445,6 +452,30 @@
             "mode": "existing-3d",
             "status": "available",
             "rationale": "The removal motion near its end, with the parts the manual always replaces spotlit."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Finding a part number",
+          "modelId": "cylinder",
+          "savedMotionId": "removal",
+          "motionProgress": 88.89,
+          "focusParts": [
+            "FloatingPin",
+            "PinPlugLeft",
+            "PinPlugRight",
+            "IntakeHydraulicLifterBody",
+            "ExhaustHydraulicLifterBody"
+          ],
+          "prompt": "A new part is ordered by its part number, and the number comes from the engine's illustrated parts catalogue, never from memory. Find the part in the figure for its group, note its index number, and read the number and any notes in the list beside the figure.\n\nTwo entries from the GTSIO-520 catalogue show why. The [piston pin](FloatingPin) and its two plugs are a single entry, the pin and plug assembly (630046), so they are ordered together. The hydraulic lifter entry lists an older lifter and a newer one (646277), with a note that the newer lifter must be used with nitralloy guides.\n\nNumbers change as parts are improved. Know a part by its name and its job; look its number up each time, in the current catalogue.",
+          "note": "Documented from the Continental GTSIO-520 Illustrated Parts Catalog, Form X-30046: Figure 5, index 8, Lifter Assembly, Hydraulic Valve, Intake and Exhaust, part numbers 628488 and 646277, with the figure's notes \"Lifter 646277 must be used with nitralloy guide\" and \"Older configuration of the 628488 lifter must use 628491 snap ring. Lifters can be identified by the socket oil hole diameter differences, 1/16 inch for the old design and 1/8 inch for the new\"; Figure 7, index 6, Pin and Plug Assembly, 630046. Both pairings are confirmed in the catalogue's numerical parts list (628488 at 05-08, 630046 at 07-06). Section I, paragraph 1-5: each figure has its own index numbers, with the parts list on the same or an adjacent page; 1-10: the numerical list (Section V) gives the figure and index opposite each part number; 1-2: each page is dated, and is current only when its date matches the status page. The model shows only the lifter's outer body; the catalogue number is for the whole lifter assembly. That numbers are looked up rather than remembered is the lesson's own teaching point.",
+          "sourceRefs": [
+            "gtsio520-ipc"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The removal motion near its end, with the two catalogue examples spotlit."
           }
         },
         {
@@ -2142,6 +2173,36 @@
       "correctValue": 5.75,
       "tolerance": 0,
       "rationale": "Paragraph 9-19: the bore is measured at the 5-3/4 inch station from the open end, in the thrust direction and at right angles to it, to find out-of-round and taper. There should be little or no wear at the open end itself."
+    },
+    {
+      "id": "maint-ipc-note",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "You need a replacement hydraulic lifter. The parts catalogue lists 646277 with the note \"Lifter 646277 must be used with nitralloy guide.\" What should you do before fitting it?",
+      "hint": "Read what the note asks about the part the lifter works in.",
+      "answers": [
+        "Check that the engine's lifter guides are the nitralloy type",
+        "Nothing: lifters fit any engine of the series",
+        "Order a nitralloy lifter instead",
+        "Fit it with the older lifter's snap ring"
+      ],
+      "correct": 0,
+      "rationale": "A catalogue note is part of the entry. This one says the newer lifter belongs only with nitralloy guides, so the guides are checked before the lifter is fitted. The older 628488 lifter has its own note, about its snap ring."
+    },
+    {
+      "id": "maint-ipc-where",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "Where should a technician get the part number for a replacement part?",
+      "hint": "Numbers change as parts are improved.",
+      "answers": [
+        "From the current illustrated parts catalogue for that engine",
+        "From memory of the last time the part was ordered",
+        "From the course slides",
+        "From the number on the old part, without checking anything"
+      ],
+      "correct": 0,
+      "rationale": "The illustrated parts catalogue gives each part's number beside its figure and index, with notes on which parts go together and which replace older ones. Numbers are superseded, so the current catalogue is used every time; a learner remembers the part's name and job, not its number."
     },
     {
       "id": "lsa-max-speed",
