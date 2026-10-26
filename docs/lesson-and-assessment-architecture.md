@@ -216,3 +216,34 @@ On a spotlight step (or any step with `sectionPlane`) the same bar offers a **Cr
 - `offset` (0 to 1, default 0.5) is where the plane sits across the model along that normal; the learner can slide it with the Section tab's Plane position slider.
 
 Every step starts uncut, with its own recommended plane (or none), so a cut never carries into a step about something else. To pick values, read the part's world bounds from the model: a plane that holds a part's axis shows it lengthwise. Mind the pose: a saved motion such as `exploded` moves parts out of the plane (the springs in lesson 08 step 4 leave the valve axis, so that step names none). The schema test validates the shape; the controller is `src/viewer/core/section-controller.mjs` and the card is `src/viewer/controls/SectionPanel.tsx`, shared by the lesson dock and Explore's Section tab (Explore adds Reverse cut and Reset).
+
+## The cylinder's removal order (issue #75)
+
+The operating cylinder has a fourth motion beside the crank, the exploded overview and its reassembly: **Removal order (overhaul manual)**, id `removal`. It takes one cylinder apart in the order of the Continental GTSIO-520 overhaul manual, Section VII, paragraphs 7-7d, 7-15a to h and 7-18b (PDF pp. 55-59, printed A-7-1 to A-7-5):
+
+1. the fuel nozzle;
+2. the rocker covers;
+3. the rockers and pushrods, with both valves closed;
+4. the pushrod housings;
+5. the cylinder, at top dead centre;
+6. the valve springs and valves;
+7. the piston;
+8. the hydraulic tappets;
+9. the rod off the crankpin, once the crankcase is split.
+
+Each stage's note cites its paragraph. The order is the manual's, but the distances parts move are illustrative, and the scope line says so.
+
+- **Data.** It lives in `web/cylinder-saved-motions.json` under `motions`, beside the overview's own `stages` and `parts`.
+  - In the overview, a part moves once (`stage`, `offset_m`).
+  - In the removal motion, a part may move several times in turn (`moves`: a stage and an offset each). A valve leaves with its cylinder and then comes out of it.
+  - `src/viewer/core/saved-motions.mjs` adds the moves up (`offsetAt`). The adapter lists every motion in the file, and Previous stage and Next stage stop at each motion's own stages.
+  - `scripts/test_removal_motion.mjs` pins the manual's order. `scripts/build_cylinder_removal_motion.mjs` writes the removal motion into the file, so change it there and rerun it.
+- **Lesson.** Maintenance & Servicing (lesson 16) uses the motion in steps 18, 19, 21 and 23:
+  - the cylinder in the manual's order;
+  - valves closed before the rockers come off;
+  - the parts the manual always replaces;
+  - measuring a cylinder (paragraph 9-19).
+
+  Step 17 lists the engine-level order: ignition, fuel injection, induction, accessory drives, sump, oil cooler, alternator, starter, oil pump, cylinders, crankcase, camshaft, crankshaft. Four checks go with these steps: an ordering question, two multiple-choice questions and the bore-measurement station.
+- **Not shown.** The engine-level order is text, not motion: the full-engine model cannot take parts off. The manual's table of limits (Chapter B) is a scanned table whose columns do not read reliably as text, so the lesson gives only the limits stated in prose (9-19) and sends the learner to the current table for the numbers.
+

@@ -100,7 +100,7 @@
       ],
       "syllabusNote": "The corresponding practical competencies are completed in Lesson 18 rather than treated as theory only.",
       "reviewStatus": "unreviewed",
-      "models": [],
+      "models": ["cylinder"],
       "listed": true,
       "scheduledDay": 6,
       "completionCriteria": "Explain why an engine is maintained and who is responsible, tell inspection, maintenance, repair, overhaul, preventive maintenance and servicing apart, say why approved data and limits must be used and where to find them, and describe an outside inspection and the evidence it shows; run and read a differential compression test; explain the servicing of oil and filters, spark plugs and other fluids, and point to where the valve-train and exhaust inspections are taught; put the ten overhaul steps in order, say how a cylinder is removed and refitted, and plan the storage, preservation and return to service of an engine; and say what must be written in the engine record after the work.",
@@ -350,6 +350,65 @@
         },
         {
           "type": "text",
+          "title": "The manual's order",
+          "prompt": "For the GTSIO-520, the overhaul manual sets the order, and the drawings in its disassembly section number the parts in the order they come off. With the engine on a tilting stand and its oil drained, the ignition comes off first: the leads, then the magnetos. Then the fuel injection system, the induction system, and the magneto and accessory drives. Next the oil sump, the oil cooler, the alternator, the starter and its adapter, and the oil pump.\n\nOnly then do the cylinders and pistons come off. Last, the crankcase is split, the camshaft and crankshaft come out, and the rods come off the crankshaft.",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, Section VII, PDF pp. 55-59 (printed A-7-1 to A-7-5): paragraph 7-1a (the section assumes the parts the aircraft manufacturer attached are already off), 7-2 (index numbers in the section's drawings give the order of disassembly), 7-4 (a stand with a tilting bed), 7-5 (the sump drain plugs are removed to drain the oil), then 7-6 ignition (cables, then the magnetos), 7-7 fuel injection, 7-8 induction, 7-9 magneto and accessory drives, 7-10 oil sump, 7-11 oil cooler, 7-12 alternator, 7-13 starter and starter adapter, 7-14 oil pump, 7-15 cylinders and pistons, 7-16 crankcase, 7-17 camshaft and 7-18 crankshaft (the rods come off at 7-18b). Chapter A is written for the basic GTSIO-520; the -H difference data (Chapter C-3) gives its own fuel injection and induction disassembly, so check it for the -H. The summary is the lesson's own; the order is the manual's.",
+          "sourceRefs": [
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "none",
+            "status": "not-needed",
+            "rationale": "A list of stages; the next step shows them on the cylinder."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "One cylinder, in that order",
+          "modelId": "cylinder",
+          "savedMotionId": "removal",
+          "motionProgress": 0,
+          "prompt": "Here is one cylinder taken apart in the manual's order. Play it, or step through it one stage at a time with the Motion controls, and read the note under each stage.\n\nWhat must be true of the crankshaft before this cylinder's rockers come off, and again before the cylinder itself comes off?\n\nThe model shows the order only. How far each part moves is chosen so you can see it, and the work around the cylinder (the accessories, the sump, the crankcase) is not in this one-cylinder model.",
+          "note": "Documented from the GTSIO-520 overhaul manual, paragraph 7-15, PDF pp. 57-58 (printed A-7-3 and A-7-4): a, engine inverted, rocker covers and gaskets off; b, crankshaft turned so the valve lifters of the cylinder are on the heels of the cam lobes and both valves fully closed, then the rocker shafts, rocker assemblies and thrust washers off and the pushrods withdrawn; c, pushrod housings pushed against their springs and lifted out; d, engine upright, piston at top dead centre, base nuts off, cylinder withdrawn straight outward and the piston caught as it clears; e and f, valve springs compressed, keys, retainers or rotocap, springs and valves out; g, piston pins, piston and rings off as an assembly; h, hydraulic lifters out. The rod comes off the crankpin only at 7-18b, PDF p. 59 (printed A-7-5), after the crankcase is split. The fuel nozzle comes out with the fuel injection system (7-7d). The motion is the \"Removal order\" saved motion in web/cylinder-saved-motions.json: its order is the manual's, its distances are illustrative, and the spark plugs stay in the cylinder because Section VII does not say when they come out.",
+          "sourceRefs": [
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The cylinder's removal-order motion shows each stage in turn."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Valves closed, then rockers out",
+          "modelId": "cylinder",
+          "savedMotionId": "removal",
+          "motionProgress": 22.22,
+          "focusParts": [
+            "IntakeRockerArm",
+            "ExhaustRockerArm",
+            "IntakeRockerShaft",
+            "ExhaustRockerShaft",
+            "IntakePushrod",
+            "ExhaustPushrod",
+            "IntakeHydraulicLifterBody",
+            "ExhaustHydraulicLifterBody"
+          ],
+          "prompt": "The rocker covers are off. Before the rockers come out, turn the crankshaft until both valves of this cylinder are closed, with its tappets on the heels of the cam lobes. With the valves shut, the valve springs are not pressing on the rockers, so the rocker shafts come out without a load on them and the pushrods can be withdrawn. Mark each pushrod so it goes back in its own place.\n\nFind the rocker arms, their shafts, the pushrods and the tappets they ride on.",
+          "note": "Documented from the GTSIO-520 overhaul manual, paragraph 7-15b, PDF p. 57 (printed A-7-3): position the crankshaft so the valve lifters of the cylinder to be removed are on the heels of the cam lobes and both valves are fully closed, then remove the rocker shafts, rocker assemblies and thrust washers and withdraw the pushrods. Marking the pushrods is from FAA-H-8083-32B (2023), PDF pp. 409-410, which reaches the same position by putting the piston at top dead centre on compression to relieve the rocker arms. That the closed valves take the spring load off the rockers is the lesson's own explanation of why.",
+          "sourceRefs": [
+            "gtsio520-overhaul",
+            "faa-powerplant-2023"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The removal motion paused with the covers off, the rocker train spotlit."
+          }
+        },
+        {
+          "type": "text",
           "title": "Taking a cylinder off",
           "prompt": "First, turn the crankshaft so the piston is at top dead centre on compression, which frees the rocker arms, and take out the pushrods. Mark each so it can go back where it came from. Take off all the hold-down nuts except two, 180° apart, then support the cylinder and take off the last two. Pull it straight out along the studs, and catch the piston as it clears the barrel. Before the piston comes out, put a cloth in the opening so no piece of a broken ring falls into the crankcase. When the cylinder is off, support the connecting rod: the base seal ring looped round the rod and the studs will do. The manual may call for a wooden block under the cylinder when removing the valve springs.",
           "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 409-410 (turn the crankshaft to top dead centre on compression to relieve the rocker arms before removing the pushrods; mark the pushrods; remove all but two nuts 180 degrees apart; support the cylinder, with two technicians; a cloth stops pieces of broken rings falling into the crankcase; the connecting rod must be supported after removal, by the removed cylinder base oil seal ring looped around the rod and the base studs) and the GTSIO-520 overhaul manual, PDF pp. 57-58 (paragraph 7-15: the cylinder is withdrawn straight outward and the piston caught as it clears; a cylindrical wood block is recommended for removing the valve springs). The deck (slides 253 and 257) says wooden supports or rubber collars on the rods.",
@@ -365,6 +424,30 @@
           }
         },
         {
+          "type": "model-pose",
+          "title": "What is always replaced",
+          "modelId": "cylinder",
+          "savedMotionId": "removal",
+          "motionProgress": 88.89,
+          "focusParts": [
+            "ExhaustValve",
+            "ExhaustSpringRetainer",
+            "IntakeHydraulicLifterBody",
+            "ExhaustHydraulicLifterBody",
+            "PistonBody"
+          ],
+          "prompt": "At the bench the valve springs are compressed just enough to take out the keys, without tipping the retainers, which would score the stems. Then the retainers, the springs and the valves come out. The piston pin, [piston](PistonBody) and rings come off together, and the hydraulic tappets come out. The rods stay on the crankshaft until the crankcase is split.\n\nThe manual recommends replacing every [exhaust valve](ExhaustValve) and [rotocap](ExhaustSpringRetainer), and every hydraulic tappet, at each major overhaul, whatever their condition. Everything else is inspected and measured against the manual's limits.",
+          "note": "Documented from the GTSIO-520 overhaul manual, paragraph 7-15e to h, PDF pp. 57-58 (printed A-7-3 and A-7-4): compress the valve springs and remove the keys, being careful not to cock the retainers and score the valve stems; remove the rotocap or retainer, the springs and the valves; NOTE: it is recommended that all exhaust valves and rotocaps be replaced at each major overhaul regardless of condition; remove the piston pins, piston and rings as an assembly; remove the hydraulic valve lifters, and it is recommended that all hydraulic lifters be replaced at each major overhaul regardless of condition. The rods come off at 7-18b, PDF p. 59. The model names the exhaust retainer a rotocoil retainer; the manual calls it a rotocap.",
+          "sourceRefs": [
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The removal motion near its end, with the parts the manual always replaces spotlit."
+          }
+        },
+        {
           "type": "text",
           "title": "Inspect before you clean",
           "prompt": "The first inspection is visual and it comes before cleaning, because the residual deposits of metal in the recesses of the engine can show how it failed. Then each part is checked in three ways: visual, structural and dimensional. Visual and structural checks look for defects such as cracks, with a bright light and a magnifier, with magnetic particle inspection for magnetic parts, or with dye penetrant, eddy current, ultrasound or X-ray. Dimensional checks measure each part against the manufacturer's limits. Some signs link back to what you have learned: a depression in the top of a piston usually means that detonation has occurred, and interior cracks in a cylinder head radiate from the valve seat or spark plug bosses.",
@@ -376,6 +459,29 @@
             "mode": "none",
             "status": "not-needed",
             "rationale": "Ties the inspection back to the malfunctions lesson."
+          }
+        },
+        {
+          "type": "model-pose",
+          "title": "Measuring a cylinder",
+          "modelId": "cylinder",
+          "savedMotionId": "removal",
+          "motionProgress": 100,
+          "focusParts": [
+            "CylinderBarrel",
+            "CylinderHead",
+            "ExhaustValve",
+            "ExhaustValveGuide"
+          ],
+          "prompt": "The manual says where to measure. The [barrel bore](CylinderBarrel) is measured near the top of the ring travel, 5-3/4 inches from the open end, in the thrust direction and at right angles to it, to find out-of-round and taper.\n\nUp to 10% of the area of the [head fins](CylinderHead) may be lost to breakage, but a crack that reaches the root of a fin may have gone through the wall, and the cylinder is rejected. The [valve guides](ExhaustValveGuide) are measured for wear, [exhaust valves](ExhaustValve) are checked for warpage before refacing, and a refaced seat must still be smaller across than its valve head.\n\nThe sizes each part must stay within are in the manual's table of limits: use the current one for the engine in front of you.",
+          "note": "Documented from the GTSIO-520 overhaul manual, paragraph 9-19, printed page A-9-5 (PDF p. 66, counted from A-7-1 = PDF p. 55): measure the barrel bore near the top of the ring travel limit, at the 5-3/4 inch station from the open end, in the thrust direction and at right angles, to detect out-of-roundness and wear-in taper; little or no wear at the open end; a reduction of not over 10% in area of head fins due to breakage is allowable; rectify a radial crack by drilling a vee notch; a crack extending to the root of a fin may have penetrated the wall and the cylinder should be rejected; if base nuts were loose or studs loose or bent, test the flange for bending, which is cause for rejection; measure valve guides for wear; seats inspected after refacing so their outside diameters are still less than the valve head diameters; exhaust valves checked for warpage before refacing. The -H difference data lists an improved valve stem and guide (C-3-7), so check the -H data for guide limits. The numeric limits themselves are in the manual's table of limits (Chapter B) and are not repeated here.",
+          "sourceRefs": [
+            "gtsio520-overhaul"
+          ],
+          "mediaPlan": {
+            "mode": "existing-3d",
+            "status": "available",
+            "rationale": "The cylinder fully apart, with the parts this paragraph measures spotlit."
           }
         },
         {
@@ -1978,6 +2084,64 @@
       ],
       "correct": 0,
       "rationale": "Page C-3-2 gives aviation grade fuel, 100LL (blue) or 100 (green). A lower grade in an engine that needs a high one can cause detonation."
+    },
+    {
+      "id": "maint-removal-order",
+      "lessonId": "maintenance-servicing",
+      "type": "ordering",
+      "question": "Put these in the order the GTSIO-520 overhaul manual takes them off.",
+      "hint": "A cylinder has to come off before the crankcase can open.",
+      "items": [
+        "Magnetos",
+        "Oil sump",
+        "Rocker covers",
+        "Rocker arms and pushrods",
+        "Cylinders",
+        "Crankcase split",
+        "Connecting rods off the crankshaft"
+      ],
+      "rationale": "Section VII takes off the ignition, magnetos included, first; then the fuel injection, induction and accessory drives, the oil sump and the other accessories. Only then the cylinders: the covers, the rockers and pushrods, then each cylinder. The crankcase is split last, and the rods come off the crankshaft after it is out."
+    },
+    {
+      "id": "maint-valves-closed",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "Before taking off one cylinder's rocker arms and pushrods, how should the crankshaft be set?",
+      "hint": "Think about what presses on the rockers.",
+      "answers": [
+        "So both valves of that cylinder are closed, its tappets on the heels of the cam lobes",
+        "So the intake valve of that cylinder is fully open",
+        "So the piston is at bottom dead centre on the intake stroke",
+        "Anywhere: the pushrods come out in any position"
+      ],
+      "correct": 0,
+      "rationale": "The manual (7-15b) turns the crankshaft until both valves are closed, the tappets on the heels of the lobes; the FAA handbook reaches the same point with the piston at top dead centre on compression. With the valves shut, the valve springs are not pressing on the rockers."
+    },
+    {
+      "id": "maint-replace-always",
+      "lessonId": "maintenance-servicing",
+      "type": "multiple-choice",
+      "question": "Which parts does the GTSIO-520 overhaul manual recommend replacing at every major overhaul, whatever their condition?",
+      "hint": "Look at the notes on removing the valves and the tappets.",
+      "answers": [
+        "All exhaust valves, rotocaps and hydraulic tappets",
+        "All intake valves and valve guides",
+        "All pistons and connecting rods",
+        "Only the parts that fail inspection"
+      ],
+      "correct": 0,
+      "rationale": "Notes in paragraph 7-15 recommend replacing all exhaust valves and rotocaps, and all hydraulic lifters, at each major overhaul regardless of condition. Everything else is inspected against the manual's limits."
+    },
+    {
+      "id": "maint-bore-station",
+      "lessonId": "maintenance-servicing",
+      "type": "numeric",
+      "question": "How far from the open end of the barrel does the GTSIO-520 overhaul manual have the bore measured? Give inches as a decimal.",
+      "hint": "It is near the top of the ring travel, not at the open end.",
+      "unit": "in",
+      "correctValue": 5.75,
+      "tolerance": 0,
+      "rationale": "Paragraph 9-19: the bore is measured at the 5-3/4 inch station from the open end, in the thrust direction and at right angles to it, to find out-of-round and taper. There should be little or no wear at the open end itself."
     },
     {
       "id": "lsa-max-speed",

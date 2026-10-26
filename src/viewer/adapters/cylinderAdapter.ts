@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import type { ModelDefinition } from '../../data/modelRegistry';
-import { createExplodedMotion } from '../core/saved-motions.mjs';
+import { createExplodedMotion, stopsOf } from '../core/saved-motions.mjs';
 import { learnerPartFor, learnerSearchText, loadLearnerParts, type LearnerPart } from '../../data/learnerPartDetails';
 import { cylinderPartGroup, groupComponentIds } from '../core/component-groups.mjs';
 import { loadGltf } from '../core/assets';
@@ -190,7 +190,17 @@ export async function createCylinderSession(definition: ModelDefinition, context
     mesh.matrixAutoUpdate = false;
     return { mesh, group, localBind: bind[group].clone().invert().multiply(mesh.matrixWorld) };
   });
-  const explodedMotion = savedProfile ? createExplodedMotion(meshes, savedProfile) : undefined;
+  // The saved motions: the exploded overview, the same played backwards as reassembly, and any further motions the file lists (the
+  // removal order from the overhaul manual). Each has its own stages, note and length.
+  type SavedMotion = { label: string; profile: { stages: { label: string; note: string; progress: number }[]; scope: string; duration_seconds?: number }; motion: ReturnType<typeof createExplodedMotion>; reverse: boolean };
+  const savedMotions = new Map<string, SavedMotion>();
+  if (savedProfile) {
+    const exploded = createExplodedMotion(meshes, savedProfile);
+    savedMotions.set('exploded', { label: 'Exploded overview', profile: savedProfile, motion: exploded, reverse: false });
+    savedMotions.set('reassembly', { label: 'Reassembly overview', profile: savedProfile, motion: exploded, reverse: true });
+    for (const extra of savedProfile.motions ?? []) savedMotions.set(extra.id, { label: extra.label, profile: extra, motion: createExplodedMotion(meshes, extra), reverse: false });
+  }
+  const stagesOf = (entry: SavedMotion) => entry.reverse ? [...entry.profile.stages].reverse().map(stage => ({ ...stage, progress: 100 - stage.progress })) : entry.profile.stages;
   let savedMotionId = 'operating';
   let motionProgress = 0;
   // Playback: a speed for everything, and a loop choice for each motion (the crank goes round and round; a saved motion stops at its end).
@@ -242,7 +252,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
         if (!loopOf() && next >= 720) { setAngle(719.99); playing = false; snapshot.playing = false; onChange(); return false; }
         setAngle(next);
       } else {
-        const next = motionProgress + elapsed * 100 * speed / savedProfile.duration_seconds;
+        const next = motionProgress + elapsed * 100 * speed / (savedMotions.get(savedMotionId)?.profile.duration_seconds ?? savedProfile.duration_seconds);
         applyMotionProgress(loopOf() && next >= 100 ? next % 100 : Math.min(100, next));
         if (motionProgress >= 100) { playing = false; snapshot.playing = false; onChange(); return false; }
       }
@@ -252,25 +262,27 @@ export async function createCylinderSession(definition: ModelDefinition, context
   };
 
   const applyMotionProgress = (value: number) => {
-    if (!explodedMotion || savedMotionId === 'operating') return;
+    const current = savedMotions.get(savedMotionId);
+    if (!current) return;
     motionProgress = Math.max(0, Math.min(100, value));
     snapshot.motionProgress = motionProgress;
-    explodedMotion.apply(motionProgress, savedMotionId === 'reassembly');
+    current.motion.apply(motionProgress, current.reverse);
     root.updateMatrixWorld(true);
-    const stage = explodedMotion.stage(motionProgress, savedMotionId === 'reassembly');
+    const stage = current.motion.stage(motionProgress, current.reverse);
     snapshot.motionStage = stage.label;
-    snapshot.motionNote = `${stage.note} ${savedProfile.scope}`;
+    snapshot.motionNote = `${stage.note} ${current.profile.scope}`;
     section.sync(); runtime.render(); onChange();
   };
   const selectMotion = (id: string) => {
-    if (!['operating', 'exploded', 'reassembly'].includes(id)) throw Error(`Unknown cylinder motion: ${id}`);
+    if (id !== 'operating' && !savedMotions.has(id)) throw Error(`Unknown cylinder motion: ${id}`);
     setPlaying(false); savedMotionId = id; snapshot.savedMotionId = id; syncPlayback();
     cycleVisuals?.setVisible(id === 'operating' && cycleEnabled);
     if (id === 'operating') { snapshot.motionStage = undefined; setAngle(snapshot.angle || 0); }
-    else { applyMotionProgress(id === 'exploded' ? 100 : 0); }
+    // Fit the camera to the motion at its widest (the end of a take-apart, the start of a reassembly), then show its start.
+    else { applyMotionProgress(savedMotions.get(id)!.reverse ? 0 : 100); }
     section.updateBounds(new THREE.Box3().setFromObject(root));
     runtime.fit(root);
-    if (id === 'exploded') applyMotionProgress(0);
+    if (id !== 'operating' && !savedMotions.get(id)!.reverse) applyMotionProgress(0);
     onChange();
   };
   snapshot.savedMotionId = 'operating';
@@ -420,11 +432,12 @@ export async function createCylinderSession(definition: ModelDefinition, context
         },
       },
       savedMotions: savedProfile ? {
-        items: [{ id: 'operating', label: 'Operating cycle', stages: [] }, { id: 'exploded', label: 'Exploded overview', stages: savedProfile.stages }, { id: 'reassembly', label: 'Reassembly overview', stages: [...savedProfile.stages].reverse().map(stage => ({ ...stage, progress: 100 - stage.progress })) }],
+        items: [{ id: 'operating', label: 'Operating cycle', stages: [] }, ...[...savedMotions].map(([id, entry]) => ({ id, label: entry.label, stages: stagesOf(entry) }))],
         select: selectMotion,
         setProgress(value) { setPlaying(false); applyMotionProgress(value); },
         step(direction) {
-          const stops = [0, 25, 50, 75, 100];
+          const current = savedMotions.get(savedMotionId);
+          const stops = current ? [...new Set([...stopsOf(stagesOf(current)), 100])].sort((a, b) => a - b) : [0, 100];
           const target = direction > 0 ? stops.find(value => value > motionProgress + .01) ?? 100 : [...stops].reverse().find(value => value < motionProgress - .01) ?? 0;
           setPlaying(false); applyMotionProgress(target);
         },
