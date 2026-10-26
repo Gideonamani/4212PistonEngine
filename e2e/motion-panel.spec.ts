@@ -73,10 +73,11 @@ test('Explore: the crank card reads the angle and the stroke, and plays, loops a
   await panel.getByRole('button', { name: 'Reset motion to the start' }).click();
   await expect(panel.getByRole('tab', { name: /paused/ })).toBeVisible();
 
-  // The model has three motions; the pager walks them, and a saved motion is read in per cent, with its stages.
-  await expect(panel.getByText('Animation 1 of 3')).toBeVisible();
+  // The model has four motions (the crank, the exploded overview and its reassembly, and the removal order); the pager walks them, and a
+  // saved motion is read in per cent, with its stages.
+  await expect(panel.getByText('Animation 1 of 4')).toBeVisible();
   await panel.getByRole('button', { name: 'Next animation' }).click();
-  await expect(panel.getByText('Animation 2 of 3')).toBeVisible();
+  await expect(panel.getByText('Animation 2 of 4')).toBeVisible();
   await expect(panel.getByRole('slider', { name: 'Motion progress' })).toBeVisible();
   await expect(panel.getByRole('slider', { name: 'Crank angle' })).toHaveCount(0);
   await expect(panel.getByRole('switch', { name: 'Loop' })).toHaveAttribute('aria-checked', 'false');
@@ -136,5 +137,27 @@ test('a lesson on a model the learner may move opens with the player ready', asy
   // A tap on the open tab closes the card.
   await tab.click();
   await expect(viewer.getByRole('slider', { name: 'Motion progress' })).toHaveCount(0);
+  problems.assertNone();
+});
+
+// Issue #75: the cylinder's removal order from the GTSIO-520 overhaul manual, in the Maintenance & Servicing lesson.
+const REMOVAL_STEP = '#/learn/maintenance-lsa-practicals/maintenance-servicing/step/18';
+
+test('the removal-order motion steps through the manual\'s stages, each with its paragraph', async ({ page, problems }) => {
+  test.setTimeout(240_000);
+  const { viewer } = await openViewerStep(page, REMOVAL_STEP, { loadModel: true });
+  await expect(viewer.getByRole('status')).toHaveCount(0, { timeout: 150_000 });
+  const tab = viewer.getByRole('tab', { name: /^Motion/ });
+  await expect(tab).toHaveAccessibleName(/^Motion, 0%/);
+  await tab.click();
+  for (const stage of ['Rocker covers off', 'Rockers and pushrods out', 'Cylinder off at top dead centre', 'Rod off the crankpin']) await expect(viewer.getByRole('button', { name: stage })).toBeVisible();
+
+  await viewer.getByRole('button', { name: 'Cylinder off at top dead centre' }).click();
+  await expect(tab).toHaveAccessibleName(/^Motion, 56%/);
+  await viewer.getByRole('button', { name: 'Details' }).click();
+  await expect(viewer.getByText(/piston at top dead centre.*7-15d/)).toBeVisible();
+  await expect(viewer.getByText(/distances parts move are illustrative/).first()).toBeVisible();
+  await viewer.getByRole('button', { name: 'Next stage' }).click();
+  await expect(tab).toHaveAccessibleName(/^Motion, 67%/);
   problems.assertNone();
 });

@@ -525,5 +525,880 @@
         0.08
       ]
     }
-  }
+  },
+  "motions": [
+    {
+      "id": "removal",
+      "label": "Removal order (overhaul manual)",
+      "scope": "The order is the GTSIO-520 overhaul manual's, Section VII (printed pages A-7-1 to A-7-5); the distances parts move are illustrative, and the engine-level steps are not in this one-cylinder model. Teaching sequence only: follow the current manual for the engine in front of you.",
+      "duration_seconds": 20,
+      "stages": [
+        {
+          "id": "assembled",
+          "label": "Assembled",
+          "progress": 0,
+          "note": "One cylinder of the engine on its crankshaft throw. In the shop the engine is on a stand, its oil drained, and the ignition leads, magnetos, fuel injection, induction system and accessories come off before any cylinder (7-5 to 7-14)."
+        },
+        {
+          "id": "nozzle",
+          "label": "Fuel nozzle out",
+          "progress": 11.11,
+          "note": "The fuel injection system comes off before the cylinders, its nozzles kept in a clean container (7-7d)."
+        },
+        {
+          "id": "covers",
+          "label": "Rocker covers off",
+          "progress": 22.22,
+          "note": "With the engine inverted on the stand, the rocker covers and their gaskets come off (7-15a)."
+        },
+        {
+          "id": "rockers",
+          "label": "Rockers and pushrods out",
+          "progress": 33.33,
+          "note": "Turn the crankshaft until both valves of this cylinder are closed, its tappets on the heels of the cam lobes. Then the rocker shafts, rocker arms and thrust washers come off and the pushrods are withdrawn (7-15b)."
+        },
+        {
+          "id": "housings",
+          "label": "Pushrod housings out",
+          "progress": 44.44,
+          "note": "Each pushrod housing is pushed against its spring until the cylinder end is clear, then lifted out of the crankcase (7-15c)."
+        },
+        {
+          "id": "cylinder",
+          "label": "Cylinder off at top dead centre",
+          "progress": 55.56,
+          "note": "With the engine upright and this piston at top dead centre, the base nuts come off and the cylinder is drawn straight outward, the piston caught by hand as it clears (7-15d)."
+        },
+        {
+          "id": "valves",
+          "label": "Valve springs and valves out",
+          "progress": 66.67,
+          "note": "On a block at the bench, the springs are compressed and the keys removed, then the retainers or rotocap, the springs and the valves (7-15e, f). The manual recommends replacing every exhaust valve and rotocap at major overhaul."
+        },
+        {
+          "id": "piston",
+          "label": "Piston off",
+          "progress": 77.78,
+          "note": "The piston pin, piston and rings come off as an assembly, and the rings are taken off without scoring the ring lands (7-15g)."
+        },
+        {
+          "id": "tappets",
+          "label": "Hydraulic tappets out",
+          "progress": 88.89,
+          "note": "The hydraulic tappets come out; the manual recommends replacing them all at major overhaul (7-15h)."
+        },
+        {
+          "id": "rod",
+          "label": "Rod off the crankpin",
+          "progress": 100,
+          "note": "Only after the crankcase is split and the crankshaft lifted out (7-16, 7-18): the rod cap is unbolted, the bearing inserts removed, and rod, cap, bolt and nut loosely reassembled with their position numbers (7-18b)."
+        }
+      ],
+      "parts": {
+        "FuelDischargeNozzle": {
+          "moves": [
+            {
+              "stage": 1,
+              "offset_m": [
+                0.12,
+                0.06,
+                0.08
+              ]
+            }
+          ]
+        },
+        "IntakeRockerCover": {
+          "moves": [
+            {
+              "stage": 2,
+              "offset_m": [
+                0.1,
+                0.08,
+                0.1
+              ]
+            }
+          ]
+        },
+        "ExhaustRockerCover": {
+          "moves": [
+            {
+              "stage": 2,
+              "offset_m": [
+                0.1,
+                -0.08,
+                0.1
+              ]
+            }
+          ]
+        },
+        "IntakeRockerGasket": {
+          "moves": [
+            {
+              "stage": 2,
+              "offset_m": [
+                0.1,
+                0.08,
+                0.1
+              ]
+            }
+          ]
+        },
+        "ExhaustRockerGasket": {
+          "moves": [
+            {
+              "stage": 2,
+              "offset_m": [
+                0.1,
+                -0.08,
+                0.1
+              ]
+            }
+          ]
+        },
+        "IntakeRockerShaft": {
+          "moves": [
+            {
+              "stage": 3,
+              "offset_m": [
+                0.12,
+                0.14,
+                0.18
+              ]
+            }
+          ]
+        },
+        "ExhaustRockerShaft": {
+          "moves": [
+            {
+              "stage": 3,
+              "offset_m": [
+                0.12,
+                -0.14,
+                0.18
+              ]
+            }
+          ]
+        },
+        "IntakeRockerArm": {
+          "moves": [
+            {
+              "stage": 3,
+              "offset_m": [
+                0.12,
+                0.14,
+                0.1
+              ]
+            }
+          ]
+        },
+        "ExhaustRockerArm": {
+          "moves": [
+            {
+              "stage": 3,
+              "offset_m": [
+                0.12,
+                -0.14,
+                0.1
+              ]
+            }
+          ]
+        },
+        "IntakePushrod": {
+          "moves": [
+            {
+              "stage": 3,
+              "offset_m": [
+                0.1,
+                0.22,
+                0
+              ]
+            }
+          ]
+        },
+        "ExhaustPushrod": {
+          "moves": [
+            {
+              "stage": 3,
+              "offset_m": [
+                0.1,
+                -0.22,
+                0
+              ]
+            }
+          ]
+        },
+        "IntakePushrodHousing": {
+          "moves": [
+            {
+              "stage": 4,
+              "offset_m": [
+                -0.08,
+                0.2,
+                0
+              ]
+            }
+          ]
+        },
+        "ExhaustPushrodHousing": {
+          "moves": [
+            {
+              "stage": 4,
+              "offset_m": [
+                -0.08,
+                -0.2,
+                0
+              ]
+            }
+          ]
+        },
+        "IntakeLowerPushrodSeal": {
+          "moves": [
+            {
+              "stage": 4,
+              "offset_m": [
+                -0.08,
+                0.2,
+                0
+              ]
+            }
+          ]
+        },
+        "ExhaustLowerPushrodSeal": {
+          "moves": [
+            {
+              "stage": 4,
+              "offset_m": [
+                -0.08,
+                -0.2,
+                0
+              ]
+            }
+          ]
+        },
+        "IntakeUpperPushrodSeal": {
+          "moves": [
+            {
+              "stage": 4,
+              "offset_m": [
+                -0.08,
+                0.2,
+                0
+              ]
+            }
+          ]
+        },
+        "ExhaustUpperPushrodSeal": {
+          "moves": [
+            {
+              "stage": 4,
+              "offset_m": [
+                -0.08,
+                -0.2,
+                0
+              ]
+            }
+          ]
+        },
+        "CylinderHead": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "CylinderBarrel": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "IntakeValveGuide": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "ExhaustValveGuide": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "IntakeSeatInsert": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "ExhaustSeatInsert": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "IntakeRockerHousing": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "ExhaustRockerHousing": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "UpperSparkPlug": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "UpperSparkInsulator": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "UpperSparkTerminal": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "LowerSparkPlug": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "LowerSparkInsulator": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "LowerSparkTerminal": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "IntakeValveKeeper": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            },
+            {
+              "stage": 6,
+              "offset_m": [
+                0.16,
+                0.05,
+                0
+              ]
+            }
+          ]
+        },
+        "ExhaustValveKeeper": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            },
+            {
+              "stage": 6,
+              "offset_m": [
+                0.16,
+                -0.05,
+                0
+              ]
+            }
+          ]
+        },
+        "IntakeSpringRetainer": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            },
+            {
+              "stage": 6,
+              "offset_m": [
+                0.12,
+                0.04,
+                0
+              ]
+            }
+          ]
+        },
+        "ExhaustSpringRetainer": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            },
+            {
+              "stage": 6,
+              "offset_m": [
+                0.12,
+                -0.04,
+                0
+              ]
+            }
+          ]
+        },
+        "IntakeOuterSpring": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            },
+            {
+              "stage": 6,
+              "offset_m": [
+                0.08,
+                0.03,
+                0
+              ]
+            }
+          ]
+        },
+        "ExhaustOuterSpring": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            },
+            {
+              "stage": 6,
+              "offset_m": [
+                0.08,
+                -0.03,
+                0
+              ]
+            }
+          ]
+        },
+        "IntakeInnerSpring": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            },
+            {
+              "stage": 6,
+              "offset_m": [
+                0.05,
+                0.02,
+                0
+              ]
+            }
+          ]
+        },
+        "ExhaustInnerSpring": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            },
+            {
+              "stage": 6,
+              "offset_m": [
+                0.05,
+                -0.02,
+                0
+              ]
+            }
+          ]
+        },
+        "IntakeValve": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            },
+            {
+              "stage": 6,
+              "offset_m": [
+                -0.04,
+                0.14,
+                0
+              ]
+            }
+          ]
+        },
+        "ExhaustValve": {
+          "moves": [
+            {
+              "stage": 5,
+              "offset_m": [
+                0.32,
+                0,
+                0
+              ]
+            },
+            {
+              "stage": 6,
+              "offset_m": [
+                -0.04,
+                -0.14,
+                0
+              ]
+            }
+          ]
+        },
+        "PistonBody": {
+          "moves": [
+            {
+              "stage": 7,
+              "offset_m": [
+                0.04,
+                0,
+                0.22
+              ]
+            }
+          ]
+        },
+        "PistonRing1": {
+          "moves": [
+            {
+              "stage": 7,
+              "offset_m": [
+                0.04,
+                0,
+                0.22
+              ]
+            }
+          ]
+        },
+        "PistonRing2": {
+          "moves": [
+            {
+              "stage": 7,
+              "offset_m": [
+                0.04,
+                0,
+                0.22
+              ]
+            }
+          ]
+        },
+        "PistonRing3": {
+          "moves": [
+            {
+              "stage": 7,
+              "offset_m": [
+                0.04,
+                0,
+                0.22
+              ]
+            }
+          ]
+        },
+        "PistonRing4": {
+          "moves": [
+            {
+              "stage": 7,
+              "offset_m": [
+                0.04,
+                0,
+                0.22
+              ]
+            }
+          ]
+        },
+        "FloatingPin": {
+          "moves": [
+            {
+              "stage": 7,
+              "offset_m": [
+                0.04,
+                0,
+                0.22
+              ]
+            }
+          ]
+        },
+        "PinPlugLeft": {
+          "moves": [
+            {
+              "stage": 7,
+              "offset_m": [
+                0.04,
+                0,
+                0.22
+              ]
+            }
+          ]
+        },
+        "PinPlugRight": {
+          "moves": [
+            {
+              "stage": 7,
+              "offset_m": [
+                0.04,
+                0,
+                0.22
+              ]
+            }
+          ]
+        },
+        "IntakeHydraulicLifterBody": {
+          "moves": [
+            {
+              "stage": 8,
+              "offset_m": [
+                -0.06,
+                0.16,
+                0
+              ]
+            }
+          ]
+        },
+        "ExhaustHydraulicLifterBody": {
+          "moves": [
+            {
+              "stage": 8,
+              "offset_m": [
+                -0.06,
+                -0.16,
+                0
+              ]
+            }
+          ]
+        },
+        "ConnectingRodCap": {
+          "moves": [
+            {
+              "stage": 9,
+              "offset_m": [
+                -0.05,
+                -0.15,
+                0
+              ]
+            }
+          ]
+        },
+        "CapBearingHalf": {
+          "moves": [
+            {
+              "stage": 9,
+              "offset_m": [
+                -0.05,
+                -0.15,
+                0
+              ]
+            }
+          ]
+        },
+        "RodBoltMinus1": {
+          "moves": [
+            {
+              "stage": 9,
+              "offset_m": [
+                -0.05,
+                -0.15,
+                0
+              ]
+            }
+          ]
+        },
+        "RodNutMinus1": {
+          "moves": [
+            {
+              "stage": 9,
+              "offset_m": [
+                -0.05,
+                -0.15,
+                0
+              ]
+            }
+          ]
+        },
+        "RodBolt1": {
+          "moves": [
+            {
+              "stage": 9,
+              "offset_m": [
+                -0.05,
+                -0.15,
+                0
+              ]
+            }
+          ]
+        },
+        "RodNut1": {
+          "moves": [
+            {
+              "stage": 9,
+              "offset_m": [
+                -0.05,
+                -0.15,
+                0
+              ]
+            }
+          ]
+        },
+        "ConnectingRodBody": {
+          "moves": [
+            {
+              "stage": 9,
+              "offset_m": [
+                0.06,
+                0,
+                -0.2
+              ]
+            }
+          ]
+        },
+        "BigEndBearing": {
+          "moves": [
+            {
+              "stage": 9,
+              "offset_m": [
+                0.06,
+                0,
+                -0.2
+              ]
+            }
+          ]
+        },
+        "SmallEndBush": {
+          "moves": [
+            {
+              "stage": 9,
+              "offset_m": [
+                0.06,
+                0,
+                -0.2
+              ]
+            }
+          ]
+        },
+        "CrankThrow": {
+          "moves": []
+        }
+      }
+    }
+  ]
 }

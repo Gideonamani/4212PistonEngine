@@ -1,6 +1,6 @@
 // Small text edits to an already-applied lesson in a hand-formatted pack, leaving every other byte alone.
 // Usage: node scripts/lesson-rework/patch_pack.mjs <pack json> <patch module>
-// The patch module exports default (api) => { ... } and may call api.step(lessonId, index, fn), api.check(id, fn), api.addCheck(obj, afterId), api.addSource(obj), api.source(id, fn).
+// The patch module exports default (api) => { ... } and may call api.step(lessonId, index, fn), api.check(id, fn), api.insertStep(lessonId, afterIndex, obj), api.lessonModels(lessonId, ids), api.addCheck(obj, afterId), api.addSource(obj), api.source(id, fn).
 // Each fn receives a deep copy and returns the replacement object.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -46,6 +46,22 @@ const api = {
     const sources = arrayAt(text, 'sources', 2);
     if (sources.elements.some((element) => JSON.parse(element).id === source.id)) return;
     text = text.slice(0, sources.last) + `,${eol}    ${serialize(source, 4, eol)}` + text.slice(sources.last);
+  },
+  // Inserts a step after step `afterIndex` (0-based) of a lesson, so a lesson can grow without rewriting its other steps.
+  insertStep(lessonId, afterIndex, step) {
+    const span = lessonSpan(lessonId);
+    const steps = arrayAt(text, 'steps', 6, span[0]);
+    const end = steps.spans[afterIndex][1];
+    text = text.slice(0, end) + `,${eol}        ${serialize(step, 8, eol)}` + text.slice(end);
+  },
+  // Replaces a lesson's `models` list, the one line it sits on at the lesson's own level.
+  lessonModels(lessonId, models) {
+    const span = lessonSpan(lessonId);
+    const lesson = text.slice(span[0], span[1]);
+    const match = /^ {6}"models": \[[^\]\n]*\]/m.exec(lesson);
+    if (!match) throw new Error(`${lessonId}: no one-line models list`);
+    const at = span[0] + match.index;
+    text = text.slice(0, at) + `      "models": ${JSON.stringify(models).replace(/,/g, ', ')}` + text.slice(at + match[0].length);
   },
   // Inserts a check after the check `afterId` (so a lesson's checks stay together); a check whose id is already there is left alone.
   addCheck(check, afterId) {
