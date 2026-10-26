@@ -4,6 +4,7 @@ import test from 'node:test';
 import * as THREE from 'three';
 import { rolldown } from 'rolldown';
 import { FOCUS_MODES, HIGHLIGHT_COLOR, PALE_COLOR, XRAY_COLOR, XRAY_OPACITY } from '../src/viewer/core/focus-style.mjs';
+import { OVER_GHOST_ORDER } from '../src/viewer/core/ghost-order.mjs';
 
 // Drives the real adapters through every focus mode on the real models. Each mode must give the spotlit parts and the rest the look
 // that core/focus-style.mjs promises, switching modes must be reversible, and a new step must start from its own mode.
@@ -85,6 +86,13 @@ for (const [id, label, create, requires] of models) {
     assert.ok(xrayCount.ghost > 0 && xrayCount.normal > 0, `x-ray ghosts some parts and keeps others solid: ${JSON.stringify(xrayCount)}`);
     assert.ok(!xray.includes('hidden') && !xray.includes('pale'), 'x-ray hides nothing');
 
+    // The X-ray's solid parts are drawn after the ghost, still opaque, so its layers never cover them (core/ghost-order.mjs).
+    const materialsOf = (mesh) => (Array.isArray(mesh.material) ? mesh.material : [mesh.material]);
+    const solid = meshes.filter((mesh, index) => xray[index] === 'normal');
+    assert.ok(solid.every((mesh) => mesh.renderOrder === OVER_GHOST_ORDER), 'every solid part comes after the ghost');
+    assert.ok(solid.every((mesh) => materialsOf(mesh).every((material) => material.transparent && material.opacity === 1 && material.depthWrite)), 'drawn in the see-through pass, fully opaque and writing depth');
+    assert.ok(meshes.filter((mesh, index) => xray[index] === 'ghost').every((mesh) => mesh.renderOrder === 0), 'the ghost stays at the default order');
+
     session.features.focus.setMode('highlight');
     assert.equal(session.snapshot().focusMode, 'highlight', 'the mode asked for is reported even when it is drawn another way');
     const highlighted = count(looks());
@@ -122,9 +130,11 @@ for (const [id, label, create, requires] of models) {
       assert.equal(session.snapshot().focusMode, mode);
     }
 
-    // Leaving the spotlight puts the whole model back.
+    // Leaving the spotlight puts the whole model back, in the order it is normally drawn.
     session.update({ focusParts: undefined });
     assert.ok(looks().every((look) => look === 'normal'));
+    assert.ok(meshes.every((mesh) => mesh.renderOrder === 0), 'nothing is drawn over a ghost when nothing is ghosted');
+    assert.ok(meshes.every((mesh) => materialsOf(mesh).every((material) => !material.transparent || material.opacity < 1)), 'no opaque part is left in the see-through pass');
     session.dispose();
   });
 }
@@ -215,6 +225,36 @@ test('cylinder: a section through the valves lifts the fallback, and a plane tha
   section.setEnabled(true);
   session.features.focus.setMode('xray');
   assert.equal(session.snapshot().focusFallback, false);
+  session.dispose();
+});
+
+// Explore brings a small spotlit part closer (core/spotlight-framing.mjs) when it asks to; a lesson's part chips never do, and a large part
+// is left where the camera has it.
+test('cylinder: Explore brings a small spotlit part closer, and only when it asks', async () => {
+  const moves = [];
+  const runtime = { scene: new THREE.Scene(), camera: new THREE.PerspectiveCamera(45, 0.46), controls: { minDistance: 1e6 }, render() {}, fit() {}, focus: (target, distance) => moves.push({ target, distance }), setPickTargets() {}, setAnimationCallback() {} };
+  const session = await createCylinderSession(registry.find((model) => model.id === 'cylinder'), { runtime, signal: new AbortController().signal, onProgress() {}, onChange() {}, profile: 'explore' });
+  const meshes = [];
+  runtime.scene.traverse((object) => { if (object.isMesh && object.material && object.userData.partId) meshes.push(object); });
+  const whole = new THREE.Box3();
+  for (const mesh of meshes) whole.expandByObject(mesh);
+  const across = (box) => box.getSize(new THREE.Vector3()).length();
+  const sizeOf = (id) => across(new THREE.Box3().setFromObject(meshes.find((mesh) => mesh.userData.partId === id)));
+  const ids = [...new Set(meshes.map((mesh) => mesh.userData.partId))].sort((a, b) => sizeOf(a) - sizeOf(b));
+  const small = ids[0];
+  assert.ok(sizeOf(small) < 0.1 * across(whole), `${small} is small next to the cylinder`);
+
+  session.features.focus.set([small], 'xray');
+  assert.equal(moves.length, 0, 'without closeUp (a lesson part chip) the camera stays put');
+  session.features.focus.set([small], 'xray', { closeUp: true });
+  assert.equal(moves.length, 1, 'with closeUp a small part is brought closer');
+  const centre = new THREE.Box3().setFromObject(meshes.find((mesh) => mesh.userData.partId === small)).getCenter(new THREE.Vector3());
+  assert.ok(moves[0].target.distanceTo(centre) < 1e-9, 'and centred');
+  assert.ok(runtime.controls.minDistance < moves[0].distance, 'the orbit controls let the camera come that close');
+  session.features.focus.set(['CylinderBarrel'], 'xray', { closeUp: true });
+  assert.equal(moves.length, 1, 'the barrel is large enough to find: the camera stays where the learner put it');
+  session.features.focus.set([small], 'isolate', { closeUp: true });
+  assert.equal(moves.length, 1, 'Isolate frames the part tightly with fit, not with a close-up');
   session.dispose();
 });
 

@@ -5,6 +5,8 @@ import { loadGltf, sourcesFromEngineContract } from '../core/assets';
 import { cloneMaterials, createSectionController, disposeObject, meshMaterials } from '../core/modelUtils';
 import { focusModeOrDefault, partLook, partRole, spotlightPalette } from '../core/focus-style.mjs';
 import { effectiveFocusMode } from '../core/spotlight-fallback';
+import { OVER_GHOST_ORDER } from '../core/ghost-order.mjs';
+import { closeUpOnSmallParts } from '../core/spotlight-closeup';
 import type { AdapterContext, AppearanceMode, FocusMode, ModelComponent, ModelGroup, ViewerSession, ViewerSnapshot } from '../types';
 
 type EngineItem = {
@@ -135,10 +137,13 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
       const highlighted = look === 'highlight' || Boolean(selected && bindingMatches(item, selected));
       const ghosted = look === 'ghost';
       const pale = look === 'pale';
+      // While the rest is ghosted, the solid parts are drawn after the ghost so its layers never cover them (core/ghost-order.mjs).
+      const overGhost = mode === 'xray' && spotlight && !ghosted;
+      item.mesh.renderOrder = overGhost ? OVER_GHOST_ORDER : 0;
       for (const material of item.materials) {
         material.userData.solid ??= { transparent: material.transparent, opacity: material.opacity, depthWrite: material.depthWrite };
         const solid = material.userData.solid;
-        material.transparent = ghosted || (!pale && solid.transparent);
+        material.transparent = ghosted || overGhost || (!pale && solid.transparent);
         material.opacity = ghosted ? palette.ghostOpacity : pale ? 1 : solid.opacity;
         material.depthWrite = ghosted ? false : solid.depthWrite;
         material.needsUpdate = true;
@@ -270,7 +275,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
           applyAppearance();
           onChange();
         },
-        set(ids, mode) {
+        set(ids, mode, options) {
           const unknown = ids.filter((id) => !componentsById.has(id));
           if (unknown.length) throw Error(`Unknown component id in the spotlight: ${unknown.join(', ')}.`);
           focusComponents.splice(0, focusComponents.length, ...ids.map((id) => componentsById.get(id)));
@@ -288,7 +293,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
             proxy.position.copy(box.getCenter(new THREE.Vector3()));
             runtime.fit(proxy);
             proxy.geometry.dispose();
-          }
+          } else if (options?.closeUp && focusComponents.length) closeUpOnSmallParts(runtime, items.filter(isFocused).map((item) => item.mesh), root);
           onChange();
         },
       },
