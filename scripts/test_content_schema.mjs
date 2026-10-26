@@ -122,6 +122,15 @@ assert.deepEqual(validateLessonPack(withStep({ focusParts: ['CrankThrow'] })), [
 assert.match(validateLessonPack(withStep({ focusParts: ['CrankThrow'], focusMode: 'ghost' })).join('\n'), /focusMode must be one of highlight, xray, isolate/);
 assert.match(validateLessonPack(withStep({ focusMode: 'isolate' })).join('\n'), /focusMode needs focusParts/);
 
+// Words linked to a part: only to one of the step's own spotlit parts, on a step with two or more of them, and written the one way.
+const twoParts = { focusParts: ['CrankThrow', 'ConnectingRod'] };
+assert.deepEqual(validateLessonPack(withStep({ ...twoParts, prompt: 'Follow the [crank throw](CrankThrow) to the [rod](ConnectingRod).' })), [], 'linked words are valid');
+assert.match(validateLessonPack(withStep({ ...twoParts, prompt: 'Find the [piston](Piston).' })).join('\n'), /part link 'Piston' is not one of the step's focusParts/);
+assert.match(validateLessonPack(withStep({ focusParts: ['CrankThrow'], prompt: 'Find the [crank throw](CrankThrow).' })).join('\n'), /part links need a model-pose step that spotlights two or more parts/);
+assert.match(validateLessonPack(withStep({ prompt: 'Find the [crank throw](CrankThrow).' })).join('\n'), /two or more parts/);
+assert.match(validateLessonPack(withStep({ ...twoParts, prompt: 'Find the [crank throw] (CrankThrow).' })).join('\n'), /not written as \[words\]\(PartId\)/);
+assert.match(validateLessonPack(withStep({ ...twoParts, prompt: 'Find the [crank throw](Crank Throw).' })).join('\n'), /not written as/);
+
 // A step's recommended section plane: a short label, a normal that points somewhere, and an optional offset across the model.
 const plane = { label: 'Valve axis', normal: [0, 1, 0], offset: 0.5 };
 assert.deepEqual(validateLessonPack(withStep({ sectionPlane: plane })), [], 'a recommended plane is valid');

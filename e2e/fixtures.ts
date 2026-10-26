@@ -81,6 +81,7 @@ export async function expectAccessibleAndTouchable(page: Page, what: string) {
   expect(violations.map((rule) => `${rule.id} (${rule.nodes.length})`), `${what}: axe`).toEqual([]);
   const small = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>('button, a[href], input, select, textarea')]
     .filter((element) => element.getBoundingClientRect().width > 0 && getComputedStyle(element).visibility !== 'hidden')
+    .filter((element) => !(element.hasAttribute('data-inline-target') && element.closest('p, li'))) // words in a sentence (WCAG 2.5.8 inline exception)
     .map((element) => ({ name: element.getAttribute('aria-label') || element.innerText.trim().slice(0, 30) || element.tagName, size: Math.min(element.getBoundingClientRect().width, element.getBoundingClientRect().height) }))
     .filter((target) => target.size < 44));
   expect(small, `${what}: targets under 44 px`).toEqual([]);

@@ -1,11 +1,13 @@
+import AxeBuilder from '@axe-core/playwright';
 import type { Locator } from '@playwright/test';
-import { expect, onlyIn, test } from './fixtures';
-import { SECTION_STEP, SPOTLIGHT_STEP, openViewerStep } from './viewer-helpers';
+import { expect, expectNoHorizontalOverflow, onlyIn, test } from './fixtures';
+import { SECTION_STEP, SPOTLIGHT_STEP, openViewerStep, scrollAreaOf } from './viewer-helpers';
 
 // The part chips under a lesson step's text: a step that spotlights two or more parts offers a chip for each, and tapping one shows that part
 // alone in the 3D view. What a chip does to a model is decided by scripts/test_step_part_chips.mjs (which chips, how many, what a tap leaves
 // chosen); this checks the part a learner touches against the real cylinder. Each test downloads it, so they run once, one after the other.
-// Lesson 08 (Valve Operating): step 2 spotlights six parts, step 3 is a picture, step 4 spotlights eight.
+// Lesson 08 (Valve Operating): step 2 spotlights six parts and links the words "intake valve" and "exhaust valve" in its text to two of
+// them (issue #69), step 3 is a picture, step 4 spotlights eight.
 
 onlyIn('phone-390');
 test.describe.configure({ mode: 'serial', timeout: 240_000 });
@@ -127,5 +129,55 @@ test('a step that spotlights one part has no chips: there is nothing to tell apa
   const { viewer } = await openViewerStep(page, SPOTLIGHT_STEP, { loadModel: true });
   await expect(viewer.getByRole('status')).toHaveCount(0, { timeout: 150_000 });
   await expect(page.getByRole('group', { name: 'Parts in this view' })).toHaveCount(0);
+  problems.assertNone();
+});
+
+test('words in the step text linked to a part choose it like its chip, by touch or keyboard, and bring the model into view', async ({ page, problems }) => {
+  test.setTimeout(240_000);
+  const { viewer } = await openViewerStep(page, SECTION_STEP, { loadModel: true });
+  await expect(viewer.getByRole('status')).toHaveCount(0, { timeout: 150_000 });
+
+  const text = page.locator('.lesson-prose');
+  const parts = page.getByRole('group', { name: 'Parts in this view' });
+  const words = text.getByRole('button');
+  await expect(words).toHaveText(['intake valve', 'exhaust valve']);
+  for (const word of await words.all()) await expect(word).toHaveAttribute('aria-pressed', 'false');
+  const canvas = viewer.locator('canvas');
+  const together = await settledCanvas(canvas);
+
+  // Read on until the model has scrolled out of sight, then tap a word: the model comes back into view showing that part alone.
+  const area = await scrollAreaOf(text);
+  await area.evaluate((scroller, line) => { scroller.scrollTop += (line as HTMLElement).getBoundingClientRect().top - scroller.getBoundingClientRect().top; }, await text.elementHandle());
+  const shownShare = () => canvas.evaluate((element) => {
+    const box = element.getBoundingClientRect();
+    return Math.max(0, Math.min(box.bottom, window.innerHeight) - Math.max(box.top, 0)) / box.height;
+  });
+  expect(await shownShare(), 'the model has scrolled mostly out of sight').toBeLessThan(0.5);
+  await words.nth(1).click();
+  await expect(words.nth(1)).toHaveAttribute('aria-pressed', 'true');
+  await expect(parts.getByRole('button', { name: 'Exhaust valve', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(parts.getByRole('status')).toContainText('Showing Exhaust valve alone');
+  await expect.poll(shownShare, { message: 'the model should be back in view' }).toBeGreaterThan(0.9);
+  await expectCanvas(canvas, together, false, 'one part alone should look different from all six');
+
+  // The chip and the word are one choice: the chip lets go of what the word chose.
+  await parts.getByRole('button', { name: 'Exhaust valve', exact: true }).click();
+  await expect(words.nth(1)).toHaveAttribute('aria-pressed', 'false');
+  await expect(parts.getByRole('status')).toContainText('tap one to look at it alone');
+
+  // By keyboard: a word is a button in the tab order.
+  await words.nth(0).focus();
+  await page.keyboard.press('Enter');
+  await expect(words.nth(0)).toHaveAttribute('aria-pressed', 'true');
+  await expect(parts.getByRole('status')).toContainText('Showing Intake valve alone');
+  await page.keyboard.press('Space');
+  await expect(words.nth(0)).toHaveAttribute('aria-pressed', 'false');
+  await expectCanvas(canvas, together, true, 'letting go should restore the step\'s spotlight');
+
+  // Buttons inside a sentence pass axe, and the text still fits the narrowest phone.
+  const { violations } = await new AxeBuilder({ page }).include('.lesson-prose').withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
+  expect(violations.map((rule) => `${rule.id} (${rule.nodes.length})`)).toEqual([]);
+  await page.setViewportSize({ width: 320, height: 640 });
+  await expectNoHorizontalOverflow(page);
   problems.assertNone();
 });

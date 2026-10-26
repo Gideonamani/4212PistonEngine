@@ -24,6 +24,7 @@ The outcomes the instructor wrote are the specification. A lesson is finished wh
 - At least 8 checks of at least 3 kinds, each with a `hint` and a `rationale`; numeric checks always have a hint. The correct multiple-choice answer is index 0 in the data. A matching question whose right-hand column is already alphabetical gives its answer away, so reorder it.
 - Lessons stay `Instructor review pending` until the instructor says otherwise; do not claim a review.
 - Check ids are unique; model-click ids must exist on the model (the test reads the real part list).
+- A model step whose text names the parts it spotlights should list them in `focusParts` (two or more give the learner a chip each), and may link the words to them: `[intake valve]` followed straight by `(IntakeValve)`. Link only words that name one part, and only to the step's own `focusParts` (the schema test enforces it); see the part-chips section of `docs/lesson-and-assessment-architecture.md`.
 
 ## Traps already met
 

@@ -23,6 +23,9 @@ from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
 from PIL import Image
 
+# Words linked to a part in a step's text, "[intake valve](IntakeValve)" (web/schema/part-links.mjs): the sheet shows the words only.
+PART_LINK = re.compile(r"\[([^\[\]\n]+)\]\(([A-Za-z][\w-]*)\)")
+
 ROOT = Path(__file__).resolve().parent.parent
 WEB = ROOT / "web"
 TEAL = RGBColor(0x0F, 0x76, 0x6E)
@@ -136,7 +139,7 @@ def add_steps(document: Document, lesson: dict) -> None:
         write(cells[1], step.get("type", "text"), colour=GREY, size=8)
         if step.get("deepDiveLinks"):
             write(cells[1], "Deep dive: " + ", ".join(step["deepDiveLinks"]), colour=GREY, size=8)
-        write(cells[2], step.get("prompt", ""))
+        write(cells[2], PART_LINK.sub(r"\1", step.get("prompt", "")))
         for line in media_lines(step):
             write(cells[3], line, size=8.5)
         if step.get("url") and step.get("type") == "image":

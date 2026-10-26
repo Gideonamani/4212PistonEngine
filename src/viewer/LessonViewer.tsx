@@ -5,7 +5,7 @@ import { FOCUS_MODES } from './core/focus-style.mjs';
 import { lessonProfile, viewKey } from './core/view-state.mjs';
 import { useStoredChoice } from '../data/localChoice';
 import { LessonDock } from './controls/LessonDock';
-import { StepPartChips } from './controls/StepPartChips';
+import { StepPartChips, type PartPick } from './controls/StepPartChips';
 import { useViewerControls } from './controls/useViewerControls';
 import { HotspotChips, HotspotNote, ModelCanvas, PanToggle, ToolbarButton, UnknownModel, WheelZoomHint, useViewerHint } from './ViewerParts';
 import { useModelViewer } from './useModelViewer';
@@ -23,6 +23,8 @@ type LessonViewerProps = {
   onOpenExplore?: () => void;
   /** Where the lesson wants the part chips (under the step's text). Without one, or while the step is not showing this model, there are none. */
   chipSlot?: HTMLElement | null;
+  /** The part chosen to look at alone, shared with the linked words in the step's text; it goes with `chipSlot`. */
+  partPick?: PartPick;
 };
 
 /**
@@ -31,7 +33,7 @@ type LessonViewerProps = {
  * Parts and Look, and lets the learner move the motion instead of only reading the pose), which the sliders button shows or hides, and
  * then a strip with everything else the step has to say (hotspots, notices, source).
  */
-export default function LessonViewer({ modelId, view, immersive = false, layout = 'stacked', onOpenExplore, chipSlot }: LessonViewerProps) {
+export default function LessonViewer({ modelId, view, immersive = false, layout = 'stacked', onOpenExplore, chipSlot, partPick }: LessonViewerProps) {
   const definition = modelsById[modelId];
   const [focusChoice, chooseFocusMode] = useStoredChoice<FocusMode>(FOCUS_CHOICE_KEY, FOCUS_MODES as FocusMode[]);
   const viewer = useModelViewer(modelId, lessonProfile(definition?.adapter), view, focusChoice);
@@ -69,6 +71,6 @@ export default function LessonViewer({ modelId, view, immersive = false, layout 
         <p className="truncate text-[11px] text-slate-400">{hint} · {credit}</p>
       </div>
     </div>
-    {chipSlot && <StepPartChips viewer={viewer} stepParts={view.focusParts} resetKey={viewKey(view)} slot={chipSlot} />}
+    {chipSlot && partPick && <StepPartChips viewer={viewer} pick={partPick} stepParts={view.focusParts} resetKey={viewKey(view)} slot={chipSlot} />}
   </section>;
 }
