@@ -1,34 +1,44 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { CLOSE_UP_VIEW, SMALL_PART, closeUpSphere, viewDistance } from '../src/viewer/core/spotlight-framing.mjs';
+import { CLOSE_UP_VIEW, MAX_VIEW, MIN_VIEW, closeUpSphere, viewDistance } from '../src/viewer/core/spotlight-framing.mjs';
 
-// In Explore a spotlit part that is small next to its model is brought closer, in a view a set fraction of the model across.
+// In Explore, spotlighting a part zooms in on it: a view a few times the part across, centred on it, so it shows with its surroundings.
 
 const box = (min, max) => ({ min, max });
 const engine = box([0, 0, 0], [100, 0, 0]); // 100 across, corner to corner
+const viewOf = (part) => closeUpSphere(part, engine).radius * 2;
 
-test('a part well under a tenth of the model is brought closer, centred, in a view a few times its own size', () => {
+test('a small part is shown centred, in a view five times its size', () => {
   const washer = box([40, 0, 0], [41, 0, 0]);
-  const sphere = closeUpSphere(washer, engine);
-  assert.deepEqual(sphere.center, [40.5, 0, 0]);
-  assert.equal(sphere.radius, CLOSE_UP_VIEW * 1 / 2);
+  assert.deepEqual(closeUpSphere(washer, engine).center, [40.5, 0, 0]);
+  assert.equal(viewOf(washer), CLOSE_UP_VIEW * 1);
   assert.ok(CLOSE_UP_VIEW > 1, 'the view is wider than the part, so its surroundings show');
 });
 
-test('just under the threshold the close-up is half the model across, so it meets the whole-model framing without a jump', () => {
-  const part = box([0, 0, 0], [SMALL_PART * 100 * 0.999, 0, 0]);
-  assert.ok(Math.abs(closeUpSphere(part, engine).radius * 2 - 50) < 0.1);
+test('a large part still gets a modest zoom: the view is at most three quarters of the model', () => {
+  assert.equal(viewOf(box([0, 0, 0], [30, 0, 0])), MAX_VIEW * 100, 'a cylinder of a radial engine');
+  assert.ok(MAX_VIEW < 1, 'closer than the whole-model framing');
 });
 
-test('a part of a tenth of the model or more is left where the camera has it', () => {
-  assert.equal(closeUpSphere(box([0, 0, 0], [SMALL_PART * 100, 0, 0]), engine), undefined, 'exactly at the threshold');
-  assert.equal(closeUpSphere(box([0, 0, 0], [30, 0, 0]), engine), undefined, 'a cylinder of a radial engine');
-  assert.ok(closeUpSphere(box([0, 0, 0], [SMALL_PART * 100 * 0.9, 0, 0]), engine), 'just under it');
+test('the whole part always fits, and the view never pulls back past the whole model', () => {
+  const crankcase = box([0, 0, 0], [70, 0, 0]);
+  assert.equal(viewOf(crankcase), MIN_VIEW * 70, 'a part bigger than three quarters of the view gets room around it');
+  assert.equal(viewOf(box([0, 0, 0], [95, 0, 0])), 100, 'a part nearly the size of the model: the whole-model view, no further');
+});
+
+test('the view grows smoothly with the part, with no jump between small and large', () => {
+  let previous = 0;
+  for (let size = 1; size <= 100; size += 1) {
+    const view = viewOf(box([0, 0, 0], [size, 0, 0]));
+    assert.ok(view >= previous, `the view never shrinks as the part grows (${size})`);
+    assert.ok(view - previous <= CLOSE_UP_VIEW + 1e-9, `and never jumps (${size})`);
+    previous = view;
+  }
 });
 
 test('size is measured corner to corner, so a long thin part counts by its length', () => {
   const tube = box([0, 0, 0], [6, 6, 6]); // about 10.4 across
-  assert.equal(closeUpSphere(tube, engine), undefined);
+  assert.ok(Math.abs(viewOf(tube) - 52) < 0.1);
 });
 
 test('an empty or degenerate model never moves the camera', () => {

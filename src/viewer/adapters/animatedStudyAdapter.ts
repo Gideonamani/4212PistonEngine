@@ -8,7 +8,7 @@ import { groupComponentIds } from '../core/component-groups.mjs';
 import { focusModeOrDefault, partLook, partRole, spotlightPalette } from '../core/focus-style.mjs';
 import { effectiveFocusMode } from '../core/spotlight-fallback';
 import { OVER_GHOST_ORDER } from '../core/ghost-order.mjs';
-import { closeUpOnSmallParts } from '../core/spotlight-closeup';
+import { closeUpOnSpotlight } from '../core/spotlight-closeup';
 import {
   crankAngleForMotion,
   createProceduralStudySampler,
@@ -260,7 +260,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
           applyAppearance();
           // On its own, a small part would be a speck in the middle of the screen.
           if (focusMode === 'isolate' && ids.length) fitVisible();
-          else if (options?.closeUp && ids.length) closeUpOnSmallParts(runtime, meshes.filter((mesh) => focus.has(mesh.userData.partId)), root);
+          else if (options?.closeUp && ids.length) closeUpOnSpotlight(runtime, meshes.filter((mesh) => focus.has(mesh.userData.partId)), root);
           onChange();
         },
       },

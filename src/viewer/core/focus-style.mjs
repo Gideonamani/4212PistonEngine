@@ -34,13 +34,13 @@ export const FOCUS_MODE_HINTS = Object.freeze({
 // #d7dbe1, with brass and some mid and dark greys, and a spotlit part keeps its own colour in an X-ray (it is not tinted). Where parts are
 // dense the layers stack until the picture is the ghost colour itself, so the old pale blue-grey dark ghost (#9cbdcf) became the colour of
 // the parts and a steel part vanished into it (#92). The ghosts are therefore blue-violet, a hue no part has: periwinkle on the dark stage,
-// indigo on the light one. The dark highlight was a bright teal at 1.2:1 against the pale grey around it, and is now a deeper teal.
+// indigo on the light one. The indigo is kept faint (0.12): stronger it stands further from the parts but turns the picture an electric blue. The dark highlight was a bright teal at 1.2:1 against the pale grey around it, and is now a deeper teal.
 // scripts/test_focus_style.mjs holds the palette to all of this against the models' dominant part colours.
 // `neutral` is for a picture drawn on a transparent background (a card image, see docs/card-thumbnails.md), which is then laid over either
 // stage: its ghost is a mid tone, the one colour that shows on both.
 export const SPOTLIGHT_PALETTE = Object.freeze({
   dark: Object.freeze({ ghostColor: 0x9e8afa, ghostOpacity: 0.2, paleColor: 0xd7e0e6, highlightColor: 0x0fa38d, highlightEmissive: 0x05473d }),
-  light: Object.freeze({ ghostColor: 0x2a2190, ghostOpacity: 0.16, paleColor: 0xc3cfd6, highlightColor: 0x0d8577, highlightEmissive: 0x04463f }),
+  light: Object.freeze({ ghostColor: 0x2a2190, ghostOpacity: 0.12, paleColor: 0xc3cfd6, highlightColor: 0x0d8577, highlightEmissive: 0x04463f }),
   neutral: Object.freeze({ ghostColor: 0x5f8195, ghostOpacity: 0.22, paleColor: 0xa9b8c0, highlightColor: 0x0e8a79, highlightEmissive: 0x055a4f }),
 });
 

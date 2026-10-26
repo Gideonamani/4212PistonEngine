@@ -107,14 +107,15 @@ const stacked = (palette, stage, layers) => rgbOf(palette.ghostColor).map((ghost
 test('the ghost stands apart from every common part colour, however many layers stack up', () => {
   for (const theme of THEMES) {
     const palette = SPOTLIGHT_PALETTE[theme];
-    // The old palette came within 0.015 to 0.053 of a part colour at these depths (its dark ghost turned into bare steel where parts are dense).
-    for (const [layers, floor] of [[3, 0.055], [10, 0.1]]) {
+    // The old palette came within 0.015 (light, 3 layers) and 0.02 to 0.024 (10 layers) of a part colour: its dark ghost turned into bare steel
+    // where parts are dense, and its light one into the mid blue-greys.
+    for (const [layers, floor] of [[3, 0.035], [10, 0.1]]) {
       const behind = stacked(palette, STAGE_COLOR[theme], layers);
       const closest = Math.min(...PART_COLOURS.map((part) => distance(rgbOf(part), behind)));
       assert.ok(closest >= floor, `${theme}, ${layers} layers: the ghost comes within ${closest.toFixed(3)} of a part colour`);
     }
     // And a single layer still shows on the stage, or the X-ray would not read at all.
-    assert.ok(distance(stacked(palette, STAGE_COLOR[theme], 1), rgbOf(STAGE_COLOR[theme])) >= 0.08, `${theme}: one layer shows on the stage`);
+    assert.ok(distance(stacked(palette, STAGE_COLOR[theme], 1), rgbOf(STAGE_COLOR[theme])) >= 0.06, `${theme}: one layer shows on the stage`);
   }
 });
 
