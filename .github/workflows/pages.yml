@@ -89,7 +89,7 @@ jobs:
       - name: Check that the guides point only at things that exist
         run: node --test scripts/test_docs_fresh.mjs
 
-  # The full run is the jobs below, side by side: assets first, then checks and e2e (two jobs per viewport) together, and on
+  # The full run is the jobs below, side by side: assets first, then checks and e2e (three jobs per viewport) together, and on
   # a push to main the Pages artifact. Each job is much shorter than the one job this replaced, which took up to 30 minutes.
   #
   # The Drive-hosted test models (ignored by Git) are restored here once and saved to the cache, so the jobs that need them find
@@ -131,14 +131,15 @@ jobs:
     needs: [scope, assets]
     if: needs.scope.outputs.full == 'true' && needs.scope.outputs.ui == 'true' && needs.scope.outputs.deploy_fast != 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     strategy:
       # Let every viewport report, so one failure does not hide another.
       fail-fast: false
-      # Each viewport is split across two runners: one runner took close to the job's 30 minutes on its own, and a slow runner ran past it.
+      # Each viewport is split across three runners. Playwright splits by file, and the specs that load a model are slow and serial, so the
+      # parts are uneven: with two, one part of phone-390 took 12 minutes and the other ran past 30 on a slow runner.
       matrix:
         project: [phone-320, phone-360, phone-390, tablet-768]
-        shard: [1, 2]
+        shard: [1, 2, 3]
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/prepare
@@ -151,8 +152,8 @@ jobs:
           key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - name: Install the Playwright browser
         run: npx playwright install --with-deps chromium
-      - name: Run the browser tests at ${{ matrix.project }} (part ${{ matrix.shard }} of 2)
-        run: npm run e2e -- --project=${{ matrix.project }} --shard=${{ matrix.shard }}/2
+      - name: Run the browser tests at ${{ matrix.project }} (part ${{ matrix.shard }} of 3)
+        run: npm run e2e -- --project=${{ matrix.project }} --shard=${{ matrix.shard }}/3
       - name: Keep the browser test traces when a test fails
         if: failure()
         uses: actions/upload-artifact@v4
