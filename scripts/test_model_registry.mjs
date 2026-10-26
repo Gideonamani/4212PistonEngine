@@ -2,8 +2,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const registry=JSON.parse(fs.readFileSync(new URL('../src/data/models.json',import.meta.url),'utf8'));
 
-assert.deepEqual(registry.map(model=>model.id),['cylinder','gtsio520-h-v5-teaching-engine','gtsio520-h-r10-mechanism-study','wright-1903-engine','wright-1903-reconstruction','langley-manly-balzer-1903','hydraulic-tappet','oil-pump','accessory-drives']);
-assert.deepEqual(registry.map(model=>model.adapter),['operating-cylinder','full-engine','animated-study','static-gltf','animated-study','animated-study','animated-study','animated-study','animated-study']);
+assert.deepEqual(registry.map(model=>model.id),['cylinder','gtsio520-h-v5-teaching-engine','gtsio520-h-r10-mechanism-study','wright-1903-engine','wright-1903-reconstruction','langley-manly-balzer-1903','gnome-monosoupape-1913','hydraulic-tappet','oil-pump','accessory-drives']);
+assert.deepEqual(registry.map(model=>model.adapter),['operating-cylinder','full-engine','animated-study','static-gltf','animated-study','animated-study','animated-study','animated-study','animated-study','animated-study']);
 assert.equal(new Set(registry.map(model=>model.id)).size,registry.length,'model ids must be unique');
 assert.ok(registry.every(model=>model.label&&model.shortLabel&&model.summary));
 assert.ok(registry.every(model=>!('imageType' in model)),'card pictures come from previewUrl, not a guessed illustration type');
@@ -61,6 +61,12 @@ assert.match(langley.sources[0].localUrl,/^\.\/langley-manly-balzer-1903\.glb\.g
 assert.match(langley.contractUrl,/^\.\/langley-manly-balzer-1903-contract\.json\?v=[0-9a-f]{12}$/);
 assert.notEqual(langley.sources[0].driveId,reconstruction.sources[0].driveId,'the Langley study is its own Drive file');
 assert.ok(fs.statSync(new URL('../web/langley-manly-balzer-1903.glb.gz',import.meta.url)).size>1_000_000,'restore the Langley reconstruction from Drive before asset validation');
+
+const gnome=registry.find(model=>model.id==='gnome-monosoupape-1913');
+assert.match(gnome.sources[0].localUrl,/^\.\/gnome-monosoupape-1913\.glb\.gz\?v=[0-9a-f]{12}$/);
+assert.match(gnome.contractUrl,/^\.\/gnome-monosoupape-1913-contract\.json\?v=[0-9a-f]{12}$/);
+assert.notEqual(gnome.sources[0].driveId,langley.sources[0].driveId,'the Gnome study is its own Drive file');
+assert.ok(fs.statSync(new URL('../web/gnome-monosoupape-1913.glb.gz',import.meta.url)).size>1_000_000,'restore the Gnome reconstruction from Drive before asset validation');
 
 const driveId=/^[-\w]{20,}$/;
 for (const source of wright.sources) assert.match(source.driveId,driveId);

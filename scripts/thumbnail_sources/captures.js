@@ -24,6 +24,7 @@ const THUMBNAIL_CAPTURES = [
   { model: 'wright-1903-engine', name: 'explore-wright-1903-engine', view: { viewPreset: 'engine-overview' }, options: { ...TILE, exposure: 0.35 } },
   { model: 'wright-1903-reconstruction', name: 'explore-wright-1903-reconstruction', view: { savedMotionId: 'Systems exploded view', motionProgress: 0 }, options: { ...TILE } },
   { model: 'langley-manly-balzer-1903', name: 'explore-langley-manly-balzer-1903', view: { savedMotionId: 'Systems exploded view', motionProgress: 0 }, options: { ...TILE } },
+  { model: 'gnome-monosoupape-1913', name: 'explore-gnome-monosoupape-1913', view: { savedMotionId: 'Systems exploded view', motionProgress: 0 }, options: { ...TILE } },
   { model: 'hydraulic-tappet', name: 'explore-hydraulic-tappet', view: { savedMotionId: 'Exploded overview', motionProgress: 0 }, options: { ...TILE, exposure: 0.3 } },
   { model: 'oil-pump', name: 'explore-oil-pump', view: { savedMotionId: 'Exploded overview', motionProgress: 0 }, options: { ...TILE, exposure: 0.3 } },
   { model: 'accessory-drives', name: 'explore-accessory-drives', view: { savedMotionId: 'Operating mechanism', motionProgress: 0 }, options: { ...TILE } },

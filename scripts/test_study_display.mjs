@@ -9,7 +9,7 @@ const registry = readJson('src/data/models.json');
 const studies = registry.filter((model) => model.adapter === 'animated-study');
 
 test('only the GTSIO-520-H R10 study turns or reframes its model; the other animated studies keep their own orientation', () => {
-  assert.equal(studies.length, 6, 'six animated-study models');
+  assert.equal(studies.length, 7, 'seven animated-study models');
   for (const model of studies) {
     const contract = readJson(`web/${model.contractUrl.replace(/^\.\//, '').replace(/\?.*$/, '')}`);
     if (model.id === 'gtsio520-h-r10-mechanism-study') {
