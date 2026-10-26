@@ -651,7 +651,13 @@
             "mode": "existing-3d",
             "status": "available",
             "rationale": "The assembled study lets the learner find the housing, crank gear, cam gear and idler, and see inside the case with the section plane."
-          }
+          },
+          "focusParts": [
+            "AccessoryHousing",
+            "CrankGear",
+            "CamGear",
+            "IdlerGear"
+          ]
         },
         {
           "type": "image",
@@ -793,7 +799,12 @@
             "mode": "existing-3d",
             "status": "available",
             "rationale": "The fuel path is isolated on the model so the cluster gear, pump drive gear and coupling can be found."
-          }
+          },
+          "focusParts": [
+            "CamCluster",
+            "FuelGear",
+            "FuelCoupling"
+          ]
         },
         {
           "type": "model-pose",
@@ -918,7 +929,14 @@
             "mode": "existing-3d",
             "status": "available",
             "rationale": "The starter engagement clip is run on the model so the worm, worm wheel, spring, drum and shaftgear can be named at each stage."
-          }
+          },
+          "focusParts": [
+            "StarterWorm",
+            "WormWheel",
+            "ClutchSpring",
+            "StarterDrum",
+            "StarterShaftGear"
+          ]
         },
         {
           "type": "model-pose",
@@ -936,7 +954,12 @@
             "mode": "existing-3d",
             "status": "available",
             "rationale": "The model is scrubbed past engine takeover to see the worm drive stop while the shaftgear keeps turning."
-          }
+          },
+          "focusParts": [
+            "StarterWorm",
+            "WormWheel",
+            "StarterShaftGear"
+          ]
         },
         {
           "type": "model-pose",
@@ -1132,7 +1155,12 @@
             "mode": "existing-3d",
             "status": "available",
             "rationale": "The shared 720-degree cylinder profile puts the learner 20 degrees before TDC on the compression stroke."
-          }
+          },
+          "focusParts": [
+            "UpperSparkPlug",
+            "LowerSparkPlug",
+            "PistonBody"
+          ]
         },
         {
           "type": "image",
