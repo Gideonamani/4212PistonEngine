@@ -2,7 +2,8 @@ import * as THREE from 'three';
 
 // Per-part winding counts fill solid cuts while leaving bores and cavities open.
 // Helpers live outside the model so camera framing and picking use real parts only.
-export function createSectionController(meshes, bounds, render, onChange, scene) {
+// `onPlane` runs whenever the cut is turned on or off or the plane moves, before the frame is drawn (the spotlight's style can depend on it).
+export function createSectionController(meshes, bounds, render, onChange, scene, onPlane) {
   bounds = bounds.clone();
   const plane = new THREE.Plane();
   const helpers = new THREE.Group();
@@ -79,9 +80,11 @@ export function createSectionController(meshes, bounds, render, onChange, scene)
       material.clippingPlanes = enabled ? [plane] : [];
       if (changed) material.needsUpdate = true;
     }
-    sync(); render(); onChange();
+    sync(); onPlane?.(); render(); onChange();
   };
   return {
+    /** The plane while the model is cut open, as plain numbers; the cut keeps what is on the side the normal points to. */
+    cut: () => enabled ? { normal: plane.normal.toArray(), constant: plane.constant } : undefined,
     snapshot: () => ({ sectionEnabled: enabled, sectionAxis: axis, sectionPosition: position, sectionFlipped: flipped, sectionRecommended: recommended?.label, sectionOnRecommended: onRecommended }),
     feature: {
       setEnabled(value) { enabled = value; apply(); },
