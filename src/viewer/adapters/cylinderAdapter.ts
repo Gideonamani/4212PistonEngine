@@ -10,6 +10,7 @@ import { valveMatrices } from '../engineering/valve-transforms.mjs';
 import { createCycleVisuals } from '../engineering/cycle-visuals.mjs';
 import { focusModeOrDefault, partLook, partRole, spotlightPalette } from '../core/focus-style.mjs';
 import { effectiveFocusMode } from '../core/spotlight-fallback';
+import { drawOverGhost } from '../core/ghost-order.mjs';
 import type { AdapterContext, AppearanceMode, FocusMode, ModelComponent, ModelGroup, ViewerSession, ViewerSnapshot } from '../types';
 
 type MotionEntry = { mesh: THREE.Mesh; group: 'Piston' | 'ConnectingRod' | 'Crank' | 'Cylinder'; localBind: THREE.Matrix4 };
@@ -156,6 +157,8 @@ export async function createCylinderSession(definition: ModelDefinition, context
             : snapshot.appearance === 'cad'
               ? originals.get(mesh)!
               : inspection.get(mesh)!;
+      // While the rest is ghosted, the solid parts are drawn after the ghost so its layers never cover them (core/ghost-order.mjs).
+      drawOverGhost(mesh, spotlight && mode === 'xray' && mesh.material !== ghost);
     }
     section.refresh();
   };

@@ -4,6 +4,7 @@ import test from 'node:test';
 import * as THREE from 'three';
 import { rolldown } from 'rolldown';
 import { FOCUS_MODES, HIGHLIGHT_COLOR, PALE_COLOR, XRAY_COLOR, XRAY_OPACITY } from '../src/viewer/core/focus-style.mjs';
+import { OVER_GHOST_ORDER } from '../src/viewer/core/ghost-order.mjs';
 
 // Drives the real adapters through every focus mode on the real models. Each mode must give the spotlit parts and the rest the look
 // that core/focus-style.mjs promises, switching modes must be reversible, and a new step must start from its own mode.
@@ -85,6 +86,13 @@ for (const [id, label, create, requires] of models) {
     assert.ok(xrayCount.ghost > 0 && xrayCount.normal > 0, `x-ray ghosts some parts and keeps others solid: ${JSON.stringify(xrayCount)}`);
     assert.ok(!xray.includes('hidden') && !xray.includes('pale'), 'x-ray hides nothing');
 
+    // The X-ray's solid parts are drawn after the ghost, still opaque, so its layers never cover them (core/ghost-order.mjs).
+    const materialsOf = (mesh) => (Array.isArray(mesh.material) ? mesh.material : [mesh.material]);
+    const solid = meshes.filter((mesh, index) => xray[index] === 'normal');
+    assert.ok(solid.every((mesh) => mesh.renderOrder === OVER_GHOST_ORDER), 'every solid part comes after the ghost');
+    assert.ok(solid.every((mesh) => materialsOf(mesh).every((material) => material.transparent && material.opacity === 1 && material.depthWrite)), 'drawn in the see-through pass, fully opaque and writing depth');
+    assert.ok(meshes.filter((mesh, index) => xray[index] === 'ghost').every((mesh) => mesh.renderOrder === 0), 'the ghost stays at the default order');
+
     session.features.focus.setMode('highlight');
     assert.equal(session.snapshot().focusMode, 'highlight', 'the mode asked for is reported even when it is drawn another way');
     const highlighted = count(looks());
@@ -122,9 +130,11 @@ for (const [id, label, create, requires] of models) {
       assert.equal(session.snapshot().focusMode, mode);
     }
 
-    // Leaving the spotlight puts the whole model back.
+    // Leaving the spotlight puts the whole model back, in the order it is normally drawn.
     session.update({ focusParts: undefined });
     assert.ok(looks().every((look) => look === 'normal'));
+    assert.ok(meshes.every((mesh) => mesh.renderOrder === 0), 'nothing is drawn over a ghost when nothing is ghosted');
+    assert.ok(meshes.every((mesh) => materialsOf(mesh).every((material) => !material.transparent || material.opacity < 1)), 'no opaque part is left in the see-through pass');
     session.dispose();
   });
 }

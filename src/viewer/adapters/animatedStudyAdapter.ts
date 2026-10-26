@@ -7,6 +7,7 @@ import { cloneMaterials, createSectionController, disposeObject, meshMaterials }
 import { groupComponentIds } from '../core/component-groups.mjs';
 import { focusModeOrDefault, partLook, partRole, spotlightPalette } from '../core/focus-style.mjs';
 import { effectiveFocusMode } from '../core/spotlight-fallback';
+import { OVER_GHOST_ORDER } from '../core/ghost-order.mjs';
 import {
   crankAngleForMotion,
   createProceduralStudySampler,
@@ -133,16 +134,24 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     snapshot.focusActive = spotlight;
     snapshot.focusMode = focusMode;
     snapshot.focusFallback = mode !== focusMode;
-    for (const mesh of meshes) {
+    const looks = meshes.map((mesh) => {
       const id = mesh.userData.partId;
       const spot = partLook(mode, partRole(spotlight, focus.has(id)));
       mesh.visible = spot.visible && (!isolation || isolation.has(id)) && motionVisible(id);
       const motionGhost = !powerPath && !spotlight && !isolation && motionDisplay.ghostSet.has(id);
-      const look = powerPath && !powerPath.parts.includes(id) ? 'ghost' : motionGhost ? 'ghost' : spot.look;
+      return powerPath && !powerPath.parts.includes(id) ? 'ghost' : motionGhost ? 'ghost' : spot.look;
+    });
+    // While some parts are ghosted, the solid ones are drawn after the ghost so its layers never cover them (core/ghost-order.mjs).
+    const ghosting = meshes.some((mesh, index) => mesh.visible && looks[index] === 'ghost');
+    meshes.forEach((mesh, index) => {
+      const id = mesh.userData.partId;
+      const look = looks[index];
+      const overGhost = ghosting && look !== 'ghost';
+      mesh.renderOrder = overGhost ? OVER_GHOST_ORDER : 0;
       const part = contractPartsById.get(id);
       for (const material of meshMaterials(mesh) as THREE.MeshStandardMaterial[]) {
         const ghost = look === 'ghost';
-        material.opacity = ghost ? palette.ghostOpacity : 1; material.transparent = ghost; material.depthWrite = !ghost;
+        material.opacity = ghost ? palette.ghostOpacity : 1; material.transparent = ghost || overGhost; material.depthWrite = !ghost;
         material.color.copy(materialColors.get(material)!);
         if (paths.length && snapshot.appearance === 'inspection') material.color.set(part?.role === 'teaching-fixture' ? '#46515a' : pathColors[part?.group] || '#84929e');
         if (paths.length && snapshot.appearance === 'inspection' && /Spring|Plate|Plunger/.test(id)) material.color.set(0x379e9b);
@@ -152,7 +161,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
         material.emissive.set(id === snapshot.selectedId || look === 'highlight' ? palette.highlightEmissive : powerPath?.parts.includes(id) ? 0x174638 : 0); material.emissiveIntensity = .6;
         material.needsUpdate = true;
       }
-    }
+    });
     const separate = (contract.remoteDisplays || []).filter((display: any) =>
       components.some((part: any) => part.group === display.group && partsById.get(part.id)?.visible));
     snapshot.assemblyNotice = separate.length ? `${separate.map((display: any) => display.label).join(' · ')}: separate relocated displays. Engine connections omitted.` : undefined;
