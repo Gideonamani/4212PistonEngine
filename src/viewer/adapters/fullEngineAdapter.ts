@@ -6,6 +6,7 @@ import { cloneMaterials, createSectionController, disposeObject, meshMaterials }
 import { focusModeOrDefault, partLook, partRole, spotlightPalette } from '../core/focus-style.mjs';
 import { effectiveFocusMode } from '../core/spotlight-fallback';
 import { OVER_GHOST_ORDER } from '../core/ghost-order.mjs';
+import { closeUpOnSmallParts } from '../core/spotlight-closeup';
 import type { AdapterContext, AppearanceMode, FocusMode, ModelComponent, ModelGroup, ViewerSession, ViewerSnapshot } from '../types';
 
 type EngineItem = {
@@ -274,7 +275,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
           applyAppearance();
           onChange();
         },
-        set(ids, mode) {
+        set(ids, mode, options) {
           const unknown = ids.filter((id) => !componentsById.has(id));
           if (unknown.length) throw Error(`Unknown component id in the spotlight: ${unknown.join(', ')}.`);
           focusComponents.splice(0, focusComponents.length, ...ids.map((id) => componentsById.get(id)));
@@ -292,7 +293,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
             proxy.position.copy(box.getCenter(new THREE.Vector3()));
             runtime.fit(proxy);
             proxy.geometry.dispose();
-          }
+          } else if (options?.closeUp && focusComponents.length) closeUpOnSmallParts(runtime, items.filter(isFocused).map((item) => item.mesh), root);
           onChange();
         },
       },

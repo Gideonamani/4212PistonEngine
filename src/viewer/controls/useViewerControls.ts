@@ -105,7 +105,8 @@ export function useViewerControls(viewer: ModelViewerState, { host, lessonContro
     if (target.ids.length > 0) {
       // Auto-apply highlight if no mode is currently active
       if (!followMode.current) followMode.current = 'highlight';
-      features.focus.set(target.ids, followMode.current);
+      // A small part is brought closer, or at the whole-model framing it could be a few pixels across.
+      features.focus.set(target.ids, followMode.current, { closeUp: true });
     } else if (followMode.current) {
       followMode.current = undefined;
       features.focus.set([], 'highlight');
@@ -155,7 +156,7 @@ export function useViewerControls(viewer: ModelViewerState, { host, lessonContro
     // Tapping the style already in force turns the spotlight off.
     if (current === mode) { followMode.current = undefined; focus.set([], mode); return; }
     followMode.current = mode;
-    focus.set(target.ids, mode);
+    focus.set(target.ids, mode, { closeUp: true });
   };
 
   return {

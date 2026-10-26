@@ -8,6 +8,7 @@ import { groupComponentIds } from '../core/component-groups.mjs';
 import { focusModeOrDefault, partLook, partRole, spotlightPalette } from '../core/focus-style.mjs';
 import { effectiveFocusMode } from '../core/spotlight-fallback';
 import { OVER_GHOST_ORDER } from '../core/ghost-order.mjs';
+import { closeUpOnSmallParts } from '../core/spotlight-closeup';
 import {
   crankAngleForMotion,
   createProceduralStudySampler,
@@ -250,7 +251,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     features: {
       focus: {
         setMode(mode) { focusMode = focusModeOrDefault(mode); applyAppearance(); onChange(); },
-        set(ids, mode) {
+        set(ids, mode, options) {
           const unknown = ids.filter(id => !componentsById.has(id));
           if (unknown.length) throw Error(`Unknown component id in the spotlight: ${unknown.join(', ')}.`);
           focus.clear(); for (const id of ids) focus.add(id);
@@ -259,6 +260,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
           applyAppearance();
           // On its own, a small part would be a speck in the middle of the screen.
           if (focusMode === 'isolate' && ids.length) fitVisible();
+          else if (options?.closeUp && ids.length) closeUpOnSmallParts(runtime, meshes.filter((mesh) => focus.has(mesh.userData.partId)), root);
           onChange();
         },
       },

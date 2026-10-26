@@ -228,6 +228,35 @@ test('cylinder: a section through the valves lifts the fallback, and a plane tha
   session.dispose();
 });
 
+// Explore brings a small spotlit part closer (core/spotlight-framing.mjs) when it asks to; a lesson's part chips never do, and a large part
+// is left where the camera has it.
+test('cylinder: Explore brings a small spotlit part closer, and only when it asks', async () => {
+  const moves = [];
+  const runtime = { scene: new THREE.Scene(), camera: new THREE.PerspectiveCamera(45, 0.46), render() {}, fit() {}, focus: (target, distance) => moves.push({ target, distance }), setPickTargets() {}, setAnimationCallback() {} };
+  const session = await createCylinderSession(registry.find((model) => model.id === 'cylinder'), { runtime, signal: new AbortController().signal, onProgress() {}, onChange() {}, profile: 'explore' });
+  const meshes = [];
+  runtime.scene.traverse((object) => { if (object.isMesh && object.material && object.userData.partId) meshes.push(object); });
+  const whole = new THREE.Box3();
+  for (const mesh of meshes) whole.expandByObject(mesh);
+  const across = (box) => box.getSize(new THREE.Vector3()).length();
+  const sizeOf = (id) => across(new THREE.Box3().setFromObject(meshes.find((mesh) => mesh.userData.partId === id)));
+  const ids = [...new Set(meshes.map((mesh) => mesh.userData.partId))].sort((a, b) => sizeOf(a) - sizeOf(b));
+  const small = ids[0];
+  assert.ok(sizeOf(small) < 0.1 * across(whole), `${small} is small next to the cylinder`);
+
+  session.features.focus.set([small], 'xray');
+  assert.equal(moves.length, 0, 'without closeUp (a lesson part chip) the camera stays put');
+  session.features.focus.set([small], 'xray', { closeUp: true });
+  assert.equal(moves.length, 1, 'with closeUp a small part is brought closer');
+  const centre = new THREE.Box3().setFromObject(meshes.find((mesh) => mesh.userData.partId === small)).getCenter(new THREE.Vector3());
+  assert.ok(moves[0].target.distanceTo(centre) < 1e-9, 'and centred');
+  session.features.focus.set(['CylinderBarrel'], 'xray', { closeUp: true });
+  assert.equal(moves.length, 1, 'the barrel is large enough to find: the camera stays where the learner put it');
+  session.features.focus.set([small], 'isolate', { closeUp: true });
+  assert.equal(moves.length, 1, 'Isolate frames the part tightly with fit, not with a close-up');
+  session.dispose();
+});
+
 // A spotlight that selects nothing ghosts the whole model and looks like a rendering fault, so every teaching component the
 // published engine contract names must really match some of the loaded meshes.
 test('full engine: every teaching component spotlights at least one part', { skip: !fs.existsSync('web/engine.glb.gz') && 'web/engine.glb.gz is not restored' }, async () => {
