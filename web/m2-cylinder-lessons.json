@@ -161,7 +161,7 @@
           "modelId": "cylinder",
           "savedMotionId": "exploded",
           "motionProgress": 100,
-          "prompt": "Locate the piston rings, floating pin, rod cap and bearing halves. Explain which interfaces guide sliding motion and which permit rotation.",
+          "prompt": "Locate the piston rings, [floating pin](FloatingPin), [rod cap](ConnectingRodCap) and bearing halves. Explain which interfaces guide sliding motion and which permit rotation.",
           "note": "Structural overview only. Presentation offsets do not define a maintenance sequence; permanent joints remain together.",
           "focusParts": [
             "PistonRing1",

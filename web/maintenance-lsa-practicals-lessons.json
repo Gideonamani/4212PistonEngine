@@ -996,7 +996,7 @@
           "type": "model-pose",
           "title": "From pressure to crankshaft",
           "modelId": "cylinder",
-          "prompt": "Energy changes form in a fixed order. Burning mixture raises the pressure in the cylinder. The pressure pushes the piston down. The piston pushes on the connecting rod through the piston pin. The rod pushes on the crankpin, which sits off the centre line of the crankshaft, so the push becomes a turning effort. The crankshaft turns the propeller. Heat energy has become mechanical energy.\n\nIn this model the piston is a short way past TDC on the power stroke.\n\nAt the cutaway, follow the path from the piston to the crankshaft and name each part in turn. Which part changes the up-and-down motion into rotation?",
+          "prompt": "Energy changes form in a fixed order. Burning mixture raises the pressure in the cylinder. The pressure pushes [the piston](PistonBody) down. The piston pushes on the [connecting rod](ConnectingRodBody) through the [piston pin](FloatingPin). The rod pushes on the [crankpin](CrankThrow), which sits off the centre line of the crankshaft, so the push becomes a turning effort. The crankshaft turns the propeller. Heat energy has become mechanical energy.\n\nIn this model the piston is a short way past TDC on the power stroke.\n\nAt the cutaway, follow the path from the piston to the crankshaft and name each part in turn. Which part changes the up-and-down motion into rotation?",
           "action": {
             "type": "cycle-angle",
             "value": 400
@@ -1112,7 +1112,7 @@
         {
           "type": "model-pose",
           "title": "Rod, bearing and crankshaft",
-          "prompt": "The connecting rod joins the piston to the crankshaft. At one end, the small end carries a bushing around the piston pin. Along the middle, the shank is shaped like an I-beam, strong but light. At the other end, the big end is split so it can be put together around the crankpin: the cap is held on by two bolts with slotted nuts, and bearing halves sit between the rod and the crankshaft. The crankshaft throw is the offset part that the big end wraps round. Name each of these in order, from piston to crankshaft.",
+          "prompt": "The connecting rod joins the piston to the crankshaft. At one end, the small end carries a [bushing](SmallEndBush) around the piston pin. Along the middle, the shank is shaped like an I-beam, strong but light. At the other end, the big end is split so it can be put together around the crankpin: [the cap](ConnectingRodCap) is held on by two bolts with slotted nuts, and bearing halves sit between the rod and the crankshaft. The [crankshaft throw](CrankThrow) is the offset part that the big end wraps round. Name each of these in order, from piston to crankshaft.",
           "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 29-32, and the GTSIO-520 overhaul manual, paragraphs 3-1e and 3-1f (PDF pp. 16-17): I-beam rods and two precision inserts at the crankpin end. Part names follow the component labels of the reviewed cylinder model, which shows one crankshaft throw. The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
           "sourceRefs": [
             "faa-powerplant-2023",
@@ -1167,7 +1167,7 @@
           "type": "model-pose",
           "title": "Valve-train parts in order",
           "modelId": "cylinder",
-          "prompt": "Lay the valve-train parts out in the order the motion passes through them. The cam lobe lifts the tappet, or lifter body. The tappet moves the pushrod, which runs inside its housing. The pushrod tips the rocker arm on its shaft. The rocker arm presses down on the valve stem. The valve spring closes the valve again.\n\nOn a disassembled engine, keep the pushrods in order and mark them: the ball ends wear to fit their sockets, and the rods are not always the same length.\n\nFind each part on the model and then on the engine. Which part do the springs push against at the top?",
+          "prompt": "Lay the valve-train parts out in the order the motion passes through them. The cam lobe lifts the [tappet, or lifter body](IntakeHydraulicLifterBody). The tappet moves the [pushrod](IntakePushrod), which runs inside [its housing](IntakePushrodHousing). The pushrod tips the [rocker arm](IntakeRockerArm) on [its shaft](IntakeRockerShaft). The rocker arm presses down on the [valve stem](IntakeValve). The valve spring closes the valve again.\n\nOn a disassembled engine, keep the pushrods in order and mark them: the ball ends wear to fit their sockets, and the rods are not always the same length.\n\nFind each part on the model and then on the engine. Which part do the springs push against at the top?",
           "savedMotionId": "exploded",
           "motionProgress": 50,
           "focusParts": [
@@ -1205,7 +1205,7 @@
         {
           "type": "model-pose",
           "title": "Session III: what is fitted at the rear",
-          "prompt": "The accessory section at the rear is where gears turned by the crankshaft drive the parts that keep the engine going: two magnetos for ignition, an engine-driven fuel pump, an oil pump and a tachometer drive, and a starter and an alternator. Where each one sits depends on the engine, and this teaching model moves some of them onto display stands, so always check the engine in front of you. Name each accessory, and say which one turns the engine instead of being turned by it.",
+          "prompt": "The accessory section at the rear is where gears turned by the crankshaft drive the parts that keep the engine going: two magnetos for ignition, an [engine-driven fuel pump](FuelPump), [an oil pump](OilHousing) and a [tachometer drive](TachOutput), and [a starter](StarterMotor) and [an alternator](AlternatorBody). Where each one sits depends on the engine, and this teaching model moves some of them onto display stands, so always check the engine in front of you. Name each accessory, and say which one turns the engine instead of being turned by it.",
           "note": "Documented from FAA-H-8083-32B (2023), PDF p. 28 (accessory case, mounting pads and geared shafts) and PDF p. 236 (the starter clutch), and the GTSIO-520 overhaul manual, A-3-2 and Figure A-4-8 (PDF pp. 17 and 25), with the -H difference data in C-3-2 and C-3-3 (PDF pp. 152-153) and C-3-6 (PDF p. 156), as in the Accessories and Drives lesson, where starting reverses the flow of power. The accessory model is a teaching reconstruction; its scope note says the front and optional modules are relocated on display stands and omitted transfers are not physical shafts.",
           "sourceRefs": [
             "gtsio520-overhaul",

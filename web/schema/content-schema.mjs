@@ -17,6 +17,8 @@
 // pack or registry to the versions below does not require touching the
 // runtime that renders it.
 
+import { hasBrokenPartLink, partLinkIds } from './part-links.mjs';
+
 export const LESSON_PACK_SCHEMA = '4212.lesson-pack/v3';
 export const MODEL_REGISTRY_SCHEMA = '4212.training-model-registry/v2';
 export const EXPLORE_CONTENT_TREE_SCHEMA = '4212.explore-content-tree/v1';
@@ -92,7 +94,7 @@ export const MODEL_CAPABILITY_FLAGS = Object.freeze([
  * @typedef {Object} Step
  * @property {'model-pose'|'image'|'text'|'external-link'|'web-embed'} type
  * @property {string} [title] - short (2-4 word) label for Learn's step rail; falls back to "Step N" when absent
- * @property {string} prompt
+ * @property {string} prompt - the step's text; "[words](PartId)" links words to one of the step's focusParts (see part-links.mjs)
  * @property {string} [note]
  * @property {string} [modelId] - required when type === 'model-pose'; must be one of the owning lesson's `models`
  * @property {StepAction} [action] - animated model-pose steps use an angle/cycle-angle pose
@@ -238,6 +240,11 @@ function validateStep(step, lessonModels, lessonIndex, stepIndex, knownSourceIds
       else if (step.focusParts === undefined) errors.push(`${where}: focusMode needs focusParts, which it styles`);
     }
   }
+  // Linked words spotlight one of the step's own parts, the way a part chip does, so they need the chips' two or more parts to choose between.
+  const linked = partLinkIds(step.prompt);
+  if (hasBrokenPartLink(step.prompt)) errors.push(`${where}: prompt has a part link that is not written as [words](PartId)`);
+  if (linked.length && (step.type !== 'model-pose' || !Array.isArray(step.focusParts) || step.focusParts.length < 2)) errors.push(`${where}: part links need a model-pose step that spotlights two or more parts`);
+  else for (const id of linked) if (!step.focusParts.includes(id)) errors.push(`${where}: part link '${id}' is not one of the step's focusParts`);
   if (step.deepDiveLinks && !Array.isArray(step.deepDiveLinks)) errors.push(`${where}: deepDiveLinks must be an array of lesson ids`);
   if (step.sourceRefs !== undefined) {
     if (!Array.isArray(step.sourceRefs)) errors.push(`${where}: sourceRefs must be an array`);

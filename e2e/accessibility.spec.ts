@@ -109,7 +109,8 @@ test('no new touch target is smaller than 44 px (and none below the 24 px WCAG 2
         const box = element.getBoundingClientRect();
         const style = getComputedStyle(element);
         if (!box.width || !box.height || style.visibility === 'hidden' || style.display === 'none' || element.closest('[hidden], [aria-hidden="true"]')) continue;
-        if (element.tagName === 'A' && element.closest('p, li')) continue; // links inside a sentence are exempt
+        // Links, and words linked to a part (StepText), inside a sentence are exempt: WCAG 2.5.8's inline exception, since a 44 px word would break the line.
+        if ((element.tagName === 'A' || element.hasAttribute('data-inline-target')) && element.closest('p, li')) continue;
         const label = element.getAttribute('aria-label') || element.innerText || element.getAttribute('title') || element.tagName;
         out.push({ name: label.trim().replace(/\s+/g, ' '), width: box.width, height: box.height });
       }

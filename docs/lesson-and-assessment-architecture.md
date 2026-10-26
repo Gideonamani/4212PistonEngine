@@ -191,7 +191,15 @@ A step that spotlights two or more parts gets a row of chips under its text, one
 
 The viewer owns the row (`src/viewer/controls/StepPartChips.tsx`) and draws it into a slot under the text by a portal, so the part labels come from the loaded model and the choice stays next to the viewer that shows it. It uses `previewPart()` from `useModelViewer`, which calls `features.focus.set()` and so leaves the pose, the section plane and the camera alone (a view change would reset all three). Which chips there are, when to collapse them and what a tap leaves chosen are in `src/viewer/core/step-part-chips.mjs` (`scripts/test_step_part_chips.mjs`); `e2e/step-part-chips.spec.ts` checks the row against the real cylinder, including that a chosen part is let go when the learner leaves the step and comes back.
 
-Linking words in the step text itself to parts, rather than a row under it, is a possible next step. It would need an authoring format for the links (explicit ids checked by the schema test, not label matching, because a word like "valve" names several parts) and the same `previewPart()`.
+### Words in the text that name a part (issue #69)
+
+A step's text can link words to one of its spotlit parts, written like a Markdown link: the words in square brackets, `[intake valve]`, straight followed by the part's id in parentheses, `(IntakeValve)`. The id is explicit, not matched from the label, because a word like "valve" names several parts; leave words that name two parts at once ("the rocker arms", "bearing halves") as plain text. Tapping the words does exactly what the part's chip does, and the two are one choice: the lesson page holds it (`PartPick` in `StepPartChips.tsx`) and forgets it when the step changes. The words are tappable only while the chips are on show, so on a model that cannot spotlight, or before the model has loaded, they read as plain text.
+
+- **Rules** (`web/schema/content-schema.mjs`, with the reading in `web/schema/part-links.mjs`): a linked id must be one of the step's `focusParts`, on a model-pose step that spotlights two or more parts, and a link written another way (a space between the brackets and the parentheses, or an id with a space in it) is an error. Because `focusParts` ids are checked against the models (`scripts/test_focus_parts.mjs`), so are the links. `scripts/test_part_links.mjs` also checks that the page's paragraph splitting never cuts a link in two. The instructor review sheets show the words without the markup.
+- **Touch targets.** A word stays at the height of its line, so it cannot be 44 px tall. It falls under WCAG 2.5.8's exception for targets inside a sentence, as links in a paragraph already did: both touch-target audits skip a `data-inline-target` button inside a `<p>`, and an invisible area a little larger than the word makes it easier to hit.
+- **Phone.** A word sits mid-paragraph, and the model above may have scrolled out of sight. Choosing a part scrolls the model back into view when less than half of it shows (`LessonStepViewer.tsx`); letting go does not scroll.
+- **Accessibility.** Each word is a real `<button>` with `aria-pressed`, in the tab order. `e2e/step-part-chips.spec.ts` checks touch, keyboard, the shared choice with the chips, the scroll into view, axe on the text and the 320 px layout on the real cylinder.
+
 
 ### Cutting the model open: `sectionPlane`
 

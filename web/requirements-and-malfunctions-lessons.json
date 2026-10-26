@@ -417,7 +417,7 @@
           "type": "model-pose",
           "title": "Where a hot spot can sit",
           "modelId": "cylinder",
-          "prompt": "At 340° the piston is rising on the compression stroke and is nearly at the top. Both valves are shut, and the charge is as hot and as squeezed as it will get before the spark. Anything in this chamber that is glowing, an eroded or cracked piston crown, the edge of a burned exhaust valve, a broken plug insulator, or a flake of deposit, can light the charge early. Spotlit here are the piston crown, the exhaust valve and the spark plugs.",
+          "prompt": "At 340° [the piston](PistonBody) is rising on the compression stroke and is nearly at the top. Both valves are shut, and the charge is as hot and as squeezed as it will get before the spark. Anything in this chamber that is glowing, an eroded or cracked piston crown, the edge of a [burned exhaust valve](ExhaustValve), a broken plug insulator, or a flake of deposit, can light the charge early. Spotlit here are the piston crown, the exhaust valve and the spark plugs.",
           "action": {
             "type": "cycle-angle",
             "value": 340

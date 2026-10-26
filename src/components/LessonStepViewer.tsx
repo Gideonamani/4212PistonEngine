@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Lesson, LessonStep } from '../types/engine';
 import { LessonMedia, LessonModelStage, isModelStep, stepHasMedia } from './LessonMedia';
 import { preloadModels } from '../viewer/preload';
@@ -15,8 +15,9 @@ import { LessonOpener } from './lesson/LessonOpener';
 import { useLessonFullscreen } from './lesson/useLessonFullscreen';
 import { useLessonLayout } from './lesson/useLessonLayout';
 import { TextSizeControl, useLessonTextSize } from './lesson/TextSize';
-import { toParagraphs } from './lesson/paragraphs.mjs';
-import { CHIPS_MIN_PARTS } from '../viewer/core/step-part-chips.mjs';
+import { StepText } from './lesson/StepText';
+import { CHIPS_MIN_PARTS, toggleChip } from '../viewer/core/step-part-chips.mjs';
+import type { PartPick } from '../viewer/controls/StepPartChips';
 import { useScrollArea } from './lesson/useScrollArea';
 import { useStepSwipe, type SwipeDirection } from './lesson/useStepSwipe';
 
@@ -59,6 +60,11 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
   const viewerRef = useRef<HTMLDivElement>(null);
   // Where the 3D viewer draws the step's part chips: just under the step's text (see StepPartChips).
   const [chipSlot, setChipSlot] = useState<HTMLDivElement | null>(null);
+  // The part chosen to look at alone, by a chip or by a linked word in the text, and whether the chips (and so the words) are on show.
+  // A choice belongs to the step it was made on: a new step starts from its own spotlight.
+  const [partChoice, setPartChoice] = useState<{ step: number; id?: string }>({ step: -1 });
+  const [partsOffered, setPartsOffered] = useState(false);
+  const stageRef = useRef<HTMLDivElement>(null);
   const { isImmersive, coversPage, toggleImmersive } = useLessonFullscreen(viewerRef);
   const { layout, canChoose: canChooseLayout, choose: chooseLayout } = useLessonLayout();
   useScrollArea(viewerRef);
@@ -89,7 +95,27 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
 
   useEffect(() => {
     setIsEvidenceOpen(false);
+    setPartChoice({ step: -1 });
   }, [currentStepIndex]);
+
+  const chosenPart = partChoice.step === currentStepIndex ? partChoice.id : undefined;
+  const partPick = useMemo<PartPick>(() => ({
+    selected: chosenPart,
+    choose: (id) => setPartChoice({ step: currentStepIndex, id }),
+    offered: setPartsOffered,
+  }), [chosenPart, currentStepIndex]);
+
+  // A word sits mid-paragraph, and on a phone the model above it may have scrolled out of sight: choosing a part brings the model back
+  // into view when less than half of it shows, so the learner sees what the tap did.
+  const chooseLinkedPart = useCallback((id: string) => {
+    const next = toggleChip(chosenPart, id);
+    partPick.choose(next);
+    const stage = stageRef.current, area = viewerRef.current;
+    if (!next || !stage || !area) return;
+    const box = stage.getBoundingClientRect(), view = area.getBoundingClientRect();
+    const shown = Math.min(box.bottom, view.bottom) - Math.max(box.top, view.top);
+    if (shown < box.height / 2) stage.scrollIntoView({ block: 'nearest', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  }, [chosenPart, partPick]);
 
   useEffect(() => {
     saveLessonStep(lesson.id, currentStepIndex);
@@ -208,7 +234,7 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
 
             {/* Published media or a clearly labelled production placeholder; a step with neither gets no slot. Side by side, the 3D viewer is pinned. */}
             <div className={twoColumns ? `col-start-1 row-span-3 row-start-1 self-start pt-3 ${modelStep ? 'lesson-media-side sticky top-0' : ''}` : 'contents'}>
-              {heldModelStep.current && <LessonModelStage step={heldModelStep.current} active={Boolean(modelStep)} immersive={isImmersive} layout={side ? 'side' : 'stacked'} chipSlot={chipSlot} onSwitchTo3DModel={onSwitchTo3DModel} />}
+              {heldModelStep.current && <LessonModelStage step={heldModelStep.current} active={Boolean(modelStep)} immersive={isImmersive} layout={side ? 'side' : 'stacked'} chipSlot={chipSlot} partPick={partPick} stageRef={stageRef} onSwitchTo3DModel={onSwitchTo3DModel} />}
               {shouldShowMedia && !modelStep && <LessonMedia step={currentStep} immersive={isImmersive} />}
             </div>
 
@@ -237,10 +263,8 @@ export const LessonStepViewer: React.FC<LessonStepViewerProps> = ({
                 {currentStep.title}
               </h2>
 
-              {/* Body prose, as short paragraphs: the author's own breaks, or sentence ends where the text has none (see paragraphs.mjs). */}
-              <div className="lesson-prose flex flex-col gap-[0.85em] text-slate-200">
-                {toParagraphs(currentStep.text).map((paragraph, index) => <p key={index}>{paragraph}</p>)}
-              </div>
+              {/* Body prose, as short paragraphs, with any words linked to a part as buttons that spotlight it (see StepText). */}
+              <StepText text={currentStep.text} linkable={Boolean(modelStep) && partsOffered} selected={chosenPart} onChoose={chooseLinkedPart} />
 
               {/* A step that spotlights two or more parts gets a chip for each, drawn here by the viewer (see StepPartChips). */}
               {modelStep && (modelStep.focusParts?.length ?? 0) >= CHIPS_MIN_PARTS && <div ref={setChipSlot} className="empty:hidden" />}

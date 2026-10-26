@@ -1363,7 +1363,7 @@
           "type": "model-pose",
           "title": "Connecting rods",
           "modelId": "cylinder",
-          "prompt": "The connecting rod links the piston to the crankpin. It must stay rigid under load yet be light enough to limit inertia forces at each stroke end.\n\nOpposed and inline engines use plain rods, with a cap and two-piece bearing at the crankpin end and a bushing at the piston end. Rods go back in the same cylinder and position. The GTSIO-520-H uses I-beam rods with split bronze piston-pin bushings.",
+          "prompt": "The connecting rod links the piston to the crankpin. It must stay rigid under load yet be light enough to limit inertia forces at each stroke end.\n\nOpposed and inline engines use plain rods, with [a cap](ConnectingRodCap) and two-piece bearing at the crankpin end and [a bushing](SmallEndBush) at the piston end. Rods go back in the same cylinder and position. The GTSIO-520-H uses I-beam rods with split bronze piston-pin bushings.",
           "action": {
             "type": "angle",
             "value": 90
@@ -1414,7 +1414,7 @@
           "type": "model-pose",
           "title": "Piston and pin",
           "modelId": "cylinder",
-          "prompt": "The piston is the moving wall of the combustion chamber: an aluminium alloy forging with ring grooves, heavy pin bosses and inner ribs that help oil carry heat away. The full-floating piston pin turns freely in both the piston and the rod, and soft aluminium end plugs stop it scoring the cylinder wall.",
+          "prompt": "[The piston](PistonBody) is the moving wall of the combustion chamber: an aluminium alloy forging with ring grooves, heavy pin bosses and inner ribs that help oil carry heat away. The [full-floating piston pin](FloatingPin) turns freely in both the piston and the rod, and soft aluminium end plugs stop it scoring the cylinder wall.",
           "action": {
             "type": "angle",
             "value": 0
@@ -1468,7 +1468,7 @@
           "type": "model-pose",
           "title": "The cylinder",
           "modelId": "cylinder",
-          "prompt": "Each cylinder is two parts: a light aluminium alloy head with deep cooling fins, and a steel barrel nitrided inside to resist wear.\n\nThe head is heated and screwed onto the chilled barrel, so as they equalise they lock into a gastight shrink joint. The head also carries the valve seats and guides and the spark plug openings.",
+          "prompt": "Each cylinder is two parts: a light aluminium alloy [head](CylinderHead) with deep cooling fins, and a steel [barrel](CylinderBarrel) nitrided inside to resist wear.\n\nThe head is heated and screwed onto the chilled barrel, so as they equalise they lock into a gastight shrink joint. The head also carries the valve seats and guides and the spark plug openings.",
           "action": {
             "type": "angle",
             "value": 0
@@ -1596,7 +1596,7 @@
           "type": "model-pose",
           "title": "Find the main parts",
           "modelId": "gtsio520-h-v5-teaching-engine",
-          "prompt": "Now find the main parts on the whole GTSIO-520-H.\n\nThe highlighted parts are the crankcase with its mounting lugs, the crankshaft inside it, and the propeller reduction drive at the front.\n\nOrbit the model. Where would the moving parts of a cylinder sit? Which part would the engine mount grip?",
+          "prompt": "Now find the main parts on the whole GTSIO-520-H.\n\nThe highlighted parts are the [crankcase](crankcase-and-mounts) with its mounting lugs, the [crankshaft](crankshaft) inside it, and the [propeller reduction drive](propeller-reduction-drive) at the front.\n\nOrbit the model. Where would the moving parts of a cylinder sit? Which part would the engine mount grip?",
           "action": {
             "type": "angle",
             "value": 0
