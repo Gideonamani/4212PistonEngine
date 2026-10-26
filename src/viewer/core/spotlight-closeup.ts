@@ -16,5 +16,9 @@ export function closeUpOnSmallParts(runtime: ViewerRuntime, spotlit: THREE.Objec
   const part = boxOf(spotlit), whole = boxOf([model]);
   const sphere = part && whole ? closeUpSphere(part, whole) : undefined;
   if (!sphere) return;
-  runtime.focus(new THREE.Vector3().fromArray(sphere.center), viewDistance(sphere.radius, runtime.camera.fov, runtime.camera.aspect));
+  const distance = viewDistance(sphere.radius, runtime.camera.fov, runtime.camera.aspect);
+  // The orbit controls keep the camera no nearer than a share of the whole-model distance, which would stop it short of a very small part;
+  // the next whole-model fit sets the limit again.
+  runtime.controls.minDistance = Math.min(runtime.controls.minDistance, distance * 0.5);
+  runtime.focus(new THREE.Vector3().fromArray(sphere.center), distance);
 }
