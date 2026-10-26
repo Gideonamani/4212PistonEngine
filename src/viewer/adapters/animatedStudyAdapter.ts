@@ -48,7 +48,9 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     if (!clips.has(motion.id) && !procedural.supports(motion)) throw Error(`Saved motion is missing: ${motion.id}`);
   }
   const bounds = new THREE.Box3().setFromObject(root);
-  const section = createSectionController(meshes, bounds, runtime.render, onChange, runtime.scene);
+  // A cut through a spotlit part shows it, which can change the style the spotlight is drawn in, so the spotlight is repainted when it does.
+  let drawnMode: FocusMode | undefined;
+  const section = createSectionController(meshes, bounds, runtime.render, onChange, runtime.scene, () => { if (drawnMode && spotlightMode() !== drawnMode) applyAppearance(); });
   const mixer = new THREE.AnimationMixer(root);
   const snapshot: ViewerSnapshot = { status: 'Animated mechanism study ready', appearance: 'inspection', playing: false, motionProgress: 0, motionNote: contract.scope };
   let active: any, action: THREE.AnimationAction | undefined, progress = 0, playing = false;
@@ -111,6 +113,13 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   };
   const materialColors = new Map<THREE.Material, THREE.Color>();
   for (const mesh of meshes) for (const material of meshMaterials(mesh) as THREE.MeshStandardMaterial[]) materialColors.set(material, material.color.clone());
+  const motionVisibility = (display: ReturnType<typeof resolveMotionDisplay>) => (id: string) => !display.visibleSet || display.visibleSet.has(id) || focus.has(id) || Boolean(isolation?.has(id));
+  // Highlight would hide a spotlit part that sits inside another, so it is drawn as X-ray for as long as that is so.
+  const spotlightMode = () => {
+    if (powerPath || !focus.size) return focusMode;
+    const motionVisible = motionVisibility(resolveMotionDisplay(active, contract.parts, motionViewModes.get(active?.id) || 'default'));
+    return effectiveFocusMode(focusMode, meshes.filter((mesh) => focus.has(mesh.userData.partId)), meshes.filter((mesh) => !focus.has(mesh.userData.partId) && (!isolation || isolation.has(mesh.userData.partId)) && motionVisible(mesh.userData.partId)), section.cut());
+  };
   const applyAppearance = () => {
     const pathColors: Record<string, string> = { housing: '#536878', core: '#84929e', fuel: '#be7b12', 'magneto-left': '#148365', 'magneto-right': '#148365', 'oil-tach': '#1b60bc', starter: '#963f7c', alternator: '#a58b21', vacuum: '#7752a7', governor: '#187f88' };
     // A selected power path ghosts every part outside it; otherwise a lesson step's spotlight is drawn as its focus mode says.
@@ -119,11 +128,8 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     const motionDisplay = resolveMotionDisplay(active, contract.parts, motionViewModes.get(active?.id) || 'default');
     snapshot.motionViewMode = motionDisplay.viewMode as 'core' | 'assembled';
     snapshot.motionAllowAssembled = motionDisplay.allowAssembled;
-    const motionVisible = (id: string) => !motionDisplay.visibleSet || motionDisplay.visibleSet.has(id) || focus.has(id) || Boolean(isolation?.has(id));
-    // Highlight would hide a spotlit part that sits inside another, so it is drawn as X-ray for as long as that is so.
-    const mode = spotlight
-      ? effectiveFocusMode(focusMode, meshes.filter((mesh) => focus.has(mesh.userData.partId)), meshes.filter((mesh) => !focus.has(mesh.userData.partId) && (!isolation || isolation.has(mesh.userData.partId)) && motionVisible(mesh.userData.partId)))
-      : focusMode;
+    const motionVisible = motionVisibility(motionDisplay);
+    const mode = drawnMode = spotlightMode();
     snapshot.focusActive = spotlight;
     snapshot.focusMode = focusMode;
     snapshot.focusFallback = mode !== focusMode;

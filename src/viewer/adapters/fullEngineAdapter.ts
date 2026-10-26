@@ -100,7 +100,9 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
   // Playback: a speed, and whether the cycle goes round and round (it does until the learner turns Loop off).
   let speed = 1;
   let loop = true;
-  const section = createSectionController(items.map((item) => item.mesh), bounds, runtime.render, onChange, runtime.scene);
+  // A cut through a spotlit part shows it, which can change the style the spotlight is drawn in, so the spotlight is repainted when it does.
+  let drawnMode: FocusMode | undefined;
+  const section = createSectionController(items.map((item) => item.mesh), bounds, runtime.render, onChange, runtime.scene, () => { if (drawnMode && spotlightMode() !== drawnMode) applyAppearance(); });
   section.startStep(context.sectionPlane);
 
   // A lesson step can spotlight teaching components, drawn as its focus mode says, and the camera frames the spotlit parts.
@@ -116,14 +118,15 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
       item.mesh.visible = wanted && lookOf(item).visible;
     }
   };
+  // Highlight would hide a spotlit part that sits inside another, so it is drawn as X-ray for as long as that is so.
+  const spotlightMode = () => focusComponents.length > 0
+    ? effectiveFocusMode(focusMode, items.filter(isFocused).map((item) => item.mesh), items.filter((item) => !isFocused(item) && item.mesh.visible).map((item) => item.mesh), section.cut())
+    : focusMode;
   const applyAppearance = () => {
     const palette = spotlightPalette(runtime.theme?.());
     const selected = selectedComponent();
     const spotlight = focusComponents.length > 0;
-    // Highlight would hide a spotlit part that sits inside another, so it is drawn as X-ray for as long as that is so.
-    const mode = spotlight
-      ? effectiveFocusMode(focusMode, items.filter(isFocused).map((item) => item.mesh), items.filter((item) => !isFocused(item) && item.mesh.visible).map((item) => item.mesh))
-      : focusMode;
+    const mode = drawnMode = spotlightMode();
     snapshot.focusActive = spotlight;
     snapshot.focusMode = focusMode;
     snapshot.focusFallback = mode !== focusMode;

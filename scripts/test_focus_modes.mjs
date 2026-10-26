@@ -161,6 +161,63 @@ test('cylinder: Highlight becomes X-ray for parts inside others, and stays Highl
   session.dispose();
 });
 
+// A section cut through the spotlit parts shows them on the cut face, so Highlight is drawn as Highlight while the plane passes through them.
+// Valve Operating step 2 recommends its own plane, "Valve axis", square to Y through the middle of the cylinder: it cuts all six parts.
+test('cylinder: a section through the valves lifts the fallback, and a plane that misses them does not', async () => {
+  const runtime = { scene: new THREE.Scene(), camera: new THREE.PerspectiveCamera(), render() {}, fit() {}, setPickTargets() {}, setAnimationCallback() {} };
+  const session = await createCylinderSession(registry.find((model) => model.id === 'cylinder'), { runtime, signal: new AbortController().signal, onProgress() {}, onChange() {}, profile: 'explore' });
+  const meshes = [];
+  runtime.scene.traverse((object) => { if (object.isMesh && object.material && object.userData.partId) meshes.push(object); });
+  const looks = () => meshes.map(lookOf);
+  const inside = ['IntakeValve', 'ExhaustValve', 'IntakeSeatInsert', 'ExhaustSeatInsert', 'IntakeValveGuide', 'ExhaustValveGuide'];
+  const step = { focusParts: inside, sectionPlane: { label: 'Valve axis', normal: [0, 1, 0], offset: 0.5 } };
+  const section = session.features.section;
+
+  session.update({ ...step, focusMode: 'xray' });
+  const xray = looks();
+  session.update({ ...step, focusMode: 'highlight' });
+  assert.equal(session.snapshot().focusFallback, true, 'a new step starts uncut, and the parts are inside the head');
+
+  section.setEnabled(true);
+  assert.equal(session.snapshot().sectionPosition, 50);
+  assert.equal(session.snapshot().focusFallback, false, 'the Valve axis plane cuts through every spotlit part');
+  const cut = count(looks());
+  assert.equal(cut.highlight, inside.length, `the spotlit parts are coloured: ${JSON.stringify(cut)}`);
+  assert.ok(cut.pale > 0 && !cut.ghost, `and the rest is pale, not ghosted: ${JSON.stringify(cut)}`);
+
+  // The cut lifts the fallback only while it passes through the valves: dragged off them, they are inside the head again.
+  const lifted = [];
+  for (let position = 0; position <= 100; position += 5) { section.setPosition(position); if (!session.snapshot().focusFallback) lifted.push(position); }
+  assert.ok(lifted.length > 0 && lifted.length < 6, `only positions near the valve axes lift it: ${lifted}`);
+  assert.deepEqual(lifted, Array.from({ length: lifted.length }, (_, index) => lifted[0] + index * 5), 'one unbroken stretch, so the note does not flicker on and off');
+  section.setPosition(100);
+  assert.deepEqual(looks(), xray, 'a plane at the edge of the model is drawn as X-ray, exactly');
+
+  // The standard planes: the two valves stand side by side across X, and Z crosses the stems, so neither cuts all six parts at once.
+  for (const axis of ['x', 'z']) {
+    section.setAxis(axis);
+    for (let position = 0; position <= 100; position += 5) {
+      section.setPosition(position);
+      assert.equal(session.snapshot().focusFallback, true, `the ${axis} plane at ${position}% leaves some spotlit part inside the head`);
+    }
+  }
+
+  // Back on the step's plane, the reverse cut keeps the other half, which the plane still passes through; turning the cut off falls back.
+  section.useRecommended();
+  assert.equal(session.snapshot().focusFallback, false);
+  section.flip();
+  assert.equal(session.snapshot().focusFallback, false, 'the reverse cut shows the other half of each part');
+  section.setEnabled(false);
+  assert.equal(session.snapshot().focusFallback, true, 'no cut, so the parts are inside the head again');
+  assert.deepEqual(looks(), xray);
+
+  // A style that is not Highlight is never a fallback, cut or not.
+  section.setEnabled(true);
+  session.features.focus.setMode('xray');
+  assert.equal(session.snapshot().focusFallback, false);
+  session.dispose();
+});
+
 // A spotlight that selects nothing ghosts the whole model and looks like a rendering fault, so every teaching component the
 // published engine contract names must really match some of the loaded meshes.
 test('full engine: every teaching component spotlights at least one part', { skip: !fs.existsSync('web/engine.glb.gz') && 'web/engine.glb.gz is not restored' }, async () => {

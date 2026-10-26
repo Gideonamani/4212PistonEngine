@@ -124,19 +124,22 @@ export async function createCylinderSession(definition: ModelDefinition, context
   let focusMode: FocusMode = focusModeOrDefault(context.focusMode);
   let playing = false;
   let cycleEnabled = Boolean(context.initialCycle);
-  const section = createSectionController(meshes, bounds, runtime.render, onChange, runtime.scene);
+  // A cut through a spotlit part shows it, which can change the style the spotlight is drawn in, so the spotlight is repainted when it does.
+  let drawnMode: FocusMode | undefined;
+  const section = createSectionController(meshes, bounds, runtime.render, onChange, runtime.scene, () => { if (drawnMode && spotlightMode() !== drawnMode) applyAppearance(); });
   section.startStep(context.sectionPlane);
 
+  // Highlight would hide a spotlit part that sits inside another, so it is drawn as X-ray for as long as that is so.
+  const spotlightMode = () => focusSet.size > 0
+    ? effectiveFocusMode(focusMode, meshes.filter((mesh) => focusSet.has(mesh.userData.partId)), meshes.filter((mesh) => !focusSet.has(mesh.userData.partId) && (!isolated || isolatedParts.has(mesh.userData.partId))), section.cut())
+    : focusMode;
   const applyAppearance = () => {
     const palette = spotlightPalette(runtime.theme?.());
     highlight.color.set(palette.highlightColor);
     ghost.color.set(palette.ghostColor); ghost.opacity = palette.ghostOpacity;
     pale.color.set(palette.paleColor);
     const spotlight = focusSet.size > 0;
-    // Highlight would hide a spotlit part that sits inside another, so it is drawn as X-ray for as long as that is so.
-    const mode = spotlight
-      ? effectiveFocusMode(focusMode, meshes.filter((mesh) => focusSet.has(mesh.userData.partId)), meshes.filter((mesh) => !focusSet.has(mesh.userData.partId) && (!isolated || isolatedParts.has(mesh.userData.partId))))
-      : focusMode;
+    const mode = drawnMode = spotlightMode();
     snapshot.focusActive = spotlight;
     snapshot.focusMode = focusMode;
     snapshot.focusFallback = mode !== focusMode;
