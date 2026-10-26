@@ -87,3 +87,42 @@ test('the colours that carry a spotlight stand clear of the stage in both themes
     assert.ok(palette.ghostOpacity > 0 && palette.ghostOpacity < 0.5, `${theme}: the ghost stays see-through`);
   }
 });
+
+// The ghost and the highlight must stand apart from the models' own colours (#92). A spotlit part keeps its own colour in an X-ray, and where
+// parts are dense the ghost's layers stack until the picture is the ghost colour itself, so a ghost close to a part colour hides that part.
+// These are the colours most of the models' parts carry (their base colours, read from the released models, and the cylinder's inspection
+// colours): bare metal from #99a8b6 to #d7dbe1, brass, and mid and dark greys. Distances are in OKLab, where about 0.02 is a just-visible step.
+const PART_COLOURS = ['#d4dde6', '#c8d0d7', '#d7dbe1', '#cfd4d9', '#99a8b6', '#8e979e', '#b6babc', '#ecf0f1', '#7e868e', '#81868e', '#dabd89', '#e5ba76', '#c49761', '#343739', '#42484d', '#9cabb8', '#379e9b', '#bc7353', '#596d80', '#c2ced6'];
+const linear = (value) => { const c = value / 255; return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; };
+const rgbOf = (hex) => { const n = typeof hex === 'string' ? parseInt(hex.slice(1), 16) : hex; return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; };
+const oklab = (rgb) => {
+  const [r, g, b] = rgb.map(linear);
+  const [l, m, s] = [0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b, 0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b, 0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b].map(Math.cbrt);
+  return [0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s, 1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s, 0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s];
+};
+const distance = (a, b) => Math.hypot(...oklab(a).map((value, index) => value - oklab(b)[index]));
+/** What `layers` ghost layers look like over the stage. */
+const stacked = (palette, stage, layers) => rgbOf(palette.ghostColor).map((ghost, index) => ghost + (rgbOf(stage)[index] - ghost) * (1 - palette.ghostOpacity) ** layers);
+
+test('the ghost stands apart from every common part colour, however many layers stack up', () => {
+  for (const theme of THEMES) {
+    const palette = SPOTLIGHT_PALETTE[theme];
+    // The old palette came within 0.015 (light, 3 layers) and 0.02 to 0.024 (10 layers) of a part colour: its dark ghost turned into bare steel
+    // where parts are dense, and its light one into the mid blue-greys.
+    for (const [layers, floor] of [[3, 0.035], [10, 0.1]]) {
+      const behind = stacked(palette, STAGE_COLOR[theme], layers);
+      const closest = Math.min(...PART_COLOURS.map((part) => distance(rgbOf(part), behind)));
+      assert.ok(closest >= floor, `${theme}, ${layers} layers: the ghost comes within ${closest.toFixed(3)} of a part colour`);
+    }
+    // And a single layer still shows on the stage, or the X-ray would not read at all.
+    assert.ok(distance(stacked(palette, STAGE_COLOR[theme], 1), rgbOf(STAGE_COLOR[theme])) >= 0.06, `${theme}: one layer shows on the stage`);
+  }
+});
+
+test('the highlight stands clear of the pale grey around it, on both stages', () => {
+  for (const theme of THEMES) {
+    const palette = SPOTLIGHT_PALETTE[theme];
+    assert.ok(contrast(palette.highlightColor, palette.paleColor) >= 2, `${theme}: the highlight is ${contrast(palette.highlightColor, palette.paleColor).toFixed(2)}:1 against the pale grey`);
+    assert.ok(contrast(palette.highlightColor, STAGE_COLOR[theme]) >= 3, `${theme}: the highlight shows on the stage`);
+  }
+});

@@ -6,7 +6,7 @@ import { cloneMaterials, createSectionController, disposeObject, meshMaterials }
 import { focusModeOrDefault, partLook, partRole, spotlightPalette } from '../core/focus-style.mjs';
 import { effectiveFocusMode } from '../core/spotlight-fallback';
 import { OVER_GHOST_ORDER } from '../core/ghost-order.mjs';
-import { closeUpOnSmallParts } from '../core/spotlight-closeup';
+import { closeUpOnSpotlight } from '../core/spotlight-closeup';
 import type { AdapterContext, AppearanceMode, FocusMode, ModelComponent, ModelGroup, ViewerSession, ViewerSnapshot } from '../types';
 
 type EngineItem = {
@@ -293,7 +293,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
             proxy.position.copy(box.getCenter(new THREE.Vector3()));
             runtime.fit(proxy);
             proxy.geometry.dispose();
-          } else if (options?.closeUp && focusComponents.length) closeUpOnSmallParts(runtime, items.filter(isFocused).map((item) => item.mesh), root);
+          } else if (options?.closeUp && focusComponents.length) closeUpOnSpotlight(runtime, items.filter(isFocused).map((item) => item.mesh), root);
           onChange();
         },
       },

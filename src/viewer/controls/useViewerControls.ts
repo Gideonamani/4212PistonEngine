@@ -105,7 +105,7 @@ export function useViewerControls(viewer: ModelViewerState, { host, lessonContro
     if (target.ids.length > 0) {
       // Auto-apply highlight if no mode is currently active
       if (!followMode.current) followMode.current = 'highlight';
-      // A small part is brought closer, or at the whole-model framing it could be a few pixels across.
+      // The camera zooms in on the spotlit part, so the learner sees where the spotlight went (a small part would otherwise be a speck).
       features.focus.set(target.ids, followMode.current, { closeUp: true });
     } else if (followMode.current) {
       followMode.current = undefined;

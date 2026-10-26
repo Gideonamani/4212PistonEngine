@@ -137,8 +137,8 @@ export type ViewerFeatures = {
     /**
      * Explore: spotlight these parts (an empty list clears the spotlight), drawn as `mode`. Unlike a lesson step's focusParts it leaves the
      * selection where it is, so the learner can keep choosing parts while the spotlight follows, and it moves the camera only to bring an
-     * isolated part into frame, or, with `closeUp`, a small part closer (core/spotlight-framing.mjs). Lesson part chips leave `closeUp` off, so
-     * they never move the camera.
+     * isolated part into frame, or, with `closeUp`, to zoom in on the spotlit parts (core/spotlight-framing.mjs). Lesson part chips leave
+     * `closeUp` off, so they never move the camera.
      */
     set: (ids: string[], mode: FocusMode, options?: { closeUp?: boolean }) => void;
   };

@@ -9,10 +9,10 @@ const boxOf = (objects: THREE.Object3D[]) => {
 };
 
 /**
- * Explore: bring small spotlit parts into view (see spotlight-framing.mjs). The camera keeps its direction and its home, so Reset still goes
- * back to the whole model. Does nothing for parts large enough to find where the camera already is.
+ * Explore: zoom in on the spotlit parts (see spotlight-framing.mjs). The camera keeps its direction and its home, so Reset still goes back to
+ * the whole model.
  */
-export function closeUpOnSmallParts(runtime: ViewerRuntime, spotlit: THREE.Object3D[], model: THREE.Object3D) {
+export function closeUpOnSpotlight(runtime: ViewerRuntime, spotlit: THREE.Object3D[], model: THREE.Object3D) {
   const part = boxOf(spotlit), whole = boxOf([model]);
   const sphere = part && whole ? closeUpSphere(part, whole) : undefined;
   if (!sphere) return;
