@@ -131,6 +131,15 @@ assert.match(validateLessonPack(withStep({ prompt: 'Find the [crank throw](Crank
 assert.match(validateLessonPack(withStep({ ...twoParts, prompt: 'Find the [crank throw] (CrankThrow).' })).join('\n'), /not written as \[words\]\(PartId\)/);
 assert.match(validateLessonPack(withStep({ ...twoParts, prompt: 'Find the [crank throw](Crank Throw).' })).join('\n'), /not written as/);
 
+// name-part: a model, the part it spotlights, and at least three names to choose from.
+const withNamePart = (check) => ({ ...samplePack, checks: [...samplePack.checks, { id: 'np', lessonId: 'lesson-a', type: 'name-part', question: 'Name the highlighted part.', rationale: 'r', ...check }] });
+const keeper = { modelId: 'cylinder', partId: 'IntakeValveKeeper', answers: ['Valve keeper', 'Spring retainer', 'Valve guide'], correct: 0 };
+assert.deepEqual(validateLessonPack(withNamePart(keeper)), [], 'a name-part check is valid');
+assert.match(validateLessonPack(withNamePart({ ...keeper, partId: undefined })).join('\n'), /name-part needs partId/);
+assert.match(validateLessonPack(withNamePart({ ...keeper, answers: ['Valve keeper', 'Spring retainer'] })).join('\n'), /name-part needs >= 3 answers/);
+assert.match(validateLessonPack(withNamePart({ ...keeper, correct: 3 })).join('\n'), /correct must index into answers/);
+assert.match(validateLessonPack(withNamePart({ ...keeper, answers: ['Valve keeper', 'Valve keeper', 'Valve guide'] })).join('\n'), /name-part answers must all differ/);
+
 // A step's recommended section plane: a short label, a normal that points somewhere, and an optional offset across the model.
 const plane = { label: 'Valve axis', normal: [0, 1, 0], offset: 0.5 };
 assert.deepEqual(validateLessonPack(withStep({ sectionPlane: plane })), [], 'a recommended plane is valid');

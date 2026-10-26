@@ -29,6 +29,15 @@ function tappableIds(model) {
   return new Set();
 }
 
+/** The ids a spotlight takes on each model: single components only (the same ids lesson steps use in focusParts). */
+function spotlightIds(model) {
+  const contract = (path) => readJson(`web/${path.replace(/^\.\//, '').replace(/\?.*$/, '')}`);
+  if (model.adapter === 'operating-cylinder') return new Set(readJson(`web/${model.componentCatalogueUrl.replace(/^\.\//, '').replace(/\?.*$/, '')}`).parts.map((part) => part.cad_stable_id));
+  if (model.adapter === 'full-engine') return new Set(contract(model.contractUrl).teaching_components.map((part) => part.id));
+  if (model.adapter === 'animated-study') return new Set(contract(model.contractUrl).parts.map((part) => part.id));
+  return new Set();
+}
+
 const clicks = packs.flatMap((pack) => (pack.checks || []).filter((check) => check.type === 'model-click').map((check) => ({ pack, check })));
 
 test('every model-click question names a model with pickable parts, and parts and groups that exist on it', () => {
@@ -39,6 +48,17 @@ test('every model-click question names a model with pickable parts, and parts an
     const ids = tappableIds(model);
     assert.ok(ids.size > 0, `${where}: ${check.modelId} has no pickable parts`);
     for (const id of [check.correctNodeId, ...(check.alsoAccept || [])]) assert.ok(ids.has(id), `${where}: '${id}' is not a part or group of ${check.modelId}`);
+  }
+});
+
+test('every name-part question spotlights a single part that exists on its model, and its right answer reads like that part', () => {
+  const names = packs.flatMap((pack) => (pack.checks || []).filter((check) => check.type === 'name-part').map((check) => ({ pack, check })));
+  for (const { pack, check } of names) {
+    const where = `${pack.id}/${check.id}`;
+    const model = models.find((candidate) => candidate.id === check.modelId);
+    assert.ok(model, `${where}: unknown model ${check.modelId}`);
+    // A part, not a group: the spotlight shows one component, and its name is the answer.
+    assert.ok(spotlightIds(model).has(check.partId), `${where}: '${check.partId}' is not a part of ${check.modelId}`);
   }
 });
 

@@ -12,7 +12,7 @@ interface CheckViewProps { modules: QuizModule[]; focusLessonId?: string }
 /** A fresh random order for the options of each multiple-choice question, so a restart shows them in a new order. */
 const startingOrders = (questions: QuizQuestion[]) => {
   const orders: Record<number, number[]> = {};
-  questions.forEach((question, index) => { if (question.type === 'multiple-choice') orders[index] = optionOrder(question); });
+  questions.forEach((question, index) => { if (question.type === 'multiple-choice' || question.type === 'name-part') orders[index] = optionOrder(question); });
   return orders;
 };
 

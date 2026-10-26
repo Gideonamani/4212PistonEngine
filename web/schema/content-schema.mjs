@@ -24,7 +24,7 @@ export const MODEL_REGISTRY_SCHEMA = '4212.training-model-registry/v2';
 export const EXPLORE_CONTENT_TREE_SCHEMA = '4212.explore-content-tree/v1';
 
 export const STEP_TYPES = Object.freeze(['model-pose', 'image', 'text', 'external-link', 'web-embed']);
-export const CHECK_TYPES = Object.freeze(['multiple-choice', 'model-click', 'ordering', 'matching', 'numeric']);
+export const CHECK_TYPES = Object.freeze(['multiple-choice', 'model-click', 'name-part', 'ordering', 'matching', 'numeric']);
 /** How a step's spotlight (focusParts) draws attention: colour the parts, x-ray the rest, or isolate the parts. Mirrors src/viewer/core/focus-style.mjs. */
 export const FOCUS_MODES = Object.freeze(['highlight', 'xray', 'isolate']);
 export const NODE_KINDS = Object.freeze(['group', 'component']);
@@ -134,16 +134,17 @@ export const MODEL_CAPABILITY_FLAGS = Object.freeze([
  * @typedef {Object} CheckItem
  * @property {string} id
  * @property {string} lessonId - the owning lesson's id
- * @property {'multiple-choice'|'model-click'|'ordering'|'matching'|'numeric'} type
+ * @property {'multiple-choice'|'model-click'|'name-part'|'ordering'|'matching'|'numeric'} type
  * @property {string} question
  * @property {string} [hint]
  * @property {string} [rationale]
- * @property {string[]} [answers] - multiple-choice (also covers true/false as the two-option case)
- * @property {number} [correct] - multiple-choice: index into answers
- * @property {string} [modelId] - model-click
+ * @property {string[]} [answers] - multiple-choice (also covers true/false as the two-option case); name-part: the names to choose from
+ * @property {number} [correct] - multiple-choice and name-part: index into answers
+ * @property {string} [modelId] - model-click and name-part
+ * @property {string} [partId] - name-part: the component the model spotlights, which the learner names
  * @property {string} [correctNodeId] - model-click: id of the right component of the model, or of a group of components (any part in the group is right)
  * @property {string[]} [alsoAccept] - model-click: further component or group ids that are also right
- * @property {{initialAngle?: number}} [view] - model-click: the pose the model opens in
+ * @property {{initialAngle?: number}} [view] - model-click and name-part: the pose the model opens in
  * @property {string[]} [items] - ordering: already in correct order; UI shuffles for display
  * @property {{left: string, right: string}[]} [pairs] - matching
  * @property {string} [unit] - numeric
@@ -330,6 +331,14 @@ function validateCheckItem(check, lessonIds, index) {
       if (!(Number.isInteger(check.correct) && check.correct >= 0 && check.correct < (check.answers || []).length)) {
         errors.push(`${where}: correct must index into answers`);
       }
+      break;
+    case 'name-part':
+      if (!check.modelId) errors.push(`${where}: name-part needs modelId`);
+      if (typeof check.partId !== 'string' || !check.partId) errors.push(`${where}: name-part needs partId, the part the model spotlights`);
+      if (!Array.isArray(check.answers) || check.answers.length < 3) errors.push(`${where}: name-part needs >= 3 answers, so a guess is not a coin toss`);
+      else if (new Set(check.answers).size !== check.answers.length) errors.push(`${where}: name-part answers must all differ`);
+      if (!(Number.isInteger(check.correct) && check.correct >= 0 && check.correct < (check.answers || []).length)) errors.push(`${where}: correct must index into answers`);
+      if (check.view !== undefined && !(check.view && typeof check.view === 'object' && (check.view.initialAngle === undefined || Number.isFinite(check.view.initialAngle)))) errors.push(`${where}: view.initialAngle must be a number`);
       break;
     case 'model-click':
       if (!check.modelId) errors.push(`${where}: model-click needs modelId`);

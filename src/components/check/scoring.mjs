@@ -5,11 +5,12 @@
 //   matching         the answer lists, for each left-hand term in pack order, the right-hand text the learner chose ('' while unchosen)
 //   numeric          the answer is the text the learner typed; it is read as a number and marked within the question's tolerance
 //   model-click      the answer lists the node ids the tapped part answers to (its own id, then its groups); it is right when any of them is accepted
+//   name-part        the answer is the index of the chosen name, as for multiple-choice
 
 /** @typedef {import('../../types/engine').QuizQuestion} QuizQuestion */
 
 /** The question types the Check screen can show. A type the pack schema allows but is not listed here cannot ship yet. */
-export const ANSWERABLE_TYPES = Object.freeze(['multiple-choice', 'ordering', 'matching', 'numeric', 'model-click']);
+export const ANSWERABLE_TYPES = Object.freeze(['multiple-choice', 'ordering', 'matching', 'numeric', 'model-click', 'name-part']);
 
 /**
  * A copy of `items` in random order, and never the order they came in (a shuffle that came out unchanged would hand over the answer).

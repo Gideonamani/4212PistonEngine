@@ -53,12 +53,12 @@ for (const lesson of pack.lessons) {
 }
 
 // Lessons 4 to 7 were reworked against their outcomes (docs/lesson-coverage-audit-2026-10-12.md), which is why they have many more checks.
-const expectedChecks = { 'thermodynamic-cycles': 17, classification: 14, 'parts-construction': 18, 'two-stroke-cycle': 2, 'rotary-cycle': 1, 'cooling-methods': 11 };
+const expectedChecks = { 'thermodynamic-cycles': 17, classification: 14, 'parts-construction': 21, 'two-stroke-cycle': 2, 'rotary-cycle': 1, 'cooling-methods': 11 };
 assert.equal(pack.checks.length, Object.values(expectedChecks).reduce((sum, count) => sum + count, 0));
 for (const lesson of pack.lessons) {
   assert.equal(pack.checks.filter(check => check.lessonId === lesson.id).length, expectedChecks[lesson.id], lesson.id);
 }
 
 assert.deepEqual(validateLessonPack(pack), []);
-console.log('Fundamentals lesson pack is valid (lessons 4, 5, 6, 7 listed; two deep dives; 63 checks; deep dives linked; sourced media plans)');
+console.log('Fundamentals lesson pack is valid (lessons 4, 5, 6, 7 listed; two deep dives; 66 checks; deep dives linked; sourced media plans)');
 

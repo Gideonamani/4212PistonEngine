@@ -4,8 +4,9 @@ import type { QuizQuestion } from '../../types/engine';
 import { IconButton } from '../ui';
 import { describeNumericAnswer, isAnswered, isCorrect, matchingOptions, matchingResults, parseNumber } from './scoring.mjs';
 
-// The 3D model is only needed by model-click questions, so its code loads when the first one is shown.
+// The 3D model is only needed by model-click and name-part questions, so its code loads when the first one is shown.
 const PartPicker = React.lazy(() => import('./PartPicker'));
+const PartShowcase = React.lazy(() => import('./PartShowcase'));
 
 /** What the learner has entered so far: an option index, an item order, the chosen right-hand text per term, or typed text. */
 export type Answer = number | string | string[];
@@ -29,11 +30,12 @@ const typeLabel: Record<QuizQuestion['type'], string> = {
   matching: 'MATCH EACH ITEM',
   numeric: 'ENTER A NUMBER',
   'model-click': 'TAP THE PART ON THE MODEL',
+  'name-part': 'NAME THE HIGHLIGHTED PART',
 };
 
 type AnswerProps<T extends QuizQuestion> = { question: T; answer: Answer | undefined; onAnswer: (answer: Answer) => void; revealed: boolean; onVerify: () => void; optionOrder?: number[] };
 
-const ChoiceAnswer: React.FC<AnswerProps<Extract<QuizQuestion, { type: 'multiple-choice' }>>> = ({ question, answer, onAnswer, revealed, optionOrder }) => (
+const ChoiceAnswer: React.FC<AnswerProps<Extract<QuizQuestion, { type: 'multiple-choice' | 'name-part' }>>> = ({ question, answer, onAnswer, revealed, optionOrder }) => (
   <div className="flex flex-col gap-2.5">{(optionOrder ?? question.options.map((_, index) => index)).map((original, position) => {
     const option = question.options[original];
     const selected = answer === original;
@@ -93,6 +95,8 @@ const NumericAnswer: React.FC<AnswerProps<Extract<QuizQuestion, { type: 'numeric
   </div>;
 };
 
+const VIEWER_LOADING = <div className="flex h-56 items-center justify-center rounded-xl border border-teal-400/20 bg-stage text-xs text-teal-300">Preparing interactive 3D viewer…</div>;
+
 /** One Check question: its prompt and hint, the answer area for its type, then Verify, and after Verify the explanation and the way on. */
 export const QuestionCard: React.FC<QuestionCardProps> = ({ question, optionOrder, answer, onAnswer, revealed, onVerify, onNext, isLast }) => {
   const correct = isCorrect(question, answer);
@@ -105,7 +109,8 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, optionOrde
     {question.type === 'ordering' && <OrderingAnswer question={question} {...props} />}
     {question.type === 'matching' && <MatchingAnswer question={question} {...props} />}
     {question.type === 'numeric' && <NumericAnswer question={question} {...props} />}
-    {question.type === 'model-click' && <Suspense fallback={<div className="flex h-56 items-center justify-center rounded-xl border border-teal-400/20 bg-stage text-xs text-teal-300">Preparing interactive 3D viewer…</div>}><PartPicker question={question} answer={Array.isArray(answer) ? answer : undefined} onAnswer={onAnswer} revealed={revealed} /></Suspense>}
+    {question.type === 'model-click' && <Suspense fallback={VIEWER_LOADING}><PartPicker question={question} answer={Array.isArray(answer) ? answer : undefined} onAnswer={onAnswer} revealed={revealed} /></Suspense>}
+    {question.type === 'name-part' && <><Suspense fallback={VIEWER_LOADING}><PartShowcase question={question} /></Suspense><ChoiceAnswer question={question} optionOrder={optionOrder} {...props} /></>}
     {!revealed
       ? <button disabled={!isAnswered(question, answer)} onClick={onVerify} className="min-h-11 w-full rounded-xl bg-teal-400 py-3 text-xs font-bold text-slate-950 shadow-lg shadow-teal-400/20 disabled:cursor-not-allowed disabled:bg-slate-800 disabled:text-slate-400">Verify answer</button>
       : <div className="flex flex-col gap-3 border-t border-slate-800 pt-3">

@@ -10,7 +10,7 @@ const matching = { type: 'matching', pairs: [{ left: 'Magneto', right: 'Spark' }
 const numeric = { type: 'numeric', unit: 'cu in', correctValue: 78.5, tolerance: 0.5 };
 
 test('the answerable types are the five the screen has an answer area for', () => {
-  assert.deepEqual([...ANSWERABLE_TYPES], ['multiple-choice', 'ordering', 'matching', 'numeric', 'model-click']);
+  assert.deepEqual([...ANSWERABLE_TYPES], ['multiple-choice', 'ordering', 'matching', 'numeric', 'model-click', 'name-part']);
 });
 
 test('numbers are read the way a student types them', () => {
@@ -118,6 +118,17 @@ test('an option such as "All of the above" stays last', () => {
 test('a question with one or two options is handled', () => {
   assert.deepEqual(optionOrder({ options: ['only'] }), [0]);
   assert.deepEqual([...optionOrder({ options: ['true', 'false'] })].sort(), [0, 1]);
+});
+
+test('a name-part answer is the index of the chosen name, as for multiple-choice', () => {
+  const name = { type: 'name-part', modelId: 'cylinder', partId: 'IntakeValveKeeper', options: ['Valve keeper', 'Spring retainer', 'Valve guide'], correctIndex: 0 };
+  assert.equal(initialAnswer(name), undefined);
+  assert.equal(isAnswered(name, undefined), false);
+  assert.equal(isAnswered(name, 2), true);
+  assert.equal(isCorrect(name, 0), true);
+  assert.equal(isCorrect(name, 1), false);
+  assert.equal(isCorrect(name, 'IntakeValveKeeper'), false, 'the answer is the chosen name, never the part id');
+  assert.deepEqual([...optionOrder(name)].sort(), [0, 1, 2]);
 });
 
 test('a model-click answer is the list of node ids the tapped part answers to, right when any one is accepted', () => {
