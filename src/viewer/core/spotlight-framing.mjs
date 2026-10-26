@@ -1,16 +1,18 @@
 // Bringing a small spotlit part into view. At the whole-model framing a lock washer on a 1,400-part engine is a few pixels across on a phone,
 // however it is drawn, so in Explore a spotlit part that is small next to its model is brought closer: the camera keeps the learner's
-// direction and moves in until the view is a set fraction of the model across, so the part sits among its surroundings and not alone. Large
-// parts are already in view and the camera is left where the learner put it. Pure, so the rule is tested without a browser;
-// src/viewer/core/spotlight-closeup.ts turns meshes into boxes and moves the camera.
+// direction and moves in until the view is a few times the part across, so the part sits among its surroundings and not alone. (A view of a
+// fixed share of the model was tried first and left the smallest parts lost in a screen full of ghost.) Large parts are already in view and
+// the camera is left where the learner put it. Pure, so the rule is tested without a browser; src/viewer/core/spotlight-closeup.ts turns
+// meshes into boxes and moves the camera.
 
 /** @typedef {{ min: number[], max: number[] }} Box  an axis-aligned box in world space, as [x, y, z] corners */
 
 /** A spotlit part whose box is less than this fraction of the model's across (corner to corner) counts as small. */
 export const SMALL_PART = 0.1;
 
-/** A small part is shown in a view this fraction of the model across, so its surroundings show with it. */
-export const CLOSE_UP_VIEW = 0.25;
+/** A small part is shown in a view this many times its own size across, so its surroundings show with it. At the SMALL_PART threshold the
+ * view is half the model, so the close-up meets the whole-model framing without a jump in scale. */
+export const CLOSE_UP_VIEW = 5;
 
 const across = (box) => Math.hypot(...box.max.map((high, axis) => high - box.min[axis]));
 
@@ -23,7 +25,7 @@ const across = (box) => Math.hypot(...box.max.map((high, axis) => high - box.min
 export function closeUpSphere(part, model) {
   const size = across(part), whole = across(model);
   if (!(whole > 0) || !Number.isFinite(size) || size >= SMALL_PART * whole) return undefined;
-  return { center: part.min.map((low, axis) => (low + part.max[axis]) / 2), radius: CLOSE_UP_VIEW * whole / 2 };
+  return { center: part.min.map((low, axis) => (low + part.max[axis]) / 2), radius: CLOSE_UP_VIEW * size / 2 };
 }
 
 /**

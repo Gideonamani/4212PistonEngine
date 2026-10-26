@@ -7,12 +7,17 @@ import { CLOSE_UP_VIEW, SMALL_PART, closeUpSphere, viewDistance } from '../src/v
 const box = (min, max) => ({ min, max });
 const engine = box([0, 0, 0], [100, 0, 0]); // 100 across, corner to corner
 
-test('a part well under a tenth of the model is brought closer, centred, in a view a quarter of the model across', () => {
+test('a part well under a tenth of the model is brought closer, centred, in a view a few times its own size', () => {
   const washer = box([40, 0, 0], [41, 0, 0]);
   const sphere = closeUpSphere(washer, engine);
   assert.deepEqual(sphere.center, [40.5, 0, 0]);
-  assert.equal(sphere.radius, CLOSE_UP_VIEW * 100 / 2);
-  assert.ok(sphere.radius * 2 > 1, 'the view is wider than the part, so its surroundings show');
+  assert.equal(sphere.radius, CLOSE_UP_VIEW * 1 / 2);
+  assert.ok(CLOSE_UP_VIEW > 1, 'the view is wider than the part, so its surroundings show');
+});
+
+test('just under the threshold the close-up is half the model across, so it meets the whole-model framing without a jump', () => {
+  const part = box([0, 0, 0], [SMALL_PART * 100 * 0.999, 0, 0]);
+  assert.ok(Math.abs(closeUpSphere(part, engine).radius * 2 - 50) < 0.1);
 });
 
 test('a part of a tenth of the model or more is left where the camera has it', () => {
