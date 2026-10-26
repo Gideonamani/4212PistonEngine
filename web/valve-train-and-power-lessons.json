@@ -110,7 +110,7 @@
           "type": "model-pose",
           "title": "Valves, seats and guides",
           "modelId": "cylinder",
-          "prompt": "Find the intake valve and the exhaust valve in the cylinder head. Each valve is a head on a long stem. The face of the head closes on a hard seat insert in its port, and the stem slides in a guide that keeps it square to the seat. These are poppet valves: they lift straight off the seat to open.",
+          "prompt": "Find the [intake valve](IntakeValve) and the [exhaust valve](ExhaustValve) in the cylinder head. Each valve is a head on a long stem. The face of the head closes on a hard seat insert in its port, and the stem slides in a guide that keeps it square to the seat. These are poppet valves: they lift straight off the seat to open.",
           "action": {
             "type": "angle",
             "value": 0
@@ -271,7 +271,7 @@
           "type": "model-pose",
           "title": "From cam to valve",
           "modelId": "cylinder",
-          "prompt": "Trace the motion for the intake valve. The cam lobe lifts the tappet. The tappet moves the pushrod, which runs in a tube from the crankcase to the cylinder head. The pushrod tips the rocker arm on its shaft, and the other end of the rocker arm presses the valve stem and opens the valve. When the lobe passes, the valve spring closes the valve and pushes everything back. Engine oil takes a path too: it reaches the rocker arm through the hollow pushrod and returns to the crankcase through the pushrod housing.",
+          "prompt": "Trace the motion for the [intake valve](IntakeValve). The cam lobe lifts the [tappet](IntakeHydraulicLifterBody). The tappet moves the [pushrod](IntakePushrod), which runs in a tube from the crankcase to the cylinder head. The pushrod tips the [rocker arm](IntakeRockerArm) on [its shaft](IntakeRockerShaft), and the other end of the rocker arm presses the valve stem and opens the valve. When the lobe passes, the valve spring closes the valve and pushes everything back. Engine oil takes a path too: it reaches the rocker arm through the hollow pushrod and returns to the crankcase through the [pushrod housing](IntakePushrodHousing).",
           "savedMotionId": "exploded",
           "motionProgress": 50,
           "focusParts": [
@@ -376,7 +376,7 @@
           "type": "model-pose",
           "title": "Trapped oil under load",
           "modelId": "hydraulic-tappet",
-          "prompt": "The tappet body is faint here, so you can see the parts inside it at the moment when the load is on: the closed check valve keeps the oil in the chamber, and the trapped oil carries the load. Open Explore to play the whole cycle. When the valve closes, the plunger spring extends the plunger and oil flows back in. A small controlled leak past the plunger lets the tappet follow the expansion and contraction of the valve train. For a closer look, open the Inside the hydraulic tappet study in the Internal Mechanisms course.",
+          "prompt": "The tappet body is faint here, so you can see the parts inside it at the moment when the load is on: the closed check valve keeps the oil in the chamber, and the trapped oil carries the load. Open Explore to play the whole cycle. When the valve closes, the [plunger spring](PlungerSpring) extends the [plunger](Plunger) and oil flows back in. A small controlled leak past the plunger lets the tappet follow the expansion and contraction of the valve train. For a closer look, open the Inside the hydraulic tappet study in the Internal Mechanisms course.",
           "savedMotionId": "Operating mechanism",
           "motionProgress": 50,
           "focusParts": [
@@ -638,7 +638,7 @@
         {
           "type": "model-pose",
           "title": "Identify the section",
-          "prompt": "Rotate the assembled study. Select the housing, crank gear, cam gear and idler. Open Inside and move a section plane through the chamber; distinguish solid wall from empty cavity.",
+          "prompt": "Rotate the assembled study. Select the [housing](AccessoryHousing), [crank gear](CrankGear), [cam gear](CamGear) and [idler](IdlerGear). Open Inside and move a section plane through the chamber; distinguish solid wall from empty cavity.",
           "note": "FAA 1-7; GTSIO A-3-2 and A-4-8 (PDF 17,25). A-4-18 (PDF 35-36) identifies the split crankcase. Compare its rear region with the cropped case halves here. Adapter, starter and pump forms follow the parts drawings, while rear contour, proportions and pad positions remain inferred. Ring markers are not accessory bodies.",
           "sourceRefs": [
             "gtsio-reviewed",
@@ -786,7 +786,7 @@
         {
           "type": "model-pose",
           "title": "Fuel delivery",
-          "prompt": "Select the Fuel path. Find the cluster gear, pump drive gear and detachable coupling. Scrub the focused motion. Explain how loss of torque at the coupling could interrupt engine-driven fuel delivery.",
+          "prompt": "Select the Fuel path. Find the [cluster gear](CamCluster), [pump drive gear](FuelGear) and [detachable coupling](FuelCoupling). Scrub the focused motion. Explain how loss of torque at the coupling could interrupt engine-driven fuel delivery.",
           "note": "A-3-2; H C-3-6 (PDF 156): later pump replacement needs a changed drive gear and coupling; older installation differs. Fuel-drive ratio and rotation are unverified here; tooth sizes and motion are illustrative. Fuel pump internals are omitted. FAA PDF 84 (2-2) explains reciprocating fuel delivery.",
           "sourceRefs": [
             "gtsio-reviewed",
@@ -916,7 +916,7 @@
         {
           "type": "model-pose",
           "title": "Starting reverses power",
-          "prompt": "Before playing, predict the torque direction. Run Starter engagement and start. Pause during cranking, at engine takeover, and afterwards. Identify the worm, worm wheel, spring, drum and shaftgear.",
+          "prompt": "Before playing, predict the torque direction. Run Starter engagement and start. Pause during cranking, at engine takeover, and afterwards. Identify the [worm](StarterWorm), [worm wheel](WormWheel), [spring](ClutchSpring), [drum](StarterDrum) and [shaftgear](StarterShaftGear).",
           "note": "A-3-2; A-4-15; FAA PDF 236 (5-6): spring tightens around drum during starting and releases after start. H starter drive 32:1 CCW facing pad applies during cranking. Clutch tightening, transition time and speed ramp are illustrative. No sliding Bendix pinion is added.",
           "sourceRefs": [
             "gtsio-reviewed",
@@ -941,7 +941,7 @@
         {
           "type": "model-pose",
           "title": "Engine takes over",
-          "prompt": "Scrub past the engine-takeover stage. Observe that worm drive and worm wheel stop while the shaftgear continues to turn with the crank gear. Explain why the clutch must separate these functions.",
+          "prompt": "Scrub past the engine-takeover stage. Observe that [worm drive](StarterWorm) and [worm wheel](WormWheel) stop while the [shaftgear](StarterShaftGear) continues to turn with the crank gear. Explain why the clutch must separate these functions.",
           "note": "A-3-2 supports clutch release and continued crank-driven shaftgear. Model times and motor stop are a staged illustration, not measured dynamics or an aircraft starting checklist.",
           "sourceRefs": [
             "gtsio-reviewed",
@@ -1141,7 +1141,7 @@
           "type": "model-pose",
           "title": "Spark before TDC",
           "modelId": "cylinder",
-          "prompt": "At 340° of the cycle the piston is still rising towards top dead centre, 20° before it gets there. The spark fires about now. Burning takes time, so the charge is lit early enough that it has burned completely when the piston is just past TDC and ready to be pushed down. Why would it be wrong to treat this pose as the timing for every engine?",
+          "prompt": "At 340° of the cycle [the piston](PistonBody) is still rising towards top dead centre, 20° before it gets there. The spark fires about now. Burning takes time, so the charge is lit early enough that it has burned completely when the piston is just past TDC and ready to be pushed down. Why would it be wrong to treat this pose as the timing for every engine?",
           "action": {
             "type": "cycle-angle",
             "value": 340
@@ -1230,7 +1230,7 @@
           "type": "model-pose",
           "title": "From piston to crankshaft",
           "modelId": "cylinder",
-          "prompt": "Now follow the push. At 400° the piston is on its power stroke. The gas presses on the piston crown, the piston pushes through the piston pin to the connecting rod, and the rod, which changes its angle as it goes, pushes on the crankpin. The crankpin is off the centre of the crankshaft, so the push turns it. The rotation goes on to the propeller shaft. Which of these parts slide, and which turn?",
+          "prompt": "Now follow the push. At 400° the piston is on its power stroke. The gas presses on the [piston crown](PistonBody), the piston pushes through the [piston pin](FloatingPin) to the [connecting rod](ConnectingRodBody), and the rod, which changes its angle as it goes, pushes on the [crankpin](CrankThrow). The crankpin is off the centre of the crankshaft, so the push turns it. The rotation goes on to the propeller shaft. Which of these parts slide, and which turn?",
           "action": {
             "type": "cycle-angle",
             "value": 400

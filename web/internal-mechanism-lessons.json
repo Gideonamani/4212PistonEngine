@@ -32,7 +32,7 @@
           "modelId": "hydraulic-tappet",
           "savedMotionId": "Exploded overview",
           "motionProgress": 66.666667,
-          "prompt": "Rotate the exploded pose. Identify the socket, hollow plunger and return spring. Explain how these connect to the pushrod.",
+          "prompt": "Rotate the exploded pose. Identify the [socket](Socket), [hollow plunger](Plunger) and [return spring](PlungerSpring). Explain how these connect to the pushrod.",
           "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls.",
           "focusParts": [
             "Socket",
@@ -46,7 +46,7 @@
           "modelId": "hydraulic-tappet",
           "savedMotionId": "Exploded overview",
           "motionProgress": 100,
-          "prompt": "Find the check-valve housing, plate and spring. Explain why the valve traps oil under load and permits replenishment.",
+          "prompt": "Find the [check-valve housing](CheckHousing), [plate](CheckPlate) and [spring](CheckSpring). Explain why the valve traps oil under load and permits replenishment.",
           "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls.",
           "focusParts": [
             "CheckHousing",
@@ -95,7 +95,7 @@
           "modelId": "oil-pump",
           "savedMotionId": "Exploded overview",
           "motionProgress": 66.666667,
-          "prompt": "Rotate the separated view and identify the cover, driver shaft and driven shaft.",
+          "prompt": "Rotate the separated view and identify the [cover](PumpCover), [driver shaft](DriveShaft) and [driven shaft](DrivenShaft).",
           "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls.",
           "focusParts": [
             "PumpCover",
@@ -109,7 +109,7 @@
           "modelId": "oil-pump",
           "savedMotionId": "Exploded overview",
           "motionProgress": 100,
-          "prompt": "Identify the relief plunger, spring and adjusting plug. Explain how opening a relief path can limit pressure.",
+          "prompt": "Identify the [relief plunger](ReliefPlunger), [spring](ReliefSpring) and [adjusting plug](ReliefAdjuster). Explain how opening a relief path can limit pressure.",
           "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls.",
           "focusParts": [
             "ReliefPlunger",

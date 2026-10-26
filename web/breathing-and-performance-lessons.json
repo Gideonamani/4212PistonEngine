@@ -160,7 +160,7 @@
           "type": "model-pose",
           "title": "The intake stroke",
           "modelId": "cylinder",
-          "prompt": "At 90° of the cycle the piston is moving down and the intake valve is open, so the charge flows in. The thin coloured trace through the intake port is the model's gas cue: it shows the direction of flow, not a measured flow. Notice how little time there is: the intake valve is open for only part of the cycle, and the whole charge must pass the valve in that time.",
+          "prompt": "At 90° of the cycle [the piston](PistonBody) is moving down and [the intake valve](IntakeValve) is open, so the charge flows in. The thin coloured trace through the intake port is the model's gas cue: it shows the direction of flow, not a measured flow. Notice how little time there is: the intake valve is open for only part of the cycle, and the whole charge must pass the valve in that time.",
           "action": {
             "type": "cycle-angle",
             "value": 90
@@ -312,7 +312,7 @@
           "type": "model-pose",
           "title": "The exhaust stroke",
           "modelId": "cylinder",
-          "prompt": "At 630° the piston is moving up and the exhaust valve is open, pushing the burned gas out. The thin coloured trace through the exhaust port is the gas cue, again only a direction. The exhaust system's first job is to take this hot, poisonous gas away safely, and it also has to survive the heat, corrosion and vibration while doing it.",
+          "prompt": "At 630° [the piston](PistonBody) is moving up and [the exhaust valve](ExhaustValve) is open, pushing the burned gas out. The thin coloured trace through the exhaust port is the gas cue, again only a direction. The exhaust system's first job is to take this hot, poisonous gas away safely, and it also has to survive the heat, corrosion and vibration while doing it.",
           "action": {
             "type": "cycle-angle",
             "value": 630
