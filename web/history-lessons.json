@@ -1121,7 +1121,12 @@
             "mode": "existing-3d",
             "status": "available",
             "rationale": "The operating-cylinder model shows the piston stopping at the top of its travel."
-          }
+          },
+          "focusParts": [
+            "PistonBody",
+            "ConnectingRodBody",
+            "CrankThrow"
+          ]
         },
         {
           "type": "model-pose",
@@ -1141,7 +1146,12 @@
             "mode": "existing-3d",
             "status": "available",
             "rationale": "The operating-cylinder model shows the piston at the bottom of its travel, so the stroke can be read from the two poses."
-          }
+          },
+          "focusParts": [
+            "PistonBody",
+            "ConnectingRodBody",
+            "CrankThrow"
+          ]
         },
         {
           "type": "web-embed",
