@@ -51,6 +51,16 @@ export async function readCachedModel(key, expectedBytes, store) {
   }
 }
 
+/** Whether a copy is saved under the key, without reading it (for showing what is available offline). */
+export async function hasCachedModel(key, store) {
+  if (!key) return false;
+  try {
+    return Boolean(await (await open(store))?.match(key));
+  } catch {
+    return false;
+  }
+}
+
 /** Save a completed download, then forget the oldest saves beyond MAX_ENTRIES. Failures (a full disk, say) are ignored: the model still loads. */
 export async function writeCachedModel(key, bytes, store) {
   if (!key) return;

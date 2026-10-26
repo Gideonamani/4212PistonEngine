@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "vite build && node scripts/prune_deployed_models.mjs",
+    "build": "vite build && node scripts/prune_deployed_models.mjs && node scripts/build_service_worker.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "lint": "tsc --noEmit && tsc -p e2e/tsconfig.json --noEmit",
     "test": "node --test scripts/test_*.mjs",
