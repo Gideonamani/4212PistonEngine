@@ -221,3 +221,62 @@ test.describe('model-click question', () => {
   });
 });
 
+
+// name-part: the model spotlights one part and the learner names it (issue #76). The question opens on the keepers, a small part, so the
+// camera's close-up matters.
+const namePack = {
+  ...pack,
+  id: 'name-pack',
+  title: 'Fixture naming checks',
+  checks: [
+    { id: 'name-keeper', lessonId: 'fixture-lesson', type: 'name-part', question: 'Name the highlighted part.', hint: 'It sits at the tip of the valve stem.', modelId: 'cylinder', partId: 'IntakeValveKeeper', answers: ['Valve keepers', 'Spring retainer', 'Valve guide'], correct: 0, rationale: 'The keepers lock the retainer to the stem.' },
+    { id: 'name-pushrod', lessonId: 'fixture-lesson', type: 'name-part', question: 'Name the highlighted part.', modelId: 'cylinder', partId: 'IntakePushrod', answers: ['Pushrod', 'Pushrod housing', 'Rocker shaft'], correct: 0, rationale: 'The pushrod carries the tappet\'s lift to the rocker arm.' },
+  ],
+};
+
+async function openNameCheck(page: Page) {
+  await page.route('**/lessons-manifest.json', (route) => route.fulfill({ json: { ...MANIFEST, packs: ['./name-pack.json'] } }));
+  await page.route('**/name-pack.json', (route) => route.fulfill({ json: namePack }));
+  await page.goto('/#/check');
+  await appReady(page);
+  await page.getByRole('button').filter({ has: page.locator('h4') }).first().click();
+  await expect(page.getByText('Question 1 of 2')).toBeVisible();
+  await expect(page.getByText('NAME THE HIGHLIGHTED PART', { exact: true })).toBeVisible();
+  await expect(page.locator('canvas')).toBeVisible({ timeout: 60_000 });
+}
+
+test.describe('name-part question', () => {
+  // The cylinder downloads in each test, which is slow on a busy runner.
+  test.describe.configure({ timeout: 240_000 });
+  test('the model shows the part without naming it; the right name is marked, and a wrong one is corrected', async ({ page, problems }) => {
+    await openNameCheck(page);
+    const model = page.getByRole('region', { name: /Interactive 3D model of the .*, with one part highlighted/ });
+    await expect(model).toBeVisible();
+    await expect(model, 'the model never names the part').not.toContainText(/keeper/i);
+    await expect(model.getByRole('status'), 'the model has loaded').toHaveCount(0, { timeout: 150_000 });
+    const verify = page.getByRole('button', { name: 'Verify answer' });
+    await expect(verify, 'nothing chosen yet').toBeDisabled();
+    await expect(page.getByRole('button', { name: /Valve keepers|Spring retainer|Valve guide/ })).toHaveCount(3);
+    await expectNoHorizontalOverflow(page);
+
+    await page.getByRole('button', { name: /Valve keepers/ }).click();
+    await verify.click();
+    await expect(page.getByText('CORRECT — WHY IT MATTERS')).toBeVisible();
+    await expectAccessibleAndTouchable(page, 'name-part question, answered');
+
+    await page.getByRole('button', { name: 'Next question' }).click();
+    await expect(page.getByText('Question 2 of 2')).toBeVisible();
+    await page.getByRole('button', { name: /Rocker shaft/ }).click();
+    await page.getByRole('button', { name: 'Verify answer' }).click();
+    await expect(page.getByText('REVIEW THE EVIDENCE')).toBeVisible();
+    problems.assertNone();
+  });
+
+  test('the close-up can be brought back after the learner turns away', async ({ page, problems }) => {
+    await openNameCheck(page);
+    await expect(page.getByRole('region', { name: /with one part highlighted/ }).getByRole('status')).toHaveCount(0, { timeout: 150_000 });
+    await page.getByRole('button', { name: 'Back to the highlighted part' }).click();
+    await expect(page.getByRole('button', { name: /Valve keepers/ })).toBeEnabled();
+    problems.assertNone();
+  });
+});

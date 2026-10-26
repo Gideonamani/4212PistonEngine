@@ -7,7 +7,7 @@ Small command-line tools used to rework lessons in the hand-formatted packs `web
 | `show.mjs <pack> <lesson id> [--notes] [--checks] [--sources]` | Prints a lesson readably, with step indexes. |
 | `dry_run.mjs <pack> <draft>` | Applies a draft to a copy of the pack and checks it against the lesson rules. Read its last line: `dry run clean` or `PROBLEMS:`. |
 | `apply_lesson.mjs <pack> <draft>` | Replaces one lesson's steps, checks, completion criteria and the pack's source registry. Apply once; a draft that exports `EXPECTED_STEP_COUNT` refuses a second application. |
-| `patch_pack.mjs <pack> <patch module>` | In-place fixes after applying: `api.step(lessonId, index, fn)`, `api.check(id, fn)`, `api.source(id, fn)`, `api.addSource(obj)`. |
+| `patch_pack.mjs <pack> <patch module>` | In-place fixes after applying: `api.step(lessonId, index, fn)`, `api.check(id, fn)`, `api.source(id, fn)`, `api.addSource(obj)`, `api.addCheck(obj, afterId)` (inserted after that check). |
 | `register_media.mjs <module>` | Registers figure crops (`figure-sources.json`) and credits (`attribution.json`) as text. |
 | `to_webp.py <in> <out.webp> [max width]` | Converts a downloaded picture to a lesson WebP. Run it as `python -E -P`, with the input in its own folder. |
 | `shot.mjs <outdir> <width> <height> <scheme> <hash>...` | Screenshots lesson steps from the dev server on port 5199. |

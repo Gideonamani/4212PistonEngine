@@ -2659,6 +2659,57 @@
       "modelId": "cylinder",
       "correctNodeId": "CylinderBarrel",
       "rationale": "The barrel is steel, nitrided inside to resist wear. The aluminium alloy head with its deep fins is shrunk onto it."
+    },
+    {
+      "id": "parts-name-pin",
+      "lessonId": "parts-construction",
+      "type": "name-part",
+      "question": "Name the highlighted part.",
+      "hint": "It joins the piston to the connecting rod.",
+      "modelId": "cylinder",
+      "partId": "FloatingPin",
+      "answers": [
+        "Piston pin (full-floating)",
+        "Piston-pin end plug",
+        "Small-end bushing",
+        "Crankpin"
+      ],
+      "correct": 0,
+      "rationale": "This is the piston pin. It is full-floating: it turns freely in both the piston and the rod, and soft aluminium end plugs stop it scoring the cylinder wall."
+    },
+    {
+      "id": "parts-name-bushing",
+      "lessonId": "parts-construction",
+      "type": "name-part",
+      "question": "Name the highlighted part.",
+      "hint": "Look at the piston end of the connecting rod.",
+      "modelId": "cylinder",
+      "partId": "SmallEndBush",
+      "answers": [
+        "Small-end bushing",
+        "Rod bearing half",
+        "Piston pin (full-floating)",
+        "Piston-pin end plug"
+      ],
+      "correct": 0,
+      "rationale": "This is the small-end bushing. A plain rod has a bushing at the piston end and a two-piece bearing at the crankpin end; on the GTSIO-520-H the piston-pin bushings are split bronze."
+    },
+    {
+      "id": "parts-name-cap",
+      "lessonId": "parts-construction",
+      "type": "name-part",
+      "question": "Name the highlighted part.",
+      "hint": "It is held on by two bolts and nuts.",
+      "modelId": "cylinder",
+      "partId": "ConnectingRodCap",
+      "answers": [
+        "Connecting rod cap",
+        "Small-end bushing",
+        "Crank throw",
+        "Piston pin (full-floating)"
+      ],
+      "correct": 0,
+      "rationale": "This is the rod cap. The big end of the rod is split so it can be fitted round the crankpin, and the cap closes it, with a bearing half in each part. Rods go back in the same cylinder and position."
     }
   ]
 }

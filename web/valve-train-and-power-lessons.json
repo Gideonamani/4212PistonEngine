@@ -1746,6 +1746,74 @@
       "rationale": "The camshaft lies in the crankcase, driven at half crankshaft speed by a gear that meshes with the crankshaft gear. Its lobes lift the tappets."
     },
     {
+      "id": "valve-name-keeper",
+      "lessonId": "valve-operating",
+      "type": "name-part",
+      "question": "Name the highlighted part.",
+      "hint": "It is small and sits right at the tip of the valve stem.",
+      "modelId": "cylinder",
+      "partId": "IntakeValveKeeper",
+      "answers": [
+        "Valve keepers (split keys)",
+        "Spring retainer",
+        "Valve guide",
+        "Valve seat insert"
+      ],
+      "correct": 0,
+      "rationale": "These are the keepers: tapered half-rounds that fit a groove cut near the tip of the stem and lock the spring retainer to it. Without them the springs could not hold the valve on its seat."
+    },
+    {
+      "id": "valve-name-guide",
+      "lessonId": "valve-operating",
+      "type": "name-part",
+      "question": "Name the highlighted part.",
+      "hint": "The valve stem slides inside it.",
+      "modelId": "cylinder",
+      "partId": "IntakeValveGuide",
+      "answers": [
+        "Valve guide",
+        "Valve seat insert",
+        "Pushrod housing",
+        "Rocker shaft"
+      ],
+      "correct": 0,
+      "rationale": "This is the valve guide. The stem slides in it, and it keeps the valve square to its seat, so the face closes evenly every time."
+    },
+    {
+      "id": "valve-name-pushrod",
+      "lessonId": "valve-operating",
+      "type": "name-part",
+      "question": "Name the highlighted part.",
+      "hint": "It runs from the tappet up to the rocker arm.",
+      "modelId": "cylinder",
+      "partId": "IntakePushrod",
+      "answers": [
+        "Pushrod",
+        "Pushrod housing",
+        "Rocker shaft",
+        "Valve stem"
+      ],
+      "correct": 0,
+      "rationale": "This is the pushrod. The tappet lifts it and it tips the rocker arm. It is hollow, and engine oil reaches the rocker arm through it; the housing around it is the tube that returns the oil."
+    },
+    {
+      "id": "valve-name-retainer",
+      "lessonId": "valve-operating",
+      "type": "name-part",
+      "question": "Name the highlighted part on the exhaust valve.",
+      "hint": "The springs push up against it.",
+      "modelId": "cylinder",
+      "partId": "ExhaustSpringRetainer",
+      "answers": [
+        "Spring retainer (Rotocoil type)",
+        "Valve keepers (split keys)",
+        "Inner valve spring",
+        "Rocker arm"
+      ],
+      "correct": 0,
+      "rationale": "This is the spring retainer. The springs sit under it and it is locked to the stem by the keepers. On the exhaust valve this engine uses a Rotocoil type of retainer."
+    },
+    {
       "id": "acc-functions",
       "lessonId": "accessories-and-drives",
       "type": "matching",
@@ -2046,6 +2114,40 @@
         "magneto-right"
       ],
       "rationale": "The engine has two magnetos, each driven through the idler by its own drive gear, one for each of the two ignition systems."
+    },
+    {
+      "id": "acc-name-wrap-spring",
+      "lessonId": "accessories-and-drives",
+      "type": "name-part",
+      "question": "Name the highlighted part of the starter drive.",
+      "hint": "It grips during cranking and lets go once the engine runs.",
+      "modelId": "accessory-drives",
+      "partId": "ClutchSpring",
+      "answers": [
+        "Wrap-spring clutch",
+        "Worm wheel",
+        "Starter shaftgear",
+        "Idler gear"
+      ],
+      "correct": 0,
+      "rationale": "This is the starter's wrap-spring clutch. During starting the spring tightens round the drum and carries the motor's torque to the engine; after the engine takes over it releases, so the running engine does not drive the starter."
+    },
+    {
+      "id": "acc-name-idler",
+      "lessonId": "accessories-and-drives",
+      "type": "name-part",
+      "question": "Name the highlighted gear.",
+      "hint": "It sits between the crankshaft gear and the gears it drives.",
+      "modelId": "accessory-drives",
+      "partId": "IdlerGear",
+      "answers": [
+        "Idler gear",
+        "Camshaft gear",
+        "Crankshaft gear",
+        "Fuel pump drive gear"
+      ],
+      "correct": 0,
+      "rationale": "This is the idler gear. It passes the drive from the crankshaft gear on to other gears; each external mesh reverses the direction, so an idler restores the driver's direction without changing the ratio."
     },
     {
       "id": "power-force-path",

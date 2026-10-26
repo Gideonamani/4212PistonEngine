@@ -174,6 +174,13 @@ test('a model-click check keeps its model, its right node and its alternatives, 
   assert.throws(() => mapQuestion({ ...base, type: 'drag-and-drop', modelId: 'cylinder' }), /cannot show a 'drag-and-drop' question/);
 });
 
+test('a name-part check keeps its model and part, and its answers become the options', () => {
+  const name = mapQuestion({ ...base, type: 'name-part', modelId: 'cylinder', partId: 'IntakeValveKeeper', answers: ['Valve keeper', 'Spring retainer', 'Valve guide'], correct: 0, view: { initialAngle: 90 } });
+  assert.deepEqual([name.type, name.modelId, name.partId, name.options, name.correctIndex, name.view], ['name-part', 'cylinder', 'IntakeValveKeeper', ['Valve keeper', 'Spring retainer', 'Valve guide'], 0, { initialAngle: 90 }]);
+  assert.equal(isCorrect(name, 0), true);
+  assert.equal(isCorrect(name, 2), false);
+});
+
 test('every shipped check is one the screen can show, and no matching question gives its answer away by order', () => {
   for (const pack of packs) {
     for (const check of pack.checks || []) {

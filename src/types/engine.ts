@@ -136,7 +136,13 @@ export interface NumericQuestion extends QuizQuestionBase { type: 'numeric'; uni
  */
 export interface ModelClickQuestion extends QuizQuestionBase { type: 'model-click'; modelId: string; correctNodeId: string; alsoAccept?: string[]; view?: { initialAngle?: number } }
 
-export type QuizQuestion = ChoiceQuestion | OrderingQuestion | MatchingQuestion | NumericQuestion | ModelClickQuestion;
+/**
+ * The reverse of model-click: the 3D model spotlights one part, `partId`, and the learner picks its name from `options`. The model never
+ * labels the part, so the name has to come from the learner.
+ */
+export interface NamePartQuestion extends QuizQuestionBase { type: 'name-part'; modelId: string; partId: string; options: string[]; correctIndex: number; view?: { initialAngle?: number } }
+
+export type QuizQuestion = ChoiceQuestion | OrderingQuestion | MatchingQuestion | NumericQuestion | ModelClickQuestion | NamePartQuestion;
 export type QuizQuestionType = QuizQuestion['type'];
 
 export interface QuizModule {
