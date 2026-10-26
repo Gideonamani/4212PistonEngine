@@ -1218,7 +1218,16 @@
           },
           "modelId": "accessory-drives",
           "savedMotionId": "Operating mechanism",
-          "motionProgress": 0
+          "motionProgress": 0,
+          "focusParts": [
+            "LeftMagneto",
+            "RightMagneto",
+            "FuelPump",
+            "OilHousing",
+            "TachOutput",
+            "StarterMotor",
+            "AlternatorBody"
+          ]
         },
         {
           "type": "text",
