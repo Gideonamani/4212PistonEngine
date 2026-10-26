@@ -46,6 +46,23 @@ The viewer mounts directly in React; there are no viewer iframes. A profile or m
 
 The old `web/*.html` entry points, vanilla controllers, duplicate Three.js runtimes and separate reference viewer were removed. `web/` remains Vite's public data/asset directory for lesson packs, contracts, catalogues, motion data, audio, images and the bundled Wright GLB.
 
+## Using the site without a connection
+
+A production build is installable and works offline once it has been visited online (issue #77):
+
+- `web/manifest.webmanifest` and the icons in `web/icons/` make it installable. Run `node scripts/build_app_icons.mjs` after changing `app-icon.svg`.
+- `npm run build` ends with `scripts/build_service_worker.mjs`, which writes `dist/sw.js` from `scripts/offline/service-worker.js`.
+  - It runs after `prune_deployed_models.mjs`, so the worker lists exactly what is deployed.
+  - What it saves, and when, is in `scripts/offline/precache-plan.mjs` (`scripts/test_offline_precache.mjs`). At install it saves the app's code and styles, the lesson packs, contracts and catalogues, and the small pictures, about 5.5 MB. It saves lesson pictures and audio, about 4 MB more, as they are shown.
+  - The cache name changes with any file's content, so a new deployment replaces the saved copy.
+  - The page itself is fetched from the network first, so a deployment shows at once.
+- `src/offline/register.ts` registers the worker in production only, so the dev server never serves stale code.
+- 3D models are not the worker's job. `model-cache.mjs` already keeps each Drive model once it has been opened. The "Use without internet" panel in the course information (`src/components/OfflinePanel.tsx`) lists what is saved, and "Save everything for offline use" does the following:
+  - downloads the remaining models one at a time (`saveModelOffline`, which does not also hold them in the session's memory);
+  - asks the worker for every lesson picture and sound;
+  - asks the browser to keep the files (`navigator.storage.persist`).
+- `e2e/production.spec.ts` checks, against the built site, that a lesson opens with the network switched off.
+
 ## Extension path
 
 To add a model:

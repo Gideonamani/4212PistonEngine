@@ -1,6 +1,6 @@
 import type { ModelSource } from '../../data/modelRegistry';
 import { createGltfLoader } from './gltf-loader';
-import { cacheKeyFor as savedCopyKey, dropCachedModel, readCachedModel, writeCachedModel } from './model-cache.mjs';
+import { cacheKeyFor as savedCopyKey, dropCachedModel, hasCachedModel, readCachedModel, writeCachedModel } from './model-cache.mjs';
 import { orderAttempts } from './source-order.mjs';
 
 type Candidate = ModelSource & { url: string; headers: Record<string, string>; label: string; from: 'local' | 'drive' };
@@ -43,6 +43,7 @@ export async function loadModelBytes(
   sources: ModelSource[],
   signal: AbortSignal,
   onProgress: (status: string, progress?: number) => void,
+  { waitForSave = false } = {},
 ) {
   const failures: string[] = [];
   const candidates = await candidatesFor(sources);
@@ -68,7 +69,8 @@ export async function loadModelBytes(
       if (!response.body) {
         const whole = await response.arrayBuffer();
         const model = await decodeModel(whole, signal, onProgress);
-        void writeCachedModel(cacheKey, whole);
+        const saving = writeCachedModel(cacheKey, whole);
+        if (waitForSave) await saving;
         return model;
       }
       const reader = response.body.getReader();
@@ -87,7 +89,8 @@ export async function loadModelBytes(
       for (const chunk of chunks) { joined.set(chunk, offset); offset += chunk.byteLength; }
       // Save the download only once it has unpacked into a complete GLB, so a cut-off transfer is never kept.
       const model = await decodeModel(joined.buffer, signal, onProgress);
-      void writeCachedModel(cacheKey, joined);
+      const saving = writeCachedModel(cacheKey, joined);
+      if (waitForSave) await saving;
       return model;
     } catch (error) {
       if (signal.aborted) throw error;
@@ -128,6 +131,27 @@ function cachedModelBytes(sources: ModelSource[], signal: AbortSignal, onProgres
 /** Start downloading a model in the background so a later viewer finds it already local. */
 export function preloadModelBytes(sources: ModelSource[]) {
   return cachedModelBytes(sources, new AbortController().signal, () => undefined);
+}
+
+/** The Drive copy a model would be saved under on this device, or undefined where models are not saved (no Drive id or no API key). */
+async function savedCopyOf(sources: ModelSource[]) {
+  const drive = (await candidatesFor(sources)).find((candidate) => candidate.from === 'drive');
+  return drive && savedCopyKey(drive);
+}
+
+/** Whether the model is saved on this device, so it opens without a connection. Undefined where models are not saved at all. */
+export async function modelSavedOffline(sources: ModelSource[]) {
+  const key = await savedCopyOf(sources);
+  return key ? hasCachedModel(key) : undefined;
+}
+
+/**
+ * Download a model onto the device for use without a connection. Unlike a preload it is not also kept in this session's memory, so saving
+ * every model does not fill a phone's memory; the bytes are let go once saved. Does nothing for a model that is already saved.
+ */
+export async function saveModelOffline(sources: ModelSource[], signal: AbortSignal, onProgress: Progress) {
+  if (await modelSavedOffline(sources) !== false) return;
+  await loadModelBytes(sources, signal, onProgress, { waitForSave: true });
 }
 
 /** Sources for the full engine, taken from its published contract. */

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- The header's piston-and-cylinder badge (src/components/shell/BrandMark.tsx) as the app icon. The background fills the whole square and
+       the mark stays inside the middle 60%, so a launcher may crop it to a circle or a squircle (a maskable icon). -->
+  <rect width="512" height="512" fill="#061014" />
+  <rect x="96" y="96" width="320" height="320" rx="72" fill="#042f2e" stroke="#2dd4bf" stroke-opacity="0.6" stroke-width="10" />
+  <g transform="translate(136 136) scale(10)" fill="none" stroke="#5eead4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="6" y="3" width="12" height="8" rx="1.5" />
+    <line x1="6" y1="6" x2="18" y2="6" />
+    <line x1="6" y1="8" x2="18" y2="8" />
+    <path d="M12 11 L10 17 L14 17 Z" />
+    <circle cx="12" cy="18.5" r="2.5" />
+  </g>
+</svg>
