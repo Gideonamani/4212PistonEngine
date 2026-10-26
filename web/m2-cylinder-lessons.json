@@ -104,7 +104,16 @@
           "savedMotionId": "exploded",
           "motionProgress": 0,
           "prompt": "Rotate the cylinder and locate the rocker covers, spark plugs and piston/rod interface.",
-          "note": "Structural overview only. Presentation offsets do not define a maintenance sequence; permanent joints remain together."
+          "note": "Structural overview only. Presentation offsets do not define a maintenance sequence; permanent joints remain together.",
+          "focusParts": [
+            "IntakeRockerCover",
+            "ExhaustRockerCover",
+            "UpperSparkPlug",
+            "LowerSparkPlug",
+            "PistonBody",
+            "FloatingPin",
+            "ConnectingRodBody"
+          ]
         },
         {
           "type": "model-pose",
@@ -113,7 +122,21 @@
           "savedMotionId": "exploded",
           "motionProgress": 50,
           "prompt": "Trace tappet to pushrod to rocker to valve. Which parts retain the valve springs? Rotate the paused exploded pose to compare the two valve trains.",
-          "note": "Structural overview only. Presentation offsets do not define a maintenance sequence; permanent joints remain together."
+          "note": "Structural overview only. Presentation offsets do not define a maintenance sequence; permanent joints remain together.",
+          "focusParts": [
+            "IntakeHydraulicLifterBody",
+            "IntakePushrod",
+            "IntakeRockerArm",
+            "IntakeValve",
+            "IntakeSpringRetainer",
+            "IntakeValveKeeper",
+            "ExhaustHydraulicLifterBody",
+            "ExhaustPushrod",
+            "ExhaustRockerArm",
+            "ExhaustValve",
+            "ExhaustSpringRetainer",
+            "ExhaustValveKeeper"
+          ]
         },
         {
           "type": "model-pose",
@@ -122,7 +145,15 @@
           "savedMotionId": "exploded",
           "motionProgress": 75,
           "prompt": "Identify the head/barrel unit and pressed guides/seats. Why are these kept together in this structural overview?",
-          "note": "Structural overview only. Presentation offsets do not define a maintenance sequence; permanent joints remain together."
+          "note": "Structural overview only. Presentation offsets do not define a maintenance sequence; permanent joints remain together.",
+          "focusParts": [
+            "CylinderHead",
+            "CylinderBarrel",
+            "IntakeValveGuide",
+            "ExhaustValveGuide",
+            "IntakeSeatInsert",
+            "ExhaustSeatInsert"
+          ]
         },
         {
           "type": "model-pose",
@@ -131,7 +162,17 @@
           "savedMotionId": "exploded",
           "motionProgress": 100,
           "prompt": "Locate the piston rings, floating pin, rod cap and bearing halves. Explain which interfaces guide sliding motion and which permit rotation.",
-          "note": "Structural overview only. Presentation offsets do not define a maintenance sequence; permanent joints remain together."
+          "note": "Structural overview only. Presentation offsets do not define a maintenance sequence; permanent joints remain together.",
+          "focusParts": [
+            "PistonRing1",
+            "PistonRing2",
+            "PistonRing3",
+            "PistonRing4",
+            "FloatingPin",
+            "ConnectingRodCap",
+            "BigEndBearing",
+            "CapBearingHalf"
+          ]
         }
       ]
     }

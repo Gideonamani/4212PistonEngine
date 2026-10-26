@@ -33,7 +33,12 @@
           "savedMotionId": "Exploded overview",
           "motionProgress": 66.666667,
           "prompt": "Rotate the exploded pose. Identify the socket, hollow plunger and return spring. Explain how these connect to the pushrod.",
-          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls."
+          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls.",
+          "focusParts": [
+            "Socket",
+            "Plunger",
+            "PlungerSpring"
+          ]
         },
         {
           "type": "model-pose",
@@ -42,7 +47,12 @@
           "savedMotionId": "Exploded overview",
           "motionProgress": 100,
           "prompt": "Find the check-valve housing, plate and spring. Explain why the valve traps oil under load and permits replenishment.",
-          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls."
+          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls.",
+          "focusParts": [
+            "CheckHousing",
+            "CheckPlate",
+            "CheckSpring"
+          ]
         },
         {
           "type": "model-pose",
@@ -73,7 +83,11 @@
           "savedMotionId": "Operating mechanism",
           "motionProgress": 25,
           "prompt": "Open Explore, isolate the gears and play. Observe their opposite directions; oil is carried around the outside, not through the meshing region.",
-          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls."
+          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls.",
+          "focusParts": [
+            "DriveGear",
+            "DrivenGear"
+          ]
         },
         {
           "type": "model-pose",
@@ -82,7 +96,12 @@
           "savedMotionId": "Exploded overview",
           "motionProgress": 66.666667,
           "prompt": "Rotate the separated view and identify the cover, driver shaft and driven shaft.",
-          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls."
+          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls.",
+          "focusParts": [
+            "PumpCover",
+            "DriveShaft",
+            "DrivenShaft"
+          ]
         },
         {
           "type": "model-pose",
@@ -91,7 +110,12 @@
           "savedMotionId": "Exploded overview",
           "motionProgress": 100,
           "prompt": "Identify the relief plunger, spring and adjusting plug. Explain how opening a relief path can limit pressure.",
-          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls."
+          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls.",
+          "focusParts": [
+            "ReliefPlunger",
+            "ReliefSpring",
+            "ReliefAdjuster"
+          ]
         },
         {
           "type": "model-pose",
@@ -100,7 +124,11 @@
           "savedMotionId": "Relief valve opening",
           "motionProgress": 100,
           "prompt": "Compare the plunger position with its seated position. Travel is illustrative: this model does not calculate pressure or a setting.",
-          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls."
+          "note": "Manual relationships; illustrative dimensions and operating travel. Use Explore for motion, section and isolation controls.",
+          "focusParts": [
+            "ReliefPlunger",
+            "ReliefHousing"
+          ]
         }
       ]
     }

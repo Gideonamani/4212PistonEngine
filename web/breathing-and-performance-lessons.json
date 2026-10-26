@@ -173,7 +173,11 @@
             "mode": "existing-3d",
             "status": "available",
             "rationale": "The shared 720-degree cylinder profile puts the learner at the intake stroke with the valve open."
-          }
+          },
+          "focusParts": [
+            "IntakeValve",
+            "PistonBody"
+          ]
         },
         {
           "type": "text",
@@ -321,7 +325,11 @@
             "mode": "existing-3d",
             "status": "available",
             "rationale": "The shared 720-degree profile puts the learner at the exhaust stroke with the exhaust valve open."
-          }
+          },
+          "focusParts": [
+            "ExhaustValve",
+            "PistonBody"
+          ]
         },
         {
           "type": "text",
