@@ -53,7 +53,11 @@ export function ModelCanvas({ viewer }: { viewer: ModelViewerState }) {
         {snapshot.progress !== undefined && <div className="mt-3 h-1.5 w-44 overflow-hidden rounded-full bg-slate-800"><div className="h-full rounded-full bg-teal-400 transition-[width]" style={{ width: `${snapshot.progress}%` }} /></div>}
       </div>
     </div>}
-    {error && <div className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center bg-stage p-6 text-center text-rose-200" role="alert"><TriangleAlert className="h-7 w-7" /><p className="mt-2 max-w-sm text-xs leading-relaxed">{error}</p></div>}
+    {error && <div className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center bg-stage p-6 text-center text-rose-200" role="alert">
+      <TriangleAlert className="h-7 w-7" />
+      <p className="mt-2 max-w-sm text-xs leading-relaxed">{error}</p>
+      <button type="button" onClick={viewer.retry} className="pointer-events-auto mt-3 min-h-11 rounded-xl border border-rose-300/40 bg-rose-500/10 px-5 text-xs font-semibold text-rose-100 hover:border-rose-200 focus-visible:outline-2 focus-visible:outline-rose-200">Try again</button>
+    </div>}
   </>;
 }
 

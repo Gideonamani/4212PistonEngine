@@ -1,6 +1,7 @@
 import type { ModelSource } from '../../data/modelRegistry';
 import { createGltfLoader } from './gltf-loader';
 import { MAX_BYTES, cacheAvailable, cacheKeyFor as savedCopyKey, dropCachedModel, keepCachedModel, pruneCachedModels, readCachedModel, roomFor, savedKind, writeCachedModel, type SaveOutcome } from './model-cache.mjs';
+import { downloadBytes } from './model-download.mjs';
 import { createModelMemory } from './model-memory.mjs';
 import { orderAttempts } from './source-order.mjs';
 
@@ -25,6 +26,12 @@ async function candidatesFor(sources: ModelSource[]): Promise<Candidate[]> {
     });
 }
 
+/** An error for a file that may only be cut short: downloading it again can help (model-download.mjs retries those). */
+const cutShort = (message: string) => Object.assign(Error(message), { retryable: true });
+
+/** What a learner is told when a model is not on the device and there is no connection to fetch it. */
+const OFFLINE_MESSAGE = 'This 3D model is not saved on this device and there is no internet connection. Connect once and open it, or save it from Course information → Use without internet.';
+
 async function decodeModel(bytes: ArrayBuffer, signal: AbortSignal, onProgress: (status: string, progress?: number) => void) {
   signal.throwIfAborted();
   const magic = new Uint8Array(bytes, 0, Math.min(bytes.byteLength, 2));
@@ -32,11 +39,16 @@ async function decodeModel(bytes: ArrayBuffer, signal: AbortSignal, onProgress: 
     if (typeof DecompressionStream !== 'function') throw Error('This browser cannot unpack the compressed model.');
     onProgress('Unpacking model geometry…', 97);
     const response = new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip')));
-    bytes = await response.arrayBuffer();
+    try {
+      bytes = await response.arrayBuffer();
+    } catch (error) {
+      if (signal.aborted) throw error;
+      throw cutShort('The model download could not be unpacked; it may have been cut short.');
+    }
   }
   signal.throwIfAborted();
   if (bytes.byteLength < 20 || new DataView(bytes).getUint32(0, true) !== 0x46546c67) throw Error('The model response is not a valid GLB file.');
-  if (new DataView(bytes).getUint32(8, true) !== bytes.byteLength) throw Error('The model download ended before the complete GLB arrived.');
+  if (new DataView(bytes).getUint32(8, true) !== bytes.byteLength) throw cutShort('The model download ended before the complete GLB arrived.');
   return bytes;
 }
 
@@ -47,6 +59,7 @@ export async function loadModelBytes(
   { waitForSave = false, kind = 'opportunistic', onSaved }: { waitForSave?: boolean; kind?: 'explicit' | 'opportunistic'; onSaved?: (outcome: SaveOutcome) => void } = {},
 ) {
   const failures: string[] = [];
+  let offline = 0;
   const candidates = await candidatesFor(sources);
   if (!candidates.length) throw Error('No model source is configured.');
   for (const candidate of candidates) {
@@ -62,42 +75,29 @@ export async function loadModelBytes(
         await dropCachedModel(cacheKey);
       }
     }
+    // With no connection at all, say so and move on: waiting and retrying cannot bring the file.
+    if (candidate.from === 'drive' && typeof navigator !== 'undefined' && navigator.onLine === false) { offline += 1; continue; }
     try {
-      onProgress('Connecting to model…', 1);
-      const response = await fetch(candidate.url, { headers: candidate.headers, signal, mode: 'cors', credentials: 'omit', referrerPolicy: 'strict-origin-when-cross-origin' });
-      if (!response.ok) throw Error(`Model download failed (${response.status}).`);
-      const total = Number(response.headers.get('content-length')) || candidate.transferBytes || 0;
-      if (!response.body) {
-        const whole = await response.arrayBuffer();
-        const model = await decodeModel(whole, signal, onProgress);
-        const saving = writeCachedModel(cacheKey, whole, undefined, { kind }).then((outcome) => onSaved?.(outcome));
-        if (waitForSave) await saving;
-        return model;
-      }
-      const reader = response.body.getReader();
-      const chunks: Uint8Array[] = [];
-      let received = 0;
-      for (;;) {
-        signal.throwIfAborted();
-        const { done, value } = await reader.read();
-        if (done) break;
-        chunks.push(value);
-        received += value.byteLength;
-        onProgress(total ? `Downloading model · ${Math.floor(received / total * 96)}%` : `Downloading model · ${(received / 1048576).toFixed(1)} MB`, total ? Math.min(96, Math.floor(received / total * 96)) : undefined);
-      }
-      const joined = new Uint8Array(received);
-      let offset = 0;
-      for (const chunk of chunks) { joined.set(chunk, offset); offset += chunk.byteLength; }
-      // Save the download only once it has unpacked into a complete GLB, so a cut-off transfer is never kept.
-      const model = await decodeModel(joined.buffer, signal, onProgress);
-      const saving = writeCachedModel(cacheKey, joined, undefined, { kind }).then((outcome) => onSaved?.(outcome));
+      // Retries, deadlines and the choice of which failures to retry are model-download.mjs; a cut-off or damaged file is not saved (below).
+      const { raw, value: model } = await downloadBytes({
+        url: candidate.url,
+        init: { headers: candidate.headers, mode: 'cors', credentials: 'omit', referrerPolicy: 'strict-origin-when-cross-origin' },
+        signal,
+        expectedBytes: candidate.transferBytes,
+        onStatus: (status) => onProgress(status, 1),
+        onProgress: (received, total) => onProgress(total ? `Downloading model · ${Math.floor(received / total * 96)}%` : `Downloading model · ${(received / 1048576).toFixed(1)} MB`, total ? Math.min(96, Math.floor(received / total * 96)) : undefined),
+        // Only a download that has unpacked into a complete GLB is saved, so a cut-off transfer is never kept.
+        validate: (bytes) => decodeModel(bytes.buffer as ArrayBuffer, signal, onProgress),
+      });
+      const saving = writeCachedModel(cacheKey, raw, undefined, { kind }).then((outcome) => onSaved?.(outcome));
       if (waitForSave) await saving;
-      return model;
+      return model as ArrayBuffer;
     } catch (error) {
       if (signal.aborted) throw error;
       failures.push(`${candidate.label}: ${error instanceof Error ? error.message : 'unknown failure'}`);
     }
   }
+  if (offline) throw Error(OFFLINE_MESSAGE);
   throw Error(`Every configured model source failed. ${failures.join(' ')}`);
 }
 
