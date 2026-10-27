@@ -29,9 +29,12 @@ export const CHECK_TYPES = Object.freeze(['multiple-choice', 'model-click', 'nam
 /**
  * What a part-number question may say about the catalogue its numbers come from. Only a catalogue for a similar engine is accepted today: a
  * number read for the GTSIO-520-H itself needs the catalogue's own statement that it applies to that model, which the pack data does not
- * carry yet (docs/decisions/003-part-source-references.md), so no question can claim it.
+ * carry yet (docs/decisions/003-part-source-references.md), so no question can claim it. A catalogue for the model's own engine series is a
+ * similar-engine catalogue too, and must then say which models it lists and that the H is not among them (`catalogue.series`).
  */
 export const PART_NUMBER_APPLICABILITY = Object.freeze(['similar-engine']);
+/** The course engine's model letter. A series catalogue is accepted only if it records that it does not list this one. */
+const COURSE_ENGINE_MODEL = 'H';
 /** How a step's spotlight (focusParts) draws attention: colour the parts, x-ray the rest, or isolate the parts. Mirrors src/viewer/core/focus-style.mjs. */
 export const FOCUS_MODES = Object.freeze(['highlight', 'xray', 'isolate']);
 export const NODE_KINDS = Object.freeze(['group', 'component']);
@@ -336,6 +339,18 @@ function validateLesson(lesson, lessonIndex, knownSourceIds) {
   return errors;
 }
 
+/** What a GTSIO-520 series catalogue must say: which models it lists, and that the course engine's model is not one of them. */
+function validateCatalogueSeries(series, where) {
+  const isModels = (list) => Array.isArray(list) && list.length > 0 && list.every((letter) => typeof letter === 'string' && /^[A-Z]$/.test(letter)) && new Set(list).size === list.length;
+  if (!series || typeof series !== 'object') return [`${where}: a GTSIO-520 series catalogue needs catalogue.series, the models it lists and the ones it does not`];
+  const errors = [];
+  if (!isModels(series.models)) errors.push(`${where}: catalogue.series.models must list the model letters the catalogue lists, such as ["C", "D", "F", "K"]`);
+  else if (series.models.includes(COURSE_ENGINE_MODEL)) errors.push(`${where}: catalogue.series.models lists the ${COURSE_ENGINE_MODEL}, but only a catalogue that does not list the ${COURSE_ENGINE_MODEL} can be used here`);
+  if (!isModels(series.notListed) || !series.notListed.includes(COURSE_ENGINE_MODEL)) errors.push(`${where}: catalogue.series.notListed must say the ${COURSE_ENGINE_MODEL} is not listed`);
+  else if (isModels(series.models) && series.models.some((letter) => series.notListed.includes(letter))) errors.push(`${where}: catalogue.series gives a model as both listed and not listed`);
+  return errors;
+}
+
 /** The catalogue block of a part-number check: named, dated, applicable only as a similar engine, and every answer a real line of it. */
 function validatePartNumberCatalogue(check, where) {
   const errors = [];
@@ -347,8 +362,14 @@ function validatePartNumberCatalogue(check, where) {
   if (!PART_NUMBER_APPLICABILITY.includes(catalogue.applicability)) {
     errors.push(`${where}: catalogue.applicability must be one of ${PART_NUMBER_APPLICABILITY.join(', ')}: a number is not claimed for the model's own engine without the catalogue's applicability for it`);
   }
-  if (typeof catalogue.engine === 'string' && /gtsio/i.test(catalogue.engine)) {
-    errors.push(`${where}: catalogue.engine names the model's own engine, but only a catalogue for a similar engine can be used here`);
+  const engine = typeof catalogue.engine === 'string' ? catalogue.engine : '';
+  const ownSeries = /gtsio/i.test(engine);
+  if (/gtsio[-\s]*520[-\s]*h\b/i.test(engine) || (ownSeries && !/\bseries\b/i.test(engine))) {
+    errors.push(`${where}: catalogue.engine names the model's own engine, but only a catalogue for a similar engine, or a GTSIO-520 series catalogue that does not list the H, can be used here`);
+  } else if (ownSeries) {
+    errors.push(...validateCatalogueSeries(catalogue.series, where));
+  } else if (catalogue.series !== undefined) {
+    errors.push(`${where}: catalogue.series only goes with a catalogue for the GTSIO-520 series`);
   }
   if (typeof catalogue.engine === 'string' && catalogue.engine.trim() && !check.question.includes(catalogue.engine)) {
     errors.push(`${where}: the question must name the catalogue's engine (${catalogue.engine}) so a number is never read as the model's own`);
@@ -358,7 +379,7 @@ function validatePartNumberCatalogue(check, where) {
     errors.push(`${where}: catalogue.lines must give one catalogue line for each answer`);
   } else {
     for (const [lineIndex, line] of catalogue.lines.entries()) {
-      if (!line || !/^\d+-\d+$/.test(line.index || '') || typeof line.number !== 'string' || !line.number.trim() || typeof line.description !== 'string' || !line.description.trim()) {
+      if (!line || !/^\d+-\d+[A-Z]?$/.test(line.index || '') || typeof line.number !== 'string' || !line.number.trim() || typeof line.description !== 'string' || !line.description.trim()) {
         errors.push(`${where}: catalogue.lines[${lineIndex}] needs index ("13-42"), number and description`);
       } else if (answers[lineIndex] !== `${line.number} · ${line.description}`) {
         errors.push(`${where}: answers[${lineIndex}] must read "${line.number} · ${line.description}", the catalogue line it comes from`);

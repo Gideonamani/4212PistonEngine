@@ -191,6 +191,10 @@ test('a part-number check keeps its model, part and catalogue, and its answers b
   assert.equal(isCorrect(line, 0), true);
   assert.equal(isCorrect(line, 1), false);
   assert.throws(() => mapQuestion({ ...check, catalogue: undefined }), /needs its catalogue/);
+
+  const series = { models: ['C', 'D', 'F', 'K'], notListed: ['H', 'L', 'M', 'N'] };
+  const seriesLine = mapQuestion({ ...check, catalogue: { ...catalogue, engine: 'GTSIO-520 series', series } });
+  assert.deepEqual(seriesLine.catalogue.series, series, 'the models a series catalogue lists travel with the question, so the screen can say the H is not among them');
 });
 
 test('every shipped check is one the screen can show, and no matching question gives its answer away by order', () => {

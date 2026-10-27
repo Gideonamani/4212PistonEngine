@@ -5,13 +5,14 @@ import { appReady, expect, onlyIn, test } from './fixtures';
 // instructor reviews it, so the card says so; no part number reaches the learner. This opens the whole-engine model (12 MB transfer; 25 MB before optimisation), so it runs once.
 
 onlyIn('phone-390');
-test.describe.configure({ timeout: 240_000 });
+// The 12 MB whole-engine model takes 3.3 to 3.9 minutes here on a CI runner, and a loaded runner took longer than 4 (PR 118), so there is margin.
+test.describe.configure({ timeout: 360_000 });
 
 // Leave the model's scene before the browser context is closed (see explore-spotlight.spec.ts).
 test.afterEach(async ({ page }) => { await page.goto('about:blank').catch(() => undefined); });
 
 test('the part card speaks plainly, says its text is a draft, and shows no part number', async ({ page }, testInfo) => {
-  test.setTimeout(240_000);
+  test.setTimeout(360_000);
   await page.goto('/#/explore');
   await appReady(page);
   await page.locator('button[aria-describedby="capabilities-gtsio520-h-r10-mechanism-study"]').click();

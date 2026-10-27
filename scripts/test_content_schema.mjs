@@ -168,6 +168,34 @@ assert.match(partNumberErrors({ ...pushRod, catalogue: { ...pushRod.catalogue, l
 assert.match(partNumberErrors({ ...pushRod, catalogue: { ...pushRod.catalogue, lines: [{ ...catalogueLines[0], number: '' }, ...catalogueLines.slice(1)] } }), /lines\[0\] needs index/);
 assert.match(partNumberErrors({ ...pushRod, answers: [pushRod.answers[0], '538304 · Housing, Push Rod', pushRod.answers[2]], catalogue: { ...pushRod.catalogue, lines: [catalogueLines[0], { ...catalogueLines[1], number: '538304' }, catalogueLines[2]] } }), /different numbers/);
 
+// A catalogue for the model's own series (GTSIO-520, Form X-30046) is a similar-engine catalogue that has to say which models it lists and that
+// the H is not among them. Its lines may carry a letter on the index ("8-23A"), as the catalogue prints it.
+const seriesLines = [
+  { index: '8-38', number: '632485', description: 'Housing, Pushrod' },
+  { index: '8-43', number: '537490-4', description: 'Pushrod Assembly' },
+  { index: '8-23A', number: '640941', description: 'Rocker Arm Assembly, Exhaust' },
+];
+const seriesPushRod = {
+  modelId: 'cylinder', partId: 'IntakePushrodHousing', answers: seriesLines.map((line) => `${line.number} · ${line.description}`), correct: 0,
+  question: 'In the GTSIO-520 series parts catalogue (models C, D, F and K), figure 8, which line names the same kind of part as the one highlighted?',
+  catalogue: { engine: 'GTSIO-520 series', applicability: 'similar-engine', series: { models: ['C', 'D', 'F', 'K'], notListed: ['H', 'L', 'M', 'N'] }, title: 'Continental GTSIO-520 Series Illustrated Parts Catalog, Form X-30046', edition: 'Change 1', figure: '8, Cylinder Assembly', lines: seriesLines },
+};
+const seriesWith = (series) => ({ ...seriesPushRod, catalogue: { ...seriesPushRod.catalogue, series } });
+assert.deepEqual(validateLessonPack(withPartNumber(seriesPushRod)), [], 'a series catalogue that says the H is not listed is valid');
+assert.match(partNumberErrors(seriesWith(undefined)), /needs catalogue\.series/, 'a series catalogue must say which models it lists');
+assert.match(partNumberErrors(seriesWith({ models: ['C', 'D', 'F', 'H', 'K'], notListed: ['L'] })), /series\.models lists the H/, 'a catalogue that lists the H is not what this is for: it needs an exact applicability, which no source gives yet');
+assert.match(partNumberErrors(seriesWith({ models: ['C', 'D', 'F', 'K'], notListed: ['L', 'M'] })), /notListed must say the H is not listed/);
+assert.match(partNumberErrors(seriesWith({ models: ['C', 'D', 'F', 'K'] })), /notListed must say the H is not listed/);
+assert.match(partNumberErrors(seriesWith({ models: [], notListed: ['H'] })), /series\.models must list the model letters/);
+assert.match(partNumberErrors(seriesWith({ models: ['C', 'c'], notListed: ['H'] })), /series\.models must list the model letters/);
+assert.match(partNumberErrors(seriesWith({ models: ['C', 'D', 'D'], notListed: ['H'] })), /series\.models must list the model letters/);
+assert.match(partNumberErrors(seriesWith({ models: ['C', 'D', 'K'], notListed: ['H', 'D'] })), /both listed and not listed/);
+assert.match(partNumberErrors({ ...seriesPushRod, catalogue: { ...seriesPushRod.catalogue, engine: 'GTSIO-520' }, question: 'In the GTSIO-520 parts catalogue, which line is this part?' }), /names the model's own engine/, 'a GTSIO-520 catalogue not named as a series is read as the model\'s own');
+assert.match(partNumberErrors({ ...seriesPushRod, catalogue: { ...seriesPushRod.catalogue, engine: 'GTSIO-520-H series' }, question: 'In the GTSIO-520-H series parts catalogue, which line is this part?' }), /names the model's own engine/, 'the H cannot be named, series or not');
+assert.match(partNumberErrors({ ...pushRod, catalogue: { ...pushRod.catalogue, series: { models: ['C'], notListed: ['H'] } } }), /series only goes with a catalogue for the GTSIO-520 series/);
+assert.match(partNumberErrors({ ...seriesPushRod, question: 'Which line names the same kind of part as the one highlighted?' }), /must name the catalogue's engine \(GTSIO-520 series\)/, 'the question names the series so a number is never read as the model\'s own');
+assert.match(partNumberErrors({ ...seriesPushRod, catalogue: { ...seriesPushRod.catalogue, lines: [{ ...seriesLines[0], index: '8/38' }, ...seriesLines.slice(1)] } }), /lines\[0\] needs index/);
+
 // A step's recommended section plane: a short label, a normal that points somewhere, and an optional offset across the model.
 const plane = { label: 'Valve axis', normal: [0, 1, 0], offset: 0.5 };
 assert.deepEqual(validateLessonPack(withStep({ sectionPlane: plane })), [], 'a recommended plane is valid');

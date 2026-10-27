@@ -11,7 +11,8 @@ import { SECTION_STEP, openViewerStep } from './viewer-helpers';
 // plane through the valves Highlight is drawn as Highlight again, and moving the plane off them brings the X-ray back.
 
 onlyIn('phone-390');
-test.describe.configure({ mode: 'serial', timeout: 240_000 });
+// Each test takes 2.5 to 4 minutes on a CI runner (a 12 MB model, then the stage is read pixel by pixel), so there is margin (PR 118).
+test.describe.configure({ mode: 'serial', timeout: 360_000 });
 
 test.afterEach(async ({ page }) => { await page.goto('about:blank').catch(() => undefined); });
 
@@ -65,7 +66,7 @@ for (const scheme of ['light', 'dark'] as const) {
     test.use({ colorScheme: scheme });
 
     test(`the X-ray ghost shows on the ${scheme} stage, and Highlight says when it is drawn as X-ray and when a cut lifts it`, async ({ page, problems }) => {
-      test.setTimeout(240_000);
+      test.setTimeout(360_000);
       const { viewer } = await openViewerStep(page, SECTION_STEP, { loadModel: true });
       await expect(viewer.getByRole('status')).toHaveCount(0, { timeout: 150_000 });
       await expect.poll(() => page.evaluate(() => document.documentElement.dataset.theme)).toBe(scheme);

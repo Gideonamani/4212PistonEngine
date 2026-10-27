@@ -302,9 +302,29 @@ const numberPack = {
   ],
 };
 
-async function openNumberCheck(page: Page) {
-  await page.route('**/lessons-manifest.json', (route) => route.fulfill({ json: { ...MANIFEST, packs: ['./number-pack.json'] } }));
-  await page.route('**/number-pack.json', (route) => route.fulfill({ json: numberPack }));
+// The same question against a GTSIO-520 series catalogue: it lists models C, D, F and K, and the screen says the H is not among them.
+const seriesLines = [
+  { index: '8-38', number: '632485', description: 'Housing, Pushrod' },
+  { index: '8-43', number: '537490-4', description: 'Pushrod Assembly' },
+  { index: '8-42', number: '626147', description: 'Spring, Pushrod Housing' },
+];
+const seriesPack = {
+  ...pack,
+  id: 'series-pack',
+  title: 'Fixture series-catalogue checks',
+  checks: [
+    {
+      id: 'series-housing', lessonId: 'fixture-lesson', type: 'part-number', question: 'In the GTSIO-520 series parts catalogue (models C, D, F and K), figure 8, which line names the same kind of part as the one highlighted?', hint: 'The rod that runs in it and the spring on it have lines of their own.',
+      modelId: 'cylinder', partId: 'IntakePushrodHousing', answers: seriesLines.map((line) => `${line.number} · ${line.description}`), correct: 0,
+      catalogue: { engine: 'GTSIO-520 series', applicability: 'similar-engine', series: { models: ['C', 'D', 'F', 'K'], notListed: ['H', 'L', 'M', 'N'] }, title: 'Continental GTSIO-520 Series Illustrated Parts Catalog, Form X-30046', edition: 'Change 1', figure: '8, Cylinder Assembly', lines: seriesLines },
+      rationale: 'Index 38 is the pushrod housing. This edition lists models C, D, F and K and not the H.',
+    },
+  ],
+};
+
+async function openNumberCheck(page: Page, fixture: { id: string } = numberPack) {
+  await page.route('**/lessons-manifest.json', (route) => route.fulfill({ json: { ...MANIFEST, packs: [`./${fixture.id}.json`] } }));
+  await page.route(`**/${fixture.id}.json`, (route) => route.fulfill({ json: fixture }));
   await page.goto('/#/check');
   await appReady(page);
   await page.getByRole('button').filter({ has: page.locator('h4') }).first().click();
@@ -338,6 +358,28 @@ test.describe('part-number question', () => {
     await expect(page.getByRole('button', { name: /538304 · Push Rod Assembly/ }), 'the right line is shown after a miss').toBeVisible();
     await expect(notice, 'the notice stays after the answer').toBeVisible();
     await expectAccessibleAndTouchable(page, 'part-number question, answered');
+    problems.assertNone();
+  });
+
+  test('a series catalogue says which models it lists and that the GTSIO-520-H is not among them', async ({ page, problems }) => {
+    await openNumberCheck(page, seriesPack);
+    const notice = page.getByRole('note');
+    await expect(notice).toContainText('GTSIO-520 SERIES CATALOGUE · MODELS C, D, F AND K · THE -H IS NOT LISTED');
+    await expect(notice).toContainText('Continental GTSIO-520 Series Illustrated Parts Catalog, Form X-30046 (Change 1), figure 8, Cylinder Assembly');
+    await expect(notice).toContainText('This edition lists models C, D, F and K');
+    await expect(notice).toContainText('the GTSIO-520-H, which it does not list');
+    await expect(notice, 'a series catalogue is not labelled as the IO-520').not.toContainText('IO-520 CATALOGUE');
+    await expect(page.getByRole('region', { name: /with one part highlighted/ }).getByRole('status')).toHaveCount(0, { timeout: 150_000 });
+    await expect(page.getByRole('button', { name: /\d{5,6}(-\d)? · / }), 'each answer is a catalogue line, number then description').toHaveCount(3);
+    await expectNoHorizontalOverflow(page);
+    await expectAccessibleAndTouchable(page, 'part-number question, series catalogue');
+
+    await page.getByRole('button', { name: /537490-4 · Pushrod Assembly/ }).click();
+    await page.getByRole('button', { name: 'Verify answer' }).click();
+    await expect(page.getByText('REVIEW THE EVIDENCE')).toBeVisible();
+    await expect(page.getByRole('button', { name: /632485 · Housing, Pushrod/ }), 'the right line is shown after a miss').toBeVisible();
+    await expect(notice, 'the notice stays after the answer').toContainText('THE -H IS NOT LISTED');
+    await expectAccessibleAndTouchable(page, 'part-number question, series catalogue, answered');
     problems.assertNone();
   });
 
