@@ -148,10 +148,14 @@ export interface NamePartQuestion extends QuizQuestionBase { type: 'name-part'; 
  */
 export interface PartNumberQuestion extends QuizQuestionBase { type: 'part-number'; modelId: string; partId: string; options: string[]; correctIndex: number; catalogue: PartNumberCatalogue; view?: { initialAngle?: number } }
 
-/** Which catalogue a part-number question reads its numbers from. `lines` are the catalogue's own lines, in the order of the options. */
+/**
+ * Which catalogue a part-number question reads its numbers from. `lines` are the catalogue's own lines, in the order of the options.
+ * `series` is only there for a catalogue of the GTSIO-520 series: the model letters it lists, and the ones it does not (the H is always among them).
+ */
 export interface PartNumberCatalogue {
   engine: string;
   applicability: 'similar-engine';
+  series?: { models: string[]; notListed: string[] };
   title: string;
   edition: string;
   figure: string;

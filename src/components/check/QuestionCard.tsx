@@ -96,15 +96,28 @@ const NumericAnswer: React.FC<AnswerProps<Extract<QuizQuestion, { type: 'numeric
   </div>;
 };
 
+/** "C", "D", "F" and "K": the model letters of a series catalogue, as a short sentence. */
+const listModels = (models: string[]) => models.length > 1 ? `${models.slice(0, -1).join(', ')} and ${models[models.length - 1]}` : models.join('');
+
 /**
  * Said beside every part-number question, in words the pack author cannot leave out: the numbers are another engine's. The model on screen
  * is the course engine, so a learner must not carry a number from here to it. The schema keeps a catalogue for the model's own engine out
- * until the catalogue's applicability for that model can be stated (docs/decisions/003-part-source-references.md).
+ * until the catalogue's applicability for that model can be stated (docs/decisions/003-part-source-references.md); a catalogue for the
+ * GTSIO-520 series is accepted only as one that lists other models and says the H is not among them, and the notice then says so.
  */
 function CatalogueNotice({ catalogue }: { catalogue: PartNumberCatalogue }) {
+  const source = <>The lines below are from the {catalogue.title} ({catalogue.edition}), figure {catalogue.figure}.</>;
+  const current = 'Part numbers also change, so for a real order use the current catalogue for the engine in front of you.';
   return <div role="note" className="rounded-xl border border-sky-500/30 bg-sky-950/25 p-3 text-xs leading-relaxed text-sky-100">
-    <strong className="mb-1 block font-mono tracking-wide">{catalogue.engine} CATALOGUE · NOT THE GTSIO-520-H</strong>
-    The lines below are from the {catalogue.title} ({catalogue.edition}), figure {catalogue.figure}. The model shows the course engine, the GTSIO-520-H: the same kind of part may carry a different number in its own catalogue. Part numbers also change, so for a real order use the current catalogue for the engine in front of you.
+    {catalogue.series
+      ? <>
+        <strong className="mb-1 block font-mono tracking-wide">{catalogue.engine.toUpperCase()} CATALOGUE · MODELS {listModels(catalogue.series.models).toUpperCase()} · THE -H IS NOT LISTED</strong>
+        {source} This edition lists models {listModels(catalogue.series.models)}. The model shows the course engine, the GTSIO-520-H, which it does not list, so no line is stated for the H: the same kind of part can carry a different number on another model. {current}
+      </>
+      : <>
+        <strong className="mb-1 block font-mono tracking-wide">{catalogue.engine} CATALOGUE · NOT THE GTSIO-520-H</strong>
+        {source} The model shows the course engine, the GTSIO-520-H: the same kind of part may carry a different number in its own catalogue. {current}
+      </>}
   </div>;
 }
 
