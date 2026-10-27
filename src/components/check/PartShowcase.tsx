@@ -1,13 +1,14 @@
 import React, { useEffect, useMemo } from 'react';
 import { RotateCcw } from 'lucide-react';
 import { modelsById } from '../../data/modelRegistry';
-import type { NamePartQuestion } from '../../types/engine';
+import type { NamePartQuestion, PartNumberQuestion } from '../../types/engine';
 import { lessonProfile } from '../../viewer/core/view-state.mjs';
 import { ModelCanvas, PanToggle, ToolbarButton, UnknownModel, WheelZoomHint, useViewerHint } from '../../viewer/ViewerParts';
 import { useModelViewer } from '../../viewer/useModelViewer';
 
 type PartShowcaseProps = {
-  question: NamePartQuestion;
+  /** A name-part question, or a part-number one: both spotlight one part and leave the answer to the learner. */
+  question: NamePartQuestion | PartNumberQuestion;
 };
 
 /**

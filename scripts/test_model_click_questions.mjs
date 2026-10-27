@@ -51,8 +51,8 @@ test('every model-click question names a model with pickable parts, and parts an
   }
 });
 
-test('every name-part question spotlights a single part that exists on its model, and its right answer reads like that part', () => {
-  const names = packs.flatMap((pack) => (pack.checks || []).filter((check) => check.type === 'name-part').map((check) => ({ pack, check })));
+test('every name-part and part-number question spotlights a single part that exists on its model', () => {
+  const names = packs.flatMap((pack) => (pack.checks || []).filter((check) => check.type === 'name-part' || check.type === 'part-number').map((check) => ({ pack, check })));
   for (const { pack, check } of names) {
     const where = `${pack.id}/${check.id}`;
     const model = models.find((candidate) => candidate.id === check.modelId);

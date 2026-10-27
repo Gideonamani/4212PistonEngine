@@ -142,7 +142,23 @@ export interface ModelClickQuestion extends QuizQuestionBase { type: 'model-clic
  */
 export interface NamePartQuestion extends QuizQuestionBase { type: 'name-part'; modelId: string; partId: string; options: string[]; correctIndex: number; view?: { initialAngle?: number } }
 
-export type QuizQuestion = ChoiceQuestion | OrderingQuestion | MatchingQuestion | NumericQuestion | ModelClickQuestion | NamePartQuestion;
+/**
+ * The model spotlights one part, `partId`, and the learner picks the line of a parts catalogue that names that kind of part. The catalogue is
+ * for a similar engine, not the one the model shows: `catalogue` says which, and the screen always says so beside the question.
+ */
+export interface PartNumberQuestion extends QuizQuestionBase { type: 'part-number'; modelId: string; partId: string; options: string[]; correctIndex: number; catalogue: PartNumberCatalogue; view?: { initialAngle?: number } }
+
+/** Which catalogue a part-number question reads its numbers from. `lines` are the catalogue's own lines, in the order of the options. */
+export interface PartNumberCatalogue {
+  engine: string;
+  applicability: 'similar-engine';
+  title: string;
+  edition: string;
+  figure: string;
+  lines: { index: string; number: string; description: string }[];
+}
+
+export type QuizQuestion = ChoiceQuestion | OrderingQuestion | MatchingQuestion | NumericQuestion | ModelClickQuestion | NamePartQuestion | PartNumberQuestion;
 export type QuizQuestionType = QuizQuestion['type'];
 
 export interface QuizModule {

@@ -140,6 +140,34 @@ assert.match(validateLessonPack(withNamePart({ ...keeper, answers: ['Valve keepe
 assert.match(validateLessonPack(withNamePart({ ...keeper, correct: 3 })).join('\n'), /correct must index into answers/);
 assert.match(validateLessonPack(withNamePart({ ...keeper, answers: ['Valve keeper', 'Valve keeper', 'Valve guide'] })).join('\n'), /name-part answers must all differ/);
 
+// part-number: name-part's rules, plus the catalogue the numbers come from. Only a similar engine's catalogue is accepted, the question has to
+// name that engine, and every answer has to be a line of the catalogue block, so a number is never read as the model's own.
+const catalogueLines = [
+  { index: '13-42', number: '538304', description: 'Push Rod Assembly' },
+  { index: '13-38', number: '537296', description: 'Housing, Push Rod' },
+  { index: '13-41', number: '626147', description: 'Spring, Push Rod Housing' },
+];
+const pushRod = {
+  modelId: 'cylinder', partId: 'IntakePushrod', answers: catalogueLines.map((line) => `${line.number} · ${line.description}`), correct: 0,
+  catalogue: { engine: 'IO-520', applicability: 'similar-engine', title: 'Continental IO-520 Illustrated Parts Catalog, Form X-30040A', edition: 'May 1969', figure: '13, Cylinder Assembly', lines: catalogueLines },
+};
+const withPartNumber = (check) => ({ ...samplePack, checks: [...samplePack.checks, { id: 'pn', lessonId: 'lesson-a', type: 'part-number', question: 'In the IO-520 parts catalogue, which line is the kind of part the model highlights?', rationale: 'r', ...check }] });
+const partNumberErrors = (check) => validateLessonPack(withPartNumber(check)).join('\n');
+assert.deepEqual(validateLessonPack(withPartNumber(pushRod)), [], 'a part-number check with an IO-520 catalogue is valid');
+assert.match(partNumberErrors({ ...pushRod, partId: undefined }), /part-number needs partId/);
+assert.match(partNumberErrors({ ...pushRod, answers: pushRod.answers.slice(0, 2), catalogue: { ...pushRod.catalogue, lines: catalogueLines.slice(0, 2) } }), /part-number needs >= 3 answers/);
+assert.match(partNumberErrors({ ...pushRod, catalogue: undefined }), /part-number needs catalogue/);
+assert.match(partNumberErrors({ ...pushRod, catalogue: { ...pushRod.catalogue, applicability: 'exact' } }), /applicability must be one of similar-engine/, 'a number is not claimed for the model\'s own engine');
+assert.match(partNumberErrors({ ...pushRod, catalogue: { ...pushRod.catalogue, applicability: undefined } }), /applicability must be one of similar-engine/);
+assert.match(partNumberErrors({ ...pushRod, question: 'Which catalogue line is the kind of part the model highlights?' }), /must name the catalogue's engine \(IO-520\)/);
+assert.match(partNumberErrors({ ...pushRod, question: 'In the GTSIO-520-H parts catalogue, which line is this part?', catalogue: { ...pushRod.catalogue, engine: 'GTSIO-520-H' } }), /names the model's own engine/);
+for (const field of ['engine', 'title', 'edition', 'figure']) assert.match(partNumberErrors({ ...pushRod, catalogue: { ...pushRod.catalogue, [field]: '' } }), new RegExp(`catalogue\\.${field} is required`));
+assert.match(partNumberErrors({ ...pushRod, catalogue: { ...pushRod.catalogue, lines: catalogueLines.slice(0, 2) } }), /one catalogue line for each answer/);
+assert.match(partNumberErrors({ ...pushRod, answers: ['538304 · Push Rod', pushRod.answers[1], pushRod.answers[2]] }), /answers\[0\] must read "538304 · Push Rod Assembly"/);
+assert.match(partNumberErrors({ ...pushRod, catalogue: { ...pushRod.catalogue, lines: [{ ...catalogueLines[0], index: '13/42' }, ...catalogueLines.slice(1)] } }), /lines\[0\] needs index \("13-42"\)/);
+assert.match(partNumberErrors({ ...pushRod, catalogue: { ...pushRod.catalogue, lines: [{ ...catalogueLines[0], number: '' }, ...catalogueLines.slice(1)] } }), /lines\[0\] needs index/);
+assert.match(partNumberErrors({ ...pushRod, answers: [pushRod.answers[0], '538304 · Housing, Push Rod', pushRod.answers[2]], catalogue: { ...pushRod.catalogue, lines: [catalogueLines[0], { ...catalogueLines[1], number: '538304' }, catalogueLines[2]] } }), /different numbers/);
+
 // A step's recommended section plane: a short label, a normal that points somewhere, and an optional offset across the model.
 const plane = { label: 'Valve axis', normal: [0, 1, 0], offset: 0.5 };
 assert.deepEqual(validateLessonPack(withStep({ sectionPlane: plane })), [], 'a recommended plane is valid');
