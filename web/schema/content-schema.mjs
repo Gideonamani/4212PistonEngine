@@ -24,7 +24,14 @@ export const MODEL_REGISTRY_SCHEMA = '4212.training-model-registry/v2';
 export const EXPLORE_CONTENT_TREE_SCHEMA = '4212.explore-content-tree/v1';
 
 export const STEP_TYPES = Object.freeze(['model-pose', 'image', 'text', 'external-link', 'web-embed']);
-export const CHECK_TYPES = Object.freeze(['multiple-choice', 'model-click', 'name-part', 'ordering', 'matching', 'numeric']);
+export const CHECK_TYPES = Object.freeze(['multiple-choice', 'model-click', 'name-part', 'part-number', 'ordering', 'matching', 'numeric']);
+
+/**
+ * What a part-number question may say about the catalogue its numbers come from. Only a catalogue for a similar engine is accepted today: a
+ * number read for the GTSIO-520-H itself needs the catalogue's own statement that it applies to that model, which the pack data does not
+ * carry yet (docs/decisions/003-part-source-references.md), so no question can claim it.
+ */
+export const PART_NUMBER_APPLICABILITY = Object.freeze(['similar-engine']);
 /** How a step's spotlight (focusParts) draws attention: colour the parts, x-ray the rest, or isolate the parts. Mirrors src/viewer/core/focus-style.mjs. */
 export const FOCUS_MODES = Object.freeze(['highlight', 'xray', 'isolate']);
 export const NODE_KINDS = Object.freeze(['group', 'component']);
@@ -131,20 +138,32 @@ export const MODEL_CAPABILITY_FLAGS = Object.freeze([
  */
 
 /**
+ * The catalogue behind a part-number question. `lines` are the catalogue's own lines the answers are copied from, in the order of `answers`.
+ * @typedef {Object} PartNumberCatalogue
+ * @property {string} engine - the engine the catalogue is for ("IO-520"), which the question has to name
+ * @property {'similar-engine'} applicability - how the catalogue relates to the engine the model shows
+ * @property {string} title - the catalogue, as printed ("Continental IO-520 Illustrated Parts Catalog, Form X-30040A")
+ * @property {string} edition - its edition or date ("May 1969")
+ * @property {string} figure - the figure the lines are from ("13, Cylinder Assembly")
+ * @property {{index: string, number: string, description: string}[]} lines - figure-index number, part number and description of each answer
+ */
+
+/**
  * @typedef {Object} CheckItem
  * @property {string} id
  * @property {string} lessonId - the owning lesson's id
- * @property {'multiple-choice'|'model-click'|'name-part'|'ordering'|'matching'|'numeric'} type
+ * @property {'multiple-choice'|'model-click'|'name-part'|'part-number'|'ordering'|'matching'|'numeric'} type
  * @property {string} question
  * @property {string} [hint]
  * @property {string} [rationale]
- * @property {string[]} [answers] - multiple-choice (also covers true/false as the two-option case); name-part: the names to choose from
- * @property {number} [correct] - multiple-choice and name-part: index into answers
- * @property {string} [modelId] - model-click and name-part
- * @property {string} [partId] - name-part: the component the model spotlights, which the learner names
+ * @property {string[]} [answers] - multiple-choice (also covers true/false as the two-option case); name-part: the names to choose from; part-number: the catalogue lines ("number · description") to choose from
+ * @property {number} [correct] - multiple-choice, name-part and part-number: index into answers
+ * @property {string} [modelId] - model-click, name-part and part-number
+ * @property {string} [partId] - name-part and part-number: the component the model spotlights, which the learner names or finds in the catalogue
+ * @property {PartNumberCatalogue} [catalogue] - part-number: the parts catalogue the numbers come from, and what it covers
  * @property {string} [correctNodeId] - model-click: id of the right component of the model, or of a group of components (any part in the group is right)
  * @property {string[]} [alsoAccept] - model-click: further component or group ids that are also right
- * @property {{initialAngle?: number}} [view] - model-click and name-part: the pose the model opens in
+ * @property {{initialAngle?: number}} [view] - model-click, name-part and part-number: the pose the model opens in
  * @property {string[]} [items] - ordering: already in correct order; UI shuffles for display
  * @property {{left: string, right: string}[]} [pairs] - matching
  * @property {string} [unit] - numeric
@@ -317,6 +336,40 @@ function validateLesson(lesson, lessonIndex, knownSourceIds) {
   return errors;
 }
 
+/** The catalogue block of a part-number check: named, dated, applicable only as a similar engine, and every answer a real line of it. */
+function validatePartNumberCatalogue(check, where) {
+  const errors = [];
+  const catalogue = check.catalogue;
+  if (!catalogue || typeof catalogue !== 'object') return [`${where}: part-number needs catalogue, the parts catalogue its numbers come from`];
+  for (const field of ['engine', 'title', 'edition', 'figure']) {
+    if (typeof catalogue[field] !== 'string' || !catalogue[field].trim()) errors.push(`${where}: catalogue.${field} is required`);
+  }
+  if (!PART_NUMBER_APPLICABILITY.includes(catalogue.applicability)) {
+    errors.push(`${where}: catalogue.applicability must be one of ${PART_NUMBER_APPLICABILITY.join(', ')}: a number is not claimed for the model's own engine without the catalogue's applicability for it`);
+  }
+  if (typeof catalogue.engine === 'string' && /gtsio/i.test(catalogue.engine)) {
+    errors.push(`${where}: catalogue.engine names the model's own engine, but only a catalogue for a similar engine can be used here`);
+  }
+  if (typeof catalogue.engine === 'string' && catalogue.engine.trim() && !check.question.includes(catalogue.engine)) {
+    errors.push(`${where}: the question must name the catalogue's engine (${catalogue.engine}) so a number is never read as the model's own`);
+  }
+  const answers = Array.isArray(check.answers) ? check.answers : [];
+  if (!Array.isArray(catalogue.lines) || catalogue.lines.length !== answers.length) {
+    errors.push(`${where}: catalogue.lines must give one catalogue line for each answer`);
+  } else {
+    for (const [lineIndex, line] of catalogue.lines.entries()) {
+      if (!line || !/^\d+-\d+$/.test(line.index || '') || typeof line.number !== 'string' || !line.number.trim() || typeof line.description !== 'string' || !line.description.trim()) {
+        errors.push(`${where}: catalogue.lines[${lineIndex}] needs index ("13-42"), number and description`);
+      } else if (answers[lineIndex] !== `${line.number} · ${line.description}`) {
+        errors.push(`${where}: answers[${lineIndex}] must read "${line.number} · ${line.description}", the catalogue line it comes from`);
+      }
+    }
+    const numbers = catalogue.lines.map((line) => line?.number);
+    if (new Set(numbers).size !== numbers.length) errors.push(`${where}: catalogue lines must carry different numbers`);
+  }
+  return errors;
+}
+
 function validateCheckItem(check, lessonIds, index) {
   const errors = [];
   const where = `checks[${index}]`;
@@ -333,12 +386,14 @@ function validateCheckItem(check, lessonIds, index) {
       }
       break;
     case 'name-part':
-      if (!check.modelId) errors.push(`${where}: name-part needs modelId`);
-      if (typeof check.partId !== 'string' || !check.partId) errors.push(`${where}: name-part needs partId, the part the model spotlights`);
-      if (!Array.isArray(check.answers) || check.answers.length < 3) errors.push(`${where}: name-part needs >= 3 answers, so a guess is not a coin toss`);
-      else if (new Set(check.answers).size !== check.answers.length) errors.push(`${where}: name-part answers must all differ`);
+    case 'part-number':
+      if (!check.modelId) errors.push(`${where}: ${check.type} needs modelId`);
+      if (typeof check.partId !== 'string' || !check.partId) errors.push(`${where}: ${check.type} needs partId, the part the model spotlights`);
+      if (!Array.isArray(check.answers) || check.answers.length < 3) errors.push(`${where}: ${check.type} needs >= 3 answers, so a guess is not a coin toss`);
+      else if (new Set(check.answers).size !== check.answers.length) errors.push(`${where}: ${check.type} answers must all differ`);
       if (!(Number.isInteger(check.correct) && check.correct >= 0 && check.correct < (check.answers || []).length)) errors.push(`${where}: correct must index into answers`);
       if (check.view !== undefined && !(check.view && typeof check.view === 'object' && (check.view.initialAngle === undefined || Number.isFinite(check.view.initialAngle)))) errors.push(`${where}: view.initialAngle must be a number`);
+      if (check.type === 'part-number') errors.push(...validatePartNumberCatalogue(check, where));
       break;
     case 'model-click':
       if (!check.modelId) errors.push(`${where}: model-click needs modelId`);

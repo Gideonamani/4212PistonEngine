@@ -10,7 +10,7 @@ const matching = { type: 'matching', pairs: [{ left: 'Magneto', right: 'Spark' }
 const numeric = { type: 'numeric', unit: 'cu in', correctValue: 78.5, tolerance: 0.5 };
 
 test('the answerable types are the five the screen has an answer area for', () => {
-  assert.deepEqual([...ANSWERABLE_TYPES], ['multiple-choice', 'ordering', 'matching', 'numeric', 'model-click', 'name-part']);
+  assert.deepEqual([...ANSWERABLE_TYPES], ['multiple-choice', 'ordering', 'matching', 'numeric', 'model-click', 'name-part', 'part-number']);
 });
 
 test('numbers are read the way a student types them', () => {
@@ -129,6 +129,17 @@ test('a name-part answer is the index of the chosen name, as for multiple-choice
   assert.equal(isCorrect(name, 1), false);
   assert.equal(isCorrect(name, 'IntakeValveKeeper'), false, 'the answer is the chosen name, never the part id');
   assert.deepEqual([...optionOrder(name)].sort(), [0, 1, 2]);
+});
+
+test('a part-number answer is the index of the chosen catalogue line, as for multiple-choice', () => {
+  const line = { type: 'part-number', modelId: 'cylinder', partId: 'IntakePushrod', options: ['538304 · Push Rod Assembly', '537296 · Housing, Push Rod', '626147 · Spring, Push Rod Housing'], correctIndex: 0 };
+  assert.equal(initialAnswer(line), undefined);
+  assert.equal(isAnswered(line, undefined), false);
+  assert.equal(isAnswered(line, 1), true);
+  assert.equal(isCorrect(line, 0), true);
+  assert.equal(isCorrect(line, 2), false);
+  assert.equal(isCorrect(line, '538304'), false, 'the answer is the chosen line, never the number typed or read from it');
+  assert.deepEqual([...optionOrder(line)].sort(), [0, 1, 2]);
 });
 
 test('a model-click answer is the list of node ids the tapped part answers to, right when any one is accepted', () => {

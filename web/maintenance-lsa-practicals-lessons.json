@@ -2205,6 +2205,246 @@
       "rationale": "The illustrated parts catalogue gives each part's number beside its figure and index, with notes on which parts go together and which replace older ones. Numbers are superseded, so the current catalogue is used every time; a learner remembers the part's name and job, not its number."
     },
     {
+      "id": "maint-pn-pushrod",
+      "lessonId": "maintenance-servicing",
+      "type": "part-number",
+      "question": "In the IO-520 parts catalogue, figure 13, which line names the same kind of part as the one highlighted?",
+      "hint": "The rod's housing and the spring on that housing have lines of their own.",
+      "modelId": "cylinder",
+      "partId": "IntakePushrod",
+      "answers": [
+        "538304 · Push Rod Assembly",
+        "537296 · Housing, Push Rod",
+        "626147 · Spring, Push Rod Housing"
+      ],
+      "correct": 0,
+      "catalogue": {
+        "engine": "IO-520",
+        "applicability": "similar-engine",
+        "title": "Continental IO-520 Illustrated Parts Catalog, Form X-30040A",
+        "edition": "May 1969",
+        "figure": "13, Cylinder Assembly",
+        "lines": [
+          {
+            "index": "13-42",
+            "number": "538304",
+            "description": "Push Rod Assembly"
+          },
+          {
+            "index": "13-38",
+            "number": "537296",
+            "description": "Housing, Push Rod"
+          },
+          {
+            "index": "13-41",
+            "number": "626147",
+            "description": "Spring, Push Rod Housing"
+          }
+        ]
+      },
+      "rationale": "In figure 13 of the IO-520 catalogue (May 1969), index 42 is the push rod assembly, 538304. The housing the rod runs in (index 38, 537296) and the spring on that housing (index 41, 626147) are separate lines with their own numbers, so the description has to fit the part before the number is read. These are the IO-520's numbers: the GTSIO-520-H has its own catalogue, and numbers are superseded, so for a real order use the current catalogue for the engine in front of you."
+    },
+    {
+      "id": "maint-pn-keepers",
+      "lessonId": "maintenance-servicing",
+      "type": "part-number",
+      "question": "In the IO-520 parts catalogue, figure 13, which line names the same kind of part as the one highlighted?",
+      "hint": "The catalogue may not use the word the lesson uses.",
+      "modelId": "cylinder",
+      "partId": "IntakeValveKeeper",
+      "answers": [
+        "24802 · Key, Valve Spring Retainer",
+        "35971 · Retainer, Valve Spring Intake",
+        "625393 · Retainer, Valve Spring Inner"
+      ],
+      "correct": 0,
+      "catalogue": {
+        "engine": "IO-520",
+        "applicability": "similar-engine",
+        "title": "Continental IO-520 Illustrated Parts Catalog, Form X-30040A",
+        "edition": "May 1969",
+        "figure": "13, Cylinder Assembly",
+        "lines": [
+          {
+            "index": "13-20",
+            "number": "24802",
+            "description": "Key, Valve Spring Retainer"
+          },
+          {
+            "index": "13-18",
+            "number": "35971",
+            "description": "Retainer, Valve Spring Intake"
+          },
+          {
+            "index": "13-17",
+            "number": "625393",
+            "description": "Retainer, Valve Spring Inner"
+          }
+        ]
+      },
+      "rationale": "The catalogue does not say keepers: it lists them as \"Key, Valve Spring Retainer\", figure 13 index 20, 24802. The two retainers beside them (index 17, 625393, and index 18, 35971) are the plates the keepers lock to the valve stem. Reading a catalogue means matching what a part does to the catalogue's own words. These are the IO-520's numbers: the GTSIO-520-H has its own catalogue, and numbers are superseded, so for a real order use the current catalogue for the engine in front of you."
+    },
+    {
+      "id": "maint-pn-rotocap",
+      "lessonId": "maintenance-servicing",
+      "type": "part-number",
+      "question": "In the IO-520 parts catalogue, figure 13, which line names the same kind of part as the one highlighted?",
+      "hint": "The exhaust valve is not held down by a plain retainer.",
+      "modelId": "cylinder",
+      "partId": "ExhaustSpringRetainer",
+      "answers": [
+        "629117 · Roto Cap Assembly, Exhaust",
+        "35971 · Retainer, Valve Spring Intake",
+        "24802 · Key, Valve Spring Retainer"
+      ],
+      "correct": 0,
+      "catalogue": {
+        "engine": "IO-520",
+        "applicability": "similar-engine",
+        "title": "Continental IO-520 Illustrated Parts Catalog, Form X-30040A",
+        "edition": "May 1969",
+        "figure": "13, Cylinder Assembly",
+        "lines": [
+          {
+            "index": "13-19",
+            "number": "629117",
+            "description": "Roto Cap Assembly, Exhaust"
+          },
+          {
+            "index": "13-18",
+            "number": "35971",
+            "description": "Retainer, Valve Spring Intake"
+          },
+          {
+            "index": "13-20",
+            "number": "24802",
+            "description": "Key, Valve Spring Retainer"
+          }
+        ]
+      },
+      "rationale": "The IO-520 catalogue lists the exhaust valve's rotating retainer as a Roto Cap Assembly, figure 13 index 19, 629117. The plain retainers (index 17, 625393, and index 18, 35971) and the keys (index 20, 24802) are different parts with their own numbers. These are the IO-520's numbers: the GTSIO-520-H has its own catalogue, and numbers are superseded, so for a real order use the current catalogue for the engine in front of you."
+    },
+    {
+      "id": "maint-pn-guide",
+      "lessonId": "maintenance-servicing",
+      "type": "part-number",
+      "question": "In the IO-520 parts catalogue, figure 13, which line names the same kind of part as the one highlighted?",
+      "hint": "The guide is the part the valve stem slides in.",
+      "modelId": "cylinder",
+      "partId": "IntakeValveGuide",
+      "answers": [
+        "631496 · Guide, Valve",
+        "630591 · Insert, Intake Valve Seat",
+        "35967 · Insert, Exhaust Valve Seat"
+      ],
+      "correct": 0,
+      "catalogue": {
+        "engine": "IO-520",
+        "applicability": "similar-engine",
+        "title": "Continental IO-520 Illustrated Parts Catalog, Form X-30040A",
+        "edition": "May 1969",
+        "figure": "13, Cylinder Assembly",
+        "lines": [
+          {
+            "index": "13-8",
+            "number": "631496",
+            "description": "Guide, Valve"
+          },
+          {
+            "index": "13-11",
+            "number": "630591",
+            "description": "Insert, Intake Valve Seat"
+          },
+          {
+            "index": "13-12",
+            "number": "35967",
+            "description": "Insert, Exhaust Valve Seat"
+          }
+        ]
+      },
+      "rationale": "The valve guide is figure 13 index 8, 631496. The valve seat inserts (index 11, 630591, for the intake, and index 12, 35967, for the exhaust) are different parts: they sit in the head around the valve, and the stem does not slide in them. These are the IO-520's numbers: the GTSIO-520-H has its own catalogue, and numbers are superseded, so for a real order use the current catalogue for the engine in front of you."
+    },
+    {
+      "id": "maint-pn-outer-spring",
+      "lessonId": "maintenance-servicing",
+      "type": "part-number",
+      "question": "In the IO-520 parts catalogue, figure 13, which line names the same kind of part as the one highlighted?",
+      "hint": "Two springs on one valve are two lines.",
+      "modelId": "cylinder",
+      "partId": "IntakeOuterSpring",
+      "answers": [
+        "631520 · Spring, Valve Outer",
+        "631521 · Spring, Valve Inner",
+        "626147 · Spring, Push Rod Housing"
+      ],
+      "correct": 0,
+      "catalogue": {
+        "engine": "IO-520",
+        "applicability": "similar-engine",
+        "title": "Continental IO-520 Illustrated Parts Catalog, Form X-30040A",
+        "edition": "May 1969",
+        "figure": "13, Cylinder Assembly",
+        "lines": [
+          {
+            "index": "13-16",
+            "number": "631520",
+            "description": "Spring, Valve Outer"
+          },
+          {
+            "index": "13-15",
+            "number": "631521",
+            "description": "Spring, Valve Inner"
+          },
+          {
+            "index": "13-41",
+            "number": "626147",
+            "description": "Spring, Push Rod Housing"
+          }
+        ]
+      },
+      "rationale": "The catalogue lists the two springs on a valve separately: the outer is figure 13 index 16, 631520, and the inner is index 15, 631521. Ordering the wrong one is easy to do, so check which is which. The third line, index 41 (626147), is the spring on the push rod housing, a different part. These are the IO-520's numbers: the GTSIO-520-H has its own catalogue, and numbers are superseded, so for a real order use the current catalogue for the engine in front of you."
+    },
+    {
+      "id": "maint-pn-rocker-shaft",
+      "lessonId": "maintenance-servicing",
+      "type": "part-number",
+      "question": "In the IO-520 parts catalogue, figure 13, which line names the same kind of part as the one highlighted?",
+      "hint": "The rocker arm swings on it.",
+      "modelId": "cylinder",
+      "partId": "IntakeRockerShaft",
+      "answers": [
+        "539740 · Shaft, Valve Rocker",
+        "536033 · Bushing, Valve Rocker",
+        "625615 · Cover, Valve Rocker"
+      ],
+      "correct": 0,
+      "catalogue": {
+        "engine": "IO-520",
+        "applicability": "similar-engine",
+        "title": "Continental IO-520 Illustrated Parts Catalog, Form X-30040A",
+        "edition": "May 1969",
+        "figure": "13, Cylinder Assembly",
+        "lines": [
+          {
+            "index": "13-21",
+            "number": "539740",
+            "description": "Shaft, Valve Rocker"
+          },
+          {
+            "index": "13-25",
+            "number": "536033",
+            "description": "Bushing, Valve Rocker"
+          },
+          {
+            "index": "13-32",
+            "number": "625615",
+            "description": "Cover, Valve Rocker"
+          }
+        ]
+      },
+      "rationale": "The rocker shaft is figure 13 index 21, 539740. The rocker bushing (index 25, 536033) fits inside the rocker, and the rocker cover (index 32, 625615) closes the housing over the whole rocker gear: both are separate lines with their own numbers. These are the IO-520's numbers: the GTSIO-520-H has its own catalogue, and numbers are superseded, so for a real order use the current catalogue for the engine in front of you."
+    },
+    {
       "id": "lsa-max-speed",
       "lessonId": "light-sport-aircraft",
       "type": "numeric",

@@ -181,6 +181,18 @@ test('a name-part check keeps its model and part, and its answers become the opt
   assert.equal(isCorrect(name, 2), false);
 });
 
+test('a part-number check keeps its model, part and catalogue, and its answers become the options', () => {
+  const catalogue = { engine: 'IO-520', applicability: 'similar-engine', title: 'Continental IO-520 Illustrated Parts Catalog, Form X-30040A', edition: 'May 1969', figure: '13, Cylinder Assembly', lines: [{ index: '13-42', number: '538304', description: 'Push Rod Assembly' }, { index: '13-38', number: '537296', description: 'Housing, Push Rod' }, { index: '13-41', number: '626147', description: 'Spring, Push Rod Housing' }] };
+  const answers = catalogue.lines.map((line) => `${line.number} · ${line.description}`);
+  const check = { ...base, type: 'part-number', modelId: 'cylinder', partId: 'IntakePushrod', answers, correct: 0, catalogue, view: { initialAngle: 90 } };
+  const line = mapQuestion(check);
+  assert.deepEqual([line.type, line.modelId, line.partId, line.options, line.correctIndex, line.view], ['part-number', 'cylinder', 'IntakePushrod', answers, 0, { initialAngle: 90 }]);
+  assert.deepEqual(line.catalogue, catalogue, 'the catalogue travels with the question so the screen can say whose numbers these are');
+  assert.equal(isCorrect(line, 0), true);
+  assert.equal(isCorrect(line, 1), false);
+  assert.throws(() => mapQuestion({ ...check, catalogue: undefined }), /needs its catalogue/);
+});
+
 test('every shipped check is one the screen can show, and no matching question gives its answer away by order', () => {
   for (const pack of packs) {
     for (const check of pack.checks || []) {

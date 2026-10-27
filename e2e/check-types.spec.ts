@@ -280,3 +280,73 @@ test.describe('name-part question', () => {
     problems.assertNone();
   });
 });
+
+
+// part-number: the same spotlight, but the learner finds the catalogue line for the part, and the screen says whose catalogue it is (issue #76).
+const catalogueLines = [
+  { index: '13-42', number: '538304', description: 'Push Rod Assembly' },
+  { index: '13-38', number: '537296', description: 'Housing, Push Rod' },
+  { index: '13-41', number: '626147', description: 'Spring, Push Rod Housing' },
+];
+const numberPack = {
+  ...pack,
+  id: 'number-pack',
+  title: 'Fixture part-number checks',
+  checks: [
+    {
+      id: 'number-pushrod', lessonId: 'fixture-lesson', type: 'part-number', question: 'In the IO-520 parts catalogue, figure 13, which line names the same kind of part as the one highlighted?', hint: 'Its housing and the spring on that housing have lines of their own.',
+      modelId: 'cylinder', partId: 'IntakePushrod', answers: catalogueLines.map((line) => `${line.number} · ${line.description}`), correct: 0,
+      catalogue: { engine: 'IO-520', applicability: 'similar-engine', title: 'Continental IO-520 Illustrated Parts Catalog, Form X-30040A', edition: 'May 1969', figure: '13, Cylinder Assembly', lines: catalogueLines },
+      rationale: 'Index 42 is the push rod assembly. These are the IO-520\'s numbers, not the GTSIO-520-H\'s.',
+    },
+  ],
+};
+
+async function openNumberCheck(page: Page) {
+  await page.route('**/lessons-manifest.json', (route) => route.fulfill({ json: { ...MANIFEST, packs: ['./number-pack.json'] } }));
+  await page.route('**/number-pack.json', (route) => route.fulfill({ json: numberPack }));
+  await page.goto('/#/check');
+  await appReady(page);
+  await page.getByRole('button').filter({ has: page.locator('h4') }).first().click();
+  await expect(page.getByText('Question 1 of 1')).toBeVisible();
+  await expect(page.getByText('FIND THE CATALOGUE LINE', { exact: true })).toBeVisible();
+  await expect(page.locator('canvas')).toBeVisible({ timeout: 60_000 });
+}
+
+test.describe('part-number question', () => {
+  // The cylinder downloads in each test, which is slow on a busy runner.
+  test.describe.configure({ timeout: 240_000 });
+  test('the screen says the numbers are the IO-520\'s, never the GTSIO-520-H\'s, before and after the answer', async ({ page, problems }) => {
+    await openNumberCheck(page);
+    const notice = page.getByRole('note');
+    await expect(notice).toContainText('IO-520 CATALOGUE · NOT THE GTSIO-520-H');
+    await expect(notice).toContainText('Continental IO-520 Illustrated Parts Catalog, Form X-30040A (May 1969), figure 13, Cylinder Assembly');
+    await expect(notice).toContainText('may carry a different number');
+    const model = page.getByRole('region', { name: /Interactive 3D model of the .*, with one part highlighted/ });
+    await expect(model, 'the model never names the part').not.toContainText(/push ?rod/i);
+    await expect(model.getByRole('status'), 'the model has loaded').toHaveCount(0, { timeout: 150_000 });
+    const verify = page.getByRole('button', { name: 'Verify answer' });
+    await expect(verify, 'nothing chosen yet').toBeDisabled();
+    await expect(page.getByRole('button', { name: /\d{6} · / }), 'each answer is a catalogue line, number then description').toHaveCount(3);
+    await expectNoHorizontalOverflow(page);
+    await expectAccessibleAndTouchable(page, 'part-number question');
+
+    await page.getByRole('button', { name: /537296 · Housing, Push Rod/ }).click();
+    await verify.click();
+    await expect(page.getByText('REVIEW THE EVIDENCE')).toBeVisible();
+    await expect(page.getByText(/These are the IO-520's numbers/), 'the explanation repeats whose numbers they are').toBeVisible();
+    await expect(page.getByRole('button', { name: /538304 · Push Rod Assembly/ }), 'the right line is shown after a miss').toBeVisible();
+    await expect(notice, 'the notice stays after the answer').toBeVisible();
+    await expectAccessibleAndTouchable(page, 'part-number question, answered');
+    problems.assertNone();
+  });
+
+  test('the right catalogue line is marked correct', async ({ page, problems }) => {
+    await openNumberCheck(page);
+    await expect(page.getByRole('region', { name: /with one part highlighted/ }).getByRole('status')).toHaveCount(0, { timeout: 150_000 });
+    await page.getByRole('button', { name: /538304 · Push Rod Assembly/ }).click();
+    await page.getByRole('button', { name: 'Verify answer' }).click();
+    await expect(page.getByText('CORRECT — WHY IT MATTERS')).toBeVisible();
+    problems.assertNone();
+  });
+});

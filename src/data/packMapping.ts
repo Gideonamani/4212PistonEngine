@@ -4,6 +4,7 @@ import type {
   LessonOutcome,
   LessonReviewStatus,
   LessonStep,
+  PartNumberCatalogue,
   QuizModule,
   QuizQuestion,
 } from '../types/engine';
@@ -47,7 +48,7 @@ export type PackLesson = {
 export type PackCheck = {
   id: string;
   lessonId: string;
-  type: 'multiple-choice' | 'ordering' | 'matching' | 'numeric' | 'model-click' | 'name-part';
+  type: 'multiple-choice' | 'ordering' | 'matching' | 'numeric' | 'model-click' | 'name-part' | 'part-number';
   question: string;
   hint?: string;
   answers?: string[];
@@ -60,6 +61,7 @@ export type PackCheck = {
   modelId?: string;
   correctNodeId?: string;
   partId?: string;
+  catalogue?: PartNumberCatalogue;
   alsoAccept?: string[];
   view?: { initialAngle?: number };
   rationale: string;
@@ -122,6 +124,9 @@ export function mapQuestion(check: PackCheck): QuizQuestion {
     case 'matching': return { ...base, type: 'matching', pairs: check.pairs || [] };
     case 'numeric': return { ...base, type: 'numeric', unit: check.unit || '', correctValue: check.correctValue ?? Number.NaN, tolerance: check.tolerance ?? 0 };
     case 'name-part': return { ...base, type: 'name-part', modelId: check.modelId || '', partId: check.partId || '', options: check.answers || [], correctIndex: check.correct ?? -1, view: check.view };
+    case 'part-number':
+      if (!check.catalogue) throw new Error(`Check ${check.id}: a part-number question needs its catalogue`);
+      return { ...base, type: 'part-number', modelId: check.modelId || '', partId: check.partId || '', options: check.answers || [], correctIndex: check.correct ?? -1, catalogue: check.catalogue, view: check.view };
     case 'model-click': return { ...base, type: 'model-click', modelId: check.modelId || '', correctNodeId: check.correctNodeId || '', alsoAccept: check.alsoAccept, view: check.view };
     // A type the pack schema allows but the screen cannot show must not ship: the pack tests refuse it, and a pack that gets past
     // them fails loudly here rather than showing the wrong kind of question.

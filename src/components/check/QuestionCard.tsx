@@ -1,10 +1,10 @@
 import React, { Suspense, useId } from 'react';
 import { ChevronDown, ChevronRight, ChevronUp, Lightbulb } from 'lucide-react';
-import type { QuizQuestion } from '../../types/engine';
+import type { PartNumberCatalogue, QuizQuestion } from '../../types/engine';
 import { IconButton } from '../ui';
 import { describeNumericAnswer, isAnswered, isCorrect, matchingOptions, matchingResults, parseNumber } from './scoring.mjs';
 
-// The 3D model is only needed by model-click and name-part questions, so its code loads when the first one is shown.
+// The 3D model is only needed by model-click, name-part and part-number questions, so its code loads when the first one is shown.
 const PartPicker = React.lazy(() => import('./PartPicker'));
 const PartShowcase = React.lazy(() => import('./PartShowcase'));
 
@@ -31,11 +31,12 @@ const typeLabel: Record<QuizQuestion['type'], string> = {
   numeric: 'ENTER A NUMBER',
   'model-click': 'TAP THE PART ON THE MODEL',
   'name-part': 'NAME THE HIGHLIGHTED PART',
+  'part-number': 'FIND THE CATALOGUE LINE',
 };
 
 type AnswerProps<T extends QuizQuestion> = { question: T; answer: Answer | undefined; onAnswer: (answer: Answer) => void; revealed: boolean; onVerify: () => void; optionOrder?: number[] };
 
-const ChoiceAnswer: React.FC<AnswerProps<Extract<QuizQuestion, { type: 'multiple-choice' | 'name-part' }>>> = ({ question, answer, onAnswer, revealed, optionOrder }) => (
+const ChoiceAnswer: React.FC<AnswerProps<Extract<QuizQuestion, { type: 'multiple-choice' | 'name-part' | 'part-number' }>>> = ({ question, answer, onAnswer, revealed, optionOrder }) => (
   <div className="flex flex-col gap-2.5">{(optionOrder ?? question.options.map((_, index) => index)).map((original, position) => {
     const option = question.options[original];
     const selected = answer === original;
@@ -95,6 +96,18 @@ const NumericAnswer: React.FC<AnswerProps<Extract<QuizQuestion, { type: 'numeric
   </div>;
 };
 
+/**
+ * Said beside every part-number question, in words the pack author cannot leave out: the numbers are another engine's. The model on screen
+ * is the course engine, so a learner must not carry a number from here to it. The schema keeps a catalogue for the model's own engine out
+ * until the catalogue's applicability for that model can be stated (docs/decisions/003-part-source-references.md).
+ */
+function CatalogueNotice({ catalogue }: { catalogue: PartNumberCatalogue }) {
+  return <div role="note" className="rounded-xl border border-sky-500/30 bg-sky-950/25 p-3 text-xs leading-relaxed text-sky-100">
+    <strong className="mb-1 block font-mono tracking-wide">{catalogue.engine} CATALOGUE · NOT THE GTSIO-520-H</strong>
+    The lines below are from the {catalogue.title} ({catalogue.edition}), figure {catalogue.figure}. The model shows the course engine, the GTSIO-520-H: the same kind of part may carry a different number in its own catalogue. Part numbers also change, so for a real order use the current catalogue for the engine in front of you.
+  </div>;
+}
+
 const VIEWER_LOADING = <div className="flex h-56 items-center justify-center rounded-xl border border-teal-400/20 bg-stage text-xs text-teal-300">Preparing interactive 3D viewer…</div>;
 
 /** One Check question: its prompt and hint, the answer area for its type, then Verify, and after Verify the explanation and the way on. */
@@ -111,6 +124,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, optionOrde
     {question.type === 'numeric' && <NumericAnswer question={question} {...props} />}
     {question.type === 'model-click' && <Suspense fallback={VIEWER_LOADING}><PartPicker question={question} answer={Array.isArray(answer) ? answer : undefined} onAnswer={onAnswer} revealed={revealed} /></Suspense>}
     {question.type === 'name-part' && <><Suspense fallback={VIEWER_LOADING}><PartShowcase question={question} /></Suspense><ChoiceAnswer question={question} optionOrder={optionOrder} {...props} /></>}
+    {question.type === 'part-number' && <><Suspense fallback={VIEWER_LOADING}><PartShowcase question={question} /></Suspense><CatalogueNotice catalogue={question.catalogue} /><ChoiceAnswer question={question} optionOrder={optionOrder} {...props} /></>}
     {!revealed
       ? <button disabled={!isAnswered(question, answer)} onClick={onVerify} className="min-h-11 w-full rounded-xl bg-teal-400 py-3 text-xs font-bold text-slate-950 shadow-lg shadow-teal-400/20 disabled:cursor-not-allowed disabled:bg-slate-800 disabled:text-slate-400">Verify answer</button>
       : <div className="flex flex-col gap-3 border-t border-slate-800 pt-3">
