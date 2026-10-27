@@ -57,6 +57,10 @@ A top-level `sources` table, and claims that point into it. Each reference carri
 3. **Presentation.** The Sources list shows the source title, edition and locator ("GTSIO-520 overhaul manual, 3-1b"), the applicability in words, and a link only for `public-url`. Basis text and the Draft or Reviewed badge stay as now.
 4. **Versions.** The loader accepts `/1` and `/2`. Any other version of the schema is ignored with a console notice, not an error, as `/2` is today.
 
+## A case from the course's copy of Form X-30046 (27 October 2026)
+
+The GTSIO-520 series catalogue the course holds (Form X-30046, with Change 1) is the kind of source this record is about, and it shows why applicability has to be a recorded fact. Its cover names models C, D, F, H, K, L, M and N. But its quantity columns, which are how a series catalogue says which model a line is used on, can be read for C, D, F and K only: on the figures checked (5 to 8) the columns for H, L, M and N are blacked out, and its contents marks four of its eight customer specifications DELETED. Nothing in that copy states that any line is used on the GTSIO-520-H. A reader who took the cover for the answer would have presented its numbers as the H's. So a number is shown as the model's own only when the entry records that the catalogue lists it for that model, never because the catalogue's title or cover includes the model.
+
 ## Order of work, because of the loader
 
 1. MEDIS agrees or amends the payload (the questions below).
