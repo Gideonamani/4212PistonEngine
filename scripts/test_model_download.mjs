@@ -261,3 +261,10 @@ test('the API key is never in what the learner is shown or what is thrown', asyn
   assert.equal(net.calls[0].options.mode, 'cors');
   assert.equal(net.calls[0].options.credentials, 'omit');
 });
+
+test('the default policy is the one docs/browser-memory-and-storage.md states', () => {
+  assert.deepEqual({ ...DEFAULT_POLICY }, {
+    attempts: 4, baseDelayMs: 1000, maxDelayMs: 15_000, maxRetryAfterMs: 20_000, headersDeadlineMs: 30_000, idleDeadlineMs: 20_000,
+  });
+  assert.ok(Object.isFrozen(DEFAULT_POLICY), 'a shared default that anything can change is a bug waiting for a second download');
+});
