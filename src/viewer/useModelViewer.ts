@@ -22,6 +22,8 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
   const sessionRef = useRef<ViewerSession | undefined>(undefined);
   const [loadState, setLoadState] = useState<ViewerSnapshot>({ status: 'Preparing 3D viewer…', progress: 0 });
   const [error, setError] = useState('');
+  // Bumped by retry() to load the model again after it failed.
+  const [attempt, setAttempt] = useState(0);
   const [interactionMode, setInteractionMode] = useState<InteractionMode>('orbit');
   const [wheelHint, setWheelHint] = useState(false);
   const wheelHintTimer = useRef(0);
@@ -95,7 +97,7 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
       runtime.dispose();
       runtimeRef.current = undefined;
     };
-  }, [definition, modelId, profile, wheelZoom]);
+  }, [definition, modelId, profile, wheelZoom, attempt]);
 
   const currentViewKey = viewKey(view);
   useEffect(() => {
@@ -143,6 +145,8 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
       runtimeRef.current?.setInteractionMode(next);
     },
     resetView() { runtimeRef.current?.resetView(); },
+    /** Load the model again after it failed to load (or to update). */
+    retry: () => setAttempt((count) => count + 1),
     previewPart,
   };
 }

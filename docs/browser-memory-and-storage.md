@@ -60,3 +60,22 @@ Rules the tests hold:
 **What the panel shows** is read back from the device when it opens, when its list is opened, and after every save, never assumed: a model counts as saved only if the storage holds it. Models only kept for having been opened are listed as "opened" and are not counted as saved, because they can be removed.
 
 An end-to-end check against the built site (`e2e/production.spec.ts`) stands in for Drive with files of the registry's sizes, saves everything, removes one copy, and checks the panel with and without a connection.
+
+## Downloads: retries and deadlines
+
+Code: `src/viewer/core/model-download.mjs` (tested in node by `scripts/test_model_download.mjs`, with a scripted fetch and recorded waits, so no network and no real waiting), used by `loadModelBytes` in `src/viewer/core/assets.ts`. Which sources to try, and in what order, is still `src/viewer/core/source-order.mjs`; this module only ever talks to one address.
+
+| Failure | What happens |
+|---|---|
+| 429, 408, 5xx, a dropped connection, a body that fails or ends early, a gzip that will not unpack | Tried again, up to **4 tries per address**, after a wait that doubles from 1 s to a 15 s cap, the lower half fixed and the upper half random. |
+| 429 or 503 with a Retry-After the page can read | The wait is at least that long, believed only up to 20 s. (Google does not always expose the header to a page; without it the plain schedule applies.) |
+| 403 whose Google reason is `rateLimitExceeded`, `userRateLimitExceeded` or `RESOURCE_EXHAUSTED` | Treated as throttling and retried. |
+| Any other 403 (a key not allowed on this site, a file not shared), `dailyLimitExceeded`, 400, 401, 404 | Permanent: not retried, the next source is tried. |
+| No answer to the request within 30 s | The attempt is cancelled and tried again. |
+| No new byte for 20 s mid-download | Counts as stalled: cancelled and tried again. A slow download that keeps moving is never cut. |
+| No internet connection and no saved copy | A clear message at once ("not saved on this device and there is no internet connection..."), no request and no retry loop. A saved copy opens as before. |
+| The bytes are not a whole GLB | Only a download that unpacks into a complete GLB is ever saved. A GLB cut short is tried again; a file that is simply not a GLB is not. |
+
+Cancelling (the viewer closing, the learner leaving) stops everything at once, whether it is waiting for the server, reading the body or waiting to retry. Several viewers of one model share one download (see the memory section), so they share its one retry sequence and cannot multiply the requests. While it waits the viewer's cover says what is happening ("The model server is busy. Trying again in 6 s · try 2 of 4"), and when the tries are used up the viewer shows the reason and a **Try again** button, which starts a fresh sequence. The API key travels only in the request header: no status line, error message or log includes it.
+
+The numbers are a first policy for a classroom connection, not measured limits. They are to be tuned against the real pilot (issue 105) and the Galaxy A16 exercise (issue 104).

@@ -124,3 +124,82 @@ test('the offline panel shows what the device really holds: after saving, after 
   await expect(offline.locator('li').filter({ has: page.locator('.sr-only', { hasText: /^saved$/ }) })).toHaveCount(total - 1);
   await context.setOffline(false);
 });
+
+// The model download against the built site, with Drive stood in for (issue #103). The operating cylinder's file is the one the first lesson
+// step opens; every other model is answered "not found" so only its requests matter.
+const CYLINDER = (JSON.parse(fs.readFileSync('src/data/models.json', 'utf8')) as { id: string; sources: { driveId: string }[] }[]).find((model) => model.id === 'cylinder')!.sources[0].driveId;
+const MODEL_STEP = '#/learn/m2-cylinder-study/m2-four-stroke-guided/step/1';
+const cors = { 'access-control-allow-origin': '*', 'access-control-allow-headers': '*', 'access-control-expose-headers': 'retry-after' };
+
+type Answer = { status: number; headers?: Record<string, string>; body: string | Buffer };
+function stubCylinder(page: import('@playwright/test').Page, answer: (count: number) => Answer | Promise<Answer>) {
+  const requests: string[] = [];
+  return page.route('https://www.googleapis.com/drive/**', async (route) => {
+    if (route.request().method() === 'OPTIONS') return route.fulfill({ status: 204, headers: cors });
+    const id = decodeURIComponent(new URL(route.request().url()).pathname.split('/').pop()!);
+    if (id !== CYLINDER) return route.fulfill({ status: 404, headers: cors, body: '{}' });
+    requests.push(id);
+    const { status, headers, body } = await answer(requests.length);
+    return route.fulfill({ status, headers: { ...cors, ...headers }, body });
+  }).then(() => requests);
+}
+
+test('a throttled download says it is waiting and tries again, and a file that is not a model is never saved (issue #103)', async ({ page }) => {
+  test.setTimeout(120_000);
+  const requests = await stubCylinder(page, async (count): Promise<Answer> => {
+    if (count === 1) {
+      // The status is only on screen while the wait lasts, and the 3D viewer's code can arrive after a short wait is over (it did on a slow CI
+      // runner, where the page was still "Preparing interactive 3D viewer" throughout). So the first answer is held until the viewer is there to show it.
+      await page.getByRole('application', { name: /Detailed operating cylinder/ }).waitFor();
+      return { status: 429, headers: { 'retry-after': '6' }, body: '{"error":{"code":429}}' };
+    }
+    // The size the registry promises, but not a model: the download completes and then fails the check for a whole GLB.
+    return { status: 200, headers: { 'content-type': 'application/octet-stream' }, body: Buffer.alloc(driveSizes.get(CYLINDER)!) };
+  });
+  await page.goto(`/${MODEL_STEP}`);
+  await appReady(page);
+
+  await expect(page.getByRole('status').filter({ hasText: /TRYING AGAIN IN \d+ S/ })).toBeVisible({ timeout: 60_000 });
+  await expect(page.getByRole('status').filter({ hasText: /MODEL SERVER IS BUSY/ })).toBeVisible();
+  const alert = page.getByRole('alert').filter({ hasText: /not a valid GLB/ });
+  await expect(alert).toBeVisible({ timeout: 60_000 });
+  expect(requests.length, 'the throttled request (made by the background download), then one retry that the viewer shared').toBe(2);
+  expect(await page.evaluate(async () => (await (await caches.open('4212-models-v1')).keys()).length), 'nothing that was not a whole model is kept').toBe(0);
+
+  const again = alert.getByRole('button', { name: 'Try again' });
+  expect((await again.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  await again.click();
+  await expect.poll(() => requests.length, { timeout: 30_000 }).toBe(3);
+});
+
+test('a refused download is not retried by itself, and Try again asks once more (issue #103)', async ({ page }) => {
+  test.setTimeout(120_000);
+  const requests = await stubCylinder(page, () => ({ status: 403, body: JSON.stringify({ error: { code: 403, errors: [{ reason: 'forbidden' }] } }) }));
+  await page.goto(`/${MODEL_STEP}`);
+  await appReady(page);
+  const alert = page.getByRole('alert').filter({ hasText: /Model download failed \(403\)/ });
+  await expect(alert).toBeVisible({ timeout: 60_000 });
+  // The background download and the viewer may each ask once (the viewer can arrive after the first has failed), but a refusal is permanent: nothing retries it.
+  const settled = requests.length;
+  expect(settled).toBeLessThanOrEqual(2);
+  await page.waitForTimeout(4000);
+  expect(requests.length, 'no retry loop: the first retry would have come within a second').toBe(settled);
+  await alert.getByRole('button', { name: 'Try again' }).click();
+  await expect.poll(() => requests.length, { timeout: 30_000 }).toBe(settled + 1);
+  await expect(alert).toBeVisible();
+});
+
+test('with no connection and no saved copy a model says so at once instead of retrying (issue #103)', async ({ page, context }) => {
+  test.setTimeout(120_000);
+  const requests = await stubCylinder(page, () => ({ status: 404, body: '{}' }));
+  await page.goto('/#/learn');
+  await appReady(page);
+  await expect.poll(() => page.evaluate(() => Boolean(navigator.serviceWorker?.controller)), { timeout: 60_000 }).toBe(true);
+  await context.setOffline(true);
+  await page.goto(`/${MODEL_STEP}`);
+  await page.reload();
+  await appReady(page);
+  await expect(page.getByRole('alert').filter({ hasText: /not saved on this device and there is no internet connection/ })).toBeVisible({ timeout: 60_000 });
+  expect(requests, 'nothing was requested: there is no one to ask').toEqual([]);
+  await context.setOffline(false);
+});
