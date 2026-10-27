@@ -1,6 +1,6 @@
 import type { ModelSource } from '../../data/modelRegistry';
 import { createGltfLoader } from './gltf-loader';
-import { cacheAvailable, cacheKeyFor as savedCopyKey, dropCachedModel, hasCachedModel, readCachedModel, writeCachedModel } from './model-cache.mjs';
+import { MAX_BYTES, cacheAvailable, cacheKeyFor as savedCopyKey, dropCachedModel, keepCachedModel, pruneCachedModels, readCachedModel, roomFor, savedKind, writeCachedModel, type SaveOutcome } from './model-cache.mjs';
 import { createModelMemory } from './model-memory.mjs';
 import { orderAttempts } from './source-order.mjs';
 
@@ -44,7 +44,7 @@ export async function loadModelBytes(
   sources: ModelSource[],
   signal: AbortSignal,
   onProgress: (status: string, progress?: number) => void,
-  { waitForSave = false } = {},
+  { waitForSave = false, kind = 'opportunistic', onSaved }: { waitForSave?: boolean; kind?: 'explicit' | 'opportunistic'; onSaved?: (outcome: SaveOutcome) => void } = {},
 ) {
   const failures: string[] = [];
   const candidates = await candidatesFor(sources);
@@ -70,7 +70,7 @@ export async function loadModelBytes(
       if (!response.body) {
         const whole = await response.arrayBuffer();
         const model = await decodeModel(whole, signal, onProgress);
-        const saving = writeCachedModel(cacheKey, whole);
+        const saving = writeCachedModel(cacheKey, whole, undefined, { kind }).then((outcome) => onSaved?.(outcome));
         if (waitForSave) await saving;
         return model;
       }
@@ -90,7 +90,7 @@ export async function loadModelBytes(
       for (const chunk of chunks) { joined.set(chunk, offset); offset += chunk.byteLength; }
       // Save the download only once it has unpacked into a complete GLB, so a cut-off transfer is never kept.
       const model = await decodeModel(joined.buffer, signal, onProgress);
-      const saving = writeCachedModel(cacheKey, joined);
+      const saving = writeCachedModel(cacheKey, joined, undefined, { kind }).then((outcome) => onSaved?.(outcome));
       if (waitForSave) await saving;
       return model;
     } catch (error) {
@@ -123,16 +123,55 @@ async function savedCopyOf(sources: ModelSource[]) {
 /** Whether the model is saved on this device, so it opens without a connection. Undefined where models are not saved at all. */
 export async function modelSavedOffline(sources: ModelSource[]) {
   const key = await savedCopyOf(sources);
-  return key ? hasCachedModel(key) : undefined;
+  return key ? await savedKind(key) !== undefined : undefined;
 }
 
 /**
- * Download a model onto the device for use without a connection. Unlike opening it, this does not also keep it in this tab's memory, so
- * saving every model does not fill a phone's memory; the bytes are let go once saved. Does nothing for a model that is already saved.
+ * How the model is held on this device: `explicit` (the learner saved it for offline use), `opportunistic` (kept because it was opened or
+ * fetched ahead of time, and removed to make room when the saved models need the space), or `none`. Undefined where models are not saved.
  */
-export async function saveModelOffline(sources: ModelSource[], signal: AbortSignal, onProgress: Progress) {
-  if (await modelSavedOffline(sources) !== false) return;
-  await loadModelBytes(sources, signal, onProgress, { waitForSave: true });
+export async function modelSavedState(sources: ModelSource[]) {
+  const key = await savedCopyOf(sources);
+  if (!key || !await cacheAvailable()) return undefined;
+  return await savedKind(key) ?? 'none';
+}
+
+/** How many bytes of models the app keeps on a device (see docs/browser-memory-and-storage.md). */
+export const MODEL_STORAGE_BYTES = MAX_BYTES;
+
+/**
+ * Remove saved copies of releases the app no longer uses, given the sources of every model it has now. Without them, a copy saved for an
+ * older release would stay and count against the budget for good.
+ */
+export async function pruneStaleModels(allSources: ModelSource[][]) {
+  const keys = (await Promise.all(allSources.map(savedCopyOf))).filter((key): key is string => Boolean(key));
+  return pruneCachedModels(keys);
+}
+
+export type SaveResult = { saved: true } | { saved: false; reason: 'unavailable' | 'too-large' | 'no-room' | 'write-failed' | 'not-saved' };
+const resultOf = (outcome: SaveOutcome): SaveResult => outcome.saved ? { saved: true } : { saved: false, reason: outcome.reason === 'not-cacheable' ? 'unavailable' : outcome.reason };
+
+/**
+ * Download a model onto the device for use without a connection, and say whether it is now saved: the answer is read from what the device
+ * kept, never assumed. Unlike opening it, this does not also keep it in this tab's memory, so saving every model does not fill a phone's
+ * memory; the bytes are let go once saved. A model already kept only because it was opened becomes a saved one without downloading again.
+ * Nothing is downloaded that could not be kept (it would not fit beside the models already saved).
+ */
+export async function saveModelOffline(sources: ModelSource[], signal: AbortSignal, onProgress: Progress): Promise<SaveResult> {
+  const key = await savedCopyOf(sources);
+  if (!key || !await cacheAvailable()) return { saved: false, reason: 'unavailable' };
+  const held = await savedKind(key);
+  if (held === 'explicit') return { saved: true };
+  if (held === 'opportunistic') return resultOf(await keepCachedModel(key));
+  const wanted = sources.find((source) => source.driveId)?.transferBytes;
+  if (wanted && !await roomFor(wanted, undefined, { key })) return { saved: false, reason: wanted > MAX_BYTES ? 'too-large' : 'no-room' };
+  let outcome: SaveOutcome | undefined;
+  await loadModelBytes(sources, signal, onProgress, { waitForSave: true, kind: 'explicit', onSaved: (result) => { outcome = result; } });
+  if (outcome) return resultOf(outcome);
+  // The load did not write (it was served by a copy that appeared meanwhile, or by a source that is never saved): look at what is there.
+  const after = await savedKind(key);
+  if (after === 'opportunistic') return resultOf(await keepCachedModel(key));
+  return after ? { saved: true } : { saved: false, reason: 'not-saved' };
 }
 
 /**
