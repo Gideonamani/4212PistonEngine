@@ -15,6 +15,7 @@ import {
   indexStudyParts,
   resolveMotionDisplay,
 } from '../core/animated-study-motion.mjs';
+import { checkStudyContract } from '../core/motion-compatibility.mjs';
 
 export async function createAnimatedStudySession(definition: ModelDefinition, context: AdapterContext): Promise<ViewerSession> {
   const { runtime, signal, onChange, onProgress } = context;
@@ -26,7 +27,8 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   ]);
   if (!response.ok) throw Error('The mechanism study contract is unavailable.');
   const contract = await response.json();
-  const digest = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', loaded.bytes)), byte => byte.toString(16).padStart(2, '0')).join('');
+  checkStudyContract(contract);
+  const digest =Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', loaded.bytes)), byte => byte.toString(16).padStart(2, '0')).join('');
   if (digest !== contract.asset_sha256) throw Error('The mechanism asset does not match its contract.');
   signal.throwIfAborted();
   const root = loaded.gltf.scene; cloneMaterials(root);
