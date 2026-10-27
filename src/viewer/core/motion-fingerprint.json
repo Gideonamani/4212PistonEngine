@@ -1,0 +1,8 @@
+{
+  "motion_api_version": "1.0.0",
+  "algorithm": "sha256",
+  "bodies": 77,
+  "angles": 25,
+  "variants": 2,
+  "fingerprint": "798e30ce45c748d7ed23cb9128fd32c1f8297f5f2e6f144069dd5b896934afa7"
+}

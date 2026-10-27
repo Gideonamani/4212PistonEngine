@@ -1,5 +1,38 @@
 import * as THREE from 'three';
 
+/**
+ * The version of the procedural motion interface below: which body strings `createGtsioBodyEvaluator` understands and what the matrix it returns
+ * means (see describeMotionApi). The MEDIS audits and sampler read poses through it, so an audit is only about the motion it was run against.
+ * Change it when the meaning of a pose changes; do not change it for a refactor that leaves every matrix as it was. The two are told apart by
+ * the fingerprint in motion-fingerprint.mjs: it changes whenever any matrix changes, and the test that holds it makes that a decision (docs/decisions/002-motion-interface-and-release-envelope.md).
+ * Semantic versioning: a major bump means audits made against the earlier major no longer describe this motion.
+ */
+export const MOTION_API_VERSION = '1.0.0';
+
+/** The motion interface in words and units: what a consumer (the viewer, or the MEDIS sampler) may rely on at MOTION_API_VERSION. */
+export function describeMotionApi() {
+  return {
+    version: MOTION_API_VERSION,
+    entry: 'createGtsioBodyEvaluator(parameters, { mirrorX }) returns evaluate(body, crankDegrees) -> THREE.Matrix4',
+    crankAngle: { unit: 'degrees', range: [0, 720], note: 'one four-stroke cycle is two crank turns; a motion progress of 0 to 100 maps to progress x 7.2 degrees (crankAngleForMotion)' },
+    matrix: {
+      frame: 'glTF: X right, Y up (CAD Z), Z toward the viewer (CAD -Y)',
+      translationUnit: 'metres',
+      meaning: 'carries a part from where the exported model has it (the closed, 0 degree pose) to where it is at the given crank angle; identity for fixed bodies, a name with no colon that is not crank, cam, rodN or pistonN, a valve-gear tag that is not Intake or Exhaust 1 to 6, and a malformed spin string',
+    },
+    inputs: {
+      parameters: 'millimetres and degrees in the CAD frame: case_cam_y, head_seat, valve_offset, intake_angle, exhaust_angle, intake_valve_length, exhaust_valve_length, cam_rate',
+      mirrorX: 'true reflects the CAD frame x -> -x, the export frame of the mirrored R10 releases; spin bodies are already in the export frame and are not reflected',
+    },
+    bodies: [
+      'crank', 'cam', 'rod1..rod6', 'piston1..piston6',
+      '(lifter|valve|rocker|pushrod|spring):(Intake|Exhaust)(1..6)',
+      'spin:px,py,pz,ax,ay,az,rate (CAD millimetres; turns about the axis through p by rate x the crank angle)',
+      'fixed:<anything>',
+    ],
+  };
+}
+
 const INCH = 25.4;
 const THROW = 2 * INCH;
 const ROD_LENGTH = 6.625 * INCH;
