@@ -23,6 +23,7 @@ publish), then `AGENTS.md` (storage and validation rules), then the guides here.
 | [release-rollback.md](release-rollback.md) | guide | Release snapshots and how to roll back. |
 | [manual-workflow.md](manual-workflow.md) | guide | From a manual to a modelled, animated teaching module. |
 | [galaxy-a16-release-check.md](galaxy-a16-release-check.md) | guide | The release check to run on a Samsung Galaxy A16 in Chrome. |
+| [browser-memory-and-storage.md](browser-memory-and-storage.md) | guide | The byte budgets that keep models in bounds on a phone: unpacked models held in memory, and models saved on the device. |
 | [drive-delivery-test.md](drive-delivery-test.md) | record | The Google Drive delivery experiment, 8 September 2026. |
 | [history-lessons-content-draft.md](history-lessons-content-draft.md) | record | History and terminology lessons, content draft. |
 | [lessons-4-8-production-plan.md](lessons-4-8-production-plan.md) | record | Production plan and notes for lessons 4 to 8. |

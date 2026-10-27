@@ -1,6 +1,7 @@
 import type { ModelSource } from '../../data/modelRegistry';
 import { createGltfLoader } from './gltf-loader';
-import { cacheKeyFor as savedCopyKey, dropCachedModel, hasCachedModel, readCachedModel, writeCachedModel } from './model-cache.mjs';
+import { cacheAvailable, cacheKeyFor as savedCopyKey, dropCachedModel, hasCachedModel, readCachedModel, writeCachedModel } from './model-cache.mjs';
+import { createModelMemory } from './model-memory.mjs';
 import { orderAttempts } from './source-order.mjs';
 
 type Candidate = ModelSource & { url: string; headers: Record<string, string>; label: string; from: 'local' | 'drive' };
@@ -101,37 +102,17 @@ export async function loadModelBytes(
 }
 
 type Progress = (status: string, progress?: number) => void;
-type CacheEntry = { promise: Promise<ArrayBuffer>; last?: [string, number | undefined]; listeners: Set<Progress> };
 
-// Decoded model bytes are kept for the session, so a preload and every later viewer of the same model share one download and unpack.
-const byteCache = new Map<string, CacheEntry>();
+// Unpacked model bytes held for this tab: shared by every viewer of a model, kept briefly after the last one closes, and bounded
+// (model-memory.mjs; docs/browser-memory-and-storage.md).
+const memory = createModelMemory();
+// Development only: lets a browser test read what is held (e2e/model-memory.spec.ts).
+if (import.meta.env?.DEV) (globalThis as Record<string, unknown>).__modelMemory = memory.stats;
 
-const cacheKeyFor = (sources: ModelSource[]) => sources.map((source) => source.localUrl || source.driveId || '').join('|');
+/** One name per set of sources, so every viewer of the same model asks for the same bytes. Sources that name nothing share nothing. */
+const memoryKeyFor = (sources: ModelSource[]) => sources.map((source) => source.localUrl || source.driveId || '').join('|') || Symbol('no-source');
 
-function cachedModelBytes(sources: ModelSource[], signal: AbortSignal, onProgress: Progress) {
-  const key = cacheKeyFor(sources);
-  let entry = key ? byteCache.get(key) : undefined;
-  if (!entry) {
-    const created: CacheEntry = { listeners: new Set(), promise: undefined as unknown as Promise<ArrayBuffer> };
-    created.promise = loadModelBytes(sources, signal, (status, progress) => {
-      created.last = [status, progress];
-      created.listeners.forEach((listener) => listener(status, progress));
-    });
-    entry = created;
-    if (key) {
-      byteCache.set(key, created);
-      created.promise.catch(() => { if (byteCache.get(key) === created) byteCache.delete(key); });
-    }
-  }
-  entry.listeners.add(onProgress);
-  if (entry.last) onProgress(...entry.last);
-  return entry.promise.finally(() => entry.listeners.delete(onProgress));
-}
-
-/** Start downloading a model in the background so a later viewer finds it already local. */
-export function preloadModelBytes(sources: ModelSource[]) {
-  return cachedModelBytes(sources, new AbortController().signal, () => undefined);
-}
+const loaderFor = (sources: ModelSource[]) => (signal: AbortSignal, onProgress: Progress) => loadModelBytes(sources, signal, onProgress);
 
 /** The Drive copy a model would be saved under on this device, or undefined where models are not saved (no Drive id or no API key). */
 async function savedCopyOf(sources: ModelSource[]) {
@@ -146,12 +127,23 @@ export async function modelSavedOffline(sources: ModelSource[]) {
 }
 
 /**
- * Download a model onto the device for use without a connection. Unlike a preload it is not also kept in this session's memory, so saving
- * every model does not fill a phone's memory; the bytes are let go once saved. Does nothing for a model that is already saved.
+ * Download a model onto the device for use without a connection. Unlike opening it, this does not also keep it in this tab's memory, so
+ * saving every model does not fill a phone's memory; the bytes are let go once saved. Does nothing for a model that is already saved.
  */
 export async function saveModelOffline(sources: ModelSource[], signal: AbortSignal, onProgress: Progress) {
   if (await modelSavedOffline(sources) !== false) return;
   await loadModelBytes(sources, signal, onProgress, { waitForSave: true });
+}
+
+/**
+ * Download a model ahead of the step that needs it, so opening it later reads the saved copy from the device. Nothing stays in memory
+ * afterwards (the unpacked bytes are let go, so prefetching a whole course cannot fill a phone), and a viewer that opens the model
+ * meanwhile joins this download instead of starting its own. Does nothing where the model cannot be saved or already is.
+ */
+export async function prefetchModel(sources: ModelSource[], signal: AbortSignal) {
+  if (await modelSavedOffline(sources) !== false || !await cacheAvailable()) return;
+  const { bytes, release } = memory.acquire(memoryKeyFor(sources), loaderFor(sources), { signal, retain: false });
+  try { await bytes; } finally { release(); }
 }
 
 /** Sources for the full engine, taken from its published contract. */
@@ -163,20 +155,23 @@ export function sourcesFromEngineContract(contract: any): ModelSource[] {
   ] : [{ localUrl: contract.asset.web_url, transferBytes: contract.asset.bytes }];
 }
 
+/**
+ * Load a model's bytes and parse them. The unpacked bytes are held, shared with any other viewer of the same model, for as long as
+ * `signal` has not aborted: abort it when the viewer closes. They then stay for a while within a byte budget, so reopening the model is quick.
+ */
 export async function loadGltf(
   sources: ModelSource[],
   signal: AbortSignal,
   onProgress: Progress,
 ) {
-  let bytes: ArrayBuffer;
+  const { bytes: pending, release } = memory.acquire(memoryKeyFor(sources), loaderFor(sources), { signal, onProgress });
   try {
-    bytes = await cachedModelBytes(sources, signal, onProgress);
+    const bytes = await pending;
+    signal.throwIfAborted();
+    onProgress('Preparing model geometry…', 99);
+    return { bytes, gltf: await createGltfLoader().parseAsync(bytes, '') };
   } catch (error) {
-    // A shared download may have been aborted by another viewer; retry with this viewer's own signal.
-    if (signal.aborted) throw error;
-    bytes = await loadModelBytes(sources, signal, onProgress);
+    release();
+    throw error;
   }
-  signal.throwIfAborted();
-  onProgress('Preparing model geometry…', 99);
-  return { bytes, gltf: await createGltfLoader().parseAsync(bytes, '') };
 }

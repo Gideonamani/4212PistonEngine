@@ -29,6 +29,11 @@ async function open(store) {
   }
 }
 
+/** Whether saved copies can be kept here at all: Cache Storage is missing or blocked in some private windows and on insecure pages. */
+export async function cacheAvailable(store) {
+  return Boolean(await open(store));
+}
+
 /**
  * The saved bytes for a key, or undefined. A copy whose size is not the size the source promised is thrown away: it is a partial or
  * damaged save.

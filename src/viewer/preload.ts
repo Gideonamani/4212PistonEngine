@@ -1,6 +1,6 @@
 import type { CourseTrack } from '../types/engine';
 import { modelsById, type ModelDefinition, type ModelSource } from '../data/modelRegistry';
-import { preloadModelBytes, sourcesFromEngineContract } from './core/assets';
+import { prefetchModel, sourcesFromEngineContract } from './core/assets';
 import { prefetchAllowed } from './core/prefetch-policy.mjs';
 
 type NetworkInformation = { saveData?: boolean; type?: string; effectiveType?: string };
@@ -18,24 +18,27 @@ export async function sourcesOf(definition: ModelDefinition): Promise<ModelSourc
   return definition.sources;
 }
 
-/** Download the given models one after another, in lesson order, so each is local before its step is reached. Returns a stop function. */
+/**
+ * Download the given models one after another, in lesson order, so each is saved on the device before its step is reached (nothing is
+ * kept in memory meanwhile: see prefetchModel). Returns a stop function, which also cancels a download that no viewer has joined.
+ */
 export function preloadModels(modelIds: string[]) {
   // Respect a visitor who asked the browser to save data.
   if (connectionOf()?.saveData) return () => undefined;
-  let stopped = false;
+  const controller = new AbortController();
   void (async () => {
     for (const id of new Set(modelIds)) {
       const definition = modelsById[id];
-      if (stopped || !definition) continue;
+      if (controller.signal.aborted || !definition) continue;
       try {
         const sources = await sourcesOf(definition);
-        if (sources?.length) await preloadModelBytes(sources);
+        if (sources?.length) await prefetchModel(sources, controller.signal);
       } catch {
         // A failed preload is harmless: the viewer downloads the model itself when the step is reached.
       }
     }
   })();
-  return () => { stopped = true; };
+  return () => controller.abort();
 }
 
 /**
