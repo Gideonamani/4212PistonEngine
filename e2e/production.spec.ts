@@ -132,24 +132,30 @@ const MODEL_STEP = '#/learn/m2-cylinder-study/m2-four-stroke-guided/step/1';
 const cors = { 'access-control-allow-origin': '*', 'access-control-allow-headers': '*', 'access-control-expose-headers': 'retry-after' };
 
 type Answer = { status: number; headers?: Record<string, string>; body: string | Buffer };
-function stubCylinder(page: import('@playwright/test').Page, answer: (count: number) => Answer) {
+function stubCylinder(page: import('@playwright/test').Page, answer: (count: number) => Answer | Promise<Answer>) {
   const requests: string[] = [];
-  return page.route('https://www.googleapis.com/drive/**', (route) => {
+  return page.route('https://www.googleapis.com/drive/**', async (route) => {
     if (route.request().method() === 'OPTIONS') return route.fulfill({ status: 204, headers: cors });
     const id = decodeURIComponent(new URL(route.request().url()).pathname.split('/').pop()!);
     if (id !== CYLINDER) return route.fulfill({ status: 404, headers: cors, body: '{}' });
     requests.push(id);
-    const { status, headers, body } = answer(requests.length);
+    const { status, headers, body } = await answer(requests.length);
     return route.fulfill({ status, headers: { ...cors, ...headers }, body });
   }).then(() => requests);
 }
 
 test('a throttled download says it is waiting and tries again, and a file that is not a model is never saved (issue #103)', async ({ page }) => {
   test.setTimeout(120_000);
-  const requests = await stubCylinder(page, (count): Answer => count === 1
-    ? { status: 429, headers: { 'retry-after': '6' }, body: '{"error":{"code":429}}' }
+  const requests = await stubCylinder(page, async (count): Promise<Answer> => {
+    if (count === 1) {
+      // The status is only on screen while the wait lasts, and the 3D viewer's code can arrive after a short wait is over (it did on a slow CI
+      // runner, where the page was still "Preparing interactive 3D viewer" throughout). So the first answer is held until the viewer is there to show it.
+      await page.getByRole('application', { name: /Detailed operating cylinder/ }).waitFor();
+      return { status: 429, headers: { 'retry-after': '6' }, body: '{"error":{"code":429}}' };
+    }
     // The size the registry promises, but not a model: the download completes and then fails the check for a whole GLB.
-    : { status: 200, headers: { 'content-type': 'application/octet-stream' }, body: Buffer.alloc(driveSizes.get(CYLINDER)!) });
+    return { status: 200, headers: { 'content-type': 'application/octet-stream' }, body: Buffer.alloc(driveSizes.get(CYLINDER)!) };
+  });
   await page.goto(`/${MODEL_STEP}`);
   await appReady(page);
 
