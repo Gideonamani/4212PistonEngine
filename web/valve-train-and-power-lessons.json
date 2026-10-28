@@ -31,9 +31,9 @@
     {
       "id": "course-deck-2026-05",
       "tier": 4,
-      "title": "Aircraft Piston Engine Slides - 21 May 2026 (instructor course deck)",
-      "path": "Notes/Aircraft Piston Engine Slides - 21May2026.pptx",
-      "applicability": "Instructor-authored course slides. Used only where the handbook, EASA text and manuals are silent. Carries no independent evidence; claims here need the instructor's confirmation."
+      "title": "Aircraft Piston Engine Slides - 21 May 2026, corrected 28 October 2026 (instructor course deck, v5)",
+      "path": "Notes/Aircraft Piston Engine Slides - 21May2026_CORRECTED_2026-10-28_v5.pptx",
+      "applicability": "Instructor-authored course slides. Used only where the handbook, EASA text and manuals are silent. Carries no independent evidence; claims here need the instructor's confirmation. Slide numbers follow the corrected deck of 28 October 2026 (283 slides); the earlier 280-slide deck numbered every slide after 40 three lower."
     },
     {
       "id": "gtsio-reviewed",
@@ -1200,7 +1200,7 @@
           "type": "text",
           "title": "Worked example: one cylinder",
           "prompt": "Take the GTSIO-520-H: bore 5.250 in, stroke 4.000 in, compression ratio 7.5:1. The swept volume (piston displacement) of one cylinder is 0.7854 × 5.25² × 4.00 = 86.6 cu in. Six cylinders give 519.5, which the manual rounds to 520 cu in. The clearance volume follows from the ratio: total volume ÷ clearance volume = 7.5, and total volume = swept + clearance, so clearance = swept ÷ (7.5 − 1) = 86.6 ÷ 6.5 = 13.3 cu in. The total volume is 86.6 + 13.3 = 99.9 cu in. Check that 99.9 ÷ 13.3 is 7.5.",
-          "note": "Calculation from the bore, stroke and compression ratio in the GTSIO-520 overhaul manual, PDF p. 152 (C-3-2: bore 5.250 in, stroke 4.000 in, displacement 520 cu in, compression ratio 7.5:1) using the piston displacement method in FAA-H-8083-32B (2023), PDF pp. 49-50 (area of the base × stroke; × number of cylinders). The course deck (slide 212) works the same example.",
+          "note": "Calculation from the bore, stroke and compression ratio in the GTSIO-520 overhaul manual, PDF p. 152 (C-3-2: bore 5.250 in, stroke 4.000 in, displacement 520 cu in, compression ratio 7.5:1) using the piston displacement method in FAA-H-8083-32B (2023), PDF pp. 49-50 (area of the base × stroke; × number of cylinders). The course deck (slide 215) works the same example.",
           "sourceRefs": [
             "gtsio520-overhaul",
             "faa-powerplant-2023"
@@ -1270,7 +1270,7 @@
           "type": "text",
           "title": "Piston rings and ring gaps",
           "prompt": "The rings seal the gas above the piston and control the oil on the cylinder wall. Each ring is split, so it has a gap. When a piston is assembled the gaps are not lined up: on the GTSIO-520 pistons the first, third and fifth ring gaps go one side of the piston and the second and fourth go on the opposite side, 180° away. With the gaps staggered, gas that gets past one ring meets a solid part of the next. If the gaps line up, a straight path opens for gas to leak past the piston into the crankcase and for oil to be burned.",
-          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 75 (11-8: five-ring pistons have the first, third and fifth gaps toward the top of the piston and the second and fourth 180° apart from them; four-ring pistons have the first and third gaps on top and the second and fourth 180° away; do not intermix piston types in any one engine). The reason for staggering (less blow-by and oil burning) is from the course deck (slides 168-169) and the daily quiz; the manual gives the positions.",
+          "note": "Documented from the Continental GTSIO-520 overhaul manual, PDF p. 75 (11-8: five-ring pistons have the first, third and fifth gaps toward the top of the piston and the second and fourth 180° apart from them; four-ring pistons have the first and third gaps on top and the second and fourth 180° away; do not intermix piston types in any one engine). The reason for staggering (less blow-by and oil burning) is from the course deck (slides 171-172) and the daily quiz; the manual gives the positions.",
           "sourceRefs": [
             "gtsio520-overhaul",
             "course-deck-2026-05"

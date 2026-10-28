@@ -122,9 +122,9 @@
     {
       "id": "course-deck-2026-05",
       "tier": 4,
-      "title": "Aircraft Piston Engine Slides - 21 May 2026 (instructor course deck)",
-      "path": "Notes/Aircraft Piston Engine Slides - 21May2026.pptx",
-      "applicability": "Instructor-authored course slides. Used for the history of aircraft engines (slides 7 to 40: balloons and gliders, the Wright breakthrough, the engine tables, the wars, the jet beginnings, general aviation and FADEC) and, in lesson 1, for the first jet flight (slide 27) and FADEC (slide 37). Carries no independent evidence; claims here need the instructor's confirmation. Slide 17 calls the 1913 Renault V8 water-cooled; the Aircraft Engine Historical Society and the Smithsonian say it was air-cooled, and this lesson follows them."
+      "title": "Aircraft Piston Engine Slides - 21 May 2026, corrected 28 October 2026 (instructor course deck, v5)",
+      "path": "Notes/Aircraft Piston Engine Slides - 21May2026_CORRECTED_2026-10-28_v5.pptx",
+      "applicability": "Instructor-authored course slides. Used for the history of aircraft engines (slides 7 to 40: balloons and gliders, the Wright breakthrough, the engine tables, the wars, the jet beginnings, general aviation and FADEC) and, in lesson 1, for the first jet flight (slide 27) and FADEC (slide 37). Carries no independent evidence; claims here need the instructor's confirmation. Slide 17 calls the 1913 Renault V8 water-cooled; the Aircraft Engine Historical Society and the Smithsonian say it was air-cooled, and this lesson follows them. Slide numbers follow the corrected deck of 28 October 2026 (283 slides); the earlier 280-slide deck numbered every slide after 40 three lower."
     },
     {
       "id": "gtsio520-overhaul",
@@ -942,7 +942,7 @@
           "type": "text",
           "title": "Engine and powerplant",
           "prompt": "An aircraft engine is the machine that propels the aircraft. The US regulation counts its turbosuperchargers and the accessories it needs to function, and leaves out the propeller.\n\nThe powerplant is bigger. The FAA handbook defines it as the complete installation of an aircraft engine, propeller and all the accessories needed for its proper function. The Tanzanian airworthiness regulations say the same: all the engines, drive components, propellers, their accessories and ancillary parts, and the fuel and oil systems installed on an aircraft.\n\nSo the engine is one component of the powerplant, beside the propeller, the mounts, induction and exhaust, cooling, fuel feed and the controls.",
-          "note": "Documented from the FAA handbook glossary (FAA-H-8083-32B, PDF p. 479), 14 CFR 1.1 (aircraft engine) and 14 CFR 25.901, with EASA CS 23.2400 in the same spirit. This corrects the course slide deck's slide 45, which defines the powerplant as 'an aircraft engine, or the system that produces thrust': the engine alone is not the powerplant. The Tanzanian definition of the powerplant is in the Civil Aviation (Airworthiness) Regulations, regulation 2 (revised edition 2026).",
+          "note": "Documented from the FAA handbook glossary (FAA-H-8083-32B, PDF p. 479), 14 CFR 1.1 (aircraft engine) and 14 CFR 25.901, with EASA CS 23.2400 in the same spirit. This corrects the course slide deck's slide 48, which defines the powerplant as 'an aircraft engine, or the system that produces thrust': the engine alone is not the powerplant. The Tanzanian definition of the powerplant is in the Civil Aviation (Airworthiness) Regulations, regulation 2 (revised edition 2026).",
           "sourceRefs": [
             "faa-powerplant-2023",
             "cfr-14-1-1",
@@ -960,7 +960,7 @@
           "type": "text",
           "title": "Reciprocating engine",
           "prompt": "A reciprocating engine, more often called a piston engine, is a heat engine that changes the back-and-forth (reciprocating) motion of pistons in cylinders into the rotary motion of a crankshaft.\n\nNotice what the word describes: the piston's back-and-forth motion, not the way the fuel burns. The steam engine of lesson 1 was reciprocating too, with its fire in a boiler outside. Every engine in this course is an internal combustion reciprocating engine: the fuel burns inside the cylinder it pushes.",
-          "note": "Documented from the FAA handbook glossary (PDF pp. 472 and 481: heat engine, reciprocating engine) and course slide 45. The note about the steam engine connects to lesson 1.",
+          "note": "Documented from the FAA handbook glossary (PDF pp. 472 and 481: heat engine, reciprocating engine) and course slide 48. The note about the steam engine connects to lesson 1.",
           "sourceRefs": [
             "faa-powerplant-2023",
             "course-deck-2026-05"
@@ -1048,7 +1048,7 @@
           "type": "text",
           "title": "Pressure, volume, temperature",
           "prompt": "Pressure is force spread over an area: pounds on each square inch (psi), or pascals. The atmosphere at sea level presses with about 14.7 psi, which a barometer reads as 29.92 inches of mercury. Gauge pressure is measured above the atmosphere; absolute pressure is counted from zero.\n\nVolume is the space a gas fills, in cubic inches or litres. For calculations with gases, temperature is counted from absolute zero.\n\nIn a cylinder the three change together. Squeeze the gas into a smaller volume and its pressure and temperature rise. Burn fuel in it while the volume stays almost still and both rise sharply. Let it expand and they fall. That interplay is how an engine turns heat into work.",
-          "note": "Pressure defined in the FAA handbook glossary (PDF p. 479); standard sea-level pressure of 14.7 psi and 29.92 inHg is the usual standard atmosphere. The qualitative statements about gas behaviour are the ones course slide 46 makes; their quantitative forms return in lessons 4 and 13.",
+          "note": "Pressure defined in the FAA handbook glossary (PDF p. 479); standard sea-level pressure of 14.7 psi and 29.92 inHg is the usual standard atmosphere. The qualitative statements about gas behaviour are the ones course slide 49 makes; their quantitative forms return in lessons 4 and 13.",
           "sourceRefs": [
             "faa-powerplant-2023",
             "course-deck-2026-05"
@@ -1063,7 +1063,7 @@
           "type": "text",
           "title": "How heat becomes power",
           "prompt": "So how does that heat actually turn into a turning propeller? An aircraft reciprocating engine, a type of internal combustion engine, works as a heat engine: it converts the thermal energy released by burning fuel into mechanical work, producing thrust and powering the aircraft's other systems. Inside the cylinder, a continuous interplay of pressure, volume and temperature keeps the engine running and delivers that mechanical power.",
-          "note": "Documented from the course slide deck (slide 46) and the FAA handbook glossary (heat engine, PDF p. 472).",
+          "note": "Documented from the course slide deck (slide 49) and the FAA handbook glossary (heat engine, PDF p. 472).",
           "sourceRefs": [
             "course-deck-2026-05",
             "faa-powerplant-2023"
@@ -1078,7 +1078,7 @@
           "type": "text",
           "title": "Piston to crankshaft",
           "prompt": "That mechanical power starts as oscillating motion. Burning fuel expands hot gas, which pushes the piston in a straight line, back and forth inside the cylinder: reciprocating motion. A connecting rod transmits that push to a crankshaft, which turns the piston's straight-line motion into the rotating motion the propeller actually needs.\n\nThe piston is the engine's key energy-converting component: everything else in the engine exists to let the piston do that conversion repeatedly, reliably and under control.",
-          "note": "Documented from the course slide deck (slide 46).",
+          "note": "Documented from the course slide deck (slide 49).",
           "sourceRefs": [
             "course-deck-2026-05"
           ],
@@ -1148,7 +1148,7 @@
           "title": "Swept and clearance volume",
           "prompt": "Switch between swept, clearance and total volume, then move the piston. Swept volume (piston displacement) is what the piston sweeps between TDC and BDC; clearance volume is what is left above it at TDC. Compression ratio compares the volume at BDC with the volume at TDC.",
           "url": "artifact:swept-volume-diagram",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 49-51 (piston displacement, compression ratio, Figure 1-38) and EASA Module 16, PDF pp. 24-26 (Figure 1-9); the deck's slides 211-212 give the same definitions. Definitions only here - the calculations belong to lesson 12. The diagram is drawn at the GTSIO-520-H's 7.5:1 ratio so volumes are to scale.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 49-51 (piston displacement, compression ratio, Figure 1-38) and EASA Module 16, PDF pp. 24-26 (Figure 1-9); the deck's slides 214-215 give the same definitions. Definitions only here - the calculations belong to lesson 12. The diagram is drawn at the GTSIO-520-H's 7.5:1 ratio so volumes are to scale.",
           "mediaPlan": {
             "mode": "native-html",
             "status": "available",
@@ -1210,7 +1210,7 @@
           "title": "Same words, two engines",
           "prompt": "Compare the course engine with the IO-520. Find the data that is identical and the data that differs. Which differences would matter to a technician setting up ignition timing?",
           "url": "artifact:engine-data-comparison",
-          "note": "GTSIO-520-H values read from the scanned overhaul manual, Chapter C-3 (PDF pp. 152-153): bore 5.250 in, stroke 4.000 in, 520 cu in, 7.5:1, firing order 1-4-5-2-3-6, spark 20 degrees BTC. IO-520 values from its overhaul manual (editable copy): Tables II and III and the model test data. The IO-520 is a different engine, shown for comparison only. Manual values carry more weight (instructor decision, 29 September 2026): the lesson uses the -H manual's 20 degrees BTC. Deck slide 207 shows 22 degrees BTDC for its GTSIO-520-H example and should be corrected to match.",
+          "note": "GTSIO-520-H values read from the scanned overhaul manual, Chapter C-3 (PDF pp. 152-153): bore 5.250 in, stroke 4.000 in, 520 cu in, 7.5:1, firing order 1-4-5-2-3-6, spark 20 degrees BTC. IO-520 values from its overhaul manual (editable copy): Tables II and III and the model test data. The IO-520 is a different engine, shown for comparison only. Manual values carry more weight (instructor decision, 29 September 2026): the lesson uses the -H manual's 20 degrees BTC. Deck slide 210 shows 22 degrees BTDC for its GTSIO-520-H example and should be corrected to match.",
           "mediaPlan": {
             "mode": "native-html",
             "status": "available",
