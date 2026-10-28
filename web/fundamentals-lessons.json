@@ -31,9 +31,9 @@
     {
       "id": "course-deck-2026-05",
       "tier": 4,
-      "title": "Aircraft Piston Engine Slides - 21 May 2026 (instructor course deck)",
-      "path": "Notes/Aircraft Piston Engine Slides - 21May2026.pptx",
-      "applicability": "Instructor-authored course slides. Used only where FAA-H-8083-32B and EASA Module 16 are silent: Otto and Diesel pressure-volume theory (slides 56-58, 76) and the diesel pros and cons (slide 78). Carries no independent evidence; claims here need the instructor's confirmation."
+      "title": "Aircraft Piston Engine Slides - 21 May 2026, corrected 28 October 2026 (instructor course deck, v5)",
+      "path": "Notes/Aircraft Piston Engine Slides - 21May2026_CORRECTED_2026-10-28_v5.pptx",
+      "applicability": "Instructor-authored course slides. Used only where FAA-H-8083-32B and EASA Module 16 are silent: Otto and Diesel pressure-volume theory (slides 59-61, 79) and the diesel pros and cons (slide 81). Carries no independent evidence; claims here need the instructor's confirmation. Slide numbers follow the corrected deck of 28 October 2026 (283 slides); the earlier 280-slide deck numbered every slide after 40 three lower."
     },
     {
       "id": "wikipedia-otto-cycle",
@@ -296,7 +296,7 @@
           "type": "text",
           "title": "Strokes and events",
           "prompt": "Two different things are called a cycle, and it helps to keep them apart.\n\nThe mechanical cycle is about the hardware. In a four-stroke engine the piston makes four strokes of 180 degrees of crankshaft turn each, so one cycle takes 720 degrees: two turns of the crankshaft, with one power stroke per cylinder.\n\nThe thermodynamic cycle is about the gas: the series of states it passes through, its pressure, volume and temperature at each, and where heat is added and removed.\n\nThey line up, but not exactly. The handbook names five events: intake, compression, ignition, power and exhaust. Strokes are the piston's motion; events are what happens to the charge, and they overlap the strokes. The spark fires before TDC, still in the compression stroke, and the exhaust valve opens before the piston reaches BDC.",
-          "note": "Four strokes, two crankshaft revolutions (720 degrees) and the five events (intake, compression, ignition, power, exhaust) from FAA-H-8083-32B (2023), PDF p. 46; ignition before TDC and the early exhaust-valve opening from PDF p. 48; the strokes-versus-events distinction also appears on course slide 54. The handbook says the four-stroke cycle is 'sometimes called the Otto cycle'; in this lesson the Otto cycle names the ideal model of the gas, not the stroke count.",
+          "note": "Four strokes, two crankshaft revolutions (720 degrees) and the five events (intake, compression, ignition, power, exhaust) from FAA-H-8083-32B (2023), PDF p. 46; ignition before TDC and the early exhaust-valve opening from PDF p. 48; the strokes-versus-events distinction also appears on course slide 57. The handbook says the four-stroke cycle is 'sometimes called the Otto cycle'; in this lesson the Otto cycle names the ideal model of the gas, not the stroke count.",
           "sourceRefs": [
             "faa-powerplant-2023",
             "course-deck-2026-05"
@@ -311,7 +311,7 @@
           "type": "text",
           "title": "Why use a model?",
           "prompt": "A real cylinder is a messy place. The gas is a mixture of air, fuel vapour and leftover exhaust. Burning takes time. Heat leaks into the walls, some gas slips past the rings, and the valves open and close over many degrees of crankshaft turn. No simple equation follows all of that at once.\n\nSo engineers use a simplified model. In the ideal cycles a fixed mass of air stands in for the working gas and behaves as an ideal gas. The burning and exhausting are replaced by heat added and heat removed in a few clean processes.\n\nA model is not a measurement. Its value is that it is simple enough to reason with: it shows what raises or lowers the work, and where the limit lies. Later steps show how far a real engine departs from it.",
-          "note": "The ideal cycle as a model on a fixed mass of air with ideal-gas relations, and the remark that the actual cycle lacks its sharp transitions: MIT Unified Engineering, Thermodynamics and Propulsion, section 3.5. Assumptions of the ideal cycle (no heat exchange in compression and power, no friction, instantaneous combustion) and the real-engine losses: NASA Glenn Otto cycle page and course slides 56 and 57. Valve opening over several degrees and residual exhaust: FAA-H-8083-32B (2023), PDF pp. 47 to 48. Checked 13 October 2026.",
+          "note": "The ideal cycle as a model on a fixed mass of air with ideal-gas relations, and the remark that the actual cycle lacks its sharp transitions: MIT Unified Engineering, Thermodynamics and Propulsion, section 3.5. Assumptions of the ideal cycle (no heat exchange in compression and power, no friction, instantaneous combustion) and the real-engine losses: NASA Glenn Otto cycle page and course slides 59 and 60. Valve opening over several degrees and residual exhaust: FAA-H-8083-32B (2023), PDF pp. 47 to 48. Checked 13 October 2026.",
           "sourceRefs": [
             "mit-unified-thermo-propulsion",
             "nasa-glenn-otto-cycle",
@@ -348,7 +348,7 @@
           "alt": "Pressure-volume diagram with pressure p up the side and volume v along the bottom: four points 1 to 4 joined clockwise by two horizontal constant-pressure legs, A and C, and two vertical constant-volume legs, B and D, with arrows showing the direction of travel.",
           "credit": "Olivier Cleynen, P-v diagram of a simple cycle.svg, Wikimedia Commons",
           "license": "CC0",
-          "note": "Work as the area under a path, no work at constant volume, and the enclosed loop (positive when clockwise) from OpenStax College Physics 2e, 15.2; the enclosed area as net indicated work per cycle also appears on course slide 58 and on the NASA Glenn Otto cycle page. Checked 13 October 2026. Picture: 'A cyclic thermodynamic process described on a pressure-volume diagram' by Olivier Cleynen, released under CC0 (Wikimedia Commons, File:P-v diagram of a simple cycle.svg; checked 13 October 2026). It is a schematic loop of two constant-pressure and two constant-volume legs, not an engine cycle.",
+          "note": "Work as the area under a path, no work at constant volume, and the enclosed loop (positive when clockwise) from OpenStax College Physics 2e, 15.2; the enclosed area as net indicated work per cycle also appears on course slide 61 and on the NASA Glenn Otto cycle page. Checked 13 October 2026. Picture: 'A cyclic thermodynamic process described on a pressure-volume diagram' by Olivier Cleynen, released under CC0 (Wikimedia Commons, File:P-v diagram of a simple cycle.svg; checked 13 October 2026). It is a schematic loop of two constant-pressure and two constant-volume legs, not an engine cycle.",
           "sourceRefs": [
             "openstax-first-law-processes",
             "course-deck-2026-05",
@@ -385,7 +385,7 @@
           "title": "Ideal Otto cycle",
           "prompt": "A pressure-volume (PV) diagram plots the cylinder's pressure against its volume through one cycle. Step through the ideal Otto cycle and watch the piston beside it. Which two processes hold the volume constant, and which two have no heat exchange?",
           "url": "artifact:otto-pv-diagram",
-          "note": "Neither FAA-H-8083-32B nor EASA Module 16 covers pressure-volume diagram theory (both searched 29 September 2026). Ideal Otto processes (two adiabatic, two constant-volume) are from the instructor's course deck, slides 56 and 58 (tier 4), and the Wikipedia Otto cycle article (tier 5, CC BY-SA 4.0, accessed 29 September 2026). The curves are schematic ideal-gas shapes, not data for any engine. Cross-checked against MIT Unified Engineering, 'Thermodynamics and Propulsion' section 3.5 (isentropic compression and expansion; constant-volume combustion and heat rejection; tier 4 textbook-grade source) and NASA Glenn's Otto cycle page (combustion at constant volume; no heat exchange during the compression and power strokes).",
+          "note": "Neither FAA-H-8083-32B nor EASA Module 16 covers pressure-volume diagram theory (both searched 29 September 2026). Ideal Otto processes (two adiabatic, two constant-volume) are from the instructor's course deck, slides 59 and 61 (tier 4), and the Wikipedia Otto cycle article (tier 5, CC BY-SA 4.0, accessed 29 September 2026). The curves are schematic ideal-gas shapes, not data for any engine. Cross-checked against MIT Unified Engineering, 'Thermodynamics and Propulsion' section 3.5 (isentropic compression and expansion; constant-volume combustion and heat rejection; tier 4 textbook-grade source) and NASA Glenn's Otto cycle page (combustion at constant volume; no heat exchange during the compression and power strokes).",
           "sourceRefs": [
             "course-deck-2026-05",
             "wikipedia-otto-cycle",
@@ -402,7 +402,7 @@
           "type": "text",
           "title": "Why constant volume?",
           "prompt": "The ideal cycle treats combustion as instant heat addition while the piston sits at top dead centre. The volume cannot change, so no work is done during that process: all the heat goes into the gas, and its pressure and temperature jump straight up.\n\nThat is what constant volume means here.\n\nReal burning takes time, which is why the spark fires before TDC (20 to 35 degrees before, on the engines the handbook describes) and cylinder pressure peaks a little after it. The ideal loop also leaves out the pumping done on the intake and exhaust strokes.",
-          "note": "No work at constant volume: OpenStax College Physics 2e, 15.2, and MIT Unified Engineering section 3.5 (heat input equals the change in internal energy during combustion). Ignition timing of 20 to 35 degrees before TDC: FAA-H-8083-32B (2023), PDF p. 48. The ideal Otto assumptions are from course slide 56 and the NASA Glenn Otto cycle page. Checked 13 October 2026.",
+          "note": "No work at constant volume: OpenStax College Physics 2e, 15.2, and MIT Unified Engineering section 3.5 (heat input equals the change in internal energy during combustion). Ignition timing of 20 to 35 degrees before TDC: FAA-H-8083-32B (2023), PDF p. 48. The ideal Otto assumptions are from course slide 59 and the NASA Glenn Otto cycle page. Checked 13 October 2026.",
           "sourceRefs": [
             "openstax-first-law-processes",
             "mit-unified-thermo-propulsion",
@@ -421,7 +421,7 @@
           "title": "Ideal versus practical",
           "prompt": "Switch between the ideal and practical diagrams. Find two differences in shape, then link each to a physical cause: burning takes time, heat is lost to the cylinder walls, and valves open early and close late.",
           "url": "artifact:otto-pv-ideal-vs-practical",
-          "note": "FAA-H-8083-32B (2023), PDF pp. 48 and 51 (Figure 1-39) documents the actual cylinder-pressure diagram and its peak after top center. The list of causes follows the course deck, slides 57-58 (tier 4). The practical curve is an illustrative rounding of the ideal loop, not measured data. MIT section 3.5 notes the actual cycle lacks the sharp transitions between processes that the ideal cycle has, and NASA Glenn notes the real cycle's enclosed area (work) is always less than the ideal value.",
+          "note": "FAA-H-8083-32B (2023), PDF pp. 48 and 51 (Figure 1-39) documents the actual cylinder-pressure diagram and its peak after top center. The list of causes follows the course deck, slides 60-61 (tier 4). The practical curve is an illustrative rounding of the ideal loop, not measured data. MIT section 3.5 notes the actual cycle lacks the sharp transitions between processes that the ideal cycle has, and NASA Glenn notes the real cycle's enclosed area (work) is always less than the ideal value.",
           "sourceRefs": [
             "faa-powerplant-2023",
             "course-deck-2026-05",
@@ -489,7 +489,7 @@
           "title": "Diesel versus Otto",
           "prompt": "Compare the two ideal cycles. Both start with the same compression, so predict which one process differs before you toggle, and what that means for how the fuel burns. Then raise the compression ratio and notice how each loop changes.",
           "url": "artifact:diesel-otto-pv-compare",
-          "note": "Diesel cycle description documented from FAA-H-8083-32B (2023), PDF p. 48, and EASA Module 16, PDF p. 23; EASA PDF p. 210 notes the diesel compression ratio is far greater than a gasoline engine's. The constant-pressure heat-addition process is from the course deck, slide 76 (tier 4), and Wikipedia Diesel cycle (tier 5, CC BY-SA 4.0, accessed 29 September 2026). Neither FAA-H-8083-32B nor EASA Module 16 covers pressure-volume diagram theory (both searched 29 September 2026). Curves are schematic. Cross-checked against MIT section 3.6: compression ignition, fuel sprayed in once compression is complete, and a higher compression ratio is possible because only air is compressed with no risk of auto-ignition.",
+          "note": "Diesel cycle description documented from FAA-H-8083-32B (2023), PDF p. 48, and EASA Module 16, PDF p. 23; EASA PDF p. 210 notes the diesel compression ratio is far greater than a gasoline engine's. The constant-pressure heat-addition process is from the course deck, slide 79 (tier 4), and Wikipedia Diesel cycle (tier 5, CC BY-SA 4.0, accessed 29 September 2026). Neither FAA-H-8083-32B nor EASA Module 16 covers pressure-volume diagram theory (both searched 29 September 2026). Curves are schematic. Cross-checked against MIT section 3.6: compression ignition, fuel sprayed in once compression is complete, and a higher compression ratio is possible because only air is compressed with no risk of auto-ignition.",
           "sourceRefs": [
             "faa-powerplant-2023",
             "easa-module16",
@@ -507,7 +507,7 @@
           "type": "text",
           "title": "Diesel combustion",
           "prompt": "A diesel-cycle engine first compresses air alone. Near maximum pressure, fuel is sprayed in, and the high pressure and temperature make it burn without a spark. The rising pressure drives the piston down.\n\nBecause the fuel burns as it is injected, the ideal diesel cycle adds heat at roughly constant pressure while the piston moves away from TDC.\n\n'Diesel' names the ignition strategy. Two-stroke and four-stroke diesels both exist.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48, and EASA Module 16, PDF p. 23. Constant-pressure heat addition from the course deck, slide 76 (tier 4). Replaces the earlier single 'Diesel ignition' step; the spark-versus-compression comparison now lives in lesson 5. Cross-checked against MIT section 3.6 (fuel sprayed into the cylinder when compression is complete; ignition without a spark).",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 48, and EASA Module 16, PDF p. 23. Constant-pressure heat addition from the course deck, slide 79 (tier 4). Replaces the earlier single 'Diesel ignition' step; the spark-versus-compression comparison now lives in lesson 5. Cross-checked against MIT section 3.6 (fuel sprayed into the cylinder when compression is complete; ignition without a spark).",
           "sourceRefs": [
             "faa-powerplant-2023",
             "easa-module16",
@@ -524,7 +524,7 @@
           "type": "text",
           "title": "Diesel in aviation",
           "prompt": "Diesel-cycle engines can burn Jet A, but regulators raised specific concerns when they returned to small aeroplanes.\n\nTurbine fuel must be accommodated in fuel systems designed for gasoline. A conventional diesel vibrates badly if one cylinder stops firing, which can damage the airframe and propeller. High internal pressures mean cylinder parts could be shed in a failure. The engine needs FADEC control with its own limits and indications.\n\nAdd heavier construction, complex fuel injection, long cold-weather cranking and the risk of misfuelling.",
-          "note": "Aero-specific concerns are from the FAA's proposed special conditions for the Piper PA-28-236 with an SMA SR305-230 diesel engine (Federal Register vol. 71 no. 114, 14 June 2006): turbine fuel in gasoline-designed systems, vibration and failure modes with a cylinder inoperative, high-energy fragments from high internal pressures, FADEC control, and limitations and indications. The FAA states these concerns are not universally applicable to all diesel engines. Heavier construction, complex injection and cold cranking are from the course deck, slide 78 (tier 4); misfuelling from EASA Module 16, PDF p. 228. The FAA and EASA handbook texts contain no limitations list, so per the instructor's decision (29 September 2026) this step uses the FAA notice, the deck and common engineering sense.",
+          "note": "Aero-specific concerns are from the FAA's proposed special conditions for the Piper PA-28-236 with an SMA SR305-230 diesel engine (Federal Register vol. 71 no. 114, 14 June 2006): turbine fuel in gasoline-designed systems, vibration and failure modes with a cylinder inoperative, high-energy fragments from high internal pressures, FADEC control, and limitations and indications. The FAA states these concerns are not universally applicable to all diesel engines. Heavier construction, complex injection and cold cranking are from the course deck, slide 81 (tier 4); misfuelling from EASA Module 16, PDF p. 228. The FAA and EASA handbook texts contain no limitations list, so per the instructor's decision (29 September 2026) this step uses the FAA notice, the deck and common engineering sense.",
           "sourceRefs": [
             "faa-diesel-special-conditions-2006",
             "course-deck-2026-05",
@@ -1100,7 +1100,7 @@
           "type": "text",
           "title": "Liquid-cooled path",
           "prompt": "In a liquid-cooled engine, passages called water jackets surround the cylinders. A liquid coolant circulates through them and carries the excess heat away. The coolant then passes through a radiator, a heat exchanger in the airstream, which gives the heat to the air.\n\nSo the heat takes one more step than in an air-cooled engine: cylinder metal, coolant, radiator, air. A pump keeps the coolant moving.\n\nThe price is weight: the coolant, radiator, pump and tubing all have to be carried. In return, liquid cooling allows high power to be obtained safely, and it cools more evenly.\n\nMost piston aircraft engines are air cooled. Liquid cooling appears in a few high-power engines and some diesels.",
-          "note": "Water jackets, coolant and radiator, and that some diesel liquid-cooled engines are available for light aircraft: FAA-H-8083-32B (2023), PDF p. 278. Added weight of coolant, radiator and tubing, and that liquid cooling allows high power safely: PDF p. 24, and EASA Module 16, PDF p. 23. More uniform, controlled cooling is the course slides' claim (slide 106).",
+          "note": "Water jackets, coolant and radiator, and that some diesel liquid-cooled engines are available for light aircraft: FAA-H-8083-32B (2023), PDF p. 278. Added weight of coolant, radiator and tubing, and that liquid cooling allows high power safely: PDF p. 24, and EASA Module 16, PDF p. 23. More uniform, controlled cooling is the course slides' claim (slide 109).",
           "sourceRefs": [
             "faa-powerplant-2023",
             "easa-module16",
@@ -1183,7 +1183,7 @@
           "type": "text",
           "title": "Air or liquid: the comparison",
           "prompt": "Compare the two methods point by point. These are typical differences, not rules.\n\nWeight: liquid cooling adds coolant, radiator, pump and tubing. Air cooling needs only fins, cowling and baffles.\n\nComplexity and reliability: a liquid system has more parts and more places to fail, such as leaks and pump problems. An air-cooled engine is simpler.\n\nTemperature control: liquid cooling is more uniform and controlled. Air cooling is less even and depends on airflow, which obstruction or extreme ambient temperature can upset.\n\nDrag: both put something in the airstream. Opened cowl flaps add drag to an air-cooled engine; a liquid-cooled one needs a radiator in the airstream.\n\nMaintenance: air cooling needs less. Liquid cooling means coolant to check, change and keep free of leaks.",
-          "note": "Weight, complexity, temperature control and maintenance as the course slides give them (slides 106 and 107, the instructor's deck: these are generalisations, not measured data); added weight of coolant, radiator and tubing, and a radiator placed in the airstream: FAA-H-8083-32B (2023), PDF p. 24; cowl flaps adding drag: PDF p. 279.",
+          "note": "Weight, complexity, temperature control and maintenance as the course slides give them (slides 109 and 110, the instructor's deck: these are generalisations, not measured data); added weight of coolant, radiator and tubing, and a radiator placed in the airstream: FAA-H-8083-32B (2023), PDF p. 24; cowl flaps adding drag: PDF p. 279.",
           "sourceRefs": [
             "course-deck-2026-05",
             "faa-powerplant-2023"
@@ -1198,7 +1198,7 @@
           "type": "text",
           "title": "Engines and their cooling",
           "prompt": "Air cooled: the GTSIO-520-H and IO-520 of this course; the Lycoming O-320 and Continental O-200 of the flight schools; the radials, such as the Wright Whirlwind that carried the Spirit of St. Louis across the Atlantic.\n\nLiquid cooled: the Rolls-Royce Merlin, in its Packard-built form a V-12 of 1,490 hp, and some modern diesels.\n\nBoth: the Rotax 912 and 914, with liquid-cooled cylinder heads and ram-air-cooled cylinders.\n\nSo the method follows the job. Engines of very different eras and powers are found in each group.",
-          "note": "GTSIO-520 and IO-520 air cooled: the manufacturers' manuals; Lycoming O-320 and Continental O-200: course slide 107; Spirit of St. Louis air-cooled Wright J-5C Whirlwind: This Day in Aviation; Packard Merlin V-1650-7 liquid cooled, V-12, 1,490 hp: Smithsonian record; some diesel engines liquid cooled: FAA-H-8083-32B (2023), PDF p. 278; Rotax 912/914: Rotax SI-912-016R9 and FAA PDF p. 439.",
+          "note": "GTSIO-520 and IO-520 air cooled: the manufacturers' manuals; Lycoming O-320 and Continental O-200: course slide 110; Spirit of St. Louis air-cooled Wright J-5C Whirlwind: This Day in Aviation; Packard Merlin V-1650-7 liquid cooled, V-12, 1,490 hp: Smithsonian record; some diesel engines liquid cooled: FAA-H-8083-32B (2023), PDF p. 278; Rotax 912/914: Rotax SI-912-016R9 and FAA PDF p. 439.",
           "sourceRefs": [
             "gtsio520-overhaul",
             "tcm-io520-maintenance",
@@ -1218,7 +1218,7 @@
           "type": "text",
           "title": "Choosing a cooling method",
           "prompt": "There is no best cooling method, only the best for the job. Ask what the aircraft needs.\n\nA flight-school trainer or a bush plane wants light weight, few parts and cheap upkeep, and its engine sits out in the airstream anyway. Air cooling suits it, which is why most general aviation engines are air cooled.\n\nAn engine pushed to high power, where air cooling would struggle to hold temperatures in check, may justify the weight and complexity of liquid cooling. The wartime V-12s are the classic case.\n\nMany designs compromise. The Rotax 914 liquid cools only the hot cylinder heads and lets ram air cool the rest.\n\nEngineers weigh power, weight, complexity, maintenance and the installation, and the answer differs from aircraft to aircraft.",
-          "note": "That the cooling method depends on the application and aircraft type, and that most general aviation engines are air cooled, with liquid cooling supporting higher power: course slides 106 to 108 (instructor deck) and FAA-H-8083-32B (2023), PDF p. 24. The Rotax 914 compromise: FAA PDF p. 439 and Rotax SI-912-016R9. The wartime V-12 is illustrated by the Merlin record.",
+          "note": "That the cooling method depends on the application and aircraft type, and that most general aviation engines are air cooled, with liquid cooling supporting higher power: course slides 109 to 111 (instructor deck) and FAA-H-8083-32B (2023), PDF p. 24. The Rotax 914 compromise: FAA PDF p. 439 and Rotax SI-912-016R9. The wartime V-12 is illustrated by the Merlin record.",
           "sourceRefs": [
             "course-deck-2026-05",
             "faa-powerplant-2023",
@@ -1666,7 +1666,7 @@
           "type": "text",
           "title": "Where two-strokes fly",
           "prompt": "The two-stroke engine has re-emerged in ultra-light, light sport and many experimental aircraft. These engines can be air or water cooled and generally need a gear reduction housing between engine and propeller. The course's comparison lists a power stroke every revolution, light and simple construction (no valves) and compact size as advantages, against lower fuel efficiency, shorter time between overhauls, more emissions and poorer scavenging.",
-          "note": "Aircraft use, cooling and gear reduction documented from FAA-H-8083-32B (2023), PDF p. 48. The advantages and disadvantages list is the course deck, slides 65 and 67 (tier 4); it is not in the FAA or EASA text.",
+          "note": "Aircraft use, cooling and gear reduction documented from FAA-H-8083-32B (2023), PDF p. 48. The advantages and disadvantages list is the course deck, slides 68 and 70 (tier 4); it is not in the FAA or EASA text.",
           "sourceRefs": ["faa-powerplant-2023", "course-deck-2026-05"],
           "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A short comparison list needs no visual."}
         }
@@ -1706,7 +1706,7 @@
           "type": "text",
           "title": "Rotary trade-offs",
           "prompt": "The course lists the strengths of the Wankel as very compact and light, few moving parts and so low vibration, and no valves. Against that come lower thermal efficiency from the shape of the combustion chamber, poor emissions control, faster apex-seal wear, higher fuel and oil consumption, and limited certification and support in aviation.",
-          "note": "Advantages and disadvantages are the course deck, slide 71 (tier 4); they are not in the FAA or EASA text.",
+          "note": "Advantages and disadvantages are the course deck, slide 74 (tier 4); they are not in the FAA or EASA text.",
           "sourceRefs": ["course-deck-2026-05"],
           "mediaPlan": {"mode": "none", "status": "not-needed", "rationale": "A short comparison list needs no visual."}
         }

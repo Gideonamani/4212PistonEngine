@@ -153,6 +153,10 @@ This is a starting set grounded in activities already sketched elsewhere in the 
 - **13 Sep 2026** — Reveal in Learn is not gated on typing a prediction; free-text prediction is an invitation, not a requirement (matches the no-tracking, self-directed stance already documented for M2).
 - **13 Sep 2026** — Model state (camera, section, crank angle) is shared and persists across Explore/Learn/Check tabs — already true in the current shell per the M2 design doc's "the crank-angle slider is the lesson's source of truth," now confirmed as the intended behavior going forward rather than an implementation detail.
 
+## Citing the course slides
+
+Step notes cite the instructor's Notes deck by slide number (source id `course-deck-2026-05`). The deck was rebuilt on 28 October 2026 with three slides inserted after slide 40 (Aircraft Engine Family Tree, Engine Development Curves, Key Engines), so it now has 283 slides. **Citations written before 28 October 2026 use the old 280-slide numbering: add 3 to any slide number above 40.** Slides 1 to 40 did not move. The citations in `web/*-lessons.json` were moved to the new numbering on that date; new citations use the 283-slide numbers. The dated records in this folder keep the numbers they were written with.
+
 ## Open questions, not yet resolved
 
 - What minimal shape a reference/illustrative model registry entry needs (v3). It clearly doesn't need the full engine-contract fields (inspection groups, teaching components, firing phases), but hasn't been defined down to a concrete schema yet — just the capability-flag concept.

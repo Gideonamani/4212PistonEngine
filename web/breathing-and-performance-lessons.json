@@ -31,9 +31,9 @@
     {
       "id": "course-deck-2026-05",
       "tier": 4,
-      "title": "Aircraft Piston Engine Slides - 21 May 2026 (instructor course deck)",
-      "path": "Notes/Aircraft Piston Engine Slides - 21May2026.pptx",
-      "applicability": "Instructor-authored course slides. Used only where the handbook, EASA text and manuals are silent. Carries no independent evidence; claims here need the instructor's confirmation."
+      "title": "Aircraft Piston Engine Slides - 21 May 2026, corrected 28 October 2026 (instructor course deck, v5)",
+      "path": "Notes/Aircraft Piston Engine Slides - 21May2026_CORRECTED_2026-10-28_v5.pptx",
+      "applicability": "Instructor-authored course slides. Used only where the handbook, EASA text and manuals are silent. Carries no independent evidence; claims here need the instructor's confirmation. Slide numbers follow the corrected deck of 28 October 2026 (283 slides); the earlier 280-slide deck numbered every slide after 40 three lower."
     },
     {
       "id": "openstax-work-power",
@@ -540,7 +540,7 @@
           "type": "text",
           "title": "Size and compression",
           "prompt": "The size of an engine is its piston displacement: the area of the piston multiplied by the stroke, for one cylinder, and then by the number of cylinders. The area of the piston is 0.7854 × bore². The 14-cylinder handbook engine, 5.5 in bore and 5.5 in stroke, displaces 130.67 cu in a cylinder and 1,829 cu in in all. The compression ratio is the total volume divided by the clearance volume. A cylinder with a 5.0 in bore, a 3.75 in stroke and a clearance volume of 10.5 cu in sweeps 73.6 cu in, so its ratio is (73.6 + 10.5) ÷ 10.5 = 8.01:1.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 49-50 (piston displacement, the area of a circle, the 14-cylinder example with total displacement 1,829.4 cubic inches; compression ratio) and the course deck (slides 212 and 218: the 5.0 in bore, 3.75 in stroke and 10.5 cu in clearance volume example, 8.01:1). The Power Generation lesson works the same formulas for the GTSIO-520-H.",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF pp. 49-50 (piston displacement, the area of a circle, the 14-cylinder example with total displacement 1,829.4 cubic inches; compression ratio) and the course deck (slides 215 and 221: the 5.0 in bore, 3.75 in stroke and 10.5 cu in clearance volume example, 8.01:1). The Power Generation lesson works the same formulas for the GTSIO-520-H.",
           "sourceRefs": [
             "faa-powerplant-2023",
             "course-deck-2026-05"
@@ -585,7 +585,7 @@
           "type": "text",
           "title": "Worked example",
           "prompt": "A four-cylinder, four-stroke engine runs at 2,400 rpm. The bore is 5.0 in, the stroke 4.5 in and the indicated mean effective pressure 135 psi. A = 0.7854 × 5.0² = 19.635 sq in. L = 4.5 ÷ 12 = 0.375 ft. N = 2,400 ÷ 2 = 1,200 power strokes a minute. K = 4. Then ihp = 135 × 0.375 × 19.635 × 1,200 × 4 ÷ 33,000 = 144.6 hp. Write each term down before you multiply: most mistakes are a stroke left in inches or an rpm that has not been halved.",
-          "note": "Calculation from the course deck (slide 219: four cylinders, four-stroke, 2,400 rpm, bore 5.0 in, stroke 4.5 in, mean effective pressure 135 psi), using the formula of FAA-H-8083-32B (2023), PDF pp. 50-52. The deck gives the problem without an answer; the answer is calculated here and checked in the unit tests.",
+          "note": "Calculation from the course deck (slide 222: four cylinders, four-stroke, 2,400 rpm, bore 5.0 in, stroke 4.5 in, mean effective pressure 135 psi), using the formula of FAA-H-8083-32B (2023), PDF pp. 50-52. The deck gives the problem without an answer; the answer is calculated here and checked in the unit tests.",
           "sourceRefs": [
             "course-deck-2026-05",
             "faa-powerplant-2023"
@@ -722,7 +722,7 @@
           "type": "text",
           "title": "Volumetric efficiency",
           "prompt": "Volumetric efficiency compares the volume of charge the engine actually draws in, corrected for temperature and pressure, with the piston displacement. At standard sea-level conditions, 15 °C and 29.92 inches of mercury, a charge that exactly fills the displacement is 100 percent. A naturally aspirated engine draws in less, so its volumetric efficiency is lower. Part-throttle operation, long small-bore intake pipes and sharp bends in the induction system all reduce it. An engine with true supercharging, boosting above 30 inches, can exceed 100 percent. The course deck gives about 75 to 85 percent for a naturally aspirated engine.",
-          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 56 (volumetric efficiency as the volume of charge corrected for temperature and pressure compared with the piston displacement; standard sea level 59 °F or 15 °C, 29.92 inches of mercury; factors that reduce it; true supercharging above 30 inches may give more than 100 percent). The 75 to 85 percent typical value is from the course deck (slide 226).",
+          "note": "Documented from FAA-H-8083-32B (2023), PDF p. 56 (volumetric efficiency as the volume of charge corrected for temperature and pressure compared with the piston displacement; standard sea level 59 °F or 15 °C, 29.92 inches of mercury; factors that reduce it; true supercharging above 30 inches may give more than 100 percent). The 75 to 85 percent typical value is from the course deck (slide 229).",
           "sourceRefs": [
             "faa-powerplant-2023",
             "course-deck-2026-05"
@@ -737,7 +737,7 @@
           "type": "text",
           "title": "Propulsive and overall efficiency",
           "prompt": "Propulsive efficiency is how well the engine and propeller turn brake horsepower into thrust: the thrust horsepower divided by the brake horsepower. It depends on the propeller's design, the airspeed, the altitude and the propeller speed. The overall efficiency is the combined result of them all, thermal, mechanical, volumetric and propulsive, from the fuel to the thrust. If any one is poor, say the engine breathes badly, it drags the whole chain down.",
-          "note": "The efficiency types follow FAA-H-8083-32B (2023), PDF pp. 54-56 (thrust horsepower and the propeller's efficiency; thermal, mechanical and volumetric efficiency). The definitions of propulsive and overall efficiency and their key factors are from the course deck (slides 221-222 and 227-228); the handbook pages read here do not define overall efficiency.",
+          "note": "The efficiency types follow FAA-H-8083-32B (2023), PDF pp. 54-56 (thrust horsepower and the propeller's efficiency; thermal, mechanical and volumetric efficiency). The definitions of propulsive and overall efficiency and their key factors are from the course deck (slides 224-225 and 230-231); the handbook pages read here do not define overall efficiency.",
           "sourceRefs": [
             "faa-powerplant-2023",
             "course-deck-2026-05"
@@ -810,7 +810,7 @@
           "type": "text",
           "title": "The data plate and the engine's name",
           "prompt": "Every certified engine carries a permanent, fireproof data plate. It identifies the engine with at least its maker, its model and its serial number. The serial number lets you track its total time, its time since overhaul and any airworthiness directives.\n\nThe model name is a code, which lesson 5 decoded. In GTSIO-520-H the manual's general information says the engine is geared, turbocharged, fuel injected and horizontally opposed, and 520 is its displacement in cubic inches.\n\nThe H marks the variant. A limit that belongs to another variant does not apply to this one, so always check the variant before you read a figure.",
-          "note": "The regulatory content of the data plate (14 CFR 45.13 and EASA Part 21) and the use of the serial number are from the course deck (slide 207); the handbook pages read here do not describe the engine data plate, so the instructor should confirm the wording against the regulation. The engine's description is from the Continental GTSIO-520 overhaul manual, PDF p. 152 (C-3-2: geared, turbocharged, six-cylinder, fuel injected, horizontally opposed, 520 cubic inches). The deck reads the letters as G for geared, TS for turbosupercharged, I for fuel injected and O for opposed.",
+          "note": "The regulatory content of the data plate (14 CFR 45.13 and EASA Part 21) and the use of the serial number are from the course deck (slide 210); the handbook pages read here do not describe the engine data plate, so the instructor should confirm the wording against the regulation. The engine's description is from the Continental GTSIO-520 overhaul manual, PDF p. 152 (C-3-2: geared, turbocharged, six-cylinder, fuel injected, horizontally opposed, 520 cubic inches). The deck reads the letters as G for geared, TS for turbosupercharged, I for fuel injected and O for opposed.",
           "sourceRefs": [
             "course-deck-2026-05",
             "gtsio520-overhaul"
@@ -942,7 +942,7 @@
           "type": "text",
           "title": "An air breather",
           "prompt": "A piston engine is an air breather. It takes in air, adds fuel, lights the charge and takes power from the expanding gas. So anything that changes the quality of the air, or the way the engine burns the charge, changes the power. Before you read on, list what you think can lower an engine's power. Then sort your list into two kinds: things nature changes, and things that can be wrong with the engine.",
-          "note": "Documented from EASA Module 16, PDF p. 37 (the typical aircraft engine is an \"air breather\"; anything that adversely impacts the quality of the atmosphere affects the power output; nature's variables and mechanical issues). The sort into natural and mechanical factors follows the module and the course deck (slides 229-239, 243).",
+          "note": "Documented from EASA Module 16, PDF p. 37 (the typical aircraft engine is an \"air breather\"; anything that adversely impacts the quality of the atmosphere affects the power output; nature's variables and mechanical issues). The sort into natural and mechanical factors follows the module and the course deck (slides 232-242, 246).",
           "sourceRefs": [
             "easa-module16",
             "course-deck-2026-05"
@@ -972,7 +972,7 @@
           "type": "text",
           "title": "Altitude and pressure",
           "prompt": "As an aircraft climbs, the air pressure falls and the air gets thinner. It holds fewer molecules of oxygen in each unit of volume. A piston engine draws in the same volume of air on every intake stroke, whatever the altitude, so each stroke takes in less oxygen and the engine makes less power. The course rule of thumb is a loss of about 3% of the power for every 1,000 ft of climb in a naturally aspirated engine, which the interactive agrees with. A supercharged or turbocharged engine makes up the lost pressure up to its critical altitude.",
-          "note": "Documented from EASA Module 16, PDF pp. 37-38 (ambient pressure falls with altitude; the air becomes rarified, with less oxygen per unit volume; each intake stroke ingests less oxygen at altitude, so the horsepower is reduced; an engine with no supercharging struggles at 15,000 ft). The 3% per 1,000 ft rule of thumb is from the course deck (slide 230) and agrees with the standard-atmosphere model used in the interactive (about 2.8% per 1,000 ft to 5,000 ft). Turbocharging is covered in Induction & Exhaust.",
+          "note": "Documented from EASA Module 16, PDF pp. 37-38 (ambient pressure falls with altitude; the air becomes rarified, with less oxygen per unit volume; each intake stroke ingests less oxygen at altitude, so the horsepower is reduced; an engine with no supercharging struggles at 15,000 ft). The 3% per 1,000 ft rule of thumb is from the course deck (slide 233) and agrees with the standard-atmosphere model used in the interactive (about 2.8% per 1,000 ft to 5,000 ft). Turbocharging is covered in Induction & Exhaust.",
           "sourceRefs": [
             "easa-module16",
             "course-deck-2026-05"
@@ -1001,7 +1001,7 @@
           "type": "text",
           "title": "Humidity",
           "prompt": "Air always carries some water vapour, and the vapour takes up room that oxygen would otherwise fill. When the humidity is high there is less oxygen per unit volume of air, so each intake stroke takes in less oxygen and the combustion of the charge is altered. The effect is small on its own: saturated air on a standard day holds about 2% less dry air. On a hot, humid day it adds to the effect of the heat, and the interactive shows a loss of about 10% at sea level.",
-          "note": "Documented from EASA Module 16, PDF p. 39 (high humidity means less oxygen per unit volume because of the space occupied by water vapour, so each intake stroke pulls in less oxygen). The figures are from the standard-atmosphere model in the interactive (Magnus formula for the vapour pressure): saturated air at 15 °C is 1.7% water vapour by pressure. The course deck (slide 233) gives a 1-3% loss.",
+          "note": "Documented from EASA Module 16, PDF p. 39 (high humidity means less oxygen per unit volume because of the space occupied by water vapour, so each intake stroke pulls in less oxygen). The figures are from the standard-atmosphere model in the interactive (Magnus formula for the vapour pressure): saturated air at 15 °C is 1.7% water vapour by pressure. The course deck (slide 236) gives a 1-3% loss.",
           "sourceRefs": [
             "easa-module16",
             "course-deck-2026-05"
@@ -1179,7 +1179,7 @@
             "LowerSparkPlug",
             "LowerSparkInsulator"
           ],
-          "note": "Documented from EASA Module 16, PDF p. 41 (cylinder compression is needed to extract the heat energy of the charge; the piston rings and cylinder walls wear and leak; the intake and exhaust valves may become leaky). The course deck (slide 243) adds a leaky head gasket. The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
+          "note": "Documented from EASA Module 16, PDF p. 41 (cylinder compression is needed to extract the heat energy of the charge; the piston rings and cylinder walls wear and leak; the intake and exhaust valves may become leaky). The course deck (slide 246) adds a leaky head gasket. The cylinder is a teaching reconstruction of the GTSIO-520-H cylinder (reviewed release): part shapes and the motions are illustrative.",
           "sourceRefs": [
             "easa-module16",
             "course-deck-2026-05"
