@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import type { PartBox, ViewerRuntime } from '../types';
 
 export function disposeObject(root: THREE.Object3D) {
   const materials = new Set<THREE.Material>();
@@ -18,6 +19,36 @@ export function disposeObject(root: THREE.Object3D) {
 
 export function meshMaterials(mesh: THREE.Mesh) {
   return (Array.isArray(mesh.material) ? mesh.material : [mesh.material]).filter(Boolean) as THREE.Material[];
+}
+
+/**
+ * The box each part occupies in world space: the union of the boxes of the meshes that belong to it. A part with no geometry is left out.
+ * Boxes follow the model's pose when they are asked for, so the viewer answers them at the pose it opened in.
+ */
+export function partBoxes(owned: Iterable<[string, THREE.Object3D]>): PartBox[] {
+  const boxes = new Map<string, THREE.Box3>();
+  for (const [id, object] of owned) {
+    object.updateWorldMatrix(true, false);
+    const box = new THREE.Box3().setFromObject(object);
+    if (box.isEmpty()) continue;
+    const known = boxes.get(id);
+    if (known) known.union(box); else boxes.set(id, box);
+  }
+  return [...boxes].map(([id, box]) => ({ id, min: box.min.toArray() as PartBox['min'], max: box.max.toArray() as PartBox['max'] }));
+}
+
+/**
+ * Moves the camera to look at these objects, leaving what is drawn and the view Reset returns to alone. It never comes closer than a fifth
+ * of the whole model, so a small part keeps some of the model around it to place it by.
+ */
+export function frameObjects(runtime: ViewerRuntime, objects: THREE.Object3D[], whole: THREE.Object3D, padding = 1.4) {
+  const box = new THREE.Box3();
+  for (const object of objects) box.expandByObject(object);
+  if (box.isEmpty()) return;
+  const sphere = box.getBoundingSphere(new THREE.Sphere());
+  const wholeSphere = new THREE.Box3().setFromObject(whole).getBoundingSphere(new THREE.Sphere());
+  const radius = Math.max(sphere.radius, wholeSphere.radius * 0.2);
+  runtime.focus(sphere.center, radius / Math.sin(THREE.MathUtils.degToRad(runtime.camera.fov) / 2) * padding);
 }
 
 export { createSectionController } from './section-controller.mjs';

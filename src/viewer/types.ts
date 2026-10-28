@@ -30,11 +30,24 @@ export type ModelComponent = {
   groups?: string[];
   /** Extra words the Parts search matches besides the label and description (other names a learner may type). */
   searchText?: string;
+  /** The learner-facing details of this part, for a model that has them. A Check quiz asks about the part from them. */
+  details?: LearnerPart;
 };
 
 export type ModelGroup = {
   id: string;
   label: string;
+  /** How deep the group sits in the model's subassembly tree (0 is a whole system), for a model whose data says. */
+  depth?: number;
+  /** The question the group answers ("How is combustion started?"), for a model whose data says. */
+  question?: string;
+};
+
+/** The box a part occupies in the model's world space, at the pose it opened in. */
+export type PartBox = {
+  id: string;
+  min: [number, number, number];
+  max: [number, number, number];
 };
 
 export type ViewerSnapshot = {
@@ -46,6 +59,8 @@ export type ViewerSnapshot = {
   /** The learner-facing details of the selected part, for a model that has them (the GTSIO-520-H whole engine). */
   selectedDetails?: LearnerPart;
   isolated?: boolean;
+  /** The parts the learner has hidden to look beneath them (see features.components.hide). */
+  hiddenIds?: string[];
   appearance?: AppearanceMode;
   angle?: number;
   playing?: boolean;
@@ -91,7 +106,21 @@ export type ViewerFeatures = {
     select: (id: string) => void;
     isolate: () => void;
     isolateGroup?: (groupId: string) => void;
+    /** Brings every part back: hidden ones, an isolation and a spotlight alike. */
     showAll: () => void;
+    /**
+     * Hide these parts so the learner can see what lies beneath them. A hidden part cannot be tapped, and hiding the selected part clears
+     * the selection. Throws nothing for an unknown id; it is ignored.
+     */
+    hide?: (ids: string[]) => void;
+    /** Bring back the parts the latest hide took away. */
+    undoHide?: () => void;
+    /** Bring back every hidden part and leave everything else as it is. */
+    showHidden?: () => void;
+    /** The box each part occupies, for judging which parts are big enough to tap and which sit inside others. */
+    boxes?: () => PartBox[];
+    /** Move the camera to look at these parts. What is drawn stays as it is, and Reset still returns to the whole model. */
+    frame?: (ids: string[]) => void;
   };
   motion?: {
     setAngle: (angle: number) => void;

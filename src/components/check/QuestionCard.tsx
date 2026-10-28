@@ -123,14 +123,35 @@ function CatalogueNotice({ catalogue }: { catalogue: PartNumberCatalogue }) {
 
 const VIEWER_LOADING = <div className="flex h-56 items-center justify-center rounded-xl border border-teal-400/20 bg-stage text-xs text-teal-300">Preparing interactive 3D viewer…</div>;
 
+/** What a question asks: the kind of answer it wants, the question itself and its hint. */
+export const QuestionHead: React.FC<{ question: QuizQuestion }> = ({ question }) => <>
+  <div className="flex items-center justify-between font-mono text-xs"><span className="font-bold tracking-wider text-teal-400">{typeLabel[question.type]}</span></div>
+  <h3 className="text-base font-bold leading-snug text-white sm:text-lg">{question.question}</h3>
+  {question.hint && <div className="flex gap-2 rounded-xl border border-amber-500/25 bg-amber-950/20 p-3 text-xs leading-relaxed text-amber-100"><Lightbulb className="h-4 w-4 shrink-0 text-amber-300" />{question.hint}</div>}
+</>;
+
+type QuestionFootProps = Pick<QuestionCardProps, 'question' | 'answer' | 'revealed' | 'onVerify' | 'onNext' | 'isLast'> & { finishLabel?: string };
+
+/** Verify, and after Verify whether the answer was right, why, and the way on. */
+export const QuestionFoot: React.FC<QuestionFootProps> = ({ question, answer, revealed, onVerify, onNext, isLast, finishLabel = 'Finish assessment' }) => {
+  const correct = isCorrect(question, answer);
+  return !revealed
+    ? <button disabled={!isAnswered(question, answer)} onClick={onVerify} className="min-h-11 w-full rounded-xl bg-teal-400 py-3 text-xs font-bold text-slate-950 shadow-lg shadow-teal-400/20 disabled:cursor-not-allowed disabled:bg-slate-800 disabled:text-slate-400">Verify answer</button>
+    : <div className="flex flex-col gap-3 border-t border-slate-800 pt-3">
+      <div className={`rounded-xl border p-3.5 text-xs leading-relaxed ${correct ? 'border-teal-500/40 bg-teal-950/40 text-teal-100' : 'border-rose-500/40 bg-rose-950/35 text-rose-100'}`}>
+        <strong className="mb-1 block font-mono tracking-wide">{correct ? 'CORRECT — WHY IT MATTERS' : 'REVIEW THE EVIDENCE'}</strong>
+        {question.type === 'numeric' && <p className="mb-1.5 font-semibold">{correct ? 'Your answer: ' : 'The answer is '}{correct ? `${answer} ${question.unit}` : describeNumericAnswer(question)}{!correct && <span className="font-normal"> (you entered {String(answer)} {question.unit})</span>}</p>}
+        {question.explanation}
+      </div>
+      <button onClick={onNext} className="flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-teal-400 py-3 text-xs font-bold text-slate-950">{isLast ? finishLabel : 'Next question'}<ChevronRight className="h-4 w-4" /></button>
+    </div>;
+};
+
 /** One Check question: its prompt and hint, the answer area for its type, then Verify, and after Verify the explanation and the way on. */
 export const QuestionCard: React.FC<QuestionCardProps> = ({ question, optionOrder, answer, onAnswer, revealed, onVerify, onNext, isLast }) => {
-  const correct = isCorrect(question, answer);
   const props = { answer, onAnswer, revealed, onVerify };
   return <section className="flex flex-col gap-4 rounded-2xl border border-teal-500/30 bg-panel p-5 shadow-xl">
-    <div className="flex items-center justify-between font-mono text-xs"><span className="font-bold tracking-wider text-teal-400">{typeLabel[question.type]}</span></div>
-    <h3 className="text-base font-bold leading-snug text-white sm:text-lg">{question.question}</h3>
-    {question.hint && <div className="flex gap-2 rounded-xl border border-amber-500/25 bg-amber-950/20 p-3 text-xs leading-relaxed text-amber-100"><Lightbulb className="h-4 w-4 shrink-0 text-amber-300" />{question.hint}</div>}
+    <QuestionHead question={question} />
     {question.type === 'multiple-choice' && <ChoiceAnswer question={question} optionOrder={optionOrder} {...props} />}
     {question.type === 'ordering' && <OrderingAnswer question={question} {...props} />}
     {question.type === 'matching' && <MatchingAnswer question={question} {...props} />}
@@ -138,15 +159,6 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, optionOrde
     {question.type === 'model-click' && <Suspense fallback={VIEWER_LOADING}><PartPicker question={question} answer={Array.isArray(answer) ? answer : undefined} onAnswer={onAnswer} revealed={revealed} /></Suspense>}
     {question.type === 'name-part' && <><Suspense fallback={VIEWER_LOADING}><PartShowcase question={question} /></Suspense><ChoiceAnswer question={question} optionOrder={optionOrder} {...props} /></>}
     {question.type === 'part-number' && <><Suspense fallback={VIEWER_LOADING}><PartShowcase question={question} /></Suspense><CatalogueNotice catalogue={question.catalogue} /><ChoiceAnswer question={question} optionOrder={optionOrder} {...props} /></>}
-    {!revealed
-      ? <button disabled={!isAnswered(question, answer)} onClick={onVerify} className="min-h-11 w-full rounded-xl bg-teal-400 py-3 text-xs font-bold text-slate-950 shadow-lg shadow-teal-400/20 disabled:cursor-not-allowed disabled:bg-slate-800 disabled:text-slate-400">Verify answer</button>
-      : <div className="flex flex-col gap-3 border-t border-slate-800 pt-3">
-        <div className={`rounded-xl border p-3.5 text-xs leading-relaxed ${correct ? 'border-teal-500/40 bg-teal-950/40 text-teal-100' : 'border-rose-500/40 bg-rose-950/35 text-rose-100'}`}>
-          <strong className="mb-1 block font-mono tracking-wide">{correct ? 'CORRECT — WHY IT MATTERS' : 'REVIEW THE EVIDENCE'}</strong>
-          {question.type === 'numeric' && <p className="mb-1.5 font-semibold">{correct ? 'Your answer: ' : 'The answer is '}{correct ? `${answer} ${question.unit}` : describeNumericAnswer(question)}{!correct && <span className="font-normal"> (you entered {String(answer)} {question.unit})</span>}</p>}
-          {question.explanation}
-        </div>
-        <button onClick={onNext} className="flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-teal-400 py-3 text-xs font-bold text-slate-950">{isLast ? 'Finish assessment' : 'Next question'}<ChevronRight className="h-4 w-4" /></button>
-      </div>}
+    <QuestionFoot question={question} answer={answer} revealed={revealed} onVerify={onVerify} onNext={onNext} isLast={isLast} />
   </section>;
 };

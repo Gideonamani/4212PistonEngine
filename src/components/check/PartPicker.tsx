@@ -1,82 +1,82 @@
-import React, { useEffect, useId, useMemo, useState } from 'react';
-import { RotateCcw } from 'lucide-react';
+import React, { useEffect, useMemo } from 'react';
 import { modelsById } from '../../data/modelRegistry';
 import type { ModelClickQuestion } from '../../types/engine';
 import { lessonProfile } from '../../viewer/core/view-state.mjs';
-import { ModelCanvas, PanToggle, ToolbarButton, UnknownModel, WheelZoomHint, useViewerHint } from '../../viewer/ViewerParts';
-import { useModelViewer } from '../../viewer/useModelViewer';
+import { UnknownModel } from '../../viewer/ViewerParts';
+import { useModelViewer, type ModelViewerState } from '../../viewer/useModelViewer';
+import { PartStage } from './PartStage';
 import { acceptedNodeIds, nodeIdsOf } from './scoring.mjs';
 
-type PartPickerProps = {
-  question: ModelClickQuestion;
+type PartPickerBodyProps = {
+  /** The model the learner taps, owned by the caller so one model can serve several questions in a row. */
+  viewer: ModelViewerState;
+  /** The question being answered; none while the questions are still being made or after the last. */
+  question: ModelClickQuestion | undefined;
   /** The node ids the tapped part answers to (its own id first), or undefined while nothing is tapped. */
   answer: string[] | undefined;
   onAnswer: (answer: string[]) => void;
   /** True once the answer is verified: tapping stops counting and the right part is shown. */
   revealed: boolean;
+  tall?: boolean;
 };
 
 /**
- * The answer area of a model-click question: a 3D model the learner taps, and a list to choose from when the model cannot be used. The
- * model's own picking does the work: a tap selects a component (highlighting it), and the component's id and groups become the answer.
- * The part's name is never shown before Verify, so tapping around cannot find the answer by reading labels.
+ * The answer area of a model-click question: a 3D model the learner taps, with the means to hide parts and look beneath them. The model's
+ * own picking does the work: a tap selects a component (highlighting it), and the component's id and groups become the answer. The part's
+ * name is never shown before Verify, so tapping around cannot find the answer by reading labels, and no list of names is offered.
  */
-export default function PartPicker({ question, answer, onAnswer, revealed }: PartPickerProps) {
-  const definition = modelsById[question.modelId];
-  const view = useMemo(() => ({ initialAngle: question.view?.initialAngle }), [question.view?.initialAngle]);
-  const viewer = useModelViewer(question.modelId, lessonProfile(definition?.adapter), view);
-  const hint = useViewerHint(viewer);
-  const listId = useId();
-  // What was chosen from the list. A tap on the model replaces it, so the list never shows the name of a part that was tapped.
-  const [listChoice, setListChoice] = useState('');
+export function PartPickerBody({ viewer, question, answer, onAnswer, revealed, tall }: PartPickerBodyProps) {
   const components = viewer.features?.components;
+  const focus = viewer.features?.focus;
   const selectedId = viewer.snapshot.selectedId;
   const label = (id?: string) => components?.items.find((item) => item.id === id)?.label ?? components?.groups.find((group) => group.id === id)?.label;
 
-  // A tap (or a choice from the list) selects a component in the model; its ids are the answer until the answer is verified.
+  // A tap selects a component in the model; its ids are the answer until the answer is verified. Hiding the tapped part clears it.
   useEffect(() => {
-    if (revealed || !components || !selectedId) return;
+    if (revealed || !components || !question) return;
+    if (!selectedId) {
+      if (answer?.length) onAnswer([]);
+      return;
+    }
     const ids = nodeIdsOf(components.items.find((item) => item.id === selectedId));
     if (ids.length && ids.join('|') !== (answer ?? []).join('|')) onAnswer(ids);
   }, [selectedId, components, revealed]);
 
-  useEffect(() => { if (selectedId !== listChoice) setListChoice(''); }, [selectedId]);
-
-  // Once verified, the right part is highlighted whatever was tapped.
+  // Once verified, every part that was right is shown, whatever was tapped and whatever was hidden. A part that was inside the engine is
+  // shown on its own, because among the ghosts of the parts around it nothing stands out; any other is highlighted where it sits, and the
+  // camera moves to it.
+  const buried = Boolean(question?.generated?.buried);
   useEffect(() => {
-    if (revealed && components && components.items.some((item) => item.id === question.correctNodeId)) components.select(question.correctNodeId);
-  }, [revealed, components, question.correctNodeId]);
+    if (!revealed || !components || !question) return;
+    const right = components.items.filter((item) => acceptedNodeIds(question).some((id) => nodeIdsOf(item).includes(id))).map((item) => item.id);
+    components.showHidden?.();
+    components.select('');
+    if (right.length && focus) focus.set(right, buried ? 'isolate' : 'highlight');
+    if (right.length && !buried) components.frame?.(right);
+  }, [revealed, components, question?.id]);
 
-  if (!definition) return <UnknownModel modelId={question.modelId} />;
   const tapped = answer?.[0];
-  const sorted = components ? [...components.items].sort((a, b) => a.label.localeCompare(b.label, 'en')) : [];
+  const rightLabel = question?.generated?.answer ?? label(question?.correctNodeId) ?? question?.correctNodeId;
 
   return <div className="flex flex-col gap-2.5">
-    <section className="overflow-hidden rounded-xl border border-teal-400/20 bg-stage" aria-label={`Interactive 3D model of the ${definition.label}: tap the part`}>
-      <div className="relative h-[min(58vh,22rem)]">
-        <ModelCanvas viewer={viewer} />
-        <div className="absolute right-1 top-1 z-10 flex items-center">
-          <PanToggle viewer={viewer} />
-          <ToolbarButton label="Reset and centre 3D view" onClick={viewer.resetView}><RotateCcw className="h-4 w-4" /></ToolbarButton>
-        </div>
-        <WheelZoomHint viewer={viewer} />
-      </div>
-      <p className="truncate border-t border-slate-800/80 px-3 py-2 text-[11px] text-slate-400">{hint}</p>
-    </section>
-    <p role="status" className="text-xs leading-snug text-slate-300">
+    <PartStage viewer={viewer} tall={tall} />
+    {question && <p role="status" className="text-xs leading-snug text-slate-300">
       {revealed
-        ? <>You tapped <strong className="text-white">{label(tapped) ?? 'no part'}</strong>. The right answer is <strong className="text-teal-200">{label(question.correctNodeId) ?? question.correctNodeId}</strong>{acceptedNodeIds(question).length > 1 ? ' (or another part that counts)' : ''}.</>
+        ? <>You tapped <strong className="text-white">{label(tapped) ?? 'no part'}</strong>. The right answer is <strong className="text-teal-200">{rightLabel}</strong>{acceptedNodeIds(question).length > 1 && !question.generated ? ' (or another part that counts)' : ''}.{buried ? ' It is shown on its own; tap Show all to see the whole model again.' : ''}</>
         : tapped
           ? 'A part is highlighted. Tap another to change your answer, then verify.'
           : 'Tap a part on the model to choose it. Drag to turn the model, pinch to zoom.'}
-    </p>
-    <details className="rounded-xl border border-slate-700/60 bg-slate-900/40 px-3 py-2 text-xs text-slate-300">
-      <summary className="min-h-11 cursor-pointer py-2.5 font-semibold text-slate-200">Cannot use the model? Choose the part from a list</summary>
-      <label htmlFor={listId} className="mb-1.5 block text-xs font-semibold text-slate-300">Part</label>
-      <select id={listId} disabled={revealed || !components} value={listChoice} onChange={(event) => { setListChoice(event.target.value); components?.select(event.target.value); }} className="min-h-11 w-full rounded-lg border border-slate-600 bg-slate-950 px-2.5 text-base text-slate-100 focus:border-teal-400 focus:outline-none disabled:opacity-80 sm:text-sm">
-        <option value="">Choose a part…</option>
-        {sorted.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
-      </select>
-    </details>
+    </p>}
   </div>;
+}
+
+type PartPickerProps = Omit<PartPickerBodyProps, 'viewer' | 'question'> & { question: ModelClickQuestion };
+
+/** A model-click question inside a lesson pack's check: it opens its own model, because the question names which one. */
+export default function PartPicker({ question, ...rest }: PartPickerProps) {
+  const definition = modelsById[question.modelId];
+  const view = useMemo(() => ({ initialAngle: question.view?.initialAngle }), [question.view?.initialAngle]);
+  const viewer = useModelViewer(question.modelId, lessonProfile(definition?.adapter), view);
+  if (!definition) return <UnknownModel modelId={question.modelId} />;
+  return <PartPickerBody viewer={viewer} question={question} {...rest} />;
 }

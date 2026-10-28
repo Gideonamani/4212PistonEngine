@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import type { Locator, Page } from '@playwright/test';
 import { appReady, expect } from './fixtures';
 
@@ -26,6 +27,26 @@ export async function openViewerStep(page: Page, hash = MODEL_STEP, { loadModel 
   const canvasHost = page.getByRole('application');
   await expect(canvasHost).toBeVisible({ timeout: 60_000 });
   return { canvasHost, viewer: page.getByRole('region', { name: /Interactive 3D model of/ }) };
+}
+
+/** The operating cylinder's parts in the order its viewer lists them (by name), so a test can step to a part it knows while the page never lists names. */
+export const cylinderParts = (JSON.parse(fs.readFileSync('web/components.json', 'utf8')).parts as { display_name?: string; cad_stable_id: string }[])
+  .map((part) => part.display_name || part.cad_stable_id)
+  .sort((left, right) => left.localeCompare(right));
+
+/**
+ * Choose one of the operating cylinder's parts in a part question by stepping to it: the keyboard route, which is also how a test reaches a
+ * known part without a list of names (a part question offers none). Waits for the model to load, since stepping works once its parts are known.
+ */
+export async function stepToCylinderPart(page: Page, name: string) {
+  const position = cylinderParts.indexOf(name) + 1;
+  expect(position, `${name} is one of the cylinder's parts`).toBeGreaterThan(0);
+  const next = page.getByRole('button', { name: 'Next', exact: true });
+  if (!(await next.isVisible())) await page.getByText('Cannot tap the model? Step through the parts').click();
+  await expect(next).toBeEnabled({ timeout: 60_000 });
+  // Whatever was chosen before, stepping on round the sequence gets there.
+  for (let guard = 0; guard < cylinderParts.length && !(await page.getByText(`Part ${position} of`).isVisible()); guard += 1) await next.click();
+  await expect(page.getByText(/^Part \d+ of \d+$/)).toContainText(`Part ${position} of`);
 }
 
 /** The nearest scrolling ancestor of an element: the lesson's scroll area. */

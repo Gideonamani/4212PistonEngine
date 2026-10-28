@@ -4,7 +4,8 @@ import { createExplodedMotion, stopsOf } from '../core/saved-motions.mjs';
 import { learnerPartFor, learnerSearchText, loadLearnerParts, type LearnerPart } from '../../data/learnerPartDetails';
 import { cylinderPartGroup, groupComponentIds } from '../core/component-groups.mjs';
 import { loadGltf } from '../core/assets';
-import { createSectionController, disposeObject } from '../core/modelUtils';
+import { createSectionController, disposeObject, frameObjects, partBoxes } from '../core/modelUtils';
+import { createHiddenParts } from '../core/part-visibility.mjs';
 import { mechanismPose } from '../engineering/kinematics.mjs';
 import { valveMatrices } from '../engineering/valve-transforms.mjs';
 import { createCycleVisuals } from '../engineering/cycle-visuals.mjs';
@@ -122,6 +123,8 @@ export async function createCylinderSession(definition: ModelDefinition, context
   let selectedId = '';
   let isolated = false;
   const isolatedParts = new Set<string>();
+  // Parts the learner has hidden to look beneath them: out of sight whatever the spotlight or an isolation would show.
+  const hidden = createHiddenParts();
   const focusSet = new Set(context.focusParts || []);
   let focusMode: FocusMode = focusModeOrDefault(context.focusMode);
   let playing = false;
@@ -133,7 +136,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
 
   // Highlight would hide a spotlit part that sits inside another, so it is drawn as X-ray for as long as that is so.
   const spotlightMode = () => focusSet.size > 0
-    ? effectiveFocusMode(focusMode, meshes.filter((mesh) => focusSet.has(mesh.userData.partId)), meshes.filter((mesh) => !focusSet.has(mesh.userData.partId) && (!isolated || isolatedParts.has(mesh.userData.partId))), section.cut())
+    ? effectiveFocusMode(focusMode, meshes.filter((mesh) => focusSet.has(mesh.userData.partId)), meshes.filter((mesh) => !focusSet.has(mesh.userData.partId) && (!isolated || isolatedParts.has(mesh.userData.partId)) && !hidden.has(mesh.userData.partId)), section.cut())
     : focusMode;
   const applyAppearance = () => {
     const palette = spotlightPalette(runtime.theme?.());
@@ -142,13 +145,14 @@ export async function createCylinderSession(definition: ModelDefinition, context
     pale.color.set(palette.paleColor);
     const spotlight = focusSet.size > 0;
     const mode = drawnMode = spotlightMode();
+    snapshot.hiddenIds = hidden.ids();
     snapshot.focusActive = spotlight;
     snapshot.focusMode = focusMode;
     snapshot.focusFallback = mode !== focusMode;
     for (const mesh of meshes) {
       const id = mesh.userData.partId;
       const { visible, look } = partLook(mode, partRole(spotlight, focusSet.has(id)));
-      mesh.visible = visible && (!isolated || isolatedParts.has(id));
+      mesh.visible = visible && (!isolated || isolatedParts.has(id)) && !hidden.has(id);
       mesh.material = id === selectedId || look === 'highlight'
         ? highlight
         : look === 'ghost'
@@ -325,6 +329,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
     evidence: part.geometry_evidence_status,
     // The other names a learner knows a part by (tappet, rocker arm) find it in the Parts search.
     searchText: detailsById.has(id) ? learnerSearchText(detailsById.get(id)!) : undefined,
+    details: detailsById.get(id),
   })).sort((left, right) => left.label.localeCompare(right.label));
   const groups: ModelGroup[] = [
     { id: '', label: 'All groups' },
@@ -343,6 +348,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
     // Lesson step change on the already-loaded model: new pose, cycle cues and spotlight without reloading the GLB.
     update(view) {
       setPlaying(false);
+      hidden.clear();
       cycleEnabled = Boolean(view.initialCycle);
       snapshot.cycleEnabled = cycleEnabled;
       cycleVisuals?.setVisible(cycleEnabled);
@@ -420,6 +426,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
         showAll() {
           selectedId = '';
           isolated = false;
+          hidden.clear();
           focusSet.clear();
           snapshot.selectedId = undefined;
           snapshot.selectedLabel = undefined;
@@ -430,6 +437,14 @@ export async function createCylinderSession(definition: ModelDefinition, context
           runtime.fit(root);
           onChange();
         },
+        hide(ids) {
+          if (!hidden.hide(ids.filter((id) => catalogueById.has(id))).length) return;
+          if (hidden.has(selectedId)) select(''); else { applyAppearance(); onChange(); }
+        },
+        undoHide() { if (hidden.undo().length) { applyAppearance(); onChange(); } },
+        showHidden() { if (hidden.clear()) { applyAppearance(); onChange(); } },
+        boxes: () => partBoxes(meshes.map((mesh): [string, THREE.Object3D] => [mesh.userData.partId, mesh])),
+        frame: (ids) => frameObjects(runtime, meshes.filter((mesh) => ids.includes(mesh.userData.partId)), root),
       },
       savedMotions: savedProfile ? {
         items: [{ id: 'operating', label: 'Operating cycle', stages: [] }, ...[...savedMotions].map(([id, entry]) => ({ id, label: entry.label, stages: stagesOf(entry) }))],

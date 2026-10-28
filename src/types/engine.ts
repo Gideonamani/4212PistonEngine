@@ -134,7 +134,15 @@ export interface NumericQuestion extends QuizQuestionBase { type: 'numeric'; uni
  * The learner taps a part on a 3D model. `correctNodeId` is the id of a component of that model, or of a group of them (any part in the
  * group is then right); `alsoAccept` lists further ids that are right too. `view` is the pose the model opens in.
  */
-export interface ModelClickQuestion extends QuizQuestionBase { type: 'model-click'; modelId: string; correctNodeId: string; alsoAccept?: string[]; view?: { initialAngle?: number } }
+export interface ModelClickQuestion extends QuizQuestionBase {
+  type: 'model-click';
+  modelId: string;
+  correctNodeId: string;
+  alsoAccept?: string[];
+  view?: { initialAngle?: number };
+  /** Present on a question the app made from a model's part data (part-quiz.mjs), not one a lesson pack wrote: what kind it is and what it asks for. */
+  generated?: { template: 'name' | 'job' | 'system'; answer: string; buried: boolean };
+}
 
 /**
  * The reverse of model-click: the 3D model spotlights one part, `partId`, and the learner picks its name from `options`. The model never
