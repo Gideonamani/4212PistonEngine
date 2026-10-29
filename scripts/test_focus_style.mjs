@@ -3,6 +3,7 @@ import test from 'node:test';
 import { DEFAULT_FOCUS_MODE, FOCUS_MODES, FOCUS_MODE_HINTS, FOCUS_MODE_LABELS, HIGHLIGHT_COLOR, PALE_COLOR, SPOTLIGHT_PALETTE, XRAY_COLOR, XRAY_OPACITY, focusModeOrDefault, isFocusMode, partLook, partRole, spotlightPalette } from '../src/viewer/core/focus-style.mjs';
 import { FOCUS_MODES as SCHEMA_FOCUS_MODES } from '../web/schema/content-schema.mjs';
 import { STAGE_COLOR, THEMES } from '../src/theme/theme.mjs';
+import { GROUP_COLOURS } from '../src/viewer/core/inspection-colours.mjs';
 
 test('there are three modes, and the default is the original ghosting', () => {
   assert.deepEqual([...FOCUS_MODES], ['highlight', 'xray', 'isolate']);
@@ -91,8 +92,8 @@ test('the colours that carry a spotlight stand clear of the stage in both themes
 // The ghost and the highlight must stand apart from the models' own colours (#92). A spotlit part keeps its own colour in an X-ray, and where
 // parts are dense the ghost's layers stack until the picture is the ghost colour itself, so a ghost close to a part colour hides that part.
 // These are the colours most of the models' parts carry (their base colours, read from the released models, and the cylinder's inspection
-// colours): bare metal from #99a8b6 to #d7dbe1, brass, and mid and dark greys. Distances are in OKLab, where about 0.02 is a just-visible step.
-const PART_COLOURS = ['#d4dde6', '#c8d0d7', '#d7dbe1', '#cfd4d9', '#99a8b6', '#8e979e', '#b6babc', '#ecf0f1', '#7e868e', '#81868e', '#dabd89', '#e5ba76', '#c49761', '#343739', '#42484d', '#9cabb8', '#379e9b', '#bc7353', '#596d80', '#c2ced6'];
+// colours) and the group colours of the models that have none of their own (src/viewer/core/inspection-colours.mjs): bare metal from #99a8b6 to #d7dbe1, brass, and mid and dark greys. Distances are in OKLab, where about 0.02 is a just-visible step.
+const PART_COLOURS = [...GROUP_COLOURS, '#d4dde6', '#c8d0d7', '#d7dbe1', '#cfd4d9', '#99a8b6', '#8e979e', '#b6babc', '#ecf0f1', '#7e868e', '#81868e', '#dabd89', '#e5ba76', '#c49761', '#343739', '#42484d', '#9cabb8', '#379e9b', '#bc7353', '#596d80', '#c2ced6'];
 const linear = (value) => { const c = value / 255; return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; };
 const rgbOf = (hex) => { const n = typeof hex === 'string' ? parseInt(hex.slice(1), 16) : hex; return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; };
 const oklab = (rgb) => {

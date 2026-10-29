@@ -6,7 +6,7 @@
  * pass `onImage(dataUrl, filename)` to receive it instead. Save the image in scripts/thumbnail_sources/ and reference it from
  * web/thumbnails/sources.json; scripts/build_thumbnails.py then writes the final WebP files.
  *
- * Options: exposure (tone mapping, default 0.8), zoom (fraction of the fitted camera distance), pan ([x, y] in output pixels),
+ * Options: exposure (tone mapping; default is the viewer's own for a picture on no stage, src/viewer/core/lighting.mjs), zoom (fraction of the fitted camera distance), pan ([x, y] in output pixels),
  * orbit ([azimuth, elevation] degrees), roll (degrees about the view axis, to lay a tall stack on its side), width/height (default 720 square), setup(session, runtime) to pose the model further,
  * e.g. choose a power path, and onImage.
  *
@@ -70,7 +70,7 @@ function framePicture(THREE, runtime, { dir = [1, 0.6, 1], fill = 0.8, roll = 0 
   controls.target.copy(target);
 }
 
-async function captureModel(modelId, name, view = {}, { exposure = 0.8, zoom = 1, pan = [0, 0], orbit = [0, 0], roll = 0, size = 720, width = size, height = size, frame, setup, onImage, transparent = true } = {}) {
+async function captureModel(modelId, name, view = {}, { exposure, zoom = 1, pan = [0, 0], orbit = [0, 0], roll = 0, size = 720, width = size, height = size, frame, setup, onImage, transparent = true } = {}) {
   const THREE = await import('/node_modules/.vite/deps/three.js');
   const { createViewerRuntime } = await import('/src/viewer/core/runtime.ts');
   const { createModelSession } = await import('/src/viewer/adapters/index.ts');
@@ -90,7 +90,7 @@ async function captureModel(modelId, name, view = {}, { exposure = 0.8, zoom = 1
   const session = await createModelSession(modelsById[modelId], { runtime, profile: 'lesson-dynamic', signal: new AbortController().signal, onChange() {}, onProgress() {}, ...view });
   session.update?.(view);
   await setup?.(session, runtime);
-  runtime.renderer.toneMappingExposure = exposure;
+  if (exposure !== undefined) runtime.renderer.toneMappingExposure = exposure;
 
   const { camera, controls } = runtime;
   if (frame) {

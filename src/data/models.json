@@ -202,6 +202,7 @@
     "label": "1903 Wright engine, modelled part by part",
     "shortLabel": "Wright engine reconstruction",
     "adapter": "animated-study",
+    "defaultAppearance": "cad",
     "headerLabel": "WRIGHT ENGINE \u00b7 RECONSTRUCTION",
     "summary": "Teaching reconstruction of the rebuilt Wright engine, not the 1903 original. Motion timing is illustrative.",
     "capabilities": [
@@ -236,6 +237,7 @@
     "label": "1903 Langley radial engine, modelled part by part",
     "shortLabel": "Langley engine reconstruction",
     "adapter": "animated-study",
+    "defaultAppearance": "cad",
     "headerLabel": "LANGLEY ENGINE \u00b7 RECONSTRUCTION",
     "summary": "Teaching reconstruction of Langley's radial from the 1911 Memoir plates, not the museum object. Timing is illustrative.",
     "capabilities": [
@@ -270,6 +272,7 @@
     "label": "1913 Gnome Monosoupape rotary engine, modelled part by part",
     "shortLabel": "Gnome rotary reconstruction",
     "adapter": "animated-study",
+    "defaultAppearance": "cad",
     "headerLabel": "GNOME ROTARY \u00b7 RECONSTRUCTION",
     "summary": "Nine-cylinder rotary from Page's 1917 text: the crankshaft stays still and the engine turns. Timing is illustrative.",
     "capabilities": [
