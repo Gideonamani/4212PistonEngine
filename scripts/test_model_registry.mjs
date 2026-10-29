@@ -79,4 +79,13 @@ assert.match(transport.fallback_drive_file_id,driveId);
 const config=JSON.parse(fs.readFileSync(new URL('../web/config.json',import.meta.url),'utf8'));
 assert.ok(config.drive_api_key,'the restricted Drive browser key must be configured for published model delivery');
 
+// How a model opens, coloured. Only the animated studies read `defaultAppearance` (the cylinder and the whole engine open in their own inspection colours),
+// and the three historical reconstructions keep the colours of their materials (steel, cast iron, bronze, copper) instead of group colours.
+for (const model of registry) {
+  if (!('defaultAppearance' in model)) continue;
+  assert.ok(['inspection','cad'].includes(model.defaultAppearance),`${model.id}: defaultAppearance is inspection or cad`);
+  assert.equal(model.adapter,'animated-study',`${model.id}: only an animated study reads defaultAppearance`);
+}
+assert.deepEqual(registry.filter(model=>model.defaultAppearance==='cad').map(model=>model.id),['wright-1903-reconstruction','langley-manly-balzer-1903','gnome-monosoupape-1913']);
+
 console.log('unified 3D model registry is valid');
