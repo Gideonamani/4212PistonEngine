@@ -37,6 +37,8 @@ export const cylinderParts = (JSON.parse(fs.readFileSync('web/components.json', 
 /**
  * Choose one of the operating cylinder's parts in a part question by stepping to it: the keyboard route, which is also how a test reaches a
  * known part without a list of names (a part question offers none). Waits for the model to load, since stepping works once its parts are known.
+ * Every step redraws the model, which takes seconds on a CI runner, so it steps the shorter way round the sequence (it wraps at both ends)
+ * and waits for each step to show before taking the next. Assumes no part is hidden, which is when the sequence is the whole list.
  */
 export async function stepToCylinderPart(page: Page, name: string) {
   const position = cylinderParts.indexOf(name) + 1;
@@ -44,9 +46,23 @@ export async function stepToCylinderPart(page: Page, name: string) {
   const next = page.getByRole('button', { name: 'Next', exact: true });
   if (!(await next.isVisible())) await page.getByText('Cannot tap the model? Step through the parts').click();
   await expect(next).toBeEnabled({ timeout: 60_000 });
-  // Whatever was chosen before, stepping on round the sequence gets there.
-  for (let guard = 0; guard < cylinderParts.length && !(await page.getByText(`Part ${position} of`).isVisible()); guard += 1) await next.click();
-  await expect(page.getByText(/^Part \d+ of \d+$/)).toContainText(`Part ${position} of`);
+  const where = page.getByText(/^(Part \d+ of \d+|\d+ parts)$/);
+  const placeNow = async () => {
+    const shown = (await where.textContent()) ?? '';
+    const part = /^Part (\d+) of (\d+)$/.exec(shown);
+    return { shown, current: part ? Number(part[1]) : 0, total: Number(part ? part[2] : /^(\d+)/.exec(shown)![1]) };
+  };
+  const { current, total } = await placeNow();
+  // With nothing chosen, Next goes to the first part and Previous to the last.
+  const forward = current ? (position - current + total) % total : position;
+  const backward = current ? (current - position + total) % total : total - position + 1;
+  const button = page.getByRole('button', { name: forward <= backward ? 'Next' : 'Previous', exact: true });
+  for (let steps = Math.min(forward, backward); steps > 0; steps -= 1) {
+    const before = (await placeNow()).shown;
+    await button.click();
+    await expect(where).not.toHaveText(before);
+  }
+  await expect(where).toHaveText(new RegExp(`^Part ${position} of`));
 }
 
 /** The nearest scrolling ancestor of an element: the lesson's scroll area. */

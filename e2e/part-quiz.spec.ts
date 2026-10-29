@@ -6,7 +6,9 @@ import { appReady, expect, expectAccessibleAndTouchable, expectNoHorizontalOverf
 // The oil pump is the smallest model, so these tests load fast; the generator itself is covered against every model by
 // scripts/test_part_quiz.mjs.
 
-test.describe.configure({ timeout: 120_000 });
+// A round of ten questions touches the model four times each (choose, verify, reveal, reset), and a CI runner's software renderer takes
+// seconds to redraw it.
+test.describe.configure({ timeout: 300_000 });
 
 const models = JSON.parse(fs.readFileSync('src/data/models.json', 'utf8')) as { id: string; shortLabel: string; adapter: string }[];
 const quizzable = models.filter((model) => model.adapter !== 'static-gltf');

@@ -60,10 +60,12 @@ export function PartStage({ viewer, tall = false }: PartStageProps) {
     </div>}
     <details className="rounded-xl border border-slate-700/60 bg-slate-900/40 px-3 py-2 text-xs text-slate-300">
       <summary className="min-h-11 cursor-pointer py-2.5 font-semibold text-slate-200">Cannot tap the model? Step through the parts</summary>
-      <div className="flex items-center gap-2 pb-1">
-        <ToolButton icon={ChevronLeft} label="Previous" className="w-28" disabled={!total} onClick={() => step(-1)} />
-        <span aria-live="polite" className="min-w-0 flex-1 text-center font-mono text-[11px] text-slate-300">{position ? `Part ${position} of ${total}` : `${total} parts`}</span>
-        <ToolButton icon={ChevronRight} label="Next" className="w-28" disabled={!total} onClick={() => step(1)} />
+      <div className="flex flex-col gap-2 pb-1">
+        <span aria-live="polite" className="text-center font-mono text-[11px] text-slate-300">{position ? `Part ${position} of ${total}` : `${total} parts`}</span>
+        <div className="grid grid-cols-2 gap-2">
+          <ToolButton icon={ChevronLeft} label="Previous" disabled={!total} onClick={() => step(-1)} />
+          <ToolButton icon={ChevronRight} label="Next" disabled={!total} onClick={() => step(1)} />
+        </div>
       </div>
       <p className="pb-1 text-[11px] leading-snug text-slate-400">Each press highlights the next part on the model. Its name is shown after you verify.</p>
     </details>
