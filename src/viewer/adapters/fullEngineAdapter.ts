@@ -2,7 +2,8 @@ import * as THREE from 'three';
 import type { ModelDefinition } from '../../data/modelRegistry';
 import { groupComponentIds } from '../core/component-groups.mjs';
 import { loadGltf, sourcesFromEngineContract } from '../core/assets';
-import { cloneMaterials, createSectionController, disposeObject, meshMaterials } from '../core/modelUtils';
+import { cloneMaterials, createSectionController, disposeObject, frameObjects, meshMaterials, partBoxes } from '../core/modelUtils';
+import { createHiddenParts } from '../core/part-visibility.mjs';
 import { focusModeOrDefault, partLook, partRole, spotlightPalette } from '../core/focus-style.mjs';
 import { effectiveFocusMode } from '../core/spotlight-fallback';
 import { OVER_GHOST_ORDER } from '../core/ghost-order.mjs';
@@ -113,11 +114,20 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
   const isFocused = (item: EngineItem) => !focusComponents.length || focusComponents.some((component) => bindingMatches(item, component));
   const lookOf = (item: EngineItem) => partLook(focusMode, partRole(focusComponents.length > 0, isFocused(item)));
   const selectedComponent = () => componentsById.get(selectedId);
+  // Parts the learner has hidden to look beneath them, by component id. A mesh belongs to the component a tap on it would choose.
+  const hidden = createHiddenParts();
+  const owners = new Map<EngineItem, string | undefined>();
+  const ownerOf = (item: EngineItem) => {
+    if (!owners.has(item)) owners.set(item, componentForItem(item)?.id);
+    return owners.get(item);
+  };
+  const isHidden = (item: EngineItem) => hidden.has(ownerOf(item) ?? '');
   const applyVisibility = () => {
     const isolated = componentsById.get(isolatedId);
+    snapshot.hiddenIds = hidden.ids();
     for (const item of items) {
       const wanted = isolatedGroupIds.length ? isolatedGroupIds.some(id => bindingMatches(item, componentsById.get(id))) : !isolated || bindingMatches(item, isolated);
-      item.mesh.visible = wanted && lookOf(item).visible;
+      item.mesh.visible = wanted && lookOf(item).visible && !isHidden(item);
     }
   };
   // Highlight would hide a spotlit part that sits inside another, so it is drawn as X-ray for as long as that is so.
@@ -261,6 +271,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
     snapshot: () => ({ ...snapshot, ...section.snapshot() }),
     update(view) {
       setPlaying(false);
+      hidden.clear();
       startAngle = view.initialAngle ?? 0;
       setAngle(startAngle);
       applyFocus(view.focusParts, focusModeOrDefault(view.focusMode));
@@ -350,11 +361,20 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
           snapshot.selectedDescription = undefined;
           snapshot.isolated = false;
           focusComponents.length = 0;
+          hidden.clear();
           applyVisibility();
           applyAppearance();
           fitFull();
           onChange();
         },
+        hide(ids) {
+          if (!hidden.hide(ids.filter((id) => componentsById.has(id))).length) return;
+          if (hidden.has(selectedId)) select(''); else { applyVisibility(); applyAppearance(); onChange(); }
+        },
+        undoHide() { if (hidden.undo().length) { applyVisibility(); applyAppearance(); onChange(); } },
+        showHidden() { if (hidden.clear()) { applyVisibility(); applyAppearance(); onChange(); } },
+        boxes: () => partBoxes(items.flatMap((item): [string, THREE.Object3D][] => { const owner = ownerOf(item); return owner ? [[owner, item.mesh]] : []; })),
+        frame: (ids) => frameObjects(runtime, items.filter((item) => ids.includes(ownerOf(item) ?? '')).map((item) => item.mesh), root),
       },
       motion: {
         setAngle: (angle) => { setPlaying(false); setAngle(angle); },

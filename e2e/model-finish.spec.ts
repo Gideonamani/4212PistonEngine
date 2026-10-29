@@ -53,11 +53,13 @@ test('the oil pump is not washed out on either stage, and the Look tab switches 
   const canvas = viewer.locator('canvas');
   const theme = (value: 'dark' | 'light') => page.evaluate((next) => { document.documentElement.dataset.theme = next; }, value);
 
-  // Inspection colours, the opening look: no white wash, and plainly coloured, on the dark stage and on the light one.
+  // Inspection colours, the opening look: no white wash, and plainly coloured, on the dark stage and on the light one. Every picture below waits
+  // up to 90 s: a CI runner draws in software and shares its processor with the other worker's model tests, and a stage change redraws the model
+  // (on a busy runner the 30 s this first allowed ran out with the pump still being drawn, though it loaded in 7 s and the test passes unloaded).
   const seen = {} as Record<'dark' | 'light', Awaited<ReturnType<typeof finish>>>;
   for (const stage of ['dark', 'light'] as const) {
     await theme(stage);
-    await expect.poll(async () => (seen[stage] = await finish(page, canvas, STAGE[stage])).model, { message: `the pump shows on the ${stage} stage`, timeout: 30_000 }).toBeGreaterThan(0.05);
+    await expect.poll(async () => (seen[stage] = await finish(page, canvas, STAGE[stage])).model, { message: `the pump shows on the ${stage} stage`, timeout: 90_000 }).toBeGreaterThan(0.05);
     expect(seen[stage].white, `${stage}: near-white share of the pump`).toBeLessThan(0.1);
     expect(seen[stage].bright, `${stage}: bright share of the pump`).toBeLessThan(0.35);
     expect(seen[stage].chroma, `${stage}: colourfulness of the pump`).toBeGreaterThan(0.25);
@@ -71,8 +73,8 @@ test('the oil pump is not washed out on either stage, and the Look tab switches 
   await expect(treatment).toHaveValue('inspection');
   await treatment.selectOption('cad');
   await expect(treatment).toHaveValue('cad');
-  await expect.poll(async () => (await finish(page, canvas, STAGE.dark)).chroma, { message: 'the file\'s own colours are paler than the inspection colours', timeout: 30_000 }).toBeLessThan(seen.dark.chroma - 0.15);
+  await expect.poll(async () => (await finish(page, canvas, STAGE.dark)).chroma, { message: 'the file\'s own colours are paler than the inspection colours', timeout: 90_000 }).toBeLessThan(seen.dark.chroma - 0.15);
   await treatment.selectOption('inspection');
-  await expect.poll(async () => (await finish(page, canvas, STAGE.dark)).chroma, { message: 'and back again', timeout: 30_000 }).toBeGreaterThan(0.25);
+  await expect.poll(async () => (await finish(page, canvas, STAGE.dark)).chroma, { message: 'and back again', timeout: 90_000 }).toBeGreaterThan(0.25);
   problems.assertNone();
 });

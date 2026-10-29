@@ -68,7 +68,8 @@ export type LearnerPart = {
   label: string;
   review: 'draft' | 'reviewed';
   aliases: string[];
-  system: { id: string; label: string };
+  /** The system the part belongs to, with the question that system answers ("How is combustion started?"). */
+  system: { id: string; label: string; question?: string };
   function: Claim;
   madeOf: Claim;
   sits: Claim;
@@ -122,7 +123,7 @@ export function learnerPartFor(file: LearnerPartsFile | undefined, partId: strin
     label: [title, definition.context, instance].filter(Boolean).join(' · '),
     review: own?.review ?? definition.review,
     aliases: definition.aliases,
-    system: { id: systemId, label: system?.label ?? systemId },
+    system: { id: systemId, label: system?.label ?? systemId, question: system?.question },
     function: own?.function ?? definition.function,
     madeOf: own?.madeOf ?? definition.madeOf,
     sits: own?.sits ?? definition.sits,

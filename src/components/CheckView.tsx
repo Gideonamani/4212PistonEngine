@@ -1,11 +1,22 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { Suspense, useEffect, useMemo, useState } from 'react';
 import confetti from 'canvas-confetti';
-import { Award, ChevronLeft, Clock, FileQuestion, RotateCcw, Sparkles } from 'lucide-react';
+import { Award, Box, ChevronLeft, Clock, FileQuestion, RotateCcw, Sparkles } from 'lucide-react';
 import type { QuizModule, QuizQuestion } from '../types/engine';
+import { modelRegistry, type ModelDefinition } from '../data/modelRegistry';
 import { CardImage, CardRow } from './ui';
 import { ProgressNavigator, type ProgressItem } from './ProgressNavigator';
 import { QuestionCard, type Answer } from './check/QuestionCard';
+import { ROUND_SIZE } from './check/part-quiz.mjs';
 import { initialAnswer, isAnswered, isCorrect, optionOrder } from './check/scoring.mjs';
+
+// The 3D part quiz loads the viewer, so its code arrives when a learner opens one.
+const PartQuizView = React.lazy(() => import('./check/PartQuizView'));
+
+/**
+ * The models that have a 3D part quiz: every one whose viewer lists parts to tap. Nothing is written per model. A model joins this list
+ * when its adapter gives the viewer named components, and its questions are made from that part data when a learner opens it.
+ */
+const partQuizModels = modelRegistry.filter((model) => model.adapter !== 'static-gltf');
 
 interface CheckViewProps { modules: QuizModule[]; focusLessonId?: string }
 
@@ -32,6 +43,7 @@ export const CheckView: React.FC<CheckViewProps> = ({ modules, focusLessonId }) 
   const [orders, setOrders] = useState<Record<number, number[]>>({});
   const [submitted, setSubmitted] = useState<Record<number, boolean>>({});
   const [bestScores, setBestScores] = useState<Record<string, number>>({});
+  const [partQuizModel, setPartQuizModel] = useState<ModelDefinition | null>(null);
   const current = activeModule?.questions[questionIndex];
   const total = activeModule?.questions.length || 0;
   const score = useMemo(
@@ -67,6 +79,17 @@ export const CheckView: React.FC<CheckViewProps> = ({ modules, focusLessonId }) 
     if (correct) confetti({ particleCount: 45, spread: 55, origin: { y: 0.72 }, colors: ['#2dd4bf', '#22c55e', '#38bdf8'] });
   };
 
+  if (partQuizModel) {
+    return <Suspense fallback={<div className="flex h-full items-center justify-center bg-canvas text-xs text-teal-300">Preparing interactive 3D viewer…</div>}>
+      <PartQuizView
+        key={partQuizModel.id}
+        model={partQuizModel}
+        onExit={() => setPartQuizModel(null)}
+        onFinish={(modelId, partScore, partTotal) => setBestScores((previous) => ({ ...previous, [`3d:${modelId}`]: Math.max(previous[`3d:${modelId}`] || 0, partScore), [`3d-of:${modelId}`]: partTotal }))}
+      />
+    </Suspense>;
+  }
+
   if (!activeModule) {
     return <div className="relative h-full w-full overflow-y-auto bg-canvas pb-24 text-slate-100">
       <div className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 pb-4 pt-4">
@@ -80,6 +103,9 @@ export const CheckView: React.FC<CheckViewProps> = ({ modules, focusLessonId }) 
         </section>
         <div className="flex items-center justify-between"><h3 className="font-bold text-white">Assessment modules</h3><span className="font-mono text-xs text-slate-400">{modules.reduce((sum, module) => sum + module.questionCount, 0)} questions</span></div>
         <div className="flex flex-col gap-2.5">{modules.map((module) => <CardRow key={module.id} onClick={() => start(module)} image={<CardImage src={module.thumbnail} />}>{bestScores[module.id] !== undefined && <div className="flex flex-wrap items-center gap-2"><span className="font-mono text-[11px] font-bold text-emerald-400">Best {bestScores[module.id]}/{module.questionCount}</span></div>}<h4 className="mt-1 truncate text-sm font-bold text-white transition group-hover:text-teal-300 sm:text-base">{module.title}</h4><p className="mt-0.5 line-clamp-2 text-xs leading-snug text-slate-300">{module.subtitle}</p><div className="mt-2 flex items-center gap-3 font-mono text-[11px] text-slate-400"><span><FileQuestion className="mr-1 inline h-3 w-3 text-teal-400" />{module.questionCount} questions</span><span><Clock className="mr-1 inline h-3 w-3" />{module.approxMinutes}</span></div></CardRow>)}</div>
+        <div className="mt-2 flex items-center justify-between"><h3 className="font-bold text-white">3D part quizzes</h3><span className="font-mono text-xs text-slate-400">{partQuizModels.length} models</span></div>
+        <p className="-mt-2 text-xs leading-relaxed text-slate-300">Find the part on the real model. Hide parts to uncover what lies inside. The questions are made from each model's own part data, so every round is different.</p>
+        <div className="flex flex-col gap-2.5">{partQuizModels.map((model) => <CardRow key={model.id} onClick={() => setPartQuizModel(model)} image={<CardImage src={model.previewUrl} />}>{bestScores[`3d:${model.id}`] !== undefined && <div className="flex flex-wrap items-center gap-2"><span className="font-mono text-[11px] font-bold text-emerald-400">Best {bestScores[`3d:${model.id}`]}/{bestScores[`3d-of:${model.id}`] ?? ROUND_SIZE}</span></div>}<span className="font-mono text-[11px] font-bold tracking-wider text-teal-400">3D PART QUIZ</span><h4 className="mt-1 line-clamp-2 text-sm font-bold text-white transition group-hover:text-teal-300 sm:text-base">{model.shortLabel}</h4><p className="mt-0.5 line-clamp-2 text-xs leading-snug text-slate-300">{model.summary}</p><div className="mt-2 flex items-center gap-3 font-mono text-[11px] text-slate-400"><span><Box className="mr-1 inline h-3 w-3 text-teal-400" />{ROUND_SIZE} per round</span><span><RotateCcw className="mr-1 inline h-3 w-3" />New each time</span></div></CardRow>)}</div>
       </div>
     </div>;
   }

@@ -3,8 +3,9 @@ import type { ModelDefinition } from '../../data/modelRegistry';
 import type { AdapterContext, FocusMode, ViewerSession, ViewerSnapshot } from '../types';
 import { loadGltf } from '../core/assets';
 import { learnerPartFor, learnerSearchText, loadLearnerParts, type LearnerPart } from '../../data/learnerPartDetails';
-import { cloneMaterials, createSectionController, disposeObject, meshMaterials } from '../core/modelUtils';
+import { cloneMaterials, createSectionController, disposeObject, frameObjects, meshMaterials, partBoxes } from '../core/modelUtils';
 import { groupComponentIds } from '../core/component-groups.mjs';
+import { createHiddenParts } from '../core/part-visibility.mjs';
 import { focusModeOrDefault, partLook, partRole, spotlightPalette } from '../core/focus-style.mjs';
 import { effectiveFocusMode } from '../core/spotlight-fallback';
 import { OVER_GHOST_ORDER } from '../core/ghost-order.mjs';
@@ -38,7 +39,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   const contractPartsById = new Map<string, any>((contract.parts || []).map((part: any) => [part.id, part]));
   const detailsById = new Map<string, LearnerPart>();
   for (const part of contract.parts) { const details = learnerPartFor(learner, part.id); if (details) detailsById.set(part.id, details); }
-  const components = contract.parts.map((part: any) => ({ id: part.id, label: detailsById.get(part.id)?.label ?? part.label, group: part.group, groups: [...paths.filter(path => path.parts.includes(part.id)).map(path => `path:${path.id}`), ...(part.groups || [])], description: detailsById.get(part.id)?.function.text ?? part.description, searchText: detailsById.has(part.id) ? learnerSearchText(detailsById.get(part.id)!) : undefined, source: part.evidence || contract.reference, evidence: part.shape_status || 'Illustrative dimensions' }));
+  const components = contract.parts.map((part: any) => ({ id: part.id, label: detailsById.get(part.id)?.label ?? part.label, group: part.group, groups: [...paths.filter(path => path.parts.includes(part.id)).map(path => `path:${path.id}`), ...(part.groups || [])], description: detailsById.get(part.id)?.function.text ?? part.description, searchText: detailsById.has(part.id) ? learnerSearchText(detailsById.get(part.id)!) : undefined, source: part.evidence || contract.reference, evidence: part.shape_status || 'Illustrative dimensions', details: detailsById.get(part.id) }));
   const componentsById = new Map<string, any>(components.map((part: any) => [part.id, part]));
   if (meshes.length !== components.length || meshes.some(mesh => !componentsById.has(mesh.userData.partId))) throw Error('Mechanism components do not match the contract.');
   const clips = new Map(loaded.gltf.animations.map(clip => [clip.name, clip]));
@@ -67,6 +68,8 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   const durationOf = () => clips.get(active?.id)?.duration ?? Number(active?.duration || 12);
   const syncPlayback = () => { snapshot.motionSpeed = speed; snapshot.motionLoop = loopOf(); };
   let isolation: Set<string> | undefined;
+  // Parts the learner has hidden to look beneath them: out of sight whatever the spotlight or an isolation would show.
+  const hidden = createHiddenParts();
   const focus = new Set<string>();
   let focusMode: FocusMode = focusModeOrDefault(context.focusMode);
   let powerPath: any;
@@ -128,7 +131,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   const spotlightMode = () => {
     if (powerPath || !focus.size) return focusMode;
     const motionVisible = motionVisibility(resolveMotionDisplay(active, contract.parts, motionViewModes.get(active?.id) || 'default'));
-    return effectiveFocusMode(focusMode, meshes.filter((mesh) => focus.has(mesh.userData.partId)), meshes.filter((mesh) => !focus.has(mesh.userData.partId) && (!isolation || isolation.has(mesh.userData.partId)) && motionVisible(mesh.userData.partId)), section.cut());
+    return effectiveFocusMode(focusMode, meshes.filter((mesh) => focus.has(mesh.userData.partId)), meshes.filter((mesh) => !focus.has(mesh.userData.partId) && (!isolation || isolation.has(mesh.userData.partId)) && motionVisible(mesh.userData.partId) && !hidden.has(mesh.userData.partId)), section.cut());
   };
   const applyAppearance = () => {
     const pathColors: Record<string, string> = { housing: '#536878', core: '#84929e', fuel: '#be7b12', 'magneto-left': '#148365', 'magneto-right': '#148365', 'oil-tach': '#1b60bc', starter: '#963f7c', alternator: '#a58b21', vacuum: '#7752a7', governor: '#187f88' };
@@ -140,13 +143,14 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     snapshot.motionAllowAssembled = motionDisplay.allowAssembled;
     const motionVisible = motionVisibility(motionDisplay);
     const mode = drawnMode = spotlightMode();
+    snapshot.hiddenIds = hidden.ids();
     snapshot.focusActive = spotlight;
     snapshot.focusMode = focusMode;
     snapshot.focusFallback = mode !== focusMode;
     const looks = meshes.map((mesh) => {
       const id = mesh.userData.partId;
       const spot = partLook(mode, partRole(spotlight, focus.has(id)));
-      mesh.visible = spot.visible && (!isolation || isolation.has(id)) && motionVisible(id);
+      mesh.visible = spot.visible && (!isolation || isolation.has(id)) && motionVisible(id) && !hidden.has(id);
       const motionGhost = !powerPath && !spotlight && !isolation && motionDisplay.ghostSet.has(id);
       return powerPath && !powerPath.parts.includes(id) ? 'ghost' : motionGhost ? 'ghost' : spot.look;
     });
@@ -242,7 +246,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     snapshot.selectedId = part?.id; snapshot.selectedLabel = part?.label; snapshot.selectedDescription = part?.description; snapshot.selectedDetails = part ? detailsById.get(part.id) : undefined;
     applyAppearance(); onChange();
   };
-  const showAll = () => { isolation = undefined; focus.clear(); powerPath = undefined; snapshot.powerPathId = ''; snapshot.powerPathNote = ''; snapshot.isolated = false; select(''); fitVisible(); };
+  const showAll = () => { isolation = undefined; hidden.clear(); focus.clear(); powerPath = undefined; snapshot.powerPathId = ''; snapshot.powerPathNote = ''; snapshot.isolated = false; select(''); fitVisible(); };
   runtime.setPickTargets(meshes, object => select(object.userData.partId));
   // The pose the study opens at (a lesson step's own motion and progress, else the first motion at 0%). Reset returns here.
   let start = { motionId: '', progress: 0 };
@@ -252,6 +256,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
       motionViewModes.set(start.motionId, view.motionViewMode);
     }
     powerPath = undefined; snapshot.powerPathId = ''; snapshot.powerPathNote = '';
+    hidden.clear();
     focus.clear(); for (const id of view.focusParts || []) focus.add(id);
     focusMode = focusModeOrDefault(view.focusMode);
     isolation = undefined; snapshot.isolated = false;
@@ -282,9 +287,17 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
         snapshot.powerPathNote = powerPath ? `${powerPath.note} Output direction: ${powerPath.direction}. ${powerPath.ratio === null ? 'Speed ratio unverified.' : `Drive / crank speed = ${powerPath.ratio}:1; at 1000 crank RPM: ${powerPath.ratio * 1000} drive RPM (${powerPath.id === 'starter' ? 'cranking only' : 'speed example'}).`} ${contract.viewpoint} Dashed lines are a conceptual path, not physical shaft geometry.` : '';
         applyAppearance(); onChange();
       }, isolate() { if (!powerPath) return; isolation = new Set(powerPath.parts); snapshot.isolated = true; applyAppearance(); fitVisible(); onChange(); } } } : {}),
-      components: { items: components, groups: [{ id: '', label: 'All groups' }, ...(contract.groups ? contract.groups.map((group: any) => ({ id: group.id, label: `${group.depth ? '– ' : ''}${group.label}` })) : [...new Set<string>(components.map((part: any) => part.group))].map(id => ({ id, label: id.replaceAll('-', ' ') }))), ...paths.map(path => ({ id: `path:${path.id}`, label: `Complete path: ${path.label}` }))], select,
+      components: { items: components, groups: [{ id: '', label: 'All groups' }, ...(contract.groups ? contract.groups.map((group: any) => ({ id: group.id, label: `${group.depth ? '– ' : ''}${group.label}`, depth: group.depth ?? 0, question: group.question })) : [...new Set<string>(components.map((part: any) => part.group))].map(id => ({ id, label: id.replaceAll('-', ' ') }))), ...paths.map(path => ({ id: `path:${path.id}`, label: `Complete path: ${path.label}` }))], select,
         isolate() { if (!snapshot.selectedId) return; isolation = new Set([snapshot.selectedId]); snapshot.isolated = true; applyAppearance(); fitVisible(); },
-        isolateGroup(id) { if (!id) return; const ids = groupComponentIds(components, id); if (!ids.length) return; powerPath = undefined; snapshot.powerPathId = ''; snapshot.powerPathNote = ''; isolation = new Set(ids); snapshot.isolated = true; select(''); fitVisible(); }, showAll },
+        isolateGroup(id) { if (!id) return; const ids = groupComponentIds(components, id); if (!ids.length) return; powerPath = undefined; snapshot.powerPathId = ''; snapshot.powerPathNote = ''; isolation = new Set(ids); snapshot.isolated = true; select(''); fitVisible(); }, showAll,
+        hide(ids) {
+          if (!hidden.hide(ids.filter(id => componentsById.has(id))).length) return;
+          if (snapshot.selectedId && hidden.has(snapshot.selectedId)) select(''); else { applyAppearance(); onChange(); }
+        },
+        undoHide() { if (hidden.undo().length) { applyAppearance(); onChange(); } },
+        showHidden() { if (hidden.clear()) { applyAppearance(); onChange(); } },
+        boxes: () => partBoxes(meshes.map((mesh): [string, THREE.Object3D] => [mesh.userData.partId, mesh])),
+        frame: (ids) => frameObjects(runtime, meshes.filter(mesh => ids.includes(mesh.userData.partId)), root) },
       savedMotions: {
         items: contract.motions,
         select: selectMotion,

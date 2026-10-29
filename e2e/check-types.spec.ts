@@ -1,5 +1,6 @@
 import type { Page } from '@playwright/test';
 import { appReady, expect, expectAccessibleAndTouchable, expectNoHorizontalOverflow, test } from './fixtures';
+import { cylinderParts, stepToCylinderPart } from './viewer-helpers';
 
 // The Check screen's answer areas for the question types beyond multiple choice and ordering: a number typed with a tolerance, and
 // terms matched to descriptions. The shipped packs do not need every type yet, so the questions come from a pack made here and served
@@ -146,7 +147,7 @@ const clickPack = {
   title: 'Fixture part checks',
   checks: [
     { id: 'tap-piston', lessonId: 'fixture-lesson', type: 'model-click', question: 'Tap the piston.', hint: 'It is the part the rings sit on.', modelId: 'cylinder', correctNodeId: 'PistonBody', rationale: 'The piston carries the rings and takes the force of combustion.' },
-    { id: 'tap-intake', lessonId: 'fixture-lesson', type: 'model-click', question: 'Tap any part of the intake valve train.', modelId: 'cylinder', correctNodeId: 'intake', rationale: 'The intake valve, its guide, springs and rocker are the intake valve train.' },
+    { id: 'tap-structure', lessonId: 'fixture-lesson', type: 'model-click', question: 'Tap any part of the cylinder structure.', modelId: 'cylinder', correctNodeId: 'structure', rationale: 'The barrel and the head are the structure the other parts sit in.' },
   ],
 };
 
@@ -162,45 +163,40 @@ async function openClickCheck(page: Page) {
   await expect(page.locator('canvas')).toBeVisible({ timeout: 60_000 });
 }
 
-// The list needs the model, so it is enabled only once the model has loaded.
-async function chooseFromList(page: Page, part: string) {
-  await page.getByText('Cannot use the model? Choose the part from a list').click();
-  const list = page.getByLabel('Part', { exact: true });
-  await expect(list, 'the model has loaded').toBeEnabled({ timeout: 60_000 });
-  await list.selectOption({ label: part });
-}
-
 test.describe('model-click question', () => {
-  test('a part chosen from the list is marked, and the right part is named once verified', async ({ page, problems }) => {
+  // The cylinder downloads in each test, and every step from part to part redraws it, which takes seconds on a CI runner's software renderer.
+  test.describe.configure({ timeout: 300_000 });
+  test('there is no list of part names to choose from: the part is found on the model, or stepped to without its name', async ({ page, problems }) => {
     await openClickCheck(page);
+    await expect(page.locator('select'), 'a list of names would hand the answer over').toHaveCount(0);
     const verify = page.getByRole('button', { name: 'Verify answer' });
     await expect(verify, 'nothing tapped yet').toBeDisabled();
     await expect(page.locator('p[role="status"]')).toContainText('Tap a part on the model');
     await expectNoHorizontalOverflow(page);
 
-    await chooseFromList(page, 'Piston');
+    await stepToCylinderPart(page, 'Piston');
     await expect(verify).toBeEnabled();
     await expect(page.locator('p[role="status"]'), 'the name of the chosen part is not given away before Verify').not.toContainText('Piston');
     await verify.click();
     await expect(page.getByText('CORRECT — WHY IT MATTERS')).toBeVisible();
     await expect(page.locator('p[role="status"]')).toContainText('You tapped Piston. The right answer is Piston.');
-    await expect(page.getByLabel('Part', { exact: true }), 'the answer locks').toBeDisabled();
     await expectAccessibleAndTouchable(page, 'model-click question, answered');
     problems.assertNone();
   });
 
   test('a wrong part is marked and the right one is named; a part in the right group counts', async ({ page }) => {
     await openClickCheck(page);
-    await chooseFromList(page, 'Intake valve');
+    // Parts near the start of the sequence, because every step redraws the model.
+    await stepToCylinderPart(page, 'Crankshaft throw');
     await page.getByRole('button', { name: 'Verify answer' }).click();
     await expect(page.getByText('REVIEW THE EVIDENCE')).toBeVisible();
-    await expect(page.locator('p[role="status"]')).toContainText('You tapped Intake valve. The right answer is Piston.');
+    await expect(page.locator('p[role="status"]')).toContainText('You tapped Crankshaft throw. The right answer is Piston.');
 
     await page.getByRole('button', { name: 'Next question' }).click();
     await expect(page.getByText('Question 2 of 2')).toBeVisible();
-    await chooseFromList(page, 'Intake rocker arm');
+    await stepToCylinderPart(page, 'Cylinder head');
     await page.getByRole('button', { name: 'Verify answer' }).click();
-    await expect(page.getByText('CORRECT — WHY IT MATTERS'), 'any part of the intake group is right').toBeVisible();
+    await expect(page.getByText('CORRECT — WHY IT MATTERS'), 'any part of the structure group is right').toBeVisible();
   });
 
   test('a tap on the model itself chooses a part', async ({ page, problems }) => {
@@ -219,8 +215,47 @@ test.describe('model-click question', () => {
     await expect(page.locator('p[role="status"]')).toContainText('A part is highlighted');
     problems.assertNone();
   });
-});
 
+  test('a part can be hidden to look beneath it, put back with Undo, and every hidden part with Show all', async ({ page }) => {
+    await openClickCheck(page);
+    const hide = page.getByRole('button', { name: 'Hide part' });
+    const undo = page.getByRole('button', { name: 'Undo' });
+    const showAll = page.getByRole('button', { name: 'Show all' });
+    const verify = page.getByRole('button', { name: 'Verify answer' });
+    const note = page.getByText(/Nothing hidden|\d+ parts? hidden/);
+    // The tools appear once the model has loaded, which takes a while on a CI runner.
+    await expect(hide, 'nothing is chosen to hide yet').toBeDisabled({ timeout: 90_000 });
+    await expect(undo).toBeDisabled();
+    await expect(showAll).toBeDisabled();
+
+    await stepToCylinderPart(page, 'Cylinder barrel');
+    await expect(verify).toBeEnabled();
+    // The count has a row of its own: on the narrowest phone neither step button may cover it.
+    const count = (await page.getByText(/^Part \d+ of \d+$/).boundingBox())!;
+    for (const name of ['Previous', 'Next']) {
+      const button = (await page.getByRole('button', { name, exact: true }).boundingBox())!;
+      expect(button.y >= count.y + count.height || count.y >= button.y + button.height, `${name} does not cover the part count`).toBe(true);
+    }
+    await hide.click();
+    await expect(note).toContainText('1 part hidden');
+    await expect(hide, 'the hidden part is no longer chosen').toBeDisabled();
+    await expect(verify, 'and so it no longer counts as the answer').toBeDisabled();
+    await expect(page.getByText(`${cylinderParts.length - 1} parts`, { exact: true }), 'the hidden part is out of the sequence').toBeVisible();
+
+    await undo.click();
+    await expect(note).toContainText('Nothing hidden');
+    await expect(undo).toBeDisabled();
+
+    await stepToCylinderPart(page, 'Cylinder barrel');
+    await hide.click();
+    await page.getByRole('button', { name: 'Next', exact: true }).click();
+    await hide.click();
+    await expect(note).toContainText('2 parts hidden');
+    await showAll.click();
+    await expect(note).toContainText('Nothing hidden');
+    await expect(showAll).toBeDisabled();
+  });
+});
 
 // name-part: the model spotlights one part and the learner names it (issue #76). The question opens on the keepers, a small part, so the
 // camera's close-up matters.
