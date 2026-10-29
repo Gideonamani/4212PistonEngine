@@ -34,6 +34,8 @@ export type ModelDefinition = {
   /** The icons under the tile, in MODEL_CAPABILITY_KINDS order; each is a claim the model keeps. */
   capabilities: ModelCapability[];
   previewUrl?: string;
+  /** How the model is coloured when it opens: its own inspection colours (the default) or the file's original ones. A reconstruction whose materials carry meaning (steel, cast iron, bronze) opens in `cad`. */
+  defaultAppearance?: 'inspection' | 'cad';
   lessonControls?: boolean;
   sources?: ModelSource[];
   componentCatalogueUrl?: string;

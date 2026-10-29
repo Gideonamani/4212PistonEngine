@@ -4,6 +4,7 @@ import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment
 import type { InteractionMode, ViewerRuntime } from '../types';
 import { STAGE_COLOR } from '../../theme/theme.mjs';
 import { wheelDecision, type WheelZoom } from './interaction.mjs';
+import { DIRECTIONAL_LIGHTS, ENVIRONMENT_INTENSITY, HEMISPHERE_LIGHT, exposureFor } from './lighting.mjs';
 
 const currentTheme = (): 'light' | 'dark' => (typeof document !== 'undefined' && document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
 const currentStageColor = () => STAGE_COLOR[currentTheme()];
@@ -28,8 +29,8 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
   renderer.localClippingEnabled = true;
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 0.9;
+  renderer.toneMapping = THREE.NeutralToneMapping;
+  renderer.toneMappingExposure = exposureFor(theme());
   renderer.domElement.setAttribute('aria-hidden', 'true');
   // setSize(..., false) leaves the CSS size alone, so without this the canvas displays at its pixel-ratio-scaled buffer size
   // and overflows the container on any screen scaled above 100%.
@@ -50,13 +51,10 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
   const pmrem = new THREE.PMREMGenerator(renderer);
   const environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
   scene.environment = environment;
+  scene.environmentIntensity = ENVIRONMENT_INTENSITY;
   pmrem.dispose();
-  scene.add(new THREE.HemisphereLight(0xdff9ff, 0x101c24, 0.85));
-  for (const [color, intensity, position] of [
-    [0xd9fbff, 1.8, [3, 4, 5]],
-    [0x42eadb, 1.25, [-4, 1, 2]],
-    [0xffa875, 0.8, [2, -2, -4]],
-  ] as const) {
+  scene.add(new THREE.HemisphereLight(HEMISPHERE_LIGHT.sky, HEMISPHERE_LIGHT.ground, HEMISPHERE_LIGHT.intensity));
+  for (const { color, intensity, position } of DIRECTIONAL_LIGHTS) {
     const light = new THREE.DirectionalLight(color, intensity);
     light.position.set(position[0], position[1], position[2]);
     scene.add(light);
@@ -90,6 +88,7 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
         for (const mutation of mutations) {
           if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
             if (!transparent) scene.background = new THREE.Color(currentStageColor());
+            renderer.toneMappingExposure = exposureFor(theme());
             for (const listener of themeListeners) listener();
             render();
             break;

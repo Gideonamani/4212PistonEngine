@@ -9,7 +9,7 @@ A picture rendered from one of the app's 3D models has no background of its own:
 Two things follow when a render is captured:
 
 - An X-ray spotlight in a capture (the valve-train cards) is drawn with the `neutral` palette (`SPOTLIGHT_PALETTE` in `src/viewer/core/focus-style.mjs`): a mid-tone ghost, at least 3:1 against both stages, since the picture is laid over either.
-- A very pale model disappears on the light stage, so give its capture a lower `exposure` (the hydraulic tappet, the oil pump and the Wright engine use 0.3 to 0.35; 0.8 is the default). Look at a capture on both stages before keeping it: `python scripts/build_thumbnails.py --sheet dark.png` and `--sheet light.png --stage light` lay the renders over each stage.
+- A very pale model disappears on the light stage, so give its capture a lower `exposure` (the hydraulic tappet, the oil pump and the Wright engine use 0.3 to 0.35). The default is the viewer's own exposure for a picture on no stage (0.9, `EXPOSURE.neutral` in `src/viewer/core/lighting.mjs`); those low values were found under the earlier, twice-as-bright lighting (ACES at 0.9), so check a re-capture before reusing them. Look at a capture on both stages before keeping it: `python scripts/build_thumbnails.py --sheet dark.png` and `--sheet light.png --stage light` lay the renders over each stage.
 
 ## Where each image comes from
 

@@ -9,6 +9,7 @@ import { createHiddenParts } from '../core/part-visibility.mjs';
 import { focusModeOrDefault, partLook, partRole, spotlightPalette } from '../core/focus-style.mjs';
 import { effectiveFocusMode } from '../core/spotlight-fallback';
 import { OVER_GHOST_ORDER } from '../core/ghost-order.mjs';
+import { groupColourMap } from '../core/inspection-colours.mjs';
 import { closeUpOnSpotlight } from '../core/spotlight-closeup';
 import {
   crankAngleForMotion,
@@ -57,7 +58,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   let drawnMode: FocusMode | undefined;
   const section = createSectionController(meshes, bounds, runtime.render, onChange, runtime.scene, () => { if (drawnMode && spotlightMode() !== drawnMode) applyAppearance(); });
   const mixer = new THREE.AnimationMixer(root);
-  const snapshot: ViewerSnapshot = { status: 'Animated mechanism study ready', appearance: 'inspection', playing: false, motionProgress: 0, motionNote: contract.scope };
+  const snapshot: ViewerSnapshot = { status: 'Animated mechanism study ready', appearance: definition.defaultAppearance ?? 'inspection', playing: false, motionProgress: 0, motionNote: contract.scope };
   let active: any, action: THREE.AnimationAction | undefined, progress = 0, playing = false;
   // Playback: a speed for everything, and a loop choice + view mode ('core' vs 'assembled') for each motion.
   let speed = 1;
@@ -119,7 +120,12 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     } else for (const object of [...route.children]) { route.remove(object); disposeObject(object); }
   };
   const materialColors = new Map<THREE.Material, THREE.Color>();
-  for (const mesh of meshes) for (const material of meshMaterials(mesh) as THREE.MeshStandardMaterial[]) materialColors.set(material, material.color.clone());
+  // What the file says about how shiny each material is. Inspection colours are drawn on a satin finish: a polished metal reflects its surroundings
+  // and not its own colour, so a tint on it would read as grey.
+  const materialFinish = new Map<THREE.Material, { metalness: number; roughness: number }>();
+  for (const mesh of meshes) for (const material of meshMaterials(mesh) as THREE.MeshStandardMaterial[]) { materialColors.set(material, material.color.clone()); materialFinish.set(material, { metalness: material.metalness, roughness: material.roughness }); }
+  // A model without power paths is coloured by the group each part is in, by the order the groups appear in the contract.
+  const groupColours = groupColourMap(contract.parts.map((part: any) => part.group));
   const motionVisibility = (display: ReturnType<typeof resolveMotionDisplay>) => (id: string) => !display.visibleSet || display.visibleSet.has(id) || focus.has(id) || Boolean(isolation?.has(id));
   // Highlight would hide a spotlit part that sits inside another, so it is drawn as X-ray for as long as that is so.
   const spotlightMode = () => {
@@ -162,6 +168,11 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
         material.color.copy(materialColors.get(material)!);
         if (paths.length && snapshot.appearance === 'inspection') material.color.set(part?.role === 'teaching-fixture' ? '#46515a' : pathColors[part?.group] || '#84929e');
         if (paths.length && snapshot.appearance === 'inspection' && /Spring|Plate|Plunger/.test(id)) material.color.set(0x379e9b);
+        const inspectionByGroup = !paths.length && snapshot.appearance === 'inspection';
+        if (inspectionByGroup) material.color.set(groupColours.get(part?.group) ?? '#84929e');
+        const finish = materialFinish.get(material)!;
+        material.metalness = inspectionByGroup ? Math.min(finish.metalness, 0.3) : finish.metalness;
+        material.roughness = inspectionByGroup ? Math.max(finish.roughness, 0.5) : finish.roughness;
         if (ghost) material.color.set(palette.ghostColor);
         else if (look === 'pale') material.color.set(palette.paleColor);
         else if (look === 'highlight') material.color.set(palette.highlightColor);
@@ -308,7 +319,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
         setSpeed(value) { speed = value; syncPlayback(); onChange(); },
         setLoop(value) { loops.set(active.id, value); syncPlayback(); onChange(); },
       }, section: section.feature,
-      appearance: { setMode(mode) { snapshot.appearance = mode; applyAppearance(); } },
+      appearance: { setMode(mode) { snapshot.appearance = mode; applyAppearance(); runtime.render(); onChange(); } },
     },
     dispose() { setPlaying(false); stopWatchingTheme?.(); runtime.setPickTargets([]); mixer.stopAllAction(); mixer.uncacheRoot(root); section.dispose(); runtime.scene.remove(root, arrows, route); disposeObject(root); disposeObject(arrows); disposeObject(route); },
   };

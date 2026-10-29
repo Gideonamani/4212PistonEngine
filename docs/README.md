@@ -33,6 +33,7 @@ publish), then `AGENTS.md` (storage and validation rules), then the guides here.
 | [wright-reconstruction-lessons.md](wright-reconstruction-lessons.md) | record | Adding the 413-part Wright engine to Explore: what went wrong, what we built, what the engineering skills now ask for, 6 October 2026. |
 | [lesson-coverage-audit-2026-10-12.md](lesson-coverage-audit-2026-10-12.md) | record | Each lesson read against the instructor's outcomes: what is covered, partial and missing, and the order for the rework, 12 October 2026. |
 | [galaxy-a16-baseline-2026-10-27.md](galaxy-a16-baseline-2026-10-27.md) | record | Viewer load and navigation figures from a desktop simulation (not the phone), what could not be measured, and the procedure for the physical run, 27 October 2026. |
+| [model-finishes-2026-10-29.md](model-finishes-2026-10-29.md) | record | Why some models rendered near-white, model by model; the viewer's new lighting and group colours; and what only a re-export can fix, 29 October 2026. |
 
 The CAD reconstruction, export, audit and release documents (export pipeline, motion profile, part store, assembly interference,
 fidelity classes, constraints, the FreeCAD/Blender boundary, the study rig and the dated CAD reviews) moved with the CAD work to the
