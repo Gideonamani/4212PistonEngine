@@ -55,6 +55,7 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
     const controller = new AbortController();
     const runtime = createViewerRuntime(mount, {
       wheelZoom,
+      batchRendering: definition.adapter === 'animated-study',
       onWheelPassed: () => {
         setWheelHint(true);
         window.clearTimeout(wheelHintTimer.current);

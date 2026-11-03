@@ -33,6 +33,12 @@ changed. Runtime project skips continue to apply.
 Keep local Playwright traces outside the watched application directory: their
 HTML snapshots otherwise trigger Vite page reloads and invalidate the run.
 
+Deferred redraws are enabled for animated studies only; the cylinder and other
+adapters retain immediate redraws. A subsequent software-rendered regression
+exposed picking before a queued frame updated the camera matrix. Picking now
+updates that matrix explicitly. The existing model-tap check failed before
+that correction and passed afterward; section controls are checked separately.
+
 Method references, separate from engine evidence:
 
 - [Three.js rendering on demand](https://threejs.org/manual/pages/rendering-on-demand.html)

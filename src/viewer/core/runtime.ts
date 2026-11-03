@@ -17,6 +17,8 @@ type RuntimeOptions = {
   onWheelPassed?: () => void;
   /** Draw on no background at all, for a picture that is laid over the page (a card image, see scripts/capture_model_thumbnail.js): the canvas keeps its alpha, the scene has no stage colour, and the spotlight uses the neutral palette. Default: false. */
   transparent?: boolean;
+  /** Coalesce animated-study preparation and pose changes into one draw per frame. */
+  batchRendering?: boolean;
 };
 
 export function createViewerRuntime(container: HTMLElement, options: RuntimeOptions = {}): ViewerRuntime {
@@ -77,7 +79,7 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
   const renders = createRenderScheduler(() => {
     if (!disposed) renderer.render(scene, camera);
   });
-  const render = renders.request;
+  const render = options.batchRendering ? renders.request : renders.flush;
   const renderNow = renders.flush;
 
   // What is drawn in the theme's colours besides the stage (the spotlight's) repaints itself when told the theme changed.
@@ -182,6 +184,8 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
     if (!pointerDown || Math.hypot(event.clientX - pointerDown[0], event.clientY - pointerDown[1]) > 5 || !onPick) return;
     const rect = renderer.domElement.getBoundingClientRect();
     pointer.set((event.clientX - rect.left) / rect.width * 2 - 1, -(event.clientY - rect.top) / rect.height * 2 + 1);
+    // A click can arrive before the queued draw updates the camera's world matrix.
+    camera.updateMatrixWorld();
     raycaster.setFromCamera(pointer, camera);
     const hit = raycaster.intersectObjects(pickTargets.filter((object) => object.visible), false)[0];
     if (hit) onPick(hit.object, hit.point);

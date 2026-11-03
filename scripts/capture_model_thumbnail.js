@@ -79,7 +79,7 @@ async function captureModel(modelId, name, view = {}, { exposure, zoom = 1, pan 
   const mount = document.createElement('div');
   mount.style.cssText = `position:fixed;left:0;top:0;width:${width}px;height:${height}px;z-index:99999;`;
   document.body.appendChild(mount);
-  const runtime = createViewerRuntime(mount, { transparent });
+  const runtime = createViewerRuntime(mount, { transparent, batchRendering: modelsById[modelId].adapter === 'animated-study' });
   const resize = () => {
     runtime.renderer.setPixelRatio(1);
     runtime.renderer.setSize(width, height, false);
