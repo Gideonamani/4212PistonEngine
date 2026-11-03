@@ -2,8 +2,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const registry=JSON.parse(fs.readFileSync(new URL('../src/data/models.json',import.meta.url),'utf8'));
 
-assert.deepEqual(registry.map(model=>model.id),['cylinder','gtsio520-h-v5-teaching-engine','gtsio520-h-r10-mechanism-study','wright-1903-engine','wright-1903-reconstruction','langley-manly-balzer-1903','gnome-monosoupape-1913','hydraulic-tappet','oil-pump','accessory-drives']);
-assert.deepEqual(registry.map(model=>model.adapter),['operating-cylinder','full-engine','animated-study','static-gltf','animated-study','animated-study','animated-study','animated-study','animated-study','animated-study']);
+assert.deepEqual(registry.map(model=>model.id),['cylinder','gtsio520-h-v5-teaching-engine','gtsio520-h-r10-mechanism-study','wright-1903-engine','wright-1903-reconstruction','langley-manly-balzer-1903','gnome-monosoupape-1913','merlin-iii-operating-study-4','hydraulic-tappet','oil-pump','accessory-drives']);
+assert.deepEqual(registry.map(model=>model.adapter),['operating-cylinder','full-engine','animated-study','static-gltf','animated-study','animated-study','animated-study','animated-study','animated-study','animated-study','animated-study']);
 assert.equal(new Set(registry.map(model=>model.id)).size,registry.length,'model ids must be unique');
 assert.ok(registry.every(model=>model.label&&model.shortLabel&&model.summary));
 assert.ok(registry.every(model=>!('imageType' in model)),'card pictures come from previewUrl, not a guessed illustration type');
@@ -69,6 +69,17 @@ assert.notEqual(gnome.sources[0].driveId,langley.sources[0].driveId,'the Gnome s
 assert.ok(fs.statSync(new URL('../web/gnome-monosoupape-1913.glb.gz',import.meta.url)).size>1_000_000,'restore the Gnome reconstruction from Drive before asset validation');
 
 const driveId=/^[-\w]{20,}$/;
+const merlin=registry.find(model=>model.id==='merlin-iii-operating-study-4');
+assert.match(merlin.sources[0].localUrl,/^\.\/merlin-iii-operating-study-4\.glb\.gz\?v=[0-9a-f]{12}$/);
+assert.match(merlin.contractUrl,/^\.\/merlin-iii-operating-study-4-contract\.json\?v=[0-9a-f]{12}$/);
+const merlinContract=JSON.parse(fs.readFileSync(new URL(`../web/${merlin.contractUrl.replace(/^\.\//,'').split('?')[0]}`,import.meta.url),'utf8'));
+assert.equal(merlinContract.parts.length,1110);
+assert.equal(merlinContract.motions.length,1);
+assert.equal(merlinContract.motions[0].loopable,false,'the sourced propeller ratio cannot close after one four-stroke cycle');
+assert.equal(merlinContract.motions[0].loop,false);
+assert.match(merlinContract.scope,/cam law.*illustrative/);
+assert.match(merlinContract.scope,/remain deferred and stationary/);
+assert.ok(!merlin.capabilities.some(item=>item.kind==='exploded'),'this release offers only its checked operating clip');
 for (const source of wright.sources) assert.match(source.driveId,driveId);
 for (const model of registry.filter(model=>model.sources)) {
   for (const source of model.sources) assert.match(source.driveId,driveId,'published models must have Drive delivery');
@@ -80,12 +91,12 @@ const config=JSON.parse(fs.readFileSync(new URL('../web/config.json',import.meta
 assert.ok(config.drive_api_key,'the restricted Drive browser key must be configured for published model delivery');
 
 // How a model opens, coloured. Only the animated studies read `defaultAppearance` (the cylinder and the whole engine open in their own inspection colours),
-// and the three historical reconstructions keep the colours of their materials (steel, cast iron, bronze, copper) instead of group colours.
+// and the historical reconstructions keep the colours of their materials (steel, cast iron, bronze, copper) instead of group colours.
 for (const model of registry) {
   if (!('defaultAppearance' in model)) continue;
   assert.ok(['inspection','cad'].includes(model.defaultAppearance),`${model.id}: defaultAppearance is inspection or cad`);
   assert.equal(model.adapter,'animated-study',`${model.id}: only an animated study reads defaultAppearance`);
 }
-assert.deepEqual(registry.filter(model=>model.defaultAppearance==='cad').map(model=>model.id),['wright-1903-reconstruction','langley-manly-balzer-1903','gnome-monosoupape-1913']);
+assert.deepEqual(registry.filter(model=>model.defaultAppearance==='cad').map(model=>model.id),['wright-1903-reconstruction','langley-manly-balzer-1903','gnome-monosoupape-1913','merlin-iii-operating-study-4']);
 
 console.log('unified 3D model registry is valid');

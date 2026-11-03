@@ -1,0 +1,40 @@
+import { appReady, expect, onlyIn, test } from './fixtures';
+
+onlyIn('phone-390');
+test.describe.configure({ mode: 'serial', timeout: 240_000 });
+test.afterEach(async ({ page }) => { await page.goto('about:blank').catch(() => undefined); });
+
+test('Merlin loads, discloses its estimates, plays one cycle and resets explicitly', async ({ page, problems }) => {
+  await page.goto('/#/explore');
+  await appReady(page);
+  await page.locator('button[aria-describedby="capabilities-merlin-iii-operating-study-4"]').click();
+  const viewer = page.getByRole('region', { name: /Interactive 3D model of/ });
+  await expect(page.getByRole('application')).toBeVisible({ timeout: 60_000 });
+  await expect(viewer.getByRole('status')).toHaveCount(0, { timeout: 150_000 });
+  const panel = page.getByRole('complementary', { name: 'Explore controls' });
+  await expect(panel.getByRole('heading', { name: 'Merlin III teaching engine' })).toBeVisible();
+  await panel.getByRole('tab', { name: /^Motion/ }).click();
+  await expect(panel.getByText(/10 mm valve lift/)).toBeVisible();
+  await expect(panel.getByText(/remain deferred and stationary/)).toBeVisible();
+  await expect(panel.getByRole('switch', { name: 'Loop' })).toHaveCount(0);
+  const views = panel.getByRole('radiogroup', { name: 'Model view' });
+  await expect(views.getByRole('radio', { name: 'Inside view' })).toHaveAttribute('aria-checked', 'true');
+  await views.getByRole('radio', { name: 'Assembled view' }).click();
+  await expect(views.getByRole('radio', { name: 'Assembled view' })).toHaveAttribute('aria-checked', 'true');
+  await viewer.locator('canvas').screenshot({ path: '.local/merlin-assembled.png' });
+  await views.getByRole('radio', { name: 'Inside view' }).click();
+  await expect(views.getByRole('radio', { name: 'Inside view' })).toHaveAttribute('aria-checked', 'true');
+  const slider = panel.getByRole('slider').first();
+  const maximum = Number(await slider.getAttribute('max'));
+  await slider.fill(String(maximum * 0.5));
+  await expect(panel.getByRole('tab', { name: /paused/ })).toBeVisible();
+  await slider.fill(String(maximum * 0.999));
+  await panel.getByRole('button', { name: 'Play', exact: true }).click();
+  await expect(panel.getByRole('button', { name: 'Replay', exact: true })).toBeVisible({ timeout: 90_000 });
+  await expect(slider).toHaveValue(String(maximum));
+  await panel.getByRole('button', { name: 'Reset motion to the start' }).click();
+  await expect(slider).toHaveValue('0');
+  await page.getByRole('button', { name: 'Hide Explore controls' }).first().click();
+  await page.screenshot({ path: '.local/merlin-release-viewer.png' });
+  problems.assertNone();
+});

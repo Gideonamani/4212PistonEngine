@@ -8,13 +8,16 @@ const readJson = (path) => JSON.parse(readFileSync(new URL(`../${path}`, import.
 const registry = readJson('src/data/models.json');
 const studies = registry.filter((model) => model.adapter === 'animated-study');
 
-test('only the GTSIO-520-H R10 study turns or reframes its model; the other animated studies keep their own orientation', () => {
-  assert.equal(studies.length, 7, 'seven animated-study models');
+test('R10 and Merlin declare their framing; the other animated studies keep their own orientation', () => {
+  assert.equal(studies.length, 8, 'eight animated-study models');
   for (const model of studies) {
     const contract = readJson(`web/${model.contractUrl.replace(/^\.\//, '').replace(/\?.*$/, '')}`);
     if (model.id === 'gtsio520-h-r10-mechanism-study') {
       // The default camera looks from the side of the odd cylinders and the alternator; a reflected export (procedural.mirror_x, docs/r10-handedness.md) mirrors that side.
       assert.deepEqual(contract.display, { rotation_x_deg: 90, fit_direction: [contract.procedural.mirror_x === true ? -1.3 : 1.3, 0.8, 1.55] });
+    } else if (model.id === 'merlin-iii-operating-study-4') {
+      assert.deepEqual(contract.display, { fit_direction: [1, 0.85, 1] });
+      assert.equal(model.fitPadding, 0.85, 'the long V12 fills the phone view without clipping its ends');
     } else {
       assert.equal(contract.display, undefined, `${model.id} must not set a display orientation`);
     }

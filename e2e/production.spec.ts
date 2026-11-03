@@ -25,6 +25,24 @@ test('a model is requested from Drive first, with no local model request that ca
   expect(requests.filter((url) => url.startsWith('http://localhost:4174')), 'a local model file was requested in production').toEqual([]);
 });
 
+test('the Merlin teaching release requests its registered Drive export in production', async ({ page }) => {
+  const models = JSON.parse(fs.readFileSync('src/data/models.json', 'utf8'));
+  const merlin = models.find((model: { id: string }) => model.id === 'merlin-iii-operating-study-4');
+  expect(merlin.sources[0].driveId).toBeTruthy();
+  const requests: string[] = [];
+  page.on('request', (request) => {
+    const url = request.url();
+    if (/\.glb(\.gz)?(\?|$)/.test(url) || url.includes('googleapis.com/drive/v3/files/')) requests.push(url);
+  });
+  await page.route('https://www.googleapis.com/drive/**', (route) => route.abort());
+  await page.goto('/#/explore');
+  await appReady(page);
+  await page.locator('button[aria-describedby="capabilities-merlin-iii-operating-study-4"]').click();
+  await expect.poll(() => requests.length, { timeout: 60_000 }).toBeGreaterThan(0);
+  expect(requests[0]).toContain(`googleapis.com/drive/v3/files/${merlin.sources[0].driveId}`);
+  expect(requests.filter((url) => url.startsWith('http://localhost:4174'))).toEqual([]);
+});
+
 test('once visited online, the app and its lessons open with no connection (issue #77)', async ({ page, context }) => {
   await page.route('https://www.googleapis.com/drive/**', (route) => route.abort());
   await page.goto('/#/learn');

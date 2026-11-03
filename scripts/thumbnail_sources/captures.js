@@ -18,13 +18,14 @@ const THUMBNAIL_CAPTURES = [
   { model: 'accessory-drives', name: 'accessory-drives-square', view: { savedMotionId: 'Operating mechanism', motionProgress: 0 }, options: { zoom: 0.8, orbit: [-25, -22], exposure: 0.5 } },
 
   // The Explore gallery tiles: every model assembled (not exploded), seen from one direction and scaled to fill the same share of the frame, so the
-  // eight look like a set. `frame` does the centring and scaling; the view is the pose to draw.
+  // cards look like a set. `frame` does the centring and scaling; the view is the pose to draw.
   { model: 'cylinder', name: 'explore-cylinder', view: { initialAngle: 560, initialCycle: true }, options: { ...TILE } },
   { model: 'gtsio520-h-v5-teaching-engine', name: 'explore-full-engine', view: {}, options: { ...TILE } },
   { model: 'wright-1903-engine', name: 'explore-wright-1903-engine', view: { viewPreset: 'engine-overview' }, options: { ...TILE, exposure: 0.35 } },
   { model: 'wright-1903-reconstruction', name: 'explore-wright-1903-reconstruction', view: { savedMotionId: 'Systems exploded view', motionProgress: 0 }, options: { ...TILE } },
   { model: 'langley-manly-balzer-1903', name: 'explore-langley-manly-balzer-1903', view: { savedMotionId: 'Systems exploded view', motionProgress: 0 }, options: { ...TILE } },
   { model: 'gnome-monosoupape-1913', name: 'explore-gnome-monosoupape-1913', view: { savedMotionId: 'Systems exploded view', motionProgress: 0 }, options: { ...TILE } },
+  { model: 'merlin-iii-operating-study-4', name: 'explore-merlin-iii-operating-study-4', view: { savedMotionId: 'Operating mechanism (illustrative)', motionProgress: 0, motionViewMode: 'core' }, options: { ...TILE, frame: { dir: [-1.2, 0.7, 1], fill: 0.8 } } },
   { model: 'hydraulic-tappet', name: 'explore-hydraulic-tappet', view: { savedMotionId: 'Exploded overview', motionProgress: 0 }, options: { ...TILE, exposure: 0.3 } },
   { model: 'oil-pump', name: 'explore-oil-pump', view: { savedMotionId: 'Exploded overview', motionProgress: 0 }, options: { ...TILE, exposure: 0.3 } },
   { model: 'accessory-drives', name: 'explore-accessory-drives', view: { savedMotionId: 'Operating mechanism', motionProgress: 0 }, options: { ...TILE } },

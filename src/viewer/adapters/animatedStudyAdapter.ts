@@ -48,7 +48,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   const display = contract.display || {};
   const fitDirection = Array.isArray(display.fit_direction) && display.fit_direction.length === 3 ? new THREE.Vector3(...(display.fit_direction as [number, number, number])) : undefined;
   if (Number.isFinite(display.rotation_x_deg)) root.rotation.x = THREE.MathUtils.degToRad(display.rotation_x_deg);
-  runtime.scene.add(root); root.updateMatrixWorld(true); runtime.fit(root, fitDirection);
+  runtime.scene.add(root); root.updateMatrixWorld(true); runtime.fit(root, fitDirection, definition.fitPadding);
   const procedural = createProceduralStudySampler(contract, partsById, root);
   for (const motion of contract.motions) {
     if (!clips.has(motion.id) && !procedural.supports(motion)) throw Error(`Saved motion is missing: ${motion.id}`);
@@ -64,7 +64,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   let speed = 1;
   const loops = new Map<string, boolean>();
   const motionViewModes = new Map<string, 'core' | 'assembled'>();
-  const loopOf = () => loops.get(active.id) ?? Boolean(active.loop);
+  const loopOf = () => active.loopable !== false && (loops.get(active.id) ?? Boolean(active.loop));
   const durationOf = () => clips.get(active?.id)?.duration ?? Number(active?.duration || 12);
   const syncPlayback = () => { snapshot.motionSpeed = speed; snapshot.motionLoop = loopOf(); };
   let isolation: Set<string> | undefined;
@@ -234,12 +234,12 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     // Use the union of both assembly extremes for cuts and framing in either direction.
     sample(0); const motionBounds = new THREE.Box3().setFromObject(root);
     sample(100); motionBounds.union(new THREE.Box3().setFromObject(root)); section.updateBounds(motionBounds);
-    const proxy = new THREE.Mesh(new THREE.BoxGeometry(...motionBounds.getSize(new THREE.Vector3()).toArray())); proxy.position.copy(motionBounds.getCenter(new THREE.Vector3())); runtime.fit(proxy, fitDirection); proxy.geometry.dispose(); sample(0);
+    const proxy = new THREE.Mesh(new THREE.BoxGeometry(...motionBounds.getSize(new THREE.Vector3()).toArray())); proxy.position.copy(motionBounds.getCenter(new THREE.Vector3())); runtime.fit(proxy, fitDirection, definition.fitPadding); proxy.geometry.dispose(); sample(0);
   };
   const fitVisible = () => {
     const box = new THREE.Box3(); for (const mesh of meshes) if (mesh.visible) box.expandByObject(mesh);
     if (box.isEmpty()) return;
-    const proxy = new THREE.Mesh(new THREE.BoxGeometry(...box.getSize(new THREE.Vector3()).toArray())); proxy.position.copy(box.getCenter(new THREE.Vector3())); runtime.fit(proxy, fitDirection); proxy.geometry.dispose();
+    const proxy = new THREE.Mesh(new THREE.BoxGeometry(...box.getSize(new THREE.Vector3()).toArray())); proxy.position.copy(box.getCenter(new THREE.Vector3())); runtime.fit(proxy, fitDirection, definition.fitPadding); proxy.geometry.dispose();
   };
   const select = (id: string) => {
     const part = componentsById.get(id);
@@ -317,7 +317,9 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
       motion: {
         setAngle: sample, setPlaying, reset() { setPlaying(false); sample(active.id === start.motionId ? start.progress : 0); },
         setSpeed(value) { speed = value; syncPlayback(); onChange(); },
-        setLoop(value) { loops.set(active.id, value); syncPlayback(); onChange(); },
+        ...(contract.motions.some((motion: any) => motion.loopable !== false) ? {
+          setLoop(value: boolean) { loops.set(active.id, value); syncPlayback(); onChange(); },
+        } : {}),
       }, section: section.feature,
       appearance: { setMode(mode) { snapshot.appearance = mode; applyAppearance(); runtime.render(); onChange(); } },
     },
