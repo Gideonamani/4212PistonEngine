@@ -5,6 +5,7 @@ import type { InteractionMode, ViewerRuntime } from '../types';
 import { STAGE_COLOR } from '../../theme/theme.mjs';
 import { wheelDecision, type WheelZoom } from './interaction.mjs';
 import { DIRECTIONAL_LIGHTS, ENVIRONMENT_INTENSITY, HEMISPHERE_LIGHT, exposureFor } from './lighting.mjs';
+import { createRenderScheduler } from './render-scheduler.mjs';
 
 const currentTheme = (): 'light' | 'dark' => (typeof document !== 'undefined' && document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
 const currentStageColor = () => STAGE_COLOR[currentTheme()];
@@ -16,6 +17,8 @@ type RuntimeOptions = {
   onWheelPassed?: () => void;
   /** Draw on no background at all, for a picture that is laid over the page (a card image, see scripts/capture_model_thumbnail.js): the canvas keeps its alpha, the scene has no stage colour, and the spotlight uses the neutral palette. Default: false. */
   transparent?: boolean;
+  /** Coalesce animated-study preparation and pose changes into one draw per frame. */
+  batchRendering?: boolean;
 };
 
 export function createViewerRuntime(container: HTMLElement, options: RuntimeOptions = {}): ViewerRuntime {
@@ -73,9 +76,11 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
   let previousFrame = performance.now();
   let disposed = false;
 
-  const render = () => {
+  const renders = createRenderScheduler(() => {
     if (!disposed) renderer.render(scene, camera);
-  };
+  });
+  const render = options.batchRendering ? renders.request : renders.flush;
+  const renderNow = renders.flush;
 
   // What is drawn in the theme's colours besides the stage (the spotlight's) repaints itself when told the theme changed.
   const themeListeners = new Set<() => void>();
@@ -104,7 +109,7 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
     const elapsed = Math.max(0, Math.min(0.1, (now - previousFrame) / 1000));
     previousFrame = now;
     if (animationCallback?.(elapsed)) {
-      render();
+      renderNow();
       animationFrame = requestAnimationFrame(animate);
     }
   };
@@ -179,6 +184,8 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
     if (!pointerDown || Math.hypot(event.clientX - pointerDown[0], event.clientY - pointerDown[1]) > 5 || !onPick) return;
     const rect = renderer.domElement.getBoundingClientRect();
     pointer.set((event.clientX - rect.left) / rect.width * 2 - 1, -(event.clientY - rect.top) / rect.height * 2 + 1);
+    // A click can arrive before the queued draw updates the camera's world matrix.
+    camera.updateMatrixWorld();
     raycaster.setFromCamera(pointer, camera);
     const hit = raycaster.intersectObjects(pickTargets.filter((object) => object.visible), false)[0];
     if (hit) onPick(hit.object, hit.point);
@@ -215,6 +222,7 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
     renderer,
     controls,
     render,
+    renderNow,
     fit,
     focus,
     resetView,
@@ -225,6 +233,7 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
     onThemeChange,
     dispose() {
       disposed = true;
+      renders.dispose();
       themeObserver?.disconnect();
       themeListeners.clear();
       resize.disconnect();

@@ -36,7 +36,7 @@
     "componentCatalogueUrl": "./components.json?v=20261001-reviewed",
     "motionProfileUrl": "./motion.json?v=20261001-reviewed",
     "savedMotionsUrl": "./cylinder-saved-motions.json?v=661de14c565b",
-    "partDetailsUrl": "./cylinder-parts.json?v=fcb57e0189fa"
+    "partDetailsUrl": "./cylinder-parts.json?v=37b4f9cc04b9"
   },
   {
     "id": "gtsio520-h-v5-teaching-engine",
@@ -62,7 +62,7 @@
     "label": "GTSIO-520-H whole engine, reconstruction draft (1,396 parts)",
     "shortLabel": "GTSIO-520-H engine draft",
     "adapter": "animated-study",
-    "headerLabel": "GTSIO-520-H · RECONSTRUCTION DRAFT",
+    "headerLabel": "GTSIO-520-H \u00b7 RECONSTRUCTION DRAFT",
     "summary": "Draft reconstruction of the whole engine with an exploded view and a four-stroke cycle. Shapes and timing are not yet checked.",
     "capabilities": [
       {
@@ -93,7 +93,7 @@
       }
     ],
     "contractUrl": "./gtsio520-r10-contract.json?v=1989cf62ae5e",
-    "partDetailsUrl": "./gtsio520-r10-parts.json?v=db7cb9dda4bf",
+    "partDetailsUrl": "./gtsio520-r10-parts.json?v=63ff4faf33f3",
     "lessonControls": true
   },
   {
@@ -301,6 +301,41 @@
     ],
     "contractUrl": "./gnome-monosoupape-1913-contract.json?v=dba12bb0840d",
     "lessonControls": true
+  },
+  {
+    "id": "merlin-iii-operating-study-4",
+    "label": "Merlin III illustrative operating teaching engine (1,110 parts)",
+    "shortLabel": "Merlin III teaching engine",
+    "adapter": "animated-study",
+    "defaultAppearance": "cad",
+    "fitPadding": 0.85,
+    "headerLabel": "MERLIN III \u00b7 ILLUSTRATIVE OPERATING STUDY",
+    "summary": "Merlin III V12 cranktrain and timed valves. Lift, cam law and contours are illustrative; rear accessory internals remain deferred.",
+    "capabilities": [
+      {
+        "kind": "animated",
+        "note": "One teaching cycle; explicit reset"
+      },
+      {
+        "kind": "section",
+        "note": "Interactive section planes"
+      },
+      {
+        "kind": "parts",
+        "note": "1,110 named components"
+      }
+    ],
+    "previewUrl": "./model-previews/merlin-iii-operating-study-4.webp",
+    "sources": [
+      {
+        "localUrl": "./merlin-iii-operating-study-4.glb.gz?v=2d04c603e9b8",
+        "compressed": true,
+        "transferBytes": 17279707,
+        "decodedBytes": 57171600,
+        "driveId": "1RiZlqLnFrkd0XnZML6G3jV4aZa5ESAny"
+      }
+    ],
+    "contractUrl": "./merlin-iii-operating-study-4-contract.json?v=278bef6e8027"
   },
   {
     "id": "hydraulic-tappet",

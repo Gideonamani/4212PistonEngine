@@ -111,6 +111,10 @@ export function MotionPanel({ features, snapshot, host, player }: MotionPanelPro
         {SPEEDS.map((choice) => <button key={choice} type="button" role="radio" aria-checked={choice === speed} onClick={() => { motion.setSpeed!(choice); setSpeedOpen(false); }} className={`h-11 rounded-lg text-xs font-semibold outline-none transition-colors focus-visible:ring-2 focus-visible:ring-teal-300 ${choice === speed ? 'bg-teal-400 font-bold text-slate-950 shadow-sm' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}>{speedName(choice)}</button>)}
       </div>}
 
+      {snapshot.motionAllowAssembled && saved?.setViewMode && <div role="radiogroup" aria-label="Model view" className="mt-3 grid grid-cols-2 gap-2">
+        {([{ mode: 'core', label: 'Inside view' }, { mode: 'assembled', label: 'Assembled view' }] as const).map(({ mode, label }) => <button key={mode} type="button" role="radio" aria-checked={snapshot.motionViewMode === mode} onClick={() => saved.setViewMode!(mode)} className={`${ghostButton} ${snapshot.motionViewMode === mode ? 'bg-teal-400/15 text-teal-200' : ''}`}>{label}</button>)}
+      </div>}
+
       <button type="button" aria-expanded={detailsOpen} onClick={() => setDetailsOpen((open) => !open)} className="mt-3 flex h-11 w-full items-center justify-between border-t border-white/10 px-0.5 text-xs font-semibold text-slate-300 transition-colors hover:text-white outline-none focus-visible:ring-2 focus-visible:ring-teal-300">
         <span>Details</span><ChevronDown className={`h-[18px] w-[18px] transition-transform ${detailsOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
       </button>

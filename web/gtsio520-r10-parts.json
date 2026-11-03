@@ -105,17 +105,17 @@
     {
      "lesson": 7,
      "title": "Parts and Construction",
-     "mentions": 38
+     "mentions": 39
+    },
+    {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 21
     },
     {
      "lesson": 8,
      "title": "Valve Operating",
      "mentions": 16
-    },
-    {
-     "lesson": 16,
-     "title": "Maintenance & Servicing",
-     "mentions": 13
     },
     {
      "lesson": 9,
@@ -734,6 +734,11 @@
      "mentions": 22
     },
     {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 10
+    },
+    {
      "lesson": 18,
      "title": "Practicals",
      "mentions": 10
@@ -742,11 +747,6 @@
      "lesson": 15,
      "title": "Operation Malfunctions",
      "mentions": 8
-    },
-    {
-     "lesson": 4,
-     "title": "Thermodynamic Cycles",
-     "mentions": 4
     }
    ]
   },
@@ -805,7 +805,12 @@
     {
      "lesson": 8,
      "title": "Valve Operating",
-     "mentions": 20
+     "mentions": 22
+    },
+    {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 18
     },
     {
      "lesson": 18,
@@ -816,11 +821,6 @@
      "lesson": 15,
      "title": "Operation Malfunctions",
      "mentions": 5
-    },
-    {
-     "lesson": 16,
-     "title": "Maintenance & Servicing",
-     "mentions": 4
     }
    ]
   },
@@ -877,7 +877,12 @@
     {
      "lesson": 8,
      "title": "Valve Operating",
-     "mentions": 3
+     "mentions": 6
+    },
+    {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 4
     }
    ]
   },
@@ -934,14 +939,14 @@
    },
    "lessons": [
     {
-     "lesson": 8,
-     "title": "Valve Operating",
-     "mentions": 5
-    },
-    {
      "lesson": 16,
      "title": "Maintenance & Servicing",
-     "mentions": 2
+     "mentions": 17
+    },
+    {
+     "lesson": 8,
+     "title": "Valve Operating",
+     "mentions": 9
     }
    ]
   },
@@ -998,6 +1003,11 @@
    },
    "lessons": [
     {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 14
+    },
+    {
      "lesson": 18,
      "title": "Practicals",
      "mentions": 12
@@ -1005,12 +1015,7 @@
     {
      "lesson": 8,
      "title": "Valve Operating",
-     "mentions": 9
-    },
-    {
-     "lesson": 16,
-     "title": "Maintenance & Servicing",
-     "mentions": 3
+     "mentions": 10
     }
    ]
   },
@@ -1163,9 +1168,14 @@
    },
    "lessons": [
     {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 16
+    },
+    {
      "lesson": 8,
      "title": "Valve Operating",
-     "mentions": 5
+     "mentions": 10
     }
    ]
   },
@@ -1225,7 +1235,12 @@
     {
      "lesson": 8,
      "title": "Valve Operating",
-     "mentions": 3
+     "mentions": 5
+    },
+    {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 4
     }
    ]
   },
@@ -1346,9 +1361,14 @@
    },
    "lessons": [
     {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 53
+    },
+    {
      "lesson": 8,
      "title": "Valve Operating",
-     "mentions": 32
+     "mentions": 42
     },
     {
      "lesson": 18,
@@ -1359,11 +1379,6 @@
      "lesson": 10,
      "title": "Power Generation",
      "mentions": 4
-    },
-    {
-     "lesson": 3,
-     "title": "Terminologies",
-     "mentions": 2
     }
    ]
   },
@@ -1720,7 +1735,13 @@
     "description": "Cover, Valve Rocker",
     "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
    },
-   "lessons": []
+   "lessons": [
+    {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 5
+    }
+   ]
   },
   "rocker-cover-gasket": {
    "family": "Rocker cover gasket",
@@ -1981,7 +2002,12 @@
     {
      "lesson": 8,
      "title": "Valve Operating",
-     "mentions": 21
+     "mentions": 25
+    },
+    {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 24
     },
     {
      "lesson": 18,
@@ -2048,7 +2074,13 @@
     "description": "Housing, Push Rod",
     "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
    },
-   "lessons": []
+   "lessons": [
+    {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 5
+    }
+   ]
   },
   "push-rod-housing-spring": {
    "family": "Push rod housing spring",
@@ -2258,7 +2290,7 @@
     {
      "lesson": 8,
      "title": "Valve Operating",
-     "mentions": 34
+     "mentions": 36
     },
     {
      "lesson": 18,
@@ -2266,14 +2298,14 @@
      "mentions": 29
     },
     {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 21
+    },
+    {
      "lesson": 13,
      "title": "Factors Affecting Power",
      "mentions": 4
-    },
-    {
-     "lesson": 3,
-     "title": "Terminologies",
-     "mentions": 1
     }
    ]
   },
@@ -2339,7 +2371,7 @@
     {
      "lesson": 8,
      "title": "Valve Operating",
-     "mentions": 13
+     "mentions": 14
     },
     {
      "lesson": 16,
@@ -2727,12 +2759,12 @@
     {
      "lesson": 9,
      "title": "Accessories & Drives",
-     "mentions": 7
+     "mentions": 8
     },
     {
-     "lesson": 6,
-     "title": "Cooling Methods",
-     "mentions": 2
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 4
     }
    ]
   },
@@ -2801,7 +2833,7 @@
     {
      "lesson": 9,
      "title": "Accessories & Drives",
-     "mentions": 1
+     "mentions": 2
     }
    ]
   },
@@ -2962,14 +2994,14 @@
    },
    "lessons": [
     {
+     "lesson": 9,
+     "title": "Accessories & Drives",
+     "mentions": 12
+    },
+    {
      "lesson": 8,
      "title": "Valve Operating",
      "mentions": 11
-    },
-    {
-     "lesson": 9,
-     "title": "Accessories & Drives",
-     "mentions": 9
     },
     {
      "lesson": 18,
@@ -3145,14 +3177,14 @@
      "mentions": 60
     },
     {
-     "lesson": 7,
-     "title": "Parts and Construction",
-     "mentions": 40
-    },
-    {
      "lesson": 9,
      "title": "Accessories & Drives",
-     "mentions": 40
+     "mentions": 43
+    },
+    {
+     "lesson": 7,
+     "title": "Parts and Construction",
+     "mentions": 41
     }
    ]
   },
@@ -3600,7 +3632,7 @@
     {
      "lesson": 7,
      "title": "Parts and Construction",
-     "mentions": 9
+     "mentions": 12
     },
     {
      "lesson": 3,
@@ -3660,7 +3692,13 @@
     "description": "Cap, Connecting Rod",
     "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
    },
-   "lessons": []
+   "lessons": [
+    {
+     "lesson": 7,
+     "title": "Parts and Construction",
+     "mentions": 1
+    }
+   ]
   },
   "connecting-rod-bearing": {
    "family": "Connecting rod bearing",
@@ -3711,7 +3749,13 @@
     "description": "Bearing, Connecting Rod",
     "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
    },
-   "lessons": []
+   "lessons": [
+    {
+     "lesson": 7,
+     "title": "Parts and Construction",
+     "mentions": 1
+    }
+   ]
   },
   "piston-pin-bushing": {
    "family": "Piston pin bushing",
@@ -3934,7 +3978,7 @@
     {
      "lesson": 7,
      "title": "Parts and Construction",
-     "mentions": 39
+     "mentions": 50
     }
    ]
   },
@@ -3999,14 +4043,14 @@
      "mentions": 9
     },
     {
+     "lesson": 7,
+     "title": "Parts and Construction",
+     "mentions": 8
+    },
+    {
      "lesson": 10,
      "title": "Power Generation",
      "mentions": 6
-    },
-    {
-     "lesson": 7,
-     "title": "Parts and Construction",
-     "mentions": 4
     },
     {
      "lesson": 3,
@@ -5158,14 +5202,14 @@
      "mentions": 36
     },
     {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 13
+    },
+    {
      "lesson": 15,
      "title": "Operation Malfunctions",
      "mentions": 9
-    },
-    {
-     "lesson": 16,
-     "title": "Maintenance & Servicing",
-     "mentions": 7
     },
     {
      "lesson": 18,
@@ -5381,14 +5425,14 @@
      "mentions": 8
     },
     {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 3
+    },
+    {
      "lesson": 17,
      "title": "Light Sport Aircraft",
      "mentions": 2
-    },
-    {
-     "lesson": 16,
-     "title": "Maintenance & Servicing",
-     "mentions": 1
     },
     {
      "lesson": 18,
@@ -7275,7 +7319,7 @@
     {
      "lesson": 9,
      "title": "Accessories & Drives",
-     "mentions": 18
+     "mentions": 22
     }
    ]
   },
@@ -7985,7 +8029,7 @@
     {
      "lesson": 9,
      "title": "Accessories & Drives",
-     "mentions": 21
+     "mentions": 25
     },
     {
      "lesson": 18,
@@ -7993,14 +8037,14 @@
      "mentions": 4
     },
     {
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 3
+    },
+    {
      "lesson": 15,
      "title": "Operation Malfunctions",
      "mentions": 2
-    },
-    {
-     "lesson": 6,
-     "title": "Cooling Methods",
-     "mentions": 1
     }
    ]
   },
@@ -8055,7 +8099,13 @@
     "description": "Shaftgear, Starter",
     "note": "From the IO-520 parts catalogue (a similar engine). The GTSIO-520-H may differ."
    },
-   "lessons": []
+   "lessons": [
+    {
+     "lesson": 9,
+     "title": "Accessories & Drives",
+     "mentions": 1
+    }
+   ]
   },
   "starter-needle-bearing": {
    "family": "Needle bearing",
@@ -8270,9 +8320,9 @@
      "mentions": 3
     },
     {
-     "lesson": 6,
-     "title": "Cooling Methods",
-     "mentions": 1
+     "lesson": 16,
+     "title": "Maintenance & Servicing",
+     "mentions": 2
     }
    ]
   },
@@ -9247,7 +9297,7 @@
     {
      "lesson": 9,
      "title": "Accessories & Drives",
-     "mentions": 4
+     "mentions": 5
     },
     {
      "lesson": 18,

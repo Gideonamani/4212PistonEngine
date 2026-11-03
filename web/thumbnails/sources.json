@@ -351,6 +351,12 @@
         "path": "explore-accessory-drives.webp",
         "credit": "Rendered from the app's GTSIO-520-H accessory drives teaching model",
         "license": "Course material"
+      },
+      "merlin-iii-operating-study-4": {
+        "kind": "render",
+        "path": "explore-merlin-iii-operating-study-4.webp",
+        "credit": "Rendered from the app's Merlin III illustrative operating teaching study (inside view)",
+        "license": "Course material"
       }
     }
   },

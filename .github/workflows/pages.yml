@@ -122,6 +122,8 @@ jobs:
       - uses: ./.github/actions/prepare
       - name: Type-check the React application and the browser tests
         run: npm run lint
+      - name: Verify that browser phases and shards cover every test exactly once
+        run: node scripts/check_e2e_partitions.mjs
       - name: Run every JavaScript test
         run: npm test
 
@@ -153,7 +155,11 @@ jobs:
       - name: Install the Playwright browser
         run: npx playwright install --with-deps chromium
       - name: Run the browser tests at ${{ matrix.project }} (part ${{ matrix.shard }} of 3)
-        run: npm run e2e -- --project=${{ matrix.project }} --shard=${{ matrix.shard }}/3
+        run: npm run e2e -- --project=${{ matrix.project }} --shard=${{ matrix.shard }}/3 --grep-invert @large-model
+      # Software WebGL renderers contend heavily when two large assemblies share a runner.
+      # Runtime project skips still apply; the partition check verifies complete coverage across both phases.
+      - name: Run the large-model checks on a dedicated browser worker
+        run: npm run e2e -- --project=${{ matrix.project }} --shard=${{ matrix.shard }}/3 --grep @large-model --workers=1 --pass-with-no-tests
       - name: Keep the browser test traces when a test fails
         if: failure()
         uses: actions/upload-artifact@v4

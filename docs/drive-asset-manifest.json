@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-06",
+  "date": "2026-11-03",
   "native_folder_url": "https://drive.google.com/drive/folders/1V-6yZX2FZ-GQDS2yF5hDJGbXjloEVrbJ",
   "native_archive": {
     "path": "build/drive-migration/native-cad-sources-20261002.zip",
@@ -120,6 +120,12 @@
       "drive_id": "1Gx9nOjT-p9xMKlGJ4yrj3z26d5akxKaI",
       "bytes": 12019746,
       "sha256": "bcc141fafe3a282aecc686195ea97b9f1fe43fc58a215ad0102ebfecfccee549"
+    },
+    {
+      "path": "web/merlin-iii-operating-study-4.glb.gz",
+      "drive_id": "1RiZlqLnFrkd0XnZML6G3jV4aZa5ESAny",
+      "bytes": 17279707,
+      "sha256": "d1ea5964ae650364f8c89d5157f60fe5f78ca7b5c45e29c1c5d605774279e62d"
     }
   ],
   "history_policy": "New unpublished accessory commits exclude model binaries. Existing published history retained; native CAD and exported GLBs are no longer tracked going forward.",
@@ -550,5 +556,3992 @@
         "sha256": "ad6066608f05c43a1effe279c784c73f5f48e3eecbba4147cee0db35fd4b219a"
       }
     ]
+  },
+  "gtsio520_h_exterior_archive": {
+    "date": "2026-11-02",
+    "scope": "Private retained editable GTSIO-520-H static exterior comparison and reviewed evidence. Full installation and motion remain unaccepted.",
+    "complete_local_archive": {
+      "path": "archive\\gtsio-exterior-retained-20261102\\gtsio520-h-exterior-accepted-editable-and-review-20261102.zip",
+      "bytes": 177221276,
+      "sha256": "ad263d0b080eedb3204ad2a3827b4fbcd34dc4d84b362e2cc00ffbe990cb3225"
+    },
+    "delivery_archives": [
+      {
+        "path": "C:\\Users\\user\\KeonGeraldo\\CodeProjects\\EngineReverseEngineering_MEDIS\\archive\\gtsio-exterior-retained-20261102\\gtsio520-h-exterior-private-1-of-4-20261102.zip",
+        "bytes": 56640053,
+        "sha256": "2038723b2ac2e2dbb7ff6bea6399e698051bb57bbd2265d0f8721c7cead76228",
+        "private": true,
+        "files": 13,
+        "drive_id": "1Sg65MW9NikScA9wYQqWboFLgPQCeQoCQ",
+        "url": "https://drive.google.com/file/d/1Sg65MW9NikScA9wYQqWboFLgPQCeQoCQ/view",
+        "authenticated_full_readback_verified": true,
+        "owner_only_permissions_verified": true
+      },
+      {
+        "path": "C:\\Users\\user\\KeonGeraldo\\CodeProjects\\EngineReverseEngineering_MEDIS\\archive\\gtsio-exterior-retained-20261102\\gtsio520-h-exterior-private-2-of-4-20261102.zip",
+        "bytes": 45848321,
+        "sha256": "7521d0ca63a975a99472780d18f2b288afc76a870f7e5bdc693dfa99dfedb653",
+        "private": true,
+        "files": 9,
+        "drive_id": "1go7oIdivQ3u5KTY8z46zFMEgCesBWW_H",
+        "url": "https://drive.google.com/file/d/1go7oIdivQ3u5KTY8z46zFMEgCesBWW_H/view",
+        "authenticated_full_readback_verified": true,
+        "owner_only_permissions_verified": true
+      },
+      {
+        "path": "C:\\Users\\user\\KeonGeraldo\\CodeProjects\\EngineReverseEngineering_MEDIS\\archive\\gtsio-exterior-retained-20261102\\gtsio520-h-exterior-private-3-of-4-20261102.zip",
+        "bytes": 38972861,
+        "sha256": "cfb80054d91460e8e2cda80f1e143ed8a1253e6ea5d5aa6fc36b76a63b02d9c5",
+        "private": true,
+        "files": 1,
+        "drive_id": "1pJpM4wV4yZHnmaNPUcEDDNWjspBwLPZD",
+        "url": "https://drive.google.com/file/d/1pJpM4wV4yZHnmaNPUcEDDNWjspBwLPZD/view",
+        "authenticated_full_readback_verified": true,
+        "owner_only_permissions_verified": true
+      },
+      {
+        "path": "C:\\Users\\user\\KeonGeraldo\\CodeProjects\\EngineReverseEngineering_MEDIS\\archive\\gtsio-exterior-retained-20261102\\gtsio520-h-exterior-private-4-of-4-20261102.zip",
+        "bytes": 35761123,
+        "sha256": "4c99578964275520b785908653b80650bacd44e912f7181bd25b26fdb61c38e7",
+        "private": true,
+        "files": 53,
+        "drive_id": "1WNIlrWJaM2HPJmJGtuWapTUJRNdAfnaN",
+        "url": "https://drive.google.com/file/d/1WNIlrWJaM2HPJmJGtuWapTUJRNdAfnaN/view",
+        "authenticated_full_readback_verified": true,
+        "owner_only_permissions_verified": true
+      }
+    ],
+    "parent_folder_id": "1V-6yZX2FZ-GQDS2yF5hDJGbXjloEVrbJ",
+    "private": true,
+    "verification": "Each independent ZIP checked locally for CRC and member SHA-256, uploaded to existing private cad-studies folder, owner-only permissions verified, then fully read back via authenticated connector and matched by byte size and SHA-256.",
+    "source_worktree": "C:\\Users\\user\\KeonGeraldo\\CodeProjects\\EngineReverseEngineering_MEDIS-exterior",
+    "source_worktree_preserved": true,
+    "cleanup_recommendation": "Keep the accepted native/editable originals and immutable archive locally. Dependencies and caches can be regenerated. The merged exterior worktree can later be retired by moving these artifacts into the main ignored archive; do not discard unique native originals.",
+    "local_worktree_retention": {
+      "path": "archive/gtsio-exterior-worktree-20261103",
+      "files": 195,
+      "bytes": 488380986,
+      "manifest_sha256": "07bad5e76906b76c57b4bedd610e5324ef42ffdbbca8481ca5acf988c1b5a99a",
+      "all_files_sha256_verified_after_move": true,
+      "scope": "All 195 ignored local artifacts, including earlier editable model trials and review evidence. Additional to the accepted private Drive archives; no local models discarded.",
+      "worktree_retired": true,
+      "merged_branch": "feat/gtsio-exterior-comparison",
+      "retired_branch_head": "93033b843df85279cb1eda38b7a51bb17dc3837d",
+      "recorded": "2026-11-03"
+    }
+  },
+  "merlin_iii_operating_4_archives": {
+    "private": true,
+    "archives": [
+      {
+        "group": "native",
+        "candidate": "sump75",
+        "path": "build/merlin/operating-4/delivery/merlin-iii-operating-study-4-native-sump75-20261103.zip",
+        "bytes": 79085523,
+        "sha256": "c6dbdccd9d0e73522809f6cd599b035c5f88e038d8ae8659337a7e7ff4e27aa7",
+        "files": [
+          {
+            "path": "cad/merlin-iii-operating-study-4.FCStd",
+            "bytes": 77235568,
+            "sha256": "d6ec387321bd571365b65e4a2789afbdda7172535c6041096cb8cd1ca18edbee"
+          },
+          {
+            "path": "cad/cad-validation.json",
+            "bytes": 779783,
+            "sha256": "cd1a5e2664ce4c557edbea3a145b07c8d461764bfef054454e57e7a2752d922b"
+          },
+          {
+            "path": "cad/reopen-validation.json",
+            "bytes": 1008,
+            "sha256": "ef19185dc3655813876a848839840d0b02ce7e79833d495b5ec563e7415b6a62"
+          }
+        ],
+        "zip_members_verified": true,
+        "drive_id": "15R858eXEG_gqobikn3VORifERaQ3cODJ",
+        "private": true,
+        "parent_folder_id": "1V-6yZX2FZ-GQDS2yF5hDJGbXjloEVrbJ",
+        "owner_only_permissions_verified": true,
+        "authenticated_full_readback_verified": true,
+        "url": "https://drive.google.com/file/d/15R858eXEG_gqobikn3VORifERaQ3cODJ/view"
+      },
+      {
+        "group": "exchange",
+        "candidate": "sump75",
+        "path": "build/merlin/operating-4/delivery/merlin-iii-operating-study-4-exchange-sump75-20261103.zip",
+        "bytes": 47051185,
+        "sha256": "3d450c44300f508552336375d0ae63c9c94fb47a28f3aa65d16413368a7504ac",
+        "files": [
+          {
+            "path": "cad/merlin-iii-operating-study-4.step",
+            "bytes": 51055100,
+            "sha256": "a3182d50bcf4a5d7cda778b17dd92e2832a920cf33d0ade9a5b60e300722bb6a"
+          },
+          {
+            "path": "cad/geometry.json",
+            "bytes": 71554910,
+            "sha256": "676b9bade68e40ff39850267aa4b7c2fe41bd3134084caedcb2b7ed4dc416944"
+          },
+          {
+            "path": "cad/direct-agreement.json",
+            "bytes": 164265,
+            "sha256": "baa8cf26e612c086459ca855969a64d79f4ea05ac8e8599948df56bf98c4e142"
+          }
+        ],
+        "zip_members_verified": true,
+        "drive_id": "1MIAOMZZyz7fRXslmco_l9HUsJrnWfTu2",
+        "private": true,
+        "parent_folder_id": "1V-6yZX2FZ-GQDS2yF5hDJGbXjloEVrbJ",
+        "owner_only_permissions_verified": true,
+        "authenticated_full_readback_verified": true,
+        "url": "https://drive.google.com/file/d/1MIAOMZZyz7fRXslmco_l9HUsJrnWfTu2/view"
+      },
+      {
+        "group": "animation",
+        "candidate": "sump75",
+        "path": "build/merlin/operating-4/delivery/merlin-iii-operating-study-4-animation-sump75-20261103.zip",
+        "bytes": 73642089,
+        "sha256": "d9afc3df5a71b061837f7ac41232842ebb7b1ac6c451b68549e3c6c9a2888d7c",
+        "files": [
+          {
+            "path": "animation/merlin-iii-operating-study-4.blend",
+            "bytes": 30677941,
+            "sha256": "d74ec9e13f9b0d951addfaf835a9d547eddd4d7908172fd7069debb625ea1454"
+          },
+          {
+            "path": "animation/merlin-iii-operating-study-4.glb",
+            "bytes": 57171600,
+            "sha256": "2d04c603e9b895dbb64a2fe35b1d1b561cd54d18472c53dd1d0bca856b8e7ccf"
+          },
+          {
+            "path": "animation/merlin-iii-operating-study-4.glb.gz",
+            "bytes": 17279707,
+            "sha256": "d1ea5964ae650364f8c89d5157f60fe5f78ca7b5c45e29c1c5d605774279e62d"
+          },
+          {
+            "path": "animation/merlin-iii-operating-study-4-contract.json",
+            "bytes": 1203331,
+            "sha256": "b91bdd0ff94b308e92598415227cf70fc2a4a0c187c62e4ae3d20e1117f08112"
+          },
+          {
+            "path": "animation/blender-verification.json",
+            "bytes": 303,
+            "sha256": "40e7e8930fe47836ee9191dc682c5591786a59b7dc1993f308e3beb83acb159e"
+          }
+        ],
+        "zip_members_verified": true,
+        "drive_id": "1C_oRqE0_rkL97DXbWYu5X-AC1CW7yEnW",
+        "private": true,
+        "parent_folder_id": "1V-6yZX2FZ-GQDS2yF5hDJGbXjloEVrbJ",
+        "owner_only_permissions_verified": true,
+        "authenticated_full_readback_verified": true,
+        "url": "https://drive.google.com/file/d/1C_oRqE0_rkL97DXbWYu5X-AC1CW7yEnW/view"
+      },
+      {
+        "path": "build/merlin/operating-4/delivery/merlin-iii-operating-study-4-evidence-20261103.zip",
+        "bytes": 38843666,
+        "sha256": "54dd0cc91043195522bd1da94a5e24c3b8abeff02e8a018c69888422921f7350",
+        "files": [
+          {
+            "path": "evidence/analytic-motion-tests-03.log",
+            "bytes": 114,
+            "sha256": "5af39e5081bbac45455f2722a7bd2c30c2c59b5a0c98bdce1a4edac98003f5ed"
+          },
+          {
+            "path": "evidence/animation-geometry-drift.log",
+            "bytes": 146,
+            "sha256": "f078c5da3f7eacd96f27bf010bec1d0107bef224e8e9b18fc0217f51268d1153"
+          },
+          {
+            "path": "evidence/animation-sump75-readback.log",
+            "bytes": 371,
+            "sha256": "82b03e945c75d225bdace99c185ccc36c1faa099d96aaebf2d57917d1d971df7"
+          },
+          {
+            "path": "evidence/audit-interpolation-fixtures-corrected.log",
+            "bytes": 128,
+            "sha256": "f94154fb5715b2863b7c8db83b3099765d8a347d747a54f5835ca94b36e655ed"
+          },
+          {
+            "path": "evidence/audit-interpolation-fixtures.log",
+            "bytes": 770,
+            "sha256": "485cc6a45371a92e3673fd9efc0bc29350b6d61352f1ba9dc9bef991b52e13be"
+          },
+          {
+            "path": "evidence/audit-known-answers-03.log",
+            "bytes": 109,
+            "sha256": "177cb4f54b6bd40a4748bb4ade1d0b338b94a005511088a98e5fabdd551f8bec"
+          },
+          {
+            "path": "evidence/audit-known-answers-04.log",
+            "bytes": 109,
+            "sha256": "f4833c81ea495ae6cd67cfceaf51cd420b7bc0bd0a718b16a9178a8ba45e24aa"
+          },
+          {
+            "path": "evidence/audit-signature-assumption-failure.log",
+            "bytes": 1201,
+            "sha256": "823a5a7dfca2863ee612677167c72d98ef0623938f3bd7423d51891669f60aad"
+          },
+          {
+            "path": "evidence/blender-operating-export.log",
+            "bytes": 109031,
+            "sha256": "52a8905f33d95e11187ca2d081108d6de946847c817e62e601301943567e277c"
+          },
+          {
+            "path": "evidence/blender-preflight-09.log",
+            "bytes": 287,
+            "sha256": "887550f2ab741b4a3c19e71d4b1bab44e54d6d5d2208b4002fa8a66d9a83ded6"
+          },
+          {
+            "path": "evidence/blender-preflight-separated-09.log",
+            "bytes": 287,
+            "sha256": "887550f2ab741b4a3c19e71d4b1bab44e54d6d5d2208b4002fa8a66d9a83ded6"
+          },
+          {
+            "path": "evidence/blender-sump75-export.log",
+            "bytes": 109031,
+            "sha256": "0ac97cc5a08feba4b8f87ab94f003b6175db86618f2b6109f32f48b259dcb348"
+          },
+          {
+            "path": "evidence/cad/cad-validation.json",
+            "bytes": 779783,
+            "sha256": "cd1a5e2664ce4c557edbea3a145b07c8d461764bfef054454e57e7a2752d922b"
+          },
+          {
+            "path": "evidence/cad/direct-agreement.json",
+            "bytes": 164265,
+            "sha256": "baa8cf26e612c086459ca855969a64d79f4ea05ac8e8599948df56bf98c4e142"
+          },
+          {
+            "path": "evidence/cad/native-mass-review-cache.json",
+            "bytes": 8481,
+            "sha256": "c75a49750aed0cb0be8ea06412b1b7ad0b3e6285d4d22ff7e0d3df59811e34e5"
+          },
+          {
+            "path": "evidence/cad/native-pair-cache.json",
+            "bytes": 507063,
+            "sha256": "752ab9bcf188bb7b16dddd0b6913ea320173eedb300c243e3a977ee8b94eefce"
+          },
+          {
+            "path": "evidence/cad/native-static-checkpoint.json",
+            "bytes": 183,
+            "sha256": "93b9b67f7b5a236dc1b8918afd5ff781250728318ffc9f60aba38e17af3ec827"
+          },
+          {
+            "path": "evidence/cad/reopen-validation.json",
+            "bytes": 1008,
+            "sha256": "ef19185dc3655813876a848839840d0b02ce7e79833d495b5ec563e7415b6a62"
+          },
+          {
+            "path": "evidence/delivery/contract-normalization.json",
+            "bytes": 348,
+            "sha256": "6f7cbe3ac4d82c5da77fa2bcd1c99f3c1391b459f12436c90fcd7aeb41ab9a02"
+          },
+          {
+            "path": "evidence/delivery/merlin-iii-operating-study-4-contract.json",
+            "bytes": 1185899,
+            "sha256": "278bef6e80272779e4fd2444da677c7559a78c47706f058ff9c2a37f3b7f15bc"
+          },
+          {
+            "path": "evidence/delivery/public-verification.json",
+            "bytes": 374,
+            "sha256": "4e83e55dbef59888dea7b22ebac05206806a294e8ef713efdf63e21b8670391d"
+          },
+          {
+            "path": "evidence/development-bake.log",
+            "bytes": 20,
+            "sha256": "7c2de9ba1b9e7eadafef41141d282b04349bec367ac0dddaae4e44b4b0e52157"
+          },
+          {
+            "path": "evidence/development-preflight-01.log",
+            "bytes": 287,
+            "sha256": "887550f2ab741b4a3c19e71d4b1bab44e54d6d5d2208b4002fa8a66d9a83ded6"
+          },
+          {
+            "path": "evidence/direct-build.log",
+            "bytes": 122322,
+            "sha256": "1f662d7ddbdb0b10b616952e155851d44043de58a589db016f40597992ad6b5f"
+          },
+          {
+            "path": "evidence/direct-curve-02.log",
+            "bytes": 582,
+            "sha256": "f3dfa116381ccf3dbe16109127a4d88365ffaa5a4f145a091d150f245770b3b7"
+          },
+          {
+            "path": "evidence/direct-curve-full-01.log",
+            "bytes": 121251,
+            "sha256": "2e21aed455b6b5d28ff17e6a810e8776138f32610b9e320c73d67ef9e0694486"
+          },
+          {
+            "path": "evidence/direct-planar-full-02.log",
+            "bytes": 5394,
+            "sha256": "e18fbadb312ecbabc8717803cb15c3c4a05871889002cbdc776df90c87817258"
+          },
+          {
+            "path": "evidence/direct-sump75.log",
+            "bytes": 121798,
+            "sha256": "8259f7d49a543c0bd63971ff4f7f685ac385005574d779882361b2cf3437f4ea"
+          },
+          {
+            "path": "evidence/evidence-package-sump75.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "evidence/exchange-sump75-readback.log",
+            "bytes": 370,
+            "sha256": "4ee39d8eec130636cc24fbed4faf1f54536bf2ba439d919a8b69ae773e87b0bb"
+          },
+          {
+            "path": "evidence/export-contact-sump75.log",
+            "bytes": 2059,
+            "sha256": "2943c1e85e535b8fd8eed3487a6bdd31759f365878389ee734a82ee0b40e1bd4"
+          },
+          {
+            "path": "evidence/export-contact.log",
+            "bytes": 2059,
+            "sha256": "2943c1e85e535b8fd8eed3487a6bdd31759f365878389ee734a82ee0b40e1bd4"
+          },
+          {
+            "path": "evidence/export-kinematics-sump75.log",
+            "bytes": 130,
+            "sha256": "14de7e88827782adb15216b51356cab865a12c261dec94486c6bb61d3aeb8216"
+          },
+          {
+            "path": "evidence/export-sump5-negative-control-corrected.log",
+            "bytes": 1272,
+            "sha256": "991115e25fde2c4246ac44257867f87f2a18aeaf5b68e04090c173fd7307b959"
+          },
+          {
+            "path": "evidence/export-sump5-negative-control.log",
+            "bytes": 2256,
+            "sha256": "bb47f3838c8d55a382eb0ae097132d96443cc57bd0099f640cfd95424d378259"
+          },
+          {
+            "path": "evidence/export-sump75.log",
+            "bytes": 1130,
+            "sha256": "eaaa3c4fd0ce93ea49d90884a25804470bb88548c829a176611782a146c4fd01"
+          },
+          {
+            "path": "evidence/fidelity-refresh.log",
+            "bytes": 682,
+            "sha256": "724e970eb6e1ac931525050f843379875ac69b769458dea052030e3659d147ce"
+          },
+          {
+            "path": "evidence/fixture-batch-refinement-stall.log",
+            "bytes": 1344,
+            "sha256": "5db3d2e667c3e5ff3db3078f9b6cffcfdbce676f73d48dde98d95be6cc2bbda9"
+          },
+          {
+            "path": "evidence/fixture-batched.log",
+            "bytes": 1344,
+            "sha256": "5db3d2e667c3e5ff3db3078f9b6cffcfdbce676f73d48dde98d95be6cc2bbda9"
+          },
+          {
+            "path": "evidence/fixture-build.log",
+            "bytes": 1344,
+            "sha256": "1feb6289a2d838fe5b9e3e7d643afc6fb4b8e88b0eb4f46b049f8ea778ca1915"
+          },
+          {
+            "path": "evidence/fixture-sequential-cam-failure.log",
+            "bytes": 1344,
+            "sha256": "1feb6289a2d838fe5b9e3e7d643afc6fb4b8e88b0eb4f46b049f8ea778ca1915"
+          },
+          {
+            "path": "evidence/fixture-unrefined.log",
+            "bytes": 1767,
+            "sha256": "8f8c0b26d0d109c1b6a8d82b9b2338c2c606c441dcf315f6437774c38f491bac"
+          },
+          {
+            "path": "evidence/geometry-drift-sump75.log",
+            "bytes": 146,
+            "sha256": "f078c5da3f7eacd96f27bf010bec1d0107bef224e8e9b18fc0217f51268d1153"
+          },
+          {
+            "path": "evidence/lesson-integration-tests.log",
+            "bytes": 2737,
+            "sha256": "18aee984e58013b1d92d0b21b8893e9df692a734ea0beafd20fb379dc22ff39b"
+          },
+          {
+            "path": "evidence/lower-mechanism-envelope-final.log",
+            "bytes": 1050,
+            "sha256": "ebd106142b755f15bef580a8a84534a6aff477b89f0c8bbc0150bd106c7bc7f1"
+          },
+          {
+            "path": "evidence/lower-mechanism-envelope.log",
+            "bytes": 903,
+            "sha256": "52a631136d03dcd2ffc2bf81223d6e946d43fb660e98f42efd2c03b96e3f9604"
+          },
+          {
+            "path": "evidence/merlin-engine-sump75.log",
+            "bytes": 109,
+            "sha256": "3627480d5965a1c864b269b0244325f3aa0e45582e657346764498e32f76b3d3"
+          },
+          {
+            "path": "evidence/merlin-motion-sump75.log",
+            "bytes": 114,
+            "sha256": "67a11cb57522df7e0be8e4f85c3f3fb646a0c1ffb5d96cf2468b58e5f009a604"
+          },
+          {
+            "path": "evidence/native-assembly-sump75.log",
+            "bytes": 3991,
+            "sha256": "406f0becdb556ec0a04a91dd04100bcd66333fe0a66dee0df3a97782ef8d183f"
+          },
+          {
+            "path": "evidence/native-assembly-validation.log",
+            "bytes": 1682,
+            "sha256": "cf2ba35c60634beff3bf2f1008cc0d59f4180a45cb9f244629e054dcde106c9d"
+          },
+          {
+            "path": "evidence/native-controller-invalidation-stall.log",
+            "bytes": 54,
+            "sha256": "0e09c1d233d4709028334eb88e00836c4b2c8892b023aaeb64e08b0e0783d65f"
+          },
+          {
+            "path": "evidence/native-fixture-01.log",
+            "bytes": 67,
+            "sha256": "28917bdf3099e880832e283e4a6b2b58c623025633fc5c7a8ca6640299b8d920"
+          },
+          {
+            "path": "evidence/native-fixture-bound-inputs-corrected.log",
+            "bytes": 516,
+            "sha256": "65335f94adcead59f8ff638222249883b61667e66c89eacc7875efdef4bdeff4"
+          },
+          {
+            "path": "evidence/native-fixture-bound-inputs.log",
+            "bytes": 520,
+            "sha256": "58b2c9beee6b17450f38715cdada5383c08427a90e78635279b5ea046cf3a2e9"
+          },
+          {
+            "path": "evidence/native-fixture-curve-02.log",
+            "bytes": 395,
+            "sha256": "eaa9c090eeb1921ef9a1eb7c3ee912113c25ced51ee2415b2e8033abb0fcf91e"
+          },
+          {
+            "path": "evidence/native-fixture-summed-solid-check.log",
+            "bytes": 1418,
+            "sha256": "ac569b8abb7519c2f3ad2681a788f887e8a843d05e878784335090974c24be0a"
+          },
+          {
+            "path": "evidence/native-planar-assembly-validation-03.log",
+            "bytes": 3991,
+            "sha256": "d5c8c72bc21875b51d0a06f668f6dff53ae0988907b91ff48e58f2a0cf5e3439"
+          },
+          {
+            "path": "evidence/native-planar-reconciliation-03.log",
+            "bytes": 3965,
+            "sha256": "fa884855efb04644a3794f174952330a5f7ccb7b663947eca49296ab6d40836e"
+          },
+          {
+            "path": "evidence/native-polygon-cam-stall.log",
+            "bytes": 67,
+            "sha256": "28917bdf3099e880832e283e4a6b2b58c623025633fc5c7a8ca6640299b8d920"
+          },
+          {
+            "path": "evidence/native-pytest-collection.log",
+            "bytes": 10779,
+            "sha256": "720383482c2cbd8d774774622b4c31809ce7df1bb91009c77b40b0a6c3077f04"
+          },
+          {
+            "path": "evidence/native-pytest-final.log",
+            "bytes": 4325,
+            "sha256": "79ed7669a69fd0bbe31c9b41e2fd740db78e789041356375358c8009df0d893c"
+          },
+          {
+            "path": "evidence/native-pytest-fixture-rerun.log",
+            "bytes": 101,
+            "sha256": "ada97f047ddbb393cae2384368e0d53711f289aecb1577ab72f87bd524d4f571"
+          },
+          {
+            "path": "evidence/native-reconciliation-01.log",
+            "bytes": 54,
+            "sha256": "0e09c1d233d4709028334eb88e00836c4b2c8892b023aaeb64e08b0e0783d65f"
+          },
+          {
+            "path": "evidence/native-reconciliation-02.log",
+            "bytes": 12292,
+            "sha256": "9575aebc1cd9df5c9e88b5930b9b8a14819d6335110f15ebf7aac5f19847ce27"
+          },
+          {
+            "path": "evidence/native-sump75-readback.log",
+            "bytes": 368,
+            "sha256": "d66d30036716d729c2d45f7265aa220a09feb4745cf6f633caf94a07b9210210"
+          },
+          {
+            "path": "evidence/native-sump75-reconciliation.log",
+            "bytes": 11417,
+            "sha256": "86900be2678c72ffb1a93b378f0bfb379583e950e53f7beb7ed4588de4fd5a1c"
+          },
+          {
+            "path": "evidence/npm-tests-02.log",
+            "bytes": 29796,
+            "sha256": "54cabdd63e8f476c86edf51f7b0038fd7557031304bc2bef546f70f5fe231dbc"
+          },
+          {
+            "path": "evidence/npm-tests.log",
+            "bytes": 11066,
+            "sha256": "2bbebaad00b125814eaeded493889a05f13f7782ce2bb11bf34483b91c87a046"
+          },
+          {
+            "path": "evidence/planar-loft-fixture-tests.log",
+            "bytes": 731,
+            "sha256": "6ee102874bb40df2f3b1e57e7fdd94e289b49db865fe7ef93f46017301a824ab"
+          },
+          {
+            "path": "evidence/planar-rocker-fixture.log",
+            "bytes": 2778,
+            "sha256": "51efbdfce967c8632b507b9fbc94e89b51da812a1c366a8e4f8adefb7f37083c"
+          },
+          {
+            "path": "evidence/planar-rocker-local-fixture-02.log",
+            "bytes": 2777,
+            "sha256": "1baba742723d65ac765b248e439439f63a71ca30441db06b3cb4e2780513281d"
+          },
+          {
+            "path": "evidence/planar-rocker-local-method-check-02.log",
+            "bytes": 86,
+            "sha256": "ee1a450701e2109f8299caf71a5af145f9c2fd3984d1847275512998cb193801"
+          },
+          {
+            "path": "evidence/planar-rocker-method-check.log",
+            "bytes": 865,
+            "sha256": "a320190407aadd829512f44ac37f42ba02d6840924f3bec4598f057e8c6631ba"
+          },
+          {
+            "path": "evidence/prepare-delivery-sump75.log",
+            "bytes": 945,
+            "sha256": "be9f26b96408d7f985fa9b731320e5321cad502a32d1c0b6b0bdb952e1d4ad0d"
+          },
+          {
+            "path": "evidence/presentation-sump75-verification.log",
+            "bytes": 67862,
+            "sha256": "1f72d67f162876f152f229e210c6d79a2de43982086a1c74afd8c7bb37aced9b"
+          },
+          {
+            "path": "evidence/presentation-sump75.log",
+            "bytes": 110314,
+            "sha256": "70435ebf1425b6cbf6f4f096e7561ff56a698ab524cf54fa658c7143f28ae8e3"
+          },
+          {
+            "path": "evidence/presentation-verification.log",
+            "bytes": 67863,
+            "sha256": "d1ef4baaf7d159b999c92ce633fdfe8de037971238ddb334948f85e6ea71aaa0"
+          },
+          {
+            "path": "evidence/presentation.log",
+            "bytes": 110315,
+            "sha256": "6de042c95108f1ff5943888dcf527cb358616dec0fd7fbc13f4cad4f1473b966"
+          },
+          {
+            "path": "evidence/presentation/aux-source.png",
+            "bytes": 1528270,
+            "sha256": "43d79e410be79d9490d0f505eb8e66883f95ddad52dd1321c28153eb012a66de"
+          },
+          {
+            "path": "evidence/presentation/blender-validation.json",
+            "bytes": 971,
+            "sha256": "907d2e6c21740b6fd07d86f7564a3fad8ef28b126bee689fbf66cc6a3769ef11"
+          },
+          {
+            "path": "evidence/presentation/core-reveal.png",
+            "bytes": 1703422,
+            "sha256": "09126d95e8f79003c94dd951730018b8fc04caed7ef1df40012256b2e1190db6"
+          },
+          {
+            "path": "evidence/presentation/crank-source.png",
+            "bytes": 1528079,
+            "sha256": "d83ba5b1d94c5c3ea2c6727c67d9a095fd4e92e0714d74de9eec716138cc187b"
+          },
+          {
+            "path": "evidence/presentation/head-B-source.png",
+            "bytes": 1523956,
+            "sha256": "64f82a69609760e36b3430b03c86f7236b864703f16b0cf61c03d1dc474356fb"
+          },
+          {
+            "path": "evidence/presentation/merlin-iii-operating-study-4.blend",
+            "bytes": 24903057,
+            "sha256": "ae279411dba45003c684ec4f1ca5cac3f05b9aa8001d528c133a1f51ec3106fe"
+          },
+          {
+            "path": "evidence/presentation/overview.png",
+            "bytes": 1589566,
+            "sha256": "b65d0b426fbc0df0e5dbb4d6c0d8d665703c2f1ee6503f22df22155f03cd31f8"
+          },
+          {
+            "path": "evidence/presentation/presentation-manifest.json",
+            "bytes": 179472,
+            "sha256": "f95174843a790164940787e827b302bc89d7ba26392d5b7e7e5d75a9c1d10d01"
+          },
+          {
+            "path": "evidence/procedural-audit-tests-03.log",
+            "bytes": 114,
+            "sha256": "444c1aaef413f559a0791e8e5124841827aadc792c4d115bef8e9d9d24e55bb9"
+          },
+          {
+            "path": "evidence/public-verification-sump75.log",
+            "bytes": 355,
+            "sha256": "9af8c4b7b89599d68238e9003cefc12a2547352fc784859f849925d770b4d67a"
+          },
+          {
+            "path": "evidence/release-interference-audit.log",
+            "bytes": 601,
+            "sha256": "4c1780411f10b4ac8b17cabeef05bcc05c85955984b9896a24c0df9922d13411"
+          },
+          {
+            "path": "evidence/release-interference-sump75.log",
+            "bytes": 470,
+            "sha256": "40a331a799e3a2a5c37be95e9864c61df6cd7b6eb92b3ebfd1b26b16e3263420"
+          },
+          {
+            "path": "evidence/reopen-planar-validation-03.log",
+            "bytes": 1011,
+            "sha256": "31d57e11762ced29d47fae4dc27f8c5cfe63fb10001107487513681d2e2c221f"
+          },
+          {
+            "path": "evidence/reopen-sump75.log",
+            "bytes": 1008,
+            "sha256": "ef19185dc3655813876a848839840d0b02ce7e79833d495b5ec563e7415b6a62"
+          },
+          {
+            "path": "evidence/reopen-validation.log",
+            "bytes": 1007,
+            "sha256": "7ba029a8cb326430073e8774e38df0d762a0ae19431687154b77fb3fcb337f33"
+          },
+          {
+            "path": "evidence/repository-npm-final.log",
+            "bytes": 9046,
+            "sha256": "76437f14eba0b1d92acd43a951bf145f4b9f15b52eb6b2a8dfe7e30c0098c396"
+          },
+          {
+            "path": "evidence/repository-npm-sump75.log",
+            "bytes": 9030,
+            "sha256": "cdf4eb289a0a6084854e976383300c534fe6b416ccd6130ad138540ad2f8e8db"
+          },
+          {
+            "path": "evidence/review/source-comparison.png",
+            "bytes": 1669664,
+            "sha256": "a74e41e3e851f94ff6c5d085404cf75ca2c4fdc8efa49ae51ec6043abe079dc9"
+          },
+          {
+            "path": "evidence/review/source-review-plan.json",
+            "bytes": 19181,
+            "sha256": "2e3dccbe2147187d491fd17099787ef4d67255c108d58fd95cfb9ae0f6857ffa"
+          },
+          {
+            "path": "evidence/rocker-feature-probe.log",
+            "bytes": 2269,
+            "sha256": "59f9245b617bef42dbf09aa68c3b6e35620d9c8600e57e4f7ecfcbd6079fd264"
+          },
+          {
+            "path": "evidence/rocker-planar-method-probe.log",
+            "bytes": 2615,
+            "sha256": "1b808bb3554a68047bf1f7e0a7adfae608bed789df872fbc08383bc47aaf4ff0"
+          },
+          {
+            "path": "evidence/rocker-refinement-probe.log",
+            "bytes": 509,
+            "sha256": "7343322ae1ac69ff4a6f009389b62fdcdd8212cb088575e7fcf8784611ab9c50"
+          },
+          {
+            "path": "evidence/rocker-solid-stock-trial.log",
+            "bytes": 164,
+            "sha256": "29e7f4c8263c6c5f28dce5b8021bde06d6bc206cba3bbdb4e23a0399bce0a91e"
+          },
+          {
+            "path": "evidence/sampled-cam-method.log",
+            "bytes": 165,
+            "sha256": "5da303e4d49653e53f97843fb9805c5369f7d83c7d85f560bf012632f91c00ff"
+          },
+          {
+            "path": "evidence/spring-export-test-03.log",
+            "bytes": 103,
+            "sha256": "3793df1d5453c1cb7b06feec7296fa3dc0b67163e7239863537528cd33645177"
+          },
+          {
+            "path": "evidence/standalone-checks.log",
+            "bytes": 1905,
+            "sha256": "93eff1115af86f9e46bb12e5cf0e29f355dc0927afa08d29a15ac79013d86dee"
+          },
+          {
+            "path": "evidence/standalone-checks/test_builder_golden.log",
+            "bytes": 137,
+            "sha256": "f7fe537ac96380c2b8012e0c5cab20ae0bad2ec619ceed9449e3497e217f0f05"
+          },
+          {
+            "path": "evidence/standalone-checks/test_constraints.log",
+            "bytes": 162,
+            "sha256": "deda522d1b3525b7374e70681ac44a6927b8dedae536904b936b20a6b240fa78"
+          },
+          {
+            "path": "evidence/standalone-checks/test_cylinder_motion_profile.log",
+            "bytes": 64,
+            "sha256": "52292541da0534348b48b52f5b8ea7faa558f9abe02db72b84bb6cf33bc042f7"
+          },
+          {
+            "path": "evidence/standalone-checks/test_engine_contract.log",
+            "bytes": 143,
+            "sha256": "762d8cbc0326175d0f124b717ef6e1369560e803f03c3900cb6d52683bc49af3"
+          },
+          {
+            "path": "evidence/standalone-checks/test_fidelity_classes-rerun.log",
+            "bytes": 141,
+            "sha256": "11c38bd0b55b46d5a52c4f370ad8e9bcbedeae91dcc5037b4f51a33cfad505b1"
+          },
+          {
+            "path": "evidence/standalone-checks/test_fidelity_classes.log",
+            "bytes": 1205,
+            "sha256": "20cbae4e90c8e48a10c3f324f0b0834bd50c0a38e2de47bb273c2c7202f9495d"
+          },
+          {
+            "path": "evidence/standalone-checks/test_full_engine_export.log",
+            "bytes": 114,
+            "sha256": "7a7c35827708756e6c4a90b9d7ad0f8caff768255bd0ce9c5da7b6ffa9199788"
+          },
+          {
+            "path": "evidence/standalone-checks/test_gear_geometry-rerun.log",
+            "bytes": 124,
+            "sha256": "918418aaf4c8a07a4a72f25c849ebc5c003168fde2e63fd4b164299057298568"
+          },
+          {
+            "path": "evidence/standalone-checks/test_gear_geometry.log",
+            "bytes": 379,
+            "sha256": "01972e5cf968417e9c1cca1ff31e6af50857d94eb552f1891023404265664f55"
+          },
+          {
+            "path": "evidence/standalone-checks/test_geometry_drift.log",
+            "bytes": 117,
+            "sha256": "e2b12dcfd211a3fa946a908334f8eb5183e1a3696f4e8629211c12cd087e7bc2"
+          },
+          {
+            "path": "evidence/standalone-checks/test_glb_compare.log",
+            "bytes": 115,
+            "sha256": "24c5e57fbbbfa64e0e154fd0045876a8bb95152b856395f218378a72c419eaa6"
+          },
+          {
+            "path": "evidence/standalone-checks/test_gnome_motion.log",
+            "bytes": 123,
+            "sha256": "49ae8de1f4d3e520b448cac004008621ded9f1ce9fb1b55aecceeeeaff6c133a"
+          },
+          {
+            "path": "evidence/standalone-checks/test_gnome_research.log",
+            "bytes": 113,
+            "sha256": "c868c7b522959e98758e5c135aedc413581d07d2fe7fdb1d2bec19360474991b"
+          },
+          {
+            "path": "evidence/standalone-checks/test_gtsio_accessories-rerun.log",
+            "bytes": 729,
+            "sha256": "c0b99701f907b1707b26b024e1c936247c5b0e8b6fab26144a93d0e508462042"
+          },
+          {
+            "path": "evidence/standalone-checks/test_gtsio_accessories.log",
+            "bytes": 429,
+            "sha256": "48d2543c06d63cc1acff16c0f69bebb67ace99a1ebbdd58a9df52ae0dfc868d1"
+          },
+          {
+            "path": "evidence/standalone-checks/test_gtsio_core.log",
+            "bytes": 107,
+            "sha256": "45bc94b6351b1ce6d9fab114035a89f11906abf78d02b2cc3f9879ef9d79d05e"
+          },
+          {
+            "path": "evidence/standalone-checks/test_gtsio_cylinders.log",
+            "bytes": 108,
+            "sha256": "81be811da37d3a542874747377c789cd7efeb9c39be80b72a3be400ddf7da9d4"
+          },
+          {
+            "path": "evidence/standalone-checks/test_gtsio_drive.log",
+            "bytes": 238,
+            "sha256": "f3778161f676396f766e34f8babe2ca0904bc49933432737064b2efe87a1ce05"
+          },
+          {
+            "path": "evidence/standalone-checks/test_gtsio_look.log",
+            "bytes": 106,
+            "sha256": "383a12fba9b5b327054a24ce7e5739569c4f0b6621facd981f2d6a4271063b3c"
+          },
+          {
+            "path": "evidence/standalone-checks/test_gtsio_review_motion.log",
+            "bytes": 114,
+            "sha256": "35a2a8f441d263ba3be553977f3456a2030418c9179f83510e59c8278609d114"
+          },
+          {
+            "path": "evidence/standalone-checks/test_gtsio_static.log",
+            "bytes": 106,
+            "sha256": "e6fc4a7f4eb5e8c4c844b3ea799e9bc61ef37d116018919c3837be9310d0d6a9"
+          },
+          {
+            "path": "evidence/standalone-checks/test_gtsio_valvetrain.log",
+            "bytes": 108,
+            "sha256": "0b2363a32990ab307f59e251d8115468a2470843f4dc67c8771dd9f5daacb7e8"
+          },
+          {
+            "path": "evidence/standalone-checks/test_image_matcher.log",
+            "bytes": 107,
+            "sha256": "ec38bbc0e550ab2b545bc522b855c05ba57fd40132ee6d7b78e8f28027196c67"
+          },
+          {
+            "path": "evidence/standalone-checks/test_knowledge_store.log",
+            "bytes": 174,
+            "sha256": "4fc2bfe183d647d5c6acb506df02ccd30cfdb8298de7877ac42d2d1a5fbee5e4"
+          },
+          {
+            "path": "evidence/standalone-checks/test_langley_motion.log",
+            "bytes": 128,
+            "sha256": "d22391e5431e2df4b416dddb355eb781185f6517fc2239799b554115e5f6899c"
+          },
+          {
+            "path": "evidence/standalone-checks/test_langley_research.log",
+            "bytes": 121,
+            "sha256": "6cf1681f3a140f923bd6be43289cacea01ab4bab37606c46bbc0c0ee093ba1f1"
+          },
+          {
+            "path": "evidence/standalone-checks/test_m4_engine_foundation.log",
+            "bytes": 140,
+            "sha256": "d04a41ef5aa04fde00f74c97746c397d37756041c00924c884c3d2333fb6e095"
+          },
+          {
+            "path": "evidence/standalone-checks/test_merlin_deep_research.log",
+            "bytes": 109,
+            "sha256": "e1e73df193c766f96d0a87af8d537ac2b04316528636e4dd0080ad8c6de8f603"
+          },
+          {
+            "path": "evidence/standalone-checks/test_merlin_engine.log",
+            "bytes": 109,
+            "sha256": "cb667542af893c62ac038a63ec16ef642fd08c236974263017f5e808bf2628b7"
+          },
+          {
+            "path": "evidence/standalone-checks/test_merlin_motion.log",
+            "bytes": 114,
+            "sha256": "313033198381071d7675fa26d0edb17abfd469d5f5db83890059b590d30a2938"
+          },
+          {
+            "path": "evidence/standalone-checks/test_merlin_prototype.log",
+            "bytes": 108,
+            "sha256": "a61344b045e606f8c60b7bedd5887cf9bc54b365f7688b9445a5ec8eab25f7e3"
+          },
+          {
+            "path": "evidence/standalone-checks/test_merlin_research.log",
+            "bytes": 109,
+            "sha256": "08124153c60525393b678757862485fbc55ab87d08abe416edb1c38893a02e58"
+          },
+          {
+            "path": "evidence/standalone-checks/test_merlin_rod_trial.log",
+            "bytes": 109,
+            "sha256": "0cc82544d791787dd684a0a356782e10d21e7c8fa6e901c9be6da18936e81b56"
+          },
+          {
+            "path": "evidence/standalone-checks/test_operating_release.log",
+            "bytes": 156,
+            "sha256": "63ea51da71dd3464e67d498adf6b32a3088be46f4ac6021031941865fb2d67a3"
+          },
+          {
+            "path": "evidence/standalone-checks/test_packard_research_r2.log",
+            "bytes": 106,
+            "sha256": "0eb2a2b799932dce3407d847578883b6c7fa8c7e1bbaa7c7138458861e9d84f8"
+          },
+          {
+            "path": "evidence/standalone-checks/test_radial_skeleton.log",
+            "bytes": 110,
+            "sha256": "a9073001fdf065aee65dd124064b3ec085e29d2a8281feb2bce2ead1b3af0a49"
+          },
+          {
+            "path": "evidence/standalone-checks/test_recipes.log",
+            "bytes": 146,
+            "sha256": "3034dfab05e85058d9e7cb28aa0d2ac49a199c936bec178023a5d05843ffdb39"
+          },
+          {
+            "path": "evidence/standalone-checks/test_release_model.log",
+            "bytes": 112,
+            "sha256": "0e2c245738c5f3ee603061b409488b7a9e548a55591ac4ce787707a724270514"
+          },
+          {
+            "path": "evidence/standalone-checks/test_reuse_direct_snapshot.log",
+            "bytes": 106,
+            "sha256": "8c8feb12dde810019cf0527787a42355f0cd7afe82f6e4d675562664cc906ddf"
+          },
+          {
+            "path": "evidence/standalone-checks/test_study_contract.log",
+            "bytes": 115,
+            "sha256": "6ec8cf4f25f7c455cb3beb6babad0e1a41e8008ec99fc364d311cc5f77aba22a"
+          },
+          {
+            "path": "evidence/standalone-checks/test_study_manifest.log",
+            "bytes": 122,
+            "sha256": "ef77e19b8f90b949a20fe1f172c4cd8a80e5035a15659c220eed39f03c827fa5"
+          },
+          {
+            "path": "evidence/standalone-checks/test_tessellation_tiers.log",
+            "bytes": 111,
+            "sha256": "0ff07c2694029071abb924c6dd9f37e528ffe16446b99d519a79c5f46953a80a"
+          },
+          {
+            "path": "evidence/standalone-checks/test_wright_layout.log",
+            "bytes": 125,
+            "sha256": "053f640e789691bdc45c721601e50ba10ff7fa56e35407bc89123fa14468f5a8"
+          },
+          {
+            "path": "evidence/study-checks.log",
+            "bytes": 2793,
+            "sha256": "b9b3159acf4b15d2ea1b6ad31dfe84df269a20e804dcbe7a39ed6f1a86b5c964"
+          },
+          {
+            "path": "evidence/study-manifest-before-release.log",
+            "bytes": 122,
+            "sha256": "f27bc15176a358aa10b213a71ab81b6980cdce82f66ab2a176acd3658d98f079"
+          },
+          {
+            "path": "evidence/study-manifest-sump75.log",
+            "bytes": 122,
+            "sha256": "74cfa764dea2cfe72ea078d16bcbedcef19dea57c0fbc48a62b9ddda304a5586"
+          },
+          {
+            "path": "evidence/sump-clearance-fixture-02.log",
+            "bytes": 301,
+            "sha256": "193c9be3487d8cb88d227143c220aa00af76c2dde076bde59759289e8786d95f"
+          },
+          {
+            "path": "evidence/sump-clearance-fixture.log",
+            "bytes": 410,
+            "sha256": "78ce913dfb74705f185906f64f4b0aa687cbfb769f7a1ca45302a3ededde4316"
+          },
+          {
+            "path": "evidence/sump-clearance-method-04.log",
+            "bytes": 1294,
+            "sha256": "8c10c41b9c8cd453ed47f205d2688c378ba7374a0ed6f854c0bd1ebc396a646d"
+          },
+          {
+            "path": "evidence/sump-clearance-method-05.log",
+            "bytes": 1362,
+            "sha256": "25a8aacb15a5d47499c8e97800c58bf8aba0050818db685f7ae616661b9e4387"
+          },
+          {
+            "path": "evidence/sump-clearance-probe-02.log",
+            "bytes": 373,
+            "sha256": "82e1743c37b00a919881f030ff79a7da7f0463fd4882494f425d6eaa82c2c7f9"
+          },
+          {
+            "path": "evidence/sump-clearance-probe-03.log",
+            "bytes": 1103,
+            "sha256": "0cad94a57162e19003695e73ea6068dcd0706c14f8954e70b1b36439ab08766e"
+          },
+          {
+            "path": "evidence/sump-clearance-probe.log",
+            "bytes": 389,
+            "sha256": "92ca8666127aa732c9ccfeffb1092fb40c154198ed4cefb9619a7ce0f7f5c56b"
+          },
+          {
+            "path": "evidence/sump-step-diagnostic-02.log",
+            "bytes": 760,
+            "sha256": "5e7a032edcd6c654a9f9ab6de9588ba21426a02c494a11d6c0efd0eef6e2e6ae"
+          },
+          {
+            "path": "evidence/sump-step-diagnostic.log",
+            "bytes": 826,
+            "sha256": "ba00da6095179789cc6f2609e9984c61ac8c8bcf6d1b38760cdac0c42428c5ef"
+          },
+          {
+            "path": "evidence/surface-separation-tests.log",
+            "bytes": 109,
+            "sha256": "2b58b05162a3c4b3943b3edc5068acb4a77b2d6178820371dc67e39fb045c2fc"
+          },
+          {
+            "path": "evidence/three-export-kinematics.log",
+            "bytes": 130,
+            "sha256": "14de7e88827782adb15216b51356cab865a12c261dec94486c6bb61d3aeb8216"
+          },
+          {
+            "path": "evidence/website/merlin-assembled.png",
+            "bytes": 193325,
+            "sha256": "900361027df7053a51b7f75e46c7e364184df42235fe110d020bcc9d4830a244"
+          },
+          {
+            "path": "evidence/website/merlin-capture.log",
+            "bytes": 74,
+            "sha256": "6b095052dd5d58e7e0b6ba2d9ccdf827ee4e1dd0b46e880d7ffdebe2e77d5568"
+          },
+          {
+            "path": "evidence/website/merlin-display-preview-rerun.log",
+            "bytes": 1139,
+            "sha256": "27a23342797ba434664df437c97b94eccf0e037e33ceafb184f317adfdf9cac1"
+          },
+          {
+            "path": "evidence/website/merlin-e2e-sump75-phone390.log",
+            "bytes": 737,
+            "sha256": "16c9a89e52fd3f62d403a9ac0da599b0a54a208ff3b2cf046c69fda0ed89a355"
+          },
+          {
+            "path": "evidence/website/merlin-e2e-sump75.log",
+            "bytes": 563,
+            "sha256": "8b8d121e9c52c6271d7bcd7eefacc675616b217198dea45540c2a5557a667a2d"
+          },
+          {
+            "path": "evidence/website/merlin-final-adapter-checks.log",
+            "bytes": 1560,
+            "sha256": "14c8b2a64aec24128cdcde957972d0d371ec904df885a9fe5566aff3df5b6365"
+          },
+          {
+            "path": "evidence/website/merlin-framing-browser.log",
+            "bytes": 465,
+            "sha256": "4cf7e5bfb2559ef16f743d98399b70b8efc61865ed12affb4dc19ed69cfbcfbf"
+          },
+          {
+            "path": "evidence/website/merlin-gallery-responsive.log",
+            "bytes": 2907,
+            "sha256": "2326b73370a385524169fac74c856117af6366768566fd51ccc9e1dc5e83705b"
+          },
+          {
+            "path": "evidence/website/merlin-lint.log",
+            "bytes": 90,
+            "sha256": "d07646267ed6036cee047882aa72b8cf3b574bd488b2b53e49ba6bf033d55e2c"
+          },
+          {
+            "path": "evidence/website/merlin-preview-capture-sump75.log",
+            "bytes": 74,
+            "sha256": "6b095052dd5d58e7e0b6ba2d9ccdf827ee4e1dd0b46e880d7ffdebe2e77d5568"
+          },
+          {
+            "path": "evidence/website/merlin-preview-server.log",
+            "bytes": 59363,
+            "sha256": "620cc1d2664ffb2c064547f624431d263244e5a36073e71b01c66af95607a716"
+          },
+          {
+            "path": "evidence/website/merlin-preview-sheet.png",
+            "bytes": 233186,
+            "sha256": "868cac1644a4fd1c9b29993283ae0156e5c60cd9ca6f2bec1dbbe46f8cce65f0"
+          },
+          {
+            "path": "evidence/website/merlin-preview-source.png",
+            "bytes": 359828,
+            "sha256": "a60fe3e8286d06f4c4c3b7b4602897f2603e8a231ba8bfc3104b09629127bc25"
+          },
+          {
+            "path": "evidence/website/merlin-production-sump75.log",
+            "bytes": 1721,
+            "sha256": "b0104013bc5c2cae549176b9e8b5950410c61412b76ac3068cbb540dd13a8622"
+          },
+          {
+            "path": "evidence/website/merlin-registry-test.log",
+            "bytes": 206,
+            "sha256": "f55c6aac5bf258f0824c6c6b6324753081270c24d8fd916f94d35ec89c80d012"
+          },
+          {
+            "path": "evidence/website/merlin-release-browser-final.log",
+            "bytes": 2708,
+            "sha256": "8ff9617257efb74b23c5a78a611edc9d6f2c09c13c4e0f4df7c9e37c290eaeac"
+          },
+          {
+            "path": "evidence/website/merlin-release-browser.log",
+            "bytes": 4664,
+            "sha256": "23eaadb57830f534904b6b09bc637d46c856743def383d8b8299c161a59e9845"
+          },
+          {
+            "path": "evidence/website/merlin-release-build-sump75.log",
+            "bytes": 2452,
+            "sha256": "dd978ad5b188b2e386810ed7b50dc3a19fbffbd720bda7d7b70f433f6e962a29"
+          },
+          {
+            "path": "evidence/website/merlin-release-build.log",
+            "bytes": 2944,
+            "sha256": "be4a72fba13d99de9b717c84b846ac03e57a2f221f9d6005eab39cb0728604ad"
+          },
+          {
+            "path": "evidence/website/merlin-release-lint-final.log",
+            "bytes": 90,
+            "sha256": "d07646267ed6036cee047882aa72b8cf3b574bd488b2b53e49ba6bf033d55e2c"
+          },
+          {
+            "path": "evidence/website/merlin-release-lint-production.log",
+            "bytes": 90,
+            "sha256": "d07646267ed6036cee047882aa72b8cf3b574bd488b2b53e49ba6bf033d55e2c"
+          },
+          {
+            "path": "evidence/website/merlin-release-lint-sump75.log",
+            "bytes": 90,
+            "sha256": "d07646267ed6036cee047882aa72b8cf3b574bd488b2b53e49ba6bf033d55e2c"
+          },
+          {
+            "path": "evidence/website/merlin-release-lint.log",
+            "bytes": 90,
+            "sha256": "d07646267ed6036cee047882aa72b8cf3b574bd488b2b53e49ba6bf033d55e2c"
+          },
+          {
+            "path": "evidence/website/merlin-release-tests-final.log",
+            "bytes": 31362,
+            "sha256": "638b8ecba173918d82479628ad6a8525987ba2b4fa5fe2b0c44139a0a4cace86"
+          },
+          {
+            "path": "evidence/website/merlin-release-tests-sump75.log",
+            "bytes": 31313,
+            "sha256": "837abce6cb28173732727eb31fdf028d4468760899d5c7efb07207783c5959d1"
+          },
+          {
+            "path": "evidence/website/merlin-release-tests.log",
+            "bytes": 33999,
+            "sha256": "2d76d0f05a4767d9980d6773591567f7de50d00ccc1c19cd576c649df3d7cf35"
+          },
+          {
+            "path": "evidence/website/merlin-release-viewer.png",
+            "bytes": 317477,
+            "sha256": "be6807928fdc66ed87419915e618cc0f40af75bc273bedafa16dccb8f51ac87f"
+          },
+          {
+            "path": "source/.agents/skills/cad-generation/SKILL.md",
+            "bytes": 7807,
+            "sha256": "5a1099a04637218f73649497407bc2de8fdfa988321d06f3b713c43d52c44d45"
+          },
+          {
+            "path": "source/.agents/skills/cad-to-blender/SKILL.md",
+            "bytes": 2769,
+            "sha256": "4a77eece693c88078d5915df980692ea1aac49ff85f40c9b9310e4d302361ff2"
+          },
+          {
+            "path": "source/.agents/skills/cad-validation/SKILL.md",
+            "bytes": 5564,
+            "sha256": "e0f34f959847956f85326f5d7b54e8632fca223bab4bab06a50bb26c015c54ba"
+          },
+          {
+            "path": "source/.agents/skills/cad-validation/references/validation-ladder.md",
+            "bytes": 4264,
+            "sha256": "b228e1ec73dd33b43999774aea8a5870afbb966f1c871091d0b7f50a86a6f6c6"
+          },
+          {
+            "path": "source/.agents/skills/engineering-research/SKILL.md",
+            "bytes": 5412,
+            "sha256": "a6c4db11264bb2ee9e9c4527ff54587c9695ef25ed5cc0f3d968bce3108963a2"
+          },
+          {
+            "path": "source/.agents/skills/engineering-research/references/motion-and-packaging.md",
+            "bytes": 3602,
+            "sha256": "80b6407d4a8cc0624be9d68186aeaad119b8839f56cf2309b48ce26b69f45260"
+          },
+          {
+            "path": "source/.agents/skills/engineering-research/references/research-readiness.md",
+            "bytes": 2881,
+            "sha256": "f7b206adc50d7b65ed28d20f55978220efb513c85c1f04322ca7ba54107146e4"
+          },
+          {
+            "path": "source/.agents/skills/image-matcher/SKILL.md",
+            "bytes": 7573,
+            "sha256": "d444b0057994f49dd81c7435e5c04a8e466cf43057564deebfe12345f1f3d7d2"
+          },
+          {
+            "path": "source/.agents/skills/image-matcher/references/comparison-plan.md",
+            "bytes": 4095,
+            "sha256": "6bbec172dd14fb9735c64f27d7a0460312a966ef04e7c2f9b271973382800d6d"
+          },
+          {
+            "path": "source/.agents/skills/image-matcher/references/design-reasoning.md",
+            "bytes": 3158,
+            "sha256": "f1ab014cb48398fed862d8639d212166515522ef8060b53e38df3d7314cfb6ff"
+          },
+          {
+            "path": "source/.agents/skills/image-matcher/references/implementation-research.md",
+            "bytes": 8347,
+            "sha256": "b3d8e3f21c7a9b514069ac2ad9e55bac06d0833ad98b3b3b384484ef435d0584"
+          },
+          {
+            "path": "source/.agents/skills/image-matcher/scripts/compare_reference.py",
+            "bytes": 7666,
+            "sha256": "ef223e016fe9f1d116f5692d3e3377f95402b5597814f0a43d760499361bf858"
+          },
+          {
+            "path": "source/.agents/skills/image-to-cad/SKILL.md",
+            "bytes": 2196,
+            "sha256": "d13061dc698a9dcef6999f8c774cb7eefa1a6cf8871426ec25d3067beb45df1e"
+          },
+          {
+            "path": "source/.agents/skills/mechanism-animation/SKILL.md",
+            "bytes": 4657,
+            "sha256": "2643d776b304201757545093a58602b6f936446819fb687d791565290404c4ad"
+          },
+          {
+            "path": "source/.agents/skills/mechanism-animation/references/pipeline.md",
+            "bytes": 6020,
+            "sha256": "9ab528e134c5547dd517047caf1b4b87e02640b3ba9eab56a60808656d239d75"
+          },
+          {
+            "path": "source/.agents/skills/mesh-to-cad/SKILL.md",
+            "bytes": 2533,
+            "sha256": "567b29889480a343f9056a93b956ebbc08f8b0379fa0e2e446133b592939805c"
+          },
+          {
+            "path": "source/.agents/skills/text-to-cad/SKILL.md",
+            "bytes": 1616,
+            "sha256": "c233a62241dc81bc49ddf9ea6d4199e64b5d55e760275f8bff03c2b65478a0df"
+          },
+          {
+            "path": "source/AGENTS.md",
+            "bytes": 4475,
+            "sha256": "1282fa204046245b4a4faa57d3684695dbc543ade03fcb2f9122d83767518035"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/README.md",
+            "bytes": 3569,
+            "sha256": "b4bfcde3cc35b26d4fb18835984320ec2fd55717cc62b8b559604adc22d42941"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/design-checks.json",
+            "bytes": 785,
+            "sha256": "862cc173dea5eb755ba86fc1782d4c4fcc919c1957f220fa6e1878494a3a4ca1"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/design-requirements.json",
+            "bytes": 14099,
+            "sha256": "d6f8d17c20297555d62c8de4fd8a7bf2bf3c5b219a52115470659ed946209bdb"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/design.md",
+            "bytes": 12423,
+            "sha256": "38e2e43e1d08c23ba27614cd44f776e342d821b70d2c25b62cd9e02bb417a2f0"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/figure-review.json",
+            "bytes": 9522,
+            "sha256": "02fc4de6865dc3c986f9ec1124ab31c009cc4927509e302b60b891ab97485486"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/README.md",
+            "bytes": 9556,
+            "sha256": "252fc55e80e69e961b473aabf3cceb92e96c0fbdfb46a729bcb713e6874679dd"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/archive-manifest.json",
+            "bytes": 27048,
+            "sha256": "d2b977d5ff4acf39711fc56ce26aede53e3f0f271dbfd155ca94231a57d3c404"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/blender-validation.json",
+            "bytes": 1995,
+            "sha256": "23e2c55f402fa0c08c224d2cb3e8bb4cd9e218ab7590241e037c26dcbacc3074"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/cad-build-summary.json",
+            "bytes": 993,
+            "sha256": "78d18e4b1746f9c8ffe7b35517264c3894c14439796a77ddb6b932860b18df62"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/design-iterations.json",
+            "bytes": 39604,
+            "sha256": "fdd15bc94084f09fa698312f42a54e0e1620a2a652718026514f735d59c3ea63"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/design.md",
+            "bytes": 4835,
+            "sha256": "0caa06582601addc17fd3f6b204fedbb779166775ad6172e1f93d3333bed82c7"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/front-auxiliary-reasoning.json",
+            "bytes": 2045,
+            "sha256": "fd0c8cc9be87865a4891af1572358974398b337b7441dce18bccb93296df600a"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/fuel-route-iteration.json",
+            "bytes": 832,
+            "sha256": "8732060cf838c9182d614d5cd34bba1cd98f43873a0856e733256ae1d1fec346"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/geometry-drift.json",
+            "bytes": 256473,
+            "sha256": "3c88160d237a81b68027578617217b33103c797f6531449034ff45eaca41f24e"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/induction-method-validation.json",
+            "bytes": 514,
+            "sha256": "eb7208ec6e8daeba38ecbaa7b9159b57d5c25e5b11a7bb0fe9e90ceb8d9e6669"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/interference-audit.json",
+            "bytes": 786,
+            "sha256": "e99127cded88c3c005f29122888f72b5caa4253fe9c6ad312e84b7a03a859e02"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/interference-policy.json",
+            "bytes": 123,
+            "sha256": "1440591a0546736d50edb14ce40448567ea4f562e06c43cd719361186309c530"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/inventory.json",
+            "bytes": 193419,
+            "sha256": "76ee5c9c551f2e0b3553100b1ae99c83ecb310f78e27f0f697b73e367981b6c6"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/layout.json",
+            "bytes": 9227,
+            "sha256": "735f0250e7010b546914e115fb159bf2081bf3cf824c0823d4c7945296316c27"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/mechanism-paths.json",
+            "bytes": 4649,
+            "sha256": "9690e8013f003ff47ec6b635ba8974974f2b438285163ad156a62312437cabea"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/native-direct-mass-review.json",
+            "bytes": 7401,
+            "sha256": "e3e4a66b474b901a3a9e7384ea744080d16fa18f9081704ebd36e0332a63b897"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/native-reconciliation-conduit.json",
+            "bytes": 608,
+            "sha256": "a28878ecaf27c27e88939ea9c30fc31bb81b765fd1180ccc8fbb4685b2b49e20"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/native-reconciliation-front-auxiliary.json",
+            "bytes": 832,
+            "sha256": "f4bbb74804bc13fc061ce63528cc92013a972abd7e5160d9c759edb76b29eeeb"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/native-reconciliation.json",
+            "bytes": 861,
+            "sha256": "59a50c6fdc72348a2bd028ec005ea89c9de9819dd27bd537f9f4cb738487e3fc"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/native-validation.json",
+            "bytes": 853039,
+            "sha256": "0acca05310dc46e2bf77ed65245a1987c01a2dca8683deef99d8efa2d3a2fa20"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/numerical-investigation.json",
+            "bytes": 1270,
+            "sha256": "93637c74cbcef631047823cf2fdc47446cf8638de9385c24d545f66af9c299be"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/part-spec.json",
+            "bytes": 3498613,
+            "sha256": "8673319b629ac567d33f772772c7ee80b21a69bffadf975fb23d907aada8ed87"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/piston-edit-iteration.json",
+            "bytes": 1792,
+            "sha256": "2d3db4c91163785a2d1df61e7f7958e054401b8ed6fc2c09a28e98589fd13489"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/presentation-config.json",
+            "bytes": 63305,
+            "sha256": "5baa6bb890e44b3e048f32ee779bfa08126b0fb5a1cdd112c6b53695b74db1e7"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/release-readiness-2026-11-02.json",
+            "bytes": 6484,
+            "sha256": "354fa277857db1d578d01efa7918a8d8d7277a5fcc98554ba68a77826c2528fc"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/reopen-validation.json",
+            "bytes": 679,
+            "sha256": "3a0aee6f2d198f970ee25bc560bf110604b7b1de75a53d503ce9c1977568e1a5"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/repository-checks.json",
+            "bytes": 1948,
+            "sha256": "1c77704c94f6251335b58663deebb87b75583ca27b7b2c8b2320ebb600fd5097"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/research-readiness.json",
+            "bytes": 490,
+            "sha256": "0102cda6d7916302f2ec9846e5effc1aa27a1fe8aec461848208f39aa75e5872"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/software-methods.md",
+            "bytes": 6495,
+            "sha256": "7408f625c62db9a90c6edb77c5531e67a1b6518653e9c8f01e99f08f5d6cd8ac"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/source-review-plan.json",
+            "bytes": 18236,
+            "sha256": "bd572078cbe64ca3bf9bf87f4eb1410d97a173c18d4e04d8120fd59aed2b5ed6"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/source-review.json",
+            "bytes": 5830,
+            "sha256": "584ad37646efb4fdc84870a22ab8c3782e0000e327a3dee1707b26d9bd4682e2"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/full-engine-3/validation-summary.json",
+            "bytes": 1613,
+            "sha256": "4a3021e3ce81c5425ea1cffad35fc40982274836999e5d5158dc08f82c8cef9a"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/inventory.json",
+            "bytes": 129246,
+            "sha256": "4fd4f71266bf1c28b701672ad0b41e97f03d0fe41de19f0e4c4dba549c87456a"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/motion-and-packaging.md",
+            "bytes": 10698,
+            "sha256": "25bfa1424264c762f9db45da5d43d1327b7bc205598cd6b960f044a959df057b"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/README.md",
+            "bytes": 2502,
+            "sha256": "54cf871c2da2bae13389e5c1e2910b35a6a5c1619bca40999b1ebeae6ea4e2a8"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/blender-verification.json",
+            "bytes": 303,
+            "sha256": "40e7e8930fe47836ee9191dc682c5591786a59b7dc1993f308e3beb83acb159e"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/build-notes.md",
+            "bytes": 3579,
+            "sha256": "8beabbeca476abf9001655f21aebdc867d58cda9301c82adf7bf872bd21c0377"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/development-preflight-01.json",
+            "bytes": 1848,
+            "sha256": "d1a60b6f38acbf43eddc0dd48ddfbdbc61b3e2d0e7f790a116b9edbcfa1892d3"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/development-readiness.json",
+            "bytes": 4308,
+            "sha256": "2acae46ea5f03512ec12a272b451bd22dc59add429bfa2d4881075099c6df8c8"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/direct-build-summary.json",
+            "bytes": 392,
+            "sha256": "cf04870da73dda09b8ca06fbb6872aef64b0e442813c6e4f701396142c716436"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/export-contact.json",
+            "bytes": 5926,
+            "sha256": "d0cf6e05997f951c209189a3ff168bf43b5f25b71d2bbf645af4a0c7466d8de0"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/export-kinematics.json",
+            "bytes": 3341,
+            "sha256": "dcbf268b9b1ef912b6d4326409ceeb3acc4e43a89fe8df1b07fe93bf246712ea"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/export-sump-clearance.json",
+            "bytes": 1220,
+            "sha256": "4383b0d0285f7aa5aee7b9d48efd62a07b6d52483ec8ab4889142b093724c95f"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/export-sump5-negative-control.json",
+            "bytes": 2857,
+            "sha256": "cb46757df7b59cedb770a7aa65bbf7e38de868fcd75b1029cdece3f61d01ea9d"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/fixture-cache-mismatch.json",
+            "bytes": 956,
+            "sha256": "76043c0fb3f6c9540b9b2d7951d56146625f07e13f6d03aea24ed067045a324f"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/geometry-drift.json",
+            "bytes": 256185,
+            "sha256": "da6f9b8f27fcd33059a6255b96c9f2ab64bae049d20ae714450399e4081cb366"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/interference-audit-sump5-failure.json",
+            "bytes": 2084,
+            "sha256": "aaf1d1daeacb6e6a8850724875a28d853f90af224f1bb9e73d3bb47ba481e549"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/interference-audit.json",
+            "bytes": 1671,
+            "sha256": "83a5a5ecd490f1589276294bc5bcbdaa1123686668d225b7150675d6638df47a"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/interference-policy.json",
+            "bytes": 123,
+            "sha256": "1440591a0546736d50edb14ce40448567ea4f562e06c43cd719361186309c530"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/inventory.json",
+            "bytes": 188971,
+            "sha256": "1486248473708af903b48c033795b01ba88c69c51a396af15f6b4e7d559c14ca"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/lower-mechanism-envelope.json",
+            "bytes": 6040,
+            "sha256": "ff5c9dbd15134b79c12189e4a4a93caefcfb5d3e14f8be499068c26d165a302e"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/native-direct-failure-initial-spline.json",
+            "bytes": 2090,
+            "sha256": "a2bfe70cc3d7036a2468c97a8c25ea81bc06e5d7680b4d61ad372bcddca83593"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/native-direct-mass-review.json",
+            "bytes": 7401,
+            "sha256": "c18c95698246022ed954ecf97a384b20a2ece8047e78c66106a1dc28e5d58efe"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/native-method-fixture.json",
+            "bytes": 1377,
+            "sha256": "26eef300917c10736d78f957a55d46d9ab47045622c1aef63f7007e61c027388"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/native-reconciliation-initial-spline.json",
+            "bytes": 5854,
+            "sha256": "3009c9815be5f0e1ad509eac5f0b679771a8f44b67324190f707097cc3452b20"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/native-reconciliation-sump5.json",
+            "bytes": 1765,
+            "sha256": "d1f7508718ed57562a9af728f5ec45c4c1a3e9e8cfc25f27d5eb3868152bf0d1"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/native-reconciliation.json",
+            "bytes": 5854,
+            "sha256": "bac2e09c0c002fc66e25c73c0268897a56c44f95e0f85ca35e092302030022ff"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/native-reopen-validation.json",
+            "bytes": 1008,
+            "sha256": "ef19185dc3655813876a848839840d0b02ce7e79833d495b5ec563e7415b6a62"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/native-validation-sump5.json",
+            "bytes": 854513,
+            "sha256": "2219a8ae21cba76c39d7e2c64ade9a2e85682244bbe981d155ca63d31bfa7116"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/native-validation.json",
+            "bytes": 854513,
+            "sha256": "3ba79e6c5046612a27ab94d6ba8e03ab30692521892f22c61a90dc6c253c7ce4"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/operating-motion.md",
+            "bytes": 5260,
+            "sha256": "92c6fcfc8fb6fe2963a65108243ed12d247302fec1964d91ed9eb1dd3fc189e2"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/part-spec.json",
+            "bytes": 15991201,
+            "sha256": "a37cfa0ed81960c3dba2fc34ee1eb7b4b5375255e36a9192ad2fc5cbc2b15db5"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/presentation-config.json",
+            "bytes": 8809,
+            "sha256": "ed15888eaf951b6924f01b26bd81f7b75ffde25cb04e92b4bbdca1eddc68a7b6"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/presentation-validation.json",
+            "bytes": 971,
+            "sha256": "907d2e6c21740b6fd07d86f7564a3fad8ef28b126bee689fbf66cc6a3769ef11"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/research-readiness.json",
+            "bytes": 486,
+            "sha256": "661692a227a8335652a128f6d6f903d1b17c95044c5e6641a3c022ecad3203f8"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/rocker-planar-method.json",
+            "bytes": 12413,
+            "sha256": "9d9e21d3747e10a8c264abb1bd201580158b79de2dc85fb08542c3c9bcc331db"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/sampled-cam-method-checks.json",
+            "bytes": 334,
+            "sha256": "990a8c1139d2c631f1caf6bd3f82a32d56b19e5431fc24c9943e095517363226"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/software-methods.md",
+            "bytes": 13541,
+            "sha256": "a49217e8276b14c3b6209f802d3632e298e45abd85e3f0bcc4bb234b2c105ba2"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/source-review-plan.json",
+            "bytes": 18742,
+            "sha256": "e6fe5b1c057b43db047f6ece64f1aba21509799ce102b7739153400524477844"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/source-review.json",
+            "bytes": 6944,
+            "sha256": "86fb675fe2ca4bf9d2b2922799abd22e1a2f7919b4042f5936b530e9e569dc2a"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/static-reference-motion-failure.json",
+            "bytes": 530,
+            "sha256": "5c0430af4b7cff93e5f909a6eb4ad1a501127aa939f0f6cc4933793841c318e7"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/step-aggregate-method-review.json",
+            "bytes": 2766,
+            "sha256": "f87564537a0c44cca3e8a716c990093c042c69614c41b3c95894365efffe51d0"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/study.json",
+            "bytes": 1119,
+            "sha256": "e6d2a7cf706cf2a75e35860a56ff60d7c455e22e127cf8ff00fca6f23439e14d"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/sump-clearance-method.json",
+            "bytes": 17523,
+            "sha256": "e0d6e9c788dcbbddbec808ae234b52c4849b5791994316166e393f3c65890300"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/operating-4/surface-separation-method.json",
+            "bytes": 714,
+            "sha256": "83a6e106674439d9a44399616ded9e90eb620177054fe0df45e87a95ddc8e2e9"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/prototype-1/README.md",
+            "bytes": 6545,
+            "sha256": "755c4449dd2f530afda02aeac9c3205a1b5bd048d579396ff2e0c42a180d7fd3"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/prototype-1/archive-manifest.json",
+            "bytes": 6751,
+            "sha256": "f9bc6754f058513c80a2f43e542273116245ae92b5a47f3b7d4dd66456a77c44"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/prototype-1/blender-validation.json",
+            "bytes": 711,
+            "sha256": "bcd41c6f32a057db43c24fe68c5b3afe4b91abb4cded36a7f298b27620a55d9a"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/prototype-1/design-learning.md",
+            "bytes": 5130,
+            "sha256": "684657b3d78404bf0462b8f4198bcda57434a0a9e39cb774bfa9482b95017865"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/prototype-1/execution-validation.md",
+            "bytes": 3306,
+            "sha256": "28d282148ca892952ebad66d3d392bb3fe729807d101a57ca7e1c866df053526"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/prototype-1/interference-audit.json",
+            "bytes": 778,
+            "sha256": "2305e9a327167ae12ac31c090109ac0467e49d97591a7c8218551a776da7a146"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/prototype-1/interference-policy.json",
+            "bytes": 123,
+            "sha256": "1440591a0546736d50edb14ce40448567ea4f562e06c43cd719361186309c530"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/prototype-1/inventory.json",
+            "bytes": 14116,
+            "sha256": "d819cfa7f079a4272cbbd7504bd6d27fb82f05e07260f64724c6b2c6079603dd"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/prototype-1/layout.json",
+            "bytes": 924,
+            "sha256": "873f65d0142020d0559e5144c26a03763d27bf33cbdcd3b3d21dbde2f584bad9"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/prototype-1/native-validation.json",
+            "bytes": 4868,
+            "sha256": "74a5bdec16a94966b3ba5ad52e04372196b997b5cc37e36900421e36f3c5af91"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/prototype-1/part-spec.json",
+            "bytes": 33146,
+            "sha256": "ea37c30f50569251942b719bf65873e3bb76bc4aad6cec758392b492705de6ca"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/prototype-1/reopen-validation.json",
+            "bytes": 688,
+            "sha256": "b6e68a0e04887fda760c5ec9a697950dd35919cc72bc2806c3e6d22a975eaea4"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/prototype-1/research-readiness.json",
+            "bytes": 493,
+            "sha256": "17afd01b7e1eb3739dc038c264d15e4e38f493e7a1daa3103518d36fb534d587"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/prototype-1/validation-summary.json",
+            "bytes": 991,
+            "sha256": "9d83ce441cd44812714b640ee7e3aca4736bcf4cd95f3e411ab4bae765692788"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/research-readiness.json",
+            "bytes": 2157,
+            "sha256": "cdb15dd1c64fd25a209b00aa6ec722823ace828c263192fa2edecaa10e19cc02"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/research.md",
+            "bytes": 9641,
+            "sha256": "073c8cdacdaddefb24291a24f91d33bf17339800e746d2bb4950719372e585ab"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/review-renders.json",
+            "bytes": 8455,
+            "sha256": "74a59376fdac404a6e914d4eef5027155a2a1c486ac8bb65dd36ec9bfef7436b"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/revision-2/README.md",
+            "bytes": 3165,
+            "sha256": "872592933422343741bdfa02b25e072ac04705b90c73b0eb03d3859d71d6f2b0"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/revision-2/component-plan.json",
+            "bytes": 16498,
+            "sha256": "f4c0e8e657f6ec5cbefbcc78b133f2253654bc8e6f878364171ffb2d827b6c60"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/revision-2/design-checks.json",
+            "bytes": 957,
+            "sha256": "f7c7268c3babf98d2fcb5134006e6536efd451665787cf63c9faa7239d7971ea"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/revision-2/design-strategy.md",
+            "bytes": 17686,
+            "sha256": "f682560eee7337f6bf581a808c4a79b85b48671eb52a569f71e7cc6fee4d30be"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/revision-2/dimensions.json",
+            "bytes": 23245,
+            "sha256": "fcb186a4645e4e52929058bd7ab5fc525cd3ab609117fd832c28ea66d40dce29"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/revision-2/errata.md",
+            "bytes": 3346,
+            "sha256": "f96a1962445f8f1a781e658a410cf0811b28f2e2a9b6dcf608df8cac8a576a19"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/revision-2/figure-review.json",
+            "bytes": 35432,
+            "sha256": "ff62df139d7da9ecfd238f7c44b81fd98d6acc151daeaba5fccd4feec6f22994"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/revision-2/photo-review.json",
+            "bytes": 45482,
+            "sha256": "a4f256d716e3e010cacff2211ea195f620961267a0bf16c58cc28979829eb938"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/revision-2/prototype-review.md",
+            "bytes": 3544,
+            "sha256": "8c6ff4150746619b1b2c6c5aee3df633d6999d80258c8224a598a05da5234868"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/revision-2/reference-atlas.md",
+            "bytes": 4694,
+            "sha256": "bccde185ffdee8d7f43341967a178d505b1e135d4ba696041675cf0a87a5665c"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/revision-2/research-status.json",
+            "bytes": 2121,
+            "sha256": "f8a49a9c4732e7f5697a293c5cd62cacf6f8c12a26d51c9b82ca83821047400a"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/revision-2/research.md",
+            "bytes": 18258,
+            "sha256": "80afb12ba4e1a1a607f52fde18efe2f3687a5cde1b9f57346e5c5dc1b77f4e64"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/revision-2/source-manifest.json",
+            "bytes": 19037,
+            "sha256": "4614c99c5ed2368288c00b407fa233d2b8759985f45ace9f501b637cbd7b5c5a"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/revision-2/validation.md",
+            "bytes": 2313,
+            "sha256": "a694e37165405f9ee0cc918b66f91689f5b02734451f5bd2dc17bbe70e715c84"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/README.md",
+            "bytes": 6002,
+            "sha256": "a800010cfd0d82431e984f898edbe9e82914ed4d60634f4ea1e78c25ce21de72"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/archive-manifest.json",
+            "bytes": 10413,
+            "sha256": "273698da19f9958e2c2936b96307d79aa8bf1e2a30f7c33917c4ab1228624b1f"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/blender-validation.json",
+            "bytes": 880,
+            "sha256": "f67e5c4ee0afb778ec83f006b7c66787d425d06f999bc8f5c98b3e50de38eabe"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/comparison-plate.json",
+            "bytes": 627,
+            "sha256": "ae8d4ba3b20ab5fcfa171e8173085d4cf5da3b77f2d89abdf9a72554d9d2b619"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/delivery-validation.json",
+            "bytes": 472,
+            "sha256": "f570e99bae8de4902c1890e1939cdba5da01e7f08d3639b721f78f5b5b11c67c"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/design-learning.md",
+            "bytes": 4614,
+            "sha256": "d420ceb6a50b4073d8898cbad980166698d7cfe00a54cd6ec630fbcc208920be"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/failure-history.json",
+            "bytes": 5751,
+            "sha256": "12c8e04672298d4262c96b6789f794a3de8d1857d924f005914f22ee1435a84a"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/interference-audit.json",
+            "bytes": 779,
+            "sha256": "356e101ad0556f89c3ece43621e2a4dce03b7b364471c4b65ad23c11c1c57e02"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/interference-policy.json",
+            "bytes": 123,
+            "sha256": "1440591a0546736d50edb14ce40448567ea4f562e06c43cd719361186309c530"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/inventory.json",
+            "bytes": 9541,
+            "sha256": "3631c52c346ec587dc8be393ef0419c3580e61647ab5e40864fe6fb5803fdee8"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/layout.json",
+            "bytes": 890,
+            "sha256": "f3188198a7c5af3a9a3d9c021436aa872959a72ad578c9046b6beac11ed2cc3d"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/native-validation.json",
+            "bytes": 26614,
+            "sha256": "049d4dcdd2c1d8ec1ecfdd130173d010f2418e3fbc1e92c8c00dbd49b0c4201a"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/part-spec.json",
+            "bytes": 93070,
+            "sha256": "7b9b650fb2410ff81580f34a2814b4a49aa54390ad4a5b97e49d4c48a5cb5810"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/reopen-validation.json",
+            "bytes": 688,
+            "sha256": "b05e07da764967985f930f444e172339048af01f9d1805169c51bf6c1b413ac8"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/research-readiness.json",
+            "bytes": 476,
+            "sha256": "2f7b79e56d44e3e450603f2a348bf4d8e405c9eeab29a365e62dd485c3a1c91f"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/source-review-plan.json",
+            "bytes": 4285,
+            "sha256": "640bbdd255454543333822ddff02af4c87a15847ea2befd9a6a56e142c5dd114"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/source-review.md",
+            "bytes": 3534,
+            "sha256": "9bb9edc7d0780587b136d5dd26af07e6d8010dc566b5419f98ab7979df65e2ca"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/test-results.json",
+            "bytes": 3307,
+            "sha256": "6c526c1afa3a6929e11e09e884f2b6cb35d47f6517b43982cb84ed9ef9ec5919"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/validation-summary.json",
+            "bytes": 1662,
+            "sha256": "1b99155a52430b3b5a754cff345615ce41c7b12fc275b5cee031df7836b2a338"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/rod-interface-2/validation.md",
+            "bytes": 3981,
+            "sha256": "fc6cc4819e6f3050873cbbb4f0f44526ee6e5e86e049688605754080bee11255"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/source-manifest.json",
+            "bytes": 3119,
+            "sha256": "8b3377000c04064e8a80eb1d8da9e36172ebe9530e20b8f5e14175f37fca35ea"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/study.json",
+            "bytes": 979,
+            "sha256": "9a5eccab06e96058e2a22fe0f797523a7fd74ffd0d2d855adc4ba7a88945b08b"
+          },
+          {
+            "path": "source/cad-studies/rolls-royce-merlin-iii/validation.md",
+            "bytes": 3827,
+            "sha256": "9800400efe413df3fb90b55e58f43462c8603c5945a88d5f6361a2a71242ebc9"
+          },
+          {
+            "path": "source/cad_pipeline/README.md",
+            "bytes": 33568,
+            "sha256": "5709148c1304c800cfa59d0478d4d253a185a506350501a7f7808041335f6a17"
+          },
+          {
+            "path": "source/cad_pipeline/__init__.py",
+            "bytes": 80,
+            "sha256": "95d0a638b36d75a107e5a1823c766465559f9cc1eefec5a08954aff0e89edcb0"
+          },
+          {
+            "path": "source/cad_pipeline/add_sections.py",
+            "bytes": 3699,
+            "sha256": "42ceb83f9ebde5150ff035ffcdbc6ed92ac2cc88ca02028bfd7fde4013b621f1"
+          },
+          {
+            "path": "source/cad_pipeline/adopt_direct_cache.py",
+            "bytes": 7093,
+            "sha256": "61451e172d037d367fb8c417f7e029a2989abe825aee6b767828980ec44b5ba1"
+          },
+          {
+            "path": "source/cad_pipeline/animated_studies.py",
+            "bytes": 11621,
+            "sha256": "cbd31c4269d2d6b4939b2e8ff83b2c67f156205eb6b90b68ac756c31284de6e7"
+          },
+          {
+            "path": "source/cad_pipeline/append_native_history.py",
+            "bytes": 3237,
+            "sha256": "070e3c387245573413dd0fdda0faa3083632df7116a1d58f33e2470d04abc74d"
+          },
+          {
+            "path": "source/cad_pipeline/atomic_reports.py",
+            "bytes": 580,
+            "sha256": "a0874b9cf17481324be7029a0cbccedd64f9b846acaa54464b2f54cc48797be8"
+          },
+          {
+            "path": "source/cad_pipeline/audit_gtsio_exterior.py",
+            "bytes": 5512,
+            "sha256": "79c9ff2428fe4efb20874702f1bf0a6c5c943f6cd0afeb1426f6cc3f41ee973e"
+          },
+          {
+            "path": "source/cad_pipeline/audit_merlin_engine.py",
+            "bytes": 14144,
+            "sha256": "5f6ce67f0fde59b9d77d6a6e923f9849cbb2adfb9b230b423e5bb934806ba12e"
+          },
+          {
+            "path": "source/cad_pipeline/audit_merlin_prototype.py",
+            "bytes": 3959,
+            "sha256": "0da4a759bc5cb60b630b93085b0db3a38a1d1599b1c109595d9928bbffdd7f8c"
+          },
+          {
+            "path": "source/cad_pipeline/audit_merlin_rod_trial.py",
+            "bytes": 10564,
+            "sha256": "668df1844d546dad92d6995b60fd8ff2e4bf4ad1dcf54b29807e9f61e4641467"
+          },
+          {
+            "path": "source/cad_pipeline/audit_motion.py",
+            "bytes": 4291,
+            "sha256": "c5f945b30f805bae66f5250d0d4c76c65d8fb541db1dfe4b732599644b563073"
+          },
+          {
+            "path": "source/cad_pipeline/audit_packard.py",
+            "bytes": 5554,
+            "sha256": "7a96f91034c34681fa4476d588759201a8a8e8d21ef0eb680e2c3cae6f33e1a8"
+          },
+          {
+            "path": "source/cad_pipeline/audit_packard_v2.py",
+            "bytes": 4456,
+            "sha256": "703ed608add60ccff5c6921d5bdbd403d2967ead04f0328416e3febf1650f663"
+          },
+          {
+            "path": "source/cad_pipeline/audit_wright.py",
+            "bytes": 3489,
+            "sha256": "6c6e7490973913e9149c5b02b0244769415f04205728b122bdda52c824fad437"
+          },
+          {
+            "path": "source/cad_pipeline/audit_wright_v2.py",
+            "bytes": 11237,
+            "sha256": "53ecb954a71e4ae2d9d15f3941bf8b794bf9d6e57c0f7f8c99e7882c306904e8"
+          },
+          {
+            "path": "source/cad_pipeline/bilinear_loft.py",
+            "bytes": 4061,
+            "sha256": "7a721fd7e9b12037a1e8deb9bbeb4fb2b0ea8d65bfd6ba6940f9edfeb1092c6a"
+          },
+          {
+            "path": "source/cad_pipeline/boolean_runs.py",
+            "bytes": 518,
+            "sha256": "625db1021658e20291dd2bb9c84da7a7250dafeec65ed0a2927ced088af03620"
+          },
+          {
+            "path": "source/cad_pipeline/build_integrated_review.py",
+            "bytes": 13181,
+            "sha256": "4898398798faebcf54563e1b25c835a8788ebf4b779e02a6c52a0d95f970fe6b"
+          },
+          {
+            "path": "source/cad_pipeline/build_review.py",
+            "bytes": 6536,
+            "sha256": "67a0c62aae0eda450e4fc3b07a232b7323b2b0311f888b86f21c30d1a7ce6cdd"
+          },
+          {
+            "path": "source/cad_pipeline/compare_gtsio_case.py",
+            "bytes": 4429,
+            "sha256": "dff251f7aca2325c7281e40db6198199d2866303bb919700a9d49cfea227cdc2"
+          },
+          {
+            "path": "source/cad_pipeline/constraints.py",
+            "bytes": 39855,
+            "sha256": "0a07fce21d7eeea45da9645b71e2d41f8ae2a665d31d5be7ad3b4e70adec2016"
+          },
+          {
+            "path": "source/cad_pipeline/crankcase_contour_sources.py",
+            "bytes": 10094,
+            "sha256": "7b3f922c664d97b419b042f4a94865052cf3b23e7a94b66e8a3a17fa5615f3bf"
+          },
+          {
+            "path": "source/cad_pipeline/direct_prefix_cache.py",
+            "bytes": 3245,
+            "sha256": "71689d0c3f63197d5b0b65c19b53e14148a1161842a66487437f294dca5be257"
+          },
+          {
+            "path": "source/cad_pipeline/dressups.py",
+            "bytes": 1924,
+            "sha256": "418c47a08953c8823262aedcb7cc182e1ba3fafe7f3e104d3a23f55187cbc2a6"
+          },
+          {
+            "path": "source/cad_pipeline/elbow_pipe.py",
+            "bytes": 2987,
+            "sha256": "d05491dffedcda92b914c16dba605e1f51e65115044a0006248760945c1fa0d5"
+          },
+          {
+            "path": "source/cad_pipeline/examples/bearing-housing.json",
+            "bytes": 2045,
+            "sha256": "89bc332667279b6a2ec29e458efd44e836acde51bcbe9f0dcc29eb9c82cdf224"
+          },
+          {
+            "path": "source/cad_pipeline/export_saved.py",
+            "bytes": 3422,
+            "sha256": "e9e62bf4e0f77b37dd5bbad25faa39553dd4b51b29c91713eedb64d2abe50bc2"
+          },
+          {
+            "path": "source/cad_pipeline/extend_saved_native.py",
+            "bytes": 20887,
+            "sha256": "9a2ae269b28854d1875a6bafc8e58adaeef69bb9f502034116de209c7fb84392"
+          },
+          {
+            "path": "source/cad_pipeline/fast_build.py",
+            "bytes": 14111,
+            "sha256": "f0c8577cb61437c64a10d001e20525152e43291ee469cacf42169a4572a9e597"
+          },
+          {
+            "path": "source/cad_pipeline/fidelity.py",
+            "bytes": 21263,
+            "sha256": "e0976b5741f4ded213d42975453617dcfb1fc918f4271015ba1c25bb9288507d"
+          },
+          {
+            "path": "source/cad_pipeline/fidelity_report.py",
+            "bytes": 17172,
+            "sha256": "73b747d5f67812a9309ff2b60c67c38bbd8956fad91dd4cf8864f42fa0f1cbcd"
+          },
+          {
+            "path": "source/cad_pipeline/fit_mesh.py",
+            "bytes": 2078,
+            "sha256": "41c85c501bf7f2d49a53a0ce87b2f65ddf2b6f560aeb9cad3049deadcb863257"
+          },
+          {
+            "path": "source/cad_pipeline/generate.py",
+            "bytes": 28016,
+            "sha256": "f04043c6398826d397b8a31cf6d2aa81aff3b39334ec59efea87a3aa70375378"
+          },
+          {
+            "path": "source/cad_pipeline/geometry_to_glb.py",
+            "bytes": 7404,
+            "sha256": "972618c69685291b644746d570f74d1789f5ef8e78e1de93236c0addc70b3927"
+          },
+          {
+            "path": "source/cad_pipeline/gnome_bodies.py",
+            "bytes": 1821,
+            "sha256": "c077728850b328a01f6fda290e4e80f9e149cac327c6b8bb7555d6569743d771"
+          },
+          {
+            "path": "source/cad_pipeline/gnome_contract.py",
+            "bytes": 6846,
+            "sha256": "be7ca3158504aeab6f4fa71b98c930d8fbb0e165eb7129ba8dc160c5399d45fc"
+          },
+          {
+            "path": "source/cad_pipeline/gnome_explode.py",
+            "bytes": 4762,
+            "sha256": "b018d2add7c25ab7a2477b68a5e9a70754c8b205502717f616e6ada3b692a693"
+          },
+          {
+            "path": "source/cad_pipeline/gnome_frame.py",
+            "bytes": 5872,
+            "sha256": "8e3be1703c443a76854a1bbf2539f3adb476662ef99dce7fbe245c4aa9427988"
+          },
+          {
+            "path": "source/cad_pipeline/gnome_motion.py",
+            "bytes": 11136,
+            "sha256": "fcc953d0275eba441eccc155b2865f3fab52abeaf425bee05635f0e0e6bfa192"
+          },
+          {
+            "path": "source/cad_pipeline/gnome_research.py",
+            "bytes": 21152,
+            "sha256": "42ed8e4d7c2529ca52a3a65a37476f8b7038f573826438bb2a222c2e42641f7b"
+          },
+          {
+            "path": "source/cad_pipeline/gnome_v1.py",
+            "bytes": 38817,
+            "sha256": "6bccccf72421708f5571904bbb7b4bdc1ae056b9b4849b07337b21784dba517f"
+          },
+          {
+            "path": "source/cad_pipeline/graft_native_history.py",
+            "bytes": 9769,
+            "sha256": "ab278edd5551710ea86feb86473c0efa4c2f122adb7d7cd183667ecc64bda8cc"
+          },
+          {
+            "path": "source/cad_pipeline/grammar/__init__.py",
+            "bytes": 124,
+            "sha256": "e46fd371a7b24e19ada685cca6fa2d185116421218b77a7d69e0885c7ba1ae81"
+          },
+          {
+            "path": "source/cad_pipeline/grammar/primitives.py",
+            "bytes": 5659,
+            "sha256": "74dc25b99b473ca272df31598c5a5028fd3b929b014a6122b9e73b71a9352d5e"
+          },
+          {
+            "path": "source/cad_pipeline/grammar/recipes.py",
+            "bytes": 13648,
+            "sha256": "bef3a000238d2cf086aec6200482a4b40cca7c8dfae31597f5abb7872616abcb"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_assembly.py",
+            "bytes": 3360,
+            "sha256": "59997a6cf8762ddf97b5bfe82f7098d011c95aefedc139c0e24f74c07e417ea1"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_contract.py",
+            "bytes": 20504,
+            "sha256": "2346741a8a8567d2310c16446a64a7cba36a04a969575111d198fe60f42e2bdf"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_core.py",
+            "bytes": 18163,
+            "sha256": "1c3a4fe30567704a3a6fa70802a3f61a24df14ea6f14e2024ec183663166b720"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_crankcase.py",
+            "bytes": 9092,
+            "sha256": "43be006b20350f0b9d064338cc06b1f6d286e40a773006338fbe8bb572547947"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_crankshaft.py",
+            "bytes": 6694,
+            "sha256": "4209deb2fb0c75f4fa97adde38e29c3262882b6fcbe2830348b86afd9dce8d49"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_crankshaft_estimates.py",
+            "bytes": 4514,
+            "sha256": "83bed84752f49d7c0cc237354ba7358ed44fa23867f1825567c6dda4e157b943"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_cylinders.py",
+            "bytes": 14929,
+            "sha256": "6fb5d4c2a38818d7202fe69aa441a19ac78609a76385353c6deb6510dfc56c39"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_dampers.py",
+            "bytes": 6479,
+            "sha256": "81c8f7bed3e9892b1a600bee68da1857b92f49c159429818fd3c36e4f6fb5654"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_drive_layout.py",
+            "bytes": 9239,
+            "sha256": "4dce0a1f3cdbdce04a523b2f2535b2c7d8b74f1786f9a6f097dbf5a2d02a919a"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_drive_research.py",
+            "bytes": 9575,
+            "sha256": "b39e5b2904701884b2be4c4c0844a5ecd4ecdbc89c8510500cc6b5bd095a3a67"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_exterior.py",
+            "bytes": 15015,
+            "sha256": "da9667092dd80e80857d64a6e697b993566c7b9e8c6a315687ebd90b05984a56"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_layout.py",
+            "bytes": 4174,
+            "sha256": "281fe1df1e25b6318214ad4db8f0465f54cdc9e2b956e6bb63033e91edc152de"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_research.py",
+            "bytes": 7715,
+            "sha256": "c85f88ca0b0f6ac9fd48003264938ae24b4b0270264e559c3cd505fcdd1bf35d"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_review_motion.py",
+            "bytes": 18454,
+            "sha256": "afa9c71470320c68a97dc1092daf256c7fefe6742c0292939d434afd760d6495"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_static.py",
+            "bytes": 10307,
+            "sha256": "33ba857b023d0a89e6acc0b3cd3656a29ef10c6175c0b9f834bf08a3e988adcd"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_static_drive.py",
+            "bytes": 21689,
+            "sha256": "f681d71c1e6982913f8eecaa1e9085c8df7c7c8149e8663b4a9e09dded6f38e9"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_valve_layout.py",
+            "bytes": 2382,
+            "sha256": "75cd4c96c0f74783b11067ff467b4956fa1effaedbf753d79f33a1060f176f00"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_valvetrain.py",
+            "bytes": 15518,
+            "sha256": "2b482f4590296e41317451db84a08a739ed439d77577361b888aa56f3f4f6c49"
+          },
+          {
+            "path": "source/cad_pipeline/gtsio_valvetrain_pose.py",
+            "bytes": 4500,
+            "sha256": "3659e3130ee172284dab7a5993263ded0fde6183b64004ee0579cf2713d6d71d"
+          },
+          {
+            "path": "source/cad_pipeline/inspect_mesh.py",
+            "bytes": 4317,
+            "sha256": "6aaa2effe3274e63bb2750658ebfdadba003dab7c0dfb332b248b5e99eff292f"
+          },
+          {
+            "path": "source/cad_pipeline/inspect_step_difference.py",
+            "bytes": 2947,
+            "sha256": "667907becb4fea747b06114ff0b524dddbeeecc588c1f419bf3cfa60765f5a4f"
+          },
+          {
+            "path": "source/cad_pipeline/intake_port_fit.py",
+            "bytes": 2566,
+            "sha256": "194b86d7d8068ea3d7a7a67fca30f56500bc7bf405e0f75bcecd882cb75b13cc"
+          },
+          {
+            "path": "source/cad_pipeline/intent/__init__.py",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "source/cad_pipeline/intent/part_card.py",
+            "bytes": 12842,
+            "sha256": "869314d3e9e6ee14d4e91a7b8505ba8150363941aae201ba8decf119559eb120"
+          },
+          {
+            "path": "source/cad_pipeline/intent/part_store.py",
+            "bytes": 28906,
+            "sha256": "d33ba089b0a8f801f885019ff010e4e45924c20d0e90f4ef1521ebaaa6784cae"
+          },
+          {
+            "path": "source/cad_pipeline/kinematics.py",
+            "bytes": 2662,
+            "sha256": "a2749422fbc5d71713c605eb0a890073f6e34712311caf9ae8f7f3de0e76ff78"
+          },
+          {
+            "path": "source/cad_pipeline/langley_bodies.py",
+            "bytes": 1985,
+            "sha256": "3e4301054695cdc256365e2a4103bde2d3f43708aac3c8a4166baf3098d1f861"
+          },
+          {
+            "path": "source/cad_pipeline/langley_cam.py",
+            "bytes": 6037,
+            "sha256": "070bc8707921027efe589e7d1f819bc73856276ed62b2d47ed6b7e45927da54e"
+          },
+          {
+            "path": "source/cad_pipeline/langley_contract.py",
+            "bytes": 11202,
+            "sha256": "2408f19423d28ebb7aef190f156af7a440c134866ab67c8e98cca964d50e3bbc"
+          },
+          {
+            "path": "source/cad_pipeline/langley_crank.py",
+            "bytes": 10957,
+            "sha256": "aac55898b7218ee73d24462e4ace75dd7e3add65d873f3198eb06994004c5bf1"
+          },
+          {
+            "path": "source/cad_pipeline/langley_cylinder.py",
+            "bytes": 13316,
+            "sha256": "e039fd91106b9791fcb0ca754d7cf6bba5e9332e65f622757df9529e9cac4e3d"
+          },
+          {
+            "path": "source/cad_pipeline/langley_drive.py",
+            "bytes": 23532,
+            "sha256": "825f1f8b7f282fc9c9759a99fd4dc65c217549e2122dcce3e45ff8867e91d1ac"
+          },
+          {
+            "path": "source/cad_pipeline/langley_drum.py",
+            "bytes": 4675,
+            "sha256": "ed940edf9369924b12192ef6e8006353aceb700a4a51e9c0663ab559d987fdb4"
+          },
+          {
+            "path": "source/cad_pipeline/langley_explode.py",
+            "bytes": 5937,
+            "sha256": "987a5c6d6caca972505d46a3b039da23cb33c1c644aa8d3216379da5d7ee86c0"
+          },
+          {
+            "path": "source/cad_pipeline/langley_flywheel.py",
+            "bytes": 8544,
+            "sha256": "e02db9c6eb55011e9e7712462fee6d21aa0659c740fef30eaf8a0358c4194af7"
+          },
+          {
+            "path": "source/cad_pipeline/langley_frame.py",
+            "bytes": 4187,
+            "sha256": "4e3e546f978ff948082cad8794de0b05e28877b31edfb8daf8815efdcbc217a2"
+          },
+          {
+            "path": "source/cad_pipeline/langley_motion.py",
+            "bytes": 10133,
+            "sha256": "5571dc11ad5c5a7688e6abb6a9c08b07d4d17be4de69062c7280d780631dccb8"
+          },
+          {
+            "path": "source/cad_pipeline/langley_pipes.py",
+            "bytes": 7902,
+            "sha256": "37d129671ef49f8c09a8eae55fd4e531a6364edd3aa07324e46061dd95fc788c"
+          },
+          {
+            "path": "source/cad_pipeline/langley_research.py",
+            "bytes": 31744,
+            "sha256": "ae0883f4c3cf046e8600b0b5f8a2c1fefb9f702cb8a86e8861add8808cf86ca1"
+          },
+          {
+            "path": "source/cad_pipeline/langley_v1.py",
+            "bytes": 13437,
+            "sha256": "4da93c4a3cccd1624540f3e2fbc49f8111489fc2654f9354c041345b9330200e"
+          },
+          {
+            "path": "source/cad_pipeline/look.py",
+            "bytes": 9675,
+            "sha256": "e7498cb69cef3811c1dd60107348a704e54acbce93956109b5415b505a3b3036"
+          },
+          {
+            "path": "source/cad_pipeline/merlin_accessories.py",
+            "bytes": 26988,
+            "sha256": "4aeb68fccdc8235fd9b33b6183fae378ff942bf2c8975c37a33346d9f80f9f23"
+          },
+          {
+            "path": "source/cad_pipeline/merlin_contract.py",
+            "bytes": 3623,
+            "sha256": "c905c57b9dd06fa2c1b99e02e629b7b9c7541a39aa6b5dc1d10a34234f035bba"
+          },
+          {
+            "path": "source/cad_pipeline/merlin_cranktrain.py",
+            "bytes": 7274,
+            "sha256": "a92b9d4b9b3c3838de53ac1ce5718fc661ccc256c177c3f74da3d9205229db9a"
+          },
+          {
+            "path": "source/cad_pipeline/merlin_deep_research.py",
+            "bytes": 20049,
+            "sha256": "ff61f6d75bfddfef605ac3db32f3d9f0a491919f7978e6c6a1bdebeffb3286ea"
+          },
+          {
+            "path": "source/cad_pipeline/merlin_engine.py",
+            "bytes": 14802,
+            "sha256": "8092eb5cded0b04eba3e691f539410e9551ec3ac7e42fd6f62b0040f632d5dba"
+          },
+          {
+            "path": "source/cad_pipeline/merlin_front.py",
+            "bytes": 8455,
+            "sha256": "7b499d0920bb20d0b84eb6c9973fce51ce6cbddb867da0b739d18a5f37b9861c"
+          },
+          {
+            "path": "source/cad_pipeline/merlin_heads.py",
+            "bytes": 8268,
+            "sha256": "18c4f73349c9744dc7c75fd92eb1bb900ff92a8c667a1b5e8ca71ed53d8ef6a8"
+          },
+          {
+            "path": "source/cad_pipeline/merlin_layout.py",
+            "bytes": 9813,
+            "sha256": "30d7497db0ea5c195d95352f709c54415756f4f1d5133deb6fbe3c03ed66acd9"
+          },
+          {
+            "path": "source/cad_pipeline/merlin_mass_review.py",
+            "bytes": 3441,
+            "sha256": "beea0a56bfac7495322026d3e7d0cd05d7acfe7154d895d7386c6b551290e90d"
+          },
+          {
+            "path": "source/cad_pipeline/merlin_motion.py",
+            "bytes": 8348,
+            "sha256": "17e815c8610f39cc9b5f2016eecdff867028e92b7972f6bd3786973f2e291ae9"
+          },
+          {
+            "path": "source/cad_pipeline/merlin_operating_spec.py",
+            "bytes": 11107,
+            "sha256": "59d89d7c37e8d94fdb4f09cac229570d3002df99a8250972a5163e5a82a82619"
+          },
+          {
+            "path": "source/cad_pipeline/merlin_prototype.py",
+            "bytes": 17832,
+            "sha256": "f1534ea966523f2941a4538f98dac4082a2d1d7ff583f125916e5fdcd50de644"
+          },
+          {
+            "path": "source/cad_pipeline/merlin_research.py",
+            "bytes": 37895,
+            "sha256": "4de0472cc2cb6150f7a7ad42b3e0d4d018905b0a5993b5a86ab43aa62e189512"
+          },
+          {
+            "path": "source/cad_pipeline/merlin_rod_trial.py",
+            "bytes": 26173,
+            "sha256": "ccb26f3a1ab42f58ceb00f271732385eae0ed8ec265d185f7e288ee812af5bc5"
+          },
+          {
+            "path": "source/cad_pipeline/merlin_structure.py",
+            "bytes": 16633,
+            "sha256": "6880f102a3fa18fb958d4179e76ce5ae943e356e4132694a636d66395ffe9264"
+          },
+          {
+            "path": "source/cad_pipeline/merlin_valve_motion.py",
+            "bytes": 3174,
+            "sha256": "412f442f7b90d28bdcd159d2dd7cff786600ca2c34d529a71e514c9c1c1164c8"
+          },
+          {
+            "path": "source/cad_pipeline/meshing.py",
+            "bytes": 899,
+            "sha256": "d92688f9ecff0d1954fc01170dc83d09cb331f8ae02e5f9f18f3685f6e7e3956"
+          },
+          {
+            "path": "source/cad_pipeline/overlay_plate.py",
+            "bytes": 3659,
+            "sha256": "03878972761861c4e319ef989404c65a3dbe40c0505595ffa11885fc80d5df19"
+          },
+          {
+            "path": "source/cad_pipeline/package_animated.py",
+            "bytes": 5490,
+            "sha256": "bab13d1c92d3737bf3dea077f72e733f53c447f7ddd3852fc8871951baa7a36f"
+          },
+          {
+            "path": "source/cad_pipeline/package_merlin_engine.py",
+            "bytes": 7872,
+            "sha256": "e37c49125d1b6499b4035fe63156f533d5416d8e1e481ff83da44e5504c8bbc4"
+          },
+          {
+            "path": "source/cad_pipeline/package_merlin_rod_trial.py",
+            "bytes": 5756,
+            "sha256": "2040245dd3d2d74ae6cafa3471fe3de53a5e18c60fdffb2abc3f7e2a002307c8"
+          },
+          {
+            "path": "source/cad_pipeline/package_presentation.py",
+            "bytes": 6302,
+            "sha256": "5b5dfae58fa0c5bb9865488941aba004e0ef983d9077d396920346a80bb5322b"
+          },
+          {
+            "path": "source/cad_pipeline/package_reconstruction.py",
+            "bytes": 3714,
+            "sha256": "95aaa281a42f8629a9f65f196b8a739d08bf53c3b86e87f0e43dcadfad674dbf"
+          },
+          {
+            "path": "source/cad_pipeline/packard_research.py",
+            "bytes": 16523,
+            "sha256": "03ec50c10ef07011e7fdfcb3fa56fa904b492a636546e96eef402ab59e7588b8"
+          },
+          {
+            "path": "source/cad_pipeline/packard_review.py",
+            "bytes": 9858,
+            "sha256": "c2eb72a463842b294bb62f984e3b6dadfa6f6926d4f9d0a2787e17228d913636"
+          },
+          {
+            "path": "source/cad_pipeline/packard_v1.py",
+            "bytes": 12741,
+            "sha256": "456b7e54fdcbca7b29c5dbc0b7ec1ea69017410e0ec210d48e286fa19232bbbe"
+          },
+          {
+            "path": "source/cad_pipeline/packard_v2.py",
+            "bytes": 24493,
+            "sha256": "8a4181c72d2d6d0e73a13da3270bd03267f21f72e6973652c56f6ec22e7bd357"
+          },
+          {
+            "path": "source/cad_pipeline/packard_v2_beauty.py",
+            "bytes": 1396,
+            "sha256": "2ab1691c7ec3387cd9f52c524ad14713fc3c46e9d8bbb47cab190ecc68645304"
+          },
+          {
+            "path": "source/cad_pipeline/packard_v2_coverage.py",
+            "bytes": 5608,
+            "sha256": "ad89fb7c6c52b821d057a3dfe3b807152160d325737a9a7ef8a5d53c712b3a0a"
+          },
+          {
+            "path": "source/cad_pipeline/packard_v2_records.py",
+            "bytes": 4380,
+            "sha256": "fe22095bcda90d563010711f7a096098b8e7581ee14e14e17d11a42ed5cb64d0"
+          },
+          {
+            "path": "source/cad_pipeline/packard_v2_review.py",
+            "bytes": 5380,
+            "sha256": "8216baf5c346784ca181ca1d3a1948dd53c06e4a307485e85c24adeac4ad8d27"
+          },
+          {
+            "path": "source/cad_pipeline/packard_v2_trace_review.py",
+            "bytes": 3982,
+            "sha256": "8b9dd46f5b87df4ad9c4542bbdee037378b7fd73e8b935c83cdeb06f4a883a83"
+          },
+          {
+            "path": "source/cad_pipeline/part_retirement.py",
+            "bytes": 1951,
+            "sha256": "0bd2f535458a7f5efd77fd4e98e68ddbf5d2a4a210645065a1d1850287f9963f"
+          },
+          {
+            "path": "source/cad_pipeline/partitioned_material.py",
+            "bytes": 3375,
+            "sha256": "106f268a2cfd25cb3adb3bf338afe1769ba5b6652acabd8feaf8113915f9794f"
+          },
+          {
+            "path": "source/cad_pipeline/planar_loft.py",
+            "bytes": 1894,
+            "sha256": "ee6a68720fc57d702b24ad7c635d64a64af0dd6e4ac4f886f5db6c3d3911b935"
+          },
+          {
+            "path": "source/cad_pipeline/prepare_gtsio_animation_handoff.py",
+            "bytes": 10118,
+            "sha256": "18baefb8eaf600d61474e777183806e11f11ea19c8524b2e5b9ec847b452ccdb"
+          },
+          {
+            "path": "source/cad_pipeline/present.py",
+            "bytes": 12944,
+            "sha256": "ffcc47cdaf9cb30b0f649fb0a910de695f97644b6b6b8c4a8ce501d463977bee"
+          },
+          {
+            "path": "source/cad_pipeline/present_gtsio_exterior.py",
+            "bytes": 7483,
+            "sha256": "e5fb23f9fb83ccc767fd7cbc2475d9c0cb266ff94235531a7279e3528bbc7605"
+          },
+          {
+            "path": "source/cad_pipeline/present_merlin_rod_review.py",
+            "bytes": 5983,
+            "sha256": "03fdc88614f078065e1e310f33287f7a2e0bb85dcaa3c66dae2cd5c03fef6fa1"
+          },
+          {
+            "path": "source/cad_pipeline/presentation_camera.py",
+            "bytes": 2281,
+            "sha256": "9bf9b56638c357b4df3fe6aae7c9a9712c729776c6ae51b12552d5d781ebed32"
+          },
+          {
+            "path": "source/cad_pipeline/preserve_native_prefixes.py",
+            "bytes": 3549,
+            "sha256": "5e4c8ee3b7baaf1f8352f3e42de4b75207d795fae77f7a2f00ded6a047a3a88c"
+          },
+          {
+            "path": "source/cad_pipeline/preview_merlin_engine.py",
+            "bytes": 2712,
+            "sha256": "ca6d57f35c83d26a2b65af34cf1298486a88be139ffa6503f135ce3393c1d29e"
+          },
+          {
+            "path": "source/cad_pipeline/radial_skeleton.py",
+            "bytes": 4120,
+            "sha256": "c39ebe09860d84f21ed5693b1b1bee61ab4363871f95398e63886243e5c2166d"
+          },
+          {
+            "path": "source/cad_pipeline/recipe_agreement_reuse.py",
+            "bytes": 1284,
+            "sha256": "1a41613d74a5d54b092517c47617679e77e15f4903c22dffb06047e258910668"
+          },
+          {
+            "path": "source/cad_pipeline/reconcile_merlin_engine.py",
+            "bytes": 7378,
+            "sha256": "49d22526d1d3ab8c05cd591f13bad1e78ab43dd3dc4a649c8a6546e22043600f"
+          },
+          {
+            "path": "source/cad_pipeline/reconcile_merlin_operating.py",
+            "bytes": 10082,
+            "sha256": "c4e5a5420a17061053a0589b4237db5f2429f15c84448771cbfcc275c41165bc"
+          },
+          {
+            "path": "source/cad_pipeline/refresh_metadata.py",
+            "bytes": 2260,
+            "sha256": "2adb2b6f3544a78a80317f54a85e267e092b9ed2da5c54e1c0be8fcb4e2b0412"
+          },
+          {
+            "path": "source/cad_pipeline/research_gate.py",
+            "bytes": 4119,
+            "sha256": "d2f23c814790f42a73ecee872fbdc1b2e1d0152ae7f7d0150fcd73a243f42805"
+          },
+          {
+            "path": "source/cad_pipeline/reuse_direct_snapshot.py",
+            "bytes": 2445,
+            "sha256": "02d0f177a91af0c1a25f93ffea5e603011c0c707f72bed467c8fab71bbbaac5d"
+          },
+          {
+            "path": "source/cad_pipeline/review_gtsio_r10.py",
+            "bytes": 5824,
+            "sha256": "6fe235952b776e577a553a21e5990bb4bff04760f26a3a823e0897df50accebe"
+          },
+          {
+            "path": "source/cad_pipeline/rig_animated_study.py",
+            "bytes": 15069,
+            "sha256": "4227299884c52349c083bb31be9d09ef03e1764f4ab9c05028d5d2dc8c3fa997"
+          },
+          {
+            "path": "source/cad_pipeline/rig_gtsio_review.py",
+            "bytes": 608,
+            "sha256": "fd40c8423fa679956c683d20c0435843a8a40c23483568641c8c4c092322fbf1"
+          },
+          {
+            "path": "source/cad_pipeline/rig_langley.py",
+            "bytes": 634,
+            "sha256": "06400c95c451dac380567bc4229585d637406f59206e5e20b6a02c5508a637f7"
+          },
+          {
+            "path": "source/cad_pipeline/rig_wright.py",
+            "bytes": 631,
+            "sha256": "e13f8d34ae169cea0d5ebdda6339190b6c60dde36caf71cc4d876b155e10ef7c"
+          },
+          {
+            "path": "source/cad_pipeline/sampled_loft.py",
+            "bytes": 3998,
+            "sha256": "3759ac71f793f2639469124a29e7fe7e5c672ecb4d8368cda39f72663d834b02"
+          },
+          {
+            "path": "source/cad_pipeline/saved_native_stock.py",
+            "bytes": 3289,
+            "sha256": "a4f62bb5bdebf325d3bdec278508bd8cda8e3345ed868ad7471d4aa4c4e4afb8"
+          },
+          {
+            "path": "source/cad_pipeline/saved_recipe_agreement.py",
+            "bytes": 2931,
+            "sha256": "b20e4efd31c1b0091348b0db57ab2d97e55470fd3234a56b5178bd2e94555e8c"
+          },
+          {
+            "path": "source/cad_pipeline/schemas/constraints.schema.json",
+            "bytes": 6463,
+            "sha256": "c25f636e2645c8b81d335672b65630c7b9ce187ed28de2be6605e6ef4aed1c4d"
+          },
+          {
+            "path": "source/cad_pipeline/schemas/part_spec.schema.json",
+            "bytes": 18146,
+            "sha256": "facebff4c562a29fdc52b6a867d3ac31c8514aec5e7876ee0052e0aaeb80eeda"
+          },
+          {
+            "path": "source/cad_pipeline/section_packard.py",
+            "bytes": 2436,
+            "sha256": "f2a5035d2dc52a9ff8ccc9aa0d90deef7f58dd0aa6180db7d9c34b2e49339b9c"
+          },
+          {
+            "path": "source/cad_pipeline/spec.py",
+            "bytes": 18194,
+            "sha256": "30de83cec0fbf78b45bfe8ac0c3c2c93f55f0d1642a951dac2e701c2762637d2"
+          },
+          {
+            "path": "source/cad_pipeline/split_merlin_delivery.py",
+            "bytes": 2851,
+            "sha256": "4021cc7dd83339c4806c7319595ac6cfa5c962dd30cf468595f268cfb4bd012f"
+          },
+          {
+            "path": "source/cad_pipeline/static_pair_cache.py",
+            "bytes": 6602,
+            "sha256": "e1f7dbd12e84a4656e985736645b27224c745ab0d5d2407934f87f34476fc385"
+          },
+          {
+            "path": "source/cad_pipeline/step_roundtrip.py",
+            "bytes": 3630,
+            "sha256": "44df89e8f06c8d93c7f55d83aff25187fc369bca22507f2d9dfbe3d64ca4cecc"
+          },
+          {
+            "path": "source/cad_pipeline/study_contract.py",
+            "bytes": 11763,
+            "sha256": "e89e228ed86ac9fb930c58700518931f955598eacbf687ca997f78b0d90993fa"
+          },
+          {
+            "path": "source/cad_pipeline/study_manifest.py",
+            "bytes": 13222,
+            "sha256": "0b8563b1214908cb86bd46afaf1fd3fd4c4c0d8c6e7ef58421b7f30183230418"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_append_native_history.py",
+            "bytes": 3607,
+            "sha256": "5ccdc86d7aef02bd9081b385c85e3512fc3cb66a84fc72fcd849b33609824736"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_boolean_runs.py",
+            "bytes": 1362,
+            "sha256": "611e7a79b36ddce4fda09904011f691d61fe09c40db7f62778df91695e093af8"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_cache_adoption.py",
+            "bytes": 5345,
+            "sha256": "a3d339077b645948bfa35ea76f031bbdc4acdf5f4a769ae38c046f9a48fcfddc"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_case_extension_support.py",
+            "bytes": 1668,
+            "sha256": "7797c3b913a611c61efef46c2fe39529a84362a2b190a8fea22d0869cfb9cc04"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_direct_prefix_cache.py",
+            "bytes": 2391,
+            "sha256": "e25d463747fbaf6be1184bd4d8be9ba1cc0d854c58599dfaf8d9da0a937644a3"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_dressups.py",
+            "bytes": 3656,
+            "sha256": "a459da50c34777ffb5ca93eaffb54e2aaf3f341bc067b2d7e9839b20d441d4ba"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_elbow_pipe.py",
+            "bytes": 2637,
+            "sha256": "96c9233b04870c68d716fa0266952acc99b6ef585346a15e9e9b0a2860527b71"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_face_envelope.py",
+            "bytes": 1086,
+            "sha256": "3e9e78a924c6ff69381ad133c3d5999d23ed52a775d673aa87453362d54c30f3"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_graft_native_history.py",
+            "bytes": 8167,
+            "sha256": "5dd8e7ca2c15e7035a7744b9dc8c175b3557b2948c1214ae01f5e8c65aa2de5c"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_helix.py",
+            "bytes": 2796,
+            "sha256": "88163c4a678fd46248d903e4b3f5c13ed3cbd5763aab3b3211d6a4ba27d2f9b4"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_identity_metadata.py",
+            "bytes": 1192,
+            "sha256": "37f004063fe461b783bea452932c2cb277948ca2ad1322b91967fb9f38e12bdb"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_incremental_native_fixture.py",
+            "bytes": 2777,
+            "sha256": "30557a085e669e1276cecde48b1192dc941aa62d1eb6d4aad15acde5f836e9ad"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_intake_port_fit.py",
+            "bytes": 3221,
+            "sha256": "d64b1dd8b72133fccde6c9fba4121a784cb6f3dcd86033e764e3ac03c6e9f4b6"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_integrated_review.py",
+            "bytes": 5602,
+            "sha256": "3519b688b70f61a80f9a2e272280dc7e33e2294b7abe197fbb1c1fed01ae11ba"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_linked_profile.py",
+            "bytes": 5375,
+            "sha256": "83b32ae67babf6e72b2e86d191a3640b2d2c74c31f3beffd3268c35bb32e2138"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_linked_revolve.py",
+            "bytes": 3643,
+            "sha256": "600958ccdaec86894e5e7fe20bcae3672d2fcb6a039c59b4f681ac3c8edb4720"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_loft.py",
+            "bytes": 4280,
+            "sha256": "7a9200485b12eb8faa116d732742df2b6a3e073d58345637ae6cd320fd9530e1"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_merlin_boundary_review.py",
+            "bytes": 1006,
+            "sha256": "e34d79ef341e119ca4bb9cdb272d85bdb6ad467a20b209d7924fdac8e15e82f2"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_native_extension.py",
+            "bytes": 8763,
+            "sha256": "ab0ca60c6f72332c3e8e5c093073f26043d6761924a395693df7a78bbffa66a6"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_owned_history_removal.py",
+            "bytes": 1484,
+            "sha256": "079e0acec350b220297018806c897e25b77f7cba9e7285d12f4eb4c5d410abcf"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_part_retirement.py",
+            "bytes": 2168,
+            "sha256": "ecd4c0c117aa6ead17edc5064a1d220604e1b71575dc7202129125eb779b2fe3"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_partitioned_material.py",
+            "bytes": 1459,
+            "sha256": "0dd7de8710cefc71fa6f63228548f05a8b75d20da65df69cb9904f0c7548ff99"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_pipeline.py",
+            "bytes": 3079,
+            "sha256": "9b22a3cd7478891882150478fe6b3b111ca7c214deb92bf4f70067f9bc45219a"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_placement.py",
+            "bytes": 8912,
+            "sha256": "072cccae7f67c94442b0729bffc7a4bff137a30e7d1954958bb37eacccf14c28"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_polar_pattern.py",
+            "bytes": 5326,
+            "sha256": "65d1b43d1bda120c6aae13eae54b3e41a7de1e70aca894c0f2750d2ce5eba2d1"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_preserve_native_prefixes.py",
+            "bytes": 3617,
+            "sha256": "c1ca989d4fa2b8a279d27cae01ce84d96f387d07c51bc72eb27fe0dc2d784abc"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_recipe_agreement_reuse.py",
+            "bytes": 2646,
+            "sha256": "13d1954ed08e4a3d32a75821e3345fe629f75aad708771406d2e1623abf0860c"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_research_and_features.py",
+            "bytes": 3036,
+            "sha256": "7167209f20e307847b344acafa4dfdf3b9693070d19d1d6f2373021d85cb300e"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_sampled_loft.py",
+            "bytes": 6795,
+            "sha256": "bd405fc9366a95cc092bbd3a5700e2e38bf7210cca4e075472454a06a5f92382"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_saved_native_stock.py",
+            "bytes": 4045,
+            "sha256": "fbe185274e60510a54da44a46150f42270370b8a19589b06460ac3918d64184b"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_scoped_cache_adoption.py",
+            "bytes": 3657,
+            "sha256": "84a221d8550ad8a7462a367b81e267dc7d49eee638b15361bd045899dd7e00a0"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_spiral.py",
+            "bytes": 9308,
+            "sha256": "5d0c330cd8fad99de3b8ea7eacb5c06807a403c45a74f4e400a980de426b6735"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_static_pair_cache.py",
+            "bytes": 8640,
+            "sha256": "867dd28d18792cd8103b9b305e8ce99e6f0b4686199854ccd3f09849a1a0b2fe"
+          },
+          {
+            "path": "source/cad_pipeline/tests/test_step_exception.py",
+            "bytes": 2507,
+            "sha256": "c2611cdecfe7536c6eff049b3332da426e90a81d12499c7e42353daac3e2d27f"
+          },
+          {
+            "path": "source/cad_pipeline/update_native.py",
+            "bytes": 6993,
+            "sha256": "6708f4d29831c0706d507c0748d7021c24feaaf4937eff1dfd25f355ccf56417"
+          },
+          {
+            "path": "source/cad_pipeline/verify.py",
+            "bytes": 5307,
+            "sha256": "74e83658777c0f40752825e7d2bc06ad4fecafb8f34443c0974fc44ccff0294a"
+          },
+          {
+            "path": "source/cad_pipeline/verify_blender.py",
+            "bytes": 2702,
+            "sha256": "1c3be25840b2786b0b6ec8c166f57e5c25295d31f0f907b82bf4753c175d90ad"
+          },
+          {
+            "path": "source/cad_pipeline/verify_gnome.py",
+            "bytes": 10725,
+            "sha256": "7b2425713b3cf4e100a8cc5a355514140eb6d47502637b9335c1840e06458b27"
+          },
+          {
+            "path": "source/cad_pipeline/verify_gtsio_exterior_blender.py",
+            "bytes": 946,
+            "sha256": "70660a4ee4cc423387bf3888516a04a7ea43d2cee99d001c8a4b5ed0f6e59b71"
+          },
+          {
+            "path": "source/cad_pipeline/verify_gtsio_review.py",
+            "bytes": 2285,
+            "sha256": "3e292c79be2737f730ace1e243f01be99672b921a1ee1fbc0f9c15771a77dd3d"
+          },
+          {
+            "path": "source/cad_pipeline/wright_bodies.py",
+            "bytes": 2051,
+            "sha256": "f1fd2d75e05d9cd833cdd3fae02615611ed99e2124f0d56fda8c4f94de524199"
+          },
+          {
+            "path": "source/cad_pipeline/wright_chain.py",
+            "bytes": 6261,
+            "sha256": "dde92786e856138ff14f88a2a0feb3aa311274cd1d9ebce995c73995ef69afa3"
+          },
+          {
+            "path": "source/cad_pipeline/wright_contract.py",
+            "bytes": 5359,
+            "sha256": "f34a8f1ac098ae9a929dca2c5e3840b1fd6f617fb441af4200a71380de3e3970"
+          },
+          {
+            "path": "source/cad_pipeline/wright_explode.py",
+            "bytes": 3455,
+            "sha256": "099e00f97d13da39c65b088859d7fe773c4fa310ebcafd9f477ae8b78b14845a"
+          },
+          {
+            "path": "source/cad_pipeline/wright_motion.py",
+            "bytes": 16379,
+            "sha256": "050dc5dffcedb748e076b9c2fe2958c8c8b68417ee83db70439445f0d7940427"
+          },
+          {
+            "path": "source/cad_pipeline/wright_research.py",
+            "bytes": 20278,
+            "sha256": "418be954803df3e40dbdc97c84273c06df9d68618cee3f9bd4dd9eff7233a3c8"
+          },
+          {
+            "path": "source/cad_pipeline/wright_seats.py",
+            "bytes": 14161,
+            "sha256": "9c185f378cd71cbf3c4bb21e02c564e4f056808421c452265c695583b0b8432a"
+          },
+          {
+            "path": "source/cad_pipeline/wright_spec.py",
+            "bytes": 16527,
+            "sha256": "3293c0ebc08291322507aee8c730860ac4a6c13ed7e39e4bc5c9898a351bd7d3"
+          },
+          {
+            "path": "source/cad_pipeline/wright_v2.py",
+            "bytes": 41612,
+            "sha256": "370273489b9d51a6bbd961092f95fde9d604fa0a7e320d0f1df43b1764d8ec70"
+          },
+          {
+            "path": "source/knowledge/retrospectives/2026-11-03-merlin-iii-operating-study-4.md",
+            "bytes": 4391,
+            "sha256": "1e0658b416ca4f8889eb7216d76f88e71f8df7bdab864629906820e3614a4bf4"
+          },
+          {
+            "path": "source/package-lock.json",
+            "bytes": 29852,
+            "sha256": "ff61dabd0754169a3fb074a4d2a06b513246a446f0fbf810e4715a9795bfaaad"
+          },
+          {
+            "path": "source/package.json",
+            "bytes": 718,
+            "sha256": "d8a0b1be2236913ad98c7e1b3be0b18ba5201c79a6bfd0e3e1a5c43bdfe421a0"
+          },
+          {
+            "path": "source/scripts/accessory_gears.py",
+            "bytes": 24137,
+            "sha256": "d9605217b5a8c8a91ff62bb5ec0b7cbc97ba9cab09bd11903d11dc4b6a166f2a"
+          },
+          {
+            "path": "source/scripts/accessory_paths.py",
+            "bytes": 1464,
+            "sha256": "3fe682098858f61a9c4ac6b5671684e92329f855a93d6074a5664477d8790735"
+          },
+          {
+            "path": "source/scripts/animate_component_studies.py",
+            "bytes": 7592,
+            "sha256": "297e4f2d680b9dff0609f1c95b3b2fc313f90e1a51feb8b1250cd9b4d004abf2"
+          },
+          {
+            "path": "source/scripts/assemble_operating_release.py",
+            "bytes": 5298,
+            "sha256": "a41e236c7fd44fac4aef03ddc321d2d59b3168877b6f803124124de172900cfe"
+          },
+          {
+            "path": "source/scripts/audit_assembly_interference.py",
+            "bytes": 23701,
+            "sha256": "e46070053786e8ceb78055da616448ec91b2478c5ba189a1212c61ba579701b6"
+          },
+          {
+            "path": "source/scripts/audit_builder_overlap.py",
+            "bytes": 9003,
+            "sha256": "d0237bb4de30aa1ecb56943418eca17327939b1adb3f01b6eb80c90a5dab43b5"
+          },
+          {
+            "path": "source/scripts/audit_candidate_interfaces.py",
+            "bytes": 1886,
+            "sha256": "19a1b399f9d1b681c1aac50e5fa66231093acea9d33140be12409a9878743e98"
+          },
+          {
+            "path": "source/scripts/audit_cycle_region.py",
+            "bytes": 3795,
+            "sha256": "4d787acedb6beff655658abf328eb000b2363a932f1c97782195387bb778e7a6"
+          },
+          {
+            "path": "source/scripts/audit_gnome_overlaps.py",
+            "bytes": 2855,
+            "sha256": "eff268a9f439d3f28bcf6f31a8270c864c35983cfacf6ce00f4638606333db44"
+          },
+          {
+            "path": "source/scripts/audit_groups.py",
+            "bytes": 901,
+            "sha256": "b282f2751a0593b47565c5ab204823d3336f261beedc15a550a09afeb7d523a2"
+          },
+          {
+            "path": "source/scripts/audit_procedural_poses.py",
+            "bytes": 19718,
+            "sha256": "a2e92ff07c457d0786fbde3d5639d39814604769c7c31f9038b3fd0a33323d77"
+          },
+          {
+            "path": "source/scripts/audit_spring_envelope.py",
+            "bytes": 2487,
+            "sha256": "85b90e2abe664c5bd05e3cd742e2784b8d26bc4e2212576bb0b3c0585c3938f3"
+          },
+          {
+            "path": "source/scripts/audit_spring_seat_candidate.py",
+            "bytes": 3706,
+            "sha256": "edd7bce61927f52bebc0f4ef4d9bfbf89df8a6a7f19321adb34f347ba8866633"
+          },
+          {
+            "path": "source/scripts/audit_surface_separation.py",
+            "bytes": 4610,
+            "sha256": "726eb790703aa8413cab8b27a3d92fa2a402b3a8153b5fb76a1450ceb85418ec"
+          },
+          {
+            "path": "source/scripts/audit_valve_contacts.py",
+            "bytes": 2266,
+            "sha256": "cdd43c4c9d2120b7b8045ab362f76ad9bbca694a331577cc532a37a042123387"
+          },
+          {
+            "path": "source/scripts/author_cylinder_saved_motions.py",
+            "bytes": 3331,
+            "sha256": "08c6372b9125af5b8a20c96631e181f8cac321dae9d65323ed98359130e51967"
+          },
+          {
+            "path": "source/scripts/bind_drive_assets.py",
+            "bytes": 953,
+            "sha256": "997454639e67b21341618a9d68ec52975311b91ce7d49ce4eed11b23abf533ba"
+          },
+          {
+            "path": "source/scripts/bind_gtsio_r10_optimized.mjs",
+            "bytes": 6822,
+            "sha256": "7386acb64f45e5715d0d46ef277ba86b25bb43bed620099781db673a5b8a6d14"
+          },
+          {
+            "path": "source/scripts/bind_reviewed_cylinder.py",
+            "bytes": 3341,
+            "sha256": "5d462b84139b1c16f81684d3294981097d9450a8aa148eae81c7c143cb4bd69f"
+          },
+          {
+            "path": "source/scripts/build_accessory_study.py",
+            "bytes": 33575,
+            "sha256": "07c9bcd6ee8067d67b14c73561ea36c989f294b261660bb9e6edea8ac6116d22"
+          },
+          {
+            "path": "source/scripts/build_blender_package.py",
+            "bytes": 5436,
+            "sha256": "d5eb68dd4ab8741eb90141a64dab92fa766ca110a07511e18953a433117809c2"
+          },
+          {
+            "path": "source/scripts/build_component_studies.py",
+            "bytes": 8047,
+            "sha256": "25dfeb97fa9938ba132bc28efbf253bcf7f61d5c506564f12e886107f20bdfe2"
+          },
+          {
+            "path": "source/scripts/build_cycle_cues_profile.py",
+            "bytes": 1437,
+            "sha256": "d88d736cbaa7f9895fc56384b509e29c6329a2e8363e1805db66d8eb9ca03d4d"
+          },
+          {
+            "path": "source/scripts/build_gtsio_exterior_review.py",
+            "bytes": 9100,
+            "sha256": "60b600ef0c8f3073494b1da819891fec768377ee654362c22695515ca72c9fc6"
+          },
+          {
+            "path": "source/scripts/build_gtsio_match_review.py",
+            "bytes": 5913,
+            "sha256": "d0492180081eee2c4873e197e3e5340190262e3aa369faa6ec80e26b51b61145"
+          },
+          {
+            "path": "source/scripts/build_gtsio_r10_optimized.mjs",
+            "bytes": 4178,
+            "sha256": "48457db21d7c4c11bd308695b03cfe708b256906a9a5cb210127e557a6100e04"
+          },
+          {
+            "path": "source/scripts/build_gtsio_review.py",
+            "bytes": 7442,
+            "sha256": "883aa15ba24751b431f332f30abd585b1bf7fc212266a0b62293ea0cbc956cce"
+          },
+          {
+            "path": "source/scripts/build_housing_candidate.py",
+            "bytes": 4240,
+            "sha256": "8d3adc94a02104c3546e829694a482311229c2fae3be54c30da3ca1907b1d2a5"
+          },
+          {
+            "path": "source/scripts/build_merlin_engine_comparison.py",
+            "bytes": 4603,
+            "sha256": "78f6bf3c69b4280607f3cd7a047f6a53875ad537c0e6021780897c9f59786e5a"
+          },
+          {
+            "path": "source/scripts/build_merlin_rod_comparison.py",
+            "bytes": 2395,
+            "sha256": "dc617a87f99f17a4f71811c04f81767189164b68bcb9405db54963a263543f7b"
+          },
+          {
+            "path": "source/scripts/build_optimized_models.mjs",
+            "bytes": 6582,
+            "sha256": "a0eea49a211f5154e9e0917e13e70bf3fdf0a270974f2a7557580f0a22c23be6"
+          },
+          {
+            "path": "source/scripts/build_part_details.mjs",
+            "bytes": 2624,
+            "sha256": "7bded5c368daf4065d1742fe6ac70c530b12a86524d0fc5d6651a396cfbc6b4b"
+          },
+          {
+            "path": "source/scripts/build_part_review_sheet.py",
+            "bytes": 17402,
+            "sha256": "a60f2cb645f73eb1819151502f96b5e2ed44b0a82b9ed3873551e46b11cf46f8"
+          },
+          {
+            "path": "source/scripts/build_propagation_variants.py",
+            "bytes": 2162,
+            "sha256": "0cda2cbd0f6a03aa1f272f478cd6b09396a1179067cf415b312d3eff75f772d2"
+          },
+          {
+            "path": "source/scripts/build_pushrod_candidate.py",
+            "bytes": 6912,
+            "sha256": "c79188c052ed09e04b195c2a00c5960d1020da06d09a2f6db9dd5488be334cdb"
+          },
+          {
+            "path": "source/scripts/build_review_sheets.py",
+            "bytes": 12228,
+            "sha256": "17144c9b53cbc1cd0af5c786ed9324500be41c302d65823efd5c3d245cd531d2"
+          },
+          {
+            "path": "source/scripts/build_rocker_candidate.py",
+            "bytes": 2607,
+            "sha256": "3f051f052ceea560ae139cac0dbbd9df9d2fb7f3aa28099957375cf65f2ad0a3"
+          },
+          {
+            "path": "source/scripts/build_spring_candidate.py",
+            "bytes": 6602,
+            "sha256": "9f530bb9ea63f556ea72155e810266f3734790dab9965157f1979e583b950bf9"
+          },
+          {
+            "path": "source/scripts/build_spring_seat_candidate.py",
+            "bytes": 3956,
+            "sha256": "eca26c88669291883098e8d7a4968ff5dcb707d87ecd3f9fe8e91c4a7458b634"
+          },
+          {
+            "path": "source/scripts/build_valve_motion.py",
+            "bytes": 1892,
+            "sha256": "4f7b9176cef8cef58dcd8955d7528ecf278aa8d2fc12343864416fb0edad67c5"
+          },
+          {
+            "path": "source/scripts/build_web_motion.py",
+            "bytes": 902,
+            "sha256": "a124582510796f3df9ce17db04cc5193bf056ab12c7887295d5ba67f72885efe"
+          },
+          {
+            "path": "source/scripts/check_constraints.py",
+            "bytes": 2413,
+            "sha256": "9fbb010fd7e1208168030610f051364f135c2df2f93eb379399a593c860091ba"
+          },
+          {
+            "path": "source/scripts/check_geometry_drift.py",
+            "bytes": 14784,
+            "sha256": "fd57c92aac4c1ff1b692d34fdc4ca833cb221b08d9aa1f5d44d2d88ff00947e4"
+          },
+          {
+            "path": "source/scripts/check_gtsio_exterior_review.mjs",
+            "bytes": 2208,
+            "sha256": "64b6e028dc782c1fb3c83c318ec74f43a0d7adad638e513a04d879f273094501"
+          },
+          {
+            "path": "source/scripts/check_gtsio_intake_clearance.py",
+            "bytes": 2655,
+            "sha256": "93b581ea6d75f825bb3da53c614b1747a8c24d783afffe2d3f58a086b3dcb664"
+          },
+          {
+            "path": "source/scripts/check_gtsio_review.mjs",
+            "bytes": 9917,
+            "sha256": "82a2a71e326bfe244518def307ddc00f1f14c6c4e4cc1435ae461f1002999ea8"
+          },
+          {
+            "path": "source/scripts/check_gtsio_spider_layout.py",
+            "bytes": 2975,
+            "sha256": "5d9d7cbbe2299b892caefca33c7bde8afd0912aa8bc923c61a7d02d54b2e2eb8"
+          },
+          {
+            "path": "source/scripts/check_merlin_export.mjs",
+            "bytes": 5406,
+            "sha256": "fbfe1cab2bce13d9394e5546d7eaf5ea7e3fb4450b1bc0ccbe300edd0ba9c657"
+          },
+          {
+            "path": "source/scripts/check_merlin_export_contact.py",
+            "bytes": 3144,
+            "sha256": "7565cafdbd64ab31b185853b32fc23652fa95cf3f8f63cf163de66e48314dd2c"
+          },
+          {
+            "path": "source/scripts/check_merlin_export_sump.py",
+            "bytes": 3089,
+            "sha256": "6c184558a30949778f77970b2ec9a474a2f0d9e6fc42b3852cc5cb293934fc32"
+          },
+          {
+            "path": "source/scripts/check_merlin_lower_envelope.py",
+            "bytes": 4782,
+            "sha256": "4ab4dbfe9cbef3ce52d624943314d3b4f8fa8434eb152da0208652f8b1d17582"
+          },
+          {
+            "path": "source/scripts/check_merlin_native_fixture.py",
+            "bytes": 4113,
+            "sha256": "54e9297da1a1b1323141d0ea00e29d734b84707d99d574028de212666b62f74f"
+          },
+          {
+            "path": "source/scripts/check_merlin_rocker_fixture.py",
+            "bytes": 3481,
+            "sha256": "55c5cdbba283bd7853ea512bc592a82e84cb8c851e833dc7492a045f9c42fcc6"
+          },
+          {
+            "path": "source/scripts/check_merlin_sump_clearance.py",
+            "bytes": 5503,
+            "sha256": "e4a221534fb4fc8a396c1e77e63dd9d6a10c3b88d49854c0926822d6ba02e132"
+          },
+          {
+            "path": "source/scripts/check_merlin_sump_fixture.py",
+            "bytes": 4924,
+            "sha256": "bd91b65e7b93c374770be4806523a98670782e394761a527702effd65cc75d8a"
+          },
+          {
+            "path": "source/scripts/check_reviewed_cue_region.py",
+            "bytes": 1484,
+            "sha256": "3dd734a29ebf437f5ef6d2e2e40ecef3bff0a994f1c79a366b859155d66dcde9"
+          },
+          {
+            "path": "source/scripts/check_rig_equivalence.py",
+            "bytes": 8551,
+            "sha256": "3dbb3b4033d942e3953feab64d09cfe4a55d059e657c7e82927958443b15228a"
+          },
+          {
+            "path": "source/scripts/compact_cylinder_glb.py",
+            "bytes": 1738,
+            "sha256": "a258067bfac5b81fd9c2e71b5db75249c87a4a882d4b2832ab9ca868ee4054d0"
+          },
+          {
+            "path": "source/scripts/compare_glb_structure.py",
+            "bytes": 15434,
+            "sha256": "a4177c7caf472798ac33144c928e2df0b2dc35380c1221572898280d98b05153"
+          },
+          {
+            "path": "source/scripts/compare_model_renders.mjs",
+            "bytes": 9449,
+            "sha256": "148382513dedb0d06fdbe3b2f26b4d0bfa12c94df4cff15c2cd6f9c9e0162e5e"
+          },
+          {
+            "path": "source/scripts/compare_propagation_packages.py",
+            "bytes": 3219,
+            "sha256": "6a5187f80b152990dc230a3f6eb8301fc327105862c9679db270061ec974791e"
+          },
+          {
+            "path": "source/scripts/decode_model.mjs",
+            "bytes": 1981,
+            "sha256": "70cf1ab90199b71eb76ab1f07353ec403154f8722c2843c7eb7504a6703c5d47"
+          },
+          {
+            "path": "source/scripts/derive_fidelity_classes.py",
+            "bytes": 3891,
+            "sha256": "9142579dcbe8e3ff3cc01b5c30aa0edf6818b046242f816fab6ce0ccd67ee173"
+          },
+          {
+            "path": "source/scripts/diagnose_spring_recess.py",
+            "bytes": 2832,
+            "sha256": "7119dc12ca3d7d1fe53f31879c3d32aa315db814920e211cf706c6e853838a39"
+          },
+          {
+            "path": "source/scripts/export_cad_package.py",
+            "bytes": 3443,
+            "sha256": "d304c6f6f60ab8775a62b789c8e785c4961b6d42334762131d397f1ef097a293"
+          },
+          {
+            "path": "source/scripts/export_cycle_landmarks.py",
+            "bytes": 4332,
+            "sha256": "3fbf96abf315c150116a65e88d4e9af36530f25d5ade702b68595e097cebb606"
+          },
+          {
+            "path": "source/scripts/export_full_engine_web.py",
+            "bytes": 3158,
+            "sha256": "ec0334773d19f1f6293b708738ca92da95a36a2e3ff94f5010e92891075a298f"
+          },
+          {
+            "path": "source/scripts/export_motion_profile.py",
+            "bytes": 4314,
+            "sha256": "4ed65c9ef49dc886b5cfe2bc70cc3f212e0011aae6051fe6752ed9f58e6697a8"
+          },
+          {
+            "path": "source/scripts/export_reviewed_cylinder.py",
+            "bytes": 3018,
+            "sha256": "498327c79ac933c8e2d4b4c6b680c0768498966fdd32ba5898a25e8b81ae9ef1"
+          },
+          {
+            "path": "source/scripts/export_spring_motion.py",
+            "bytes": 4766,
+            "sha256": "a2fffb6d7aaa547255b62b4f2a888a322b0bdb5fcd458f0575d32be18fcb769a"
+          },
+          {
+            "path": "source/scripts/export_valve_frames.py",
+            "bytes": 4192,
+            "sha256": "2b0141c81ba0f203a5fae88b826ace0158066799572bd15ba3822aaeaad926f4"
+          },
+          {
+            "path": "source/scripts/face_gear_geometry.py",
+            "bytes": 7778,
+            "sha256": "80134576c2faec1ebf27ae2e31af99c99a2008fe6ef99158ef88c1951cbbe537"
+          },
+          {
+            "path": "source/scripts/fetch_drive_assets.py",
+            "bytes": 1673,
+            "sha256": "972596e8b7d8db0ed20f51e7e6d0794c237aa62a2e5fb069ee0cfa86fcfbb6a2"
+          },
+          {
+            "path": "source/scripts/gear_geometry.py",
+            "bytes": 8915,
+            "sha256": "3bf3ef67eb88e76e555acc8c093ce8b188a8815e3929e90c6d89a7a5abed942a"
+          },
+          {
+            "path": "source/scripts/graft_gtsio_r10_pistons.mjs",
+            "bytes": 7928,
+            "sha256": "05da853506e977a159396cc334ae6207f8293782ff7771624d0fde9882fda032"
+          },
+          {
+            "path": "source/scripts/gtsio_part_authoring/ipcrows.py",
+            "bytes": 2986,
+            "sha256": "eadb7c6f979696570f74c75b2127b609d338ac632d5fb9f1cb453215a81386d1"
+          },
+          {
+            "path": "source/scripts/gtsio_part_authoring/keys.py",
+            "bytes": 3650,
+            "sha256": "3f2d75d0f8f5a63a67218f21e807ee139908af139dce3efda9ae4950f24f5cbb"
+          },
+          {
+            "path": "source/scripts/gtsio_part_authoring/private_check.py",
+            "bytes": 7537,
+            "sha256": "8b8abdcc048f72200d87830187fbd56908fb9069b450f3f64332f16dec5a5370"
+          },
+          {
+            "path": "source/scripts/langley_mass_check.py",
+            "bytes": 2849,
+            "sha256": "bce0eb57baf27c9010cd3db8a8a0a9928a8a732c0b868aefd3631ee311b8242f"
+          },
+          {
+            "path": "source/scripts/link_siblings.py",
+            "bytes": 3287,
+            "sha256": "a9c96e6e9b6f1141f7b9bdc3c7f5d4a7b8b983230e299a7773549c33fb4a6689"
+          },
+          {
+            "path": "source/scripts/measure_gtsio_case_roof.py",
+            "bytes": 1502,
+            "sha256": "c4efa3183e9c58b12825c08c1d4577900240f8725de3cc8123ce51b083f8b965"
+          },
+          {
+            "path": "source/scripts/measure_reuse.py",
+            "bytes": 2910,
+            "sha256": "0895f61f976e2d6fc9f69c20bcc814740488e08f4bff31e4acef2c1c06ffc6a7"
+          },
+          {
+            "path": "source/scripts/mirror_gtsio_r10.mjs",
+            "bytes": 4731,
+            "sha256": "b4f706fe05050c48d4aa8468a5d7c8c944a0f63c7c22122ff6f9f437facf0b53"
+          },
+          {
+            "path": "source/scripts/normalize_glb_motion_time.py",
+            "bytes": 2479,
+            "sha256": "066d1a76e936927fc2cc3615a3c624d5c2349d45dc581ecbd74bf9f952b0fb2c"
+          },
+          {
+            "path": "source/scripts/optimize_model.mjs",
+            "bytes": 24901,
+            "sha256": "1dd8d71281a3e39e6048a7c76ba332d2939f697bdba8b93948d0569fe1e18a1f"
+          },
+          {
+            "path": "source/scripts/package_full_engine_transport.py",
+            "bytes": 1962,
+            "sha256": "4d1181038b7b00768bb74f30522693c4e5d42fb7f1c25bba57048a938215dde0"
+          },
+          {
+            "path": "source/scripts/package_gtsio_exterior_checks.py",
+            "bytes": 4797,
+            "sha256": "565053c76efb789c088b05fd4c3e303e0591d3cbc58aa4110643e9f0e308584e"
+          },
+          {
+            "path": "source/scripts/package_model_transport.py",
+            "bytes": 1322,
+            "sha256": "6a8e132093a3c40e2c0fee3fa40db01cabe80271b3f8a5d767422ce5eb9e6db3"
+          },
+          {
+            "path": "source/scripts/part_store.mjs",
+            "bytes": 10432,
+            "sha256": "a6d2ba2b9fa0a1503bbbc2ade50c85d0deef36a56a117a5fd183f953b6b49cac"
+          },
+          {
+            "path": "source/scripts/prepare_full_engine_preview.py",
+            "bytes": 1435,
+            "sha256": "d7aa3a064c0919a883f507d5264efbc9e43c0ee2e116eb368b6b27e8c8cff9f6"
+          },
+          {
+            "path": "source/scripts/prepare_package_preview.py",
+            "bytes": 6034,
+            "sha256": "cbddc1662a187e988147ca458a0c54778b049d41ecf77fd68b2e47246a40b184"
+          },
+          {
+            "path": "source/scripts/prepare_vite_preview.py",
+            "bytes": 825,
+            "sha256": "607a1fa6be2943059551f20cd61767c7a2584f6d58de9a38a15186a6282629c2"
+          },
+          {
+            "path": "source/scripts/publish_accessory_lesson.py",
+            "bytes": 20480,
+            "sha256": "b6c9683502ac9838bde772ba0a02fb3dd878ce9786ffc2b5db546031c4ce6d1d"
+          },
+          {
+            "path": "source/scripts/publish_study_metadata.py",
+            "bytes": 1537,
+            "sha256": "407990b164dc6f981db879f8a341477e4106c7cd0b9cc2221bb0064dc509cbc6"
+          },
+          {
+            "path": "source/scripts/record_gtsio_intake_datums.py",
+            "bytes": 2429,
+            "sha256": "2b04403d144baff9097a1c109b50f05c68b5cdff25480fe55e4aeed357717118"
+          },
+          {
+            "path": "source/scripts/release_model.py",
+            "bytes": 14586,
+            "sha256": "b0d30befa5a3362add4ef6aa606bf0ff46d63467d85f69a529eb344083abcff9"
+          },
+          {
+            "path": "source/scripts/release_snapshot.py",
+            "bytes": 3535,
+            "sha256": "e1175bd48de30e8ff0a56e4b0f49973429c5b7eed66a60cd5c165ac8a0a6cd44"
+          },
+          {
+            "path": "source/scripts/render_accessory_preview.py",
+            "bytes": 2496,
+            "sha256": "7fffe447a1470e02e65fd5a1b6276e707d566a24db8b5b3b421a58ea4ca301d1"
+          },
+          {
+            "path": "source/scripts/render_component_previews.py",
+            "bytes": 2056,
+            "sha256": "8e567f526e8e2050d61540c370962e36880d1c0a249a5ea2a3d97bc1411163cd"
+          },
+          {
+            "path": "source/scripts/render_gnome_study.py",
+            "bytes": 11980,
+            "sha256": "b6ded696f219ad8a9aca30f3df0ff39bc1a5c9270f7f85d4f81b5502edbf36ea"
+          },
+          {
+            "path": "source/scripts/render_gtsio_intake_section.py",
+            "bytes": 4070,
+            "sha256": "7011e2756755c8e27cc0d4c470ddd981258e3b7abb5ecc6b80044f761474b8c0"
+          },
+          {
+            "path": "source/scripts/render_valve_review.py",
+            "bytes": 3214,
+            "sha256": "33fb15cd665d1b7b4a4320da3e14ea5a58eacddfd5cb6e34e0eae85f01a57efb"
+          },
+          {
+            "path": "source/scripts/requirements-audit.txt",
+            "bytes": 299,
+            "sha256": "9cee19ef2ceff55e5b991132c9773da25ae3b2a59a5fb0daed1c6522e0886a75"
+          },
+          {
+            "path": "source/scripts/rig_accessory_study.py",
+            "bytes": 11554,
+            "sha256": "3bd130c35f6616bf15c27d8533517f1e383826de458e27c27dadcc1e132abc77"
+          },
+          {
+            "path": "source/scripts/sample_animated_study_poses.mjs",
+            "bytes": 5138,
+            "sha256": "53b2b6140cc2c7d2355909d56e6c1826cb2f0d5359d1d6a5bc5e0af0d8bc9a9b"
+          },
+          {
+            "path": "source/scripts/sample_cylinder_saved_motions.mjs",
+            "bytes": 1528,
+            "sha256": "8f7a95e169c05bda7cd2d25fa49cdb47d8eaf9a285b805aa931622d468bf3138"
+          },
+          {
+            "path": "source/scripts/scan_assembly_pairs.py",
+            "bytes": 5504,
+            "sha256": "4d9a90a54e4aac07e8227f9ae05ad28950200f655afa39cf5f16641d7dfc001f"
+          },
+          {
+            "path": "source/scripts/serve_gtsio_review.py",
+            "bytes": 2964,
+            "sha256": "c969bafffe7f7c0b535969108767c761683e1917974f25b23eca95373a5aaea5"
+          },
+          {
+            "path": "source/scripts/solve_valve_contact.py",
+            "bytes": 11256,
+            "sha256": "26789d37673c7d72ee8b5dbd1a0ac7f20f20df538fbe036b99352c5a373ac77e"
+          },
+          {
+            "path": "source/scripts/study_pushrod_layout.py",
+            "bytes": 4797,
+            "sha256": "c151f32294c4f0fa7e594d5b83e95ab1d154811a5bea7c19aee30c556c467662"
+          },
+          {
+            "path": "source/scripts/test_accessory_drives.mjs",
+            "bytes": 9957,
+            "sha256": "9a9976908ba2df2f3707b4a60547728e66f04819ee71a654501e8bf4da99b953"
+          },
+          {
+            "path": "source/scripts/test_assembly_audit.py",
+            "bytes": 10009,
+            "sha256": "fd82c45e36d4c285e7a82f12203ac43157e6b0e55f68a35cb7d84e566859f3ab"
+          },
+          {
+            "path": "source/scripts/test_builder_golden.py",
+            "bytes": 5896,
+            "sha256": "8319790b206e8bbf3ebafe4dee17affcacc9e75b278e02826800e2813ebea73f"
+          },
+          {
+            "path": "source/scripts/test_constraints.py",
+            "bytes": 37386,
+            "sha256": "2d71dcb5d10b0bb09a32dfd078d3afec9eb329ef263a0a6e3ec550c8d12ac638"
+          },
+          {
+            "path": "source/scripts/test_cylinder_motion_profile.py",
+            "bytes": 2297,
+            "sha256": "f517932b7ded81e741df057c01b2f9bd75388e6d47dd5892c824a9518ba7e843"
+          },
+          {
+            "path": "source/scripts/test_engine_contract.py",
+            "bytes": 3127,
+            "sha256": "1dc0222b09a4d8f93227b45f6b245ca1c089b0760b5ca1e742b05c8fc0d01d1a"
+          },
+          {
+            "path": "source/scripts/test_fidelity_classes.py",
+            "bytes": 17776,
+            "sha256": "963498b63472cc828e3063bfdd90725779e1d9589da957ddf6dfd278b7ff1a57"
+          },
+          {
+            "path": "source/scripts/test_full_engine_export.py",
+            "bytes": 1459,
+            "sha256": "93a546b3803cd20211cca9f4645cda4cae1f7d62678ceca87062d08c17f88f01"
+          },
+          {
+            "path": "source/scripts/test_gear_geometry.py",
+            "bytes": 11326,
+            "sha256": "65449a358a57baa9a4e354e3029218b24629a2e81b6c1d87d8155fcb60d5eaf3"
+          },
+          {
+            "path": "source/scripts/test_geometry_drift.py",
+            "bytes": 10827,
+            "sha256": "aa72c0f1ab28b0bcb6f61992d2fbf81681df8cd463217892ca55b531784256e6"
+          },
+          {
+            "path": "source/scripts/test_glb_compare.py",
+            "bytes": 7289,
+            "sha256": "cfbc8903df8d4da03f4479bec0035498d4a85323d03b786aca82cd66db15b01f"
+          },
+          {
+            "path": "source/scripts/test_gnome_motion.py",
+            "bytes": 8279,
+            "sha256": "d9568d1d191433156ea0599f12e77068b420f2ea6fb90499126aa3256edb7b00"
+          },
+          {
+            "path": "source/scripts/test_gnome_research.py",
+            "bytes": 7136,
+            "sha256": "b8aa7d665115be836b6d2333ee05d263e62fd45831c3c953e1dbe14e0452a976"
+          },
+          {
+            "path": "source/scripts/test_gtsio520_r10_optimization.mjs",
+            "bytes": 6198,
+            "sha256": "096828de327f0d9e9b1d42a306fab1419d88f9bbed2d22149965928480ae41b2"
+          },
+          {
+            "path": "source/scripts/test_gtsio_accessories.py",
+            "bytes": 2866,
+            "sha256": "6dbb0820eb178ec2d38d6d6b09a41a5529183b2edf1b4c7be321ac179f37a90a"
+          },
+          {
+            "path": "source/scripts/test_gtsio_core.py",
+            "bytes": 2710,
+            "sha256": "008004077c786a356766d58f620bd715e02cdaab72485a59e2632e0f0bddca95"
+          },
+          {
+            "path": "source/scripts/test_gtsio_cylinders.py",
+            "bytes": 4371,
+            "sha256": "02528bb9f69d3ce2f1fbce1e65a1b4a53ab8c88216fcdfeb40776a1b15c8bd7e"
+          },
+          {
+            "path": "source/scripts/test_gtsio_drive.py",
+            "bytes": 2755,
+            "sha256": "2e2015627a91cdb3ce99c4b283e4f37e04ac7625b776853e5b82831df0ff2d67"
+          },
+          {
+            "path": "source/scripts/test_gtsio_look.py",
+            "bytes": 2641,
+            "sha256": "41ba4993843d6e6a58dbedef4631625b191183d17d7d8d1d80c376ccf1c0e10a"
+          },
+          {
+            "path": "source/scripts/test_gtsio_review_motion.py",
+            "bytes": 10211,
+            "sha256": "2b778e798587d4cdff4cdc04bdf412fc256a3b6faaa4f618442ce5e567b48dcc"
+          },
+          {
+            "path": "source/scripts/test_gtsio_spin_body.mjs",
+            "bytes": 2932,
+            "sha256": "ced9a7df7026fca94f14c6615aecbaada7eafc35c88e254af992fe41bf50fd98"
+          },
+          {
+            "path": "source/scripts/test_gtsio_static.py",
+            "bytes": 2260,
+            "sha256": "1db2dacfdd2247030637f0be1621d150e4a3d415b7701af8af4ca88ccec2dc60"
+          },
+          {
+            "path": "source/scripts/test_gtsio_valvetrain.py",
+            "bytes": 2688,
+            "sha256": "a55d89f1b795d6ef7bd868c1b1b0e4ef6ff8a816fdefc21329c75dd0d31786a9"
+          },
+          {
+            "path": "source/scripts/test_image_matcher.py",
+            "bytes": 3458,
+            "sha256": "f60a7246a99abed4e4c9358c9438f3af7acc4ce1ca69ade0431e6d32398f071d"
+          },
+          {
+            "path": "source/scripts/test_interference_audit.mjs",
+            "bytes": 8827,
+            "sha256": "0e9648b4df890ae43025f34cd116fa569b8c11dc6b705f54e16eaa5b41805b30"
+          },
+          {
+            "path": "source/scripts/test_knowledge_store.py",
+            "bytes": 28663,
+            "sha256": "9619bdafc5f857d39937a8e3da590bc1125969b07a99efd13dcd0c1c8e430ca5"
+          },
+          {
+            "path": "source/scripts/test_langley_motion.py",
+            "bytes": 10062,
+            "sha256": "528cc7137249bf79d8f4412d2d0c0ebc656cfda365c95953ce75764e4044c4d6"
+          },
+          {
+            "path": "source/scripts/test_langley_reconstruction.mjs",
+            "bytes": 15594,
+            "sha256": "7f1e262fe26e863bed01d20ac7180685ed5c33e0c60f6785913a4a17c44f6109"
+          },
+          {
+            "path": "source/scripts/test_langley_research.py",
+            "bytes": 10069,
+            "sha256": "cf2762256ef2ed74515bf946164907393773015103750682b48003a6dd820cd4"
+          },
+          {
+            "path": "source/scripts/test_m4_engine_foundation.py",
+            "bytes": 2823,
+            "sha256": "f31b2fd3391ae596c508d035f49011b96d870d183681f45c5acbc84e68ab3a95"
+          },
+          {
+            "path": "source/scripts/test_merlin_deep_research.py",
+            "bytes": 4727,
+            "sha256": "82a9cec93b37d56753e8c0c8cb659f44c4819beef552a8d3d83afc11315a1b37"
+          },
+          {
+            "path": "source/scripts/test_merlin_engine.py",
+            "bytes": 4215,
+            "sha256": "4872b9963acb281bce281fa5a5da55707c68da7f7c4aa1979e5f8030b7941fd9"
+          },
+          {
+            "path": "source/scripts/test_merlin_export.py",
+            "bytes": 2295,
+            "sha256": "1e5c7602988af0dae7648818999e6203b25ebabf0cab01e1c7b0f94ee47f7f21"
+          },
+          {
+            "path": "source/scripts/test_merlin_motion.py",
+            "bytes": 8152,
+            "sha256": "bc10fd4c923d63e23beb0a21d7f13f18028ecb9fac9f043670f5fe867e5911ff"
+          },
+          {
+            "path": "source/scripts/test_merlin_prototype.py",
+            "bytes": 2672,
+            "sha256": "4ec9574081093f2639dbdcba4db436c37a6c88d2019270a3fc0183256de1a0ac"
+          },
+          {
+            "path": "source/scripts/test_merlin_research.py",
+            "bytes": 3598,
+            "sha256": "bc277f8b296ecd4f17eb0355e50bc2df0da2d1f62bfa5b5dae36de7e785246b7"
+          },
+          {
+            "path": "source/scripts/test_merlin_rod_trial.py",
+            "bytes": 3238,
+            "sha256": "953b965731a1c2013aae8d60cd0b7f77ecc234eb985b53c99dc2e7ea66faf651"
+          },
+          {
+            "path": "source/scripts/test_mirror_gtsio_r10.mjs",
+            "bytes": 4697,
+            "sha256": "fdbb1ebd51dfec9bc3364fa0e9cf5796a709648011ce3b49015ffdcd8b4e2221"
+          },
+          {
+            "path": "source/scripts/test_model_release_record.mjs",
+            "bytes": 4992,
+            "sha256": "b42c8d322720b919d2934f212c48eff478377bd50063c93331fd87d886641fe2"
+          },
+          {
+            "path": "source/scripts/test_operating_release.py",
+            "bytes": 1202,
+            "sha256": "62a83db01cedda30975d81cf4119a67ae2764a29c035e42f34bbe35c8e3ba0cc"
+          },
+          {
+            "path": "source/scripts/test_packard_research_r2.py",
+            "bytes": 2225,
+            "sha256": "992bd7c13ac9ccae972d94fa9f46c3327be756dcb5821f97dc3178bf43766b9f"
+          },
+          {
+            "path": "source/scripts/test_part_metadata.mjs",
+            "bytes": 15798,
+            "sha256": "c50afa514156bd39fa25c920d30d94087f70af427c63935eacde856844683afb"
+          },
+          {
+            "path": "source/scripts/test_part_store.mjs",
+            "bytes": 16615,
+            "sha256": "6ff03ca3ce80785eb5fa8d642e3201ffd98bb3d4a1f23daae6518bf26379295a"
+          },
+          {
+            "path": "source/scripts/test_procedural_pose_audit.py",
+            "bytes": 7530,
+            "sha256": "65e6e25afbac8347fff2c77bf0f6ac29c0103b96d368c2f0a507ae7633cb596f"
+          },
+          {
+            "path": "source/scripts/test_radial_skeleton.py",
+            "bytes": 4834,
+            "sha256": "9ec72e6d3678b63c02ea34fb0cc5d6f2f06da5e414d13a66590db8872c1e4537"
+          },
+          {
+            "path": "source/scripts/test_recipes.py",
+            "bytes": 7178,
+            "sha256": "c44dec99aa7e7c9c5d5b57edcea730861a2d08de3231727abedddf8389174c3c"
+          },
+          {
+            "path": "source/scripts/test_release_model.py",
+            "bytes": 8765,
+            "sha256": "a3f7b49002631bd91272c1a59d41805312824b4cbc65603167d5a403a6b74a2c"
+          },
+          {
+            "path": "source/scripts/test_reuse_direct_snapshot.py",
+            "bytes": 4424,
+            "sha256": "1b61492adf14e52677e8d93ecddfe69e7e18df1b9354ce6e2c7e0ec52d1ff45a"
+          },
+          {
+            "path": "source/scripts/test_reviewed_cylinder.mjs",
+            "bytes": 4614,
+            "sha256": "d97f3dfe63939a6335f6c6a9908d92f8e9751f57136669f317d9a714adff7a60"
+          },
+          {
+            "path": "source/scripts/test_study_contract.py",
+            "bytes": 10247,
+            "sha256": "8f536f9b31df1fc4f88d5ab092f90f3b1dbd28192ec43ea82474eeffef1ddfc7"
+          },
+          {
+            "path": "source/scripts/test_study_manifest.py",
+            "bytes": 8586,
+            "sha256": "9cb9f3282223552ba1ef47ec6cf5435dfad3ae33bb88e2cccb6126b9ccae92f8"
+          },
+          {
+            "path": "source/scripts/test_surface_separation.py",
+            "bytes": 3894,
+            "sha256": "c88ba3a42d9d8be7917c83c8cb3e35ba88a706c2c7f72f4b60e92fe837ab2ee1"
+          },
+          {
+            "path": "source/scripts/test_tessellation_tiers.py",
+            "bytes": 6740,
+            "sha256": "620f34b281a3cff2de8587dd112d2ee2cb8fea3c1a9502c6a15364194bcfae8a"
+          },
+          {
+            "path": "source/scripts/test_wright_layout.py",
+            "bytes": 13645,
+            "sha256": "22d0da9d074b2c94fb9dc659c82f5f35e3b8b4b82b17e9933c2bdbf2a2e0dedd"
+          },
+          {
+            "path": "source/scripts/test_wright_reconstruction.mjs",
+            "bytes": 11111,
+            "sha256": "781eb626d3e87f5e9e931cf5e543f074350822dbac0edecfd0b4e9da765eaad8"
+          },
+          {
+            "path": "source/scripts/verify_accessory_sources.py",
+            "bytes": 5132,
+            "sha256": "0ec02b5475dc4b4803b623b9a791089bd5f9772360012a99a5779b76f94085e8"
+          },
+          {
+            "path": "source/scripts/verify_export_package.py",
+            "bytes": 4933,
+            "sha256": "98b6744230cddb70fc98111fe5e087c9bb44abb42370234af232d526bcb86824"
+          },
+          {
+            "path": "source/scripts/verify_gtsio_exterior_export.py",
+            "bytes": 2953,
+            "sha256": "987089dd70ffcc336cba132449b213ddd8a6826361008032cd43b4f4aa7a15a8"
+          },
+          {
+            "path": "source/scripts/verify_spring_morph.py",
+            "bytes": 4759,
+            "sha256": "12bd4d60eb9abd50fde165f6e007515923832f23de51ca89026676731db00399"
+          },
+          {
+            "path": "source/scripts/verify_web_bind_pose.py",
+            "bytes": 1852,
+            "sha256": "db84cb54cd2308d0ebbb00f1a39a7484a019438a02447b37462ef26e1bf03f7c"
+          },
+          {
+            "path": "source/scripts/write_merlin_export_probes.py",
+            "bytes": 1808,
+            "sha256": "80b20511271c575c959355280ae044c305ed99b1c9abad04623c72b396dde49a"
+          }
+        ],
+        "zip_members_verified": true,
+        "private": true,
+        "group": "evidence",
+        "candidate": "sump75",
+        "drive_id": "1vfjvvfq5f8rILNmaZWcdwrP_v35u7Phy",
+        "parent_folder_id": "1V-6yZX2FZ-GQDS2yF5hDJGbXjloEVrbJ",
+        "owner_only_permissions_verified": true,
+        "authenticated_full_readback_verified": true,
+        "url": "https://drive.google.com/file/d/1vfjvvfq5f8rILNmaZWcdwrP_v35u7Phy/view"
+      }
+    ],
+    "previous_candidates": [
+      {
+        "candidate": "sump5",
+        "asset_sha256": "826aea0e96ea6d4d3b9ccafd32acbdf530b019d7f38137b4cff53335e4e926bf",
+        "failed_record": "interference-audit-sump5-failure.json",
+        "archives": [
+          {
+            "path": "build/merlin/operating-4/delivery-sump5-failed/merlin-iii-operating-study-4-native-20261103.zip",
+            "bytes": 79013457,
+            "sha256": "5c21a150e40abe5b19383996d372558aae867b7fcef73348bbe81b5b4e054a59",
+            "files": [
+              {
+                "path": "cad/merlin-iii-operating-study-4.FCStd",
+                "bytes": 77231929,
+                "sha256": "9ce1ef8bd904340058833ddbd40d3e77334b5feb130d08ea4602b1b5bcb18e80"
+              },
+              {
+                "path": "cad/cad-validation.json",
+                "bytes": 782147,
+                "sha256": "3bd3d7e0ef49a51471f1fa74bac1e71fc1d39b1fa7748f1626e8656f84f7e7ba"
+              },
+              {
+                "path": "cad/reopen-validation.json",
+                "bytes": 1011,
+                "sha256": "31d57e11762ced29d47fae4dc27f8c5cfe63fb10001107487513681d2e2c221f"
+              }
+            ],
+            "zip_members_verified": true,
+            "drive_id": "11DJcHw0F7cOfCjTxnndpound8U8Gp_rX",
+            "private": true,
+            "parent_folder_id": "1V-6yZX2FZ-GQDS2yF5hDJGbXjloEVrbJ",
+            "owner_only_permissions_verified": true,
+            "authenticated_full_readback_verified": true,
+            "url": "https://drive.google.com/file/d/11DJcHw0F7cOfCjTxnndpound8U8Gp_rX/view",
+            "original_local_path": "build/merlin/operating-4/delivery/merlin-iii-operating-study-4-native-20261103.zip"
+          },
+          {
+            "path": "build/merlin/operating-4/delivery-sump5-failed/merlin-iii-operating-study-4-exchange-20261103.zip",
+            "bytes": 47047778,
+            "sha256": "9c6a9f423d32ebea72a8ab800b8350452a1946137e8b7029a6bd8d8d1334920e",
+            "files": [
+              {
+                "path": "cad/merlin-iii-operating-study-4.step",
+                "bytes": 51031518,
+                "sha256": "9a3fc17d43eeb0d9d2fccea868c393ef6edd8fc58a29cee0cadaa9235b3b8619"
+              },
+              {
+                "path": "cad/geometry.json",
+                "bytes": 71559453,
+                "sha256": "d5bb1236b563283a13cbb3770e9214ed71969d38ffbe1709a2208460c656759d"
+              },
+              {
+                "path": "cad/direct-agreement.json",
+                "bytes": 164266,
+                "sha256": "8825c1d0396803759fc4247786ebad585f87446fc11bb3ed9d3659c5edc0eac8"
+              }
+            ],
+            "zip_members_verified": true,
+            "drive_id": "1mfyV-uqIdWhi8ayh4_O4YAz_YoTdvgUv",
+            "private": true,
+            "parent_folder_id": "1V-6yZX2FZ-GQDS2yF5hDJGbXjloEVrbJ",
+            "owner_only_permissions_verified": true,
+            "authenticated_full_readback_verified": true,
+            "url": "https://drive.google.com/file/d/1mfyV-uqIdWhi8ayh4_O4YAz_YoTdvgUv/view",
+            "original_local_path": "build/merlin/operating-4/delivery/merlin-iii-operating-study-4-exchange-20261103.zip"
+          },
+          {
+            "path": "build/merlin/operating-4/delivery-sump5-failed/merlin-iii-operating-study-4-animation-20261103.zip",
+            "bytes": 73737374,
+            "sha256": "88b962ca9a2b5d885db4987c5ef1619a8cadf7e78ccd33afe130b211dcdd2019",
+            "files": [
+              {
+                "path": "animation/merlin-iii-operating-study-4.blend",
+                "bytes": 30744121,
+                "sha256": "cd204c6bc03b508ae8f5a588405011f426a096cef9db0e277526b9bc654b12aa"
+              },
+              {
+                "path": "animation/merlin-iii-operating-study-4.glb",
+                "bytes": 57196872,
+                "sha256": "826aea0e96ea6d4d3b9ccafd32acbdf530b019d7f38137b4cff53335e4e926bf"
+              },
+              {
+                "path": "animation/merlin-iii-operating-study-4.glb.gz",
+                "bytes": 17299411,
+                "sha256": "32da2aed3517ee13f58995f190e87a0d2f4499833d649570f96b882ecd32c561"
+              },
+              {
+                "path": "animation/merlin-iii-operating-study-4-contract.json",
+                "bytes": 1203331,
+                "sha256": "b3878edf4d82b8b9ecf079c7ad85375b8d1033098967a58f96e054c0aa74b0ac"
+              },
+              {
+                "path": "animation/blender-verification.json",
+                "bytes": 303,
+                "sha256": "4511c47e215e5abb281f324f1262d82aca415da98959d3b0e37b5dc84b96f766"
+              }
+            ],
+            "zip_members_verified": true,
+            "drive_id": "162nc9g3ZBjuiZxC37GK6gt0EE3TPtLgR",
+            "private": true,
+            "parent_folder_id": "1V-6yZX2FZ-GQDS2yF5hDJGbXjloEVrbJ",
+            "owner_only_permissions_verified": true,
+            "authenticated_full_readback_verified": true,
+            "url": "https://drive.google.com/file/d/162nc9g3ZBjuiZxC37GK6gt0EE3TPtLgR/view",
+            "original_local_path": "build/merlin/operating-4/delivery/merlin-iii-operating-study-4-animation-20261103.zip"
+          }
+        ],
+        "former_public_export": {
+          "drive_id": "1rUp4LWg2NBdpJV7NWwkjP6G16BMLguyO",
+          "moved_to_private_folder": true,
+          "owner_only_permissions_verified": true,
+          "never_bound_to_published_viewer": true
+        },
+        "restore_scope": "Historical failed candidate; restore into a separate scratch folder, never over a later accepted package."
+      }
+    ],
+    "model_id": "merlin-iii-operating-study-4",
+    "recorded": "2026-11-03",
+    "scope": "Private native, exchange, animation and frozen construction/validation evidence for the illustrative operating teaching release. Publication close-out is maintained separately in Git. Local editable originals and failed trials are retained; manufacturing fidelity remains unverified.",
+    "local_retention": {
+      "scope": "Local editable originals, source scans, failed trials and build evidence retained before worktree retirement. External junction targets remain in their original locations.",
+      "retained_root": "archive/merlin-iii-worktree-20261103",
+      "files": 25660,
+      "bytes": 5682640559,
+      "inventory_manifest": "archive/merlin-iii-worktree-20261103/retained-files.json",
+      "inventory_sha256": "a95ebbf991230cfe2b6f77ae3e5ffbac65867ba6d47fa3219ebf9564db0706a2",
+      "all_files_verified_after_move": true,
+      "excluded_external_links": [
+        {
+          "path": "build/full-engine-web",
+          "target": "C:\\Users\\user\\KeonGeraldo\\CodeProjects\\EngineReverseEngineering_MEDIS\\build\\full-engine-web"
+        },
+        {
+          "path": "build/pipeline-spring-seat",
+          "target": "C:\\Users\\user\\KeonGeraldo\\CodeProjects\\EngineReverseEngineering_MEDIS\\build\\pipeline-spring-seat"
+        }
+      ]
+    }
+  },
+  "merlin_iii_static_3_archives": {
+    "scope": "Full major-assembly Merlin III design prototype. Illustrative unsourced contours/packaging, static assembly reference. No historical-manufacturing, complete detailed-callout or operating acceptance.",
+    "delivery_archives": [
+      {
+        "kind": "cad-and-evidence",
+        "path": "build/merlin/full-engine-3/merlin-iii-full-engine-prototype-3-cad-and-evidence-20261028.zip",
+        "bytes": 82613879,
+        "sha256": "1ef486e560efff01e89518e9cb9436727599da505e27dbd3df3671d985cbc2f1",
+        "private": true,
+        "file_count": 94,
+        "drive_id": "1Pe03GegpHvx2wzV9Iw0gYcQKDe17S89I",
+        "url": "https://drive.google.com/file/d/1Pe03GegpHvx2wzV9Iw0gYcQKDe17S89I/view",
+        "authenticated_readback_verified": true,
+        "remote_sha256_verified": true,
+        "owner_only_permissions_verified": true,
+        "parent_folder_id": "1V-6yZX2FZ-GQDS2yF5hDJGbXjloEVrbJ"
+      },
+      {
+        "kind": "presentation",
+        "path": "build/merlin/full-engine-3/merlin-iii-full-engine-prototype-3-presentation-20261028.zip",
+        "bytes": 64220704,
+        "sha256": "528ba5f81a9acd0caeaaed05c3da208988f5a7c11e07e0edc7446b12ca4b244e",
+        "private": true,
+        "file_count": 21,
+        "transport_archives": [
+          {
+            "kind": "presentation-model",
+            "path": "build/merlin/full-engine-3/merlin-iii-full-engine-prototype-3-presentation-model-20261028.zip",
+            "bytes": 17391207,
+            "sha256": "06dff6e77111549ebb7fd25d18f00afee0736ee93f837256660c62dbfe293dfb",
+            "private": true,
+            "file_count": 3,
+            "drive_id": "14rSgKz5x6V9L4KkLVAQglYAZoSylG7KH",
+            "url": "https://drive.google.com/file/d/14rSgKz5x6V9L4KkLVAQglYAZoSylG7KH/view",
+            "authenticated_readback_verified": true,
+            "remote_sha256_verified": true,
+            "owner_only_permissions_verified": true,
+            "parent_folder_id": "1V-6yZX2FZ-GQDS2yF5hDJGbXjloEVrbJ"
+          },
+          {
+            "kind": "presentation-blender",
+            "path": "build/merlin/full-engine-3/merlin-iii-full-engine-prototype-3-presentation-blender-20261028.zip",
+            "bytes": 24178829,
+            "sha256": "49cb1b056655eb60b75469de2a5efda6051c2f1657e5ff1f5c43a401a03210b5",
+            "private": true,
+            "file_count": 3,
+            "drive_id": "1k84UzuKunM6K-G-GA6Cq-5fnrPfA1YUN",
+            "url": "https://drive.google.com/file/d/1k84UzuKunM6K-G-GA6Cq-5fnrPfA1YUN/view",
+            "authenticated_readback_verified": true,
+            "remote_sha256_verified": true,
+            "owner_only_permissions_verified": true,
+            "parent_folder_id": "1V-6yZX2FZ-GQDS2yF5hDJGbXjloEVrbJ"
+          },
+          {
+            "kind": "presentation-views",
+            "path": "build/merlin/full-engine-3/merlin-iii-full-engine-prototype-3-presentation-views-20261028.zip",
+            "bytes": 22650074,
+            "sha256": "a484b260f3f81c8e22596239d4119ffa012f16ef537811446253960951dd65f5",
+            "private": true,
+            "file_count": 20,
+            "drive_id": "1BspRkSWeYFekBTMQAcHUBt6IZWZCWCMP",
+            "url": "https://drive.google.com/file/d/1BspRkSWeYFekBTMQAcHUBt6IZWZCWCMP/view",
+            "authenticated_readback_verified": true,
+            "remote_sha256_verified": true,
+            "owner_only_permissions_verified": true,
+            "parent_folder_id": "1V-6yZX2FZ-GQDS2yF5hDJGbXjloEVrbJ"
+          }
+        ]
+      }
+    ],
+    "verification_scope": "All four private delivery ZIPs downloaded through authenticated connector references and fully matched by byte size and SHA-256; owner-only permissions confirmed. No anonymous or student release binding."
   }
 }

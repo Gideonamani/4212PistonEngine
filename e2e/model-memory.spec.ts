@@ -21,7 +21,7 @@ const CHANGES = Number(process.env.SOAK_CHANGES) || 6;
 
 test.afterEach(async ({ page }) => { await page.goto('about:blank').catch(() => undefined); });
 
-test(`${CHANGES} model changes in Explore keep the unpacked models held within the budget`, async ({ page, problems }) => {
+test(`${CHANGES} model changes in Explore keep the unpacked models held within the budget`, { tag: '@large-model' }, async ({ page, problems }) => {
   test.skip(available.length < 3, 'needs at least three restored models (python scripts/fetch_drive_assets.py)');
   const session = await page.context().newCDPSession(page);
   const heapAfterCollection = async () => {
