@@ -5,6 +5,7 @@ import type { InteractionMode, ViewerRuntime } from '../types';
 import { STAGE_COLOR } from '../../theme/theme.mjs';
 import { wheelDecision, type WheelZoom } from './interaction.mjs';
 import { DIRECTIONAL_LIGHTS, ENVIRONMENT_INTENSITY, HEMISPHERE_LIGHT, exposureFor } from './lighting.mjs';
+import { createRenderScheduler } from './render-scheduler.mjs';
 
 const currentTheme = (): 'light' | 'dark' => (typeof document !== 'undefined' && document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
 const currentStageColor = () => STAGE_COLOR[currentTheme()];
@@ -73,9 +74,11 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
   let previousFrame = performance.now();
   let disposed = false;
 
-  const render = () => {
+  const renders = createRenderScheduler(() => {
     if (!disposed) renderer.render(scene, camera);
-  };
+  });
+  const render = renders.request;
+  const renderNow = renders.flush;
 
   // What is drawn in the theme's colours besides the stage (the spotlight's) repaints itself when told the theme changed.
   const themeListeners = new Set<() => void>();
@@ -104,7 +107,7 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
     const elapsed = Math.max(0, Math.min(0.1, (now - previousFrame) / 1000));
     previousFrame = now;
     if (animationCallback?.(elapsed)) {
-      render();
+      renderNow();
       animationFrame = requestAnimationFrame(animate);
     }
   };
@@ -215,6 +218,7 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
     renderer,
     controls,
     render,
+    renderNow,
     fit,
     focus,
     resetView,
@@ -225,6 +229,7 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
     onThemeChange,
     dispose() {
       disposed = true;
+      renders.dispose();
       themeObserver?.disconnect();
       themeListeners.clear();
       resize.disconnect();

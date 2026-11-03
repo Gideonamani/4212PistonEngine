@@ -4,7 +4,7 @@ onlyIn('phone-390');
 test.describe.configure({ mode: 'serial', timeout: 240_000 });
 test.afterEach(async ({ page }) => { await page.goto('about:blank').catch(() => undefined); });
 
-test('Merlin loads, discloses its estimates, plays one cycle and resets explicitly', async ({ page, problems }) => {
+test('Merlin loads, discloses its estimates, plays one cycle and resets explicitly', { tag: '@large-model' }, async ({ page, problems }) => {
   await page.goto('/#/explore');
   await appReady(page);
   await page.locator('button[aria-describedby="capabilities-merlin-iii-operating-study-4"]').click();

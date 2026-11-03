@@ -121,7 +121,7 @@ async function captureModel(modelId, name, view = {}, { exposure, zoom = 1, pan 
 
   await new Promise((resolve) => setTimeout(resolve, 800));
   resize();
-  runtime.render();
+  if (runtime.renderNow) runtime.renderNow(); else runtime.render();
   const dataUrl = runtime.renderer.domElement.toDataURL('image/png');
   if (onImage) await onImage(dataUrl, `${name}.png`);
   else {

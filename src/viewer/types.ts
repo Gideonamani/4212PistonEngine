@@ -202,6 +202,8 @@ export type ViewerRuntime = {
   renderer: THREE.WebGLRenderer;
   controls: import('three/examples/jsm/controls/OrbitControls.js').OrbitControls;
   render: () => void;
+  /** Flush the latest scene synchronously for image capture; interactive updates use render(). */
+  renderNow?: () => void;
   fit: (object: THREE.Object3D, direction?: THREE.Vector3, padding?: number) => void;
   focus: (target: THREE.Vector3, distance?: number) => void;
   resetView: () => void;

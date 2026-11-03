@@ -48,7 +48,8 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   const display = contract.display || {};
   const fitDirection = Array.isArray(display.fit_direction) && display.fit_direction.length === 3 ? new THREE.Vector3(...(display.fit_direction as [number, number, number])) : undefined;
   if (Number.isFinite(display.rotation_x_deg)) root.rotation.x = THREE.MathUtils.degToRad(display.rotation_x_deg);
-  runtime.scene.add(root); root.updateMatrixWorld(true); runtime.fit(root, fitDirection, definition.fitPadding);
+  // Solve the initial poses and appearance off-stage; intermediate samples need no full-assembly draw.
+  root.updateMatrixWorld(true); runtime.fit(root, fitDirection, definition.fitPadding);
   const procedural = createProceduralStudySampler(contract, partsById, root);
   for (const motion of contract.motions) {
     if (!clips.has(motion.id) && !procedural.supports(motion)) throw Error(`Saved motion is missing: ${motion.id}`);
@@ -264,6 +265,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     section.startStep(view.sectionPlane);
   };
   update(context);
+  runtime.scene.add(root); runtime.render();
   return {
     snapshot: () => ({ ...snapshot, ...section.snapshot() }), update,
     features: {
