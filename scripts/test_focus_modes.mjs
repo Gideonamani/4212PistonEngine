@@ -54,8 +54,17 @@ const count = (looks) => looks.reduce((tally, look) => ({ ...tally, [look]: (tal
 
 for (const [id, label, create, requires] of models) {
   test(`${label}: every focus mode draws the spotlight and the rest as promised`, { skip: requires && !fs.existsSync(requires) && `${requires} is not restored` }, async () => {
-    const runtime = { scene: new THREE.Scene(), camera: new THREE.PerspectiveCamera(), render() {}, fit() {}, setPickTargets() {}, setAnimationCallback() {} };
-    const session = await create(registry.find((model) => model.id === id), { runtime, signal: new AbortController().signal, onProgress() {}, onChange() {}, profile: 'explore' });
+    let pickTargets, onPick;
+    const picked = [];
+    const runtime = { scene: new THREE.Scene(), camera: new THREE.PerspectiveCamera(), render() {}, fit() {}, setPickTargets(targets, callback) { pickTargets = targets; onPick = callback; }, setAnimationCallback() {} };
+    const session = await create(registry.find((model) => model.id === id), { runtime, signal: new AbortController().signal, onProgress() {}, onChange() {}, onPartPick(partId) { picked.push(partId); }, profile: 'explore' });
+    onPick(pickTargets[0]);
+    assert.equal(picked.length, 1, 'canvas picks route to the host selection controller');
+    assert.ok(session.features.components.items.some(part => part.id === picked[0]));
+    assert.equal(session.snapshot().selectedId, undefined, 'the adapter does not independently select behind the controller');
+    session.features.components.select(picked[0]);
+    assert.equal(session.snapshot().selectedId, picked[0]);
+    session.features.components.select('');
     // The models' own parts. Helper meshes (cycle visuals, section faces, arrows) are not spotlit and are left out. The full engine
     // tags no part ids, so every mesh counts there.
     const meshes = [];
@@ -76,15 +85,18 @@ for (const [id, label, create, requires] of models) {
     // No spotlight: nothing is ghosted, pale, hidden or highlighted, whatever mode is asked for.
     session.update({ focusParts: undefined, focusMode: 'isolate' });
     assert.equal(session.snapshot().focusActive, false);
+    assert.deepEqual(session.snapshot().focusIds, []);
     assert.ok(!looks().some((look) => ['ghost', 'pale', 'hidden', 'highlight'].includes(look)), 'no spotlight means every part looks normal');
 
     session.update({ focusParts: spotlit });
     assert.equal(session.snapshot().focusActive, true);
     assert.equal(session.snapshot().focusMode, 'xray', 'a step with no mode gets x-ray');
+    assert.deepEqual(session.snapshot().focusIds, spotlit);
     const xray = looks();
     const xrayCount = count(xray);
     assert.ok(xrayCount.ghost > 0 && xrayCount.normal > 0, `x-ray ghosts some parts and keeps others solid: ${JSON.stringify(xrayCount)}`);
     assert.ok(!xray.includes('hidden') && !xray.includes('pale'), 'x-ray hides nothing');
+    assert.ok(meshes.every(mesh => Boolean(mesh.userData.pickContext) === (lookOf(mesh) === 'ghost')), 'only ghost context yields to solid surfaces when picking');
 
     // The X-ray's solid parts are drawn after the ghost, still opaque, so its layers never cover them (core/ghost-order.mjs).
     const materialsOf = (mesh) => (Array.isArray(mesh.material) ? mesh.material : [mesh.material]);

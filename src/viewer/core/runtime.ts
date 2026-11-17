@@ -4,6 +4,8 @@ import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment
 import type { InteractionMode, ViewerRuntime } from '../types';
 import { STAGE_COLOR } from '../../theme/theme.mjs';
 import { wheelDecision, type WheelZoom } from './interaction.mjs';
+import { createTapGesture } from './tap-gesture.mjs';
+import { choosePickHit, isPickVisible } from './picking.mjs';
 import { DIRECTIONAL_LIGHTS, ENVIRONMENT_INTENSITY, HEMISPHERE_LIGHT, exposureFor } from './lighting.mjs';
 import { createRenderScheduler } from './render-scheduler.mjs';
 
@@ -70,7 +72,6 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
   let homePadding: number | undefined;
   let pickTargets: THREE.Object3D[] = [];
   let onPick: ((object: THREE.Object3D, point: THREE.Vector3) => void) | undefined;
-  let pointerDown: [number, number] | undefined;
   let animationCallback: ((elapsedSeconds: number) => boolean) | undefined;
   let animationFrame = 0;
   let previousFrame = performance.now();
@@ -179,19 +180,27 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
 
   const raycaster = new THREE.Raycaster();
   const pointer = new THREE.Vector2();
-  const handlePointerDown = (event: PointerEvent) => { pointerDown = [event.clientX, event.clientY]; };
+  const tap = createTapGesture();
   const handlePointerUp = (event: PointerEvent) => {
-    if (!pointerDown || Math.hypot(event.clientX - pointerDown[0], event.clientY - pointerDown[1]) > 5 || !onPick) return;
+    if (!tap.up(event) || !onPick) return;
     const rect = renderer.domElement.getBoundingClientRect();
+    if (!rect.width || !rect.height || event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) return;
     pointer.set((event.clientX - rect.left) / rect.width * 2 - 1, -(event.clientY - rect.top) / rect.height * 2 + 1);
-    // A click can arrive before the queued draw updates the camera's world matrix.
+    scene.updateMatrixWorld(true);
     camera.updateMatrixWorld();
     raycaster.setFromCamera(pointer, camera);
-    const hit = raycaster.intersectObjects(pickTargets.filter((object) => object.visible), false)[0];
+    const hit = choosePickHit(raycaster.intersectObjects(pickTargets.filter(isPickVisible), false), renderer);
     if (hit) onPick(hit.object, hit.point);
   };
-  renderer.domElement.addEventListener('pointerdown', handlePointerDown);
-  renderer.domElement.addEventListener('pointerup', handlePointerUp);
+  // Capture runs before OrbitControls releases pointer capture on pointer-up. A subsequent
+  // lostpointercapture cancels unfinished gestures without suppressing a completed tap.
+  renderer.domElement.addEventListener('pointerdown', tap.down, true);
+  renderer.domElement.addEventListener('pointermove', tap.move, true);
+  renderer.domElement.addEventListener('pointerup', handlePointerUp, true);
+  renderer.domElement.addEventListener('pointercancel', tap.cancel, true);
+  renderer.domElement.addEventListener('lostpointercapture', tap.cancel, true);
+  renderer.domElement.addEventListener('wheel', tap.reset, { capture: true, passive: true });
+  window.addEventListener('blur', tap.reset);
   controls.addEventListener('change', render);
 
   // OrbitControls zooms (and cancels the scroll) on any wheel turn. A capture listener on the container runs before it, and
@@ -241,8 +250,14 @@ export function createViewerRuntime(container: HTMLElement, options: RuntimeOpti
       setAnimationCallback(undefined);
       controls.removeEventListener('change', render);
       controls.dispose();
-      renderer.domElement.removeEventListener('pointerdown', handlePointerDown);
-      renderer.domElement.removeEventListener('pointerup', handlePointerUp);
+      renderer.domElement.removeEventListener('pointerdown', tap.down, true);
+      renderer.domElement.removeEventListener('pointermove', tap.move, true);
+      renderer.domElement.removeEventListener('pointerup', handlePointerUp, true);
+      renderer.domElement.removeEventListener('pointercancel', tap.cancel, true);
+      renderer.domElement.removeEventListener('lostpointercapture', tap.cancel, true);
+      renderer.domElement.removeEventListener('wheel', tap.reset, true);
+      window.removeEventListener('blur', tap.reset);
+      tap.reset();
       environment.dispose();
       renderer.dispose();
       renderer.domElement.remove();

@@ -6,6 +6,7 @@ import { useViewerControls } from './controls/useViewerControls';
 import { HotspotChips, HotspotNote, ModelCanvas, ToolbarButton, UnknownModel, ViewerHeader } from './ViewerParts';
 import { useModelViewer } from './useModelViewer';
 import { PartCard } from './PartCard';
+import { HIGHLIGHT_FALLBACK_NOTE } from './core/focus-style.mjs';
 
 const PLAYER_PREFERENCE = '4212-explore-show-player';
 const SHOW_PART_CARD_PREFERENCE = '4212-explore-show-part-card';
@@ -83,23 +84,19 @@ export default function ExploreViewer({ modelId, isFullscreen = false, onToggleF
             learner={snapshot.selectedDetails}
             defaultLabel={snapshot.selectedLabel}
             defaultFunction={snapshot.selectedDescription}
-            onClose={() => features?.components?.select('')}
-            onIsolatePart={(id) => {
-              features?.focus?.set([id], 'isolate');
-            }}
+            onClose={() => controls.parts.selectSinglePart('')}
+            onIsolatePart={controls.spotlight.isolatePart}
             isIsolated={
-              snapshot.focusMode === 'isolate' &&
-              (snapshot.selectedId === snapshot.selectedId ||
-                (controls.parts.selectedIds.length === 1 && controls.parts.selectedIds[0] === snapshot.selectedId))
+              snapshot.focusActive && snapshot.focusMode === 'isolate' &&
+              snapshot.focusIds?.length === 1 && snapshot.focusIds[0] === snapshot.selectedId
             }
-            onUnisolate={() => {
-              features?.components?.showAll();
-              controls.parts.clearSelected();
-            }}
+            onUnisolate={controls.parts.clearSelected}
             className="w-full"
           />
         </div>
       )}
+
+      {snapshot.focusFallback && <p aria-live="polite" title={HIGHLIGHT_FALLBACK_NOTE} className="pointer-events-none absolute right-3 top-16 z-10 max-w-[45%] rounded-lg border border-amber-400/30 bg-panel/95 px-3 py-2 text-[11px] leading-snug text-amber-200 sm:left-3 sm:right-auto sm:top-3 sm:max-w-56">Highlight · X-ray reveal<br />Other parts are transparent to reveal this selection.</p>}
 
       {features?.motion && !controlsOpen && showPlayerOnViewer && (
         <CompactMotionPlayer features={features} snapshot={snapshot} />

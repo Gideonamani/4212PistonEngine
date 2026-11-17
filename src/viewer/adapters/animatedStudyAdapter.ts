@@ -147,6 +147,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     snapshot.hiddenIds = hidden.ids();
     snapshot.focusActive = spotlight;
     snapshot.focusMode = focusMode;
+    snapshot.focusIds = spotlight ? [...focus] : [];
     snapshot.focusFallback = mode !== focusMode;
     const looks = meshes.map((mesh) => {
       const id = mesh.userData.partId;
@@ -160,6 +161,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     meshes.forEach((mesh, index) => {
       const id = mesh.userData.partId;
       const look = looks[index];
+      mesh.userData.pickContext = look === 'ghost';
       const overGhost = ghosting && look !== 'ghost';
       mesh.renderOrder = overGhost ? OVER_GHOST_ORDER : 0;
       const part = contractPartsById.get(id);
@@ -248,7 +250,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     applyAppearance(); onChange();
   };
   const showAll = () => { isolation = undefined; hidden.clear(); focus.clear(); powerPath = undefined; snapshot.powerPathId = ''; snapshot.powerPathNote = ''; snapshot.isolated = false; select(''); fitVisible(); };
-  runtime.setPickTargets(meshes, object => select(object.userData.partId));
+  runtime.setPickTargets(meshes, object => (context.onPartPick ?? select)(object.userData.partId));
   // The pose the study opens at (a lesson step's own motion and progress, else the first motion at 0%). Reset returns here.
   let start = { motionId: '', progress: 0 };
   const update = (view: any) => {
@@ -274,6 +276,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
         set(ids, mode, options) {
           const unknown = ids.filter(id => !componentsById.has(id));
           if (unknown.length) throw Error(`Unknown component id in the spotlight: ${unknown.join(', ')}.`);
+          powerPath = undefined; snapshot.powerPathId = ''; snapshot.powerPathNote = '';
           focus.clear(); for (const id of ids) focus.add(id);
           focusMode = focusModeOrDefault(mode);
           isolation = undefined; snapshot.isolated = false;

@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import type { Page } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
 import { appReady, expect, expectAccessibleAndTouchable, expectNoHorizontalOverflow, test } from './fixtures';
 
 // The 3D part quizzes on the Check screen: one for every model that has parts to tap, made on the spot from the model's own part data.
@@ -27,6 +27,25 @@ async function chooseSomePart(page: Page) {
   const next = page.getByRole('button', { name: 'Next', exact: true });
   if (!(await next.isVisible())) await page.getByText('Cannot tap the model? Step through the parts').click();
   await next.click();
+}
+
+async function expectTextToFit(text: Locator, within = text, singleLine = false) {
+  await expect(text).toBeVisible();
+  const bounds = (await within.boundingBox())!;
+  const lines = await text.evaluate(element => {
+    const range = document.createRange();
+    range.selectNodeContents(element);
+    // Range rectangles include text that CSS ellipsis would otherwise conceal.
+    return Array.from(range.getClientRects(), ({ x, y, right, bottom }) => ({ x, y, right, bottom }));
+  });
+  expect(lines.length).toBeGreaterThan(0);
+  if (singleLine) expect(lines).toHaveLength(1);
+  for (const line of lines) {
+    expect(line.x).toBeGreaterThanOrEqual(bounds.x - 1);
+    expect(line.right).toBeLessThanOrEqual(bounds.x + bounds.width + 1);
+    expect(line.y).toBeGreaterThanOrEqual(bounds.y - 1);
+    expect(line.bottom).toBeLessThanOrEqual(bounds.y + bounds.height + 1);
+  }
 }
 
 test.describe('3D part quizzes in light mode', () => {
@@ -69,9 +88,29 @@ test.describe('3D part quizzes', () => {
   test('answering marks the part, names the right one, and the next question starts from the whole model', async ({ page }) => {
     await openPartQuiz(page, OIL_PUMP.shortLabel);
     await chooseSomePart(page);
+    await page.evaluate(() => document.fonts.ready.then(() => undefined));
+    const hint = page.getByText('Drag to rotate · pinch to zoom · two fingers to pan', { exact: true });
+    await expectTextToFit(hint);
+    const counter = page.getByText(/^Part \d+ of \d+$/);
+    await expectTextToFit(counter, counter, true);
+    const counterBounds = (await counter.boundingBox())!;
+    for (const name of ['Previous', 'Next']) {
+      const button = page.getByRole('button', { name, exact: true });
+      await expectTextToFit(button.getByText(name, { exact: true }), button);
+      expect((await button.boundingBox())!.y, `Counter sits above ${name}`).toBeGreaterThanOrEqual(counterBounds.y + counterBounds.height);
+    }
+    const tools = page.getByRole('group', { name: 'Look beneath the parts' });
+    const checkToolLabels = async () => {
+      for (const name of ['Hide part', 'Undo', 'Show all']) {
+        const button = tools.getByRole('button', { name, exact: true });
+        await expectTextToFit(button.getByText(name, { exact: true }), button);
+      }
+    };
+    await checkToolLabels();
     const hide = page.getByRole('button', { name: 'Hide part' });
     await hide.click();
     await expect(page.getByText('1 part hidden')).toBeVisible();
+    await checkToolLabels();
 
     await chooseSomePart(page);
     await page.getByRole('button', { name: 'Verify answer' }).click();
