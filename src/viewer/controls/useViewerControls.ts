@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useReducer, useState } from 'react';
 import { groupComponentIds, inComponentGroup } from '../core/component-groups.mjs';
+import { createPartSelection } from '../core/part-selection.mjs';
 import type { FocusMode, ModelComponent } from '../types';
 import type { ModelViewerState } from '../useModelViewer';
 import type { PlayerPreference } from './MotionPanel';
@@ -45,6 +46,7 @@ export type ViewerControls = {
     /** How it is drawn now; undefined while there is no spotlight. */
     current?: FocusMode;
     choose: (mode: FocusMode) => void;
+    isolatePart: (id: string) => void;
     /** Explore only. */
     target: SpotlightTarget;
   };
@@ -63,7 +65,20 @@ export function useViewerControls(viewer: ModelViewerState, { host, lessonContro
   const [open, setOpen] = useState<PanelId | null>(host === 'explore' ? 'parts' : lessonControls ? 'motion' : null);
   const [query, setQuery] = useState('');
   const [group, setGroupState] = useState('');
-  const [selectedPartIds, setSelectedPartIds] = useState<string[]>([]);
+  const [, refresh] = useReducer((count: number) => count + 1, 0);
+  // Lessons keep their step-directed spotlight; only Explore's selection aims one automatically.
+  const lessonSelection = useMemo(() => host === 'lesson' && features?.components && viewer.session
+    ? createPartSelection({ ...features, focus: undefined }, viewer.session.snapshot, refresh)
+    : undefined, [features, viewer.session, host]);
+  const selection = host === 'explore' ? viewer.partSelection : lessonSelection;
+  const selectedPartIds = selection?.selectedIds() ?? [];
+
+  // Each loaded model owns its controller. IDs and filters from another model never carry over.
+  useEffect(() => { setQuery(''); setGroupState(''); }, [selection]);
+  useEffect(() => {
+    if (host !== 'explore' || !selection) return;
+    return viewer.handlePartPicks((id) => { setGroupState(''); selection.select(id); });
+  }, [host, selection, viewer.handlePartPicks]);
 
   // Explore always has a panel open (the first one the model offers, if the remembered one is not there); a lesson's dock may be all closed.
   const active = panels.some((panel) => panel.id === open) ? open : host === 'explore' ? panels[0]?.id ?? null : null;
@@ -75,9 +90,12 @@ export function useViewerControls(viewer: ModelViewerState, { host, lessonContro
       && (!term || `${component.label} ${component.description} ${component.searchText ?? ''}`.toLowerCase().includes(term)));
   }, [features?.components?.items, query, group]);
 
-  const setGroup = (value: string) => { setGroupState(value); features?.components?.select(''); };
+  const setGroup = (value: string) => {
+    setGroupState(value);
+    selection?.replace(value && value !== 'all' ? groupComponentIds(features!.components!.items, value) : []);
+  };
 
-  // Explore's spotlight is aimed by the learner: the multi-selected parts, a single selected part, or else the chosen subassembly.
+  // The target comes only from explicit selection actions, never from a stale inspected ID.
   const target = useMemo<SpotlightTarget>(() => {
     const components = features?.components;
     if (!components) return { ids: [], label: '' };
@@ -88,75 +106,39 @@ export function useViewerControls(viewer: ModelViewerState, { host, lessonContro
       }
       return { ids: selectedPartIds, label: `${selectedPartIds.length} components` };
     }
-    const selected = components.items.find((component) => component.id === snapshot.selectedId);
-    if (selected) return { ids: [selected.id], label: selected.label };
-    const ids = group && group !== 'all' ? groupComponentIds(components.items, group) as string[] : [];
-    return { ids, label: ids.length ? components.groups.find((item) => item.id === group)?.label ?? 'this subassembly' : '' };
-  }, [features?.components, selectedPartIds, snapshot.selectedId, group]);
+    return { ids: [], label: '' };
+  }, [features?.components, selectedPartIds]);
 
   const current: FocusMode | undefined = snapshot.focusActive ? snapshot.focusMode : undefined;
 
-  // The style the learner chose in Explore, kept while the spotlight follows their selection from part to part; "Show all" ends it.
-  const followMode = useRef<FocusMode | undefined>(undefined);
-  useEffect(() => { if (!snapshot.focusActive) followMode.current = undefined; }, [snapshot.focusActive]);
-  const targetKey = target.ids.join('|');
-  useEffect(() => {
-    if (host !== 'explore' || !features?.focus) return;
-    if (target.ids.length > 0) {
-      // Auto-apply highlight if no mode is currently active
-      if (!followMode.current) followMode.current = 'highlight';
-      // The camera zooms in on the spotlit part, so the learner sees where the spotlight went (a small part would otherwise be a speck).
-      features.focus.set(target.ids, followMode.current, { closeUp: true });
-    } else if (followMode.current) {
-      followMode.current = undefined;
-      features.focus.set([], 'highlight');
-    }
-  }, [targetKey]);
-
-  const togglePart = (id: string) => {
-    setSelectedPartIds((prev) => (prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]));
-  };
+  const togglePart = (id: string) => selection?.toggle(id);
 
   const selectSinglePart = (id: string) => {
-    setSelectedPartIds(id ? [id] : []);
-    features?.components?.select(id);
+    setGroupState('');
+    selection?.select(id);
   };
 
   const toggleGroup = (groupId: string) => {
     const components = features?.components;
     if (!components) return;
     const groupIds = groupComponentIds(components.items, groupId) as string[];
-    setSelectedPartIds((prev) => {
-      const allIn = groupIds.every((id) => prev.includes(id));
-      if (allIn) return prev.filter((id) => !groupIds.includes(id));
-      const next = new Set([...prev, ...groupIds]);
-      return Array.from(next);
-    });
+    selection?.toggleMany(groupIds);
   };
 
   const clearSelected = () => {
-    setSelectedPartIds([]);
-    features?.components?.showAll();
-    features?.focus?.set([], 'highlight');
-    followMode.current = undefined;
+    setGroupState('');
+    selection?.clear();
   };
 
   const selectAllFiltered = () => {
-    setSelectedPartIds((prev) => {
-      const next = new Set([...prev, ...filtered.map((c) => c.id)]);
-      return Array.from(next);
-    });
+    selection?.add(filtered.map((c) => c.id));
   };
 
   const choose = (mode: FocusMode) => {
     const focus = features?.focus;
     if (!focus) return;
     if (host === 'lesson') { (chooseFocusMode ?? focus.setMode)(mode); return; }
-    if (!target.ids.length) return;
-    // Tapping the style already in force turns the spotlight off.
-    if (current === mode) { followMode.current = undefined; focus.set([], mode); return; }
-    followMode.current = mode;
-    focus.set(target.ids, mode, { closeUp: true });
+    selection?.choose(mode);
   };
 
   return {
@@ -180,6 +162,6 @@ export function useViewerControls(viewer: ModelViewerState, { host, lessonContro
       clearSelected,
       selectAllFiltered,
     },
-    spotlight: { current, choose, target },
+    spotlight: { current, choose, target, isolatePart: (id) => { setGroupState(''); selection?.isolate(id); } },
   };
 }

@@ -142,12 +142,12 @@ export function PartsPanel({
         className={`${field} text-[11px]`}
       >
         <option value="">All subassemblies</option>
-        {components.groups.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
+        {allGroups.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
       </select>
 
       <select
         aria-label="Component"
-        value={selectedIds.length === 1 ? selectedIds[0] : snapshot.selectedId || ''}
+        value={selectedIds.length === 1 ? selectedIds[0] : selectedIds.length ? '' : snapshot.selectedId || ''}
         onChange={(event) => {
           const id = event.target.value;
           if (onSelectSinglePart) onSelectSinglePart(id);
@@ -208,6 +208,7 @@ export function PartsPanel({
               key={mode}
               type="button"
               onClick={() => onChooseFocusMode(mode)}
+              aria-pressed={active}
               className={`flex min-h-10 flex-col items-center justify-center gap-0.5 rounded-lg text-[11px] font-semibold outline-none transition-colors ${active ? 'bg-teal-400 text-slate-950 font-bold' : 'bg-slate-950/60 text-slate-300 hover:bg-white/10'}`}
             >
               <Icon className="h-3.5 w-3.5" />
@@ -284,6 +285,7 @@ export function PartsPanel({
                       key={item.id}
                       type="button"
                       onClick={() => onTogglePart?.(item.id)}
+                      aria-pressed={isSelected}
                       className={`flex w-full items-center gap-2.5 rounded-xl border px-2.5 py-2 text-left text-xs font-semibold transition-all duration-150 outline-none ${
                         isSelected
                           ? 'border-teal-400/40 bg-teal-400/15 text-white ring-1 ring-teal-400/30'

@@ -5,6 +5,7 @@ import { createViewerRuntime } from './core/runtime';
 import { focusModeOrDefault } from './core/focus-style.mjs';
 import { spotlightFor } from './core/step-part-chips.mjs';
 import { viewKey } from './core/view-state.mjs';
+import { createPartSelection } from './core/part-selection.mjs';
 import type { WheelZoom } from './core/interaction.mjs';
 import type { FocusMode, InteractionMode, ViewUpdate, ViewerProfile, ViewerRuntime, ViewerSession, ViewerSnapshot } from './types';
 
@@ -20,6 +21,15 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
   const mountRef = useRef<HTMLDivElement>(null);
   const runtimeRef = useRef<ViewerRuntime | undefined>(undefined);
   const sessionRef = useRef<ViewerSession | undefined>(undefined);
+  const partSelectionRef = useRef<ReturnType<typeof createPartSelection> | undefined>(undefined);
+  const partPickHandler = useRef<{ session: ViewerSession; handle: (id: string) => void } | undefined>(undefined);
+  const handlePartPicks = useCallback((handle: (id: string) => void) => {
+    const session = sessionRef.current;
+    if (!session) return;
+    const registration = { session, handle };
+    partPickHandler.current = registration;
+    return () => { if (partPickHandler.current === registration) partPickHandler.current = undefined; };
+  }, []);
   const [loadState, setLoadState] = useState<ViewerSnapshot>({ status: 'Preparing 3D viewer…', progress: 0 });
   const [error, setError] = useState('');
   // Bumped by retry() to load the model again after it failed.
@@ -77,9 +87,20 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
       ...effectiveView(),
       onChange: () => { if (!disposed) refresh(); },
       onProgress: (status, progress) => { if (!disposed) setLoadState({ status, progress }); },
+      onPartPick: (id) => {
+        if (disposed) return;
+        const session = sessionRef.current;
+        const handler = partPickHandler.current;
+        if (handler && handler.session === session) handler.handle(id);
+        else if (partSelectionRef.current) partSelectionRef.current.select(id);
+        else session?.features.components?.select(id);
+      },
     }).then((session) => {
       if (disposed) { session.dispose(); return; }
       sessionRef.current = session;
+      // Own Explore's selection for the whole session, including taps before its panels mount.
+      partSelectionRef.current = profile === 'explore' && session.features.components
+        ? createPartSelection(session.features, session.snapshot, refresh) : undefined;
       applyView(session);
       setLoadState(session.snapshot());
       refresh();
@@ -95,6 +116,7 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
       controller.abort();
       sessionRef.current?.dispose();
       sessionRef.current = undefined;
+      partSelectionRef.current = undefined;
       runtime.dispose();
       runtimeRef.current = undefined;
     };
@@ -133,6 +155,7 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
     mountRef,
     runtimeRef,
     session,
+    partSelection: partSelectionRef.current,
     features: session?.features,
     snapshot: session?.snapshot() || loadState,
     error,
@@ -149,6 +172,7 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
     /** Load the model again after it failed to load (or to update). */
     retry: () => setAttempt((count) => count + 1),
     previewPart,
+    handlePartPicks,
   };
 }
 

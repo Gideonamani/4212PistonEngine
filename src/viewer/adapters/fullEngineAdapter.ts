@@ -141,11 +141,13 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
     const mode = drawnMode = spotlightMode();
     snapshot.focusActive = spotlight;
     snapshot.focusMode = focusMode;
+    snapshot.focusIds = focusComponents.map(component => component.id);
     snapshot.focusFallback = mode !== focusMode;
     for (const item of items) {
       const { look } = partLook(mode, partRole(spotlight, isFocused(item)));
       const highlighted = look === 'highlight' || Boolean(selected && bindingMatches(item, selected));
       const ghosted = look === 'ghost';
+      item.mesh.userData.pickContext = ghosted;
       const pale = look === 'pale';
       // While the rest is ghosted, the solid parts are drawn after the ghost so its layers never cover them (core/ghost-order.mjs).
       const overGhost = mode === 'xray' && spotlight && !ghosted;
@@ -201,7 +203,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
   runtime.setPickTargets(items.map((item) => item.mesh), (object) => {
     const item = items.find((candidate) => candidate.mesh === object);
     const component = item && componentForItem(item);
-    if (component) select(component.id);
+    if (component) (context.onPartPick ?? select)(component.id);
   });
 
   const setAngle = (value: number) => {

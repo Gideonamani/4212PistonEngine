@@ -1,0 +1,26 @@
+<!doctype html>
+<html><head><meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body style="margin:0"><div id="scene" style="width:100vw;height:400px"></div>
+<script type="module">
+  import * as THREE from 'three';
+  import { createViewerRuntime } from '../src/viewer/core/runtime.ts';
+  const runtime = createViewerRuntime(document.getElementById('scene'));
+  const front = new THREE.Mesh(new THREE.PlaneGeometry(20, 20), new THREE.MeshStandardMaterial({ side: THREE.DoubleSide }));
+  const back = new THREE.Mesh(new THREE.PlaneGeometry(20, 20), new THREE.MeshStandardMaterial({ side: THREE.DoubleSide }));
+  front.name = 'front'; back.name = 'back'; back.position.z = -1;
+  runtime.scene.add(front, back);
+  const picks = [];
+  runtime.setPickTargets([front, back], object => picks.push(object.name));
+  const reset = () => {
+    picks.length = 0;
+    runtime.camera.position.set(0, 0, 5); runtime.controls.target.set(0, 0, 0);
+    runtime.controls.update(); runtime.render();
+  };
+  reset();
+  window.runtimeTest = {
+    picks, reset,
+    clip() { front.material.clippingPlanes = [new THREE.Plane(new THREE.Vector3(1, 0, 0), -100)]; front.material.needsUpdate = true; runtime.render(); },
+    ghost() { front.material.clippingPlanes = []; front.material.transparent = true; front.material.opacity = .18; front.material.depthWrite = false; front.userData.pickContext = true; front.material.needsUpdate = true; runtime.render(); },
+    hideBack() { back.visible = false; runtime.render(); },
+  };
+</script></body></html>

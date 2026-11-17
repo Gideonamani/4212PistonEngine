@@ -217,7 +217,9 @@ test.describe('model-click question', () => {
   });
 
   test('a part can be hidden to look beneath it, put back with Undo, and every hidden part with Show all', async ({ page }) => {
+    test.setTimeout(120_000);
     await openClickCheck(page);
+    await expect(page.locator('div[role="status"][aria-live="polite"]')).toHaveCount(0, { timeout: 60_000 });
     const hide = page.getByRole('button', { name: 'Hide part' });
     const undo = page.getByRole('button', { name: 'Undo' });
     const showAll = page.getByRole('button', { name: 'Show all' });

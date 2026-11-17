@@ -90,6 +90,8 @@ export type ViewerSnapshot = {
   /** Whether a spotlight is active, and how it is drawn. Only models that spotlight parts report them. */
   focusActive?: boolean;
   focusMode?: FocusMode;
+  /** The active spotlight targets, empty while the spotlight is off. */
+  focusIds?: string[];
   /** The spotlight is drawn as X-ray although Highlight was asked for, because Highlight would hide a part that sits inside another. */
   focusFallback?: boolean;
 };
@@ -223,4 +225,6 @@ export type AdapterContext = ViewUpdate & {
   signal: AbortSignal;
   onChange: () => void;
   onProgress: (status: string, progress?: number) => void;
+  /** Route a canvas pick through the host selection controller. */
+  onPartPick?: (id: string) => void;
 };

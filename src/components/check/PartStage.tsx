@@ -10,11 +10,11 @@ type PartStageProps = {
   tall?: boolean;
 };
 
-const tool = 'flex min-h-11 items-center justify-center gap-1.5 rounded-xl border px-2 text-xs font-semibold outline-none focus-visible:ring-2 focus-visible:ring-teal-300 disabled:cursor-not-allowed disabled:opacity-40';
+const tool = 'flex min-h-11 items-center justify-center gap-1 rounded-xl border px-1 py-2 text-center text-xs font-semibold leading-tight outline-none focus-visible:ring-2 focus-visible:ring-teal-300 disabled:cursor-not-allowed disabled:opacity-40';
 
-const ToolButton = ({ icon: Icon, label, onClick, disabled, className = '' }: { icon: LucideIcon; label: string; onClick: () => void; disabled?: boolean; className?: string }) => (
-  <button type="button" onClick={onClick} disabled={disabled} className={`${tool} border-slate-600/70 bg-slate-900/70 text-slate-200 enabled:hover:border-teal-400 ${className}`}>
-    <Icon className="h-4 w-4 shrink-0" aria-hidden="true" /><span className="truncate">{label}</span>
+const ToolButton = ({ icon: Icon, label, onClick, disabled, stacked = false }: { icon: LucideIcon; label: string; onClick: () => void; disabled?: boolean; stacked?: boolean }) => (
+  <button type="button" onClick={onClick} disabled={disabled} className={`${tool} ${stacked ? 'flex-col sm:flex-row' : ''} border-slate-600/70 bg-slate-900/70 text-slate-200 enabled:hover:border-teal-400`}>
+    <Icon className="h-4 w-4 shrink-0" aria-hidden="true" /><span>{label}</span>
   </button>
 );
 
@@ -48,13 +48,13 @@ export function PartStage({ viewer, tall = false }: PartStageProps) {
         </div>
         <WheelZoomHint viewer={viewer} />
       </div>
-      <p className="truncate border-t border-slate-800/80 px-3 py-2 text-[11px] text-slate-400">{hint}</p>
+      <p className="border-t border-slate-800/80 px-3 py-2 text-[11px] leading-snug text-slate-400">{hint}</p>
     </section>
     {canHide && <div className="flex flex-col gap-1.5">
       <div className="grid grid-cols-3 gap-2" role="group" aria-label="Look beneath the parts">
-        <ToolButton icon={EyeOff} label="Hide part" disabled={!selectedId} onClick={() => selectedId && components?.hide?.([selectedId])} />
-        <ToolButton icon={Undo2} label="Undo" disabled={!hiddenIds.length} onClick={() => components?.undoHide?.()} />
-        <ToolButton icon={Eye} label="Show all" disabled={!hiddenIds.length && !viewer.snapshot.focusActive} onClick={() => (viewer.snapshot.focusActive ? components?.showAll() : components?.showHidden?.())} />
+        <ToolButton stacked icon={EyeOff} label="Hide part" disabled={!selectedId} onClick={() => selectedId && components?.hide?.([selectedId])} />
+        <ToolButton stacked icon={Undo2} label="Undo" disabled={!hiddenIds.length} onClick={() => components?.undoHide?.()} />
+        <ToolButton stacked icon={Eye} label="Show all" disabled={!hiddenIds.length && !viewer.snapshot.focusActive} onClick={() => (viewer.snapshot.focusActive ? components?.showAll() : components?.showHidden?.())} />
       </div>
       <p aria-live="polite" className="text-[11px] leading-snug text-slate-400">{hiddenNote}. {selectedId ? 'Hide the highlighted part to see what lies under it.' : 'Tap a part, then hide it to see what lies under it.'}</p>
     </div>}

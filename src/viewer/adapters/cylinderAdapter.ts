@@ -148,6 +148,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
     snapshot.hiddenIds = hidden.ids();
     snapshot.focusActive = spotlight;
     snapshot.focusMode = focusMode;
+    snapshot.focusIds = [...focusSet];
     snapshot.focusFallback = mode !== focusMode;
     for (const mesh of meshes) {
       const id = mesh.userData.partId;
@@ -162,6 +163,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
             : snapshot.appearance === 'cad'
               ? originals.get(mesh)!
               : inspection.get(mesh)!;
+      mesh.userData.pickContext = mesh.material === ghost;
       // While the rest is ghosted, the solid parts are drawn after the ghost so its layers never cover them (core/ghost-order.mjs).
       drawOverGhost(mesh, spotlight && mode === 'xray' && mesh.material !== ghost);
     }
@@ -185,7 +187,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
     applyAppearance();
     onChange();
   };
-  runtime.setPickTargets(meshes, (object) => select(object.userData.partId));
+  runtime.setPickTargets(meshes, (object) => (context.onPartPick ?? select)(object.userData.partId));
 
   root.updateMatrixWorld(true);
   const bind = groupMatrices(motionProfile.bind_angle_deg, motionProfile);

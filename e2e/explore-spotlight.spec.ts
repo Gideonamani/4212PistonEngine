@@ -75,9 +75,9 @@ test('Explore offers the five tabs, and its Spotlight follows the part the learn
 
   // The same goes for a whole subassembly, and "Show all" puts everything back.
   await tabs.nth(0).click();
-  await panel.getByRole('combobox', { name: 'Subassembly' }).selectOption({ index: 1 });
+  await panel.getByRole('combobox', { name: 'Subassembly' }).selectOption({ label: 'Cylinder structure' });
   await tabs.nth(2).click();
-  await group.getByRole('button', { name: 'Highlight' }).click();
+  // A new selection starts Highlight after the previous spotlight was switched off.
   await expect(group.getByRole('button', { name: 'Highlight' })).toHaveAttribute('aria-pressed', 'true');
   await tabs.nth(0).click();
   await panel.getByRole('button', { name: 'Show all' }).click();
