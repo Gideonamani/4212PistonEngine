@@ -6,6 +6,7 @@ import { DockTabs } from './controls/DockTabs';
 import type { ViewerControls } from './controls/useViewerControls';
 import { useViewerHint } from './ViewerParts';
 import type { ModelViewerState } from './useModelViewer';
+import type { useDrawerHeight } from './useFloatingPanel';
 
 type ExploreControlsProps = {
   viewer: ModelViewerState;
@@ -13,6 +14,9 @@ type ExploreControlsProps = {
   onClose: () => void;
   showPartCard?: boolean;
   onToggleShowPartCard?: () => void;
+  /** Under the model (below `lg`) the drawer's height can be dragged from the bar along its top edge. */
+  drawerRef?: React.RefObject<HTMLElement | null>;
+  drawer?: ReturnType<typeof useDrawerHeight>;
 };
 
 /** Whether the learner has folded the model's description away; remembered on this device, for every model. */
@@ -24,15 +28,27 @@ const ABOUT_CHOICES = ['open', 'closed'] as const;
  * description, how to move it, and any notice about what is left out. That text folds away under the name (a tap on it), so a learner who
  * wants the room for the controls can have it. The whole panel scrolls, with the tabs staying in reach at the top, so the last control of
  * any tab can be reached whatever size the screen is. Then come the same tabs a lesson's dock offers, with the open panel below.
+ * Under the model, a bar along the panel's top edge drags it taller or shorter (the height is remembered on this device).
  * A model with no tabs (a scan with only a guided tour) still gets its description here.
  */
-export function ExploreControls({ viewer, controls, onClose, showPartCard, onToggleShowPartCard }: ExploreControlsProps) {
+export function ExploreControls({ viewer, controls, onClose, showPartCard, onToggleShowPartCard, drawerRef, drawer }: ExploreControlsProps) {
   const { definition, snapshot } = viewer;
   const hint = useViewerHint(viewer);
   const [aboutChoice, chooseAbout] = useStoredChoice<(typeof ABOUT_CHOICES)[number]>(ABOUT_KEY, ABOUT_CHOICES);
   const aboutOpen = aboutChoice !== 'closed';
   const withTabs = controls.panels.length > 0;
-  return <aside className={`order-2 flex max-h-[44%] w-full shrink-0 flex-col overflow-y-auto overscroll-contain border-t border-teal-500/25 bg-panel text-slate-100 shadow-2xl lg:order-none lg:h-full lg:max-h-none lg:w-80 lg:border-l lg:border-t-0 ${withTabs ? 'min-h-60 lg:min-h-0' : ''}`} aria-label="Explore controls">
+  const sized = drawer?.height !== undefined;
+  const size = sized ? 'h-[var(--explore-controls-h)] min-h-0' : `max-h-[44%] ${withTabs ? 'min-h-60 lg:min-h-0' : ''}`;
+  return <aside ref={drawerRef} style={sized ? { '--explore-controls-h': `${drawer!.height}px` } as React.CSSProperties : undefined} className={`order-2 flex w-full shrink-0 flex-col border-t border-teal-500/25 bg-panel text-slate-100 shadow-2xl lg:order-none lg:h-full lg:max-h-none lg:w-80 lg:border-l lg:border-t-0 ${size}`} aria-label="Explore controls">
+    {drawer && <div
+      {...drawer.separator}
+      aria-label="Resize Explore controls"
+      title="Drag to make the controls taller or shorter. Arrow keys resize; Home or a double-click puts it back."
+      className="group flex h-7 shrink-0 cursor-row-resize items-center justify-center outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-teal-300 lg:hidden"
+    >
+      <span aria-hidden="true" className="h-1.5 w-12 rounded-full bg-slate-600 transition-colors group-hover:bg-teal-400 group-active:bg-teal-300" />
+    </div>}
+    <div className="flex min-h-0 flex-auto flex-col overflow-y-auto overscroll-contain">
     <div className="shrink-0 border-b border-slate-800 px-3 pt-2.5">
       <span className="font-mono text-[11px] font-bold tracking-[0.18em] text-teal-400">EXPLORE CONTROLS</span>
       <div className="flex items-center gap-1">
@@ -64,5 +80,6 @@ export function ExploreControls({ viewer, controls, onClose, showPartCard, onTog
         onToggleShowPartCard={onToggleShowPartCard}
       />
     </div>}
+    </div>
   </aside>;
 }

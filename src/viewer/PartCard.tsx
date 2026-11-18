@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, ChevronDown, RotateCcw, X } from 'lucide-react';
+import { Box, ChevronDown, GripVertical, RotateCcw, X } from 'lucide-react';
 import { getGenericPartInfo } from '../data/genericPartInfo';
 import { STATUS_LABELS, type Claim, type LearnerPart } from '../data/learnerPartDetails';
 
@@ -14,6 +14,8 @@ export type PartCardProps = {
   isIsolated?: boolean;
   onUnisolate?: () => void;
   className?: string;
+  /** Explore: the card can be moved over the model. `grip` goes on its handle, `dragArea` on the title row (see useFloatingPosition). */
+  move?: { grip: React.HTMLAttributes<HTMLElement>; dragArea: React.HTMLAttributes<HTMLElement> };
 };
 
 /** The evidence behind each line of a part's text, shown on request: nothing a learner reads is unsourced. */
@@ -108,6 +110,7 @@ export function PartCard({
   isIsolated = false,
   onUnisolate,
   className = '',
+  move,
 }: PartCardProps) {
   const [expanded, setExpanded] = useState(false);
   const data = getGenericPartInfo(partId, defaultLabel, defaultFunction);
@@ -120,8 +123,19 @@ export function PartCard({
       className={`pointer-events-auto rounded-xl sm:rounded-2xl border border-teal-400/35 bg-panel/95 shadow-2xl backdrop-blur-md transition-all duration-200 text-slate-100 p-2 sm:p-3.5 space-y-1.5 sm:space-y-2.5 ${className}`}
     >
       {/* Row 1: Title and X to close */}
-      <div className="flex items-center justify-between gap-1.5">
-        <h3 className="min-w-0 break-words text-xs sm:text-sm font-bold tracking-tight text-white leading-tight">
+      <div {...move?.dragArea} className={`flex items-center justify-between gap-1.5 ${move ? 'cursor-grab select-none active:cursor-grabbing' : ''}`}>
+        {move && (
+          <button
+            type="button"
+            {...move.grip}
+            aria-label="Move component details"
+            title="Drag to move this card. Arrow keys nudge it; Home or a double-click puts it back."
+            className="-ml-1 flex h-6 w-5 sm:h-7 shrink-0 cursor-grab items-center justify-center rounded text-slate-500 outline-none hover:text-slate-200 focus-visible:ring-2 focus-visible:ring-teal-300 active:cursor-grabbing"
+          >
+            <GripVertical className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" />
+          </button>
+        )}
+        <h3 className="min-w-0 flex-1 break-words text-xs sm:text-sm font-bold tracking-tight text-white leading-tight">
           {label}
         </h3>
         <button
@@ -135,15 +149,7 @@ export function PartCard({
         </button>
       </div>
 
-      {learner && learner.review !== 'reviewed' && (
-        <p
-          className="inline-block rounded-full border border-amber-400/40 bg-amber-400/10 px-2 py-0.5 text-[10px] font-semibold text-amber-200"
-          title="This wording is a draft and has not yet been checked by the instructor."
-        >
-          Draft text
-        </p>
-      )}
-
+      {/* No "Draft text" badge: the review state of each line is under "Where this text comes from", not over the model. */}
       {/* Row 2: Function short description (visible on desktop/tablet, hidden on thin screens) */}
       <div className="hidden sm:block text-xs leading-relaxed text-slate-300">
         <p>{functionText}</p>

@@ -131,11 +131,14 @@ export async function createCylinderSession(definition: ModelDefinition, context
   let cycleEnabled = Boolean(context.initialCycle);
   // A cut through a spotlit part shows it, which can change the style the spotlight is drawn in, so the spotlight is repainted when it does.
   let drawnMode: FocusMode | undefined;
+  // Whether Highlight turns into X-ray while it would hide a spotlit part inside another. A lesson keeps it on; Explore turns it off,
+  // because there X-ray is only ever the learner's own choice (one spring ghosting the engine and the next part not is disorienting).
+  let revealInside = true;
   const section = createSectionController(meshes, bounds, runtime.render, onChange, runtime.scene, () => { if (drawnMode && spotlightMode() !== drawnMode) applyAppearance(); });
   section.startStep(context.sectionPlane);
 
   // Highlight would hide a spotlit part that sits inside another, so it is drawn as X-ray for as long as that is so.
-  const spotlightMode = () => focusSet.size > 0
+  const spotlightMode = () => focusSet.size > 0 && revealInside
     ? effectiveFocusMode(focusMode, meshes.filter((mesh) => focusSet.has(mesh.userData.partId)), meshes.filter((mesh) => !focusSet.has(mesh.userData.partId) && (!isolated || isolatedParts.has(mesh.userData.partId)) && !hidden.has(mesh.userData.partId)), section.cut())
     : focusMode;
   const applyAppearance = () => {
@@ -351,6 +354,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
     update(view) {
       setPlaying(false);
       hidden.clear();
+      revealInside = true;
       cycleEnabled = Boolean(view.initialCycle);
       snapshot.cycleEnabled = cycleEnabled;
       cycleVisuals?.setVisible(cycleEnabled);
@@ -370,6 +374,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
           onChange();
         },
         set(ids, mode, options) {
+          revealInside = options?.reveal ?? true;
           const unknown = ids.filter((id) => !catalogueById.has(id));
           if (unknown.length) throw Error(`Unknown component id in the spotlight: ${unknown.join(', ')}.`);
           focusSet.clear();

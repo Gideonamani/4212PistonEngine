@@ -169,9 +169,10 @@ export type ViewerFeatures = {
      * Explore: spotlight these parts (an empty list clears the spotlight), drawn as `mode`. Unlike a lesson step's focusParts it leaves the
      * selection where it is, so the learner can keep choosing parts while the spotlight follows, and it moves the camera only to bring an
      * isolated part into frame, or, with `closeUp`, to zoom in on the spotlit parts (core/spotlight-framing.mjs). Lesson part chips leave
-     * `closeUp` off, so they never move the camera.
+     * `closeUp` off, so they never move the camera. `reveal: false` keeps Highlight as Highlight even when it hides a part inside another
+     * (Explore, where X-ray is the learner's choice); it is on otherwise and for every lesson step.
      */
-    set: (ids: string[], mode: FocusMode, options?: { closeUp?: boolean }) => void;
+    set: (ids: string[], mode: FocusMode, options?: { closeUp?: boolean; reveal?: boolean }) => void;
   };
 };
 

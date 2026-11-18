@@ -105,6 +105,9 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
   let loop = true;
   // A cut through a spotlit part shows it, which can change the style the spotlight is drawn in, so the spotlight is repainted when it does.
   let drawnMode: FocusMode | undefined;
+  // Whether Highlight turns into X-ray while it would hide a spotlit part inside another. A lesson keeps it on; Explore turns it off,
+  // because there X-ray is only ever the learner's own choice (one spring ghosting the engine and the next part not is disorienting).
+  let revealInside = true;
   const section = createSectionController(items.map((item) => item.mesh), bounds, runtime.render, onChange, runtime.scene, () => { if (drawnMode && spotlightMode() !== drawnMode) applyAppearance(); });
   section.startStep(context.sectionPlane);
 
@@ -131,7 +134,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
     }
   };
   // Highlight would hide a spotlit part that sits inside another, so it is drawn as X-ray for as long as that is so.
-  const spotlightMode = () => focusComponents.length > 0
+  const spotlightMode = () => focusComponents.length > 0 && revealInside
     ? effectiveFocusMode(focusMode, items.filter(isFocused).map((item) => item.mesh), items.filter((item) => !isFocused(item) && item.mesh.visible).map((item) => item.mesh), section.cut())
     : focusMode;
   const applyAppearance = () => {
@@ -274,6 +277,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
     update(view) {
       setPlaying(false);
       hidden.clear();
+      revealInside = true;
       startAngle = view.initialAngle ?? 0;
       setAngle(startAngle);
       applyFocus(view.focusParts, focusModeOrDefault(view.focusMode));
@@ -289,6 +293,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
           onChange();
         },
         set(ids, mode, options) {
+          revealInside = options?.reveal ?? true;
           const unknown = ids.filter((id) => !componentsById.has(id));
           if (unknown.length) throw Error(`Unknown component id in the spotlight: ${unknown.join(', ')}.`);
           focusComponents.splice(0, focusComponents.length, ...ids.map((id) => componentsById.get(id)));

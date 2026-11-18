@@ -69,3 +69,28 @@ test('groups toggle explicitly and a new model cannot inherit another model’s 
   assert.deepEqual(second.state.focusIds, ['X']);
   assert.equal(second.state.focusMode, 'highlight');
 });
+
+test('Explore never turns Highlight into X-ray by itself, and centres on a selection only while the Look switch is on', () => {
+  const calls = [];
+  let centre = true;
+  const features = {
+    components: { items: [{ id: 'A' }, { id: 'B' }], select() {}, showAll() {} },
+    focus: { set(ids, mode, options) { calls.push({ ids, mode, options }); } },
+  };
+  const state = { focusActive: false };
+  const selection = createPartSelection(features, () => state, () => {}, { centreOnSelect: () => centre });
+  selection.select('A');
+  assert.deepEqual(calls.at(-1), { ids: ['A'], mode: 'highlight', options: { closeUp: true, reveal: false } });
+  centre = false;
+  selection.select('B');
+  assert.deepEqual(calls.at(-1).options, { closeUp: false, reveal: false });
+  selection.choose('xray');
+  assert.deepEqual(calls.at(-1), { ids: ['B'], mode: 'xray', options: { closeUp: false, reveal: false } });
+});
+
+test('without options a selection still closes in, as before the Look switch existed', () => {
+  const calls = [];
+  const features = { components: { items: [{ id: 'A' }], select() {}, showAll() {} }, focus: { set(ids, mode, options) { calls.push(options); } } };
+  createPartSelection(features, () => ({}), () => {}).select('A');
+  assert.deepEqual(calls, [{ closeUp: true, reveal: false }]);
+});

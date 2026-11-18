@@ -58,15 +58,11 @@ test('canvas, checklist, card and Spotlight agree throughout selection changes',
   await expect(component).toHaveValue('');
   await expect(card).toHaveCount(0);
   await expect(spotlightTab).toHaveAccessibleName('Spotlight, Off');
+  // A part inside the head stays in Highlight: Explore never switches to X-ray by itself, only when the learner chooses it.
   await component.selectOption({ label: 'Intake valve seat' });
-  const revealNote = page.getByText('Highlight · X-ray reveal', { exact: false });
-  await expect(revealNote).toBeVisible();
-  await page.getByRole('button', { name: 'Hide Explore controls', exact: true }).first().click();
-  const noteBox = (await revealNote.boundingBox())!;
-  const playerBox = (await page.locator('[aria-label="Floating motion player"]').boundingBox())!;
-  expect(noteBox.y + noteBox.height).toBeLessThanOrEqual(playerBox.y);
-  await page.screenshot({ path: testInfo.outputPath('xray-reveal.png') });
-  await page.getByRole('button', { name: 'Show Explore controls', exact: true }).click();
+  await expect(spotlightTab).toHaveAccessibleName('Spotlight, Highlight');
+  await expect(page.getByText(/shown as an X-ray|X-ray reveal/)).toHaveCount(0);
+  await page.screenshot({ path: testInfo.outputPath('highlight-inside.png') });
   await panel.getByRole('textbox', { name: 'Search components' }).fill('Intake');
   await page.getByRole('button', { name: 'Select 3D Engine Model', exact: true }).click();
   await page.getByRole('button', { name: 'Hydraulic tappet', exact: true }).click();

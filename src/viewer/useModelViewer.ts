@@ -6,6 +6,7 @@ import { focusModeOrDefault } from './core/focus-style.mjs';
 import { spotlightFor } from './core/step-part-chips.mjs';
 import { viewKey } from './core/view-state.mjs';
 import { createPartSelection } from './core/part-selection.mjs';
+import { readCentreOnSelect } from './explorePreferences';
 import type { WheelZoom } from './core/interaction.mjs';
 import type { FocusMode, InteractionMode, ViewUpdate, ViewerProfile, ViewerRuntime, ViewerSession, ViewerSnapshot } from './types';
 
@@ -100,7 +101,7 @@ export function useModelViewer(modelId: string, profile: ViewerProfile, view: Vi
       sessionRef.current = session;
       // Own Explore's selection for the whole session, including taps before its panels mount.
       partSelectionRef.current = profile === 'explore' && session.features.components
-        ? createPartSelection(session.features, session.snapshot, refresh) : undefined;
+        ? createPartSelection(session.features, session.snapshot, refresh, { centreOnSelect: readCentreOnSelect }) : undefined;
       applyView(session);
       setLoadState(session.snapshot());
       refresh();

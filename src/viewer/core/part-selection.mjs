@@ -1,11 +1,16 @@
 /**
  * Selection transitions shared by Explore's canvas, list and card. The adapters render the
  * result; their inspected ID is never used as an implicit fallback for an empty selection.
+ *
+ * A selection is drawn exactly in the style it asks for: Highlight is never turned into X-ray behind the learner's back (`reveal: false`),
+ * because in Explore X-ray is the learner's own choice. `centreOnSelect` is read at each change, so the Look tab's "Centre the part I
+ * select" switch applies from the next tap; off, the camera stays where the learner left it.
  * @param {import('../types').ViewerFeatures} features
  * @param {() => import('../types').ViewerSnapshot} snapshot
  * @param {() => void} changed
+ * @param {{ centreOnSelect?: () => boolean }} [options]
  */
-export function createPartSelection(features, snapshot, changed) {
+export function createPartSelection(features, snapshot, changed, { centreOnSelect = () => true } = {}) {
   const components = features.components;
   const known = new Set(components.items.map(part => part.id));
   /** @type {string[]} */
@@ -17,7 +22,7 @@ export function createPartSelection(features, snapshot, changed) {
     ids = [...new Set(next)].filter(id => known.has(id));
     mode = ids.length ? requestedMode : undefined;
     components.select(ids.length === 1 ? ids[0] : '');
-    features.focus?.set(ids, mode ?? 'highlight', { closeUp: true });
+    features.focus?.set(ids, mode ?? 'highlight', { closeUp: centreOnSelect(), reveal: false });
     changed();
   };
 
@@ -35,7 +40,7 @@ export function createPartSelection(features, snapshot, changed) {
       if (!ids.length || !features.focus) return;
       const current = snapshot();
       mode = current.focusActive && current.focusMode === nextMode ? undefined : nextMode;
-      features.focus.set(mode ? ids : [], nextMode, { closeUp: true });
+      features.focus.set(mode ? ids : [], nextMode, { closeUp: centreOnSelect(), reveal: false });
       changed();
     },
     isolate(id) { if (known.has(id)) replace([id], 'isolate'); },

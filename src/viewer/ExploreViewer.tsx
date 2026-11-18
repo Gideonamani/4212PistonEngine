@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Maximize2, Minimize2, MousePointerClick, SlidersHorizontal } from 'lucide-react';
 import { ExploreControls } from './ExploreControls';
 import { CompactMotionPlayer } from './controls/MotionPlayers';
@@ -6,10 +6,13 @@ import { useViewerControls } from './controls/useViewerControls';
 import { HotspotChips, HotspotNote, ModelCanvas, ToolbarButton, UnknownModel, ViewerHeader } from './ViewerParts';
 import { useModelViewer } from './useModelViewer';
 import { PartCard } from './PartCard';
-import { HIGHLIGHT_FALLBACK_NOTE } from './core/focus-style.mjs';
+import { useDrawerHeight, useFloatingPosition } from './useFloatingPanel';
 
 const PLAYER_PREFERENCE = '4212-explore-show-player';
 const SHOW_PART_CARD_PREFERENCE = '4212-explore-show-part-card';
+/** Where the learner moved the part card to (its top-left corner over the model), and how tall they dragged the controls drawer. */
+const PART_CARD_POSITION = '4212-explore-part-card-position';
+const CONTROLS_HEIGHT = '4212-explore-controls-height';
 
 // Preference stores that survive private windows and blocked site data: they just forget.
 const readPlayerPreference = () => { try { return localStorage.getItem(PLAYER_PREFERENCE) !== 'false'; } catch { return true; } };
@@ -47,6 +50,10 @@ export default function ExploreViewer({ modelId, isFullscreen = false, onToggleF
 
   const controls = useViewerControls(viewer, { host: 'explore', player: { show: showPlayerOnViewer, onChange: setPlayerPreference } });
   const { definition, features, snapshot } = viewer;
+  const sectionRef = useRef<HTMLElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const drawerRef = useRef<HTMLElement>(null);
+  const drawer = useDrawerHeight(CONTROLS_HEIGHT, sectionRef, drawerRef);
 
   if (!definition) return <UnknownModel modelId={modelId} />;
 
@@ -54,8 +61,9 @@ export default function ExploreViewer({ modelId, isFullscreen = false, onToggleF
   const hasPanel = Boolean(features);
   const panelOpen = controlsOpen && hasPanel;
 
-  return <section className="relative isolate flex h-full min-h-[22rem] flex-col overflow-hidden bg-stage text-slate-100 shadow-inner lg:flex-row" aria-label={`Interactive 3D model of the ${definition.label}`}>
-    <div className={`relative min-h-0 min-w-0 flex-1 overflow-hidden ${panelOpen ? 'min-h-[18rem]' : ''}`}>
+  return <section ref={sectionRef} className="relative isolate flex h-full min-h-[22rem] flex-col overflow-hidden bg-stage text-slate-100 shadow-inner lg:flex-row" aria-label={`Interactive 3D model of the ${definition.label}`}>
+    {/* A drawer the learner has sized leaves the model at least 8 rem (useDrawerHeight keeps 128 px for it). */}
+    <div ref={stageRef} className={`relative min-h-0 min-w-0 flex-1 overflow-hidden ${panelOpen ? (drawer.height === undefined ? 'min-h-[18rem]' : 'min-h-32 lg:min-h-[18rem]') : ''}`}>
       <ModelCanvas viewer={viewer} />
       <ViewerHeader viewer={viewer}>
         <ToolbarButton
@@ -76,11 +84,10 @@ export default function ExploreViewer({ modelId, isFullscreen = false, onToggleF
       </div>}
 
       {showPartCard && snapshot.selectedId && (
-        <div
-          className="absolute z-20 pointer-events-auto transition-all duration-200 w-auto max-w-[50%] top-3 left-3 max-h-[50vh] overflow-y-auto sm:top-auto sm:left-auto sm:bottom-3 sm:right-3 sm:max-w-xs sm:w-80"
-        >
+        <FloatingPartCard stage={stageRef}>{(move) => (
           <PartCard
-            partId={snapshot.selectedId}
+            move={move}
+            partId={snapshot.selectedId ?? ''}
             learner={snapshot.selectedDetails}
             defaultLabel={snapshot.selectedLabel}
             defaultFunction={snapshot.selectedDescription}
@@ -93,10 +100,8 @@ export default function ExploreViewer({ modelId, isFullscreen = false, onToggleF
             onUnisolate={controls.parts.clearSelected}
             className="w-full"
           />
-        </div>
+        )}</FloatingPartCard>
       )}
-
-      {snapshot.focusFallback && <p aria-live="polite" title={HIGHLIGHT_FALLBACK_NOTE} className="pointer-events-none absolute right-3 top-16 z-10 max-w-[45%] rounded-lg border border-amber-400/30 bg-panel/95 px-3 py-2 text-[11px] leading-snug text-amber-200 sm:left-3 sm:right-auto sm:top-3 sm:max-w-56">Highlight · X-ray reveal<br />Other parts are transparent to reveal this selection.</p>}
 
       {features?.motion && !controlsOpen && showPlayerOnViewer && (
         <CompactMotionPlayer features={features} snapshot={snapshot} />
@@ -110,7 +115,27 @@ export default function ExploreViewer({ modelId, isFullscreen = false, onToggleF
         onClose={() => setControlsOpen(false)}
         showPartCard={showPartCard}
         onToggleShowPartCard={toggleShowPartCard}
+        drawerRef={drawerRef}
+        drawer={drawer}
       />
     )}
   </section>;
+}
+
+/**
+ * The part card over the model. It starts in a corner clear of the round tool buttons (top-left on a phone, bottom-right from `sm` up);
+ * once the learner drags it by its title row, it stays where they put it (its top-left corner, kept on this device) until moved again.
+ */
+function FloatingPartCard({ stage, children }: { stage: React.RefObject<HTMLDivElement | null>; children: (move: { grip: React.HTMLAttributes<HTMLElement>; dragArea: React.HTMLAttributes<HTMLElement> }) => React.ReactNode }) {
+  const panelRef = useRef<HTMLDivElement>(null);
+  const floating = useFloatingPosition(PART_CARD_POSITION, stage, panelRef);
+  const placed = floating.position;
+  return <div
+    ref={panelRef}
+    data-testid="part-card-float"
+    style={placed ? { left: placed.x, top: placed.y } : undefined}
+    className={`absolute z-20 pointer-events-auto w-auto max-w-[50%] max-h-[50vh] overflow-y-auto sm:max-w-xs sm:w-80 ${placed ? '' : 'top-3 left-3 sm:top-auto sm:left-auto sm:bottom-3 sm:right-3'}`}
+  >
+    {children({ grip: floating.grip, dragArea: floating.dragArea })}
+  </div>;
 }
