@@ -10,6 +10,7 @@ import { QuestionFoot, QuestionHead } from './QuestionCard';
 import { buildPartFacts } from './partFacts';
 import { MIN_QUESTIONS, ROUND_SIZE, buildPartQuiz, seededRandom } from './part-quiz.mjs';
 import { isAnswered, isCorrect } from './scoring.mjs';
+import { pullApartMotion } from './pull-apart.mjs';
 
 type PartQuizViewProps = {
   model: ModelDefinition;
@@ -29,6 +30,8 @@ const newSeed = () => Math.floor(Math.random() * 2 ** 31);
 export default function PartQuizView({ model, onExit, onFinish }: PartQuizViewProps) {
   const viewer = useModelViewer(model.id, lessonProfile(model.adapter), NO_VIEW);
   const components = viewer.features?.components;
+  const saved = viewer.features?.savedMotions;
+  const apart = useMemo(() => pullApartMotion(saved?.items), [saved]);
   const [seed, setSeed] = useState(newSeed);
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string[]>>({});
@@ -37,7 +40,7 @@ export default function PartQuizView({ model, onExit, onFinish }: PartQuizViewPr
   // What the model's data says about each part. The geometry is measured once it has loaded, so tiny parts are not asked about and the
   // parts that sit inside others are known to need uncovering.
   const facts = useMemo(() => (components ? buildPartFacts(components.items, components.groups, components.boxes?.() ?? []) : []), [components]);
-  const deck = useMemo(() => (facts.length ? buildPartQuiz(model.id, facts, { count: ROUND_SIZE, random: seededRandom(seed) }) : []), [facts, model.id, seed]);
+  const deck = useMemo(() => (facts.length ? buildPartQuiz(model.id, facts, { count: ROUND_SIZE, random: seededRandom(seed), pullApart: Boolean(apart) }) : []), [facts, model.id, seed, apart]);
   const total = deck.length;
   const tooFew = Boolean(components) && total < MIN_QUESTIONS;
   const finished = total > 0 && index >= total;
@@ -46,8 +49,11 @@ export default function PartQuizView({ model, onExit, onFinish }: PartQuizViewPr
 
   useEffect(() => { if (finished) onFinish(model.id, score, total); }, [finished]);
 
-  // A new question starts from the whole model: nothing hidden, nothing chosen, nothing spotlit.
-  const resetStage = () => components?.showAll();
+  // A new question starts from the whole model, put back together: nothing hidden, nothing chosen, nothing spotlit.
+  const resetStage = () => {
+    components?.showAll();
+    if (apart && viewer.snapshot.savedMotionId === apart.id && (viewer.snapshot.motionProgress ?? 0) > 0) saved?.setProgress(0);
+  };
   const goTo = (at: number) => { resetStage(); setIndex(at); };
   const verify = () => {
     if (!current || !isAnswered(current, answers[index])) return;

@@ -198,6 +198,8 @@ function kindsOf(facts) {
 // ---- the questions ----
 
 const UNCOVER_HINT = 'This part is inside the engine. Hide the parts around it to uncover it, then tap it.';
+/** The same, for a model the learner can pull apart (one that has an exploded view, see pull-apart.mjs). */
+export const PULL_APART_HINT = 'This part is inside the engine. Pull the model apart, or hide the parts around it, to uncover it, then tap it.';
 
 function nameQuestion(modelId, kind, system) {
   const lead = kind.lead;
@@ -289,10 +291,11 @@ export function quizPool(facts) {
  * kinds of question the data supports, and keeps about a third of the round for parts that must be uncovered when the model has enough.
  * @param {string} modelId
  * @param {PartFact[]} facts
- * @param {{ count?: number, random?: () => number }} [options]
+ * `pullApart` says the model can be pulled apart in the quiz, so the hint on a part that must be uncovered offers that first.
+ * @param {{ count?: number, random?: () => number, pullApart?: boolean }} [options]
  * @returns {ModelClickQuestion[]}
  */
-export function buildPartQuiz(modelId, facts, { count = ROUND_SIZE, random = Math.random } = {}) {
+export function buildPartQuiz(modelId, facts, { count = ROUND_SIZE, random = Math.random, pullApart = false } = {}) {
   const pool = quizPool(facts);
   const systemOf = new Map(facts.map((fact) => [fact.id, fact.system]));
 
@@ -320,7 +323,8 @@ export function buildPartQuiz(modelId, facts, { count = ROUND_SIZE, random = Mat
   const namesWanted = Math.max(0, count - questions.length);
   // A job question already stands for its kind (`used` holds it), so the same kind is not asked again by name.
   for (const kind of draw(pool.kinds, namesWanted, (candidate) => candidate.buried, (candidate) => candidate.key)) questions.push(nameQuestion(modelId, kind, systemOf.get(kind.lead.id)));
-  return shuffle(questions, random);
+  const hinted = pullApart ? questions.map((question) => (question.hint === UNCOVER_HINT ? { ...question, hint: PULL_APART_HINT } : question)) : questions;
+  return shuffle(hinted, random);
 }
 
 /**

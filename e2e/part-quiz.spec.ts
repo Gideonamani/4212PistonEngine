@@ -124,6 +124,30 @@ test.describe('3D part quizzes', () => {
     await expect(page.getByRole('button', { name: 'Verify answer' }), 'and nothing chosen').toBeDisabled();
   });
 
+  test('a model with an exploded view can be pulled apart in layers that name no stage, and each question starts assembled', async ({ page, problems }) => {
+    await openPartQuiz(page, OIL_PUMP.shortLabel);
+    const slider = page.getByRole('slider', { name: 'Pull apart' });
+    await expect(slider).toHaveAttribute('aria-valuetext', 'Assembled');
+    await expect(slider).toHaveAttribute('max', '3');
+    // The contract's stage names say where to look, so none of them is shown while the model comes apart.
+    const contract = JSON.parse(fs.readFileSync('web/oil-pump-contract.json', 'utf8')) as { motions: { id: string; stages: { label: string }[] }[] };
+    const stageNames = contract.motions.find((motion) => motion.id === 'Exploded overview')!.stages.map((stage) => stage.label).filter((label) => label !== 'Assembled');
+    await slider.fill('2');
+    await expect(slider).toHaveAttribute('aria-valuetext', 'Layer 2 of 3');
+    await slider.fill('3');
+    await expect(slider).toHaveAttribute('aria-valuetext', 'Fully apart (layer 3 of 3)');
+    for (const name of stageNames) await expect(page.getByText(name, { exact: true }), name).toHaveCount(0);
+    await expectNoHorizontalOverflow(page);
+
+    // A part can still be chosen while the model is apart, and the next question puts it back together.
+    await chooseSomePart(page);
+    await page.getByRole('button', { name: 'Verify answer' }).click();
+    await page.getByRole('button', { name: 'Next question' }).click();
+    await expect(page.getByText(/^Question 2 of \d+$/)).toBeVisible();
+    await expect(slider, 'a new question starts from the assembled model').toHaveAttribute('aria-valuetext', 'Assembled');
+    problems.assertNone();
+  });
+
   test('a round ends with a result and a new round brings different questions; the best score is kept', async ({ page, problems }) => {
     await openPartQuiz(page, OIL_PUMP.shortLabel);
     const asked = new Set<string>();
