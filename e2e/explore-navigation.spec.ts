@@ -45,12 +45,12 @@ test('the part card and the controls drawer stay where the learner puts them, an
   // Explore does not switch a part inside the head to X-ray by itself.
   await expect(panel.getByRole('tab', { name: /^Spotlight/ })).toHaveAccessibleName('Spotlight, Highlight');
 
-  // Look: the camera switch is on by default; switched off, it is kept.
+  // Look: the camera switch is off by default (a selection leaves the camera alone); switched on, it is kept.
   await panel.getByRole('tab', { name: /^Look/ }).click();
   const centre = panel.getByRole('switch', { name: /Centre the part I select/ });
-  await expect(centre).toHaveAttribute('aria-checked', 'true');
-  await centre.click();
   await expect(centre).toHaveAttribute('aria-checked', 'false');
+  await centre.click();
+  await expect(centre).toHaveAttribute('aria-checked', 'true');
 
   // After a reload the drawer keeps its height, the card its place and the switch its choice.
   await page.reload(); await appReady(page);
@@ -61,6 +61,6 @@ test('the part card and the controls drawer stay where the learner puts them, an
   await expect(card).toBeVisible();
   await expect.poll(async () => Math.round((await float.boundingBox())!.y)).toBe(Math.round(placed.y));
   await panel.getByRole('tab', { name: /^Look/ }).click();
-  await expect(centre).toHaveAttribute('aria-checked', 'false');
+  await expect(centre).toHaveAttribute('aria-checked', 'true');
   problems.assertNone();
 });

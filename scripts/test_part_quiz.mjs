@@ -186,7 +186,7 @@ test('a round keeps a share of its questions for parts that have to be uncovered
     const deck = buildPartQuiz('toy', facts, { random: seededRandom(seed) });
     const buried = deck.filter((question) => question.generated.buried).length;
     assert.ok(buried >= Math.ceil(ROUND_SIZE * BURIED_SHARE), `seed ${seed}: ${buried} of ${deck.length} need uncovering`);
-    for (const question of deck.filter((candidate) => candidate.generated.buried)) assert.match(question.hint, /Hide the parts around it/);
+    for (const question of deck.filter((candidate) => candidate.generated.buried)) assert.match(question.hint, /hide the parts around it/i);
   }
 });
 
