@@ -48,7 +48,7 @@ export function ExploreControls({ viewer, controls, onClose, showPartCard, onTog
     >
       <span aria-hidden="true" className="h-1.5 w-12 rounded-full bg-slate-600 transition-colors group-hover:bg-teal-400 group-active:bg-teal-300" />
     </div>}
-    <div className="flex min-h-0 flex-auto flex-col overflow-y-auto overscroll-contain">
+    <div data-testid="explore-controls-scroll" className="flex min-h-0 flex-auto flex-col overflow-y-auto overscroll-contain">
     <div className="shrink-0 border-b border-slate-800 px-3 pt-2.5">
       <span className="font-mono text-[11px] font-bold tracking-[0.18em] text-teal-400">EXPLORE CONTROLS</span>
       <div className="flex items-center gap-1">
