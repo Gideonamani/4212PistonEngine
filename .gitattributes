@@ -1,5 +1,9 @@
+# Normalize text files to LF across Windows and Linux checkouts.
+* text=auto eol=lf
 
-# Preserve byte-exact native-source hashes across Windows and Linux checkouts.
-cad-studies/** -text whitespace=cr-at-eol
-# STEP files are generated CAD artifacts; regenerate them rather than merging text.
-cad-studies/**/*.step binary
+# Treat binary assets explicitly as binary.
+*.png binary
+*.webp binary
+*.mp3 binary
+*.glb binary
+*.gz binary
