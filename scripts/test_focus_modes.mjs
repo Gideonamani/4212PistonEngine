@@ -177,6 +177,17 @@ test('cylinder: Highlight becomes X-ray for parts inside others, and stays Highl
   const highlighted = count(looks());
   assert.ok(highlighted.highlight > 0 && highlighted.pale > 0 && !highlighted.ghost, `drawn as Highlight: ${JSON.stringify(highlighted)}`);
 
+  // Explore's selection asks for no reveal: Highlight on the valves stays Highlight, and a lesson step afterwards gets its fallback back.
+  session.features.focus.set(inside, 'highlight', { reveal: false });
+  assert.equal(session.snapshot().focusFallback, false, 'Explore never turns Highlight into X-ray by itself');
+  const kept = count(looks());
+  assert.ok(kept.highlight > 0 && !kept.ghost, `drawn as Highlight, with no ghost: ${JSON.stringify(kept)}`);
+  session.features.focus.set(inside, 'highlight');
+  assert.equal(session.snapshot().focusFallback, true, 'a caller that does not opt out still gets the fallback');
+  session.features.focus.set(inside, 'highlight', { reveal: false });
+  session.update({ focusParts: inside, focusMode: 'highlight' });
+  assert.equal(session.snapshot().focusFallback, true, 'a lesson step resets it');
+
   // A spotlight that is gone has no fallback to report.
   session.update({ focusParts: undefined });
   assert.equal(session.snapshot().focusFallback, false);

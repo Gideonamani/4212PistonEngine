@@ -1,8 +1,8 @@
 import { appReady, expect, onlyIn, test } from './fixtures';
 
 // The GTSIO-520-H whole engine names and explains its parts from web/gtsio520-r10-parts.json (the part store, docs/part-store.md): a plain
-// title, one sentence on what the part does, and a Details drawer that says where each line comes from. The text is a draft until the
-// instructor reviews it, so the card says so; no part number reaches the learner. This opens the whole-engine model (12 MB transfer; 25 MB before optimisation), so it runs once.
+// title, one sentence on what the part does, and a Details drawer that says where each line comes from. The review state of each line
+// is in that drawer, not a badge on the card; no part number reaches the learner. This opens the whole-engine model (12 MB transfer; 25 MB before optimisation), so it runs once.
 
 onlyIn('phone-390');
 // The 12 MB whole-engine model takes 3.3 to 3.9 minutes here on a CI runner, and a loaded runner took longer than 4 (PR 118), so there is margin.
@@ -11,7 +11,7 @@ test.describe.configure({ timeout: 360_000 });
 // Leave the model's scene before the browser context is closed (see explore-spotlight.spec.ts).
 test.afterEach(async ({ page }) => { await page.goto('about:blank').catch(() => undefined); });
 
-test('the part card speaks plainly, says its text is a draft, and shows no part number', async ({ page }, testInfo) => {
+test('the part card speaks plainly, carries no draft badge, and shows no part number', async ({ page }, testInfo) => {
   test.setTimeout(360_000);
   await page.goto('/#/explore');
   await appReady(page);
@@ -33,7 +33,7 @@ test('the part card speaks plainly, says its text is a draft, and shows no part 
   const card = page.getByRole('complementary', { name: /^Component information for / });
   await expect(card).toBeVisible();
   await expect(card.getByRole('heading')).toHaveText(lifter!);
-  await expect(card.getByText('Draft text', { exact: true })).toBeVisible();
+  await expect(card.getByText('Draft text', { exact: true })).toHaveCount(0);
 
   await card.getByRole('button', { name: 'Details', exact: true }).click();
   await expect(card.getByText('Look for:')).toBeVisible();

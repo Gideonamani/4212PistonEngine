@@ -70,7 +70,8 @@ export const PANELS: Record<PanelId, PanelDefinition> = {
     id: 'look',
     label: 'Look',
     Icon: Eye,
-    available: ({ features }, context) => wholeSet(context) && Boolean(features?.appearance),
+    // Explore always has it for a model with parts, for the "Centre the part I select" switch; the colour choice needs `appearance`.
+    available: ({ features }, context) => wholeSet(context) && (Boolean(features?.appearance) || (context.host === 'explore' && Boolean(features?.components))),
   },
 };
 

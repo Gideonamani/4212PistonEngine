@@ -57,6 +57,9 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   const bounds = new THREE.Box3().setFromObject(root);
   // A cut through a spotlit part shows it, which can change the style the spotlight is drawn in, so the spotlight is repainted when it does.
   let drawnMode: FocusMode | undefined;
+  // Whether Highlight turns into X-ray while it would hide a spotlit part inside another. A lesson keeps it on; Explore turns it off,
+  // because there X-ray is only ever the learner's own choice (one spring ghosting the engine and the next part not is disorienting).
+  let revealInside = true;
   const section = createSectionController(meshes, bounds, runtime.render, onChange, runtime.scene, () => { if (drawnMode && spotlightMode() !== drawnMode) applyAppearance(); });
   const mixer = new THREE.AnimationMixer(root);
   const snapshot: ViewerSnapshot = { status: 'Animated mechanism study ready', appearance: definition.defaultAppearance ?? 'inspection', playing: false, motionProgress: 0, motionNote: contract.scope };
@@ -130,7 +133,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   const motionVisibility = (display: ReturnType<typeof resolveMotionDisplay>) => (id: string) => !display.visibleSet || display.visibleSet.has(id) || focus.has(id) || Boolean(isolation?.has(id));
   // Highlight would hide a spotlit part that sits inside another, so it is drawn as X-ray for as long as that is so.
   const spotlightMode = () => {
-    if (powerPath || !focus.size) return focusMode;
+    if (powerPath || !focus.size || !revealInside) return focusMode;
     const motionVisible = motionVisibility(resolveMotionDisplay(active, contract.parts, motionViewModes.get(active?.id) || 'default'));
     return effectiveFocusMode(focusMode, meshes.filter((mesh) => focus.has(mesh.userData.partId)), meshes.filter((mesh) => !focus.has(mesh.userData.partId) && (!isolation || isolation.has(mesh.userData.partId)) && motionVisible(mesh.userData.partId) && !hidden.has(mesh.userData.partId)), section.cut());
   };
@@ -260,6 +263,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     }
     powerPath = undefined; snapshot.powerPathId = ''; snapshot.powerPathNote = '';
     hidden.clear();
+    revealInside = true;
     focus.clear(); for (const id of view.focusParts || []) focus.add(id);
     focusMode = focusModeOrDefault(view.focusMode);
     isolation = undefined; snapshot.isolated = false;
@@ -274,6 +278,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
       focus: {
         setMode(mode) { focusMode = focusModeOrDefault(mode); applyAppearance(); onChange(); },
         set(ids, mode, options) {
+          revealInside = options?.reveal ?? true;
           const unknown = ids.filter(id => !componentsById.has(id));
           if (unknown.length) throw Error(`Unknown component id in the spotlight: ${unknown.join(', ')}.`);
           powerPath = undefined; snapshot.powerPathId = ''; snapshot.powerPathNote = '';

@@ -2,7 +2,7 @@ import { appReady, expect, onlyIn, test } from './fixtures';
 
 // The operating cylinder names and explains its parts from web/cylinder-parts.json (the part store, docs/part-store.md), the way the
 // GTSIO-520-H whole engine does (part-details.spec.ts): a plain title, one sentence on what the part does, what it is made of, and a
-// Details drawer that says where each line comes from. The text is a draft until the instructor reviews it, so the card says so; no part
+// Details drawer that says where each line comes from. The review state of each line is in that drawer, not a badge on the card; no part
 // number reaches the learner. The Parts list keeps the catalogue's names, which the lessons and checks use. This opens the cylinder, so it runs once.
 
 onlyIn('phone-390');
@@ -11,7 +11,7 @@ test.describe.configure({ timeout: 240_000 });
 // Leave the model's scene before the browser context is closed (see explore-spotlight.spec.ts).
 test.afterEach(async ({ page }) => { await page.goto('about:blank').catch(() => undefined); });
 
-test('the cylinder part card speaks plainly, says its text is a draft, and shows no part number', async ({ page }, testInfo) => {
+test('the cylinder part card speaks plainly, carries no draft badge, and shows no part number', async ({ page }, testInfo) => {
   test.setTimeout(240_000);
   await page.goto('/#/explore');
   await appReady(page);
@@ -27,7 +27,7 @@ test('the cylinder part card speaks plainly, says its text is a draft, and shows
   await component.selectOption({ label: 'Top compression ring' });
   await expect(card).toBeVisible();
   await expect(card.getByRole('heading')).toHaveText('Compression ring · top groove');
-  await expect(card.getByText('Draft text', { exact: true })).toBeVisible();
+  await expect(card.getByText('Draft text', { exact: true })).toHaveCount(0);
 
   await card.getByRole('button', { name: 'Details', exact: true }).click();
   await expect(card.getByText('Look for:')).toBeVisible();

@@ -60,6 +60,6 @@ export function ControlsBody({
         />
       : <SpotlightPanel current={spotlight.current} onChoose={spotlight.choose} highlightFallback={snapshot.focusFallback} />)}
     {id === 'section' && <SectionPanel viewer={viewer} extras={controls.host === 'explore'} />}
-    {id === 'look' && <LookPanel features={features} snapshot={snapshot} />}
+    {id === 'look' && <LookPanel features={features} snapshot={snapshot} host={controls.host} />}
   </div>;
 }

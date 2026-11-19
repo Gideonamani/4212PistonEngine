@@ -128,10 +128,12 @@ test.describe('Explore gallery', () => {
       await expect(panel.getByText(model.summary)).toBeVisible();
 
       // The whole panel scrolls, so the last control of a tab can be reached, and the tabs are pinned to its top while it does. (How far it
-      // scrolls depends on the screen, so the pinning is read from the style rather than from where the tabs end up.)
-      expect(await panel.evaluate((element) => getComputedStyle(element).overflowY)).toBe('auto');
+      // scrolls depends on the screen, so the pinning is read from the style rather than from where the tabs end up.) The scrolling part sits
+      // under the drawer's resize bar, which stays in place.
+      const scroller = panel.getByTestId('explore-controls-scroll');
+      expect(await scroller.evaluate((element) => getComputedStyle(element).overflowY)).toBe('auto');
       expect(await panel.getByRole('tablist').evaluate((element) => getComputedStyle(element.parentElement!).position), 'the tabs are pinned').toBe('sticky');
-      const scrolls = await panel.evaluate((element) => { element.scrollTop = element.scrollHeight; return element.scrollHeight > element.clientHeight; });
+      const scrolls = await scroller.evaluate((element) => { element.scrollTop = element.scrollHeight; return element.scrollHeight > element.clientHeight; });
       expect(scrolls, 'the panel has more in it than fits, so it scrolls').toBe(true);
       await expect(panel.getByRole('button', { name: 'Show all' }), 'the last control of the Parts tab can be reached').toBeInViewport();
       await page.getByRole('button', { name: 'Hide Explore controls' }).first().click();
