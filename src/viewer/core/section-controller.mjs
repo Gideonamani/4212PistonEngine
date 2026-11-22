@@ -83,6 +83,8 @@ export function createSectionController(meshes, bounds, render, onChange, scene,
     sync(); onPlane?.(); render(); onChange();
   };
   return {
+    /** The live Three.js clipping plane, for helper overlays (such as flow ribbons and chamber volume) that cut alongside the model. */
+    plane,
     /** The plane while the model is cut open, as plain numbers; the cut keeps what is on the side the normal points to. */
     cut: () => enabled ? { normal: plane.normal.toArray(), constant: plane.constant } : undefined,
     snapshot: () => ({ sectionEnabled: enabled, sectionAxis: axis, sectionPosition: position, sectionFlipped: flipped, sectionRecommended: recommended?.label, sectionOnRecommended: onRecommended }),

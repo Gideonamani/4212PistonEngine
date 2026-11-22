@@ -126,6 +126,18 @@
       "drive_id": "1RiZlqLnFrkd0XnZML6G3jV4aZa5ESAny",
       "bytes": 17279707,
       "sha256": "d1ea5964ae650364f8c89d5157f60fe5f78ca7b5c45e29c1c5d605774279e62d"
+    },
+    {
+      "path": "web/diesel-cylinder.glb.gz",
+      "drive_id": "1SHVytN10ek3airyQXugKcCGGd4rs2EoL",
+      "bytes": 506275,
+      "sha256": "9a9977b7e04c87e1a4ab6d425f3b4123312bfa9eb99c496660e6a9e6d6a49d25"
+    },
+    {
+      "path": "web/two-stroke-cylinder.glb.gz",
+      "drive_id": "1fXqWdCHwd_BIRXRWirUdL66JSDLw8ID8",
+      "bytes": 134999,
+      "sha256": "6245c759e7872f867f40f861ea52bafc899d916df2e396ade832c47cf8d6a8e4"
     }
   ],
   "history_policy": "New unpublished accessory commits exclude model binaries. Existing published history retained; native CAD and exported GLBs are no longer tracked going forward.",

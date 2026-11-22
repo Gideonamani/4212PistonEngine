@@ -357,6 +357,18 @@
         "path": "explore-merlin-iii-operating-study-4.webp",
         "credit": "Rendered from the app's Merlin III illustrative operating teaching study (inside view)",
         "license": "Course material"
+      },
+      "diesel-cylinder": {
+        "kind": "render",
+        "path": "explore-diesel-cylinder.webp",
+        "credit": "Rendered from the app's illustrative 4-stroke aircraft diesel cylinder teaching model",
+        "license": "Course material"
+      },
+      "two-stroke-cylinder": {
+        "kind": "render",
+        "path": "explore-two-stroke-cylinder.webp",
+        "credit": "Rendered from the app's illustrative 2-stroke loop-scavenged cylinder teaching model",
+        "license": "Course material"
       }
     }
   },

@@ -14,6 +14,7 @@ type ExploreControlsProps = {
   onClose: () => void;
   showPartCard?: boolean;
   onToggleShowPartCard?: () => void;
+  onOpenCycleSplit?: () => void;
   /** Under the model (below `lg`) the drawer's height can be dragged from the bar along its top edge. */
   drawerRef?: React.RefObject<HTMLElement | null>;
   drawer?: ReturnType<typeof useDrawerHeight>;
@@ -31,7 +32,7 @@ const ABOUT_CHOICES = ['open', 'closed'] as const;
  * Under the model, a bar along the panel's top edge drags it taller or shorter (the height is remembered on this device).
  * A model with no tabs (a scan with only a guided tour) still gets its description here.
  */
-export function ExploreControls({ viewer, controls, onClose, showPartCard, onToggleShowPartCard, drawerRef, drawer }: ExploreControlsProps) {
+export function ExploreControls({ viewer, controls, onClose, showPartCard, onToggleShowPartCard, onOpenCycleSplit, drawerRef, drawer }: ExploreControlsProps) {
   const { definition, snapshot } = viewer;
   const hint = useViewerHint(viewer);
   const [aboutChoice, chooseAbout] = useStoredChoice<(typeof ABOUT_CHOICES)[number]>(ABOUT_KEY, ABOUT_CHOICES);
@@ -78,6 +79,7 @@ export function ExploreControls({ viewer, controls, onClose, showPartCard, onTog
         controls={controls}
         showPartCard={showPartCard}
         onToggleShowPartCard={onToggleShowPartCard}
+        onOpenCycleSplit={onOpenCycleSplit}
       />
     </div>}
     </div>

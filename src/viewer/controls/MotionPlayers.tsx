@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronDown, Pause, Play, Repeat, RotateCcw } from 'lucide-react';
+import { ChevronDown, GripVertical, Pause, Play, Repeat, RotateCcw, X } from 'lucide-react';
 import type { ViewerFeatures, ViewerSnapshot } from '../types';
 
 const SPEEDS = [0.25, 0.5, 1, 2];
@@ -8,6 +8,11 @@ const speedName = (speed: number) => `${speed}×`;
 type MotionPlayerProps = {
   features: ViewerFeatures;
   snapshot: ViewerSnapshot;
+  /** Explore: lets the player be dragged anywhere over the model (see useFloatingPosition). */
+  move?: { grip: React.HTMLAttributes<HTMLElement>; dragArea: React.HTMLAttributes<HTMLElement> };
+  /** Dismisses the floating player without opening the controls panel. */
+  onClose?: () => void;
+  className?: string;
 };
 
 /**
@@ -16,13 +21,15 @@ type MotionPlayerProps = {
  * Row 2: Completion status scrubber slider with milestone ticks.
  * Row 3: Action controls on a single line: Reset, Play/Pause hero, Loop toggle, and Speed in-place toggle.
  */
-export function CompactMotionPlayer({ features, snapshot }: MotionPlayerProps) {
+export function CompactMotionPlayer({ features, snapshot, move, onClose, className = '' }: MotionPlayerProps) {
   const motion = features.motion;
   if (!motion) return null;
 
   const saved = features.savedMotions;
   const isCrank = !saved || !snapshot.savedMotionId || snapshot.savedMotionId === 'operating';
   const angle = snapshot.angle ?? 0;
+  const isTwoStroke = snapshot.cycleType === 'two-stroke';
+  const maxAngle = isTwoStroke ? 360 : 720;
   const progress = snapshot.motionProgress ?? 0;
   const playing = Boolean(snapshot.playing);
   const loop = Boolean(snapshot.motionLoop);
@@ -45,12 +52,27 @@ export function CompactMotionPlayer({ features, snapshot }: MotionPlayerProps) {
     if (!isCrank && saved) saved.setProgress(0);
   };
 
+  const positionClass = move
+    ? 'w-full'
+    : 'absolute inset-x-3 bottom-3 z-20 sm:left-3 sm:right-auto sm:w-[22.5rem] sm:max-w-[calc(100%-1.5rem)]';
+
   return <div
-    className="absolute inset-x-3 bottom-3 z-20 rounded-2xl border border-white/10 bg-panel/95 p-3.5 shadow-2xl backdrop-blur-md sm:left-3 sm:right-auto sm:w-[22.5rem] sm:max-w-[calc(100%-1.5rem)]"
+    className={`${positionClass} rounded-2xl border border-white/10 bg-panel/95 p-3.5 shadow-2xl backdrop-blur-md ${className}`}
     aria-label="Floating motion player"
   >
-    {/* ROW 1: ANIMATION TITLE & PROGRESS VALUE */}
-    <div className="flex items-center justify-between gap-3 pb-1.5">
+    {/* ROW 1: DRAG HANDLE, ANIMATION TITLE, PROGRESS VALUE & CLOSE */}
+    <div {...move?.dragArea} className={`flex items-center justify-between gap-2 pb-1.5 ${move ? 'cursor-grab select-none active:cursor-grabbing' : ''}`}>
+      {move && (
+        <button
+          type="button"
+          {...move.grip}
+          aria-label="Move floating motion player"
+          title="Drag to move player. Arrow keys nudge it; Home or double-click resets its position."
+          className="-ml-1.5 flex h-7 w-5 shrink-0 cursor-grab items-center justify-center rounded text-slate-500 outline-none hover:text-slate-200 focus-visible:ring-2 focus-visible:ring-teal-300 active:cursor-grabbing"
+        >
+          <GripVertical className="h-4 w-4" aria-hidden="true" />
+        </button>
+      )}
       <div className="min-w-0 flex-1">
         {saved && saved.items.length > 1 ? (
           <div className="group relative inline-flex max-w-full items-center gap-1 cursor-pointer rounded has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-teal-300">
@@ -79,6 +101,18 @@ export function CompactMotionPlayer({ features, snapshot }: MotionPlayerProps) {
       </div>
 
       <output className="shrink-0 font-mono text-xs font-bold text-teal-300">{reading}</output>
+
+      {onClose && (
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Hide floating motion player"
+          title="Hide floating motion player"
+          className="-mr-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-slate-400 outline-none hover:bg-slate-800 hover:text-white focus-visible:ring-2 focus-visible:ring-teal-300"
+        >
+          <X className="h-3.5 w-3.5" aria-hidden="true" />
+        </button>
+      )}
     </div>
 
     {/* ROW 2: SCRUBBER SLIDER */}
@@ -87,7 +121,7 @@ export function CompactMotionPlayer({ features, snapshot }: MotionPlayerProps) {
         aria-label={isCrank ? 'Crank angle' : 'Assembly motion progress'}
         type="range"
         min="0"
-        max={isCrank ? 720 : 100}
+        max={isCrank ? maxAngle : 100}
         step={isCrank ? 1 : 0.1}
         value={isCrank ? angle : progress}
         onChange={(event) => (isCrank ? motion.setAngle(Number(event.target.value)) : saved?.setProgress(Number(event.target.value)))}
@@ -95,7 +129,9 @@ export function CompactMotionPlayer({ features, snapshot }: MotionPlayerProps) {
       />
       <div className="flex justify-between font-mono text-[10px] text-slate-400 select-none px-0.5 -mt-1" aria-hidden="true">
         {isCrank ? (
-          <><span>0°</span><span>180°</span><span>360°</span><span>540°</span><span>720°</span></>
+          isTwoStroke
+            ? <><span>0°</span><span>90°</span><span>180°</span><span>270°</span><span>360°</span></>
+            : <><span>0°</span><span>180°</span><span>360°</span><span>540°</span><span>720°</span></>
         ) : (
           <><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></>
         )}

@@ -433,5 +433,73 @@
     ],
     "contractUrl": "./accessory-drives-contract.json?v=77eb48c1d8ff",
     "lessonControls": true
+  },
+  {
+    "id": "diesel-cylinder",
+    "label": "4-stroke aircraft diesel cylinder",
+    "shortLabel": "Aircraft diesel cylinder",
+    "adapter": "operating-cylinder",
+    "headerLabel": "AIRCRAFT DIESEL · 17.5:1 CR",
+    "summary": "Illustrative 4-stroke aircraft diesel cylinder with omega bowl, central direct injector and glow plug. Teaching schematic.",
+    "capabilities": [
+      {
+        "kind": "animated",
+        "note": "Diesel cycle and direct injection"
+      },
+      {
+        "kind": "section",
+        "note": "Live section view"
+      },
+      {
+        "kind": "parts",
+        "note": "23 named components"
+      }
+    ],
+    "previewUrl": "./model-previews/diesel-cylinder.webp",
+    "sources": [
+      {
+        "localUrl": "./diesel-cylinder.glb.gz?v=ceb3ae5465ce",
+        "compressed": true,
+        "transferBytes": 506275,
+        "decodedBytes": 973096,
+        "driveId": "1SHVytN10ek3airyQXugKcCGGd4rs2EoL"
+      }
+    ],
+    "componentCatalogueUrl": "./diesel-cylinder-components.json?v=ceb3ae5465ce",
+    "motionProfileUrl": "./diesel-cylinder-motion.json?v=ceb3ae5465ce"
+  },
+  {
+    "id": "two-stroke-cylinder",
+    "label": "2-stroke loop-scavenged cylinder",
+    "shortLabel": "2-stroke cylinder",
+    "adapter": "operating-cylinder",
+    "headerLabel": "2-STROKE · LOOP-SCAVENGED",
+    "summary": "Illustrative valveless 2-stroke cylinder with crankcase pump, piston-timed ports and twin transfer ducts. Teaching schematic.",
+    "capabilities": [
+      {
+        "kind": "animated",
+        "note": "360° 2-stroke port scavenging"
+      },
+      {
+        "kind": "section",
+        "note": "Live section view"
+      },
+      {
+        "kind": "parts",
+        "note": "14 named components"
+      }
+    ],
+    "previewUrl": "./model-previews/two-stroke-cylinder.webp",
+    "sources": [
+      {
+        "localUrl": "./two-stroke-cylinder.glb.gz?v=04c952c04c31",
+        "compressed": true,
+        "transferBytes": 134999,
+        "decodedBytes": 429340,
+        "driveId": "1fXqWdCHwd_BIRXRWirUdL66JSDLw8ID8"
+      }
+    ],
+    "componentCatalogueUrl": "./two-stroke-cylinder-components.json?v=04c952c04c31",
+    "motionProfileUrl": "./two-stroke-cylinder-motion.json?v=04c952c04c31"
   }
 ]

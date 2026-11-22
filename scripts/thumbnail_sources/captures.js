@@ -29,6 +29,8 @@ const THUMBNAIL_CAPTURES = [
   { model: 'hydraulic-tappet', name: 'explore-hydraulic-tappet', view: { savedMotionId: 'Exploded overview', motionProgress: 0 }, options: { ...TILE, exposure: 0.3 } },
   { model: 'oil-pump', name: 'explore-oil-pump', view: { savedMotionId: 'Exploded overview', motionProgress: 0 }, options: { ...TILE, exposure: 0.3 } },
   { model: 'accessory-drives', name: 'explore-accessory-drives', view: { savedMotionId: 'Operating mechanism', motionProgress: 0 }, options: { ...TILE } },
+  { model: 'diesel-cylinder', name: 'explore-diesel-cylinder', view: { initialAngle: 375, initialCycle: true }, options: { ...TILE } },
+  { model: 'two-stroke-cylinder', name: 'explore-two-stroke-cylinder', view: { initialAngle: 155, initialCycle: true }, options: { ...TILE } },
   // The course banners (1000 x 500) of the first and internal-mechanisms courses; the other banners sit beside their lessons below. The tappet and the
   // oil pump are shifted off-centre by sources.json to share one banner.
   { model: 'cylinder', name: 'banner-cylinder', view: { initialAngle: 250, initialCycle: true }, options: { width: 1000, height: 500, orbit: [-70, -14], zoom: 0.85 } },

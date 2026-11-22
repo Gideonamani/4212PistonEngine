@@ -9,8 +9,8 @@ export function groupComponentIds(components, group) {
 export function cylinderPartGroup(id) {
   if (id.startsWith('Intake') || id === 'FuelDischargeNozzle') return 'intake';
   if (id.startsWith('Exhaust')) return 'exhaust';
-  if (/Spark/.test(id)) return 'ignition';
-  if (/^(Piston|FloatingPin|PinPlug)/.test(id)) return 'piston';
-  if (/^Cylinder/.test(id)) return 'structure';
+  if (/Spark|DirectFuelInjector|GlowPlug/.test(id)) return 'ignition';
+  if (/^(Piston|FloatingPin|PinPlug|WristPin|CompressionRing|OilControlRing)/.test(id)) return 'piston';
+  if (/^(Cylinder|CoolingJacket|ValveCover|RockerShaft|CrankcaseHousing)/.test(id)) return 'structure';
   return 'crank';
 }

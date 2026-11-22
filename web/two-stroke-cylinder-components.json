@@ -1,0 +1,119 @@
+{
+  "schema_version": "0.1-illustrative",
+  "status": "illustrative teaching model; not OEM manufacturer CAD",
+  "engine_variant": "Illustrative 2-stroke loop-scavenged single cylinder (76 x 64 mm, 9.5:1 CR)",
+  "parts": [
+    {
+      "definition_id": "two-stroke-cylinder:cad:CrankThrow",
+      "cad_stable_id": "CrankThrow",
+      "display_name": "Full-circle 2-stroke crankshaft",
+      "function": "Full-circle stuffed crank discs minimize crankcase dead volume so the descending piston strongly pre-compresses fresh charge beneath it.",
+      "function_source_summary": "Illustrative 2-stroke teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "two-stroke-cylinder:cad:ConnectingRodBody",
+      "cad_stable_id": "ConnectingRodBody",
+      "display_name": "Connecting rod body",
+      "function": "Transfers combustion force from the piston to the crankpin on every single crankshaft revolution (once per 360°).",
+      "function_source_summary": "Illustrative 2-stroke teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "two-stroke-cylinder:cad:ConnectingRodCap",
+      "cad_stable_id": "ConnectingRodCap",
+      "display_name": "Connecting rod big-end cap",
+      "function": "Secures the lower connecting rod bearing around the crankshaft pin.",
+      "function_source_summary": "Illustrative 2-stroke teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "two-stroke-cylinder:cad:PistonBody",
+      "cad_stable_id": "PistonBody",
+      "display_name": "Port-timing 2-stroke piston",
+      "function": "Acts as both compressor and valveless rotary/slide valve: its crown times the exhaust and transfer ports while its long skirt times the crankcase intake port.",
+      "function_source_summary": "Illustrative 2-stroke teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "two-stroke-cylinder:cad:WristPin",
+      "cad_stable_id": "WristPin",
+      "display_name": "Piston wrist pin",
+      "function": "Connects the piston to the connecting rod small end.",
+      "function_source_summary": "Illustrative 2-stroke teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "two-stroke-cylinder:cad:CompressionRing1",
+      "cad_stable_id": "CompressionRing1",
+      "display_name": "Top compression ring",
+      "function": "Seals combustion pressure above the piston and rides cleanly across the machined cylinder wall ports.",
+      "function_source_summary": "Illustrative 2-stroke teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "two-stroke-cylinder:cad:CompressionRing2",
+      "cad_stable_id": "CompressionRing2",
+      "display_name": "Second compression ring",
+      "function": "Provides secondary combustion gas sealing (2-stroke engines omit an oil-control ring because oil is premixed with the incoming fuel charge).",
+      "function_source_summary": "Illustrative 2-stroke teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "two-stroke-cylinder:cad:CrankcaseHousing",
+      "cad_stable_id": "CrankcaseHousing",
+      "display_name": "Sealed 2-stroke crankcase",
+      "function": "Forms a sealed pumping chamber beneath the piston: vacuum draws fresh premix in on the upstroke and positive pressure (~1.35× P₁) pumps it up the transfer ducts on the downstroke.",
+      "function_source_summary": "Illustrative 2-stroke teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "two-stroke-cylinder:cad:CylinderBarrel",
+      "cad_stable_id": "CylinderBarrel",
+      "display_name": "Ported finned cylinder barrel",
+      "function": "Valveless air-cooled barrel housing the lower intake port, tall exhaust port, and twin side transfer ducts that loop fresh charge up into the combustion dome.",
+      "function_source_summary": "Illustrative 2-stroke teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "two-stroke-cylinder:cad:IntakeManifold",
+      "cad_stable_id": "IntakeManifold",
+      "display_name": "Carburettor intake stub",
+      "function": "Delivers premixed air, fuel, and 2-stroke lubricating oil into the crankcase whenever the rising piston skirt uncovers the intake port.",
+      "function_source_summary": "Illustrative 2-stroke teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "two-stroke-cylinder:cad:ExhaustManifold",
+      "cad_stable_id": "ExhaustManifold",
+      "display_name": "Exhaust header stub",
+      "function": "Discharges hot blowdown exhaust gases as soon as the descending piston crown uncovers the taller exhaust port.",
+      "function_source_summary": "Illustrative 2-stroke teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "two-stroke-cylinder:cad:CylinderHead",
+      "cad_stable_id": "CylinderHead",
+      "display_name": "Finned 2-stroke cylinder head",
+      "function": "Simple, lightweight valveless head with radial cooling fins, a squish combustion dome, and a central spark plug bore.",
+      "function_source_summary": "Illustrative 2-stroke teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "two-stroke-cylinder:cad:SparkPlugBody",
+      "cad_stable_id": "SparkPlugBody",
+      "display_name": "Central spark plug body",
+      "function": "Fires an electric spark at the combustion dome once every single crankshaft revolution (every 360°).",
+      "function_source_summary": "Illustrative 2-stroke teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "two-stroke-cylinder:cad:SparkPlugInsulator",
+      "cad_stable_id": "SparkPlugInsulator",
+      "display_name": "Spark plug ceramic insulator",
+      "function": "Insulates high-voltage ignition pulses delivered to the central electrode.",
+      "function_source_summary": "Illustrative 2-stroke teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    }
+  ]
+}

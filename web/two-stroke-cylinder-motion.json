@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "cycle_type": "two-stroke",
+  "asset_sha256": "04c952c04c3193ccdd28c8b7ea2c1e31012bfc1f320fe0269b190ad4a1ca6e7f",
+  "bind_angle_deg": 0.0,
+  "radius_m": 0.032,
+  "rod_length_m": 0.112,
+  "groups": {
+    "CrankThrow": "Crank",
+    "ConnectingRodBody": "ConnectingRod",
+    "ConnectingRodCap": "ConnectingRod",
+    "PistonBody": "Piston",
+    "WristPin": "Piston",
+    "CompressionRing1": "Piston",
+    "CompressionRing2": "Piston",
+    "CrankcaseHousing": "Cylinder",
+    "CylinderBarrel": "Cylinder",
+    "IntakeManifold": "Cylinder",
+    "ExhaustManifold": "Cylinder",
+    "CylinderHead": "Cylinder",
+    "SparkPlugBody": "Cylinder",
+    "SparkPlugInsulator": "Cylinder"
+  },
+  "scope": "Illustrative valveless 2-stroke loop-scavenged single operating cylinder (76 x 64 mm, 9.5:1 geometric CR, piston-timed ports, twin transfer ducts, crankcase pre-compression, central spark plug). Teaching demonstration only; not OEM CAD or CFD.",
+  "cycle_landmarks": {
+    "ports": {
+      "intake": {
+        "inner_origin_mm": [90.0, -38.0, 0.0],
+        "outward_axis": [0.0, -1.0, 0.0],
+        "outer_endpoint_mm": [90.0, -80.0, 0.0],
+        "radius_mm": 9.0,
+        "feature": "CrankcaseIntakePort",
+        "geometry_status": "Illustrative piston-skirt-timed port",
+        "valve": {
+          "origin_mm": [90.0, -38.0, 0.0],
+          "axis": [1.0, 0.0, 0.0],
+          "head_radius_mm": 9.0
+        }
+      },
+      "exhaust": {
+        "inner_origin_mm": [120.5, 38.0, 0.0],
+        "outward_axis": [0.0, 1.0, 0.0],
+        "outer_endpoint_mm": [120.5, 82.0, 0.0],
+        "radius_mm": 10.5,
+        "feature": "ExhaustPort",
+        "geometry_status": "Illustrative piston-crown-timed port",
+        "valve": {
+          "origin_mm": [120.5, 38.0, 0.0],
+          "axis": [1.0, 0.0, 0.0],
+          "head_radius_mm": 10.5
+        }
+      }
+    },
+    "chamber": {
+      "radius_mm": 34.0,
+      "bore_radius_mm": 34.0,
+      "front_x_mm": 182.0,
+      "piston_front_offset_mm": 28.0,
+      "piston_margin_mm": 1.0,
+      "display_status": "Illustrative 2-stroke upper combustion chamber"
+    },
+    "spark_plug": {
+      "tip_mm": [184.0, 0.0, 0.0]
+    },
+    "transfer_ducts": {
+      "z_offset_mm": 44.5,
+      "lower_x_mm": 54.0,
+      "window_x_mm": 115.0,
+      "loop_apex_x_mm": 162.0
+    },
+    "crankcase": {
+      "center_x_mm": 12.0,
+      "radius_mm": 48.0,
+      "length_mm": 52.0
+    },
+    "scope": "Illustrative 2-stroke crankcase intake, pre-compression, twin loop-scavenging transfer ducts, exhaust blowdown, and central 360-degree spark; not CFD."
+  }
+}

@@ -17,6 +17,7 @@ export function ControlsBody({
   className = '',
   showPartCard,
   onToggleShowPartCard,
+  onOpenCycleSplit,
 }: {
   id: PanelId;
   viewer: ModelViewerState;
@@ -24,6 +25,7 @@ export function ControlsBody({
   className?: string;
   showPartCard?: boolean;
   onToggleShowPartCard?: () => void;
+  onOpenCycleSplit?: () => void;
 }) {
   const { definition, features, snapshot } = viewer;
   if (!features) return null;
@@ -46,7 +48,7 @@ export function ControlsBody({
       currentFocusMode={spotlight.current}
       onChooseFocusMode={spotlight.choose}
     />}
-    {id === 'motion' && <MotionPanel features={features} snapshot={snapshot} host={controls.host} player={controls.player} />}
+    {id === 'motion' && <MotionPanel features={features} snapshot={snapshot} host={controls.host} player={controls.player} onOpenCycleSplit={onOpenCycleSplit} />}
     {id === 'spotlight' && (controls.host === 'explore'
       ? <SpotlightPanel
           current={spotlight.current}
