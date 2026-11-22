@@ -68,6 +68,16 @@ export type ViewerSnapshot = {
   assemblyNotice?: string;
   cycleEnabled?: boolean;
   cycleNote?: string;
+  /** Which thermodynamic cycle this operating cylinder models ('otto', 'diesel', or 'two-stroke'). */
+  cycleType?: 'otto' | 'diesel' | 'two-stroke';
+  /** Whether the operating cylinder runs Ideal (air-standard) or Practical (finite burn, valve overlap) cycle cues. */
+  cycleMode?: 'ideal' | 'practical';
+  /** How the enclosing cylinder walls are revealed while air–fuel flow cues are active. */
+  cycleReveal?: 'ghost' | 'section' | 'solid';
+  /** Fuel delivery comparison: GTSIO-520-H continuous port injection vs illustrative upstream carburetted premix. */
+  cycleFuelSystem?: 'injected' | 'carburetted';
+  /** Toggleable air–fuel flow sub-layers. */
+  cycleLayers?: { air: boolean; fuel: boolean; chamber: boolean };
   sectionEnabled?: boolean;
   sectionAxis?: SectionAxis;
   sectionPosition?: number;
@@ -144,6 +154,10 @@ export type ViewerFeatures = {
   };
   cycleCues?: {
     setEnabled: (enabled: boolean) => void;
+    setMode?: (mode: 'ideal' | 'practical') => void;
+    setReveal?: (reveal: 'ghost' | 'section' | 'solid') => void;
+    setFuelSystem?: (system: 'injected' | 'carburetted') => void;
+    setLayer?: (layer: 'air' | 'fuel' | 'chamber', enabled: boolean) => void;
   };
   section?: {
     setEnabled: (enabled: boolean) => void;

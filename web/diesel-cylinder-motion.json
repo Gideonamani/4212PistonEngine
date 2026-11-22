@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "cycle_type": "diesel",
+  "asset_sha256": "ceb3ae5465ceaa45d3b2c18be07f329a0d33dc1c7a937fbe196735447a1971ee",
+  "bind_angle_deg": 0.0,
+  "radius_m": 0.046,
+  "rod_length_m": 0.148,
+  "groups": {
+    "CrankThrow": "Crank",
+    "ConnectingRodBody": "ConnectingRod",
+    "ConnectingRodCap": "ConnectingRod",
+    "PistonBody": "Piston",
+    "WristPin": "Piston",
+    "CompressionRing1": "Piston",
+    "CompressionRing2": "Piston",
+    "OilControlRing": "Piston",
+    "CylinderBarrel": "Cylinder",
+    "CoolingJacket": "Cylinder",
+    "CylinderHead": "Cylinder",
+    "ValveCover": "Cylinder",
+    "DirectFuelInjector": "Cylinder",
+    "GlowPlug": "Cylinder",
+    "IntakeValve": "Cylinder",
+    "IntakeSpringRetainer": "Cylinder",
+    "IntakeOuterSpring": "Cylinder",
+    "ExhaustValve": "Cylinder",
+    "ExhaustSpringRetainer": "Cylinder",
+    "ExhaustOuterSpring": "Cylinder",
+    "RockerShaft": "Cylinder",
+    "IntakeRockerArm": "Cylinder",
+    "ExhaustRockerArm": "Cylinder"
+  },
+  "scope": "Illustrative modern 4-stroke aircraft diesel single operating cylinder (83 x 92 mm, 17.5:1 CR, central common-rail direct injection, omega bowl, glow plug). Teaching demonstration only; not OEM CAD or CFD.",
+  "valves": {
+    "schema_version": 1,
+    "coordinates": "FreeCAD world millimetres",
+    "status": "Illustrative overhead valve-train motion contract",
+    "cycle": {
+      "degrees": 720,
+      "maximum_lift_mm": 7,
+      "timing": "Illustrative 4-stroke overhead valve lift (Ideal and Practical overlap modes)"
+    },
+    "spring_scale_targets": {
+      "IntakeOuterSpring": {
+        "train": "intake",
+        "seat_x_mm": 306.0,
+        "free_length_mm": 20.0,
+        "maximum_lift_mm": 7.0
+      },
+      "ExhaustOuterSpring": {
+        "train": "exhaust",
+        "seat_x_mm": 306.0,
+        "free_length_mm": 20.0,
+        "maximum_lift_mm": 7.0
+      }
+    },
+    "trains": {
+      "intake": {
+        "valve_axis": [1.0, 0.0, 0.0],
+        "rocker_pivot_mm": [341.0, -22.5, -24.0],
+        "rocker_axis": [0.0, 1.0, 0.0],
+        "contact_samples": [
+          { "lift_mm": 0.0, "rocker_angle_deg": 0.0 },
+          { "lift_mm": 1.0, "rocker_angle_deg": -2.3859 },
+          { "lift_mm": 2.0, "rocker_angle_deg": -4.7636 },
+          { "lift_mm": 3.0, "rocker_angle_deg": -7.125 },
+          { "lift_mm": 4.0, "rocker_angle_deg": -9.4623 },
+          { "lift_mm": 5.0, "rocker_angle_deg": -11.7683 },
+          { "lift_mm": 6.0, "rocker_angle_deg": -14.0362 },
+          { "lift_mm": 7.0, "rocker_angle_deg": -16.2602 }
+        ]
+      },
+      "exhaust": {
+        "valve_axis": [1.0, 0.0, 0.0],
+        "rocker_pivot_mm": [341.0, 22.5, -24.0],
+        "rocker_axis": [0.0, 1.0, 0.0],
+        "contact_samples": [
+          { "lift_mm": 0.0, "rocker_angle_deg": 0.0 },
+          { "lift_mm": 1.0, "rocker_angle_deg": -2.3859 },
+          { "lift_mm": 2.0, "rocker_angle_deg": -4.7636 },
+          { "lift_mm": 3.0, "rocker_angle_deg": -7.125 },
+          { "lift_mm": 4.0, "rocker_angle_deg": -9.4623 },
+          { "lift_mm": 5.0, "rocker_angle_deg": -11.7683 },
+          { "lift_mm": 6.0, "rocker_angle_deg": -14.0362 },
+          { "lift_mm": 7.0, "rocker_angle_deg": -16.2602 }
+        ]
+      }
+    }
+  },
+  "cycle_landmarks": {
+    "ports": {
+      "intake": {
+        "inner_origin_mm": [266.0, -22.5, 0.0],
+        "outward_axis": [0.0, -1.0, 0.0],
+        "outer_endpoint_mm": [266.0, -66.0, 0.0],
+        "radius_mm": 13.5,
+        "feature": "IntakeCrossPort",
+        "geometry_status": "Illustrative CAD passage",
+        "valve": {
+          "origin_mm": [230.6, -22.5, 0.0],
+          "axis": [1.0, 0.0, 0.0],
+          "head_radius_mm": 13.4
+        }
+      },
+      "exhaust": {
+        "inner_origin_mm": [266.0, 22.5, 0.0],
+        "outward_axis": [0.0, 1.0, 0.0],
+        "outer_endpoint_mm": [266.0, 66.0, 0.0],
+        "radius_mm": 12.0,
+        "feature": "ExhaustCrossPort",
+        "geometry_status": "Illustrative CAD passage",
+        "valve": {
+          "origin_mm": [230.6, 22.5, 0.0],
+          "axis": [1.0, 0.0, 0.0],
+          "head_radius_mm": 12.2
+        }
+      }
+    },
+    "chamber": {
+      "radius_mm": 36.0,
+      "bore_radius_mm": 36.0,
+      "front_x_mm": 229.0,
+      "piston_front_offset_mm": 34.0,
+      "bowl_depth_mm": 13.0,
+      "piston_margin_mm": 1.0,
+      "display_status": "Illustrative diesel chamber and omega bowl cue region"
+    },
+    "injector": {
+      "tip_mm": [229.6, 0.0, 0.0],
+      "axis": [-1.0, 0.0, 0.0],
+      "jets": 6,
+      "spray_cone_half_angle_deg": 62
+    },
+    "glow_plug": {
+      "tip_mm": [229.8, 0.0, 26.0]
+    },
+    "scope": "Illustrative diesel intake pure-air, direct 6-jet fuel injection, compression heating, and auto-ignition flame schematic; not CFD."
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "schema_version": "0.1-illustrative",
+  "status": "illustrative teaching model; not OEM manufacturer CAD",
+  "engine_variant": "Illustrative 4-stroke aircraft diesel (83 x 92 mm, 17.5:1 CR)",
+  "parts": [
+    {
+      "definition_id": "diesel-cylinder:cad:CrankThrow",
+      "cad_stable_id": "CrankThrow",
+      "display_name": "Forged crankshaft throw",
+      "function": "Converts high diesel combustion thrust from the connecting rod into rotary shaft torque; counterweights balance reciprocating forces.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:ConnectingRodBody",
+      "cad_stable_id": "ConnectingRodBody",
+      "display_name": "Connecting rod body",
+      "function": "Heavy-duty forged link transferring peak compression-ignition gas loads from the wrist pin to the crankpin.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:ConnectingRodCap",
+      "cad_stable_id": "ConnectingRodCap",
+      "display_name": "Connecting rod big-end cap",
+      "function": "Clamps the lower half of the connecting rod big end around the crankshaft pin.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:PistonBody",
+      "cad_stable_id": "PistonBody",
+      "display_name": "Diesel omega-bowl piston",
+      "function": "Compresses pure air to 17.5:1 into its toroidal omega combustion bowl, creating intense swirl and squish so directly injected fuel auto-ignites evenly.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:WristPin",
+      "cad_stable_id": "WristPin",
+      "display_name": "Piston wrist pin (gudgeon pin)",
+      "function": "Articulates the piston to the connecting rod small end under high diesel firing pressures.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:CompressionRing1",
+      "cad_stable_id": "CompressionRing1",
+      "display_name": "Top compression ring",
+      "function": "Seals extreme 17.5:1 compression and firing pressures in the combustion chamber and transfers crown heat to the cooled liner.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:CompressionRing2",
+      "cad_stable_id": "CompressionRing2",
+      "display_name": "Second compression (scraper) ring",
+      "function": "Provides secondary gas sealing behind the top ring and scrapes excess oil film down the bore.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:OilControlRing",
+      "cad_stable_id": "OilControlRing",
+      "display_name": "Oil control ring",
+      "function": "Meters lubricating oil along the honed cylinder liner while preventing oil from entering the combustion chamber.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:CylinderBarrel",
+      "cad_stable_id": "CylinderBarrel",
+      "display_name": "Honed cylinder liner",
+      "function": "Precision-bored steel liner guiding the piston and sealing combustion pressure inside the liquid-cooling jacket.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:CoolingJacket",
+      "cad_stable_id": "CoolingJacket",
+      "display_name": "Liquid-cooling cylinder jacket",
+      "function": "Surrounds the liner with circulating coolant (typical of modern aircraft diesels such as CD-135 / AE300) for uniform thermal control without air-cooling fins.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:CylinderHead",
+      "cad_stable_id": "CylinderHead",
+      "display_name": "Direct-injection cylinder head",
+      "function": "Seals the top of the bore with a flat fire deck and carries the intake/exhaust ports, overhead valve guides, central direct fuel injector, and cold-start glow plug (no spark plugs).",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:ValveCover",
+      "cad_stable_id": "ValveCover",
+      "display_name": "Overhead valve-train cover",
+      "function": "Encloses and retains lubricating oil around the overhead rocker shaft, rocker arms, and valve springs while leaving access to the central injector and glow plug.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:DirectFuelInjector",
+      "cad_stable_id": "DirectFuelInjector",
+      "display_name": "Central common-rail direct fuel injector",
+      "function": "Sprays ultra-high-pressure atomized Jet-A / diesel fuel jets directly into the superheated compressed air inside the piston omega bowl near TDC to initiate compression ignition.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:GlowPlug",
+      "cad_stable_id": "GlowPlug",
+      "display_name": "Cold-start glow plug",
+      "function": "Electrically heats the combustion chamber perimeter before cold starting only; once running, diesel combustion is purely compression-ignited without any spark.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:IntakeValve",
+      "cad_stable_id": "IntakeValve",
+      "display_name": "Overhead intake valve",
+      "function": "Opens during the intake stroke to admit pure, unthrottled air into the cylinder (no fuel is mixed in the intake port).",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:IntakeSpringRetainer",
+      "cad_stable_id": "IntakeSpringRetainer",
+      "display_name": "Intake valve spring retainer",
+      "function": "Locks the upper end of the intake valve spring to the valve stem.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:IntakeOuterSpring",
+      "cad_stable_id": "IntakeOuterSpring",
+      "display_name": "Intake valve spring",
+      "function": "Returns and seats the intake valve tightly against high diesel compression pressure.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:ExhaustValve",
+      "cad_stable_id": "ExhaustValve",
+      "display_name": "Overhead exhaust valve",
+      "function": "Opens near BDC and stays open through the exhaust stroke so the rising piston expels burnt combustion gases.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:ExhaustSpringRetainer",
+      "cad_stable_id": "ExhaustSpringRetainer",
+      "display_name": "Exhaust valve spring retainer",
+      "function": "Locks the upper end of the exhaust valve spring to the exhaust valve stem.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:ExhaustOuterSpring",
+      "cad_stable_id": "ExhaustOuterSpring",
+      "display_name": "Exhaust valve spring",
+      "function": "Returns and seats the exhaust valve promptly after the exhaust stroke.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:RockerShaft",
+      "cad_stable_id": "RockerShaft",
+      "display_name": "Overhead rocker shaft",
+      "function": "Supports and aligns the overhead intake and exhaust rocker arms above the cylinder head.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:IntakeRockerArm",
+      "cad_stable_id": "IntakeRockerArm",
+      "display_name": "Intake rocker arm",
+      "function": "Pivots on the overhead rocker shaft to depress the intake valve stem during the intake stroke.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    },
+    {
+      "definition_id": "diesel-cylinder:cad:ExhaustRockerArm",
+      "cad_stable_id": "ExhaustRockerArm",
+      "display_name": "Exhaust rocker arm",
+      "function": "Pivots on the overhead rocker shaft to depress the exhaust valve stem during the exhaust stroke.",
+      "function_source_summary": "Illustrative aircraft diesel teaching schematic",
+      "geometry_evidence_status": "illustrative teaching geometry"
+    }
+  ]
+}

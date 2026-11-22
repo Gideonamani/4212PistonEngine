@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import type { ModelDefinition } from '../../data/modelRegistry';
 import { groupComponentIds } from '../core/component-groups.mjs';
 import { loadGltf, sourcesFromEngineContract } from '../core/assets';
+import { sha256Hex } from '../core/sha256.mjs';
 import { cloneMaterials, createSectionController, disposeObject, frameObjects, meshMaterials, partBoxes } from '../core/modelUtils';
 import { createHiddenParts } from '../core/part-visibility.mjs';
 import { focusModeOrDefault, partLook, partRole, spotlightPalette } from '../core/focus-style.mjs';
@@ -43,7 +44,7 @@ export async function createFullEngineSession(definition: ModelDefinition, conte
   const contract = await response.json();
   const sources = sourcesFromEngineContract(contract);
   const loaded = await loadGltf(sources, signal, onProgress);
-  const digest = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', loaded.bytes)), (byte) => byte.toString(16).padStart(2, '0')).join('');
+  const digest = await sha256Hex(loaded.bytes);
   if (digest !== contract.asset.sha256) throw Error('This full-engine asset does not match its published contract.');
   signal.throwIfAborted();
 

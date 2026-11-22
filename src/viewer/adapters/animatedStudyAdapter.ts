@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import type { ModelDefinition } from '../../data/modelRegistry';
 import type { AdapterContext, FocusMode, ViewerSession, ViewerSnapshot } from '../types';
 import { loadGltf } from '../core/assets';
+import { sha256Hex } from '../core/sha256.mjs';
 import { learnerPartFor, learnerSearchText, loadLearnerParts, type LearnerPart } from '../../data/learnerPartDetails';
 import { cloneMaterials, createSectionController, disposeObject, frameObjects, meshMaterials, partBoxes } from '../core/modelUtils';
 import { groupComponentIds } from '../core/component-groups.mjs';
@@ -30,7 +31,7 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   if (!response.ok) throw Error('The mechanism study contract is unavailable.');
   const contract = await response.json();
   checkStudyContract(contract);
-  const digest =Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', loaded.bytes)), byte => byte.toString(16).padStart(2, '0')).join('');
+  const digest = await sha256Hex(loaded.bytes);
   if (digest !== contract.asset_sha256) throw Error('The mechanism asset does not match its contract.');
   signal.throwIfAborted();
   const root = loaded.gltf.scene; cloneMaterials(root);

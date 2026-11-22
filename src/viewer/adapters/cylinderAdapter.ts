@@ -4,6 +4,7 @@ import { createExplodedMotion, stopsOf } from '../core/saved-motions.mjs';
 import { learnerPartFor, learnerSearchText, loadLearnerParts, type LearnerPart } from '../../data/learnerPartDetails';
 import { cylinderPartGroup, groupComponentIds } from '../core/component-groups.mjs';
 import { loadGltf } from '../core/assets';
+import { sha256Hex } from '../core/sha256.mjs';
 import { createSectionController, disposeObject, frameObjects, partBoxes } from '../core/modelUtils';
 import { createHiddenParts } from '../core/part-visibility.mjs';
 import { mechanismPose } from '../engineering/kinematics.mjs';
@@ -19,7 +20,11 @@ type MotionEntry = { mesh: THREE.Mesh; group: 'Piston' | 'ConnectingRod' | 'Cran
 
 function inspectionMaterial(id: string) {
   let color = 0x9cabb8;
-  if (/Intake|FuelDischargeNozzle/i.test(id)) color = 0x379e9b;
+  if (/DirectFuelInjector/i.test(id)) color = 0xd6b15c;
+  else if (/GlowPlug/i.test(id)) color = 0xd47a4a;
+  else if (/CoolingJacket/i.test(id)) color = 0x708ea6;
+  else if (/ValveCover/i.test(id)) color = 0x455361;
+  else if (/Intake|FuelDischargeNozzle/i.test(id)) color = 0x379e9b;
   else if (/Exhaust/i.test(id)) color = 0xbc7353;
   else if (/Seal|Gasket/i.test(id)) color = 0x364451;
   else if (/Ring|Bolt|Nut|Crank/i.test(id)) color = 0x596d80;
@@ -40,6 +45,25 @@ function groupMatrices(degrees: number, profile: any) {
 
 /** The four strokes over the crank's 720 degrees, as the cylinder's valve model counts them (the cycle starts at the intake stroke). */
 const STROKES = ['Intake', 'Compression', 'Power', 'Exhaust'].map((label, index) => ({ label, start: index * 180, end: (index + 1) * 180 }));
+const TWO_STROKE_STROKES = [
+  { label: 'Power & Scavenge', start: 0, end: 180 },
+  { label: 'Compression & Intake', start: 180, end: 360 },
+];
+
+/** Enclosing housing/barrel parts that turn translucent when air–fuel flow cues use Ghost reveal. */
+const CYCLE_GHOST_PARTS = new Set([
+  'CylinderBarrel',
+  'CoolingJacket',
+  'CylinderHead',
+  'ValveCover',
+  'CrankcaseHousing',
+  'IntakeRockerCover',
+  'ExhaustRockerCover',
+  'IntakeRockerHousing',
+  'ExhaustRockerHousing',
+  'IntakeRockerGasket',
+  'ExhaustRockerGasket',
+]);
 
 export async function createCylinderSession(definition: ModelDefinition, context: AdapterContext): Promise<ViewerSession> {
   const { runtime, signal, onChange, onProgress } = context;
@@ -58,7 +82,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
   if (savedResponse && !savedResponse.ok) throw Error('Saved cylinder motions are unavailable.');
   const savedProfile = savedResponse ? await savedResponse.json() : undefined;
   if (savedProfile && savedProfile.source_asset_sha256 !== motionProfile.asset_sha256) throw Error('Saved motions belong to a different cylinder revision.');
-  const digest = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', loaded.bytes)), (byte) => byte.toString(16).padStart(2, '0')).join('');
+  const digest = await sha256Hex(loaded.bytes);
   if (digest !== motionProfile.asset_sha256) throw Error('This cylinder asset does not match its verified motion profile.');
   signal.throwIfAborted();
 
@@ -69,7 +93,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
     if (!mesh.isMesh) return;
     let node: THREE.Object3D | null = mesh;
     let id: string | undefined;
-    while (node && !id) { id = node.userData.cad_part_id; node = node.parent; }
+    while (node && !id) { id = node.userData.cad_part_id ?? node.userData.id; node = node.parent; }
     mesh.userData.partId = id;
     meshes.push(mesh);
   });
@@ -99,6 +123,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
   const colours = spotlightPalette(runtime.theme?.());
   const highlight = new THREE.MeshStandardMaterial({ color: colours.highlightColor, emissive: 0x063e38, emissiveIntensity: 0.7, metalness: 0.45, roughness: 0.3 });
   const ghost = new THREE.MeshStandardMaterial({ color: colours.ghostColor, transparent: true, opacity: colours.ghostOpacity, depthWrite: false });
+  const ghostHighlight = new THREE.MeshStandardMaterial({ color: colours.highlightColor, emissive: colours.highlightEmissive, emissiveIntensity: 0.45, transparent: true, opacity: 0.34, depthWrite: false });
   const pale = new THREE.MeshStandardMaterial({ color: colours.paleColor, metalness: 0, roughness: 0.85 });
 
   runtime.scene.add(root);
@@ -106,14 +131,22 @@ export async function createCylinderSession(definition: ModelDefinition, context
   const bounds = new THREE.Box3().setFromObject(root);
   runtime.fit(root);
 
+  const cycleType: 'otto' | 'diesel' | 'two-stroke' =
+    motionProfile.cycle_type === 'diesel' ? 'diesel' : motionProfile.cycle_type === 'two-stroke' ? 'two-stroke' : 'otto';
+  const maxAngle = cycleType === 'two-stroke' ? 360 : 720;
   const snapshot: ViewerSnapshot = {
-    status: 'Operating cylinder ready',
+    status: cycleType === 'diesel' ? 'Diesel operating cylinder ready' : cycleType === 'two-stroke' ? '2-stroke operating cylinder ready' : 'Operating cylinder ready',
     progress: 100,
     appearance: 'inspection',
     angle: motionProfile.bind_angle_deg,
     playing: false,
     motionNote: '',
     cycleEnabled: Boolean(context.initialCycle),
+    cycleType,
+    cycleMode: 'ideal',
+    cycleReveal: 'ghost',
+    cycleFuelSystem: 'injected',
+    cycleLayers: { air: true, fuel: true, chamber: true },
     sectionEnabled: false,
     sectionAxis: 'z',
     sectionPosition: 50,
@@ -129,25 +162,41 @@ export async function createCylinderSession(definition: ModelDefinition, context
   let focusMode: FocusMode = focusModeOrDefault(context.focusMode);
   let playing = false;
   let cycleEnabled = Boolean(context.initialCycle);
+  let cycleMode: 'ideal' | 'practical' = 'ideal';
+  let cycleReveal: 'ghost' | 'section' | 'solid' = 'ghost';
+  let cycleFuelSystem: 'injected' | 'carburetted' = 'injected';
+  let cycleLayers = { air: true, fuel: true, chamber: true };
+  let lastPistonMm = 219.075;
+  let savedMotionId = 'operating';
   // A cut through a spotlit part shows it, which can change the style the spotlight is drawn in, so the spotlight is repainted when it does.
   let drawnMode: FocusMode | undefined;
   // Whether Highlight turns into X-ray while it would hide a spotlit part inside another. A lesson keeps it on; Explore turns it off,
   // because there X-ray is only ever the learner's own choice (one spring ghosting the engine and the next part not is disorienting).
   let revealInside = true;
-  const section = createSectionController(meshes, bounds, runtime.render, onChange, runtime.scene, () => { if (drawnMode && spotlightMode() !== drawnMode) applyAppearance(); });
+  let cycleVisuals: ReturnType<typeof createCycleVisuals> | undefined;
+  const section = createSectionController(meshes, bounds, runtime.render, onChange, runtime.scene, () => {
+    cycleVisuals?.setClippingPlane(section.snapshot().sectionEnabled ? section.plane : null);
+    if (drawnMode && spotlightMode() !== drawnMode) applyAppearance();
+  });
   section.startStep(context.sectionPlane);
 
   // Highlight would hide a spotlit part that sits inside another, so it is drawn as X-ray for as long as that is so.
   const spotlightMode = () => focusSet.size > 0 && revealInside
     ? effectiveFocusMode(focusMode, meshes.filter((mesh) => focusSet.has(mesh.userData.partId)), meshes.filter((mesh) => !focusSet.has(mesh.userData.partId) && (!isolated || isolatedParts.has(mesh.userData.partId)) && !hidden.has(mesh.userData.partId)), section.cut())
     : focusMode;
+  const activeEmphasisId = () => selectedId || (focusSet.size === 1 ? [...focusSet][0] : '');
+
   const applyAppearance = () => {
     const palette = spotlightPalette(runtime.theme?.());
     highlight.color.set(palette.highlightColor);
     ghost.color.set(palette.ghostColor); ghost.opacity = palette.ghostOpacity;
+    ghostHighlight.color.set(palette.highlightColor); ghostHighlight.emissive.set(palette.highlightEmissive);
     pale.color.set(palette.paleColor);
     const spotlight = focusSet.size > 0;
     const mode = drawnMode = spotlightMode();
+    // Preserve translucent cutaway walls during air–fuel flow even when a learner taps a part to inspect it
+    // (only an explicit Isolate spotlight hides the rest of the assembly).
+    const cycleGhostActive = cycleEnabled && savedMotionId === 'operating' && cycleReveal === 'ghost' && !isolated && !(spotlight && mode === 'isolate');
     snapshot.hiddenIds = hidden.ids();
     snapshot.focusActive = spotlight;
     snapshot.focusMode = focusMode;
@@ -156,19 +205,30 @@ export async function createCylinderSession(definition: ModelDefinition, context
     for (const mesh of meshes) {
       const id = mesh.userData.partId;
       const { visible, look } = partLook(mode, partRole(spotlight, focusSet.has(id)));
+      const isShell = CYCLE_GHOST_PARTS.has(id) || (cycleFuelSystem === 'carburetted' && id === 'FuelDischargeNozzle');
+      const selectedOrFocused = id === selectedId || (spotlight && focusSet.has(id));
+      const ghostedByCycle = cycleGhostActive && isShell;
       mesh.visible = visible && (!isolated || isolatedParts.has(id)) && !hidden.has(id);
-      mesh.material = id === selectedId || look === 'highlight'
-        ? highlight
-        : look === 'ghost'
-          ? ghost
-          : look === 'pale'
-            ? pale
-            : snapshot.appearance === 'cad'
-              ? originals.get(mesh)!
-              : inspection.get(mesh)!;
+      if (ghostedByCycle) {
+        // Highlighting a ghosted shell keeps it translucent teal so the live internal flow stays unobstructed.
+        mesh.material = selectedOrFocused ? ghostHighlight : ghost;
+      } else {
+        mesh.material = id === selectedId || look === 'highlight'
+          ? highlight
+          : look === 'ghost'
+            ? ghost
+            : look === 'pale'
+              ? pale
+              : snapshot.appearance === 'cad'
+                ? originals.get(mesh)!
+                : inspection.get(mesh)!;
+      }
       mesh.userData.pickContext = mesh.material === ghost;
       // While the rest is ghosted, the solid parts are drawn after the ghost so its layers never cover them (core/ghost-order.mjs).
-      drawOverGhost(mesh, spotlight && mode === 'xray' && mesh.material !== ghost);
+      drawOverGhost(mesh, ((spotlight && mode === 'xray') || cycleGhostActive) && mesh.material !== ghost && mesh.material !== ghostHighlight);
+    }
+    if (cycleVisuals && cycleEnabled && savedMotionId === 'operating') {
+      snapshot.cycleNote = cycleVisuals.update(snapshot.angle || 0, lastPistonMm, cycleMode, cycleFuelSystem, activeEmphasisId(), cycleType).description;
     }
     section.refresh();
   };
@@ -210,7 +270,6 @@ export async function createCylinderSession(definition: ModelDefinition, context
     for (const extra of savedProfile.motions ?? []) savedMotions.set(extra.id, { label: extra.label, profile: extra, motion: createExplodedMotion(meshes, extra), reverse: false });
   }
   const stagesOf = (entry: SavedMotion) => entry.reverse ? [...entry.profile.stages].reverse().map(stage => ({ ...stage, progress: 100 - stage.progress })) : entry.profile.stages;
-  let savedMotionId = 'operating';
   let motionProgress = 0;
   // Playback: a speed for everything, and a loop choice for each motion (the crank goes round and round; a saved motion stops at its end).
   let speed = 1;
@@ -218,14 +277,16 @@ export async function createCylinderSession(definition: ModelDefinition, context
   const loopOf = () => loops.get(savedMotionId) ?? savedMotionId === 'operating';
   const syncPlayback = () => { snapshot.motionSpeed = speed; snapshot.motionLoop = loopOf(); };
   syncPlayback();
-  const cycleVisuals = motionProfile.cycle_landmarks ? createCycleVisuals(runtime.scene, motionProfile.cycle_landmarks, runtime.camera) : undefined;
+  cycleVisuals = motionProfile.cycle_landmarks ? createCycleVisuals(runtime.scene, motionProfile.cycle_landmarks, runtime.camera) : undefined;
   cycleVisuals?.setVisible(cycleEnabled);
+  cycleVisuals?.setLayers(cycleLayers);
+  cycleVisuals?.setClippingPlane(section.snapshot().sectionEnabled ? section.plane : null);
 
   const setAngle = (degrees: number) => {
-    const angle = ((degrees % 720) + 720) % 720;
+    const angle = ((degrees % maxAngle) + maxAngle) % maxAngle;
     snapshot.angle = angle;
     const transforms = groupMatrices(angle, motionProfile);
-    const valves = motionProfile.valves ? valveMatrices(angle, motionProfile.valves) : undefined;
+    const valves = motionProfile.valves ? valveMatrices(angle, motionProfile.valves, cycleMode) : undefined;
     const valveTransforms = valves?.matrices as Record<string, THREE.Matrix4> | undefined;
     for (const { mesh, group, localBind } of motionEntries) {
       const world = transforms[group].clone().multiply(localBind);
@@ -235,14 +296,26 @@ export async function createCylinderSession(definition: ModelDefinition, context
       if (spring && mesh.morphTargetInfluences && mesh.morphTargetDictionary) {
         mesh.morphTargetInfluences[mesh.morphTargetDictionary[spring.target]] = (valves!.cycle as any)[`${spring.train}Lift`] / spring.maximum_lift_mm;
       }
+      const springScale = motionProfile.valves?.spring_scale_targets?.[mesh.userData.partId];
+      if (springScale && valves) {
+        const liftMm = (valves.cycle as any)[`${springScale.train}Lift`] as number;
+        const factor = Math.max(0.35, (springScale.free_length_mm - liftMm) / springScale.free_length_mm);
+        const seatM = springScale.seat_x_mm * 0.001;
+        const compress = new THREE.Matrix4()
+          .makeTranslation(seatM, 0, 0)
+          .multiply(new THREE.Matrix4().makeScale(factor, 1, 1))
+          .multiply(new THREE.Matrix4().makeTranslation(-seatM, 0, 0));
+        world.premultiply(compress);
+      }
       mesh.matrix.copy(mesh.parent!.matrixWorld).invert().multiply(world);
     }
     root.updateMatrixWorld(true);
     const pistonMillimetres = mechanismPose(angle, motionProfile.radius_m, motionProfile.rod_length_m).piston[0] * 1000;
+    lastPistonMm = pistonMillimetres;
     snapshot.motionNote = valves
       ? `${valves.cycle.stroke} · piston pin ${pistonMillimetres.toFixed(1)} mm from crank axis · intake lift ${valves.cycle.intakeLift.toFixed(1)} mm · exhaust lift ${valves.cycle.exhaustLift.toFixed(1)} mm.`
       : `Piston pin ${pistonMillimetres.toFixed(1)} mm from crank axis.`;
-    if (cycleVisuals) snapshot.cycleNote = cycleVisuals.update(angle, pistonMillimetres).description;
+    if (cycleVisuals) snapshot.cycleNote = cycleVisuals.update(angle, pistonMillimetres, cycleMode, cycleFuelSystem, activeEmphasisId(), cycleType).description;
     section.sync();
     runtime.render();
     onChange();
@@ -253,12 +326,12 @@ export async function createCylinderSession(definition: ModelDefinition, context
     snapshot.playing = value;
     if (value && savedMotionId !== 'operating' && motionProgress >= 100) applyMotionProgress(0);
     // A crank that stopped at the end of its turn (not looping) starts again from the top.
-    if (value && savedMotionId === 'operating' && !loopOf() && (snapshot.angle || 0) >= 719) setAngle(0);
+    if (value && savedMotionId === 'operating' && !loopOf() && (snapshot.angle || 0) >= maxAngle - 1) setAngle(0);
     runtime.setAnimationCallback(value ? (elapsed) => {
       if (!playing) return false;
       if (savedMotionId === 'operating') {
         const next = (snapshot.angle || 0) + elapsed * 30 * speed;
-        if (!loopOf() && next >= 720) { setAngle(719.99); playing = false; snapshot.playing = false; onChange(); return false; }
+        if (!loopOf() && next >= maxAngle) { setAngle(maxAngle - 0.01); playing = false; snapshot.playing = false; onChange(); return false; }
         setAngle(next);
       } else {
         const next = motionProgress + elapsed * 100 * speed / (savedMotions.get(savedMotionId)?.profile.duration_seconds ?? savedProfile.duration_seconds);
@@ -286,6 +359,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
     if (id !== 'operating' && !savedMotions.has(id)) throw Error(`Unknown cylinder motion: ${id}`);
     setPlaying(false); savedMotionId = id; snapshot.savedMotionId = id; syncPlayback();
     cycleVisuals?.setVisible(id === 'operating' && cycleEnabled);
+    applyAppearance();
     if (id === 'operating') { snapshot.motionStage = undefined; setAngle(snapshot.angle || 0); }
     // Fit the camera to the motion at its widest (the end of a take-apart, the start of a reassembly), then show its start.
     else { applyMotionProgress(savedMotions.get(id)!.reverse ? 0 : 100); }
@@ -343,7 +417,7 @@ export async function createCylinderSession(definition: ModelDefinition, context
     { id: 'crank', label: 'Crank and connecting rod' },
     { id: 'intake', label: 'Intake valve train' },
     { id: 'exhaust', label: 'Exhaust valve train' },
-    { id: 'ignition', label: 'Spark plugs' },
+    { id: 'ignition', label: cycleType === 'diesel' ? 'Direct injection & glow plug' : 'Spark plugs' },
   ];
 
   if (context.savedMotionId && context.savedMotionId !== 'operating') { selectMotion(context.savedMotionId); applyMotionProgress(context.motionProgress ?? 0); applyFocus(context.focusParts); }
@@ -470,14 +544,60 @@ export async function createCylinderSession(definition: ModelDefinition, context
         reset: () => { setPlaying(false); if (savedMotionId === 'operating') setAngle(start.angle); else applyMotionProgress(savedMotionId === start.motionId ? start.progress : 0); },
         setSpeed: (value) => { speed = value; syncPlayback(); onChange(); },
         setLoop: (value) => { loops.set(savedMotionId, value); syncPlayback(); onChange(); },
-        strokes: STROKES,
+        strokes: cycleType === 'two-stroke' ? TWO_STROKE_STROKES : STROKES,
       },
       cycleCues: {
         setEnabled(value) {
           cycleEnabled = value;
           snapshot.cycleEnabled = value;
           cycleVisuals?.setVisible(value && savedMotionId === 'operating');
+          if (!value && cycleReveal === 'section' && section.snapshot().sectionEnabled) {
+            section.feature.setEnabled(false);
+          } else if (value && cycleReveal === 'section' && savedMotionId === 'operating') {
+            section.feature.setAxis('y');
+            section.feature.setPosition(50);
+            section.feature.setEnabled(true);
+          }
+          applyAppearance();
           if (savedMotionId === 'operating') setAngle(snapshot.angle || 0);
+          else onChange();
+        },
+        setMode(mode) {
+          cycleMode = mode;
+          snapshot.cycleMode = mode;
+          if (savedMotionId === 'operating') setAngle(snapshot.angle || 0);
+          else onChange();
+        },
+        setReveal(reveal) {
+          const prev = cycleReveal;
+          cycleReveal = reveal;
+          snapshot.cycleReveal = reveal;
+          if (cycleEnabled && savedMotionId === 'operating') {
+            if (reveal === 'section') {
+              section.feature.setAxis('y');
+              section.feature.setPosition(50);
+              section.feature.setEnabled(true);
+            } else if (prev === 'section' && section.snapshot().sectionEnabled) {
+              section.feature.setEnabled(false);
+            }
+          }
+          applyAppearance();
+          runtime.render();
+          onChange();
+        },
+        setFuelSystem: cycleType === 'otto' ? (system) => {
+          cycleFuelSystem = system;
+          snapshot.cycleFuelSystem = system;
+          applyAppearance();
+          if (savedMotionId === 'operating') setAngle(snapshot.angle || 0);
+          else onChange();
+        } : undefined,
+        setLayer(layer, enabled) {
+          cycleLayers = { ...cycleLayers, [layer]: enabled };
+          snapshot.cycleLayers = cycleLayers;
+          cycleVisuals?.setLayers(cycleLayers);
+          if (savedMotionId === 'operating') setAngle(snapshot.angle || 0);
+          else onChange();
         },
       },
       section: section.feature,
@@ -496,6 +616,8 @@ export async function createCylinderSession(definition: ModelDefinition, context
       for (const material of inspection.values()) material.dispose();
       highlight.dispose();
       ghost.dispose();
+      ghostHighlight.dispose();
+      pale.dispose();
       disposeObject(root);
     },
   };

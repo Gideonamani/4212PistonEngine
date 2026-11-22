@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronLeft, ChevronRight, Pause, Play, Repeat, RotateCcw } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight, Columns2, Flame, Pause, Play, Repeat, RotateCcw } from 'lucide-react';
 import type { ViewerFeatures, ViewerSnapshot } from '../types';
 import type { PanelHost } from './panels';
+import { OttoCycleCard } from './OttoCycleCard';
 
 export type PlayerPreference = { show: boolean; onChange: (value: boolean) => void };
 
@@ -30,6 +31,7 @@ type MotionPanelProps = {
   snapshot: ViewerSnapshot;
   host: PanelHost;
   player?: PlayerPreference;
+  onOpenCycleSplit?: () => void;
 };
 
 /**
@@ -38,7 +40,7 @@ type MotionPanelProps = {
  * A model with more than one motion (the crank, then exploded, then reassembly) gets a pager under the card. In a lesson the model opens at
  * the step's own pose and the learner may move it from there; Reset returns to that pose, so the card never has to say "pose".
  */
-export function MotionPanel({ features, snapshot, host, player }: MotionPanelProps) {
+export function MotionPanel({ features, snapshot, host, player, onOpenCycleSplit }: MotionPanelProps) {
   const [detailsOpen, setDetailsOpen] = useState(host === 'explore');
   const [speedOpen, setSpeedOpen] = useState(false);
   const motion = features.motion;
@@ -50,6 +52,7 @@ export function MotionPanel({ features, snapshot, host, player }: MotionPanelPro
   const page = pages[index];
   const saved = features.savedMotions;
   const angle = snapshot.angle ?? 0;
+  const maxAngle = snapshot.cycleType === 'two-stroke' ? 360 : 720;
   const progress = snapshot.motionProgress ?? 0;
   const playing = Boolean(snapshot.playing);
   const loop = Boolean(snapshot.motionLoop);
@@ -59,7 +62,7 @@ export function MotionPanel({ features, snapshot, host, player }: MotionPanelPro
   const reading = page.crank ? `${Math.round(angle)}°` : `${Math.round(progress)}%`;
   const eyebrow = page.crank ? 'CRANK ANGLE' : page.label.toUpperCase();
   const headline = page.crank ? stroke ? `${stroke.label} stroke` : 'Crank position' : snapshot.motionStage || page.label;
-  const atEnd = page.crank ? angle >= 719 : progress >= 100;
+  const atEnd = page.crank ? angle >= maxAngle - 1 : progress >= 100;
   const playLabel = playing ? 'Pause' : atEnd && !loop ? 'Replay' : 'Play';
   const reverse = saved?.items.find((item) => page.id === 'exploded' ? item.id === 'reassembly' : page.id === 'reassembly' ? item.id === 'exploded' : page.id === 'Exploded overview' ? item.id === 'Reassembly overview' : page.id === 'Reassembly overview' ? item.id === 'Exploded overview' : false);
 
@@ -85,7 +88,7 @@ export function MotionPanel({ features, snapshot, host, player }: MotionPanelPro
           type="range"
           aria-label={page.crank ? 'Crank angle' : 'Motion progress'}
           min="0"
-          max={page.crank ? 720 : 100}
+          max={page.crank ? maxAngle : 100}
           step={page.crank ? 1 : 0.1}
           value={page.crank ? angle : progress}
           onChange={(event) => page.crank ? motion.setAngle(Number(event.target.value)) : saved?.setProgress(Number(event.target.value))}
@@ -115,13 +118,150 @@ export function MotionPanel({ features, snapshot, host, player }: MotionPanelPro
         {([{ mode: 'core', label: 'Inside view' }, { mode: 'assembled', label: 'Assembled view' }] as const).map(({ mode, label }) => <button key={mode} type="button" role="radio" aria-checked={snapshot.motionViewMode === mode} onClick={() => saved.setViewMode!(mode)} className={`${ghostButton} ${snapshot.motionViewMode === mode ? 'bg-teal-400/15 text-teal-200' : ''}`}>{label}</button>)}
       </div>}
 
+      {page.crank && features.cycleCues && (() => {
+        const cycleType = snapshot.cycleType ?? 'otto';
+        const isDiesel = cycleType === 'diesel';
+        const isTwoStroke = cycleType === 'two-stroke';
+        return (
+        <div className="mt-3 space-y-2.5 border-t border-white/10 pt-3">
+          <label className="relative flex min-h-11 cursor-pointer items-center justify-between gap-3 text-xs">
+            {/* The real checkbox covers the whole row, so the whole row is the touch target (44 px) and it keeps native keyboard and screen-reader behaviour. */}
+            <input
+              type="checkbox"
+              aria-label={isDiesel ? 'Four-stroke cues: airflow and Diesel cycle' : isTwoStroke ? 'Two-stroke cues: port flow and 2-stroke cycle' : 'Four-stroke cues: air-fuel flow and Otto cycle'}
+              checked={Boolean(snapshot.cycleEnabled)}
+              onChange={(event) => features.cycleCues!.setEnabled(event.target.checked)}
+              className="peer absolute inset-0 h-full w-full cursor-pointer opacity-0"
+            />
+            <span className="flex items-center gap-2">
+              <Flame className={`h-4 w-4 shrink-0 ${snapshot.cycleEnabled ? 'text-teal-300' : 'text-slate-400'}`} aria-hidden="true" />
+              <span>
+                <strong className="block text-white">{isDiesel ? 'Airflow & Diesel cycle' : isTwoStroke ? 'Port flow & 2-stroke cycle' : 'Air–fuel flow & Otto cycle'}</strong>
+                <small className="text-[11px] text-slate-400">{isDiesel ? 'Direct injection, 17.5:1 compression & live P–V / T–s' : isTwoStroke ? 'Crankcase pump, loop transfer ducts & 360° P–V / T–s' : 'Four-stroke ribbons, fuel spray & live P–V / T–s'}</small>
+              </span>
+            </span>
+            <span aria-hidden="true" className="relative inline-flex h-6 w-11 shrink-0 rounded-full bg-slate-700 transition-colors peer-checked:bg-teal-400 peer-checked:[&>span]:translate-x-[22px] peer-focus-visible:ring-2 peer-focus-visible:ring-teal-300">
+              <span className="absolute top-0.5 h-5 w-5 translate-x-0.5 rounded-full bg-slate-950 shadow transition-transform" />
+            </span>
+          </label>
+
+          {snapshot.cycleEnabled && (
+            <div className="space-y-2.5">
+              {onOpenCycleSplit && (
+                <button
+                  type="button"
+                  onClick={onOpenCycleSplit}
+                  className="flex min-h-10 w-full items-center justify-center gap-2 rounded-xl border border-teal-400/40 bg-teal-400/15 px-3 text-xs font-bold text-teal-200 transition-colors hover:bg-teal-400/25 hover:text-white outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
+                >
+                  <Columns2 className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span>Open Cycle Split view (3D + charts)</span>
+                </button>
+              )}
+
+              {/* Wall reveal selector: Ghost walls vs Horizontal Section Cut vs Solid */}
+              {features.cycleCues.setReveal && (
+                <div className="space-y-1">
+                  <div className="font-mono text-[10px] font-semibold tracking-wider text-slate-400">CYLINDER VIEW</div>
+                  <div role="radiogroup" aria-label="Cylinder wall reveal" className="grid grid-cols-3 gap-1 rounded-xl bg-slate-950/40 p-1">
+                    {([
+                      ['ghost', 'Ghost walls'],
+                      ['section', 'Section cut'],
+                      ['solid', 'Solid'],
+                    ] as const).map(([id, label]) => {
+                      const active = (snapshot.cycleReveal ?? 'ghost') === id;
+                      return (
+                        <button
+                          key={id}
+                          type="button"
+                          role="radio"
+                          aria-checked={active}
+                          onClick={() => features.cycleCues!.setReveal!(id)}
+                          className={`min-h-9 rounded-lg px-2 text-[11px] font-semibold transition-colors outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${active ? 'bg-teal-400/20 text-teal-200 font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}
+                        >
+                          {label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Fuel delivery comparison: Port fuel-injected (GTSIO-520-H) vs Carburetted (illustrative) */}
+              {features.cycleCues.setFuelSystem && (
+                <div className="space-y-1">
+                  <div className="font-mono text-[10px] font-semibold tracking-wider text-slate-400">FUEL DELIVERY</div>
+                  <div role="radiogroup" aria-label="Fuel delivery flow comparison" className="grid grid-cols-2 gap-1 rounded-xl bg-slate-950/40 p-1">
+                    {([
+                      ['injected', 'Port injected'],
+                      ['carburetted', 'Carburetted'],
+                    ] as const).map(([id, label]) => {
+                      const active = (snapshot.cycleFuelSystem ?? 'injected') === id;
+                      return (
+                        <button
+                          key={id}
+                          type="button"
+                          role="radio"
+                          aria-checked={active}
+                          onClick={() => features.cycleCues!.setFuelSystem!(id)}
+                          className={`min-h-9 rounded-lg px-2 text-[11px] font-semibold transition-colors outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${active ? 'bg-teal-400/20 text-teal-200 font-bold' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}
+                        >
+                          {label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {(snapshot.cycleFuelSystem ?? 'injected') === 'carburetted' && (
+                    <p className="text-[10.5px] leading-snug text-slate-400">
+                      Illustrative carburetted comparison: premixed air–fuel enters from upstream induction (the GTSIO-520-H itself uses continuous port injection).
+                    </p>
+                  )}
+                </div>
+              )}
+
+              {/* Sub-stream branch toggles */}
+              {features.cycleCues.setLayer && (
+                <div className="flex flex-wrap gap-1.5" role="group" aria-label="Flow visual layers">
+                  {([
+                    ['air', isTwoStroke ? 'Intake & exhaust ports' : 'Air & exhaust', 'bg-cyan-300'],
+                    ['fuel', isDiesel ? 'Direct injection' : isTwoStroke ? 'Transfer ducts' : 'Fuel spray', 'bg-rose-400'],
+                    ['chamber', isDiesel ? 'Compression & ignition' : isTwoStroke ? 'Chamber & crankcase' : 'Chamber & spark', 'bg-amber-400'],
+                  ] as const).map(([key, label, dotClass]) => {
+                    const on = snapshot.cycleLayers?.[key] ?? true;
+                    return (
+                      <button
+                        key={key}
+                        type="button"
+                        aria-pressed={on}
+                        onClick={() => features.cycleCues!.setLayer!(key, !on)}
+                        className={`inline-flex min-h-8 items-center gap-1.5 rounded-full border px-2.5 text-[11px] font-semibold transition-colors outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${on ? 'border-teal-400/50 bg-teal-400/10 text-white' : 'border-white/10 bg-white/5 text-slate-400'}`}
+                      >
+                        <span aria-hidden="true" className={`h-2 w-2 rounded-full ${dotClass} ${on ? 'opacity-100' : 'opacity-30'}`} />
+                        {label}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+
+              {/* Live synchronized Otto / Diesel P–V & T–s card */}
+              <OttoCycleCard
+                angle={angle}
+                mode={snapshot.cycleMode ?? 'ideal'}
+                cycleType={cycleType}
+                onModeChange={(nextMode) => features.cycleCues!.setMode?.(nextMode)}
+                onSeekAngle={(nextAngle) => motion.setAngle(nextAngle)}
+              />
+            </div>
+          )}
+        </div>
+        );
+      })()}
+
       <button type="button" aria-expanded={detailsOpen} onClick={() => setDetailsOpen((open) => !open)} className="mt-3 flex h-11 w-full items-center justify-between border-t border-white/10 px-0.5 text-xs font-semibold text-slate-300 transition-colors hover:text-white outline-none focus-visible:ring-2 focus-visible:ring-teal-300">
         <span>Details</span><ChevronDown className={`h-[18px] w-[18px] transition-transform ${detailsOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
       </button>
       {detailsOpen && <div className="space-y-2.5 pb-2">
         <p className="text-xs leading-relaxed text-slate-300">{snapshot.motionNote}</p>
-        {page.crank && features.cycleCues && <label className="flex items-center justify-between gap-3 border-b border-white/5 py-2.5 text-xs"><span><strong className="block text-white">Four-stroke cues</strong><small className="text-xs text-slate-400">Illustrative gas-path particles</small></span><input type="checkbox" checked={Boolean(snapshot.cycleEnabled)} onChange={(event) => features.cycleCues!.setEnabled(event.target.checked)} className="h-5 w-5 accent-teal-400 rounded cursor-pointer" /></label>}
-        {page.crank && snapshot.cycleEnabled && <p className="text-xs leading-relaxed text-teal-200">{snapshot.cycleNote}</p>}
         {!page.crank && saved && <div className="grid grid-cols-2 gap-2 pt-1">
           <button type="button" onClick={() => saved.step(-1)} className={ghostButton}>Previous stage</button>
           <button type="button" onClick={() => saved.step(1)} className={ghostButton}>Next stage</button>
