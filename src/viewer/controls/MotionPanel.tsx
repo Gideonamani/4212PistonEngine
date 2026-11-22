@@ -124,7 +124,15 @@ export function MotionPanel({ features, snapshot, host, player, onOpenCycleSplit
         const isTwoStroke = cycleType === 'two-stroke';
         return (
         <div className="mt-3 space-y-2.5 border-t border-white/10 pt-3">
-          <label className="flex items-center justify-between gap-3 text-xs cursor-pointer">
+          <label className="relative flex min-h-11 cursor-pointer items-center justify-between gap-3 text-xs">
+            {/* The real checkbox covers the whole row, so the whole row is the touch target (44 px) and it keeps native keyboard and screen-reader behaviour. */}
+            <input
+              type="checkbox"
+              aria-label={isDiesel ? 'Four-stroke cues: airflow and Diesel cycle' : isTwoStroke ? 'Two-stroke cues: port flow and 2-stroke cycle' : 'Four-stroke cues: air-fuel flow and Otto cycle'}
+              checked={Boolean(snapshot.cycleEnabled)}
+              onChange={(event) => features.cycleCues!.setEnabled(event.target.checked)}
+              className="peer absolute inset-0 h-full w-full cursor-pointer opacity-0"
+            />
             <span className="flex items-center gap-2">
               <Flame className={`h-4 w-4 shrink-0 ${snapshot.cycleEnabled ? 'text-teal-300' : 'text-slate-400'}`} aria-hidden="true" />
               <span>
@@ -132,13 +140,9 @@ export function MotionPanel({ features, snapshot, host, player, onOpenCycleSplit
                 <small className="text-[11px] text-slate-400">{isDiesel ? 'Direct injection, 17.5:1 compression & live P–V / T–s' : isTwoStroke ? 'Crankcase pump, loop transfer ducts & 360° P–V / T–s' : 'Four-stroke ribbons, fuel spray & live P–V / T–s'}</small>
               </span>
             </span>
-            <input
-              type="checkbox"
-              aria-label={isDiesel ? 'Four-stroke cues: airflow and Diesel cycle' : isTwoStroke ? 'Two-stroke cues: port flow and 2-stroke cycle' : 'Four-stroke cues: air-fuel flow and Otto cycle'}
-              checked={Boolean(snapshot.cycleEnabled)}
-              onChange={(event) => features.cycleCues!.setEnabled(event.target.checked)}
-              className="h-5 w-5 accent-teal-400 rounded cursor-pointer"
-            />
+            <span aria-hidden="true" className="relative inline-flex h-6 w-11 shrink-0 rounded-full bg-slate-700 transition-colors peer-checked:bg-teal-400 peer-checked:[&>span]:translate-x-[22px] peer-focus-visible:ring-2 peer-focus-visible:ring-teal-300">
+              <span className="absolute top-0.5 h-5 w-5 translate-x-0.5 rounded-full bg-slate-950 shadow transition-transform" />
+            </span>
           </label>
 
           {snapshot.cycleEnabled && (
