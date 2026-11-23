@@ -40,6 +40,10 @@ export function CycleSplitPane({ features, snapshot, onExit }: CycleSplitPanePro
 
   if (!motion || !cycleCues) return null;
 
+  const seekAngle = (nextAngle: number) => (cycleCues.seekAngle ?? motion.setAngle)(nextAngle);
+  const firingOrder = snapshot.cycleFiringOrder;
+  const heroCylinder = firingOrder?.find((item) => item.id === snapshot.cycleHeroCylinderId);
+
   const cycleSpeed = () => {
     if (!motion.setSpeed) return;
     const idx = SPEEDS.indexOf(speed);
@@ -120,6 +124,11 @@ export function CycleSplitPane({ features, snapshot, onExit }: CycleSplitPanePro
     {/* Row 2: Strictly single-line Live Process Headline + Compact Telemetry (never wraps or shifts chart height) */}
     <div className="flex h-7 shrink-0 flex-nowrap items-center justify-between gap-2 overflow-hidden px-2.5 pt-1 text-[11px]">
       <div className="min-w-0 flex-1 flex items-center gap-1.5 overflow-hidden">
+        {heroCylinder && (
+          <span className="shrink-0 whitespace-nowrap rounded-md border border-teal-400/40 bg-teal-400/15 px-1.5 py-0.5 font-mono text-[10px] font-bold text-teal-200">
+            {heroCylinder.label}
+          </span>
+        )}
         <span className="min-w-0 truncate font-semibold text-white" title={live.processLabel}>{live.processLabel}</span>
         <span className={`shrink-0 whitespace-nowrap rounded-full px-1.5 py-0.5 font-mono text-[10px] font-bold ${mode === 'practical' ? 'bg-amber-400/15 text-amber-300' : 'bg-teal-400/15 text-teal-300'}`}>
           {workPct}%
@@ -132,6 +141,31 @@ export function CycleSplitPane({ features, snapshot, onExit }: CycleSplitPanePro
       </div>
     </div>
 
+    {/* Optional Row 2b: Interactive Multi-Cylinder Firing-Order Strip */}
+    {firingOrder && firingOrder.length > 1 && cycleCues.setHeroCylinder && (
+      <div className="flex shrink-0 items-center gap-1 overflow-x-auto border-b border-white/5 px-2.5 py-1" role="radiogroup" aria-label="Firing order cylinder selector">
+        <span className="shrink-0 font-mono text-[9.5px] font-semibold uppercase tracking-wider text-slate-400">Firing</span>
+        {firingOrder.map((item) => {
+          const selected = item.id === snapshot.cycleHeroCylinderId;
+          const dot = item.stroke === 'intake' ? 'bg-cyan-300' : item.stroke === 'compression' ? 'bg-indigo-400' : item.stroke === 'power' ? 'bg-orange-400' : 'bg-amber-300';
+          return (
+            <button
+              key={item.id}
+              type="button"
+              role="radio"
+              aria-checked={selected}
+              title={`${item.label}: ${item.stroke} (${Math.round(item.angleDeg)}°)`}
+              onClick={() => cycleCues.setHeroCylinder!(item.id)}
+              className={`inline-flex shrink-0 items-center gap-1 rounded-md border px-1.5 py-0.5 font-mono text-[10px] font-semibold transition-colors outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${selected ? 'border-teal-400 bg-teal-400/20 text-white font-bold' : item.firing ? 'border-orange-400/60 bg-orange-400/15 text-orange-100' : 'border-white/10 bg-slate-950/40 text-slate-300 hover:text-white'}`}
+            >
+              <span aria-hidden="true" className={`h-1.5 w-1.5 rounded-full ${dot}`} />
+              {item.id}
+            </button>
+          );
+        })}
+      </div>
+    )}
+
     {/* Row 3: Live Synchronized Side-by-Side P–V and T–s Charts (fills remaining space cleanly) */}
     <div className="min-h-0 flex-1 px-2.5 py-1.5 flex flex-col">
       <OttoCharts
@@ -139,7 +173,7 @@ export function CycleSplitPane({ features, snapshot, onExit }: CycleSplitPanePro
         mode={mode}
         cycleType={cycleType}
         plotView={plotView}
-        onSeekAngle={(nextAngle) => motion.setAngle(nextAngle)}
+        onSeekAngle={seekAngle}
         sideBySide
         className="min-h-0 flex-1"
       />
@@ -228,7 +262,7 @@ export function CycleSplitPane({ features, snapshot, onExit }: CycleSplitPanePro
         max={maxAngle}
         step="1"
         value={angle}
-        onChange={(event) => motion.setAngle(Number(event.target.value))}
+        onChange={(event) => seekAngle(Number(event.target.value))}
         className="h-10 min-w-0 flex-1 accent-teal-400 cursor-pointer"
       />
 

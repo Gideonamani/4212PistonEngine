@@ -53,6 +53,15 @@ test('the oil pump is not washed out on either stage, and the Look tab switches 
   const canvas = viewer.locator('canvas');
   const theme = (value: 'dark' | 'light') => page.evaluate((next) => { document.documentElement.dataset.theme = next; }, value);
 
+  // Explore opens the pump in its oil-flow cutaway (see-through casing, glowing oil), which is a different picture from the model's finish. This test
+  // reads the finish, the lighting and the colours, so the cutaway is switched off first; e2e/mechanism-flow.spec.ts covers the cutaway itself.
+  const motion = page.getByRole('complementary', { name: 'Explore controls' });
+  await motion.getByRole('tab', { name: /^Motion/ }).click();
+  const flow = motion.getByRole('checkbox', { name: /Oil flow & relief bypass/ });
+  await expect(flow).toBeChecked();
+  await flow.uncheck();
+  await expect(flow).not.toBeChecked();
+
   // Inspection colours, the opening look: no white wash, and plainly coloured, on the dark stage and on the light one. Every picture below waits
   // up to 90 s: a CI runner draws in software and shares its processor with the other worker's model tests, and a stage change redraws the model
   // (on a busy runner the 30 s this first allowed ran out with the pump still being drawn, though it loaded in 7 s and the test passes unloaded).

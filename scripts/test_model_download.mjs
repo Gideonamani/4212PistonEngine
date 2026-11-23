@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { DEFAULT_POLICY, DownloadError, abortableSleep, backoffDelay, classifyHttp, downloadBytes, parseRetryAfter } from '../src/viewer/core/model-download.mjs';
+import { DEFAULT_POLICY, DownloadError, abortableSleep, backoffDelay, classifyHttp, downloadBytes, downloadProgress, parseRetryAfter } from '../src/viewer/core/model-download.mjs';
 
 const KEY = 'SECRET-KEY-123';
 const URL = 'https://www.googleapis.com/drive/v3/files/abc?alt=media';
@@ -187,6 +187,21 @@ test('progress is reported as the bytes arrive, against the promised length', as
   const seen = [];
   await run({ fetchFn: scripted(() => Promise.resolve(streaming([bytes(3), bytes(3), bytes(4)]))).fetchFn, expectedBytes: 10, onProgress: (received, total) => seen.push([received, total]), ...recorder() });
   assert.deepEqual(seen, [[3, 10], [6, 10], [10, 10]]);
+});
+
+test('the percentage shown never passes the bar: bytes unpacked past the packed total give megabytes, not 168%', () => {
+  assert.deepEqual(downloadProgress(0, 100), { status: 'Downloading model · 0%', progress: 0 });
+  assert.deepEqual(downloadProgress(50, 100), { status: 'Downloading model · 48%', progress: 48 });
+  assert.deepEqual(downloadProgress(100, 100), { status: 'Downloading model · 96%', progress: 96 });
+  const unpacked = downloadProgress(1.75 * 12 * 1048576, 12 * 1048576);
+  assert.equal(unpacked.status, 'Downloading model · 21.0 MB');
+  assert.equal(unpacked.progress, undefined);
+  assert.equal(downloadProgress(2097152, 0).status, 'Downloading model · 2.0 MB');
+  for (let received = 0; received <= 400; received += 7) {
+    const { status, progress } = downloadProgress(received, 200);
+    const percent = Number(/(\d+)%/.exec(status)?.[1] ?? 0);
+    assert.ok(percent <= 96 && (progress ?? 0) <= 96, `${received}/200 shown as ${status}`);
+  }
 });
 
 test('a response with no stream is read whole', async () => {

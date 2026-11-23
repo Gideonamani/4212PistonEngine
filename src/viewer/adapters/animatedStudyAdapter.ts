@@ -19,6 +19,16 @@ import {
   resolveMotionDisplay,
 } from '../core/animated-study-motion.mjs';
 import { checkStudyContract } from '../core/motion-compatibility.mjs';
+import {
+  crankAngleForCylinderOtto,
+  cylinderForPartId,
+  cylinderOttoAngle,
+  firingOrderSummary,
+  multiCylinderSpec,
+} from '../engineering/multi-cylinder-cycle.mjs';
+import { createMultiCylinderVisuals } from '../engineering/multi-cylinder-visuals.mjs';
+import { mechanismFlowSpec, motionSupportsMechanismFlow } from '../engineering/mechanism-flow.mjs';
+import { createMechanismFlowVisuals } from '../engineering/mechanism-flow-visuals.mjs';
 
 export async function createAnimatedStudySession(definition: ModelDefinition, context: AdapterContext): Promise<ViewerSession> {
   const { runtime, signal, onChange, onProgress } = context;
@@ -56,14 +66,51 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     if (!clips.has(motion.id) && !procedural.supports(motion)) throw Error(`Saved motion is missing: ${motion.id}`);
   }
   const bounds = new THREE.Box3().setFromObject(root);
+  const multiCycleSpec = multiCylinderSpec(definition.id, contract);
+  const cycleMotion = multiCycleSpec ? contract.motions.find((m: any) => crankAngleForMotion(m, 0) !== undefined) : undefined;
+  const cycleGhostSet = new Set<string>(multiCycleSpec?.ghostPartIds || []);
+  let cycleEnabled = Boolean(multiCycleSpec && context.initialCycle);
+  let cycleMode: 'ideal' | 'practical' = 'ideal';
+  let cycleReveal: 'ghost' | 'section' | 'solid' = 'ghost';
+  let cycleLayers = { air: true, fuel: true, chamber: true };
+  let heroCylinderId = multiCycleSpec?.firingOrder[0] ?? '';
+  const multiCycleVisuals = multiCycleSpec ? createMultiCylinderVisuals(runtime.scene, multiCycleSpec, partsById) : undefined;
+  const mechFlowSpec = mechanismFlowSpec(definition.id, contract);
+  const mechGhostSet = new Set<string>(mechFlowSpec?.ghostPartIds || []);
+  let mechFlowEnabled = false;
+  const mechFlowVisuals = mechFlowSpec ? createMechanismFlowVisuals(runtime.scene, mechFlowSpec, partsById, contract) : undefined;
   // A cut through a spotlit part shows it, which can change the style the spotlight is drawn in, so the spotlight is repainted when it does.
   let drawnMode: FocusMode | undefined;
   // Whether Highlight turns into X-ray while it would hide a spotlit part inside another. A lesson keeps it on; Explore turns it off,
   // because there X-ray is only ever the learner's own choice (one spring ghosting the engine and the next part not is disorienting).
   let revealInside = true;
-  const section = createSectionController(meshes, bounds, runtime.render, onChange, runtime.scene, () => { if (drawnMode && spotlightMode() !== drawnMode) applyAppearance(); });
+  const section = createSectionController(meshes, bounds, runtime.render, onChange, runtime.scene, () => {
+    const plane = section.snapshot().sectionEnabled ? section.plane : null;
+    multiCycleVisuals?.setClippingPlane(plane);
+    mechFlowVisuals?.setClippingPlane(plane);
+    if (drawnMode && spotlightMode() !== drawnMode) applyAppearance();
+  });
   const mixer = new THREE.AnimationMixer(root);
-  const snapshot: ViewerSnapshot = { status: 'Animated mechanism study ready', appearance: definition.defaultAppearance ?? 'inspection', playing: false, motionProgress: 0, motionNote: contract.scope };
+  const snapshot: ViewerSnapshot = {
+    status: 'Animated mechanism study ready',
+    appearance: definition.defaultAppearance ?? 'inspection',
+    playing: false,
+    motionProgress: 0,
+    motionNote: contract.scope,
+    ...(multiCycleSpec ? {
+      cycleEnabled,
+      cycleType: 'otto' as const,
+      cycleMode,
+      cycleReveal,
+      cycleLayers: { ...cycleLayers },
+      cycleHeroCylinderId: heroCylinderId,
+      cycleAvailable: false,
+    } : {}),
+    ...(mechFlowSpec ? {
+      mechanismFlowEnabled: mechFlowEnabled,
+      mechanismFlowAvailable: false,
+    } : {}),
+  };
   let active: any, action: THREE.AnimationAction | undefined, progress = 0, playing = false;
   // Playback: a speed for everything, and a loop choice + view mode ('core' vs 'assembled') for each motion.
   let speed = 1;
@@ -139,13 +186,16 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     return effectiveFocusMode(focusMode, meshes.filter((mesh) => focus.has(mesh.userData.partId)), meshes.filter((mesh) => !focus.has(mesh.userData.partId) && (!isolation || isolation.has(mesh.userData.partId)) && motionVisible(mesh.userData.partId) && !hidden.has(mesh.userData.partId)), section.cut());
   };
   const applyAppearance = () => {
-    const pathColors: Record<string, string> = { housing: '#536878', core: '#84929e', fuel: '#be7b12', 'magneto-left': '#148365', 'magneto-right': '#148365', 'oil-tach': '#1b60bc', starter: '#963f7c', alternator: '#a58b21', vacuum: '#7752a7', governor: '#187f88' };
+    // Refined anodized/metallic aircraft-hardware palette for accessory drives (replaces flat pastel blocks).
+    const pathColors: Record<string, string> = { housing: '#5d6b78', core: '#94a3b2', fuel: '#b88339', 'magneto-left': '#2d8a7a', 'magneto-right': '#2d8a7a', 'oil-tach': '#3d72a8', starter: '#8f5978', alternator: '#b39b4c', vacuum: '#6d5c94', governor: '#3a868c' };
     // A selected power path ghosts every part outside it; otherwise a lesson step's spotlight is drawn as its focus mode says.
     const palette = spotlightPalette(runtime.theme?.());
     const spotlight = !powerPath && focus.size > 0;
     const motionDisplay = resolveMotionDisplay(active, contract.parts, motionViewModes.get(active?.id) || 'default');
-    snapshot.motionViewMode = motionDisplay.viewMode as 'core' | 'assembled';
-    snapshot.motionAllowAssembled = motionDisplay.allowAssembled;
+    const mechFlowAvailable = Boolean(mechFlowSpec && motionSupportsMechanismFlow(mechFlowSpec, active?.id));
+    const mechViewMode = motionViewModes.get(active?.id) || (mechFlowAvailable && mechFlowEnabled ? 'core' : 'assembled');
+    snapshot.motionViewMode = (mechFlowAvailable && !motionDisplay.allowAssembled ? mechViewMode : motionDisplay.viewMode) as 'core' | 'assembled';
+    snapshot.motionAllowAssembled = motionDisplay.allowAssembled || Boolean(mechFlowAvailable && mechGhostSet.size > 0);
     const motionVisible = motionVisibility(motionDisplay);
     const mode = drawnMode = spotlightMode();
     snapshot.hiddenIds = hidden.ids();
@@ -153,12 +203,17 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
     snapshot.focusMode = focusMode;
     snapshot.focusIds = spotlight ? [...focus] : [];
     snapshot.focusFallback = mode !== focusMode;
+    const isCycleMotion = Boolean(multiCycleSpec && crankAngleForMotion(active, 0) !== undefined);
+    const cycleGhostActive = Boolean(multiCycleSpec && cycleEnabled && isCycleMotion && cycleReveal === 'ghost' && !powerPath && !isolation && !(spotlight && mode === 'isolate'));
+    const mechGhostActive = Boolean(mechFlowAvailable && mechFlowEnabled && mechViewMode === 'core' && !powerPath && !spotlight && !isolation);
     const looks = meshes.map((mesh) => {
       const id = mesh.userData.partId;
       const spot = partLook(mode, partRole(spotlight, focus.has(id)));
       mesh.visible = spot.visible && (!isolation || isolation.has(id)) && motionVisible(id) && !hidden.has(id);
       const motionGhost = !powerPath && !spotlight && !isolation && motionDisplay.ghostSet.has(id);
-      return powerPath && !powerPath.parts.includes(id) ? 'ghost' : motionGhost ? 'ghost' : spot.look;
+      const cycleGhost = cycleGhostActive && cycleGhostSet.has(id);
+      const mechGhost = mechGhostActive && mechGhostSet.has(id);
+      return powerPath && !powerPath.parts.includes(id) ? 'ghost' : (motionGhost || cycleGhost || mechGhost) ? 'ghost' : spot.look;
     });
     // While some parts are ghosted, the solid ones are drawn after the ghost so its layers never cover them (core/ghost-order.mjs).
     const ghosting = meshes.some((mesh, index) => mesh.visible && looks[index] === 'ghost');
@@ -178,8 +233,13 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
         const inspectionByGroup = !paths.length && snapshot.appearance === 'inspection';
         if (inspectionByGroup) material.color.set(groupColours.get(part?.group) ?? '#84929e');
         const finish = materialFinish.get(material)!;
-        material.metalness = inspectionByGroup ? Math.min(finish.metalness, 0.3) : finish.metalness;
-        material.roughness = inspectionByGroup ? Math.max(finish.roughness, 0.5) : finish.roughness;
+        if (paths.length && snapshot.appearance === 'inspection') {
+          material.metalness = part?.role === 'teaching-fixture' ? 0.25 : 0.42;
+          material.roughness = part?.role === 'teaching-fixture' ? 0.62 : 0.36;
+        } else {
+          material.metalness = inspectionByGroup ? Math.min(finish.metalness, 0.3) : finish.metalness;
+          material.roughness = inspectionByGroup ? Math.max(finish.roughness, 0.5) : finish.roughness;
+        }
         if (ghost) material.color.set(palette.ghostColor);
         else if (look === 'pale') material.color.set(palette.paleColor);
         else if (look === 'highlight') material.color.set(palette.highlightColor);
@@ -206,11 +266,38 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
       procedural.apply(active, clamped);
     }
   };
+  const syncMultiCycle = () => {
+    if (!multiCycleSpec || !multiCycleVisuals) return;
+    const rawAngle = crankAngleForMotion(active, progress);
+    const available = rawAngle !== undefined;
+    snapshot.cycleAvailable = available;
+    const show = Boolean(cycleEnabled && available);
+    multiCycleVisuals.setVisible(show);
+    if (show) {
+      snapshot.angle = cylinderOttoAngle(rawAngle, multiCycleSpec, heroCylinderId);
+      snapshot.cycleHeroCylinderId = heroCylinderId;
+      snapshot.cycleFiringOrder = firingOrderSummary(rawAngle, multiCycleSpec);
+      snapshot.cycleNote = multiCycleVisuals.update(rawAngle, cycleMode, heroCylinderId);
+    } else {
+      snapshot.angle = rawAngle;
+      snapshot.cycleFiringOrder = undefined;
+      snapshot.cycleNote = undefined;
+    }
+  };
+  const syncMechFlow = () => {
+    if (!mechFlowSpec || !mechFlowVisuals) return;
+    const available = motionSupportsMechanismFlow(mechFlowSpec, active?.id);
+    snapshot.mechanismFlowAvailable = available;
+    snapshot.mechanismFlowEnabled = mechFlowEnabled;
+    const show = Boolean(mechFlowEnabled && available && !isolation);
+    mechFlowVisuals.setVisible(show);
+    snapshot.mechanismFlowPhase = show ? mechFlowVisuals.update(active?.id || '', progress, powerPath) : undefined;
+  };
   const sample = (value: number) => {
     progress = Math.max(0, Math.min(100, value)); snapshot.motionProgress = progress;
     snapshot.angle = crankAngleForMotion(active, progress);
     applyPose(progress);
-    section.sync(); syncHelpers();
+    section.sync(); syncHelpers(); syncMultiCycle(); syncMechFlow();
     const stage = [...active.stages].reverse().find((stage: any) => progress >= stage.progress);
     snapshot.motionStage = stage?.label || active.label;
     snapshot.motionNote = `${stage?.note || ''} ${contract.scope}`;
@@ -251,7 +338,14 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
   const select = (id: string) => {
     const part = componentsById.get(id);
     snapshot.selectedId = part?.id; snapshot.selectedLabel = part?.label; snapshot.selectedDescription = part?.description; snapshot.selectedDetails = part ? detailsById.get(part.id) : undefined;
-    applyAppearance(); onChange();
+    if (multiCycleSpec && cycleEnabled && id) {
+      const cylId = cylinderForPartId(multiCycleSpec, id);
+      if (cylId && cylId !== heroCylinderId) {
+        heroCylinderId = cylId;
+        syncMultiCycle();
+      }
+    }
+    applyAppearance(); runtime.render(); onChange();
   };
   const showAll = () => { isolation = undefined; hidden.clear(); focus.clear(); powerPath = undefined; snapshot.powerPathId = ''; snapshot.powerPathNote = ''; snapshot.isolated = false; select(''); fitVisible(); };
   runtime.setPickTargets(meshes, object => (context.onPartPick ?? select)(object.userData.partId));
@@ -296,8 +390,8 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
       ...(paths.length ? { powerPaths: { items: paths.map(path => ({ id: path.id, label: path.label })), select(id: string) {
         powerPath = paths.find(path => path.id === id); snapshot.powerPathId = powerPath?.id || '';
         snapshot.powerPathNote = powerPath ? `${powerPath.note} Output direction: ${powerPath.direction}. ${powerPath.ratio === null ? 'Speed ratio unverified.' : `Drive / crank speed = ${powerPath.ratio}:1; at 1000 crank RPM: ${powerPath.ratio * 1000} drive RPM (${powerPath.id === 'starter' ? 'cranking only' : 'speed example'}).`} ${contract.viewpoint} Dashed lines are a conceptual path, not physical shaft geometry.` : '';
-        applyAppearance(); onChange();
-      }, isolate() { if (!powerPath) return; isolation = new Set(powerPath.parts); snapshot.isolated = true; applyAppearance(); fitVisible(); onChange(); } } } : {}),
+        applyAppearance(); syncMechFlow(); runtime.render(); onChange();
+      }, isolate() { if (!powerPath) return; isolation = new Set(powerPath.parts); snapshot.isolated = true; applyAppearance(); syncMechFlow(); fitVisible(); onChange(); } } } : {}),
       components: { items: components, groups: [{ id: '', label: 'All groups' }, ...(contract.groups ? contract.groups.map((group: any) => ({ id: group.id, label: `${group.depth ? '– ' : ''}${group.label}`, depth: group.depth ?? 0, question: group.question })) : [...new Set<string>(components.map((part: any) => part.group))].map(id => ({ id, label: id.replaceAll('-', ' ') }))), ...paths.map(path => ({ id: `path:${path.id}`, label: `Complete path: ${path.label}` }))], select,
         isolate() { if (!snapshot.selectedId) return; isolation = new Set([snapshot.selectedId]); snapshot.isolated = true; applyAppearance(); fitVisible(); },
         isolateGroup(id) { if (!id) return; const ids = groupComponentIds(components, id); if (!ids.length) return; powerPath = undefined; snapshot.powerPathId = ''; snapshot.powerPathNote = ''; isolation = new Set(ids); snapshot.isolated = true; select(''); fitVisible(); }, showAll,
@@ -331,10 +425,88 @@ export async function createAnimatedStudySession(definition: ModelDefinition, co
         ...(contract.motions.some((motion: any) => motion.loopable !== false) ? {
           setLoop(value: boolean) { loops.set(active.id, value); syncPlayback(); onChange(); },
         } : {}),
-      }, section: section.feature,
+      },
+      ...(multiCycleSpec && multiCycleVisuals ? {
+        cycleCues: {
+          cylinders: multiCycleSpec.firingOrder.map((id: string) => {
+            const c = multiCycleSpec.cylinders.find((entry: any) => entry.id === id);
+            return { id, label: c?.label ?? id };
+          }),
+          setEnabled(enabled: boolean) {
+            cycleEnabled = Boolean(enabled);
+            snapshot.cycleEnabled = cycleEnabled;
+            if (cycleEnabled && crankAngleForMotion(active, 0) === undefined && cycleMotion) {
+              selectMotion(cycleMotion.id);
+            }
+            if (cycleEnabled && cycleReveal === 'section') {
+              section.feature.setEnabled(true);
+            } else if (!cycleEnabled && cycleReveal === 'section') {
+              section.feature.setEnabled(false);
+            }
+            applyAppearance();
+            syncMultiCycle();
+            runtime.render();
+            onChange();
+          },
+          setMode(mode: 'ideal' | 'practical') {
+            cycleMode = mode === 'practical' ? 'practical' : 'ideal';
+            snapshot.cycleMode = cycleMode;
+            syncMultiCycle();
+            runtime.render();
+            onChange();
+          },
+          setReveal(reveal: 'ghost' | 'section' | 'solid') {
+            cycleReveal = reveal === 'section' || reveal === 'solid' ? reveal : 'ghost';
+            snapshot.cycleReveal = cycleReveal;
+            if (cycleEnabled) {
+              section.feature.setEnabled(cycleReveal === 'section');
+            }
+            applyAppearance();
+            syncMultiCycle();
+            runtime.render();
+            onChange();
+          },
+          setLayer(layer: 'air' | 'fuel' | 'chamber', enabled: boolean) {
+            cycleLayers = { ...cycleLayers, [layer]: Boolean(enabled) };
+            snapshot.cycleLayers = { ...cycleLayers };
+            multiCycleVisuals.setLayers(cycleLayers);
+            syncMultiCycle();
+            runtime.render();
+            onChange();
+          },
+          setHeroCylinder(id: string) {
+            if (!multiCycleSpec.cylinders.some((c: any) => c.id === id)) return;
+            heroCylinderId = id;
+            snapshot.cycleHeroCylinderId = id;
+            syncMultiCycle();
+            runtime.render();
+            onChange();
+          },
+          seekAngle(angleDeg: number) {
+            setPlaying(false);
+            const crankDeg = crankAngleForCylinderOtto(angleDeg, multiCycleSpec, heroCylinderId);
+            sample(crankDeg / 7.2);
+          },
+        },
+      } : {}),
+      ...(mechFlowSpec && mechFlowVisuals ? {
+        mechanismFlow: {
+          label: mechFlowSpec.label,
+          subtitle: mechFlowSpec.subtitle,
+          setEnabled(enabled: boolean) {
+            mechFlowEnabled = Boolean(enabled);
+            snapshot.mechanismFlowEnabled = mechFlowEnabled;
+            applyAppearance();
+            syncMechFlow();
+            runtime.render();
+            onChange();
+          },
+        },
+      } : {}),
+      section: section.feature,
       appearance: { setMode(mode) { snapshot.appearance = mode; applyAppearance(); runtime.render(); onChange(); } },
     },
-    dispose() { setPlaying(false); stopWatchingTheme?.(); runtime.setPickTargets([]); mixer.stopAllAction(); mixer.uncacheRoot(root); section.dispose(); runtime.scene.remove(root, arrows, route); disposeObject(root); disposeObject(arrows); disposeObject(route); },
+    dispose() { setPlaying(false); stopWatchingTheme?.(); runtime.setPickTargets([]); mixer.stopAllAction(); mixer.uncacheRoot(root); multiCycleVisuals?.dispose(); mechFlowVisuals?.dispose(); section.dispose(); runtime.scene.remove(root, arrows, route); disposeObject(root); disposeObject(arrows); disposeObject(route); },
   };
 }
 

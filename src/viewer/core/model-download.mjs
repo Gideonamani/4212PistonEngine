@@ -18,6 +18,21 @@ export const DEFAULT_POLICY = Object.freeze({
   idleDeadlineMs: 20_000,
 });
 
+/**
+ * The words and bar position for a download in progress. `received` counts bytes after the browser has unpacked them in transit, while
+ * `total` is the packed length the server (or the manifest) promised, so `received` can pass `total`; a fraction is only honest while it
+ * has not. Past the total there is no percentage to give, so it reports megabytes and no bar position rather than a figure over 100.
+ * The last 4 points of the bar are left for decoding the file.
+ * @returns {{ status: string, progress: number | undefined }}
+ */
+export function downloadProgress(received, total) {
+  if (total > 0 && received <= total) {
+    const percent = Math.min(96, Math.floor(received / total * 96));
+    return { status: `Downloading model · ${percent}%`, progress: percent };
+  }
+  return { status: `Downloading model · ${(received / 1048576).toFixed(1)} MB`, progress: undefined };
+}
+
 /** A failed download. `retryable` says whether another try could help; `reason` is a short word for the status line and for tests. */
 export class DownloadError extends Error {
   constructor(message, { status, reason, retryable = false, retryAfterMs } = {}) {

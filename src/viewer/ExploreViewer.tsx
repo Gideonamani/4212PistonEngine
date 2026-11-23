@@ -57,6 +57,15 @@ export default function ExploreViewer({ modelId, isFullscreen = false, onToggleF
 
   const controls = useViewerControls(viewer, { host: 'explore', player: { show: showPlayerOnViewer, onChange: setPlayerPreference } });
   const { definition, features, snapshot } = viewer;
+  // In Explore, open non-engine mechanical studies (hydraulic tappet, oil pump, accessories)
+  // in cutaway flow mode automatically so their internal mechanisms and oil/torque paths are immediately visible.
+  const autoFlowModelRef = useRef('');
+  useEffect(() => {
+    if (features?.mechanismFlow && autoFlowModelRef.current !== modelId) {
+      autoFlowModelRef.current = modelId;
+      features.mechanismFlow.setEnabled(true);
+    }
+  }, [features?.mechanismFlow, modelId]);
   const sectionRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const drawerRef = useRef<HTMLElement>(null);
@@ -77,7 +86,12 @@ export default function ExploreViewer({ modelId, isFullscreen = false, onToggleF
 
   // The panel appears once the model has loaded, and carries the description even for a model with no tabs (a scan with only a guided tour).
   const hasPanel = Boolean(features);
-  const canCycleSplit = Boolean(features?.motion && features?.cycleCues && snapshot.cycleEnabled && (!snapshot.savedMotionId || snapshot.savedMotionId === 'operating'));
+  const canCycleSplit = Boolean(
+    features?.motion
+    && features?.cycleCues
+    && snapshot.cycleEnabled
+    && (snapshot.cycleAvailable ?? (!snapshot.savedMotionId || snapshot.savedMotionId === 'operating')),
+  );
   const cycleSplitActive = cycleSplit && canCycleSplit;
   const panelOpen = controlsOpen && hasPanel && !cycleSplitActive;
 
