@@ -78,6 +78,16 @@ export type ViewerSnapshot = {
   cycleFuelSystem?: 'injected' | 'carburetted';
   /** Toggleable air–fuel flow sub-layers. */
   cycleLayers?: { air: boolean; fuel: boolean; chamber: boolean };
+  /** Whether the currently selected motion supports air–fuel cycle cues (true by default for single-cylinder operating mode). */
+  cycleAvailable?: boolean;
+  /** Active hero cylinder ID on multi-cylinder engines (drives detailed flow ribbons and P–V / T–s charts). */
+  cycleHeroCylinderId?: string;
+  /** Live firing-order status across all cylinders on multi-cylinder engines. */
+  cycleFiringOrder?: { id: string; label: string; angleDeg: number; stroke: 'intake' | 'compression' | 'power' | 'exhaust'; firing: boolean }[];
+  /** Illustrative fluid/torque flow overlay state for non-engine mechanical studies (tappet, oil pump, accessories). */
+  mechanismFlowEnabled?: boolean;
+  mechanismFlowAvailable?: boolean;
+  mechanismFlowPhase?: string;
   sectionEnabled?: boolean;
   sectionAxis?: SectionAxis;
   sectionPosition?: number;
@@ -158,6 +168,16 @@ export type ViewerFeatures = {
     setReveal?: (reveal: 'ghost' | 'section' | 'solid') => void;
     setFuelSystem?: (system: 'injected' | 'carburetted') => void;
     setLayer?: (layer: 'air' | 'fuel' | 'chamber', enabled: boolean) => void;
+    /** Seek directly to a 0..720° (or 0..360°) cycle angle for the active cylinder (used by Cycle Split charts & slider). */
+    seekAngle?: (angleDeg: number) => void;
+    /** Available cylinders on multi-cylinder engines for hero-cylinder tracking. */
+    cylinders?: { id: string; label: string }[];
+    setHeroCylinder?: (id: string) => void;
+  };
+  mechanismFlow?: {
+    label: string;
+    subtitle: string;
+    setEnabled: (enabled: boolean) => void;
   };
   section?: {
     setEnabled: (enabled: boolean) => void;

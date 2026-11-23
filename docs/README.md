@@ -18,6 +18,7 @@ publish), then `AGENTS.md` (storage and validation rules), then the guides here.
 | [explore-section-isolation.md](explore-section-isolation.md) | guide | Section faces and sub-assembly isolation in Explore. |
 | [mode-shell-viewer-separation.md](mode-shell-viewer-separation.md) | guide | The shared 3D viewer and how the app shell uses it. |
 | [engine-platform-architecture.md](engine-platform-architecture.md) | guide | How more engines and modules plug into the same app. |
+| [flow-visuals.md](flow-visuals.md) | guide | How the airflow, oil-flow and torque-flow overlays are described as data, so a new engine or mechanism needs no new drawing code. |
 | [card-thumbnails.md](card-thumbnails.md) | guide | How course, lesson and Explore card images are built from `sources.json`. |
 | [model-optimization.md](model-optimization.md) | guide | The optimised model release: method, measured results, and the manual publishing step. |
 | [release-rollback.md](release-rollback.md) | guide | Release snapshots and how to roll back. |

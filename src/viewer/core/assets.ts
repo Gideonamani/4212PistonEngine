@@ -1,7 +1,7 @@
 import type { ModelSource } from '../../data/modelRegistry';
 import { createGltfLoader } from './gltf-loader';
 import { MAX_BYTES, cacheAvailable, cacheKeyFor as savedCopyKey, dropCachedModel, keepCachedModel, pruneCachedModels, readCachedModel, roomFor, savedKind, writeCachedModel, type SaveOutcome } from './model-cache.mjs';
-import { downloadBytes } from './model-download.mjs';
+import { downloadBytes, downloadProgress } from './model-download.mjs';
 import { createModelMemory } from './model-memory.mjs';
 import { orderAttempts } from './source-order.mjs';
 
@@ -85,7 +85,7 @@ export async function loadModelBytes(
         signal,
         expectedBytes: candidate.transferBytes,
         onStatus: (status) => onProgress(status, 1),
-        onProgress: (received, total) => onProgress(total ? `Downloading model · ${Math.floor(received / total * 96)}%` : `Downloading model · ${(received / 1048576).toFixed(1)} MB`, total ? Math.min(96, Math.floor(received / total * 96)) : undefined),
+        onProgress: (received, total) => { const shown = downloadProgress(received, total); onProgress(shown.status, shown.progress); },
         // Only a download that has unpacked into a complete GLB is saved, so a cut-off transfer is never kept.
         validate: (bytes) => decodeModel(bytes.buffer as ArrayBuffer, signal, onProgress),
       });

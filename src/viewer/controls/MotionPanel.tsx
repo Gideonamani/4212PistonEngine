@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronLeft, ChevronRight, Columns2, Flame, Pause, Play, Repeat, RotateCcw } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight, Columns2, Droplets, Flame, Pause, Play, Repeat, RotateCcw } from 'lucide-react';
 import type { ViewerFeatures, ViewerSnapshot } from '../types';
 import type { PanelHost } from './panels';
 import { OttoCycleCard } from './OttoCycleCard';
@@ -118,17 +118,47 @@ export function MotionPanel({ features, snapshot, host, player, onOpenCycleSplit
         {([{ mode: 'core', label: 'Inside view' }, { mode: 'assembled', label: 'Assembled view' }] as const).map(({ mode, label }) => <button key={mode} type="button" role="radio" aria-checked={snapshot.motionViewMode === mode} onClick={() => saved.setViewMode!(mode)} className={`${ghostButton} ${snapshot.motionViewMode === mode ? 'bg-teal-400/15 text-teal-200' : ''}`}>{label}</button>)}
       </div>}
 
-      {page.crank && features.cycleCues && (() => {
+      {features.mechanismFlow && snapshot.mechanismFlowAvailable && (
+        <div className="mt-3 space-y-2 border-t border-white/10 pt-3">
+          <label className="relative flex min-h-11 cursor-pointer items-center justify-between gap-3 text-xs">
+            <input
+              type="checkbox"
+              aria-label={features.mechanismFlow.label}
+              checked={Boolean(snapshot.mechanismFlowEnabled)}
+              onChange={(event) => features.mechanismFlow!.setEnabled(event.target.checked)}
+              className="peer absolute inset-0 h-full w-full cursor-pointer opacity-0"
+            />
+            <span className="flex items-center gap-2">
+              <Droplets className={`h-4 w-4 shrink-0 ${snapshot.mechanismFlowEnabled ? 'text-amber-300' : 'text-slate-400'}`} aria-hidden="true" />
+              <span>
+                <strong className="block text-white">{features.mechanismFlow.label}</strong>
+                <small className="text-[11px] text-slate-400">{features.mechanismFlow.subtitle}</small>
+              </span>
+            </span>
+            <span aria-hidden="true" className="relative inline-flex h-6 w-11 shrink-0 rounded-full bg-slate-700 transition-colors peer-checked:bg-amber-400 peer-checked:[&>span]:translate-x-[22px] peer-focus-visible:ring-2 peer-focus-visible:ring-teal-300">
+              <span className="absolute top-0.5 h-5 w-5 translate-x-0.5 rounded-full bg-slate-950 shadow transition-transform" />
+            </span>
+          </label>
+          {snapshot.mechanismFlowEnabled && snapshot.mechanismFlowPhase && (
+            <div className="rounded-xl border border-amber-400/30 bg-amber-400/10 px-3 py-2 text-[11px] font-semibold text-amber-100">
+              {snapshot.mechanismFlowPhase}
+            </div>
+          )}
+        </div>
+      )}
+
+      {features.cycleCues && (page.crank || snapshot.cycleAvailable || Boolean(features.cycleCues.cylinders?.length)) && (() => {
         const cycleType = snapshot.cycleType ?? 'otto';
         const isDiesel = cycleType === 'diesel';
         const isTwoStroke = cycleType === 'two-stroke';
+        const isMultiCylinder = Boolean(features.cycleCues.cylinders && features.cycleCues.cylinders.length > 1);
         return (
         <div className="mt-3 space-y-2.5 border-t border-white/10 pt-3">
           <label className="relative flex min-h-11 cursor-pointer items-center justify-between gap-3 text-xs">
             {/* The real checkbox covers the whole row, so the whole row is the touch target (44 px) and it keeps native keyboard and screen-reader behaviour. */}
             <input
               type="checkbox"
-              aria-label={isDiesel ? 'Four-stroke cues: airflow and Diesel cycle' : isTwoStroke ? 'Two-stroke cues: port flow and 2-stroke cycle' : 'Four-stroke cues: air-fuel flow and Otto cycle'}
+              aria-label={isDiesel ? 'Four-stroke cues: airflow and Diesel cycle' : isTwoStroke ? 'Two-stroke cues: port flow and 2-stroke cycle' : isMultiCylinder ? 'Multi-cylinder airflow, firing order and Otto cycle' : 'Four-stroke cues: air-fuel flow and Otto cycle'}
               checked={Boolean(snapshot.cycleEnabled)}
               onChange={(event) => features.cycleCues!.setEnabled(event.target.checked)}
               className="peer absolute inset-0 h-full w-full cursor-pointer opacity-0"
@@ -136,8 +166,8 @@ export function MotionPanel({ features, snapshot, host, player, onOpenCycleSplit
             <span className="flex items-center gap-2">
               <Flame className={`h-4 w-4 shrink-0 ${snapshot.cycleEnabled ? 'text-teal-300' : 'text-slate-400'}`} aria-hidden="true" />
               <span>
-                <strong className="block text-white">{isDiesel ? 'Airflow & Diesel cycle' : isTwoStroke ? 'Port flow & 2-stroke cycle' : 'Air–fuel flow & Otto cycle'}</strong>
-                <small className="text-[11px] text-slate-400">{isDiesel ? 'Direct injection, 17.5:1 compression & live P–V / T–s' : isTwoStroke ? 'Crankcase pump, loop transfer ducts & 360° P–V / T–s' : 'Four-stroke ribbons, fuel spray & live P–V / T–s'}</small>
+                <strong className="block text-white">{isDiesel ? 'Airflow & Diesel cycle' : isTwoStroke ? 'Port flow & 2-stroke cycle' : isMultiCylinder ? 'Multi-cylinder airflow & firing order' : 'Air–fuel flow & Otto cycle'}</strong>
+                <small className="text-[11px] text-slate-400">{isDiesel ? 'Direct injection, 17.5:1 compression & live P–V / T–s' : isTwoStroke ? 'Crankcase pump, loop transfer ducts & 360° P–V / T–s' : isMultiCylinder ? 'Live firing-order wave, hero cylinder ribbons & P–V / T–s' : 'Four-stroke ribbons, fuel spray & live P–V / T–s'}</small>
               </span>
             </span>
             <span aria-hidden="true" className="relative inline-flex h-6 w-11 shrink-0 rounded-full bg-slate-700 transition-colors peer-checked:bg-teal-400 peer-checked:[&>span]:translate-x-[22px] peer-focus-visible:ring-2 peer-focus-visible:ring-teal-300">
@@ -243,13 +273,39 @@ export function MotionPanel({ features, snapshot, host, player, onOpenCycleSplit
                 </div>
               )}
 
+              {/* Multi-cylinder firing-order & hero cylinder picker */}
+              {isMultiCylinder && features.cycleCues.setHeroCylinder && (
+                <div className="space-y-1">
+                  <div className="font-mono text-[10px] font-semibold tracking-wider text-slate-400">FIRING ORDER · TRACKED CYLINDER</div>
+                  <div className="flex flex-wrap gap-1" role="radiogroup" aria-label="Tracked cylinder">
+                    {(snapshot.cycleFiringOrder ?? features.cycleCues.cylinders!.map((c) => ({ ...c, stroke: 'intake' as const, firing: false, angleDeg: 0 }))).map((item) => {
+                      const selected = item.id === snapshot.cycleHeroCylinderId;
+                      const dot = item.stroke === 'intake' ? 'bg-cyan-300' : item.stroke === 'compression' ? 'bg-indigo-400' : item.stroke === 'power' ? 'bg-orange-400' : 'bg-amber-300';
+                      return (
+                        <button
+                          key={item.id}
+                          type="button"
+                          role="radio"
+                          aria-checked={selected}
+                          onClick={() => features.cycleCues!.setHeroCylinder!(item.id)}
+                          className={`inline-flex min-h-8 items-center gap-1 rounded-lg border px-2 text-[11px] font-semibold transition-colors outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${selected ? 'border-teal-400 bg-teal-400/20 text-white font-bold' : item.firing ? 'border-orange-400/60 bg-orange-400/15 text-orange-100' : 'border-white/10 bg-slate-950/40 text-slate-300 hover:text-white'}`}
+                        >
+                          <span aria-hidden="true" className={`h-1.5 w-1.5 rounded-full ${dot}`} />
+                          {item.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
               {/* Live synchronized Otto / Diesel P–V & T–s card */}
               <OttoCycleCard
                 angle={angle}
                 mode={snapshot.cycleMode ?? 'ideal'}
                 cycleType={cycleType}
                 onModeChange={(nextMode) => features.cycleCues!.setMode?.(nextMode)}
-                onSeekAngle={(nextAngle) => motion.setAngle(nextAngle)}
+                onSeekAngle={(nextAngle) => (features.cycleCues!.seekAngle ?? motion.setAngle)(nextAngle)}
               />
             </div>
           )}
